@@ -1,0 +1,482 @@
+use std::mem::offset_of;
+
+use glacier_reflect::{
+    member::MemberInfoFlags,
+    type_info::{
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+    }, type_registry::TypeRegistry,
+};
+
+pub(crate) fn register_dice_online_shared_types(registry: &mut TypeRegistry) {
+    registry.register_type(DICEONLINESETTINGS_TYPE_INFO);
+    registry.register_type(DICEONLINESETTINGS_ARRAY_TYPE_INFO);
+    registry.register_type(DICEONLINELOGLEVELT_TYPE_INFO);
+    registry.register_type(DICEONLINELOGLEVELT_ARRAY_TYPE_INFO);
+    registry.register_type(AWARDGROUP_TYPE_INFO);
+    registry.register_type(AWARDGROUP_ARRAY_TYPE_INFO);
+    registry.register_type(STARLEVELCATEGORY_TYPE_INFO);
+    registry.register_type(STARLEVELCATEGORY_ARRAY_TYPE_INFO);
+    registry.register_type(WSCLASS_TYPE_INFO);
+    registry.register_type(WSCLASS_ARRAY_TYPE_INFO);
+    registry.register_type(INVENTORYPROGRESS_TYPE_INFO);
+    registry.register_type(INVENTORYPROGRESS_ARRAY_TYPE_INFO);
+    registry.register_type(ONLINEITEMTYPE_TYPE_INFO);
+    registry.register_type(ONLINEITEMTYPE_ARRAY_TYPE_INFO);
+    registry.register_type(VIRTUALCURRENCY_TYPE_INFO);
+    registry.register_type(VIRTUALCURRENCY_ARRAY_TYPE_INFO);
+    registry.register_type(RARITYTYPE_TYPE_INFO);
+    registry.register_type(RARITYTYPE_ARRAY_TYPE_INFO);
+}
+
+#[derive(Clone, PartialEq, Eq, Debug)]
+pub struct DiceOnlineSettings {
+    pub log_level: DiceOnlineLogLevelT,
+}
+
+pub const DICEONLINESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "DiceOnlineSettings",
+    flags: MemberInfoFlags::new(101),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Class(ClassInfoData {
+        super_class: Some(SYSTEMSETTINGS_TYPE_INFO),
+        fields: &[
+            FieldInfoData {
+                name: "LogLevel",
+                flags: MemberInfoFlags::new(0),
+                field_type: DICEONLINELOGLEVELT_TYPE_INFO,
+                rust_offset: offset_of!(DiceOnlineSettings, log_level),
+            },
+        ],
+    }),
+    array_type: Some(DICEONLINESETTINGS_ARRAY_TYPE_INFO),
+    alignment: 8,
+};
+
+impl TypeObject for DiceOnlineSettings {
+    fn type_info() -> &'static TypeInfo {
+        DICEONLINESETTINGS_TYPE_INFO
+    }
+}
+
+
+pub const DICEONLINESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "DiceOnlineSettings-Array",
+    flags: MemberInfoFlags::new(145),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Array("DiceOnlineSettings-Array"),
+    array_type: None,
+    alignment: 8,
+};
+
+
+#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
+#[repr(i32)]
+pub enum DiceOnlineLogLevelT {
+    #[default]
+    LLevel_Default = 0,
+    LLevel_Fatal = 1,
+    LLevel_Error = 2,
+    LLevel_Warn = 3,
+    LLevel_Info = 4,
+    LLevel_Debug = 5,
+    LLevel_Trace = 6,
+}
+
+pub const DICEONLINELOGLEVELT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "DiceOnlineLogLevelT",
+    flags: MemberInfoFlags::new(49429),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Enum,
+    array_type: Some(DICEONLINELOGLEVELT_ARRAY_TYPE_INFO),
+    alignment: 1,
+};
+
+impl TypeObject for DiceOnlineLogLevelT {
+    fn type_info() -> &'static TypeInfo {
+        DICEONLINELOGLEVELT_TYPE_INFO
+    }
+}
+
+
+pub const DICEONLINELOGLEVELT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "DiceOnlineLogLevelT-Array",
+    flags: MemberInfoFlags::new(145),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Array("DiceOnlineLogLevelT-Array"),
+    array_type: None,
+    alignment: 8,
+};
+
+
+#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
+#[repr(i32)]
+pub enum AwardGroup {
+    #[default]
+    AwardGroup_Undefined = 0,
+    AwardGroup_Achievements = 1,
+    AwardGroup_Honors = 2,
+    AwardGroup_Challenges = 3,
+    AwardGroup_StarLevel = 4,
+    AwardGroup_Gate = 5,
+    AwardGroup_DailyOrder = 6,
+    AwardGroup_Community = 7,
+    AwardGroup_Milestones = 8,
+    AwardGroup_Collection = 9,
+    AwardGroup_Rankup = 10,
+    AwardGroup_LastAwardGroup = 11,
+}
+
+pub const AWARDGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "AwardGroup",
+    flags: MemberInfoFlags::new(49429),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Enum,
+    array_type: Some(AWARDGROUP_ARRAY_TYPE_INFO),
+    alignment: 1,
+};
+
+impl TypeObject for AwardGroup {
+    fn type_info() -> &'static TypeInfo {
+        AWARDGROUP_TYPE_INFO
+    }
+}
+
+
+pub const AWARDGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "AwardGroup-Array",
+    flags: MemberInfoFlags::new(145),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Array("AwardGroup-Array"),
+    array_type: None,
+    alignment: 8,
+};
+
+
+#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
+#[repr(i32)]
+pub enum StarLevelCategory {
+    #[default]
+    StarLevelCategory_global = 0,
+    StarLevelCategory_Assault = 1,
+    StarLevelCategory_Heavy = 2,
+    StarLevelCategory_Officer = 3,
+    StarLevelCategory_Specialist = 4,
+    StarLevelCategory_Enforcer = 5,
+    StarLevelCategory_Aerial = 6,
+    StarLevelCategory_GroundVehicle = 7,
+    StarLevelCategory_Artillery = 8,
+    StarLevelCategory_Speeder = 9,
+    StarLevelCategory_Fighter = 10,
+    StarLevelCategory_Interceptor = 11,
+    StarLevelCategory_Bomber = 12,
+    StarLevelCategory_BobaFett = 13,
+    StarLevelCategory_Bossk = 14,
+    StarLevelCategory_Chewbacca = 15,
+    StarLevelCategory_DarthVader = 16,
+    StarLevelCategory_Emperor = 17,
+    StarLevelCategory_HanSolo = 18,
+    StarLevelCategory_Iden = 19,
+    StarLevelCategory_KyloRen = 20,
+    StarLevelCategory_Lando = 21,
+    StarLevelCategory_Leia = 22,
+    StarLevelCategory_Luke = 23,
+    StarLevelCategory_Maul = 24,
+    StarLevelCategory_Rey = 25,
+    StarLevelCategory_Yoda = 26,
+    StarLevelCategory_Finn = 27,
+    StarLevelCategory_Phasma = 28,
+    StarLevelCategory_GrizzlyBoat = 29,
+    StarLevelCategory_MillenniumFalcon = 30,
+    StarLevelCategory_MillenniumFalconNT = 31,
+    StarLevelCategory_Scimitar = 32,
+    StarLevelCategory_Slave1 = 33,
+    StarLevelCategory_TIEAdvanced = 34,
+    StarLevelCategory_Red5 = 35,
+    StarLevelCategory_YodasStarfighter = 36,
+    StarLevelCategory_QueenHoneyBee = 37,
+    StarLevelCategory_BlackOne = 38,
+    StarLevelCategory_IdensTIE = 39,
+    StarLevelCategory_MillenniumFalconRC = 40,
+    StarLevelCategory_Ewok = 41,
+    StarLevelCategory_Anakin = 42,
+    StarLevelCategory_Dooku = 43,
+    StarLevelCategory_Grievous = 44,
+    StarLevelCategory_ObiWan = 45,
+    StarLevelCategory_Infiltrator = 46,
+    StarLevelCategory_BB8 = 47,
+    StarLevelCategory_BB9E = 48,
+    StarLevelCategory_Count = 49,
+    StarLevelCategory_None = 50,
+    StarLevelCategory_Invalid = 51,
+}
+
+pub const STARLEVELCATEGORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "StarLevelCategory",
+    flags: MemberInfoFlags::new(49429),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Enum,
+    array_type: Some(STARLEVELCATEGORY_ARRAY_TYPE_INFO),
+    alignment: 1,
+};
+
+impl TypeObject for StarLevelCategory {
+    fn type_info() -> &'static TypeInfo {
+        STARLEVELCATEGORY_TYPE_INFO
+    }
+}
+
+
+pub const STARLEVELCATEGORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "StarLevelCategory-Array",
+    flags: MemberInfoFlags::new(145),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Array("StarLevelCategory-Array"),
+    array_type: None,
+    alignment: 8,
+};
+
+
+#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
+#[repr(i32)]
+pub enum WSClass {
+    #[default]
+    WSClass_Assault = 0,
+    WSClass_Heavy = 1,
+    WSClass_Officer = 2,
+    WSClass_Specialist = 3,
+    WSClass_Enforcer = 4,
+    WSClass_Aerial = 5,
+    WSClass_GroundVehicle = 6,
+    WSClass_Artillery = 7,
+    WSClass_Speeder = 8,
+    WSClass_Fighter = 9,
+    WSClass_Interceptor = 10,
+    WSClass_Bomber = 11,
+    WSClass_BobaFett = 12,
+    WSClass_Bossk = 13,
+    WSClass_Chewbacca = 14,
+    WSClass_DarthVader = 15,
+    WSClass_Emperor = 16,
+    WSClass_HanSolo = 17,
+    WSClass_Iden = 18,
+    WSClass_KyloRen = 19,
+    WSClass_Lando = 20,
+    WSClass_Leia = 21,
+    WSClass_Luke = 22,
+    WSClass_Maul = 23,
+    WSClass_Rey = 24,
+    WSClass_Yoda = 25,
+    WSClass_Finn = 26,
+    WSClass_Phasma = 27,
+    WSClass_GrizzlyBoat = 28,
+    WSClass_MillenniumFalcon = 29,
+    WSClass_MillenniumFalconNT = 30,
+    WSClass_Scimitar = 31,
+    WSClass_Slave1 = 32,
+    WSClass_TIEAdvanced = 33,
+    WSClass_Red5 = 34,
+    WSClass_YodasStarfighter = 35,
+    WSClass_QueenHoneyBee = 36,
+    WSClass_BlackOne = 37,
+    WSClass_IdensTIE = 38,
+    WSClass_MillenniumFalconRC = 39,
+    WSClass_Ewok = 40,
+    WSClass_Anakin = 41,
+    WSClass_Dooku = 42,
+    WSClass_Grievous = 43,
+    WSClass_ObiWan = 44,
+    WSClass_Infiltrator = 45,
+    WSClass_BB8 = 46,
+    WSClass_BB9E = 47,
+    WSClass_Count = 48,
+    WSClass_None = 49,
+    WSClass_Invalid = 50,
+}
+
+pub const WSCLASS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "WSClass",
+    flags: MemberInfoFlags::new(49429),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Enum,
+    array_type: Some(WSCLASS_ARRAY_TYPE_INFO),
+    alignment: 1,
+};
+
+impl TypeObject for WSClass {
+    fn type_info() -> &'static TypeInfo {
+        WSCLASS_TYPE_INFO
+    }
+}
+
+
+pub const WSCLASS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "WSClass-Array",
+    flags: MemberInfoFlags::new(145),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Array("WSClass-Array"),
+    array_type: None,
+    alignment: 8,
+};
+
+
+#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
+#[repr(i32)]
+pub enum InventoryProgress {
+    #[default]
+    InventoryProgress_NotDownloaded = 0,
+    InventoryProgress_Downloaded = 1,
+    InventoryProgress_Failed = 2,
+}
+
+pub const INVENTORYPROGRESS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "InventoryProgress",
+    flags: MemberInfoFlags::new(49429),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Enum,
+    array_type: Some(INVENTORYPROGRESS_ARRAY_TYPE_INFO),
+    alignment: 1,
+};
+
+impl TypeObject for InventoryProgress {
+    fn type_info() -> &'static TypeInfo {
+        INVENTORYPROGRESS_TYPE_INFO
+    }
+}
+
+
+pub const INVENTORYPROGRESS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "InventoryProgress-Array",
+    flags: MemberInfoFlags::new(145),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Array("InventoryProgress-Array"),
+    array_type: None,
+    alignment: 8,
+};
+
+
+#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
+#[repr(i32)]
+pub enum OnlineItemType {
+    #[default]
+    OnlineItemType_None = 0,
+    OnlineItemType_StarCard = 1,
+    OnlineItemType_TrooperWeapon = 2,
+    OnlineItemType_Emote = 3,
+    OnlineItemType_VictoryCelebration = 4,
+    OnlineItemType_VoiceLine = 5,
+    OnlineItemType_Skin = 6,
+    OnlineItemType_Credits = 7,
+    OnlineItemType_Crystals = 8,
+    OnlineItemType_BasicCraftingMaterials = 9,
+    OnlineItemType_EpicCraftingMaterials = 10,
+    OnlineItemType_CheatJabbaToken = 11,
+    OnlineItemType_WeaponAttachment = 12,
+    OnlineItemType_Gate = 13,
+    OnlineItemType_SkillPoint = 14,
+    OnlineItemType_Count = 15,
+}
+
+pub const ONLINEITEMTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "OnlineItemType",
+    flags: MemberInfoFlags::new(49429),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Enum,
+    array_type: Some(ONLINEITEMTYPE_ARRAY_TYPE_INFO),
+    alignment: 1,
+};
+
+impl TypeObject for OnlineItemType {
+    fn type_info() -> &'static TypeInfo {
+        ONLINEITEMTYPE_TYPE_INFO
+    }
+}
+
+
+pub const ONLINEITEMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "OnlineItemType-Array",
+    flags: MemberInfoFlags::new(145),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Array("OnlineItemType-Array"),
+    array_type: None,
+    alignment: 8,
+};
+
+
+#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
+#[repr(i32)]
+pub enum VirtualCurrency {
+    #[default]
+    VirtualCurrency_None = 0,
+    VirtualCurrency_Crystals = 1,
+    VirtualCurrency_Credits = 2,
+    VirtualCurrency_MaterialsCommon = 3,
+    VirtualCurrency_MaterialsRare = 4,
+    VirtualCurrency_Item = 5,
+    VirtualCurrency_SkillPoints = 6,
+}
+
+pub const VIRTUALCURRENCY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "VirtualCurrency",
+    flags: MemberInfoFlags::new(49429),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Enum,
+    array_type: Some(VIRTUALCURRENCY_ARRAY_TYPE_INFO),
+    alignment: 1,
+};
+
+impl TypeObject for VirtualCurrency {
+    fn type_info() -> &'static TypeInfo {
+        VIRTUALCURRENCY_TYPE_INFO
+    }
+}
+
+
+pub const VIRTUALCURRENCY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "VirtualCurrency-Array",
+    flags: MemberInfoFlags::new(145),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Array("VirtualCurrency-Array"),
+    array_type: None,
+    alignment: 8,
+};
+
+
+#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
+#[repr(i32)]
+pub enum RarityType {
+    #[default]
+    RarityType_Common = 0,
+    RarityType_Uncommon = 1,
+    RarityType_Rare = 2,
+    RarityType_Epic = 3,
+    RarityType_Legendary = 4,
+    RarityType_Event = 5,
+    RarityType_Count = 6,
+}
+
+pub const RARITYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "RarityType",
+    flags: MemberInfoFlags::new(49429),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Enum,
+    array_type: Some(RARITYTYPE_ARRAY_TYPE_INFO),
+    alignment: 1,
+};
+
+impl TypeObject for RarityType {
+    fn type_info() -> &'static TypeInfo {
+        RARITYTYPE_TYPE_INFO
+    }
+}
+
+
+pub const RARITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+    name: "RarityType-Array",
+    flags: MemberInfoFlags::new(145),
+    module: "DiceOnlineShared",
+    data: TypeInfoData::Array("RarityType-Array"),
+    array_type: None,
+    alignment: 8,
+};
+
+

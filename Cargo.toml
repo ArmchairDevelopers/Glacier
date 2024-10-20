@@ -1,0 +1,20 @@
+[package]
+name = "glacier"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = [
+    "crates/*"
+]
+
+[dependencies]
+glacier_sdk = { path = "crates/glacier_sdk" }
+
+[[example]]
+name = "decompile_game"
+path = "examples/sdk/decompile_game.rs"
+doc-scrape-examples = true
+
+[package.metadata.example.decompile_game]
+hidden = true

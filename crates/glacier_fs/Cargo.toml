@@ -1,0 +1,9 @@
+[package]
+name = "glacier_fs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bytes = "1.7.2"
+glacier_util = { path = "../glacier_util" }
+glacier_reflect = { path = "../glacier_reflect" }
