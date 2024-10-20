@@ -1,7 +1,7 @@
 use std::fmt::{self, Debug, Formatter};
 
 // UUID v3
-#[derive(Default, Clone, Copy)]
+#[derive(Default, Clone, Copy, PartialEq)]
 pub struct Guid {
     pub data1: u32,
     pub data2: u16,

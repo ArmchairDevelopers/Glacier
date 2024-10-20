@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -27,16 +28,29 @@ pub(crate) fn register_nv_rvm_dx11_types(registry: &mut TypeRegistry) {
     registry.register_type(DX11NVRVMDATABASE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Dx11NvDrawStateFTInstructionFactory {
+    pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
 
-pub const DX11NVDRAWSTATEFTINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Dx11NvDrawStateFTInstructionFactoryTrait: super::rvm_common::RvmInstructionFactoryBaseTrait {
+}
+
+impl Dx11NvDrawStateFTInstructionFactoryTrait for Dx11NvDrawStateFTInstructionFactory {
+}
+
+impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11NvDrawStateFTInstructionFactory {
+}
+
+pub static DX11NVDRAWSTATEFTINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvDrawStateFTInstructionFactory",
     flags: MemberInfoFlags::new(101),
     module: "NvRvmDx11",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Dx11NvDrawStateFTInstructionFactory as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -45,32 +59,48 @@ pub const DX11NVDRAWSTATEFTINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 impl TypeObject for Dx11NvDrawStateFTInstructionFactory {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DX11NVDRAWSTATEFTINSTRUCTIONFACTORY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DX11NVDRAWSTATEFTINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DX11NVDRAWSTATEFTINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvDrawStateFTInstructionFactory-Array",
     flags: MemberInfoFlags::new(145),
     module: "NvRvmDx11",
-    data: TypeInfoData::Array("Dx11NvDrawStateFTInstructionFactory-Array"),
+    data: TypeInfoData::Array("Dx11NvDrawStateFTInstructionFactory"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Dx11NvViewStateFTInstructionFactory {
+    pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
 
-pub const DX11NVVIEWSTATEFTINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Dx11NvViewStateFTInstructionFactoryTrait: super::rvm_common::RvmInstructionFactoryBaseTrait {
+}
+
+impl Dx11NvViewStateFTInstructionFactoryTrait for Dx11NvViewStateFTInstructionFactory {
+}
+
+impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11NvViewStateFTInstructionFactory {
+}
+
+pub static DX11NVVIEWSTATEFTINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvViewStateFTInstructionFactory",
     flags: MemberInfoFlags::new(101),
     module: "NvRvmDx11",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Dx11NvViewStateFTInstructionFactory as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -79,32 +109,48 @@ pub const DX11NVVIEWSTATEFTINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 impl TypeObject for Dx11NvViewStateFTInstructionFactory {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DX11NVVIEWSTATEFTINSTRUCTIONFACTORY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DX11NVVIEWSTATEFTINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DX11NVVIEWSTATEFTINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvViewStateFTInstructionFactory-Array",
     flags: MemberInfoFlags::new(145),
     module: "NvRvmDx11",
-    data: TypeInfoData::Array("Dx11NvViewStateFTInstructionFactory-Array"),
+    data: TypeInfoData::Array("Dx11NvViewStateFTInstructionFactory"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Dx11NvDrawStateDepthInstructionFactory {
+    pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
 
-pub const DX11NVDRAWSTATEDEPTHINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Dx11NvDrawStateDepthInstructionFactoryTrait: super::rvm_common::RvmInstructionFactoryBaseTrait {
+}
+
+impl Dx11NvDrawStateDepthInstructionFactoryTrait for Dx11NvDrawStateDepthInstructionFactory {
+}
+
+impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11NvDrawStateDepthInstructionFactory {
+}
+
+pub static DX11NVDRAWSTATEDEPTHINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvDrawStateDepthInstructionFactory",
     flags: MemberInfoFlags::new(101),
     module: "NvRvmDx11",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Dx11NvDrawStateDepthInstructionFactory as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -113,32 +159,48 @@ pub const DX11NVDRAWSTATEDEPTHINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = 
 };
 
 impl TypeObject for Dx11NvDrawStateDepthInstructionFactory {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DX11NVDRAWSTATEDEPTHINSTRUCTIONFACTORY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DX11NVDRAWSTATEDEPTHINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DX11NVDRAWSTATEDEPTHINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvDrawStateDepthInstructionFactory-Array",
     flags: MemberInfoFlags::new(145),
     module: "NvRvmDx11",
-    data: TypeInfoData::Array("Dx11NvDrawStateDepthInstructionFactory-Array"),
+    data: TypeInfoData::Array("Dx11NvDrawStateDepthInstructionFactory"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Dx11NvViewStateDepthInstructionFactory {
+    pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
 
-pub const DX11NVVIEWSTATEDEPTHINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Dx11NvViewStateDepthInstructionFactoryTrait: super::rvm_common::RvmInstructionFactoryBaseTrait {
+}
+
+impl Dx11NvViewStateDepthInstructionFactoryTrait for Dx11NvViewStateDepthInstructionFactory {
+}
+
+impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11NvViewStateDepthInstructionFactory {
+}
+
+pub static DX11NVVIEWSTATEDEPTHINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvViewStateDepthInstructionFactory",
     flags: MemberInfoFlags::new(101),
     module: "NvRvmDx11",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Dx11NvViewStateDepthInstructionFactory as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -147,98 +209,165 @@ pub const DX11NVVIEWSTATEDEPTHINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = 
 };
 
 impl TypeObject for Dx11NvViewStateDepthInstructionFactory {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DX11NVVIEWSTATEDEPTHINSTRUCTIONFACTORY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DX11NVVIEWSTATEDEPTHINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DX11NVVIEWSTATEDEPTHINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvViewStateDepthInstructionFactory-Array",
     flags: MemberInfoFlags::new(145),
     module: "NvRvmDx11",
-    data: TypeInfoData::Array("Dx11NvViewStateDepthInstructionFactory-Array"),
+    data: TypeInfoData::Array("Dx11NvViewStateDepthInstructionFactory"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData {
 }
 
-pub const RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionDataTrait: TypeObject {
+}
+
+impl RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionDataTrait for RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData {
+}
+
+pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData",
     flags: MemberInfoFlags::new(53321),
     module: "NvRvmDx11",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData as Default>::default())),
+        },
         fields: &[
         ],
     }),
-    array_type: Some(RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_ARRAY_TYPE_INFO),
+    array_type: Some(super::core::RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_ARRAY_TYPE_INFO),
     alignment: 2,
 };
 
 impl TypeObject for RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct RvmSerializedDb_ns_Dx11NvDrawStateInstructionData {
 }
 
-pub const RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait RvmSerializedDb_ns_Dx11NvDrawStateInstructionDataTrait: TypeObject {
+}
+
+impl RvmSerializedDb_ns_Dx11NvDrawStateInstructionDataTrait for RvmSerializedDb_ns_Dx11NvDrawStateInstructionData {
+}
+
+pub static RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11NvDrawStateInstructionData",
     flags: MemberInfoFlags::new(53321),
     module: "NvRvmDx11",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx11NvDrawStateInstructionData as Default>::default())),
+        },
         fields: &[
         ],
     }),
-    array_type: Some(RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO),
+    array_type: Some(super::core::RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO),
     alignment: 2,
 };
 
 impl TypeObject for RvmSerializedDb_ns_Dx11NvDrawStateInstructionData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct RvmSerializedDb_ns_Dx11NvViewStateInstructionData {
 }
 
-pub const RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait RvmSerializedDb_ns_Dx11NvViewStateInstructionDataTrait: TypeObject {
+}
+
+impl RvmSerializedDb_ns_Dx11NvViewStateInstructionDataTrait for RvmSerializedDb_ns_Dx11NvViewStateInstructionData {
+}
+
+pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11NvViewStateInstructionData",
     flags: MemberInfoFlags::new(53321),
     module: "NvRvmDx11",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx11NvViewStateInstructionData as Default>::default())),
+        },
         fields: &[
         ],
     }),
-    array_type: Some(RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO),
+    array_type: Some(super::core::RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO),
     alignment: 2,
 };
 
 impl TypeObject for RvmSerializedDb_ns_Dx11NvViewStateInstructionData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEINSTRUCTIONDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Dx11NvRvmBackendConfig {
+    pub _glacier_base: super::rvm_dx11_pc::Dx11RvmBackendConfig,
 }
 
-pub const DX11NVRVMBACKENDCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Dx11NvRvmBackendConfigTrait: super::rvm_dx11_pc::Dx11RvmBackendConfigTrait {
+}
+
+impl Dx11NvRvmBackendConfigTrait for Dx11NvRvmBackendConfig {
+}
+
+impl super::rvm_dx11_pc::Dx11RvmBackendConfigTrait for Dx11NvRvmBackendConfig {
+}
+
+impl super::rvm_common::RvmBackendConfigTrait for Dx11NvRvmBackendConfig {
+}
+
+impl super::core::AssetTrait for Dx11NvRvmBackendConfig {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for Dx11NvRvmBackendConfig {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static DX11NVRVMBACKENDCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvRvmBackendConfig",
     flags: MemberInfoFlags::new(101),
     module: "NvRvmDx11",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(DX11RVMBACKENDCONFIG_TYPE_INFO),
+        super_class: Some(super::rvm_dx11_pc::DX11RVMBACKENDCONFIG_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Dx11NvRvmBackendConfig as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -247,32 +376,51 @@ pub const DX11NVRVMBACKENDCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for Dx11NvRvmBackendConfig {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DX11NVRVMBACKENDCONFIG_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DX11NVRVMBACKENDCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DX11NVRVMBACKENDCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvRvmBackendConfig-Array",
     flags: MemberInfoFlags::new(145),
     module: "NvRvmDx11",
-    data: TypeInfoData::Array("Dx11NvRvmBackendConfig-Array"),
+    data: TypeInfoData::Array("Dx11NvRvmBackendConfig"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Dx11NvRvmDatabaseLoader {
+    pub _glacier_base: super::rvm_common::RvmCommonDatabaseLoader,
 }
 
-pub const DX11NVRVMDATABASELOADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Dx11NvRvmDatabaseLoaderTrait: super::rvm_common::RvmCommonDatabaseLoaderTrait {
+}
+
+impl Dx11NvRvmDatabaseLoaderTrait for Dx11NvRvmDatabaseLoader {
+}
+
+impl super::rvm_common::RvmCommonDatabaseLoaderTrait for Dx11NvRvmDatabaseLoader {
+}
+
+impl super::render::RvmDatabaseLoaderTrait for Dx11NvRvmDatabaseLoader {
+}
+
+pub static DX11NVRVMDATABASELOADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvRvmDatabaseLoader",
     flags: MemberInfoFlags::new(101),
     module: "NvRvmDx11",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(RVMCOMMONDATABASELOADER_TYPE_INFO),
+        super_class: Some(super::rvm_common::RVMCOMMONDATABASELOADER_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Dx11NvRvmDatabaseLoader as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -281,32 +429,60 @@ pub const DX11NVRVMDATABASELOADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for Dx11NvRvmDatabaseLoader {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DX11NVRVMDATABASELOADER_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DX11NVRVMDATABASELOADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DX11NVRVMDATABASELOADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvRvmDatabaseLoader-Array",
     flags: MemberInfoFlags::new(145),
     module: "NvRvmDx11",
-    data: TypeInfoData::Array("Dx11NvRvmDatabaseLoader-Array"),
+    data: TypeInfoData::Array("Dx11NvRvmDatabaseLoader"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Dx11NvRvmDatabase {
+    pub _glacier_base: super::rvm_dx11_pc::Dx11RvmDatabase,
 }
 
-pub const DX11NVRVMDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Dx11NvRvmDatabaseTrait: super::rvm_dx11_pc::Dx11RvmDatabaseTrait {
+}
+
+impl Dx11NvRvmDatabaseTrait for Dx11NvRvmDatabase {
+}
+
+impl super::rvm_dx11_pc::Dx11RvmDatabaseTrait for Dx11NvRvmDatabase {
+}
+
+impl super::rvm_common::BaseRvmDatabaseTrait for Dx11NvRvmDatabase {
+}
+
+impl super::render::RvmLegacyDatabaseTrait for Dx11NvRvmDatabase {
+}
+
+impl super::render::RvmDatabaseTrait for Dx11NvRvmDatabase {
+}
+
+impl super::core::IResourceObjectTrait for Dx11NvRvmDatabase {
+}
+
+pub static DX11NVRVMDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvRvmDatabase",
     flags: MemberInfoFlags::new(101),
     module: "NvRvmDx11",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(DX11RVMDATABASE_TYPE_INFO),
+        super_class: Some(super::rvm_dx11_pc::DX11RVMDATABASE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Dx11NvRvmDatabase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -315,17 +491,20 @@ pub const DX11NVRVMDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for Dx11NvRvmDatabase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DX11NVRVMDATABASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DX11NVRVMDATABASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DX11NVRVMDATABASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11NvRvmDatabase-Array",
     flags: MemberInfoFlags::new(145),
     module: "NvRvmDx11",
-    data: TypeInfoData::Array("Dx11NvRvmDatabase-Array"),
+    data: TypeInfoData::Array("Dx11NvRvmDatabase"),
     array_type: None,
     alignment: 8,
 };

@@ -1,10 +1,12 @@
 use std::mem;
 
-use bytes::{Buf, Bytes, BytesMut};
-use glacier_reflect::member::MemberInfoFlags;
+use bytes::{Buf, BytesMut};
+use glacier_reflect::{type_info::TypeInfo, type_registry::TypeRegistry};
 use glacier_util::{endian::endian_swap, guid::Guid, math::roundup};
 
-use super::type_resolver::{EbxPartitionFieldDescriptor, EbxPartitionTypeDescriptor, EbxPartitionTypeResolver};
+use super::type_resolver::{
+    EbxPartitionFieldDescriptor, EbxPartitionTypeDescriptor, EbxPartitionTypeResolver,
+};
 
 #[derive(Debug, Default)]
 #[repr(C)]
@@ -76,9 +78,10 @@ pub struct EbxPartitionInitData {
     partition_guid: Guid,
 }
 
-#[derive(Default)]
-pub struct EbxPartitionReader {
+pub struct EbxPartitionReader<'a> {
     partition_name: String,
+    type_registry: &'a TypeRegistry,
+
     header: EbxPartitionHeader,
     state: ReaderState,
     endian_swap: bool,
@@ -97,13 +100,28 @@ pub struct EbxPartitionReader {
     instance_ranges: Vec<EbxPartitionInstanceRange>,
     array_entries: Vec<EbxPartitionArrayEntry>,
     boxed_value_entries: Vec<EbxPartitionBoxedValueEntry>,
+
+    type_infos: Vec<Option<&'static TypeInfo>>,
 }
 
-impl EbxPartitionReader {
-    pub fn new(partition_name: String) -> Self {
+impl<'a> EbxPartitionReader<'a> {
+    pub fn new(partition_name: String, type_registry: &'a TypeRegistry) -> Self {
         Self {
             partition_name,
-            ..Default::default()
+            type_registry,
+            header: EbxPartitionHeader::default(),
+            state: ReaderState::Initial,
+            endian_swap: false,
+            init_data: EbxPartitionInitData::default(),
+            type_resolver: EbxPartitionTypeResolver::default(),
+            metadata_outstanding: 0,
+            payload_outstanding: 0,
+            metadata: BytesMut::new(),
+            import_entries: Vec::new(),
+            meta_string_block: Vec::new(),
+            instance_ranges: Vec::new(),
+            array_entries: Vec::new(),
+            boxed_value_entries: Vec::new(),
         }
     }
 
@@ -247,7 +265,11 @@ impl EbxPartitionReader {
                         values
                     };
 
-                    self.type_resolver.init(field_descriptors, type_descriptors, metadata_cursor.to_vec());
+                    self.type_resolver.init(
+                        field_descriptors,
+                        type_descriptors,
+                        metadata_cursor.to_vec(),
+                    );
 
                     // TODO: Resolve imports
 
@@ -256,9 +278,7 @@ impl EbxPartitionReader {
                 ReaderState::Layout => {
                     self.handle_layout();
                 }
-                ReaderState::Payloads => {
-                    
-                }
+                ReaderState::Payloads => {}
                 ReaderState::PreparePayload => todo!(),
                 ReaderState::Fixup => todo!(),
                 ReaderState::Done => todo!(),
@@ -267,7 +287,14 @@ impl EbxPartitionReader {
     }
 
     pub fn handle_layout(&mut self) {
-        
+        self.type_infos = vec![None; 64];
+
+        let mut instance_count = 0;
+        for range in &self.instance_ranges {
+            self.type_infos[range.type_descriptor_index as usize] = self.type_resolver.resolve_type(range.type_descriptor_index as u32);
+
+            instance_count += range.instance_count as usize;
+        }
     }
 }
 
@@ -280,7 +307,9 @@ mod tests {
         let data = include_bytes!("../../tests/data/DefaultLodGroup.bin");
         let mut bytes = BytesMut::from(&data[..]);
 
-        let mut reader = EbxPartitionReader::new("systems/Mesh/DefaultLoadGroup".to_owned());
+        let registry = TypeRegistry::default();
+
+        let mut reader = EbxPartitionReader::new("systems/Mesh/DefaultLoadGroup".to_owned(), &registry);
         reader.read(&mut bytes);
     }
 }

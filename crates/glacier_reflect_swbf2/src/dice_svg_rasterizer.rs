@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -12,16 +13,25 @@ pub(crate) fn register_dice_svg_rasterizer_types(registry: &mut TypeRegistry) {
     registry.register_type(SVGIMAGEDATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct SvgImageData {
 }
 
-pub const SVGIMAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait SvgImageDataTrait: TypeObject {
+}
+
+impl SvgImageDataTrait for SvgImageData {
+}
+
+pub static SVGIMAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SvgImageData",
     flags: MemberInfoFlags::new(101),
     module: "DiceSvgRasterizer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<SvgImageData as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -30,17 +40,20 @@ pub const SVGIMAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for SvgImageData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SVGIMAGEDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SVGIMAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SVGIMAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SvgImageData-Array",
     flags: MemberInfoFlags::new(145),
     module: "DiceSvgRasterizer",
-    data: TypeInfoData::Array("SvgImageData-Array"),
+    data: TypeInfoData::Array("SvgImageData"),
     array_type: None,
     alignment: 8,
 };

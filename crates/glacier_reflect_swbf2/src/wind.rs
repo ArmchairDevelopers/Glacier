@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -24,7 +25,7 @@ pub(crate) fn register_wind_types(registry: &mut TypeRegistry) {
     registry.register_type(LOCALWINDFORCETYPE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Baked3DAs2x2DTexWindForceBase {
     pub position: super::core::Vec3,
     pub direction_x: super::core::Vec3,
@@ -35,8 +36,8 @@ pub struct Baked3DAs2x2DTexWindForceBase {
     pub scaled_direction_z: super::core::Vec3,
     pub texture_velocity_z_x_scale: super::core::Vec3,
     pub texture_velocity_z_y_scale: super::core::Vec3,
-    pub texture_velocity_z_x: super::render_base::TextureBaseAsset,
-    pub texture_velocity_z_y: super::render_base::TextureBaseAsset,
+    pub texture_velocity_z_x: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
+    pub texture_velocity_z_y: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
     pub aabb_min_x: f32,
     pub aabb_max_x: f32,
     pub aabb_min_y: f32,
@@ -55,172 +56,289 @@ pub struct Baked3DAs2x2DTexWindForceBase {
     pub field_flag_changed0: u32,
 }
 
-pub const BAKED3DAS2X2DTEXWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Baked3DAs2x2DTexWindForceBaseTrait: TypeObject {
+    fn position(&self) -> &super::core::Vec3;
+    fn direction_x(&self) -> &super::core::Vec3;
+    fn direction_y(&self) -> &super::core::Vec3;
+    fn direction_z(&self) -> &super::core::Vec3;
+    fn scaled_direction_x(&self) -> &super::core::Vec3;
+    fn scaled_direction_y(&self) -> &super::core::Vec3;
+    fn scaled_direction_z(&self) -> &super::core::Vec3;
+    fn texture_velocity_z_x_scale(&self) -> &super::core::Vec3;
+    fn texture_velocity_z_y_scale(&self) -> &super::core::Vec3;
+    fn texture_velocity_z_x(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_velocity_z_y(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn aabb_min_x(&self) -> &f32;
+    fn aabb_max_x(&self) -> &f32;
+    fn aabb_min_y(&self) -> &f32;
+    fn aabb_max_y(&self) -> &f32;
+    fn aabb_min_z(&self) -> &f32;
+    fn aabb_max_z(&self) -> &f32;
+    fn inv_attenuation(&self) -> &f32;
+    fn id(&self) -> &u32;
+    fn groups(&self) -> &u32;
+    fn strength(&self) -> &f32;
+    fn variation(&self) -> &f32;
+    fn variation_rate(&self) -> &f32;
+    fn micro_variation(&self) -> &f32;
+    fn hardness(&self) -> &f32;
+    fn force_as_instant_velocity(&self) -> &f32;
+    fn field_flag_changed0(&self) -> &u32;
+}
+
+impl Baked3DAs2x2DTexWindForceBaseTrait for Baked3DAs2x2DTexWindForceBase {
+    fn position(&self) -> &super::core::Vec3 {
+        &self.position
+    }
+    fn direction_x(&self) -> &super::core::Vec3 {
+        &self.direction_x
+    }
+    fn direction_y(&self) -> &super::core::Vec3 {
+        &self.direction_y
+    }
+    fn direction_z(&self) -> &super::core::Vec3 {
+        &self.direction_z
+    }
+    fn scaled_direction_x(&self) -> &super::core::Vec3 {
+        &self.scaled_direction_x
+    }
+    fn scaled_direction_y(&self) -> &super::core::Vec3 {
+        &self.scaled_direction_y
+    }
+    fn scaled_direction_z(&self) -> &super::core::Vec3 {
+        &self.scaled_direction_z
+    }
+    fn texture_velocity_z_x_scale(&self) -> &super::core::Vec3 {
+        &self.texture_velocity_z_x_scale
+    }
+    fn texture_velocity_z_y_scale(&self) -> &super::core::Vec3 {
+        &self.texture_velocity_z_y_scale
+    }
+    fn texture_velocity_z_x(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &self.texture_velocity_z_x
+    }
+    fn texture_velocity_z_y(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &self.texture_velocity_z_y
+    }
+    fn aabb_min_x(&self) -> &f32 {
+        &self.aabb_min_x
+    }
+    fn aabb_max_x(&self) -> &f32 {
+        &self.aabb_max_x
+    }
+    fn aabb_min_y(&self) -> &f32 {
+        &self.aabb_min_y
+    }
+    fn aabb_max_y(&self) -> &f32 {
+        &self.aabb_max_y
+    }
+    fn aabb_min_z(&self) -> &f32 {
+        &self.aabb_min_z
+    }
+    fn aabb_max_z(&self) -> &f32 {
+        &self.aabb_max_z
+    }
+    fn inv_attenuation(&self) -> &f32 {
+        &self.inv_attenuation
+    }
+    fn id(&self) -> &u32 {
+        &self.id
+    }
+    fn groups(&self) -> &u32 {
+        &self.groups
+    }
+    fn strength(&self) -> &f32 {
+        &self.strength
+    }
+    fn variation(&self) -> &f32 {
+        &self.variation
+    }
+    fn variation_rate(&self) -> &f32 {
+        &self.variation_rate
+    }
+    fn micro_variation(&self) -> &f32 {
+        &self.micro_variation
+    }
+    fn hardness(&self) -> &f32 {
+        &self.hardness
+    }
+    fn force_as_instant_velocity(&self) -> &f32 {
+        &self.force_as_instant_velocity
+    }
+    fn field_flag_changed0(&self) -> &u32 {
+        &self.field_flag_changed0
+    }
+}
+
+pub static BAKED3DAS2X2DTEXWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Baked3DAs2x2DTexWindForceBase",
     flags: MemberInfoFlags::new(73),
     module: "Wind",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Baked3DAs2x2DTexWindForceBase as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Position",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, position),
             },
             FieldInfoData {
                 name: "DirectionX",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, direction_x),
             },
             FieldInfoData {
                 name: "DirectionY",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, direction_y),
             },
             FieldInfoData {
                 name: "DirectionZ",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, direction_z),
             },
             FieldInfoData {
                 name: "ScaledDirectionX",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, scaled_direction_x),
             },
             FieldInfoData {
                 name: "ScaledDirectionY",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, scaled_direction_y),
             },
             FieldInfoData {
                 name: "ScaledDirectionZ",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, scaled_direction_z),
             },
             FieldInfoData {
                 name: "TextureVelocityZXScale",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, texture_velocity_z_x_scale),
             },
             FieldInfoData {
                 name: "TextureVelocityZYScale",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, texture_velocity_z_y_scale),
             },
             FieldInfoData {
                 name: "TextureVelocityZX",
                 flags: MemberInfoFlags::new(0),
-                field_type: TEXTUREBASEASSET_TYPE_INFO,
+                field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, texture_velocity_z_x),
             },
             FieldInfoData {
                 name: "TextureVelocityZY",
                 flags: MemberInfoFlags::new(0),
-                field_type: TEXTUREBASEASSET_TYPE_INFO,
+                field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, texture_velocity_z_y),
             },
             FieldInfoData {
                 name: "AabbMinX",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_min_x),
             },
             FieldInfoData {
                 name: "AabbMaxX",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_max_x),
             },
             FieldInfoData {
                 name: "AabbMinY",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_min_y),
             },
             FieldInfoData {
                 name: "AabbMaxY",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_max_y),
             },
             FieldInfoData {
                 name: "AabbMinZ",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_min_z),
             },
             FieldInfoData {
                 name: "AabbMaxZ",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_max_z),
             },
             FieldInfoData {
                 name: "InvAttenuation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, inv_attenuation),
             },
             FieldInfoData {
                 name: "Id",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, id),
             },
             FieldInfoData {
                 name: "Groups",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, groups),
             },
             FieldInfoData {
                 name: "Strength",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, strength),
             },
             FieldInfoData {
                 name: "Variation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, variation),
             },
             FieldInfoData {
                 name: "VariationRate",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, variation_rate),
             },
             FieldInfoData {
                 name: "MicroVariation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, micro_variation),
             },
             FieldInfoData {
                 name: "Hardness",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, hardness),
             },
             FieldInfoData {
                 name: "ForceAsInstantVelocity",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, force_as_instant_velocity),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, field_flag_changed0),
             },
         ],
@@ -230,23 +348,26 @@ pub const BAKED3DAS2X2DTEXWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 impl TypeObject for Baked3DAs2x2DTexWindForceBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         BAKED3DAS2X2DTEXWINDFORCEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const BAKED3DAS2X2DTEXWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static BAKED3DAS2X2DTEXWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Baked3DAs2x2DTexWindForceBase-Array",
     flags: MemberInfoFlags::new(145),
     module: "Wind",
-    data: TypeInfoData::Array("Baked3DAs2x2DTexWindForceBase-Array"),
+    data: TypeInfoData::Array("Baked3DAs2x2DTexWindForceBase"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ConeWindForceBase {
     pub position: super::core::Vec3,
     pub direction: super::core::Vec3,
@@ -265,100 +386,169 @@ pub struct ConeWindForceBase {
     pub field_flag_changed0: u16,
 }
 
-pub const CONEWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ConeWindForceBaseTrait: TypeObject {
+    fn position(&self) -> &super::core::Vec3;
+    fn direction(&self) -> &super::core::Vec3;
+    fn inner_radius(&self) -> &f32;
+    fn outer_radius(&self) -> &f32;
+    fn cos_inner_angle(&self) -> &f32;
+    fn cos_outer_angle(&self) -> &f32;
+    fn id(&self) -> &u32;
+    fn groups(&self) -> &u32;
+    fn strength(&self) -> &f32;
+    fn variation(&self) -> &f32;
+    fn variation_rate(&self) -> &f32;
+    fn micro_variation(&self) -> &f32;
+    fn hardness(&self) -> &f32;
+    fn force_as_instant_velocity(&self) -> &f32;
+    fn field_flag_changed0(&self) -> &u16;
+}
+
+impl ConeWindForceBaseTrait for ConeWindForceBase {
+    fn position(&self) -> &super::core::Vec3 {
+        &self.position
+    }
+    fn direction(&self) -> &super::core::Vec3 {
+        &self.direction
+    }
+    fn inner_radius(&self) -> &f32 {
+        &self.inner_radius
+    }
+    fn outer_radius(&self) -> &f32 {
+        &self.outer_radius
+    }
+    fn cos_inner_angle(&self) -> &f32 {
+        &self.cos_inner_angle
+    }
+    fn cos_outer_angle(&self) -> &f32 {
+        &self.cos_outer_angle
+    }
+    fn id(&self) -> &u32 {
+        &self.id
+    }
+    fn groups(&self) -> &u32 {
+        &self.groups
+    }
+    fn strength(&self) -> &f32 {
+        &self.strength
+    }
+    fn variation(&self) -> &f32 {
+        &self.variation
+    }
+    fn variation_rate(&self) -> &f32 {
+        &self.variation_rate
+    }
+    fn micro_variation(&self) -> &f32 {
+        &self.micro_variation
+    }
+    fn hardness(&self) -> &f32 {
+        &self.hardness
+    }
+    fn force_as_instant_velocity(&self) -> &f32 {
+        &self.force_as_instant_velocity
+    }
+    fn field_flag_changed0(&self) -> &u16 {
+        &self.field_flag_changed0
+    }
+}
+
+pub static CONEWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConeWindForceBase",
     flags: MemberInfoFlags::new(36937),
     module: "Wind",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ConeWindForceBase as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Position",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(ConeWindForceBase, position),
             },
             FieldInfoData {
                 name: "Direction",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(ConeWindForceBase, direction),
             },
             FieldInfoData {
                 name: "InnerRadius",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, inner_radius),
             },
             FieldInfoData {
                 name: "OuterRadius",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, outer_radius),
             },
             FieldInfoData {
                 name: "CosInnerAngle",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, cos_inner_angle),
             },
             FieldInfoData {
                 name: "CosOuterAngle",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, cos_outer_angle),
             },
             FieldInfoData {
                 name: "Id",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(ConeWindForceBase, id),
             },
             FieldInfoData {
                 name: "Groups",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(ConeWindForceBase, groups),
             },
             FieldInfoData {
                 name: "Strength",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, strength),
             },
             FieldInfoData {
                 name: "Variation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, variation),
             },
             FieldInfoData {
                 name: "VariationRate",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, variation_rate),
             },
             FieldInfoData {
                 name: "MicroVariation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, micro_variation),
             },
             FieldInfoData {
                 name: "Hardness",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, hardness),
             },
             FieldInfoData {
                 name: "ForceAsInstantVelocity",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, force_as_instant_velocity),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT16_TYPE_INFO,
+                field_type: "Uint16",
                 rust_offset: offset_of!(ConeWindForceBase, field_flag_changed0),
             },
         ],
@@ -368,23 +558,26 @@ pub const CONEWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ConeWindForceBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CONEWINDFORCEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CONEWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CONEWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConeWindForceBase-Array",
     flags: MemberInfoFlags::new(145),
     module: "Wind",
-    data: TypeInfoData::Array("ConeWindForceBase-Array"),
+    data: TypeInfoData::Array("ConeWindForceBase"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct SphereWindForceBase {
     pub position: super::core::Vec3,
     pub radius: f32,
@@ -399,76 +592,129 @@ pub struct SphereWindForceBase {
     pub field_flag_changed0: u16,
 }
 
-pub const SPHEREWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait SphereWindForceBaseTrait: TypeObject {
+    fn position(&self) -> &super::core::Vec3;
+    fn radius(&self) -> &f32;
+    fn id(&self) -> &u32;
+    fn groups(&self) -> &u32;
+    fn strength(&self) -> &f32;
+    fn variation(&self) -> &f32;
+    fn variation_rate(&self) -> &f32;
+    fn micro_variation(&self) -> &f32;
+    fn hardness(&self) -> &f32;
+    fn force_as_instant_velocity(&self) -> &f32;
+    fn field_flag_changed0(&self) -> &u16;
+}
+
+impl SphereWindForceBaseTrait for SphereWindForceBase {
+    fn position(&self) -> &super::core::Vec3 {
+        &self.position
+    }
+    fn radius(&self) -> &f32 {
+        &self.radius
+    }
+    fn id(&self) -> &u32 {
+        &self.id
+    }
+    fn groups(&self) -> &u32 {
+        &self.groups
+    }
+    fn strength(&self) -> &f32 {
+        &self.strength
+    }
+    fn variation(&self) -> &f32 {
+        &self.variation
+    }
+    fn variation_rate(&self) -> &f32 {
+        &self.variation_rate
+    }
+    fn micro_variation(&self) -> &f32 {
+        &self.micro_variation
+    }
+    fn hardness(&self) -> &f32 {
+        &self.hardness
+    }
+    fn force_as_instant_velocity(&self) -> &f32 {
+        &self.force_as_instant_velocity
+    }
+    fn field_flag_changed0(&self) -> &u16 {
+        &self.field_flag_changed0
+    }
+}
+
+pub static SPHEREWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereWindForceBase",
     flags: MemberInfoFlags::new(36937),
     module: "Wind",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<SphereWindForceBase as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Position",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(SphereWindForceBase, position),
             },
             FieldInfoData {
                 name: "Radius",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, radius),
             },
             FieldInfoData {
                 name: "Id",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(SphereWindForceBase, id),
             },
             FieldInfoData {
                 name: "Groups",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(SphereWindForceBase, groups),
             },
             FieldInfoData {
                 name: "Strength",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, strength),
             },
             FieldInfoData {
                 name: "Variation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, variation),
             },
             FieldInfoData {
                 name: "VariationRate",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, variation_rate),
             },
             FieldInfoData {
                 name: "MicroVariation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, micro_variation),
             },
             FieldInfoData {
                 name: "Hardness",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, hardness),
             },
             FieldInfoData {
                 name: "ForceAsInstantVelocity",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, force_as_instant_velocity),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT16_TYPE_INFO,
+                field_type: "Uint16",
                 rust_offset: offset_of!(SphereWindForceBase, field_flag_changed0),
             },
         ],
@@ -478,23 +724,26 @@ pub const SPHEREWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for SphereWindForceBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SPHEREWINDFORCEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SPHEREWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SPHEREWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereWindForceBase-Array",
     flags: MemberInfoFlags::new(145),
     module: "Wind",
-    data: TypeInfoData::Array("SphereWindForceBase-Array"),
+    data: TypeInfoData::Array("SphereWindForceBase"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LocalWindForce {
     pub id: u32,
     pub groups: u32,
@@ -506,58 +755,99 @@ pub struct LocalWindForce {
     pub force_as_instant_velocity: f32,
 }
 
-pub const LOCALWINDFORCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LocalWindForceTrait: TypeObject {
+    fn id(&self) -> &u32;
+    fn groups(&self) -> &u32;
+    fn strength(&self) -> &f32;
+    fn variation(&self) -> &f32;
+    fn variation_rate(&self) -> &f32;
+    fn micro_variation(&self) -> &f32;
+    fn hardness(&self) -> &f32;
+    fn force_as_instant_velocity(&self) -> &f32;
+}
+
+impl LocalWindForceTrait for LocalWindForce {
+    fn id(&self) -> &u32 {
+        &self.id
+    }
+    fn groups(&self) -> &u32 {
+        &self.groups
+    }
+    fn strength(&self) -> &f32 {
+        &self.strength
+    }
+    fn variation(&self) -> &f32 {
+        &self.variation
+    }
+    fn variation_rate(&self) -> &f32 {
+        &self.variation_rate
+    }
+    fn micro_variation(&self) -> &f32 {
+        &self.micro_variation
+    }
+    fn hardness(&self) -> &f32 {
+        &self.hardness
+    }
+    fn force_as_instant_velocity(&self) -> &f32 {
+        &self.force_as_instant_velocity
+    }
+}
+
+pub static LOCALWINDFORCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForce",
     flags: MemberInfoFlags::new(36937),
     module: "Wind",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LocalWindForce as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Id",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(LocalWindForce, id),
             },
             FieldInfoData {
                 name: "Groups",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(LocalWindForce, groups),
             },
             FieldInfoData {
                 name: "Strength",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, strength),
             },
             FieldInfoData {
                 name: "Variation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, variation),
             },
             FieldInfoData {
                 name: "VariationRate",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, variation_rate),
             },
             FieldInfoData {
                 name: "MicroVariation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, micro_variation),
             },
             FieldInfoData {
                 name: "Hardness",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, hardness),
             },
             FieldInfoData {
                 name: "ForceAsInstantVelocity",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, force_as_instant_velocity),
             },
         ],
@@ -567,23 +857,26 @@ pub const LOCALWINDFORCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LocalWindForce {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LOCALWINDFORCE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LOCALWINDFORCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LOCALWINDFORCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForce-Array",
     flags: MemberInfoFlags::new(145),
     module: "Wind",
-    data: TypeInfoData::Array("LocalWindForce-Array"),
+    data: TypeInfoData::Array("LocalWindForce"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct DirectionWindForceBase {
     pub direction: super::core::Vec3,
     pub strength: f32,
@@ -596,64 +889,109 @@ pub struct DirectionWindForceBase {
     pub field_flag_changed0: u8,
 }
 
-pub const DIRECTIONWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait DirectionWindForceBaseTrait: TypeObject {
+    fn direction(&self) -> &super::core::Vec3;
+    fn strength(&self) -> &f32;
+    fn variation(&self) -> &f32;
+    fn variation_rate(&self) -> &f32;
+    fn micro_variation(&self) -> &f32;
+    fn turbulence_multiplier(&self) -> &f32;
+    fn turbulence_scale(&self) -> &f32;
+    fn id(&self) -> &u32;
+    fn field_flag_changed0(&self) -> &u8;
+}
+
+impl DirectionWindForceBaseTrait for DirectionWindForceBase {
+    fn direction(&self) -> &super::core::Vec3 {
+        &self.direction
+    }
+    fn strength(&self) -> &f32 {
+        &self.strength
+    }
+    fn variation(&self) -> &f32 {
+        &self.variation
+    }
+    fn variation_rate(&self) -> &f32 {
+        &self.variation_rate
+    }
+    fn micro_variation(&self) -> &f32 {
+        &self.micro_variation
+    }
+    fn turbulence_multiplier(&self) -> &f32 {
+        &self.turbulence_multiplier
+    }
+    fn turbulence_scale(&self) -> &f32 {
+        &self.turbulence_scale
+    }
+    fn id(&self) -> &u32 {
+        &self.id
+    }
+    fn field_flag_changed0(&self) -> &u8 {
+        &self.field_flag_changed0
+    }
+}
+
+pub static DIRECTIONWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DirectionWindForceBase",
     flags: MemberInfoFlags::new(36937),
     module: "Wind",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<DirectionWindForceBase as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Direction",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(DirectionWindForceBase, direction),
             },
             FieldInfoData {
                 name: "Strength",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, strength),
             },
             FieldInfoData {
                 name: "Variation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, variation),
             },
             FieldInfoData {
                 name: "VariationRate",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, variation_rate),
             },
             FieldInfoData {
                 name: "MicroVariation",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, micro_variation),
             },
             FieldInfoData {
                 name: "TurbulenceMultiplier",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, turbulence_multiplier),
             },
             FieldInfoData {
                 name: "TurbulenceScale",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, turbulence_scale),
             },
             FieldInfoData {
                 name: "Id",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(DirectionWindForceBase, id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT8_TYPE_INFO,
+                field_type: "Uint8",
                 rust_offset: offset_of!(DirectionWindForceBase, field_flag_changed0),
             },
         ],
@@ -663,24 +1001,28 @@ pub const DIRECTIONWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for DirectionWindForceBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DIRECTIONWINDFORCEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DIRECTIONWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DIRECTIONWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DirectionWindForceBase-Array",
     flags: MemberInfoFlags::new(145),
     module: "Wind",
-    data: TypeInfoData::Array("DirectionWindForceBase-Array"),
+    data: TypeInfoData::Array("DirectionWindForceBase"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum LocalWindForceGroup {
     #[default]
     LocalWindForceGroup_Vegetation = 0,
@@ -691,7 +1033,7 @@ pub enum LocalWindForceGroup {
     LocalWindForceGroup_Count = 5,
 }
 
-pub const LOCALWINDFORCEGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LOCALWINDFORCEGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForceGroup",
     flags: MemberInfoFlags::new(49429),
     module: "Wind",
@@ -701,24 +1043,28 @@ pub const LOCALWINDFORCEGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LocalWindForceGroup {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LOCALWINDFORCEGROUP_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LOCALWINDFORCEGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LOCALWINDFORCEGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForceGroup-Array",
     flags: MemberInfoFlags::new(145),
     module: "Wind",
-    data: TypeInfoData::Array("LocalWindForceGroup-Array"),
+    data: TypeInfoData::Array("LocalWindForceGroup"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum LocalWindForceType {
     #[default]
     LocalWindForce_Sphere = 0,
@@ -726,7 +1072,7 @@ pub enum LocalWindForceType {
     LocalWindForce_Baked3dAs2x2DTexture = 2,
 }
 
-pub const LOCALWINDFORCETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LOCALWINDFORCETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForceType",
     flags: MemberInfoFlags::new(49429),
     module: "Wind",
@@ -736,17 +1082,20 @@ pub const LOCALWINDFORCETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LocalWindForceType {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LOCALWINDFORCETYPE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LOCALWINDFORCETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LOCALWINDFORCETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForceType-Array",
     flags: MemberInfoFlags::new(145),
     module: "Wind",
-    data: TypeInfoData::Array("LocalWindForceType-Array"),
+    data: TypeInfoData::Array("LocalWindForceType"),
     array_type: None,
     alignment: 8,
 };

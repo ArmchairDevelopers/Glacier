@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -30,16 +31,47 @@ pub(crate) fn register_a_i_tools_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTNAVIGATIONINTERFACE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct NavigationInterfaceData {
+    pub _glacier_base: super::entity::EntityData,
 }
 
-pub const NAVIGATIONINTERFACEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait NavigationInterfaceDataTrait: super::entity::EntityDataTrait {
+}
+
+impl NavigationInterfaceDataTrait for NavigationInterfaceData {
+}
+
+impl super::entity::EntityDataTrait for NavigationInterfaceData {
+}
+
+impl super::entity::GameObjectDataTrait for NavigationInterfaceData {
+}
+
+impl super::core::DataBusPeerTrait for NavigationInterfaceData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for NavigationInterfaceData {
+}
+
+impl super::core::DataContainerTrait for NavigationInterfaceData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static NAVIGATIONINTERFACEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NavigationInterfaceData",
     flags: MemberInfoFlags::new(101),
     module: "AITools",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<NavigationInterfaceData as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -48,32 +80,66 @@ pub const NAVIGATIONINTERFACEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for NavigationInterfaceData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         NAVIGATIONINTERFACEDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const NAVIGATIONINTERFACEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static NAVIGATIONINTERFACEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NavigationInterfaceData-Array",
     flags: MemberInfoFlags::new(145),
     module: "AITools",
-    data: TypeInfoData::Array("NavigationInterfaceData-Array"),
+    data: TypeInfoData::Array("NavigationInterfaceData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LocoEntityData {
+    pub _glacier_base: super::entity::EntityData,
 }
 
-pub const LOCOENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LocoEntityDataTrait: super::entity::EntityDataTrait {
+}
+
+impl LocoEntityDataTrait for LocoEntityData {
+}
+
+impl super::entity::EntityDataTrait for LocoEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for LocoEntityData {
+}
+
+impl super::core::DataBusPeerTrait for LocoEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for LocoEntityData {
+}
+
+impl super::core::DataContainerTrait for LocoEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static LOCOENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocoEntityData",
     flags: MemberInfoFlags::new(101),
     module: "AITools",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LocoEntityData as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -82,44 +148,64 @@ pub const LOCOENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LocoEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LOCOENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LOCOENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LOCOENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocoEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "AITools",
-    data: TypeInfoData::Array("LocoEntityData-Array"),
+    data: TypeInfoData::Array("LocoEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct AIWaypointExtraWaypointDataPtr {
-    pub waypoint_data_ptr: super::pathfinding_shared::WaypointData,
+    pub waypoint_data_ptr: Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>>,
     pub sublevel_i_d: i32,
 }
 
-pub const AIWAYPOINTEXTRAWAYPOINTDATAPTR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait AIWaypointExtraWaypointDataPtrTrait: TypeObject {
+    fn waypoint_data_ptr(&self) -> &Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>>;
+    fn sublevel_i_d(&self) -> &i32;
+}
+
+impl AIWaypointExtraWaypointDataPtrTrait for AIWaypointExtraWaypointDataPtr {
+    fn waypoint_data_ptr(&self) -> &Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>> {
+        &self.waypoint_data_ptr
+    }
+    fn sublevel_i_d(&self) -> &i32 {
+        &self.sublevel_i_d
+    }
+}
+
+pub static AIWAYPOINTEXTRAWAYPOINTDATAPTR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointExtraWaypointDataPtr",
     flags: MemberInfoFlags::new(73),
     module: "AITools",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<AIWaypointExtraWaypointDataPtr as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "WaypointDataPtr",
                 flags: MemberInfoFlags::new(0),
-                field_type: WAYPOINTDATA_TYPE_INFO,
+                field_type: "WaypointData",
                 rust_offset: offset_of!(AIWaypointExtraWaypointDataPtr, waypoint_data_ptr),
             },
             FieldInfoData {
                 name: "SublevelID",
                 flags: MemberInfoFlags::new(0),
-                field_type: INT32_TYPE_INFO,
+                field_type: "Int32",
                 rust_offset: offset_of!(AIWaypointExtraWaypointDataPtr, sublevel_i_d),
             },
         ],
@@ -129,44 +215,64 @@ pub const AIWAYPOINTEXTRAWAYPOINTDATAPTR_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 impl TypeObject for AIWaypointExtraWaypointDataPtr {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         AIWAYPOINTEXTRAWAYPOINTDATAPTR_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const AIWAYPOINTEXTRAWAYPOINTDATAPTR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static AIWAYPOINTEXTRAWAYPOINTDATAPTR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointExtraWaypointDataPtr-Array",
     flags: MemberInfoFlags::new(145),
     module: "AITools",
-    data: TypeInfoData::Array("AIWaypointExtraWaypointDataPtr-Array"),
+    data: TypeInfoData::Array("AIWaypointExtraWaypointDataPtr"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct AIWaypointExtraTeleport {
     pub position: super::core::Vec3,
     pub yaw: f32,
 }
 
-pub const AIWAYPOINTEXTRATELEPORT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait AIWaypointExtraTeleportTrait: TypeObject {
+    fn position(&self) -> &super::core::Vec3;
+    fn yaw(&self) -> &f32;
+}
+
+impl AIWaypointExtraTeleportTrait for AIWaypointExtraTeleport {
+    fn position(&self) -> &super::core::Vec3 {
+        &self.position
+    }
+    fn yaw(&self) -> &f32 {
+        &self.yaw
+    }
+}
+
+pub static AIWAYPOINTEXTRATELEPORT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointExtraTeleport",
     flags: MemberInfoFlags::new(36937),
     module: "AITools",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<AIWaypointExtraTeleport as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Position",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(AIWaypointExtraTeleport, position),
             },
             FieldInfoData {
                 name: "Yaw",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(AIWaypointExtraTeleport, yaw),
             },
         ],
@@ -176,51 +282,75 @@ pub const AIWAYPOINTEXTRATELEPORT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for AIWaypointExtraTeleport {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         AIWAYPOINTEXTRATELEPORT_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const AIWAYPOINTEXTRATELEPORT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static AIWAYPOINTEXTRATELEPORT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointExtraTeleport-Array",
     flags: MemberInfoFlags::new(145),
     module: "AITools",
-    data: TypeInfoData::Array("AIWaypointExtraTeleport-Array"),
+    data: TypeInfoData::Array("AIWaypointExtraTeleport"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct AIWaypointExtraSpatial {
     pub position: super::core::Vec3,
     pub radius: f32,
     pub yaw: f32,
 }
 
-pub const AIWAYPOINTEXTRASPATIAL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait AIWaypointExtraSpatialTrait: TypeObject {
+    fn position(&self) -> &super::core::Vec3;
+    fn radius(&self) -> &f32;
+    fn yaw(&self) -> &f32;
+}
+
+impl AIWaypointExtraSpatialTrait for AIWaypointExtraSpatial {
+    fn position(&self) -> &super::core::Vec3 {
+        &self.position
+    }
+    fn radius(&self) -> &f32 {
+        &self.radius
+    }
+    fn yaw(&self) -> &f32 {
+        &self.yaw
+    }
+}
+
+pub static AIWAYPOINTEXTRASPATIAL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointExtraSpatial",
     flags: MemberInfoFlags::new(36937),
     module: "AITools",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<AIWaypointExtraSpatial as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Position",
                 flags: MemberInfoFlags::new(0),
-                field_type: VEC3_TYPE_INFO,
+                field_type: "Vec3",
                 rust_offset: offset_of!(AIWaypointExtraSpatial, position),
             },
             FieldInfoData {
                 name: "Radius",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(AIWaypointExtraSpatial, radius),
             },
             FieldInfoData {
                 name: "Yaw",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(AIWaypointExtraSpatial, yaw),
             },
         ],
@@ -230,37 +360,53 @@ pub const AIWAYPOINTEXTRASPATIAL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for AIWaypointExtraSpatial {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         AIWAYPOINTEXTRASPATIAL_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const AIWAYPOINTEXTRASPATIAL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static AIWAYPOINTEXTRASPATIAL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointExtraSpatial-Array",
     flags: MemberInfoFlags::new(145),
     module: "AITools",
-    data: TypeInfoData::Array("AIWaypointExtraSpatial-Array"),
+    data: TypeInfoData::Array("AIWaypointExtraSpatial"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct AIWaypointGUID {
     pub g_u_i_d: i32,
 }
 
-pub const AIWAYPOINTGUID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait AIWaypointGUIDTrait: TypeObject {
+    fn g_u_i_d(&self) -> &i32;
+}
+
+impl AIWaypointGUIDTrait for AIWaypointGUID {
+    fn g_u_i_d(&self) -> &i32 {
+        &self.g_u_i_d
+    }
+}
+
+pub static AIWAYPOINTGUID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointGUID",
     flags: MemberInfoFlags::new(36937),
     module: "AITools",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<AIWaypointGUID as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "GUID",
                 flags: MemberInfoFlags::new(0),
-                field_type: INT32_TYPE_INFO,
+                field_type: "Int32",
                 rust_offset: offset_of!(AIWaypointGUID, g_u_i_d),
             },
         ],
@@ -270,32 +416,51 @@ pub const AIWAYPOINTGUID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for AIWaypointGUID {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         AIWAYPOINTGUID_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const AIWAYPOINTGUID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static AIWAYPOINTGUID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointGUID-Array",
     flags: MemberInfoFlags::new(145),
     module: "AITools",
-    data: TypeInfoData::Array("AIWaypointGUID-Array"),
+    data: TypeInfoData::Array("AIWaypointGUID"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ServerNavigationInterface {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const SERVERNAVIGATIONINTERFACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ServerNavigationInterfaceTrait: super::entity::EntityTrait {
+}
+
+impl ServerNavigationInterfaceTrait for ServerNavigationInterface {
+}
+
+impl super::entity::EntityTrait for ServerNavigationInterface {
+}
+
+impl super::entity::EntityBusPeerTrait for ServerNavigationInterface {
+}
+
+pub static SERVERNAVIGATIONINTERFACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerNavigationInterface",
     flags: MemberInfoFlags::new(101),
     module: "AITools",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ServerNavigationInterface as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -304,32 +469,51 @@ pub const SERVERNAVIGATIONINTERFACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ServerNavigationInterface {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SERVERNAVIGATIONINTERFACE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SERVERNAVIGATIONINTERFACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SERVERNAVIGATIONINTERFACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerNavigationInterface-Array",
     flags: MemberInfoFlags::new(145),
     module: "AITools",
-    data: TypeInfoData::Array("ServerNavigationInterface-Array"),
+    data: TypeInfoData::Array("ServerNavigationInterface"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ServerAuthNavigationInterface {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const SERVERAUTHNAVIGATIONINTERFACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ServerAuthNavigationInterfaceTrait: super::entity::EntityTrait {
+}
+
+impl ServerAuthNavigationInterfaceTrait for ServerAuthNavigationInterface {
+}
+
+impl super::entity::EntityTrait for ServerAuthNavigationInterface {
+}
+
+impl super::entity::EntityBusPeerTrait for ServerAuthNavigationInterface {
+}
+
+pub static SERVERAUTHNAVIGATIONINTERFACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAuthNavigationInterface",
     flags: MemberInfoFlags::new(101),
     module: "AITools",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ServerAuthNavigationInterface as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -338,32 +522,51 @@ pub const SERVERAUTHNAVIGATIONINTERFACE_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 impl TypeObject for ServerAuthNavigationInterface {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SERVERAUTHNAVIGATIONINTERFACE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SERVERAUTHNAVIGATIONINTERFACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SERVERAUTHNAVIGATIONINTERFACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAuthNavigationInterface-Array",
     flags: MemberInfoFlags::new(145),
     module: "AITools",
-    data: TypeInfoData::Array("ServerAuthNavigationInterface-Array"),
+    data: TypeInfoData::Array("ServerAuthNavigationInterface"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LocoEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const LOCOENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LocoEntityTrait: super::entity::EntityTrait {
+}
+
+impl LocoEntityTrait for LocoEntity {
+}
+
+impl super::entity::EntityTrait for LocoEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for LocoEntity {
+}
+
+pub static LOCOENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocoEntity",
     flags: MemberInfoFlags::new(101),
     module: "AITools",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LocoEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -372,32 +575,51 @@ pub const LOCOENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LocoEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LOCOENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LOCOENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LOCOENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocoEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "AITools",
-    data: TypeInfoData::Array("LocoEntity-Array"),
+    data: TypeInfoData::Array("LocoEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientNavigationInterface {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CLIENTNAVIGATIONINTERFACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientNavigationInterfaceTrait: super::entity::EntityTrait {
+}
+
+impl ClientNavigationInterfaceTrait for ClientNavigationInterface {
+}
+
+impl super::entity::EntityTrait for ClientNavigationInterface {
+}
+
+impl super::entity::EntityBusPeerTrait for ClientNavigationInterface {
+}
+
+pub static CLIENTNAVIGATIONINTERFACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientNavigationInterface",
     flags: MemberInfoFlags::new(101),
     module: "AITools",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientNavigationInterface as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -406,17 +628,20 @@ pub const CLIENTNAVIGATIONINTERFACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ClientNavigationInterface {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTNAVIGATIONINTERFACE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTNAVIGATIONINTERFACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTNAVIGATIONINTERFACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientNavigationInterface-Array",
     flags: MemberInfoFlags::new(145),
     module: "AITools",
-    data: TypeInfoData::Array("ClientNavigationInterface-Array"),
+    data: TypeInfoData::Array("ClientNavigationInterface"),
     array_type: None,
     alignment: 8,
 };

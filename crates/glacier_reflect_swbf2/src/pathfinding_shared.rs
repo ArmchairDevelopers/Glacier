@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -52,8 +53,9 @@ pub(crate) fn register_pathfinding_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(PATHFINDINGSYSTEMENTITYDATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct VehicleWaypointData {
+    pub _glacier_base: WaypointData,
     pub speed: f32,
     pub speed_override_moving_towards: f32,
     pub speed_limit_on_reached: f32,
@@ -67,77 +69,148 @@ pub struct VehicleWaypointData {
     pub stop_here_radius: f32,
 }
 
-pub const VEHICLEWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait VehicleWaypointDataTrait: WaypointDataTrait {
+    fn speed(&self) -> &f32;
+    fn speed_override_moving_towards(&self) -> &f32;
+    fn speed_limit_on_reached(&self) -> &f32;
+    fn speed_limit_moving_towards(&self) -> &f32;
+    fn use_heading(&self) -> &bool;
+    fn heading(&self) -> &f32;
+    fn stop_here(&self) -> &bool;
+    fn wait_here(&self) -> &f32;
+    fn stopping_deceleration(&self) -> &f32;
+    fn min_slowdown_speed(&self) -> &f32;
+    fn stop_here_radius(&self) -> &f32;
+}
+
+impl VehicleWaypointDataTrait for VehicleWaypointData {
+    fn speed(&self) -> &f32 {
+        &self.speed
+    }
+    fn speed_override_moving_towards(&self) -> &f32 {
+        &self.speed_override_moving_towards
+    }
+    fn speed_limit_on_reached(&self) -> &f32 {
+        &self.speed_limit_on_reached
+    }
+    fn speed_limit_moving_towards(&self) -> &f32 {
+        &self.speed_limit_moving_towards
+    }
+    fn use_heading(&self) -> &bool {
+        &self.use_heading
+    }
+    fn heading(&self) -> &f32 {
+        &self.heading
+    }
+    fn stop_here(&self) -> &bool {
+        &self.stop_here
+    }
+    fn wait_here(&self) -> &f32 {
+        &self.wait_here
+    }
+    fn stopping_deceleration(&self) -> &f32 {
+        &self.stopping_deceleration
+    }
+    fn min_slowdown_speed(&self) -> &f32 {
+        &self.min_slowdown_speed
+    }
+    fn stop_here_radius(&self) -> &f32 {
+        &self.stop_here_radius
+    }
+}
+
+impl WaypointDataTrait for VehicleWaypointData {
+    fn use_clients_position(&self) -> &bool {
+        self._glacier_base.use_clients_position()
+    }
+    fn schematics_name_hash(&self) -> &i32 {
+        self._glacier_base.schematics_name_hash()
+    }
+    fn waypoint_id(&self) -> &u32 {
+        self._glacier_base.waypoint_id()
+    }
+}
+
+impl super::core::DataContainerTrait for VehicleWaypointData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static VEHICLEWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleWaypointData",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WAYPOINTDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<VehicleWaypointData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Speed",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(VehicleWaypointData, speed),
             },
             FieldInfoData {
                 name: "SpeedOverrideMovingTowards",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(VehicleWaypointData, speed_override_moving_towards),
             },
             FieldInfoData {
                 name: "SpeedLimitOnReached",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(VehicleWaypointData, speed_limit_on_reached),
             },
             FieldInfoData {
                 name: "SpeedLimitMovingTowards",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(VehicleWaypointData, speed_limit_moving_towards),
             },
             FieldInfoData {
                 name: "UseHeading",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(VehicleWaypointData, use_heading),
             },
             FieldInfoData {
                 name: "Heading",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(VehicleWaypointData, heading),
             },
             FieldInfoData {
                 name: "StopHere",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(VehicleWaypointData, stop_here),
             },
             FieldInfoData {
                 name: "WaitHere",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(VehicleWaypointData, wait_here),
             },
             FieldInfoData {
                 name: "StoppingDeceleration",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(VehicleWaypointData, stopping_deceleration),
             },
             FieldInfoData {
                 name: "MinSlowdownSpeed",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(VehicleWaypointData, min_slowdown_speed),
             },
             FieldInfoData {
                 name: "StopHereRadius",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(VehicleWaypointData, stop_here_radius),
             },
         ],
@@ -147,38 +220,97 @@ pub const VEHICLEWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for VehicleWaypointData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         VEHICLEWAYPOINTDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const VEHICLEWAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static VEHICLEWAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleWaypointData-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("VehicleWaypointData-Array"),
+    data: TypeInfoData::Array("VehicleWaypointData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct WaypointsShapeData {
-    pub waypoints: Vec<WaypointData>,
+    pub _glacier_base: super::entity::VectorShapeData,
+    pub waypoints: Vec<Option<Arc<Mutex<dyn WaypointDataTrait>>>>,
 }
 
-pub const WAYPOINTSSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait WaypointsShapeDataTrait: super::entity::VectorShapeDataTrait {
+    fn waypoints(&self) -> &Vec<Option<Arc<Mutex<dyn WaypointDataTrait>>>>;
+}
+
+impl WaypointsShapeDataTrait for WaypointsShapeData {
+    fn waypoints(&self) -> &Vec<Option<Arc<Mutex<dyn WaypointDataTrait>>>> {
+        &self.waypoints
+    }
+}
+
+impl super::entity::VectorShapeDataTrait for WaypointsShapeData {
+    fn points(&self) -> &Vec<super::core::Vec3> {
+        self._glacier_base.points()
+    }
+    fn tension(&self) -> &f32 {
+        self._glacier_base.tension()
+    }
+    fn is_closed(&self) -> &bool {
+        self._glacier_base.is_closed()
+    }
+    fn allow_roll(&self) -> &bool {
+        self._glacier_base.allow_roll()
+    }
+    fn allow_yaw_pitch(&self) -> &bool {
+        self._glacier_base.allow_yaw_pitch()
+    }
+}
+
+impl super::entity::BaseShapeDataTrait for WaypointsShapeData {
+}
+
+impl super::entity::BaseShapeDataBaseTrait for WaypointsShapeData {
+}
+
+impl super::entity::GameObjectDataTrait for WaypointsShapeData {
+}
+
+impl super::core::DataBusPeerTrait for WaypointsShapeData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for WaypointsShapeData {
+}
+
+impl super::core::DataContainerTrait for WaypointsShapeData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static WAYPOINTSSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaypointsShapeData",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(VECTORSHAPEDATA_TYPE_INFO),
+        super_class: Some(super::entity::VECTORSHAPEDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<WaypointsShapeData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Waypoints",
                 flags: MemberInfoFlags::new(144),
-                field_type: WAYPOINTDATA_ARRAY_TYPE_INFO,
+                field_type: "WaypointData-Array",
                 rust_offset: offset_of!(WaypointsShapeData, waypoints),
             },
         ],
@@ -188,52 +320,83 @@ pub const WAYPOINTSSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for WaypointsShapeData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         WAYPOINTSSHAPEDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const WAYPOINTSSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static WAYPOINTSSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaypointsShapeData-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("WaypointsShapeData-Array"),
+    data: TypeInfoData::Array("WaypointsShapeData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct WaypointData {
+    pub _glacier_base: super::core::DataContainer,
     pub use_clients_position: bool,
     pub schematics_name_hash: i32,
     pub waypoint_id: u32,
 }
 
-pub const WAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait WaypointDataTrait: super::core::DataContainerTrait {
+    fn use_clients_position(&self) -> &bool;
+    fn schematics_name_hash(&self) -> &i32;
+    fn waypoint_id(&self) -> &u32;
+}
+
+impl WaypointDataTrait for WaypointData {
+    fn use_clients_position(&self) -> &bool {
+        &self.use_clients_position
+    }
+    fn schematics_name_hash(&self) -> &i32 {
+        &self.schematics_name_hash
+    }
+    fn waypoint_id(&self) -> &u32 {
+        &self.waypoint_id
+    }
+}
+
+impl super::core::DataContainerTrait for WaypointData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static WAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaypointData",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<WaypointData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "UseClientsPosition",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(WaypointData, use_clients_position),
             },
             FieldInfoData {
                 name: "SchematicsNameHash",
                 flags: MemberInfoFlags::new(0),
-                field_type: INT32_TYPE_INFO,
+                field_type: "Int32",
                 rust_offset: offset_of!(WaypointData, schematics_name_hash),
             },
             FieldInfoData {
                 name: "WaypointId",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(WaypointData, waypoint_id),
             },
         ],
@@ -243,24 +406,28 @@ pub const WAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for WaypointData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         WAYPOINTDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const WAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static WAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaypointData-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("WaypointData-Array"),
+    data: TypeInfoData::Array("WaypointData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum RouteType {
     #[default]
     RouteStop = 0,
@@ -268,7 +435,7 @@ pub enum RouteType {
     RouteBackAndForth = 2,
 }
 
-pub const ROUTETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ROUTETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RouteType",
     flags: MemberInfoFlags::new(49429),
     module: "PathfindingShared",
@@ -278,24 +445,28 @@ pub const ROUTETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for RouteType {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ROUTETYPE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ROUTETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ROUTETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RouteType-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("RouteType-Array"),
+    data: TypeInfoData::Array("RouteType"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum WaypointsSnappingSettings {
     #[default]
     UseShapeSettings = 0,
@@ -303,7 +474,7 @@ pub enum WaypointsSnappingSettings {
     NoSnap = 2,
 }
 
-pub const WAYPOINTSSNAPPINGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static WAYPOINTSSNAPPINGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaypointsSnappingSettings",
     flags: MemberInfoFlags::new(49429),
     module: "PathfindingShared",
@@ -313,52 +484,98 @@ pub const WAYPOINTSSNAPPINGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for WaypointsSnappingSettings {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         WAYPOINTSSNAPPINGSETTINGS_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const WAYPOINTSSNAPPINGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static WAYPOINTSSNAPPINGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaypointsSnappingSettings-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("WaypointsSnappingSettings-Array"),
+    data: TypeInfoData::Array("WaypointsSnappingSettings"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct FollowWaypointsEntityBaseData {
+    pub _glacier_base: super::entity::EntityData,
     pub type_of_route: RouteType,
     pub use_path_finding: bool,
     pub start_at_geometrically_closest_waypoint: bool,
 }
 
-pub const FOLLOWWAYPOINTSENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait FollowWaypointsEntityBaseDataTrait: super::entity::EntityDataTrait {
+    fn type_of_route(&self) -> &RouteType;
+    fn use_path_finding(&self) -> &bool;
+    fn start_at_geometrically_closest_waypoint(&self) -> &bool;
+}
+
+impl FollowWaypointsEntityBaseDataTrait for FollowWaypointsEntityBaseData {
+    fn type_of_route(&self) -> &RouteType {
+        &self.type_of_route
+    }
+    fn use_path_finding(&self) -> &bool {
+        &self.use_path_finding
+    }
+    fn start_at_geometrically_closest_waypoint(&self) -> &bool {
+        &self.start_at_geometrically_closest_waypoint
+    }
+}
+
+impl super::entity::EntityDataTrait for FollowWaypointsEntityBaseData {
+}
+
+impl super::entity::GameObjectDataTrait for FollowWaypointsEntityBaseData {
+}
+
+impl super::core::DataBusPeerTrait for FollowWaypointsEntityBaseData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for FollowWaypointsEntityBaseData {
+}
+
+impl super::core::DataContainerTrait for FollowWaypointsEntityBaseData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static FOLLOWWAYPOINTSENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FollowWaypointsEntityBaseData",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<FollowWaypointsEntityBaseData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "TypeOfRoute",
                 flags: MemberInfoFlags::new(0),
-                field_type: ROUTETYPE_TYPE_INFO,
+                field_type: "RouteType",
                 rust_offset: offset_of!(FollowWaypointsEntityBaseData, type_of_route),
             },
             FieldInfoData {
                 name: "UsePathFinding",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(FollowWaypointsEntityBaseData, use_path_finding),
             },
             FieldInfoData {
                 name: "StartAtGeometricallyClosestWaypoint",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(FollowWaypointsEntityBaseData, start_at_geometrically_closest_waypoint),
             },
         ],
@@ -368,59 +585,127 @@ pub const FOLLOWWAYPOINTSENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 impl TypeObject for FollowWaypointsEntityBaseData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         FOLLOWWAYPOINTSENTITYBASEDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const FOLLOWWAYPOINTSENTITYBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static FOLLOWWAYPOINTSENTITYBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FollowWaypointsEntityBaseData-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("FollowWaypointsEntityBaseData-Array"),
+    data: TypeInfoData::Array("FollowWaypointsEntityBaseData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PathFollowingComponentBaseData {
+    pub _glacier_base: super::entity::GameComponentData,
     pub update_path_at_distance_percent: f32,
     pub preferred_pathfinding_index: u32,
     pub alternate_pathfinding_indices: Vec<u32>,
     pub movement_corridor_radius: f32,
 }
 
-pub const PATHFOLLOWINGCOMPONENTBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PathFollowingComponentBaseDataTrait: super::entity::GameComponentDataTrait {
+    fn update_path_at_distance_percent(&self) -> &f32;
+    fn preferred_pathfinding_index(&self) -> &u32;
+    fn alternate_pathfinding_indices(&self) -> &Vec<u32>;
+    fn movement_corridor_radius(&self) -> &f32;
+}
+
+impl PathFollowingComponentBaseDataTrait for PathFollowingComponentBaseData {
+    fn update_path_at_distance_percent(&self) -> &f32 {
+        &self.update_path_at_distance_percent
+    }
+    fn preferred_pathfinding_index(&self) -> &u32 {
+        &self.preferred_pathfinding_index
+    }
+    fn alternate_pathfinding_indices(&self) -> &Vec<u32> {
+        &self.alternate_pathfinding_indices
+    }
+    fn movement_corridor_radius(&self) -> &f32 {
+        &self.movement_corridor_radius
+    }
+}
+
+impl super::entity::GameComponentDataTrait for PathFollowingComponentBaseData {
+}
+
+impl super::entity::ComponentDataTrait for PathFollowingComponentBaseData {
+    fn transform(&self) -> &super::core::LinearTransform {
+        self._glacier_base.transform()
+    }
+    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components()
+    }
+    fn client_index(&self) -> &u8 {
+        self._glacier_base.client_index()
+    }
+    fn server_index(&self) -> &u8 {
+        self._glacier_base.server_index()
+    }
+    fn excluded(&self) -> &bool {
+        self._glacier_base.excluded()
+    }
+}
+
+impl super::entity::GameObjectDataTrait for PathFollowingComponentBaseData {
+}
+
+impl super::core::DataBusPeerTrait for PathFollowingComponentBaseData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for PathFollowingComponentBaseData {
+}
+
+impl super::core::DataContainerTrait for PathFollowingComponentBaseData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PATHFOLLOWINGCOMPONENTBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathFollowingComponentBaseData",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(GAMECOMPONENTDATA_TYPE_INFO),
+        super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PathFollowingComponentBaseData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "UpdatePathAtDistancePercent",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(PathFollowingComponentBaseData, update_path_at_distance_percent),
             },
             FieldInfoData {
                 name: "PreferredPathfindingIndex",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(PathFollowingComponentBaseData, preferred_pathfinding_index),
             },
             FieldInfoData {
                 name: "AlternatePathfindingIndices",
                 flags: MemberInfoFlags::new(144),
-                field_type: UINT32_ARRAY_TYPE_INFO,
+                field_type: "Uint32-Array",
                 rust_offset: offset_of!(PathFollowingComponentBaseData, alternate_pathfinding_indices),
             },
             FieldInfoData {
                 name: "MovementCorridorRadius",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(PathFollowingComponentBaseData, movement_corridor_radius),
             },
         ],
@@ -430,24 +715,28 @@ pub const PATHFOLLOWINGCOMPONENTBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 impl TypeObject for PathFollowingComponentBaseData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFOLLOWINGCOMPONENTBASEDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFOLLOWINGCOMPONENTBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFOLLOWINGCOMPONENTBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathFollowingComponentBaseData-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathFollowingComponentBaseData-Array"),
+    data: TypeInfoData::Array("PathFollowingComponentBaseData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum PathfindingChoice {
     #[default]
     PathfindingChoice_Off = 0,
@@ -455,7 +744,7 @@ pub enum PathfindingChoice {
     PathfindingChoice_On = 2,
 }
 
-pub const PATHFINDINGCHOICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGCHOICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingChoice",
     flags: MemberInfoFlags::new(49429),
     module: "PathfindingShared",
@@ -465,52 +754,98 @@ pub const PATHFINDINGCHOICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PathfindingChoice {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFINDINGCHOICE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFINDINGCHOICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGCHOICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingChoice-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathfindingChoice-Array"),
+    data: TypeInfoData::Array("PathfindingChoice"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PathfindingStreamEntityBaseData {
-    pub pathfinding_blobs: PathfindingBlobAsset,
+    pub _glacier_base: super::entity::EntityData,
+    pub pathfinding_blobs: Option<Arc<Mutex<dyn PathfindingBlobAssetTrait>>>,
     pub autoload: bool,
     pub realm: super::core::Realm,
 }
 
-pub const PATHFINDINGSTREAMENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PathfindingStreamEntityBaseDataTrait: super::entity::EntityDataTrait {
+    fn pathfinding_blobs(&self) -> &Option<Arc<Mutex<dyn PathfindingBlobAssetTrait>>>;
+    fn autoload(&self) -> &bool;
+    fn realm(&self) -> &super::core::Realm;
+}
+
+impl PathfindingStreamEntityBaseDataTrait for PathfindingStreamEntityBaseData {
+    fn pathfinding_blobs(&self) -> &Option<Arc<Mutex<dyn PathfindingBlobAssetTrait>>> {
+        &self.pathfinding_blobs
+    }
+    fn autoload(&self) -> &bool {
+        &self.autoload
+    }
+    fn realm(&self) -> &super::core::Realm {
+        &self.realm
+    }
+}
+
+impl super::entity::EntityDataTrait for PathfindingStreamEntityBaseData {
+}
+
+impl super::entity::GameObjectDataTrait for PathfindingStreamEntityBaseData {
+}
+
+impl super::core::DataBusPeerTrait for PathfindingStreamEntityBaseData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for PathfindingStreamEntityBaseData {
+}
+
+impl super::core::DataContainerTrait for PathfindingStreamEntityBaseData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PATHFINDINGSTREAMENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingStreamEntityBaseData",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PathfindingStreamEntityBaseData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "PathfindingBlobs",
                 flags: MemberInfoFlags::new(0),
-                field_type: PATHFINDINGBLOBASSET_TYPE_INFO,
+                field_type: "PathfindingBlobAsset",
                 rust_offset: offset_of!(PathfindingStreamEntityBaseData, pathfinding_blobs),
             },
             FieldInfoData {
                 name: "Autoload",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingStreamEntityBaseData, autoload),
             },
             FieldInfoData {
                 name: "Realm",
                 flags: MemberInfoFlags::new(0),
-                field_type: REALM_TYPE_INFO,
+                field_type: "Realm",
                 rust_offset: offset_of!(PathfindingStreamEntityBaseData, realm),
             },
         ],
@@ -520,24 +855,28 @@ pub const PATHFINDINGSTREAMENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 impl TypeObject for PathfindingStreamEntityBaseData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFINDINGSTREAMENTITYBASEDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFINDINGSTREAMENTITYBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGSTREAMENTITYBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingStreamEntityBaseData-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathfindingStreamEntityBaseData-Array"),
+    data: TypeInfoData::Array("PathfindingStreamEntityBaseData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PathfindingDebugSettings {
+    pub _glacier_base: super::core::SystemSettings,
     pub draw_nav_mesh: i32,
     pub draw_polygon_outline: bool,
     pub draw_filled_polygons: bool,
@@ -576,227 +915,392 @@ pub struct PathfindingDebugSettings {
     pub potential_obstacles: bool,
 }
 
-pub const PATHFINDINGDEBUGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PathfindingDebugSettingsTrait: super::core::SystemSettingsTrait {
+    fn draw_nav_mesh(&self) -> &i32;
+    fn draw_polygon_outline(&self) -> &bool;
+    fn draw_filled_polygons(&self) -> &bool;
+    fn draw_connections(&self) -> &bool;
+    fn draw_obstacles(&self) -> &bool;
+    fn draw_area_normals(&self) -> &bool;
+    fn draw_obstacle_flags(&self) -> &bool;
+    fn draw_area_penalty_mults(&self) -> &bool;
+    fn draw_area_usage_flags(&self) -> &bool;
+    fn colorize_area_usage_flags(&self) -> &bool;
+    fn draw_link_usage_distances(&self) -> &bool;
+    fn draw_link_usage_flags(&self) -> &bool;
+    fn draw_original_link_locations(&self) -> &bool;
+    fn draw_recent_nav_probes(&self) -> &bool;
+    fn draw_recent_create_poly_line_paths(&self) -> &bool;
+    fn draw_mover_cylinders(&self) -> &bool;
+    fn draw_mover_goals(&self) -> &bool;
+    fn draw_mover_goals_reached(&self) -> &bool;
+    fn draw_mover_state(&self) -> &bool;
+    fn draw_mover_attractions(&self) -> &bool;
+    fn draw_repulsors(&self) -> &bool;
+    fn draw_client_motion(&self) -> &bool;
+    fn draw_cur_path_section(&self) -> &bool;
+    fn draw_follower_goals(&self) -> &bool;
+    fn draw_distance(&self) -> &f32;
+    fn depth_test(&self) -> &bool;
+    fn draw_stats(&self) -> &bool;
+    fn draw_memory(&self) -> &bool;
+    fn draw_timings(&self) -> &bool;
+    fn text_start_x(&self) -> &i32;
+    fn text_start_y(&self) -> &i32;
+    fn text_offset_y(&self) -> &i32;
+    fn replay_mode(&self) -> &PathfindingReplayMode;
+    fn original_paths(&self) -> &bool;
+    fn random_positions(&self) -> &bool;
+    fn potential_obstacles(&self) -> &bool;
+}
+
+impl PathfindingDebugSettingsTrait for PathfindingDebugSettings {
+    fn draw_nav_mesh(&self) -> &i32 {
+        &self.draw_nav_mesh
+    }
+    fn draw_polygon_outline(&self) -> &bool {
+        &self.draw_polygon_outline
+    }
+    fn draw_filled_polygons(&self) -> &bool {
+        &self.draw_filled_polygons
+    }
+    fn draw_connections(&self) -> &bool {
+        &self.draw_connections
+    }
+    fn draw_obstacles(&self) -> &bool {
+        &self.draw_obstacles
+    }
+    fn draw_area_normals(&self) -> &bool {
+        &self.draw_area_normals
+    }
+    fn draw_obstacle_flags(&self) -> &bool {
+        &self.draw_obstacle_flags
+    }
+    fn draw_area_penalty_mults(&self) -> &bool {
+        &self.draw_area_penalty_mults
+    }
+    fn draw_area_usage_flags(&self) -> &bool {
+        &self.draw_area_usage_flags
+    }
+    fn colorize_area_usage_flags(&self) -> &bool {
+        &self.colorize_area_usage_flags
+    }
+    fn draw_link_usage_distances(&self) -> &bool {
+        &self.draw_link_usage_distances
+    }
+    fn draw_link_usage_flags(&self) -> &bool {
+        &self.draw_link_usage_flags
+    }
+    fn draw_original_link_locations(&self) -> &bool {
+        &self.draw_original_link_locations
+    }
+    fn draw_recent_nav_probes(&self) -> &bool {
+        &self.draw_recent_nav_probes
+    }
+    fn draw_recent_create_poly_line_paths(&self) -> &bool {
+        &self.draw_recent_create_poly_line_paths
+    }
+    fn draw_mover_cylinders(&self) -> &bool {
+        &self.draw_mover_cylinders
+    }
+    fn draw_mover_goals(&self) -> &bool {
+        &self.draw_mover_goals
+    }
+    fn draw_mover_goals_reached(&self) -> &bool {
+        &self.draw_mover_goals_reached
+    }
+    fn draw_mover_state(&self) -> &bool {
+        &self.draw_mover_state
+    }
+    fn draw_mover_attractions(&self) -> &bool {
+        &self.draw_mover_attractions
+    }
+    fn draw_repulsors(&self) -> &bool {
+        &self.draw_repulsors
+    }
+    fn draw_client_motion(&self) -> &bool {
+        &self.draw_client_motion
+    }
+    fn draw_cur_path_section(&self) -> &bool {
+        &self.draw_cur_path_section
+    }
+    fn draw_follower_goals(&self) -> &bool {
+        &self.draw_follower_goals
+    }
+    fn draw_distance(&self) -> &f32 {
+        &self.draw_distance
+    }
+    fn depth_test(&self) -> &bool {
+        &self.depth_test
+    }
+    fn draw_stats(&self) -> &bool {
+        &self.draw_stats
+    }
+    fn draw_memory(&self) -> &bool {
+        &self.draw_memory
+    }
+    fn draw_timings(&self) -> &bool {
+        &self.draw_timings
+    }
+    fn text_start_x(&self) -> &i32 {
+        &self.text_start_x
+    }
+    fn text_start_y(&self) -> &i32 {
+        &self.text_start_y
+    }
+    fn text_offset_y(&self) -> &i32 {
+        &self.text_offset_y
+    }
+    fn replay_mode(&self) -> &PathfindingReplayMode {
+        &self.replay_mode
+    }
+    fn original_paths(&self) -> &bool {
+        &self.original_paths
+    }
+    fn random_positions(&self) -> &bool {
+        &self.random_positions
+    }
+    fn potential_obstacles(&self) -> &bool {
+        &self.potential_obstacles
+    }
+}
+
+impl super::core::SystemSettingsTrait for PathfindingDebugSettings {
+    fn platform(&self) -> &super::core::GamePlatform {
+        self._glacier_base.platform()
+    }
+}
+
+impl super::core::DataContainerTrait for PathfindingDebugSettings {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PATHFINDINGDEBUGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingDebugSettings",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(SYSTEMSETTINGS_TYPE_INFO),
+        super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PathfindingDebugSettings as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "DrawNavMesh",
                 flags: MemberInfoFlags::new(0),
-                field_type: INT32_TYPE_INFO,
+                field_type: "Int32",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_nav_mesh),
             },
             FieldInfoData {
                 name: "DrawPolygonOutline",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_polygon_outline),
             },
             FieldInfoData {
                 name: "DrawFilledPolygons",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_filled_polygons),
             },
             FieldInfoData {
                 name: "DrawConnections",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_connections),
             },
             FieldInfoData {
                 name: "DrawObstacles",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_obstacles),
             },
             FieldInfoData {
                 name: "DrawAreaNormals",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_area_normals),
             },
             FieldInfoData {
                 name: "DrawObstacleFlags",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_obstacle_flags),
             },
             FieldInfoData {
                 name: "DrawAreaPenaltyMults",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_area_penalty_mults),
             },
             FieldInfoData {
                 name: "DrawAreaUsageFlags",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_area_usage_flags),
             },
             FieldInfoData {
                 name: "ColorizeAreaUsageFlags",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, colorize_area_usage_flags),
             },
             FieldInfoData {
                 name: "DrawLinkUsageDistances",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_link_usage_distances),
             },
             FieldInfoData {
                 name: "DrawLinkUsageFlags",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_link_usage_flags),
             },
             FieldInfoData {
                 name: "DrawOriginalLinkLocations",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_original_link_locations),
             },
             FieldInfoData {
                 name: "DrawRecentNavProbes",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_recent_nav_probes),
             },
             FieldInfoData {
                 name: "DrawRecentCreatePolyLinePaths",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_recent_create_poly_line_paths),
             },
             FieldInfoData {
                 name: "DrawMoverCylinders",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_mover_cylinders),
             },
             FieldInfoData {
                 name: "DrawMoverGoals",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_mover_goals),
             },
             FieldInfoData {
                 name: "DrawMoverGoalsReached",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_mover_goals_reached),
             },
             FieldInfoData {
                 name: "DrawMoverState",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_mover_state),
             },
             FieldInfoData {
                 name: "DrawMoverAttractions",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_mover_attractions),
             },
             FieldInfoData {
                 name: "DrawRepulsors",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_repulsors),
             },
             FieldInfoData {
                 name: "DrawClientMotion",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_client_motion),
             },
             FieldInfoData {
                 name: "DrawCurPathSection",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_cur_path_section),
             },
             FieldInfoData {
                 name: "DrawFollowerGoals",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_follower_goals),
             },
             FieldInfoData {
                 name: "DrawDistance",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_distance),
             },
             FieldInfoData {
                 name: "DepthTest",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, depth_test),
             },
             FieldInfoData {
                 name: "DrawStats",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_stats),
             },
             FieldInfoData {
                 name: "DrawMemory",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_memory),
             },
             FieldInfoData {
                 name: "DrawTimings",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, draw_timings),
             },
             FieldInfoData {
                 name: "TextStartX",
                 flags: MemberInfoFlags::new(0),
-                field_type: INT32_TYPE_INFO,
+                field_type: "Int32",
                 rust_offset: offset_of!(PathfindingDebugSettings, text_start_x),
             },
             FieldInfoData {
                 name: "TextStartY",
                 flags: MemberInfoFlags::new(0),
-                field_type: INT32_TYPE_INFO,
+                field_type: "Int32",
                 rust_offset: offset_of!(PathfindingDebugSettings, text_start_y),
             },
             FieldInfoData {
                 name: "TextOffsetY",
                 flags: MemberInfoFlags::new(0),
-                field_type: INT32_TYPE_INFO,
+                field_type: "Int32",
                 rust_offset: offset_of!(PathfindingDebugSettings, text_offset_y),
             },
             FieldInfoData {
                 name: "ReplayMode",
                 flags: MemberInfoFlags::new(0),
-                field_type: PATHFINDINGREPLAYMODE_TYPE_INFO,
+                field_type: "PathfindingReplayMode",
                 rust_offset: offset_of!(PathfindingDebugSettings, replay_mode),
             },
             FieldInfoData {
                 name: "OriginalPaths",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, original_paths),
             },
             FieldInfoData {
                 name: "RandomPositions",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, random_positions),
             },
             FieldInfoData {
                 name: "PotentialObstacles",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingDebugSettings, potential_obstacles),
             },
         ],
@@ -806,24 +1310,28 @@ pub const PATHFINDINGDEBUGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PathfindingDebugSettings {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFINDINGDEBUGSETTINGS_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFINDINGDEBUGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGDEBUGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingDebugSettings-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathfindingDebugSettings-Array"),
+    data: TypeInfoData::Array("PathfindingDebugSettings"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum PathfindingReplayMode {
     #[default]
     PathfindingReplayMode_Disabled = 0,
@@ -831,7 +1339,7 @@ pub enum PathfindingReplayMode {
     PathfindingReplayMode_Text = 2,
 }
 
-pub const PATHFINDINGREPLAYMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGREPLAYMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingReplayMode",
     flags: MemberInfoFlags::new(49429),
     module: "PathfindingShared",
@@ -841,38 +1349,67 @@ pub const PATHFINDINGREPLAYMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PathfindingReplayMode {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFINDINGREPLAYMODE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFINDINGREPLAYMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGREPLAYMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingReplayMode-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathfindingReplayMode-Array"),
+    data: TypeInfoData::Array("PathfindingReplayMode"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PathfindingTypeAsset {
+    pub _glacier_base: super::core::Asset,
     pub index: u32,
 }
 
-pub const PATHFINDINGTYPEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PathfindingTypeAssetTrait: super::core::AssetTrait {
+    fn index(&self) -> &u32;
+}
+
+impl PathfindingTypeAssetTrait for PathfindingTypeAsset {
+    fn index(&self) -> &u32 {
+        &self.index
+    }
+}
+
+impl super::core::AssetTrait for PathfindingTypeAsset {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for PathfindingTypeAsset {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PATHFINDINGTYPEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingTypeAsset",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ASSET_TYPE_INFO),
+        super_class: Some(super::core::ASSET_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PathfindingTypeAsset as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Index",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(PathfindingTypeAsset, index),
             },
         ],
@@ -882,24 +1419,28 @@ pub const PATHFINDINGTYPEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PathfindingTypeAsset {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFINDINGTYPEASSET_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFINDINGTYPEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGTYPEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingTypeAsset-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathfindingTypeAsset-Array"),
+    data: TypeInfoData::Array("PathfindingTypeAsset"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LinkDat {
+    pub _glacier_base: super::core::DataContainer,
     pub layer_mask: u32,
     pub link_type: NavLinkType,
     pub forward_link_usage_flags: u32,
@@ -909,81 +1450,140 @@ pub struct LinkDat {
     pub may_use_dist: f32,
     pub must_use_dist: f32,
     pub stop_to_use_link: bool,
-    pub user_data: CustomPathLinkData,
-    pub link_flow_tune: LinkFlowTune,
+    pub user_data: Option<Arc<Mutex<dyn CustomPathLinkDataTrait>>>,
+    pub link_flow_tune: Option<Arc<Mutex<dyn LinkFlowTuneTrait>>>,
 }
 
-pub const LINKDAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LinkDatTrait: super::core::DataContainerTrait {
+    fn layer_mask(&self) -> &u32;
+    fn link_type(&self) -> &NavLinkType;
+    fn forward_link_usage_flags(&self) -> &u32;
+    fn backward_link_usage_flags(&self) -> &u32;
+    fn penalty_mult(&self) -> &f32;
+    fn max_snap_dist(&self) -> &f32;
+    fn may_use_dist(&self) -> &f32;
+    fn must_use_dist(&self) -> &f32;
+    fn stop_to_use_link(&self) -> &bool;
+    fn user_data(&self) -> &Option<Arc<Mutex<dyn CustomPathLinkDataTrait>>>;
+    fn link_flow_tune(&self) -> &Option<Arc<Mutex<dyn LinkFlowTuneTrait>>>;
+}
+
+impl LinkDatTrait for LinkDat {
+    fn layer_mask(&self) -> &u32 {
+        &self.layer_mask
+    }
+    fn link_type(&self) -> &NavLinkType {
+        &self.link_type
+    }
+    fn forward_link_usage_flags(&self) -> &u32 {
+        &self.forward_link_usage_flags
+    }
+    fn backward_link_usage_flags(&self) -> &u32 {
+        &self.backward_link_usage_flags
+    }
+    fn penalty_mult(&self) -> &f32 {
+        &self.penalty_mult
+    }
+    fn max_snap_dist(&self) -> &f32 {
+        &self.max_snap_dist
+    }
+    fn may_use_dist(&self) -> &f32 {
+        &self.may_use_dist
+    }
+    fn must_use_dist(&self) -> &f32 {
+        &self.must_use_dist
+    }
+    fn stop_to_use_link(&self) -> &bool {
+        &self.stop_to_use_link
+    }
+    fn user_data(&self) -> &Option<Arc<Mutex<dyn CustomPathLinkDataTrait>>> {
+        &self.user_data
+    }
+    fn link_flow_tune(&self) -> &Option<Arc<Mutex<dyn LinkFlowTuneTrait>>> {
+        &self.link_flow_tune
+    }
+}
+
+impl super::core::DataContainerTrait for LinkDat {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static LINKDAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkDat",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LinkDat as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "LayerMask",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(LinkDat, layer_mask),
             },
             FieldInfoData {
                 name: "LinkType",
                 flags: MemberInfoFlags::new(0),
-                field_type: NAVLINKTYPE_TYPE_INFO,
+                field_type: "NavLinkType",
                 rust_offset: offset_of!(LinkDat, link_type),
             },
             FieldInfoData {
                 name: "ForwardLinkUsageFlags",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(LinkDat, forward_link_usage_flags),
             },
             FieldInfoData {
                 name: "BackwardLinkUsageFlags",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(LinkDat, backward_link_usage_flags),
             },
             FieldInfoData {
                 name: "PenaltyMult",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(LinkDat, penalty_mult),
             },
             FieldInfoData {
                 name: "MaxSnapDist",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(LinkDat, max_snap_dist),
             },
             FieldInfoData {
                 name: "MayUseDist",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(LinkDat, may_use_dist),
             },
             FieldInfoData {
                 name: "MustUseDist",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(LinkDat, must_use_dist),
             },
             FieldInfoData {
                 name: "StopToUseLink",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(LinkDat, stop_to_use_link),
             },
             FieldInfoData {
                 name: "UserData",
                 flags: MemberInfoFlags::new(0),
-                field_type: CUSTOMPATHLINKDATA_TYPE_INFO,
+                field_type: "CustomPathLinkData",
                 rust_offset: offset_of!(LinkDat, user_data),
             },
             FieldInfoData {
                 name: "LinkFlowTune",
                 flags: MemberInfoFlags::new(0),
-                field_type: LINKFLOWTUNE_TYPE_INFO,
+                field_type: "LinkFlowTune",
                 rust_offset: offset_of!(LinkDat, link_flow_tune),
             },
         ],
@@ -993,32 +1593,51 @@ pub const LINKDAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LinkDat {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LINKDAT_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LINKDAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LINKDAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkDat-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("LinkDat-Array"),
+    data: TypeInfoData::Array("LinkDat"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CustomPathLinkData {
+    pub _glacier_base: super::core::DataContainer,
 }
 
-pub const CUSTOMPATHLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CustomPathLinkDataTrait: super::core::DataContainerTrait {
+}
+
+impl CustomPathLinkDataTrait for CustomPathLinkData {
+}
+
+impl super::core::DataContainerTrait for CustomPathLinkData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static CUSTOMPATHLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomPathLinkData",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CustomPathLinkData as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1027,31 +1646,35 @@ pub const CUSTOMPATHLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CustomPathLinkData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CUSTOMPATHLINKDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CUSTOMPATHLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CUSTOMPATHLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomPathLinkData-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("CustomPathLinkData-Array"),
+    data: TypeInfoData::Array("CustomPathLinkData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum NavLinkType {
     #[default]
     JUMP_LINK = 0,
     CUSTOM_LINK = 1,
 }
 
-pub const NAVLINKTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static NAVLINKTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NavLinkType",
     flags: MemberInfoFlags::new(49429),
     module: "PathfindingShared",
@@ -1061,38 +1684,61 @@ pub const NAVLINKTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for NavLinkType {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         NAVLINKTYPE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const NAVLINKTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static NAVLINKTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NavLinkType-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("NavLinkType-Array"),
+    data: TypeInfoData::Array("NavLinkType"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LinkFlowTune {
+    pub _glacier_base: super::core::DataContainer,
     pub max_simultaneous: u32,
 }
 
-pub const LINKFLOWTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LinkFlowTuneTrait: super::core::DataContainerTrait {
+    fn max_simultaneous(&self) -> &u32;
+}
+
+impl LinkFlowTuneTrait for LinkFlowTune {
+    fn max_simultaneous(&self) -> &u32 {
+        &self.max_simultaneous
+    }
+}
+
+impl super::core::DataContainerTrait for LinkFlowTune {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static LINKFLOWTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkFlowTune",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LinkFlowTune as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "MaxSimultaneous",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(LinkFlowTune, max_simultaneous),
             },
         ],
@@ -1102,38 +1748,61 @@ pub const LINKFLOWTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LinkFlowTune {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LINKFLOWTUNE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LINKFLOWTUNE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LINKFLOWTUNE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkFlowTune-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("LinkFlowTune-Array"),
+    data: TypeInfoData::Array("LinkFlowTune"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PathfindingRuntimeResourceAssetResult {
+    pub _glacier_base: super::core::DataContainer,
     pub has_path_data: bool,
 }
 
-pub const PATHFINDINGRUNTIMERESOURCEASSETRESULT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PathfindingRuntimeResourceAssetResultTrait: super::core::DataContainerTrait {
+    fn has_path_data(&self) -> &bool;
+}
+
+impl PathfindingRuntimeResourceAssetResultTrait for PathfindingRuntimeResourceAssetResult {
+    fn has_path_data(&self) -> &bool {
+        &self.has_path_data
+    }
+}
+
+impl super::core::DataContainerTrait for PathfindingRuntimeResourceAssetResult {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PATHFINDINGRUNTIMERESOURCEASSETRESULT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingRuntimeResourceAssetResult",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PathfindingRuntimeResourceAssetResult as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "HasPathData",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(PathfindingRuntimeResourceAssetResult, has_path_data),
             },
         ],
@@ -1143,52 +1812,89 @@ pub const PATHFINDINGRUNTIMERESOURCEASSETRESULT_TYPE_INFO: &'static TypeInfo = &
 };
 
 impl TypeObject for PathfindingRuntimeResourceAssetResult {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFINDINGRUNTIMERESOURCEASSETRESULT_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFINDINGRUNTIMERESOURCEASSETRESULT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGRUNTIMERESOURCEASSETRESULT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingRuntimeResourceAssetResult-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathfindingRuntimeResourceAssetResult-Array"),
+    data: TypeInfoData::Array("PathfindingRuntimeResourceAssetResult"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PathfindingRuntimeResourceAsset {
-    pub resource: super::core::ResourceRef,
+    pub _glacier_base: super::core::Asset,
+    pub resource: glacier_reflect::builtin::ResourceRef,
     pub blob_size: u32,
     pub chunk_sizes: Vec<u32>,
 }
 
-pub const PATHFINDINGRUNTIMERESOURCEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PathfindingRuntimeResourceAssetTrait: super::core::AssetTrait {
+    fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn blob_size(&self) -> &u32;
+    fn chunk_sizes(&self) -> &Vec<u32>;
+}
+
+impl PathfindingRuntimeResourceAssetTrait for PathfindingRuntimeResourceAsset {
+    fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
+        &self.resource
+    }
+    fn blob_size(&self) -> &u32 {
+        &self.blob_size
+    }
+    fn chunk_sizes(&self) -> &Vec<u32> {
+        &self.chunk_sizes
+    }
+}
+
+impl super::core::AssetTrait for PathfindingRuntimeResourceAsset {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for PathfindingRuntimeResourceAsset {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PATHFINDINGRUNTIMERESOURCEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingRuntimeResourceAsset",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ASSET_TYPE_INFO),
+        super_class: Some(super::core::ASSET_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PathfindingRuntimeResourceAsset as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Resource",
                 flags: MemberInfoFlags::new(0),
-                field_type: RESOURCEREF_TYPE_INFO,
+                field_type: "ResourceRef",
                 rust_offset: offset_of!(PathfindingRuntimeResourceAsset, resource),
             },
             FieldInfoData {
                 name: "BlobSize",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(PathfindingRuntimeResourceAsset, blob_size),
             },
             FieldInfoData {
                 name: "ChunkSizes",
                 flags: MemberInfoFlags::new(144),
-                field_type: UINT32_ARRAY_TYPE_INFO,
+                field_type: "Uint32-Array",
                 rust_offset: offset_of!(PathfindingRuntimeResourceAsset, chunk_sizes),
             },
         ],
@@ -1198,38 +1904,67 @@ pub const PATHFINDINGRUNTIMERESOURCEASSET_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 impl TypeObject for PathfindingRuntimeResourceAsset {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFINDINGRUNTIMERESOURCEASSET_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFINDINGRUNTIMERESOURCEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGRUNTIMERESOURCEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingRuntimeResourceAsset-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathfindingRuntimeResourceAsset-Array"),
+    data: TypeInfoData::Array("PathfindingRuntimeResourceAsset"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PathfindingBlobAsset {
+    pub _glacier_base: super::core::Asset,
     pub blob: PathfindingBlob,
 }
 
-pub const PATHFINDINGBLOBASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PathfindingBlobAssetTrait: super::core::AssetTrait {
+    fn blob(&self) -> &PathfindingBlob;
+}
+
+impl PathfindingBlobAssetTrait for PathfindingBlobAsset {
+    fn blob(&self) -> &PathfindingBlob {
+        &self.blob
+    }
+}
+
+impl super::core::AssetTrait for PathfindingBlobAsset {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for PathfindingBlobAsset {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PATHFINDINGBLOBASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingBlobAsset",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ASSET_TYPE_INFO),
+        super_class: Some(super::core::ASSET_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PathfindingBlobAsset as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Blob",
                 flags: MemberInfoFlags::new(0),
-                field_type: PATHFINDINGBLOB_TYPE_INFO,
+                field_type: "PathfindingBlob",
                 rust_offset: offset_of!(PathfindingBlobAsset, blob),
             },
         ],
@@ -1239,51 +1974,75 @@ pub const PATHFINDINGBLOBASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PathfindingBlobAsset {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFINDINGBLOBASSET_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFINDINGBLOBASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGBLOBASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingBlobAsset-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathfindingBlobAsset-Array"),
+    data: TypeInfoData::Array("PathfindingBlobAsset"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PathfindingBlob {
-    pub blob_id: super::core::Guid,
+    pub blob_id: glacier_util::guid::Guid,
     pub blob_size: u32,
     pub chunk_sizes: Vec<u32>,
 }
 
-pub const PATHFINDINGBLOB_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PathfindingBlobTrait: TypeObject {
+    fn blob_id(&self) -> &glacier_util::guid::Guid;
+    fn blob_size(&self) -> &u32;
+    fn chunk_sizes(&self) -> &Vec<u32>;
+}
+
+impl PathfindingBlobTrait for PathfindingBlob {
+    fn blob_id(&self) -> &glacier_util::guid::Guid {
+        &self.blob_id
+    }
+    fn blob_size(&self) -> &u32 {
+        &self.blob_size
+    }
+    fn chunk_sizes(&self) -> &Vec<u32> {
+        &self.chunk_sizes
+    }
+}
+
+pub static PATHFINDINGBLOB_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingBlob",
     flags: MemberInfoFlags::new(73),
     module: "PathfindingShared",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PathfindingBlob as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "BlobId",
                 flags: MemberInfoFlags::new(0),
-                field_type: GUID_TYPE_INFO,
+                field_type: "Guid",
                 rust_offset: offset_of!(PathfindingBlob, blob_id),
             },
             FieldInfoData {
                 name: "BlobSize",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(PathfindingBlob, blob_size),
             },
             FieldInfoData {
                 name: "ChunkSizes",
                 flags: MemberInfoFlags::new(144),
-                field_type: UINT32_ARRAY_TYPE_INFO,
+                field_type: "Uint32-Array",
                 rust_offset: offset_of!(PathfindingBlob, chunk_sizes),
             },
         ],
@@ -1293,52 +2052,98 @@ pub const PATHFINDINGBLOB_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PathfindingBlob {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFINDINGBLOB_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFINDINGBLOB_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGBLOB_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingBlob-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathfindingBlob-Array"),
+    data: TypeInfoData::Array("PathfindingBlob"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PathfindingSystemEntityData {
+    pub _glacier_base: super::entity::EntityData,
     pub pathfinding_types_on_level: Vec<u32>,
     pub realm: super::core::Realm,
-    pub resource_asset: PathfindingRuntimeResourceAsset,
+    pub resource_asset: Option<Arc<Mutex<dyn PathfindingRuntimeResourceAssetTrait>>>,
 }
 
-pub const PATHFINDINGSYSTEMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PathfindingSystemEntityDataTrait: super::entity::EntityDataTrait {
+    fn pathfinding_types_on_level(&self) -> &Vec<u32>;
+    fn realm(&self) -> &super::core::Realm;
+    fn resource_asset(&self) -> &Option<Arc<Mutex<dyn PathfindingRuntimeResourceAssetTrait>>>;
+}
+
+impl PathfindingSystemEntityDataTrait for PathfindingSystemEntityData {
+    fn pathfinding_types_on_level(&self) -> &Vec<u32> {
+        &self.pathfinding_types_on_level
+    }
+    fn realm(&self) -> &super::core::Realm {
+        &self.realm
+    }
+    fn resource_asset(&self) -> &Option<Arc<Mutex<dyn PathfindingRuntimeResourceAssetTrait>>> {
+        &self.resource_asset
+    }
+}
+
+impl super::entity::EntityDataTrait for PathfindingSystemEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for PathfindingSystemEntityData {
+}
+
+impl super::core::DataBusPeerTrait for PathfindingSystemEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for PathfindingSystemEntityData {
+}
+
+impl super::core::DataContainerTrait for PathfindingSystemEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PATHFINDINGSYSTEMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingSystemEntityData",
     flags: MemberInfoFlags::new(101),
     module: "PathfindingShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PathfindingSystemEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "PathfindingTypesOnLevel",
                 flags: MemberInfoFlags::new(144),
-                field_type: UINT32_ARRAY_TYPE_INFO,
+                field_type: "Uint32-Array",
                 rust_offset: offset_of!(PathfindingSystemEntityData, pathfinding_types_on_level),
             },
             FieldInfoData {
                 name: "Realm",
                 flags: MemberInfoFlags::new(0),
-                field_type: REALM_TYPE_INFO,
+                field_type: "Realm",
                 rust_offset: offset_of!(PathfindingSystemEntityData, realm),
             },
             FieldInfoData {
                 name: "ResourceAsset",
                 flags: MemberInfoFlags::new(0),
-                field_type: PATHFINDINGRUNTIMERESOURCEASSET_TYPE_INFO,
+                field_type: "PathfindingRuntimeResourceAsset",
                 rust_offset: offset_of!(PathfindingSystemEntityData, resource_asset),
             },
         ],
@@ -1348,17 +2153,20 @@ pub const PATHFINDINGSYSTEMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PathfindingSystemEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PATHFINDINGSYSTEMENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PATHFINDINGSYSTEMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PATHFINDINGSYSTEMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingSystemEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "PathfindingShared",
-    data: TypeInfoData::Array("PathfindingSystemEntityData-Array"),
+    data: TypeInfoData::Array("PathfindingSystemEntityData"),
     array_type: None,
     alignment: 8,
 };

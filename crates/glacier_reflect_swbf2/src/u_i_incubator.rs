@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -76,16 +77,32 @@ pub(crate) fn register_u_i_incubator_types(registry: &mut TypeRegistry) {
     registry.register_type(SELECTOBJECTENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientQuitGameEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CLIENTQUITGAMEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientQuitGameEntityTrait: super::entity::EntityTrait {
+}
+
+impl ClientQuitGameEntityTrait for ClientQuitGameEntity {
+}
+
+impl super::entity::EntityTrait for ClientQuitGameEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ClientQuitGameEntity {
+}
+
+pub static CLIENTQUITGAMEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientQuitGameEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientQuitGameEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -94,32 +111,51 @@ pub const CLIENTQUITGAMEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ClientQuitGameEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTQUITGAMEENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTQUITGAMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTQUITGAMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientQuitGameEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ClientQuitGameEntity-Array"),
+    data: TypeInfoData::Array("ClientQuitGameEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct TransformInterpolatorEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const TRANSFORMINTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait TransformInterpolatorEntityTrait: super::entity::EntityTrait {
+}
+
+impl TransformInterpolatorEntityTrait for TransformInterpolatorEntity {
+}
+
+impl super::entity::EntityTrait for TransformInterpolatorEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for TransformInterpolatorEntity {
+}
+
+pub static TRANSFORMINTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformInterpolatorEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<TransformInterpolatorEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -128,32 +164,51 @@ pub const TRANSFORMINTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for TransformInterpolatorEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         TRANSFORMINTERPOLATORENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const TRANSFORMINTERPOLATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static TRANSFORMINTERPOLATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformInterpolatorEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("TransformInterpolatorEntity-Array"),
+    data: TypeInfoData::Array("TransformInterpolatorEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Vec4InterpolatorEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const VEC4INTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Vec4InterpolatorEntityTrait: super::entity::EntityTrait {
+}
+
+impl Vec4InterpolatorEntityTrait for Vec4InterpolatorEntity {
+}
+
+impl super::entity::EntityTrait for Vec4InterpolatorEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for Vec4InterpolatorEntity {
+}
+
+pub static VEC4INTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4InterpolatorEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Vec4InterpolatorEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -162,32 +217,51 @@ pub const VEC4INTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for Vec4InterpolatorEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         VEC4INTERPOLATORENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const VEC4INTERPOLATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static VEC4INTERPOLATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4InterpolatorEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("Vec4InterpolatorEntity-Array"),
+    data: TypeInfoData::Array("Vec4InterpolatorEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Vec3InterpolatorEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const VEC3INTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Vec3InterpolatorEntityTrait: super::entity::EntityTrait {
+}
+
+impl Vec3InterpolatorEntityTrait for Vec3InterpolatorEntity {
+}
+
+impl super::entity::EntityTrait for Vec3InterpolatorEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for Vec3InterpolatorEntity {
+}
+
+pub static VEC3INTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3InterpolatorEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Vec3InterpolatorEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -196,32 +270,51 @@ pub const VEC3INTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for Vec3InterpolatorEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         VEC3INTERPOLATORENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const VEC3INTERPOLATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static VEC3INTERPOLATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3InterpolatorEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("Vec3InterpolatorEntity-Array"),
+    data: TypeInfoData::Array("Vec3InterpolatorEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct Vec2InterpolatorEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const VEC2INTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait Vec2InterpolatorEntityTrait: super::entity::EntityTrait {
+}
+
+impl Vec2InterpolatorEntityTrait for Vec2InterpolatorEntity {
+}
+
+impl super::entity::EntityTrait for Vec2InterpolatorEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for Vec2InterpolatorEntity {
+}
+
+pub static VEC2INTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2InterpolatorEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<Vec2InterpolatorEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -230,32 +323,51 @@ pub const VEC2INTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for Vec2InterpolatorEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         VEC2INTERPOLATORENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const VEC2INTERPOLATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static VEC2INTERPOLATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2InterpolatorEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("Vec2InterpolatorEntity-Array"),
+    data: TypeInfoData::Array("Vec2InterpolatorEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct FloatInterpolatorEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const FLOATINTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait FloatInterpolatorEntityTrait: super::entity::EntityTrait {
+}
+
+impl FloatInterpolatorEntityTrait for FloatInterpolatorEntity {
+}
+
+impl super::entity::EntityTrait for FloatInterpolatorEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for FloatInterpolatorEntity {
+}
+
+pub static FLOATINTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatInterpolatorEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<FloatInterpolatorEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -264,32 +376,51 @@ pub const FLOATINTERPOLATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for FloatInterpolatorEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         FLOATINTERPOLATORENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const FLOATINTERPOLATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static FLOATINTERPOLATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatInterpolatorEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("FloatInterpolatorEntity-Array"),
+    data: TypeInfoData::Array("FloatInterpolatorEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ObjectHubEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const OBJECTHUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ObjectHubEntityTrait: super::entity::EntityTrait {
+}
+
+impl ObjectHubEntityTrait for ObjectHubEntity {
+}
+
+impl super::entity::EntityTrait for ObjectHubEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ObjectHubEntity {
+}
+
+pub static OBJECTHUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectHubEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ObjectHubEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -298,32 +429,51 @@ pub const OBJECTHUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ObjectHubEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         OBJECTHUBENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const OBJECTHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static OBJECTHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectHubEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ObjectHubEntity-Array"),
+    data: TypeInfoData::Array("ObjectHubEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct MathIntOpEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const MATHINTOPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait MathIntOpEntityTrait: super::entity::EntityTrait {
+}
+
+impl MathIntOpEntityTrait for MathIntOpEntity {
+}
+
+impl super::entity::EntityTrait for MathIntOpEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for MathIntOpEntity {
+}
+
+pub static MATHINTOPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathIntOpEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<MathIntOpEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -332,32 +482,51 @@ pub const MATHINTOPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for MathIntOpEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         MATHINTOPENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const MATHINTOPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static MATHINTOPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathIntOpEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("MathIntOpEntity-Array"),
+    data: TypeInfoData::Array("MathIntOpEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LocalizedStringEntityBase {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const LOCALIZEDSTRINGENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LocalizedStringEntityBaseTrait: super::entity::EntityTrait {
+}
+
+impl LocalizedStringEntityBaseTrait for LocalizedStringEntityBase {
+}
+
+impl super::entity::EntityTrait for LocalizedStringEntityBase {
+}
+
+impl super::entity::EntityBusPeerTrait for LocalizedStringEntityBase {
+}
+
+pub static LOCALIZEDSTRINGENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizedStringEntityBase",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LocalizedStringEntityBase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -366,32 +535,54 @@ pub const LOCALIZEDSTRINGENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LocalizedStringEntityBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LOCALIZEDSTRINGENTITYBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LOCALIZEDSTRINGENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LOCALIZEDSTRINGENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizedStringEntityBase-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("LocalizedStringEntityBase-Array"),
+    data: TypeInfoData::Array("LocalizedStringEntityBase"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LocalizedStringEntity {
+    pub _glacier_base: LocalizedStringEntityBase,
 }
 
-pub const LOCALIZEDSTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LocalizedStringEntityTrait: LocalizedStringEntityBaseTrait {
+}
+
+impl LocalizedStringEntityTrait for LocalizedStringEntity {
+}
+
+impl LocalizedStringEntityBaseTrait for LocalizedStringEntity {
+}
+
+impl super::entity::EntityTrait for LocalizedStringEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for LocalizedStringEntity {
+}
+
+pub static LOCALIZEDSTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizedStringEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCALIZEDSTRINGENTITYBASE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LocalizedStringEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -400,32 +591,51 @@ pub const LOCALIZEDSTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LocalizedStringEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LOCALIZEDSTRINGENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LOCALIZEDSTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LOCALIZEDSTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizedStringEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("LocalizedStringEntity-Array"),
+    data: TypeInfoData::Array("LocalizedStringEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct TextureSwitchEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const TEXTURESWITCHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait TextureSwitchEntityTrait: super::entity::EntityTrait {
+}
+
+impl TextureSwitchEntityTrait for TextureSwitchEntity {
+}
+
+impl super::entity::EntityTrait for TextureSwitchEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for TextureSwitchEntity {
+}
+
+pub static TEXTURESWITCHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureSwitchEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<TextureSwitchEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -434,32 +644,54 @@ pub const TEXTURESWITCHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for TextureSwitchEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         TEXTURESWITCHENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const TEXTURESWITCHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static TEXTURESWITCHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureSwitchEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("TextureSwitchEntity-Array"),
+    data: TypeInfoData::Array("TextureSwitchEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct FBUIStaticTextureElementEntity {
+    pub _glacier_base: super::game_client_u_i::UIElementEntity,
 }
 
-pub const FBUISTATICTEXTUREELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait FBUIStaticTextureElementEntityTrait: super::game_client_u_i::UIElementEntityTrait {
+}
+
+impl FBUIStaticTextureElementEntityTrait for FBUIStaticTextureElementEntity {
+}
+
+impl super::game_client_u_i::UIElementEntityTrait for FBUIStaticTextureElementEntity {
+}
+
+impl super::entity::EntityTrait for FBUIStaticTextureElementEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for FBUIStaticTextureElementEntity {
+}
+
+pub static FBUISTATICTEXTUREELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUIStaticTextureElementEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(UIELEMENTENTITY_TYPE_INFO),
+        super_class: Some(super::game_client_u_i::UIELEMENTENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<FBUIStaticTextureElementEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -468,32 +700,54 @@ pub const FBUISTATICTEXTUREELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 impl TypeObject for FBUIStaticTextureElementEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         FBUISTATICTEXTUREELEMENTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const FBUISTATICTEXTUREELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static FBUISTATICTEXTUREELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUIStaticTextureElementEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("FBUIStaticTextureElementEntity-Array"),
+    data: TypeInfoData::Array("FBUIStaticTextureElementEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct FBUIDynamicTextureElementEntity {
+    pub _glacier_base: super::game_client_u_i::UIElementEntity,
 }
 
-pub const FBUIDYNAMICTEXTUREELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait FBUIDynamicTextureElementEntityTrait: super::game_client_u_i::UIElementEntityTrait {
+}
+
+impl FBUIDynamicTextureElementEntityTrait for FBUIDynamicTextureElementEntity {
+}
+
+impl super::game_client_u_i::UIElementEntityTrait for FBUIDynamicTextureElementEntity {
+}
+
+impl super::entity::EntityTrait for FBUIDynamicTextureElementEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for FBUIDynamicTextureElementEntity {
+}
+
+pub static FBUIDYNAMICTEXTUREELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUIDynamicTextureElementEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(UIELEMENTENTITY_TYPE_INFO),
+        super_class: Some(super::game_client_u_i::UIELEMENTENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<FBUIDynamicTextureElementEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -502,32 +756,54 @@ pub const FBUIDYNAMICTEXTUREELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 impl TypeObject for FBUIDynamicTextureElementEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         FBUIDYNAMICTEXTUREELEMENTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const FBUIDYNAMICTEXTUREELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static FBUIDYNAMICTEXTUREELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUIDynamicTextureElementEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("FBUIDynamicTextureElementEntity-Array"),
+    data: TypeInfoData::Array("FBUIDynamicTextureElementEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct FBUISlicedTextureElementEntity {
+    pub _glacier_base: super::game_client_u_i::UIElementEntity,
 }
 
-pub const FBUISLICEDTEXTUREELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait FBUISlicedTextureElementEntityTrait: super::game_client_u_i::UIElementEntityTrait {
+}
+
+impl FBUISlicedTextureElementEntityTrait for FBUISlicedTextureElementEntity {
+}
+
+impl super::game_client_u_i::UIElementEntityTrait for FBUISlicedTextureElementEntity {
+}
+
+impl super::entity::EntityTrait for FBUISlicedTextureElementEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for FBUISlicedTextureElementEntity {
+}
+
+pub static FBUISLICEDTEXTUREELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUISlicedTextureElementEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(UIELEMENTENTITY_TYPE_INFO),
+        super_class: Some(super::game_client_u_i::UIELEMENTENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<FBUISlicedTextureElementEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -536,32 +812,54 @@ pub const FBUISLICEDTEXTUREELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 impl TypeObject for FBUISlicedTextureElementEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         FBUISLICEDTEXTUREELEMENTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const FBUISLICEDTEXTUREELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static FBUISLICEDTEXTUREELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUISlicedTextureElementEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("FBUISlicedTextureElementEntity-Array"),
+    data: TypeInfoData::Array("FBUISlicedTextureElementEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct FBUIMovieElementEntity {
+    pub _glacier_base: super::game_client_u_i::UIElementEntity,
 }
 
-pub const FBUIMOVIEELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait FBUIMovieElementEntityTrait: super::game_client_u_i::UIElementEntityTrait {
+}
+
+impl FBUIMovieElementEntityTrait for FBUIMovieElementEntity {
+}
+
+impl super::game_client_u_i::UIElementEntityTrait for FBUIMovieElementEntity {
+}
+
+impl super::entity::EntityTrait for FBUIMovieElementEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for FBUIMovieElementEntity {
+}
+
+pub static FBUIMOVIEELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUIMovieElementEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(UIELEMENTENTITY_TYPE_INFO),
+        super_class: Some(super::game_client_u_i::UIELEMENTENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<FBUIMovieElementEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -570,32 +868,54 @@ pub const FBUIMOVIEELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for FBUIMovieElementEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         FBUIMOVIEELEMENTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const FBUIMOVIEELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static FBUIMOVIEELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUIMovieElementEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("FBUIMovieElementEntity-Array"),
+    data: TypeInfoData::Array("FBUIMovieElementEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct FBUIListItemWidgetEntity {
+    pub _glacier_base: super::game_client_u_i::UIWidgetEntity,
 }
 
-pub const FBUILISTITEMWIDGETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait FBUIListItemWidgetEntityTrait: super::game_client_u_i::UIWidgetEntityTrait {
+}
+
+impl FBUIListItemWidgetEntityTrait for FBUIListItemWidgetEntity {
+}
+
+impl super::game_client_u_i::UIWidgetEntityTrait for FBUIListItemWidgetEntity {
+}
+
+impl super::entity::EntityTrait for FBUIListItemWidgetEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for FBUIListItemWidgetEntity {
+}
+
+pub static FBUILISTITEMWIDGETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUIListItemWidgetEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(UIWIDGETENTITY_TYPE_INFO),
+        super_class: Some(super::game_client_u_i::UIWIDGETENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<FBUIListItemWidgetEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -604,32 +924,54 @@ pub const FBUILISTITEMWIDGETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for FBUIListItemWidgetEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         FBUILISTITEMWIDGETENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const FBUILISTITEMWIDGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static FBUILISTITEMWIDGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUIListItemWidgetEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("FBUIListItemWidgetEntity-Array"),
+    data: TypeInfoData::Array("FBUIListItemWidgetEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct FBUIListElementEntity {
+    pub _glacier_base: super::game_client_u_i::UIElementEntity,
 }
 
-pub const FBUILISTELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait FBUIListElementEntityTrait: super::game_client_u_i::UIElementEntityTrait {
+}
+
+impl FBUIListElementEntityTrait for FBUIListElementEntity {
+}
+
+impl super::game_client_u_i::UIElementEntityTrait for FBUIListElementEntity {
+}
+
+impl super::entity::EntityTrait for FBUIListElementEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for FBUIListElementEntity {
+}
+
+pub static FBUILISTELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUIListElementEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(UIELEMENTENTITY_TYPE_INFO),
+        super_class: Some(super::game_client_u_i::UIELEMENTENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<FBUIListElementEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -638,32 +980,54 @@ pub const FBUILISTELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for FBUIListElementEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         FBUILISTELEMENTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const FBUILISTELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static FBUILISTELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUIListElementEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("FBUIListElementEntity-Array"),
+    data: TypeInfoData::Array("FBUIListElementEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct FBUILabelElementEntity {
+    pub _glacier_base: super::game_client_u_i::UIElementEntity,
 }
 
-pub const FBUILABELELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait FBUILabelElementEntityTrait: super::game_client_u_i::UIElementEntityTrait {
+}
+
+impl FBUILabelElementEntityTrait for FBUILabelElementEntity {
+}
+
+impl super::game_client_u_i::UIElementEntityTrait for FBUILabelElementEntity {
+}
+
+impl super::entity::EntityTrait for FBUILabelElementEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for FBUILabelElementEntity {
+}
+
+pub static FBUILABELELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUILabelElementEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(UIELEMENTENTITY_TYPE_INFO),
+        super_class: Some(super::game_client_u_i::UIELEMENTENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<FBUILabelElementEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -672,32 +1036,51 @@ pub const FBUILABELELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for FBUILabelElementEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         FBUILABELELEMENTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const FBUILABELELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static FBUILABELELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBUILabelElementEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("FBUILabelElementEntity-Array"),
+    data: TypeInfoData::Array("FBUILabelElementEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct DynamicCastEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const DYNAMICCASTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait DynamicCastEntityTrait: super::entity::EntityTrait {
+}
+
+impl DynamicCastEntityTrait for DynamicCastEntity {
+}
+
+impl super::entity::EntityTrait for DynamicCastEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for DynamicCastEntity {
+}
+
+pub static DYNAMICCASTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DynamicCastEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<DynamicCastEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -706,32 +1089,51 @@ pub const DYNAMICCASTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for DynamicCastEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DYNAMICCASTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DYNAMICCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DYNAMICCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DynamicCastEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("DynamicCastEntity-Array"),
+    data: TypeInfoData::Array("DynamicCastEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ConfigEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CONFIGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ConfigEntityTrait: super::entity::EntityTrait {
+}
+
+impl ConfigEntityTrait for ConfigEntity {
+}
+
+impl super::entity::EntityTrait for ConfigEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ConfigEntity {
+}
+
+pub static CONFIGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConfigEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ConfigEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -740,32 +1142,51 @@ pub const CONFIGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ConfigEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CONFIGENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConfigEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ConfigEntity-Array"),
+    data: TypeInfoData::Array("ConfigEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ConditionalStringEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CONDITIONALSTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ConditionalStringEntityTrait: super::entity::EntityTrait {
+}
+
+impl ConditionalStringEntityTrait for ConditionalStringEntity {
+}
+
+impl super::entity::EntityTrait for ConditionalStringEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ConditionalStringEntity {
+}
+
+pub static CONDITIONALSTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalStringEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ConditionalStringEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -774,32 +1195,51 @@ pub const CONDITIONALSTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ConditionalStringEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CONDITIONALSTRINGENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CONDITIONALSTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CONDITIONALSTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalStringEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ConditionalStringEntity-Array"),
+    data: TypeInfoData::Array("ConditionalStringEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ConditionalTransformEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CONDITIONALTRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ConditionalTransformEntityTrait: super::entity::EntityTrait {
+}
+
+impl ConditionalTransformEntityTrait for ConditionalTransformEntity {
+}
+
+impl super::entity::EntityTrait for ConditionalTransformEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ConditionalTransformEntity {
+}
+
+pub static CONDITIONALTRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalTransformEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ConditionalTransformEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -808,32 +1248,51 @@ pub const CONDITIONALTRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ConditionalTransformEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CONDITIONALTRANSFORMENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CONDITIONALTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CONDITIONALTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalTransformEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ConditionalTransformEntity-Array"),
+    data: TypeInfoData::Array("ConditionalTransformEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ConditionalVec4Entity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CONDITIONALVEC4ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ConditionalVec4EntityTrait: super::entity::EntityTrait {
+}
+
+impl ConditionalVec4EntityTrait for ConditionalVec4Entity {
+}
+
+impl super::entity::EntityTrait for ConditionalVec4Entity {
+}
+
+impl super::entity::EntityBusPeerTrait for ConditionalVec4Entity {
+}
+
+pub static CONDITIONALVEC4ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalVec4Entity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ConditionalVec4Entity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -842,32 +1301,51 @@ pub const CONDITIONALVEC4ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ConditionalVec4Entity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CONDITIONALVEC4ENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CONDITIONALVEC4ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CONDITIONALVEC4ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalVec4Entity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ConditionalVec4Entity-Array"),
+    data: TypeInfoData::Array("ConditionalVec4Entity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ConditionalVec3Entity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CONDITIONALVEC3ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ConditionalVec3EntityTrait: super::entity::EntityTrait {
+}
+
+impl ConditionalVec3EntityTrait for ConditionalVec3Entity {
+}
+
+impl super::entity::EntityTrait for ConditionalVec3Entity {
+}
+
+impl super::entity::EntityBusPeerTrait for ConditionalVec3Entity {
+}
+
+pub static CONDITIONALVEC3ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalVec3Entity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ConditionalVec3Entity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -876,32 +1354,51 @@ pub const CONDITIONALVEC3ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ConditionalVec3Entity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CONDITIONALVEC3ENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CONDITIONALVEC3ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CONDITIONALVEC3ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalVec3Entity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ConditionalVec3Entity-Array"),
+    data: TypeInfoData::Array("ConditionalVec3Entity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ConditionalVec2Entity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CONDITIONALVEC2ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ConditionalVec2EntityTrait: super::entity::EntityTrait {
+}
+
+impl ConditionalVec2EntityTrait for ConditionalVec2Entity {
+}
+
+impl super::entity::EntityTrait for ConditionalVec2Entity {
+}
+
+impl super::entity::EntityBusPeerTrait for ConditionalVec2Entity {
+}
+
+pub static CONDITIONALVEC2ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalVec2Entity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ConditionalVec2Entity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -910,32 +1407,51 @@ pub const CONDITIONALVEC2ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ConditionalVec2Entity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CONDITIONALVEC2ENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CONDITIONALVEC2ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CONDITIONALVEC2ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalVec2Entity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ConditionalVec2Entity-Array"),
+    data: TypeInfoData::Array("ConditionalVec2Entity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ConditionalFloatEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CONDITIONALFLOATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ConditionalFloatEntityTrait: super::entity::EntityTrait {
+}
+
+impl ConditionalFloatEntityTrait for ConditionalFloatEntity {
+}
+
+impl super::entity::EntityTrait for ConditionalFloatEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ConditionalFloatEntity {
+}
+
+pub static CONDITIONALFLOATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalFloatEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ConditionalFloatEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -944,32 +1460,51 @@ pub const CONDITIONALFLOATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ConditionalFloatEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CONDITIONALFLOATENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CONDITIONALFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CONDITIONALFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalFloatEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ConditionalFloatEntity-Array"),
+    data: TypeInfoData::Array("ConditionalFloatEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ConditionalIntEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CONDITIONALINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ConditionalIntEntityTrait: super::entity::EntityTrait {
+}
+
+impl ConditionalIntEntityTrait for ConditionalIntEntity {
+}
+
+impl super::entity::EntityTrait for ConditionalIntEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ConditionalIntEntity {
+}
+
+pub static CONDITIONALINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalIntEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ConditionalIntEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -978,32 +1513,54 @@ pub const CONDITIONALINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ConditionalIntEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CONDITIONALINTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CONDITIONALINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CONDITIONALINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalIntEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ConditionalIntEntity-Array"),
+    data: TypeInfoData::Array("ConditionalIntEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientUIMaskingWidgetEntity {
+    pub _glacier_base: super::game_client_u_i::UIWidgetEntity,
 }
 
-pub const CLIENTUIMASKINGWIDGETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientUIMaskingWidgetEntityTrait: super::game_client_u_i::UIWidgetEntityTrait {
+}
+
+impl ClientUIMaskingWidgetEntityTrait for ClientUIMaskingWidgetEntity {
+}
+
+impl super::game_client_u_i::UIWidgetEntityTrait for ClientUIMaskingWidgetEntity {
+}
+
+impl super::entity::EntityTrait for ClientUIMaskingWidgetEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ClientUIMaskingWidgetEntity {
+}
+
+pub static CLIENTUIMASKINGWIDGETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientUIMaskingWidgetEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(UIWIDGETENTITY_TYPE_INFO),
+        super_class: Some(super::game_client_u_i::UIWIDGETENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientUIMaskingWidgetEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1012,32 +1569,51 @@ pub const CLIENTUIMASKINGWIDGETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ClientUIMaskingWidgetEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTUIMASKINGWIDGETENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTUIMASKINGWIDGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTUIMASKINGWIDGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientUIMaskingWidgetEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("ClientUIMaskingWidgetEntity-Array"),
+    data: TypeInfoData::Array("ClientUIMaskingWidgetEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct StringSwitchCaseEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const STRINGSWITCHCASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait StringSwitchCaseEntityTrait: super::entity::EntityTrait {
+}
+
+impl StringSwitchCaseEntityTrait for StringSwitchCaseEntity {
+}
+
+impl super::entity::EntityTrait for StringSwitchCaseEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for StringSwitchCaseEntity {
+}
+
+pub static STRINGSWITCHCASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringSwitchCaseEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<StringSwitchCaseEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1046,32 +1622,51 @@ pub const STRINGSWITCHCASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for StringSwitchCaseEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         STRINGSWITCHCASEENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const STRINGSWITCHCASEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static STRINGSWITCHCASEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringSwitchCaseEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("StringSwitchCaseEntity-Array"),
+    data: TypeInfoData::Array("StringSwitchCaseEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct IntegerSwitchCaseEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const INTEGERSWITCHCASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait IntegerSwitchCaseEntityTrait: super::entity::EntityTrait {
+}
+
+impl IntegerSwitchCaseEntityTrait for IntegerSwitchCaseEntity {
+}
+
+impl super::entity::EntityTrait for IntegerSwitchCaseEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for IntegerSwitchCaseEntity {
+}
+
+pub static INTEGERSWITCHCASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntegerSwitchCaseEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<IntegerSwitchCaseEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1080,32 +1675,51 @@ pub const INTEGERSWITCHCASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for IntegerSwitchCaseEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         INTEGERSWITCHCASEENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const INTEGERSWITCHCASEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static INTEGERSWITCHCASEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntegerSwitchCaseEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("IntegerSwitchCaseEntity-Array"),
+    data: TypeInfoData::Array("IntegerSwitchCaseEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct StateNodeEntityBase {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const STATENODEENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait StateNodeEntityBaseTrait: super::entity::EntityTrait {
+}
+
+impl StateNodeEntityBaseTrait for StateNodeEntityBase {
+}
+
+impl super::entity::EntityTrait for StateNodeEntityBase {
+}
+
+impl super::entity::EntityBusPeerTrait for StateNodeEntityBase {
+}
+
+pub static STATENODEENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StateNodeEntityBase",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<StateNodeEntityBase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1114,32 +1728,54 @@ pub const STATENODEENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for StateNodeEntityBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         STATENODEENTITYBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const STATENODEENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static STATENODEENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StateNodeEntityBase-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("StateNodeEntityBase-Array"),
+    data: TypeInfoData::Array("StateNodeEntityBase"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct StateNodeEntity {
+    pub _glacier_base: StateNodeEntityBase,
 }
 
-pub const STATENODEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait StateNodeEntityTrait: StateNodeEntityBaseTrait {
+}
+
+impl StateNodeEntityTrait for StateNodeEntity {
+}
+
+impl StateNodeEntityBaseTrait for StateNodeEntity {
+}
+
+impl super::entity::EntityTrait for StateNodeEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for StateNodeEntity {
+}
+
+pub static STATENODEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StateNodeEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(STATENODEENTITYBASE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<StateNodeEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1148,32 +1784,51 @@ pub const STATENODEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for StateNodeEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         STATENODEENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const STATENODEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static STATENODEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StateNodeEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("StateNodeEntity-Array"),
+    data: TypeInfoData::Array("StateNodeEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct SelectObjectEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const SELECTOBJECTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait SelectObjectEntityTrait: super::entity::EntityTrait {
+}
+
+impl SelectObjectEntityTrait for SelectObjectEntity {
+}
+
+impl super::entity::EntityTrait for SelectObjectEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for SelectObjectEntity {
+}
+
+pub static SELECTOBJECTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectObjectEntity",
     flags: MemberInfoFlags::new(101),
     module: "UIIncubator",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<SelectObjectEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1182,17 +1837,20 @@ pub const SELECTOBJECTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for SelectObjectEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SELECTOBJECTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SELECTOBJECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SELECTOBJECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectObjectEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "UIIncubator",
-    data: TypeInfoData::Array("SelectObjectEntity-Array"),
+    data: TypeInfoData::Array("SelectObjectEntity"),
     array_type: None,
     alignment: 8,
 };

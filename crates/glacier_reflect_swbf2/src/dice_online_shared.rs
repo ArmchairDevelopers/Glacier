@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -28,22 +29,48 @@ pub(crate) fn register_dice_online_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(RARITYTYPE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct DiceOnlineSettings {
+    pub _glacier_base: super::core::SystemSettings,
     pub log_level: DiceOnlineLogLevelT,
 }
 
-pub const DICEONLINESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait DiceOnlineSettingsTrait: super::core::SystemSettingsTrait {
+    fn log_level(&self) -> &DiceOnlineLogLevelT;
+}
+
+impl DiceOnlineSettingsTrait for DiceOnlineSettings {
+    fn log_level(&self) -> &DiceOnlineLogLevelT {
+        &self.log_level
+    }
+}
+
+impl super::core::SystemSettingsTrait for DiceOnlineSettings {
+    fn platform(&self) -> &super::core::GamePlatform {
+        self._glacier_base.platform()
+    }
+}
+
+impl super::core::DataContainerTrait for DiceOnlineSettings {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static DICEONLINESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceOnlineSettings",
     flags: MemberInfoFlags::new(101),
     module: "DiceOnlineShared",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(SYSTEMSETTINGS_TYPE_INFO),
+        super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<DiceOnlineSettings as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "LogLevel",
                 flags: MemberInfoFlags::new(0),
-                field_type: DICEONLINELOGLEVELT_TYPE_INFO,
+                field_type: "DiceOnlineLogLevelT",
                 rust_offset: offset_of!(DiceOnlineSettings, log_level),
             },
         ],
@@ -53,24 +80,28 @@ pub const DICEONLINESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for DiceOnlineSettings {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DICEONLINESETTINGS_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DICEONLINESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DICEONLINESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceOnlineSettings-Array",
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
-    data: TypeInfoData::Array("DiceOnlineSettings-Array"),
+    data: TypeInfoData::Array("DiceOnlineSettings"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum DiceOnlineLogLevelT {
     #[default]
     LLevel_Default = 0,
@@ -82,7 +113,7 @@ pub enum DiceOnlineLogLevelT {
     LLevel_Trace = 6,
 }
 
-pub const DICEONLINELOGLEVELT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DICEONLINELOGLEVELT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceOnlineLogLevelT",
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
@@ -92,24 +123,28 @@ pub const DICEONLINELOGLEVELT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for DiceOnlineLogLevelT {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         DICEONLINELOGLEVELT_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const DICEONLINELOGLEVELT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static DICEONLINELOGLEVELT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceOnlineLogLevelT-Array",
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
-    data: TypeInfoData::Array("DiceOnlineLogLevelT-Array"),
+    data: TypeInfoData::Array("DiceOnlineLogLevelT"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum AwardGroup {
     #[default]
     AwardGroup_Undefined = 0,
@@ -126,7 +161,7 @@ pub enum AwardGroup {
     AwardGroup_LastAwardGroup = 11,
 }
 
-pub const AWARDGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static AWARDGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AwardGroup",
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
@@ -136,24 +171,28 @@ pub const AWARDGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for AwardGroup {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         AWARDGROUP_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const AWARDGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static AWARDGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AwardGroup-Array",
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
-    data: TypeInfoData::Array("AwardGroup-Array"),
+    data: TypeInfoData::Array("AwardGroup"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum StarLevelCategory {
     #[default]
     StarLevelCategory_global = 0,
@@ -210,7 +249,7 @@ pub enum StarLevelCategory {
     StarLevelCategory_Invalid = 51,
 }
 
-pub const STARLEVELCATEGORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static STARLEVELCATEGORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarLevelCategory",
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
@@ -220,24 +259,28 @@ pub const STARLEVELCATEGORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for StarLevelCategory {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         STARLEVELCATEGORY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const STARLEVELCATEGORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static STARLEVELCATEGORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarLevelCategory-Array",
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
-    data: TypeInfoData::Array("StarLevelCategory-Array"),
+    data: TypeInfoData::Array("StarLevelCategory"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum WSClass {
     #[default]
     WSClass_Assault = 0,
@@ -293,7 +336,7 @@ pub enum WSClass {
     WSClass_Invalid = 50,
 }
 
-pub const WSCLASS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static WSCLASS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WSClass",
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
@@ -303,24 +346,28 @@ pub const WSCLASS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for WSClass {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         WSCLASS_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const WSCLASS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static WSCLASS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WSClass-Array",
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
-    data: TypeInfoData::Array("WSClass-Array"),
+    data: TypeInfoData::Array("WSClass"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum InventoryProgress {
     #[default]
     InventoryProgress_NotDownloaded = 0,
@@ -328,7 +375,7 @@ pub enum InventoryProgress {
     InventoryProgress_Failed = 2,
 }
 
-pub const INVENTORYPROGRESS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static INVENTORYPROGRESS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InventoryProgress",
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
@@ -338,24 +385,28 @@ pub const INVENTORYPROGRESS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for InventoryProgress {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         INVENTORYPROGRESS_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const INVENTORYPROGRESS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static INVENTORYPROGRESS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InventoryProgress-Array",
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
-    data: TypeInfoData::Array("InventoryProgress-Array"),
+    data: TypeInfoData::Array("InventoryProgress"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum OnlineItemType {
     #[default]
     OnlineItemType_None = 0,
@@ -376,7 +427,7 @@ pub enum OnlineItemType {
     OnlineItemType_Count = 15,
 }
 
-pub const ONLINEITEMTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ONLINEITEMTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OnlineItemType",
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
@@ -386,24 +437,28 @@ pub const ONLINEITEMTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for OnlineItemType {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ONLINEITEMTYPE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ONLINEITEMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ONLINEITEMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OnlineItemType-Array",
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
-    data: TypeInfoData::Array("OnlineItemType-Array"),
+    data: TypeInfoData::Array("OnlineItemType"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum VirtualCurrency {
     #[default]
     VirtualCurrency_None = 0,
@@ -415,7 +470,7 @@ pub enum VirtualCurrency {
     VirtualCurrency_SkillPoints = 6,
 }
 
-pub const VIRTUALCURRENCY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static VIRTUALCURRENCY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VirtualCurrency",
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
@@ -425,24 +480,28 @@ pub const VIRTUALCURRENCY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for VirtualCurrency {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         VIRTUALCURRENCY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const VIRTUALCURRENCY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static VIRTUALCURRENCY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VirtualCurrency-Array",
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
-    data: TypeInfoData::Array("VirtualCurrency-Array"),
+    data: TypeInfoData::Array("VirtualCurrency"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum RarityType {
     #[default]
     RarityType_Common = 0,
@@ -454,7 +513,7 @@ pub enum RarityType {
     RarityType_Count = 6,
 }
 
-pub const RARITYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static RARITYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RarityType",
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
@@ -464,17 +523,20 @@ pub const RARITYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for RarityType {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         RARITYTYPE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const RARITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static RARITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RarityType-Array",
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
-    data: TypeInfoData::Array("RarityType-Array"),
+    data: TypeInfoData::Array("RarityType"),
     array_type: None,
     alignment: 8,
 };

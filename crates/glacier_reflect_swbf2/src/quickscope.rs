@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -12,16 +13,32 @@ pub(crate) fn register_quickscope_types(registry: &mut TypeRegistry) {
     registry.register_type(QUICKSCOPECONTROLENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct QuickscopeControlEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const QUICKSCOPECONTROLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait QuickscopeControlEntityTrait: super::entity::EntityTrait {
+}
+
+impl QuickscopeControlEntityTrait for QuickscopeControlEntity {
+}
+
+impl super::entity::EntityTrait for QuickscopeControlEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for QuickscopeControlEntity {
+}
+
+pub static QUICKSCOPECONTROLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeControlEntity",
     flags: MemberInfoFlags::new(101),
     module: "Quickscope",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<QuickscopeControlEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -30,17 +47,20 @@ pub const QUICKSCOPECONTROLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for QuickscopeControlEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         QUICKSCOPECONTROLENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const QUICKSCOPECONTROLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static QUICKSCOPECONTROLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeControlEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "Quickscope",
-    data: TypeInfoData::Array("QuickscopeControlEntity-Array"),
+    data: TypeInfoData::Array("QuickscopeControlEntity"),
     array_type: None,
     alignment: 8,
 };

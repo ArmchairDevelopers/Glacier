@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -34,22 +35,54 @@ pub(crate) fn register_peer_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTPEERGAMEMANAGEMENTBACKEND_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PeerServerBackendData {
+    pub _glacier_base: super::online_shared::PresenceBackendData,
     pub create_parameters: PeerCreateGameParameters,
 }
 
-pub const PEERSERVERBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PeerServerBackendDataTrait: super::online_shared::PresenceBackendDataTrait {
+    fn create_parameters(&self) -> &PeerCreateGameParameters;
+}
+
+impl PeerServerBackendDataTrait for PeerServerBackendData {
+    fn create_parameters(&self) -> &PeerCreateGameParameters {
+        &self.create_parameters
+    }
+}
+
+impl super::online_shared::PresenceBackendDataTrait for PeerServerBackendData {
+    fn backend_type(&self) -> &i32 {
+        self._glacier_base.backend_type()
+    }
+}
+
+impl super::core::AssetTrait for PeerServerBackendData {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for PeerServerBackendData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PEERSERVERBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PeerServerBackendData",
     flags: MemberInfoFlags::new(101),
     module: "Peer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(PRESENCEBACKENDDATA_TYPE_INFO),
+        super_class: Some(super::online_shared::PRESENCEBACKENDDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PeerServerBackendData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "CreateParameters",
                 flags: MemberInfoFlags::new(0),
-                field_type: PEERCREATEGAMEPARAMETERS_TYPE_INFO,
+                field_type: "PeerCreateGameParameters",
                 rust_offset: offset_of!(PeerServerBackendData, create_parameters),
             },
         ],
@@ -59,31 +92,43 @@ pub const PEERSERVERBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PeerServerBackendData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PEERSERVERBACKENDDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PEERSERVERBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PEERSERVERBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PeerServerBackendData-Array",
     flags: MemberInfoFlags::new(145),
     module: "Peer",
-    data: TypeInfoData::Array("PeerServerBackendData-Array"),
+    data: TypeInfoData::Array("PeerServerBackendData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceGetClientHostMigrationDataMessageBase {
 }
 
-pub const PRESENCEGETCLIENTHOSTMIGRATIONDATAMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceGetClientHostMigrationDataMessageBaseTrait: TypeObject {
+}
+
+impl PresenceGetClientHostMigrationDataMessageBaseTrait for PresenceGetClientHostMigrationDataMessageBase {
+}
+
+pub static PRESENCEGETCLIENTHOSTMIGRATIONDATAMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGetClientHostMigrationDataMessageBase",
     flags: MemberInfoFlags::new(36937),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceGetClientHostMigrationDataMessageBase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -92,20 +137,32 @@ pub const PRESENCEGETCLIENTHOSTMIGRATIONDATAMESSAGEBASE_TYPE_INFO: &'static Type
 };
 
 impl TypeObject for PresenceGetClientHostMigrationDataMessageBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEGETCLIENTHOSTMIGRATIONDATAMESSAGEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceServerPeerNotificationMessageBase {
 }
 
-pub const PRESENCESERVERPEERNOTIFICATIONMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceServerPeerNotificationMessageBaseTrait: TypeObject {
+}
+
+impl PresenceServerPeerNotificationMessageBaseTrait for PresenceServerPeerNotificationMessageBase {
+}
+
+pub static PRESENCESERVERPEERNOTIFICATIONMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceServerPeerNotificationMessageBase",
     flags: MemberInfoFlags::new(36937),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceServerPeerNotificationMessageBase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -114,20 +171,32 @@ pub const PRESENCESERVERPEERNOTIFICATIONMESSAGEBASE_TYPE_INFO: &'static TypeInfo
 };
 
 impl TypeObject for PresenceServerPeerNotificationMessageBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCESERVERPEERNOTIFICATIONMESSAGEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceServerPeerRequestMessageBase {
 }
 
-pub const PRESENCESERVERPEERREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceServerPeerRequestMessageBaseTrait: TypeObject {
+}
+
+impl PresenceServerPeerRequestMessageBaseTrait for PresenceServerPeerRequestMessageBase {
+}
+
+pub static PRESENCESERVERPEERREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceServerPeerRequestMessageBase",
     flags: MemberInfoFlags::new(36937),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceServerPeerRequestMessageBase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -136,20 +205,32 @@ pub const PRESENCESERVERPEERREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &T
 };
 
 impl TypeObject for PresenceServerPeerRequestMessageBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCESERVERPEERREQUESTMESSAGEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresencePeerGameRequestMessageBase {
 }
 
-pub const PRESENCEPEERGAMEREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresencePeerGameRequestMessageBaseTrait: TypeObject {
+}
+
+impl PresencePeerGameRequestMessageBaseTrait for PresencePeerGameRequestMessageBase {
+}
+
+pub static PRESENCEPEERGAMEREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresencePeerGameRequestMessageBase",
     flags: MemberInfoFlags::new(36937),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresencePeerGameRequestMessageBase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -158,20 +239,32 @@ pub const PRESENCEPEERGAMEREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 impl TypeObject for PresencePeerGameRequestMessageBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEPEERGAMEREQUESTMESSAGEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresencePeerGameMessageBase {
 }
 
-pub const PRESENCEPEERGAMEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresencePeerGameMessageBaseTrait: TypeObject {
+}
+
+impl PresencePeerGameMessageBaseTrait for PresencePeerGameMessageBase {
+}
+
+pub static PRESENCEPEERGAMEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresencePeerGameMessageBase",
     flags: MemberInfoFlags::new(36937),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresencePeerGameMessageBase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -180,20 +273,32 @@ pub const PRESENCEPEERGAMEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PresencePeerGameMessageBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEPEERGAMEMESSAGEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceHostMigrationRestoreFromSnapshotMessage {
 }
 
-pub const PRESENCEHOSTMIGRATIONRESTOREFROMSNAPSHOTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceHostMigrationRestoreFromSnapshotMessageTrait: TypeObject {
+}
+
+impl PresenceHostMigrationRestoreFromSnapshotMessageTrait for PresenceHostMigrationRestoreFromSnapshotMessage {
+}
+
+pub static PRESENCEHOSTMIGRATIONRESTOREFROMSNAPSHOTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceHostMigrationRestoreFromSnapshotMessage",
     flags: MemberInfoFlags::new(36937),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceHostMigrationRestoreFromSnapshotMessage as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -202,20 +307,32 @@ pub const PRESENCEHOSTMIGRATIONRESTOREFROMSNAPSHOTMESSAGE_TYPE_INFO: &'static Ty
 };
 
 impl TypeObject for PresenceHostMigrationRestoreFromSnapshotMessage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEHOSTMIGRATIONRESTOREFROMSNAPSHOTMESSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceHostMigrationStoreDataForCheckpointMessage {
 }
 
-pub const PRESENCEHOSTMIGRATIONSTOREDATAFORCHECKPOINTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceHostMigrationStoreDataForCheckpointMessageTrait: TypeObject {
+}
+
+impl PresenceHostMigrationStoreDataForCheckpointMessageTrait for PresenceHostMigrationStoreDataForCheckpointMessage {
+}
+
+pub static PRESENCEHOSTMIGRATIONSTOREDATAFORCHECKPOINTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceHostMigrationStoreDataForCheckpointMessage",
     flags: MemberInfoFlags::new(36937),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceHostMigrationStoreDataForCheckpointMessage as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -224,20 +341,32 @@ pub const PRESENCEHOSTMIGRATIONSTOREDATAFORCHECKPOINTMESSAGE_TYPE_INFO: &'static
 };
 
 impl TypeObject for PresenceHostMigrationStoreDataForCheckpointMessage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEHOSTMIGRATIONSTOREDATAFORCHECKPOINTMESSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceHostMigrationMessage {
 }
 
-pub const PRESENCEHOSTMIGRATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceHostMigrationMessageTrait: TypeObject {
+}
+
+impl PresenceHostMigrationMessageTrait for PresenceHostMigrationMessage {
+}
+
+pub static PRESENCEHOSTMIGRATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceHostMigrationMessage",
     flags: MemberInfoFlags::new(36937),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceHostMigrationMessage as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -246,20 +375,32 @@ pub const PRESENCEHOSTMIGRATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 impl TypeObject for PresenceHostMigrationMessage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEHOSTMIGRATIONMESSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceHostMigrationClearCheckpointDataMessage {
 }
 
-pub const PRESENCEHOSTMIGRATIONCLEARCHECKPOINTDATAMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceHostMigrationClearCheckpointDataMessageTrait: TypeObject {
+}
+
+impl PresenceHostMigrationClearCheckpointDataMessageTrait for PresenceHostMigrationClearCheckpointDataMessage {
+}
+
+pub static PRESENCEHOSTMIGRATIONCLEARCHECKPOINTDATAMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceHostMigrationClearCheckpointDataMessage",
     flags: MemberInfoFlags::new(36937),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceHostMigrationClearCheckpointDataMessage as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -268,20 +409,32 @@ pub const PRESENCEHOSTMIGRATIONCLEARCHECKPOINTDATAMESSAGE_TYPE_INFO: &'static Ty
 };
 
 impl TypeObject for PresenceHostMigrationClearCheckpointDataMessage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEHOSTMIGRATIONCLEARCHECKPOINTDATAMESSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceHostMigrationCheckpointMessage {
 }
 
-pub const PRESENCEHOSTMIGRATIONCHECKPOINTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceHostMigrationCheckpointMessageTrait: TypeObject {
+}
+
+impl PresenceHostMigrationCheckpointMessageTrait for PresenceHostMigrationCheckpointMessage {
+}
+
+pub static PRESENCEHOSTMIGRATIONCHECKPOINTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceHostMigrationCheckpointMessage",
     flags: MemberInfoFlags::new(36937),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceHostMigrationCheckpointMessage as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -290,20 +443,24 @@ pub const PRESENCEHOSTMIGRATIONCHECKPOINTMESSAGE_TYPE_INFO: &'static TypeInfo = 
 };
 
 impl TypeObject for PresenceHostMigrationCheckpointMessage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEHOSTMIGRATIONCHECKPOINTMESSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum HostMigrationMessageType {
     #[default]
     HostMigration_Host = 0,
     HostMigration_Client = 1,
 }
 
-pub const HOSTMIGRATIONMESSAGETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static HOSTMIGRATIONMESSAGETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HostMigrationMessageType",
     flags: MemberInfoFlags::new(49429),
     module: "Peer",
@@ -313,44 +470,64 @@ pub const HOSTMIGRATIONMESSAGETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for HostMigrationMessageType {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         HOSTMIGRATIONMESSAGETYPE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const HOSTMIGRATIONMESSAGETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static HOSTMIGRATIONMESSAGETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HostMigrationMessageType-Array",
     flags: MemberInfoFlags::new(145),
     module: "Peer",
-    data: TypeInfoData::Array("HostMigrationMessageType-Array"),
+    data: TypeInfoData::Array("HostMigrationMessageType"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PeerCreateGameParameters {
-    pub base: super::game_management::GameParametersData,
+    pub base: Option<Arc<Mutex<dyn super::game_management::GameParametersDataTrait>>>,
     pub player_capacity: u32,
 }
 
-pub const PEERCREATEGAMEPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PeerCreateGameParametersTrait: TypeObject {
+    fn base(&self) -> &Option<Arc<Mutex<dyn super::game_management::GameParametersDataTrait>>>;
+    fn player_capacity(&self) -> &u32;
+}
+
+impl PeerCreateGameParametersTrait for PeerCreateGameParameters {
+    fn base(&self) -> &Option<Arc<Mutex<dyn super::game_management::GameParametersDataTrait>>> {
+        &self.base
+    }
+    fn player_capacity(&self) -> &u32 {
+        &self.player_capacity
+    }
+}
+
+pub static PEERCREATEGAMEPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PeerCreateGameParameters",
     flags: MemberInfoFlags::new(73),
     module: "Peer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PeerCreateGameParameters as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Base",
                 flags: MemberInfoFlags::new(0),
-                field_type: GAMEPARAMETERSDATA_TYPE_INFO,
+                field_type: "GameParametersData",
                 rust_offset: offset_of!(PeerCreateGameParameters, base),
             },
             FieldInfoData {
                 name: "PlayerCapacity",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(PeerCreateGameParameters, player_capacity),
             },
         ],
@@ -360,32 +537,60 @@ pub const PEERCREATEGAMEPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PeerCreateGameParameters {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PEERCREATEGAMEPARAMETERS_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PEERCREATEGAMEPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PEERCREATEGAMEPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PeerCreateGameParameters-Array",
     flags: MemberInfoFlags::new(145),
     module: "Peer",
-    data: TypeInfoData::Array("PeerCreateGameParameters-Array"),
+    data: TypeInfoData::Array("PeerCreateGameParameters"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresencePeerServiceData {
+    pub _glacier_base: super::online_shared::PresenceServiceData,
 }
 
-pub const PRESENCEPEERSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresencePeerServiceDataTrait: super::online_shared::PresenceServiceDataTrait {
+}
+
+impl PresencePeerServiceDataTrait for PresencePeerServiceData {
+}
+
+impl super::online_shared::PresenceServiceDataTrait for PresencePeerServiceData {
+}
+
+impl super::core::AssetTrait for PresencePeerServiceData {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for PresencePeerServiceData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PRESENCEPEERSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresencePeerServiceData",
     flags: MemberInfoFlags::new(101),
     module: "Peer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(PRESENCESERVICEDATA_TYPE_INFO),
+        super_class: Some(super::online_shared::PRESENCESERVICEDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresencePeerServiceData as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -394,32 +599,48 @@ pub const PRESENCEPEERSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PresencePeerServiceData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEPEERSERVICEDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PRESENCEPEERSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PRESENCEPEERSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresencePeerServiceData-Array",
     flags: MemberInfoFlags::new(145),
     module: "Peer",
-    data: TypeInfoData::Array("PresencePeerServiceData-Array"),
+    data: TypeInfoData::Array("PresencePeerServiceData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PeerOnlineManager {
+    pub _glacier_base: super::gameplay_client_server::OnlineManager,
 }
 
-pub const PEERONLINEMANAGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PeerOnlineManagerTrait: super::gameplay_client_server::OnlineManagerTrait {
+}
+
+impl PeerOnlineManagerTrait for PeerOnlineManager {
+}
+
+impl super::gameplay_client_server::OnlineManagerTrait for PeerOnlineManager {
+}
+
+pub static PEERONLINEMANAGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PeerOnlineManager",
     flags: MemberInfoFlags::new(101),
     module: "Peer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ONLINEMANAGER_TYPE_INFO),
+        super_class: Some(super::gameplay_client_server::ONLINEMANAGER_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PeerOnlineManager as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -428,32 +649,48 @@ pub const PEERONLINEMANAGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for PeerOnlineManager {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PEERONLINEMANAGER_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PEERONLINEMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PEERONLINEMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PeerOnlineManager-Array",
     flags: MemberInfoFlags::new(145),
     module: "Peer",
-    data: TypeInfoData::Array("PeerOnlineManager-Array"),
+    data: TypeInfoData::Array("PeerOnlineManager"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientPeerService {
+    pub _glacier_base: super::online::PresenceService,
 }
 
-pub const CLIENTPEERSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientPeerServiceTrait: super::online::PresenceServiceTrait {
+}
+
+impl ClientPeerServiceTrait for ClientPeerService {
+}
+
+impl super::online::PresenceServiceTrait for ClientPeerService {
+}
+
+pub static CLIENTPEERSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPeerService",
     flags: MemberInfoFlags::new(101),
     module: "Peer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(PRESENCESERVICE_TYPE_INFO),
+        super_class: Some(super::online::PRESENCESERVICE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientPeerService as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -462,32 +699,51 @@ pub const CLIENTPEERSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ClientPeerService {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTPEERSERVICE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTPEERSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTPEERSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPeerService-Array",
     flags: MemberInfoFlags::new(145),
     module: "Peer",
-    data: TypeInfoData::Array("ClientPeerService-Array"),
+    data: TypeInfoData::Array("ClientPeerService"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientPeerGameManagementBackend {
+    pub _glacier_base: super::game_management::ClientGameManagementBackend,
 }
 
-pub const CLIENTPEERGAMEMANAGEMENTBACKEND_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientPeerGameManagementBackendTrait: super::game_management::ClientGameManagementBackendTrait {
+}
+
+impl ClientPeerGameManagementBackendTrait for ClientPeerGameManagementBackend {
+}
+
+impl super::game_management::ClientGameManagementBackendTrait for ClientPeerGameManagementBackend {
+}
+
+impl super::online::PresenceBackendTrait for ClientPeerGameManagementBackend {
+}
+
+pub static CLIENTPEERGAMEMANAGEMENTBACKEND_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPeerGameManagementBackend",
     flags: MemberInfoFlags::new(101),
     module: "Peer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(CLIENTGAMEMANAGEMENTBACKEND_TYPE_INFO),
+        super_class: Some(super::game_management::CLIENTGAMEMANAGEMENTBACKEND_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientPeerGameManagementBackend as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -496,17 +752,20 @@ pub const CLIENTPEERGAMEMANAGEMENTBACKEND_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 impl TypeObject for ClientPeerGameManagementBackend {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTPEERGAMEMANAGEMENTBACKEND_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTPEERGAMEMANAGEMENTBACKEND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTPEERGAMEMANAGEMENTBACKEND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPeerGameManagementBackend-Array",
     flags: MemberInfoFlags::new(145),
     module: "Peer",
-    data: TypeInfoData::Array("ClientPeerGameManagementBackend-Array"),
+    data: TypeInfoData::Array("ClientPeerGameManagementBackend"),
     array_type: None,
     alignment: 8,
 };

@@ -1,4 +1,4 @@
-#[derive(Default, Clone)]
+#[derive(Default, Clone, Debug, PartialEq)]
 pub struct MemberInfoFlags {
     pub flag_bits: u16,
 }

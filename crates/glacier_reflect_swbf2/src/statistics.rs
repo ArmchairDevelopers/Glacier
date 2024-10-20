@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -24,15 +25,24 @@ pub(crate) fn register_statistics_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTLEADERBOARDSERVICE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceStatisticsRequestMessageBase {
 }
 
-pub const PRESENCESTATISTICSREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceStatisticsRequestMessageBaseTrait: TypeObject {
+}
+
+impl PresenceStatisticsRequestMessageBaseTrait for PresenceStatisticsRequestMessageBase {
+}
+
+pub static PRESENCESTATISTICSREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceStatisticsRequestMessageBase",
     flags: MemberInfoFlags::new(36937),
     module: "Statistics",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceStatisticsRequestMessageBase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -41,20 +51,32 @@ pub const PRESENCESTATISTICSREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &T
 };
 
 impl TypeObject for PresenceStatisticsRequestMessageBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCESTATISTICSREQUESTMESSAGEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceStatisticsMessageBase {
 }
 
-pub const PRESENCESTATISTICSMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceStatisticsMessageBaseTrait: TypeObject {
+}
+
+impl PresenceStatisticsMessageBaseTrait for PresenceStatisticsMessageBase {
+}
+
+pub static PRESENCESTATISTICSMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceStatisticsMessageBase",
     flags: MemberInfoFlags::new(36937),
     module: "Statistics",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceStatisticsMessageBase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -63,21 +85,49 @@ pub const PRESENCESTATISTICSMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 impl TypeObject for PresenceStatisticsMessageBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCESTATISTICSMESSAGEBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceLeaderboardServiceData {
+    pub _glacier_base: super::online_shared::PresenceServiceData,
 }
 
-pub const PRESENCELEADERBOARDSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceLeaderboardServiceDataTrait: super::online_shared::PresenceServiceDataTrait {
+}
+
+impl PresenceLeaderboardServiceDataTrait for PresenceLeaderboardServiceData {
+}
+
+impl super::online_shared::PresenceServiceDataTrait for PresenceLeaderboardServiceData {
+}
+
+impl super::core::AssetTrait for PresenceLeaderboardServiceData {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for PresenceLeaderboardServiceData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PRESENCELEADERBOARDSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceLeaderboardServiceData",
     flags: MemberInfoFlags::new(101),
     module: "Statistics",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(PRESENCESERVICEDATA_TYPE_INFO),
+        super_class: Some(super::online_shared::PRESENCESERVICEDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceLeaderboardServiceData as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -86,32 +136,60 @@ pub const PRESENCELEADERBOARDSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 impl TypeObject for PresenceLeaderboardServiceData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCELEADERBOARDSERVICEDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PRESENCELEADERBOARDSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PRESENCELEADERBOARDSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceLeaderboardServiceData-Array",
     flags: MemberInfoFlags::new(145),
     module: "Statistics",
-    data: TypeInfoData::Array("PresenceLeaderboardServiceData-Array"),
+    data: TypeInfoData::Array("PresenceLeaderboardServiceData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceStatisticsServiceData {
+    pub _glacier_base: super::online_shared::PresenceServiceData,
 }
 
-pub const PRESENCESTATISTICSSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceStatisticsServiceDataTrait: super::online_shared::PresenceServiceDataTrait {
+}
+
+impl PresenceStatisticsServiceDataTrait for PresenceStatisticsServiceData {
+}
+
+impl super::online_shared::PresenceServiceDataTrait for PresenceStatisticsServiceData {
+}
+
+impl super::core::AssetTrait for PresenceStatisticsServiceData {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for PresenceStatisticsServiceData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static PRESENCESTATISTICSSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceStatisticsServiceData",
     flags: MemberInfoFlags::new(101),
     module: "Statistics",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(PRESENCESERVICEDATA_TYPE_INFO),
+        super_class: Some(super::online_shared::PRESENCESERVICEDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceStatisticsServiceData as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -120,32 +198,48 @@ pub const PRESENCESTATISTICSSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 impl TypeObject for PresenceStatisticsServiceData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCESTATISTICSSERVICEDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PRESENCESTATISTICSSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PRESENCESTATISTICSSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceStatisticsServiceData-Array",
     flags: MemberInfoFlags::new(145),
     module: "Statistics",
-    data: TypeInfoData::Array("PresenceStatisticsServiceData-Array"),
+    data: TypeInfoData::Array("PresenceStatisticsServiceData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceGetLeaderboardRequestParameters {
+    pub _glacier_base: super::online::PresenceRequestParameters,
 }
 
-pub const PRESENCEGETLEADERBOARDREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceGetLeaderboardRequestParametersTrait: super::online::PresenceRequestParametersTrait {
+}
+
+impl PresenceGetLeaderboardRequestParametersTrait for PresenceGetLeaderboardRequestParameters {
+}
+
+impl super::online::PresenceRequestParametersTrait for PresenceGetLeaderboardRequestParameters {
+}
+
+pub static PRESENCEGETLEADERBOARDREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGetLeaderboardRequestParameters",
     flags: MemberInfoFlags::new(101),
     module: "Statistics",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceGetLeaderboardRequestParameters as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -154,32 +248,48 @@ pub const PRESENCEGETLEADERBOARDREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo =
 };
 
 impl TypeObject for PresenceGetLeaderboardRequestParameters {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEGETLEADERBOARDREQUESTPARAMETERS_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PRESENCEGETLEADERBOARDREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PRESENCEGETLEADERBOARDREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGetLeaderboardRequestParameters-Array",
     flags: MemberInfoFlags::new(145),
     module: "Statistics",
-    data: TypeInfoData::Array("PresenceGetLeaderboardRequestParameters-Array"),
+    data: TypeInfoData::Array("PresenceGetLeaderboardRequestParameters"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct PresenceDownloadStatisticsRequestParameters {
+    pub _glacier_base: super::online::PresenceRequestParameters,
 }
 
-pub const PRESENCEDOWNLOADSTATISTICSREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait PresenceDownloadStatisticsRequestParametersTrait: super::online::PresenceRequestParametersTrait {
+}
+
+impl PresenceDownloadStatisticsRequestParametersTrait for PresenceDownloadStatisticsRequestParameters {
+}
+
+impl super::online::PresenceRequestParametersTrait for PresenceDownloadStatisticsRequestParameters {
+}
+
+pub static PRESENCEDOWNLOADSTATISTICSREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceDownloadStatisticsRequestParameters",
     flags: MemberInfoFlags::new(101),
     module: "Statistics",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<PresenceDownloadStatisticsRequestParameters as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -188,32 +298,48 @@ pub const PRESENCEDOWNLOADSTATISTICSREQUESTPARAMETERS_TYPE_INFO: &'static TypeIn
 };
 
 impl TypeObject for PresenceDownloadStatisticsRequestParameters {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         PRESENCEDOWNLOADSTATISTICSREQUESTPARAMETERS_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const PRESENCEDOWNLOADSTATISTICSREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static PRESENCEDOWNLOADSTATISTICSREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceDownloadStatisticsRequestParameters-Array",
     flags: MemberInfoFlags::new(145),
     module: "Statistics",
-    data: TypeInfoData::Array("PresenceDownloadStatisticsRequestParameters-Array"),
+    data: TypeInfoData::Array("PresenceDownloadStatisticsRequestParameters"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientStatisticsService {
+    pub _glacier_base: super::online::PresenceService,
 }
 
-pub const CLIENTSTATISTICSSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientStatisticsServiceTrait: super::online::PresenceServiceTrait {
+}
+
+impl ClientStatisticsServiceTrait for ClientStatisticsService {
+}
+
+impl super::online::PresenceServiceTrait for ClientStatisticsService {
+}
+
+pub static CLIENTSTATISTICSSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStatisticsService",
     flags: MemberInfoFlags::new(101),
     module: "Statistics",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(PRESENCESERVICE_TYPE_INFO),
+        super_class: Some(super::online::PRESENCESERVICE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientStatisticsService as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -222,32 +348,48 @@ pub const CLIENTSTATISTICSSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ClientStatisticsService {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTSTATISTICSSERVICE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTSTATISTICSSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTSTATISTICSSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStatisticsService-Array",
     flags: MemberInfoFlags::new(145),
     module: "Statistics",
-    data: TypeInfoData::Array("ClientStatisticsService-Array"),
+    data: TypeInfoData::Array("ClientStatisticsService"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientLeaderboardService {
+    pub _glacier_base: super::online::PresenceService,
 }
 
-pub const CLIENTLEADERBOARDSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientLeaderboardServiceTrait: super::online::PresenceServiceTrait {
+}
+
+impl ClientLeaderboardServiceTrait for ClientLeaderboardService {
+}
+
+impl super::online::PresenceServiceTrait for ClientLeaderboardService {
+}
+
+pub static CLIENTLEADERBOARDSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLeaderboardService",
     flags: MemberInfoFlags::new(101),
     module: "Statistics",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(PRESENCESERVICE_TYPE_INFO),
+        super_class: Some(super::online::PRESENCESERVICE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientLeaderboardService as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -256,17 +398,20 @@ pub const CLIENTLEADERBOARDSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ClientLeaderboardService {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTLEADERBOARDSERVICE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTLEADERBOARDSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTLEADERBOARDSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLeaderboardService-Array",
     flags: MemberInfoFlags::new(145),
     module: "Statistics",
-    data: TypeInfoData::Array("ClientLeaderboardService-Array"),
+    data: TypeInfoData::Array("ClientLeaderboardService"),
     array_type: None,
     alignment: 8,
 };

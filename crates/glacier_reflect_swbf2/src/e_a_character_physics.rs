@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -14,16 +15,38 @@ pub(crate) fn register_e_a_character_physics_types(registry: &mut TypeRegistry) 
     registry.register_type(CLIENTEACHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ServerEACharacterPhysicsComponent {
+    pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
 
-pub const SERVEREACHARACTERPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ServerEACharacterPhysicsComponentTrait: super::gameplay_client_server::ServerGameComponentTrait {
+}
+
+impl ServerEACharacterPhysicsComponentTrait for ServerEACharacterPhysicsComponent {
+}
+
+impl super::gameplay_client_server::ServerGameComponentTrait for ServerEACharacterPhysicsComponent {
+}
+
+impl super::gameplay_sim::GameComponentTrait for ServerEACharacterPhysicsComponent {
+}
+
+impl super::entity::ComponentTrait for ServerEACharacterPhysicsComponent {
+}
+
+impl super::entity::EntityBusPeerTrait for ServerEACharacterPhysicsComponent {
+}
+
+pub static SERVEREACHARACTERPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerEACharacterPhysicsComponent",
     flags: MemberInfoFlags::new(101),
     module: "EACharacterPhysics",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ServerEACharacterPhysicsComponent as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -32,32 +55,57 @@ pub const SERVEREACHARACTERPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 impl TypeObject for ServerEACharacterPhysicsComponent {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SERVEREACHARACTERPHYSICSCOMPONENT_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SERVEREACHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SERVEREACHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerEACharacterPhysicsComponent-Array",
     flags: MemberInfoFlags::new(145),
     module: "EACharacterPhysics",
-    data: TypeInfoData::Array("ServerEACharacterPhysicsComponent-Array"),
+    data: TypeInfoData::Array("ServerEACharacterPhysicsComponent"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientEACharacterPhysicsComponent {
+    pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
 
-pub const CLIENTEACHARACTERPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientEACharacterPhysicsComponentTrait: super::gameplay_client_server::ClientGameComponentTrait {
+}
+
+impl ClientEACharacterPhysicsComponentTrait for ClientEACharacterPhysicsComponent {
+}
+
+impl super::gameplay_client_server::ClientGameComponentTrait for ClientEACharacterPhysicsComponent {
+}
+
+impl super::gameplay_sim::GameComponentTrait for ClientEACharacterPhysicsComponent {
+}
+
+impl super::entity::ComponentTrait for ClientEACharacterPhysicsComponent {
+}
+
+impl super::entity::EntityBusPeerTrait for ClientEACharacterPhysicsComponent {
+}
+
+pub static CLIENTEACHARACTERPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEACharacterPhysicsComponent",
     flags: MemberInfoFlags::new(101),
     module: "EACharacterPhysics",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientEACharacterPhysicsComponent as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -66,17 +114,20 @@ pub const CLIENTEACHARACTERPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 impl TypeObject for ClientEACharacterPhysicsComponent {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTEACHARACTERPHYSICSCOMPONENT_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTEACHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTEACHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEACharacterPhysicsComponent-Array",
     flags: MemberInfoFlags::new(145),
     module: "EACharacterPhysics",
-    data: TypeInfoData::Array("ClientEACharacterPhysicsComponent-Array"),
+    data: TypeInfoData::Array("ClientEACharacterPhysicsComponent"),
     array_type: None,
     alignment: 8,
 };

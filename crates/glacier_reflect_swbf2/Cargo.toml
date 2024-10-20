@@ -4,4 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+tokio = { version = "1.28.2", features = [
+    "full",
+    "rt",
+    "rt-multi-thread",
+    "time",
+    "net",
+] }
 glacier_reflect = { path = "../glacier_reflect" }
+glacier_util = { path = "../glacier_util" }

@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -67,15 +68,24 @@ pub(crate) fn register_zone_streamer_types(registry: &mut TypeRegistry) {
     registry.register_type(ZONESTREAMERFOCUSENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerZoneDestroyMessage {
 }
 
-pub const ZONESTREAMERZONEDESTROYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerZoneDestroyMessageTrait: TypeObject {
+}
+
+impl ZoneStreamerZoneDestroyMessageTrait for ZoneStreamerZoneDestroyMessage {
+}
+
+pub static ZONESTREAMERZONEDESTROYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneDestroyMessage",
     flags: MemberInfoFlags::new(36937),
     module: "ZoneStreamer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerZoneDestroyMessage as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -84,20 +94,32 @@ pub const ZONESTREAMERZONEDESTROYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 impl TypeObject for ZoneStreamerZoneDestroyMessage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERZONEDESTROYMESSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerZoneInitMessage {
 }
 
-pub const ZONESTREAMERZONEINITMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerZoneInitMessageTrait: TypeObject {
+}
+
+impl ZoneStreamerZoneInitMessageTrait for ZoneStreamerZoneInitMessage {
+}
+
+pub static ZONESTREAMERZONEINITMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneInitMessage",
     flags: MemberInfoFlags::new(36937),
     module: "ZoneStreamer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerZoneInitMessage as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -106,20 +128,32 @@ pub const ZONESTREAMERZONEINITMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerZoneInitMessage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERZONEINITMESSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerZoneChangedMessage {
 }
 
-pub const ZONESTREAMERZONECHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerZoneChangedMessageTrait: TypeObject {
+}
+
+impl ZoneStreamerZoneChangedMessageTrait for ZoneStreamerZoneChangedMessage {
+}
+
+pub static ZONESTREAMERZONECHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneChangedMessage",
     flags: MemberInfoFlags::new(36937),
     module: "ZoneStreamer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerZoneChangedMessage as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -128,20 +162,32 @@ pub const ZONESTREAMERZONECHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 impl TypeObject for ZoneStreamerZoneChangedMessage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERZONECHANGEDMESSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerShutdownMessage {
 }
 
-pub const ZONESTREAMERSHUTDOWNMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerShutdownMessageTrait: TypeObject {
+}
+
+impl ZoneStreamerShutdownMessageTrait for ZoneStreamerShutdownMessage {
+}
+
+pub static ZONESTREAMERSHUTDOWNMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerShutdownMessage",
     flags: MemberInfoFlags::new(36937),
     module: "ZoneStreamer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerShutdownMessage as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -150,20 +196,32 @@ pub const ZONESTREAMERSHUTDOWNMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerShutdownMessage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERSHUTDOWNMESSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerAnnounceMessage {
 }
 
-pub const ZONESTREAMERANNOUNCEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerAnnounceMessageTrait: TypeObject {
+}
+
+impl ZoneStreamerAnnounceMessageTrait for ZoneStreamerAnnounceMessage {
+}
+
+pub static ZONESTREAMERANNOUNCEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerAnnounceMessage",
     flags: MemberInfoFlags::new(36937),
     module: "ZoneStreamer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerAnnounceMessage as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -172,34 +230,76 @@ pub const ZONESTREAMERANNOUNCEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerAnnounceMessage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERANNOUNCEMESSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerNotificationEntityData {
-    pub control_entity: super::core::Guid,
+    pub _glacier_base: super::entity::EntityData,
+    pub control_entity: glacier_util::guid::Guid,
     pub bundle_name: String,
 }
 
-pub const ZONESTREAMERNOTIFICATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerNotificationEntityDataTrait: super::entity::EntityDataTrait {
+    fn control_entity(&self) -> &glacier_util::guid::Guid;
+    fn bundle_name(&self) -> &String;
+}
+
+impl ZoneStreamerNotificationEntityDataTrait for ZoneStreamerNotificationEntityData {
+    fn control_entity(&self) -> &glacier_util::guid::Guid {
+        &self.control_entity
+    }
+    fn bundle_name(&self) -> &String {
+        &self.bundle_name
+    }
+}
+
+impl super::entity::EntityDataTrait for ZoneStreamerNotificationEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for ZoneStreamerNotificationEntityData {
+}
+
+impl super::core::DataBusPeerTrait for ZoneStreamerNotificationEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for ZoneStreamerNotificationEntityData {
+}
+
+impl super::core::DataContainerTrait for ZoneStreamerNotificationEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static ZONESTREAMERNOTIFICATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerNotificationEntityData",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerNotificationEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "ControlEntity",
                 flags: MemberInfoFlags::new(0),
-                field_type: GUID_TYPE_INFO,
+                field_type: "Guid",
                 rust_offset: offset_of!(ZoneStreamerNotificationEntityData, control_entity),
             },
             FieldInfoData {
                 name: "BundleName",
                 flags: MemberInfoFlags::new(0),
-                field_type: CSTRING_TYPE_INFO,
+                field_type: "CString",
                 rust_offset: offset_of!(ZoneStreamerNotificationEntityData, bundle_name),
             },
         ],
@@ -209,44 +309,64 @@ pub const ZONESTREAMERNOTIFICATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 impl TypeObject for ZoneStreamerNotificationEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERNOTIFICATIONENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERNOTIFICATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERNOTIFICATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerNotificationEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerNotificationEntityData-Array"),
+    data: TypeInfoData::Array("ZoneStreamerNotificationEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct VistaZoneInfo {
     pub neighbours: Vec<i16>,
     pub objects: Vec<VistaZoneMeshInfo>,
 }
 
-pub const VISTAZONEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait VistaZoneInfoTrait: TypeObject {
+    fn neighbours(&self) -> &Vec<i16>;
+    fn objects(&self) -> &Vec<VistaZoneMeshInfo>;
+}
+
+impl VistaZoneInfoTrait for VistaZoneInfo {
+    fn neighbours(&self) -> &Vec<i16> {
+        &self.neighbours
+    }
+    fn objects(&self) -> &Vec<VistaZoneMeshInfo> {
+        &self.objects
+    }
+}
+
+pub static VISTAZONEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VistaZoneInfo",
     flags: MemberInfoFlags::new(73),
     module: "ZoneStreamer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<VistaZoneInfo as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Neighbours",
                 flags: MemberInfoFlags::new(144),
-                field_type: INT16_ARRAY_TYPE_INFO,
+                field_type: "Int16-Array",
                 rust_offset: offset_of!(VistaZoneInfo, neighbours),
             },
             FieldInfoData {
                 name: "Objects",
                 flags: MemberInfoFlags::new(144),
-                field_type: VISTAZONEMESHINFO_ARRAY_TYPE_INFO,
+                field_type: "VistaZoneMeshInfo-Array",
                 rust_offset: offset_of!(VistaZoneInfo, objects),
             },
         ],
@@ -256,44 +376,64 @@ pub const VISTAZONEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for VistaZoneInfo {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         VISTAZONEINFO_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const VISTAZONEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static VISTAZONEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VistaZoneInfo-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("VistaZoneInfo-Array"),
+    data: TypeInfoData::Array("VistaZoneInfo"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct VistaZoneMeshInfo {
-    pub object: super::entity::ObjectBlueprint,
+    pub object: Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>,
     pub transform: super::core::LinearTransform,
 }
 
-pub const VISTAZONEMESHINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait VistaZoneMeshInfoTrait: TypeObject {
+    fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn transform(&self) -> &super::core::LinearTransform;
+}
+
+impl VistaZoneMeshInfoTrait for VistaZoneMeshInfo {
+    fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        &self.object
+    }
+    fn transform(&self) -> &super::core::LinearTransform {
+        &self.transform
+    }
+}
+
+pub static VISTAZONEMESHINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VistaZoneMeshInfo",
     flags: MemberInfoFlags::new(73),
     module: "ZoneStreamer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<VistaZoneMeshInfo as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Object",
                 flags: MemberInfoFlags::new(0),
-                field_type: OBJECTBLUEPRINT_TYPE_INFO,
+                field_type: "ObjectBlueprint",
                 rust_offset: offset_of!(VistaZoneMeshInfo, object),
             },
             FieldInfoData {
                 name: "Transform",
                 flags: MemberInfoFlags::new(0),
-                field_type: LINEARTRANSFORM_TYPE_INFO,
+                field_type: "LinearTransform",
                 rust_offset: offset_of!(VistaZoneMeshInfo, transform),
             },
         ],
@@ -303,45 +443,87 @@ pub const VISTAZONEMESHINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for VistaZoneMeshInfo {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         VISTAZONEMESHINFO_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const VISTAZONEMESHINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static VISTAZONEMESHINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VistaZoneMeshInfo-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("VistaZoneMeshInfo-Array"),
+    data: TypeInfoData::Array("VistaZoneMeshInfo"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerVistaEntityData {
+    pub _glacier_base: super::entity::EntityData,
     pub zone_infos: Vec<VistaZoneInfo>,
-    pub control_entity: super::core::Guid,
+    pub control_entity: glacier_util::guid::Guid,
 }
 
-pub const ZONESTREAMERVISTAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerVistaEntityDataTrait: super::entity::EntityDataTrait {
+    fn zone_infos(&self) -> &Vec<VistaZoneInfo>;
+    fn control_entity(&self) -> &glacier_util::guid::Guid;
+}
+
+impl ZoneStreamerVistaEntityDataTrait for ZoneStreamerVistaEntityData {
+    fn zone_infos(&self) -> &Vec<VistaZoneInfo> {
+        &self.zone_infos
+    }
+    fn control_entity(&self) -> &glacier_util::guid::Guid {
+        &self.control_entity
+    }
+}
+
+impl super::entity::EntityDataTrait for ZoneStreamerVistaEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for ZoneStreamerVistaEntityData {
+}
+
+impl super::core::DataBusPeerTrait for ZoneStreamerVistaEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for ZoneStreamerVistaEntityData {
+}
+
+impl super::core::DataContainerTrait for ZoneStreamerVistaEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static ZONESTREAMERVISTAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerVistaEntityData",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerVistaEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "ZoneInfos",
                 flags: MemberInfoFlags::new(144),
-                field_type: VISTAZONEINFO_ARRAY_TYPE_INFO,
+                field_type: "VistaZoneInfo-Array",
                 rust_offset: offset_of!(ZoneStreamerVistaEntityData, zone_infos),
             },
             FieldInfoData {
                 name: "ControlEntity",
                 flags: MemberInfoFlags::new(0),
-                field_type: GUID_TYPE_INFO,
+                field_type: "Guid",
                 rust_offset: offset_of!(ZoneStreamerVistaEntityData, control_entity),
             },
         ],
@@ -351,32 +533,147 @@ pub const ZONESTREAMERVISTAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerVistaEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERVISTAENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERVISTAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERVISTAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerVistaEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerVistaEntityData-Array"),
+    data: TypeInfoData::Array("ZoneStreamerVistaEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerSubWorldRod {
+    pub _glacier_base: super::entity::SubWorldReferenceObjectData,
 }
 
-pub const ZONESTREAMERSUBWORLDROD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerSubWorldRodTrait: super::entity::SubWorldReferenceObjectDataTrait {
+}
+
+impl ZoneStreamerSubWorldRodTrait for ZoneStreamerSubWorldRod {
+}
+
+impl super::entity::SubWorldReferenceObjectDataTrait for ZoneStreamerSubWorldRod {
+    fn bundle_name(&self) -> &String {
+        self._glacier_base.bundle_name()
+    }
+    fn preloaded_bundle_names(&self) -> &Vec<String> {
+        self._glacier_base.preloaded_bundle_names()
+    }
+    fn bundle_heap(&self) -> &super::entity::BundleHeapInfo {
+        self._glacier_base.bundle_heap()
+    }
+    fn inclusion_settings(&self) -> &Option<Arc<Mutex<dyn super::entity::SubWorldInclusionSettingsTrait>>> {
+        self._glacier_base.inclusion_settings()
+    }
+    fn auto_load(&self) -> &bool {
+        self._glacier_base.auto_load()
+    }
+    fn is_detached_sub_level(&self) -> &bool {
+        self._glacier_base.is_detached_sub_level()
+    }
+    fn is_win32_sub_level(&self) -> &bool {
+        self._glacier_base.is_win32_sub_level()
+    }
+    fn is_gen4a_sub_level(&self) -> &bool {
+        self._glacier_base.is_gen4a_sub_level()
+    }
+    fn is_gen4b_sub_level(&self) -> &bool {
+        self._glacier_base.is_gen4b_sub_level()
+    }
+    fn is_i_o_s_sub_level(&self) -> &bool {
+        self._glacier_base.is_i_o_s_sub_level()
+    }
+    fn is_android_sub_level(&self) -> &bool {
+        self._glacier_base.is_android_sub_level()
+    }
+    fn is_o_s_x_sub_level(&self) -> &bool {
+        self._glacier_base.is_o_s_x_sub_level()
+    }
+    fn is_linux_sub_level(&self) -> &bool {
+        self._glacier_base.is_linux_sub_level()
+    }
+    fn on_level_load_fire_on_stream_in(&self) -> &bool {
+        self._glacier_base.on_level_load_fire_on_stream_in()
+    }
+    fn use_peer_filtering(&self) -> &bool {
+        self._glacier_base.use_peer_filtering()
+    }
+    fn parents(&self) -> &Vec<super::entity::SharedBundleReference> {
+        self._glacier_base.parents()
+    }
+}
+
+impl super::entity::ReferenceObjectDataTrait for ZoneStreamerSubWorldRod {
+    fn blueprint_transform(&self) -> &super::core::LinearTransform {
+        self._glacier_base.blueprint_transform()
+    }
+    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint()
+    }
+    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation()
+    }
+    fn stream_realm(&self) -> &super::entity::StreamRealm {
+        self._glacier_base.stream_realm()
+    }
+    fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override()
+    }
+    fn lightmap_resolution_scale(&self) -> &u32 {
+        self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_scale_with_size(&self) -> &bool {
+        self._glacier_base.lightmap_scale_with_size()
+    }
+    fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides()
+    }
+    fn excluded(&self) -> &bool {
+        self._glacier_base.excluded()
+    }
+    fn create_indestructible_entity(&self) -> &bool {
+        self._glacier_base.create_indestructible_entity()
+    }
+}
+
+impl super::entity::GameObjectDataTrait for ZoneStreamerSubWorldRod {
+}
+
+impl super::core::DataBusPeerTrait for ZoneStreamerSubWorldRod {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for ZoneStreamerSubWorldRod {
+}
+
+impl super::core::DataContainerTrait for ZoneStreamerSubWorldRod {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static ZONESTREAMERSUBWORLDROD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerSubWorldRod",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(SUBWORLDREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class: Some(super::entity::SUBWORLDREFERENCEOBJECTDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerSubWorldRod as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -385,52 +682,104 @@ pub const ZONESTREAMERSUBWORLDROD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerSubWorldRod {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERSUBWORLDROD_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERSUBWORLDROD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERSUBWORLDROD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerSubWorldRod-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerSubWorldRod-Array"),
+    data: TypeInfoData::Array("ZoneStreamerSubWorldRod"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerEntityData {
+    pub _glacier_base: super::entity::SpatialEntityData,
     pub client_side_only: bool,
     pub enable_default_focus: bool,
     pub info: ZoneStreamerInfo,
 }
 
-pub const ZONESTREAMERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerEntityDataTrait: super::entity::SpatialEntityDataTrait {
+    fn client_side_only(&self) -> &bool;
+    fn enable_default_focus(&self) -> &bool;
+    fn info(&self) -> &ZoneStreamerInfo;
+}
+
+impl ZoneStreamerEntityDataTrait for ZoneStreamerEntityData {
+    fn client_side_only(&self) -> &bool {
+        &self.client_side_only
+    }
+    fn enable_default_focus(&self) -> &bool {
+        &self.enable_default_focus
+    }
+    fn info(&self) -> &ZoneStreamerInfo {
+        &self.info
+    }
+}
+
+impl super::entity::SpatialEntityDataTrait for ZoneStreamerEntityData {
+    fn transform(&self) -> &super::core::LinearTransform {
+        self._glacier_base.transform()
+    }
+}
+
+impl super::entity::EntityDataTrait for ZoneStreamerEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for ZoneStreamerEntityData {
+}
+
+impl super::core::DataBusPeerTrait for ZoneStreamerEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for ZoneStreamerEntityData {
+}
+
+impl super::core::DataContainerTrait for ZoneStreamerEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static ZONESTREAMERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntityData",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(SPATIALENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "ClientSideOnly",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerEntityData, client_side_only),
             },
             FieldInfoData {
                 name: "EnableDefaultFocus",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerEntityData, enable_default_focus),
             },
             FieldInfoData {
                 name: "Info",
                 flags: MemberInfoFlags::new(0),
-                field_type: ZONESTREAMERINFO_TYPE_INFO,
+                field_type: "ZoneStreamerInfo",
                 rust_offset: offset_of!(ZoneStreamerEntityData, info),
             },
         ],
@@ -440,65 +789,97 @@ pub const ZONESTREAMERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerEntityData-Array"),
+    data: TypeInfoData::Array("ZoneStreamerEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerInfo {
-    pub grid_resource: super::core::ResourceRef,
+    pub grid_resource: glacier_reflect::builtin::ResourceRef,
     pub sub_level_path: String,
     pub zone_infos: Vec<ZoneStreamerZoneInfo>,
     pub bundle_parents: Vec<i16>,
     pub bundle_names: Vec<String>,
 }
 
-pub const ZONESTREAMERINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerInfoTrait: TypeObject {
+    fn grid_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn sub_level_path(&self) -> &String;
+    fn zone_infos(&self) -> &Vec<ZoneStreamerZoneInfo>;
+    fn bundle_parents(&self) -> &Vec<i16>;
+    fn bundle_names(&self) -> &Vec<String>;
+}
+
+impl ZoneStreamerInfoTrait for ZoneStreamerInfo {
+    fn grid_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
+        &self.grid_resource
+    }
+    fn sub_level_path(&self) -> &String {
+        &self.sub_level_path
+    }
+    fn zone_infos(&self) -> &Vec<ZoneStreamerZoneInfo> {
+        &self.zone_infos
+    }
+    fn bundle_parents(&self) -> &Vec<i16> {
+        &self.bundle_parents
+    }
+    fn bundle_names(&self) -> &Vec<String> {
+        &self.bundle_names
+    }
+}
+
+pub static ZONESTREAMERINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerInfo",
     flags: MemberInfoFlags::new(73),
     module: "ZoneStreamer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerInfo as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "GridResource",
                 flags: MemberInfoFlags::new(0),
-                field_type: RESOURCEREF_TYPE_INFO,
+                field_type: "ResourceRef",
                 rust_offset: offset_of!(ZoneStreamerInfo, grid_resource),
             },
             FieldInfoData {
                 name: "SubLevelPath",
                 flags: MemberInfoFlags::new(0),
-                field_type: CSTRING_TYPE_INFO,
+                field_type: "CString",
                 rust_offset: offset_of!(ZoneStreamerInfo, sub_level_path),
             },
             FieldInfoData {
                 name: "ZoneInfos",
                 flags: MemberInfoFlags::new(144),
-                field_type: ZONESTREAMERZONEINFO_ARRAY_TYPE_INFO,
+                field_type: "ZoneStreamerZoneInfo-Array",
                 rust_offset: offset_of!(ZoneStreamerInfo, zone_infos),
             },
             FieldInfoData {
                 name: "BundleParents",
                 flags: MemberInfoFlags::new(144),
-                field_type: INT16_ARRAY_TYPE_INFO,
+                field_type: "Int16-Array",
                 rust_offset: offset_of!(ZoneStreamerInfo, bundle_parents),
             },
             FieldInfoData {
                 name: "BundleNames",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(ZoneStreamerInfo, bundle_names),
             },
         ],
@@ -508,37 +889,53 @@ pub const ZONESTREAMERINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerInfo {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERINFO_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerInfo-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerInfo-Array"),
+    data: TypeInfoData::Array("ZoneStreamerInfo"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerZoneInfo {
     pub neighbours: Vec<i16>,
 }
 
-pub const ZONESTREAMERZONEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerZoneInfoTrait: TypeObject {
+    fn neighbours(&self) -> &Vec<i16>;
+}
+
+impl ZoneStreamerZoneInfoTrait for ZoneStreamerZoneInfo {
+    fn neighbours(&self) -> &Vec<i16> {
+        &self.neighbours
+    }
+}
+
+pub static ZONESTREAMERZONEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneInfo",
     flags: MemberInfoFlags::new(73),
     module: "ZoneStreamer",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerZoneInfo as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Neighbours",
                 flags: MemberInfoFlags::new(144),
-                field_type: INT16_ARRAY_TYPE_INFO,
+                field_type: "Int16-Array",
                 rust_offset: offset_of!(ZoneStreamerZoneInfo, neighbours),
             },
         ],
@@ -548,24 +945,28 @@ pub const ZONESTREAMERZONEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerZoneInfo {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERZONEINFO_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERZONEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERZONEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneInfo-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerZoneInfo-Array"),
+    data: TypeInfoData::Array("ZoneStreamerZoneInfo"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum ZoneStreamerRasterNodeUsage {
     #[default]
     ZoneStreamerRasterNodeUsage_Default = 0,
@@ -575,7 +976,7 @@ pub enum ZoneStreamerRasterNodeUsage {
     ZoneStreamerRasterNodeUsage_Skipped = 4,
 }
 
-pub const ZONESTREAMERRASTERNODEUSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERRASTERNODEUSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerRasterNodeUsage",
     flags: MemberInfoFlags::new(49429),
     module: "ZoneStreamer",
@@ -585,24 +986,28 @@ pub const ZONESTREAMERRASTERNODEUSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerRasterNodeUsage {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERRASTERNODEUSAGE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERRASTERNODEUSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERRASTERNODEUSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerRasterNodeUsage-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerRasterNodeUsage-Array"),
+    data: TypeInfoData::Array("ZoneStreamerRasterNodeUsage"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerSettings {
+    pub _glacier_base: super::core::DataContainer,
     pub test_zone_heights: bool,
     pub pin_visited_zones: bool,
     pub pause_all: bool,
@@ -624,125 +1029,216 @@ pub struct ZoneStreamerSettings {
     pub selected_streamer: String,
 }
 
-pub const ZONESTREAMERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerSettingsTrait: super::core::DataContainerTrait {
+    fn test_zone_heights(&self) -> &bool;
+    fn pin_visited_zones(&self) -> &bool;
+    fn pause_all(&self) -> &bool;
+    fn draw_stats(&self) -> &bool;
+    fn draw3d_debug(&self) -> &bool;
+    fn draw3d_name_scale(&self) -> &f32;
+    fn draw2d_debug(&self) -> &bool;
+    fn draw2d_scale(&self) -> &f32;
+    fn draw2d_zones(&self) -> &bool;
+    fn draw2d_rotate(&self) -> &bool;
+    fn draw2d_zone_states(&self) -> &bool;
+    fn draw2d_centroids(&self) -> &bool;
+    fn draw2d_point_size(&self) -> &f32;
+    fn draw2d_bg_alpha(&self) -> &f32;
+    fn draw2d_names(&self) -> &bool;
+    fn draw_terrain_tiles(&self) -> &bool;
+    fn draw_terrain_tile_loaded_only(&self) -> &bool;
+    fn draw_terrain_tile_to_draw(&self) -> &i32;
+    fn selected_streamer(&self) -> &String;
+}
+
+impl ZoneStreamerSettingsTrait for ZoneStreamerSettings {
+    fn test_zone_heights(&self) -> &bool {
+        &self.test_zone_heights
+    }
+    fn pin_visited_zones(&self) -> &bool {
+        &self.pin_visited_zones
+    }
+    fn pause_all(&self) -> &bool {
+        &self.pause_all
+    }
+    fn draw_stats(&self) -> &bool {
+        &self.draw_stats
+    }
+    fn draw3d_debug(&self) -> &bool {
+        &self.draw3d_debug
+    }
+    fn draw3d_name_scale(&self) -> &f32 {
+        &self.draw3d_name_scale
+    }
+    fn draw2d_debug(&self) -> &bool {
+        &self.draw2d_debug
+    }
+    fn draw2d_scale(&self) -> &f32 {
+        &self.draw2d_scale
+    }
+    fn draw2d_zones(&self) -> &bool {
+        &self.draw2d_zones
+    }
+    fn draw2d_rotate(&self) -> &bool {
+        &self.draw2d_rotate
+    }
+    fn draw2d_zone_states(&self) -> &bool {
+        &self.draw2d_zone_states
+    }
+    fn draw2d_centroids(&self) -> &bool {
+        &self.draw2d_centroids
+    }
+    fn draw2d_point_size(&self) -> &f32 {
+        &self.draw2d_point_size
+    }
+    fn draw2d_bg_alpha(&self) -> &f32 {
+        &self.draw2d_bg_alpha
+    }
+    fn draw2d_names(&self) -> &bool {
+        &self.draw2d_names
+    }
+    fn draw_terrain_tiles(&self) -> &bool {
+        &self.draw_terrain_tiles
+    }
+    fn draw_terrain_tile_loaded_only(&self) -> &bool {
+        &self.draw_terrain_tile_loaded_only
+    }
+    fn draw_terrain_tile_to_draw(&self) -> &i32 {
+        &self.draw_terrain_tile_to_draw
+    }
+    fn selected_streamer(&self) -> &String {
+        &self.selected_streamer
+    }
+}
+
+impl super::core::DataContainerTrait for ZoneStreamerSettings {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static ZONESTREAMERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerSettings",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerSettings as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "TestZoneHeights",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, test_zone_heights),
             },
             FieldInfoData {
                 name: "PinVisitedZones",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, pin_visited_zones),
             },
             FieldInfoData {
                 name: "PauseAll",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, pause_all),
             },
             FieldInfoData {
                 name: "DrawStats",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw_stats),
             },
             FieldInfoData {
                 name: "Draw3dDebug",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw3d_debug),
             },
             FieldInfoData {
                 name: "Draw3dNameScale",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw3d_name_scale),
             },
             FieldInfoData {
                 name: "Draw2dDebug",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_debug),
             },
             FieldInfoData {
                 name: "Draw2dScale",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_scale),
             },
             FieldInfoData {
                 name: "Draw2dZones",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_zones),
             },
             FieldInfoData {
                 name: "Draw2dRotate",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_rotate),
             },
             FieldInfoData {
                 name: "Draw2dZoneStates",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_zone_states),
             },
             FieldInfoData {
                 name: "Draw2dCentroids",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_centroids),
             },
             FieldInfoData {
                 name: "Draw2dPointSize",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_point_size),
             },
             FieldInfoData {
                 name: "Draw2dBgAlpha",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_bg_alpha),
             },
             FieldInfoData {
                 name: "Draw2dNames",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_names),
             },
             FieldInfoData {
                 name: "DrawTerrainTiles",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw_terrain_tiles),
             },
             FieldInfoData {
                 name: "DrawTerrainTileLoadedOnly",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw_terrain_tile_loaded_only),
             },
             FieldInfoData {
                 name: "DrawTerrainTileToDraw",
                 flags: MemberInfoFlags::new(0),
-                field_type: INT32_TYPE_INFO,
+                field_type: "Int32",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw_terrain_tile_to_draw),
             },
             FieldInfoData {
                 name: "SelectedStreamer",
                 flags: MemberInfoFlags::new(0),
-                field_type: CSTRING_TYPE_INFO,
+                field_type: "CString",
                 rust_offset: offset_of!(ZoneStreamerSettings, selected_streamer),
             },
         ],
@@ -752,45 +1248,93 @@ pub const ZONESTREAMERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerSettings {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERSETTINGS_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerSettings-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerSettings-Array"),
+    data: TypeInfoData::Array("ZoneStreamerSettings"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerFocusEntityData {
+    pub _glacier_base: ZoneStreamerLogicEntityData,
     pub focus_point: super::core::LinearTransform,
     pub auto_enabled: bool,
 }
 
-pub const ZONESTREAMERFOCUSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerFocusEntityDataTrait: ZoneStreamerLogicEntityDataTrait {
+    fn focus_point(&self) -> &super::core::LinearTransform;
+    fn auto_enabled(&self) -> &bool;
+}
+
+impl ZoneStreamerFocusEntityDataTrait for ZoneStreamerFocusEntityData {
+    fn focus_point(&self) -> &super::core::LinearTransform {
+        &self.focus_point
+    }
+    fn auto_enabled(&self) -> &bool {
+        &self.auto_enabled
+    }
+}
+
+impl ZoneStreamerLogicEntityDataTrait for ZoneStreamerFocusEntityData {
+    fn realm(&self) -> &super::core::Realm {
+        self._glacier_base.realm()
+    }
+}
+
+impl super::entity::EntityDataTrait for ZoneStreamerFocusEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for ZoneStreamerFocusEntityData {
+}
+
+impl super::core::DataBusPeerTrait for ZoneStreamerFocusEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for ZoneStreamerFocusEntityData {
+}
+
+impl super::core::DataContainerTrait for ZoneStreamerFocusEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static ZONESTREAMERFOCUSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerFocusEntityData",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerFocusEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "FocusPoint",
                 flags: MemberInfoFlags::new(0),
-                field_type: LINEARTRANSFORM_TYPE_INFO,
+                field_type: "LinearTransform",
                 rust_offset: offset_of!(ZoneStreamerFocusEntityData, focus_point),
             },
             FieldInfoData {
                 name: "AutoEnabled",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerFocusEntityData, auto_enabled),
             },
         ],
@@ -800,38 +1344,82 @@ pub const ZONESTREAMERFOCUSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerFocusEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERFOCUSENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERFOCUSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERFOCUSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerFocusEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerFocusEntityData-Array"),
+    data: TypeInfoData::Array("ZoneStreamerFocusEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerZoneProxyEntityData {
+    pub _glacier_base: ZoneStreamerLogicEntityData,
     pub zone_and_region_names: Vec<String>,
 }
 
-pub const ZONESTREAMERZONEPROXYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerZoneProxyEntityDataTrait: ZoneStreamerLogicEntityDataTrait {
+    fn zone_and_region_names(&self) -> &Vec<String>;
+}
+
+impl ZoneStreamerZoneProxyEntityDataTrait for ZoneStreamerZoneProxyEntityData {
+    fn zone_and_region_names(&self) -> &Vec<String> {
+        &self.zone_and_region_names
+    }
+}
+
+impl ZoneStreamerLogicEntityDataTrait for ZoneStreamerZoneProxyEntityData {
+    fn realm(&self) -> &super::core::Realm {
+        self._glacier_base.realm()
+    }
+}
+
+impl super::entity::EntityDataTrait for ZoneStreamerZoneProxyEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for ZoneStreamerZoneProxyEntityData {
+}
+
+impl super::core::DataBusPeerTrait for ZoneStreamerZoneProxyEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for ZoneStreamerZoneProxyEntityData {
+}
+
+impl super::core::DataContainerTrait for ZoneStreamerZoneProxyEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static ZONESTREAMERZONEPROXYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneProxyEntityData",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerZoneProxyEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "ZoneAndRegionNames",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(ZoneStreamerZoneProxyEntityData, zone_and_region_names),
             },
         ],
@@ -841,38 +1429,82 @@ pub const ZONESTREAMERZONEPROXYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 impl TypeObject for ZoneStreamerZoneProxyEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERZONEPROXYENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERZONEPROXYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERZONEPROXYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneProxyEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerZoneProxyEntityData-Array"),
+    data: TypeInfoData::Array("ZoneStreamerZoneProxyEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerTransitionEntityData {
+    pub _glacier_base: ZoneStreamerLogicEntityData,
     pub auto_begin: bool,
 }
 
-pub const ZONESTREAMERTRANSITIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerTransitionEntityDataTrait: ZoneStreamerLogicEntityDataTrait {
+    fn auto_begin(&self) -> &bool;
+}
+
+impl ZoneStreamerTransitionEntityDataTrait for ZoneStreamerTransitionEntityData {
+    fn auto_begin(&self) -> &bool {
+        &self.auto_begin
+    }
+}
+
+impl ZoneStreamerLogicEntityDataTrait for ZoneStreamerTransitionEntityData {
+    fn realm(&self) -> &super::core::Realm {
+        self._glacier_base.realm()
+    }
+}
+
+impl super::entity::EntityDataTrait for ZoneStreamerTransitionEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for ZoneStreamerTransitionEntityData {
+}
+
+impl super::core::DataBusPeerTrait for ZoneStreamerTransitionEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for ZoneStreamerTransitionEntityData {
+}
+
+impl super::core::DataContainerTrait for ZoneStreamerTransitionEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static ZONESTREAMERTRANSITIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerTransitionEntityData",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerTransitionEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "AutoBegin",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerTransitionEntityData, auto_begin),
             },
         ],
@@ -882,38 +1514,82 @@ pub const ZONESTREAMERTRANSITIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 impl TypeObject for ZoneStreamerTransitionEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERTRANSITIONENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERTRANSITIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERTRANSITIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerTransitionEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerTransitionEntityData-Array"),
+    data: TypeInfoData::Array("ZoneStreamerTransitionEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerControlEntityData {
+    pub _glacier_base: ZoneStreamerLogicEntityData,
     pub start_paused: bool,
 }
 
-pub const ZONESTREAMERCONTROLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerControlEntityDataTrait: ZoneStreamerLogicEntityDataTrait {
+    fn start_paused(&self) -> &bool;
+}
+
+impl ZoneStreamerControlEntityDataTrait for ZoneStreamerControlEntityData {
+    fn start_paused(&self) -> &bool {
+        &self.start_paused
+    }
+}
+
+impl ZoneStreamerLogicEntityDataTrait for ZoneStreamerControlEntityData {
+    fn realm(&self) -> &super::core::Realm {
+        self._glacier_base.realm()
+    }
+}
+
+impl super::entity::EntityDataTrait for ZoneStreamerControlEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for ZoneStreamerControlEntityData {
+}
+
+impl super::core::DataBusPeerTrait for ZoneStreamerControlEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for ZoneStreamerControlEntityData {
+}
+
+impl super::core::DataContainerTrait for ZoneStreamerControlEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static ZONESTREAMERCONTROLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerControlEntityData",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerControlEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "StartPaused",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerControlEntityData, start_paused),
             },
         ],
@@ -923,38 +1599,76 @@ pub const ZONESTREAMERCONTROLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 impl TypeObject for ZoneStreamerControlEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERCONTROLENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERCONTROLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERCONTROLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerControlEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerControlEntityData-Array"),
+    data: TypeInfoData::Array("ZoneStreamerControlEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerLogicEntityData {
+    pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
 }
 
-pub const ZONESTREAMERLOGICENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerLogicEntityDataTrait: super::entity::EntityDataTrait {
+    fn realm(&self) -> &super::core::Realm;
+}
+
+impl ZoneStreamerLogicEntityDataTrait for ZoneStreamerLogicEntityData {
+    fn realm(&self) -> &super::core::Realm {
+        &self.realm
+    }
+}
+
+impl super::entity::EntityDataTrait for ZoneStreamerLogicEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for ZoneStreamerLogicEntityData {
+}
+
+impl super::core::DataBusPeerTrait for ZoneStreamerLogicEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for ZoneStreamerLogicEntityData {
+}
+
+impl super::core::DataContainerTrait for ZoneStreamerLogicEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static ZONESTREAMERLOGICENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerLogicEntityData",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerLogicEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Realm",
                 flags: MemberInfoFlags::new(0),
-                field_type: REALM_TYPE_INFO,
+                field_type: "Realm",
                 rust_offset: offset_of!(ZoneStreamerLogicEntityData, realm),
             },
         ],
@@ -964,32 +1678,54 @@ pub const ZONESTREAMERLOGICENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerLogicEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERLOGICENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERLOGICENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERLOGICENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerLogicEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerLogicEntityData-Array"),
+    data: TypeInfoData::Array("ZoneStreamerLogicEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerZoneProxyEntity {
+    pub _glacier_base: ZoneStreamerLogicEntity,
 }
 
-pub const ZONESTREAMERZONEPROXYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerZoneProxyEntityTrait: ZoneStreamerLogicEntityTrait {
+}
+
+impl ZoneStreamerZoneProxyEntityTrait for ZoneStreamerZoneProxyEntity {
+}
+
+impl ZoneStreamerLogicEntityTrait for ZoneStreamerZoneProxyEntity {
+}
+
+impl super::entity::EntityTrait for ZoneStreamerZoneProxyEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ZoneStreamerZoneProxyEntity {
+}
+
+pub static ZONESTREAMERZONEPROXYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneProxyEntity",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerZoneProxyEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -998,32 +1734,51 @@ pub const ZONESTREAMERZONEPROXYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerZoneProxyEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERZONEPROXYENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERZONEPROXYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERZONEPROXYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneProxyEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerZoneProxyEntity-Array"),
+    data: TypeInfoData::Array("ZoneStreamerZoneProxyEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerVistaEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const ZONESTREAMERVISTAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerVistaEntityTrait: super::entity::EntityTrait {
+}
+
+impl ZoneStreamerVistaEntityTrait for ZoneStreamerVistaEntity {
+}
+
+impl super::entity::EntityTrait for ZoneStreamerVistaEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ZoneStreamerVistaEntity {
+}
+
+pub static ZONESTREAMERVISTAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerVistaEntity",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerVistaEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1032,32 +1787,54 @@ pub const ZONESTREAMERVISTAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerVistaEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERVISTAENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERVISTAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERVISTAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerVistaEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerVistaEntity-Array"),
+    data: TypeInfoData::Array("ZoneStreamerVistaEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerTransitionEntity {
+    pub _glacier_base: ZoneStreamerLogicEntity,
 }
 
-pub const ZONESTREAMERTRANSITIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerTransitionEntityTrait: ZoneStreamerLogicEntityTrait {
+}
+
+impl ZoneStreamerTransitionEntityTrait for ZoneStreamerTransitionEntity {
+}
+
+impl ZoneStreamerLogicEntityTrait for ZoneStreamerTransitionEntity {
+}
+
+impl super::entity::EntityTrait for ZoneStreamerTransitionEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ZoneStreamerTransitionEntity {
+}
+
+pub static ZONESTREAMERTRANSITIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerTransitionEntity",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerTransitionEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1066,32 +1843,51 @@ pub const ZONESTREAMERTRANSITIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 impl TypeObject for ZoneStreamerTransitionEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERTRANSITIONENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERTRANSITIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERTRANSITIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerTransitionEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerTransitionEntity-Array"),
+    data: TypeInfoData::Array("ZoneStreamerTransitionEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerNotificationEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const ZONESTREAMERNOTIFICATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerNotificationEntityTrait: super::entity::EntityTrait {
+}
+
+impl ZoneStreamerNotificationEntityTrait for ZoneStreamerNotificationEntity {
+}
+
+impl super::entity::EntityTrait for ZoneStreamerNotificationEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ZoneStreamerNotificationEntity {
+}
+
+pub static ZONESTREAMERNOTIFICATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerNotificationEntity",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerNotificationEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1100,32 +1896,51 @@ pub const ZONESTREAMERNOTIFICATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 impl TypeObject for ZoneStreamerNotificationEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERNOTIFICATIONENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERNOTIFICATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERNOTIFICATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerNotificationEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerNotificationEntity-Array"),
+    data: TypeInfoData::Array("ZoneStreamerNotificationEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerLogicEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const ZONESTREAMERLOGICENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerLogicEntityTrait: super::entity::EntityTrait {
+}
+
+impl ZoneStreamerLogicEntityTrait for ZoneStreamerLogicEntity {
+}
+
+impl super::entity::EntityTrait for ZoneStreamerLogicEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ZoneStreamerLogicEntity {
+}
+
+pub static ZONESTREAMERLOGICENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerLogicEntity",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerLogicEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1134,32 +1949,44 @@ pub const ZONESTREAMERLOGICENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerLogicEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERLOGICENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERLOGICENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERLOGICENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerLogicEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerLogicEntity-Array"),
+    data: TypeInfoData::Array("ZoneStreamerLogicEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerGrid {
 }
 
-pub const ZONESTREAMERGRID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerGridTrait: TypeObject {
+}
+
+impl ZoneStreamerGridTrait for ZoneStreamerGrid {
+}
+
+pub static ZONESTREAMERGRID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerGrid",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerGrid as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1168,32 +1995,51 @@ pub const ZONESTREAMERGRID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerGrid {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERGRID_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERGRID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERGRID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerGrid-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerGrid-Array"),
+    data: TypeInfoData::Array("ZoneStreamerGrid"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerEntityBase {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const ZONESTREAMERENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerEntityBaseTrait: super::entity::EntityTrait {
+}
+
+impl ZoneStreamerEntityBaseTrait for ZoneStreamerEntityBase {
+}
+
+impl super::entity::EntityTrait for ZoneStreamerEntityBase {
+}
+
+impl super::entity::EntityBusPeerTrait for ZoneStreamerEntityBase {
+}
+
+pub static ZONESTREAMERENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntityBase",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerEntityBase as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1202,32 +2048,54 @@ pub const ZONESTREAMERENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerEntityBase {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERENTITYBASE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntityBase-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerEntityBase-Array"),
+    data: TypeInfoData::Array("ZoneStreamerEntityBase"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerEntity {
+    pub _glacier_base: ZoneStreamerEntityBase,
 }
 
-pub const ZONESTREAMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerEntityTrait: ZoneStreamerEntityBaseTrait {
+}
+
+impl ZoneStreamerEntityTrait for ZoneStreamerEntity {
+}
+
+impl ZoneStreamerEntityBaseTrait for ZoneStreamerEntity {
+}
+
+impl super::entity::EntityTrait for ZoneStreamerEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ZoneStreamerEntity {
+}
+
+pub static ZONESTREAMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntity",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERENTITYBASE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1236,32 +2104,54 @@ pub const ZONESTREAMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerEntity-Array"),
+    data: TypeInfoData::Array("ZoneStreamerEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerControlEntity {
+    pub _glacier_base: ZoneStreamerLogicEntity,
 }
 
-pub const ZONESTREAMERCONTROLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerControlEntityTrait: ZoneStreamerLogicEntityTrait {
+}
+
+impl ZoneStreamerControlEntityTrait for ZoneStreamerControlEntity {
+}
+
+impl ZoneStreamerLogicEntityTrait for ZoneStreamerControlEntity {
+}
+
+impl super::entity::EntityTrait for ZoneStreamerControlEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ZoneStreamerControlEntity {
+}
+
+pub static ZONESTREAMERCONTROLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerControlEntity",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerControlEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1270,32 +2160,54 @@ pub const ZONESTREAMERCONTROLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerControlEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERCONTROLENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERCONTROLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERCONTROLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerControlEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerControlEntity-Array"),
+    data: TypeInfoData::Array("ZoneStreamerControlEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct RealmProxy {
+    pub _glacier_base: ZoneStreamerEntityBase,
 }
 
-pub const REALMPROXY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait RealmProxyTrait: ZoneStreamerEntityBaseTrait {
+}
+
+impl RealmProxyTrait for RealmProxy {
+}
+
+impl ZoneStreamerEntityBaseTrait for RealmProxy {
+}
+
+impl super::entity::EntityTrait for RealmProxy {
+}
+
+impl super::entity::EntityBusPeerTrait for RealmProxy {
+}
+
+pub static REALMPROXY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RealmProxy",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERENTITYBASE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<RealmProxy as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1304,32 +2216,54 @@ pub const REALMPROXY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for RealmProxy {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         REALMPROXY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const REALMPROXY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static REALMPROXY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RealmProxy-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("RealmProxy-Array"),
+    data: TypeInfoData::Array("RealmProxy"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ZoneStreamerFocusEntity {
+    pub _glacier_base: ZoneStreamerLogicEntity,
 }
 
-pub const ZONESTREAMERFOCUSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ZoneStreamerFocusEntityTrait: ZoneStreamerLogicEntityTrait {
+}
+
+impl ZoneStreamerFocusEntityTrait for ZoneStreamerFocusEntity {
+}
+
+impl ZoneStreamerLogicEntityTrait for ZoneStreamerFocusEntity {
+}
+
+impl super::entity::EntityTrait for ZoneStreamerFocusEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ZoneStreamerFocusEntity {
+}
+
+pub static ZONESTREAMERFOCUSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerFocusEntity",
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ZoneStreamerFocusEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1338,17 +2272,20 @@ pub const ZONESTREAMERFOCUSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ZoneStreamerFocusEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ZONESTREAMERFOCUSENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ZONESTREAMERFOCUSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ZONESTREAMERFOCUSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerFocusEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
-    data: TypeInfoData::Array("ZoneStreamerFocusEntity-Array"),
+    data: TypeInfoData::Array("ZoneStreamerFocusEntity"),
     array_type: None,
     alignment: 8,
 };

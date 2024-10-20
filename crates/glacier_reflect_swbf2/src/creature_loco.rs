@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -82,16 +83,38 @@ pub(crate) fn register_creature_loco_types(registry: &mut TypeRegistry) {
     registry.register_type(SERVERCREATURELOCOMOTORENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ServerCreatureFollowWaypointsEntity {
+    pub _glacier_base: ServerCreatureFollowWaypointSegmentEntity,
 }
 
-pub const SERVERCREATUREFOLLOWWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ServerCreatureFollowWaypointsEntityTrait: ServerCreatureFollowWaypointSegmentEntityTrait {
+}
+
+impl ServerCreatureFollowWaypointsEntityTrait for ServerCreatureFollowWaypointsEntity {
+}
+
+impl ServerCreatureFollowWaypointSegmentEntityTrait for ServerCreatureFollowWaypointsEntity {
+}
+
+impl CreatureFollowBaseEntityTrait for ServerCreatureFollowWaypointsEntity {
+}
+
+impl super::entity::EntityTrait for ServerCreatureFollowWaypointsEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ServerCreatureFollowWaypointsEntity {
+}
+
+pub static SERVERCREATUREFOLLOWWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointsEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ServerCreatureFollowWaypointsEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -100,32 +123,54 @@ pub const SERVERCREATUREFOLLOWWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 impl TypeObject for ServerCreatureFollowWaypointsEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SERVERCREATUREFOLLOWWAYPOINTSENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SERVERCREATUREFOLLOWWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SERVERCREATUREFOLLOWWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointsEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ServerCreatureFollowWaypointsEntity-Array"),
+    data: TypeInfoData::Array("ServerCreatureFollowWaypointsEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ServerCreatureFollowWaypointSegmentEntity {
+    pub _glacier_base: CreatureFollowBaseEntity,
 }
 
-pub const SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ServerCreatureFollowWaypointSegmentEntityTrait: CreatureFollowBaseEntityTrait {
+}
+
+impl ServerCreatureFollowWaypointSegmentEntityTrait for ServerCreatureFollowWaypointSegmentEntity {
+}
+
+impl CreatureFollowBaseEntityTrait for ServerCreatureFollowWaypointSegmentEntity {
+}
+
+impl super::entity::EntityTrait for ServerCreatureFollowWaypointSegmentEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ServerCreatureFollowWaypointSegmentEntity {
+}
+
+pub static SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointSegmentEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ServerCreatureFollowWaypointSegmentEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -134,32 +179,51 @@ pub const SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO: &'static TypeInfo
 };
 
 impl TypeObject for ServerCreatureFollowWaypointSegmentEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointSegmentEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ServerCreatureFollowWaypointSegmentEntity-Array"),
+    data: TypeInfoData::Array("ServerCreatureFollowWaypointSegmentEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ServerCreatureCollisionGroupEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const SERVERCREATURECOLLISIONGROUPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ServerCreatureCollisionGroupEntityTrait: super::entity::EntityTrait {
+}
+
+impl ServerCreatureCollisionGroupEntityTrait for ServerCreatureCollisionGroupEntity {
+}
+
+impl super::entity::EntityTrait for ServerCreatureCollisionGroupEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ServerCreatureCollisionGroupEntity {
+}
+
+pub static SERVERCREATURECOLLISIONGROUPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureCollisionGroupEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ServerCreatureCollisionGroupEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -168,32 +232,44 @@ pub const SERVERCREATURECOLLISIONGROUPENTITY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 impl TypeObject for ServerCreatureCollisionGroupEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SERVERCREATURECOLLISIONGROUPENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SERVERCREATURECOLLISIONGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SERVERCREATURECOLLISIONGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureCollisionGroupEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ServerCreatureCollisionGroupEntity-Array"),
+    data: TypeInfoData::Array("ServerCreatureCollisionGroupEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct IMovementProvider {
 }
 
-pub const IMOVEMENTPROVIDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait IMovementProviderTrait: TypeObject {
+}
+
+impl IMovementProviderTrait for IMovementProvider {
+}
+
+pub static IMOVEMENTPROVIDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IMovementProvider",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<IMovementProvider as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -202,32 +278,44 @@ pub const IMOVEMENTPROVIDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for IMovementProvider {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         IMOVEMENTPROVIDER_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const IMOVEMENTPROVIDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static IMOVEMENTPROVIDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IMovementProvider-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("IMovementProvider-Array"),
+    data: TypeInfoData::Array("IMovementProvider"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ISteeringProvider {
 }
 
-pub const ISTEERINGPROVIDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ISteeringProviderTrait: TypeObject {
+}
+
+impl ISteeringProviderTrait for ISteeringProvider {
+}
+
+pub static ISTEERINGPROVIDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ISteeringProvider",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ISteeringProvider as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -236,32 +324,48 @@ pub const ISTEERINGPROVIDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ISteeringProvider {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         ISTEERINGPROVIDER_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const ISTEERINGPROVIDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static ISTEERINGPROVIDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ISteeringProvider-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ISteeringProvider-Array"),
+    data: TypeInfoData::Array("ISteeringProvider"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureWaypoint_PlayAnimation {
+    pub _glacier_base: CreatureWaypoint,
 }
 
-pub const CREATUREWAYPOINT_PLAYANIMATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureWaypoint_PlayAnimationTrait: CreatureWaypointTrait {
+}
+
+impl CreatureWaypoint_PlayAnimationTrait for CreatureWaypoint_PlayAnimation {
+}
+
+impl CreatureWaypointTrait for CreatureWaypoint_PlayAnimation {
+}
+
+pub static CREATUREWAYPOINT_PLAYANIMATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint_PlayAnimation",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREWAYPOINT_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureWaypoint_PlayAnimation as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -270,32 +374,48 @@ pub const CREATUREWAYPOINT_PLAYANIMATION_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 impl TypeObject for CreatureWaypoint_PlayAnimation {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATUREWAYPOINT_PLAYANIMATION_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATUREWAYPOINT_PLAYANIMATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATUREWAYPOINT_PLAYANIMATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint_PlayAnimation-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureWaypoint_PlayAnimation-Array"),
+    data: TypeInfoData::Array("CreatureWaypoint_PlayAnimation"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureWaypoint_Pause {
+    pub _glacier_base: CreatureWaypoint,
 }
 
-pub const CREATUREWAYPOINT_PAUSE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureWaypoint_PauseTrait: CreatureWaypointTrait {
+}
+
+impl CreatureWaypoint_PauseTrait for CreatureWaypoint_Pause {
+}
+
+impl CreatureWaypointTrait for CreatureWaypoint_Pause {
+}
+
+pub static CREATUREWAYPOINT_PAUSE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint_Pause",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREWAYPOINT_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureWaypoint_Pause as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -304,32 +424,44 @@ pub const CREATUREWAYPOINT_PAUSE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CreatureWaypoint_Pause {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATUREWAYPOINT_PAUSE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATUREWAYPOINT_PAUSE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATUREWAYPOINT_PAUSE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint_Pause-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureWaypoint_Pause-Array"),
+    data: TypeInfoData::Array("CreatureWaypoint_Pause"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureWaypoint {
 }
 
-pub const CREATUREWAYPOINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureWaypointTrait: TypeObject {
+}
+
+impl CreatureWaypointTrait for CreatureWaypoint {
+}
+
+pub static CREATUREWAYPOINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureWaypoint as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -338,32 +470,48 @@ pub const CREATUREWAYPOINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CreatureWaypoint {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATUREWAYPOINT_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATUREWAYPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATUREWAYPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureWaypoint-Array"),
+    data: TypeInfoData::Array("CreatureWaypoint"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CL_ProceduralMotion {
+    pub _glacier_base: IMovementProvider,
 }
 
-pub const CL_PROCEDURALMOTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CL_ProceduralMotionTrait: IMovementProviderTrait {
+}
+
+impl CL_ProceduralMotionTrait for CL_ProceduralMotion {
+}
+
+impl IMovementProviderTrait for CL_ProceduralMotion {
+}
+
+pub static CL_PROCEDURALMOTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_ProceduralMotion",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMOVEMENTPROVIDER_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CL_ProceduralMotion as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -372,32 +520,48 @@ pub const CL_PROCEDURALMOTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CL_ProceduralMotion {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CL_PROCEDURALMOTION_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CL_PROCEDURALMOTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CL_PROCEDURALMOTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_ProceduralMotion-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CL_ProceduralMotion-Array"),
+    data: TypeInfoData::Array("CL_ProceduralMotion"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CL_CurveSteering {
+    pub _glacier_base: ISteeringProvider,
 }
 
-pub const CL_CURVESTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CL_CurveSteeringTrait: ISteeringProviderTrait {
+}
+
+impl CL_CurveSteeringTrait for CL_CurveSteering {
+}
+
+impl ISteeringProviderTrait for CL_CurveSteering {
+}
+
+pub static CL_CURVESTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_CurveSteering",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ISTEERINGPROVIDER_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CL_CurveSteering as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -406,32 +570,51 @@ pub const CL_CURVESTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CL_CurveSteering {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CL_CURVESTEERING_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CL_CURVESTEERING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CL_CURVESTEERING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_CurveSteering-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CL_CurveSteering-Array"),
+    data: TypeInfoData::Array("CL_CurveSteering"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CLColAvoidingSteering {
+    pub _glacier_base: CL_CurveSteering,
 }
 
-pub const CLCOLAVOIDINGSTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CLColAvoidingSteeringTrait: CL_CurveSteeringTrait {
+}
+
+impl CLColAvoidingSteeringTrait for CLColAvoidingSteering {
+}
+
+impl CL_CurveSteeringTrait for CLColAvoidingSteering {
+}
+
+impl ISteeringProviderTrait for CLColAvoidingSteering {
+}
+
+pub static CLCOLAVOIDINGSTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLColAvoidingSteering",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CL_CURVESTEERING_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CLColAvoidingSteering as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -440,32 +623,44 @@ pub const CLCOLAVOIDINGSTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CLColAvoidingSteering {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLCOLAVOIDINGSTEERING_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLCOLAVOIDINGSTEERING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLCOLAVOIDINGSTEERING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLColAvoidingSteering-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CLColAvoidingSteering-Array"),
+    data: TypeInfoData::Array("CLColAvoidingSteering"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct IAssessor {
 }
 
-pub const IASSESSOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait IAssessorTrait: TypeObject {
+}
+
+impl IAssessorTrait for IAssessor {
+}
+
+pub static IASSESSOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IAssessor",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<IAssessor as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -474,32 +669,51 @@ pub const IASSESSOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for IAssessor {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         IASSESSOR_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const IASSESSOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static IASSESSOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IAssessor-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("IAssessor-Array"),
+    data: TypeInfoData::Array("IAssessor"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CLClientState {
+    pub _glacier_base: CLState,
 }
 
-pub const CLCLIENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CLClientStateTrait: CLStateTrait {
+}
+
+impl CLClientStateTrait for CLClientState {
+}
+
+impl CLStateTrait for CLClientState {
+}
+
+impl IAssessorTrait for CLClientState {
+}
+
+pub static CLCLIENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLClientState",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLSTATE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CLClientState as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -508,32 +722,48 @@ pub const CLCLIENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CLClientState {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLCLIENTSTATE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLCLIENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLCLIENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLClientState-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CLClientState-Array"),
+    data: TypeInfoData::Array("CLClientState"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CLState {
+    pub _glacier_base: IAssessor,
 }
 
-pub const CLSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CLStateTrait: IAssessorTrait {
+}
+
+impl CLStateTrait for CLState {
+}
+
+impl IAssessorTrait for CLState {
+}
+
+pub static CLSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLState",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IASSESSOR_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CLState as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -542,32 +772,51 @@ pub const CLSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CLState {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLSTATE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLState-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CLState-Array"),
+    data: TypeInfoData::Array("CLState"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CLConduitState {
+    pub _glacier_base: CLState,
 }
 
-pub const CLCONDUITSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CLConduitStateTrait: CLStateTrait {
+}
+
+impl CLConduitStateTrait for CLConduitState {
+}
+
+impl CLStateTrait for CLConduitState {
+}
+
+impl IAssessorTrait for CLConduitState {
+}
+
+pub static CLCONDUITSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLConduitState",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLSTATE_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CLConduitState as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -576,32 +825,60 @@ pub const CLCONDUITSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CLConduitState {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLCONDUITSTATE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLCONDUITSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLCONDUITSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLConduitState-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CLConduitState-Array"),
+    data: TypeInfoData::Array("CLConduitState"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientCreatureSpawnEntity {
+    pub _glacier_base: super::dice_commons::ClientBlueprintSpawnEntity,
 }
 
-pub const CLIENTCREATURESPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientCreatureSpawnEntityTrait: super::dice_commons::ClientBlueprintSpawnEntityTrait {
+}
+
+impl ClientCreatureSpawnEntityTrait for ClientCreatureSpawnEntity {
+}
+
+impl super::dice_commons::ClientBlueprintSpawnEntityTrait for ClientCreatureSpawnEntity {
+}
+
+impl super::dice_commons::BlueprintSpawnEntityTrait for ClientCreatureSpawnEntity {
+}
+
+impl super::entity::SpatialEntityTrait for ClientCreatureSpawnEntity {
+}
+
+impl super::entity::EntityTrait for ClientCreatureSpawnEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ClientCreatureSpawnEntity {
+}
+
+pub static CLIENTCREATURESPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureSpawnEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(CLIENTBLUEPRINTSPAWNENTITY_TYPE_INFO),
+        super_class: Some(super::dice_commons::CLIENTBLUEPRINTSPAWNENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientCreatureSpawnEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -610,32 +887,60 @@ pub const CLIENTCREATURESPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ClientCreatureSpawnEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTCREATURESPAWNENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTCREATURESPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTCREATURESPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureSpawnEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ClientCreatureSpawnEntity-Array"),
+    data: TypeInfoData::Array("ClientCreatureSpawnEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ServerCreatureSpawnEntity {
+    pub _glacier_base: super::dice_commons::ServerBlueprintSpawnEntity,
 }
 
-pub const SERVERCREATURESPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ServerCreatureSpawnEntityTrait: super::dice_commons::ServerBlueprintSpawnEntityTrait {
+}
+
+impl ServerCreatureSpawnEntityTrait for ServerCreatureSpawnEntity {
+}
+
+impl super::dice_commons::ServerBlueprintSpawnEntityTrait for ServerCreatureSpawnEntity {
+}
+
+impl super::dice_commons::BlueprintSpawnEntityTrait for ServerCreatureSpawnEntity {
+}
+
+impl super::entity::SpatialEntityTrait for ServerCreatureSpawnEntity {
+}
+
+impl super::entity::EntityTrait for ServerCreatureSpawnEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ServerCreatureSpawnEntity {
+}
+
+pub static SERVERCREATURESPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureSpawnEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(SERVERBLUEPRINTSPAWNENTITY_TYPE_INFO),
+        super_class: Some(super::dice_commons::SERVERBLUEPRINTSPAWNENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ServerCreatureSpawnEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -644,32 +949,54 @@ pub const SERVERCREATURESPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ServerCreatureSpawnEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SERVERCREATURESPAWNENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SERVERCREATURESPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SERVERCREATURESPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureSpawnEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ServerCreatureSpawnEntity-Array"),
+    data: TypeInfoData::Array("ServerCreatureSpawnEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureLocoEntity {
+    pub _glacier_base: super::a_i_tools::LocoEntity,
 }
 
-pub const CREATURELOCOENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureLocoEntityTrait: super::a_i_tools::LocoEntityTrait {
+}
+
+impl CreatureLocoEntityTrait for CreatureLocoEntity {
+}
+
+impl super::a_i_tools::LocoEntityTrait for CreatureLocoEntity {
+}
+
+impl super::entity::EntityTrait for CreatureLocoEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CreatureLocoEntity {
+}
+
+pub static CREATURELOCOENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(LOCOENTITY_TYPE_INFO),
+        super_class: Some(super::a_i_tools::LOCOENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureLocoEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -678,32 +1005,54 @@ pub const CREATURELOCOENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CreatureLocoEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATURELOCOENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATURELOCOENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATURELOCOENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureLocoEntity-Array"),
+    data: TypeInfoData::Array("CreatureLocoEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureFollowWaypointUnspawnEntity {
+    pub _glacier_base: CreatureFollowBaseEntity,
 }
 
-pub const CREATUREFOLLOWWAYPOINTUNSPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureFollowWaypointUnspawnEntityTrait: CreatureFollowBaseEntityTrait {
+}
+
+impl CreatureFollowWaypointUnspawnEntityTrait for CreatureFollowWaypointUnspawnEntity {
+}
+
+impl CreatureFollowBaseEntityTrait for CreatureFollowWaypointUnspawnEntity {
+}
+
+impl super::entity::EntityTrait for CreatureFollowWaypointUnspawnEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CreatureFollowWaypointUnspawnEntity {
+}
+
+pub static CREATUREFOLLOWWAYPOINTUNSPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointUnspawnEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureFollowWaypointUnspawnEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -712,32 +1061,51 @@ pub const CREATUREFOLLOWWAYPOINTUNSPAWNENTITY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 impl TypeObject for CreatureFollowWaypointUnspawnEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATUREFOLLOWWAYPOINTUNSPAWNENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATUREFOLLOWWAYPOINTUNSPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATUREFOLLOWWAYPOINTUNSPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointUnspawnEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureFollowWaypointUnspawnEntity-Array"),
+    data: TypeInfoData::Array("CreatureFollowWaypointUnspawnEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureFollowBaseEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CREATUREFOLLOWBASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureFollowBaseEntityTrait: super::entity::EntityTrait {
+}
+
+impl CreatureFollowBaseEntityTrait for CreatureFollowBaseEntity {
+}
+
+impl super::entity::EntityTrait for CreatureFollowBaseEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CreatureFollowBaseEntity {
+}
+
+pub static CREATUREFOLLOWBASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowBaseEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureFollowBaseEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -746,32 +1114,54 @@ pub const CREATUREFOLLOWBASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CreatureFollowBaseEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATUREFOLLOWBASEENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATUREFOLLOWBASEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATUREFOLLOWBASEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowBaseEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureFollowBaseEntity-Array"),
+    data: TypeInfoData::Array("CreatureFollowBaseEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ServerCreatureFollowWaypointProviderEntity {
+    pub _glacier_base: CreatureBaseWaypointProviderEntity,
 }
 
-pub const SERVERCREATUREFOLLOWWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ServerCreatureFollowWaypointProviderEntityTrait: CreatureBaseWaypointProviderEntityTrait {
+}
+
+impl ServerCreatureFollowWaypointProviderEntityTrait for ServerCreatureFollowWaypointProviderEntity {
+}
+
+impl CreatureBaseWaypointProviderEntityTrait for ServerCreatureFollowWaypointProviderEntity {
+}
+
+impl super::entity::EntityTrait for ServerCreatureFollowWaypointProviderEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ServerCreatureFollowWaypointProviderEntity {
+}
+
+pub static SERVERCREATUREFOLLOWWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointProviderEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREBASEWAYPOINTPROVIDERENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ServerCreatureFollowWaypointProviderEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -780,32 +1170,54 @@ pub const SERVERCREATUREFOLLOWWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInf
 };
 
 impl TypeObject for ServerCreatureFollowWaypointProviderEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SERVERCREATUREFOLLOWWAYPOINTPROVIDERENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SERVERCREATUREFOLLOWWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SERVERCREATUREFOLLOWWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointProviderEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ServerCreatureFollowWaypointProviderEntity-Array"),
+    data: TypeInfoData::Array("ServerCreatureFollowWaypointProviderEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientCreatureFollowWaypointProviderEntity {
+    pub _glacier_base: CreatureBaseWaypointProviderEntity,
 }
 
-pub const CLIENTCREATUREFOLLOWWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientCreatureFollowWaypointProviderEntityTrait: CreatureBaseWaypointProviderEntityTrait {
+}
+
+impl ClientCreatureFollowWaypointProviderEntityTrait for ClientCreatureFollowWaypointProviderEntity {
+}
+
+impl CreatureBaseWaypointProviderEntityTrait for ClientCreatureFollowWaypointProviderEntity {
+}
+
+impl super::entity::EntityTrait for ClientCreatureFollowWaypointProviderEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ClientCreatureFollowWaypointProviderEntity {
+}
+
+pub static CLIENTCREATUREFOLLOWWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointProviderEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREBASEWAYPOINTPROVIDERENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientCreatureFollowWaypointProviderEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -814,32 +1226,54 @@ pub const CLIENTCREATUREFOLLOWWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInf
 };
 
 impl TypeObject for ClientCreatureFollowWaypointProviderEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTCREATUREFOLLOWWAYPOINTPROVIDERENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTCREATUREFOLLOWWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTCREATUREFOLLOWWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointProviderEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ClientCreatureFollowWaypointProviderEntity-Array"),
+    data: TypeInfoData::Array("ClientCreatureFollowWaypointProviderEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureFollowWaypointClosestChooserEntity {
+    pub _glacier_base: CreatureFollowBaseEntity,
 }
 
-pub const CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureFollowWaypointClosestChooserEntityTrait: CreatureFollowBaseEntityTrait {
+}
+
+impl CreatureFollowWaypointClosestChooserEntityTrait for CreatureFollowWaypointClosestChooserEntity {
+}
+
+impl CreatureFollowBaseEntityTrait for CreatureFollowWaypointClosestChooserEntity {
+}
+
+impl super::entity::EntityTrait for CreatureFollowWaypointClosestChooserEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CreatureFollowWaypointClosestChooserEntity {
+}
+
+pub static CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointClosestChooserEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureFollowWaypointClosestChooserEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -848,32 +1282,54 @@ pub const CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITY_TYPE_INFO: &'static TypeInf
 };
 
 impl TypeObject for CreatureFollowWaypointClosestChooserEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointClosestChooserEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureFollowWaypointClosestChooserEntity-Array"),
+    data: TypeInfoData::Array("CreatureFollowWaypointClosestChooserEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureFollowWaypointOccupancyChooserEntity {
+    pub _glacier_base: CreatureFollowBaseEntity,
 }
 
-pub const CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureFollowWaypointOccupancyChooserEntityTrait: CreatureFollowBaseEntityTrait {
+}
+
+impl CreatureFollowWaypointOccupancyChooserEntityTrait for CreatureFollowWaypointOccupancyChooserEntity {
+}
+
+impl CreatureFollowBaseEntityTrait for CreatureFollowWaypointOccupancyChooserEntity {
+}
+
+impl super::entity::EntityTrait for CreatureFollowWaypointOccupancyChooserEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CreatureFollowWaypointOccupancyChooserEntity {
+}
+
+pub static CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointOccupancyChooserEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureFollowWaypointOccupancyChooserEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -882,32 +1338,54 @@ pub const CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITY_TYPE_INFO: &'static TypeI
 };
 
 impl TypeObject for CreatureFollowWaypointOccupancyChooserEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointOccupancyChooserEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureFollowWaypointOccupancyChooserEntity-Array"),
+    data: TypeInfoData::Array("CreatureFollowWaypointOccupancyChooserEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureFollowWaypointBoolChooserEntity {
+    pub _glacier_base: CreatureFollowBaseEntity,
 }
 
-pub const CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureFollowWaypointBoolChooserEntityTrait: CreatureFollowBaseEntityTrait {
+}
+
+impl CreatureFollowWaypointBoolChooserEntityTrait for CreatureFollowWaypointBoolChooserEntity {
+}
+
+impl CreatureFollowBaseEntityTrait for CreatureFollowWaypointBoolChooserEntity {
+}
+
+impl super::entity::EntityTrait for CreatureFollowWaypointBoolChooserEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CreatureFollowWaypointBoolChooserEntity {
+}
+
+pub static CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointBoolChooserEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureFollowWaypointBoolChooserEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -916,32 +1394,51 @@ pub const CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITY_TYPE_INFO: &'static TypeInfo =
 };
 
 impl TypeObject for CreatureFollowWaypointBoolChooserEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointBoolChooserEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureFollowWaypointBoolChooserEntity-Array"),
+    data: TypeInfoData::Array("CreatureFollowWaypointBoolChooserEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureConfigurationProviderEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CREATURECONFIGURATIONPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureConfigurationProviderEntityTrait: super::entity::EntityTrait {
+}
+
+impl CreatureConfigurationProviderEntityTrait for CreatureConfigurationProviderEntity {
+}
+
+impl super::entity::EntityTrait for CreatureConfigurationProviderEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CreatureConfigurationProviderEntity {
+}
+
+pub static CREATURECONFIGURATIONPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureConfigurationProviderEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureConfigurationProviderEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -950,32 +1447,51 @@ pub const CREATURECONFIGURATIONPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 impl TypeObject for CreatureConfigurationProviderEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATURECONFIGURATIONPROVIDERENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATURECONFIGURATIONPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATURECONFIGURATIONPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureConfigurationProviderEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureConfigurationProviderEntity-Array"),
+    data: TypeInfoData::Array("CreatureConfigurationProviderEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureBaseWaypointProviderEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CREATUREBASEWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureBaseWaypointProviderEntityTrait: super::entity::EntityTrait {
+}
+
+impl CreatureBaseWaypointProviderEntityTrait for CreatureBaseWaypointProviderEntity {
+}
+
+impl super::entity::EntityTrait for CreatureBaseWaypointProviderEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CreatureBaseWaypointProviderEntity {
+}
+
+pub static CREATUREBASEWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureBaseWaypointProviderEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureBaseWaypointProviderEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -984,32 +1500,51 @@ pub const CREATUREBASEWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 impl TypeObject for CreatureBaseWaypointProviderEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATUREBASEWAYPOINTPROVIDERENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATUREBASEWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATUREBASEWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureBaseWaypointProviderEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureBaseWaypointProviderEntity-Array"),
+    data: TypeInfoData::Array("CreatureBaseWaypointProviderEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CLInfluenceFilterEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CLINFLUENCEFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CLInfluenceFilterEntityTrait: super::entity::EntityTrait {
+}
+
+impl CLInfluenceFilterEntityTrait for CLInfluenceFilterEntity {
+}
+
+impl super::entity::EntityTrait for CLInfluenceFilterEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CLInfluenceFilterEntity {
+}
+
+pub static CLINFLUENCEFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceFilterEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CLInfluenceFilterEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1018,32 +1553,51 @@ pub const CLINFLUENCEFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CLInfluenceFilterEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLINFLUENCEFILTERENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLINFLUENCEFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLINFLUENCEFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceFilterEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CLInfluenceFilterEntity-Array"),
+    data: TypeInfoData::Array("CLInfluenceFilterEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CLInfluenceCompareEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CLINFLUENCECOMPAREENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CLInfluenceCompareEntityTrait: super::entity::EntityTrait {
+}
+
+impl CLInfluenceCompareEntityTrait for CLInfluenceCompareEntity {
+}
+
+impl super::entity::EntityTrait for CLInfluenceCompareEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CLInfluenceCompareEntity {
+}
+
+pub static CLINFLUENCECOMPAREENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceCompareEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CLInfluenceCompareEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1052,32 +1606,51 @@ pub const CLINFLUENCECOMPAREENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CLInfluenceCompareEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLINFLUENCECOMPAREENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLINFLUENCECOMPAREENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLINFLUENCECOMPAREENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceCompareEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CLInfluenceCompareEntity-Array"),
+    data: TypeInfoData::Array("CLInfluenceCompareEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CLApplyInfluenceEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CLAPPLYINFLUENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CLApplyInfluenceEntityTrait: super::entity::EntityTrait {
+}
+
+impl CLApplyInfluenceEntityTrait for CLApplyInfluenceEntity {
+}
+
+impl super::entity::EntityTrait for CLApplyInfluenceEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for CLApplyInfluenceEntity {
+}
+
+pub static CLAPPLYINFLUENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLApplyInfluenceEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CLApplyInfluenceEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1086,32 +1659,57 @@ pub const CLAPPLYINFLUENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CLApplyInfluenceEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLAPPLYINFLUENCEENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLAPPLYINFLUENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLAPPLYINFLUENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLApplyInfluenceEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CLApplyInfluenceEntity-Array"),
+    data: TypeInfoData::Array("CLApplyInfluenceEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientCreatureLocoMotorEntity {
+    pub _glacier_base: CreatureLocoEntity,
 }
 
-pub const CLIENTCREATURELOCOMOTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientCreatureLocoMotorEntityTrait: CreatureLocoEntityTrait {
+}
+
+impl ClientCreatureLocoMotorEntityTrait for ClientCreatureLocoMotorEntity {
+}
+
+impl CreatureLocoEntityTrait for ClientCreatureLocoMotorEntity {
+}
+
+impl super::a_i_tools::LocoEntityTrait for ClientCreatureLocoMotorEntity {
+}
+
+impl super::entity::EntityTrait for ClientCreatureLocoMotorEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ClientCreatureLocoMotorEntity {
+}
+
+pub static CLIENTCREATURELOCOMOTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureLocoMotorEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATURELOCOENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientCreatureLocoMotorEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1120,32 +1718,57 @@ pub const CLIENTCREATURELOCOMOTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 impl TypeObject for ClientCreatureLocoMotorEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTCREATURELOCOMOTORENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTCREATURELOCOMOTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTCREATURELOCOMOTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureLocoMotorEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ClientCreatureLocoMotorEntity-Array"),
+    data: TypeInfoData::Array("ClientCreatureLocoMotorEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientCreatureFollowWaypointsEntity {
+    pub _glacier_base: ClientCreatureFollowWaypointSegmentEntity,
 }
 
-pub const CLIENTCREATUREFOLLOWWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientCreatureFollowWaypointsEntityTrait: ClientCreatureFollowWaypointSegmentEntityTrait {
+}
+
+impl ClientCreatureFollowWaypointsEntityTrait for ClientCreatureFollowWaypointsEntity {
+}
+
+impl ClientCreatureFollowWaypointSegmentEntityTrait for ClientCreatureFollowWaypointsEntity {
+}
+
+impl CreatureFollowBaseEntityTrait for ClientCreatureFollowWaypointsEntity {
+}
+
+impl super::entity::EntityTrait for ClientCreatureFollowWaypointsEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ClientCreatureFollowWaypointsEntity {
+}
+
+pub static CLIENTCREATUREFOLLOWWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointsEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientCreatureFollowWaypointsEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1154,32 +1777,54 @@ pub const CLIENTCREATUREFOLLOWWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 impl TypeObject for ClientCreatureFollowWaypointsEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTCREATUREFOLLOWWAYPOINTSENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTCREATUREFOLLOWWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTCREATUREFOLLOWWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointsEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ClientCreatureFollowWaypointsEntity-Array"),
+    data: TypeInfoData::Array("ClientCreatureFollowWaypointsEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientCreatureFollowWaypointSegmentEntity {
+    pub _glacier_base: CreatureFollowBaseEntity,
 }
 
-pub const CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientCreatureFollowWaypointSegmentEntityTrait: CreatureFollowBaseEntityTrait {
+}
+
+impl ClientCreatureFollowWaypointSegmentEntityTrait for ClientCreatureFollowWaypointSegmentEntity {
+}
+
+impl CreatureFollowBaseEntityTrait for ClientCreatureFollowWaypointSegmentEntity {
+}
+
+impl super::entity::EntityTrait for ClientCreatureFollowWaypointSegmentEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ClientCreatureFollowWaypointSegmentEntity {
+}
+
+pub static CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointSegmentEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientCreatureFollowWaypointSegmentEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1188,32 +1833,51 @@ pub const CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO: &'static TypeInfo
 };
 
 impl TypeObject for ClientCreatureFollowWaypointSegmentEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointSegmentEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ClientCreatureFollowWaypointSegmentEntity-Array"),
+    data: TypeInfoData::Array("ClientCreatureFollowWaypointSegmentEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ClientCreatureCollisionGroupEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const CLIENTCREATURECOLLISIONGROUPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ClientCreatureCollisionGroupEntityTrait: super::entity::EntityTrait {
+}
+
+impl ClientCreatureCollisionGroupEntityTrait for ClientCreatureCollisionGroupEntity {
+}
+
+impl super::entity::EntityTrait for ClientCreatureCollisionGroupEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ClientCreatureCollisionGroupEntity {
+}
+
+pub static CLIENTCREATURECOLLISIONGROUPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureCollisionGroupEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ClientCreatureCollisionGroupEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1222,32 +1886,129 @@ pub const CLIENTCREATURECOLLISIONGROUPENTITY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 impl TypeObject for ClientCreatureCollisionGroupEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CLIENTCREATURECOLLISIONGROUPENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CLIENTCREATURECOLLISIONGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CLIENTCREATURECOLLISIONGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureCollisionGroupEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ClientCreatureCollisionGroupEntity-Array"),
+    data: TypeInfoData::Array("ClientCreatureCollisionGroupEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CreatureSpawnEntityData {
+    pub _glacier_base: super::dice_commons_shared::BlueprintSpawnReferenceObjectData,
 }
 
-pub const CREATURESPAWNENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CreatureSpawnEntityDataTrait: super::dice_commons_shared::BlueprintSpawnReferenceObjectDataTrait {
+}
+
+impl CreatureSpawnEntityDataTrait for CreatureSpawnEntityData {
+}
+
+impl super::dice_commons_shared::BlueprintSpawnReferenceObjectDataTrait for CreatureSpawnEntityData {
+    fn realm(&self) -> &super::core::Realm {
+        self._glacier_base.realm()
+    }
+    fn initial_auto_spawn(&self) -> &bool {
+        self._glacier_base.initial_auto_spawn()
+    }
+    fn auto_spawn(&self) -> &bool {
+        self._glacier_base.auto_spawn()
+    }
+    fn queue_spawn_event(&self) -> &bool {
+        self._glacier_base.queue_spawn_event()
+    }
+    fn use_as_spawn_point(&self) -> &bool {
+        self._glacier_base.use_as_spawn_point()
+    }
+    fn spawns_occupy_locations(&self) -> &bool {
+        self._glacier_base.spawns_occupy_locations()
+    }
+    fn initial_spawn_delay(&self) -> &f32 {
+        self._glacier_base.initial_spawn_delay()
+    }
+    fn spawn_delay(&self) -> &f32 {
+        self._glacier_base.spawn_delay()
+    }
+    fn max_count(&self) -> &i32 {
+        self._glacier_base.max_count()
+    }
+    fn max_count_simultaneously(&self) -> &i32 {
+        self._glacier_base.max_count_simultaneously()
+    }
+}
+
+impl super::entity::ReferenceObjectDataTrait for CreatureSpawnEntityData {
+    fn blueprint_transform(&self) -> &super::core::LinearTransform {
+        self._glacier_base.blueprint_transform()
+    }
+    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint()
+    }
+    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation()
+    }
+    fn stream_realm(&self) -> &super::entity::StreamRealm {
+        self._glacier_base.stream_realm()
+    }
+    fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override()
+    }
+    fn lightmap_resolution_scale(&self) -> &u32 {
+        self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_scale_with_size(&self) -> &bool {
+        self._glacier_base.lightmap_scale_with_size()
+    }
+    fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides()
+    }
+    fn excluded(&self) -> &bool {
+        self._glacier_base.excluded()
+    }
+    fn create_indestructible_entity(&self) -> &bool {
+        self._glacier_base.create_indestructible_entity()
+    }
+}
+
+impl super::entity::GameObjectDataTrait for CreatureSpawnEntityData {
+}
+
+impl super::core::DataBusPeerTrait for CreatureSpawnEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for CreatureSpawnEntityData {
+}
+
+impl super::core::DataContainerTrait for CreatureSpawnEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static CREATURESPAWNENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureSpawnEntityData",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(BLUEPRINTSPAWNREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class: Some(super::dice_commons_shared::BLUEPRINTSPAWNREFERENCEOBJECTDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CreatureSpawnEntityData as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1256,32 +2017,57 @@ pub const CREATURESPAWNENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CreatureSpawnEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CREATURESPAWNENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CREATURESPAWNENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CREATURESPAWNENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureSpawnEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("CreatureSpawnEntityData-Array"),
+    data: TypeInfoData::Array("CreatureSpawnEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct ServerCreatureLocoMotorEntity {
+    pub _glacier_base: CreatureLocoEntity,
 }
 
-pub const SERVERCREATURELOCOMOTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait ServerCreatureLocoMotorEntityTrait: CreatureLocoEntityTrait {
+}
+
+impl ServerCreatureLocoMotorEntityTrait for ServerCreatureLocoMotorEntity {
+}
+
+impl CreatureLocoEntityTrait for ServerCreatureLocoMotorEntity {
+}
+
+impl super::a_i_tools::LocoEntityTrait for ServerCreatureLocoMotorEntity {
+}
+
+impl super::entity::EntityTrait for ServerCreatureLocoMotorEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for ServerCreatureLocoMotorEntity {
+}
+
+pub static SERVERCREATURELOCOMOTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureLocoMotorEntity",
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATURELOCOENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<ServerCreatureLocoMotorEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -1290,17 +2076,20 @@ pub const SERVERCREATURELOCOMOTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 impl TypeObject for ServerCreatureLocoMotorEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         SERVERCREATURELOCOMOTORENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const SERVERCREATURELOCOMOTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static SERVERCREATURELOCOMOTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureLocoMotorEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
-    data: TypeInfoData::Array("ServerCreatureLocoMotorEntity-Array"),
+    data: TypeInfoData::Array("ServerCreatureLocoMotorEntity"),
     array_type: None,
     alignment: 8,
 };

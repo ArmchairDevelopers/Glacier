@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -26,16 +27,32 @@ pub(crate) fn register_lua_runner_types(registry: &mut TypeRegistry) {
     registry.register_type(LUARUNNERCOMPILEDLUA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LuaRunnerSharedVarsEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const LUARUNNERSHAREDVARSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LuaRunnerSharedVarsEntityTrait: super::entity::EntityTrait {
+}
+
+impl LuaRunnerSharedVarsEntityTrait for LuaRunnerSharedVarsEntity {
+}
+
+impl super::entity::EntityTrait for LuaRunnerSharedVarsEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for LuaRunnerSharedVarsEntity {
+}
+
+pub static LUARUNNERSHAREDVARSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LuaRunnerSharedVarsEntity",
     flags: MemberInfoFlags::new(101),
     module: "LuaRunner",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LuaRunnerSharedVarsEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -44,32 +61,51 @@ pub const LUARUNNERSHAREDVARSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LuaRunnerSharedVarsEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LUARUNNERSHAREDVARSENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LUARUNNERSHAREDVARSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LUARUNNERSHAREDVARSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LuaRunnerSharedVarsEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "LuaRunner",
-    data: TypeInfoData::Array("LuaRunnerSharedVarsEntity-Array"),
+    data: TypeInfoData::Array("LuaRunnerSharedVarsEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LuaRunnerScriptEntity {
+    pub _glacier_base: super::entity::Entity,
 }
 
-pub const LUARUNNERSCRIPTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LuaRunnerScriptEntityTrait: super::entity::EntityTrait {
+}
+
+impl LuaRunnerScriptEntityTrait for LuaRunnerScriptEntity {
+}
+
+impl super::entity::EntityTrait for LuaRunnerScriptEntity {
+}
+
+impl super::entity::EntityBusPeerTrait for LuaRunnerScriptEntity {
+}
+
+pub static LUARUNNERSCRIPTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LuaRunnerScriptEntity",
     flags: MemberInfoFlags::new(101),
     module: "LuaRunner",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITY_TYPE_INFO),
+        super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LuaRunnerScriptEntity as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -78,32 +114,44 @@ pub const LUARUNNERSCRIPTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LuaRunnerScriptEntity {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LUARUNNERSCRIPTENTITY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LUARUNNERSCRIPTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LUARUNNERSCRIPTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LuaRunnerScriptEntity-Array",
     flags: MemberInfoFlags::new(145),
     module: "LuaRunner",
-    data: TypeInfoData::Array("LuaRunnerScriptEntity-Array"),
+    data: TypeInfoData::Array("LuaRunnerScriptEntity"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CompiledLuaResource {
 }
 
-pub const COMPILEDLUARESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CompiledLuaResourceTrait: TypeObject {
+}
+
+impl CompiledLuaResourceTrait for CompiledLuaResource {
+}
+
+pub static COMPILEDLUARESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompiledLuaResource",
     flags: MemberInfoFlags::new(101),
     module: "LuaRunner",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CompiledLuaResource as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -112,45 +160,87 @@ pub const COMPILEDLUARESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CompiledLuaResource {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         COMPILEDLUARESOURCE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const COMPILEDLUARESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static COMPILEDLUARESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompiledLuaResource-Array",
     flags: MemberInfoFlags::new(145),
     module: "LuaRunner",
-    data: TypeInfoData::Array("CompiledLuaResource-Array"),
+    data: TypeInfoData::Array("CompiledLuaResource"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LuaRunnerSharedVarsEntityData {
+    pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
     pub add_to_debug_display: bool,
 }
 
-pub const LUARUNNERSHAREDVARSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LuaRunnerSharedVarsEntityDataTrait: super::entity::EntityDataTrait {
+    fn realm(&self) -> &super::core::Realm;
+    fn add_to_debug_display(&self) -> &bool;
+}
+
+impl LuaRunnerSharedVarsEntityDataTrait for LuaRunnerSharedVarsEntityData {
+    fn realm(&self) -> &super::core::Realm {
+        &self.realm
+    }
+    fn add_to_debug_display(&self) -> &bool {
+        &self.add_to_debug_display
+    }
+}
+
+impl super::entity::EntityDataTrait for LuaRunnerSharedVarsEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for LuaRunnerSharedVarsEntityData {
+}
+
+impl super::core::DataBusPeerTrait for LuaRunnerSharedVarsEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for LuaRunnerSharedVarsEntityData {
+}
+
+impl super::core::DataContainerTrait for LuaRunnerSharedVarsEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static LUARUNNERSHAREDVARSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LuaRunnerSharedVarsEntityData",
     flags: MemberInfoFlags::new(101),
     module: "LuaRunner",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LuaRunnerSharedVarsEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Realm",
                 flags: MemberInfoFlags::new(0),
-                field_type: REALM_TYPE_INFO,
+                field_type: "Realm",
                 rust_offset: offset_of!(LuaRunnerSharedVarsEntityData, realm),
             },
             FieldInfoData {
                 name: "AddToDebugDisplay",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(LuaRunnerSharedVarsEntityData, add_to_debug_display),
             },
         ],
@@ -160,24 +250,28 @@ pub const LUARUNNERSHAREDVARSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 impl TypeObject for LuaRunnerSharedVarsEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LUARUNNERSHAREDVARSENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LUARUNNERSHAREDVARSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LUARUNNERSHAREDVARSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LuaRunnerSharedVarsEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "LuaRunner",
-    data: TypeInfoData::Array("LuaRunnerSharedVarsEntityData-Array"),
+    data: TypeInfoData::Array("LuaRunnerSharedVarsEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LuaRunnerScriptEntityData {
+    pub _glacier_base: super::entity::EntityData,
     pub script: String,
     pub input_events: Vec<String>,
     pub output_events: Vec<String>,
@@ -206,188 +300,334 @@ pub struct LuaRunnerScriptEntityData {
     pub priority_for_executing_per_frame: i32,
     pub realm: super::core::Realm,
     pub add_to_debug_display: bool,
-    pub compiled_lua: LuaRunnerCompiledLua,
+    pub compiled_lua: Option<Arc<Mutex<dyn LuaRunnerCompiledLuaTrait>>>,
 }
 
-pub const LUARUNNERSCRIPTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LuaRunnerScriptEntityDataTrait: super::entity::EntityDataTrait {
+    fn script(&self) -> &String;
+    fn input_events(&self) -> &Vec<String>;
+    fn output_events(&self) -> &Vec<String>;
+    fn input_float_properties(&self) -> &Vec<String>;
+    fn output_float_properties(&self) -> &Vec<String>;
+    fn input_int_properties(&self) -> &Vec<String>;
+    fn output_int_properties(&self) -> &Vec<String>;
+    fn input_bool_properties(&self) -> &Vec<String>;
+    fn output_bool_properties(&self) -> &Vec<String>;
+    fn input_string_properties(&self) -> &Vec<String>;
+    fn output_string_properties(&self) -> &Vec<String>;
+    fn input_transform_properties(&self) -> &Vec<String>;
+    fn output_transform_properties(&self) -> &Vec<String>;
+    fn input_vec2_properties(&self) -> &Vec<String>;
+    fn output_vec2_properties(&self) -> &Vec<String>;
+    fn input_vec3_properties(&self) -> &Vec<String>;
+    fn output_vec3_properties(&self) -> &Vec<String>;
+    fn input_vec4_properties(&self) -> &Vec<String>;
+    fn output_vec4_properties(&self) -> &Vec<String>;
+    fn input_custom_properties(&self) -> &Vec<CustomProperty>;
+    fn output_custom_properties(&self) -> &Vec<CustomProperty>;
+    fn auto_start_executing_per_frame(&self) -> &bool;
+    fn auto_start_for_initialization(&self) -> &bool;
+    fn run_on_property_change(&self) -> &bool;
+    fn execute_on_property_change(&self) -> &ExecuteOnPropertyChangeType;
+    fn priority_for_executing_per_frame(&self) -> &i32;
+    fn realm(&self) -> &super::core::Realm;
+    fn add_to_debug_display(&self) -> &bool;
+    fn compiled_lua(&self) -> &Option<Arc<Mutex<dyn LuaRunnerCompiledLuaTrait>>>;
+}
+
+impl LuaRunnerScriptEntityDataTrait for LuaRunnerScriptEntityData {
+    fn script(&self) -> &String {
+        &self.script
+    }
+    fn input_events(&self) -> &Vec<String> {
+        &self.input_events
+    }
+    fn output_events(&self) -> &Vec<String> {
+        &self.output_events
+    }
+    fn input_float_properties(&self) -> &Vec<String> {
+        &self.input_float_properties
+    }
+    fn output_float_properties(&self) -> &Vec<String> {
+        &self.output_float_properties
+    }
+    fn input_int_properties(&self) -> &Vec<String> {
+        &self.input_int_properties
+    }
+    fn output_int_properties(&self) -> &Vec<String> {
+        &self.output_int_properties
+    }
+    fn input_bool_properties(&self) -> &Vec<String> {
+        &self.input_bool_properties
+    }
+    fn output_bool_properties(&self) -> &Vec<String> {
+        &self.output_bool_properties
+    }
+    fn input_string_properties(&self) -> &Vec<String> {
+        &self.input_string_properties
+    }
+    fn output_string_properties(&self) -> &Vec<String> {
+        &self.output_string_properties
+    }
+    fn input_transform_properties(&self) -> &Vec<String> {
+        &self.input_transform_properties
+    }
+    fn output_transform_properties(&self) -> &Vec<String> {
+        &self.output_transform_properties
+    }
+    fn input_vec2_properties(&self) -> &Vec<String> {
+        &self.input_vec2_properties
+    }
+    fn output_vec2_properties(&self) -> &Vec<String> {
+        &self.output_vec2_properties
+    }
+    fn input_vec3_properties(&self) -> &Vec<String> {
+        &self.input_vec3_properties
+    }
+    fn output_vec3_properties(&self) -> &Vec<String> {
+        &self.output_vec3_properties
+    }
+    fn input_vec4_properties(&self) -> &Vec<String> {
+        &self.input_vec4_properties
+    }
+    fn output_vec4_properties(&self) -> &Vec<String> {
+        &self.output_vec4_properties
+    }
+    fn input_custom_properties(&self) -> &Vec<CustomProperty> {
+        &self.input_custom_properties
+    }
+    fn output_custom_properties(&self) -> &Vec<CustomProperty> {
+        &self.output_custom_properties
+    }
+    fn auto_start_executing_per_frame(&self) -> &bool {
+        &self.auto_start_executing_per_frame
+    }
+    fn auto_start_for_initialization(&self) -> &bool {
+        &self.auto_start_for_initialization
+    }
+    fn run_on_property_change(&self) -> &bool {
+        &self.run_on_property_change
+    }
+    fn execute_on_property_change(&self) -> &ExecuteOnPropertyChangeType {
+        &self.execute_on_property_change
+    }
+    fn priority_for_executing_per_frame(&self) -> &i32 {
+        &self.priority_for_executing_per_frame
+    }
+    fn realm(&self) -> &super::core::Realm {
+        &self.realm
+    }
+    fn add_to_debug_display(&self) -> &bool {
+        &self.add_to_debug_display
+    }
+    fn compiled_lua(&self) -> &Option<Arc<Mutex<dyn LuaRunnerCompiledLuaTrait>>> {
+        &self.compiled_lua
+    }
+}
+
+impl super::entity::EntityDataTrait for LuaRunnerScriptEntityData {
+}
+
+impl super::entity::GameObjectDataTrait for LuaRunnerScriptEntityData {
+}
+
+impl super::core::DataBusPeerTrait for LuaRunnerScriptEntityData {
+    fn flags(&self) -> &u32 {
+        self._glacier_base.flags()
+    }
+}
+
+impl super::core::GameDataContainerTrait for LuaRunnerScriptEntityData {
+}
+
+impl super::core::DataContainerTrait for LuaRunnerScriptEntityData {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static LUARUNNERSCRIPTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LuaRunnerScriptEntityData",
     flags: MemberInfoFlags::new(101),
     module: "LuaRunner",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LuaRunnerScriptEntityData as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "Script",
                 flags: MemberInfoFlags::new(0),
-                field_type: CSTRING_TYPE_INFO,
+                field_type: "CString",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, script),
             },
             FieldInfoData {
                 name: "InputEvents",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, input_events),
             },
             FieldInfoData {
                 name: "OutputEvents",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, output_events),
             },
             FieldInfoData {
                 name: "InputFloatProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, input_float_properties),
             },
             FieldInfoData {
                 name: "OutputFloatProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, output_float_properties),
             },
             FieldInfoData {
                 name: "InputIntProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, input_int_properties),
             },
             FieldInfoData {
                 name: "OutputIntProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, output_int_properties),
             },
             FieldInfoData {
                 name: "InputBoolProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, input_bool_properties),
             },
             FieldInfoData {
                 name: "OutputBoolProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, output_bool_properties),
             },
             FieldInfoData {
                 name: "InputStringProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, input_string_properties),
             },
             FieldInfoData {
                 name: "OutputStringProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, output_string_properties),
             },
             FieldInfoData {
                 name: "InputTransformProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, input_transform_properties),
             },
             FieldInfoData {
                 name: "OutputTransformProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, output_transform_properties),
             },
             FieldInfoData {
                 name: "InputVec2Properties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, input_vec2_properties),
             },
             FieldInfoData {
                 name: "OutputVec2Properties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, output_vec2_properties),
             },
             FieldInfoData {
                 name: "InputVec3Properties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, input_vec3_properties),
             },
             FieldInfoData {
                 name: "OutputVec3Properties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, output_vec3_properties),
             },
             FieldInfoData {
                 name: "InputVec4Properties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, input_vec4_properties),
             },
             FieldInfoData {
                 name: "OutputVec4Properties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CSTRING_ARRAY_TYPE_INFO,
+                field_type: "CString-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, output_vec4_properties),
             },
             FieldInfoData {
                 name: "InputCustomProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CUSTOMPROPERTY_ARRAY_TYPE_INFO,
+                field_type: "CustomProperty-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, input_custom_properties),
             },
             FieldInfoData {
                 name: "OutputCustomProperties",
                 flags: MemberInfoFlags::new(144),
-                field_type: CUSTOMPROPERTY_ARRAY_TYPE_INFO,
+                field_type: "CustomProperty-Array",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, output_custom_properties),
             },
             FieldInfoData {
                 name: "AutoStartExecutingPerFrame",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, auto_start_executing_per_frame),
             },
             FieldInfoData {
                 name: "AutoStartForInitialization",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, auto_start_for_initialization),
             },
             FieldInfoData {
                 name: "RunOnPropertyChange",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, run_on_property_change),
             },
             FieldInfoData {
                 name: "ExecuteOnPropertyChange",
                 flags: MemberInfoFlags::new(0),
-                field_type: EXECUTEONPROPERTYCHANGETYPE_TYPE_INFO,
+                field_type: "ExecuteOnPropertyChangeType",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, execute_on_property_change),
             },
             FieldInfoData {
                 name: "PriorityForExecutingPerFrame",
                 flags: MemberInfoFlags::new(0),
-                field_type: INT32_TYPE_INFO,
+                field_type: "Int32",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, priority_for_executing_per_frame),
             },
             FieldInfoData {
                 name: "Realm",
                 flags: MemberInfoFlags::new(0),
-                field_type: REALM_TYPE_INFO,
+                field_type: "Realm",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, realm),
             },
             FieldInfoData {
                 name: "AddToDebugDisplay",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, add_to_debug_display),
             },
             FieldInfoData {
                 name: "CompiledLua",
                 flags: MemberInfoFlags::new(0),
-                field_type: LUARUNNERCOMPILEDLUA_TYPE_INFO,
+                field_type: "LuaRunnerCompiledLua",
                 rust_offset: offset_of!(LuaRunnerScriptEntityData, compiled_lua),
             },
         ],
@@ -397,44 +637,64 @@ pub const LUARUNNERSCRIPTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LuaRunnerScriptEntityData {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LUARUNNERSCRIPTENTITYDATA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LUARUNNERSCRIPTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LUARUNNERSCRIPTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LuaRunnerScriptEntityData-Array",
     flags: MemberInfoFlags::new(145),
     module: "LuaRunner",
-    data: TypeInfoData::Array("LuaRunnerScriptEntityData-Array"),
+    data: TypeInfoData::Array("LuaRunnerScriptEntityData"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct CustomProperty {
     pub type_name: String,
     pub property_name: String,
 }
 
-pub const CUSTOMPROPERTY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait CustomPropertyTrait: TypeObject {
+    fn type_name(&self) -> &String;
+    fn property_name(&self) -> &String;
+}
+
+impl CustomPropertyTrait for CustomProperty {
+    fn type_name(&self) -> &String {
+        &self.type_name
+    }
+    fn property_name(&self) -> &String {
+        &self.property_name
+    }
+}
+
+pub static CUSTOMPROPERTY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomProperty",
     flags: MemberInfoFlags::new(73),
     module: "LuaRunner",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<CustomProperty as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "TypeName",
                 flags: MemberInfoFlags::new(0),
-                field_type: CSTRING_TYPE_INFO,
+                field_type: "CString",
                 rust_offset: offset_of!(CustomProperty, type_name),
             },
             FieldInfoData {
                 name: "PropertyName",
                 flags: MemberInfoFlags::new(0),
-                field_type: CSTRING_TYPE_INFO,
+                field_type: "CString",
                 rust_offset: offset_of!(CustomProperty, property_name),
             },
         ],
@@ -444,24 +704,28 @@ pub const CUSTOMPROPERTY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for CustomProperty {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         CUSTOMPROPERTY_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const CUSTOMPROPERTY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static CUSTOMPROPERTY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomProperty-Array",
     flags: MemberInfoFlags::new(145),
     module: "LuaRunner",
-    data: TypeInfoData::Array("CustomProperty-Array"),
+    data: TypeInfoData::Array("CustomProperty"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum ExecuteOnPropertyChangeType {
     #[default]
     ExecuteOnPropertyChangeType_DontExecute = 0,
@@ -469,7 +733,7 @@ pub enum ExecuteOnPropertyChangeType {
     ExecuteOnPropertyChangeType_Queued = 2,
 }
 
-pub const EXECUTEONPROPERTYCHANGETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static EXECUTEONPROPERTYCHANGETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExecuteOnPropertyChangeType",
     flags: MemberInfoFlags::new(49429),
     module: "LuaRunner",
@@ -479,38 +743,67 @@ pub const EXECUTEONPROPERTYCHANGETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for ExecuteOnPropertyChangeType {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         EXECUTEONPROPERTYCHANGETYPE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const EXECUTEONPROPERTYCHANGETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static EXECUTEONPROPERTYCHANGETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExecuteOnPropertyChangeType-Array",
     flags: MemberInfoFlags::new(145),
     module: "LuaRunner",
-    data: TypeInfoData::Array("ExecuteOnPropertyChangeType-Array"),
+    data: TypeInfoData::Array("ExecuteOnPropertyChangeType"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct LuaRunnerCompiledLua {
-    pub compiled_lua_resource: super::core::ResourceRef,
+    pub _glacier_base: super::core::Asset,
+    pub compiled_lua_resource: glacier_reflect::builtin::ResourceRef,
 }
 
-pub const LUARUNNERCOMPILEDLUA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait LuaRunnerCompiledLuaTrait: super::core::AssetTrait {
+    fn compiled_lua_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+}
+
+impl LuaRunnerCompiledLuaTrait for LuaRunnerCompiledLua {
+    fn compiled_lua_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
+        &self.compiled_lua_resource
+    }
+}
+
+impl super::core::AssetTrait for LuaRunnerCompiledLua {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for LuaRunnerCompiledLua {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static LUARUNNERCOMPILEDLUA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LuaRunnerCompiledLua",
     flags: MemberInfoFlags::new(101),
     module: "LuaRunner",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ASSET_TYPE_INFO),
+        super_class: Some(super::core::ASSET_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<LuaRunnerCompiledLua as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "CompiledLuaResource",
                 flags: MemberInfoFlags::new(0),
-                field_type: RESOURCEREF_TYPE_INFO,
+                field_type: "ResourceRef",
                 rust_offset: offset_of!(LuaRunnerCompiledLua, compiled_lua_resource),
             },
         ],
@@ -520,17 +813,20 @@ pub const LUARUNNERCOMPILEDLUA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for LuaRunnerCompiledLua {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         LUARUNNERCOMPILEDLUA_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const LUARUNNERCOMPILEDLUA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static LUARUNNERCOMPILEDLUA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LuaRunnerCompiledLua-Array",
     flags: MemberInfoFlags::new(145),
     module: "LuaRunner",
-    data: TypeInfoData::Array("LuaRunnerCompiledLua-Array"),
+    data: TypeInfoData::Array("LuaRunnerCompiledLua"),
     array_type: None,
     alignment: 8,
 };

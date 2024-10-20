@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -24,29 +25,59 @@ pub(crate) fn register_morph_base_types(registry: &mut TypeRegistry) {
     registry.register_type(MORPHRESOURCE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct MorphStatic {
-    pub preset_mesh: super::render_base::MeshBaseAsset,
-    pub resource: super::core::ResourceRef,
+    pub _glacier_base: super::core::Asset,
+    pub preset_mesh: Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>,
+    pub resource: glacier_reflect::builtin::ResourceRef,
 }
 
-pub const MORPHSTATIC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait MorphStaticTrait: super::core::AssetTrait {
+    fn preset_mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+}
+
+impl MorphStaticTrait for MorphStatic {
+    fn preset_mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &self.preset_mesh
+    }
+    fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
+        &self.resource
+    }
+}
+
+impl super::core::AssetTrait for MorphStatic {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for MorphStatic {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static MORPHSTATIC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphStatic",
     flags: MemberInfoFlags::new(101),
     module: "MorphBase",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ASSET_TYPE_INFO),
+        super_class: Some(super::core::ASSET_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<MorphStatic as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "PresetMesh",
                 flags: MemberInfoFlags::new(0),
-                field_type: MESHBASEASSET_TYPE_INFO,
+                field_type: "MeshBaseAsset",
                 rust_offset: offset_of!(MorphStatic, preset_mesh),
             },
             FieldInfoData {
                 name: "Resource",
                 flags: MemberInfoFlags::new(0),
-                field_type: RESOURCEREF_TYPE_INFO,
+                field_type: "ResourceRef",
                 rust_offset: offset_of!(MorphStatic, resource),
             },
         ],
@@ -56,59 +87,100 @@ pub const MORPHSTATIC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for MorphStatic {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         MORPHSTATIC_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const MORPHSTATIC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static MORPHSTATIC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphStatic-Array",
     flags: MemberInfoFlags::new(145),
     module: "MorphBase",
-    data: TypeInfoData::Array("MorphStatic-Array"),
+    data: TypeInfoData::Array("MorphStatic"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct MorphTargets {
+    pub _glacier_base: super::core::Asset,
     pub disable_additive_bone_offsets: bool,
     pub editor_vertical_offset: f32,
-    pub preset_meshes: Vec<super::render_base::MeshBaseAsset>,
-    pub resource: super::core::ResourceRef,
+    pub preset_meshes: Vec<Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>>,
+    pub resource: glacier_reflect::builtin::ResourceRef,
 }
 
-pub const MORPHTARGETS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait MorphTargetsTrait: super::core::AssetTrait {
+    fn disable_additive_bone_offsets(&self) -> &bool;
+    fn editor_vertical_offset(&self) -> &f32;
+    fn preset_meshes(&self) -> &Vec<Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>>;
+    fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+}
+
+impl MorphTargetsTrait for MorphTargets {
+    fn disable_additive_bone_offsets(&self) -> &bool {
+        &self.disable_additive_bone_offsets
+    }
+    fn editor_vertical_offset(&self) -> &f32 {
+        &self.editor_vertical_offset
+    }
+    fn preset_meshes(&self) -> &Vec<Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>> {
+        &self.preset_meshes
+    }
+    fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
+        &self.resource
+    }
+}
+
+impl super::core::AssetTrait for MorphTargets {
+    fn name(&self) -> &String {
+        self._glacier_base.name()
+    }
+}
+
+impl super::core::DataContainerTrait for MorphTargets {
+    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
+        self._glacier_base.dc_core()
+    }
+}
+
+pub static MORPHTARGETS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphTargets",
     flags: MemberInfoFlags::new(101),
     module: "MorphBase",
     data: TypeInfoData::Class(ClassInfoData {
-        super_class: Some(ASSET_TYPE_INFO),
+        super_class: Some(super::core::ASSET_TYPE_INFO),
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<MorphTargets as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "DisableAdditiveBoneOffsets",
                 flags: MemberInfoFlags::new(0),
-                field_type: BOOLEAN_TYPE_INFO,
+                field_type: "Boolean",
                 rust_offset: offset_of!(MorphTargets, disable_additive_bone_offsets),
             },
             FieldInfoData {
                 name: "EditorVerticalOffset",
                 flags: MemberInfoFlags::new(0),
-                field_type: FLOAT32_TYPE_INFO,
+                field_type: "Float32",
                 rust_offset: offset_of!(MorphTargets, editor_vertical_offset),
             },
             FieldInfoData {
                 name: "PresetMeshes",
                 flags: MemberInfoFlags::new(144),
-                field_type: MESHBASEASSET_ARRAY_TYPE_INFO,
+                field_type: "MeshBaseAsset-Array",
                 rust_offset: offset_of!(MorphTargets, preset_meshes),
             },
             FieldInfoData {
                 name: "Resource",
                 flags: MemberInfoFlags::new(0),
-                field_type: RESOURCEREF_TYPE_INFO,
+                field_type: "ResourceRef",
                 rust_offset: offset_of!(MorphTargets, resource),
             },
         ],
@@ -118,44 +190,64 @@ pub const MORPHTARGETS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for MorphTargets {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         MORPHTARGETS_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const MORPHTARGETS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static MORPHTARGETS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphTargets-Array",
     flags: MemberInfoFlags::new(145),
     module: "MorphBase",
-    data: TypeInfoData::Array("MorphTargets-Array"),
+    data: TypeInfoData::Array("MorphTargets"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct MorphTargetsInterfaceInfo {
     pub name_hash: u32,
-    pub id: super::core::Guid,
+    pub id: glacier_util::guid::Guid,
 }
 
-pub const MORPHTARGETSINTERFACEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait MorphTargetsInterfaceInfoTrait: TypeObject {
+    fn name_hash(&self) -> &u32;
+    fn id(&self) -> &glacier_util::guid::Guid;
+}
+
+impl MorphTargetsInterfaceInfoTrait for MorphTargetsInterfaceInfo {
+    fn name_hash(&self) -> &u32 {
+        &self.name_hash
+    }
+    fn id(&self) -> &glacier_util::guid::Guid {
+        &self.id
+    }
+}
+
+pub static MORPHTARGETSINTERFACEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphTargetsInterfaceInfo",
     flags: MemberInfoFlags::new(32841),
     module: "MorphBase",
-    data: TypeInfoData::Value(ValueTypeInfoData {
+    data: TypeInfoData::ValueType(ValueTypeInfoData {
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<MorphTargetsInterfaceInfo as Default>::default())),
+        },
         fields: &[
             FieldInfoData {
                 name: "NameHash",
                 flags: MemberInfoFlags::new(0),
-                field_type: UINT32_TYPE_INFO,
+                field_type: "Uint32",
                 rust_offset: offset_of!(MorphTargetsInterfaceInfo, name_hash),
             },
             FieldInfoData {
                 name: "Id",
                 flags: MemberInfoFlags::new(0),
-                field_type: GUID_TYPE_INFO,
+                field_type: "Guid",
                 rust_offset: offset_of!(MorphTargetsInterfaceInfo, id),
             },
         ],
@@ -165,30 +257,34 @@ pub const MORPHTARGETSINTERFACEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for MorphTargetsInterfaceInfo {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         MORPHTARGETSINTERFACEINFO_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const MORPHTARGETSINTERFACEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static MORPHTARGETSINTERFACEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphTargetsInterfaceInfo-Array",
     flags: MemberInfoFlags::new(145),
     module: "MorphBase",
-    data: TypeInfoData::Array("MorphTargetsInterfaceInfo-Array"),
+    data: TypeInfoData::Array("MorphTargetsInterfaceInfo"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum MorphDebugRenderOption {
     #[default]
     MorphDebugRenderOption_BoneWidth = 0,
 }
 
-pub const MORPHDEBUGRENDEROPTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static MORPHDEBUGRENDEROPTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphDebugRenderOption",
     flags: MemberInfoFlags::new(49429),
     module: "MorphBase",
@@ -198,24 +294,28 @@ pub const MORPHDEBUGRENDEROPTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for MorphDebugRenderOption {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         MORPHDEBUGRENDEROPTION_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const MORPHDEBUGRENDEROPTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static MORPHDEBUGRENDEROPTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphDebugRenderOption-Array",
     flags: MemberInfoFlags::new(145),
     module: "MorphBase",
-    data: TypeInfoData::Array("MorphDebugRenderOption-Array"),
+    data: TypeInfoData::Array("MorphDebugRenderOption"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Hash, Clone, PartialEq, Eq, Default, Debug)]
-#[repr(i32)]
+#[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
+#[repr(i64)]
+#[allow(non_camel_case_types)]
 pub enum MorphDebugRenderFlag {
     #[default]
     MorphDebugRenderFlag_Bones = 0,
@@ -224,7 +324,7 @@ pub enum MorphDebugRenderFlag {
     MorphDebugRenderFlag_BoneCoordinates = 3,
 }
 
-pub const MORPHDEBUGRENDERFLAG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static MORPHDEBUGRENDERFLAG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphDebugRenderFlag",
     flags: MemberInfoFlags::new(49429),
     module: "MorphBase",
@@ -234,32 +334,44 @@ pub const MORPHDEBUGRENDERFLAG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for MorphDebugRenderFlag {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         MORPHDEBUGRENDERFLAG_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const MORPHDEBUGRENDERFLAG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static MORPHDEBUGRENDERFLAG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphDebugRenderFlag-Array",
     flags: MemberInfoFlags::new(145),
     module: "MorphBase",
-    data: TypeInfoData::Array("MorphDebugRenderFlag-Array"),
+    data: TypeInfoData::Array("MorphDebugRenderFlag"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct MorphTargetsResource {
 }
 
-pub const MORPHTARGETSRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait MorphTargetsResourceTrait: TypeObject {
+}
+
+impl MorphTargetsResourceTrait for MorphTargetsResource {
+}
+
+pub static MORPHTARGETSRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphTargetsResource",
     flags: MemberInfoFlags::new(101),
     module: "MorphBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<MorphTargetsResource as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -268,32 +380,44 @@ pub const MORPHTARGETSRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for MorphTargetsResource {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         MORPHTARGETSRESOURCE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const MORPHTARGETSRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static MORPHTARGETSRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphTargetsResource-Array",
     flags: MemberInfoFlags::new(145),
     module: "MorphBase",
-    data: TypeInfoData::Array("MorphTargetsResource-Array"),
+    data: TypeInfoData::Array("MorphTargetsResource"),
     array_type: None,
     alignment: 8,
 };
 
 
-#[derive(Clone, PartialEq, Eq, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct MorphResource {
 }
 
-pub const MORPHRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub trait MorphResourceTrait: TypeObject {
+}
+
+impl MorphResourceTrait for MorphResource {
+}
+
+pub static MORPHRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphResource",
     flags: MemberInfoFlags::new(101),
     module: "MorphBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        functions: TypeFunctions {
+            create: || Arc::new(Mutex::new(<MorphResource as Default>::default())),
+        },
         fields: &[
         ],
     }),
@@ -302,17 +426,20 @@ pub const MORPHRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 impl TypeObject for MorphResource {
-    fn type_info() -> &'static TypeInfo {
+    fn type_info(&self) -> &'static TypeInfo {
         MORPHRESOURCE_TYPE_INFO
+    }
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
 
-pub const MORPHRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
+pub static MORPHRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MorphResource-Array",
     flags: MemberInfoFlags::new(145),
     module: "MorphBase",
-    data: TypeInfoData::Array("MorphResource-Array"),
+    data: TypeInfoData::Array("MorphResource"),
     array_type: None,
     alignment: 8,
 };

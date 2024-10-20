@@ -1,9 +1,10 @@
-use std::mem::offset_of;
+use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
+use tokio::sync::Mutex;
 
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
     }, type_registry::TypeRegistry,
 };
 
@@ -136,7 +137,7 @@ pub mod world_render;
 pub mod world_sim;
 pub mod zone_streamer;
 
-pub fn register_types(registry: &mut TypeRegistry) {
+pub fn register_mod_types(registry: &mut TypeRegistry) {
     a_i_tools::register_a_i_tools_types(registry);
     achievements::register_achievements_types(registry);
     ant::register_ant_types(registry);
