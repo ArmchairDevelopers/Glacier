@@ -87,6 +87,15 @@ impl TypeObject for InputHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -109,19 +118,31 @@ pub struct InputSimDynamicState {
 
 pub trait InputSimDynamicStateTrait: TypeObject {
     fn input_sim_state(&self) -> &Vec<u8>;
+    fn input_sim_state_mut(&mut self) -> &mut Vec<u8>;
     fn input_sim_state_size(&self) -> &u16;
+    fn input_sim_state_size_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl InputSimDynamicStateTrait for InputSimDynamicState {
     fn input_sim_state(&self) -> &Vec<u8> {
         &self.input_sim_state
     }
+    fn input_sim_state_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.input_sim_state
+    }
     fn input_sim_state_size(&self) -> &u16 {
         &self.input_sim_state_size
     }
+    fn input_sim_state_size_mut(&mut self) -> &mut u16 {
+        &mut self.input_sim_state_size
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -164,6 +185,15 @@ impl TypeObject for InputSimDynamicState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -210,6 +240,15 @@ impl TypeObject for InputSimStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -255,6 +294,15 @@ impl TypeObject for IInputDevice {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -312,6 +360,15 @@ impl TypeObject for InputManTouch {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -364,6 +421,15 @@ impl TypeObject for InputManMouse {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -418,6 +484,15 @@ impl TypeObject for InputManKeyboard {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -471,6 +546,15 @@ impl TypeObject for ITouch {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -521,6 +605,15 @@ impl TypeObject for IMouse {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -570,6 +663,15 @@ impl TypeObject for IKeyboard {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

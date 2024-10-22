@@ -712,6 +712,15 @@ impl TypeObject for ServerPlayerAbilityEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -768,6 +777,15 @@ impl TypeObject for ServerLinkedPlayerAbilityReferenceEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -821,6 +839,15 @@ impl TypeObject for ServerLinkedAbilityReferenceEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -873,6 +900,15 @@ impl TypeObject for ServerCategoryToPlayerAbilityEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -930,6 +966,15 @@ impl TypeObject for ClientRemotePlayerAbilityStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -982,6 +1027,15 @@ impl TypeObject for ClientPlayerAbilityStateEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1036,6 +1090,15 @@ impl TypeObject for ClientPlayerAbilityReferenceEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1089,6 +1152,15 @@ impl TypeObject for ClientPlayerAbilityPropertyOutputEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1141,6 +1213,15 @@ impl TypeObject for ClientPlayerAbilityEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1198,6 +1279,15 @@ impl TypeObject for ClientLinkedPlayerAbilityReferenceEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1251,6 +1341,15 @@ impl TypeObject for ClientLinkedAbilityReferenceEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1303,6 +1402,15 @@ impl TypeObject for ClientCategoryToPlayerAbilityEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1362,6 +1470,15 @@ impl TypeObject for ServerPlayerAbilitySetComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1425,6 +1542,15 @@ impl TypeObject for ServerNonCustomizablePlayerAbilitySetComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1483,6 +1609,15 @@ impl TypeObject for ClientPlayerAbilitySetComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1546,6 +1681,15 @@ impl TypeObject for ClientNonCustomizablePlayerAbilitySetComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1604,6 +1748,15 @@ impl TypeObject for ServerSoldierWeaponPlayerAbility {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1664,6 +1817,15 @@ impl TypeObject for ServerRetriggerablePlayerAbility {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1723,6 +1885,15 @@ impl TypeObject for ServerRechargeablePlayerAbility {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1772,6 +1943,15 @@ impl TypeObject for ServerPlayerAbility {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1826,6 +2006,15 @@ impl TypeObject for ServerPassivePlayerAbility {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1878,6 +2067,15 @@ impl TypeObject for ServerCorrectedPlayerAbility {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1935,6 +2133,15 @@ impl TypeObject for ServerBasicPlayerAbility {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1980,6 +2187,15 @@ impl TypeObject for PlayerAbility {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2040,6 +2256,15 @@ impl TypeObject for ClientSoldierWeaponPlayerAbility {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2098,6 +2323,15 @@ impl TypeObject for ClientRetriggerablePlayerAbility {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2158,6 +2392,15 @@ impl TypeObject for ClientRechargeablePlayerAbility {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2207,6 +2450,15 @@ impl TypeObject for ClientPlayerAbility {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2261,6 +2513,15 @@ impl TypeObject for ClientPassivePlayerAbility {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2313,6 +2574,15 @@ impl TypeObject for ClientCorrectedPlayerAbility {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2367,6 +2637,15 @@ impl TypeObject for IsLookedAtEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2419,6 +2698,15 @@ impl TypeObject for IsLookedAtTargetOverrideEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2473,6 +2761,15 @@ impl TypeObject for ClientTriggerExplosiveEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2525,6 +2822,15 @@ impl TypeObject for ClientStarfighterOverlapEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2579,6 +2885,15 @@ impl TypeObject for ClientStarfighterOverlapConfigEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2631,6 +2946,15 @@ impl TypeObject for ClientStarfighterAvoidanceZoneEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2688,6 +3012,15 @@ impl TypeObject for ClientMaterialBasedEffectEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2740,6 +3073,15 @@ impl TypeObject for ClientDiceVFXEntityBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2797,6 +3139,15 @@ impl TypeObject for ClientDicePlayVFXEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2852,6 +3203,15 @@ impl TypeObject for VaultModifierVolumeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2909,6 +3269,15 @@ impl TypeObject for ServerVaultModifierVolumeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2964,6 +3333,15 @@ impl TypeObject for ClientVaultModifierVolumeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3021,6 +3399,15 @@ impl TypeObject for ServerTrackRespawnNodeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3073,6 +3460,15 @@ impl TypeObject for ServerTrackRespawnManagerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3127,6 +3523,15 @@ impl TypeObject for ServerShieldControllerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3179,6 +3584,15 @@ impl TypeObject for ClientShieldControllerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3233,6 +3647,15 @@ impl TypeObject for SetTheoryQueryEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3286,6 +3709,15 @@ impl TypeObject for ServerTransformQueryEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3338,6 +3770,15 @@ impl TypeObject for WeaponModifierStateEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3395,6 +3836,15 @@ impl TypeObject for ServerSendEventEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3448,6 +3898,15 @@ impl TypeObject for ServerRoundOverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3500,6 +3959,15 @@ impl TypeObject for ServerRemoteEventEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3557,6 +4025,15 @@ impl TypeObject for ServerReceiveEventEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3609,6 +4086,15 @@ impl TypeObject for ServerKillCounterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3663,6 +4149,15 @@ impl TypeObject for ServerInputToNetworkedBoolEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3715,6 +4210,15 @@ impl TypeObject for ServerGravityWellControllerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3769,6 +4273,15 @@ impl TypeObject for ServerDebugPlayerSpawnerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3821,6 +4334,15 @@ impl TypeObject for ServerControlInputEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3878,6 +4400,15 @@ impl TypeObject for ClientSendEventEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3931,6 +4462,15 @@ impl TypeObject for ClientRoundOverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3983,6 +4523,15 @@ impl TypeObject for ClientRemoteEventEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4040,6 +4589,15 @@ impl TypeObject for ClientReceiveEventEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4092,6 +4650,15 @@ impl TypeObject for ClientKillCounterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4146,6 +4713,15 @@ impl TypeObject for ClientInputToNetworkedBoolEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4198,6 +4774,15 @@ impl TypeObject for ClientGravityWellTrackerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4252,6 +4837,15 @@ impl TypeObject for ClientRaycastEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4304,6 +4898,15 @@ impl TypeObject for ClientQuerySplitterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4358,6 +4961,15 @@ impl TypeObject for ClientDynamicQueryFilterEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4410,6 +5022,15 @@ impl TypeObject for ClientQueryFilterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4464,6 +5085,15 @@ impl TypeObject for ClientQueryCacheEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4516,6 +5146,15 @@ impl TypeObject for ClientPhantomEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4570,6 +5209,15 @@ impl TypeObject for ClientOwnerToQueryResultEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4622,6 +5270,15 @@ impl TypeObject for ClientOverrideJointEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4676,6 +5333,15 @@ impl TypeObject for ClientInputQueryEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4728,6 +5394,15 @@ impl TypeObject for ClientFireProjectileEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4782,6 +5457,15 @@ impl TypeObject for ClientDealDamageEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4834,6 +5518,15 @@ impl TypeObject for ClientDamageGiverEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4888,6 +5581,15 @@ impl TypeObject for WorldRelSteeringPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4941,6 +5643,15 @@ impl TypeObject for VelocityOnInputPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4993,6 +5704,15 @@ impl TypeObject for StarfighterSpinoutPhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5050,6 +5770,15 @@ impl TypeObject for ClientStarFighterPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5102,6 +5831,15 @@ impl TypeObject for StarFighterPhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5156,6 +5894,15 @@ impl TypeObject for StarfighterConfigEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5209,6 +5956,15 @@ impl TypeObject for StarfighterCollisionRepulsorPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5261,6 +6017,15 @@ impl TypeObject for SpringSetPhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5318,6 +6083,15 @@ impl TypeObject for ClientSpeederBikePhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5370,6 +6144,15 @@ impl TypeObject for SpeederBikePhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5424,6 +6207,15 @@ impl TypeObject for RearViewCameraTransformerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5476,6 +6268,15 @@ impl TypeObject for RearViewCameraConfigEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5530,6 +6331,15 @@ impl TypeObject for HoverCameraTransformerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5582,6 +6392,15 @@ impl TypeObject for HoverCameraConfigEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5636,6 +6455,15 @@ impl TypeObject for FollowCameraTransformerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5688,6 +6516,15 @@ impl TypeObject for FollowCameraConfigEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5742,6 +6579,15 @@ impl TypeObject for CockpitCameraTransformerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5794,6 +6640,15 @@ impl TypeObject for CockpitCameraConfigEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5848,6 +6703,15 @@ impl TypeObject for ClientPhysicalCameraTransformerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5900,6 +6764,15 @@ impl TypeObject for CameraSlerpTransformEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5954,6 +6827,15 @@ impl TypeObject for CameraInertiaTransformEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6006,6 +6888,15 @@ impl TypeObject for ArmCollisionCameraTransformerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6060,6 +6951,15 @@ impl TypeObject for ClientObstacleDetectionHint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6113,6 +7013,15 @@ impl TypeObject for ClientObstacleDetectionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6165,6 +7074,15 @@ impl TypeObject for ClientLogicAwarenessTargetEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6222,6 +7140,15 @@ impl TypeObject for ClientAwarenessTargetEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6274,6 +7201,15 @@ impl TypeObject for ServerSoldierIndoorsEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6328,6 +7264,15 @@ impl TypeObject for ClientVoiceOverQueryEventEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6380,6 +7325,15 @@ impl TypeObject for ClientSoldierIndoorsEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6434,6 +7388,15 @@ impl TypeObject for ClientAudioWheelLogicEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6486,6 +7449,15 @@ impl TypeObject for ClientAudioVehicleEngineParametersEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6540,6 +7512,15 @@ impl TypeObject for ClientAudioRaycastInfoEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6592,6 +7573,15 @@ impl TypeObject for SkiSpeederPhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6646,6 +7636,15 @@ impl TypeObject for SimpleEnginePhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6698,6 +7697,15 @@ impl TypeObject for ScriptedMotionPhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6752,6 +7760,15 @@ impl TypeObject for RollOnInputPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6804,6 +7821,15 @@ impl TypeObject for RepulsorLiftPhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6858,6 +7884,15 @@ impl TypeObject for PropertyReaderPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6910,6 +7945,15 @@ impl TypeObject for MutualRepulsorPhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6964,6 +8008,15 @@ impl TypeObject for MotionDampingPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7017,6 +8070,15 @@ impl TypeObject for LinearRepulsorLiftPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7069,6 +8131,15 @@ impl TypeObject for InputReaderActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7126,6 +8197,15 @@ impl TypeObject for ClientHoverTankPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7178,6 +8258,15 @@ impl TypeObject for HoverTankPhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7232,6 +8321,15 @@ impl TypeObject for HoverNoisePhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7284,6 +8382,15 @@ impl TypeObject for HoverLiftPhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7338,6 +8445,15 @@ impl TypeObject for GroundFollowPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7390,6 +8506,15 @@ impl TypeObject for ForcePhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7444,6 +8569,15 @@ impl TypeObject for ForceOverTimePhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7496,6 +8630,15 @@ impl TypeObject for FloatStateActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7550,6 +8693,15 @@ impl TypeObject for ConstraintPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7602,6 +8754,15 @@ impl TypeObject for CameraRelSteeringPhysicsActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7656,6 +8817,15 @@ impl TypeObject for AntiGravityPhysicsActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7708,6 +8878,15 @@ impl TypeObject for ClientGravityWellControllerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7762,6 +8941,15 @@ impl TypeObject for ClientFrameInterpolatedTransformEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7814,6 +9002,15 @@ impl TypeObject for ClientDiceShooterDeathExperienceEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7868,6 +9065,15 @@ impl TypeObject for ClientControllableInputFilterEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7920,6 +9126,15 @@ impl TypeObject for ClientControlInputEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7974,6 +9189,15 @@ impl TypeObject for ClientCharacterUtilEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8026,6 +9250,15 @@ impl TypeObject for BarrageEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8080,6 +9313,15 @@ impl TypeObject for TargetCyclingEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8132,6 +9374,15 @@ impl TypeObject for ServerPropertyToInputEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8186,6 +9437,15 @@ impl TypeObject for ClientPropertyToInputEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8238,6 +9498,15 @@ impl TypeObject for ServerClientVec3ToServerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8292,6 +9561,15 @@ impl TypeObject for ClientClientVec3ToServerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8344,6 +9622,15 @@ impl TypeObject for YawOnlyCameraTransformerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8398,6 +9685,15 @@ impl TypeObject for VelocityRedirectCameraTransformerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8450,6 +9746,15 @@ impl TypeObject for ThirdPersonCameraTransformerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8504,6 +9809,15 @@ impl TypeObject for StarfighterCameraTransformerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8556,6 +9870,15 @@ impl TypeObject for SpeederCameraTransformerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8610,6 +9933,15 @@ impl TypeObject for ServerPlayerAbilityExtent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8662,6 +9994,15 @@ impl TypeObject for ClientPlayerAbilityExtent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8719,6 +10060,15 @@ impl TypeObject for ServerRemotePlayerAbilityStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8771,6 +10121,15 @@ impl TypeObject for ServerPlayerAbilityStateEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8825,6 +10184,15 @@ impl TypeObject for ServerPlayerAbilityReferenceEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8878,6 +10246,15 @@ impl TypeObject for ServerPlayerAbilityPropertyOutputEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8930,6 +10307,15 @@ impl TypeObject for LODEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8987,6 +10373,15 @@ impl TypeObject for LocalPlayerLODEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9043,6 +10438,15 @@ impl TypeObject for CameraLODEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9095,6 +10499,15 @@ impl TypeObject for ServerTriggerExplosiveEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9149,6 +10562,15 @@ impl TypeObject for ServerTransformAreaQueryEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9202,6 +10624,15 @@ impl TypeObject for ServerFriendZoneEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9248,6 +10679,15 @@ impl TypeObject for ServerPhysicsLockHeightVolumeManager {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9293,6 +10733,15 @@ impl TypeObject for ClientPhysicsLockHeightVolumeManager {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -9347,6 +10796,15 @@ impl TypeObject for PhysicsLockHeightVolumeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9393,6 +10851,15 @@ impl TypeObject for ServerPhysicsFilterMetadataManager {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9438,6 +10905,15 @@ impl TypeObject for ClientPhysicsFilterMetadataManager {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -9492,6 +10968,15 @@ impl TypeObject for PhysicsFilterMetadataEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9544,6 +11029,15 @@ impl TypeObject for AudioRaycastCalculationEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9598,6 +11092,15 @@ impl TypeObject for ServerInformAnimationOfPhysicsStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9651,6 +11154,15 @@ impl TypeObject for ClientInformAnimationOfPhysicsStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9700,6 +11212,15 @@ impl TypeObject for CharacterCustomizationUserContext {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9763,6 +11284,15 @@ impl TypeObject for ServerMountHealthComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9824,6 +11354,15 @@ impl TypeObject for ClientMountHealthComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9887,6 +11426,15 @@ impl TypeObject for ClientCharacterAnimatableMeshProxyComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9945,6 +11493,15 @@ impl TypeObject for ServerVaultComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10005,6 +11562,15 @@ impl TypeObject for ClientVaultComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10063,6 +11629,15 @@ impl TypeObject for ServerSoldierSuppressionComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10123,6 +11698,15 @@ impl TypeObject for ClientSoldierSuppressionComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10172,6 +11756,15 @@ impl TypeObject for ShieldUserContext {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10232,6 +11825,15 @@ impl TypeObject for ServerShieldStateComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10285,6 +11887,15 @@ impl TypeObject for ClientAffectorReceiveEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10337,6 +11948,15 @@ impl TypeObject for ClientAffectorQueryFilterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10397,6 +12017,15 @@ impl TypeObject for ServerAffectorComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10456,6 +12085,15 @@ impl TypeObject for ClientAffectorComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10508,6 +12146,15 @@ impl TypeObject for ServerRemoveAffector {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10562,6 +12209,15 @@ impl TypeObject for ServerCharacterStateAffector {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10615,6 +12271,15 @@ impl TypeObject for ServerAffectorImmunityAffector {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10664,6 +12329,15 @@ impl TypeObject for ServerAffector {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10718,6 +12392,15 @@ impl TypeObject for ServerAbilityInputMappingAffector {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10770,6 +12453,15 @@ impl TypeObject for ClientRemoveAffector {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10824,6 +12516,15 @@ impl TypeObject for ClientCharacterStateAffector {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10877,6 +12578,15 @@ impl TypeObject for ClientAffectorImmunityAffector {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10926,6 +12636,15 @@ impl TypeObject for ClientAffector {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10980,6 +12699,15 @@ impl TypeObject for ClientAbilityInputMappingAffector {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11025,6 +12753,15 @@ impl TypeObject for Affector {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -11084,6 +12821,15 @@ impl TypeObject for ClientEntityCorrectionInterfaceComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -11159,6 +12905,15 @@ impl TypeObject for ServerRemoteEntryComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11229,6 +12984,15 @@ impl TypeObject for ServerDiceShooterVehicleEntryComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -11304,6 +13068,15 @@ impl TypeObject for ClientRemoteEntryComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11375,6 +13148,15 @@ impl TypeObject for ClientDiceShooterVehicleEntryComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11433,6 +13215,15 @@ impl TypeObject for ClientAwarenessComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -11493,6 +13284,15 @@ impl TypeObject for ClientWaterHitComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11551,6 +13351,15 @@ impl TypeObject for ServerCharacterStateEvalComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -11611,6 +13420,15 @@ impl TypeObject for ClientCharacterStateEvalComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11663,6 +13481,15 @@ impl TypeObject for ServerCharacterStateRequestEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -11717,6 +13544,15 @@ impl TypeObject for ServerCharacterStateChannelReaderEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11770,6 +13606,15 @@ impl TypeObject for ClientCharacterStateRequestEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11822,6 +13667,15 @@ impl TypeObject for ClientCharacterStateChannelReaderEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -11882,6 +13736,15 @@ impl TypeObject for ServerShieldPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11940,6 +13803,15 @@ impl TypeObject for ServerShieldHealthComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -12000,6 +13872,15 @@ impl TypeObject for ServerShieldControllerComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12058,6 +13939,15 @@ impl TypeObject for ServerShieldComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -12118,6 +14008,15 @@ impl TypeObject for ClientShieldStateComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12176,6 +14075,15 @@ impl TypeObject for ClientShieldPhysicsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -12236,6 +14144,15 @@ impl TypeObject for ClientShieldHealthComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12294,6 +14211,15 @@ impl TypeObject for ClientShieldControllerComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -12354,6 +14280,15 @@ impl TypeObject for ClientShieldComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12413,6 +14348,15 @@ impl TypeObject for ServerPhysicsActionCollectionComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12471,6 +14415,15 @@ impl TypeObject for ClientPhysicsActionCollectionComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -12534,6 +14487,15 @@ impl TypeObject for ServerMultiBodyPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12596,6 +14558,15 @@ impl TypeObject for ClientMultiBodyPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12654,6 +14625,15 @@ impl TypeObject for ServerEntityReplicationInterfaceComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -12714,6 +14694,15 @@ impl TypeObject for ServerEntityCorrectionInterfaceComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12773,6 +14762,15 @@ impl TypeObject for ClientEntityReplicationInterfaceComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12829,6 +14827,15 @@ impl TypeObject for ClientBasicPlayerAbility {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12882,6 +14889,15 @@ impl TypeObject for DiceShooterServerPlayerExtent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12934,6 +14950,15 @@ impl TypeObject for DiceShooterClientPlayerExtent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -12991,6 +15016,15 @@ impl TypeObject for ServerTerrainRaycastEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13043,6 +15077,15 @@ impl TypeObject for ServerSphereQueryEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -13097,6 +15140,15 @@ impl TypeObject for ServerSimpleStateWriteEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13149,6 +15201,15 @@ impl TypeObject for ServerSimpleStateReadEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -13203,6 +15264,15 @@ impl TypeObject for ServerSimpleStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13255,6 +15325,15 @@ impl TypeObject for ServerRemoteStateQueryFilterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -13309,6 +15388,15 @@ impl TypeObject for ServerRemoteStateWriteEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13361,6 +15449,15 @@ impl TypeObject for ServerRemoteStateReadEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -13415,6 +15512,15 @@ impl TypeObject for ServerRemoteStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13467,6 +15573,15 @@ impl TypeObject for ServerRaycastEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -13521,6 +15636,15 @@ impl TypeObject for ServerQuerySplitterEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13573,6 +15697,15 @@ impl TypeObject for ServerDynamicQueryFilterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -13627,6 +15760,15 @@ impl TypeObject for ServerQueryFilterEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13679,6 +15821,15 @@ impl TypeObject for ServerQueryCacheEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -13733,6 +15884,15 @@ impl TypeObject for ServerPhantomEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13785,6 +15945,15 @@ impl TypeObject for ServerOwnerToQueryResultEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -13839,6 +16008,15 @@ impl TypeObject for ServerInputQueryEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13891,6 +16069,15 @@ impl TypeObject for ServerFireProjectileEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -13945,6 +16132,15 @@ impl TypeObject for ServerDealDamageEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13997,6 +16193,15 @@ impl TypeObject for ServerDamageGiverEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14051,6 +16256,15 @@ impl TypeObject for QueryResultPlayerInspectorEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14103,6 +16317,15 @@ impl TypeObject for QueryResultBufferEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14157,6 +16380,15 @@ impl TypeObject for QueryEntityFilterTypeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14209,6 +16441,15 @@ impl TypeObject for PlayersQueryEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14263,6 +16504,15 @@ impl TypeObject for PlayersInsideEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14315,6 +16565,15 @@ impl TypeObject for PlayerEventToQueryResultEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14369,6 +16628,15 @@ impl TypeObject for FireProjectileEntityOverride {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14422,6 +16690,15 @@ impl TypeObject for ClientViewQueryEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14474,6 +16751,15 @@ impl TypeObject for ClientTransformQueryEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14531,6 +16817,15 @@ impl TypeObject for ClientTerrainRaycastEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14583,6 +16878,15 @@ impl TypeObject for ClientSphereQueryEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14637,6 +16941,15 @@ impl TypeObject for ClientSimpleStateWriteEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14689,6 +17002,15 @@ impl TypeObject for ClientSimpleStateReadEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14743,6 +17065,15 @@ impl TypeObject for ClientSimpleStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14795,6 +17126,15 @@ impl TypeObject for ClientRemoteStateQueryFilterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14849,6 +17189,15 @@ impl TypeObject for ClientRemoteStateWriteEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14901,6 +17250,15 @@ impl TypeObject for ClientRemoteStateReadEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14955,6 +17313,15 @@ impl TypeObject for ClientRemoteStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15007,6 +17374,15 @@ impl TypeObject for ClientAimingConstraint {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -15061,6 +17437,15 @@ impl TypeObject for ServerAffectorStreamEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15113,6 +17498,15 @@ impl TypeObject for ServerAffectorReceiveEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -15167,6 +17561,15 @@ impl TypeObject for ServerAffectorQueryFilterEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15219,6 +17622,15 @@ impl TypeObject for ServerAffectorApplyEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -15273,6 +17685,15 @@ impl TypeObject for ClientAffectorStreamEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15318,6 +17739,15 @@ impl TypeObject for ClientPlayerLocalPlayerReviveRefusedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -15351,6 +17781,15 @@ impl TypeObject for ClientPlayerLocalPlayerReviveAcceptedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -15386,6 +17825,15 @@ impl TypeObject for ClientPlayerLocalPlayerReviveQueryMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -15419,6 +17867,15 @@ impl TypeObject for ClientPlayerLocalPlayerDeadMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -15454,6 +17911,15 @@ impl TypeObject for ClientPlayerLocalPlayerAliveMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -15487,6 +17953,15 @@ impl TypeObject for ClientSoldierSuppressionSuppressMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -15522,6 +17997,15 @@ impl TypeObject for ServerSoldierSuppressionSuppressMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -15555,6 +18039,15 @@ impl TypeObject for ServerPlayerChangedSquadLeaderStatusMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -15590,6 +18083,15 @@ impl TypeObject for ServerPlayerSwitchSquadMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -15623,6 +18125,15 @@ impl TypeObject for ClientPlayerChangedSquadLeaderStatusMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -15658,6 +18169,15 @@ impl TypeObject for ClientPlayerSwitchSquadMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -15668,11 +18188,15 @@ pub struct ClientCharacterUtilData {
 
 pub trait ClientCharacterUtilDataTrait: super::entity::EntityDataTrait {
     fn dummy_b_f_legacy(&self) -> &bool;
+    fn dummy_b_f_legacy_mut(&mut self) -> &mut bool;
 }
 
 impl ClientCharacterUtilDataTrait for ClientCharacterUtilData {
     fn dummy_b_f_legacy(&self) -> &bool {
         &self.dummy_b_f_legacy
+    }
+    fn dummy_b_f_legacy_mut(&mut self) -> &mut bool {
+        &mut self.dummy_b_f_legacy
     }
 }
 
@@ -15686,15 +18210,15 @@ impl super::core::DataBusPeerTrait for ClientCharacterUtilData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ClientCharacterUtilData {
 }
 
 impl super::core::DataContainerTrait for ClientCharacterUtilData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLIENTCHARACTERUTILDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15726,6 +18250,15 @@ impl TypeObject for ClientCharacterUtilData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15746,11 +18279,15 @@ pub struct CharacterStateControllerStateList {
 
 pub trait CharacterStateControllerStateListTrait: TypeObject {
     fn slot_list(&self) -> &CharacterStateControllerStateSlotList;
+    fn slot_list_mut(&mut self) -> &mut CharacterStateControllerStateSlotList;
 }
 
 impl CharacterStateControllerStateListTrait for CharacterStateControllerStateList {
     fn slot_list(&self) -> &CharacterStateControllerStateSlotList {
         &self.slot_list
+    }
+    fn slot_list_mut(&mut self) -> &mut CharacterStateControllerStateSlotList {
+        &mut self.slot_list
     }
 }
 
@@ -15782,6 +18319,15 @@ impl TypeObject for CharacterStateControllerStateList {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15804,19 +18350,31 @@ pub struct CharacterStateControllerStateSlotList {
 
 pub trait CharacterStateControllerStateSlotListTrait: TypeObject {
     fn owner_data(&self) -> &u64;
+    fn owner_data_mut(&mut self) -> &mut u64;
     fn is_replication(&self) -> &bool;
+    fn is_replication_mut(&mut self) -> &mut bool;
     fn game_state_table(&self) -> &NetworkedChannelRawData;
+    fn game_state_table_mut(&mut self) -> &mut NetworkedChannelRawData;
 }
 
 impl CharacterStateControllerStateSlotListTrait for CharacterStateControllerStateSlotList {
     fn owner_data(&self) -> &u64 {
         &self.owner_data
     }
+    fn owner_data_mut(&mut self) -> &mut u64 {
+        &mut self.owner_data
+    }
     fn is_replication(&self) -> &bool {
         &self.is_replication
     }
+    fn is_replication_mut(&mut self) -> &mut bool {
+        &mut self.is_replication
+    }
     fn game_state_table(&self) -> &NetworkedChannelRawData {
         &self.game_state_table
+    }
+    fn game_state_table_mut(&mut self) -> &mut NetworkedChannelRawData {
+        &mut self.game_state_table
     }
 }
 
@@ -15860,6 +18418,15 @@ impl TypeObject for CharacterStateControllerStateSlotList {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15881,15 +18448,23 @@ pub struct CBaseControllerState {
 
 pub trait CBaseControllerStateTrait: TypeObject {
     fn asset_index(&self) -> &u16;
+    fn asset_index_mut(&mut self) -> &mut u16;
     fn networked_state_index(&self) -> &u8;
+    fn networked_state_index_mut(&mut self) -> &mut u8;
 }
 
 impl CBaseControllerStateTrait for CBaseControllerState {
     fn asset_index(&self) -> &u16 {
         &self.asset_index
     }
+    fn asset_index_mut(&mut self) -> &mut u16 {
+        &mut self.asset_index
+    }
     fn networked_state_index(&self) -> &u8 {
         &self.networked_state_index
+    }
+    fn networked_state_index_mut(&mut self) -> &mut u8 {
+        &mut self.networked_state_index
     }
 }
 
@@ -15927,6 +18502,15 @@ impl TypeObject for CBaseControllerState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15949,19 +18533,31 @@ pub struct CharacterStatePairedClipState {
 
 pub trait CharacterStatePairedClipStateTrait: TypeObject {
     fn current_blend(&self) -> &f32;
+    fn current_blend_mut(&mut self) -> &mut f32;
     fn start_connect_trans_and_scale(&self) -> &super::core::Vec4;
+    fn start_connect_trans_and_scale_mut(&mut self) -> &mut super::core::Vec4;
     fn start_connect_quat(&self) -> &super::core::Quat;
+    fn start_connect_quat_mut(&mut self) -> &mut super::core::Quat;
 }
 
 impl CharacterStatePairedClipStateTrait for CharacterStatePairedClipState {
     fn current_blend(&self) -> &f32 {
         &self.current_blend
     }
+    fn current_blend_mut(&mut self) -> &mut f32 {
+        &mut self.current_blend
+    }
     fn start_connect_trans_and_scale(&self) -> &super::core::Vec4 {
         &self.start_connect_trans_and_scale
     }
+    fn start_connect_trans_and_scale_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.start_connect_trans_and_scale
+    }
     fn start_connect_quat(&self) -> &super::core::Quat {
         &self.start_connect_quat
+    }
+    fn start_connect_quat_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.start_connect_quat
     }
 }
 
@@ -16005,6 +18601,15 @@ impl TypeObject for CharacterStatePairedClipState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16030,31 +18635,55 @@ pub struct CharacterStateIKState {
 
 pub trait CharacterStateIKStateTrait: TypeObject {
     fn i_k_target_rotation(&self) -> &super::core::Quat;
+    fn i_k_target_rotation_mut(&mut self) -> &mut super::core::Quat;
     fn i_k_target_position(&self) -> &super::core::Vec3;
+    fn i_k_target_position_mut(&mut self) -> &mut super::core::Vec3;
     fn i_k_to_anim_rotation(&self) -> &super::core::Quat;
+    fn i_k_to_anim_rotation_mut(&mut self) -> &mut super::core::Quat;
     fn i_k_to_anim_position(&self) -> &super::core::Vec3;
+    fn i_k_to_anim_position_mut(&mut self) -> &mut super::core::Vec3;
     fn blend_ticks(&self) -> &u8;
+    fn blend_ticks_mut(&mut self) -> &mut u8;
     fn disabled_tick(&self) -> &u64;
+    fn disabled_tick_mut(&mut self) -> &mut u64;
 }
 
 impl CharacterStateIKStateTrait for CharacterStateIKState {
     fn i_k_target_rotation(&self) -> &super::core::Quat {
         &self.i_k_target_rotation
     }
+    fn i_k_target_rotation_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.i_k_target_rotation
+    }
     fn i_k_target_position(&self) -> &super::core::Vec3 {
         &self.i_k_target_position
+    }
+    fn i_k_target_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.i_k_target_position
     }
     fn i_k_to_anim_rotation(&self) -> &super::core::Quat {
         &self.i_k_to_anim_rotation
     }
+    fn i_k_to_anim_rotation_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.i_k_to_anim_rotation
+    }
     fn i_k_to_anim_position(&self) -> &super::core::Vec3 {
         &self.i_k_to_anim_position
+    }
+    fn i_k_to_anim_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.i_k_to_anim_position
     }
     fn blend_ticks(&self) -> &u8 {
         &self.blend_ticks
     }
+    fn blend_ticks_mut(&mut self) -> &mut u8 {
+        &mut self.blend_ticks
+    }
     fn disabled_tick(&self) -> &u64 {
         &self.disabled_tick
+    }
+    fn disabled_tick_mut(&mut self) -> &mut u64 {
+        &mut self.disabled_tick
     }
 }
 
@@ -16116,6 +18745,15 @@ impl TypeObject for CharacterStateIKState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16160,6 +18798,15 @@ impl TypeObject for CharacterStateKeyframedVec3ChannelState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16206,6 +18853,15 @@ impl TypeObject for CharacterStateHelperState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16229,23 +18885,39 @@ pub struct CharacterStateClimbingState {
 
 pub trait CharacterStateClimbingStateTrait: TypeObject {
     fn child_absolute_time(&self) -> &f32;
+    fn child_absolute_time_mut(&mut self) -> &mut f32;
     fn climbing_object_height(&self) -> &f32;
+    fn climbing_object_height_mut(&mut self) -> &mut f32;
     fn climbing_rotation(&self) -> &super::core::Quat;
+    fn climbing_rotation_mut(&mut self) -> &mut super::core::Quat;
     fn climbing_object_position(&self) -> &super::core::Vec3;
+    fn climbing_object_position_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl CharacterStateClimbingStateTrait for CharacterStateClimbingState {
     fn child_absolute_time(&self) -> &f32 {
         &self.child_absolute_time
     }
+    fn child_absolute_time_mut(&mut self) -> &mut f32 {
+        &mut self.child_absolute_time
+    }
     fn climbing_object_height(&self) -> &f32 {
         &self.climbing_object_height
+    }
+    fn climbing_object_height_mut(&mut self) -> &mut f32 {
+        &mut self.climbing_object_height
     }
     fn climbing_rotation(&self) -> &super::core::Quat {
         &self.climbing_rotation
     }
+    fn climbing_rotation_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.climbing_rotation
+    }
     fn climbing_object_position(&self) -> &super::core::Vec3 {
         &self.climbing_object_position
+    }
+    fn climbing_object_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.climbing_object_position
     }
 }
 
@@ -16295,6 +18967,15 @@ impl TypeObject for CharacterStateClimbingState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16339,6 +19020,15 @@ impl TypeObject for CharacterStateCheckStartVaultState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16385,6 +19075,15 @@ impl TypeObject for CharacterStateCheckStartClimbingState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16429,6 +19128,15 @@ impl TypeObject for CharacterStatePhaseState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16475,6 +19183,15 @@ impl TypeObject for CharacterStateParachuteState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16519,6 +19236,15 @@ impl TypeObject for CharacterStateCharacterStateHelperState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16565,6 +19291,15 @@ impl TypeObject for CharacterStateCameraRelativeSteeringState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16609,6 +19344,15 @@ impl TypeObject for CharacterStateRotateWithYawState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16655,6 +19399,15 @@ impl TypeObject for CharacterStateAdjustToGroundState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16676,15 +19429,23 @@ pub struct CharacterStateClipFromInputState {
 
 pub trait CharacterStateClipFromInputStateTrait: TypeObject {
     fn current_rotation(&self) -> &super::core::Quat;
+    fn current_rotation_mut(&mut self) -> &mut super::core::Quat;
     fn chosen_index(&self) -> &u8;
+    fn chosen_index_mut(&mut self) -> &mut u8;
 }
 
 impl CharacterStateClipFromInputStateTrait for CharacterStateClipFromInputState {
     fn current_rotation(&self) -> &super::core::Quat {
         &self.current_rotation
     }
+    fn current_rotation_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.current_rotation
+    }
     fn chosen_index(&self) -> &u8 {
         &self.chosen_index
+    }
+    fn chosen_index_mut(&mut self) -> &mut u8 {
+        &mut self.chosen_index
     }
 }
 
@@ -16722,6 +19483,15 @@ impl TypeObject for CharacterStateClipFromInputState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16742,11 +19512,15 @@ pub struct CharacterStatePoseMatchingState {
 
 pub trait CharacterStatePoseMatchingStateTrait: TypeObject {
     fn tick_offset(&self) -> &i32;
+    fn tick_offset_mut(&mut self) -> &mut i32;
 }
 
 impl CharacterStatePoseMatchingStateTrait for CharacterStatePoseMatchingState {
     fn tick_offset(&self) -> &i32 {
         &self.tick_offset
+    }
+    fn tick_offset_mut(&mut self) -> &mut i32 {
+        &mut self.tick_offset
     }
 }
 
@@ -16777,6 +19551,15 @@ impl TypeObject for CharacterStatePoseMatchingState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16823,6 +19606,15 @@ impl TypeObject for CharacterStateIndexChooserState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16867,6 +19659,15 @@ impl TypeObject for CharacterStateAuthoritativeMotionState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16913,6 +19714,15 @@ impl TypeObject for CharacterStateMoveToTargetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16957,6 +19767,15 @@ impl TypeObject for CharacterStateKeyframedTransformChannelState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17003,6 +19822,15 @@ impl TypeObject for CharacterStateKeyframedIntChannelState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17047,6 +19875,15 @@ impl TypeObject for CharacterStateKeyframedFloatChannelState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17093,6 +19930,15 @@ impl TypeObject for CharacterStateKeyframedBoolChannelState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17137,6 +19983,15 @@ impl TypeObject for CharacterStateKeyframedChannelState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17183,6 +20038,15 @@ impl TypeObject for CharacterStateApplyAccelerationFromInputState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17227,6 +20091,15 @@ impl TypeObject for CharacterStateApplyFrictionState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17273,6 +20146,15 @@ impl TypeObject for CharacterStateImpulseState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17317,6 +20199,15 @@ impl TypeObject for CharacterStateConstantVelocityState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17363,6 +20254,15 @@ impl TypeObject for CharacterStateConstantAccelerationState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17407,6 +20307,15 @@ impl TypeObject for CharacterStateFollowGroundState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17453,6 +20362,15 @@ impl TypeObject for CharacterStateSlidingState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17473,11 +20391,15 @@ pub struct CharacterStatePoseState {
 
 pub trait CharacterStatePoseStateTrait: TypeObject {
     fn ticks_until_finished(&self) -> &i32;
+    fn ticks_until_finished_mut(&mut self) -> &mut i32;
 }
 
 impl CharacterStatePoseStateTrait for CharacterStatePoseState {
     fn ticks_until_finished(&self) -> &i32 {
         &self.ticks_until_finished
+    }
+    fn ticks_until_finished_mut(&mut self) -> &mut i32 {
+        &mut self.ticks_until_finished
     }
 }
 
@@ -17508,6 +20430,15 @@ impl TypeObject for CharacterStatePoseState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17554,6 +20485,15 @@ impl TypeObject for CharacterStateWarpAnimationToInputState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17592,6 +20532,15 @@ impl TypeObject for CharacterStateWarpAnimationToInputOffsets {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17638,6 +20587,15 @@ impl TypeObject for CharacterStateWarpClipState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17662,27 +20620,47 @@ pub struct CharacterStateJetPackState {
 
 pub trait CharacterStateJetPackStateTrait: TypeObject {
     fn jetpack_state(&self) -> &JetPackStateEnum;
+    fn jetpack_state_mut(&mut self) -> &mut JetPackStateEnum;
     fn button_was_down_last_update(&self) -> &bool;
+    fn button_was_down_last_update_mut(&mut self) -> &mut bool;
     fn active_ticks(&self) -> &i32;
+    fn active_ticks_mut(&mut self) -> &mut i32;
     fn landing_ticks(&self) -> &i32;
+    fn landing_ticks_mut(&mut self) -> &mut i32;
     fn height_limit(&self) -> &f32;
+    fn height_limit_mut(&mut self) -> &mut f32;
 }
 
 impl CharacterStateJetPackStateTrait for CharacterStateJetPackState {
     fn jetpack_state(&self) -> &JetPackStateEnum {
         &self.jetpack_state
     }
+    fn jetpack_state_mut(&mut self) -> &mut JetPackStateEnum {
+        &mut self.jetpack_state
+    }
     fn button_was_down_last_update(&self) -> &bool {
         &self.button_was_down_last_update
+    }
+    fn button_was_down_last_update_mut(&mut self) -> &mut bool {
+        &mut self.button_was_down_last_update
     }
     fn active_ticks(&self) -> &i32 {
         &self.active_ticks
     }
+    fn active_ticks_mut(&mut self) -> &mut i32 {
+        &mut self.active_ticks
+    }
     fn landing_ticks(&self) -> &i32 {
         &self.landing_ticks
     }
+    fn landing_ticks_mut(&mut self) -> &mut i32 {
+        &mut self.landing_ticks
+    }
     fn height_limit(&self) -> &f32 {
         &self.height_limit
+    }
+    fn height_limit_mut(&mut self) -> &mut f32 {
+        &mut self.height_limit
     }
 }
 
@@ -17738,6 +20716,15 @@ impl TypeObject for CharacterStateJetPackState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17762,27 +20749,47 @@ pub struct CharacterStateJumpPackState {
 
 pub trait CharacterStateJumpPackStateTrait: TypeObject {
     fn active_ticks(&self) -> &i32;
+    fn active_ticks_mut(&mut self) -> &mut i32;
     fn landing_ticks(&self) -> &i32;
+    fn landing_ticks_mut(&mut self) -> &mut i32;
     fn last_frame_pos_y_vel(&self) -> &bool;
+    fn last_frame_pos_y_vel_mut(&mut self) -> &mut bool;
     fn button_was_down_last_update(&self) -> &bool;
+    fn button_was_down_last_update_mut(&mut self) -> &mut bool;
     fn jetpack_state(&self) -> &JetPackStateEnum;
+    fn jetpack_state_mut(&mut self) -> &mut JetPackStateEnum;
 }
 
 impl CharacterStateJumpPackStateTrait for CharacterStateJumpPackState {
     fn active_ticks(&self) -> &i32 {
         &self.active_ticks
     }
+    fn active_ticks_mut(&mut self) -> &mut i32 {
+        &mut self.active_ticks
+    }
     fn landing_ticks(&self) -> &i32 {
         &self.landing_ticks
+    }
+    fn landing_ticks_mut(&mut self) -> &mut i32 {
+        &mut self.landing_ticks
     }
     fn last_frame_pos_y_vel(&self) -> &bool {
         &self.last_frame_pos_y_vel
     }
+    fn last_frame_pos_y_vel_mut(&mut self) -> &mut bool {
+        &mut self.last_frame_pos_y_vel
+    }
     fn button_was_down_last_update(&self) -> &bool {
         &self.button_was_down_last_update
     }
+    fn button_was_down_last_update_mut(&mut self) -> &mut bool {
+        &mut self.button_was_down_last_update
+    }
     fn jetpack_state(&self) -> &JetPackStateEnum {
         &self.jetpack_state
+    }
+    fn jetpack_state_mut(&mut self) -> &mut JetPackStateEnum {
+        &mut self.jetpack_state
     }
 }
 
@@ -17838,6 +20845,15 @@ impl TypeObject for CharacterStateJumpPackState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17881,6 +20897,15 @@ impl TypeObject for JetPackStateEnum {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17927,6 +20952,15 @@ impl TypeObject for CharacterStateCheckSupportState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17971,6 +21005,15 @@ impl TypeObject for CharacterStateNetworkEndState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -18017,6 +21060,15 @@ impl TypeObject for CharacterStateClipState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18037,11 +21089,15 @@ pub struct CharacterStateStateFlowNodeTransitionState {
 
 pub trait CharacterStateStateFlowNodeTransitionStateTrait: TypeObject {
     fn start_time(&self) -> &u32;
+    fn start_time_mut(&mut self) -> &mut u32;
 }
 
 impl CharacterStateStateFlowNodeTransitionStateTrait for CharacterStateStateFlowNodeTransitionState {
     fn start_time(&self) -> &u32 {
         &self.start_time
+    }
+    fn start_time_mut(&mut self) -> &mut u32 {
+        &mut self.start_time
     }
 }
 
@@ -18073,6 +21129,15 @@ impl TypeObject for CharacterStateStateFlowNodeTransitionState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18094,15 +21159,23 @@ pub struct CharacterStateStateFlowNodeState {
 
 pub trait CharacterStateStateFlowNodeStateTrait: TypeObject {
     fn start_time(&self) -> &u32;
+    fn start_time_mut(&mut self) -> &mut u32;
     fn child_offset_time(&self) -> &u32;
+    fn child_offset_time_mut(&mut self) -> &mut u32;
 }
 
 impl CharacterStateStateFlowNodeStateTrait for CharacterStateStateFlowNodeState {
     fn start_time(&self) -> &u32 {
         &self.start_time
     }
+    fn start_time_mut(&mut self) -> &mut u32 {
+        &mut self.start_time
+    }
     fn child_offset_time(&self) -> &u32 {
         &self.child_offset_time
+    }
+    fn child_offset_time_mut(&mut self) -> &mut u32 {
+        &mut self.child_offset_time
     }
 }
 
@@ -18139,6 +21212,15 @@ impl TypeObject for CharacterStateStateFlowNodeState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -18185,6 +21267,15 @@ impl TypeObject for CharacterStateStateFlowState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18205,11 +21296,15 @@ pub struct CharacterStateTimeState {
 
 pub trait CharacterStateTimeStateTrait: TypeObject {
     fn time_multiplier(&self) -> &f32;
+    fn time_multiplier_mut(&mut self) -> &mut f32;
 }
 
 impl CharacterStateTimeStateTrait for CharacterStateTimeState {
     fn time_multiplier(&self) -> &f32 {
         &self.time_multiplier
+    }
+    fn time_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.time_multiplier
     }
 }
 
@@ -18241,6 +21336,15 @@ impl TypeObject for CharacterStateTimeState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18262,15 +21366,23 @@ pub struct CharacterStateClipOnlyBlendSpaceState {
 
 pub trait CharacterStateClipOnlyBlendSpaceStateTrait: TypeObject {
     fn time_offset(&self) -> &i32;
+    fn time_offset_mut(&mut self) -> &mut i32;
     fn last_triangle_index(&self) -> &i32;
+    fn last_triangle_index_mut(&mut self) -> &mut i32;
 }
 
 impl CharacterStateClipOnlyBlendSpaceStateTrait for CharacterStateClipOnlyBlendSpaceState {
     fn time_offset(&self) -> &i32 {
         &self.time_offset
     }
+    fn time_offset_mut(&mut self) -> &mut i32 {
+        &mut self.time_offset
+    }
     fn last_triangle_index(&self) -> &i32 {
         &self.last_triangle_index
+    }
+    fn last_triangle_index_mut(&mut self) -> &mut i32 {
+        &mut self.last_triangle_index
     }
 }
 
@@ -18308,6 +21420,15 @@ impl TypeObject for CharacterStateClipOnlyBlendSpaceState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18329,15 +21450,23 @@ pub struct CharacterStateBlendSpaceState {
 
 pub trait CharacterStateBlendSpaceStateTrait: TypeObject {
     fn time_offset(&self) -> &i32;
+    fn time_offset_mut(&mut self) -> &mut i32;
     fn last_triangle_index(&self) -> &i32;
+    fn last_triangle_index_mut(&mut self) -> &mut i32;
 }
 
 impl CharacterStateBlendSpaceStateTrait for CharacterStateBlendSpaceState {
     fn time_offset(&self) -> &i32 {
         &self.time_offset
     }
+    fn time_offset_mut(&mut self) -> &mut i32 {
+        &mut self.time_offset
+    }
     fn last_triangle_index(&self) -> &i32 {
         &self.last_triangle_index
+    }
+    fn last_triangle_index_mut(&mut self) -> &mut i32 {
+        &mut self.last_triangle_index
     }
 }
 
@@ -18374,6 +21503,15 @@ impl TypeObject for CharacterStateBlendSpaceState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -18420,6 +21558,15 @@ impl TypeObject for CharacterStateLayerState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18457,6 +21604,15 @@ impl TypeObject for CharacterStateLayerInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18477,11 +21633,15 @@ pub struct CharacterStateRootState {
 
 pub trait CharacterStateRootStateTrait: TypeObject {
     fn time(&self) -> &u32;
+    fn time_mut(&mut self) -> &mut u32;
 }
 
 impl CharacterStateRootStateTrait for CharacterStateRootState {
     fn time(&self) -> &u32 {
         &self.time
+    }
+    fn time_mut(&mut self) -> &mut u32 {
+        &mut self.time
     }
 }
 
@@ -18512,6 +21672,15 @@ impl TypeObject for CharacterStateRootState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -18558,6 +21727,15 @@ impl TypeObject for NonNetworkedChannelRawData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18603,6 +21781,15 @@ impl TypeObject for NetworkedChannelRawData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18639,6 +21826,15 @@ impl TypeObject for RawDataMaxLimits {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

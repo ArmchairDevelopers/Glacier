@@ -84,6 +84,15 @@ impl TypeObject for ServerGameManagerAddQueuedPlayerMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -117,6 +126,15 @@ impl TypeObject for ServerGameManagerGameDestructingMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -152,6 +170,15 @@ impl TypeObject for ServerGameManagerPlayerRemovedMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -185,6 +212,15 @@ impl TypeObject for ServerGameManagerPlayerJoinCompleteMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -220,6 +256,15 @@ impl TypeObject for ServerGameManagerPlayerJoiningMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -253,6 +298,15 @@ impl TypeObject for ServerGameManagerUpdateCapacityMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -288,6 +342,15 @@ impl TypeObject for ServerGameManagerGameParametersChangedMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -321,6 +384,15 @@ impl TypeObject for ServerGameManagerChangeGameParametersMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -356,6 +428,15 @@ impl TypeObject for ServerGameManagerReconfigurableGameCreatedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -389,6 +470,15 @@ impl TypeObject for ServerGameManagerCreatingReconfigurableGameMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -424,6 +514,15 @@ impl TypeObject for ServerGameManagerGameResetMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -457,6 +556,15 @@ impl TypeObject for ServerGameManagerGameCreatedMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -492,6 +600,15 @@ impl TypeObject for ServerGameManagerCreatingGameMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -502,11 +619,15 @@ pub struct ServerGameManagementBackendData {
 
 pub trait ServerGameManagementBackendDataTrait: super::online_shared::PresenceBackendDataTrait {
     fn create_parameters(&self) -> &Option<Arc<Mutex<dyn GameParametersDataTrait>>>;
+    fn create_parameters_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GameParametersDataTrait>>>;
 }
 
 impl ServerGameManagementBackendDataTrait for ServerGameManagementBackendData {
     fn create_parameters(&self) -> &Option<Arc<Mutex<dyn GameParametersDataTrait>>> {
         &self.create_parameters
+    }
+    fn create_parameters_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GameParametersDataTrait>>> {
+        &mut self.create_parameters
     }
 }
 
@@ -514,18 +635,21 @@ impl super::online_shared::PresenceBackendDataTrait for ServerGameManagementBack
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for ServerGameManagementBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ServerGameManagementBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SERVERGAMEMANAGEMENTBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -556,6 +680,15 @@ impl TypeObject for ServerGameManagementBackendData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -601,103 +734,199 @@ pub struct GameParametersData {
 
 pub trait GameParametersDataTrait: super::core::AssetTrait {
     fn server_name(&self) -> &String;
+    fn server_name_mut(&mut self) -> &mut String;
     fn game_type(&self) -> &super::game_shared::PersistenceGameType;
+    fn game_type_mut(&mut self) -> &mut super::game_shared::PersistenceGameType;
     fn open_to_invites(&self) -> &bool;
+    fn open_to_invites_mut(&mut self) -> &mut bool;
     fn open_to_matchmaking(&self) -> &bool;
+    fn open_to_matchmaking_mut(&mut self) -> &mut bool;
     fn open_to_join_by_player(&self) -> &bool;
+    fn open_to_join_by_player_mut(&mut self) -> &mut bool;
     fn open_to_browsing(&self) -> &bool;
+    fn open_to_browsing_mut(&mut self) -> &mut bool;
     fn ranked(&self) -> &bool;
+    fn ranked_mut(&mut self) -> &mut bool;
     fn host_migratable(&self) -> &bool;
+    fn host_migratable_mut(&mut self) -> &mut bool;
     fn join_in_progress_supported(&self) -> &bool;
+    fn join_in_progress_supported_mut(&mut self) -> &mut bool;
     fn allow_any_reputation(&self) -> &bool;
+    fn allow_any_reputation_mut(&mut self) -> &mut bool;
     fn dynamic_reputation_requirement(&self) -> &bool;
+    fn dynamic_reputation_requirement_mut(&mut self) -> &mut bool;
     fn friends_bypass_closed_to_join_by_player(&self) -> &bool;
+    fn friends_bypass_closed_to_join_by_player_mut(&mut self) -> &mut bool;
     fn queue_capacity(&self) -> &u32;
+    fn queue_capacity_mut(&mut self) -> &mut u32;
     fn r#mod(&self) -> &u32;
+    fn r#mod_mut(&mut self) -> &mut u32;
     fn max_spectators(&self) -> &u32;
+    fn max_spectators_mut(&mut self) -> &mut u32;
     fn max_allowed_capacity(&self) -> &u32;
+    fn max_allowed_capacity_mut(&mut self) -> &mut u32;
     fn default_max_players(&self) -> &u32;
+    fn default_max_players_mut(&mut self) -> &mut u32;
     fn game_topology(&self) -> &GameNetworkTopology;
+    fn game_topology_mut(&mut self) -> &mut GameNetworkTopology;
     fn peer_mode(&self) -> &GamePeer2PeerMode;
+    fn peer_mode_mut(&mut self) -> &mut GamePeer2PeerMode;
     fn voip_topology(&self) -> &GameNetworkTopology;
+    fn voip_topology_mut(&mut self) -> &mut GameNetworkTopology;
     fn attributes(&self) -> &Vec<GameAttributeData>;
+    fn attributes_mut(&mut self) -> &mut Vec<GameAttributeData>;
     fn role_configuration(&self) -> &Vec<Option<Arc<Mutex<dyn GameRoleInformationTrait>>>>;
+    fn role_configuration_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameRoleInformationTrait>>>>;
     fn role(&self) -> &String;
+    fn role_mut(&mut self) -> &mut String;
     fn teams(&self) -> &i32;
+    fn teams_mut(&mut self) -> &mut i32;
 }
 
 impl GameParametersDataTrait for GameParametersData {
     fn server_name(&self) -> &String {
         &self.server_name
     }
+    fn server_name_mut(&mut self) -> &mut String {
+        &mut self.server_name
+    }
     fn game_type(&self) -> &super::game_shared::PersistenceGameType {
         &self.game_type
+    }
+    fn game_type_mut(&mut self) -> &mut super::game_shared::PersistenceGameType {
+        &mut self.game_type
     }
     fn open_to_invites(&self) -> &bool {
         &self.open_to_invites
     }
+    fn open_to_invites_mut(&mut self) -> &mut bool {
+        &mut self.open_to_invites
+    }
     fn open_to_matchmaking(&self) -> &bool {
         &self.open_to_matchmaking
+    }
+    fn open_to_matchmaking_mut(&mut self) -> &mut bool {
+        &mut self.open_to_matchmaking
     }
     fn open_to_join_by_player(&self) -> &bool {
         &self.open_to_join_by_player
     }
+    fn open_to_join_by_player_mut(&mut self) -> &mut bool {
+        &mut self.open_to_join_by_player
+    }
     fn open_to_browsing(&self) -> &bool {
         &self.open_to_browsing
+    }
+    fn open_to_browsing_mut(&mut self) -> &mut bool {
+        &mut self.open_to_browsing
     }
     fn ranked(&self) -> &bool {
         &self.ranked
     }
+    fn ranked_mut(&mut self) -> &mut bool {
+        &mut self.ranked
+    }
     fn host_migratable(&self) -> &bool {
         &self.host_migratable
+    }
+    fn host_migratable_mut(&mut self) -> &mut bool {
+        &mut self.host_migratable
     }
     fn join_in_progress_supported(&self) -> &bool {
         &self.join_in_progress_supported
     }
+    fn join_in_progress_supported_mut(&mut self) -> &mut bool {
+        &mut self.join_in_progress_supported
+    }
     fn allow_any_reputation(&self) -> &bool {
         &self.allow_any_reputation
+    }
+    fn allow_any_reputation_mut(&mut self) -> &mut bool {
+        &mut self.allow_any_reputation
     }
     fn dynamic_reputation_requirement(&self) -> &bool {
         &self.dynamic_reputation_requirement
     }
+    fn dynamic_reputation_requirement_mut(&mut self) -> &mut bool {
+        &mut self.dynamic_reputation_requirement
+    }
     fn friends_bypass_closed_to_join_by_player(&self) -> &bool {
         &self.friends_bypass_closed_to_join_by_player
+    }
+    fn friends_bypass_closed_to_join_by_player_mut(&mut self) -> &mut bool {
+        &mut self.friends_bypass_closed_to_join_by_player
     }
     fn queue_capacity(&self) -> &u32 {
         &self.queue_capacity
     }
+    fn queue_capacity_mut(&mut self) -> &mut u32 {
+        &mut self.queue_capacity
+    }
     fn r#mod(&self) -> &u32 {
         &self.r#mod
+    }
+    fn r#mod_mut(&mut self) -> &mut u32 {
+        &mut self.r#mod
     }
     fn max_spectators(&self) -> &u32 {
         &self.max_spectators
     }
+    fn max_spectators_mut(&mut self) -> &mut u32 {
+        &mut self.max_spectators
+    }
     fn max_allowed_capacity(&self) -> &u32 {
         &self.max_allowed_capacity
+    }
+    fn max_allowed_capacity_mut(&mut self) -> &mut u32 {
+        &mut self.max_allowed_capacity
     }
     fn default_max_players(&self) -> &u32 {
         &self.default_max_players
     }
+    fn default_max_players_mut(&mut self) -> &mut u32 {
+        &mut self.default_max_players
+    }
     fn game_topology(&self) -> &GameNetworkTopology {
         &self.game_topology
+    }
+    fn game_topology_mut(&mut self) -> &mut GameNetworkTopology {
+        &mut self.game_topology
     }
     fn peer_mode(&self) -> &GamePeer2PeerMode {
         &self.peer_mode
     }
+    fn peer_mode_mut(&mut self) -> &mut GamePeer2PeerMode {
+        &mut self.peer_mode
+    }
     fn voip_topology(&self) -> &GameNetworkTopology {
         &self.voip_topology
+    }
+    fn voip_topology_mut(&mut self) -> &mut GameNetworkTopology {
+        &mut self.voip_topology
     }
     fn attributes(&self) -> &Vec<GameAttributeData> {
         &self.attributes
     }
+    fn attributes_mut(&mut self) -> &mut Vec<GameAttributeData> {
+        &mut self.attributes
+    }
     fn role_configuration(&self) -> &Vec<Option<Arc<Mutex<dyn GameRoleInformationTrait>>>> {
         &self.role_configuration
+    }
+    fn role_configuration_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameRoleInformationTrait>>>> {
+        &mut self.role_configuration
     }
     fn role(&self) -> &String {
         &self.role
     }
+    fn role_mut(&mut self) -> &mut String {
+        &mut self.role
+    }
     fn teams(&self) -> &i32 {
         &self.teams
+    }
+    fn teams_mut(&mut self) -> &mut i32 {
+        &mut self.teams
     }
 }
 
@@ -705,12 +934,12 @@ impl super::core::AssetTrait for GameParametersData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for GameParametersData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GAMEPARAMETERSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -880,6 +1109,15 @@ impl TypeObject for GameParametersData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -902,22 +1140,27 @@ pub struct GameRoleInformation {
 
 pub trait GameRoleInformationTrait: super::core::DataContainerTrait {
     fn role_name(&self) -> &String;
+    fn role_name_mut(&mut self) -> &mut String;
     fn capacity(&self) -> &u32;
+    fn capacity_mut(&mut self) -> &mut u32;
 }
 
 impl GameRoleInformationTrait for GameRoleInformation {
     fn role_name(&self) -> &String {
         &self.role_name
     }
+    fn role_name_mut(&mut self) -> &mut String {
+        &mut self.role_name
+    }
     fn capacity(&self) -> &u32 {
         &self.capacity
+    }
+    fn capacity_mut(&mut self) -> &mut u32 {
+        &mut self.capacity
     }
 }
 
 impl super::core::DataContainerTrait for GameRoleInformation {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GAMEROLEINFORMATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -955,6 +1198,15 @@ impl TypeObject for GameRoleInformation {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -976,15 +1228,23 @@ pub struct GameAttributeData {
 
 pub trait GameAttributeDataTrait: TypeObject {
     fn attribute(&self) -> &String;
+    fn attribute_mut(&mut self) -> &mut String;
     fn value(&self) -> &String;
+    fn value_mut(&mut self) -> &mut String;
 }
 
 impl GameAttributeDataTrait for GameAttributeData {
     fn attribute(&self) -> &String {
         &self.attribute
     }
+    fn attribute_mut(&mut self) -> &mut String {
+        &mut self.attribute
+    }
     fn value(&self) -> &String {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut String {
+        &mut self.value
     }
 }
 
@@ -1021,6 +1281,15 @@ impl TypeObject for GameAttributeData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1059,6 +1328,15 @@ impl TypeObject for GamePeer2PeerMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1100,6 +1378,15 @@ impl TypeObject for GameNetworkTopology {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1123,19 +1410,31 @@ pub struct PresenceGameManagementServiceData {
 
 pub trait PresenceGameManagementServiceDataTrait: super::online_shared::PresenceServiceDataTrait {
     fn gamegroup_max_participants(&self) -> &i32;
+    fn gamegroup_max_participants_mut(&mut self) -> &mut i32;
     fn join_game_session_after_gamegroup(&self) -> &bool;
+    fn join_game_session_after_gamegroup_mut(&mut self) -> &mut bool;
     fn default_game_role_name(&self) -> &String;
+    fn default_game_role_name_mut(&mut self) -> &mut String;
 }
 
 impl PresenceGameManagementServiceDataTrait for PresenceGameManagementServiceData {
     fn gamegroup_max_participants(&self) -> &i32 {
         &self.gamegroup_max_participants
     }
+    fn gamegroup_max_participants_mut(&mut self) -> &mut i32 {
+        &mut self.gamegroup_max_participants
+    }
     fn join_game_session_after_gamegroup(&self) -> &bool {
         &self.join_game_session_after_gamegroup
     }
+    fn join_game_session_after_gamegroup_mut(&mut self) -> &mut bool {
+        &mut self.join_game_session_after_gamegroup
+    }
     fn default_game_role_name(&self) -> &String {
         &self.default_game_role_name
+    }
+    fn default_game_role_name_mut(&mut self) -> &mut String {
+        &mut self.default_game_role_name
     }
 }
 
@@ -1146,12 +1445,12 @@ impl super::core::AssetTrait for PresenceGameManagementServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceGameManagementServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEGAMEMANAGEMENTSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1195,6 +1494,15 @@ impl TypeObject for PresenceGameManagementServiceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1216,11 +1524,15 @@ pub struct PresenceGameManagementBackendData {
 
 pub trait PresenceGameManagementBackendDataTrait: super::online_shared::PresenceBackendDataTrait {
     fn use_game_info_strategy(&self) -> &bool;
+    fn use_game_info_strategy_mut(&mut self) -> &mut bool;
 }
 
 impl PresenceGameManagementBackendDataTrait for PresenceGameManagementBackendData {
     fn use_game_info_strategy(&self) -> &bool {
         &self.use_game_info_strategy
+    }
+    fn use_game_info_strategy_mut(&mut self) -> &mut bool {
+        &mut self.use_game_info_strategy
     }
 }
 
@@ -1228,18 +1540,21 @@ impl super::online_shared::PresenceBackendDataTrait for PresenceGameManagementBa
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for PresenceGameManagementBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceGameManagementBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEGAMEMANAGEMENTBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1270,6 +1585,15 @@ impl TypeObject for PresenceGameManagementBackendData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1316,6 +1640,15 @@ impl TypeObject for PresenceGameQueueMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1349,6 +1682,15 @@ impl TypeObject for PresenceGameNotificationMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1384,6 +1726,15 @@ impl TypeObject for PresenceGameMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1417,6 +1768,15 @@ impl TypeObject for PresenceGameRequestMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1452,6 +1812,15 @@ impl TypeObject for GameParameters {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1503,6 +1872,15 @@ impl TypeObject for PresenceCreateGameRequestParameters {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1553,6 +1931,15 @@ impl TypeObject for ClientGameManagementService {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1602,6 +1989,15 @@ impl TypeObject for ClientGameManagementBackend {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

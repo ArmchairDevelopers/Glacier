@@ -240,27 +240,47 @@ pub struct VisualTerrainDynamicState {
 
 pub trait VisualTerrainDynamicStateTrait: TypeObject {
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
     fn draw_enable(&self) -> &bool;
+    fn draw_enable_mut(&mut self) -> &mut bool;
     fn override_draw_enable(&self) -> &bool;
+    fn override_draw_enable_mut(&mut self) -> &mut bool;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl VisualTerrainDynamicStateTrait for VisualTerrainDynamicState {
     fn visible(&self) -> &bool {
         &self.visible
     }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
+    }
     fn draw_enable(&self) -> &bool {
         &self.draw_enable
+    }
+    fn draw_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_enable
     }
     fn override_draw_enable(&self) -> &bool {
         &self.override_draw_enable
     }
+    fn override_draw_enable_mut(&mut self) -> &mut bool {
+        &mut self.override_draw_enable
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -316,6 +336,15 @@ impl TypeObject for VisualTerrainDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -339,23 +368,39 @@ pub struct VisualTerrainStaticState {
 
 pub trait VisualTerrainStaticStateTrait: TypeObject {
     fn terrain(&self) -> &Option<Arc<Mutex<dyn TerrainBaseAssetTrait>>>;
+    fn terrain_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainBaseAssetTrait>>>;
     fn decals_resource_handle(&self) -> &super::world_base::ResourceRefHandle;
+    fn decals_resource_handle_mut(&mut self) -> &mut super::world_base::ResourceRefHandle;
     fn settings(&self) -> &Option<Arc<Mutex<dyn VisualTerrainBaseSettingsTrait>>>;
+    fn settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VisualTerrainBaseSettingsTrait>>>;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl VisualTerrainStaticStateTrait for VisualTerrainStaticState {
     fn terrain(&self) -> &Option<Arc<Mutex<dyn TerrainBaseAssetTrait>>> {
         &self.terrain
     }
+    fn terrain_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainBaseAssetTrait>>> {
+        &mut self.terrain
+    }
     fn decals_resource_handle(&self) -> &super::world_base::ResourceRefHandle {
         &self.decals_resource_handle
+    }
+    fn decals_resource_handle_mut(&mut self) -> &mut super::world_base::ResourceRefHandle {
+        &mut self.decals_resource_handle
     }
     fn settings(&self) -> &Option<Arc<Mutex<dyn VisualTerrainBaseSettingsTrait>>> {
         &self.settings
     }
+    fn settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VisualTerrainBaseSettingsTrait>>> {
+        &mut self.settings
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -405,6 +450,15 @@ impl TypeObject for VisualTerrainStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -450,6 +504,15 @@ impl TypeObject for VisualTerrainHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -475,9 +538,6 @@ impl VisualTerrainBaseSettingsTrait for VisualTerrainBaseSettings {
 }
 
 impl super::core::DataContainerTrait for VisualTerrainBaseSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VISUALTERRAINBASESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -502,6 +562,15 @@ impl TypeObject for VisualTerrainBaseSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -538,74 +607,131 @@ pub struct TerrainStreamingSettings {
 
 pub trait TerrainStreamingSettingsTrait: super::core::DataContainerTrait {
     fn data_load_job_count(&self) -> &u32;
+    fn data_load_job_count_mut(&mut self) -> &mut u32;
     fn active_free_streaming_data_load_job_count(&self) -> &u32;
+    fn active_free_streaming_data_load_job_count_mut(&mut self) -> &mut u32;
     fn load_occluder_data_enable(&self) -> &bool;
+    fn load_occluder_data_enable_mut(&mut self) -> &mut bool;
     fn additional_blurriness(&self) -> &u32;
+    fn additional_blurriness_mut(&mut self) -> &mut u32;
     fn invisible_detail_reduction_factor(&self) -> &f32;
+    fn invisible_detail_reduction_factor_mut(&mut self) -> &mut f32;
     fn occluded_detail_reduction_factor(&self) -> &f32;
+    fn occluded_detail_reduction_factor_mut(&mut self) -> &mut f32;
     fn keep_pool_full_enable(&self) -> &bool;
+    fn keep_pool_full_enable_mut(&mut self) -> &mut bool;
     fn heightfield_atlas_sample_count_x_factor(&self) -> &u32;
+    fn heightfield_atlas_sample_count_x_factor_mut(&mut self) -> &mut u32;
     fn heightfield_atlas_sample_count_y_factor(&self) -> &u32;
+    fn heightfield_atlas_sample_count_y_factor_mut(&mut self) -> &mut u32;
     fn mask_atlas_sample_count_x_factor(&self) -> &u32;
+    fn mask_atlas_sample_count_x_factor_mut(&mut self) -> &mut u32;
     fn mask_atlas_sample_count_y_factor(&self) -> &u32;
+    fn mask_atlas_sample_count_y_factor_mut(&mut self) -> &mut u32;
     fn mask_additional_blurriness(&self) -> &u32;
+    fn mask_additional_blurriness_mut(&mut self) -> &mut u32;
     fn color_atlas_sample_count_x_factor(&self) -> &u32;
+    fn color_atlas_sample_count_x_factor_mut(&mut self) -> &mut u32;
     fn color_atlas_sample_count_y_factor(&self) -> &u32;
+    fn color_atlas_sample_count_y_factor_mut(&mut self) -> &mut u32;
     fn color_additional_blurriness(&self) -> &u32;
+    fn color_additional_blurriness_mut(&mut self) -> &mut u32;
 }
 
 impl TerrainStreamingSettingsTrait for TerrainStreamingSettings {
     fn data_load_job_count(&self) -> &u32 {
         &self.data_load_job_count
     }
+    fn data_load_job_count_mut(&mut self) -> &mut u32 {
+        &mut self.data_load_job_count
+    }
     fn active_free_streaming_data_load_job_count(&self) -> &u32 {
         &self.active_free_streaming_data_load_job_count
+    }
+    fn active_free_streaming_data_load_job_count_mut(&mut self) -> &mut u32 {
+        &mut self.active_free_streaming_data_load_job_count
     }
     fn load_occluder_data_enable(&self) -> &bool {
         &self.load_occluder_data_enable
     }
+    fn load_occluder_data_enable_mut(&mut self) -> &mut bool {
+        &mut self.load_occluder_data_enable
+    }
     fn additional_blurriness(&self) -> &u32 {
         &self.additional_blurriness
+    }
+    fn additional_blurriness_mut(&mut self) -> &mut u32 {
+        &mut self.additional_blurriness
     }
     fn invisible_detail_reduction_factor(&self) -> &f32 {
         &self.invisible_detail_reduction_factor
     }
+    fn invisible_detail_reduction_factor_mut(&mut self) -> &mut f32 {
+        &mut self.invisible_detail_reduction_factor
+    }
     fn occluded_detail_reduction_factor(&self) -> &f32 {
         &self.occluded_detail_reduction_factor
+    }
+    fn occluded_detail_reduction_factor_mut(&mut self) -> &mut f32 {
+        &mut self.occluded_detail_reduction_factor
     }
     fn keep_pool_full_enable(&self) -> &bool {
         &self.keep_pool_full_enable
     }
+    fn keep_pool_full_enable_mut(&mut self) -> &mut bool {
+        &mut self.keep_pool_full_enable
+    }
     fn heightfield_atlas_sample_count_x_factor(&self) -> &u32 {
         &self.heightfield_atlas_sample_count_x_factor
+    }
+    fn heightfield_atlas_sample_count_x_factor_mut(&mut self) -> &mut u32 {
+        &mut self.heightfield_atlas_sample_count_x_factor
     }
     fn heightfield_atlas_sample_count_y_factor(&self) -> &u32 {
         &self.heightfield_atlas_sample_count_y_factor
     }
+    fn heightfield_atlas_sample_count_y_factor_mut(&mut self) -> &mut u32 {
+        &mut self.heightfield_atlas_sample_count_y_factor
+    }
     fn mask_atlas_sample_count_x_factor(&self) -> &u32 {
         &self.mask_atlas_sample_count_x_factor
+    }
+    fn mask_atlas_sample_count_x_factor_mut(&mut self) -> &mut u32 {
+        &mut self.mask_atlas_sample_count_x_factor
     }
     fn mask_atlas_sample_count_y_factor(&self) -> &u32 {
         &self.mask_atlas_sample_count_y_factor
     }
+    fn mask_atlas_sample_count_y_factor_mut(&mut self) -> &mut u32 {
+        &mut self.mask_atlas_sample_count_y_factor
+    }
     fn mask_additional_blurriness(&self) -> &u32 {
         &self.mask_additional_blurriness
+    }
+    fn mask_additional_blurriness_mut(&mut self) -> &mut u32 {
+        &mut self.mask_additional_blurriness
     }
     fn color_atlas_sample_count_x_factor(&self) -> &u32 {
         &self.color_atlas_sample_count_x_factor
     }
+    fn color_atlas_sample_count_x_factor_mut(&mut self) -> &mut u32 {
+        &mut self.color_atlas_sample_count_x_factor
+    }
     fn color_atlas_sample_count_y_factor(&self) -> &u32 {
         &self.color_atlas_sample_count_y_factor
+    }
+    fn color_atlas_sample_count_y_factor_mut(&mut self) -> &mut u32 {
+        &mut self.color_atlas_sample_count_y_factor
     }
     fn color_additional_blurriness(&self) -> &u32 {
         &self.color_additional_blurriness
     }
+    fn color_additional_blurriness_mut(&mut self) -> &mut u32 {
+        &mut self.color_additional_blurriness
+    }
 }
 
 impl super::core::DataContainerTrait for TerrainStreamingSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINSTREAMINGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -721,6 +847,15 @@ impl TypeObject for TerrainStreamingSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -751,47 +886,87 @@ pub struct TerrainQuadDecalData {
 
 pub trait TerrainQuadDecalDataTrait: VisualVectorShapeDataTrait {
     fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader2d_displacement(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_displacement_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn stick_to_terrain(&self) -> &bool;
+    fn stick_to_terrain_mut(&mut self) -> &mut bool;
     fn user_masks(&self) -> &super::core::Vec4;
+    fn user_masks_mut(&mut self) -> &mut super::core::Vec4;
     fn tangent_space_enable(&self) -> &bool;
+    fn tangent_space_enable_mut(&mut self) -> &mut bool;
     fn atlas_tile_template(&self) -> &Option<Arc<Mutex<dyn TerrainQuadDecalAtlasTileTemplateDataTrait>>>;
+    fn atlas_tile_template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainQuadDecalAtlasTileTemplateDataTrait>>>;
     fn atlas_tile(&self) -> &TerrainQuadDecalAtlasTile;
+    fn atlas_tile_mut(&mut self) -> &mut TerrainQuadDecalAtlasTile;
 }
 
 impl TerrainQuadDecalDataTrait for TerrainQuadDecalData {
     fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d
     }
+    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d
+    }
     fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d_mesh_scattering_mask
+    }
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d_mesh_scattering_mask
     }
     fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d_single_layer_mask
     }
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d_single_layer_mask
+    }
     fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader3d_z_only
+    }
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader3d_z_only
     }
     fn shader2d_displacement(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d_displacement
     }
+    fn shader2d_displacement_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d_displacement
+    }
     fn stick_to_terrain(&self) -> &bool {
         &self.stick_to_terrain
+    }
+    fn stick_to_terrain_mut(&mut self) -> &mut bool {
+        &mut self.stick_to_terrain
     }
     fn user_masks(&self) -> &super::core::Vec4 {
         &self.user_masks
     }
+    fn user_masks_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.user_masks
+    }
     fn tangent_space_enable(&self) -> &bool {
         &self.tangent_space_enable
+    }
+    fn tangent_space_enable_mut(&mut self) -> &mut bool {
+        &mut self.tangent_space_enable
     }
     fn atlas_tile_template(&self) -> &Option<Arc<Mutex<dyn TerrainQuadDecalAtlasTileTemplateDataTrait>>> {
         &self.atlas_tile_template
     }
+    fn atlas_tile_template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainQuadDecalAtlasTileTemplateDataTrait>>> {
+        &mut self.atlas_tile_template
+    }
     fn atlas_tile(&self) -> &TerrainQuadDecalAtlasTile {
         &self.atlas_tile
+    }
+    fn atlas_tile_mut(&mut self) -> &mut TerrainQuadDecalAtlasTile {
+        &mut self.atlas_tile
     }
 }
 
@@ -799,17 +974,32 @@ impl VisualVectorShapeDataTrait for TerrainQuadDecalData {
     fn error_tolerance(&self) -> &f32 {
         self._glacier_base.error_tolerance()
     }
+    fn error_tolerance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.error_tolerance_mut()
+    }
     fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         self._glacier_base.shader3d()
+    }
+    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
         self._glacier_base.draw_order_index()
     }
+    fn draw_order_index_mut(&mut self) -> &mut u32 {
+        self._glacier_base.draw_order_index_mut()
+    }
     fn tessellation_triangle_size(&self) -> &f32 {
         self._glacier_base.tessellation_triangle_size()
     }
+    fn tessellation_triangle_size_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tessellation_triangle_size_mut()
+    }
     fn split_to_match_heightfield(&self) -> &bool {
         self._glacier_base.split_to_match_heightfield()
+    }
+    fn split_to_match_heightfield_mut(&mut self) -> &mut bool {
+        self._glacier_base.split_to_match_heightfield_mut()
     }
 }
 
@@ -817,17 +1007,32 @@ impl super::entity::VectorShapeDataTrait for TerrainQuadDecalData {
     fn points(&self) -> &Vec<super::core::Vec3> {
         self._glacier_base.points()
     }
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        self._glacier_base.points_mut()
+    }
     fn tension(&self) -> &f32 {
         self._glacier_base.tension()
+    }
+    fn tension_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tension_mut()
     }
     fn is_closed(&self) -> &bool {
         self._glacier_base.is_closed()
     }
+    fn is_closed_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_closed_mut()
+    }
     fn allow_roll(&self) -> &bool {
         self._glacier_base.allow_roll()
     }
+    fn allow_roll_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_roll_mut()
+    }
     fn allow_yaw_pitch(&self) -> &bool {
         self._glacier_base.allow_yaw_pitch()
+    }
+    fn allow_yaw_pitch_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_yaw_pitch_mut()
     }
 }
 
@@ -844,15 +1049,15 @@ impl super::core::DataBusPeerTrait for TerrainQuadDecalData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TerrainQuadDecalData {
 }
 
 impl super::core::DataContainerTrait for TerrainQuadDecalData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINQUADDECALDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -938,6 +1143,15 @@ impl TypeObject for TerrainQuadDecalData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -959,11 +1173,15 @@ pub struct TerrainQuadDecalAtlasTileTemplateData {
 
 pub trait TerrainQuadDecalAtlasTileTemplateDataTrait: super::core::AssetTrait {
     fn atlas_tile(&self) -> &TerrainQuadDecalAtlasTile;
+    fn atlas_tile_mut(&mut self) -> &mut TerrainQuadDecalAtlasTile;
 }
 
 impl TerrainQuadDecalAtlasTileTemplateDataTrait for TerrainQuadDecalAtlasTileTemplateData {
     fn atlas_tile(&self) -> &TerrainQuadDecalAtlasTile {
         &self.atlas_tile
+    }
+    fn atlas_tile_mut(&mut self) -> &mut TerrainQuadDecalAtlasTile {
+        &mut self.atlas_tile
     }
 }
 
@@ -971,12 +1189,12 @@ impl super::core::AssetTrait for TerrainQuadDecalAtlasTileTemplateData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TerrainQuadDecalAtlasTileTemplateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINQUADDECALATLASTILETEMPLATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1008,6 +1226,15 @@ impl TypeObject for TerrainQuadDecalAtlasTileTemplateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1033,31 +1260,55 @@ pub struct TerrainQuadDecalAtlasTile {
 
 pub trait TerrainQuadDecalAtlasTileTrait: TypeObject {
     fn tile_index_x(&self) -> &u32;
+    fn tile_index_x_mut(&mut self) -> &mut u32;
     fn tile_index_y(&self) -> &u32;
+    fn tile_index_y_mut(&mut self) -> &mut u32;
     fn tile_count_x(&self) -> &u32;
+    fn tile_count_x_mut(&mut self) -> &mut u32;
     fn tile_count_y(&self) -> &u32;
+    fn tile_count_y_mut(&mut self) -> &mut u32;
     fn flip_x(&self) -> &bool;
+    fn flip_x_mut(&mut self) -> &mut bool;
     fn flip_y(&self) -> &bool;
+    fn flip_y_mut(&mut self) -> &mut bool;
 }
 
 impl TerrainQuadDecalAtlasTileTrait for TerrainQuadDecalAtlasTile {
     fn tile_index_x(&self) -> &u32 {
         &self.tile_index_x
     }
+    fn tile_index_x_mut(&mut self) -> &mut u32 {
+        &mut self.tile_index_x
+    }
     fn tile_index_y(&self) -> &u32 {
         &self.tile_index_y
+    }
+    fn tile_index_y_mut(&mut self) -> &mut u32 {
+        &mut self.tile_index_y
     }
     fn tile_count_x(&self) -> &u32 {
         &self.tile_count_x
     }
+    fn tile_count_x_mut(&mut self) -> &mut u32 {
+        &mut self.tile_count_x
+    }
     fn tile_count_y(&self) -> &u32 {
         &self.tile_count_y
+    }
+    fn tile_count_y_mut(&mut self) -> &mut u32 {
+        &mut self.tile_count_y
     }
     fn flip_x(&self) -> &bool {
         &self.flip_x
     }
+    fn flip_x_mut(&mut self) -> &mut bool {
+        &mut self.flip_x
+    }
     fn flip_y(&self) -> &bool {
         &self.flip_y
+    }
+    fn flip_y_mut(&mut self) -> &mut bool {
+        &mut self.flip_y
     }
 }
 
@@ -1119,6 +1370,15 @@ impl TypeObject for TerrainQuadDecalAtlasTile {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1143,23 +1403,39 @@ pub struct TerrainFillDecalData {
 
 pub trait TerrainFillDecalDataTrait: VisualVectorShapeDataTrait {
     fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
 }
 
 impl TerrainFillDecalDataTrait for TerrainFillDecalData {
     fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d
     }
+    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d
+    }
     fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d_mesh_scattering_mask
+    }
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d_mesh_scattering_mask
     }
     fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d_single_layer_mask
     }
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d_single_layer_mask
+    }
     fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader3d_z_only
+    }
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader3d_z_only
     }
 }
 
@@ -1167,17 +1443,32 @@ impl VisualVectorShapeDataTrait for TerrainFillDecalData {
     fn error_tolerance(&self) -> &f32 {
         self._glacier_base.error_tolerance()
     }
+    fn error_tolerance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.error_tolerance_mut()
+    }
     fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         self._glacier_base.shader3d()
+    }
+    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
         self._glacier_base.draw_order_index()
     }
+    fn draw_order_index_mut(&mut self) -> &mut u32 {
+        self._glacier_base.draw_order_index_mut()
+    }
     fn tessellation_triangle_size(&self) -> &f32 {
         self._glacier_base.tessellation_triangle_size()
     }
+    fn tessellation_triangle_size_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tessellation_triangle_size_mut()
+    }
     fn split_to_match_heightfield(&self) -> &bool {
         self._glacier_base.split_to_match_heightfield()
+    }
+    fn split_to_match_heightfield_mut(&mut self) -> &mut bool {
+        self._glacier_base.split_to_match_heightfield_mut()
     }
 }
 
@@ -1185,17 +1476,32 @@ impl super::entity::VectorShapeDataTrait for TerrainFillDecalData {
     fn points(&self) -> &Vec<super::core::Vec3> {
         self._glacier_base.points()
     }
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        self._glacier_base.points_mut()
+    }
     fn tension(&self) -> &f32 {
         self._glacier_base.tension()
+    }
+    fn tension_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tension_mut()
     }
     fn is_closed(&self) -> &bool {
         self._glacier_base.is_closed()
     }
+    fn is_closed_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_closed_mut()
+    }
     fn allow_roll(&self) -> &bool {
         self._glacier_base.allow_roll()
     }
+    fn allow_roll_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_roll_mut()
+    }
     fn allow_yaw_pitch(&self) -> &bool {
         self._glacier_base.allow_yaw_pitch()
+    }
+    fn allow_yaw_pitch_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_yaw_pitch_mut()
     }
 }
 
@@ -1212,15 +1518,15 @@ impl super::core::DataBusPeerTrait for TerrainFillDecalData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TerrainFillDecalData {
 }
 
 impl super::core::DataContainerTrait for TerrainFillDecalData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINFILLDECALDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1270,6 +1576,15 @@ impl TypeObject for TerrainFillDecalData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1298,17 +1613,32 @@ impl VisualVectorShapeDataTrait for LakeData {
     fn error_tolerance(&self) -> &f32 {
         self._glacier_base.error_tolerance()
     }
+    fn error_tolerance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.error_tolerance_mut()
+    }
     fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         self._glacier_base.shader3d()
+    }
+    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
         self._glacier_base.draw_order_index()
     }
+    fn draw_order_index_mut(&mut self) -> &mut u32 {
+        self._glacier_base.draw_order_index_mut()
+    }
     fn tessellation_triangle_size(&self) -> &f32 {
         self._glacier_base.tessellation_triangle_size()
     }
+    fn tessellation_triangle_size_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tessellation_triangle_size_mut()
+    }
     fn split_to_match_heightfield(&self) -> &bool {
         self._glacier_base.split_to_match_heightfield()
+    }
+    fn split_to_match_heightfield_mut(&mut self) -> &mut bool {
+        self._glacier_base.split_to_match_heightfield_mut()
     }
 }
 
@@ -1316,17 +1646,32 @@ impl super::entity::VectorShapeDataTrait for LakeData {
     fn points(&self) -> &Vec<super::core::Vec3> {
         self._glacier_base.points()
     }
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        self._glacier_base.points_mut()
+    }
     fn tension(&self) -> &f32 {
         self._glacier_base.tension()
+    }
+    fn tension_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tension_mut()
     }
     fn is_closed(&self) -> &bool {
         self._glacier_base.is_closed()
     }
+    fn is_closed_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_closed_mut()
+    }
     fn allow_roll(&self) -> &bool {
         self._glacier_base.allow_roll()
     }
+    fn allow_roll_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_roll_mut()
+    }
     fn allow_yaw_pitch(&self) -> &bool {
         self._glacier_base.allow_yaw_pitch()
+    }
+    fn allow_yaw_pitch_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_yaw_pitch_mut()
     }
 }
 
@@ -1343,15 +1688,15 @@ impl super::core::DataBusPeerTrait for LakeData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LakeData {
 }
 
 impl super::core::DataContainerTrait for LakeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LAKEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1376,6 +1721,15 @@ impl TypeObject for LakeData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1405,23 +1759,41 @@ impl RibbonDataTrait for RiverData {
     fn ribbon_points(&self) -> &Vec<RibbonPointData> {
         self._glacier_base.ribbon_points()
     }
+    fn ribbon_points_mut(&mut self) -> &mut Vec<RibbonPointData> {
+        self._glacier_base.ribbon_points_mut()
+    }
 }
 
 impl VisualVectorShapeDataTrait for RiverData {
     fn error_tolerance(&self) -> &f32 {
         self._glacier_base.error_tolerance()
     }
+    fn error_tolerance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.error_tolerance_mut()
+    }
     fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         self._glacier_base.shader3d()
+    }
+    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
         self._glacier_base.draw_order_index()
     }
+    fn draw_order_index_mut(&mut self) -> &mut u32 {
+        self._glacier_base.draw_order_index_mut()
+    }
     fn tessellation_triangle_size(&self) -> &f32 {
         self._glacier_base.tessellation_triangle_size()
     }
+    fn tessellation_triangle_size_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tessellation_triangle_size_mut()
+    }
     fn split_to_match_heightfield(&self) -> &bool {
         self._glacier_base.split_to_match_heightfield()
+    }
+    fn split_to_match_heightfield_mut(&mut self) -> &mut bool {
+        self._glacier_base.split_to_match_heightfield_mut()
     }
 }
 
@@ -1429,17 +1801,32 @@ impl super::entity::VectorShapeDataTrait for RiverData {
     fn points(&self) -> &Vec<super::core::Vec3> {
         self._glacier_base.points()
     }
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        self._glacier_base.points_mut()
+    }
     fn tension(&self) -> &f32 {
         self._glacier_base.tension()
+    }
+    fn tension_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tension_mut()
     }
     fn is_closed(&self) -> &bool {
         self._glacier_base.is_closed()
     }
+    fn is_closed_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_closed_mut()
+    }
     fn allow_roll(&self) -> &bool {
         self._glacier_base.allow_roll()
     }
+    fn allow_roll_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_roll_mut()
+    }
     fn allow_yaw_pitch(&self) -> &bool {
         self._glacier_base.allow_yaw_pitch()
+    }
+    fn allow_yaw_pitch_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_yaw_pitch_mut()
     }
 }
 
@@ -1456,15 +1843,15 @@ impl super::core::DataBusPeerTrait for RiverData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RiverData {
 }
 
 impl super::core::DataContainerTrait for RiverData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RIVERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1489,6 +1876,15 @@ impl TypeObject for RiverData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1518,39 +1914,71 @@ pub struct RoadData {
 
 pub trait RoadDataTrait: RibbonDataTrait {
     fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn shader2d_displacement(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d_displacement_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn stick_to_terrain(&self) -> &bool;
+    fn stick_to_terrain_mut(&mut self) -> &mut bool;
     fn uv_tile_factor(&self) -> &f32;
+    fn uv_tile_factor_mut(&mut self) -> &mut f32;
     fn tangent_space_enable(&self) -> &bool;
+    fn tangent_space_enable_mut(&mut self) -> &mut bool;
 }
 
 impl RoadDataTrait for RoadData {
     fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d
     }
+    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d
+    }
     fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d_mesh_scattering_mask
+    }
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d_mesh_scattering_mask
     }
     fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d_single_layer_mask
     }
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d_single_layer_mask
+    }
     fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader3d_z_only
+    }
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader3d_z_only
     }
     fn shader2d_displacement(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader2d_displacement
     }
+    fn shader2d_displacement_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader2d_displacement
+    }
     fn stick_to_terrain(&self) -> &bool {
         &self.stick_to_terrain
+    }
+    fn stick_to_terrain_mut(&mut self) -> &mut bool {
+        &mut self.stick_to_terrain
     }
     fn uv_tile_factor(&self) -> &f32 {
         &self.uv_tile_factor
     }
+    fn uv_tile_factor_mut(&mut self) -> &mut f32 {
+        &mut self.uv_tile_factor
+    }
     fn tangent_space_enable(&self) -> &bool {
         &self.tangent_space_enable
+    }
+    fn tangent_space_enable_mut(&mut self) -> &mut bool {
+        &mut self.tangent_space_enable
     }
 }
 
@@ -1558,23 +1986,41 @@ impl RibbonDataTrait for RoadData {
     fn ribbon_points(&self) -> &Vec<RibbonPointData> {
         self._glacier_base.ribbon_points()
     }
+    fn ribbon_points_mut(&mut self) -> &mut Vec<RibbonPointData> {
+        self._glacier_base.ribbon_points_mut()
+    }
 }
 
 impl VisualVectorShapeDataTrait for RoadData {
     fn error_tolerance(&self) -> &f32 {
         self._glacier_base.error_tolerance()
     }
+    fn error_tolerance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.error_tolerance_mut()
+    }
     fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         self._glacier_base.shader3d()
+    }
+    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
         self._glacier_base.draw_order_index()
     }
+    fn draw_order_index_mut(&mut self) -> &mut u32 {
+        self._glacier_base.draw_order_index_mut()
+    }
     fn tessellation_triangle_size(&self) -> &f32 {
         self._glacier_base.tessellation_triangle_size()
     }
+    fn tessellation_triangle_size_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tessellation_triangle_size_mut()
+    }
     fn split_to_match_heightfield(&self) -> &bool {
         self._glacier_base.split_to_match_heightfield()
+    }
+    fn split_to_match_heightfield_mut(&mut self) -> &mut bool {
+        self._glacier_base.split_to_match_heightfield_mut()
     }
 }
 
@@ -1582,17 +2028,32 @@ impl super::entity::VectorShapeDataTrait for RoadData {
     fn points(&self) -> &Vec<super::core::Vec3> {
         self._glacier_base.points()
     }
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        self._glacier_base.points_mut()
+    }
     fn tension(&self) -> &f32 {
         self._glacier_base.tension()
+    }
+    fn tension_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tension_mut()
     }
     fn is_closed(&self) -> &bool {
         self._glacier_base.is_closed()
     }
+    fn is_closed_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_closed_mut()
+    }
     fn allow_roll(&self) -> &bool {
         self._glacier_base.allow_roll()
     }
+    fn allow_roll_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_roll_mut()
+    }
     fn allow_yaw_pitch(&self) -> &bool {
         self._glacier_base.allow_yaw_pitch()
+    }
+    fn allow_yaw_pitch_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_yaw_pitch_mut()
     }
 }
 
@@ -1609,15 +2070,15 @@ impl super::core::DataBusPeerTrait for RoadData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RoadData {
 }
 
 impl super::core::DataContainerTrait for RoadData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ROADDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1691,6 +2152,15 @@ impl TypeObject for RoadData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1712,11 +2182,15 @@ pub struct RibbonData {
 
 pub trait RibbonDataTrait: VisualVectorShapeDataTrait {
     fn ribbon_points(&self) -> &Vec<RibbonPointData>;
+    fn ribbon_points_mut(&mut self) -> &mut Vec<RibbonPointData>;
 }
 
 impl RibbonDataTrait for RibbonData {
     fn ribbon_points(&self) -> &Vec<RibbonPointData> {
         &self.ribbon_points
+    }
+    fn ribbon_points_mut(&mut self) -> &mut Vec<RibbonPointData> {
+        &mut self.ribbon_points
     }
 }
 
@@ -1724,17 +2198,32 @@ impl VisualVectorShapeDataTrait for RibbonData {
     fn error_tolerance(&self) -> &f32 {
         self._glacier_base.error_tolerance()
     }
+    fn error_tolerance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.error_tolerance_mut()
+    }
     fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         self._glacier_base.shader3d()
+    }
+    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
         self._glacier_base.draw_order_index()
     }
+    fn draw_order_index_mut(&mut self) -> &mut u32 {
+        self._glacier_base.draw_order_index_mut()
+    }
     fn tessellation_triangle_size(&self) -> &f32 {
         self._glacier_base.tessellation_triangle_size()
     }
+    fn tessellation_triangle_size_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tessellation_triangle_size_mut()
+    }
     fn split_to_match_heightfield(&self) -> &bool {
         self._glacier_base.split_to_match_heightfield()
+    }
+    fn split_to_match_heightfield_mut(&mut self) -> &mut bool {
+        self._glacier_base.split_to_match_heightfield_mut()
     }
 }
 
@@ -1742,17 +2231,32 @@ impl super::entity::VectorShapeDataTrait for RibbonData {
     fn points(&self) -> &Vec<super::core::Vec3> {
         self._glacier_base.points()
     }
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        self._glacier_base.points_mut()
+    }
     fn tension(&self) -> &f32 {
         self._glacier_base.tension()
+    }
+    fn tension_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tension_mut()
     }
     fn is_closed(&self) -> &bool {
         self._glacier_base.is_closed()
     }
+    fn is_closed_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_closed_mut()
+    }
     fn allow_roll(&self) -> &bool {
         self._glacier_base.allow_roll()
     }
+    fn allow_roll_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_roll_mut()
+    }
     fn allow_yaw_pitch(&self) -> &bool {
         self._glacier_base.allow_yaw_pitch()
+    }
+    fn allow_yaw_pitch_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_yaw_pitch_mut()
     }
 }
 
@@ -1769,15 +2273,15 @@ impl super::core::DataBusPeerTrait for RibbonData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RibbonData {
 }
 
 impl super::core::DataContainerTrait for RibbonData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RIBBONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1809,6 +2313,15 @@ impl TypeObject for RibbonData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1832,23 +2345,39 @@ pub struct RibbonPointData {
 
 pub trait RibbonPointDataTrait: TypeObject {
     fn left(&self) -> &f32;
+    fn left_mut(&mut self) -> &mut f32;
     fn right(&self) -> &f32;
+    fn right_mut(&mut self) -> &mut f32;
     fn user_mask_left(&self) -> &super::core::Vec4;
+    fn user_mask_left_mut(&mut self) -> &mut super::core::Vec4;
     fn user_mask_right(&self) -> &super::core::Vec4;
+    fn user_mask_right_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl RibbonPointDataTrait for RibbonPointData {
     fn left(&self) -> &f32 {
         &self.left
     }
+    fn left_mut(&mut self) -> &mut f32 {
+        &mut self.left
+    }
     fn right(&self) -> &f32 {
         &self.right
+    }
+    fn right_mut(&mut self) -> &mut f32 {
+        &mut self.right
     }
     fn user_mask_left(&self) -> &super::core::Vec4 {
         &self.user_mask_left
     }
+    fn user_mask_left_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.user_mask_left
+    }
     fn user_mask_right(&self) -> &super::core::Vec4 {
         &self.user_mask_right
+    }
+    fn user_mask_right_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.user_mask_right
     }
 }
 
@@ -1898,6 +2427,15 @@ impl TypeObject for RibbonPointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1923,27 +2461,47 @@ pub struct VisualVectorShapeData {
 
 pub trait VisualVectorShapeDataTrait: super::entity::VectorShapeDataTrait {
     fn error_tolerance(&self) -> &f32;
+    fn error_tolerance_mut(&mut self) -> &mut f32;
     fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn draw_order_index(&self) -> &u32;
+    fn draw_order_index_mut(&mut self) -> &mut u32;
     fn tessellation_triangle_size(&self) -> &f32;
+    fn tessellation_triangle_size_mut(&mut self) -> &mut f32;
     fn split_to_match_heightfield(&self) -> &bool;
+    fn split_to_match_heightfield_mut(&mut self) -> &mut bool;
 }
 
 impl VisualVectorShapeDataTrait for VisualVectorShapeData {
     fn error_tolerance(&self) -> &f32 {
         &self.error_tolerance
     }
+    fn error_tolerance_mut(&mut self) -> &mut f32 {
+        &mut self.error_tolerance
+    }
     fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader3d
+    }
+    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader3d
     }
     fn draw_order_index(&self) -> &u32 {
         &self.draw_order_index
     }
+    fn draw_order_index_mut(&mut self) -> &mut u32 {
+        &mut self.draw_order_index
+    }
     fn tessellation_triangle_size(&self) -> &f32 {
         &self.tessellation_triangle_size
     }
+    fn tessellation_triangle_size_mut(&mut self) -> &mut f32 {
+        &mut self.tessellation_triangle_size
+    }
     fn split_to_match_heightfield(&self) -> &bool {
         &self.split_to_match_heightfield
+    }
+    fn split_to_match_heightfield_mut(&mut self) -> &mut bool {
+        &mut self.split_to_match_heightfield
     }
 }
 
@@ -1951,17 +2509,32 @@ impl super::entity::VectorShapeDataTrait for VisualVectorShapeData {
     fn points(&self) -> &Vec<super::core::Vec3> {
         self._glacier_base.points()
     }
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        self._glacier_base.points_mut()
+    }
     fn tension(&self) -> &f32 {
         self._glacier_base.tension()
+    }
+    fn tension_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tension_mut()
     }
     fn is_closed(&self) -> &bool {
         self._glacier_base.is_closed()
     }
+    fn is_closed_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_closed_mut()
+    }
     fn allow_roll(&self) -> &bool {
         self._glacier_base.allow_roll()
     }
+    fn allow_roll_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_roll_mut()
+    }
     fn allow_yaw_pitch(&self) -> &bool {
         self._glacier_base.allow_yaw_pitch()
+    }
+    fn allow_yaw_pitch_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_yaw_pitch_mut()
     }
 }
 
@@ -1978,15 +2551,15 @@ impl super::core::DataBusPeerTrait for VisualVectorShapeData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VisualVectorShapeData {
 }
 
 impl super::core::DataContainerTrait for VisualVectorShapeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VISUALVECTORSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2042,6 +2615,15 @@ impl TypeObject for VisualVectorShapeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2087,6 +2669,15 @@ impl TypeObject for TerrainShaderParameterBlockDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2108,15 +2699,23 @@ pub struct TerrainShaderParameterBlockStaticState {
 
 pub trait TerrainShaderParameterBlockStaticStateTrait: TypeObject {
     fn shader_block_handle(&self) -> &super::render_base::ShaderParameterBlockHandle;
+    fn shader_block_handle_mut(&mut self) -> &mut super::render_base::ShaderParameterBlockHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TerrainShaderParameterBlockStaticStateTrait for TerrainShaderParameterBlockStaticState {
     fn shader_block_handle(&self) -> &super::render_base::ShaderParameterBlockHandle {
         &self.shader_block_handle
     }
+    fn shader_block_handle_mut(&mut self) -> &mut super::render_base::ShaderParameterBlockHandle {
+        &mut self.shader_block_handle
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2154,6 +2753,15 @@ impl TypeObject for TerrainShaderParameterBlockStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2184,54 +2792,91 @@ pub struct TerrainSettings {
 
 pub trait TerrainSettingsTrait: super::core::DataContainerTrait {
     fn height_query_cache_size(&self) -> &u32;
+    fn height_query_cache_size_mut(&mut self) -> &mut u32;
     fn modifiers_enable(&self) -> &bool;
+    fn modifiers_enable_mut(&mut self) -> &mut bool;
     fn modifiers_capacity(&self) -> &u32;
+    fn modifiers_capacity_mut(&mut self) -> &mut u32;
     fn intersecting_modifiers_max(&self) -> &u32;
+    fn intersecting_modifiers_max_mut(&mut self) -> &mut u32;
     fn modifier_slope_max(&self) -> &f32;
+    fn modifier_slope_max_mut(&mut self) -> &mut f32;
     fn modifier_depth_factor(&self) -> &f32;
+    fn modifier_depth_factor_mut(&mut self) -> &mut f32;
     fn modifiers_applied_per_frame_max(&self) -> &u32;
+    fn modifiers_applied_per_frame_max_mut(&mut self) -> &mut u32;
     fn prioritization_on_several_frames(&self) -> &bool;
+    fn prioritization_on_several_frames_mut(&mut self) -> &mut bool;
     fn refining_during_prioritization(&self) -> &bool;
+    fn refining_during_prioritization_mut(&mut self) -> &mut bool;
     fn refining_during_prioritization_min_priority(&self) -> &f32;
+    fn refining_during_prioritization_min_priority_mut(&mut self) -> &mut f32;
 }
 
 impl TerrainSettingsTrait for TerrainSettings {
     fn height_query_cache_size(&self) -> &u32 {
         &self.height_query_cache_size
     }
+    fn height_query_cache_size_mut(&mut self) -> &mut u32 {
+        &mut self.height_query_cache_size
+    }
     fn modifiers_enable(&self) -> &bool {
         &self.modifiers_enable
+    }
+    fn modifiers_enable_mut(&mut self) -> &mut bool {
+        &mut self.modifiers_enable
     }
     fn modifiers_capacity(&self) -> &u32 {
         &self.modifiers_capacity
     }
+    fn modifiers_capacity_mut(&mut self) -> &mut u32 {
+        &mut self.modifiers_capacity
+    }
     fn intersecting_modifiers_max(&self) -> &u32 {
         &self.intersecting_modifiers_max
+    }
+    fn intersecting_modifiers_max_mut(&mut self) -> &mut u32 {
+        &mut self.intersecting_modifiers_max
     }
     fn modifier_slope_max(&self) -> &f32 {
         &self.modifier_slope_max
     }
+    fn modifier_slope_max_mut(&mut self) -> &mut f32 {
+        &mut self.modifier_slope_max
+    }
     fn modifier_depth_factor(&self) -> &f32 {
         &self.modifier_depth_factor
+    }
+    fn modifier_depth_factor_mut(&mut self) -> &mut f32 {
+        &mut self.modifier_depth_factor
     }
     fn modifiers_applied_per_frame_max(&self) -> &u32 {
         &self.modifiers_applied_per_frame_max
     }
+    fn modifiers_applied_per_frame_max_mut(&mut self) -> &mut u32 {
+        &mut self.modifiers_applied_per_frame_max
+    }
     fn prioritization_on_several_frames(&self) -> &bool {
         &self.prioritization_on_several_frames
+    }
+    fn prioritization_on_several_frames_mut(&mut self) -> &mut bool {
+        &mut self.prioritization_on_several_frames
     }
     fn refining_during_prioritization(&self) -> &bool {
         &self.refining_during_prioritization
     }
+    fn refining_during_prioritization_mut(&mut self) -> &mut bool {
+        &mut self.refining_during_prioritization
+    }
     fn refining_during_prioritization_min_priority(&self) -> &f32 {
         &self.refining_during_prioritization_min_priority
+    }
+    fn refining_during_prioritization_min_priority_mut(&mut self) -> &mut f32 {
+        &mut self.refining_during_prioritization_min_priority
     }
 }
 
 impl super::core::DataContainerTrait for TerrainSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2317,6 +2962,15 @@ impl TypeObject for TerrainSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2338,15 +2992,23 @@ pub struct TerrainModificationDynamicState {
 
 pub trait TerrainModificationDynamicStateTrait: TypeObject {
     fn burn_map(&self) -> &Vec<u8>;
+    fn burn_map_mut(&mut self) -> &mut Vec<u8>;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TerrainModificationDynamicStateTrait for TerrainModificationDynamicState {
     fn burn_map(&self) -> &Vec<u8> {
         &self.burn_map
     }
+    fn burn_map_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.burn_map
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2383,6 +3045,15 @@ impl TypeObject for TerrainModificationDynamicState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2421,6 +3092,15 @@ impl TypeObject for TerrainModificationType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2467,6 +3147,15 @@ impl TypeObject for TerrainEditingDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2491,27 +3180,47 @@ pub struct TerrainEditingStaticState {
 
 pub trait TerrainEditingStaticStateTrait: TypeObject {
     fn event_type(&self) -> &TerrainEditingEvent;
+    fn event_type_mut(&mut self) -> &mut TerrainEditingEvent;
     fn mesh_scattering_type(&self) -> &Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>;
+    fn mesh_scattering_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>;
     fn mesh_scattering_field_number(&self) -> &u32;
+    fn mesh_scattering_field_number_mut(&mut self) -> &mut u32;
     fn decals(&self) -> &Vec<Option<Arc<Mutex<dyn VisualVectorShapeDataTrait>>>>;
+    fn decals_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn VisualVectorShapeDataTrait>>>>;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TerrainEditingStaticStateTrait for TerrainEditingStaticState {
     fn event_type(&self) -> &TerrainEditingEvent {
         &self.event_type
     }
+    fn event_type_mut(&mut self) -> &mut TerrainEditingEvent {
+        &mut self.event_type
+    }
     fn mesh_scattering_type(&self) -> &Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>> {
         &self.mesh_scattering_type
+    }
+    fn mesh_scattering_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>> {
+        &mut self.mesh_scattering_type
     }
     fn mesh_scattering_field_number(&self) -> &u32 {
         &self.mesh_scattering_field_number
     }
+    fn mesh_scattering_field_number_mut(&mut self) -> &mut u32 {
+        &mut self.mesh_scattering_field_number
+    }
     fn decals(&self) -> &Vec<Option<Arc<Mutex<dyn VisualVectorShapeDataTrait>>>> {
         &self.decals
     }
+    fn decals_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn VisualVectorShapeDataTrait>>>> {
+        &mut self.decals
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2567,6 +3276,15 @@ impl TypeObject for TerrainEditingStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2606,6 +3324,15 @@ impl TypeObject for TerrainEditingEvent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2649,6 +3376,15 @@ impl TypeObject for PlayablePixelsPerMeter {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2695,6 +3431,15 @@ impl TypeObject for TerrainAnchor {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2739,6 +3484,15 @@ impl TypeObject for TerrainSize {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2780,6 +3534,15 @@ impl TypeObject for HighResTerrainSize {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2808,12 +3571,12 @@ impl super::core::AssetTrait for TerrainLayerCombinationsData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TerrainLayerCombinationsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINLAYERCOMBINATIONSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2838,6 +3601,15 @@ impl TypeObject for TerrainLayerCombinationsData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2884,6 +3656,15 @@ impl TypeObject for TerrainLayerShaderData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2929,6 +3710,15 @@ impl TypeObject for MeshScatteringSpawnData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2957,12 +3747,12 @@ impl super::core::AssetTrait for TerrainStreamingTreeAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TerrainStreamingTreeAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINSTREAMINGTREEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2987,6 +3777,15 @@ impl TypeObject for TerrainStreamingTreeAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3033,6 +3832,15 @@ impl TypeObject for TerrainLayerMaskData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3067,12 +3875,12 @@ impl super::core::AssetTrait for PathfindingMaskRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PathfindingMaskRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFINDINGMASKRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3097,6 +3905,15 @@ impl TypeObject for PathfindingMaskRasterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3129,51 +3946,95 @@ pub struct TerrainData {
 
 pub trait TerrainDataTrait: TerrainBaseAssetTrait {
     fn terrain_layers(&self) -> &Vec<Option<Arc<Mutex<dyn TerrainLayerDataTrait>>>>;
+    fn terrain_layers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TerrainLayerDataTrait>>>>;
     fn dynamic_mask_enable(&self) -> &bool;
+    fn dynamic_mask_enable_mut(&mut self) -> &mut bool;
     fn detail_displacement_max_level_diff(&self) -> &u32;
+    fn detail_displacement_max_level_diff_mut(&mut self) -> &mut u32;
     fn detail_displacement_indirection_texture_tile_x(&self) -> &u32;
+    fn detail_displacement_indirection_texture_tile_x_mut(&mut self) -> &mut u32;
     fn override_occluder_settings(&self) -> &bool;
+    fn override_occluder_settings_mut(&mut self) -> &mut bool;
     fn occluder_enable(&self) -> &bool;
+    fn occluder_enable_mut(&mut self) -> &mut bool;
     fn occluder_patch_faces_per_side(&self) -> &u32;
+    fn occluder_patch_faces_per_side_mut(&mut self) -> &mut u32;
     fn occluder_lod_scale(&self) -> &f32;
+    fn occluder_lod_scale_mut(&mut self) -> &mut f32;
     fn terrain_streaming_tree_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn terrain_streaming_tree_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn visual_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn visual_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn terrain_layer_combinations_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn terrain_layer_combinations_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl TerrainDataTrait for TerrainData {
     fn terrain_layers(&self) -> &Vec<Option<Arc<Mutex<dyn TerrainLayerDataTrait>>>> {
         &self.terrain_layers
     }
+    fn terrain_layers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TerrainLayerDataTrait>>>> {
+        &mut self.terrain_layers
+    }
     fn dynamic_mask_enable(&self) -> &bool {
         &self.dynamic_mask_enable
+    }
+    fn dynamic_mask_enable_mut(&mut self) -> &mut bool {
+        &mut self.dynamic_mask_enable
     }
     fn detail_displacement_max_level_diff(&self) -> &u32 {
         &self.detail_displacement_max_level_diff
     }
+    fn detail_displacement_max_level_diff_mut(&mut self) -> &mut u32 {
+        &mut self.detail_displacement_max_level_diff
+    }
     fn detail_displacement_indirection_texture_tile_x(&self) -> &u32 {
         &self.detail_displacement_indirection_texture_tile_x
+    }
+    fn detail_displacement_indirection_texture_tile_x_mut(&mut self) -> &mut u32 {
+        &mut self.detail_displacement_indirection_texture_tile_x
     }
     fn override_occluder_settings(&self) -> &bool {
         &self.override_occluder_settings
     }
+    fn override_occluder_settings_mut(&mut self) -> &mut bool {
+        &mut self.override_occluder_settings
+    }
     fn occluder_enable(&self) -> &bool {
         &self.occluder_enable
+    }
+    fn occluder_enable_mut(&mut self) -> &mut bool {
+        &mut self.occluder_enable
     }
     fn occluder_patch_faces_per_side(&self) -> &u32 {
         &self.occluder_patch_faces_per_side
     }
+    fn occluder_patch_faces_per_side_mut(&mut self) -> &mut u32 {
+        &mut self.occluder_patch_faces_per_side
+    }
     fn occluder_lod_scale(&self) -> &f32 {
         &self.occluder_lod_scale
+    }
+    fn occluder_lod_scale_mut(&mut self) -> &mut f32 {
+        &mut self.occluder_lod_scale
     }
     fn terrain_streaming_tree_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.terrain_streaming_tree_resource
     }
+    fn terrain_streaming_tree_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.terrain_streaming_tree_resource
+    }
     fn visual_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.visual_resource
     }
+    fn visual_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.visual_resource
+    }
     fn terrain_layer_combinations_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.terrain_layer_combinations_resource
+    }
+    fn terrain_layer_combinations_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.terrain_layer_combinations_resource
     }
 }
 
@@ -3184,12 +4045,12 @@ impl super::core::AssetTrait for TerrainData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TerrainData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3281,6 +4142,15 @@ impl TypeObject for TerrainData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3318,6 +4188,15 @@ impl TypeObject for EnlightenMeshFilterType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3357,6 +4236,15 @@ impl TypeObject for RasterTreeBuildMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3403,6 +4291,15 @@ impl TypeObject for TerrainLayerCombinationDrawData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3447,6 +4344,15 @@ impl TypeObject for Surface3dDrawMethodData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3493,6 +4399,15 @@ impl TypeObject for SingleLayerMaskDrawMethodData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3537,6 +4452,15 @@ impl TypeObject for SingleLayerMaskDrawPassData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3583,6 +4507,15 @@ impl TypeObject for MeshScatteringMaskScaleDrawMethodData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3627,6 +4560,15 @@ impl TypeObject for Displacement2dDrawMethodData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3673,6 +4615,15 @@ impl TypeObject for Displacement2dDrawPassData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3717,6 +4668,15 @@ impl TypeObject for Surface2dDrawMethodData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3763,6 +4723,15 @@ impl TypeObject for Surface2dDrawPassData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3808,6 +4777,15 @@ impl TypeObject for TerrainLayerCombinationDrawPassData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3846,6 +4824,15 @@ impl TypeObject for TerrainDrawPassType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3886,6 +4873,15 @@ impl TypeObject for TerrainBrushDetailOperation {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3907,11 +4903,15 @@ pub struct SingleTerrainLayerData {
 
 pub trait SingleTerrainLayerDataTrait: TerrainLayerDataTrait {
     fn mesh_scattering_types(&self) -> &Vec<Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>>;
+    fn mesh_scattering_types_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>>;
 }
 
 impl SingleTerrainLayerDataTrait for SingleTerrainLayerData {
     fn mesh_scattering_types(&self) -> &Vec<Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>> {
         &self.mesh_scattering_types
+    }
+    fn mesh_scattering_types_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>> {
+        &mut self.mesh_scattering_types
     }
 }
 
@@ -3919,9 +4919,6 @@ impl TerrainLayerDataTrait for SingleTerrainLayerData {
 }
 
 impl super::core::DataContainerTrait for SingleTerrainLayerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SINGLETERRAINLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3953,6 +4950,15 @@ impl TypeObject for SingleTerrainLayerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3978,9 +4984,6 @@ impl TerrainLayerDataTrait for TerrainLayerData {
 }
 
 impl super::core::DataContainerTrait for TerrainLayerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4005,6 +5008,15 @@ impl TypeObject for TerrainLayerData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4051,6 +5063,15 @@ impl TypeObject for ColorImportSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4090,6 +5111,15 @@ impl TypeObject for TerrainLayerType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4110,11 +5140,15 @@ pub struct TerrainLayerProceduralMask {
 
 pub trait TerrainLayerProceduralMaskTrait: TypeObject {
     fn altitude_min(&self) -> &f32;
+    fn altitude_min_mut(&mut self) -> &mut f32;
 }
 
 impl TerrainLayerProceduralMaskTrait for TerrainLayerProceduralMask {
     fn altitude_min(&self) -> &f32 {
         &self.altitude_min
+    }
+    fn altitude_min_mut(&mut self) -> &mut f32 {
+        &mut self.altitude_min
     }
 }
 
@@ -4145,6 +5179,15 @@ impl TypeObject for TerrainLayerProceduralMask {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4191,6 +5234,15 @@ impl TypeObject for TerrainGeoTexture {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4230,90 +5282,163 @@ pub struct TerrainMeshScatteringType {
 
 pub trait TerrainMeshScatteringTypeTrait: super::core::DataContainerTrait {
     fn identifier(&self) -> &u32;
+    fn identifier_mut(&mut self) -> &mut u32;
     fn min_scale(&self) -> &super::core::Vec2;
+    fn min_scale_mut(&mut self) -> &mut super::core::Vec2;
     fn max_scale(&self) -> &super::core::Vec2;
+    fn max_scale_mut(&mut self) -> &mut super::core::Vec2;
     fn scale_randomness(&self) -> &f32;
+    fn scale_randomness_mut(&mut self) -> &mut f32;
     fn lod0_dissolve_out_distance_factor(&self) -> &f32;
+    fn lod0_dissolve_out_distance_factor_mut(&mut self) -> &mut f32;
     fn lod1_dissolve_in_distance_factor(&self) -> &f32;
+    fn lod1_dissolve_in_distance_factor_mut(&mut self) -> &mut f32;
     fn lod1_dissolve_out_distance_factor(&self) -> &f32;
+    fn lod1_dissolve_out_distance_factor_mut(&mut self) -> &mut f32;
     fn lod2_dissolve_in_distance_factor(&self) -> &f32;
+    fn lod2_dissolve_in_distance_factor_mut(&mut self) -> &mut f32;
     fn lod2_dissolve_out_distance_factor(&self) -> &f32;
+    fn lod2_dissolve_out_distance_factor_mut(&mut self) -> &mut f32;
     fn lod3_dissolve_in_distance_factor(&self) -> &f32;
+    fn lod3_dissolve_in_distance_factor_mut(&mut self) -> &mut f32;
     fn density(&self) -> &super::core::QualityScalableFloat;
+    fn density_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn first_spawn_level(&self) -> &u32;
+    fn first_spawn_level_mut(&mut self) -> &mut u32;
     fn wind_scale(&self) -> &f32;
+    fn wind_scale_mut(&mut self) -> &mut f32;
     fn stiffness(&self) -> &f32;
+    fn stiffness_mut(&mut self) -> &mut f32;
     fn damping(&self) -> &f32;
+    fn damping_mut(&mut self) -> &mut f32;
     fn mass(&self) -> &f32;
+    fn mass_mut(&mut self) -> &mut f32;
     fn wind_wiggle(&self) -> &f32;
+    fn wind_wiggle_mut(&mut self) -> &mut f32;
     fn use_vertex_color_weights(&self) -> &bool;
+    fn use_vertex_color_weights_mut(&mut self) -> &mut bool;
     fn dissolve_range_ratio(&self) -> &f32;
+    fn dissolve_range_ratio_mut(&mut self) -> &mut f32;
 }
 
 impl TerrainMeshScatteringTypeTrait for TerrainMeshScatteringType {
     fn identifier(&self) -> &u32 {
         &self.identifier
     }
+    fn identifier_mut(&mut self) -> &mut u32 {
+        &mut self.identifier
+    }
     fn min_scale(&self) -> &super::core::Vec2 {
         &self.min_scale
+    }
+    fn min_scale_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.min_scale
     }
     fn max_scale(&self) -> &super::core::Vec2 {
         &self.max_scale
     }
+    fn max_scale_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.max_scale
+    }
     fn scale_randomness(&self) -> &f32 {
         &self.scale_randomness
+    }
+    fn scale_randomness_mut(&mut self) -> &mut f32 {
+        &mut self.scale_randomness
     }
     fn lod0_dissolve_out_distance_factor(&self) -> &f32 {
         &self.lod0_dissolve_out_distance_factor
     }
+    fn lod0_dissolve_out_distance_factor_mut(&mut self) -> &mut f32 {
+        &mut self.lod0_dissolve_out_distance_factor
+    }
     fn lod1_dissolve_in_distance_factor(&self) -> &f32 {
         &self.lod1_dissolve_in_distance_factor
+    }
+    fn lod1_dissolve_in_distance_factor_mut(&mut self) -> &mut f32 {
+        &mut self.lod1_dissolve_in_distance_factor
     }
     fn lod1_dissolve_out_distance_factor(&self) -> &f32 {
         &self.lod1_dissolve_out_distance_factor
     }
+    fn lod1_dissolve_out_distance_factor_mut(&mut self) -> &mut f32 {
+        &mut self.lod1_dissolve_out_distance_factor
+    }
     fn lod2_dissolve_in_distance_factor(&self) -> &f32 {
         &self.lod2_dissolve_in_distance_factor
+    }
+    fn lod2_dissolve_in_distance_factor_mut(&mut self) -> &mut f32 {
+        &mut self.lod2_dissolve_in_distance_factor
     }
     fn lod2_dissolve_out_distance_factor(&self) -> &f32 {
         &self.lod2_dissolve_out_distance_factor
     }
+    fn lod2_dissolve_out_distance_factor_mut(&mut self) -> &mut f32 {
+        &mut self.lod2_dissolve_out_distance_factor
+    }
     fn lod3_dissolve_in_distance_factor(&self) -> &f32 {
         &self.lod3_dissolve_in_distance_factor
+    }
+    fn lod3_dissolve_in_distance_factor_mut(&mut self) -> &mut f32 {
+        &mut self.lod3_dissolve_in_distance_factor
     }
     fn density(&self) -> &super::core::QualityScalableFloat {
         &self.density
     }
+    fn density_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.density
+    }
     fn first_spawn_level(&self) -> &u32 {
         &self.first_spawn_level
+    }
+    fn first_spawn_level_mut(&mut self) -> &mut u32 {
+        &mut self.first_spawn_level
     }
     fn wind_scale(&self) -> &f32 {
         &self.wind_scale
     }
+    fn wind_scale_mut(&mut self) -> &mut f32 {
+        &mut self.wind_scale
+    }
     fn stiffness(&self) -> &f32 {
         &self.stiffness
+    }
+    fn stiffness_mut(&mut self) -> &mut f32 {
+        &mut self.stiffness
     }
     fn damping(&self) -> &f32 {
         &self.damping
     }
+    fn damping_mut(&mut self) -> &mut f32 {
+        &mut self.damping
+    }
     fn mass(&self) -> &f32 {
         &self.mass
+    }
+    fn mass_mut(&mut self) -> &mut f32 {
+        &mut self.mass
     }
     fn wind_wiggle(&self) -> &f32 {
         &self.wind_wiggle
     }
+    fn wind_wiggle_mut(&mut self) -> &mut f32 {
+        &mut self.wind_wiggle
+    }
     fn use_vertex_color_weights(&self) -> &bool {
         &self.use_vertex_color_weights
+    }
+    fn use_vertex_color_weights_mut(&mut self) -> &mut bool {
+        &mut self.use_vertex_color_weights
     }
     fn dissolve_range_ratio(&self) -> &f32 {
         &self.dissolve_range_ratio
     }
+    fn dissolve_range_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.dissolve_range_ratio
+    }
 }
 
 impl super::core::DataContainerTrait for TerrainMeshScatteringType {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINMESHSCATTERINGTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4453,6 +5578,15 @@ impl TypeObject for TerrainMeshScatteringType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4495,6 +5629,15 @@ impl TypeObject for MeshScatteringInstanceDataMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4533,6 +5676,15 @@ impl TypeObject for UndergrowthOrientationMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4574,6 +5726,15 @@ impl TypeObject for MeshScatteringBillboardMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4612,6 +5773,15 @@ impl TypeObject for MeshScatteringOrientationMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4652,6 +5822,15 @@ impl TypeObject for UndergrowthRotationMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4691,6 +5870,15 @@ impl TypeObject for MeshScatteringRotationMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4729,6 +5917,15 @@ impl TypeObject for MeshScatteringElevationMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4754,9 +5951,6 @@ impl TerrainHeightfieldDataTrait for TerrainHeightfieldData {
 }
 
 impl super::core::DataContainerTrait for TerrainHeightfieldData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINHEIGHTFIELDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4781,6 +5975,15 @@ impl TypeObject for TerrainHeightfieldData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4825,6 +6028,15 @@ impl TypeObject for TerrainBrushType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4863,79 +6075,151 @@ pub struct TerrainDynamicDecalTemplateData {
 
 pub trait TerrainDynamicDecalTemplateDataTrait: super::core::AssetTrait {
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn relative_width_deviation(&self) -> &f32;
+    fn relative_width_deviation_mut(&mut self) -> &mut f32;
     fn depth(&self) -> &f32;
+    fn depth_mut(&mut self) -> &mut f32;
     fn relative_depth_deviation(&self) -> &f32;
+    fn relative_depth_deviation_mut(&mut self) -> &mut f32;
     fn rotation_random_amount(&self) -> &f32;
+    fn rotation_random_amount_mut(&mut self) -> &mut f32;
     fn slope_max(&self) -> &f32;
+    fn slope_max_mut(&mut self) -> &mut f32;
     fn depth_mask(&self) -> &Option<Arc<Mutex<dyn HeightfieldDecalAssetTrait>>>;
+    fn depth_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn HeightfieldDecalAssetTrait>>>;
     fn mask_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn mask_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn displacement_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn displacement_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn dynamic_mask_decal_width_scale(&self) -> &f32;
+    fn dynamic_mask_decal_width_scale_mut(&mut self) -> &mut f32;
     fn tangent_space_enable(&self) -> &bool;
+    fn tangent_space_enable_mut(&mut self) -> &mut bool;
     fn scale_with_destruction_depth(&self) -> &bool;
+    fn scale_with_destruction_depth_mut(&mut self) -> &mut bool;
     fn force_up_scale(&self) -> &bool;
+    fn force_up_scale_mut(&mut self) -> &mut bool;
     fn slope_min_threshold(&self) -> &f32;
+    fn slope_min_threshold_mut(&mut self) -> &mut f32;
     fn slope_scalar_max(&self) -> &f32;
+    fn slope_scalar_max_mut(&mut self) -> &mut f32;
     fn slope_multiplier(&self) -> &f32;
+    fn slope_multiplier_mut(&mut self) -> &mut f32;
     fn max_opposing_slopes(&self) -> &f32;
+    fn max_opposing_slopes_mut(&mut self) -> &mut f32;
     fn min_weight_threshold(&self) -> &f32;
+    fn min_weight_threshold_mut(&mut self) -> &mut f32;
 }
 
 impl TerrainDynamicDecalTemplateDataTrait for TerrainDynamicDecalTemplateData {
     fn width(&self) -> &f32 {
         &self.width
     }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
+    }
     fn relative_width_deviation(&self) -> &f32 {
         &self.relative_width_deviation
+    }
+    fn relative_width_deviation_mut(&mut self) -> &mut f32 {
+        &mut self.relative_width_deviation
     }
     fn depth(&self) -> &f32 {
         &self.depth
     }
+    fn depth_mut(&mut self) -> &mut f32 {
+        &mut self.depth
+    }
     fn relative_depth_deviation(&self) -> &f32 {
         &self.relative_depth_deviation
+    }
+    fn relative_depth_deviation_mut(&mut self) -> &mut f32 {
+        &mut self.relative_depth_deviation
     }
     fn rotation_random_amount(&self) -> &f32 {
         &self.rotation_random_amount
     }
+    fn rotation_random_amount_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_random_amount
+    }
     fn slope_max(&self) -> &f32 {
         &self.slope_max
+    }
+    fn slope_max_mut(&mut self) -> &mut f32 {
+        &mut self.slope_max
     }
     fn depth_mask(&self) -> &Option<Arc<Mutex<dyn HeightfieldDecalAssetTrait>>> {
         &self.depth_mask
     }
+    fn depth_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn HeightfieldDecalAssetTrait>>> {
+        &mut self.depth_mask
+    }
     fn mask_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.mask_shader
+    }
+    fn mask_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.mask_shader
     }
     fn displacement_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.displacement_shader
     }
+    fn displacement_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.displacement_shader
+    }
     fn dynamic_mask_decal_width_scale(&self) -> &f32 {
         &self.dynamic_mask_decal_width_scale
+    }
+    fn dynamic_mask_decal_width_scale_mut(&mut self) -> &mut f32 {
+        &mut self.dynamic_mask_decal_width_scale
     }
     fn tangent_space_enable(&self) -> &bool {
         &self.tangent_space_enable
     }
+    fn tangent_space_enable_mut(&mut self) -> &mut bool {
+        &mut self.tangent_space_enable
+    }
     fn scale_with_destruction_depth(&self) -> &bool {
         &self.scale_with_destruction_depth
+    }
+    fn scale_with_destruction_depth_mut(&mut self) -> &mut bool {
+        &mut self.scale_with_destruction_depth
     }
     fn force_up_scale(&self) -> &bool {
         &self.force_up_scale
     }
+    fn force_up_scale_mut(&mut self) -> &mut bool {
+        &mut self.force_up_scale
+    }
     fn slope_min_threshold(&self) -> &f32 {
         &self.slope_min_threshold
+    }
+    fn slope_min_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.slope_min_threshold
     }
     fn slope_scalar_max(&self) -> &f32 {
         &self.slope_scalar_max
     }
+    fn slope_scalar_max_mut(&mut self) -> &mut f32 {
+        &mut self.slope_scalar_max
+    }
     fn slope_multiplier(&self) -> &f32 {
         &self.slope_multiplier
+    }
+    fn slope_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.slope_multiplier
     }
     fn max_opposing_slopes(&self) -> &f32 {
         &self.max_opposing_slopes
     }
+    fn max_opposing_slopes_mut(&mut self) -> &mut f32 {
+        &mut self.max_opposing_slopes
+    }
     fn min_weight_threshold(&self) -> &f32 {
         &self.min_weight_threshold
+    }
+    fn min_weight_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.min_weight_threshold
     }
 }
 
@@ -4943,12 +6227,12 @@ impl super::core::AssetTrait for TerrainDynamicDecalTemplateData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TerrainDynamicDecalTemplateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINDYNAMICDECALTEMPLATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5082,6 +6366,15 @@ impl TypeObject for TerrainDynamicDecalTemplateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5104,15 +6397,23 @@ pub struct HeightfieldDecalAsset {
 
 pub trait HeightfieldDecalAssetTrait: super::core::AssetTrait {
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn mid_point128(&self) -> &bool;
+    fn mid_point128_mut(&mut self) -> &mut bool;
 }
 
 impl HeightfieldDecalAssetTrait for HeightfieldDecalAsset {
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.resource
     }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.resource
+    }
     fn mid_point128(&self) -> &bool {
         &self.mid_point128
+    }
+    fn mid_point128_mut(&mut self) -> &mut bool {
+        &mut self.mid_point128
     }
 }
 
@@ -5120,12 +6421,12 @@ impl super::core::AssetTrait for HeightfieldDecalAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for HeightfieldDecalAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HEIGHTFIELDDECALASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5163,6 +6464,15 @@ impl TypeObject for HeightfieldDecalAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5191,12 +6501,12 @@ impl super::core::AssetTrait for TerrainBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TerrainBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5221,6 +6531,15 @@ impl TypeObject for TerrainBaseAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5256,12 +6575,12 @@ impl super::core::AssetTrait for PathfindingRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PathfindingRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFINDINGRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5286,6 +6605,15 @@ impl TypeObject for PathfindingRasterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5312,9 +6640,6 @@ impl RasterCoverageDataTrait for RasterCoverageData {
 }
 
 impl super::core::DataContainerTrait for RasterCoverageData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RASTERCOVERAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5339,6 +6664,15 @@ impl TypeObject for RasterCoverageData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5374,12 +6708,12 @@ impl super::core::AssetTrait for DensityMapRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DensityMapRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DENSITYMAPRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5405,6 +6739,15 @@ impl TypeObject for DensityMapRasterData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5426,11 +6769,15 @@ pub struct BiomeRasterData {
 
 pub trait BiomeRasterDataTrait: IndexedRasterDataTrait {
     fn biomes(&self) -> &Vec<BiomeSpec>;
+    fn biomes_mut(&mut self) -> &mut Vec<BiomeSpec>;
 }
 
 impl BiomeRasterDataTrait for BiomeRasterData {
     fn biomes(&self) -> &Vec<BiomeSpec> {
         &self.biomes
+    }
+    fn biomes_mut(&mut self) -> &mut Vec<BiomeSpec> {
+        &mut self.biomes
     }
 }
 
@@ -5447,12 +6794,12 @@ impl super::core::AssetTrait for BiomeRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for BiomeRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BIOMERASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5483,6 +6830,15 @@ impl TypeObject for BiomeRasterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5518,12 +6874,12 @@ impl super::core::AssetTrait for IndexedRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for IndexedRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INDEXEDRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5549,6 +6905,15 @@ impl TypeObject for IndexedRasterData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5570,15 +6935,23 @@ pub struct TileBiomeList {
 
 pub trait TileBiomeListTrait: TypeObject {
     fn hash(&self) -> &i32;
+    fn hash_mut(&mut self) -> &mut i32;
     fn biomes(&self) -> &Vec<u8>;
+    fn biomes_mut(&mut self) -> &mut Vec<u8>;
 }
 
 impl TileBiomeListTrait for TileBiomeList {
     fn hash(&self) -> &i32 {
         &self.hash
     }
+    fn hash_mut(&mut self) -> &mut i32 {
+        &mut self.hash
+    }
     fn biomes(&self) -> &Vec<u8> {
         &self.biomes
+    }
+    fn biomes_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.biomes
     }
 }
 
@@ -5616,6 +6989,15 @@ impl TypeObject for TileBiomeList {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5637,15 +7019,23 @@ pub struct BiomeSpec {
 
 pub trait BiomeSpecTrait: TypeObject {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn value(&self) -> &u32;
+    fn value_mut(&mut self) -> &mut u32;
 }
 
 impl BiomeSpecTrait for BiomeSpec {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn value(&self) -> &u32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut u32 {
+        &mut self.value
     }
 }
 
@@ -5683,6 +7073,15 @@ impl TypeObject for BiomeSpec {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5717,12 +7116,12 @@ impl super::core::AssetTrait for FlowMapRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FlowMapRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FLOWMAPRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5747,6 +7146,15 @@ impl TypeObject for FlowMapRasterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5782,12 +7190,12 @@ impl super::core::AssetTrait for DestructionDepthRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DestructionDepthRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONDEPTHRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5812,6 +7220,15 @@ impl TypeObject for DestructionDepthRasterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5838,9 +7255,6 @@ impl DestructionDepthGenerateOptionsTrait for DestructionDepthGenerateOptions {
 }
 
 impl super::core::DataContainerTrait for DestructionDepthGenerateOptions {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONDEPTHGENERATEOPTIONS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5865,6 +7279,15 @@ impl TypeObject for DestructionDepthGenerateOptions {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5907,6 +7330,15 @@ impl TypeObject for DestructionDepthGenerateSource {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5938,12 +7370,12 @@ impl super::core::AssetTrait for PhysicsMaterialsRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PhysicsMaterialsRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSMATERIALSRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5968,6 +7400,15 @@ impl TypeObject for PhysicsMaterialsRasterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6000,12 +7441,12 @@ impl super::core::AssetTrait for ByteRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ByteRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BYTERASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6030,6 +7471,15 @@ impl TypeObject for ByteRasterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6062,12 +7512,12 @@ impl super::core::AssetTrait for RGBRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RGBRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RGBRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6092,6 +7542,15 @@ impl TypeObject for RGBRasterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6124,12 +7583,12 @@ impl super::core::AssetTrait for RGBARasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RGBARasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RGBARASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6154,6 +7613,15 @@ impl TypeObject for RGBARasterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6186,12 +7654,12 @@ impl super::core::AssetTrait for HeightfieldRasterData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for HeightfieldRasterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HEIGHTFIELDRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6217,6 +7685,15 @@ impl TypeObject for HeightfieldRasterData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6233,7 +7710,7 @@ pub static HEIGHTFIELDRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 #[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
 #[repr(i64)]
 #[allow(non_camel_case_types)]
-pub enum DensityMap_FilterType {
+pub enum DensityMapFilterType {
     #[default]
     DensityMapFilter_SecondOrderDifference = 0,
     DensityMapFilter_GaussianCurvature = 1,
@@ -6251,12 +7728,21 @@ pub static DENSITYMAP_FILTERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     alignment: 1,
 };
 
-impl TypeObject for DensityMap_FilterType {
+impl TypeObject for DensityMapFilterType {
     fn type_info(&self) -> &'static TypeInfo {
         DENSITYMAP_FILTERTYPE_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6289,12 +7775,12 @@ impl super::core::AssetTrait for VirtualRasterQuadtreeData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for VirtualRasterQuadtreeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VIRTUALRASTERQUADTREEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6319,6 +7805,15 @@ impl TypeObject for VirtualRasterQuadtreeData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6348,12 +7843,12 @@ impl super::core::AssetTrait for RasterQuadtreeData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RasterQuadtreeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RASTERQUADTREEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6378,6 +7873,15 @@ impl TypeObject for RasterQuadtreeData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6417,6 +7921,15 @@ impl TypeObject for SampleCenter {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6442,9 +7955,6 @@ impl RasterQuadtreeNodeDataTrait for RasterQuadtreeNodeData {
 }
 
 impl super::core::DataContainerTrait for RasterQuadtreeNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RASTERQUADTREENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6469,6 +7979,15 @@ impl TypeObject for RasterQuadtreeNodeData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6509,6 +8028,15 @@ impl TypeObject for StyleTransferTexture {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6552,6 +8080,15 @@ impl TypeObject for OverlayType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6589,6 +8126,15 @@ impl TypeObject for EffectOverlayType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6630,6 +8176,15 @@ impl TypeObject for RasterNodeUsage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6676,6 +8231,15 @@ impl TypeObject for RectangularCoverageData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6707,12 +8271,12 @@ impl super::core::AssetTrait for AutopaintOutput {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AutopaintOutput {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPAINTOUTPUT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6737,6 +8301,15 @@ impl TypeObject for AutopaintOutput {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6766,9 +8339,6 @@ impl super::entity::AutopaintOutputOverrideBaseTrait for AutopaintOutputOverride
 }
 
 impl super::core::DataContainerTrait for AutopaintOutputOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPAINTOUTPUTOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6793,6 +8363,15 @@ impl TypeObject for AutopaintOutputOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6822,18 +8401,21 @@ impl super::entity::AutopaintOutputsBaseTrait for AutopaintOutputs {
     fn outputs(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::AutopaintOutputBaseTrait>>>> {
         self._glacier_base.outputs()
     }
+    fn outputs_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::AutopaintOutputBaseTrait>>>> {
+        self._glacier_base.outputs_mut()
+    }
 }
 
 impl super::core::AssetTrait for AutopaintOutputs {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AutopaintOutputs {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPAINTOUTPUTS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6858,6 +8440,15 @@ impl TypeObject for AutopaintOutputs {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6887,12 +8478,12 @@ impl super::core::AssetTrait for AutopaintConfigs {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AutopaintConfigs {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPAINTCONFIGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6918,6 +8509,15 @@ impl TypeObject for AutopaintConfigs {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6939,15 +8539,23 @@ pub struct RasterTypeToRasterFormat {
 
 pub trait RasterTypeToRasterFormatTrait: TypeObject {
     fn raster_type(&self) -> &super::entity::RasterType;
+    fn raster_type_mut(&mut self) -> &mut super::entity::RasterType;
     fn raster_format(&self) -> &super::entity::RasterFormat;
+    fn raster_format_mut(&mut self) -> &mut super::entity::RasterFormat;
 }
 
 impl RasterTypeToRasterFormatTrait for RasterTypeToRasterFormat {
     fn raster_type(&self) -> &super::entity::RasterType {
         &self.raster_type
     }
+    fn raster_type_mut(&mut self) -> &mut super::entity::RasterType {
+        &mut self.raster_type
+    }
     fn raster_format(&self) -> &super::entity::RasterFormat {
         &self.raster_format
+    }
+    fn raster_format_mut(&mut self) -> &mut super::entity::RasterFormat {
+        &mut self.raster_format
     }
 }
 
@@ -6985,6 +8593,15 @@ impl TypeObject for RasterTypeToRasterFormat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7006,15 +8623,23 @@ pub struct ClassTypeAutopaintOutputsMap {
 
 pub trait ClassTypeAutopaintOutputsMapTrait: TypeObject {
     fn class_type(&self) -> &String;
+    fn class_type_mut(&mut self) -> &mut String;
     fn autopaint_outputs(&self) -> &Option<Arc<Mutex<dyn AutopaintOutputsTrait>>>;
+    fn autopaint_outputs_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutopaintOutputsTrait>>>;
 }
 
 impl ClassTypeAutopaintOutputsMapTrait for ClassTypeAutopaintOutputsMap {
     fn class_type(&self) -> &String {
         &self.class_type
     }
+    fn class_type_mut(&mut self) -> &mut String {
+        &mut self.class_type
+    }
     fn autopaint_outputs(&self) -> &Option<Arc<Mutex<dyn AutopaintOutputsTrait>>> {
         &self.autopaint_outputs
+    }
+    fn autopaint_outputs_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutopaintOutputsTrait>>> {
+        &mut self.autopaint_outputs
     }
 }
 
@@ -7051,6 +8676,15 @@ impl TypeObject for ClassTypeAutopaintOutputsMap {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -7097,6 +8731,15 @@ impl TypeObject for AutoPaintMeshData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7142,6 +8785,15 @@ impl TypeObject for AutoPaintRoadData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7180,6 +8832,15 @@ impl TypeObject for OutputType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -7234,6 +8895,15 @@ impl TypeObject for TPABlendMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7272,6 +8942,15 @@ impl TypeObject for DepthBuffer {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -7312,6 +8991,15 @@ impl TypeObject for FaceCulling {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -7358,6 +9046,15 @@ impl TypeObject for TerrainStreamingTree {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -7409,6 +9106,15 @@ impl TypeObject for Terrain {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7455,6 +9161,15 @@ impl TypeObject for ITerrain {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7500,6 +9215,15 @@ impl TypeObject for HeightfieldDecal {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

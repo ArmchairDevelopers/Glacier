@@ -58,115 +58,223 @@ pub struct Baked3DAs2x2DTexWindForceBase {
 
 pub trait Baked3DAs2x2DTexWindForceBaseTrait: TypeObject {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn direction_x(&self) -> &super::core::Vec3;
+    fn direction_x_mut(&mut self) -> &mut super::core::Vec3;
     fn direction_y(&self) -> &super::core::Vec3;
+    fn direction_y_mut(&mut self) -> &mut super::core::Vec3;
     fn direction_z(&self) -> &super::core::Vec3;
+    fn direction_z_mut(&mut self) -> &mut super::core::Vec3;
     fn scaled_direction_x(&self) -> &super::core::Vec3;
+    fn scaled_direction_x_mut(&mut self) -> &mut super::core::Vec3;
     fn scaled_direction_y(&self) -> &super::core::Vec3;
+    fn scaled_direction_y_mut(&mut self) -> &mut super::core::Vec3;
     fn scaled_direction_z(&self) -> &super::core::Vec3;
+    fn scaled_direction_z_mut(&mut self) -> &mut super::core::Vec3;
     fn texture_velocity_z_x_scale(&self) -> &super::core::Vec3;
+    fn texture_velocity_z_x_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn texture_velocity_z_y_scale(&self) -> &super::core::Vec3;
+    fn texture_velocity_z_y_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn texture_velocity_z_x(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_velocity_z_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn texture_velocity_z_y(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_velocity_z_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn aabb_min_x(&self) -> &f32;
+    fn aabb_min_x_mut(&mut self) -> &mut f32;
     fn aabb_max_x(&self) -> &f32;
+    fn aabb_max_x_mut(&mut self) -> &mut f32;
     fn aabb_min_y(&self) -> &f32;
+    fn aabb_min_y_mut(&mut self) -> &mut f32;
     fn aabb_max_y(&self) -> &f32;
+    fn aabb_max_y_mut(&mut self) -> &mut f32;
     fn aabb_min_z(&self) -> &f32;
+    fn aabb_min_z_mut(&mut self) -> &mut f32;
     fn aabb_max_z(&self) -> &f32;
+    fn aabb_max_z_mut(&mut self) -> &mut f32;
     fn inv_attenuation(&self) -> &f32;
+    fn inv_attenuation_mut(&mut self) -> &mut f32;
     fn id(&self) -> &u32;
+    fn id_mut(&mut self) -> &mut u32;
     fn groups(&self) -> &u32;
+    fn groups_mut(&mut self) -> &mut u32;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn variation(&self) -> &f32;
+    fn variation_mut(&mut self) -> &mut f32;
     fn variation_rate(&self) -> &f32;
+    fn variation_rate_mut(&mut self) -> &mut f32;
     fn micro_variation(&self) -> &f32;
+    fn micro_variation_mut(&mut self) -> &mut f32;
     fn hardness(&self) -> &f32;
+    fn hardness_mut(&mut self) -> &mut f32;
     fn force_as_instant_velocity(&self) -> &f32;
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl Baked3DAs2x2DTexWindForceBaseTrait for Baked3DAs2x2DTexWindForceBase {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
+    }
     fn direction_x(&self) -> &super::core::Vec3 {
         &self.direction_x
+    }
+    fn direction_x_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.direction_x
     }
     fn direction_y(&self) -> &super::core::Vec3 {
         &self.direction_y
     }
+    fn direction_y_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.direction_y
+    }
     fn direction_z(&self) -> &super::core::Vec3 {
         &self.direction_z
+    }
+    fn direction_z_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.direction_z
     }
     fn scaled_direction_x(&self) -> &super::core::Vec3 {
         &self.scaled_direction_x
     }
+    fn scaled_direction_x_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.scaled_direction_x
+    }
     fn scaled_direction_y(&self) -> &super::core::Vec3 {
         &self.scaled_direction_y
+    }
+    fn scaled_direction_y_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.scaled_direction_y
     }
     fn scaled_direction_z(&self) -> &super::core::Vec3 {
         &self.scaled_direction_z
     }
+    fn scaled_direction_z_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.scaled_direction_z
+    }
     fn texture_velocity_z_x_scale(&self) -> &super::core::Vec3 {
         &self.texture_velocity_z_x_scale
+    }
+    fn texture_velocity_z_x_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.texture_velocity_z_x_scale
     }
     fn texture_velocity_z_y_scale(&self) -> &super::core::Vec3 {
         &self.texture_velocity_z_y_scale
     }
+    fn texture_velocity_z_y_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.texture_velocity_z_y_scale
+    }
     fn texture_velocity_z_x(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture_velocity_z_x
+    }
+    fn texture_velocity_z_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture_velocity_z_x
     }
     fn texture_velocity_z_y(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture_velocity_z_y
     }
+    fn texture_velocity_z_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture_velocity_z_y
+    }
     fn aabb_min_x(&self) -> &f32 {
         &self.aabb_min_x
+    }
+    fn aabb_min_x_mut(&mut self) -> &mut f32 {
+        &mut self.aabb_min_x
     }
     fn aabb_max_x(&self) -> &f32 {
         &self.aabb_max_x
     }
+    fn aabb_max_x_mut(&mut self) -> &mut f32 {
+        &mut self.aabb_max_x
+    }
     fn aabb_min_y(&self) -> &f32 {
         &self.aabb_min_y
+    }
+    fn aabb_min_y_mut(&mut self) -> &mut f32 {
+        &mut self.aabb_min_y
     }
     fn aabb_max_y(&self) -> &f32 {
         &self.aabb_max_y
     }
+    fn aabb_max_y_mut(&mut self) -> &mut f32 {
+        &mut self.aabb_max_y
+    }
     fn aabb_min_z(&self) -> &f32 {
         &self.aabb_min_z
+    }
+    fn aabb_min_z_mut(&mut self) -> &mut f32 {
+        &mut self.aabb_min_z
     }
     fn aabb_max_z(&self) -> &f32 {
         &self.aabb_max_z
     }
+    fn aabb_max_z_mut(&mut self) -> &mut f32 {
+        &mut self.aabb_max_z
+    }
     fn inv_attenuation(&self) -> &f32 {
         &self.inv_attenuation
+    }
+    fn inv_attenuation_mut(&mut self) -> &mut f32 {
+        &mut self.inv_attenuation
     }
     fn id(&self) -> &u32 {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        &mut self.id
+    }
     fn groups(&self) -> &u32 {
         &self.groups
+    }
+    fn groups_mut(&mut self) -> &mut u32 {
+        &mut self.groups
     }
     fn strength(&self) -> &f32 {
         &self.strength
     }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
+    }
     fn variation(&self) -> &f32 {
         &self.variation
+    }
+    fn variation_mut(&mut self) -> &mut f32 {
+        &mut self.variation
     }
     fn variation_rate(&self) -> &f32 {
         &self.variation_rate
     }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        &mut self.variation_rate
+    }
     fn micro_variation(&self) -> &f32 {
         &self.micro_variation
+    }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        &mut self.micro_variation
     }
     fn hardness(&self) -> &f32 {
         &self.hardness
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        &mut self.hardness
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         &self.force_as_instant_velocity
     }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.force_as_instant_velocity
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -354,6 +462,15 @@ impl TypeObject for Baked3DAs2x2DTexWindForceBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -388,67 +505,127 @@ pub struct ConeWindForceBase {
 
 pub trait ConeWindForceBaseTrait: TypeObject {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn direction(&self) -> &super::core::Vec3;
+    fn direction_mut(&mut self) -> &mut super::core::Vec3;
     fn inner_radius(&self) -> &f32;
+    fn inner_radius_mut(&mut self) -> &mut f32;
     fn outer_radius(&self) -> &f32;
+    fn outer_radius_mut(&mut self) -> &mut f32;
     fn cos_inner_angle(&self) -> &f32;
+    fn cos_inner_angle_mut(&mut self) -> &mut f32;
     fn cos_outer_angle(&self) -> &f32;
+    fn cos_outer_angle_mut(&mut self) -> &mut f32;
     fn id(&self) -> &u32;
+    fn id_mut(&mut self) -> &mut u32;
     fn groups(&self) -> &u32;
+    fn groups_mut(&mut self) -> &mut u32;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn variation(&self) -> &f32;
+    fn variation_mut(&mut self) -> &mut f32;
     fn variation_rate(&self) -> &f32;
+    fn variation_rate_mut(&mut self) -> &mut f32;
     fn micro_variation(&self) -> &f32;
+    fn micro_variation_mut(&mut self) -> &mut f32;
     fn hardness(&self) -> &f32;
+    fn hardness_mut(&mut self) -> &mut f32;
     fn force_as_instant_velocity(&self) -> &f32;
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl ConeWindForceBaseTrait for ConeWindForceBase {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
+    }
     fn direction(&self) -> &super::core::Vec3 {
         &self.direction
+    }
+    fn direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.direction
     }
     fn inner_radius(&self) -> &f32 {
         &self.inner_radius
     }
+    fn inner_radius_mut(&mut self) -> &mut f32 {
+        &mut self.inner_radius
+    }
     fn outer_radius(&self) -> &f32 {
         &self.outer_radius
+    }
+    fn outer_radius_mut(&mut self) -> &mut f32 {
+        &mut self.outer_radius
     }
     fn cos_inner_angle(&self) -> &f32 {
         &self.cos_inner_angle
     }
+    fn cos_inner_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cos_inner_angle
+    }
     fn cos_outer_angle(&self) -> &f32 {
         &self.cos_outer_angle
+    }
+    fn cos_outer_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cos_outer_angle
     }
     fn id(&self) -> &u32 {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        &mut self.id
+    }
     fn groups(&self) -> &u32 {
         &self.groups
+    }
+    fn groups_mut(&mut self) -> &mut u32 {
+        &mut self.groups
     }
     fn strength(&self) -> &f32 {
         &self.strength
     }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
+    }
     fn variation(&self) -> &f32 {
         &self.variation
+    }
+    fn variation_mut(&mut self) -> &mut f32 {
+        &mut self.variation
     }
     fn variation_rate(&self) -> &f32 {
         &self.variation_rate
     }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        &mut self.variation_rate
+    }
     fn micro_variation(&self) -> &f32 {
         &self.micro_variation
+    }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        &mut self.micro_variation
     }
     fn hardness(&self) -> &f32 {
         &self.hardness
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        &mut self.hardness
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         &self.force_as_instant_velocity
     }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.force_as_instant_velocity
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -564,6 +741,15 @@ impl TypeObject for ConeWindForceBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -594,51 +780,95 @@ pub struct SphereWindForceBase {
 
 pub trait SphereWindForceBaseTrait: TypeObject {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn id(&self) -> &u32;
+    fn id_mut(&mut self) -> &mut u32;
     fn groups(&self) -> &u32;
+    fn groups_mut(&mut self) -> &mut u32;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn variation(&self) -> &f32;
+    fn variation_mut(&mut self) -> &mut f32;
     fn variation_rate(&self) -> &f32;
+    fn variation_rate_mut(&mut self) -> &mut f32;
     fn micro_variation(&self) -> &f32;
+    fn micro_variation_mut(&mut self) -> &mut f32;
     fn hardness(&self) -> &f32;
+    fn hardness_mut(&mut self) -> &mut f32;
     fn force_as_instant_velocity(&self) -> &f32;
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl SphereWindForceBaseTrait for SphereWindForceBase {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn id(&self) -> &u32 {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        &mut self.id
+    }
     fn groups(&self) -> &u32 {
         &self.groups
+    }
+    fn groups_mut(&mut self) -> &mut u32 {
+        &mut self.groups
     }
     fn strength(&self) -> &f32 {
         &self.strength
     }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
+    }
     fn variation(&self) -> &f32 {
         &self.variation
+    }
+    fn variation_mut(&mut self) -> &mut f32 {
+        &mut self.variation
     }
     fn variation_rate(&self) -> &f32 {
         &self.variation_rate
     }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        &mut self.variation_rate
+    }
     fn micro_variation(&self) -> &f32 {
         &self.micro_variation
+    }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        &mut self.micro_variation
     }
     fn hardness(&self) -> &f32 {
         &self.hardness
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        &mut self.hardness
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         &self.force_as_instant_velocity
     }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.force_as_instant_velocity
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -730,6 +960,15 @@ impl TypeObject for SphereWindForceBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -757,39 +996,71 @@ pub struct LocalWindForce {
 
 pub trait LocalWindForceTrait: TypeObject {
     fn id(&self) -> &u32;
+    fn id_mut(&mut self) -> &mut u32;
     fn groups(&self) -> &u32;
+    fn groups_mut(&mut self) -> &mut u32;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn variation(&self) -> &f32;
+    fn variation_mut(&mut self) -> &mut f32;
     fn variation_rate(&self) -> &f32;
+    fn variation_rate_mut(&mut self) -> &mut f32;
     fn micro_variation(&self) -> &f32;
+    fn micro_variation_mut(&mut self) -> &mut f32;
     fn hardness(&self) -> &f32;
+    fn hardness_mut(&mut self) -> &mut f32;
     fn force_as_instant_velocity(&self) -> &f32;
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32;
 }
 
 impl LocalWindForceTrait for LocalWindForce {
     fn id(&self) -> &u32 {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        &mut self.id
+    }
     fn groups(&self) -> &u32 {
         &self.groups
+    }
+    fn groups_mut(&mut self) -> &mut u32 {
+        &mut self.groups
     }
     fn strength(&self) -> &f32 {
         &self.strength
     }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
+    }
     fn variation(&self) -> &f32 {
         &self.variation
+    }
+    fn variation_mut(&mut self) -> &mut f32 {
+        &mut self.variation
     }
     fn variation_rate(&self) -> &f32 {
         &self.variation_rate
     }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        &mut self.variation_rate
+    }
     fn micro_variation(&self) -> &f32 {
         &self.micro_variation
+    }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        &mut self.micro_variation
     }
     fn hardness(&self) -> &f32 {
         &self.hardness
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        &mut self.hardness
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         &self.force_as_instant_velocity
+    }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.force_as_instant_velocity
     }
 }
 
@@ -863,6 +1134,15 @@ impl TypeObject for LocalWindForce {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -891,43 +1171,79 @@ pub struct DirectionWindForceBase {
 
 pub trait DirectionWindForceBaseTrait: TypeObject {
     fn direction(&self) -> &super::core::Vec3;
+    fn direction_mut(&mut self) -> &mut super::core::Vec3;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn variation(&self) -> &f32;
+    fn variation_mut(&mut self) -> &mut f32;
     fn variation_rate(&self) -> &f32;
+    fn variation_rate_mut(&mut self) -> &mut f32;
     fn micro_variation(&self) -> &f32;
+    fn micro_variation_mut(&mut self) -> &mut f32;
     fn turbulence_multiplier(&self) -> &f32;
+    fn turbulence_multiplier_mut(&mut self) -> &mut f32;
     fn turbulence_scale(&self) -> &f32;
+    fn turbulence_scale_mut(&mut self) -> &mut f32;
     fn id(&self) -> &u32;
+    fn id_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl DirectionWindForceBaseTrait for DirectionWindForceBase {
     fn direction(&self) -> &super::core::Vec3 {
         &self.direction
     }
+    fn direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.direction
+    }
     fn strength(&self) -> &f32 {
         &self.strength
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
     }
     fn variation(&self) -> &f32 {
         &self.variation
     }
+    fn variation_mut(&mut self) -> &mut f32 {
+        &mut self.variation
+    }
     fn variation_rate(&self) -> &f32 {
         &self.variation_rate
+    }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        &mut self.variation_rate
     }
     fn micro_variation(&self) -> &f32 {
         &self.micro_variation
     }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        &mut self.micro_variation
+    }
     fn turbulence_multiplier(&self) -> &f32 {
         &self.turbulence_multiplier
+    }
+    fn turbulence_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.turbulence_multiplier
     }
     fn turbulence_scale(&self) -> &f32 {
         &self.turbulence_scale
     }
+    fn turbulence_scale_mut(&mut self) -> &mut f32 {
+        &mut self.turbulence_scale
+    }
     fn id(&self) -> &u32 {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        &mut self.id
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1007,6 +1323,15 @@ impl TypeObject for DirectionWindForceBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1049,6 +1374,15 @@ impl TypeObject for LocalWindForceGroup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1087,6 +1421,15 @@ impl TypeObject for LocalWindForceType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

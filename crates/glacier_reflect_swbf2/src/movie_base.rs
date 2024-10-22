@@ -64,6 +64,15 @@ impl TypeObject for MovieTexture2AssetFormat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -93,43 +102,79 @@ pub struct MovieTexture2Asset {
 
 pub trait MovieTexture2AssetTrait: MovieTextureBaseAssetTrait {
     fn chunk_guid(&self) -> &glacier_util::guid::Guid;
+    fn chunk_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn chunk_size(&self) -> &u32;
+    fn chunk_size_mut(&mut self) -> &mut u32;
     fn subtitle_chunk_guid(&self) -> &glacier_util::guid::Guid;
+    fn subtitle_chunk_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn subtitle_chunk_size(&self) -> &u32;
+    fn subtitle_chunk_size_mut(&mut self) -> &mut u32;
     fn has_localized_audio_tracks(&self) -> &bool;
+    fn has_localized_audio_tracks_mut(&mut self) -> &mut bool;
     fn movie_filename(&self) -> &String;
+    fn movie_filename_mut(&mut self) -> &mut String;
     fn subtitle_filename(&self) -> &String;
+    fn subtitle_filename_mut(&mut self) -> &mut String;
     fn flipped(&self) -> &bool;
+    fn flipped_mut(&mut self) -> &mut bool;
     fn use_stereo(&self) -> &bool;
+    fn use_stereo_mut(&mut self) -> &mut bool;
 }
 
 impl MovieTexture2AssetTrait for MovieTexture2Asset {
     fn chunk_guid(&self) -> &glacier_util::guid::Guid {
         &self.chunk_guid
     }
+    fn chunk_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.chunk_guid
+    }
     fn chunk_size(&self) -> &u32 {
         &self.chunk_size
+    }
+    fn chunk_size_mut(&mut self) -> &mut u32 {
+        &mut self.chunk_size
     }
     fn subtitle_chunk_guid(&self) -> &glacier_util::guid::Guid {
         &self.subtitle_chunk_guid
     }
+    fn subtitle_chunk_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.subtitle_chunk_guid
+    }
     fn subtitle_chunk_size(&self) -> &u32 {
         &self.subtitle_chunk_size
+    }
+    fn subtitle_chunk_size_mut(&mut self) -> &mut u32 {
+        &mut self.subtitle_chunk_size
     }
     fn has_localized_audio_tracks(&self) -> &bool {
         &self.has_localized_audio_tracks
     }
+    fn has_localized_audio_tracks_mut(&mut self) -> &mut bool {
+        &mut self.has_localized_audio_tracks
+    }
     fn movie_filename(&self) -> &String {
         &self.movie_filename
+    }
+    fn movie_filename_mut(&mut self) -> &mut String {
+        &mut self.movie_filename
     }
     fn subtitle_filename(&self) -> &String {
         &self.subtitle_filename
     }
+    fn subtitle_filename_mut(&mut self) -> &mut String {
+        &mut self.subtitle_filename
+    }
     fn flipped(&self) -> &bool {
         &self.flipped
     }
+    fn flipped_mut(&mut self) -> &mut bool {
+        &mut self.flipped
+    }
     fn use_stereo(&self) -> &bool {
         &self.use_stereo
+    }
+    fn use_stereo_mut(&mut self) -> &mut bool {
+        &mut self.use_stereo
     }
 }
 
@@ -140,12 +185,12 @@ impl super::core::AssetTrait for MovieTexture2Asset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MovieTexture2Asset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVIETEXTURE2ASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -225,6 +270,15 @@ impl TypeObject for MovieTexture2Asset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -252,39 +306,71 @@ pub struct AudioStream {
 
 pub trait AudioStreamTrait: TypeObject {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn codec(&self) -> &AudioCodecType;
+    fn codec_mut(&mut self) -> &mut AudioCodecType;
     fn language(&self) -> &String;
+    fn language_mut(&mut self) -> &mut String;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn sample_rate(&self) -> &u32;
+    fn sample_rate_mut(&mut self) -> &mut u32;
     fn bit_rate(&self) -> &u32;
+    fn bit_rate_mut(&mut self) -> &mut u32;
     fn channels(&self) -> &u32;
+    fn channels_mut(&mut self) -> &mut u32;
     fn audio_filename(&self) -> &String;
+    fn audio_filename_mut(&mut self) -> &mut String;
 }
 
 impl AudioStreamTrait for AudioStream {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn codec(&self) -> &AudioCodecType {
         &self.codec
+    }
+    fn codec_mut(&mut self) -> &mut AudioCodecType {
+        &mut self.codec
     }
     fn language(&self) -> &String {
         &self.language
     }
+    fn language_mut(&mut self) -> &mut String {
+        &mut self.language
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
     fn sample_rate(&self) -> &u32 {
         &self.sample_rate
     }
+    fn sample_rate_mut(&mut self) -> &mut u32 {
+        &mut self.sample_rate
+    }
     fn bit_rate(&self) -> &u32 {
         &self.bit_rate
+    }
+    fn bit_rate_mut(&mut self) -> &mut u32 {
+        &mut self.bit_rate
     }
     fn channels(&self) -> &u32 {
         &self.channels
     }
+    fn channels_mut(&mut self) -> &mut u32 {
+        &mut self.channels
+    }
     fn audio_filename(&self) -> &String {
         &self.audio_filename
+    }
+    fn audio_filename_mut(&mut self) -> &mut String {
+        &mut self.audio_filename
     }
 }
 
@@ -358,6 +444,15 @@ impl TypeObject for AudioStream {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -386,43 +481,79 @@ pub struct VideoStream {
 
 pub trait VideoStreamTrait: TypeObject {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn r#type(&self) -> &VideoStreamType;
+    fn r#type_mut(&mut self) -> &mut VideoStreamType;
     fn codec(&self) -> &VideoCodecType;
+    fn codec_mut(&mut self) -> &mut VideoCodecType;
     fn width(&self) -> &i32;
+    fn width_mut(&mut self) -> &mut i32;
     fn height(&self) -> &i32;
+    fn height_mut(&mut self) -> &mut i32;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn bit_rate(&self) -> &u32;
+    fn bit_rate_mut(&mut self) -> &mut u32;
     fn frames(&self) -> &u32;
+    fn frames_mut(&mut self) -> &mut u32;
     fn fps(&self) -> &f32;
+    fn fps_mut(&mut self) -> &mut f32;
 }
 
 impl VideoStreamTrait for VideoStream {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn r#type(&self) -> &VideoStreamType {
         &self.r#type
+    }
+    fn r#type_mut(&mut self) -> &mut VideoStreamType {
+        &mut self.r#type
     }
     fn codec(&self) -> &VideoCodecType {
         &self.codec
     }
+    fn codec_mut(&mut self) -> &mut VideoCodecType {
+        &mut self.codec
+    }
     fn width(&self) -> &i32 {
         &self.width
+    }
+    fn width_mut(&mut self) -> &mut i32 {
+        &mut self.width
     }
     fn height(&self) -> &i32 {
         &self.height
     }
+    fn height_mut(&mut self) -> &mut i32 {
+        &mut self.height
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
     fn bit_rate(&self) -> &u32 {
         &self.bit_rate
     }
+    fn bit_rate_mut(&mut self) -> &mut u32 {
+        &mut self.bit_rate
+    }
     fn frames(&self) -> &u32 {
         &self.frames
     }
+    fn frames_mut(&mut self) -> &mut u32 {
+        &mut self.frames
+    }
     fn fps(&self) -> &f32 {
         &self.fps
+    }
+    fn fps_mut(&mut self) -> &mut f32 {
+        &mut self.fps
     }
 }
 
@@ -502,6 +633,15 @@ impl TypeObject for VideoStream {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -540,6 +680,15 @@ impl TypeObject for AudioCodecType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -583,6 +732,15 @@ impl TypeObject for VideoCodecType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -621,6 +779,15 @@ impl TypeObject for VideoStreamType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -649,39 +816,71 @@ pub struct MovieTextureAsset {
 
 pub trait MovieTextureAssetTrait: MovieTextureBaseAssetTrait {
     fn chunk_guid(&self) -> &glacier_util::guid::Guid;
+    fn chunk_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn chunk_size(&self) -> &u32;
+    fn chunk_size_mut(&mut self) -> &mut u32;
     fn subtitle_chunk_guid(&self) -> &glacier_util::guid::Guid;
+    fn subtitle_chunk_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn subtitle_chunk_size(&self) -> &u32;
+    fn subtitle_chunk_size_mut(&mut self) -> &mut u32;
     fn has_localized_audio_tracks(&self) -> &bool;
+    fn has_localized_audio_tracks_mut(&mut self) -> &mut bool;
     fn override_background_music(&self) -> &bool;
+    fn override_background_music_mut(&mut self) -> &mut bool;
     fn has_vp6(&self) -> &bool;
+    fn has_vp6_mut(&mut self) -> &mut bool;
     fn has_vp8(&self) -> &bool;
+    fn has_vp8_mut(&mut self) -> &mut bool;
 }
 
 impl MovieTextureAssetTrait for MovieTextureAsset {
     fn chunk_guid(&self) -> &glacier_util::guid::Guid {
         &self.chunk_guid
     }
+    fn chunk_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.chunk_guid
+    }
     fn chunk_size(&self) -> &u32 {
         &self.chunk_size
+    }
+    fn chunk_size_mut(&mut self) -> &mut u32 {
+        &mut self.chunk_size
     }
     fn subtitle_chunk_guid(&self) -> &glacier_util::guid::Guid {
         &self.subtitle_chunk_guid
     }
+    fn subtitle_chunk_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.subtitle_chunk_guid
+    }
     fn subtitle_chunk_size(&self) -> &u32 {
         &self.subtitle_chunk_size
+    }
+    fn subtitle_chunk_size_mut(&mut self) -> &mut u32 {
+        &mut self.subtitle_chunk_size
     }
     fn has_localized_audio_tracks(&self) -> &bool {
         &self.has_localized_audio_tracks
     }
+    fn has_localized_audio_tracks_mut(&mut self) -> &mut bool {
+        &mut self.has_localized_audio_tracks
+    }
     fn override_background_music(&self) -> &bool {
         &self.override_background_music
+    }
+    fn override_background_music_mut(&mut self) -> &mut bool {
+        &mut self.override_background_music
     }
     fn has_vp6(&self) -> &bool {
         &self.has_vp6
     }
+    fn has_vp6_mut(&mut self) -> &mut bool {
+        &mut self.has_vp6
+    }
     fn has_vp8(&self) -> &bool {
         &self.has_vp8
+    }
+    fn has_vp8_mut(&mut self) -> &mut bool {
+        &mut self.has_vp8
     }
 }
 
@@ -692,12 +891,12 @@ impl super::core::AssetTrait for MovieTextureAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MovieTextureAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVIETEXTUREASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -771,6 +970,15 @@ impl TypeObject for MovieTextureAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -799,12 +1007,12 @@ impl super::core::AssetTrait for MovieTextureBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MovieTextureBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVIETEXTUREBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -829,6 +1037,15 @@ impl TypeObject for MovieTextureBaseAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -855,31 +1072,55 @@ pub struct MovieDynamicState {
 
 pub trait MovieDynamicStateTrait: TypeObject {
     fn external_time(&self) -> &f32;
+    fn external_time_mut(&mut self) -> &mut f32;
     fn volume(&self) -> &f32;
+    fn volume_mut(&mut self) -> &mut f32;
     fn play(&self) -> &bool;
+    fn play_mut(&mut self) -> &mut bool;
     fn enable_state_stream_destroy_dependency_bug_workaround(&self) -> &bool;
+    fn enable_state_stream_destroy_dependency_bug_workaround_mut(&mut self) -> &mut bool;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl MovieDynamicStateTrait for MovieDynamicState {
     fn external_time(&self) -> &f32 {
         &self.external_time
     }
+    fn external_time_mut(&mut self) -> &mut f32 {
+        &mut self.external_time
+    }
     fn volume(&self) -> &f32 {
         &self.volume
+    }
+    fn volume_mut(&mut self) -> &mut f32 {
+        &mut self.volume
     }
     fn play(&self) -> &bool {
         &self.play
     }
+    fn play_mut(&mut self) -> &mut bool {
+        &mut self.play
+    }
     fn enable_state_stream_destroy_dependency_bug_workaround(&self) -> &bool {
         &self.enable_state_stream_destroy_dependency_bug_workaround
+    }
+    fn enable_state_stream_destroy_dependency_bug_workaround_mut(&mut self) -> &mut bool {
+        &mut self.enable_state_stream_destroy_dependency_bug_workaround
     }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -941,6 +1182,15 @@ impl TypeObject for MovieDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -977,75 +1227,143 @@ pub struct MovieStaticState {
 
 pub trait MovieStaticStateTrait: TypeObject {
     fn movie_texture(&self) -> &Option<Arc<Mutex<dyn MovieTextureBaseAssetTrait>>>;
+    fn movie_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MovieTextureBaseAssetTrait>>>;
     fn movie_name(&self) -> &String;
+    fn movie_name_mut(&mut self) -> &mut String;
     fn subtitle_name(&self) -> &String;
+    fn subtitle_name_mut(&mut self) -> &mut String;
     fn audio_track_id(&self) -> &String;
+    fn audio_track_id_mut(&mut self) -> &mut String;
     fn enable_subtitles(&self) -> &bool;
+    fn enable_subtitles_mut(&mut self) -> &mut bool;
     fn r#loop(&self) -> &bool;
+    fn r#loop_mut(&mut self) -> &mut bool;
     fn preload(&self) -> &bool;
+    fn preload_mut(&mut self) -> &mut bool;
     fn use_sim_time(&self) -> &bool;
+    fn use_sim_time_mut(&mut self) -> &mut bool;
     fn pause_on_ending(&self) -> &bool;
+    fn pause_on_ending_mut(&mut self) -> &mut bool;
     fn shader_block_handles(&self) -> &Vec<super::render_base::ShaderParameterBlockHandle>;
+    fn shader_block_handles_mut(&mut self) -> &mut Vec<super::render_base::ShaderParameterBlockHandle>;
     fn shader_block_textures(&self) -> &Vec<super::render_base::ShaderBlockTexture>;
+    fn shader_block_textures_mut(&mut self) -> &mut Vec<super::render_base::ShaderBlockTexture>;
     fn texture_count(&self) -> &i32;
+    fn texture_count_mut(&mut self) -> &mut i32;
     fn decoder_threads(&self) -> &i32;
+    fn decoder_threads_mut(&mut self) -> &mut i32;
     fn stop_frame(&self) -> &i32;
+    fn stop_frame_mut(&mut self) -> &mut i32;
     fn language_override(&self) -> &super::core::LanguageFormat;
+    fn language_override_mut(&mut self) -> &mut super::core::LanguageFormat;
     fn if_i_delete_this_other_stuff_breaks(&self) -> &super::render_base::ShaderBlockBool;
+    fn if_i_delete_this_other_stuff_breaks_mut(&mut self) -> &mut super::render_base::ShaderBlockBool;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl MovieStaticStateTrait for MovieStaticState {
     fn movie_texture(&self) -> &Option<Arc<Mutex<dyn MovieTextureBaseAssetTrait>>> {
         &self.movie_texture
     }
+    fn movie_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MovieTextureBaseAssetTrait>>> {
+        &mut self.movie_texture
+    }
     fn movie_name(&self) -> &String {
         &self.movie_name
+    }
+    fn movie_name_mut(&mut self) -> &mut String {
+        &mut self.movie_name
     }
     fn subtitle_name(&self) -> &String {
         &self.subtitle_name
     }
+    fn subtitle_name_mut(&mut self) -> &mut String {
+        &mut self.subtitle_name
+    }
     fn audio_track_id(&self) -> &String {
         &self.audio_track_id
+    }
+    fn audio_track_id_mut(&mut self) -> &mut String {
+        &mut self.audio_track_id
     }
     fn enable_subtitles(&self) -> &bool {
         &self.enable_subtitles
     }
+    fn enable_subtitles_mut(&mut self) -> &mut bool {
+        &mut self.enable_subtitles
+    }
     fn r#loop(&self) -> &bool {
         &self.r#loop
+    }
+    fn r#loop_mut(&mut self) -> &mut bool {
+        &mut self.r#loop
     }
     fn preload(&self) -> &bool {
         &self.preload
     }
+    fn preload_mut(&mut self) -> &mut bool {
+        &mut self.preload
+    }
     fn use_sim_time(&self) -> &bool {
         &self.use_sim_time
+    }
+    fn use_sim_time_mut(&mut self) -> &mut bool {
+        &mut self.use_sim_time
     }
     fn pause_on_ending(&self) -> &bool {
         &self.pause_on_ending
     }
+    fn pause_on_ending_mut(&mut self) -> &mut bool {
+        &mut self.pause_on_ending
+    }
     fn shader_block_handles(&self) -> &Vec<super::render_base::ShaderParameterBlockHandle> {
         &self.shader_block_handles
+    }
+    fn shader_block_handles_mut(&mut self) -> &mut Vec<super::render_base::ShaderParameterBlockHandle> {
+        &mut self.shader_block_handles
     }
     fn shader_block_textures(&self) -> &Vec<super::render_base::ShaderBlockTexture> {
         &self.shader_block_textures
     }
+    fn shader_block_textures_mut(&mut self) -> &mut Vec<super::render_base::ShaderBlockTexture> {
+        &mut self.shader_block_textures
+    }
     fn texture_count(&self) -> &i32 {
         &self.texture_count
+    }
+    fn texture_count_mut(&mut self) -> &mut i32 {
+        &mut self.texture_count
     }
     fn decoder_threads(&self) -> &i32 {
         &self.decoder_threads
     }
+    fn decoder_threads_mut(&mut self) -> &mut i32 {
+        &mut self.decoder_threads
+    }
     fn stop_frame(&self) -> &i32 {
         &self.stop_frame
+    }
+    fn stop_frame_mut(&mut self) -> &mut i32 {
+        &mut self.stop_frame
     }
     fn language_override(&self) -> &super::core::LanguageFormat {
         &self.language_override
     }
+    fn language_override_mut(&mut self) -> &mut super::core::LanguageFormat {
+        &mut self.language_override
+    }
     fn if_i_delete_this_other_stuff_breaks(&self) -> &super::render_base::ShaderBlockBool {
         &self.if_i_delete_this_other_stuff_breaks
     }
+    fn if_i_delete_this_other_stuff_breaks_mut(&mut self) -> &mut super::render_base::ShaderBlockBool {
+        &mut self.if_i_delete_this_other_stuff_breaks
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1173,6 +1491,15 @@ impl TypeObject for MovieStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1217,6 +1544,15 @@ impl TypeObject for MovieHandle {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1263,6 +1599,15 @@ impl TypeObject for UICancelAllSubtitlesMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1296,6 +1641,15 @@ impl TypeObject for UICancelSubtitleMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1331,6 +1685,15 @@ impl TypeObject for UISubtitleMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1364,6 +1727,15 @@ impl TypeObject for UIPlayVideoMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

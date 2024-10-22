@@ -2672,6 +2672,15 @@ impl TypeObject for RadiosityTypeOverride {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2719,6 +2728,15 @@ impl TypeObject for LocalPlayerId {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2747,12 +2765,12 @@ impl AssetTrait for NodeGraph {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for NodeGraph {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NODEGRAPH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2777,6 +2795,15 @@ impl TypeObject for NodeGraph {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2803,9 +2830,6 @@ impl NodeTrait for Node {
 }
 
 impl DataContainerTrait for Node {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2830,6 +2854,15 @@ impl TypeObject for Node {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2877,6 +2910,15 @@ impl TypeObject for GamePlatform {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2915,6 +2957,15 @@ impl TypeObject for DesignerEnumerationSortType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2976,171 +3027,335 @@ pub struct CoreSettings {
 
 pub trait CoreSettingsTrait: TypeObject {
     fn live_editing_enable(&self) -> &bool;
+    fn live_editing_enable_mut(&mut self) -> &mut bool;
     fn disable_safe_state_for_refresh(&self) -> &bool;
+    fn disable_safe_state_for_refresh_mut(&mut self) -> &mut bool;
     fn host(&self) -> &String;
+    fn host_mut(&mut self) -> &mut String;
     fn host_user(&self) -> &String;
+    fn host_user_mut(&mut self) -> &mut String;
     fn host_user_domain(&self) -> &String;
+    fn host_user_domain_mut(&mut self) -> &mut String;
     fn init_seed(&self) -> &String;
+    fn init_seed_mut(&mut self) -> &mut String;
     fn trace_host(&self) -> &String;
+    fn trace_host_mut(&mut self) -> &mut String;
     fn forward_trace(&self) -> &bool;
+    fn forward_trace_mut(&mut self) -> &mut bool;
     fn forward_trace_host(&self) -> &String;
+    fn forward_trace_host_mut(&mut self) -> &mut String;
     fn forward_trace_port(&self) -> &i32;
+    fn forward_trace_port_mut(&mut self) -> &mut i32;
     fn perf_track_enabled(&self) -> &bool;
+    fn perf_track_enabled_mut(&mut self) -> &mut bool;
     fn log_level(&self) -> &CoreLogLevel;
+    fn log_level_mut(&mut self) -> &mut CoreLogLevel;
     fn dialog_level(&self) -> &CoreLogLevel;
+    fn dialog_level_mut(&mut self) -> &mut CoreLogLevel;
     fn user_log_enabled(&self) -> &bool;
+    fn user_log_enabled_mut(&mut self) -> &mut bool;
     fn log_settings(&self) -> &LogSettings;
+    fn log_settings_mut(&mut self) -> &mut LogSettings;
     fn allow_assign_vars_from_lua(&self) -> &bool;
+    fn allow_assign_vars_from_lua_mut(&mut self) -> &mut bool;
     fn display_asserts(&self) -> &bool;
+    fn display_asserts_mut(&mut self) -> &mut bool;
     fn debug_output_mode(&self) -> &u32;
+    fn debug_output_mode_mut(&mut self) -> &mut u32;
     fn crash_on_fatal_errors(&self) -> &bool;
+    fn crash_on_fatal_errors_mut(&mut self) -> &mut bool;
     fn enable_memory_snapshots(&self) -> &bool;
+    fn enable_memory_snapshots_mut(&mut self) -> &mut bool;
     fn breakpad_mode(&self) -> &u32;
+    fn breakpad_mode_mut(&mut self) -> &mut u32;
     fn random_time_seed(&self) -> &i32;
+    fn random_time_seed_mut(&mut self) -> &mut i32;
     fn random_tick_seed(&self) -> &i32;
+    fn random_tick_seed_mut(&mut self) -> &mut i32;
     fn random_session_id(&self) -> &i32;
+    fn random_session_id_mut(&mut self) -> &mut i32;
     fn local_player_id_to_command(&self) -> &LocalPlayerId;
+    fn local_player_id_to_command_mut(&mut self) -> &mut LocalPlayerId;
     fn game_configuration_name(&self) -> &String;
+    fn game_configuration_name_mut(&mut self) -> &mut String;
     fn use_storage_server(&self) -> &bool;
+    fn use_storage_server_mut(&mut self) -> &mut bool;
     fn hardware_profile(&self) -> &HardwareProfile;
+    fn hardware_profile_mut(&mut self) -> &mut HardwareProfile;
     fn hardware_cpu_bias(&self) -> &f32;
+    fn hardware_cpu_bias_mut(&mut self) -> &mut f32;
     fn hardware_gpu_bias(&self) -> &f32;
+    fn hardware_gpu_bias_mut(&mut self) -> &mut f32;
     fn profile_directory_name(&self) -> &String;
+    fn profile_directory_name_mut(&mut self) -> &mut String;
     fn resource_auto_job_thread(&self) -> &bool;
+    fn resource_auto_job_thread_mut(&mut self) -> &mut bool;
     fn resource_auto_job_thread_affinity_mask(&self) -> &u32;
+    fn resource_auto_job_thread_affinity_mask_mut(&mut self) -> &mut u32;
     fn enable_localization(&self) -> &bool;
+    fn enable_localization_mut(&mut self) -> &mut bool;
     fn available_languages(&self) -> &String;
+    fn available_languages_mut(&mut self) -> &mut String;
     fn enable_spike_packet_buffering(&self) -> &bool;
+    fn enable_spike_packet_buffering_mut(&mut self) -> &mut bool;
     fn world_size(&self) -> &f32;
+    fn world_size_mut(&mut self) -> &mut f32;
     fn stream_install_allow_play_from_bluray(&self) -> &StreamInstallFromBlurayType;
+    fn stream_install_allow_play_from_bluray_mut(&mut self) -> &mut StreamInstallFromBlurayType;
     fn stream_install_enable_delayed_superbundle_mount(&self) -> &bool;
+    fn stream_install_enable_delayed_superbundle_mount_mut(&mut self) -> &mut bool;
     fn stream_install_all_languages(&self) -> &bool;
+    fn stream_install_all_languages_mut(&mut self) -> &mut bool;
     fn operational_context_data_keys(&self) -> &Vec<String>;
+    fn operational_context_data_keys_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl CoreSettingsTrait for CoreSettings {
     fn live_editing_enable(&self) -> &bool {
         &self.live_editing_enable
     }
+    fn live_editing_enable_mut(&mut self) -> &mut bool {
+        &mut self.live_editing_enable
+    }
     fn disable_safe_state_for_refresh(&self) -> &bool {
         &self.disable_safe_state_for_refresh
+    }
+    fn disable_safe_state_for_refresh_mut(&mut self) -> &mut bool {
+        &mut self.disable_safe_state_for_refresh
     }
     fn host(&self) -> &String {
         &self.host
     }
+    fn host_mut(&mut self) -> &mut String {
+        &mut self.host
+    }
     fn host_user(&self) -> &String {
         &self.host_user
+    }
+    fn host_user_mut(&mut self) -> &mut String {
+        &mut self.host_user
     }
     fn host_user_domain(&self) -> &String {
         &self.host_user_domain
     }
+    fn host_user_domain_mut(&mut self) -> &mut String {
+        &mut self.host_user_domain
+    }
     fn init_seed(&self) -> &String {
         &self.init_seed
+    }
+    fn init_seed_mut(&mut self) -> &mut String {
+        &mut self.init_seed
     }
     fn trace_host(&self) -> &String {
         &self.trace_host
     }
+    fn trace_host_mut(&mut self) -> &mut String {
+        &mut self.trace_host
+    }
     fn forward_trace(&self) -> &bool {
         &self.forward_trace
+    }
+    fn forward_trace_mut(&mut self) -> &mut bool {
+        &mut self.forward_trace
     }
     fn forward_trace_host(&self) -> &String {
         &self.forward_trace_host
     }
+    fn forward_trace_host_mut(&mut self) -> &mut String {
+        &mut self.forward_trace_host
+    }
     fn forward_trace_port(&self) -> &i32 {
         &self.forward_trace_port
+    }
+    fn forward_trace_port_mut(&mut self) -> &mut i32 {
+        &mut self.forward_trace_port
     }
     fn perf_track_enabled(&self) -> &bool {
         &self.perf_track_enabled
     }
+    fn perf_track_enabled_mut(&mut self) -> &mut bool {
+        &mut self.perf_track_enabled
+    }
     fn log_level(&self) -> &CoreLogLevel {
         &self.log_level
+    }
+    fn log_level_mut(&mut self) -> &mut CoreLogLevel {
+        &mut self.log_level
     }
     fn dialog_level(&self) -> &CoreLogLevel {
         &self.dialog_level
     }
+    fn dialog_level_mut(&mut self) -> &mut CoreLogLevel {
+        &mut self.dialog_level
+    }
     fn user_log_enabled(&self) -> &bool {
         &self.user_log_enabled
+    }
+    fn user_log_enabled_mut(&mut self) -> &mut bool {
+        &mut self.user_log_enabled
     }
     fn log_settings(&self) -> &LogSettings {
         &self.log_settings
     }
+    fn log_settings_mut(&mut self) -> &mut LogSettings {
+        &mut self.log_settings
+    }
     fn allow_assign_vars_from_lua(&self) -> &bool {
         &self.allow_assign_vars_from_lua
+    }
+    fn allow_assign_vars_from_lua_mut(&mut self) -> &mut bool {
+        &mut self.allow_assign_vars_from_lua
     }
     fn display_asserts(&self) -> &bool {
         &self.display_asserts
     }
+    fn display_asserts_mut(&mut self) -> &mut bool {
+        &mut self.display_asserts
+    }
     fn debug_output_mode(&self) -> &u32 {
         &self.debug_output_mode
+    }
+    fn debug_output_mode_mut(&mut self) -> &mut u32 {
+        &mut self.debug_output_mode
     }
     fn crash_on_fatal_errors(&self) -> &bool {
         &self.crash_on_fatal_errors
     }
+    fn crash_on_fatal_errors_mut(&mut self) -> &mut bool {
+        &mut self.crash_on_fatal_errors
+    }
     fn enable_memory_snapshots(&self) -> &bool {
         &self.enable_memory_snapshots
+    }
+    fn enable_memory_snapshots_mut(&mut self) -> &mut bool {
+        &mut self.enable_memory_snapshots
     }
     fn breakpad_mode(&self) -> &u32 {
         &self.breakpad_mode
     }
+    fn breakpad_mode_mut(&mut self) -> &mut u32 {
+        &mut self.breakpad_mode
+    }
     fn random_time_seed(&self) -> &i32 {
         &self.random_time_seed
+    }
+    fn random_time_seed_mut(&mut self) -> &mut i32 {
+        &mut self.random_time_seed
     }
     fn random_tick_seed(&self) -> &i32 {
         &self.random_tick_seed
     }
+    fn random_tick_seed_mut(&mut self) -> &mut i32 {
+        &mut self.random_tick_seed
+    }
     fn random_session_id(&self) -> &i32 {
         &self.random_session_id
+    }
+    fn random_session_id_mut(&mut self) -> &mut i32 {
+        &mut self.random_session_id
     }
     fn local_player_id_to_command(&self) -> &LocalPlayerId {
         &self.local_player_id_to_command
     }
+    fn local_player_id_to_command_mut(&mut self) -> &mut LocalPlayerId {
+        &mut self.local_player_id_to_command
+    }
     fn game_configuration_name(&self) -> &String {
         &self.game_configuration_name
+    }
+    fn game_configuration_name_mut(&mut self) -> &mut String {
+        &mut self.game_configuration_name
     }
     fn use_storage_server(&self) -> &bool {
         &self.use_storage_server
     }
+    fn use_storage_server_mut(&mut self) -> &mut bool {
+        &mut self.use_storage_server
+    }
     fn hardware_profile(&self) -> &HardwareProfile {
         &self.hardware_profile
+    }
+    fn hardware_profile_mut(&mut self) -> &mut HardwareProfile {
+        &mut self.hardware_profile
     }
     fn hardware_cpu_bias(&self) -> &f32 {
         &self.hardware_cpu_bias
     }
+    fn hardware_cpu_bias_mut(&mut self) -> &mut f32 {
+        &mut self.hardware_cpu_bias
+    }
     fn hardware_gpu_bias(&self) -> &f32 {
         &self.hardware_gpu_bias
+    }
+    fn hardware_gpu_bias_mut(&mut self) -> &mut f32 {
+        &mut self.hardware_gpu_bias
     }
     fn profile_directory_name(&self) -> &String {
         &self.profile_directory_name
     }
+    fn profile_directory_name_mut(&mut self) -> &mut String {
+        &mut self.profile_directory_name
+    }
     fn resource_auto_job_thread(&self) -> &bool {
         &self.resource_auto_job_thread
+    }
+    fn resource_auto_job_thread_mut(&mut self) -> &mut bool {
+        &mut self.resource_auto_job_thread
     }
     fn resource_auto_job_thread_affinity_mask(&self) -> &u32 {
         &self.resource_auto_job_thread_affinity_mask
     }
+    fn resource_auto_job_thread_affinity_mask_mut(&mut self) -> &mut u32 {
+        &mut self.resource_auto_job_thread_affinity_mask
+    }
     fn enable_localization(&self) -> &bool {
         &self.enable_localization
+    }
+    fn enable_localization_mut(&mut self) -> &mut bool {
+        &mut self.enable_localization
     }
     fn available_languages(&self) -> &String {
         &self.available_languages
     }
+    fn available_languages_mut(&mut self) -> &mut String {
+        &mut self.available_languages
+    }
     fn enable_spike_packet_buffering(&self) -> &bool {
         &self.enable_spike_packet_buffering
+    }
+    fn enable_spike_packet_buffering_mut(&mut self) -> &mut bool {
+        &mut self.enable_spike_packet_buffering
     }
     fn world_size(&self) -> &f32 {
         &self.world_size
     }
+    fn world_size_mut(&mut self) -> &mut f32 {
+        &mut self.world_size
+    }
     fn stream_install_allow_play_from_bluray(&self) -> &StreamInstallFromBlurayType {
         &self.stream_install_allow_play_from_bluray
+    }
+    fn stream_install_allow_play_from_bluray_mut(&mut self) -> &mut StreamInstallFromBlurayType {
+        &mut self.stream_install_allow_play_from_bluray
     }
     fn stream_install_enable_delayed_superbundle_mount(&self) -> &bool {
         &self.stream_install_enable_delayed_superbundle_mount
     }
+    fn stream_install_enable_delayed_superbundle_mount_mut(&mut self) -> &mut bool {
+        &mut self.stream_install_enable_delayed_superbundle_mount
+    }
     fn stream_install_all_languages(&self) -> &bool {
         &self.stream_install_all_languages
     }
+    fn stream_install_all_languages_mut(&mut self) -> &mut bool {
+        &mut self.stream_install_all_languages
+    }
     fn operational_context_data_keys(&self) -> &Vec<String> {
         &self.operational_context_data_keys
+    }
+    fn operational_context_data_keys_mut(&mut self) -> &mut Vec<String> {
+        &mut self.operational_context_data_keys
     }
 }
 
@@ -3412,6 +3627,15 @@ impl TypeObject for CoreSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3433,15 +3657,23 @@ pub struct LogSettings {
 
 pub trait LogSettingsTrait: TypeObject {
     fn channels(&self) -> &Vec<ChannelSettings>;
+    fn channels_mut(&mut self) -> &mut Vec<ChannelSettings>;
     fn writers(&self) -> &Vec<WriterSettings>;
+    fn writers_mut(&mut self) -> &mut Vec<WriterSettings>;
 }
 
 impl LogSettingsTrait for LogSettings {
     fn channels(&self) -> &Vec<ChannelSettings> {
         &self.channels
     }
+    fn channels_mut(&mut self) -> &mut Vec<ChannelSettings> {
+        &mut self.channels
+    }
     fn writers(&self) -> &Vec<WriterSettings> {
         &self.writers
+    }
+    fn writers_mut(&mut self) -> &mut Vec<WriterSettings> {
+        &mut self.writers
     }
 }
 
@@ -3479,6 +3711,15 @@ impl TypeObject for LogSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3501,19 +3742,31 @@ pub struct WriterSettings {
 
 pub trait WriterSettingsTrait: TypeObject {
     fn id(&self) -> &String;
+    fn id_mut(&mut self) -> &mut String;
     fn class(&self) -> &String;
+    fn class_mut(&mut self) -> &mut String;
     fn params(&self) -> &String;
+    fn params_mut(&mut self) -> &mut String;
 }
 
 impl WriterSettingsTrait for WriterSettings {
     fn id(&self) -> &String {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut String {
+        &mut self.id
+    }
     fn class(&self) -> &String {
         &self.class
     }
+    fn class_mut(&mut self) -> &mut String {
+        &mut self.class
+    }
     fn params(&self) -> &String {
         &self.params
+    }
+    fn params_mut(&mut self) -> &mut String {
+        &mut self.params
     }
 }
 
@@ -3557,6 +3810,15 @@ impl TypeObject for WriterSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3581,27 +3843,47 @@ pub struct ChannelSettings {
 
 pub trait ChannelSettingsTrait: TypeObject {
     fn id(&self) -> &String;
+    fn id_mut(&mut self) -> &mut String;
     fn inherits_level(&self) -> &bool;
+    fn inherits_level_mut(&mut self) -> &mut bool;
     fn inherits_writers(&self) -> &bool;
+    fn inherits_writers_mut(&mut self) -> &mut bool;
     fn level(&self) -> &CoreLogLevel;
+    fn level_mut(&mut self) -> &mut CoreLogLevel;
     fn writers(&self) -> &Vec<String>;
+    fn writers_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl ChannelSettingsTrait for ChannelSettings {
     fn id(&self) -> &String {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut String {
+        &mut self.id
+    }
     fn inherits_level(&self) -> &bool {
         &self.inherits_level
+    }
+    fn inherits_level_mut(&mut self) -> &mut bool {
+        &mut self.inherits_level
     }
     fn inherits_writers(&self) -> &bool {
         &self.inherits_writers
     }
+    fn inherits_writers_mut(&mut self) -> &mut bool {
+        &mut self.inherits_writers
+    }
     fn level(&self) -> &CoreLogLevel {
         &self.level
     }
+    fn level_mut(&mut self) -> &mut CoreLogLevel {
+        &mut self.level
+    }
     fn writers(&self) -> &Vec<String> {
         &self.writers
+    }
+    fn writers_mut(&mut self) -> &mut Vec<String> {
+        &mut self.writers
     }
 }
 
@@ -3657,6 +3939,15 @@ impl TypeObject for ChannelSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3695,6 +3986,15 @@ impl TypeObject for StreamInstallFromBlurayType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3736,6 +4036,15 @@ impl TypeObject for HardwareProfile {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3784,6 +4093,15 @@ impl TypeObject for CoreLogLevel {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3807,26 +4125,35 @@ pub struct ContentPreset {
 
 pub trait ContentPresetTrait: DataContainerTrait {
     fn content_name(&self) -> &String;
+    fn content_name_mut(&mut self) -> &mut String;
     fn content_type(&self) -> &String;
+    fn content_type_mut(&mut self) -> &mut String;
     fn content_parameters(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn content_parameters_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
 }
 
 impl ContentPresetTrait for ContentPreset {
     fn content_name(&self) -> &String {
         &self.content_name
     }
+    fn content_name_mut(&mut self) -> &mut String {
+        &mut self.content_name
+    }
     fn content_type(&self) -> &String {
         &self.content_type
+    }
+    fn content_type_mut(&mut self) -> &mut String {
+        &mut self.content_type
     }
     fn content_parameters(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
         &self.content_parameters
     }
+    fn content_parameters_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+        &mut self.content_parameters
+    }
 }
 
 impl DataContainerTrait for ContentPreset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONTENTPRESET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3870,6 +4197,15 @@ impl TypeObject for ContentPreset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3891,11 +4227,15 @@ pub struct ContentPresetContainer {
 
 pub trait ContentPresetContainerTrait: AssetTrait {
     fn presets(&self) -> &Vec<Option<Arc<Mutex<dyn ContentPresetTrait>>>>;
+    fn presets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ContentPresetTrait>>>>;
 }
 
 impl ContentPresetContainerTrait for ContentPresetContainer {
     fn presets(&self) -> &Vec<Option<Arc<Mutex<dyn ContentPresetTrait>>>> {
         &self.presets
+    }
+    fn presets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ContentPresetTrait>>>> {
+        &mut self.presets
     }
 }
 
@@ -3903,12 +4243,12 @@ impl AssetTrait for ContentPresetContainer {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for ContentPresetContainer {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONTENTPRESETCONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3940,6 +4280,15 @@ impl TypeObject for ContentPresetContainer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3960,11 +4309,15 @@ pub struct TimeSpan {
 
 pub trait TimeSpanTrait: TypeObject {
     fn internal(&self) -> &i64;
+    fn internal_mut(&mut self) -> &mut i64;
 }
 
 impl TimeSpanTrait for TimeSpan {
     fn internal(&self) -> &i64 {
         &self.internal
+    }
+    fn internal_mut(&mut self) -> &mut i64 {
+        &mut self.internal
     }
 }
 
@@ -3996,6 +4349,15 @@ impl TypeObject for TimeSpan {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4020,30 +4382,43 @@ pub struct ThreadSettings {
 
 pub trait ThreadSettingsTrait: DataContainerTrait {
     fn processor_count(&self) -> &i32;
+    fn processor_count_mut(&mut self) -> &mut i32;
     fn max_live_edit_processor_count(&self) -> &i32;
+    fn max_live_edit_processor_count_mut(&mut self) -> &mut i32;
     fn job_thread_priority(&self) -> &i32;
+    fn job_thread_priority_mut(&mut self) -> &mut i32;
     fn free_processor_count(&self) -> &i32;
+    fn free_processor_count_mut(&mut self) -> &mut i32;
 }
 
 impl ThreadSettingsTrait for ThreadSettings {
     fn processor_count(&self) -> &i32 {
         &self.processor_count
     }
+    fn processor_count_mut(&mut self) -> &mut i32 {
+        &mut self.processor_count
+    }
     fn max_live_edit_processor_count(&self) -> &i32 {
         &self.max_live_edit_processor_count
+    }
+    fn max_live_edit_processor_count_mut(&mut self) -> &mut i32 {
+        &mut self.max_live_edit_processor_count
     }
     fn job_thread_priority(&self) -> &i32 {
         &self.job_thread_priority
     }
+    fn job_thread_priority_mut(&mut self) -> &mut i32 {
+        &mut self.job_thread_priority
+    }
     fn free_processor_count(&self) -> &i32 {
         &self.free_processor_count
+    }
+    fn free_processor_count_mut(&mut self) -> &mut i32 {
+        &mut self.free_processor_count
     }
 }
 
 impl DataContainerTrait for ThreadSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static THREADSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4093,6 +4468,15 @@ impl TypeObject for ThreadSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4114,11 +4498,15 @@ pub struct TemplateDescriptorRegistryAsset {
 
 pub trait TemplateDescriptorRegistryAssetTrait: AssetTrait {
     fn descriptors(&self) -> &Vec<Option<Arc<Mutex<dyn TemplateDescriptorDataTrait>>>>;
+    fn descriptors_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TemplateDescriptorDataTrait>>>>;
 }
 
 impl TemplateDescriptorRegistryAssetTrait for TemplateDescriptorRegistryAsset {
     fn descriptors(&self) -> &Vec<Option<Arc<Mutex<dyn TemplateDescriptorDataTrait>>>> {
         &self.descriptors
+    }
+    fn descriptors_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TemplateDescriptorDataTrait>>>> {
+        &mut self.descriptors
     }
 }
 
@@ -4126,12 +4514,12 @@ impl AssetTrait for TemplateDescriptorRegistryAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for TemplateDescriptorRegistryAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TEMPLATEDESCRIPTORREGISTRYASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4163,6 +4551,15 @@ impl TypeObject for TemplateDescriptorRegistryAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4185,22 +4582,27 @@ pub struct TemplateDescriptorData {
 
 pub trait TemplateDescriptorDataTrait: DataContainerTrait {
     fn target_asset(&self) -> &Option<Arc<Mutex<dyn AssetTrait>>>;
+    fn target_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AssetTrait>>>;
     fn exposed_objects(&self) -> &Vec<TemplateExposedObject>;
+    fn exposed_objects_mut(&mut self) -> &mut Vec<TemplateExposedObject>;
 }
 
 impl TemplateDescriptorDataTrait for TemplateDescriptorData {
     fn target_asset(&self) -> &Option<Arc<Mutex<dyn AssetTrait>>> {
         &self.target_asset
     }
+    fn target_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AssetTrait>>> {
+        &mut self.target_asset
+    }
     fn exposed_objects(&self) -> &Vec<TemplateExposedObject> {
         &self.exposed_objects
+    }
+    fn exposed_objects_mut(&mut self) -> &mut Vec<TemplateExposedObject> {
+        &mut self.exposed_objects
     }
 }
 
 impl DataContainerTrait for TemplateDescriptorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TEMPLATEDESCRIPTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4238,6 +4640,15 @@ impl TypeObject for TemplateDescriptorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4259,15 +4670,23 @@ pub struct TemplateExposedObject {
 
 pub trait TemplateExposedObjectTrait: TypeObject {
     fn object(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
     fn object_ref(&self) -> &glacier_util::guid::Guid;
+    fn object_ref_mut(&mut self) -> &mut glacier_util::guid::Guid;
 }
 
 impl TemplateExposedObjectTrait for TemplateExposedObject {
     fn object(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
         &self.object
     }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+        &mut self.object
+    }
     fn object_ref(&self) -> &glacier_util::guid::Guid {
         &self.object_ref
+    }
+    fn object_ref_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.object_ref
     }
 }
 
@@ -4305,6 +4724,15 @@ impl TypeObject for TemplateExposedObject {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4326,11 +4754,15 @@ pub struct TemplateAsset {
 
 pub trait TemplateAssetTrait: AssetTrait {
     fn objects(&self) -> &Vec<TemplateTarget>;
+    fn objects_mut(&mut self) -> &mut Vec<TemplateTarget>;
 }
 
 impl TemplateAssetTrait for TemplateAsset {
     fn objects(&self) -> &Vec<TemplateTarget> {
         &self.objects
+    }
+    fn objects_mut(&mut self) -> &mut Vec<TemplateTarget> {
+        &mut self.objects
     }
 }
 
@@ -4338,12 +4770,12 @@ impl AssetTrait for TemplateAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for TemplateAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TEMPLATEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4375,6 +4807,15 @@ impl TypeObject for TemplateAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4396,15 +4837,23 @@ pub struct TemplateTarget {
 
 pub trait TemplateTargetTrait: TypeObject {
     fn target_ref(&self) -> &glacier_util::guid::Guid;
+    fn target_ref_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn template(&self) -> &Option<Arc<Mutex<dyn TemplateTrait>>>;
+    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TemplateTrait>>>;
 }
 
 impl TemplateTargetTrait for TemplateTarget {
     fn target_ref(&self) -> &glacier_util::guid::Guid {
         &self.target_ref
     }
+    fn target_ref_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.target_ref
+    }
     fn template(&self) -> &Option<Arc<Mutex<dyn TemplateTrait>>> {
         &self.template
+    }
+    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TemplateTrait>>> {
+        &mut self.template
     }
 }
 
@@ -4442,6 +4891,15 @@ impl TypeObject for TemplateTarget {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4467,9 +4925,6 @@ impl TemplateTrait for Template {
 }
 
 impl DataContainerTrait for Template {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TEMPLATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4494,6 +4949,15 @@ impl TypeObject for Template {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4523,12 +4987,12 @@ impl SystemSettingsTrait for SuperbundleLayoutSettings {
     fn platform(&self) -> &GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl DataContainerTrait for SuperbundleLayoutSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SUPERBUNDLELAYOUTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4553,6 +5017,15 @@ impl TypeObject for SuperbundleLayoutSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4592,6 +5065,15 @@ impl TypeObject for InstallPackageLayerType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4634,6 +5116,15 @@ impl TypeObject for InstallPackageType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4662,43 +5153,79 @@ pub struct PlatformScalableBool {
 
 pub trait PlatformScalableBoolTrait: TypeObject {
     fn default(&self) -> &bool;
+    fn default_mut(&mut self) -> &mut bool;
     fn xenon(&self) -> &bool;
+    fn xenon_mut(&mut self) -> &mut bool;
     fn ps3(&self) -> &bool;
+    fn ps3_mut(&mut self) -> &mut bool;
     fn gen4a(&self) -> &bool;
+    fn gen4a_mut(&mut self) -> &mut bool;
     fn gen4b(&self) -> &bool;
+    fn gen4b_mut(&mut self) -> &mut bool;
     fn android(&self) -> &bool;
+    fn android_mut(&mut self) -> &mut bool;
     fn i_o_s(&self) -> &bool;
+    fn i_o_s_mut(&mut self) -> &mut bool;
     fn o_s_x(&self) -> &bool;
+    fn o_s_x_mut(&mut self) -> &mut bool;
     fn linux(&self) -> &bool;
+    fn linux_mut(&mut self) -> &mut bool;
 }
 
 impl PlatformScalableBoolTrait for PlatformScalableBool {
     fn default(&self) -> &bool {
         &self.default
     }
+    fn default_mut(&mut self) -> &mut bool {
+        &mut self.default
+    }
     fn xenon(&self) -> &bool {
         &self.xenon
+    }
+    fn xenon_mut(&mut self) -> &mut bool {
+        &mut self.xenon
     }
     fn ps3(&self) -> &bool {
         &self.ps3
     }
+    fn ps3_mut(&mut self) -> &mut bool {
+        &mut self.ps3
+    }
     fn gen4a(&self) -> &bool {
         &self.gen4a
+    }
+    fn gen4a_mut(&mut self) -> &mut bool {
+        &mut self.gen4a
     }
     fn gen4b(&self) -> &bool {
         &self.gen4b
     }
+    fn gen4b_mut(&mut self) -> &mut bool {
+        &mut self.gen4b
+    }
     fn android(&self) -> &bool {
         &self.android
+    }
+    fn android_mut(&mut self) -> &mut bool {
+        &mut self.android
     }
     fn i_o_s(&self) -> &bool {
         &self.i_o_s
     }
+    fn i_o_s_mut(&mut self) -> &mut bool {
+        &mut self.i_o_s
+    }
     fn o_s_x(&self) -> &bool {
         &self.o_s_x
     }
+    fn o_s_x_mut(&mut self) -> &mut bool {
+        &mut self.o_s_x
+    }
     fn linux(&self) -> &bool {
         &self.linux
+    }
+    fn linux_mut(&mut self) -> &mut bool {
+        &mut self.linux
     }
 }
 
@@ -4778,6 +5305,15 @@ impl TypeObject for PlatformScalableBool {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4806,43 +5342,79 @@ pub struct PlatformScalableFloat {
 
 pub trait PlatformScalableFloatTrait: TypeObject {
     fn default(&self) -> &f32;
+    fn default_mut(&mut self) -> &mut f32;
     fn xenon(&self) -> &f32;
+    fn xenon_mut(&mut self) -> &mut f32;
     fn ps3(&self) -> &f32;
+    fn ps3_mut(&mut self) -> &mut f32;
     fn gen4a(&self) -> &f32;
+    fn gen4a_mut(&mut self) -> &mut f32;
     fn gen4b(&self) -> &f32;
+    fn gen4b_mut(&mut self) -> &mut f32;
     fn android(&self) -> &f32;
+    fn android_mut(&mut self) -> &mut f32;
     fn i_o_s(&self) -> &f32;
+    fn i_o_s_mut(&mut self) -> &mut f32;
     fn o_s_x(&self) -> &f32;
+    fn o_s_x_mut(&mut self) -> &mut f32;
     fn linux(&self) -> &f32;
+    fn linux_mut(&mut self) -> &mut f32;
 }
 
 impl PlatformScalableFloatTrait for PlatformScalableFloat {
     fn default(&self) -> &f32 {
         &self.default
     }
+    fn default_mut(&mut self) -> &mut f32 {
+        &mut self.default
+    }
     fn xenon(&self) -> &f32 {
         &self.xenon
+    }
+    fn xenon_mut(&mut self) -> &mut f32 {
+        &mut self.xenon
     }
     fn ps3(&self) -> &f32 {
         &self.ps3
     }
+    fn ps3_mut(&mut self) -> &mut f32 {
+        &mut self.ps3
+    }
     fn gen4a(&self) -> &f32 {
         &self.gen4a
+    }
+    fn gen4a_mut(&mut self) -> &mut f32 {
+        &mut self.gen4a
     }
     fn gen4b(&self) -> &f32 {
         &self.gen4b
     }
+    fn gen4b_mut(&mut self) -> &mut f32 {
+        &mut self.gen4b
+    }
     fn android(&self) -> &f32 {
         &self.android
+    }
+    fn android_mut(&mut self) -> &mut f32 {
+        &mut self.android
     }
     fn i_o_s(&self) -> &f32 {
         &self.i_o_s
     }
+    fn i_o_s_mut(&mut self) -> &mut f32 {
+        &mut self.i_o_s
+    }
     fn o_s_x(&self) -> &f32 {
         &self.o_s_x
     }
+    fn o_s_x_mut(&mut self) -> &mut f32 {
+        &mut self.o_s_x
+    }
     fn linux(&self) -> &f32 {
         &self.linux
+    }
+    fn linux_mut(&mut self) -> &mut f32 {
+        &mut self.linux
     }
 }
 
@@ -4922,6 +5494,15 @@ impl TypeObject for PlatformScalableFloat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4950,43 +5531,79 @@ pub struct PlatformScalableInt {
 
 pub trait PlatformScalableIntTrait: TypeObject {
     fn default(&self) -> &i32;
+    fn default_mut(&mut self) -> &mut i32;
     fn xenon(&self) -> &i32;
+    fn xenon_mut(&mut self) -> &mut i32;
     fn ps3(&self) -> &i32;
+    fn ps3_mut(&mut self) -> &mut i32;
     fn gen4a(&self) -> &i32;
+    fn gen4a_mut(&mut self) -> &mut i32;
     fn gen4b(&self) -> &i32;
+    fn gen4b_mut(&mut self) -> &mut i32;
     fn android(&self) -> &i32;
+    fn android_mut(&mut self) -> &mut i32;
     fn i_o_s(&self) -> &i32;
+    fn i_o_s_mut(&mut self) -> &mut i32;
     fn o_s_x(&self) -> &i32;
+    fn o_s_x_mut(&mut self) -> &mut i32;
     fn linux(&self) -> &i32;
+    fn linux_mut(&mut self) -> &mut i32;
 }
 
 impl PlatformScalableIntTrait for PlatformScalableInt {
     fn default(&self) -> &i32 {
         &self.default
     }
+    fn default_mut(&mut self) -> &mut i32 {
+        &mut self.default
+    }
     fn xenon(&self) -> &i32 {
         &self.xenon
+    }
+    fn xenon_mut(&mut self) -> &mut i32 {
+        &mut self.xenon
     }
     fn ps3(&self) -> &i32 {
         &self.ps3
     }
+    fn ps3_mut(&mut self) -> &mut i32 {
+        &mut self.ps3
+    }
     fn gen4a(&self) -> &i32 {
         &self.gen4a
+    }
+    fn gen4a_mut(&mut self) -> &mut i32 {
+        &mut self.gen4a
     }
     fn gen4b(&self) -> &i32 {
         &self.gen4b
     }
+    fn gen4b_mut(&mut self) -> &mut i32 {
+        &mut self.gen4b
+    }
     fn android(&self) -> &i32 {
         &self.android
+    }
+    fn android_mut(&mut self) -> &mut i32 {
+        &mut self.android
     }
     fn i_o_s(&self) -> &i32 {
         &self.i_o_s
     }
+    fn i_o_s_mut(&mut self) -> &mut i32 {
+        &mut self.i_o_s
+    }
     fn o_s_x(&self) -> &i32 {
         &self.o_s_x
     }
+    fn o_s_x_mut(&mut self) -> &mut i32 {
+        &mut self.o_s_x
+    }
     fn linux(&self) -> &i32 {
         &self.linux
+    }
+    fn linux_mut(&mut self) -> &mut i32 {
+        &mut self.linux
     }
 }
 
@@ -5066,6 +5683,15 @@ impl TypeObject for PlatformScalableInt {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5108,6 +5734,15 @@ impl TypeObject for QualityScalableEnabled {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5132,27 +5767,47 @@ pub struct QualityScalableBool {
 
 pub trait QualityScalableBoolTrait: TypeObject {
     fn low(&self) -> &bool;
+    fn low_mut(&mut self) -> &mut bool;
     fn medium(&self) -> &bool;
+    fn medium_mut(&mut self) -> &mut bool;
     fn high(&self) -> &bool;
+    fn high_mut(&mut self) -> &mut bool;
     fn ultra(&self) -> &bool;
+    fn ultra_mut(&mut self) -> &mut bool;
     fn cinematic(&self) -> &bool;
+    fn cinematic_mut(&mut self) -> &mut bool;
 }
 
 impl QualityScalableBoolTrait for QualityScalableBool {
     fn low(&self) -> &bool {
         &self.low
     }
+    fn low_mut(&mut self) -> &mut bool {
+        &mut self.low
+    }
     fn medium(&self) -> &bool {
         &self.medium
+    }
+    fn medium_mut(&mut self) -> &mut bool {
+        &mut self.medium
     }
     fn high(&self) -> &bool {
         &self.high
     }
+    fn high_mut(&mut self) -> &mut bool {
+        &mut self.high
+    }
     fn ultra(&self) -> &bool {
         &self.ultra
     }
+    fn ultra_mut(&mut self) -> &mut bool {
+        &mut self.ultra
+    }
     fn cinematic(&self) -> &bool {
         &self.cinematic
+    }
+    fn cinematic_mut(&mut self) -> &mut bool {
+        &mut self.cinematic
     }
 }
 
@@ -5208,6 +5863,15 @@ impl TypeObject for QualityScalableBool {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5232,27 +5896,47 @@ pub struct QualityScalableFloat {
 
 pub trait QualityScalableFloatTrait: TypeObject {
     fn low(&self) -> &f32;
+    fn low_mut(&mut self) -> &mut f32;
     fn medium(&self) -> &f32;
+    fn medium_mut(&mut self) -> &mut f32;
     fn high(&self) -> &f32;
+    fn high_mut(&mut self) -> &mut f32;
     fn ultra(&self) -> &f32;
+    fn ultra_mut(&mut self) -> &mut f32;
     fn cinematic(&self) -> &f32;
+    fn cinematic_mut(&mut self) -> &mut f32;
 }
 
 impl QualityScalableFloatTrait for QualityScalableFloat {
     fn low(&self) -> &f32 {
         &self.low
     }
+    fn low_mut(&mut self) -> &mut f32 {
+        &mut self.low
+    }
     fn medium(&self) -> &f32 {
         &self.medium
+    }
+    fn medium_mut(&mut self) -> &mut f32 {
+        &mut self.medium
     }
     fn high(&self) -> &f32 {
         &self.high
     }
+    fn high_mut(&mut self) -> &mut f32 {
+        &mut self.high
+    }
     fn ultra(&self) -> &f32 {
         &self.ultra
     }
+    fn ultra_mut(&mut self) -> &mut f32 {
+        &mut self.ultra
+    }
     fn cinematic(&self) -> &f32 {
         &self.cinematic
+    }
+    fn cinematic_mut(&mut self) -> &mut f32 {
+        &mut self.cinematic
     }
 }
 
@@ -5308,6 +5992,15 @@ impl TypeObject for QualityScalableFloat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5332,27 +6025,47 @@ pub struct QualityScalableInt {
 
 pub trait QualityScalableIntTrait: TypeObject {
     fn low(&self) -> &i32;
+    fn low_mut(&mut self) -> &mut i32;
     fn medium(&self) -> &i32;
+    fn medium_mut(&mut self) -> &mut i32;
     fn high(&self) -> &i32;
+    fn high_mut(&mut self) -> &mut i32;
     fn ultra(&self) -> &i32;
+    fn ultra_mut(&mut self) -> &mut i32;
     fn cinematic(&self) -> &i32;
+    fn cinematic_mut(&mut self) -> &mut i32;
 }
 
 impl QualityScalableIntTrait for QualityScalableInt {
     fn low(&self) -> &i32 {
         &self.low
     }
+    fn low_mut(&mut self) -> &mut i32 {
+        &mut self.low
+    }
     fn medium(&self) -> &i32 {
         &self.medium
+    }
+    fn medium_mut(&mut self) -> &mut i32 {
+        &mut self.medium
     }
     fn high(&self) -> &i32 {
         &self.high
     }
+    fn high_mut(&mut self) -> &mut i32 {
+        &mut self.high
+    }
     fn ultra(&self) -> &i32 {
         &self.ultra
     }
+    fn ultra_mut(&mut self) -> &mut i32 {
+        &mut self.ultra
+    }
     fn cinematic(&self) -> &i32 {
         &self.cinematic
+    }
+    fn cinematic_mut(&mut self) -> &mut i32 {
+        &mut self.cinematic
     }
 }
 
@@ -5408,6 +6121,15 @@ impl TypeObject for QualityScalableInt {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5451,6 +6173,15 @@ impl TypeObject for QualityLevel {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5475,23 +6206,39 @@ pub struct ResourceManagerSettings {
 
 pub trait ResourceManagerSettingsTrait: SystemSettingsTrait {
     fn cas_bundle_read_buffer_size_kb(&self) -> &i32;
+    fn cas_bundle_read_buffer_size_kb_mut(&mut self) -> &mut i32;
     fn cas_bundle_decompress_buffer_size_kb(&self) -> &i32;
+    fn cas_bundle_decompress_buffer_size_kb_mut(&mut self) -> &mut i32;
     fn cas_bundle_decompress_buffer_count(&self) -> &i32;
+    fn cas_bundle_decompress_buffer_count_mut(&mut self) -> &mut i32;
     fn bundle_profiling_enable(&self) -> &bool;
+    fn bundle_profiling_enable_mut(&mut self) -> &mut bool;
 }
 
 impl ResourceManagerSettingsTrait for ResourceManagerSettings {
     fn cas_bundle_read_buffer_size_kb(&self) -> &i32 {
         &self.cas_bundle_read_buffer_size_kb
     }
+    fn cas_bundle_read_buffer_size_kb_mut(&mut self) -> &mut i32 {
+        &mut self.cas_bundle_read_buffer_size_kb
+    }
     fn cas_bundle_decompress_buffer_size_kb(&self) -> &i32 {
         &self.cas_bundle_decompress_buffer_size_kb
+    }
+    fn cas_bundle_decompress_buffer_size_kb_mut(&mut self) -> &mut i32 {
+        &mut self.cas_bundle_decompress_buffer_size_kb
     }
     fn cas_bundle_decompress_buffer_count(&self) -> &i32 {
         &self.cas_bundle_decompress_buffer_count
     }
+    fn cas_bundle_decompress_buffer_count_mut(&mut self) -> &mut i32 {
+        &mut self.cas_bundle_decompress_buffer_count
+    }
     fn bundle_profiling_enable(&self) -> &bool {
         &self.bundle_profiling_enable
+    }
+    fn bundle_profiling_enable_mut(&mut self) -> &mut bool {
+        &mut self.bundle_profiling_enable
     }
 }
 
@@ -5499,12 +6246,12 @@ impl SystemSettingsTrait for ResourceManagerSettings {
     fn platform(&self) -> &GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl DataContainerTrait for ResourceManagerSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RESOURCEMANAGERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5554,6 +6301,15 @@ impl TypeObject for ResourceManagerSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5585,55 +6341,103 @@ pub struct RenderingOverrides {
 
 pub trait RenderingOverridesTrait: TypeObject {
     fn shadow_enable(&self) -> &BoolOverride;
+    fn shadow_enable_mut(&mut self) -> &mut BoolOverride;
     fn sun_shadow_enable(&self) -> &BoolOverride;
+    fn sun_shadow_enable_mut(&mut self) -> &mut BoolOverride;
     fn local_shadow_enable(&self) -> &BoolOverride;
+    fn local_shadow_enable_mut(&mut self) -> &mut BoolOverride;
     fn dynamic_reflection_enable(&self) -> &BoolOverride;
+    fn dynamic_reflection_enable_mut(&mut self) -> &mut BoolOverride;
     fn static_reflection_enable(&self) -> &BoolOverride;
+    fn static_reflection_enable_mut(&mut self) -> &mut BoolOverride;
     fn planar_shadow_enable(&self) -> &BoolOverride;
+    fn planar_shadow_enable_mut(&mut self) -> &mut BoolOverride;
     fn hologram_enable(&self) -> &BoolOverride;
+    fn hologram_enable_mut(&mut self) -> &mut BoolOverride;
     fn hologram_projector_index(&self) -> &u32;
+    fn hologram_projector_index_mut(&mut self) -> &mut u32;
     fn distant_shadow_cache_enable(&self) -> &BoolOverride;
+    fn distant_shadow_cache_enable_mut(&mut self) -> &mut BoolOverride;
     fn dynamic_distant_shadow_cache_enable(&self) -> &BoolOverride;
+    fn dynamic_distant_shadow_cache_enable_mut(&mut self) -> &mut BoolOverride;
     fn local_shadow_cache_enable(&self) -> &BoolOverride;
+    fn local_shadow_cache_enable_mut(&mut self) -> &mut BoolOverride;
     fn root_shader_effect(&self) -> &BoolOverride;
+    fn root_shader_effect_mut(&mut self) -> &mut BoolOverride;
 }
 
 impl RenderingOverridesTrait for RenderingOverrides {
     fn shadow_enable(&self) -> &BoolOverride {
         &self.shadow_enable
     }
+    fn shadow_enable_mut(&mut self) -> &mut BoolOverride {
+        &mut self.shadow_enable
+    }
     fn sun_shadow_enable(&self) -> &BoolOverride {
         &self.sun_shadow_enable
+    }
+    fn sun_shadow_enable_mut(&mut self) -> &mut BoolOverride {
+        &mut self.sun_shadow_enable
     }
     fn local_shadow_enable(&self) -> &BoolOverride {
         &self.local_shadow_enable
     }
+    fn local_shadow_enable_mut(&mut self) -> &mut BoolOverride {
+        &mut self.local_shadow_enable
+    }
     fn dynamic_reflection_enable(&self) -> &BoolOverride {
         &self.dynamic_reflection_enable
+    }
+    fn dynamic_reflection_enable_mut(&mut self) -> &mut BoolOverride {
+        &mut self.dynamic_reflection_enable
     }
     fn static_reflection_enable(&self) -> &BoolOverride {
         &self.static_reflection_enable
     }
+    fn static_reflection_enable_mut(&mut self) -> &mut BoolOverride {
+        &mut self.static_reflection_enable
+    }
     fn planar_shadow_enable(&self) -> &BoolOverride {
         &self.planar_shadow_enable
+    }
+    fn planar_shadow_enable_mut(&mut self) -> &mut BoolOverride {
+        &mut self.planar_shadow_enable
     }
     fn hologram_enable(&self) -> &BoolOverride {
         &self.hologram_enable
     }
+    fn hologram_enable_mut(&mut self) -> &mut BoolOverride {
+        &mut self.hologram_enable
+    }
     fn hologram_projector_index(&self) -> &u32 {
         &self.hologram_projector_index
+    }
+    fn hologram_projector_index_mut(&mut self) -> &mut u32 {
+        &mut self.hologram_projector_index
     }
     fn distant_shadow_cache_enable(&self) -> &BoolOverride {
         &self.distant_shadow_cache_enable
     }
+    fn distant_shadow_cache_enable_mut(&mut self) -> &mut BoolOverride {
+        &mut self.distant_shadow_cache_enable
+    }
     fn dynamic_distant_shadow_cache_enable(&self) -> &BoolOverride {
         &self.dynamic_distant_shadow_cache_enable
+    }
+    fn dynamic_distant_shadow_cache_enable_mut(&mut self) -> &mut BoolOverride {
+        &mut self.dynamic_distant_shadow_cache_enable
     }
     fn local_shadow_cache_enable(&self) -> &BoolOverride {
         &self.local_shadow_cache_enable
     }
+    fn local_shadow_cache_enable_mut(&mut self) -> &mut BoolOverride {
+        &mut self.local_shadow_cache_enable
+    }
     fn root_shader_effect(&self) -> &BoolOverride {
         &self.root_shader_effect
+    }
+    fn root_shader_effect_mut(&mut self) -> &mut BoolOverride {
+        &mut self.root_shader_effect
     }
 }
 
@@ -5731,6 +6535,15 @@ impl TypeObject for RenderingOverrides {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5776,6 +6589,15 @@ impl TypeObject for ChunkOnlyResourceType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5823,6 +6645,15 @@ impl TypeObject for IResourceObject {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5869,6 +6700,15 @@ impl TypeObject for ProxyResourceObject {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5908,6 +6748,15 @@ impl TypeObject for BoolOverride {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5929,11 +6778,15 @@ pub struct DataContainerPolicyPipelineResultBase {
 
 pub trait DataContainerPolicyPipelineResultBaseTrait: SetDataResultListenerTrait {
     fn secondary_result(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn secondary_result_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
 }
 
 impl DataContainerPolicyPipelineResultBaseTrait for DataContainerPolicyPipelineResultBase {
     fn secondary_result(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
         &self.secondary_result
+    }
+    fn secondary_result_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+        &mut self.secondary_result
     }
 }
 
@@ -5941,9 +6794,6 @@ impl SetDataResultListenerTrait for DataContainerPolicyPipelineResultBase {
 }
 
 impl DataContainerTrait for DataContainerPolicyPipelineResultBase {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DATACONTAINERPOLICYPIPELINERESULTBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5975,6 +6825,15 @@ impl TypeObject for DataContainerPolicyPipelineResultBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6000,9 +6859,6 @@ impl SetDataResultListenerTrait for SetDataResultListener {
 }
 
 impl DataContainerTrait for SetDataResultListener {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SETDATARESULTLISTENER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6028,6 +6884,15 @@ impl TypeObject for SetDataResultListener {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6052,23 +6917,39 @@ pub struct DataBusData {
 
 pub trait DataBusDataTrait: AssetTrait {
     fn flags(&self) -> &u16;
+    fn flags_mut(&mut self) -> &mut u16;
     fn property_connections(&self) -> &Vec<PropertyConnection>;
+    fn property_connections_mut(&mut self) -> &mut Vec<PropertyConnection>;
     fn link_connections(&self) -> &Vec<LinkConnection>;
+    fn link_connections_mut(&mut self) -> &mut Vec<LinkConnection>;
     fn interface(&self) -> &Option<Arc<Mutex<dyn DynamicDataContainerTrait>>>;
+    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DynamicDataContainerTrait>>>;
 }
 
 impl DataBusDataTrait for DataBusData {
     fn flags(&self) -> &u16 {
         &self.flags
     }
+    fn flags_mut(&mut self) -> &mut u16 {
+        &mut self.flags
+    }
     fn property_connections(&self) -> &Vec<PropertyConnection> {
         &self.property_connections
+    }
+    fn property_connections_mut(&mut self) -> &mut Vec<PropertyConnection> {
+        &mut self.property_connections
     }
     fn link_connections(&self) -> &Vec<LinkConnection> {
         &self.link_connections
     }
+    fn link_connections_mut(&mut self) -> &mut Vec<LinkConnection> {
+        &mut self.link_connections
+    }
     fn interface(&self) -> &Option<Arc<Mutex<dyn DynamicDataContainerTrait>>> {
         &self.interface
+    }
+    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DynamicDataContainerTrait>>> {
+        &mut self.interface
     }
 }
 
@@ -6076,12 +6957,12 @@ impl AssetTrait for DataBusData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for DataBusData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DATABUSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6131,6 +7012,15 @@ impl TypeObject for DataBusData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6152,18 +7042,19 @@ pub struct DynamicDataContainer {
 
 pub trait DynamicDataContainerTrait: DataContainerTrait {
     fn fields(&self) -> &Vec<DataField>;
+    fn fields_mut(&mut self) -> &mut Vec<DataField>;
 }
 
 impl DynamicDataContainerTrait for DynamicDataContainer {
     fn fields(&self) -> &Vec<DataField> {
         &self.fields
     }
+    fn fields_mut(&mut self) -> &mut Vec<DataField> {
+        &mut self.fields
+    }
 }
 
 impl DataContainerTrait for DynamicDataContainer {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DYNAMICDATACONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6195,6 +7086,15 @@ impl TypeObject for DynamicDataContainer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6218,23 +7118,39 @@ pub struct DataField {
 
 pub trait DataFieldTrait: TypeObject {
     fn value(&self) -> &String;
+    fn value_mut(&mut self) -> &mut String;
     fn value_ref(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn value_ref_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
     fn id(&self) -> &i32;
+    fn id_mut(&mut self) -> &mut i32;
     fn access_type(&self) -> &FieldAccessType;
+    fn access_type_mut(&mut self) -> &mut FieldAccessType;
 }
 
 impl DataFieldTrait for DataField {
     fn value(&self) -> &String {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut String {
+        &mut self.value
+    }
     fn value_ref(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
         &self.value_ref
+    }
+    fn value_ref_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+        &mut self.value_ref
     }
     fn id(&self) -> &i32 {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut i32 {
+        &mut self.id
+    }
     fn access_type(&self) -> &FieldAccessType {
         &self.access_type
+    }
+    fn access_type_mut(&mut self) -> &mut FieldAccessType {
+        &mut self.access_type
     }
 }
 
@@ -6284,6 +7200,15 @@ impl TypeObject for DataField {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6323,6 +7248,15 @@ impl TypeObject for FieldAccessType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6346,23 +7280,39 @@ pub struct LinkConnection {
 
 pub trait LinkConnectionTrait: TypeObject {
     fn source(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
     fn target(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
     fn source_field_id(&self) -> &i32;
+    fn source_field_id_mut(&mut self) -> &mut i32;
     fn target_field_id(&self) -> &i32;
+    fn target_field_id_mut(&mut self) -> &mut i32;
 }
 
 impl LinkConnectionTrait for LinkConnection {
     fn source(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
         &self.source
     }
+    fn source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+        &mut self.source
+    }
     fn target(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
         &self.target
+    }
+    fn target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+        &mut self.target
     }
     fn source_field_id(&self) -> &i32 {
         &self.source_field_id
     }
+    fn source_field_id_mut(&mut self) -> &mut i32 {
+        &mut self.source_field_id
+    }
     fn target_field_id(&self) -> &i32 {
         &self.target_field_id
+    }
+    fn target_field_id_mut(&mut self) -> &mut i32 {
+        &mut self.target_field_id
     }
 }
 
@@ -6412,6 +7362,15 @@ impl TypeObject for LinkConnection {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6436,27 +7395,47 @@ pub struct PropertyConnection {
 
 pub trait PropertyConnectionTrait: TypeObject {
     fn source(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
     fn target(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
     fn source_field_id(&self) -> &i32;
+    fn source_field_id_mut(&mut self) -> &mut i32;
     fn target_field_id(&self) -> &i32;
+    fn target_field_id_mut(&mut self) -> &mut i32;
     fn flags(&self) -> &u32;
+    fn flags_mut(&mut self) -> &mut u32;
 }
 
 impl PropertyConnectionTrait for PropertyConnection {
     fn source(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
         &self.source
     }
+    fn source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+        &mut self.source
+    }
     fn target(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
         &self.target
+    }
+    fn target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+        &mut self.target
     }
     fn source_field_id(&self) -> &i32 {
         &self.source_field_id
     }
+    fn source_field_id_mut(&mut self) -> &mut i32 {
+        &mut self.source_field_id
+    }
     fn target_field_id(&self) -> &i32 {
         &self.target_field_id
     }
+    fn target_field_id_mut(&mut self) -> &mut i32 {
+        &mut self.target_field_id
+    }
     fn flags(&self) -> &u32 {
         &self.flags
+    }
+    fn flags_mut(&mut self) -> &mut u32 {
+        &mut self.flags
     }
 }
 
@@ -6512,6 +7491,15 @@ impl TypeObject for PropertyConnection {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6551,6 +7539,15 @@ impl TypeObject for InputPropertyType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6594,6 +7591,15 @@ impl TypeObject for PropertyConnectionTargetType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6616,15 +7622,23 @@ pub struct SettingsBundleAsset {
 
 pub trait SettingsBundleAssetTrait: AssetTrait {
     fn is_dedicated_server_bundle(&self) -> &bool;
+    fn is_dedicated_server_bundle_mut(&mut self) -> &mut bool;
     fn settings(&self) -> &Vec<Option<Arc<Mutex<dyn SystemSettingsTrait>>>>;
+    fn settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SystemSettingsTrait>>>>;
 }
 
 impl SettingsBundleAssetTrait for SettingsBundleAsset {
     fn is_dedicated_server_bundle(&self) -> &bool {
         &self.is_dedicated_server_bundle
     }
+    fn is_dedicated_server_bundle_mut(&mut self) -> &mut bool {
+        &mut self.is_dedicated_server_bundle
+    }
     fn settings(&self) -> &Vec<Option<Arc<Mutex<dyn SystemSettingsTrait>>>> {
         &self.settings
+    }
+    fn settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SystemSettingsTrait>>>> {
+        &mut self.settings
     }
 }
 
@@ -6632,12 +7646,12 @@ impl AssetTrait for SettingsBundleAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for SettingsBundleAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SETTINGSBUNDLEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6675,6 +7689,15 @@ impl TypeObject for SettingsBundleAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6696,18 +7719,19 @@ pub struct SystemSettings {
 
 pub trait SystemSettingsTrait: DataContainerTrait {
     fn platform(&self) -> &GamePlatform;
+    fn platform_mut(&mut self) -> &mut GamePlatform;
 }
 
 impl SystemSettingsTrait for SystemSettings {
     fn platform(&self) -> &GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut GamePlatform {
+        &mut self.platform
+    }
 }
 
 impl DataContainerTrait for SystemSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SYSTEMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6739,6 +7763,15 @@ impl TypeObject for SystemSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6760,11 +7793,15 @@ pub struct DataBusPeer {
 
 pub trait DataBusPeerTrait: GameDataContainerTrait {
     fn flags(&self) -> &u32;
+    fn flags_mut(&mut self) -> &mut u32;
 }
 
 impl DataBusPeerTrait for DataBusPeer {
     fn flags(&self) -> &u32 {
         &self.flags
+    }
+    fn flags_mut(&mut self) -> &mut u32 {
+        &mut self.flags
     }
 }
 
@@ -6772,9 +7809,6 @@ impl GameDataContainerTrait for DataBusPeer {
 }
 
 impl DataContainerTrait for DataBusPeer {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DATABUSPEER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6806,6 +7840,15 @@ impl TypeObject for DataBusPeer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6831,9 +7874,6 @@ impl GameDataContainerTrait for GameDataContainer {
 }
 
 impl DataContainerTrait for GameDataContainer {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GAMEDATACONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6858,6 +7898,15 @@ impl TypeObject for GameDataContainer {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6899,6 +7948,15 @@ impl TypeObject for Realm {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6960,6 +8018,15 @@ impl TypeObject for LanguageFormat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6988,12 +8055,12 @@ impl AssetTrait for DataContainerPolicyAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for DataContainerPolicyAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DATACONTAINERPOLICYASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7019,6 +8086,15 @@ impl TypeObject for DataContainerPolicyAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7040,18 +8116,19 @@ pub struct Asset {
 
 pub trait AssetTrait: DataContainerTrait {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
 }
 
 impl AssetTrait for Asset {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
 }
 
 impl DataContainerTrait for Asset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7083,6 +8160,15 @@ impl TypeObject for Asset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7104,11 +8190,15 @@ pub struct NativeFunctionTypeInfoAsset {
 
 pub trait NativeFunctionTypeInfoAssetTrait: FunctionTypeInfoAssetTrait {
     fn function(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl NativeFunctionTypeInfoAssetTrait for NativeFunctionTypeInfoAsset {
     fn function(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.function
+    }
+    fn function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.function
     }
 }
 
@@ -7116,8 +8206,14 @@ impl FunctionTypeInfoAssetTrait for NativeFunctionTypeInfoAsset {
     fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>> {
         self._glacier_base.parameters()
     }
+    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>> {
+        self._glacier_base.parameters_mut()
+    }
     fn owner(&self) -> &Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
         self._glacier_base.owner()
+    }
+    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
+        self._glacier_base.owner_mut()
     }
 }
 
@@ -7125,17 +8221,32 @@ impl TypeInfoAssetTrait for NativeFunctionTypeInfoAsset {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -7143,12 +8254,12 @@ impl AssetTrait for NativeFunctionTypeInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for NativeFunctionTypeInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NATIVEFUNCTIONTYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7180,6 +8291,15 @@ impl TypeObject for NativeFunctionTypeInfoAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7201,11 +8321,15 @@ pub struct TypeInfoFieldStructValue {
 
 pub trait TypeInfoFieldStructValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &glacier_reflect::builtin::BoxedValueRef;
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::BoxedValueRef;
 }
 
 impl TypeInfoFieldStructValueTrait for TypeInfoFieldStructValue {
     fn value(&self) -> &glacier_reflect::builtin::BoxedValueRef {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::BoxedValueRef {
+        &mut self.value
     }
 }
 
@@ -7213,12 +8337,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldStructValue {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldStructValue {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDSTRUCTVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7250,6 +8374,15 @@ impl TypeObject for TypeInfoFieldStructValue {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7271,11 +8404,15 @@ pub struct TypeInfoFieldRefValue {
 
 pub trait TypeInfoFieldRefValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
 }
 
 impl TypeInfoFieldRefValueTrait for TypeInfoFieldRefValue {
     fn value(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+        &mut self.value
     }
 }
 
@@ -7283,12 +8420,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldRefValue {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldRefValue {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDREFVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7320,6 +8457,15 @@ impl TypeObject for TypeInfoFieldRefValue {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7341,11 +8487,15 @@ pub struct TypeInfoFieldTypeRefValue {
 
 pub trait TypeInfoFieldTypeRefValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl TypeInfoFieldTypeRefValueTrait for TypeInfoFieldTypeRefValue {
     fn value(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.value
     }
 }
 
@@ -7353,12 +8503,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldTypeRefValue {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldTypeRefValue {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDTYPEREFVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7390,6 +8540,15 @@ impl TypeObject for TypeInfoFieldTypeRefValue {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7411,11 +8570,15 @@ pub struct TypeInfoFieldSHA1Value {
 
 pub trait TypeInfoFieldSHA1ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &glacier_reflect::builtin::SHA1;
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::SHA1;
 }
 
 impl TypeInfoFieldSHA1ValueTrait for TypeInfoFieldSHA1Value {
     fn value(&self) -> &glacier_reflect::builtin::SHA1 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::SHA1 {
+        &mut self.value
     }
 }
 
@@ -7423,12 +8586,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldSHA1Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldSHA1Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDSHA1VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7460,6 +8623,15 @@ impl TypeObject for TypeInfoFieldSHA1Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7481,11 +8653,15 @@ pub struct TypeInfoFieldGuidValue {
 
 pub trait TypeInfoFieldGuidValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &glacier_util::guid::Guid;
+    fn value_mut(&mut self) -> &mut glacier_util::guid::Guid;
 }
 
 impl TypeInfoFieldGuidValueTrait for TypeInfoFieldGuidValue {
     fn value(&self) -> &glacier_util::guid::Guid {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.value
     }
 }
 
@@ -7493,12 +8669,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldGuidValue {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldGuidValue {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDGUIDVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7530,6 +8706,15 @@ impl TypeObject for TypeInfoFieldGuidValue {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7552,15 +8737,23 @@ pub struct TypeInfoFieldEnumValue {
 
 pub trait TypeInfoFieldEnumValueTrait: TypeInfoFieldValueTrait {
     fn enum_info(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn enum_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn value(&self) -> &u32;
+    fn value_mut(&mut self) -> &mut u32;
 }
 
 impl TypeInfoFieldEnumValueTrait for TypeInfoFieldEnumValue {
     fn enum_info(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.enum_info
     }
+    fn enum_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.enum_info
+    }
     fn value(&self) -> &u32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut u32 {
+        &mut self.value
     }
 }
 
@@ -7568,12 +8761,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldEnumValue {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldEnumValue {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDENUMVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7611,6 +8804,15 @@ impl TypeObject for TypeInfoFieldEnumValue {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7632,11 +8834,15 @@ pub struct TypeInfoFieldStringValue {
 
 pub trait TypeInfoFieldStringValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &String;
+    fn value_mut(&mut self) -> &mut String;
 }
 
 impl TypeInfoFieldStringValueTrait for TypeInfoFieldStringValue {
     fn value(&self) -> &String {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut String {
+        &mut self.value
     }
 }
 
@@ -7644,12 +8850,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldStringValue {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldStringValue {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDSTRINGVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7681,6 +8887,15 @@ impl TypeObject for TypeInfoFieldStringValue {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7702,11 +8917,15 @@ pub struct TypeInfoFieldFloat64Value {
 
 pub trait TypeInfoFieldFloat64ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &f64;
+    fn value_mut(&mut self) -> &mut f64;
 }
 
 impl TypeInfoFieldFloat64ValueTrait for TypeInfoFieldFloat64Value {
     fn value(&self) -> &f64 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut f64 {
+        &mut self.value
     }
 }
 
@@ -7714,12 +8933,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldFloat64Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldFloat64Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDFLOAT64VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7751,6 +8970,15 @@ impl TypeObject for TypeInfoFieldFloat64Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7772,11 +9000,15 @@ pub struct TypeInfoFieldFloat32Value {
 
 pub trait TypeInfoFieldFloat32ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &f32;
+    fn value_mut(&mut self) -> &mut f32;
 }
 
 impl TypeInfoFieldFloat32ValueTrait for TypeInfoFieldFloat32Value {
     fn value(&self) -> &f32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut f32 {
+        &mut self.value
     }
 }
 
@@ -7784,12 +9016,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldFloat32Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldFloat32Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDFLOAT32VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7821,6 +9053,15 @@ impl TypeObject for TypeInfoFieldFloat32Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7842,11 +9083,15 @@ pub struct TypeInfoFieldUint64Value {
 
 pub trait TypeInfoFieldUint64ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &u64;
+    fn value_mut(&mut self) -> &mut u64;
 }
 
 impl TypeInfoFieldUint64ValueTrait for TypeInfoFieldUint64Value {
     fn value(&self) -> &u64 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut u64 {
+        &mut self.value
     }
 }
 
@@ -7854,12 +9099,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldUint64Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldUint64Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDUINT64VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7891,6 +9136,15 @@ impl TypeObject for TypeInfoFieldUint64Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7912,11 +9166,15 @@ pub struct TypeInfoFieldUint32Value {
 
 pub trait TypeInfoFieldUint32ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &u32;
+    fn value_mut(&mut self) -> &mut u32;
 }
 
 impl TypeInfoFieldUint32ValueTrait for TypeInfoFieldUint32Value {
     fn value(&self) -> &u32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut u32 {
+        &mut self.value
     }
 }
 
@@ -7924,12 +9182,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldUint32Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldUint32Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDUINT32VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7961,6 +9219,15 @@ impl TypeObject for TypeInfoFieldUint32Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7982,11 +9249,15 @@ pub struct TypeInfoFieldUint16Value {
 
 pub trait TypeInfoFieldUint16ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &u16;
+    fn value_mut(&mut self) -> &mut u16;
 }
 
 impl TypeInfoFieldUint16ValueTrait for TypeInfoFieldUint16Value {
     fn value(&self) -> &u16 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut u16 {
+        &mut self.value
     }
 }
 
@@ -7994,12 +9265,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldUint16Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldUint16Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDUINT16VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8031,6 +9302,15 @@ impl TypeObject for TypeInfoFieldUint16Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8052,11 +9332,15 @@ pub struct TypeInfoFieldUint8Value {
 
 pub trait TypeInfoFieldUint8ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &u8;
+    fn value_mut(&mut self) -> &mut u8;
 }
 
 impl TypeInfoFieldUint8ValueTrait for TypeInfoFieldUint8Value {
     fn value(&self) -> &u8 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut u8 {
+        &mut self.value
     }
 }
 
@@ -8064,12 +9348,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldUint8Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldUint8Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDUINT8VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8101,6 +9385,15 @@ impl TypeObject for TypeInfoFieldUint8Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8122,11 +9415,15 @@ pub struct TypeInfoFieldInt64Value {
 
 pub trait TypeInfoFieldInt64ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &i64;
+    fn value_mut(&mut self) -> &mut i64;
 }
 
 impl TypeInfoFieldInt64ValueTrait for TypeInfoFieldInt64Value {
     fn value(&self) -> &i64 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut i64 {
+        &mut self.value
     }
 }
 
@@ -8134,12 +9431,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldInt64Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldInt64Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDINT64VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8171,6 +9468,15 @@ impl TypeObject for TypeInfoFieldInt64Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8192,11 +9498,15 @@ pub struct TypeInfoFieldInt32Value {
 
 pub trait TypeInfoFieldInt32ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &i32;
+    fn value_mut(&mut self) -> &mut i32;
 }
 
 impl TypeInfoFieldInt32ValueTrait for TypeInfoFieldInt32Value {
     fn value(&self) -> &i32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut i32 {
+        &mut self.value
     }
 }
 
@@ -8204,12 +9514,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldInt32Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldInt32Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDINT32VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8241,6 +9551,15 @@ impl TypeObject for TypeInfoFieldInt32Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8262,11 +9581,15 @@ pub struct TypeInfoFieldInt16Value {
 
 pub trait TypeInfoFieldInt16ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &i16;
+    fn value_mut(&mut self) -> &mut i16;
 }
 
 impl TypeInfoFieldInt16ValueTrait for TypeInfoFieldInt16Value {
     fn value(&self) -> &i16 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut i16 {
+        &mut self.value
     }
 }
 
@@ -8274,12 +9597,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldInt16Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldInt16Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDINT16VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8311,6 +9634,15 @@ impl TypeObject for TypeInfoFieldInt16Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8332,11 +9664,15 @@ pub struct TypeInfoFieldInt8Value {
 
 pub trait TypeInfoFieldInt8ValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &i8;
+    fn value_mut(&mut self) -> &mut i8;
 }
 
 impl TypeInfoFieldInt8ValueTrait for TypeInfoFieldInt8Value {
     fn value(&self) -> &i8 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut i8 {
+        &mut self.value
     }
 }
 
@@ -8344,12 +9680,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldInt8Value {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldInt8Value {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDINT8VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8381,6 +9717,15 @@ impl TypeObject for TypeInfoFieldInt8Value {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8402,11 +9747,15 @@ pub struct TypeInfoFieldBooleanValue {
 
 pub trait TypeInfoFieldBooleanValueTrait: TypeInfoFieldValueTrait {
     fn value(&self) -> &bool;
+    fn value_mut(&mut self) -> &mut bool;
 }
 
 impl TypeInfoFieldBooleanValueTrait for TypeInfoFieldBooleanValue {
     fn value(&self) -> &bool {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut bool {
+        &mut self.value
     }
 }
 
@@ -8414,12 +9763,12 @@ impl TypeInfoFieldValueTrait for TypeInfoFieldBooleanValue {
     fn field(&self) -> &String {
         self._glacier_base.field()
     }
+    fn field_mut(&mut self) -> &mut String {
+        self._glacier_base.field_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldBooleanValue {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDBOOLEANVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8451,6 +9800,15 @@ impl TypeObject for TypeInfoFieldBooleanValue {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8479,17 +9837,32 @@ impl TypeInfoAssetTrait for PrimitiveTypeInfoAsset {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -8497,12 +9870,12 @@ impl AssetTrait for PrimitiveTypeInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for PrimitiveTypeInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRIMITIVETYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8528,6 +9901,15 @@ impl TypeObject for PrimitiveTypeInfoAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8549,11 +9931,15 @@ pub struct EnumTypeInfoAsset {
 
 pub trait EnumTypeInfoAssetTrait: TypeInfoAssetTrait {
     fn enumerators(&self) -> &Vec<EnumTypeEnumeratorData>;
+    fn enumerators_mut(&mut self) -> &mut Vec<EnumTypeEnumeratorData>;
 }
 
 impl EnumTypeInfoAssetTrait for EnumTypeInfoAsset {
     fn enumerators(&self) -> &Vec<EnumTypeEnumeratorData> {
         &self.enumerators
+    }
+    fn enumerators_mut(&mut self) -> &mut Vec<EnumTypeEnumeratorData> {
+        &mut self.enumerators
     }
 }
 
@@ -8561,17 +9947,32 @@ impl TypeInfoAssetTrait for EnumTypeInfoAsset {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -8579,12 +9980,12 @@ impl AssetTrait for EnumTypeInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for EnumTypeInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENUMTYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8616,6 +10017,15 @@ impl TypeObject for EnumTypeInfoAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8638,19 +10048,31 @@ pub struct EnumTypeEnumeratorData {
 
 pub trait EnumTypeEnumeratorDataTrait: TypeObject {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn value(&self) -> &i32;
+    fn value_mut(&mut self) -> &mut i32;
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
 }
 
 impl EnumTypeEnumeratorDataTrait for EnumTypeEnumeratorData {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn value(&self) -> &i32 {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut i32 {
+        &mut self.value
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
         &self.attributes
+    }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+        &mut self.attributes
     }
 }
 
@@ -8694,6 +10116,15 @@ impl TypeObject for EnumTypeEnumeratorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8716,15 +10147,23 @@ pub struct FunctionTypeInfoAsset {
 
 pub trait FunctionTypeInfoAssetTrait: TypeInfoAssetTrait {
     fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>>;
+    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>>;
     fn owner(&self) -> &Option<Arc<Mutex<dyn ClassInfoAssetTrait>>>;
+    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ClassInfoAssetTrait>>>;
 }
 
 impl FunctionTypeInfoAssetTrait for FunctionTypeInfoAsset {
     fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>> {
         &self.parameters
     }
+    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>> {
+        &mut self.parameters
+    }
     fn owner(&self) -> &Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
         &self.owner
+    }
+    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
+        &mut self.owner
     }
 }
 
@@ -8732,17 +10171,32 @@ impl TypeInfoAssetTrait for FunctionTypeInfoAsset {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -8750,12 +10204,12 @@ impl AssetTrait for FunctionTypeInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for FunctionTypeInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FUNCTIONTYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8793,6 +10247,15 @@ impl TypeObject for FunctionTypeInfoAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8818,34 +10281,51 @@ pub struct TypeInfoParameterDataContainer {
 
 pub trait TypeInfoParameterDataContainerTrait: DataContainerTrait {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn type_ref(&self) -> &TypeInfoRef;
+    fn type_ref_mut(&mut self) -> &mut TypeInfoRef;
     fn is_array(&self) -> &bool;
+    fn is_array_mut(&mut self) -> &mut bool;
     fn qualifier(&self) -> &TypeInfoParameterQualifier;
+    fn qualifier_mut(&mut self) -> &mut TypeInfoParameterQualifier;
     fn default_value(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn default_value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
 }
 
 impl TypeInfoParameterDataContainerTrait for TypeInfoParameterDataContainer {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn type_ref(&self) -> &TypeInfoRef {
         &self.type_ref
+    }
+    fn type_ref_mut(&mut self) -> &mut TypeInfoRef {
+        &mut self.type_ref
     }
     fn is_array(&self) -> &bool {
         &self.is_array
     }
+    fn is_array_mut(&mut self) -> &mut bool {
+        &mut self.is_array
+    }
     fn qualifier(&self) -> &TypeInfoParameterQualifier {
         &self.qualifier
+    }
+    fn qualifier_mut(&mut self) -> &mut TypeInfoParameterQualifier {
+        &mut self.qualifier
     }
     fn default_value(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
         &self.default_value
     }
+    fn default_value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+        &mut self.default_value
+    }
 }
 
 impl DataContainerTrait for TypeInfoParameterDataContainer {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOPARAMETERDATACONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8901,6 +10381,15 @@ impl TypeObject for TypeInfoParameterDataContainer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8941,6 +10430,15 @@ impl TypeObject for TypeInfoParameterQualifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8962,15 +10460,23 @@ pub struct FunctionTypeInfoRef {
 
 pub trait FunctionTypeInfoRefTrait: TypeObject {
     fn asset(&self) -> &Option<Arc<Mutex<dyn FunctionTypeInfoAssetTrait>>>;
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FunctionTypeInfoAssetTrait>>>;
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl FunctionTypeInfoRefTrait for FunctionTypeInfoRef {
     fn asset(&self) -> &Option<Arc<Mutex<dyn FunctionTypeInfoAssetTrait>>> {
         &self.asset
     }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FunctionTypeInfoAssetTrait>>> {
+        &mut self.asset
+    }
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.type_info
+    }
+    fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.type_info
     }
 }
 
@@ -9008,6 +10514,15 @@ impl TypeObject for FunctionTypeInfoRef {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9036,8 +10551,14 @@ impl ComplexTypeInfoAssetTrait for ValueTypeInfoAsset {
     fn field_collections(&self) -> &Vec<TypeInfoFieldCollectionRef> {
         self._glacier_base.field_collections()
     }
+    fn field_collections_mut(&mut self) -> &mut Vec<TypeInfoFieldCollectionRef> {
+        self._glacier_base.field_collections_mut()
+    }
     fn alignment(&self) -> &u32 {
         self._glacier_base.alignment()
+    }
+    fn alignment_mut(&mut self) -> &mut u32 {
+        self._glacier_base.alignment_mut()
     }
 }
 
@@ -9045,17 +10566,32 @@ impl TypeInfoAssetTrait for ValueTypeInfoAsset {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -9063,12 +10599,12 @@ impl AssetTrait for ValueTypeInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for ValueTypeInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VALUETYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9094,6 +10630,15 @@ impl TypeObject for ValueTypeInfoAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9117,19 +10662,31 @@ pub struct ClassInfoAsset {
 
 pub trait ClassInfoAssetTrait: ComplexTypeInfoAssetTrait {
     fn super_class_ref(&self) -> &ClassInfoRef;
+    fn super_class_ref_mut(&mut self) -> &mut ClassInfoRef;
     fn is_abstract(&self) -> &bool;
+    fn is_abstract_mut(&mut self) -> &mut bool;
     fn is_sealed(&self) -> &bool;
+    fn is_sealed_mut(&mut self) -> &mut bool;
 }
 
 impl ClassInfoAssetTrait for ClassInfoAsset {
     fn super_class_ref(&self) -> &ClassInfoRef {
         &self.super_class_ref
     }
+    fn super_class_ref_mut(&mut self) -> &mut ClassInfoRef {
+        &mut self.super_class_ref
+    }
     fn is_abstract(&self) -> &bool {
         &self.is_abstract
     }
+    fn is_abstract_mut(&mut self) -> &mut bool {
+        &mut self.is_abstract
+    }
     fn is_sealed(&self) -> &bool {
         &self.is_sealed
+    }
+    fn is_sealed_mut(&mut self) -> &mut bool {
+        &mut self.is_sealed
     }
 }
 
@@ -9137,8 +10694,14 @@ impl ComplexTypeInfoAssetTrait for ClassInfoAsset {
     fn field_collections(&self) -> &Vec<TypeInfoFieldCollectionRef> {
         self._glacier_base.field_collections()
     }
+    fn field_collections_mut(&mut self) -> &mut Vec<TypeInfoFieldCollectionRef> {
+        self._glacier_base.field_collections_mut()
+    }
     fn alignment(&self) -> &u32 {
         self._glacier_base.alignment()
+    }
+    fn alignment_mut(&mut self) -> &mut u32 {
+        self._glacier_base.alignment_mut()
     }
 }
 
@@ -9146,17 +10709,32 @@ impl TypeInfoAssetTrait for ClassInfoAsset {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -9164,12 +10742,12 @@ impl AssetTrait for ClassInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for ClassInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLASSINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9213,6 +10791,15 @@ impl TypeObject for ClassInfoAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9234,15 +10821,23 @@ pub struct ClassInfoRef {
 
 pub trait ClassInfoRefTrait: TypeObject {
     fn asset(&self) -> &Option<Arc<Mutex<dyn ClassInfoAssetTrait>>>;
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ClassInfoAssetTrait>>>;
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl ClassInfoRefTrait for ClassInfoRef {
     fn asset(&self) -> &Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
         &self.asset
     }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
+        &mut self.asset
+    }
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.type_info
+    }
+    fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.type_info
     }
 }
 
@@ -9280,6 +10875,15 @@ impl TypeObject for ClassInfoRef {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9302,15 +10906,23 @@ pub struct ComplexTypeInfoAsset {
 
 pub trait ComplexTypeInfoAssetTrait: TypeInfoAssetTrait {
     fn field_collections(&self) -> &Vec<TypeInfoFieldCollectionRef>;
+    fn field_collections_mut(&mut self) -> &mut Vec<TypeInfoFieldCollectionRef>;
     fn alignment(&self) -> &u32;
+    fn alignment_mut(&mut self) -> &mut u32;
 }
 
 impl ComplexTypeInfoAssetTrait for ComplexTypeInfoAsset {
     fn field_collections(&self) -> &Vec<TypeInfoFieldCollectionRef> {
         &self.field_collections
     }
+    fn field_collections_mut(&mut self) -> &mut Vec<TypeInfoFieldCollectionRef> {
+        &mut self.field_collections
+    }
     fn alignment(&self) -> &u32 {
         &self.alignment
+    }
+    fn alignment_mut(&mut self) -> &mut u32 {
+        &mut self.alignment
     }
 }
 
@@ -9318,17 +10930,32 @@ impl TypeInfoAssetTrait for ComplexTypeInfoAsset {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -9336,12 +10963,12 @@ impl AssetTrait for ComplexTypeInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for ComplexTypeInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COMPLEXTYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9379,6 +11006,15 @@ impl TypeObject for ComplexTypeInfoAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9399,11 +11035,15 @@ pub struct TypeInfoFieldCollectionRef {
 
 pub trait TypeInfoFieldCollectionRefTrait: TypeObject {
     fn collection(&self) -> &Option<Arc<Mutex<dyn TypeInfoFieldCollectionTrait>>>;
+    fn collection_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TypeInfoFieldCollectionTrait>>>;
 }
 
 impl TypeInfoFieldCollectionRefTrait for TypeInfoFieldCollectionRef {
     fn collection(&self) -> &Option<Arc<Mutex<dyn TypeInfoFieldCollectionTrait>>> {
         &self.collection
+    }
+    fn collection_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TypeInfoFieldCollectionTrait>>> {
+        &mut self.collection
     }
 }
 
@@ -9435,6 +11075,15 @@ impl TypeObject for TypeInfoFieldCollectionRef {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9457,22 +11106,27 @@ pub struct TypeInfoFieldCollection {
 
 pub trait TypeInfoFieldCollectionTrait: DataContainerTrait {
     fn fields(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoFieldDataTrait>>>>;
+    fn fields_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoFieldDataTrait>>>>;
     fn default_values(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoFieldValueTrait>>>>;
+    fn default_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoFieldValueTrait>>>>;
 }
 
 impl TypeInfoFieldCollectionTrait for TypeInfoFieldCollection {
     fn fields(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoFieldDataTrait>>>> {
         &self.fields
     }
+    fn fields_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoFieldDataTrait>>>> {
+        &mut self.fields
+    }
     fn default_values(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoFieldValueTrait>>>> {
         &self.default_values
+    }
+    fn default_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoFieldValueTrait>>>> {
+        &mut self.default_values
     }
 }
 
 impl DataContainerTrait for TypeInfoFieldCollection {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDCOLLECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9510,6 +11164,15 @@ impl TypeObject for TypeInfoFieldCollection {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9531,18 +11194,19 @@ pub struct TypeInfoFieldValue {
 
 pub trait TypeInfoFieldValueTrait: DataContainerTrait {
     fn field(&self) -> &String;
+    fn field_mut(&mut self) -> &mut String;
 }
 
 impl TypeInfoFieldValueTrait for TypeInfoFieldValue {
     fn field(&self) -> &String {
         &self.field
     }
+    fn field_mut(&mut self) -> &mut String {
+        &mut self.field
+    }
 }
 
 impl DataContainerTrait for TypeInfoFieldValue {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9574,6 +11238,15 @@ impl TypeObject for TypeInfoFieldValue {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9604,54 +11277,91 @@ pub struct TypeInfoFieldData {
 
 pub trait TypeInfoFieldDataTrait: DataContainerTrait {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn type_ref(&self) -> &TypeInfoRef;
+    fn type_ref_mut(&mut self) -> &mut TypeInfoRef;
     fn is_array(&self) -> &bool;
+    fn is_array_mut(&mut self) -> &mut bool;
     fn protection_level(&self) -> &ProtectionLevel;
+    fn protection_level_mut(&mut self) -> &mut ProtectionLevel;
     fn memory_sort_index(&self) -> &u32;
+    fn memory_sort_index_mut(&mut self) -> &mut u32;
     fn is_meta(&self) -> &bool;
+    fn is_meta_mut(&mut self) -> &mut bool;
     fn is_exposed(&self) -> &bool;
+    fn is_exposed_mut(&mut self) -> &mut bool;
     fn access_type(&self) -> &AccessType;
+    fn access_type_mut(&mut self) -> &mut AccessType;
     fn always_persist(&self) -> &bool;
+    fn always_persist_mut(&mut self) -> &mut bool;
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
 }
 
 impl TypeInfoFieldDataTrait for TypeInfoFieldData {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn type_ref(&self) -> &TypeInfoRef {
         &self.type_ref
+    }
+    fn type_ref_mut(&mut self) -> &mut TypeInfoRef {
+        &mut self.type_ref
     }
     fn is_array(&self) -> &bool {
         &self.is_array
     }
+    fn is_array_mut(&mut self) -> &mut bool {
+        &mut self.is_array
+    }
     fn protection_level(&self) -> &ProtectionLevel {
         &self.protection_level
+    }
+    fn protection_level_mut(&mut self) -> &mut ProtectionLevel {
+        &mut self.protection_level
     }
     fn memory_sort_index(&self) -> &u32 {
         &self.memory_sort_index
     }
+    fn memory_sort_index_mut(&mut self) -> &mut u32 {
+        &mut self.memory_sort_index
+    }
     fn is_meta(&self) -> &bool {
         &self.is_meta
+    }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        &mut self.is_meta
     }
     fn is_exposed(&self) -> &bool {
         &self.is_exposed
     }
+    fn is_exposed_mut(&mut self) -> &mut bool {
+        &mut self.is_exposed
+    }
     fn access_type(&self) -> &AccessType {
         &self.access_type
+    }
+    fn access_type_mut(&mut self) -> &mut AccessType {
+        &mut self.access_type
     }
     fn always_persist(&self) -> &bool {
         &self.always_persist
     }
+    fn always_persist_mut(&mut self) -> &mut bool {
+        &mut self.always_persist
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
         &self.attributes
+    }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+        &mut self.attributes
     }
 }
 
 impl DataContainerTrait for TypeInfoFieldData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOFIELDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9737,6 +11447,15 @@ impl TypeObject for TypeInfoFieldData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9774,6 +11493,15 @@ impl TypeObject for AccessType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -9814,6 +11542,15 @@ impl TypeObject for ProtectionLevel {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9835,15 +11572,23 @@ pub struct TypeInfoRef {
 
 pub trait TypeInfoRefTrait: TypeObject {
     fn asset(&self) -> &Option<Arc<Mutex<dyn TypeInfoAssetTrait>>>;
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TypeInfoAssetTrait>>>;
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl TypeInfoRefTrait for TypeInfoRef {
     fn asset(&self) -> &Option<Arc<Mutex<dyn TypeInfoAssetTrait>>> {
         &self.asset
     }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TypeInfoAssetTrait>>> {
+        &mut self.asset
+    }
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.type_info
+    }
+    fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.type_info
     }
 }
 
@@ -9881,6 +11626,15 @@ impl TypeObject for TypeInfoRef {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9906,27 +11660,47 @@ pub struct TypeInfoAsset {
 
 pub trait TypeInfoAssetTrait: AssetTrait {
     fn module_name(&self) -> &String;
+    fn module_name_mut(&mut self) -> &mut String;
     fn type_name(&self) -> &String;
+    fn type_name_mut(&mut self) -> &mut String;
     fn is_meta(&self) -> &bool;
+    fn is_meta_mut(&mut self) -> &mut bool;
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
     fn is_native(&self) -> &bool;
+    fn is_native_mut(&mut self) -> &mut bool;
 }
 
 impl TypeInfoAssetTrait for TypeInfoAsset {
     fn module_name(&self) -> &String {
         &self.module_name
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        &mut self.module_name
+    }
     fn type_name(&self) -> &String {
         &self.type_name
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        &mut self.type_name
     }
     fn is_meta(&self) -> &bool {
         &self.is_meta
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        &mut self.is_meta
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
         &self.attributes
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+        &mut self.attributes
+    }
     fn is_native(&self) -> &bool {
         &self.is_native
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        &mut self.is_native
     }
 }
 
@@ -9934,12 +11708,12 @@ impl AssetTrait for TypeInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for TypeInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9995,6 +11769,15 @@ impl TypeObject for TypeInfoAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10018,26 +11801,35 @@ pub struct TypeInfoAttribute {
 
 pub trait TypeInfoAttributeTrait: DataContainerTrait {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn arguments(&self) -> &Vec<TypeInfoAttributeArgument>;
+    fn arguments_mut(&mut self) -> &mut Vec<TypeInfoAttributeArgument>;
     fn is_native(&self) -> &bool;
+    fn is_native_mut(&mut self) -> &mut bool;
 }
 
 impl TypeInfoAttributeTrait for TypeInfoAttribute {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn arguments(&self) -> &Vec<TypeInfoAttributeArgument> {
         &self.arguments
+    }
+    fn arguments_mut(&mut self) -> &mut Vec<TypeInfoAttributeArgument> {
+        &mut self.arguments
     }
     fn is_native(&self) -> &bool {
         &self.is_native
     }
+    fn is_native_mut(&mut self) -> &mut bool {
+        &mut self.is_native
+    }
 }
 
 impl DataContainerTrait for TypeInfoAttribute {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TYPEINFOATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10081,6 +11873,15 @@ impl TypeObject for TypeInfoAttribute {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10102,15 +11903,23 @@ pub struct TypeInfoAttributeArgument {
 
 pub trait TypeInfoAttributeArgumentTrait: TypeObject {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn value(&self) -> &String;
+    fn value_mut(&mut self) -> &mut String;
 }
 
 impl TypeInfoAttributeArgumentTrait for TypeInfoAttributeArgument {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn value(&self) -> &String {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut String {
+        &mut self.value
     }
 }
 
@@ -10148,6 +11957,15 @@ impl TypeObject for TypeInfoAttributeArgument {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10168,11 +11986,15 @@ pub struct FunctionDelegateRef {
 
 pub trait FunctionDelegateRefTrait: TypeObject {
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl FunctionDelegateRefTrait for FunctionDelegateRef {
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.type_info
+    }
+    fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.type_info
     }
 }
 
@@ -10203,6 +12025,15 @@ impl TypeObject for FunctionDelegateRef {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -10248,6 +12079,15 @@ impl TypeObject for EventDelay {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -10303,150 +12143,283 @@ pub struct TimingViewSettings {
 
 pub trait TimingViewSettingsTrait: DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn frame_count(&self) -> &u32;
+    fn frame_count_mut(&mut self) -> &mut u32;
     fn frame_delay_count(&self) -> &u32;
+    fn frame_delay_count_mut(&mut self) -> &mut u32;
     fn frame_count_to_report(&self) -> &u32;
+    fn frame_count_to_report_mut(&mut self) -> &mut u32;
     fn time_range(&self) -> &f32;
+    fn time_range_mut(&mut self) -> &mut f32;
     fn time_offset(&self) -> &f32;
+    fn time_offset_mut(&mut self) -> &mut f32;
     fn log_threshold(&self) -> &f32;
+    fn log_threshold_mut(&mut self) -> &mut f32;
     fn autolock_threshold(&self) -> &f32;
+    fn autolock_threshold_mut(&mut self) -> &mut f32;
     fn autolock_name_filter(&self) -> &String;
+    fn autolock_name_filter_mut(&mut self) -> &mut String;
     fn legend_screen_offset(&self) -> &i32;
+    fn legend_screen_offset_mut(&mut self) -> &mut i32;
     fn legend_column_width(&self) -> &i32;
+    fn legend_column_width_mut(&mut self) -> &mut i32;
     fn legend_display_mode(&self) -> &i32;
+    fn legend_display_mode_mut(&mut self) -> &mut i32;
     fn average_frame_count(&self) -> &i32;
+    fn average_frame_count_mut(&mut self) -> &mut i32;
     fn draw_enable(&self) -> &bool;
+    fn draw_enable_mut(&mut self) -> &mut bool;
     fn draw_bars_enable(&self) -> &bool;
+    fn draw_bars_enable_mut(&mut self) -> &mut bool;
     fn draw_legend_enable(&self) -> &bool;
+    fn draw_legend_enable_mut(&mut self) -> &mut bool;
     fn draw_cpu_legend_enable(&self) -> &bool;
+    fn draw_cpu_legend_enable_mut(&mut self) -> &mut bool;
     fn draw_gpu_legend_enable(&self) -> &bool;
+    fn draw_gpu_legend_enable_mut(&mut self) -> &mut bool;
     fn draw_spu_legend_enable(&self) -> &bool;
+    fn draw_spu_legend_enable_mut(&mut self) -> &mut bool;
     fn snoop_enable(&self) -> &bool;
+    fn snoop_enable_mut(&mut self) -> &mut bool;
     fn snoop_only(&self) -> &bool;
+    fn snoop_only_mut(&mut self) -> &mut bool;
     fn snoop_event_name(&self) -> &String;
+    fn snoop_event_name_mut(&mut self) -> &mut String;
     fn sort_by_time(&self) -> &bool;
+    fn sort_by_time_mut(&mut self) -> &mut bool;
     fn filter_enable(&self) -> &bool;
+    fn filter_enable_mut(&mut self) -> &mut bool;
     fn filter_event_name(&self) -> &String;
+    fn filter_event_name_mut(&mut self) -> &mut String;
     fn bar_min_time(&self) -> &f64;
+    fn bar_min_time_mut(&mut self) -> &mut f64;
     fn bar_height(&self) -> &u32;
+    fn bar_height_mut(&mut self) -> &mut u32;
     fn bar_pad(&self) -> &u32;
+    fn bar_pad_mut(&mut self) -> &mut u32;
     fn bar_sync_processor(&self) -> &i32;
+    fn bar_sync_processor_mut(&mut self) -> &mut i32;
     fn max_cpu_legend_column_count(&self) -> &i32;
+    fn max_cpu_legend_column_count_mut(&mut self) -> &mut i32;
     fn max_gpu_legend_column_count(&self) -> &i32;
+    fn max_gpu_legend_column_count_mut(&mut self) -> &mut i32;
     fn max_spu_legend_column_count(&self) -> &i32;
+    fn max_spu_legend_column_count_mut(&mut self) -> &mut i32;
     fn max_frame_event_count(&self) -> &u32;
+    fn max_frame_event_count_mut(&mut self) -> &mut u32;
     fn collection_enable(&self) -> &bool;
+    fn collection_enable_mut(&mut self) -> &mut bool;
 }
 
 impl TimingViewSettingsTrait for TimingViewSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn frame_count(&self) -> &u32 {
         &self.frame_count
+    }
+    fn frame_count_mut(&mut self) -> &mut u32 {
+        &mut self.frame_count
     }
     fn frame_delay_count(&self) -> &u32 {
         &self.frame_delay_count
     }
+    fn frame_delay_count_mut(&mut self) -> &mut u32 {
+        &mut self.frame_delay_count
+    }
     fn frame_count_to_report(&self) -> &u32 {
         &self.frame_count_to_report
+    }
+    fn frame_count_to_report_mut(&mut self) -> &mut u32 {
+        &mut self.frame_count_to_report
     }
     fn time_range(&self) -> &f32 {
         &self.time_range
     }
+    fn time_range_mut(&mut self) -> &mut f32 {
+        &mut self.time_range
+    }
     fn time_offset(&self) -> &f32 {
         &self.time_offset
+    }
+    fn time_offset_mut(&mut self) -> &mut f32 {
+        &mut self.time_offset
     }
     fn log_threshold(&self) -> &f32 {
         &self.log_threshold
     }
+    fn log_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.log_threshold
+    }
     fn autolock_threshold(&self) -> &f32 {
         &self.autolock_threshold
+    }
+    fn autolock_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.autolock_threshold
     }
     fn autolock_name_filter(&self) -> &String {
         &self.autolock_name_filter
     }
+    fn autolock_name_filter_mut(&mut self) -> &mut String {
+        &mut self.autolock_name_filter
+    }
     fn legend_screen_offset(&self) -> &i32 {
         &self.legend_screen_offset
+    }
+    fn legend_screen_offset_mut(&mut self) -> &mut i32 {
+        &mut self.legend_screen_offset
     }
     fn legend_column_width(&self) -> &i32 {
         &self.legend_column_width
     }
+    fn legend_column_width_mut(&mut self) -> &mut i32 {
+        &mut self.legend_column_width
+    }
     fn legend_display_mode(&self) -> &i32 {
         &self.legend_display_mode
+    }
+    fn legend_display_mode_mut(&mut self) -> &mut i32 {
+        &mut self.legend_display_mode
     }
     fn average_frame_count(&self) -> &i32 {
         &self.average_frame_count
     }
+    fn average_frame_count_mut(&mut self) -> &mut i32 {
+        &mut self.average_frame_count
+    }
     fn draw_enable(&self) -> &bool {
         &self.draw_enable
+    }
+    fn draw_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_enable
     }
     fn draw_bars_enable(&self) -> &bool {
         &self.draw_bars_enable
     }
+    fn draw_bars_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_bars_enable
+    }
     fn draw_legend_enable(&self) -> &bool {
         &self.draw_legend_enable
+    }
+    fn draw_legend_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_legend_enable
     }
     fn draw_cpu_legend_enable(&self) -> &bool {
         &self.draw_cpu_legend_enable
     }
+    fn draw_cpu_legend_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_cpu_legend_enable
+    }
     fn draw_gpu_legend_enable(&self) -> &bool {
         &self.draw_gpu_legend_enable
+    }
+    fn draw_gpu_legend_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_gpu_legend_enable
     }
     fn draw_spu_legend_enable(&self) -> &bool {
         &self.draw_spu_legend_enable
     }
+    fn draw_spu_legend_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_spu_legend_enable
+    }
     fn snoop_enable(&self) -> &bool {
         &self.snoop_enable
+    }
+    fn snoop_enable_mut(&mut self) -> &mut bool {
+        &mut self.snoop_enable
     }
     fn snoop_only(&self) -> &bool {
         &self.snoop_only
     }
+    fn snoop_only_mut(&mut self) -> &mut bool {
+        &mut self.snoop_only
+    }
     fn snoop_event_name(&self) -> &String {
         &self.snoop_event_name
+    }
+    fn snoop_event_name_mut(&mut self) -> &mut String {
+        &mut self.snoop_event_name
     }
     fn sort_by_time(&self) -> &bool {
         &self.sort_by_time
     }
+    fn sort_by_time_mut(&mut self) -> &mut bool {
+        &mut self.sort_by_time
+    }
     fn filter_enable(&self) -> &bool {
         &self.filter_enable
+    }
+    fn filter_enable_mut(&mut self) -> &mut bool {
+        &mut self.filter_enable
     }
     fn filter_event_name(&self) -> &String {
         &self.filter_event_name
     }
+    fn filter_event_name_mut(&mut self) -> &mut String {
+        &mut self.filter_event_name
+    }
     fn bar_min_time(&self) -> &f64 {
         &self.bar_min_time
+    }
+    fn bar_min_time_mut(&mut self) -> &mut f64 {
+        &mut self.bar_min_time
     }
     fn bar_height(&self) -> &u32 {
         &self.bar_height
     }
+    fn bar_height_mut(&mut self) -> &mut u32 {
+        &mut self.bar_height
+    }
     fn bar_pad(&self) -> &u32 {
         &self.bar_pad
+    }
+    fn bar_pad_mut(&mut self) -> &mut u32 {
+        &mut self.bar_pad
     }
     fn bar_sync_processor(&self) -> &i32 {
         &self.bar_sync_processor
     }
+    fn bar_sync_processor_mut(&mut self) -> &mut i32 {
+        &mut self.bar_sync_processor
+    }
     fn max_cpu_legend_column_count(&self) -> &i32 {
         &self.max_cpu_legend_column_count
+    }
+    fn max_cpu_legend_column_count_mut(&mut self) -> &mut i32 {
+        &mut self.max_cpu_legend_column_count
     }
     fn max_gpu_legend_column_count(&self) -> &i32 {
         &self.max_gpu_legend_column_count
     }
+    fn max_gpu_legend_column_count_mut(&mut self) -> &mut i32 {
+        &mut self.max_gpu_legend_column_count
+    }
     fn max_spu_legend_column_count(&self) -> &i32 {
         &self.max_spu_legend_column_count
+    }
+    fn max_spu_legend_column_count_mut(&mut self) -> &mut i32 {
+        &mut self.max_spu_legend_column_count
     }
     fn max_frame_event_count(&self) -> &u32 {
         &self.max_frame_event_count
     }
+    fn max_frame_event_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_frame_event_count
+    }
     fn collection_enable(&self) -> &bool {
         &self.collection_enable
+    }
+    fn collection_enable_mut(&mut self) -> &mut bool {
+        &mut self.collection_enable
     }
 }
 
 impl DataContainerTrait for TimingViewSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TIMINGVIEWSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10676,6 +12649,15 @@ impl TypeObject for TimingViewSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10709,66 +12691,115 @@ pub struct PerfJournalSettings {
 
 pub trait PerfJournalSettingsTrait: DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn journal_expensive_stats(&self) -> &bool;
+    fn journal_expensive_stats_mut(&mut self) -> &mut bool;
     fn journal_all_s_p_u(&self) -> &bool;
+    fn journal_all_s_p_u_mut(&mut self) -> &mut bool;
     fn journal_sample_interval(&self) -> &i32;
+    fn journal_sample_interval_mut(&mut self) -> &mut i32;
     fn journal_report_average(&self) -> &bool;
+    fn journal_report_average_mut(&mut self) -> &mut bool;
     fn journal_frame_count(&self) -> &i32;
+    fn journal_frame_count_mut(&mut self) -> &mut i32;
     fn auto_journal_enable(&self) -> &bool;
+    fn auto_journal_enable_mut(&mut self) -> &mut bool;
     fn auto_journal_screenshot(&self) -> &bool;
+    fn auto_journal_screenshot_mut(&mut self) -> &mut bool;
     fn auto_journal_threshold_ms(&self) -> &f32;
+    fn auto_journal_threshold_ms_mut(&mut self) -> &mut f32;
     fn auto_journal_min_frames(&self) -> &i32;
+    fn auto_journal_min_frames_mut(&mut self) -> &mut i32;
     fn trace_enable(&self) -> &bool;
+    fn trace_enable_mut(&mut self) -> &mut bool;
     fn auto_journal_continuous_capture(&self) -> &bool;
+    fn auto_journal_continuous_capture_mut(&mut self) -> &mut bool;
     fn floats_always_have_decimal(&self) -> &bool;
+    fn floats_always_have_decimal_mut(&mut self) -> &mut bool;
 }
 
 impl PerfJournalSettingsTrait for PerfJournalSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn journal_expensive_stats(&self) -> &bool {
         &self.journal_expensive_stats
+    }
+    fn journal_expensive_stats_mut(&mut self) -> &mut bool {
+        &mut self.journal_expensive_stats
     }
     fn journal_all_s_p_u(&self) -> &bool {
         &self.journal_all_s_p_u
     }
+    fn journal_all_s_p_u_mut(&mut self) -> &mut bool {
+        &mut self.journal_all_s_p_u
+    }
     fn journal_sample_interval(&self) -> &i32 {
         &self.journal_sample_interval
+    }
+    fn journal_sample_interval_mut(&mut self) -> &mut i32 {
+        &mut self.journal_sample_interval
     }
     fn journal_report_average(&self) -> &bool {
         &self.journal_report_average
     }
+    fn journal_report_average_mut(&mut self) -> &mut bool {
+        &mut self.journal_report_average
+    }
     fn journal_frame_count(&self) -> &i32 {
         &self.journal_frame_count
+    }
+    fn journal_frame_count_mut(&mut self) -> &mut i32 {
+        &mut self.journal_frame_count
     }
     fn auto_journal_enable(&self) -> &bool {
         &self.auto_journal_enable
     }
+    fn auto_journal_enable_mut(&mut self) -> &mut bool {
+        &mut self.auto_journal_enable
+    }
     fn auto_journal_screenshot(&self) -> &bool {
         &self.auto_journal_screenshot
+    }
+    fn auto_journal_screenshot_mut(&mut self) -> &mut bool {
+        &mut self.auto_journal_screenshot
     }
     fn auto_journal_threshold_ms(&self) -> &f32 {
         &self.auto_journal_threshold_ms
     }
+    fn auto_journal_threshold_ms_mut(&mut self) -> &mut f32 {
+        &mut self.auto_journal_threshold_ms
+    }
     fn auto_journal_min_frames(&self) -> &i32 {
         &self.auto_journal_min_frames
+    }
+    fn auto_journal_min_frames_mut(&mut self) -> &mut i32 {
+        &mut self.auto_journal_min_frames
     }
     fn trace_enable(&self) -> &bool {
         &self.trace_enable
     }
+    fn trace_enable_mut(&mut self) -> &mut bool {
+        &mut self.trace_enable
+    }
     fn auto_journal_continuous_capture(&self) -> &bool {
         &self.auto_journal_continuous_capture
+    }
+    fn auto_journal_continuous_capture_mut(&mut self) -> &mut bool {
+        &mut self.auto_journal_continuous_capture
     }
     fn floats_always_have_decimal(&self) -> &bool {
         &self.floats_always_have_decimal
     }
+    fn floats_always_have_decimal_mut(&mut self) -> &mut bool {
+        &mut self.floats_always_have_decimal
+    }
 }
 
 impl DataContainerTrait for PerfJournalSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PERFJOURNALSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10872,6 +12903,15 @@ impl TypeObject for PerfJournalSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10905,66 +12945,115 @@ pub struct PerfHudSettings {
 
 pub trait PerfHudSettingsTrait: DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn draw_cpu_enable(&self) -> &bool;
+    fn draw_cpu_enable_mut(&mut self) -> &mut bool;
     fn draw_gpu_enable(&self) -> &bool;
+    fn draw_gpu_enable_mut(&mut self) -> &mut bool;
     fn draw_spu_enable(&self) -> &bool;
+    fn draw_spu_enable_mut(&mut self) -> &mut bool;
     fn simple_summary_mode(&self) -> &bool;
+    fn simple_summary_mode_mut(&mut self) -> &mut bool;
     fn timer_category_set_name(&self) -> &String;
+    fn timer_category_set_name_mut(&mut self) -> &mut String;
     fn timer_category_sets_enable(&self) -> &bool;
+    fn timer_category_sets_enable_mut(&mut self) -> &mut bool;
     fn draw_ungrouped_timings(&self) -> &bool;
+    fn draw_ungrouped_timings_mut(&mut self) -> &mut bool;
     fn draw_config_file(&self) -> &bool;
+    fn draw_config_file_mut(&mut self) -> &mut bool;
     fn hud_right_margin(&self) -> &i32;
+    fn hud_right_margin_mut(&mut self) -> &mut i32;
     fn hud_top_margin(&self) -> &i32;
+    fn hud_top_margin_mut(&mut self) -> &mut i32;
     fn hud_alpha(&self) -> &u8;
+    fn hud_alpha_mut(&mut self) -> &mut u8;
     fn hud_compact(&self) -> &bool;
+    fn hud_compact_mut(&mut self) -> &mut bool;
 }
 
 impl PerfHudSettingsTrait for PerfHudSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn draw_cpu_enable(&self) -> &bool {
         &self.draw_cpu_enable
+    }
+    fn draw_cpu_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_cpu_enable
     }
     fn draw_gpu_enable(&self) -> &bool {
         &self.draw_gpu_enable
     }
+    fn draw_gpu_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_gpu_enable
+    }
     fn draw_spu_enable(&self) -> &bool {
         &self.draw_spu_enable
+    }
+    fn draw_spu_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_spu_enable
     }
     fn simple_summary_mode(&self) -> &bool {
         &self.simple_summary_mode
     }
+    fn simple_summary_mode_mut(&mut self) -> &mut bool {
+        &mut self.simple_summary_mode
+    }
     fn timer_category_set_name(&self) -> &String {
         &self.timer_category_set_name
+    }
+    fn timer_category_set_name_mut(&mut self) -> &mut String {
+        &mut self.timer_category_set_name
     }
     fn timer_category_sets_enable(&self) -> &bool {
         &self.timer_category_sets_enable
     }
+    fn timer_category_sets_enable_mut(&mut self) -> &mut bool {
+        &mut self.timer_category_sets_enable
+    }
     fn draw_ungrouped_timings(&self) -> &bool {
         &self.draw_ungrouped_timings
+    }
+    fn draw_ungrouped_timings_mut(&mut self) -> &mut bool {
+        &mut self.draw_ungrouped_timings
     }
     fn draw_config_file(&self) -> &bool {
         &self.draw_config_file
     }
+    fn draw_config_file_mut(&mut self) -> &mut bool {
+        &mut self.draw_config_file
+    }
     fn hud_right_margin(&self) -> &i32 {
         &self.hud_right_margin
+    }
+    fn hud_right_margin_mut(&mut self) -> &mut i32 {
+        &mut self.hud_right_margin
     }
     fn hud_top_margin(&self) -> &i32 {
         &self.hud_top_margin
     }
+    fn hud_top_margin_mut(&mut self) -> &mut i32 {
+        &mut self.hud_top_margin
+    }
     fn hud_alpha(&self) -> &u8 {
         &self.hud_alpha
+    }
+    fn hud_alpha_mut(&mut self) -> &mut u8 {
+        &mut self.hud_alpha
     }
     fn hud_compact(&self) -> &bool {
         &self.hud_compact
     }
+    fn hud_compact_mut(&mut self) -> &mut bool {
+        &mut self.hud_compact
+    }
 }
 
 impl DataContainerTrait for PerfHudSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PERFHUDSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11068,6 +13157,15 @@ impl TypeObject for PerfHudSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11113,6 +13211,15 @@ impl TypeObject for CoreLogUpdateSettingsMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -11146,6 +13253,15 @@ impl TypeObject for SplitScreenSetPrimaryLocalPlayerIdMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -11181,6 +13297,15 @@ impl TypeObject for StreamInstallRequestResumeMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -11214,6 +13339,15 @@ impl TypeObject for StreamInstallRequestSuspendMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -11249,6 +13383,15 @@ impl TypeObject for StreamInstallGroupInstallationProgressMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -11282,6 +13425,15 @@ impl TypeObject for StreamInstallGroupInstalledMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -11317,6 +13469,15 @@ impl TypeObject for StreamInstallInstallationProgressMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -11350,6 +13511,15 @@ impl TypeObject for StreamInstallInstallationFailedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -11385,6 +13555,15 @@ impl TypeObject for StreamInstallInstallationCompletedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -11419,6 +13598,15 @@ impl TypeObject for CoreApplicationActivationMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
@@ -11447,6 +13635,15 @@ impl TypeObject for ApplicationActivationState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -11493,6 +13690,15 @@ impl TypeObject for CoreCleanupMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -11526,6 +13732,15 @@ impl TypeObject for CoreSublevelStartStreamOutMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -11561,6 +13776,15 @@ impl TypeObject for CorePanicMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -11594,6 +13818,15 @@ impl TypeObject for CoreQuitMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -11629,6 +13862,15 @@ impl TypeObject for CoreUpdateClipboardMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -11662,6 +13904,15 @@ impl TypeObject for CoreMainThreadInitMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -11697,6 +13948,15 @@ impl TypeObject for CoreHibernateMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -11731,6 +13991,15 @@ impl TypeObject for CoreQuittingInitiatedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -11742,19 +14011,31 @@ pub struct SparseTransformArray {
 
 pub trait SparseTransformArrayTrait: TypeObject {
     fn indices(&self) -> &Vec<u16>;
+    fn indices_mut(&mut self) -> &mut Vec<u16>;
     fn transforms(&self) -> &Vec<LinearTransform>;
+    fn transforms_mut(&mut self) -> &mut Vec<LinearTransform>;
     fn count(&self) -> &u32;
+    fn count_mut(&mut self) -> &mut u32;
 }
 
 impl SparseTransformArrayTrait for SparseTransformArray {
     fn indices(&self) -> &Vec<u16> {
         &self.indices
     }
+    fn indices_mut(&mut self) -> &mut Vec<u16> {
+        &mut self.indices
+    }
     fn transforms(&self) -> &Vec<LinearTransform> {
         &self.transforms
     }
+    fn transforms_mut(&mut self) -> &mut Vec<LinearTransform> {
+        &mut self.transforms
+    }
     fn count(&self) -> &u32 {
         &self.count
+    }
+    fn count_mut(&mut self) -> &mut u32 {
+        &mut self.count
     }
 }
 
@@ -11798,6 +14079,15 @@ impl TypeObject for SparseTransformArray {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -11831,63 +14121,119 @@ pub struct SplineCurve {
 
 pub trait SplineCurveTrait: TypeObject {
     fn x_values0(&self) -> &Vec4;
+    fn x_values0_mut(&mut self) -> &mut Vec4;
     fn x_values1(&self) -> &Vec4;
+    fn x_values1_mut(&mut self) -> &mut Vec4;
     fn x_values2(&self) -> &Vec4;
+    fn x_values2_mut(&mut self) -> &mut Vec4;
     fn y_values0(&self) -> &Vec4;
+    fn y_values0_mut(&mut self) -> &mut Vec4;
     fn y_values1(&self) -> &Vec4;
+    fn y_values1_mut(&mut self) -> &mut Vec4;
     fn y_values2(&self) -> &Vec4;
+    fn y_values2_mut(&mut self) -> &mut Vec4;
     fn y_values3(&self) -> &Vec4;
+    fn y_values3_mut(&mut self) -> &mut Vec4;
     fn g_values0(&self) -> &Vec4;
+    fn g_values0_mut(&mut self) -> &mut Vec4;
     fn g_values1(&self) -> &Vec4;
+    fn g_values1_mut(&mut self) -> &mut Vec4;
     fn g_values2(&self) -> &Vec4;
+    fn g_values2_mut(&mut self) -> &mut Vec4;
     fn g_values3(&self) -> &Vec4;
+    fn g_values3_mut(&mut self) -> &mut Vec4;
     fn g_values4(&self) -> &Vec4;
+    fn g_values4_mut(&mut self) -> &mut Vec4;
     fn g_values5(&self) -> &Vec4;
+    fn g_values5_mut(&mut self) -> &mut Vec4;
     fn spline_type(&self) -> &SplineType;
+    fn spline_type_mut(&mut self) -> &mut SplineType;
 }
 
 impl SplineCurveTrait for SplineCurve {
     fn x_values0(&self) -> &Vec4 {
         &self.x_values0
     }
+    fn x_values0_mut(&mut self) -> &mut Vec4 {
+        &mut self.x_values0
+    }
     fn x_values1(&self) -> &Vec4 {
         &self.x_values1
+    }
+    fn x_values1_mut(&mut self) -> &mut Vec4 {
+        &mut self.x_values1
     }
     fn x_values2(&self) -> &Vec4 {
         &self.x_values2
     }
+    fn x_values2_mut(&mut self) -> &mut Vec4 {
+        &mut self.x_values2
+    }
     fn y_values0(&self) -> &Vec4 {
         &self.y_values0
+    }
+    fn y_values0_mut(&mut self) -> &mut Vec4 {
+        &mut self.y_values0
     }
     fn y_values1(&self) -> &Vec4 {
         &self.y_values1
     }
+    fn y_values1_mut(&mut self) -> &mut Vec4 {
+        &mut self.y_values1
+    }
     fn y_values2(&self) -> &Vec4 {
         &self.y_values2
+    }
+    fn y_values2_mut(&mut self) -> &mut Vec4 {
+        &mut self.y_values2
     }
     fn y_values3(&self) -> &Vec4 {
         &self.y_values3
     }
+    fn y_values3_mut(&mut self) -> &mut Vec4 {
+        &mut self.y_values3
+    }
     fn g_values0(&self) -> &Vec4 {
         &self.g_values0
+    }
+    fn g_values0_mut(&mut self) -> &mut Vec4 {
+        &mut self.g_values0
     }
     fn g_values1(&self) -> &Vec4 {
         &self.g_values1
     }
+    fn g_values1_mut(&mut self) -> &mut Vec4 {
+        &mut self.g_values1
+    }
     fn g_values2(&self) -> &Vec4 {
         &self.g_values2
+    }
+    fn g_values2_mut(&mut self) -> &mut Vec4 {
+        &mut self.g_values2
     }
     fn g_values3(&self) -> &Vec4 {
         &self.g_values3
     }
+    fn g_values3_mut(&mut self) -> &mut Vec4 {
+        &mut self.g_values3
+    }
     fn g_values4(&self) -> &Vec4 {
         &self.g_values4
+    }
+    fn g_values4_mut(&mut self) -> &mut Vec4 {
+        &mut self.g_values4
     }
     fn g_values5(&self) -> &Vec4 {
         &self.g_values5
     }
+    fn g_values5_mut(&mut self) -> &mut Vec4 {
+        &mut self.g_values5
+    }
     fn spline_type(&self) -> &SplineType {
         &self.spline_type
+    }
+    fn spline_type_mut(&mut self) -> &mut SplineType {
+        &mut self.spline_type
     }
 }
 
@@ -11997,6 +14343,15 @@ impl TypeObject for SplineCurve {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12035,6 +14390,15 @@ impl TypeObject for SplineType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -12079,11 +14443,15 @@ pub struct FloatCurveCollectionAsset {
 
 pub trait FloatCurveCollectionAssetTrait: AssetTrait {
     fn curves(&self) -> &Vec<Option<Arc<Mutex<dyn FloatCurveTrait>>>>;
+    fn curves_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FloatCurveTrait>>>>;
 }
 
 impl FloatCurveCollectionAssetTrait for FloatCurveCollectionAsset {
     fn curves(&self) -> &Vec<Option<Arc<Mutex<dyn FloatCurveTrait>>>> {
         &self.curves
+    }
+    fn curves_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FloatCurveTrait>>>> {
+        &mut self.curves
     }
 }
 
@@ -12091,12 +14459,12 @@ impl AssetTrait for FloatCurveCollectionAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl DataContainerTrait for FloatCurveCollectionAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FLOATCURVECOLLECTIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12128,6 +14496,15 @@ impl TypeObject for FloatCurveCollectionAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12151,26 +14528,35 @@ pub struct FloatCurve {
 
 pub trait FloatCurveTrait: DataContainerTrait {
     fn points(&self) -> &Vec<FloatCurvePoint>;
+    fn points_mut(&mut self) -> &mut Vec<FloatCurvePoint>;
     fn min_x(&self) -> &f32;
+    fn min_x_mut(&mut self) -> &mut f32;
     fn max_x(&self) -> &f32;
+    fn max_x_mut(&mut self) -> &mut f32;
 }
 
 impl FloatCurveTrait for FloatCurve {
     fn points(&self) -> &Vec<FloatCurvePoint> {
         &self.points
     }
+    fn points_mut(&mut self) -> &mut Vec<FloatCurvePoint> {
+        &mut self.points
+    }
     fn min_x(&self) -> &f32 {
         &self.min_x
+    }
+    fn min_x_mut(&mut self) -> &mut f32 {
+        &mut self.min_x
     }
     fn max_x(&self) -> &f32 {
         &self.max_x
     }
+    fn max_x_mut(&mut self) -> &mut f32 {
+        &mut self.max_x
+    }
 }
 
 impl DataContainerTrait for FloatCurve {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FLOATCURVE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12214,6 +14600,15 @@ impl TypeObject for FloatCurve {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12254,6 +14649,15 @@ impl TypeObject for FloatCurveType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12280,35 +14684,63 @@ pub struct FloatCurvePoint {
 
 pub trait FloatCurvePointTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn in_tangent_offset_x(&self) -> &f32;
+    fn in_tangent_offset_x_mut(&mut self) -> &mut f32;
     fn in_tangent_offset_y(&self) -> &f32;
+    fn in_tangent_offset_y_mut(&mut self) -> &mut f32;
     fn out_tangent_offset_x(&self) -> &f32;
+    fn out_tangent_offset_x_mut(&mut self) -> &mut f32;
     fn out_tangent_offset_y(&self) -> &f32;
+    fn out_tangent_offset_y_mut(&mut self) -> &mut f32;
     fn curve_type(&self) -> &FloatCurveType;
+    fn curve_type_mut(&mut self) -> &mut FloatCurveType;
 }
 
 impl FloatCurvePointTrait for FloatCurvePoint {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
     }
     fn in_tangent_offset_x(&self) -> &f32 {
         &self.in_tangent_offset_x
     }
+    fn in_tangent_offset_x_mut(&mut self) -> &mut f32 {
+        &mut self.in_tangent_offset_x
+    }
     fn in_tangent_offset_y(&self) -> &f32 {
         &self.in_tangent_offset_y
+    }
+    fn in_tangent_offset_y_mut(&mut self) -> &mut f32 {
+        &mut self.in_tangent_offset_y
     }
     fn out_tangent_offset_x(&self) -> &f32 {
         &self.out_tangent_offset_x
     }
+    fn out_tangent_offset_x_mut(&mut self) -> &mut f32 {
+        &mut self.out_tangent_offset_x
+    }
     fn out_tangent_offset_y(&self) -> &f32 {
         &self.out_tangent_offset_y
     }
+    fn out_tangent_offset_y_mut(&mut self) -> &mut f32 {
+        &mut self.out_tangent_offset_y
+    }
     fn curve_type(&self) -> &FloatCurveType {
         &self.curve_type
+    }
+    fn curve_type_mut(&mut self) -> &mut FloatCurveType {
+        &mut self.curve_type
     }
 }
 
@@ -12376,6 +14808,15 @@ impl TypeObject for FloatCurvePoint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12398,19 +14839,31 @@ pub struct EffectCurvePoint {
 
 pub trait EffectCurvePointTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn k(&self) -> &f32;
+    fn k_mut(&mut self) -> &mut f32;
 }
 
 impl EffectCurvePointTrait for EffectCurvePoint {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
     }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
+    }
     fn k(&self) -> &f32 {
         &self.k
+    }
+    fn k_mut(&mut self) -> &mut f32 {
+        &mut self.k
     }
 }
 
@@ -12454,6 +14907,15 @@ impl TypeObject for EffectCurvePoint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12475,15 +14937,23 @@ pub struct AudioCurve {
 
 pub trait AudioCurveTrait: TypeObject {
     fn points(&self) -> &Vec<AudioCurvePoint>;
+    fn points_mut(&mut self) -> &mut Vec<AudioCurvePoint>;
     fn curve_type(&self) -> &AudioCurveType;
+    fn curve_type_mut(&mut self) -> &mut AudioCurveType;
 }
 
 impl AudioCurveTrait for AudioCurve {
     fn points(&self) -> &Vec<AudioCurvePoint> {
         &self.points
     }
+    fn points_mut(&mut self) -> &mut Vec<AudioCurvePoint> {
+        &mut self.points
+    }
     fn curve_type(&self) -> &AudioCurveType {
         &self.curve_type
+    }
+    fn curve_type_mut(&mut self) -> &mut AudioCurveType {
+        &mut self.curve_type
     }
 }
 
@@ -12520,6 +14990,15 @@ impl TypeObject for AudioCurve {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -12561,6 +15040,15 @@ impl TypeObject for AudioCurveType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12583,19 +15071,31 @@ pub struct AudioCurvePoint {
 
 pub trait AudioCurvePointTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn k(&self) -> &f32;
+    fn k_mut(&mut self) -> &mut f32;
 }
 
 impl AudioCurvePointTrait for AudioCurvePoint {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
     }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
+    }
     fn k(&self) -> &f32 {
         &self.k
+    }
+    fn k_mut(&mut self) -> &mut f32 {
+        &mut self.k
     }
 }
 
@@ -12639,6 +15139,15 @@ impl TypeObject for AudioCurvePoint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12680,54 +15189,91 @@ pub struct DebugRenderSettings {
 
 pub trait DebugRenderSettingsTrait: DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn draw_stats_enable(&self) -> &bool;
+    fn draw_stats_enable_mut(&mut self) -> &mut bool;
     fn text_view_distance(&self) -> &f32;
+    fn text_view_distance_mut(&mut self) -> &mut f32;
     fn text_queue_max_line_count(&self) -> &u32;
+    fn text_queue_max_line_count_mut(&mut self) -> &mut u32;
     fn text_queue_time_visible(&self) -> &f32;
+    fn text_queue_time_visible_mut(&mut self) -> &mut f32;
     fn text_queue_location_top(&self) -> &bool;
+    fn text_queue_location_top_mut(&mut self) -> &mut bool;
     fn process_job_count(&self) -> &i32;
+    fn process_job_count_mut(&mut self) -> &mut i32;
     fn dx_max_vertex_count(&self) -> &u32;
+    fn dx_max_vertex_count_mut(&mut self) -> &mut u32;
     fn dx_line2d_antialiasing_enable(&self) -> &bool;
+    fn dx_line2d_antialiasing_enable_mut(&mut self) -> &mut bool;
     fn dx_line3d_antialiasing_enable(&self) -> &bool;
+    fn dx_line3d_antialiasing_enable_mut(&mut self) -> &mut bool;
 }
 
 impl DebugRenderSettingsTrait for DebugRenderSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn draw_stats_enable(&self) -> &bool {
         &self.draw_stats_enable
+    }
+    fn draw_stats_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_stats_enable
     }
     fn text_view_distance(&self) -> &f32 {
         &self.text_view_distance
     }
+    fn text_view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.text_view_distance
+    }
     fn text_queue_max_line_count(&self) -> &u32 {
         &self.text_queue_max_line_count
+    }
+    fn text_queue_max_line_count_mut(&mut self) -> &mut u32 {
+        &mut self.text_queue_max_line_count
     }
     fn text_queue_time_visible(&self) -> &f32 {
         &self.text_queue_time_visible
     }
+    fn text_queue_time_visible_mut(&mut self) -> &mut f32 {
+        &mut self.text_queue_time_visible
+    }
     fn text_queue_location_top(&self) -> &bool {
         &self.text_queue_location_top
+    }
+    fn text_queue_location_top_mut(&mut self) -> &mut bool {
+        &mut self.text_queue_location_top
     }
     fn process_job_count(&self) -> &i32 {
         &self.process_job_count
     }
+    fn process_job_count_mut(&mut self) -> &mut i32 {
+        &mut self.process_job_count
+    }
     fn dx_max_vertex_count(&self) -> &u32 {
         &self.dx_max_vertex_count
+    }
+    fn dx_max_vertex_count_mut(&mut self) -> &mut u32 {
+        &mut self.dx_max_vertex_count
     }
     fn dx_line2d_antialiasing_enable(&self) -> &bool {
         &self.dx_line2d_antialiasing_enable
     }
+    fn dx_line2d_antialiasing_enable_mut(&mut self) -> &mut bool {
+        &mut self.dx_line2d_antialiasing_enable
+    }
     fn dx_line3d_antialiasing_enable(&self) -> &bool {
         &self.dx_line3d_antialiasing_enable
+    }
+    fn dx_line3d_antialiasing_enable_mut(&mut self) -> &mut bool {
+        &mut self.dx_line3d_antialiasing_enable
     }
 }
 
 impl DataContainerTrait for DebugRenderSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEBUGRENDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12813,6 +15359,15 @@ impl TypeObject for DebugRenderSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12891,6 +15446,15 @@ impl TypeObject for RuntimeModule {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -13177,15 +15741,23 @@ pub struct AxisAlignedBox {
 
 pub trait AxisAlignedBoxTrait: TypeObject {
     fn min(&self) -> &Vec3;
+    fn min_mut(&mut self) -> &mut Vec3;
     fn max(&self) -> &Vec3;
+    fn max_mut(&mut self) -> &mut Vec3;
 }
 
 impl AxisAlignedBoxTrait for AxisAlignedBox {
     fn min(&self) -> &Vec3 {
         &self.min
     }
+    fn min_mut(&mut self) -> &mut Vec3 {
+        &mut self.min
+    }
     fn max(&self) -> &Vec3 {
         &self.max
+    }
+    fn max_mut(&mut self) -> &mut Vec3 {
+        &mut self.max
     }
 }
 
@@ -13223,6 +15795,15 @@ impl TypeObject for AxisAlignedBox {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13258,71 +15839,135 @@ pub struct Mat4 {
 
 pub trait Mat4Trait: TypeObject {
     fn m11(&self) -> &f32;
+    fn m11_mut(&mut self) -> &mut f32;
     fn m12(&self) -> &f32;
+    fn m12_mut(&mut self) -> &mut f32;
     fn m13(&self) -> &f32;
+    fn m13_mut(&mut self) -> &mut f32;
     fn m14(&self) -> &f32;
+    fn m14_mut(&mut self) -> &mut f32;
     fn m21(&self) -> &f32;
+    fn m21_mut(&mut self) -> &mut f32;
     fn m22(&self) -> &f32;
+    fn m22_mut(&mut self) -> &mut f32;
     fn m23(&self) -> &f32;
+    fn m23_mut(&mut self) -> &mut f32;
     fn m24(&self) -> &f32;
+    fn m24_mut(&mut self) -> &mut f32;
     fn m31(&self) -> &f32;
+    fn m31_mut(&mut self) -> &mut f32;
     fn m32(&self) -> &f32;
+    fn m32_mut(&mut self) -> &mut f32;
     fn m33(&self) -> &f32;
+    fn m33_mut(&mut self) -> &mut f32;
     fn m34(&self) -> &f32;
+    fn m34_mut(&mut self) -> &mut f32;
     fn m41(&self) -> &f32;
+    fn m41_mut(&mut self) -> &mut f32;
     fn m42(&self) -> &f32;
+    fn m42_mut(&mut self) -> &mut f32;
     fn m43(&self) -> &f32;
+    fn m43_mut(&mut self) -> &mut f32;
     fn m44(&self) -> &f32;
+    fn m44_mut(&mut self) -> &mut f32;
 }
 
 impl Mat4Trait for Mat4 {
     fn m11(&self) -> &f32 {
         &self.m11
     }
+    fn m11_mut(&mut self) -> &mut f32 {
+        &mut self.m11
+    }
     fn m12(&self) -> &f32 {
         &self.m12
+    }
+    fn m12_mut(&mut self) -> &mut f32 {
+        &mut self.m12
     }
     fn m13(&self) -> &f32 {
         &self.m13
     }
+    fn m13_mut(&mut self) -> &mut f32 {
+        &mut self.m13
+    }
     fn m14(&self) -> &f32 {
         &self.m14
+    }
+    fn m14_mut(&mut self) -> &mut f32 {
+        &mut self.m14
     }
     fn m21(&self) -> &f32 {
         &self.m21
     }
+    fn m21_mut(&mut self) -> &mut f32 {
+        &mut self.m21
+    }
     fn m22(&self) -> &f32 {
         &self.m22
+    }
+    fn m22_mut(&mut self) -> &mut f32 {
+        &mut self.m22
     }
     fn m23(&self) -> &f32 {
         &self.m23
     }
+    fn m23_mut(&mut self) -> &mut f32 {
+        &mut self.m23
+    }
     fn m24(&self) -> &f32 {
         &self.m24
+    }
+    fn m24_mut(&mut self) -> &mut f32 {
+        &mut self.m24
     }
     fn m31(&self) -> &f32 {
         &self.m31
     }
+    fn m31_mut(&mut self) -> &mut f32 {
+        &mut self.m31
+    }
     fn m32(&self) -> &f32 {
         &self.m32
+    }
+    fn m32_mut(&mut self) -> &mut f32 {
+        &mut self.m32
     }
     fn m33(&self) -> &f32 {
         &self.m33
     }
+    fn m33_mut(&mut self) -> &mut f32 {
+        &mut self.m33
+    }
     fn m34(&self) -> &f32 {
         &self.m34
+    }
+    fn m34_mut(&mut self) -> &mut f32 {
+        &mut self.m34
     }
     fn m41(&self) -> &f32 {
         &self.m41
     }
+    fn m41_mut(&mut self) -> &mut f32 {
+        &mut self.m41
+    }
     fn m42(&self) -> &f32 {
         &self.m42
+    }
+    fn m42_mut(&mut self) -> &mut f32 {
+        &mut self.m42
     }
     fn m43(&self) -> &f32 {
         &self.m43
     }
+    fn m43_mut(&mut self) -> &mut f32 {
+        &mut self.m43
+    }
     fn m44(&self) -> &f32 {
         &self.m44
+    }
+    fn m44_mut(&mut self) -> &mut f32 {
+        &mut self.m44
     }
 }
 
@@ -13444,6 +16089,15 @@ impl TypeObject for Mat4 {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13467,23 +16121,39 @@ pub struct LinearTransform {
 
 pub trait LinearTransformTrait: TypeObject {
     fn right(&self) -> &Vec3;
+    fn right_mut(&mut self) -> &mut Vec3;
     fn up(&self) -> &Vec3;
+    fn up_mut(&mut self) -> &mut Vec3;
     fn forward(&self) -> &Vec3;
+    fn forward_mut(&mut self) -> &mut Vec3;
     fn trans(&self) -> &Vec3;
+    fn trans_mut(&mut self) -> &mut Vec3;
 }
 
 impl LinearTransformTrait for LinearTransform {
     fn right(&self) -> &Vec3 {
         &self.right
     }
+    fn right_mut(&mut self) -> &mut Vec3 {
+        &mut self.right
+    }
     fn up(&self) -> &Vec3 {
         &self.up
+    }
+    fn up_mut(&mut self) -> &mut Vec3 {
+        &mut self.up
     }
     fn forward(&self) -> &Vec3 {
         &self.forward
     }
+    fn forward_mut(&mut self) -> &mut Vec3 {
+        &mut self.forward
+    }
     fn trans(&self) -> &Vec3 {
         &self.trans
+    }
+    fn trans_mut(&mut self) -> &mut Vec3 {
+        &mut self.trans
     }
 }
 
@@ -13533,6 +16203,15 @@ impl TypeObject for LinearTransform {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13556,23 +16235,39 @@ pub struct Plane {
 
 pub trait PlaneTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn z(&self) -> &f32;
+    fn z_mut(&mut self) -> &mut f32;
     fn w(&self) -> &f32;
+    fn w_mut(&mut self) -> &mut f32;
 }
 
 impl PlaneTrait for Plane {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
     }
     fn z(&self) -> &f32 {
         &self.z
     }
+    fn z_mut(&mut self) -> &mut f32 {
+        &mut self.z
+    }
     fn w(&self) -> &f32 {
         &self.w
+    }
+    fn w_mut(&mut self) -> &mut f32 {
+        &mut self.w
     }
 }
 
@@ -13622,6 +16317,15 @@ impl TypeObject for Plane {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13645,23 +16349,39 @@ pub struct Quat {
 
 pub trait QuatTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn z(&self) -> &f32;
+    fn z_mut(&mut self) -> &mut f32;
     fn w(&self) -> &f32;
+    fn w_mut(&mut self) -> &mut f32;
 }
 
 impl QuatTrait for Quat {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
     }
     fn z(&self) -> &f32 {
         &self.z
     }
+    fn z_mut(&mut self) -> &mut f32 {
+        &mut self.z
+    }
     fn w(&self) -> &f32 {
         &self.w
+    }
+    fn w_mut(&mut self) -> &mut f32 {
+        &mut self.w
     }
 }
 
@@ -13711,6 +16431,15 @@ impl TypeObject for Quat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13734,23 +16463,39 @@ pub struct Vec4 {
 
 pub trait Vec4Trait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn z(&self) -> &f32;
+    fn z_mut(&mut self) -> &mut f32;
     fn w(&self) -> &f32;
+    fn w_mut(&mut self) -> &mut f32;
 }
 
 impl Vec4Trait for Vec4 {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
     }
     fn z(&self) -> &f32 {
         &self.z
     }
+    fn z_mut(&mut self) -> &mut f32 {
+        &mut self.z
+    }
     fn w(&self) -> &f32 {
         &self.w
+    }
+    fn w_mut(&mut self) -> &mut f32 {
+        &mut self.w
     }
 }
 
@@ -13800,6 +16545,15 @@ impl TypeObject for Vec4 {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13822,19 +16576,31 @@ pub struct Vec3 {
 
 pub trait Vec3Trait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn z(&self) -> &f32;
+    fn z_mut(&mut self) -> &mut f32;
 }
 
 impl Vec3Trait for Vec3 {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
     }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
+    }
     fn z(&self) -> &f32 {
         &self.z
+    }
+    fn z_mut(&mut self) -> &mut f32 {
+        &mut self.z
     }
 }
 
@@ -13878,6 +16644,15 @@ impl TypeObject for Vec3 {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13899,15 +16674,23 @@ pub struct Vec2 {
 
 pub trait Vec2Trait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
 }
 
 impl Vec2Trait for Vec2 {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
     }
 }
 
@@ -13945,6 +16728,15 @@ impl TypeObject for Vec2 {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13968,23 +16760,39 @@ pub struct FbVec {
 
 pub trait FbVecTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn z(&self) -> &f32;
+    fn z_mut(&mut self) -> &mut f32;
     fn w(&self) -> &f32;
+    fn w_mut(&mut self) -> &mut f32;
 }
 
 impl FbVecTrait for FbVec {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
     }
     fn z(&self) -> &f32 {
         &self.z
     }
+    fn z_mut(&mut self) -> &mut f32 {
+        &mut self.z
+    }
     fn w(&self) -> &f32 {
         &self.w
+    }
+    fn w_mut(&mut self) -> &mut f32 {
+        &mut self.w
     }
 }
 
@@ -14034,6 +16842,15 @@ impl TypeObject for FbVec {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14080,6 +16897,15 @@ impl TypeObject for EventDispatcher {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14099,13 +16925,9 @@ pub struct DataContainer {
 }
 
 pub trait DataContainerTrait: TypeObject {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore;
 }
 
 impl DataContainerTrait for DataContainer {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        &self._glacier_dc_core
-    }
 }
 
 pub static DATACONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14130,6 +16952,15 @@ impl TypeObject for DataContainer {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        Some(&self._glacier_dc_core)
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        Some(&mut self._glacier_dc_core)
     }
 }
 

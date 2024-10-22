@@ -37,11 +37,15 @@ pub struct LevelWebBrowserDescriptionComponent {
 
 pub trait LevelWebBrowserDescriptionComponentTrait: super::gameplay_sim::LevelDescriptionComponentTrait {
     fn create_web_browser(&self) -> &super::core::PlatformScalableBool;
+    fn create_web_browser_mut(&mut self) -> &mut super::core::PlatformScalableBool;
 }
 
 impl LevelWebBrowserDescriptionComponentTrait for LevelWebBrowserDescriptionComponent {
     fn create_web_browser(&self) -> &super::core::PlatformScalableBool {
         &self.create_web_browser
+    }
+    fn create_web_browser_mut(&mut self) -> &mut super::core::PlatformScalableBool {
+        &mut self.create_web_browser
     }
 }
 
@@ -49,9 +53,6 @@ impl super::gameplay_sim::LevelDescriptionComponentTrait for LevelWebBrowserDesc
 }
 
 impl super::core::DataContainerTrait for LevelWebBrowserDescriptionComponent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LEVELWEBBROWSERDESCRIPTIONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -82,6 +83,15 @@ impl TypeObject for LevelWebBrowserDescriptionComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -117,63 +127,119 @@ pub struct WebBrowserSettings {
 
 pub trait WebBrowserSettingsTrait: super::core::SystemSettingsTrait {
     fn application_name(&self) -> &String;
+    fn application_name_mut(&mut self) -> &mut String;
     fn browser_heap_size(&self) -> &i32;
+    fn browser_heap_size_mut(&mut self) -> &mut i32;
     fn allocate_heap_on_module_startup(&self) -> &bool;
+    fn allocate_heap_on_module_startup_mut(&mut self) -> &mut bool;
     fn standard_font(&self) -> &String;
+    fn standard_font_mut(&mut self) -> &mut String;
     fn serif_font(&self) -> &String;
+    fn serif_font_mut(&mut self) -> &mut String;
     fn sans_serif_font(&self) -> &String;
+    fn sans_serif_font_mut(&mut self) -> &mut String;
     fn monospace_font(&self) -> &String;
+    fn monospace_font_mut(&mut self) -> &mut String;
     fn cursive_font(&self) -> &String;
+    fn cursive_font_mut(&mut self) -> &mut String;
     fn fantasy_font(&self) -> &String;
+    fn fantasy_font_mut(&mut self) -> &mut String;
     fn system_font(&self) -> &String;
+    fn system_font_mut(&mut self) -> &mut String;
     fn system_font_bold(&self) -> &bool;
+    fn system_font_bold_mut(&mut self) -> &mut bool;
     fn default_c_s_s(&self) -> &String;
+    fn default_c_s_s_mut(&mut self) -> &mut String;
     fn web_browser_bundle(&self) -> &Option<Arc<Mutex<dyn WebBrowserBundleAssetTrait>>>;
+    fn web_browser_bundle_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WebBrowserBundleAssetTrait>>>;
     fn per_level_web_browser_enable(&self) -> &bool;
+    fn per_level_web_browser_enable_mut(&mut self) -> &mut bool;
 }
 
 impl WebBrowserSettingsTrait for WebBrowserSettings {
     fn application_name(&self) -> &String {
         &self.application_name
     }
+    fn application_name_mut(&mut self) -> &mut String {
+        &mut self.application_name
+    }
     fn browser_heap_size(&self) -> &i32 {
         &self.browser_heap_size
+    }
+    fn browser_heap_size_mut(&mut self) -> &mut i32 {
+        &mut self.browser_heap_size
     }
     fn allocate_heap_on_module_startup(&self) -> &bool {
         &self.allocate_heap_on_module_startup
     }
+    fn allocate_heap_on_module_startup_mut(&mut self) -> &mut bool {
+        &mut self.allocate_heap_on_module_startup
+    }
     fn standard_font(&self) -> &String {
         &self.standard_font
+    }
+    fn standard_font_mut(&mut self) -> &mut String {
+        &mut self.standard_font
     }
     fn serif_font(&self) -> &String {
         &self.serif_font
     }
+    fn serif_font_mut(&mut self) -> &mut String {
+        &mut self.serif_font
+    }
     fn sans_serif_font(&self) -> &String {
         &self.sans_serif_font
+    }
+    fn sans_serif_font_mut(&mut self) -> &mut String {
+        &mut self.sans_serif_font
     }
     fn monospace_font(&self) -> &String {
         &self.monospace_font
     }
+    fn monospace_font_mut(&mut self) -> &mut String {
+        &mut self.monospace_font
+    }
     fn cursive_font(&self) -> &String {
         &self.cursive_font
+    }
+    fn cursive_font_mut(&mut self) -> &mut String {
+        &mut self.cursive_font
     }
     fn fantasy_font(&self) -> &String {
         &self.fantasy_font
     }
+    fn fantasy_font_mut(&mut self) -> &mut String {
+        &mut self.fantasy_font
+    }
     fn system_font(&self) -> &String {
         &self.system_font
+    }
+    fn system_font_mut(&mut self) -> &mut String {
+        &mut self.system_font
     }
     fn system_font_bold(&self) -> &bool {
         &self.system_font_bold
     }
+    fn system_font_bold_mut(&mut self) -> &mut bool {
+        &mut self.system_font_bold
+    }
     fn default_c_s_s(&self) -> &String {
         &self.default_c_s_s
+    }
+    fn default_c_s_s_mut(&mut self) -> &mut String {
+        &mut self.default_c_s_s
     }
     fn web_browser_bundle(&self) -> &Option<Arc<Mutex<dyn WebBrowserBundleAssetTrait>>> {
         &self.web_browser_bundle
     }
+    fn web_browser_bundle_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WebBrowserBundleAssetTrait>>> {
+        &mut self.web_browser_bundle
+    }
     fn per_level_web_browser_enable(&self) -> &bool {
         &self.per_level_web_browser_enable
+    }
+    fn per_level_web_browser_enable_mut(&mut self) -> &mut bool {
+        &mut self.per_level_web_browser_enable
     }
 }
 
@@ -181,12 +247,12 @@ impl super::core::SystemSettingsTrait for WebBrowserSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for WebBrowserSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEBBROWSERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -296,6 +362,15 @@ impl TypeObject for WebBrowserSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -341,6 +416,15 @@ impl TypeObject for UIWebViewNotificationErrorMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
@@ -370,6 +454,15 @@ impl TypeObject for WebViewError {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -416,6 +509,15 @@ impl TypeObject for UIWebViewNotificationUrlChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -449,6 +551,15 @@ impl TypeObject for UIWebViewRequestCloseViewMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -484,6 +595,15 @@ impl TypeObject for UIWebViewRequestViewPageMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -501,17 +621,32 @@ impl super::game_shared_u_i::UIWidgetEntityDataTrait for UIWebViewWidgetData {
     fn size(&self) -> &super::game_shared_u_i::UIElementSize {
         self._glacier_base.size()
     }
+    fn size_mut(&mut self) -> &mut super::game_shared_u_i::UIElementSize {
+        self._glacier_base.size_mut()
+    }
     fn layers(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared_u_i::UIElementLayerEntityDataTrait>>>> {
         self._glacier_base.layers()
+    }
+    fn layers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared_u_i::UIElementLayerEntityDataTrait>>>> {
+        self._glacier_base.layers_mut()
     }
     fn texture_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared_u_i::UITextureMappingAssetTrait>>>> {
         self._glacier_base.texture_mappings()
     }
+    fn texture_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared_u_i::UITextureMappingAssetTrait>>>> {
+        self._glacier_base.texture_mappings_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn visible(&self) -> &bool {
         self._glacier_base.visible()
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.visible_mut()
     }
 }
 
@@ -525,15 +660,15 @@ impl super::core::DataBusPeerTrait for UIWebViewWidgetData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for UIWebViewWidgetData {
 }
 
 impl super::core::DataContainerTrait for UIWebViewWidgetData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIWEBVIEWWIDGETDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -559,6 +694,15 @@ impl TypeObject for UIWebViewWidgetData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -582,19 +726,31 @@ pub struct WebBrowserBundleAsset {
 
 pub trait WebBrowserBundleAssetTrait: super::core::AssetTrait {
     fn bundle_path(&self) -> &String;
+    fn bundle_path_mut(&mut self) -> &mut String;
     fn fonts(&self) -> &Vec<String>;
+    fn fonts_mut(&mut self) -> &mut Vec<String>;
     fn local_u_r_ls(&self) -> &Vec<String>;
+    fn local_u_r_ls_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl WebBrowserBundleAssetTrait for WebBrowserBundleAsset {
     fn bundle_path(&self) -> &String {
         &self.bundle_path
     }
+    fn bundle_path_mut(&mut self) -> &mut String {
+        &mut self.bundle_path
+    }
     fn fonts(&self) -> &Vec<String> {
         &self.fonts
     }
+    fn fonts_mut(&mut self) -> &mut Vec<String> {
+        &mut self.fonts
+    }
     fn local_u_r_ls(&self) -> &Vec<String> {
         &self.local_u_r_ls
+    }
+    fn local_u_r_ls_mut(&mut self) -> &mut Vec<String> {
+        &mut self.local_u_r_ls
     }
 }
 
@@ -602,12 +758,12 @@ impl super::core::AssetTrait for WebBrowserBundleAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for WebBrowserBundleAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEBBROWSERBUNDLEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -651,6 +807,15 @@ impl TypeObject for WebBrowserBundleAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -673,15 +838,23 @@ pub struct WebBrowserLocalURLAsset {
 
 pub trait WebBrowserLocalURLAssetTrait: super::core::AssetTrait {
     fn local_path(&self) -> &String;
+    fn local_path_mut(&mut self) -> &mut String;
     fn file(&self) -> &Option<Arc<Mutex<dyn super::game_shared::RawFileDataAssetTrait>>>;
+    fn file_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::RawFileDataAssetTrait>>>;
 }
 
 impl WebBrowserLocalURLAssetTrait for WebBrowserLocalURLAsset {
     fn local_path(&self) -> &String {
         &self.local_path
     }
+    fn local_path_mut(&mut self) -> &mut String {
+        &mut self.local_path
+    }
     fn file(&self) -> &Option<Arc<Mutex<dyn super::game_shared::RawFileDataAssetTrait>>> {
         &self.file
+    }
+    fn file_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::RawFileDataAssetTrait>>> {
+        &mut self.file
     }
 }
 
@@ -689,12 +862,12 @@ impl super::core::AssetTrait for WebBrowserLocalURLAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for WebBrowserLocalURLAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEBBROWSERLOCALURLASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -731,6 +904,15 @@ impl TypeObject for WebBrowserLocalURLAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -787,6 +969,15 @@ impl TypeObject for UIWebViewWidget {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

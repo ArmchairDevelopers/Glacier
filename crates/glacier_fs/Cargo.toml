@@ -4,6 +4,16 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+tokio = { version = "1.28.2", features = [
+    "full",
+    "rt",
+    "rt-multi-thread",
+    "time",
+    "net",
+] }
 bytes = "1.7.2"
 glacier_util = { path = "../glacier_util" }
 glacier_reflect = { path = "../glacier_reflect" }
+glacier_reflect_swbf2 = { path = "../glacier_reflect_swbf2" }
+tracing = "0.1.40"
+async-recursion = "1.1.1"

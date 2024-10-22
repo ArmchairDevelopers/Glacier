@@ -83,19 +83,31 @@ pub struct CinematicDestructionPoolBufferEntityData {
 
 pub trait CinematicDestructionPoolBufferEntityDataTrait: super::entity::EntityDataTrait {
     fn cpu_pool_adjustment(&self) -> &i32;
+    fn cpu_pool_adjustment_mut(&mut self) -> &mut i32;
     fn gpu_pool_adjustment(&self) -> &i32;
+    fn gpu_pool_adjustment_mut(&mut self) -> &mut i32;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
 }
 
 impl CinematicDestructionPoolBufferEntityDataTrait for CinematicDestructionPoolBufferEntityData {
     fn cpu_pool_adjustment(&self) -> &i32 {
         &self.cpu_pool_adjustment
     }
+    fn cpu_pool_adjustment_mut(&mut self) -> &mut i32 {
+        &mut self.cpu_pool_adjustment
+    }
     fn gpu_pool_adjustment(&self) -> &i32 {
         &self.gpu_pool_adjustment
     }
+    fn gpu_pool_adjustment_mut(&mut self) -> &mut i32 {
+        &mut self.gpu_pool_adjustment
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
 }
 
@@ -109,15 +121,15 @@ impl super::core::DataBusPeerTrait for CinematicDestructionPoolBufferEntityData 
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CinematicDestructionPoolBufferEntityData {
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionPoolBufferEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONPOOLBUFFERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -161,6 +173,15 @@ impl TypeObject for CinematicDestructionPoolBufferEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -190,43 +211,79 @@ pub struct CinematicDestructionControllerEntityData {
 
 pub trait CinematicDestructionControllerEntityDataTrait: super::entity::EntityDataTrait {
     fn source_asset(&self) -> &Option<Arc<Mutex<dyn CinematicDestructionAssetTrait>>>;
+    fn source_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CinematicDestructionAssetTrait>>>;
     fn output_pipe_results(&self) -> &Vec<Option<Arc<Mutex<dyn CinematicDestructionOutputPipeResultTrait>>>>;
+    fn output_pipe_results_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CinematicDestructionOutputPipeResultTrait>>>>;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn external_time(&self) -> &f32;
+    fn external_time_mut(&mut self) -> &mut f32;
     fn start_paused(&self) -> &bool;
+    fn start_paused_mut(&mut self) -> &mut bool;
     fn active_playback_sequence(&self) -> &i32;
+    fn active_playback_sequence_mut(&mut self) -> &mut i32;
     fn auto_start(&self) -> &bool;
+    fn auto_start_mut(&mut self) -> &mut bool;
     fn auto_pause(&self) -> &bool;
+    fn auto_pause_mut(&mut self) -> &mut bool;
     fn playback_sequences(&self) -> &Vec<CinematicDestructionPlaybackSequence>;
+    fn playback_sequences_mut(&mut self) -> &mut Vec<CinematicDestructionPlaybackSequence>;
 }
 
 impl CinematicDestructionControllerEntityDataTrait for CinematicDestructionControllerEntityData {
     fn source_asset(&self) -> &Option<Arc<Mutex<dyn CinematicDestructionAssetTrait>>> {
         &self.source_asset
     }
+    fn source_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CinematicDestructionAssetTrait>>> {
+        &mut self.source_asset
+    }
     fn output_pipe_results(&self) -> &Vec<Option<Arc<Mutex<dyn CinematicDestructionOutputPipeResultTrait>>>> {
         &self.output_pipe_results
+    }
+    fn output_pipe_results_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CinematicDestructionOutputPipeResultTrait>>>> {
+        &mut self.output_pipe_results
     }
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn external_time(&self) -> &f32 {
         &self.external_time
+    }
+    fn external_time_mut(&mut self) -> &mut f32 {
+        &mut self.external_time
     }
     fn start_paused(&self) -> &bool {
         &self.start_paused
     }
+    fn start_paused_mut(&mut self) -> &mut bool {
+        &mut self.start_paused
+    }
     fn active_playback_sequence(&self) -> &i32 {
         &self.active_playback_sequence
+    }
+    fn active_playback_sequence_mut(&mut self) -> &mut i32 {
+        &mut self.active_playback_sequence
     }
     fn auto_start(&self) -> &bool {
         &self.auto_start
     }
+    fn auto_start_mut(&mut self) -> &mut bool {
+        &mut self.auto_start
+    }
     fn auto_pause(&self) -> &bool {
         &self.auto_pause
     }
+    fn auto_pause_mut(&mut self) -> &mut bool {
+        &mut self.auto_pause
+    }
     fn playback_sequences(&self) -> &Vec<CinematicDestructionPlaybackSequence> {
         &self.playback_sequences
+    }
+    fn playback_sequences_mut(&mut self) -> &mut Vec<CinematicDestructionPlaybackSequence> {
+        &mut self.playback_sequences
     }
 }
 
@@ -240,15 +297,15 @@ impl super::core::DataBusPeerTrait for CinematicDestructionControllerEntityData 
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CinematicDestructionControllerEntityData {
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionControllerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONCONTROLLERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -328,6 +385,15 @@ impl TypeObject for CinematicDestructionControllerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -348,11 +414,15 @@ pub struct CinematicDestructionPlaybackSequence {
 
 pub trait CinematicDestructionPlaybackSequenceTrait: TypeObject {
     fn segment_table(&self) -> &Vec<CinematicDestructionBakedSegmentGroupOrder>;
+    fn segment_table_mut(&mut self) -> &mut Vec<CinematicDestructionBakedSegmentGroupOrder>;
 }
 
 impl CinematicDestructionPlaybackSequenceTrait for CinematicDestructionPlaybackSequence {
     fn segment_table(&self) -> &Vec<CinematicDestructionBakedSegmentGroupOrder> {
         &self.segment_table
+    }
+    fn segment_table_mut(&mut self) -> &mut Vec<CinematicDestructionBakedSegmentGroupOrder> {
+        &mut self.segment_table
     }
 }
 
@@ -384,6 +454,15 @@ impl TypeObject for CinematicDestructionPlaybackSequence {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -405,15 +484,23 @@ pub struct CinematicDestructionBakedSegmentGroupOrder {
 
 pub trait CinematicDestructionBakedSegmentGroupOrderTrait: TypeObject {
     fn segment(&self) -> &u32;
+    fn segment_mut(&mut self) -> &mut u32;
     fn next_segment(&self) -> &u32;
+    fn next_segment_mut(&mut self) -> &mut u32;
 }
 
 impl CinematicDestructionBakedSegmentGroupOrderTrait for CinematicDestructionBakedSegmentGroupOrder {
     fn segment(&self) -> &u32 {
         &self.segment
     }
+    fn segment_mut(&mut self) -> &mut u32 {
+        &mut self.segment
+    }
     fn next_segment(&self) -> &u32 {
         &self.next_segment
+    }
+    fn next_segment_mut(&mut self) -> &mut u32 {
+        &mut self.next_segment
     }
 }
 
@@ -451,6 +538,15 @@ impl TypeObject for CinematicDestructionBakedSegmentGroupOrder {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -472,15 +568,23 @@ pub struct CinematicDestructionSegmentGroupOrder {
 
 pub trait CinematicDestructionSegmentGroupOrderTrait: TypeObject {
     fn segment_group(&self) -> &String;
+    fn segment_group_mut(&mut self) -> &mut String;
     fn next_segment_group(&self) -> &String;
+    fn next_segment_group_mut(&mut self) -> &mut String;
 }
 
 impl CinematicDestructionSegmentGroupOrderTrait for CinematicDestructionSegmentGroupOrder {
     fn segment_group(&self) -> &String {
         &self.segment_group
     }
+    fn segment_group_mut(&mut self) -> &mut String {
+        &mut self.segment_group
+    }
     fn next_segment_group(&self) -> &String {
         &self.next_segment_group
+    }
+    fn next_segment_group_mut(&mut self) -> &mut String {
+        &mut self.next_segment_group
     }
 }
 
@@ -518,6 +622,15 @@ impl TypeObject for CinematicDestructionSegmentGroupOrder {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -539,11 +652,15 @@ pub struct CinematicDestructionEmitterOutputPipeResult {
 
 pub trait CinematicDestructionEmitterOutputPipeResultTrait: CinematicDestructionOutputPipeResultTrait {
     fn attributes(&self) -> &Vec<CinematicDestructionEmitterOutputPipeAttribute>;
+    fn attributes_mut(&mut self) -> &mut Vec<CinematicDestructionEmitterOutputPipeAttribute>;
 }
 
 impl CinematicDestructionEmitterOutputPipeResultTrait for CinematicDestructionEmitterOutputPipeResult {
     fn attributes(&self) -> &Vec<CinematicDestructionEmitterOutputPipeAttribute> {
         &self.attributes
+    }
+    fn attributes_mut(&mut self) -> &mut Vec<CinematicDestructionEmitterOutputPipeAttribute> {
+        &mut self.attributes
     }
 }
 
@@ -551,9 +668,6 @@ impl CinematicDestructionOutputPipeResultTrait for CinematicDestructionEmitterOu
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionEmitterOutputPipeResult {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPERESULT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -585,6 +699,15 @@ impl TypeObject for CinematicDestructionEmitterOutputPipeResult {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -606,15 +729,23 @@ pub struct CinematicDestructionEmitterOutputPipeAttribute {
 
 pub trait CinematicDestructionEmitterOutputPipeAttributeTrait: TypeObject {
     fn effect_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
+    fn effect_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
     fn attribute_code(&self) -> &u64;
+    fn attribute_code_mut(&mut self) -> &mut u64;
 }
 
 impl CinematicDestructionEmitterOutputPipeAttributeTrait for CinematicDestructionEmitterOutputPipeAttribute {
     fn effect_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         &self.effect_param
     }
+    fn effect_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        &mut self.effect_param
+    }
     fn attribute_code(&self) -> &u64 {
         &self.attribute_code
+    }
+    fn attribute_code_mut(&mut self) -> &mut u64 {
+        &mut self.attribute_code
     }
 }
 
@@ -651,6 +782,15 @@ impl TypeObject for CinematicDestructionEmitterOutputPipeAttribute {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -689,15 +829,15 @@ impl super::core::DataBusPeerTrait for CinematicDestructionEmitterOutputPipeEnti
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CinematicDestructionEmitterOutputPipeEntityData {
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionEmitterOutputPipeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -722,6 +862,15 @@ impl TypeObject for CinematicDestructionEmitterOutputPipeEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -763,15 +912,15 @@ impl super::core::DataBusPeerTrait for CinematicDestructionAutoMeshOutputPipeEnt
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CinematicDestructionAutoMeshOutputPipeEntityData {
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionAutoMeshOutputPipeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONAUTOMESHOUTPUTPIPEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -796,6 +945,15 @@ impl TypeObject for CinematicDestructionAutoMeshOutputPipeEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -837,15 +995,15 @@ impl super::core::DataBusPeerTrait for CinematicDestructionManualMeshOutputPipeE
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CinematicDestructionManualMeshOutputPipeEntityData {
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionManualMeshOutputPipeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONMANUALMESHOUTPUTPIPEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -870,6 +1028,15 @@ impl TypeObject for CinematicDestructionManualMeshOutputPipeEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -908,15 +1075,15 @@ impl super::core::DataBusPeerTrait for CinematicDestructionMeshOutputPipeEntityD
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CinematicDestructionMeshOutputPipeEntityData {
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionMeshOutputPipeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -941,6 +1108,15 @@ impl TypeObject for CinematicDestructionMeshOutputPipeEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -967,27 +1143,47 @@ pub struct CinematicDestructionMeshOutputPipeResult {
 
 pub trait CinematicDestructionMeshOutputPipeResultTrait: CinematicDestructionOutputPipeResultTrait {
     fn vertex_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute>;
+    fn vertex_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute>;
     fn material_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute>;
+    fn material_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute>;
     fn texture_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedTextureAttribute>;
+    fn texture_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedTextureAttribute>;
     fn replace_index_buffer(&self) -> &bool;
+    fn replace_index_buffer_mut(&mut self) -> &mut bool;
     fn index_buffer(&self) -> &CinematicDestructionAutoMeshGeneratedIndexBuffer;
+    fn index_buffer_mut(&mut self) -> &mut CinematicDestructionAutoMeshGeneratedIndexBuffer;
 }
 
 impl CinematicDestructionMeshOutputPipeResultTrait for CinematicDestructionMeshOutputPipeResult {
     fn vertex_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute> {
         &self.vertex_attributes
     }
+    fn vertex_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute> {
+        &mut self.vertex_attributes
+    }
     fn material_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute> {
         &self.material_attributes
+    }
+    fn material_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute> {
+        &mut self.material_attributes
     }
     fn texture_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedTextureAttribute> {
         &self.texture_attributes
     }
+    fn texture_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedTextureAttribute> {
+        &mut self.texture_attributes
+    }
     fn replace_index_buffer(&self) -> &bool {
         &self.replace_index_buffer
     }
+    fn replace_index_buffer_mut(&mut self) -> &mut bool {
+        &mut self.replace_index_buffer
+    }
     fn index_buffer(&self) -> &CinematicDestructionAutoMeshGeneratedIndexBuffer {
         &self.index_buffer
+    }
+    fn index_buffer_mut(&mut self) -> &mut CinematicDestructionAutoMeshGeneratedIndexBuffer {
+        &mut self.index_buffer
     }
 }
 
@@ -995,9 +1191,6 @@ impl CinematicDestructionOutputPipeResultTrait for CinematicDestructionMeshOutpu
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionMeshOutputPipeResult {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONMESHOUTPUTPIPERESULT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1053,6 +1246,15 @@ impl TypeObject for CinematicDestructionMeshOutputPipeResult {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1073,11 +1275,15 @@ pub struct CinematicDestructionAutoMeshGeneratedIndexBuffer {
 
 pub trait CinematicDestructionAutoMeshGeneratedIndexBufferTrait: TypeObject {
     fn attribute_code(&self) -> &u64;
+    fn attribute_code_mut(&mut self) -> &mut u64;
 }
 
 impl CinematicDestructionAutoMeshGeneratedIndexBufferTrait for CinematicDestructionAutoMeshGeneratedIndexBuffer {
     fn attribute_code(&self) -> &u64 {
         &self.attribute_code
+    }
+    fn attribute_code_mut(&mut self) -> &mut u64 {
+        &mut self.attribute_code
     }
 }
 
@@ -1109,6 +1315,15 @@ impl TypeObject for CinematicDestructionAutoMeshGeneratedIndexBuffer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1130,15 +1345,23 @@ pub struct CinematicDestructionAutoMeshGeneratedTextureAttribute {
 
 pub trait CinematicDestructionAutoMeshGeneratedTextureAttributeTrait: TypeObject {
     fn usage(&self) -> &CinematicDestructionTextureReplaceUsage;
+    fn usage_mut(&mut self) -> &mut CinematicDestructionTextureReplaceUsage;
     fn attribute_code(&self) -> &u64;
+    fn attribute_code_mut(&mut self) -> &mut u64;
 }
 
 impl CinematicDestructionAutoMeshGeneratedTextureAttributeTrait for CinematicDestructionAutoMeshGeneratedTextureAttribute {
     fn usage(&self) -> &CinematicDestructionTextureReplaceUsage {
         &self.usage
     }
+    fn usage_mut(&mut self) -> &mut CinematicDestructionTextureReplaceUsage {
+        &mut self.usage
+    }
     fn attribute_code(&self) -> &u64 {
         &self.attribute_code
+    }
+    fn attribute_code_mut(&mut self) -> &mut u64 {
+        &mut self.attribute_code
     }
 }
 
@@ -1176,6 +1399,15 @@ impl TypeObject for CinematicDestructionAutoMeshGeneratedTextureAttribute {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1197,15 +1429,23 @@ pub struct CinematicDestructionAutoMeshGeneratedVertexAttribute {
 
 pub trait CinematicDestructionAutoMeshGeneratedVertexAttributeTrait: TypeObject {
     fn usage(&self) -> &super::render::VertexElementUsage;
+    fn usage_mut(&mut self) -> &mut super::render::VertexElementUsage;
     fn attribute_code(&self) -> &u64;
+    fn attribute_code_mut(&mut self) -> &mut u64;
 }
 
 impl CinematicDestructionAutoMeshGeneratedVertexAttributeTrait for CinematicDestructionAutoMeshGeneratedVertexAttribute {
     fn usage(&self) -> &super::render::VertexElementUsage {
         &self.usage
     }
+    fn usage_mut(&mut self) -> &mut super::render::VertexElementUsage {
+        &mut self.usage
+    }
     fn attribute_code(&self) -> &u64 {
         &self.attribute_code
+    }
+    fn attribute_code_mut(&mut self) -> &mut u64 {
+        &mut self.attribute_code
     }
 }
 
@@ -1243,6 +1483,15 @@ impl TypeObject for CinematicDestructionAutoMeshGeneratedVertexAttribute {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1271,9 +1520,6 @@ impl EffectDataAttributeParameterTrait for EffectDataAttributeCpuParameter {
 }
 
 impl super::core::DataContainerTrait for EffectDataAttributeCpuParameter {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EFFECTDATAATTRIBUTECPUPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1298,6 +1544,15 @@ impl TypeObject for EffectDataAttributeCpuParameter {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1324,9 +1579,6 @@ impl EffectDataAttributeParameterTrait for EffectDataAttributeParameter {
 }
 
 impl super::core::DataContainerTrait for EffectDataAttributeParameter {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EFFECTDATAATTRIBUTEPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1352,6 +1604,15 @@ impl TypeObject for EffectDataAttributeParameter {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1373,11 +1634,15 @@ pub struct MeshDataReplaceTextureAttribute {
 
 pub trait MeshDataReplaceTextureAttributeTrait: MeshDataReplaceAttributeTrait {
     fn usage(&self) -> &CinematicDestructionTextureReplaceUsage;
+    fn usage_mut(&mut self) -> &mut CinematicDestructionTextureReplaceUsage;
 }
 
 impl MeshDataReplaceTextureAttributeTrait for MeshDataReplaceTextureAttribute {
     fn usage(&self) -> &CinematicDestructionTextureReplaceUsage {
         &self.usage
+    }
+    fn usage_mut(&mut self) -> &mut CinematicDestructionTextureReplaceUsage {
+        &mut self.usage
     }
 }
 
@@ -1385,9 +1650,6 @@ impl MeshDataReplaceAttributeTrait for MeshDataReplaceTextureAttribute {
 }
 
 impl super::core::DataContainerTrait for MeshDataReplaceTextureAttribute {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MESHDATAREPLACETEXTUREATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1419,6 +1681,15 @@ impl TypeObject for MeshDataReplaceTextureAttribute {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1440,11 +1711,15 @@ pub struct MeshDataReplaceVertexAttribute {
 
 pub trait MeshDataReplaceVertexAttributeTrait: MeshDataReplaceAttributeTrait {
     fn usage(&self) -> &super::render::VertexElementUsage;
+    fn usage_mut(&mut self) -> &mut super::render::VertexElementUsage;
 }
 
 impl MeshDataReplaceVertexAttributeTrait for MeshDataReplaceVertexAttribute {
     fn usage(&self) -> &super::render::VertexElementUsage {
         &self.usage
+    }
+    fn usage_mut(&mut self) -> &mut super::render::VertexElementUsage {
+        &mut self.usage
     }
 }
 
@@ -1452,9 +1727,6 @@ impl MeshDataReplaceAttributeTrait for MeshDataReplaceVertexAttribute {
 }
 
 impl super::core::DataContainerTrait for MeshDataReplaceVertexAttribute {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MESHDATAREPLACEVERTEXATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1486,6 +1758,15 @@ impl TypeObject for MeshDataReplaceVertexAttribute {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1511,9 +1792,6 @@ impl MeshDataReplaceAttributeTrait for MeshDataReplaceAttribute {
 }
 
 impl super::core::DataContainerTrait for MeshDataReplaceAttribute {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MESHDATAREPLACEATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1538,6 +1816,15 @@ impl TypeObject for MeshDataReplaceAttribute {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1573,15 +1860,15 @@ impl super::core::DataBusPeerTrait for CinematicDestructionOutputPipeEntityData 
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CinematicDestructionOutputPipeEntityData {
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionOutputPipeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONOUTPUTPIPEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1606,6 +1893,15 @@ impl TypeObject for CinematicDestructionOutputPipeEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1632,9 +1928,6 @@ impl CinematicDestructionOutputPipeResultTrait for CinematicDestructionOutputPip
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionOutputPipeResult {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONOUTPUTPIPERESULT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1659,6 +1952,15 @@ impl TypeObject for CinematicDestructionOutputPipeResult {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1702,6 +2004,15 @@ impl TypeObject for CinematicDestructionTextureReplaceUsage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1730,18 +2041,21 @@ impl super::linear_media::LinearMediaAssetDescTrait for CinematicDestructionAsse
     fn resources(&self) -> &Vec<super::linear_media::LinearMediaRuntimeResource> {
         self._glacier_base.resources()
     }
+    fn resources_mut(&mut self) -> &mut Vec<super::linear_media::LinearMediaRuntimeResource> {
+        self._glacier_base.resources_mut()
+    }
 }
 
 impl super::core::AssetTrait for CinematicDestructionAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CinematicDestructionAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICDESTRUCTIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1766,6 +2080,15 @@ impl TypeObject for CinematicDestructionAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1819,6 +2142,15 @@ impl TypeObject for ClientCinematicDestructionPoolBufferEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1875,6 +2207,15 @@ impl TypeObject for ClientCinematicDestructionMeshOutputPipeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1935,6 +2276,15 @@ impl TypeObject for ClientCinematicDestructionManualMeshOutputPipeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1994,6 +2344,15 @@ impl TypeObject for ClientCinematicDestructionAutoMeshOutputPipeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2050,6 +2409,15 @@ impl TypeObject for ClientCinematicDestructionEmitterOutputPipeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2103,6 +2471,15 @@ impl TypeObject for ClientCinematicDestructionControllerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2155,6 +2532,15 @@ impl TypeObject for ClientCinematicDestructionOutputPipeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

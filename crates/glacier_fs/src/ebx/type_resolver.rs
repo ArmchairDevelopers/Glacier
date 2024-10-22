@@ -1,23 +1,25 @@
 use glacier_reflect::{member::MemberInfoFlags, type_info::TypeInfo, type_registry::TypeRegistry};
 
 #[derive(Default, Clone)]
+#[repr(C)]
 pub struct EbxPartitionFieldDescriptor {
-    field_name_hash: u32,
-    flags: MemberInfoFlags,
-    field_type: u16,
-    field_offset: u32,
-    secondary_offset: u32,
+    pub field_name_hash: u32,
+    pub flags: MemberInfoFlags,
+    pub field_type: u16,
+    pub field_offset: u32,
+    pub secondary_offset: u32,
 }
 
-#[derive(Default, Clone)]
+#[derive(Default, Clone, Debug)]
+#[repr(C)]
 pub struct EbxPartitionTypeDescriptor {
-    field_name_hash: u32,
-    layout_descriptor: u32,
-    field_count: u8,
-    alignment: u8,
-    type_flags: MemberInfoFlags,
-    instance_size: u16,
-    secondary_instance_size: u16,
+    pub type_name_hash: u32,
+    pub layout_descriptor: u32,
+    pub field_count: u8,
+    pub alignment: u8,
+    pub type_flags: MemberInfoFlags,
+    pub instance_size: u16,
+    pub secondary_instance_size: u16,
 }
 
 impl EbxPartitionTypeDescriptor {
@@ -26,16 +28,16 @@ impl EbxPartitionTypeDescriptor {
     }
 
     pub fn type_info(&self, type_registry: &TypeRegistry) -> Option<&'static TypeInfo> {
-        if self.is_shared_type_descriptor_reference() {
-            let shared_type_descriptor_index = self.layout_descriptor & 0x7FFFFFFF;
-            let shared_type_descriptor = type_registry.get_type_by_hash(shared_type_descriptor_index);
+        type_registry.type_by_hash(self.type_name_hash)
+        // if self.is_shared_type_descriptor_reference() {
+        //     let shared_type_descriptor = type_registry.get_type_by_hash(self.type_name_hash);
 
-            if let Some(shared_type_descriptor) = shared_type_descriptor {
-                return Some(shared_type_descriptor);
-            }
-        }
+        //     if let Some(shared_type_descriptor) = shared_type_descriptor {
+        //         return Some(shared_type_descriptor);
+        //     }
+        // }
 
-        None
+        // None
     }
 }
 
@@ -69,5 +71,23 @@ impl EbxPartitionTypeResolver {
         }
 
         td
+    }
+
+    pub fn type_by_name_hash(&self, name_hash: u32) -> Option<&EbxPartitionTypeDescriptor> {
+        self.type_descriptors
+            .iter()
+            .find(|td| td.type_name_hash == name_hash)
+    }
+
+    pub fn field_by_index(&self, index: u32) -> &EbxPartitionFieldDescriptor {
+        self.field_descriptors
+            .get(index as usize)
+            .expect("Index out of bounds while resolving EBX field descriptor")
+    }
+
+    pub fn type_by_index(&self, index: u32) -> &EbxPartitionTypeDescriptor {
+        self.type_descriptors
+            .get(index as usize)
+            .expect("Index out of bounds while resolving EBX type descriptor")
     }
 }

@@ -9,5 +9,5 @@ where
         + From<T2>,
     T2: Copy + ops::Sub<usize, Output = T2>,
 {
-    (value + T1::from(base - 1)) & !T1::from(base - 1)
+    (value + T1::from(base - 1)) & (!T1::from(base - 1))
 }

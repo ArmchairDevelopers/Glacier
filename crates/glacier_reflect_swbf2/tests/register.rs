@@ -5,6 +5,6 @@ pub fn main() {
     let mut registry = TypeRegistry::new();
     register_mod_types(&mut registry);
 
-    let bp_type = registry.get_type("Blueprint").unwrap();
+    let bp_type = registry.type_by_name("Blueprint").unwrap();
     println!("{:?}", bp_type);
 }

@@ -116,6 +116,15 @@ impl TypeObject for UIVehicleHitUpdatedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -149,6 +158,15 @@ impl TypeObject for UISquadStatusChangedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -184,6 +202,15 @@ impl TypeObject for UISoldierHitUpdatedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -217,6 +244,15 @@ impl TypeObject for UIPlayerVehicleHealthChangeMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -252,6 +288,15 @@ impl TypeObject for UIInputStatusChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -285,6 +330,15 @@ impl TypeObject for UIHudUpdateCrosshairMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -320,6 +374,15 @@ impl TypeObject for UIHudToggleMapZoomMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -353,6 +416,15 @@ impl TypeObject for UIHudDebugPauseMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -388,6 +460,15 @@ impl TypeObject for UIHasSuppressedEnemyMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -421,6 +502,15 @@ impl TypeObject for UIDamageGivenToEnemyMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -456,6 +546,15 @@ impl TypeObject for UIMessageEntityMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -489,6 +588,15 @@ impl TypeObject for UIControllerDisconnectedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -524,6 +632,15 @@ impl TypeObject for UIControllerConnectedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -557,6 +674,15 @@ impl TypeObject for UIUserDisconnectedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -592,6 +718,15 @@ impl TypeObject for UIUserConnectedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -625,6 +760,15 @@ impl TypeObject for UIUserNotificationMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -660,6 +804,15 @@ impl TypeObject for UIUserSkippedLoginMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -693,6 +846,15 @@ impl TypeObject for MemoryCardSavePauseMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -728,6 +890,15 @@ impl TypeObject for MemoryCardBootCheckMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -761,6 +932,15 @@ impl TypeObject for MemoryCardSaveCheckDoneMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -796,6 +976,15 @@ impl TypeObject for MemoryCardDeleteCorruptSavesDoneMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -829,6 +1018,15 @@ impl TypeObject for MemoryCardDeleteCorruptSavesMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -864,6 +1062,15 @@ impl TypeObject for MemoryCardDeleteDoneMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -897,6 +1104,15 @@ impl TypeObject for MemoryCardDeleteMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -932,6 +1148,15 @@ impl TypeObject for MemoryCardFindEntriesDoneMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -965,6 +1190,15 @@ impl TypeObject for MemoryCardFindEntriesMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1000,6 +1234,15 @@ impl TypeObject for MemoryCardSaveDoneMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1033,6 +1276,15 @@ impl TypeObject for MemoryCardSaveMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1068,6 +1320,15 @@ impl TypeObject for MemoryCardLoadDoneMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1101,6 +1362,15 @@ impl TypeObject for MemoryCardLoadMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1136,6 +1406,15 @@ impl TypeObject for MemoryCardDestroyedMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1169,6 +1448,15 @@ impl TypeObject for MemoryCardInitializedMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1204,6 +1492,15 @@ impl TypeObject for MemoryCardCreatedMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1237,6 +1534,15 @@ impl TypeObject for MemoryCardPopupHideMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1272,6 +1578,15 @@ impl TypeObject for MemoryCardPopupResponseMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1306,6 +1621,15 @@ impl TypeObject for MemoryCardPopupRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1321,31 +1645,55 @@ pub struct UIInputActionDataAsset {
 
 pub trait UIInputActionDataAssetTrait: super::core::AssetTrait {
     fn default_repeat_delay_sec(&self) -> &f32;
+    fn default_repeat_delay_sec_mut(&mut self) -> &mut f32;
     fn default_repeat_speed_sec(&self) -> &f32;
+    fn default_repeat_speed_sec_mut(&mut self) -> &mut f32;
     fn default_one_axis_dead_zone(&self) -> &f32;
+    fn default_one_axis_dead_zone_mut(&mut self) -> &mut f32;
     fn default_two_axis_dead_zone(&self) -> &f32;
+    fn default_two_axis_dead_zone_mut(&mut self) -> &mut f32;
     fn input_action_maps(&self) -> &Vec<UIInputActionMapData>;
+    fn input_action_maps_mut(&mut self) -> &mut Vec<UIInputActionMapData>;
     fn analog_input_maps(&self) -> &Vec<UIAnalogInputMapData>;
+    fn analog_input_maps_mut(&mut self) -> &mut Vec<UIAnalogInputMapData>;
 }
 
 impl UIInputActionDataAssetTrait for UIInputActionDataAsset {
     fn default_repeat_delay_sec(&self) -> &f32 {
         &self.default_repeat_delay_sec
     }
+    fn default_repeat_delay_sec_mut(&mut self) -> &mut f32 {
+        &mut self.default_repeat_delay_sec
+    }
     fn default_repeat_speed_sec(&self) -> &f32 {
         &self.default_repeat_speed_sec
+    }
+    fn default_repeat_speed_sec_mut(&mut self) -> &mut f32 {
+        &mut self.default_repeat_speed_sec
     }
     fn default_one_axis_dead_zone(&self) -> &f32 {
         &self.default_one_axis_dead_zone
     }
+    fn default_one_axis_dead_zone_mut(&mut self) -> &mut f32 {
+        &mut self.default_one_axis_dead_zone
+    }
     fn default_two_axis_dead_zone(&self) -> &f32 {
         &self.default_two_axis_dead_zone
+    }
+    fn default_two_axis_dead_zone_mut(&mut self) -> &mut f32 {
+        &mut self.default_two_axis_dead_zone
     }
     fn input_action_maps(&self) -> &Vec<UIInputActionMapData> {
         &self.input_action_maps
     }
+    fn input_action_maps_mut(&mut self) -> &mut Vec<UIInputActionMapData> {
+        &mut self.input_action_maps
+    }
     fn analog_input_maps(&self) -> &Vec<UIAnalogInputMapData> {
         &self.analog_input_maps
+    }
+    fn analog_input_maps_mut(&mut self) -> &mut Vec<UIAnalogInputMapData> {
+        &mut self.analog_input_maps
     }
 }
 
@@ -1353,12 +1701,12 @@ impl super::core::AssetTrait for UIInputActionDataAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UIInputActionDataAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIINPUTACTIONDATAASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1420,6 +1768,15 @@ impl TypeObject for UIInputActionDataAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1443,23 +1800,39 @@ pub struct UIAnalogInputMapData {
 
 pub trait UIAnalogInputMapDataTrait: TypeObject {
     fn analog_input(&self) -> &UIAnalogInput;
+    fn analog_input_mut(&mut self) -> &mut UIAnalogInput;
     fn x_axis_concept_identifier(&self) -> &i32;
+    fn x_axis_concept_identifier_mut(&mut self) -> &mut i32;
     fn y_axis_concept_identifier(&self) -> &i32;
+    fn y_axis_concept_identifier_mut(&mut self) -> &mut i32;
     fn override_dead_zone(&self) -> &f32;
+    fn override_dead_zone_mut(&mut self) -> &mut f32;
 }
 
 impl UIAnalogInputMapDataTrait for UIAnalogInputMapData {
     fn analog_input(&self) -> &UIAnalogInput {
         &self.analog_input
     }
+    fn analog_input_mut(&mut self) -> &mut UIAnalogInput {
+        &mut self.analog_input
+    }
     fn x_axis_concept_identifier(&self) -> &i32 {
         &self.x_axis_concept_identifier
+    }
+    fn x_axis_concept_identifier_mut(&mut self) -> &mut i32 {
+        &mut self.x_axis_concept_identifier
     }
     fn y_axis_concept_identifier(&self) -> &i32 {
         &self.y_axis_concept_identifier
     }
+    fn y_axis_concept_identifier_mut(&mut self) -> &mut i32 {
+        &mut self.y_axis_concept_identifier
+    }
     fn override_dead_zone(&self) -> &f32 {
         &self.override_dead_zone
+    }
+    fn override_dead_zone_mut(&mut self) -> &mut f32 {
+        &mut self.override_dead_zone
     }
 }
 
@@ -1509,6 +1882,15 @@ impl TypeObject for UIAnalogInputMapData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1533,27 +1915,47 @@ pub struct UIInputActionMapData {
 
 pub trait UIInputActionMapDataTrait: TypeObject {
     fn input_action(&self) -> &UIInputAction;
+    fn input_action_mut(&mut self) -> &mut UIInputAction;
     fn concept_identifier(&self) -> &i32;
+    fn concept_identifier_mut(&mut self) -> &mut i32;
     fn allow_repeat(&self) -> &bool;
+    fn allow_repeat_mut(&mut self) -> &mut bool;
     fn override_repeat_delay_sec(&self) -> &f32;
+    fn override_repeat_delay_sec_mut(&mut self) -> &mut f32;
     fn override_repeat_speed_sec(&self) -> &f32;
+    fn override_repeat_speed_sec_mut(&mut self) -> &mut f32;
 }
 
 impl UIInputActionMapDataTrait for UIInputActionMapData {
     fn input_action(&self) -> &UIInputAction {
         &self.input_action
     }
+    fn input_action_mut(&mut self) -> &mut UIInputAction {
+        &mut self.input_action
+    }
     fn concept_identifier(&self) -> &i32 {
         &self.concept_identifier
+    }
+    fn concept_identifier_mut(&mut self) -> &mut i32 {
+        &mut self.concept_identifier
     }
     fn allow_repeat(&self) -> &bool {
         &self.allow_repeat
     }
+    fn allow_repeat_mut(&mut self) -> &mut bool {
+        &mut self.allow_repeat
+    }
     fn override_repeat_delay_sec(&self) -> &f32 {
         &self.override_repeat_delay_sec
     }
+    fn override_repeat_delay_sec_mut(&mut self) -> &mut f32 {
+        &mut self.override_repeat_delay_sec
+    }
     fn override_repeat_speed_sec(&self) -> &f32 {
         &self.override_repeat_speed_sec
+    }
+    fn override_repeat_speed_sec_mut(&mut self) -> &mut f32 {
+        &mut self.override_repeat_speed_sec
     }
 }
 
@@ -1609,6 +2011,15 @@ impl TypeObject for UIInputActionMapData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1630,11 +2041,15 @@ pub struct UIInputSettings {
 
 pub trait UIInputSettingsTrait: super::input_shared::BaseInputSettingsTrait {
     fn u_i_input_actions(&self) -> &Option<Arc<Mutex<dyn UIInputActionDataAssetTrait>>>;
+    fn u_i_input_actions_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIInputActionDataAssetTrait>>>;
 }
 
 impl UIInputSettingsTrait for UIInputSettings {
     fn u_i_input_actions(&self) -> &Option<Arc<Mutex<dyn UIInputActionDataAssetTrait>>> {
         &self.u_i_input_actions
+    }
+    fn u_i_input_actions_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIInputActionDataAssetTrait>>> {
+        &mut self.u_i_input_actions
     }
 }
 
@@ -1642,9 +2057,6 @@ impl super::input_shared::BaseInputSettingsTrait for UIInputSettings {
 }
 
 impl super::core::DataContainerTrait for UIInputSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIINPUTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1676,6 +2088,15 @@ impl TypeObject for UIInputSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1697,18 +2118,19 @@ pub struct UILocaleFormatStrings {
 
 pub trait UILocaleFormatStringsTrait: super::core::DataContainerTrait {
     fn number_format_s_i_d(&self) -> &String;
+    fn number_format_s_i_d_mut(&mut self) -> &mut String;
 }
 
 impl UILocaleFormatStringsTrait for UILocaleFormatStrings {
     fn number_format_s_i_d(&self) -> &String {
         &self.number_format_s_i_d
     }
+    fn number_format_s_i_d_mut(&mut self) -> &mut String {
+        &mut self.number_format_s_i_d
+    }
 }
 
 impl super::core::DataContainerTrait for UILocaleFormatStrings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UILOCALEFORMATSTRINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1740,6 +2162,15 @@ impl TypeObject for UILocaleFormatStrings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1765,9 +2196,6 @@ impl LocalizedStringBaseTrait for LocalizedStringBase {
 }
 
 impl super::core::DataContainerTrait for LocalizedStringBase {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALIZEDSTRINGBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1793,6 +2221,15 @@ impl TypeObject for LocalizedStringBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1814,11 +2251,15 @@ pub struct LocalizationAsset {
 
 pub trait LocalizationAssetTrait: super::core::AssetTrait {
     fn localized_texts(&self) -> &Vec<Option<Arc<Mutex<dyn UITextDatabaseTrait>>>>;
+    fn localized_texts_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn UITextDatabaseTrait>>>>;
 }
 
 impl LocalizationAssetTrait for LocalizationAsset {
     fn localized_texts(&self) -> &Vec<Option<Arc<Mutex<dyn UITextDatabaseTrait>>>> {
         &self.localized_texts
+    }
+    fn localized_texts_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn UITextDatabaseTrait>>>> {
+        &mut self.localized_texts
     }
 }
 
@@ -1826,12 +2267,12 @@ impl super::core::AssetTrait for LocalizationAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LocalizationAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALIZATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1863,6 +2304,15 @@ impl TypeObject for LocalizationAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1888,27 +2338,47 @@ pub struct UITextDatabase {
 
 pub trait UITextDatabaseTrait: super::core::AssetTrait {
     fn language(&self) -> &super::core::LanguageFormat;
+    fn language_mut(&mut self) -> &mut super::core::LanguageFormat;
     fn binary_chunk(&self) -> &glacier_util::guid::Guid;
+    fn binary_chunk_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn binary_chunk_size(&self) -> &u32;
+    fn binary_chunk_size_mut(&mut self) -> &mut u32;
     fn histogram_chunk(&self) -> &glacier_util::guid::Guid;
+    fn histogram_chunk_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn histogram_chunk_size(&self) -> &u32;
+    fn histogram_chunk_size_mut(&mut self) -> &mut u32;
 }
 
 impl UITextDatabaseTrait for UITextDatabase {
     fn language(&self) -> &super::core::LanguageFormat {
         &self.language
     }
+    fn language_mut(&mut self) -> &mut super::core::LanguageFormat {
+        &mut self.language
+    }
     fn binary_chunk(&self) -> &glacier_util::guid::Guid {
         &self.binary_chunk
+    }
+    fn binary_chunk_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.binary_chunk
     }
     fn binary_chunk_size(&self) -> &u32 {
         &self.binary_chunk_size
     }
+    fn binary_chunk_size_mut(&mut self) -> &mut u32 {
+        &mut self.binary_chunk_size
+    }
     fn histogram_chunk(&self) -> &glacier_util::guid::Guid {
         &self.histogram_chunk
     }
+    fn histogram_chunk_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.histogram_chunk
+    }
     fn histogram_chunk_size(&self) -> &u32 {
         &self.histogram_chunk_size
+    }
+    fn histogram_chunk_size_mut(&mut self) -> &mut u32 {
+        &mut self.histogram_chunk_size
     }
 }
 
@@ -1916,12 +2386,12 @@ impl super::core::AssetTrait for UITextDatabase {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UITextDatabase {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UITEXTDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1977,6 +2447,15 @@ impl TypeObject for UITextDatabase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2019,6 +2498,15 @@ impl TypeObject for UIConsoleKeyboardStatus {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2057,6 +2545,15 @@ impl TypeObject for UIAnalogInput {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2094,6 +2591,15 @@ impl TypeObject for UIAnalogInputEventType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2213,6 +2719,15 @@ impl TypeObject for UIInputAction {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2251,6 +2766,15 @@ impl TypeObject for UITouchEventType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2291,6 +2815,15 @@ impl TypeObject for UIInputActionEventType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2329,6 +2862,15 @@ impl TypeObject for UIKeyboardEventType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2369,6 +2911,15 @@ impl TypeObject for UIMouseEventType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2412,6 +2963,15 @@ impl TypeObject for UIMouseButton {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2450,6 +3010,15 @@ impl TypeObject for UISystemType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2495,6 +3064,15 @@ impl TypeObject for UserGamerpicBufferReceivedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

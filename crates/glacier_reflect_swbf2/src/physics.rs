@@ -524,6 +524,15 @@ impl TypeObject for HavokPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -569,6 +578,15 @@ impl TypeObject for RagdollResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -626,6 +644,15 @@ impl TypeObject for PhysicsRootControlConstraint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -681,6 +708,15 @@ impl TypeObject for PhysicsRagdollConstraint {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -738,6 +774,15 @@ impl TypeObject for PhysicsPrismaticConstraint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -793,6 +838,15 @@ impl TypeObject for PhysicsHingeConstraint {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -850,6 +904,15 @@ impl TypeObject for PhysicsBallAndSocketConstraint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -906,6 +969,15 @@ impl TypeObject for PhysicsAngularLimitConstraint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -951,6 +1023,15 @@ impl TypeObject for IglooModuleInitializer {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -998,6 +1079,15 @@ impl TypeObject for IglooMemoryContext {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1043,6 +1133,15 @@ impl TypeObject for IglooGrabTool {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1090,6 +1189,15 @@ impl TypeObject for IglooEntityCreator {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1135,6 +1243,15 @@ impl TypeObject for IglooEntityFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1182,6 +1299,15 @@ impl TypeObject for IglooDebugger {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1204,22 +1330,27 @@ pub struct FloatPhysicsData {
 
 pub trait FloatPhysicsDataTrait: super::core::DataContainerTrait {
     fn density(&self) -> &f32;
+    fn density_mut(&mut self) -> &mut f32;
     fn filled_density(&self) -> &f32;
+    fn filled_density_mut(&mut self) -> &mut f32;
 }
 
 impl FloatPhysicsDataTrait for FloatPhysicsData {
     fn density(&self) -> &f32 {
         &self.density
     }
+    fn density_mut(&mut self) -> &mut f32 {
+        &mut self.density
+    }
     fn filled_density(&self) -> &f32 {
         &self.filled_density
+    }
+    fn filled_density_mut(&mut self) -> &mut f32 {
+        &mut self.filled_density
     }
 }
 
 impl super::core::DataContainerTrait for FloatPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FLOATPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1257,6 +1388,15 @@ impl TypeObject for FloatPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1278,15 +1418,23 @@ pub struct PartInfoData {
 
 pub trait PartInfoDataTrait: TypeObject {
     fn aabb(&self) -> &super::core::AxisAlignedBox;
+    fn aabb_mut(&mut self) -> &mut super::core::AxisAlignedBox;
     fn translation(&self) -> &super::core::Vec3;
+    fn translation_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl PartInfoDataTrait for PartInfoData {
     fn aabb(&self) -> &super::core::AxisAlignedBox {
         &self.aabb
     }
+    fn aabb_mut(&mut self) -> &mut super::core::AxisAlignedBox {
+        &mut self.aabb
+    }
     fn translation(&self) -> &super::core::Vec3 {
         &self.translation
+    }
+    fn translation_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.translation
     }
 }
 
@@ -1324,6 +1472,15 @@ impl TypeObject for PartInfoData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1352,9 +1509,6 @@ impl PhysicsCallbackHandlerDataTrait for PreSolveCollisionPhysicsCallbackHandler
 }
 
 impl super::core::DataContainerTrait for PreSolveCollisionPhysicsCallbackHandlerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESOLVECOLLISIONPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1379,6 +1533,15 @@ impl TypeObject for PreSolveCollisionPhysicsCallbackHandlerData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1408,9 +1571,6 @@ impl PhysicsCallbackHandlerDataTrait for VehiclePhysicsCallbackHandlerData {
 }
 
 impl super::core::DataContainerTrait for VehiclePhysicsCallbackHandlerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEHICLEPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1435,6 +1595,15 @@ impl TypeObject for VehiclePhysicsCallbackHandlerData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1464,9 +1633,6 @@ impl PhysicsCallbackHandlerDataTrait for ClientDynamicPhysicsCallbackHandlerData
 }
 
 impl super::core::DataContainerTrait for ClientDynamicPhysicsCallbackHandlerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLIENTDYNAMICPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1491,6 +1657,15 @@ impl TypeObject for ClientDynamicPhysicsCallbackHandlerData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1520,9 +1695,6 @@ impl PhysicsCallbackHandlerDataTrait for LightDynamicPhysicsCallbackHandlerData 
 }
 
 impl super::core::DataContainerTrait for LightDynamicPhysicsCallbackHandlerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LIGHTDYNAMICPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1547,6 +1719,15 @@ impl TypeObject for LightDynamicPhysicsCallbackHandlerData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1576,9 +1757,6 @@ impl PhysicsCallbackHandlerDataTrait for DefaultPhysicsCallbackHandlerData {
 }
 
 impl super::core::DataContainerTrait for DefaultPhysicsCallbackHandlerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEFAULTPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1603,6 +1781,15 @@ impl TypeObject for DefaultPhysicsCallbackHandlerData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1632,9 +1819,6 @@ impl PhysicsCallbackHandlerDataTrait for NonePhysicsCallbackHandlerData {
 }
 
 impl super::core::DataContainerTrait for NonePhysicsCallbackHandlerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NONEPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1659,6 +1843,15 @@ impl TypeObject for NonePhysicsCallbackHandlerData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1685,9 +1878,6 @@ impl PhysicsCallbackHandlerDataTrait for PhysicsCallbackHandlerData {
 }
 
 impl super::core::DataContainerTrait for PhysicsCallbackHandlerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1712,6 +1902,15 @@ impl TypeObject for PhysicsCallbackHandlerData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1780,6 +1979,15 @@ impl TypeObject for RigidBodyCollisionLayer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1828,6 +2036,15 @@ impl TypeObject for RigidBodyQualityType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1868,6 +2085,15 @@ impl TypeObject for RigidBodyMotionType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1913,6 +2139,15 @@ impl TypeObject for RigidBodyType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1938,27 +2173,47 @@ pub struct PhysicsBodyLauncherEntityData {
 
 pub trait PhysicsBodyLauncherEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn use_local_body_space(&self) -> &bool;
+    fn use_local_body_space_mut(&mut self) -> &mut bool;
     fn launch_transform(&self) -> &super::core::LinearTransform;
+    fn launch_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn linear_velocity(&self) -> &super::core::Vec3;
+    fn linear_velocity_mut(&mut self) -> &mut super::core::Vec3;
     fn angular_velocity(&self) -> &super::core::Vec3;
+    fn angular_velocity_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl PhysicsBodyLauncherEntityDataTrait for PhysicsBodyLauncherEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn use_local_body_space(&self) -> &bool {
         &self.use_local_body_space
+    }
+    fn use_local_body_space_mut(&mut self) -> &mut bool {
+        &mut self.use_local_body_space
     }
     fn launch_transform(&self) -> &super::core::LinearTransform {
         &self.launch_transform
     }
+    fn launch_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.launch_transform
+    }
     fn linear_velocity(&self) -> &super::core::Vec3 {
         &self.linear_velocity
     }
+    fn linear_velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.linear_velocity
+    }
     fn angular_velocity(&self) -> &super::core::Vec3 {
         &self.angular_velocity
+    }
+    fn angular_velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.angular_velocity
     }
 }
 
@@ -1972,15 +2227,15 @@ impl super::core::DataBusPeerTrait for PhysicsBodyLauncherEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsBodyLauncherEntityData {
 }
 
 impl super::core::DataContainerTrait for PhysicsBodyLauncherEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSBODYLAUNCHERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2036,6 +2291,15 @@ impl TypeObject for PhysicsBodyLauncherEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2079,106 +2343,195 @@ pub struct PhysicsDebugSettings {
 
 pub trait PhysicsDebugSettingsTrait: super::core::DataContainerTrait {
     fn debug_hinge_constraints(&self) -> &bool;
+    fn debug_hinge_constraints_mut(&mut self) -> &mut bool;
     fn use_physics_cpu_timers(&self) -> &bool;
+    fn use_physics_cpu_timers_mut(&mut self) -> &mut bool;
     fn timing_recursion_depth(&self) -> &u32;
+    fn timing_recursion_depth_mut(&mut self) -> &mut u32;
     fn use_brute_force_broadphase(&self) -> &bool;
+    fn use_brute_force_broadphase_mut(&mut self) -> &mut bool;
     fn v_d_b_shows_effects_world(&self) -> &bool;
+    fn v_d_b_shows_effects_world_mut(&mut self) -> &mut bool;
     fn v_d_b_enable_havok_monitors(&self) -> &bool;
+    fn v_d_b_enable_havok_monitors_mut(&mut self) -> &mut bool;
     fn v_d_b_enable_capture_to_file(&self) -> &bool;
+    fn v_d_b_enable_capture_to_file_mut(&mut self) -> &mut bool;
     fn v_d_b_capture_file_name(&self) -> &String;
+    fn v_d_b_capture_file_name_mut(&mut self) -> &mut String;
     fn v_d_b_connection_time_out(&self) -> &u32;
+    fn v_d_b_connection_time_out_mut(&mut self) -> &mut u32;
     fn v_d_b_show_body_ids(&self) -> &bool;
+    fn v_d_b_show_body_ids_mut(&mut self) -> &mut bool;
     fn v_d_b_show_motion_ids(&self) -> &bool;
+    fn v_d_b_show_motion_ids_mut(&mut self) -> &mut bool;
     fn v_d_b_show_broadphase(&self) -> &bool;
+    fn v_d_b_show_broadphase_mut(&mut self) -> &mut bool;
     fn v_d_b_show_shapes(&self) -> &bool;
+    fn v_d_b_show_shapes_mut(&mut self) -> &mut bool;
     fn v_d_b_show_mass_properties(&self) -> &bool;
+    fn v_d_b_show_mass_properties_mut(&mut self) -> &mut bool;
     fn v_d_b_show_constraints(&self) -> &bool;
+    fn v_d_b_show_constraints_mut(&mut self) -> &mut bool;
     fn v_d_b_show_manifold(&self) -> &bool;
+    fn v_d_b_show_manifold_mut(&mut self) -> &mut bool;
     fn v_d_b_show_motion_ttrail(&self) -> &bool;
+    fn v_d_b_show_motion_ttrail_mut(&mut self) -> &mut bool;
     fn v_d_b_show_bounding_radius(&self) -> &bool;
+    fn v_d_b_show_bounding_radius_mut(&mut self) -> &mut bool;
     fn v_d_b_show_deactivation(&self) -> &bool;
+    fn v_d_b_show_deactivation_mut(&mut self) -> &mut bool;
     fn v_b_d_show_cell(&self) -> &bool;
+    fn v_b_d_show_cell_mut(&mut self) -> &mut bool;
     fn v_d_b_show_triangle_welding(&self) -> &bool;
+    fn v_d_b_show_triangle_welding_mut(&mut self) -> &mut bool;
     fn v_d_b_enable_world_snapshot(&self) -> &bool;
+    fn v_d_b_enable_world_snapshot_mut(&mut self) -> &mut bool;
     fn v_d_b_show_destruction(&self) -> &bool;
+    fn v_d_b_show_destruction_mut(&mut self) -> &mut bool;
 }
 
 impl PhysicsDebugSettingsTrait for PhysicsDebugSettings {
     fn debug_hinge_constraints(&self) -> &bool {
         &self.debug_hinge_constraints
     }
+    fn debug_hinge_constraints_mut(&mut self) -> &mut bool {
+        &mut self.debug_hinge_constraints
+    }
     fn use_physics_cpu_timers(&self) -> &bool {
         &self.use_physics_cpu_timers
+    }
+    fn use_physics_cpu_timers_mut(&mut self) -> &mut bool {
+        &mut self.use_physics_cpu_timers
     }
     fn timing_recursion_depth(&self) -> &u32 {
         &self.timing_recursion_depth
     }
+    fn timing_recursion_depth_mut(&mut self) -> &mut u32 {
+        &mut self.timing_recursion_depth
+    }
     fn use_brute_force_broadphase(&self) -> &bool {
         &self.use_brute_force_broadphase
+    }
+    fn use_brute_force_broadphase_mut(&mut self) -> &mut bool {
+        &mut self.use_brute_force_broadphase
     }
     fn v_d_b_shows_effects_world(&self) -> &bool {
         &self.v_d_b_shows_effects_world
     }
+    fn v_d_b_shows_effects_world_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_shows_effects_world
+    }
     fn v_d_b_enable_havok_monitors(&self) -> &bool {
         &self.v_d_b_enable_havok_monitors
+    }
+    fn v_d_b_enable_havok_monitors_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_enable_havok_monitors
     }
     fn v_d_b_enable_capture_to_file(&self) -> &bool {
         &self.v_d_b_enable_capture_to_file
     }
+    fn v_d_b_enable_capture_to_file_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_enable_capture_to_file
+    }
     fn v_d_b_capture_file_name(&self) -> &String {
         &self.v_d_b_capture_file_name
+    }
+    fn v_d_b_capture_file_name_mut(&mut self) -> &mut String {
+        &mut self.v_d_b_capture_file_name
     }
     fn v_d_b_connection_time_out(&self) -> &u32 {
         &self.v_d_b_connection_time_out
     }
+    fn v_d_b_connection_time_out_mut(&mut self) -> &mut u32 {
+        &mut self.v_d_b_connection_time_out
+    }
     fn v_d_b_show_body_ids(&self) -> &bool {
         &self.v_d_b_show_body_ids
+    }
+    fn v_d_b_show_body_ids_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_body_ids
     }
     fn v_d_b_show_motion_ids(&self) -> &bool {
         &self.v_d_b_show_motion_ids
     }
+    fn v_d_b_show_motion_ids_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_motion_ids
+    }
     fn v_d_b_show_broadphase(&self) -> &bool {
         &self.v_d_b_show_broadphase
+    }
+    fn v_d_b_show_broadphase_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_broadphase
     }
     fn v_d_b_show_shapes(&self) -> &bool {
         &self.v_d_b_show_shapes
     }
+    fn v_d_b_show_shapes_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_shapes
+    }
     fn v_d_b_show_mass_properties(&self) -> &bool {
         &self.v_d_b_show_mass_properties
+    }
+    fn v_d_b_show_mass_properties_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_mass_properties
     }
     fn v_d_b_show_constraints(&self) -> &bool {
         &self.v_d_b_show_constraints
     }
+    fn v_d_b_show_constraints_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_constraints
+    }
     fn v_d_b_show_manifold(&self) -> &bool {
         &self.v_d_b_show_manifold
+    }
+    fn v_d_b_show_manifold_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_manifold
     }
     fn v_d_b_show_motion_ttrail(&self) -> &bool {
         &self.v_d_b_show_motion_ttrail
     }
+    fn v_d_b_show_motion_ttrail_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_motion_ttrail
+    }
     fn v_d_b_show_bounding_radius(&self) -> &bool {
         &self.v_d_b_show_bounding_radius
+    }
+    fn v_d_b_show_bounding_radius_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_bounding_radius
     }
     fn v_d_b_show_deactivation(&self) -> &bool {
         &self.v_d_b_show_deactivation
     }
+    fn v_d_b_show_deactivation_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_deactivation
+    }
     fn v_b_d_show_cell(&self) -> &bool {
         &self.v_b_d_show_cell
+    }
+    fn v_b_d_show_cell_mut(&mut self) -> &mut bool {
+        &mut self.v_b_d_show_cell
     }
     fn v_d_b_show_triangle_welding(&self) -> &bool {
         &self.v_d_b_show_triangle_welding
     }
+    fn v_d_b_show_triangle_welding_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_triangle_welding
+    }
     fn v_d_b_enable_world_snapshot(&self) -> &bool {
         &self.v_d_b_enable_world_snapshot
+    }
+    fn v_d_b_enable_world_snapshot_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_enable_world_snapshot
     }
     fn v_d_b_show_destruction(&self) -> &bool {
         &self.v_d_b_show_destruction
     }
+    fn v_d_b_show_destruction_mut(&mut self) -> &mut bool {
+        &mut self.v_d_b_show_destruction
+    }
 }
 
 impl super::core::DataContainerTrait for PhysicsDebugSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSDEBUGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2342,6 +2695,15 @@ impl TypeObject for PhysicsDebugSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2391,130 +2753,243 @@ pub struct PhysicsSettings {
 
 pub trait PhysicsSettingsTrait: super::core::DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn run_client_simulation_single_threaded(&self) -> &bool;
+    fn run_client_simulation_single_threaded_mut(&mut self) -> &mut bool;
     fn run_effect_simulation_single_threaded(&self) -> &bool;
+    fn run_effect_simulation_single_threaded_mut(&mut self) -> &mut bool;
     fn run_server_simulation_single_threaded(&self) -> &bool;
+    fn run_server_simulation_single_threaded_mut(&mut self) -> &mut bool;
     fn wind_manager_awakening_radius(&self) -> &f32;
+    fn wind_manager_awakening_radius_mut(&mut self) -> &mut f32;
     fn enable_a_i_rigid_body(&self) -> &bool;
+    fn enable_a_i_rigid_body_mut(&mut self) -> &mut bool;
     fn forest_enable(&self) -> &bool;
+    fn forest_enable_mut(&mut self) -> &mut bool;
     fn enable_jobs(&self) -> &bool;
+    fn enable_jobs_mut(&mut self) -> &mut bool;
     fn remove_ragdoll_when_woken(&self) -> &bool;
+    fn remove_ragdoll_when_woken_mut(&mut self) -> &mut bool;
     fn remove_from_world_on_collision_overflow(&self) -> &bool;
+    fn remove_from_world_on_collision_overflow_mut(&mut self) -> &mut bool;
     fn single_step_character(&self) -> &bool;
+    fn single_step_character_mut(&mut self) -> &mut bool;
     fn force_single_step_character_in_s_p(&self) -> &bool;
+    fn force_single_step_character_in_s_p_mut(&mut self) -> &mut bool;
     fn enable_follow_wheel_raycasts(&self) -> &bool;
+    fn enable_follow_wheel_raycasts_mut(&mut self) -> &mut bool;
     fn enable_client_wheel_raycasts(&self) -> &bool;
+    fn enable_client_wheel_raycasts_mut(&mut self) -> &mut bool;
     fn enable_a_sync_wheel_raycasts(&self) -> &bool;
+    fn enable_a_sync_wheel_raycasts_mut(&mut self) -> &mut bool;
     fn use_delayed_wake_up_client(&self) -> &bool;
+    fn use_delayed_wake_up_client_mut(&mut self) -> &mut bool;
     fn use_delayed_wake_up_server(&self) -> &bool;
+    fn use_delayed_wake_up_server_mut(&mut self) -> &mut bool;
     fn suppress_debris_spawn_until_ready(&self) -> &bool;
+    fn suppress_debris_spawn_until_ready_mut(&mut self) -> &mut bool;
     fn enable_player_v_s_a_i_collisions(&self) -> &bool;
+    fn enable_player_v_s_a_i_collisions_mut(&mut self) -> &mut bool;
     fn enable_client_keyframed_collisions(&self) -> &bool;
+    fn enable_client_keyframed_collisions_mut(&mut self) -> &mut bool;
     fn enable_f_x_keyframed_collisions(&self) -> &bool;
+    fn enable_f_x_keyframed_collisions_mut(&mut self) -> &mut bool;
     fn block_stream_allocator_memory(&self) -> &u32;
+    fn block_stream_allocator_memory_mut(&mut self) -> &mut u32;
     fn step_local_stream_allocator(&self) -> &u32;
+    fn step_local_stream_allocator_mut(&mut self) -> &mut u32;
     fn body_buffer_capacity(&self) -> &u32;
+    fn body_buffer_capacity_mut(&mut self) -> &mut u32;
     fn motion_buffer_capacity(&self) -> &u32;
+    fn motion_buffer_capacity_mut(&mut self) -> &mut u32;
     fn constraint_buffer_capacity(&self) -> &u32;
+    fn constraint_buffer_capacity_mut(&mut self) -> &mut u32;
     fn havok_disable_free_list_allocator(&self) -> &bool;
+    fn havok_disable_free_list_allocator_mut(&mut self) -> &mut bool;
     fn enable_remove_from_world_keep_active(&self) -> &bool;
+    fn enable_remove_from_world_keep_active_mut(&mut self) -> &mut bool;
     fn enable_physics_state_stream(&self) -> &bool;
+    fn enable_physics_state_stream_mut(&mut self) -> &mut bool;
 }
 
 impl PhysicsSettingsTrait for PhysicsSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn run_client_simulation_single_threaded(&self) -> &bool {
         &self.run_client_simulation_single_threaded
+    }
+    fn run_client_simulation_single_threaded_mut(&mut self) -> &mut bool {
+        &mut self.run_client_simulation_single_threaded
     }
     fn run_effect_simulation_single_threaded(&self) -> &bool {
         &self.run_effect_simulation_single_threaded
     }
+    fn run_effect_simulation_single_threaded_mut(&mut self) -> &mut bool {
+        &mut self.run_effect_simulation_single_threaded
+    }
     fn run_server_simulation_single_threaded(&self) -> &bool {
         &self.run_server_simulation_single_threaded
+    }
+    fn run_server_simulation_single_threaded_mut(&mut self) -> &mut bool {
+        &mut self.run_server_simulation_single_threaded
     }
     fn wind_manager_awakening_radius(&self) -> &f32 {
         &self.wind_manager_awakening_radius
     }
+    fn wind_manager_awakening_radius_mut(&mut self) -> &mut f32 {
+        &mut self.wind_manager_awakening_radius
+    }
     fn enable_a_i_rigid_body(&self) -> &bool {
         &self.enable_a_i_rigid_body
+    }
+    fn enable_a_i_rigid_body_mut(&mut self) -> &mut bool {
+        &mut self.enable_a_i_rigid_body
     }
     fn forest_enable(&self) -> &bool {
         &self.forest_enable
     }
+    fn forest_enable_mut(&mut self) -> &mut bool {
+        &mut self.forest_enable
+    }
     fn enable_jobs(&self) -> &bool {
         &self.enable_jobs
+    }
+    fn enable_jobs_mut(&mut self) -> &mut bool {
+        &mut self.enable_jobs
     }
     fn remove_ragdoll_when_woken(&self) -> &bool {
         &self.remove_ragdoll_when_woken
     }
+    fn remove_ragdoll_when_woken_mut(&mut self) -> &mut bool {
+        &mut self.remove_ragdoll_when_woken
+    }
     fn remove_from_world_on_collision_overflow(&self) -> &bool {
         &self.remove_from_world_on_collision_overflow
+    }
+    fn remove_from_world_on_collision_overflow_mut(&mut self) -> &mut bool {
+        &mut self.remove_from_world_on_collision_overflow
     }
     fn single_step_character(&self) -> &bool {
         &self.single_step_character
     }
+    fn single_step_character_mut(&mut self) -> &mut bool {
+        &mut self.single_step_character
+    }
     fn force_single_step_character_in_s_p(&self) -> &bool {
         &self.force_single_step_character_in_s_p
+    }
+    fn force_single_step_character_in_s_p_mut(&mut self) -> &mut bool {
+        &mut self.force_single_step_character_in_s_p
     }
     fn enable_follow_wheel_raycasts(&self) -> &bool {
         &self.enable_follow_wheel_raycasts
     }
+    fn enable_follow_wheel_raycasts_mut(&mut self) -> &mut bool {
+        &mut self.enable_follow_wheel_raycasts
+    }
     fn enable_client_wheel_raycasts(&self) -> &bool {
         &self.enable_client_wheel_raycasts
+    }
+    fn enable_client_wheel_raycasts_mut(&mut self) -> &mut bool {
+        &mut self.enable_client_wheel_raycasts
     }
     fn enable_a_sync_wheel_raycasts(&self) -> &bool {
         &self.enable_a_sync_wheel_raycasts
     }
+    fn enable_a_sync_wheel_raycasts_mut(&mut self) -> &mut bool {
+        &mut self.enable_a_sync_wheel_raycasts
+    }
     fn use_delayed_wake_up_client(&self) -> &bool {
         &self.use_delayed_wake_up_client
+    }
+    fn use_delayed_wake_up_client_mut(&mut self) -> &mut bool {
+        &mut self.use_delayed_wake_up_client
     }
     fn use_delayed_wake_up_server(&self) -> &bool {
         &self.use_delayed_wake_up_server
     }
+    fn use_delayed_wake_up_server_mut(&mut self) -> &mut bool {
+        &mut self.use_delayed_wake_up_server
+    }
     fn suppress_debris_spawn_until_ready(&self) -> &bool {
         &self.suppress_debris_spawn_until_ready
+    }
+    fn suppress_debris_spawn_until_ready_mut(&mut self) -> &mut bool {
+        &mut self.suppress_debris_spawn_until_ready
     }
     fn enable_player_v_s_a_i_collisions(&self) -> &bool {
         &self.enable_player_v_s_a_i_collisions
     }
+    fn enable_player_v_s_a_i_collisions_mut(&mut self) -> &mut bool {
+        &mut self.enable_player_v_s_a_i_collisions
+    }
     fn enable_client_keyframed_collisions(&self) -> &bool {
         &self.enable_client_keyframed_collisions
+    }
+    fn enable_client_keyframed_collisions_mut(&mut self) -> &mut bool {
+        &mut self.enable_client_keyframed_collisions
     }
     fn enable_f_x_keyframed_collisions(&self) -> &bool {
         &self.enable_f_x_keyframed_collisions
     }
+    fn enable_f_x_keyframed_collisions_mut(&mut self) -> &mut bool {
+        &mut self.enable_f_x_keyframed_collisions
+    }
     fn block_stream_allocator_memory(&self) -> &u32 {
         &self.block_stream_allocator_memory
+    }
+    fn block_stream_allocator_memory_mut(&mut self) -> &mut u32 {
+        &mut self.block_stream_allocator_memory
     }
     fn step_local_stream_allocator(&self) -> &u32 {
         &self.step_local_stream_allocator
     }
+    fn step_local_stream_allocator_mut(&mut self) -> &mut u32 {
+        &mut self.step_local_stream_allocator
+    }
     fn body_buffer_capacity(&self) -> &u32 {
         &self.body_buffer_capacity
+    }
+    fn body_buffer_capacity_mut(&mut self) -> &mut u32 {
+        &mut self.body_buffer_capacity
     }
     fn motion_buffer_capacity(&self) -> &u32 {
         &self.motion_buffer_capacity
     }
+    fn motion_buffer_capacity_mut(&mut self) -> &mut u32 {
+        &mut self.motion_buffer_capacity
+    }
     fn constraint_buffer_capacity(&self) -> &u32 {
         &self.constraint_buffer_capacity
+    }
+    fn constraint_buffer_capacity_mut(&mut self) -> &mut u32 {
+        &mut self.constraint_buffer_capacity
     }
     fn havok_disable_free_list_allocator(&self) -> &bool {
         &self.havok_disable_free_list_allocator
     }
+    fn havok_disable_free_list_allocator_mut(&mut self) -> &mut bool {
+        &mut self.havok_disable_free_list_allocator
+    }
     fn enable_remove_from_world_keep_active(&self) -> &bool {
         &self.enable_remove_from_world_keep_active
+    }
+    fn enable_remove_from_world_keep_active_mut(&mut self) -> &mut bool {
+        &mut self.enable_remove_from_world_keep_active
     }
     fn enable_physics_state_stream(&self) -> &bool {
         &self.enable_physics_state_stream
     }
+    fn enable_physics_state_stream_mut(&mut self) -> &mut bool {
+        &mut self.enable_physics_state_stream
+    }
 }
 
 impl super::core::DataContainerTrait for PhysicsSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2714,6 +3189,15 @@ impl TypeObject for PhysicsSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2753,6 +3237,15 @@ impl TypeObject for PhysicsWorldType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2815,178 +3308,339 @@ pub struct PhysicsRenderSettings {
 
 pub trait PhysicsRenderSettingsTrait: super::core::DataContainerTrait {
     fn render_server(&self) -> &bool;
+    fn render_server_mut(&mut self) -> &mut bool;
     fn render_client(&self) -> &bool;
+    fn render_client_mut(&mut self) -> &mut bool;
     fn render_effect_world(&self) -> &bool;
+    fn render_effect_world_mut(&mut self) -> &mut bool;
     fn render_state_stream_world(&self) -> &bool;
+    fn render_state_stream_world_mut(&mut self) -> &mut bool;
     fn render_static(&self) -> &bool;
+    fn render_static_mut(&mut self) -> &mut bool;
     fn render_detail(&self) -> &bool;
+    fn render_detail_mut(&mut self) -> &mut bool;
     fn render_group(&self) -> &bool;
+    fn render_group_mut(&mut self) -> &mut bool;
     fn render_ungrouped(&self) -> &bool;
+    fn render_ungrouped_mut(&mut self) -> &mut bool;
     fn render_ragdoll(&self) -> &bool;
+    fn render_ragdoll_mut(&mut self) -> &mut bool;
     fn render_water(&self) -> &bool;
+    fn render_water_mut(&mut self) -> &mut bool;
     fn render_terrain(&self) -> &bool;
+    fn render_terrain_mut(&mut self) -> &mut bool;
     fn render_terrain_min_max_level(&self) -> &i32;
+    fn render_terrain_min_max_level_mut(&mut self) -> &mut i32;
     fn render_characters(&self) -> &bool;
+    fn render_characters_mut(&mut self) -> &mut bool;
     fn render_aabb_trigger(&self) -> &bool;
+    fn render_aabb_trigger_mut(&mut self) -> &mut bool;
     fn render_character_collision(&self) -> &bool;
+    fn render_character_collision_mut(&mut self) -> &mut bool;
     fn view_distance(&self) -> &f32;
+    fn view_distance_mut(&mut self) -> &mut f32;
     fn render_solid_geometry(&self) -> &bool;
+    fn render_solid_geometry_mut(&mut self) -> &mut bool;
     fn use_shape_cache(&self) -> &bool;
+    fn use_shape_cache_mut(&mut self) -> &mut bool;
     fn depth_test(&self) -> &bool;
+    fn depth_test_mut(&mut self) -> &mut bool;
     fn render_constraints(&self) -> &bool;
+    fn render_constraints_mut(&mut self) -> &mut bool;
     fn render_contacts(&self) -> &bool;
+    fn render_contacts_mut(&mut self) -> &mut bool;
     fn render_only_contact_constraints(&self) -> &bool;
+    fn render_only_contact_constraints_mut(&mut self) -> &mut bool;
     fn render_simulation_islands(&self) -> &bool;
+    fn render_simulation_islands_mut(&mut self) -> &mut bool;
     fn render_broadphase_handles(&self) -> &bool;
+    fn render_broadphase_handles_mut(&mut self) -> &mut bool;
     fn render_destruction_connections(&self) -> &bool;
+    fn render_destruction_connections_mut(&mut self) -> &mut bool;
     fn render_sleep_status(&self) -> &bool;
+    fn render_sleep_status_mut(&mut self) -> &mut bool;
     fn render_quality_type(&self) -> &bool;
+    fn render_quality_type_mut(&mut self) -> &mut bool;
     fn render_part_bounding_boxes(&self) -> &bool;
+    fn render_part_bounding_boxes_mut(&mut self) -> &mut bool;
     fn render_only_bounding_boxes(&self) -> &bool;
+    fn render_only_bounding_boxes_mut(&mut self) -> &mut bool;
     fn render_rigid_body_transform(&self) -> &bool;
+    fn render_rigid_body_transform_mut(&mut self) -> &mut bool;
     fn render_inertia(&self) -> &bool;
+    fn render_inertia_mut(&mut self) -> &mut bool;
     fn render_center_of_mass(&self) -> &bool;
+    fn render_center_of_mass_mut(&mut self) -> &mut bool;
     fn render_linear_velocity(&self) -> &bool;
+    fn render_linear_velocity_mut(&mut self) -> &mut bool;
     fn render_collision_spheres(&self) -> &bool;
+    fn render_collision_spheres_mut(&mut self) -> &mut bool;
     fn render_ray_queries(&self) -> &bool;
+    fn render_ray_queries_mut(&mut self) -> &mut bool;
     fn render_shapes(&self) -> &bool;
+    fn render_shapes_mut(&mut self) -> &mut bool;
     fn render_drive_targets(&self) -> &bool;
+    fn render_drive_targets_mut(&mut self) -> &mut bool;
     fn render_entity_stats(&self) -> &bool;
+    fn render_entity_stats_mut(&mut self) -> &mut bool;
     fn render_memory_used(&self) -> &bool;
+    fn render_memory_used_mut(&mut self) -> &mut bool;
     fn collision_spawn_debug(&self) -> &bool;
+    fn collision_spawn_debug_mut(&mut self) -> &mut bool;
     fn render_specific_part(&self) -> &i32;
+    fn render_specific_part_mut(&mut self) -> &mut i32;
 }
 
 impl PhysicsRenderSettingsTrait for PhysicsRenderSettings {
     fn render_server(&self) -> &bool {
         &self.render_server
     }
+    fn render_server_mut(&mut self) -> &mut bool {
+        &mut self.render_server
+    }
     fn render_client(&self) -> &bool {
         &self.render_client
+    }
+    fn render_client_mut(&mut self) -> &mut bool {
+        &mut self.render_client
     }
     fn render_effect_world(&self) -> &bool {
         &self.render_effect_world
     }
+    fn render_effect_world_mut(&mut self) -> &mut bool {
+        &mut self.render_effect_world
+    }
     fn render_state_stream_world(&self) -> &bool {
         &self.render_state_stream_world
+    }
+    fn render_state_stream_world_mut(&mut self) -> &mut bool {
+        &mut self.render_state_stream_world
     }
     fn render_static(&self) -> &bool {
         &self.render_static
     }
+    fn render_static_mut(&mut self) -> &mut bool {
+        &mut self.render_static
+    }
     fn render_detail(&self) -> &bool {
         &self.render_detail
+    }
+    fn render_detail_mut(&mut self) -> &mut bool {
+        &mut self.render_detail
     }
     fn render_group(&self) -> &bool {
         &self.render_group
     }
+    fn render_group_mut(&mut self) -> &mut bool {
+        &mut self.render_group
+    }
     fn render_ungrouped(&self) -> &bool {
         &self.render_ungrouped
+    }
+    fn render_ungrouped_mut(&mut self) -> &mut bool {
+        &mut self.render_ungrouped
     }
     fn render_ragdoll(&self) -> &bool {
         &self.render_ragdoll
     }
+    fn render_ragdoll_mut(&mut self) -> &mut bool {
+        &mut self.render_ragdoll
+    }
     fn render_water(&self) -> &bool {
         &self.render_water
+    }
+    fn render_water_mut(&mut self) -> &mut bool {
+        &mut self.render_water
     }
     fn render_terrain(&self) -> &bool {
         &self.render_terrain
     }
+    fn render_terrain_mut(&mut self) -> &mut bool {
+        &mut self.render_terrain
+    }
     fn render_terrain_min_max_level(&self) -> &i32 {
         &self.render_terrain_min_max_level
+    }
+    fn render_terrain_min_max_level_mut(&mut self) -> &mut i32 {
+        &mut self.render_terrain_min_max_level
     }
     fn render_characters(&self) -> &bool {
         &self.render_characters
     }
+    fn render_characters_mut(&mut self) -> &mut bool {
+        &mut self.render_characters
+    }
     fn render_aabb_trigger(&self) -> &bool {
         &self.render_aabb_trigger
+    }
+    fn render_aabb_trigger_mut(&mut self) -> &mut bool {
+        &mut self.render_aabb_trigger
     }
     fn render_character_collision(&self) -> &bool {
         &self.render_character_collision
     }
+    fn render_character_collision_mut(&mut self) -> &mut bool {
+        &mut self.render_character_collision
+    }
     fn view_distance(&self) -> &f32 {
         &self.view_distance
+    }
+    fn view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.view_distance
     }
     fn render_solid_geometry(&self) -> &bool {
         &self.render_solid_geometry
     }
+    fn render_solid_geometry_mut(&mut self) -> &mut bool {
+        &mut self.render_solid_geometry
+    }
     fn use_shape_cache(&self) -> &bool {
         &self.use_shape_cache
+    }
+    fn use_shape_cache_mut(&mut self) -> &mut bool {
+        &mut self.use_shape_cache
     }
     fn depth_test(&self) -> &bool {
         &self.depth_test
     }
+    fn depth_test_mut(&mut self) -> &mut bool {
+        &mut self.depth_test
+    }
     fn render_constraints(&self) -> &bool {
         &self.render_constraints
+    }
+    fn render_constraints_mut(&mut self) -> &mut bool {
+        &mut self.render_constraints
     }
     fn render_contacts(&self) -> &bool {
         &self.render_contacts
     }
+    fn render_contacts_mut(&mut self) -> &mut bool {
+        &mut self.render_contacts
+    }
     fn render_only_contact_constraints(&self) -> &bool {
         &self.render_only_contact_constraints
+    }
+    fn render_only_contact_constraints_mut(&mut self) -> &mut bool {
+        &mut self.render_only_contact_constraints
     }
     fn render_simulation_islands(&self) -> &bool {
         &self.render_simulation_islands
     }
+    fn render_simulation_islands_mut(&mut self) -> &mut bool {
+        &mut self.render_simulation_islands
+    }
     fn render_broadphase_handles(&self) -> &bool {
         &self.render_broadphase_handles
+    }
+    fn render_broadphase_handles_mut(&mut self) -> &mut bool {
+        &mut self.render_broadphase_handles
     }
     fn render_destruction_connections(&self) -> &bool {
         &self.render_destruction_connections
     }
+    fn render_destruction_connections_mut(&mut self) -> &mut bool {
+        &mut self.render_destruction_connections
+    }
     fn render_sleep_status(&self) -> &bool {
         &self.render_sleep_status
+    }
+    fn render_sleep_status_mut(&mut self) -> &mut bool {
+        &mut self.render_sleep_status
     }
     fn render_quality_type(&self) -> &bool {
         &self.render_quality_type
     }
+    fn render_quality_type_mut(&mut self) -> &mut bool {
+        &mut self.render_quality_type
+    }
     fn render_part_bounding_boxes(&self) -> &bool {
         &self.render_part_bounding_boxes
+    }
+    fn render_part_bounding_boxes_mut(&mut self) -> &mut bool {
+        &mut self.render_part_bounding_boxes
     }
     fn render_only_bounding_boxes(&self) -> &bool {
         &self.render_only_bounding_boxes
     }
+    fn render_only_bounding_boxes_mut(&mut self) -> &mut bool {
+        &mut self.render_only_bounding_boxes
+    }
     fn render_rigid_body_transform(&self) -> &bool {
         &self.render_rigid_body_transform
+    }
+    fn render_rigid_body_transform_mut(&mut self) -> &mut bool {
+        &mut self.render_rigid_body_transform
     }
     fn render_inertia(&self) -> &bool {
         &self.render_inertia
     }
+    fn render_inertia_mut(&mut self) -> &mut bool {
+        &mut self.render_inertia
+    }
     fn render_center_of_mass(&self) -> &bool {
         &self.render_center_of_mass
+    }
+    fn render_center_of_mass_mut(&mut self) -> &mut bool {
+        &mut self.render_center_of_mass
     }
     fn render_linear_velocity(&self) -> &bool {
         &self.render_linear_velocity
     }
+    fn render_linear_velocity_mut(&mut self) -> &mut bool {
+        &mut self.render_linear_velocity
+    }
     fn render_collision_spheres(&self) -> &bool {
         &self.render_collision_spheres
+    }
+    fn render_collision_spheres_mut(&mut self) -> &mut bool {
+        &mut self.render_collision_spheres
     }
     fn render_ray_queries(&self) -> &bool {
         &self.render_ray_queries
     }
+    fn render_ray_queries_mut(&mut self) -> &mut bool {
+        &mut self.render_ray_queries
+    }
     fn render_shapes(&self) -> &bool {
         &self.render_shapes
+    }
+    fn render_shapes_mut(&mut self) -> &mut bool {
+        &mut self.render_shapes
     }
     fn render_drive_targets(&self) -> &bool {
         &self.render_drive_targets
     }
+    fn render_drive_targets_mut(&mut self) -> &mut bool {
+        &mut self.render_drive_targets
+    }
     fn render_entity_stats(&self) -> &bool {
         &self.render_entity_stats
+    }
+    fn render_entity_stats_mut(&mut self) -> &mut bool {
+        &mut self.render_entity_stats
     }
     fn render_memory_used(&self) -> &bool {
         &self.render_memory_used
     }
+    fn render_memory_used_mut(&mut self) -> &mut bool {
+        &mut self.render_memory_used
+    }
     fn collision_spawn_debug(&self) -> &bool {
         &self.collision_spawn_debug
+    }
+    fn collision_spawn_debug_mut(&mut self) -> &mut bool {
+        &mut self.collision_spawn_debug
     }
     fn render_specific_part(&self) -> &i32 {
         &self.render_specific_part
     }
+    fn render_specific_part_mut(&mut self) -> &mut i32 {
+        &mut self.render_specific_part
+    }
 }
 
 impl super::core::DataContainerTrait for PhysicsRenderSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSRENDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3258,6 +3912,15 @@ impl TypeObject for PhysicsRenderSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3303,6 +3966,15 @@ impl TypeObject for PhysicsComponentOnPreSolveCollisionMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3337,6 +4009,15 @@ impl TypeObject for PhysicsComponentOnImpulseMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3354,6 +4035,9 @@ impl PhysicsConstraintInitialStanceDataTrait for PhysicsPrismaticConstraintIniti
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for PhysicsPrismaticConstraintInitialStanceData {
@@ -3366,15 +4050,15 @@ impl super::core::DataBusPeerTrait for PhysicsPrismaticConstraintInitialStanceDa
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsPrismaticConstraintInitialStanceData {
 }
 
 impl super::core::DataContainerTrait for PhysicsPrismaticConstraintInitialStanceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSPRISMATICCONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3399,6 +4083,15 @@ impl TypeObject for PhysicsPrismaticConstraintInitialStanceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3428,6 +4121,9 @@ impl PhysicsConstraintInitialStanceDataTrait for PhysicsRootControlConstraintIni
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for PhysicsRootControlConstraintInitialStanceData {
@@ -3440,15 +4136,15 @@ impl super::core::DataBusPeerTrait for PhysicsRootControlConstraintInitialStance
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsRootControlConstraintInitialStanceData {
 }
 
 impl super::core::DataContainerTrait for PhysicsRootControlConstraintInitialStanceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSROOTCONTROLCONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3473,6 +4169,15 @@ impl TypeObject for PhysicsRootControlConstraintInitialStanceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3502,6 +4207,9 @@ impl PhysicsConstraintInitialStanceDataTrait for PhysicsRagdollConstraintInitial
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for PhysicsRagdollConstraintInitialStanceData {
@@ -3514,15 +4222,15 @@ impl super::core::DataBusPeerTrait for PhysicsRagdollConstraintInitialStanceData
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsRagdollConstraintInitialStanceData {
 }
 
 impl super::core::DataContainerTrait for PhysicsRagdollConstraintInitialStanceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSRAGDOLLCONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3547,6 +4255,15 @@ impl TypeObject for PhysicsRagdollConstraintInitialStanceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3576,6 +4293,9 @@ impl PhysicsConstraintInitialStanceDataTrait for PhysicsHingeConstraintInitialSt
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for PhysicsHingeConstraintInitialStanceData {
@@ -3588,15 +4308,15 @@ impl super::core::DataBusPeerTrait for PhysicsHingeConstraintInitialStanceData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsHingeConstraintInitialStanceData {
 }
 
 impl super::core::DataContainerTrait for PhysicsHingeConstraintInitialStanceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSHINGECONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3621,6 +4341,15 @@ impl TypeObject for PhysicsHingeConstraintInitialStanceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3650,6 +4379,9 @@ impl PhysicsConstraintInitialStanceDataTrait for PhysicsBallAndSocketConstraintI
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for PhysicsBallAndSocketConstraintInitialStanceData {
@@ -3662,15 +4394,15 @@ impl super::core::DataBusPeerTrait for PhysicsBallAndSocketConstraintInitialStan
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsBallAndSocketConstraintInitialStanceData {
 }
 
 impl super::core::DataContainerTrait for PhysicsBallAndSocketConstraintInitialStanceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSBALLANDSOCKETCONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3696,6 +4428,15 @@ impl TypeObject for PhysicsBallAndSocketConstraintInitialStanceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3717,11 +4458,15 @@ pub struct PhysicsConstraintInitialStanceData {
 
 pub trait PhysicsConstraintInitialStanceDataTrait: super::entity::EntityDataTrait {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl PhysicsConstraintInitialStanceDataTrait for PhysicsConstraintInitialStanceData {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
 }
 
@@ -3735,15 +4480,15 @@ impl super::core::DataBusPeerTrait for PhysicsConstraintInitialStanceData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsConstraintInitialStanceData {
 }
 
 impl super::core::DataContainerTrait for PhysicsConstraintInitialStanceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSCONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3775,6 +4520,15 @@ impl TypeObject for PhysicsConstraintInitialStanceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3798,19 +4552,31 @@ pub struct PhysicsPrismaticConstraintData {
 
 pub trait PhysicsPrismaticConstraintDataTrait: PhysicsConstraintDataTrait {
     fn has_limits(&self) -> &bool;
+    fn has_limits_mut(&mut self) -> &mut bool;
     fn linear_limit(&self) -> &f32;
+    fn linear_limit_mut(&mut self) -> &mut f32;
     fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsPrismaticConstraintMotorDataTrait>>>;
+    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsPrismaticConstraintMotorDataTrait>>>;
 }
 
 impl PhysicsPrismaticConstraintDataTrait for PhysicsPrismaticConstraintData {
     fn has_limits(&self) -> &bool {
         &self.has_limits
     }
+    fn has_limits_mut(&mut self) -> &mut bool {
+        &mut self.has_limits
+    }
     fn linear_limit(&self) -> &f32 {
         &self.linear_limit
     }
+    fn linear_limit_mut(&mut self) -> &mut f32 {
+        &mut self.linear_limit
+    }
     fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsPrismaticConstraintMotorDataTrait>>> {
         &self.motor_data
+    }
+    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsPrismaticConstraintMotorDataTrait>>> {
+        &mut self.motor_data
     }
 }
 
@@ -3818,26 +4584,50 @@ impl PhysicsConstraintDataTrait for PhysicsPrismaticConstraintData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn is_breakable(&self) -> &bool {
         self._glacier_base.is_breakable()
+    }
+    fn is_breakable_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_breakable_mut()
     }
     fn break_threshold(&self) -> &f32 {
         self._glacier_base.break_threshold()
     }
+    fn break_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.break_threshold_mut()
+    }
     fn stabilized(&self) -> &bool {
         self._glacier_base.stabilized()
+    }
+    fn stabilized_mut(&mut self) -> &mut bool {
+        self._glacier_base.stabilized_mut()
     }
     fn enable_continuous_simulation(&self) -> &bool {
         self._glacier_base.enable_continuous_simulation()
     }
+    fn enable_continuous_simulation_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_continuous_simulation_mut()
+    }
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
     }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
+    }
     fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
         self._glacier_base.initial_stance_data()
+    }
+    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+        self._glacier_base.initial_stance_data_mut()
     }
 }
 
@@ -3851,15 +4641,15 @@ impl super::core::DataBusPeerTrait for PhysicsPrismaticConstraintData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsPrismaticConstraintData {
 }
 
 impl super::core::DataContainerTrait for PhysicsPrismaticConstraintData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSPRISMATICCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3903,6 +4693,15 @@ impl TypeObject for PhysicsPrismaticConstraintData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3924,11 +4723,15 @@ pub struct PhysicsRootControlConstraintData {
 
 pub trait PhysicsRootControlConstraintDataTrait: PhysicsConstraintDataTrait {
     fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsRootControlConstraintMotorDataTrait>>>;
+    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsRootControlConstraintMotorDataTrait>>>;
 }
 
 impl PhysicsRootControlConstraintDataTrait for PhysicsRootControlConstraintData {
     fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsRootControlConstraintMotorDataTrait>>> {
         &self.motor_data
+    }
+    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsRootControlConstraintMotorDataTrait>>> {
+        &mut self.motor_data
     }
 }
 
@@ -3936,26 +4739,50 @@ impl PhysicsConstraintDataTrait for PhysicsRootControlConstraintData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn is_breakable(&self) -> &bool {
         self._glacier_base.is_breakable()
+    }
+    fn is_breakable_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_breakable_mut()
     }
     fn break_threshold(&self) -> &f32 {
         self._glacier_base.break_threshold()
     }
+    fn break_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.break_threshold_mut()
+    }
     fn stabilized(&self) -> &bool {
         self._glacier_base.stabilized()
+    }
+    fn stabilized_mut(&mut self) -> &mut bool {
+        self._glacier_base.stabilized_mut()
     }
     fn enable_continuous_simulation(&self) -> &bool {
         self._glacier_base.enable_continuous_simulation()
     }
+    fn enable_continuous_simulation_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_continuous_simulation_mut()
+    }
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
     }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
+    }
     fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
         self._glacier_base.initial_stance_data()
+    }
+    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+        self._glacier_base.initial_stance_data_mut()
     }
 }
 
@@ -3969,15 +4796,15 @@ impl super::core::DataBusPeerTrait for PhysicsRootControlConstraintData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsRootControlConstraintData {
 }
 
 impl super::core::DataContainerTrait for PhysicsRootControlConstraintData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSROOTCONTROLCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4009,6 +4836,15 @@ impl TypeObject for PhysicsRootControlConstraintData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4038,43 +4874,79 @@ pub struct PhysicsRagdollConstraintData {
 
 pub trait PhysicsRagdollConstraintDataTrait: PhysicsConstraintDataTrait {
     fn has_limits(&self) -> &bool;
+    fn has_limits_mut(&mut self) -> &mut bool;
     fn twist_min_angular_limit(&self) -> &f32;
+    fn twist_min_angular_limit_mut(&mut self) -> &mut f32;
     fn twist_max_angular_limit(&self) -> &f32;
+    fn twist_max_angular_limit_mut(&mut self) -> &mut f32;
     fn plane_min_angular_limit(&self) -> &f32;
+    fn plane_min_angular_limit_mut(&mut self) -> &mut f32;
     fn plane_max_angular_limit(&self) -> &f32;
+    fn plane_max_angular_limit_mut(&mut self) -> &mut f32;
     fn cone_angular_limit(&self) -> &f32;
+    fn cone_angular_limit_mut(&mut self) -> &mut f32;
     fn angular_friction(&self) -> &f32;
+    fn angular_friction_mut(&mut self) -> &mut f32;
     fn angular_stiffness(&self) -> &f32;
+    fn angular_stiffness_mut(&mut self) -> &mut f32;
     fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsRagdollConstraintMotorDataTrait>>>;
+    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsRagdollConstraintMotorDataTrait>>>;
 }
 
 impl PhysicsRagdollConstraintDataTrait for PhysicsRagdollConstraintData {
     fn has_limits(&self) -> &bool {
         &self.has_limits
     }
+    fn has_limits_mut(&mut self) -> &mut bool {
+        &mut self.has_limits
+    }
     fn twist_min_angular_limit(&self) -> &f32 {
         &self.twist_min_angular_limit
+    }
+    fn twist_min_angular_limit_mut(&mut self) -> &mut f32 {
+        &mut self.twist_min_angular_limit
     }
     fn twist_max_angular_limit(&self) -> &f32 {
         &self.twist_max_angular_limit
     }
+    fn twist_max_angular_limit_mut(&mut self) -> &mut f32 {
+        &mut self.twist_max_angular_limit
+    }
     fn plane_min_angular_limit(&self) -> &f32 {
         &self.plane_min_angular_limit
+    }
+    fn plane_min_angular_limit_mut(&mut self) -> &mut f32 {
+        &mut self.plane_min_angular_limit
     }
     fn plane_max_angular_limit(&self) -> &f32 {
         &self.plane_max_angular_limit
     }
+    fn plane_max_angular_limit_mut(&mut self) -> &mut f32 {
+        &mut self.plane_max_angular_limit
+    }
     fn cone_angular_limit(&self) -> &f32 {
         &self.cone_angular_limit
+    }
+    fn cone_angular_limit_mut(&mut self) -> &mut f32 {
+        &mut self.cone_angular_limit
     }
     fn angular_friction(&self) -> &f32 {
         &self.angular_friction
     }
+    fn angular_friction_mut(&mut self) -> &mut f32 {
+        &mut self.angular_friction
+    }
     fn angular_stiffness(&self) -> &f32 {
         &self.angular_stiffness
     }
+    fn angular_stiffness_mut(&mut self) -> &mut f32 {
+        &mut self.angular_stiffness
+    }
     fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsRagdollConstraintMotorDataTrait>>> {
         &self.motor_data
+    }
+    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsRagdollConstraintMotorDataTrait>>> {
+        &mut self.motor_data
     }
 }
 
@@ -4082,26 +4954,50 @@ impl PhysicsConstraintDataTrait for PhysicsRagdollConstraintData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn is_breakable(&self) -> &bool {
         self._glacier_base.is_breakable()
+    }
+    fn is_breakable_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_breakable_mut()
     }
     fn break_threshold(&self) -> &f32 {
         self._glacier_base.break_threshold()
     }
+    fn break_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.break_threshold_mut()
+    }
     fn stabilized(&self) -> &bool {
         self._glacier_base.stabilized()
+    }
+    fn stabilized_mut(&mut self) -> &mut bool {
+        self._glacier_base.stabilized_mut()
     }
     fn enable_continuous_simulation(&self) -> &bool {
         self._glacier_base.enable_continuous_simulation()
     }
+    fn enable_continuous_simulation_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_continuous_simulation_mut()
+    }
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
     }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
+    }
     fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
         self._glacier_base.initial_stance_data()
+    }
+    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+        self._glacier_base.initial_stance_data_mut()
     }
 }
 
@@ -4115,15 +5011,15 @@ impl super::core::DataBusPeerTrait for PhysicsRagdollConstraintData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsRagdollConstraintData {
 }
 
 impl super::core::DataContainerTrait for PhysicsRagdollConstraintData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSRAGDOLLCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4203,6 +5099,15 @@ impl TypeObject for PhysicsRagdollConstraintData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4229,31 +5134,55 @@ pub struct PhysicsHingeConstraintData {
 
 pub trait PhysicsHingeConstraintDataTrait: PhysicsConstraintDataTrait {
     fn has_limits(&self) -> &bool;
+    fn has_limits_mut(&mut self) -> &mut bool;
     fn min_angle(&self) -> &f32;
+    fn min_angle_mut(&mut self) -> &mut f32;
     fn max_angle(&self) -> &f32;
+    fn max_angle_mut(&mut self) -> &mut f32;
     fn angular_friction(&self) -> &f32;
+    fn angular_friction_mut(&mut self) -> &mut f32;
     fn angular_stiffness(&self) -> &f32;
+    fn angular_stiffness_mut(&mut self) -> &mut f32;
     fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsHingeConstraintMotorDataTrait>>>;
+    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsHingeConstraintMotorDataTrait>>>;
 }
 
 impl PhysicsHingeConstraintDataTrait for PhysicsHingeConstraintData {
     fn has_limits(&self) -> &bool {
         &self.has_limits
     }
+    fn has_limits_mut(&mut self) -> &mut bool {
+        &mut self.has_limits
+    }
     fn min_angle(&self) -> &f32 {
         &self.min_angle
+    }
+    fn min_angle_mut(&mut self) -> &mut f32 {
+        &mut self.min_angle
     }
     fn max_angle(&self) -> &f32 {
         &self.max_angle
     }
+    fn max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.max_angle
+    }
     fn angular_friction(&self) -> &f32 {
         &self.angular_friction
+    }
+    fn angular_friction_mut(&mut self) -> &mut f32 {
+        &mut self.angular_friction
     }
     fn angular_stiffness(&self) -> &f32 {
         &self.angular_stiffness
     }
+    fn angular_stiffness_mut(&mut self) -> &mut f32 {
+        &mut self.angular_stiffness
+    }
     fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsHingeConstraintMotorDataTrait>>> {
         &self.motor_data
+    }
+    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsHingeConstraintMotorDataTrait>>> {
+        &mut self.motor_data
     }
 }
 
@@ -4261,26 +5190,50 @@ impl PhysicsConstraintDataTrait for PhysicsHingeConstraintData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn is_breakable(&self) -> &bool {
         self._glacier_base.is_breakable()
+    }
+    fn is_breakable_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_breakable_mut()
     }
     fn break_threshold(&self) -> &f32 {
         self._glacier_base.break_threshold()
     }
+    fn break_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.break_threshold_mut()
+    }
     fn stabilized(&self) -> &bool {
         self._glacier_base.stabilized()
+    }
+    fn stabilized_mut(&mut self) -> &mut bool {
+        self._glacier_base.stabilized_mut()
     }
     fn enable_continuous_simulation(&self) -> &bool {
         self._glacier_base.enable_continuous_simulation()
     }
+    fn enable_continuous_simulation_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_continuous_simulation_mut()
+    }
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
     }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
+    }
     fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
         self._glacier_base.initial_stance_data()
+    }
+    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+        self._glacier_base.initial_stance_data_mut()
     }
 }
 
@@ -4294,15 +5247,15 @@ impl super::core::DataBusPeerTrait for PhysicsHingeConstraintData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsHingeConstraintData {
 }
 
 impl super::core::DataContainerTrait for PhysicsHingeConstraintData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSHINGECONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4364,6 +5317,15 @@ impl TypeObject for PhysicsHingeConstraintData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4392,26 +5354,50 @@ impl PhysicsConstraintDataTrait for PhysicsBallAndSocketConstraintData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn is_breakable(&self) -> &bool {
         self._glacier_base.is_breakable()
+    }
+    fn is_breakable_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_breakable_mut()
     }
     fn break_threshold(&self) -> &f32 {
         self._glacier_base.break_threshold()
     }
+    fn break_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.break_threshold_mut()
+    }
     fn stabilized(&self) -> &bool {
         self._glacier_base.stabilized()
+    }
+    fn stabilized_mut(&mut self) -> &mut bool {
+        self._glacier_base.stabilized_mut()
     }
     fn enable_continuous_simulation(&self) -> &bool {
         self._glacier_base.enable_continuous_simulation()
     }
+    fn enable_continuous_simulation_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_continuous_simulation_mut()
+    }
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
     }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
+    }
     fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
         self._glacier_base.initial_stance_data()
+    }
+    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+        self._glacier_base.initial_stance_data_mut()
     }
 }
 
@@ -4425,15 +5411,15 @@ impl super::core::DataBusPeerTrait for PhysicsBallAndSocketConstraintData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsBallAndSocketConstraintData {
 }
 
 impl super::core::DataContainerTrait for PhysicsBallAndSocketConstraintData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSBALLANDSOCKETCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4459,6 +5445,15 @@ impl TypeObject for PhysicsBallAndSocketConstraintData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4480,11 +5475,15 @@ pub struct PhysicsPrismaticConstraintMotorData {
 
 pub trait PhysicsPrismaticConstraintMotorDataTrait: PhysicsConstraintMotorDataTrait {
     fn max_force(&self) -> &f32;
+    fn max_force_mut(&mut self) -> &mut f32;
 }
 
 impl PhysicsPrismaticConstraintMotorDataTrait for PhysicsPrismaticConstraintMotorData {
     fn max_force(&self) -> &f32 {
         &self.max_force
+    }
+    fn max_force_mut(&mut self) -> &mut f32 {
+        &mut self.max_force
     }
 }
 
@@ -4492,11 +5491,20 @@ impl PhysicsConstraintMotorDataTrait for PhysicsPrismaticConstraintMotorData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn spring_strength(&self) -> &f32 {
         self._glacier_base.spring_strength()
     }
+    fn spring_strength_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spring_strength_mut()
+    }
     fn damping(&self) -> &f32 {
         self._glacier_base.damping()
+    }
+    fn damping_mut(&mut self) -> &mut f32 {
+        self._glacier_base.damping_mut()
     }
 }
 
@@ -4510,15 +5518,15 @@ impl super::core::DataBusPeerTrait for PhysicsPrismaticConstraintMotorData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsPrismaticConstraintMotorData {
 }
 
 impl super::core::DataContainerTrait for PhysicsPrismaticConstraintMotorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSPRISMATICCONSTRAINTMOTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4550,6 +5558,15 @@ impl TypeObject for PhysicsPrismaticConstraintMotorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4575,27 +5592,47 @@ pub struct PhysicsRootControlConstraintMotorData {
 
 pub trait PhysicsRootControlConstraintMotorDataTrait: PhysicsConstraintMotorDataTrait {
     fn forward_max_force(&self) -> &f32;
+    fn forward_max_force_mut(&mut self) -> &mut f32;
     fn backward_max_force(&self) -> &f32;
+    fn backward_max_force_mut(&mut self) -> &mut f32;
     fn radial_max_force(&self) -> &f32;
+    fn radial_max_force_mut(&mut self) -> &mut f32;
     fn swing_max_torque(&self) -> &f32;
+    fn swing_max_torque_mut(&mut self) -> &mut f32;
     fn twist_max_torque(&self) -> &f32;
+    fn twist_max_torque_mut(&mut self) -> &mut f32;
 }
 
 impl PhysicsRootControlConstraintMotorDataTrait for PhysicsRootControlConstraintMotorData {
     fn forward_max_force(&self) -> &f32 {
         &self.forward_max_force
     }
+    fn forward_max_force_mut(&mut self) -> &mut f32 {
+        &mut self.forward_max_force
+    }
     fn backward_max_force(&self) -> &f32 {
         &self.backward_max_force
+    }
+    fn backward_max_force_mut(&mut self) -> &mut f32 {
+        &mut self.backward_max_force
     }
     fn radial_max_force(&self) -> &f32 {
         &self.radial_max_force
     }
+    fn radial_max_force_mut(&mut self) -> &mut f32 {
+        &mut self.radial_max_force
+    }
     fn swing_max_torque(&self) -> &f32 {
         &self.swing_max_torque
     }
+    fn swing_max_torque_mut(&mut self) -> &mut f32 {
+        &mut self.swing_max_torque
+    }
     fn twist_max_torque(&self) -> &f32 {
         &self.twist_max_torque
+    }
+    fn twist_max_torque_mut(&mut self) -> &mut f32 {
+        &mut self.twist_max_torque
     }
 }
 
@@ -4603,11 +5640,20 @@ impl PhysicsConstraintMotorDataTrait for PhysicsRootControlConstraintMotorData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn spring_strength(&self) -> &f32 {
         self._glacier_base.spring_strength()
     }
+    fn spring_strength_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spring_strength_mut()
+    }
     fn damping(&self) -> &f32 {
         self._glacier_base.damping()
+    }
+    fn damping_mut(&mut self) -> &mut f32 {
+        self._glacier_base.damping_mut()
     }
 }
 
@@ -4621,15 +5667,15 @@ impl super::core::DataBusPeerTrait for PhysicsRootControlConstraintMotorData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsRootControlConstraintMotorData {
 }
 
 impl super::core::DataContainerTrait for PhysicsRootControlConstraintMotorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSROOTCONTROLCONSTRAINTMOTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4685,6 +5731,15 @@ impl TypeObject for PhysicsRootControlConstraintMotorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4707,15 +5762,23 @@ pub struct PhysicsRagdollConstraintMotorData {
 
 pub trait PhysicsRagdollConstraintMotorDataTrait: PhysicsConstraintMotorDataTrait {
     fn swing_max_torque(&self) -> &f32;
+    fn swing_max_torque_mut(&mut self) -> &mut f32;
     fn twist_max_torque(&self) -> &f32;
+    fn twist_max_torque_mut(&mut self) -> &mut f32;
 }
 
 impl PhysicsRagdollConstraintMotorDataTrait for PhysicsRagdollConstraintMotorData {
     fn swing_max_torque(&self) -> &f32 {
         &self.swing_max_torque
     }
+    fn swing_max_torque_mut(&mut self) -> &mut f32 {
+        &mut self.swing_max_torque
+    }
     fn twist_max_torque(&self) -> &f32 {
         &self.twist_max_torque
+    }
+    fn twist_max_torque_mut(&mut self) -> &mut f32 {
+        &mut self.twist_max_torque
     }
 }
 
@@ -4723,11 +5786,20 @@ impl PhysicsConstraintMotorDataTrait for PhysicsRagdollConstraintMotorData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn spring_strength(&self) -> &f32 {
         self._glacier_base.spring_strength()
     }
+    fn spring_strength_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spring_strength_mut()
+    }
     fn damping(&self) -> &f32 {
         self._glacier_base.damping()
+    }
+    fn damping_mut(&mut self) -> &mut f32 {
+        self._glacier_base.damping_mut()
     }
 }
 
@@ -4741,15 +5813,15 @@ impl super::core::DataBusPeerTrait for PhysicsRagdollConstraintMotorData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsRagdollConstraintMotorData {
 }
 
 impl super::core::DataContainerTrait for PhysicsRagdollConstraintMotorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSRAGDOLLCONSTRAINTMOTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4787,6 +5859,15 @@ impl TypeObject for PhysicsRagdollConstraintMotorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4808,11 +5889,15 @@ pub struct PhysicsHingeConstraintMotorData {
 
 pub trait PhysicsHingeConstraintMotorDataTrait: PhysicsConstraintMotorDataTrait {
     fn max_torque(&self) -> &f32;
+    fn max_torque_mut(&mut self) -> &mut f32;
 }
 
 impl PhysicsHingeConstraintMotorDataTrait for PhysicsHingeConstraintMotorData {
     fn max_torque(&self) -> &f32 {
         &self.max_torque
+    }
+    fn max_torque_mut(&mut self) -> &mut f32 {
+        &mut self.max_torque
     }
 }
 
@@ -4820,11 +5905,20 @@ impl PhysicsConstraintMotorDataTrait for PhysicsHingeConstraintMotorData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn spring_strength(&self) -> &f32 {
         self._glacier_base.spring_strength()
     }
+    fn spring_strength_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spring_strength_mut()
+    }
     fn damping(&self) -> &f32 {
         self._glacier_base.damping()
+    }
+    fn damping_mut(&mut self) -> &mut f32 {
+        self._glacier_base.damping_mut()
     }
 }
 
@@ -4838,15 +5932,15 @@ impl super::core::DataBusPeerTrait for PhysicsHingeConstraintMotorData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsHingeConstraintMotorData {
 }
 
 impl super::core::DataContainerTrait for PhysicsHingeConstraintMotorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSHINGECONSTRAINTMOTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4878,6 +5972,15 @@ impl TypeObject for PhysicsHingeConstraintMotorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4901,19 +6004,31 @@ pub struct PhysicsConstraintMotorData {
 
 pub trait PhysicsConstraintMotorDataTrait: super::entity::EntityDataTrait {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn spring_strength(&self) -> &f32;
+    fn spring_strength_mut(&mut self) -> &mut f32;
     fn damping(&self) -> &f32;
+    fn damping_mut(&mut self) -> &mut f32;
 }
 
 impl PhysicsConstraintMotorDataTrait for PhysicsConstraintMotorData {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn spring_strength(&self) -> &f32 {
         &self.spring_strength
     }
+    fn spring_strength_mut(&mut self) -> &mut f32 {
+        &mut self.spring_strength
+    }
     fn damping(&self) -> &f32 {
         &self.damping
+    }
+    fn damping_mut(&mut self) -> &mut f32 {
+        &mut self.damping
     }
 }
 
@@ -4927,15 +6042,15 @@ impl super::core::DataBusPeerTrait for PhysicsConstraintMotorData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsConstraintMotorData {
 }
 
 impl super::core::DataContainerTrait for PhysicsConstraintMotorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSCONSTRAINTMOTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4979,6 +6094,15 @@ impl TypeObject for PhysicsConstraintMotorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5000,11 +6124,15 @@ pub struct PhysicsConstraintOwnerData {
 
 pub trait PhysicsConstraintOwnerDataTrait: super::entity::EntityDataTrait {
     fn constraint_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>;
+    fn constraint_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>;
 }
 
 impl PhysicsConstraintOwnerDataTrait for PhysicsConstraintOwnerData {
     fn constraint_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>> {
         &self.constraint_data
+    }
+    fn constraint_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>> {
+        &mut self.constraint_data
     }
 }
 
@@ -5018,15 +6146,15 @@ impl super::core::DataBusPeerTrait for PhysicsConstraintOwnerData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsConstraintOwnerData {
 }
 
 impl super::core::DataContainerTrait for PhysicsConstraintOwnerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSCONSTRAINTOWNERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5058,6 +6186,15 @@ impl TypeObject for PhysicsConstraintOwnerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5086,39 +6223,71 @@ pub struct PhysicsConstraintData {
 
 pub trait PhysicsConstraintDataTrait: super::entity::EntityDataTrait {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn is_breakable(&self) -> &bool;
+    fn is_breakable_mut(&mut self) -> &mut bool;
     fn break_threshold(&self) -> &f32;
+    fn break_threshold_mut(&mut self) -> &mut f32;
     fn stabilized(&self) -> &bool;
+    fn stabilized_mut(&mut self) -> &mut bool;
     fn enable_continuous_simulation(&self) -> &bool;
+    fn enable_continuous_simulation_mut(&mut self) -> &mut bool;
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn world_index(&self) -> &u8;
+    fn world_index_mut(&mut self) -> &mut u8;
     fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>>;
+    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>>;
 }
 
 impl PhysicsConstraintDataTrait for PhysicsConstraintData {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn is_breakable(&self) -> &bool {
         &self.is_breakable
+    }
+    fn is_breakable_mut(&mut self) -> &mut bool {
+        &mut self.is_breakable
     }
     fn break_threshold(&self) -> &f32 {
         &self.break_threshold
     }
+    fn break_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.break_threshold
+    }
     fn stabilized(&self) -> &bool {
         &self.stabilized
+    }
+    fn stabilized_mut(&mut self) -> &mut bool {
+        &mut self.stabilized
     }
     fn enable_continuous_simulation(&self) -> &bool {
         &self.enable_continuous_simulation
     }
+    fn enable_continuous_simulation_mut(&mut self) -> &mut bool {
+        &mut self.enable_continuous_simulation
+    }
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
     fn world_index(&self) -> &u8 {
         &self.world_index
     }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        &mut self.world_index
+    }
     fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
         &self.initial_stance_data
+    }
+    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+        &mut self.initial_stance_data
     }
 }
 
@@ -5132,15 +6301,15 @@ impl super::core::DataBusPeerTrait for PhysicsConstraintData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsConstraintData {
 }
 
 impl super::core::DataContainerTrait for PhysicsConstraintData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5214,6 +6383,15 @@ impl TypeObject for PhysicsConstraintData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5236,22 +6414,27 @@ pub struct ProximityTrackerData {
 
 pub trait ProximityTrackerDataTrait: super::core::DataContainerTrait {
     fn half_extents(&self) -> &super::core::Vec3;
+    fn half_extents_mut(&mut self) -> &mut super::core::Vec3;
     fn collision_layer(&self) -> &u32;
+    fn collision_layer_mut(&mut self) -> &mut u32;
 }
 
 impl ProximityTrackerDataTrait for ProximityTrackerData {
     fn half_extents(&self) -> &super::core::Vec3 {
         &self.half_extents
     }
+    fn half_extents_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.half_extents
+    }
     fn collision_layer(&self) -> &u32 {
         &self.collision_layer
+    }
+    fn collision_layer_mut(&mut self) -> &mut u32 {
+        &mut self.collision_layer
     }
 }
 
 impl super::core::DataContainerTrait for ProximityTrackerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROXIMITYTRACKERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5289,6 +6472,15 @@ impl TypeObject for ProximityTrackerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5310,11 +6502,15 @@ pub struct AabbTriggerPhysicsBodyData {
 
 pub trait AabbTriggerPhysicsBodyDataTrait: PhysicsBodyDataTrait {
     fn half_extents(&self) -> &super::core::Vec3;
+    fn half_extents_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl AabbTriggerPhysicsBodyDataTrait for AabbTriggerPhysicsBodyData {
     fn half_extents(&self) -> &super::core::Vec3 {
         &self.half_extents
+    }
+    fn half_extents_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.half_extents
     }
 }
 
@@ -5322,38 +6518,74 @@ impl PhysicsBodyDataTrait for AabbTriggerPhysicsBodyData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn rigid_body_type(&self) -> &RigidBodyType {
         self._glacier_base.rigid_body_type()
+    }
+    fn rigid_body_type_mut(&mut self) -> &mut RigidBodyType {
+        self._glacier_base.rigid_body_type_mut()
     }
     fn collision_layer(&self) -> &RigidBodyCollisionLayer {
         self._glacier_base.collision_layer()
     }
+    fn collision_layer_mut(&mut self) -> &mut RigidBodyCollisionLayer {
+        self._glacier_base.collision_layer_mut()
+    }
     fn motion_type(&self) -> &RigidBodyMotionType {
         self._glacier_base.motion_type()
+    }
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType {
+        self._glacier_base.motion_type_mut()
     }
     fn quality_type(&self) -> &RigidBodyQualityType {
         self._glacier_base.quality_type()
     }
+    fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
+        self._glacier_base.quality_type_mut()
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.asset()
+    }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
         self._glacier_base.transform_index()
     }
+    fn transform_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.transform_index_mut()
+    }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
+    }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
     }
     fn collision_root_shape_index(&self) -> &u8 {
         self._glacier_base.collision_root_shape_index()
     }
+    fn collision_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.collision_root_shape_index_mut()
+    }
     fn raycast_root_shape_index(&self) -> &u8 {
         self._glacier_base.raycast_root_shape_index()
+    }
+    fn raycast_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.raycast_root_shape_index_mut()
     }
     fn add_to_spatial_query_manager(&self) -> &bool {
         self._glacier_base.add_to_spatial_query_manager()
     }
+    fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
+        self._glacier_base.add_to_spatial_query_manager_mut()
+    }
     fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
         self._glacier_base.physics_callback_handler()
+    }
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+        self._glacier_base.physics_callback_handler_mut()
     }
 }
 
@@ -5367,15 +6599,15 @@ impl super::core::DataBusPeerTrait for AabbTriggerPhysicsBodyData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AabbTriggerPhysicsBodyData {
 }
 
 impl super::core::DataContainerTrait for AabbTriggerPhysicsBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AABBTRIGGERPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5407,6 +6639,15 @@ impl TypeObject for AabbTriggerPhysicsBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5431,23 +6672,39 @@ pub struct TerrainPhysicsBodyData {
 
 pub trait TerrainPhysicsBodyDataTrait: PhysicsBodyDataTrait {
     fn use_s_d_f_collision(&self) -> &bool;
+    fn use_s_d_f_collision_mut(&mut self) -> &mut bool;
     fn rigid_body_index(&self) -> &u32;
+    fn rigid_body_index_mut(&mut self) -> &mut u32;
     fn max_resolution_size_use_for_split(&self) -> &f32;
+    fn max_resolution_size_use_for_split_mut(&mut self) -> &mut f32;
     fn s_d_f_thickness(&self) -> &f32;
+    fn s_d_f_thickness_mut(&mut self) -> &mut f32;
 }
 
 impl TerrainPhysicsBodyDataTrait for TerrainPhysicsBodyData {
     fn use_s_d_f_collision(&self) -> &bool {
         &self.use_s_d_f_collision
     }
+    fn use_s_d_f_collision_mut(&mut self) -> &mut bool {
+        &mut self.use_s_d_f_collision
+    }
     fn rigid_body_index(&self) -> &u32 {
         &self.rigid_body_index
+    }
+    fn rigid_body_index_mut(&mut self) -> &mut u32 {
+        &mut self.rigid_body_index
     }
     fn max_resolution_size_use_for_split(&self) -> &f32 {
         &self.max_resolution_size_use_for_split
     }
+    fn max_resolution_size_use_for_split_mut(&mut self) -> &mut f32 {
+        &mut self.max_resolution_size_use_for_split
+    }
     fn s_d_f_thickness(&self) -> &f32 {
         &self.s_d_f_thickness
+    }
+    fn s_d_f_thickness_mut(&mut self) -> &mut f32 {
+        &mut self.s_d_f_thickness
     }
 }
 
@@ -5455,38 +6712,74 @@ impl PhysicsBodyDataTrait for TerrainPhysicsBodyData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn rigid_body_type(&self) -> &RigidBodyType {
         self._glacier_base.rigid_body_type()
+    }
+    fn rigid_body_type_mut(&mut self) -> &mut RigidBodyType {
+        self._glacier_base.rigid_body_type_mut()
     }
     fn collision_layer(&self) -> &RigidBodyCollisionLayer {
         self._glacier_base.collision_layer()
     }
+    fn collision_layer_mut(&mut self) -> &mut RigidBodyCollisionLayer {
+        self._glacier_base.collision_layer_mut()
+    }
     fn motion_type(&self) -> &RigidBodyMotionType {
         self._glacier_base.motion_type()
+    }
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType {
+        self._glacier_base.motion_type_mut()
     }
     fn quality_type(&self) -> &RigidBodyQualityType {
         self._glacier_base.quality_type()
     }
+    fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
+        self._glacier_base.quality_type_mut()
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.asset()
+    }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
         self._glacier_base.transform_index()
     }
+    fn transform_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.transform_index_mut()
+    }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
+    }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
     }
     fn collision_root_shape_index(&self) -> &u8 {
         self._glacier_base.collision_root_shape_index()
     }
+    fn collision_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.collision_root_shape_index_mut()
+    }
     fn raycast_root_shape_index(&self) -> &u8 {
         self._glacier_base.raycast_root_shape_index()
+    }
+    fn raycast_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.raycast_root_shape_index_mut()
     }
     fn add_to_spatial_query_manager(&self) -> &bool {
         self._glacier_base.add_to_spatial_query_manager()
     }
+    fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
+        self._glacier_base.add_to_spatial_query_manager_mut()
+    }
     fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
         self._glacier_base.physics_callback_handler()
+    }
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+        self._glacier_base.physics_callback_handler_mut()
     }
 }
 
@@ -5500,15 +6793,15 @@ impl super::core::DataBusPeerTrait for TerrainPhysicsBodyData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TerrainPhysicsBodyData {
 }
 
 impl super::core::DataContainerTrait for TerrainPhysicsBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TERRAINPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5558,6 +6851,15 @@ impl TypeObject for TerrainPhysicsBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5589,38 +6891,74 @@ impl PhysicsBodyDataTrait for StaticWaterPhysicsBodyData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn rigid_body_type(&self) -> &RigidBodyType {
         self._glacier_base.rigid_body_type()
+    }
+    fn rigid_body_type_mut(&mut self) -> &mut RigidBodyType {
+        self._glacier_base.rigid_body_type_mut()
     }
     fn collision_layer(&self) -> &RigidBodyCollisionLayer {
         self._glacier_base.collision_layer()
     }
+    fn collision_layer_mut(&mut self) -> &mut RigidBodyCollisionLayer {
+        self._glacier_base.collision_layer_mut()
+    }
     fn motion_type(&self) -> &RigidBodyMotionType {
         self._glacier_base.motion_type()
+    }
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType {
+        self._glacier_base.motion_type_mut()
     }
     fn quality_type(&self) -> &RigidBodyQualityType {
         self._glacier_base.quality_type()
     }
+    fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
+        self._glacier_base.quality_type_mut()
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.asset()
+    }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
         self._glacier_base.transform_index()
     }
+    fn transform_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.transform_index_mut()
+    }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
+    }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
     }
     fn collision_root_shape_index(&self) -> &u8 {
         self._glacier_base.collision_root_shape_index()
     }
+    fn collision_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.collision_root_shape_index_mut()
+    }
     fn raycast_root_shape_index(&self) -> &u8 {
         self._glacier_base.raycast_root_shape_index()
+    }
+    fn raycast_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.raycast_root_shape_index_mut()
     }
     fn add_to_spatial_query_manager(&self) -> &bool {
         self._glacier_base.add_to_spatial_query_manager()
     }
+    fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
+        self._glacier_base.add_to_spatial_query_manager_mut()
+    }
     fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
         self._glacier_base.physics_callback_handler()
+    }
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+        self._glacier_base.physics_callback_handler_mut()
     }
 }
 
@@ -5634,15 +6972,15 @@ impl super::core::DataBusPeerTrait for StaticWaterPhysicsBodyData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StaticWaterPhysicsBodyData {
 }
 
 impl super::core::DataContainerTrait for StaticWaterPhysicsBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STATICWATERPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5667,6 +7005,15 @@ impl TypeObject for StaticWaterPhysicsBodyData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5696,38 +7043,74 @@ impl PhysicsBodyDataTrait for WaterPhysicsBodyData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn rigid_body_type(&self) -> &RigidBodyType {
         self._glacier_base.rigid_body_type()
+    }
+    fn rigid_body_type_mut(&mut self) -> &mut RigidBodyType {
+        self._glacier_base.rigid_body_type_mut()
     }
     fn collision_layer(&self) -> &RigidBodyCollisionLayer {
         self._glacier_base.collision_layer()
     }
+    fn collision_layer_mut(&mut self) -> &mut RigidBodyCollisionLayer {
+        self._glacier_base.collision_layer_mut()
+    }
     fn motion_type(&self) -> &RigidBodyMotionType {
         self._glacier_base.motion_type()
+    }
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType {
+        self._glacier_base.motion_type_mut()
     }
     fn quality_type(&self) -> &RigidBodyQualityType {
         self._glacier_base.quality_type()
     }
+    fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
+        self._glacier_base.quality_type_mut()
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.asset()
+    }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
         self._glacier_base.transform_index()
     }
+    fn transform_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.transform_index_mut()
+    }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
+    }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
     }
     fn collision_root_shape_index(&self) -> &u8 {
         self._glacier_base.collision_root_shape_index()
     }
+    fn collision_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.collision_root_shape_index_mut()
+    }
     fn raycast_root_shape_index(&self) -> &u8 {
         self._glacier_base.raycast_root_shape_index()
+    }
+    fn raycast_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.raycast_root_shape_index_mut()
     }
     fn add_to_spatial_query_manager(&self) -> &bool {
         self._glacier_base.add_to_spatial_query_manager()
     }
+    fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
+        self._glacier_base.add_to_spatial_query_manager_mut()
+    }
     fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
         self._glacier_base.physics_callback_handler()
+    }
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+        self._glacier_base.physics_callback_handler_mut()
     }
 }
 
@@ -5741,15 +7124,15 @@ impl super::core::DataBusPeerTrait for WaterPhysicsBodyData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WaterPhysicsBodyData {
 }
 
 impl super::core::DataContainerTrait for WaterPhysicsBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WATERPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5775,6 +7158,15 @@ impl TypeObject for WaterPhysicsBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5796,11 +7188,15 @@ pub struct GroupRigidBodyData {
 
 pub trait GroupRigidBodyDataTrait: RigidBodyDataTrait {
     fn raycast_material_indices_lookups(&self) -> &Vec<MaterialIndicesLookup>;
+    fn raycast_material_indices_lookups_mut(&mut self) -> &mut Vec<MaterialIndicesLookup>;
 }
 
 impl GroupRigidBodyDataTrait for GroupRigidBodyData {
     fn raycast_material_indices_lookups(&self) -> &Vec<MaterialIndicesLookup> {
         &self.raycast_material_indices_lookups
+    }
+    fn raycast_material_indices_lookups_mut(&mut self) -> &mut Vec<MaterialIndicesLookup> {
+        &mut self.raycast_material_indices_lookups
     }
 }
 
@@ -5808,65 +7204,128 @@ impl RigidBodyDataTrait for GroupRigidBodyData {
     fn mass(&self) -> &f32 {
         self._glacier_base.mass()
     }
+    fn mass_mut(&mut self) -> &mut f32 {
+        self._glacier_base.mass_mut()
+    }
     fn material(&self) -> &super::entity::MaterialDecl {
         self._glacier_base.material()
+    }
+    fn material_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        self._glacier_base.material_mut()
     }
     fn dynamic_friction(&self) -> &f32 {
         self._glacier_base.dynamic_friction()
     }
+    fn dynamic_friction_mut(&mut self) -> &mut f32 {
+        self._glacier_base.dynamic_friction_mut()
+    }
     fn static_friction(&self) -> &f32 {
         self._glacier_base.static_friction()
+    }
+    fn static_friction_mut(&mut self) -> &mut f32 {
+        self._glacier_base.static_friction_mut()
     }
     fn restitution(&self) -> &f32 {
         self._glacier_base.restitution()
     }
+    fn restitution_mut(&mut self) -> &mut f32 {
+        self._glacier_base.restitution_mut()
+    }
     fn compute_center_of_mass(&self) -> &bool {
         self._glacier_base.compute_center_of_mass()
+    }
+    fn compute_center_of_mass_mut(&mut self) -> &mut bool {
+        self._glacier_base.compute_center_of_mass_mut()
     }
     fn center_of_mass(&self) -> &super::core::Vec3 {
         self._glacier_base.center_of_mass()
     }
+    fn center_of_mass_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.center_of_mass_mut()
+    }
     fn compute_inertia_tensor(&self) -> &bool {
         self._glacier_base.compute_inertia_tensor()
+    }
+    fn compute_inertia_tensor_mut(&mut self) -> &mut bool {
+        self._glacier_base.compute_inertia_tensor_mut()
     }
     fn inertia_modifier(&self) -> &super::core::Vec3 {
         self._glacier_base.inertia_modifier()
     }
+    fn inertia_modifier_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.inertia_modifier_mut()
+    }
     fn angular_velocity_damping(&self) -> &f32 {
         self._glacier_base.angular_velocity_damping()
+    }
+    fn angular_velocity_damping_mut(&mut self) -> &mut f32 {
+        self._glacier_base.angular_velocity_damping_mut()
     }
     fn linear_velocity_damping(&self) -> &f32 {
         self._glacier_base.linear_velocity_damping()
     }
+    fn linear_velocity_damping_mut(&mut self) -> &mut f32 {
+        self._glacier_base.linear_velocity_damping_mut()
+    }
     fn system_group(&self) -> &u32 {
         self._glacier_base.system_group()
+    }
+    fn system_group_mut(&mut self) -> &mut u32 {
+        self._glacier_base.system_group_mut()
     }
     fn sub_system_id(&self) -> &u32 {
         self._glacier_base.sub_system_id()
     }
+    fn sub_system_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.sub_system_id_mut()
+    }
     fn sub_system_id_no_collide(&self) -> &u32 {
         self._glacier_base.sub_system_id_no_collide()
+    }
+    fn sub_system_id_no_collide_mut(&mut self) -> &mut u32 {
+        self._glacier_base.sub_system_id_no_collide_mut()
     }
     fn part_indices(&self) -> &Vec<u32> {
         self._glacier_base.part_indices()
     }
+    fn part_indices_mut(&mut self) -> &mut Vec<u32> {
+        self._glacier_base.part_indices_mut()
+    }
     fn float_physics(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
         self._glacier_base.float_physics()
+    }
+    fn float_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
+        self._glacier_base.float_physics_mut()
     }
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn is_root_controller(&self) -> &bool {
         self._glacier_base.is_root_controller()
+    }
+    fn is_root_controller_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_root_controller_mut()
     }
     fn part_materials(&self) -> &Vec<super::entity::MaterialDecl> {
         self._glacier_base.part_materials()
     }
+    fn part_materials_mut(&mut self) -> &mut Vec<super::entity::MaterialDecl> {
+        self._glacier_base.part_materials_mut()
+    }
     fn inverse_inertia_tensor(&self) -> &super::core::Vec3 {
         self._glacier_base.inverse_inertia_tensor()
     }
+    fn inverse_inertia_tensor_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.inverse_inertia_tensor_mut()
+    }
     fn principal_axes_of_inertia(&self) -> &super::core::Quat {
         self._glacier_base.principal_axes_of_inertia()
+    }
+    fn principal_axes_of_inertia_mut(&mut self) -> &mut super::core::Quat {
+        self._glacier_base.principal_axes_of_inertia_mut()
     }
 }
 
@@ -5874,38 +7333,74 @@ impl PhysicsBodyDataTrait for GroupRigidBodyData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn rigid_body_type(&self) -> &RigidBodyType {
         self._glacier_base.rigid_body_type()
+    }
+    fn rigid_body_type_mut(&mut self) -> &mut RigidBodyType {
+        self._glacier_base.rigid_body_type_mut()
     }
     fn collision_layer(&self) -> &RigidBodyCollisionLayer {
         self._glacier_base.collision_layer()
     }
+    fn collision_layer_mut(&mut self) -> &mut RigidBodyCollisionLayer {
+        self._glacier_base.collision_layer_mut()
+    }
     fn motion_type(&self) -> &RigidBodyMotionType {
         self._glacier_base.motion_type()
+    }
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType {
+        self._glacier_base.motion_type_mut()
     }
     fn quality_type(&self) -> &RigidBodyQualityType {
         self._glacier_base.quality_type()
     }
+    fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
+        self._glacier_base.quality_type_mut()
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.asset()
+    }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
         self._glacier_base.transform_index()
     }
+    fn transform_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.transform_index_mut()
+    }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
+    }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
     }
     fn collision_root_shape_index(&self) -> &u8 {
         self._glacier_base.collision_root_shape_index()
     }
+    fn collision_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.collision_root_shape_index_mut()
+    }
     fn raycast_root_shape_index(&self) -> &u8 {
         self._glacier_base.raycast_root_shape_index()
+    }
+    fn raycast_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.raycast_root_shape_index_mut()
     }
     fn add_to_spatial_query_manager(&self) -> &bool {
         self._glacier_base.add_to_spatial_query_manager()
     }
+    fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
+        self._glacier_base.add_to_spatial_query_manager_mut()
+    }
     fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
         self._glacier_base.physics_callback_handler()
+    }
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+        self._glacier_base.physics_callback_handler_mut()
     }
 }
 
@@ -5919,15 +7414,15 @@ impl super::core::DataBusPeerTrait for GroupRigidBodyData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for GroupRigidBodyData {
 }
 
 impl super::core::DataContainerTrait for GroupRigidBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GROUPRIGIDBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5959,6 +7454,15 @@ impl TypeObject for GroupRigidBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5979,11 +7483,15 @@ pub struct MaterialIndicesLookup {
 
 pub trait MaterialIndicesLookupTrait: TypeObject {
     fn material_indices(&self) -> &Vec<u32>;
+    fn material_indices_mut(&mut self) -> &mut Vec<u32>;
 }
 
 impl MaterialIndicesLookupTrait for MaterialIndicesLookup {
     fn material_indices(&self) -> &Vec<u32> {
         &self.material_indices
+    }
+    fn material_indices_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.material_indices
     }
 }
 
@@ -6014,6 +7522,15 @@ impl TypeObject for MaterialIndicesLookup {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6056,91 +7573,175 @@ pub struct RigidBodyData {
 
 pub trait RigidBodyDataTrait: PhysicsBodyDataTrait {
     fn mass(&self) -> &f32;
+    fn mass_mut(&mut self) -> &mut f32;
     fn material(&self) -> &super::entity::MaterialDecl;
+    fn material_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn dynamic_friction(&self) -> &f32;
+    fn dynamic_friction_mut(&mut self) -> &mut f32;
     fn static_friction(&self) -> &f32;
+    fn static_friction_mut(&mut self) -> &mut f32;
     fn restitution(&self) -> &f32;
+    fn restitution_mut(&mut self) -> &mut f32;
     fn compute_center_of_mass(&self) -> &bool;
+    fn compute_center_of_mass_mut(&mut self) -> &mut bool;
     fn center_of_mass(&self) -> &super::core::Vec3;
+    fn center_of_mass_mut(&mut self) -> &mut super::core::Vec3;
     fn compute_inertia_tensor(&self) -> &bool;
+    fn compute_inertia_tensor_mut(&mut self) -> &mut bool;
     fn inertia_modifier(&self) -> &super::core::Vec3;
+    fn inertia_modifier_mut(&mut self) -> &mut super::core::Vec3;
     fn angular_velocity_damping(&self) -> &f32;
+    fn angular_velocity_damping_mut(&mut self) -> &mut f32;
     fn linear_velocity_damping(&self) -> &f32;
+    fn linear_velocity_damping_mut(&mut self) -> &mut f32;
     fn system_group(&self) -> &u32;
+    fn system_group_mut(&mut self) -> &mut u32;
     fn sub_system_id(&self) -> &u32;
+    fn sub_system_id_mut(&mut self) -> &mut u32;
     fn sub_system_id_no_collide(&self) -> &u32;
+    fn sub_system_id_no_collide_mut(&mut self) -> &mut u32;
     fn part_indices(&self) -> &Vec<u32>;
+    fn part_indices_mut(&mut self) -> &mut Vec<u32>;
     fn float_physics(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>>;
+    fn float_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>>;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn is_root_controller(&self) -> &bool;
+    fn is_root_controller_mut(&mut self) -> &mut bool;
     fn part_materials(&self) -> &Vec<super::entity::MaterialDecl>;
+    fn part_materials_mut(&mut self) -> &mut Vec<super::entity::MaterialDecl>;
     fn inverse_inertia_tensor(&self) -> &super::core::Vec3;
+    fn inverse_inertia_tensor_mut(&mut self) -> &mut super::core::Vec3;
     fn principal_axes_of_inertia(&self) -> &super::core::Quat;
+    fn principal_axes_of_inertia_mut(&mut self) -> &mut super::core::Quat;
 }
 
 impl RigidBodyDataTrait for RigidBodyData {
     fn mass(&self) -> &f32 {
         &self.mass
     }
+    fn mass_mut(&mut self) -> &mut f32 {
+        &mut self.mass
+    }
     fn material(&self) -> &super::entity::MaterialDecl {
         &self.material
+    }
+    fn material_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.material
     }
     fn dynamic_friction(&self) -> &f32 {
         &self.dynamic_friction
     }
+    fn dynamic_friction_mut(&mut self) -> &mut f32 {
+        &mut self.dynamic_friction
+    }
     fn static_friction(&self) -> &f32 {
         &self.static_friction
+    }
+    fn static_friction_mut(&mut self) -> &mut f32 {
+        &mut self.static_friction
     }
     fn restitution(&self) -> &f32 {
         &self.restitution
     }
+    fn restitution_mut(&mut self) -> &mut f32 {
+        &mut self.restitution
+    }
     fn compute_center_of_mass(&self) -> &bool {
         &self.compute_center_of_mass
+    }
+    fn compute_center_of_mass_mut(&mut self) -> &mut bool {
+        &mut self.compute_center_of_mass
     }
     fn center_of_mass(&self) -> &super::core::Vec3 {
         &self.center_of_mass
     }
+    fn center_of_mass_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.center_of_mass
+    }
     fn compute_inertia_tensor(&self) -> &bool {
         &self.compute_inertia_tensor
+    }
+    fn compute_inertia_tensor_mut(&mut self) -> &mut bool {
+        &mut self.compute_inertia_tensor
     }
     fn inertia_modifier(&self) -> &super::core::Vec3 {
         &self.inertia_modifier
     }
+    fn inertia_modifier_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.inertia_modifier
+    }
     fn angular_velocity_damping(&self) -> &f32 {
         &self.angular_velocity_damping
+    }
+    fn angular_velocity_damping_mut(&mut self) -> &mut f32 {
+        &mut self.angular_velocity_damping
     }
     fn linear_velocity_damping(&self) -> &f32 {
         &self.linear_velocity_damping
     }
+    fn linear_velocity_damping_mut(&mut self) -> &mut f32 {
+        &mut self.linear_velocity_damping
+    }
     fn system_group(&self) -> &u32 {
         &self.system_group
+    }
+    fn system_group_mut(&mut self) -> &mut u32 {
+        &mut self.system_group
     }
     fn sub_system_id(&self) -> &u32 {
         &self.sub_system_id
     }
+    fn sub_system_id_mut(&mut self) -> &mut u32 {
+        &mut self.sub_system_id
+    }
     fn sub_system_id_no_collide(&self) -> &u32 {
         &self.sub_system_id_no_collide
+    }
+    fn sub_system_id_no_collide_mut(&mut self) -> &mut u32 {
+        &mut self.sub_system_id_no_collide
     }
     fn part_indices(&self) -> &Vec<u32> {
         &self.part_indices
     }
+    fn part_indices_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.part_indices
+    }
     fn float_physics(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
         &self.float_physics
+    }
+    fn float_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
+        &mut self.float_physics
     }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn is_root_controller(&self) -> &bool {
         &self.is_root_controller
+    }
+    fn is_root_controller_mut(&mut self) -> &mut bool {
+        &mut self.is_root_controller
     }
     fn part_materials(&self) -> &Vec<super::entity::MaterialDecl> {
         &self.part_materials
     }
+    fn part_materials_mut(&mut self) -> &mut Vec<super::entity::MaterialDecl> {
+        &mut self.part_materials
+    }
     fn inverse_inertia_tensor(&self) -> &super::core::Vec3 {
         &self.inverse_inertia_tensor
     }
+    fn inverse_inertia_tensor_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.inverse_inertia_tensor
+    }
     fn principal_axes_of_inertia(&self) -> &super::core::Quat {
         &self.principal_axes_of_inertia
+    }
+    fn principal_axes_of_inertia_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.principal_axes_of_inertia
     }
 }
 
@@ -6148,38 +7749,74 @@ impl PhysicsBodyDataTrait for RigidBodyData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn rigid_body_type(&self) -> &RigidBodyType {
         self._glacier_base.rigid_body_type()
+    }
+    fn rigid_body_type_mut(&mut self) -> &mut RigidBodyType {
+        self._glacier_base.rigid_body_type_mut()
     }
     fn collision_layer(&self) -> &RigidBodyCollisionLayer {
         self._glacier_base.collision_layer()
     }
+    fn collision_layer_mut(&mut self) -> &mut RigidBodyCollisionLayer {
+        self._glacier_base.collision_layer_mut()
+    }
     fn motion_type(&self) -> &RigidBodyMotionType {
         self._glacier_base.motion_type()
+    }
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType {
+        self._glacier_base.motion_type_mut()
     }
     fn quality_type(&self) -> &RigidBodyQualityType {
         self._glacier_base.quality_type()
     }
+    fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
+        self._glacier_base.quality_type_mut()
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.asset()
+    }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
         self._glacier_base.transform_index()
     }
+    fn transform_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.transform_index_mut()
+    }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
+    }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
     }
     fn collision_root_shape_index(&self) -> &u8 {
         self._glacier_base.collision_root_shape_index()
     }
+    fn collision_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.collision_root_shape_index_mut()
+    }
     fn raycast_root_shape_index(&self) -> &u8 {
         self._glacier_base.raycast_root_shape_index()
+    }
+    fn raycast_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.raycast_root_shape_index_mut()
     }
     fn add_to_spatial_query_manager(&self) -> &bool {
         self._glacier_base.add_to_spatial_query_manager()
     }
+    fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
+        self._glacier_base.add_to_spatial_query_manager_mut()
+    }
     fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
         self._glacier_base.physics_callback_handler()
+    }
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+        self._glacier_base.physics_callback_handler_mut()
     }
 }
 
@@ -6193,15 +7830,15 @@ impl super::core::DataBusPeerTrait for RigidBodyData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RigidBodyData {
 }
 
 impl super::core::DataContainerTrait for RigidBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RIGIDBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6353,6 +7990,15 @@ impl TypeObject for RigidBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6385,55 +8031,103 @@ pub struct PhysicsBodyData {
 
 pub trait PhysicsBodyDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn rigid_body_type(&self) -> &RigidBodyType;
+    fn rigid_body_type_mut(&mut self) -> &mut RigidBodyType;
     fn collision_layer(&self) -> &RigidBodyCollisionLayer;
+    fn collision_layer_mut(&mut self) -> &mut RigidBodyCollisionLayer;
     fn motion_type(&self) -> &RigidBodyMotionType;
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType;
     fn quality_type(&self) -> &RigidBodyQualityType;
+    fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType;
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
     fn transform_index(&self) -> &u8;
+    fn transform_index_mut(&mut self) -> &mut u8;
     fn world_index(&self) -> &u8;
+    fn world_index_mut(&mut self) -> &mut u8;
     fn collision_root_shape_index(&self) -> &u8;
+    fn collision_root_shape_index_mut(&mut self) -> &mut u8;
     fn raycast_root_shape_index(&self) -> &u8;
+    fn raycast_root_shape_index_mut(&mut self) -> &mut u8;
     fn add_to_spatial_query_manager(&self) -> &bool;
+    fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool;
     fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>>;
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>>;
 }
 
 impl PhysicsBodyDataTrait for PhysicsBodyData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn rigid_body_type(&self) -> &RigidBodyType {
         &self.rigid_body_type
+    }
+    fn rigid_body_type_mut(&mut self) -> &mut RigidBodyType {
+        &mut self.rigid_body_type
     }
     fn collision_layer(&self) -> &RigidBodyCollisionLayer {
         &self.collision_layer
     }
+    fn collision_layer_mut(&mut self) -> &mut RigidBodyCollisionLayer {
+        &mut self.collision_layer
+    }
     fn motion_type(&self) -> &RigidBodyMotionType {
         &self.motion_type
+    }
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType {
+        &mut self.motion_type
     }
     fn quality_type(&self) -> &RigidBodyQualityType {
         &self.quality_type
     }
+    fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
+        &mut self.quality_type
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         &self.asset
+    }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        &mut self.asset
     }
     fn transform_index(&self) -> &u8 {
         &self.transform_index
     }
+    fn transform_index_mut(&mut self) -> &mut u8 {
+        &mut self.transform_index
+    }
     fn world_index(&self) -> &u8 {
         &self.world_index
+    }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        &mut self.world_index
     }
     fn collision_root_shape_index(&self) -> &u8 {
         &self.collision_root_shape_index
     }
+    fn collision_root_shape_index_mut(&mut self) -> &mut u8 {
+        &mut self.collision_root_shape_index
+    }
     fn raycast_root_shape_index(&self) -> &u8 {
         &self.raycast_root_shape_index
+    }
+    fn raycast_root_shape_index_mut(&mut self) -> &mut u8 {
+        &mut self.raycast_root_shape_index
     }
     fn add_to_spatial_query_manager(&self) -> &bool {
         &self.add_to_spatial_query_manager
     }
+    fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
+        &mut self.add_to_spatial_query_manager
+    }
     fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
         &self.physics_callback_handler
+    }
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+        &mut self.physics_callback_handler
     }
 }
 
@@ -6447,15 +8141,15 @@ impl super::core::DataBusPeerTrait for PhysicsBodyData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsBodyData {
 }
 
 impl super::core::DataContainerTrait for PhysicsBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6553,6 +8247,15 @@ impl TypeObject for PhysicsBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6574,11 +8277,15 @@ pub struct BoxFloatPhysicsData {
 
 pub trait BoxFloatPhysicsDataTrait: FloatPhysicsDataTrait {
     fn box_action_data(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsActionDataTrait>>>;
+    fn box_action_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsActionDataTrait>>>;
 }
 
 impl BoxFloatPhysicsDataTrait for BoxFloatPhysicsData {
     fn box_action_data(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsActionDataTrait>>> {
         &self.box_action_data
+    }
+    fn box_action_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsActionDataTrait>>> {
+        &mut self.box_action_data
     }
 }
 
@@ -6586,15 +8293,18 @@ impl FloatPhysicsDataTrait for BoxFloatPhysicsData {
     fn density(&self) -> &f32 {
         self._glacier_base.density()
     }
+    fn density_mut(&mut self) -> &mut f32 {
+        self._glacier_base.density_mut()
+    }
     fn filled_density(&self) -> &f32 {
         self._glacier_base.filled_density()
+    }
+    fn filled_density_mut(&mut self) -> &mut f32 {
+        self._glacier_base.filled_density_mut()
     }
 }
 
 impl super::core::DataContainerTrait for BoxFloatPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BOXFLOATPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6625,6 +8335,15 @@ impl TypeObject for BoxFloatPhysicsData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6663,15 +8382,15 @@ impl super::core::DataBusPeerTrait for FloatPhysicsActionData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FloatPhysicsActionData {
 }
 
 impl super::core::DataContainerTrait for FloatPhysicsActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FLOATPHYSICSACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6697,6 +8416,15 @@ impl TypeObject for FloatPhysicsActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6718,11 +8446,15 @@ pub struct WindPhysicsActionData {
 
 pub trait WindPhysicsActionDataTrait: PhysicsActionDataTrait {
     fn resistance_factor(&self) -> &f32;
+    fn resistance_factor_mut(&mut self) -> &mut f32;
 }
 
 impl WindPhysicsActionDataTrait for WindPhysicsActionData {
     fn resistance_factor(&self) -> &f32 {
         &self.resistance_factor
+    }
+    fn resistance_factor_mut(&mut self) -> &mut f32 {
+        &mut self.resistance_factor
     }
 }
 
@@ -6739,15 +8471,15 @@ impl super::core::DataBusPeerTrait for WindPhysicsActionData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WindPhysicsActionData {
 }
 
 impl super::core::DataContainerTrait for WindPhysicsActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WINDPHYSICSACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6778,6 +8510,15 @@ impl TypeObject for WindPhysicsActionData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6813,15 +8554,15 @@ impl super::core::DataBusPeerTrait for PhysicsActionData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsActionData {
 }
 
 impl super::core::DataContainerTrait for PhysicsActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6847,6 +8588,15 @@ impl TypeObject for PhysicsActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6868,11 +8618,15 @@ pub struct PhysicsProxyEntityData {
 
 pub trait PhysicsProxyEntityDataTrait: super::entity::ComponentEntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl PhysicsProxyEntityDataTrait for PhysicsProxyEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
 }
 
@@ -6880,26 +8634,47 @@ impl super::entity::ComponentEntityDataTrait for PhysicsProxyEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for PhysicsProxyEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -6913,15 +8688,15 @@ impl super::core::DataBusPeerTrait for PhysicsProxyEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsProxyEntityData {
 }
 
 impl super::core::DataContainerTrait for PhysicsProxyEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSPROXYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6953,6 +8728,15 @@ impl TypeObject for PhysicsProxyEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6981,32 +8765,56 @@ impl super::entity::GameComponentEntityDataTrait for GamePhysicsEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for GamePhysicsEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for GamePhysicsEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -7020,15 +8828,15 @@ impl super::core::DataBusPeerTrait for GamePhysicsEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for GamePhysicsEntityData {
 }
 
 impl super::core::DataContainerTrait for GamePhysicsEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GAMEPHYSICSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7053,6 +8861,15 @@ impl TypeObject for GamePhysicsEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7085,20 +8902,38 @@ impl PhysicsComponentDataTrait for DefaultPartPhysicsComponentData {
     fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
         self._glacier_base.physics_bodies()
     }
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+        self._glacier_base.physics_bodies_mut()
+    }
     fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
         self._glacier_base.physics_constraints()
+    }
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+        self._glacier_base.physics_constraints_mut()
     }
     fn parts(&self) -> &Vec<PhysicsPartData> {
         self._glacier_base.parts()
     }
+    fn parts_mut(&mut self) -> &mut Vec<PhysicsPartData> {
+        self._glacier_base.parts_mut()
+    }
     fn movable_parts(&self) -> &bool {
         self._glacier_base.movable_parts()
+    }
+    fn movable_parts_mut(&mut self) -> &mut bool {
+        self._glacier_base.movable_parts_mut()
     }
     fn internal_collision_disabling(&self) -> &InternalCollisionDisablingBehavior {
         self._glacier_base.internal_collision_disabling()
     }
+    fn internal_collision_disabling_mut(&mut self) -> &mut InternalCollisionDisablingBehavior {
+        self._glacier_base.internal_collision_disabling_mut()
+    }
     fn enable_collision_events(&self) -> &bool {
         self._glacier_base.enable_collision_events()
+    }
+    fn enable_collision_events_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_collision_events_mut()
     }
 }
 
@@ -7106,17 +8941,32 @@ impl super::entity::ComponentDataTrait for DefaultPartPhysicsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -7127,15 +8977,15 @@ impl super::core::DataBusPeerTrait for DefaultPartPhysicsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DefaultPartPhysicsComponentData {
 }
 
 impl super::core::DataContainerTrait for DefaultPartPhysicsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEFAULTPARTPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7160,6 +9010,15 @@ impl TypeObject for DefaultPartPhysicsComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7189,20 +9048,38 @@ impl PhysicsComponentDataTrait for PartPhysicsComponentData {
     fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
         self._glacier_base.physics_bodies()
     }
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+        self._glacier_base.physics_bodies_mut()
+    }
     fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
         self._glacier_base.physics_constraints()
+    }
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+        self._glacier_base.physics_constraints_mut()
     }
     fn parts(&self) -> &Vec<PhysicsPartData> {
         self._glacier_base.parts()
     }
+    fn parts_mut(&mut self) -> &mut Vec<PhysicsPartData> {
+        self._glacier_base.parts_mut()
+    }
     fn movable_parts(&self) -> &bool {
         self._glacier_base.movable_parts()
+    }
+    fn movable_parts_mut(&mut self) -> &mut bool {
+        self._glacier_base.movable_parts_mut()
     }
     fn internal_collision_disabling(&self) -> &InternalCollisionDisablingBehavior {
         self._glacier_base.internal_collision_disabling()
     }
+    fn internal_collision_disabling_mut(&mut self) -> &mut InternalCollisionDisablingBehavior {
+        self._glacier_base.internal_collision_disabling_mut()
+    }
     fn enable_collision_events(&self) -> &bool {
         self._glacier_base.enable_collision_events()
+    }
+    fn enable_collision_events_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_collision_events_mut()
     }
 }
 
@@ -7210,17 +9087,32 @@ impl super::entity::ComponentDataTrait for PartPhysicsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -7231,15 +9123,15 @@ impl super::core::DataBusPeerTrait for PartPhysicsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PartPhysicsComponentData {
 }
 
 impl super::core::DataContainerTrait for PartPhysicsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PARTPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7265,6 +9157,15 @@ impl TypeObject for PartPhysicsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7286,11 +9187,15 @@ pub struct RagdollPhysicsComponentData {
 
 pub trait RagdollPhysicsComponentDataTrait: PhysicsComponentDataTrait {
     fn bodies_names_hashes(&self) -> &Vec<u32>;
+    fn bodies_names_hashes_mut(&mut self) -> &mut Vec<u32>;
 }
 
 impl RagdollPhysicsComponentDataTrait for RagdollPhysicsComponentData {
     fn bodies_names_hashes(&self) -> &Vec<u32> {
         &self.bodies_names_hashes
+    }
+    fn bodies_names_hashes_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.bodies_names_hashes
     }
 }
 
@@ -7298,20 +9203,38 @@ impl PhysicsComponentDataTrait for RagdollPhysicsComponentData {
     fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
         self._glacier_base.physics_bodies()
     }
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+        self._glacier_base.physics_bodies_mut()
+    }
     fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
         self._glacier_base.physics_constraints()
+    }
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+        self._glacier_base.physics_constraints_mut()
     }
     fn parts(&self) -> &Vec<PhysicsPartData> {
         self._glacier_base.parts()
     }
+    fn parts_mut(&mut self) -> &mut Vec<PhysicsPartData> {
+        self._glacier_base.parts_mut()
+    }
     fn movable_parts(&self) -> &bool {
         self._glacier_base.movable_parts()
+    }
+    fn movable_parts_mut(&mut self) -> &mut bool {
+        self._glacier_base.movable_parts_mut()
     }
     fn internal_collision_disabling(&self) -> &InternalCollisionDisablingBehavior {
         self._glacier_base.internal_collision_disabling()
     }
+    fn internal_collision_disabling_mut(&mut self) -> &mut InternalCollisionDisablingBehavior {
+        self._glacier_base.internal_collision_disabling_mut()
+    }
     fn enable_collision_events(&self) -> &bool {
         self._glacier_base.enable_collision_events()
+    }
+    fn enable_collision_events_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_collision_events_mut()
     }
 }
 
@@ -7319,17 +9242,32 @@ impl super::entity::ComponentDataTrait for RagdollPhysicsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -7340,15 +9278,15 @@ impl super::core::DataBusPeerTrait for RagdollPhysicsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RagdollPhysicsComponentData {
 }
 
 impl super::core::DataContainerTrait for RagdollPhysicsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RAGDOLLPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7380,6 +9318,15 @@ impl TypeObject for RagdollPhysicsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7401,11 +9348,15 @@ pub struct ForceComponentData {
 
 pub trait ForceComponentDataTrait: super::entity::ComponentDataTrait {
     fn wind_action_data(&self) -> &Option<Arc<Mutex<dyn WindPhysicsActionDataTrait>>>;
+    fn wind_action_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WindPhysicsActionDataTrait>>>;
 }
 
 impl ForceComponentDataTrait for ForceComponentData {
     fn wind_action_data(&self) -> &Option<Arc<Mutex<dyn WindPhysicsActionDataTrait>>> {
         &self.wind_action_data
+    }
+    fn wind_action_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WindPhysicsActionDataTrait>>> {
+        &mut self.wind_action_data
     }
 }
 
@@ -7413,17 +9364,32 @@ impl super::entity::ComponentDataTrait for ForceComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -7434,15 +9400,15 @@ impl super::core::DataBusPeerTrait for ForceComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ForceComponentData {
 }
 
 impl super::core::DataContainerTrait for ForceComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FORCECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7474,6 +9440,15 @@ impl TypeObject for ForceComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7500,31 +9475,55 @@ pub struct PhysicsComponentData {
 
 pub trait PhysicsComponentDataTrait: super::entity::ComponentDataTrait {
     fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>>;
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>>;
     fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>>;
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>>;
     fn parts(&self) -> &Vec<PhysicsPartData>;
+    fn parts_mut(&mut self) -> &mut Vec<PhysicsPartData>;
     fn movable_parts(&self) -> &bool;
+    fn movable_parts_mut(&mut self) -> &mut bool;
     fn internal_collision_disabling(&self) -> &InternalCollisionDisablingBehavior;
+    fn internal_collision_disabling_mut(&mut self) -> &mut InternalCollisionDisablingBehavior;
     fn enable_collision_events(&self) -> &bool;
+    fn enable_collision_events_mut(&mut self) -> &mut bool;
 }
 
 impl PhysicsComponentDataTrait for PhysicsComponentData {
     fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
         &self.physics_bodies
     }
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+        &mut self.physics_bodies
+    }
     fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
         &self.physics_constraints
+    }
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+        &mut self.physics_constraints
     }
     fn parts(&self) -> &Vec<PhysicsPartData> {
         &self.parts
     }
+    fn parts_mut(&mut self) -> &mut Vec<PhysicsPartData> {
+        &mut self.parts
+    }
     fn movable_parts(&self) -> &bool {
         &self.movable_parts
+    }
+    fn movable_parts_mut(&mut self) -> &mut bool {
+        &mut self.movable_parts
     }
     fn internal_collision_disabling(&self) -> &InternalCollisionDisablingBehavior {
         &self.internal_collision_disabling
     }
+    fn internal_collision_disabling_mut(&mut self) -> &mut InternalCollisionDisablingBehavior {
+        &mut self.internal_collision_disabling
+    }
     fn enable_collision_events(&self) -> &bool {
         &self.enable_collision_events
+    }
+    fn enable_collision_events_mut(&mut self) -> &mut bool {
+        &mut self.enable_collision_events
     }
 }
 
@@ -7532,17 +9531,32 @@ impl super::entity::ComponentDataTrait for PhysicsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -7553,15 +9567,15 @@ impl super::core::DataBusPeerTrait for PhysicsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsComponentData {
 }
 
 impl super::core::DataContainerTrait for PhysicsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7623,6 +9637,15 @@ impl TypeObject for PhysicsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7662,6 +9685,15 @@ impl TypeObject for InternalCollisionDisablingBehavior {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7683,15 +9715,23 @@ pub struct PhysicsPartData {
 
 pub trait PhysicsPartDataTrait: TypeObject {
     fn aabb(&self) -> &super::core::AxisAlignedBox;
+    fn aabb_mut(&mut self) -> &mut super::core::AxisAlignedBox;
     fn transform_node(&self) -> &Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>;
+    fn transform_node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>;
 }
 
 impl PhysicsPartDataTrait for PhysicsPartData {
     fn aabb(&self) -> &super::core::AxisAlignedBox {
         &self.aabb
     }
+    fn aabb_mut(&mut self) -> &mut super::core::AxisAlignedBox {
+        &mut self.aabb
+    }
     fn transform_node(&self) -> &Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>> {
         &self.transform_node
+    }
+    fn transform_node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>> {
+        &mut self.transform_node
     }
 }
 
@@ -7729,6 +9769,15 @@ impl TypeObject for PhysicsPartData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7754,27 +9803,47 @@ pub struct MaterialPropertyPhysicsDestructionData {
 
 pub trait MaterialPropertyPhysicsDestructionDataTrait: super::entity::PhysicsMaterialRelationPropertyDataTrait {
     fn density(&self) -> &f32;
+    fn density_mut(&mut self) -> &mut f32;
     fn destruction_radius(&self) -> &f32;
+    fn destruction_radius_mut(&mut self) -> &mut f32;
     fn elasticity(&self) -> &f32;
+    fn elasticity_mut(&mut self) -> &mut f32;
     fn yield_strength(&self) -> &f32;
+    fn yield_strength_mut(&mut self) -> &mut f32;
     fn breaking_strength(&self) -> &f32;
+    fn breaking_strength_mut(&mut self) -> &mut f32;
 }
 
 impl MaterialPropertyPhysicsDestructionDataTrait for MaterialPropertyPhysicsDestructionData {
     fn density(&self) -> &f32 {
         &self.density
     }
+    fn density_mut(&mut self) -> &mut f32 {
+        &mut self.density
+    }
     fn destruction_radius(&self) -> &f32 {
         &self.destruction_radius
+    }
+    fn destruction_radius_mut(&mut self) -> &mut f32 {
+        &mut self.destruction_radius
     }
     fn elasticity(&self) -> &f32 {
         &self.elasticity
     }
+    fn elasticity_mut(&mut self) -> &mut f32 {
+        &mut self.elasticity
+    }
     fn yield_strength(&self) -> &f32 {
         &self.yield_strength
     }
+    fn yield_strength_mut(&mut self) -> &mut f32 {
+        &mut self.yield_strength
+    }
     fn breaking_strength(&self) -> &f32 {
         &self.breaking_strength
+    }
+    fn breaking_strength_mut(&mut self) -> &mut f32 {
+        &mut self.breaking_strength
     }
 }
 
@@ -7785,9 +9854,6 @@ impl super::entity::MaterialRelationPropertyDataTrait for MaterialPropertyPhysic
 }
 
 impl super::core::DataContainerTrait for MaterialPropertyPhysicsDestructionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MATERIALPROPERTYPHYSICSDESTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7843,6 +9909,15 @@ impl TypeObject for MaterialPropertyPhysicsDestructionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7869,31 +9944,55 @@ pub struct MaterialPropertyPhysicsData {
 
 pub trait MaterialPropertyPhysicsDataTrait: super::entity::PhysicsMaterialRelationPropertyDataTrait {
     fn dynamic_friction(&self) -> &f32;
+    fn dynamic_friction_mut(&mut self) -> &mut f32;
     fn static_friction(&self) -> &f32;
+    fn static_friction_mut(&mut self) -> &mut f32;
     fn restitution(&self) -> &f32;
+    fn restitution_mut(&mut self) -> &mut f32;
     fn dynamic_friction_modifier(&self) -> &f32;
+    fn dynamic_friction_modifier_mut(&mut self) -> &mut f32;
     fn static_friction_modifier(&self) -> &f32;
+    fn static_friction_modifier_mut(&mut self) -> &mut f32;
     fn resistance(&self) -> &f32;
+    fn resistance_mut(&mut self) -> &mut f32;
 }
 
 impl MaterialPropertyPhysicsDataTrait for MaterialPropertyPhysicsData {
     fn dynamic_friction(&self) -> &f32 {
         &self.dynamic_friction
     }
+    fn dynamic_friction_mut(&mut self) -> &mut f32 {
+        &mut self.dynamic_friction
+    }
     fn static_friction(&self) -> &f32 {
         &self.static_friction
+    }
+    fn static_friction_mut(&mut self) -> &mut f32 {
+        &mut self.static_friction
     }
     fn restitution(&self) -> &f32 {
         &self.restitution
     }
+    fn restitution_mut(&mut self) -> &mut f32 {
+        &mut self.restitution
+    }
     fn dynamic_friction_modifier(&self) -> &f32 {
         &self.dynamic_friction_modifier
+    }
+    fn dynamic_friction_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.dynamic_friction_modifier
     }
     fn static_friction_modifier(&self) -> &f32 {
         &self.static_friction_modifier
     }
+    fn static_friction_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.static_friction_modifier
+    }
     fn resistance(&self) -> &f32 {
         &self.resistance
+    }
+    fn resistance_mut(&mut self) -> &mut f32 {
+        &mut self.resistance
     }
 }
 
@@ -7904,9 +10003,6 @@ impl super::entity::MaterialRelationPropertyDataTrait for MaterialPropertyPhysic
 }
 
 impl super::core::DataContainerTrait for MaterialPropertyPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MATERIALPROPERTYPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7968,6 +10064,15 @@ impl TypeObject for MaterialPropertyPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7989,18 +10094,19 @@ pub struct ProximityData {
 
 pub trait ProximityDataTrait: super::core::DataContainerTrait {
     fn proximity_type(&self) -> &ProximityObjectType;
+    fn proximity_type_mut(&mut self) -> &mut ProximityObjectType;
 }
 
 impl ProximityDataTrait for ProximityData {
     fn proximity_type(&self) -> &ProximityObjectType {
         &self.proximity_type
     }
+    fn proximity_type_mut(&mut self) -> &mut ProximityObjectType {
+        &mut self.proximity_type
+    }
 }
 
 impl super::core::DataContainerTrait for ProximityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROXIMITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8031,6 +10137,15 @@ impl TypeObject for ProximityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8074,6 +10189,15 @@ impl TypeObject for ProximityObjectType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8095,11 +10219,15 @@ pub struct PhysicsResourceContainerAsset {
 
 pub trait PhysicsResourceContainerAssetTrait: super::core::AssetTrait {
     fn physics_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn physics_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl PhysicsResourceContainerAssetTrait for PhysicsResourceContainerAsset {
     fn physics_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.physics_resource
+    }
+    fn physics_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.physics_resource
     }
 }
 
@@ -8107,12 +10235,12 @@ impl super::core::AssetTrait for PhysicsResourceContainerAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PhysicsResourceContainerAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSRESOURCECONTAINERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8144,6 +10272,15 @@ impl TypeObject for PhysicsResourceContainerAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8166,15 +10303,23 @@ pub struct RagdollAsset {
 
 pub trait RagdollAssetTrait: super::core::AssetTrait {
     fn material_pair(&self) -> &super::entity::MaterialDecl;
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl RagdollAssetTrait for RagdollAsset {
     fn material_pair(&self) -> &super::entity::MaterialDecl {
         &self.material_pair
     }
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.material_pair
+    }
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.resource
+    }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.resource
     }
 }
 
@@ -8182,12 +10327,12 @@ impl super::core::AssetTrait for RagdollAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RagdollAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RAGDOLLASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8225,6 +10370,15 @@ impl TypeObject for RagdollAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8246,11 +10400,15 @@ pub struct GroupHavokAsset {
 
 pub trait GroupHavokAssetTrait: HavokAssetTrait {
     fn aabb(&self) -> &Vec<AssetAabbs>;
+    fn aabb_mut(&mut self) -> &mut Vec<AssetAabbs>;
 }
 
 impl GroupHavokAssetTrait for GroupHavokAsset {
     fn aabb(&self) -> &Vec<AssetAabbs> {
         &self.aabb
+    }
+    fn aabb_mut(&mut self) -> &mut Vec<AssetAabbs> {
+        &mut self.aabb
     }
 }
 
@@ -8258,8 +10416,14 @@ impl HavokAssetTrait for GroupHavokAsset {
     fn external_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
         self._glacier_base.external_assets()
     }
+    fn external_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+        self._glacier_base.external_assets_mut()
+    }
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         self._glacier_base.resource()
+    }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        self._glacier_base.resource_mut()
     }
 }
 
@@ -8267,12 +10431,12 @@ impl super::core::AssetTrait for GroupHavokAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for GroupHavokAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GROUPHAVOKASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8304,6 +10468,15 @@ impl TypeObject for GroupHavokAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8324,11 +10497,15 @@ pub struct AssetAabbs {
 
 pub trait AssetAabbsTrait: TypeObject {
     fn part_aabb(&self) -> &Vec<super::core::AxisAlignedBox>;
+    fn part_aabb_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox>;
 }
 
 impl AssetAabbsTrait for AssetAabbs {
     fn part_aabb(&self) -> &Vec<super::core::AxisAlignedBox> {
         &self.part_aabb
+    }
+    fn part_aabb_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        &mut self.part_aabb
     }
 }
 
@@ -8360,6 +10537,15 @@ impl TypeObject for AssetAabbs {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8382,15 +10568,23 @@ pub struct HavokAsset {
 
 pub trait HavokAssetTrait: super::core::AssetTrait {
     fn external_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>;
+    fn external_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>;
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl HavokAssetTrait for HavokAsset {
     fn external_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
         &self.external_assets
     }
+    fn external_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+        &mut self.external_assets
+    }
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.resource
+    }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.resource
     }
 }
 
@@ -8398,12 +10592,12 @@ impl super::core::AssetTrait for HavokAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for HavokAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HAVOKASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8441,6 +10635,15 @@ impl TypeObject for HavokAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8463,15 +10666,23 @@ pub struct HeightfieldTestEntityData {
 
 pub trait HeightfieldTestEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn skip_samples(&self) -> &i32;
+    fn skip_samples_mut(&mut self) -> &mut i32;
 }
 
 impl HeightfieldTestEntityDataTrait for HeightfieldTestEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn skip_samples(&self) -> &i32 {
         &self.skip_samples
+    }
+    fn skip_samples_mut(&mut self) -> &mut i32 {
+        &mut self.skip_samples
     }
 }
 
@@ -8485,15 +10696,15 @@ impl super::core::DataBusPeerTrait for HeightfieldTestEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for HeightfieldTestEntityData {
 }
 
 impl super::core::DataContainerTrait for HeightfieldTestEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HEIGHTFIELDTESTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8530,6 +10741,15 @@ impl TypeObject for HeightfieldTestEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8581,127 +10801,247 @@ pub struct CharacterPhysicsData {
 
 pub trait CharacterPhysicsDataTrait: super::core::AssetTrait {
     fn poses(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterPoseDataTrait>>>>;
+    fn poses_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterPoseDataTrait>>>>;
     fn states(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStateDataTrait>>>>;
+    fn states_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStateDataTrait>>>>;
     fn default_state(&self) -> &CharacterStateType;
+    fn default_state_mut(&mut self) -> &mut CharacterStateType;
     fn sprint(&self) -> &Option<Arc<Mutex<dyn CharacterSprintDataTrait>>>;
+    fn sprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterSprintDataTrait>>>;
     fn material_pair(&self) -> &super::entity::MaterialDecl;
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn pushable_object_weight(&self) -> &i32;
+    fn pushable_object_weight_mut(&mut self) -> &mut i32;
     fn mass(&self) -> &f32;
+    fn mass_mut(&mut self) -> &mut f32;
     fn max_ascend_angle(&self) -> &f32;
+    fn max_ascend_angle_mut(&mut self) -> &mut f32;
     fn allow_supported_slide_state(&self) -> &bool;
+    fn allow_supported_slide_state_mut(&mut self) -> &mut bool;
     fn slide_angle(&self) -> &f32;
+    fn slide_angle_mut(&mut self) -> &mut f32;
     fn slide_speed_condition(&self) -> &f32;
+    fn slide_speed_condition_mut(&mut self) -> &mut f32;
     fn physical_radius(&self) -> &f32;
+    fn physical_radius_mut(&mut self) -> &mut f32;
     fn enter_swim_state_depth(&self) -> &f32;
+    fn enter_swim_state_depth_mut(&mut self) -> &mut f32;
     fn exit_swim_state_depth(&self) -> &f32;
+    fn exit_swim_state_depth_mut(&mut self) -> &mut f32;
     fn input_acceleration(&self) -> &f32;
+    fn input_acceleration_mut(&mut self) -> &mut f32;
     fn ladder_accept_angle(&self) -> &f32;
+    fn ladder_accept_angle_mut(&mut self) -> &mut f32;
     fn ladder_accept_angle_pitch(&self) -> &f32;
+    fn ladder_accept_angle_pitch_mut(&mut self) -> &mut f32;
     fn jump_penalty_time(&self) -> &f32;
+    fn jump_penalty_time_mut(&mut self) -> &mut f32;
     fn jump_penalty_factor(&self) -> &f32;
+    fn jump_penalty_factor_mut(&mut self) -> &mut f32;
     fn radius_to_predict_collision_on_characters(&self) -> &f32;
+    fn radius_to_predict_collision_on_characters_mut(&mut self) -> &mut f32;
     fn allow_pose_change_during_transition(&self) -> &bool;
+    fn allow_pose_change_during_transition_mut(&mut self) -> &mut bool;
     fn auto_push_away_from_walls_in_prone(&self) -> &bool;
+    fn auto_push_away_from_walls_in_prone_mut(&mut self) -> &mut bool;
     fn physics_body(&self) -> &Option<Arc<Mutex<dyn CharacterPhysicsBodyDataTrait>>>;
+    fn physics_body_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterPhysicsBodyDataTrait>>>;
     fn check_support_raycast_count_moving(&self) -> &i32;
+    fn check_support_raycast_count_moving_mut(&mut self) -> &mut i32;
     fn check_support_lookahead_distance(&self) -> &f32;
+    fn check_support_lookahead_distance_mut(&mut self) -> &mut f32;
     fn ray_start_height_on_ground(&self) -> &f32;
+    fn ray_start_height_on_ground_mut(&mut self) -> &mut f32;
     fn ray_end_height_on_ground(&self) -> &f32;
+    fn ray_end_height_on_ground_mut(&mut self) -> &mut f32;
     fn ray_start_height_in_air(&self) -> &f32;
+    fn ray_start_height_in_air_mut(&mut self) -> &mut f32;
     fn ray_end_height_in_air(&self) -> &f32;
+    fn ray_end_height_in_air_mut(&mut self) -> &mut f32;
     fn speed_for_moving_ray_casts(&self) -> &f32;
+    fn speed_for_moving_ray_casts_mut(&mut self) -> &mut f32;
 }
 
 impl CharacterPhysicsDataTrait for CharacterPhysicsData {
     fn poses(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterPoseDataTrait>>>> {
         &self.poses
     }
+    fn poses_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterPoseDataTrait>>>> {
+        &mut self.poses
+    }
     fn states(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStateDataTrait>>>> {
         &self.states
+    }
+    fn states_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStateDataTrait>>>> {
+        &mut self.states
     }
     fn default_state(&self) -> &CharacterStateType {
         &self.default_state
     }
+    fn default_state_mut(&mut self) -> &mut CharacterStateType {
+        &mut self.default_state
+    }
     fn sprint(&self) -> &Option<Arc<Mutex<dyn CharacterSprintDataTrait>>> {
         &self.sprint
+    }
+    fn sprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterSprintDataTrait>>> {
+        &mut self.sprint
     }
     fn material_pair(&self) -> &super::entity::MaterialDecl {
         &self.material_pair
     }
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.material_pair
+    }
     fn pushable_object_weight(&self) -> &i32 {
         &self.pushable_object_weight
+    }
+    fn pushable_object_weight_mut(&mut self) -> &mut i32 {
+        &mut self.pushable_object_weight
     }
     fn mass(&self) -> &f32 {
         &self.mass
     }
+    fn mass_mut(&mut self) -> &mut f32 {
+        &mut self.mass
+    }
     fn max_ascend_angle(&self) -> &f32 {
         &self.max_ascend_angle
+    }
+    fn max_ascend_angle_mut(&mut self) -> &mut f32 {
+        &mut self.max_ascend_angle
     }
     fn allow_supported_slide_state(&self) -> &bool {
         &self.allow_supported_slide_state
     }
+    fn allow_supported_slide_state_mut(&mut self) -> &mut bool {
+        &mut self.allow_supported_slide_state
+    }
     fn slide_angle(&self) -> &f32 {
         &self.slide_angle
+    }
+    fn slide_angle_mut(&mut self) -> &mut f32 {
+        &mut self.slide_angle
     }
     fn slide_speed_condition(&self) -> &f32 {
         &self.slide_speed_condition
     }
+    fn slide_speed_condition_mut(&mut self) -> &mut f32 {
+        &mut self.slide_speed_condition
+    }
     fn physical_radius(&self) -> &f32 {
         &self.physical_radius
+    }
+    fn physical_radius_mut(&mut self) -> &mut f32 {
+        &mut self.physical_radius
     }
     fn enter_swim_state_depth(&self) -> &f32 {
         &self.enter_swim_state_depth
     }
+    fn enter_swim_state_depth_mut(&mut self) -> &mut f32 {
+        &mut self.enter_swim_state_depth
+    }
     fn exit_swim_state_depth(&self) -> &f32 {
         &self.exit_swim_state_depth
+    }
+    fn exit_swim_state_depth_mut(&mut self) -> &mut f32 {
+        &mut self.exit_swim_state_depth
     }
     fn input_acceleration(&self) -> &f32 {
         &self.input_acceleration
     }
+    fn input_acceleration_mut(&mut self) -> &mut f32 {
+        &mut self.input_acceleration
+    }
     fn ladder_accept_angle(&self) -> &f32 {
         &self.ladder_accept_angle
+    }
+    fn ladder_accept_angle_mut(&mut self) -> &mut f32 {
+        &mut self.ladder_accept_angle
     }
     fn ladder_accept_angle_pitch(&self) -> &f32 {
         &self.ladder_accept_angle_pitch
     }
+    fn ladder_accept_angle_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.ladder_accept_angle_pitch
+    }
     fn jump_penalty_time(&self) -> &f32 {
         &self.jump_penalty_time
+    }
+    fn jump_penalty_time_mut(&mut self) -> &mut f32 {
+        &mut self.jump_penalty_time
     }
     fn jump_penalty_factor(&self) -> &f32 {
         &self.jump_penalty_factor
     }
+    fn jump_penalty_factor_mut(&mut self) -> &mut f32 {
+        &mut self.jump_penalty_factor
+    }
     fn radius_to_predict_collision_on_characters(&self) -> &f32 {
         &self.radius_to_predict_collision_on_characters
+    }
+    fn radius_to_predict_collision_on_characters_mut(&mut self) -> &mut f32 {
+        &mut self.radius_to_predict_collision_on_characters
     }
     fn allow_pose_change_during_transition(&self) -> &bool {
         &self.allow_pose_change_during_transition
     }
+    fn allow_pose_change_during_transition_mut(&mut self) -> &mut bool {
+        &mut self.allow_pose_change_during_transition
+    }
     fn auto_push_away_from_walls_in_prone(&self) -> &bool {
         &self.auto_push_away_from_walls_in_prone
+    }
+    fn auto_push_away_from_walls_in_prone_mut(&mut self) -> &mut bool {
+        &mut self.auto_push_away_from_walls_in_prone
     }
     fn physics_body(&self) -> &Option<Arc<Mutex<dyn CharacterPhysicsBodyDataTrait>>> {
         &self.physics_body
     }
+    fn physics_body_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterPhysicsBodyDataTrait>>> {
+        &mut self.physics_body
+    }
     fn check_support_raycast_count_moving(&self) -> &i32 {
         &self.check_support_raycast_count_moving
+    }
+    fn check_support_raycast_count_moving_mut(&mut self) -> &mut i32 {
+        &mut self.check_support_raycast_count_moving
     }
     fn check_support_lookahead_distance(&self) -> &f32 {
         &self.check_support_lookahead_distance
     }
+    fn check_support_lookahead_distance_mut(&mut self) -> &mut f32 {
+        &mut self.check_support_lookahead_distance
+    }
     fn ray_start_height_on_ground(&self) -> &f32 {
         &self.ray_start_height_on_ground
+    }
+    fn ray_start_height_on_ground_mut(&mut self) -> &mut f32 {
+        &mut self.ray_start_height_on_ground
     }
     fn ray_end_height_on_ground(&self) -> &f32 {
         &self.ray_end_height_on_ground
     }
+    fn ray_end_height_on_ground_mut(&mut self) -> &mut f32 {
+        &mut self.ray_end_height_on_ground
+    }
     fn ray_start_height_in_air(&self) -> &f32 {
         &self.ray_start_height_in_air
+    }
+    fn ray_start_height_in_air_mut(&mut self) -> &mut f32 {
+        &mut self.ray_start_height_in_air
     }
     fn ray_end_height_in_air(&self) -> &f32 {
         &self.ray_end_height_in_air
     }
+    fn ray_end_height_in_air_mut(&mut self) -> &mut f32 {
+        &mut self.ray_end_height_in_air
+    }
     fn speed_for_moving_ray_casts(&self) -> &f32 {
         &self.speed_for_moving_ray_casts
+    }
+    fn speed_for_moving_ray_casts_mut(&mut self) -> &mut f32 {
+        &mut self.speed_for_moving_ray_casts
     }
 }
 
@@ -8709,12 +11049,12 @@ impl super::core::AssetTrait for CharacterPhysicsData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8920,6 +11260,15 @@ impl TypeObject for CharacterPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8941,11 +11290,15 @@ pub struct CharacterPhysicsBodyData {
 
 pub trait CharacterPhysicsBodyDataTrait: PhysicsBodyDataTrait {
     fn character_physics(&self) -> &Option<Arc<Mutex<dyn CharacterPhysicsDataTrait>>>;
+    fn character_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterPhysicsDataTrait>>>;
 }
 
 impl CharacterPhysicsBodyDataTrait for CharacterPhysicsBodyData {
     fn character_physics(&self) -> &Option<Arc<Mutex<dyn CharacterPhysicsDataTrait>>> {
         &self.character_physics
+    }
+    fn character_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterPhysicsDataTrait>>> {
+        &mut self.character_physics
     }
 }
 
@@ -8953,38 +11306,74 @@ impl PhysicsBodyDataTrait for CharacterPhysicsBodyData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn rigid_body_type(&self) -> &RigidBodyType {
         self._glacier_base.rigid_body_type()
+    }
+    fn rigid_body_type_mut(&mut self) -> &mut RigidBodyType {
+        self._glacier_base.rigid_body_type_mut()
     }
     fn collision_layer(&self) -> &RigidBodyCollisionLayer {
         self._glacier_base.collision_layer()
     }
+    fn collision_layer_mut(&mut self) -> &mut RigidBodyCollisionLayer {
+        self._glacier_base.collision_layer_mut()
+    }
     fn motion_type(&self) -> &RigidBodyMotionType {
         self._glacier_base.motion_type()
+    }
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType {
+        self._glacier_base.motion_type_mut()
     }
     fn quality_type(&self) -> &RigidBodyQualityType {
         self._glacier_base.quality_type()
     }
+    fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
+        self._glacier_base.quality_type_mut()
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.asset()
+    }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
         self._glacier_base.transform_index()
     }
+    fn transform_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.transform_index_mut()
+    }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
+    }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
     }
     fn collision_root_shape_index(&self) -> &u8 {
         self._glacier_base.collision_root_shape_index()
     }
+    fn collision_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.collision_root_shape_index_mut()
+    }
     fn raycast_root_shape_index(&self) -> &u8 {
         self._glacier_base.raycast_root_shape_index()
+    }
+    fn raycast_root_shape_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.raycast_root_shape_index_mut()
     }
     fn add_to_spatial_query_manager(&self) -> &bool {
         self._glacier_base.add_to_spatial_query_manager()
     }
+    fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
+        self._glacier_base.add_to_spatial_query_manager_mut()
+    }
     fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
         self._glacier_base.physics_callback_handler()
+    }
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+        self._glacier_base.physics_callback_handler_mut()
     }
 }
 
@@ -8998,15 +11387,15 @@ impl super::core::DataBusPeerTrait for CharacterPhysicsBodyData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CharacterPhysicsBodyData {
 }
 
 impl super::core::DataContainerTrait for CharacterPhysicsBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9038,6 +11427,15 @@ impl TypeObject for CharacterPhysicsBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9068,47 +11466,87 @@ pub struct ParachuteStateData {
 
 pub trait ParachuteStateDataTrait: CharacterStateDataTrait {
     fn deploy_time(&self) -> &f32;
+    fn deploy_time_mut(&mut self) -> &mut f32;
     fn terminal_velocity(&self) -> &f32;
+    fn terminal_velocity_mut(&mut self) -> &mut f32;
     fn forward_drag_coefficient(&self) -> &f32;
+    fn forward_drag_coefficient_mut(&mut self) -> &mut f32;
     fn angle_of_attack(&self) -> &f32;
+    fn angle_of_attack_mut(&mut self) -> &mut f32;
     fn bank_offset(&self) -> &f32;
+    fn bank_offset_mut(&mut self) -> &mut f32;
     fn throttle_offset(&self) -> &f32;
+    fn throttle_offset_mut(&mut self) -> &mut f32;
     fn brake_offset(&self) -> &f32;
+    fn brake_offset_mut(&mut self) -> &mut f32;
     fn max_roll_velocity(&self) -> &f32;
+    fn max_roll_velocity_mut(&mut self) -> &mut f32;
     fn max_pitch_velocity(&self) -> &f32;
+    fn max_pitch_velocity_mut(&mut self) -> &mut f32;
     fn max_yaw_velocity(&self) -> &f32;
+    fn max_yaw_velocity_mut(&mut self) -> &mut f32;
 }
 
 impl ParachuteStateDataTrait for ParachuteStateData {
     fn deploy_time(&self) -> &f32 {
         &self.deploy_time
     }
+    fn deploy_time_mut(&mut self) -> &mut f32 {
+        &mut self.deploy_time
+    }
     fn terminal_velocity(&self) -> &f32 {
         &self.terminal_velocity
+    }
+    fn terminal_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.terminal_velocity
     }
     fn forward_drag_coefficient(&self) -> &f32 {
         &self.forward_drag_coefficient
     }
+    fn forward_drag_coefficient_mut(&mut self) -> &mut f32 {
+        &mut self.forward_drag_coefficient
+    }
     fn angle_of_attack(&self) -> &f32 {
         &self.angle_of_attack
+    }
+    fn angle_of_attack_mut(&mut self) -> &mut f32 {
+        &mut self.angle_of_attack
     }
     fn bank_offset(&self) -> &f32 {
         &self.bank_offset
     }
+    fn bank_offset_mut(&mut self) -> &mut f32 {
+        &mut self.bank_offset
+    }
     fn throttle_offset(&self) -> &f32 {
         &self.throttle_offset
+    }
+    fn throttle_offset_mut(&mut self) -> &mut f32 {
+        &mut self.throttle_offset
     }
     fn brake_offset(&self) -> &f32 {
         &self.brake_offset
     }
+    fn brake_offset_mut(&mut self) -> &mut f32 {
+        &mut self.brake_offset
+    }
     fn max_roll_velocity(&self) -> &f32 {
         &self.max_roll_velocity
+    }
+    fn max_roll_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.max_roll_velocity
     }
     fn max_pitch_velocity(&self) -> &f32 {
         &self.max_pitch_velocity
     }
+    fn max_pitch_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.max_pitch_velocity
+    }
     fn max_yaw_velocity(&self) -> &f32 {
         &self.max_yaw_velocity
+    }
+    fn max_yaw_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.max_yaw_velocity
     }
 }
 
@@ -9116,12 +11554,12 @@ impl CharacterStateDataTrait for ParachuteStateData {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
         self._glacier_base.pose_info()
     }
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+        self._glacier_base.pose_info_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ParachuteStateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PARACHUTESTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9207,6 +11645,15 @@ impl TypeObject for ParachuteStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9228,11 +11675,15 @@ pub struct SwimmingStateData {
 
 pub trait SwimmingStateDataTrait: CharacterStateDataTrait {
     fn body_under_water(&self) -> &f32;
+    fn body_under_water_mut(&mut self) -> &mut f32;
 }
 
 impl SwimmingStateDataTrait for SwimmingStateData {
     fn body_under_water(&self) -> &f32 {
         &self.body_under_water
+    }
+    fn body_under_water_mut(&mut self) -> &mut f32 {
+        &mut self.body_under_water
     }
 }
 
@@ -9240,12 +11691,12 @@ impl CharacterStateDataTrait for SwimmingStateData {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
         self._glacier_base.pose_info()
     }
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+        self._glacier_base.pose_info_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SwimmingStateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SWIMMINGSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9277,6 +11728,15 @@ impl TypeObject for SwimmingStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9299,15 +11759,23 @@ pub struct JumpStateData {
 
 pub trait JumpStateDataTrait: CharacterStateDataTrait {
     fn jump_height(&self) -> &f32;
+    fn jump_height_mut(&mut self) -> &mut f32;
     fn jump_effect_size(&self) -> &f32;
+    fn jump_effect_size_mut(&mut self) -> &mut f32;
 }
 
 impl JumpStateDataTrait for JumpStateData {
     fn jump_height(&self) -> &f32 {
         &self.jump_height
     }
+    fn jump_height_mut(&mut self) -> &mut f32 {
+        &mut self.jump_height
+    }
     fn jump_effect_size(&self) -> &f32 {
         &self.jump_effect_size
+    }
+    fn jump_effect_size_mut(&mut self) -> &mut f32 {
+        &mut self.jump_effect_size
     }
 }
 
@@ -9315,12 +11783,12 @@ impl CharacterStateDataTrait for JumpStateData {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
         self._glacier_base.pose_info()
     }
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+        self._glacier_base.pose_info_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for JumpStateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static JUMPSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9358,6 +11826,15 @@ impl TypeObject for JumpStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9388,47 +11865,87 @@ pub struct ClimbingStateData {
 
 pub trait ClimbingStateDataTrait: CharacterStateDataTrait {
     fn lateral_input_scale(&self) -> &f32;
+    fn lateral_input_scale_mut(&mut self) -> &mut f32;
     fn down_angle_limit(&self) -> &f32;
+    fn down_angle_limit_mut(&mut self) -> &mut f32;
     fn drop_off_angle(&self) -> &f32;
+    fn drop_off_angle_mut(&mut self) -> &mut f32;
     fn attraction_velocity(&self) -> &f32;
+    fn attraction_velocity_mut(&mut self) -> &mut f32;
     fn push_away_velocity(&self) -> &f32;
+    fn push_away_velocity_mut(&mut self) -> &mut f32;
     fn climb_height_offset(&self) -> &f32;
+    fn climb_height_offset_mut(&mut self) -> &mut f32;
     fn climb_off_vertical_distance(&self) -> &f32;
+    fn climb_off_vertical_distance_mut(&mut self) -> &mut f32;
     fn climb_off_vertical_time(&self) -> &f32;
+    fn climb_off_vertical_time_mut(&mut self) -> &mut f32;
     fn climb_off_horizontal_distance(&self) -> &f32;
+    fn climb_off_horizontal_distance_mut(&mut self) -> &mut f32;
     fn climb_off_horizontal_time(&self) -> &f32;
+    fn climb_off_horizontal_time_mut(&mut self) -> &mut f32;
 }
 
 impl ClimbingStateDataTrait for ClimbingStateData {
     fn lateral_input_scale(&self) -> &f32 {
         &self.lateral_input_scale
     }
+    fn lateral_input_scale_mut(&mut self) -> &mut f32 {
+        &mut self.lateral_input_scale
+    }
     fn down_angle_limit(&self) -> &f32 {
         &self.down_angle_limit
+    }
+    fn down_angle_limit_mut(&mut self) -> &mut f32 {
+        &mut self.down_angle_limit
     }
     fn drop_off_angle(&self) -> &f32 {
         &self.drop_off_angle
     }
+    fn drop_off_angle_mut(&mut self) -> &mut f32 {
+        &mut self.drop_off_angle
+    }
     fn attraction_velocity(&self) -> &f32 {
         &self.attraction_velocity
+    }
+    fn attraction_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.attraction_velocity
     }
     fn push_away_velocity(&self) -> &f32 {
         &self.push_away_velocity
     }
+    fn push_away_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.push_away_velocity
+    }
     fn climb_height_offset(&self) -> &f32 {
         &self.climb_height_offset
+    }
+    fn climb_height_offset_mut(&mut self) -> &mut f32 {
+        &mut self.climb_height_offset
     }
     fn climb_off_vertical_distance(&self) -> &f32 {
         &self.climb_off_vertical_distance
     }
+    fn climb_off_vertical_distance_mut(&mut self) -> &mut f32 {
+        &mut self.climb_off_vertical_distance
+    }
     fn climb_off_vertical_time(&self) -> &f32 {
         &self.climb_off_vertical_time
+    }
+    fn climb_off_vertical_time_mut(&mut self) -> &mut f32 {
+        &mut self.climb_off_vertical_time
     }
     fn climb_off_horizontal_distance(&self) -> &f32 {
         &self.climb_off_horizontal_distance
     }
+    fn climb_off_horizontal_distance_mut(&mut self) -> &mut f32 {
+        &mut self.climb_off_horizontal_distance
+    }
     fn climb_off_horizontal_time(&self) -> &f32 {
         &self.climb_off_horizontal_time
+    }
+    fn climb_off_horizontal_time_mut(&mut self) -> &mut f32 {
+        &mut self.climb_off_horizontal_time
     }
 }
 
@@ -9436,12 +11953,12 @@ impl CharacterStateDataTrait for ClimbingStateData {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
         self._glacier_base.pose_info()
     }
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+        self._glacier_base.pose_info_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ClimbingStateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLIMBINGSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9527,6 +12044,15 @@ impl TypeObject for ClimbingStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9555,12 +12081,12 @@ impl CharacterStateDataTrait for FallingStateData {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
         self._glacier_base.pose_info()
     }
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+        self._glacier_base.pose_info_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FallingStateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FALLINGSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9586,6 +12112,15 @@ impl TypeObject for FallingStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9607,11 +12142,15 @@ pub struct InAirStateData {
 
 pub trait InAirStateDataTrait: CharacterStateDataTrait {
     fn free_fall_velocity(&self) -> &f32;
+    fn free_fall_velocity_mut(&mut self) -> &mut f32;
 }
 
 impl InAirStateDataTrait for InAirStateData {
     fn free_fall_velocity(&self) -> &f32 {
         &self.free_fall_velocity
+    }
+    fn free_fall_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.free_fall_velocity
     }
 }
 
@@ -9619,12 +12158,12 @@ impl CharacterStateDataTrait for InAirStateData {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
         self._glacier_base.pose_info()
     }
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+        self._glacier_base.pose_info_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for InAirStateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INAIRSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9655,6 +12194,15 @@ impl TypeObject for InAirStateData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9691,67 +12239,127 @@ pub struct OnGroundStateData {
 
 pub trait OnGroundStateDataTrait: CharacterStateDataTrait {
     fn jump_delay(&self) -> &f32;
+    fn jump_delay_mut(&mut self) -> &mut f32;
     fn jump_stamina_penalty(&self) -> &f32;
+    fn jump_stamina_penalty_mut(&mut self) -> &mut f32;
     fn allowed_distance_from_ground(&self) -> &f32;
+    fn allowed_distance_from_ground_mut(&mut self) -> &mut f32;
     fn fall_with_gravity_distance_from_ground(&self) -> &f32;
+    fn fall_with_gravity_distance_from_ground_mut(&mut self) -> &mut f32;
     fn clamp_surface_normal_angle(&self) -> &f32;
+    fn clamp_surface_normal_angle_mut(&mut self) -> &mut f32;
     fn ground_hugging(&self) -> &bool;
+    fn ground_hugging_mut(&mut self) -> &mut bool;
     fn limit_downward_velocity(&self) -> &bool;
+    fn limit_downward_velocity_mut(&mut self) -> &mut bool;
     fn uphill_speed_modifier(&self) -> &f32;
+    fn uphill_speed_modifier_mut(&mut self) -> &mut f32;
     fn uphill_speed_modifier_max_angle(&self) -> &f32;
+    fn uphill_speed_modifier_max_angle_mut(&mut self) -> &mut f32;
     fn downhill_speed_modifier(&self) -> &f32;
+    fn downhill_speed_modifier_mut(&mut self) -> &mut f32;
     fn downhill_speed_modifier_max_angle(&self) -> &f32;
+    fn downhill_speed_modifier_max_angle_mut(&mut self) -> &mut f32;
     fn hill_speed_modifier_dead_zone(&self) -> &f32;
+    fn hill_speed_modifier_dead_zone_mut(&mut self) -> &mut f32;
     fn character_spring_scale_moving_under_terrain(&self) -> &f32;
+    fn character_spring_scale_moving_under_terrain_mut(&mut self) -> &mut f32;
     fn character_spring_scale_moving_over_terrain(&self) -> &f32;
+    fn character_spring_scale_moving_over_terrain_mut(&mut self) -> &mut f32;
     fn character_spring_scale_still(&self) -> &f32;
+    fn character_spring_scale_still_mut(&mut self) -> &mut f32;
 }
 
 impl OnGroundStateDataTrait for OnGroundStateData {
     fn jump_delay(&self) -> &f32 {
         &self.jump_delay
     }
+    fn jump_delay_mut(&mut self) -> &mut f32 {
+        &mut self.jump_delay
+    }
     fn jump_stamina_penalty(&self) -> &f32 {
         &self.jump_stamina_penalty
+    }
+    fn jump_stamina_penalty_mut(&mut self) -> &mut f32 {
+        &mut self.jump_stamina_penalty
     }
     fn allowed_distance_from_ground(&self) -> &f32 {
         &self.allowed_distance_from_ground
     }
+    fn allowed_distance_from_ground_mut(&mut self) -> &mut f32 {
+        &mut self.allowed_distance_from_ground
+    }
     fn fall_with_gravity_distance_from_ground(&self) -> &f32 {
         &self.fall_with_gravity_distance_from_ground
+    }
+    fn fall_with_gravity_distance_from_ground_mut(&mut self) -> &mut f32 {
+        &mut self.fall_with_gravity_distance_from_ground
     }
     fn clamp_surface_normal_angle(&self) -> &f32 {
         &self.clamp_surface_normal_angle
     }
+    fn clamp_surface_normal_angle_mut(&mut self) -> &mut f32 {
+        &mut self.clamp_surface_normal_angle
+    }
     fn ground_hugging(&self) -> &bool {
         &self.ground_hugging
+    }
+    fn ground_hugging_mut(&mut self) -> &mut bool {
+        &mut self.ground_hugging
     }
     fn limit_downward_velocity(&self) -> &bool {
         &self.limit_downward_velocity
     }
+    fn limit_downward_velocity_mut(&mut self) -> &mut bool {
+        &mut self.limit_downward_velocity
+    }
     fn uphill_speed_modifier(&self) -> &f32 {
         &self.uphill_speed_modifier
+    }
+    fn uphill_speed_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.uphill_speed_modifier
     }
     fn uphill_speed_modifier_max_angle(&self) -> &f32 {
         &self.uphill_speed_modifier_max_angle
     }
+    fn uphill_speed_modifier_max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.uphill_speed_modifier_max_angle
+    }
     fn downhill_speed_modifier(&self) -> &f32 {
         &self.downhill_speed_modifier
+    }
+    fn downhill_speed_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.downhill_speed_modifier
     }
     fn downhill_speed_modifier_max_angle(&self) -> &f32 {
         &self.downhill_speed_modifier_max_angle
     }
+    fn downhill_speed_modifier_max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.downhill_speed_modifier_max_angle
+    }
     fn hill_speed_modifier_dead_zone(&self) -> &f32 {
         &self.hill_speed_modifier_dead_zone
+    }
+    fn hill_speed_modifier_dead_zone_mut(&mut self) -> &mut f32 {
+        &mut self.hill_speed_modifier_dead_zone
     }
     fn character_spring_scale_moving_under_terrain(&self) -> &f32 {
         &self.character_spring_scale_moving_under_terrain
     }
+    fn character_spring_scale_moving_under_terrain_mut(&mut self) -> &mut f32 {
+        &mut self.character_spring_scale_moving_under_terrain
+    }
     fn character_spring_scale_moving_over_terrain(&self) -> &f32 {
         &self.character_spring_scale_moving_over_terrain
     }
+    fn character_spring_scale_moving_over_terrain_mut(&mut self) -> &mut f32 {
+        &mut self.character_spring_scale_moving_over_terrain
+    }
     fn character_spring_scale_still(&self) -> &f32 {
         &self.character_spring_scale_still
+    }
+    fn character_spring_scale_still_mut(&mut self) -> &mut f32 {
+        &mut self.character_spring_scale_still
     }
 }
 
@@ -9759,12 +12367,12 @@ impl CharacterStateDataTrait for OnGroundStateData {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
         self._glacier_base.pose_info()
     }
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+        self._glacier_base.pose_info_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for OnGroundStateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ONGROUNDSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9880,6 +12488,15 @@ impl TypeObject for OnGroundStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9904,23 +12521,39 @@ pub struct SlidingStateData {
 
 pub trait SlidingStateDataTrait: CharacterStateDataTrait {
     fn horizontal_input_scale(&self) -> &f32;
+    fn horizontal_input_scale_mut(&mut self) -> &mut f32;
     fn gravity_scale(&self) -> &f32;
+    fn gravity_scale_mut(&mut self) -> &mut f32;
     fn character_spring_scale(&self) -> &f32;
+    fn character_spring_scale_mut(&mut self) -> &mut f32;
     fn allowed_distance_from_ground(&self) -> &f32;
+    fn allowed_distance_from_ground_mut(&mut self) -> &mut f32;
 }
 
 impl SlidingStateDataTrait for SlidingStateData {
     fn horizontal_input_scale(&self) -> &f32 {
         &self.horizontal_input_scale
     }
+    fn horizontal_input_scale_mut(&mut self) -> &mut f32 {
+        &mut self.horizontal_input_scale
+    }
     fn gravity_scale(&self) -> &f32 {
         &self.gravity_scale
+    }
+    fn gravity_scale_mut(&mut self) -> &mut f32 {
+        &mut self.gravity_scale
     }
     fn character_spring_scale(&self) -> &f32 {
         &self.character_spring_scale
     }
+    fn character_spring_scale_mut(&mut self) -> &mut f32 {
+        &mut self.character_spring_scale
+    }
     fn allowed_distance_from_ground(&self) -> &f32 {
         &self.allowed_distance_from_ground
+    }
+    fn allowed_distance_from_ground_mut(&mut self) -> &mut f32 {
+        &mut self.allowed_distance_from_ground
     }
 }
 
@@ -9928,12 +12561,12 @@ impl CharacterStateDataTrait for SlidingStateData {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
         self._glacier_base.pose_info()
     }
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+        self._glacier_base.pose_info_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SlidingStateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SLIDINGSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9983,6 +12616,15 @@ impl TypeObject for SlidingStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10005,15 +12647,23 @@ pub struct AnimationControlledStateData {
 
 pub trait AnimationControlledStateDataTrait: CharacterStateDataTrait {
     fn up_normal_tolerance(&self) -> &f32;
+    fn up_normal_tolerance_mut(&mut self) -> &mut f32;
     fn character_spring_strength(&self) -> &f32;
+    fn character_spring_strength_mut(&mut self) -> &mut f32;
 }
 
 impl AnimationControlledStateDataTrait for AnimationControlledStateData {
     fn up_normal_tolerance(&self) -> &f32 {
         &self.up_normal_tolerance
     }
+    fn up_normal_tolerance_mut(&mut self) -> &mut f32 {
+        &mut self.up_normal_tolerance
+    }
     fn character_spring_strength(&self) -> &f32 {
         &self.character_spring_strength
+    }
+    fn character_spring_strength_mut(&mut self) -> &mut f32 {
+        &mut self.character_spring_strength
     }
 }
 
@@ -10021,12 +12671,12 @@ impl CharacterStateDataTrait for AnimationControlledStateData {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
         self._glacier_base.pose_info()
     }
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+        self._glacier_base.pose_info_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AnimationControlledStateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANIMATIONCONTROLLEDSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10064,6 +12714,15 @@ impl TypeObject for AnimationControlledStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10085,18 +12744,19 @@ pub struct CharacterStateData {
 
 pub trait CharacterStateDataTrait: super::core::DataContainerTrait {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>>;
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>>;
 }
 
 impl CharacterStateDataTrait for CharacterStateData {
     fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
         &self.pose_info
     }
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+        &mut self.pose_info
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterStateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10127,6 +12787,15 @@ impl TypeObject for CharacterStateData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10176,6 +12845,15 @@ impl TypeObject for CharacterStateType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10200,30 +12878,43 @@ pub struct CharacterSprintData {
 
 pub trait CharacterSprintDataTrait: super::core::DataContainerTrait {
     fn sprint_power_decrease_per_second(&self) -> &f32;
+    fn sprint_power_decrease_per_second_mut(&mut self) -> &mut f32;
     fn sprint_power_increase_per_second(&self) -> &f32;
+    fn sprint_power_increase_per_second_mut(&mut self) -> &mut f32;
     fn sprint_minimum_power(&self) -> &f32;
+    fn sprint_minimum_power_mut(&mut self) -> &mut f32;
     fn allow_continous_sprinting(&self) -> &bool;
+    fn allow_continous_sprinting_mut(&mut self) -> &mut bool;
 }
 
 impl CharacterSprintDataTrait for CharacterSprintData {
     fn sprint_power_decrease_per_second(&self) -> &f32 {
         &self.sprint_power_decrease_per_second
     }
+    fn sprint_power_decrease_per_second_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_power_decrease_per_second
+    }
     fn sprint_power_increase_per_second(&self) -> &f32 {
         &self.sprint_power_increase_per_second
+    }
+    fn sprint_power_increase_per_second_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_power_increase_per_second
     }
     fn sprint_minimum_power(&self) -> &f32 {
         &self.sprint_minimum_power
     }
+    fn sprint_minimum_power_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_minimum_power
+    }
     fn allow_continous_sprinting(&self) -> &bool {
         &self.allow_continous_sprinting
+    }
+    fn allow_continous_sprinting_mut(&mut self) -> &mut bool {
+        &mut self.allow_continous_sprinting
     }
 }
 
 impl super::core::DataContainerTrait for CharacterSprintData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSPRINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10273,6 +12964,15 @@ impl TypeObject for CharacterSprintData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10303,54 +13003,91 @@ pub struct CharacterStatePoseInfo {
 
 pub trait CharacterStatePoseInfoTrait: super::core::DataContainerTrait {
     fn pose_type(&self) -> &CharacterPoseType;
+    fn pose_type_mut(&mut self) -> &mut CharacterPoseType;
     fn velocity(&self) -> &f32;
+    fn velocity_mut(&mut self) -> &mut f32;
     fn acceleration_gain(&self) -> &f32;
+    fn acceleration_gain_mut(&mut self) -> &mut f32;
     fn deceleration_gain(&self) -> &f32;
+    fn deceleration_gain_mut(&mut self) -> &mut f32;
     fn direction_change_acceleration_gain(&self) -> &f32;
+    fn direction_change_acceleration_gain_mut(&mut self) -> &mut f32;
     fn direction_change_threshold(&self) -> &f32;
+    fn direction_change_threshold_mut(&mut self) -> &mut f32;
     fn sprint_gain(&self) -> &f32;
+    fn sprint_gain_mut(&mut self) -> &mut f32;
     fn sprint_multiplier(&self) -> &f32;
+    fn sprint_multiplier_mut(&mut self) -> &mut f32;
     fn speed_modifier(&self) -> &SpeedModifierData;
+    fn speed_modifier_mut(&mut self) -> &mut SpeedModifierData;
     fn shallow_water_multiplier(&self) -> &f32;
+    fn shallow_water_multiplier_mut(&mut self) -> &mut f32;
 }
 
 impl CharacterStatePoseInfoTrait for CharacterStatePoseInfo {
     fn pose_type(&self) -> &CharacterPoseType {
         &self.pose_type
     }
+    fn pose_type_mut(&mut self) -> &mut CharacterPoseType {
+        &mut self.pose_type
+    }
     fn velocity(&self) -> &f32 {
         &self.velocity
+    }
+    fn velocity_mut(&mut self) -> &mut f32 {
+        &mut self.velocity
     }
     fn acceleration_gain(&self) -> &f32 {
         &self.acceleration_gain
     }
+    fn acceleration_gain_mut(&mut self) -> &mut f32 {
+        &mut self.acceleration_gain
+    }
     fn deceleration_gain(&self) -> &f32 {
         &self.deceleration_gain
+    }
+    fn deceleration_gain_mut(&mut self) -> &mut f32 {
+        &mut self.deceleration_gain
     }
     fn direction_change_acceleration_gain(&self) -> &f32 {
         &self.direction_change_acceleration_gain
     }
+    fn direction_change_acceleration_gain_mut(&mut self) -> &mut f32 {
+        &mut self.direction_change_acceleration_gain
+    }
     fn direction_change_threshold(&self) -> &f32 {
         &self.direction_change_threshold
+    }
+    fn direction_change_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.direction_change_threshold
     }
     fn sprint_gain(&self) -> &f32 {
         &self.sprint_gain
     }
+    fn sprint_gain_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_gain
+    }
     fn sprint_multiplier(&self) -> &f32 {
         &self.sprint_multiplier
+    }
+    fn sprint_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_multiplier
     }
     fn speed_modifier(&self) -> &SpeedModifierData {
         &self.speed_modifier
     }
+    fn speed_modifier_mut(&mut self) -> &mut SpeedModifierData {
+        &mut self.speed_modifier
+    }
     fn shallow_water_multiplier(&self) -> &f32 {
         &self.shallow_water_multiplier
+    }
+    fn shallow_water_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.shallow_water_multiplier
     }
 }
 
 impl super::core::DataContainerTrait for CharacterStatePoseInfo {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPOSEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10436,6 +13173,15 @@ impl TypeObject for CharacterStatePoseInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10459,23 +13205,39 @@ pub struct SpeedModifierData {
 
 pub trait SpeedModifierDataTrait: TypeObject {
     fn forward_constant(&self) -> &f32;
+    fn forward_constant_mut(&mut self) -> &mut f32;
     fn backward_constant(&self) -> &f32;
+    fn backward_constant_mut(&mut self) -> &mut f32;
     fn left_constant(&self) -> &f32;
+    fn left_constant_mut(&mut self) -> &mut f32;
     fn right_constant(&self) -> &f32;
+    fn right_constant_mut(&mut self) -> &mut f32;
 }
 
 impl SpeedModifierDataTrait for SpeedModifierData {
     fn forward_constant(&self) -> &f32 {
         &self.forward_constant
     }
+    fn forward_constant_mut(&mut self) -> &mut f32 {
+        &mut self.forward_constant
+    }
     fn backward_constant(&self) -> &f32 {
         &self.backward_constant
+    }
+    fn backward_constant_mut(&mut self) -> &mut f32 {
+        &mut self.backward_constant
     }
     fn left_constant(&self) -> &f32 {
         &self.left_constant
     }
+    fn left_constant_mut(&mut self) -> &mut f32 {
+        &mut self.left_constant
+    }
     fn right_constant(&self) -> &f32 {
         &self.right_constant
+    }
+    fn right_constant_mut(&mut self) -> &mut f32 {
+        &mut self.right_constant
     }
 }
 
@@ -10525,6 +13287,15 @@ impl TypeObject for SpeedModifierData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10558,66 +13329,115 @@ pub struct CharacterPoseData {
 
 pub trait CharacterPoseDataTrait: super::core::DataContainerTrait {
     fn eye_position(&self) -> &super::core::Vec3;
+    fn eye_position_mut(&mut self) -> &mut super::core::Vec3;
     fn throttle_modifier_curve(&self) -> &Vec<super::core::Vec2>;
+    fn throttle_modifier_curve_mut(&mut self) -> &mut Vec<super::core::Vec2>;
     fn step_height(&self) -> &f32;
+    fn step_height_mut(&mut self) -> &mut f32;
     fn height(&self) -> &f32;
+    fn height_mut(&mut self) -> &mut f32;
     fn transition_times(&self) -> &Vec<PoseTransitionTime>;
+    fn transition_times_mut(&mut self) -> &mut Vec<PoseTransitionTime>;
     fn look_constraints(&self) -> &LookConstraintsData;
+    fn look_constraints_mut(&mut self) -> &mut LookConstraintsData;
     fn pose_type(&self) -> &CharacterPoseType;
+    fn pose_type_mut(&mut self) -> &mut CharacterPoseType;
     fn collision_type(&self) -> &CharacterPoseCollisionType;
+    fn collision_type_mut(&mut self) -> &mut CharacterPoseCollisionType;
     fn collision_box_min_expand(&self) -> &super::core::Vec3;
+    fn collision_box_min_expand_mut(&mut self) -> &mut super::core::Vec3;
     fn collision_box_max_expand(&self) -> &super::core::Vec3;
+    fn collision_box_max_expand_mut(&mut self) -> &mut super::core::Vec3;
     fn raycast_radius_padding(&self) -> &f32;
+    fn raycast_radius_padding_mut(&mut self) -> &mut f32;
     fn raycast_height_padding(&self) -> &f32;
+    fn raycast_height_padding_mut(&mut self) -> &mut f32;
     fn raycast_offset(&self) -> &super::core::Vec3;
+    fn raycast_offset_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl CharacterPoseDataTrait for CharacterPoseData {
     fn eye_position(&self) -> &super::core::Vec3 {
         &self.eye_position
     }
+    fn eye_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.eye_position
+    }
     fn throttle_modifier_curve(&self) -> &Vec<super::core::Vec2> {
         &self.throttle_modifier_curve
+    }
+    fn throttle_modifier_curve_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+        &mut self.throttle_modifier_curve
     }
     fn step_height(&self) -> &f32 {
         &self.step_height
     }
+    fn step_height_mut(&mut self) -> &mut f32 {
+        &mut self.step_height
+    }
     fn height(&self) -> &f32 {
         &self.height
+    }
+    fn height_mut(&mut self) -> &mut f32 {
+        &mut self.height
     }
     fn transition_times(&self) -> &Vec<PoseTransitionTime> {
         &self.transition_times
     }
+    fn transition_times_mut(&mut self) -> &mut Vec<PoseTransitionTime> {
+        &mut self.transition_times
+    }
     fn look_constraints(&self) -> &LookConstraintsData {
         &self.look_constraints
+    }
+    fn look_constraints_mut(&mut self) -> &mut LookConstraintsData {
+        &mut self.look_constraints
     }
     fn pose_type(&self) -> &CharacterPoseType {
         &self.pose_type
     }
+    fn pose_type_mut(&mut self) -> &mut CharacterPoseType {
+        &mut self.pose_type
+    }
     fn collision_type(&self) -> &CharacterPoseCollisionType {
         &self.collision_type
+    }
+    fn collision_type_mut(&mut self) -> &mut CharacterPoseCollisionType {
+        &mut self.collision_type
     }
     fn collision_box_min_expand(&self) -> &super::core::Vec3 {
         &self.collision_box_min_expand
     }
+    fn collision_box_min_expand_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.collision_box_min_expand
+    }
     fn collision_box_max_expand(&self) -> &super::core::Vec3 {
         &self.collision_box_max_expand
+    }
+    fn collision_box_max_expand_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.collision_box_max_expand
     }
     fn raycast_radius_padding(&self) -> &f32 {
         &self.raycast_radius_padding
     }
+    fn raycast_radius_padding_mut(&mut self) -> &mut f32 {
+        &mut self.raycast_radius_padding
+    }
     fn raycast_height_padding(&self) -> &f32 {
         &self.raycast_height_padding
+    }
+    fn raycast_height_padding_mut(&mut self) -> &mut f32 {
+        &mut self.raycast_height_padding
     }
     fn raycast_offset(&self) -> &super::core::Vec3 {
         &self.raycast_offset
     }
+    fn raycast_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.raycast_offset
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterPoseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERPOSEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10721,6 +13541,15 @@ impl TypeObject for CharacterPoseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10742,15 +13571,23 @@ pub struct PoseTransitionTime {
 
 pub trait PoseTransitionTimeTrait: TypeObject {
     fn to_pose(&self) -> &CharacterPoseType;
+    fn to_pose_mut(&mut self) -> &mut CharacterPoseType;
     fn transition_time(&self) -> &f32;
+    fn transition_time_mut(&mut self) -> &mut f32;
 }
 
 impl PoseTransitionTimeTrait for PoseTransitionTime {
     fn to_pose(&self) -> &CharacterPoseType {
         &self.to_pose
     }
+    fn to_pose_mut(&mut self) -> &mut CharacterPoseType {
+        &mut self.to_pose
+    }
     fn transition_time(&self) -> &f32 {
         &self.transition_time
+    }
+    fn transition_time_mut(&mut self) -> &mut f32 {
+        &mut self.transition_time
     }
 }
 
@@ -10787,6 +13624,15 @@ impl TypeObject for PoseTransitionTime {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -10828,6 +13674,15 @@ impl TypeObject for CharacterPoseCollisionType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10868,6 +13723,15 @@ impl TypeObject for CharacterPoseType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10890,19 +13754,31 @@ pub struct CharacterPoseConstraintsData {
 
 pub trait CharacterPoseConstraintsDataTrait: TypeObject {
     fn stand_pose(&self) -> &bool;
+    fn stand_pose_mut(&mut self) -> &mut bool;
     fn crouch_pose(&self) -> &bool;
+    fn crouch_pose_mut(&mut self) -> &mut bool;
     fn prone_pose(&self) -> &bool;
+    fn prone_pose_mut(&mut self) -> &mut bool;
 }
 
 impl CharacterPoseConstraintsDataTrait for CharacterPoseConstraintsData {
     fn stand_pose(&self) -> &bool {
         &self.stand_pose
     }
+    fn stand_pose_mut(&mut self) -> &mut bool {
+        &mut self.stand_pose
+    }
     fn crouch_pose(&self) -> &bool {
         &self.crouch_pose
     }
+    fn crouch_pose_mut(&mut self) -> &mut bool {
+        &mut self.crouch_pose
+    }
     fn prone_pose(&self) -> &bool {
         &self.prone_pose
+    }
+    fn prone_pose_mut(&mut self) -> &mut bool {
+        &mut self.prone_pose
     }
 }
 
@@ -10946,6 +13822,15 @@ impl TypeObject for CharacterPoseConstraintsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10969,23 +13854,39 @@ pub struct LookConstraintsData {
 
 pub trait LookConstraintsDataTrait: TypeObject {
     fn min_look_yaw(&self) -> &f32;
+    fn min_look_yaw_mut(&mut self) -> &mut f32;
     fn max_look_yaw(&self) -> &f32;
+    fn max_look_yaw_mut(&mut self) -> &mut f32;
     fn min_look_pitch(&self) -> &f32;
+    fn min_look_pitch_mut(&mut self) -> &mut f32;
     fn max_look_pitch(&self) -> &f32;
+    fn max_look_pitch_mut(&mut self) -> &mut f32;
 }
 
 impl LookConstraintsDataTrait for LookConstraintsData {
     fn min_look_yaw(&self) -> &f32 {
         &self.min_look_yaw
     }
+    fn min_look_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.min_look_yaw
+    }
     fn max_look_yaw(&self) -> &f32 {
         &self.max_look_yaw
+    }
+    fn max_look_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.max_look_yaw
     }
     fn min_look_pitch(&self) -> &f32 {
         &self.min_look_pitch
     }
+    fn min_look_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.min_look_pitch
+    }
     fn max_look_pitch(&self) -> &f32 {
         &self.max_look_pitch
+    }
+    fn max_look_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.max_look_pitch
     }
 }
 
@@ -11035,6 +13936,15 @@ impl TypeObject for LookConstraintsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -11062,35 +13972,63 @@ pub struct VehicleSpawnStateEntityData {
 
 pub trait VehicleSpawnStateEntityDataTrait: super::entity::EntityDataTrait {
     fn initial_velocity(&self) -> &super::core::Vec3;
+    fn initial_velocity_mut(&mut self) -> &mut super::core::Vec3;
     fn startup_delay_modifier(&self) -> &f32;
+    fn startup_delay_modifier_mut(&mut self) -> &mut f32;
     fn initial_throttle(&self) -> &f32;
+    fn initial_throttle_mut(&mut self) -> &mut f32;
     fn engine_index(&self) -> &u32;
+    fn engine_index_mut(&mut self) -> &mut u32;
     fn initial_rpm_modifier(&self) -> &f32;
+    fn initial_rpm_modifier_mut(&mut self) -> &mut f32;
     fn height_offset(&self) -> &f32;
+    fn height_offset_mut(&mut self) -> &mut f32;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
 }
 
 impl VehicleSpawnStateEntityDataTrait for VehicleSpawnStateEntityData {
     fn initial_velocity(&self) -> &super::core::Vec3 {
         &self.initial_velocity
     }
+    fn initial_velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.initial_velocity
+    }
     fn startup_delay_modifier(&self) -> &f32 {
         &self.startup_delay_modifier
+    }
+    fn startup_delay_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.startup_delay_modifier
     }
     fn initial_throttle(&self) -> &f32 {
         &self.initial_throttle
     }
+    fn initial_throttle_mut(&mut self) -> &mut f32 {
+        &mut self.initial_throttle
+    }
     fn engine_index(&self) -> &u32 {
         &self.engine_index
+    }
+    fn engine_index_mut(&mut self) -> &mut u32 {
+        &mut self.engine_index
     }
     fn initial_rpm_modifier(&self) -> &f32 {
         &self.initial_rpm_modifier
     }
+    fn initial_rpm_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.initial_rpm_modifier
+    }
     fn height_offset(&self) -> &f32 {
         &self.height_offset
     }
+    fn height_offset_mut(&mut self) -> &mut f32 {
+        &mut self.height_offset
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
 }
 
@@ -11104,15 +14042,15 @@ impl super::core::DataBusPeerTrait for VehicleSpawnStateEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VehicleSpawnStateEntityData {
 }
 
 impl super::core::DataContainerTrait for VehicleSpawnStateEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEHICLESPAWNSTATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11180,6 +14118,15 @@ impl TypeObject for VehicleSpawnStateEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11203,19 +14150,31 @@ pub struct LinearMovingBodyData {
 
 pub trait LinearMovingBodyDataTrait: MovingBodyDataTrait {
     fn axis(&self) -> &super::core::Vec3;
+    fn axis_mut(&mut self) -> &mut super::core::Vec3;
     fn start(&self) -> &EndPointData;
+    fn start_mut(&mut self) -> &mut EndPointData;
     fn end(&self) -> &EndPointData;
+    fn end_mut(&mut self) -> &mut EndPointData;
 }
 
 impl LinearMovingBodyDataTrait for LinearMovingBodyData {
     fn axis(&self) -> &super::core::Vec3 {
         &self.axis
     }
+    fn axis_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.axis
+    }
     fn start(&self) -> &EndPointData {
         &self.start
     }
+    fn start_mut(&mut self) -> &mut EndPointData {
+        &mut self.start
+    }
     fn end(&self) -> &EndPointData {
         &self.end
+    }
+    fn end_mut(&mut self) -> &mut EndPointData {
+        &mut self.end
     }
 }
 
@@ -11223,15 +14182,18 @@ impl MovingBodyDataTrait for LinearMovingBodyData {
     fn mass(&self) -> &f32 {
         self._glacier_base.mass()
     }
+    fn mass_mut(&mut self) -> &mut f32 {
+        self._glacier_base.mass_mut()
+    }
     fn inertia(&self) -> &f32 {
         self._glacier_base.inertia()
+    }
+    fn inertia_mut(&mut self) -> &mut f32 {
+        self._glacier_base.inertia_mut()
     }
 }
 
 impl super::core::DataContainerTrait for LinearMovingBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINEARMOVINGBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11275,6 +14237,15 @@ impl TypeObject for LinearMovingBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11299,27 +14270,47 @@ pub struct EndPointData {
 
 pub trait EndPointDataTrait: TypeObject {
     fn pos(&self) -> &f32;
+    fn pos_mut(&mut self) -> &mut f32;
     fn end_damping(&self) -> &f32;
+    fn end_damping_mut(&mut self) -> &mut f32;
     fn spring_length(&self) -> &f32;
+    fn spring_length_mut(&mut self) -> &mut f32;
     fn spring_acceleration(&self) -> &f32;
+    fn spring_acceleration_mut(&mut self) -> &mut f32;
     fn spring_damping(&self) -> &f32;
+    fn spring_damping_mut(&mut self) -> &mut f32;
 }
 
 impl EndPointDataTrait for EndPointData {
     fn pos(&self) -> &f32 {
         &self.pos
     }
+    fn pos_mut(&mut self) -> &mut f32 {
+        &mut self.pos
+    }
     fn end_damping(&self) -> &f32 {
         &self.end_damping
+    }
+    fn end_damping_mut(&mut self) -> &mut f32 {
+        &mut self.end_damping
     }
     fn spring_length(&self) -> &f32 {
         &self.spring_length
     }
+    fn spring_length_mut(&mut self) -> &mut f32 {
+        &mut self.spring_length
+    }
     fn spring_acceleration(&self) -> &f32 {
         &self.spring_acceleration
     }
+    fn spring_acceleration_mut(&mut self) -> &mut f32 {
+        &mut self.spring_acceleration
+    }
     fn spring_damping(&self) -> &f32 {
         &self.spring_damping
+    }
+    fn spring_damping_mut(&mut self) -> &mut f32 {
+        &mut self.spring_damping
     }
 }
 
@@ -11375,6 +14366,15 @@ impl TypeObject for EndPointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -11408,59 +14408,111 @@ pub struct RotationBodyData {
 
 pub trait RotationBodyDataTrait: MovingBodyDataTrait {
     fn angular_momentum_multiplier(&self) -> &f32;
+    fn angular_momentum_multiplier_mut(&mut self) -> &mut f32;
     fn angular_momentum_threshold(&self) -> &f32;
+    fn angular_momentum_threshold_mut(&mut self) -> &mut f32;
     fn angular_momentum_damping(&self) -> &f32;
+    fn angular_momentum_damping_mut(&mut self) -> &mut f32;
     fn angular_momentum_damping_acc(&self) -> &f32;
+    fn angular_momentum_damping_acc_mut(&mut self) -> &mut f32;
     fn angular_momentum_damping_deacc(&self) -> &f32;
+    fn angular_momentum_damping_deacc_mut(&mut self) -> &mut f32;
     fn use_post_satisfy_constraints(&self) -> &bool;
+    fn use_post_satisfy_constraints_mut(&mut self) -> &mut bool;
     fn angular_constraint_min(&self) -> &f32;
+    fn angular_constraint_min_mut(&mut self) -> &mut f32;
     fn angular_constraint_max(&self) -> &f32;
+    fn angular_constraint_max_mut(&mut self) -> &mut f32;
     fn rotation_axis(&self) -> &i32;
+    fn rotation_axis_mut(&mut self) -> &mut i32;
     fn extended_constraints(&self) -> &Option<Arc<Mutex<dyn ExtendedConstraintsDataTrait>>>;
+    fn extended_constraints_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ExtendedConstraintsDataTrait>>>;
     fn use_angular_momentum_threshold(&self) -> &bool;
+    fn use_angular_momentum_threshold_mut(&mut self) -> &mut bool;
     fn use_angular_momentum_damping(&self) -> &bool;
+    fn use_angular_momentum_damping_mut(&mut self) -> &mut bool;
     fn use_angular_constraint(&self) -> &bool;
+    fn use_angular_constraint_mut(&mut self) -> &mut bool;
 }
 
 impl RotationBodyDataTrait for RotationBodyData {
     fn angular_momentum_multiplier(&self) -> &f32 {
         &self.angular_momentum_multiplier
     }
+    fn angular_momentum_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.angular_momentum_multiplier
+    }
     fn angular_momentum_threshold(&self) -> &f32 {
         &self.angular_momentum_threshold
+    }
+    fn angular_momentum_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.angular_momentum_threshold
     }
     fn angular_momentum_damping(&self) -> &f32 {
         &self.angular_momentum_damping
     }
+    fn angular_momentum_damping_mut(&mut self) -> &mut f32 {
+        &mut self.angular_momentum_damping
+    }
     fn angular_momentum_damping_acc(&self) -> &f32 {
         &self.angular_momentum_damping_acc
+    }
+    fn angular_momentum_damping_acc_mut(&mut self) -> &mut f32 {
+        &mut self.angular_momentum_damping_acc
     }
     fn angular_momentum_damping_deacc(&self) -> &f32 {
         &self.angular_momentum_damping_deacc
     }
+    fn angular_momentum_damping_deacc_mut(&mut self) -> &mut f32 {
+        &mut self.angular_momentum_damping_deacc
+    }
     fn use_post_satisfy_constraints(&self) -> &bool {
         &self.use_post_satisfy_constraints
+    }
+    fn use_post_satisfy_constraints_mut(&mut self) -> &mut bool {
+        &mut self.use_post_satisfy_constraints
     }
     fn angular_constraint_min(&self) -> &f32 {
         &self.angular_constraint_min
     }
+    fn angular_constraint_min_mut(&mut self) -> &mut f32 {
+        &mut self.angular_constraint_min
+    }
     fn angular_constraint_max(&self) -> &f32 {
         &self.angular_constraint_max
+    }
+    fn angular_constraint_max_mut(&mut self) -> &mut f32 {
+        &mut self.angular_constraint_max
     }
     fn rotation_axis(&self) -> &i32 {
         &self.rotation_axis
     }
+    fn rotation_axis_mut(&mut self) -> &mut i32 {
+        &mut self.rotation_axis
+    }
     fn extended_constraints(&self) -> &Option<Arc<Mutex<dyn ExtendedConstraintsDataTrait>>> {
         &self.extended_constraints
+    }
+    fn extended_constraints_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ExtendedConstraintsDataTrait>>> {
+        &mut self.extended_constraints
     }
     fn use_angular_momentum_threshold(&self) -> &bool {
         &self.use_angular_momentum_threshold
     }
+    fn use_angular_momentum_threshold_mut(&mut self) -> &mut bool {
+        &mut self.use_angular_momentum_threshold
+    }
     fn use_angular_momentum_damping(&self) -> &bool {
         &self.use_angular_momentum_damping
     }
+    fn use_angular_momentum_damping_mut(&mut self) -> &mut bool {
+        &mut self.use_angular_momentum_damping
+    }
     fn use_angular_constraint(&self) -> &bool {
         &self.use_angular_constraint
+    }
+    fn use_angular_constraint_mut(&mut self) -> &mut bool {
+        &mut self.use_angular_constraint
     }
 }
 
@@ -11468,15 +14520,18 @@ impl MovingBodyDataTrait for RotationBodyData {
     fn mass(&self) -> &f32 {
         self._glacier_base.mass()
     }
+    fn mass_mut(&mut self) -> &mut f32 {
+        self._glacier_base.mass_mut()
+    }
     fn inertia(&self) -> &f32 {
         self._glacier_base.inertia()
+    }
+    fn inertia_mut(&mut self) -> &mut f32 {
+        self._glacier_base.inertia_mut()
     }
 }
 
 impl super::core::DataContainerTrait for RotationBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ROTATIONBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11580,6 +14635,15 @@ impl TypeObject for RotationBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11605,34 +14669,51 @@ pub struct ExtendedConstraintsData {
 
 pub trait ExtendedConstraintsDataTrait: super::core::DataContainerTrait {
     fn heading(&self) -> &f32;
+    fn heading_mut(&mut self) -> &mut f32;
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn falloff(&self) -> &f32;
+    fn falloff_mut(&mut self) -> &mut f32;
     fn angular_constraint_min(&self) -> &f32;
+    fn angular_constraint_min_mut(&mut self) -> &mut f32;
     fn angular_constraint_max(&self) -> &f32;
+    fn angular_constraint_max_mut(&mut self) -> &mut f32;
 }
 
 impl ExtendedConstraintsDataTrait for ExtendedConstraintsData {
     fn heading(&self) -> &f32 {
         &self.heading
     }
+    fn heading_mut(&mut self) -> &mut f32 {
+        &mut self.heading
+    }
     fn width(&self) -> &f32 {
         &self.width
+    }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
     }
     fn falloff(&self) -> &f32 {
         &self.falloff
     }
+    fn falloff_mut(&mut self) -> &mut f32 {
+        &mut self.falloff
+    }
     fn angular_constraint_min(&self) -> &f32 {
         &self.angular_constraint_min
+    }
+    fn angular_constraint_min_mut(&mut self) -> &mut f32 {
+        &mut self.angular_constraint_min
     }
     fn angular_constraint_max(&self) -> &f32 {
         &self.angular_constraint_max
     }
+    fn angular_constraint_max_mut(&mut self) -> &mut f32 {
+        &mut self.angular_constraint_max
+    }
 }
 
 impl super::core::DataContainerTrait for ExtendedConstraintsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXTENDEDCONSTRAINTSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11688,6 +14769,15 @@ impl TypeObject for ExtendedConstraintsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11710,22 +14800,27 @@ pub struct MovingBodyData {
 
 pub trait MovingBodyDataTrait: super::core::DataContainerTrait {
     fn mass(&self) -> &f32;
+    fn mass_mut(&mut self) -> &mut f32;
     fn inertia(&self) -> &f32;
+    fn inertia_mut(&mut self) -> &mut f32;
 }
 
 impl MovingBodyDataTrait for MovingBodyData {
     fn mass(&self) -> &f32 {
         &self.mass
     }
+    fn mass_mut(&mut self) -> &mut f32 {
+        &mut self.mass
+    }
     fn inertia(&self) -> &f32 {
         &self.inertia
+    }
+    fn inertia_mut(&mut self) -> &mut f32 {
+        &mut self.inertia
     }
 }
 
 impl super::core::DataContainerTrait for MovingBodyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVINGBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11763,6 +14858,15 @@ impl TypeObject for MovingBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11784,11 +14888,15 @@ pub struct CameraLoosePartPhysicsData {
 
 pub trait CameraLoosePartPhysicsDataTrait: LoosePartPhysicsDataTrait {
     fn scale(&self) -> &f32;
+    fn scale_mut(&mut self) -> &mut f32;
 }
 
 impl CameraLoosePartPhysicsDataTrait for CameraLoosePartPhysicsData {
     fn scale(&self) -> &f32 {
         &self.scale
+    }
+    fn scale_mut(&mut self) -> &mut f32 {
+        &mut self.scale
     }
 }
 
@@ -11796,12 +14904,12 @@ impl LoosePartPhysicsDataTrait for CameraLoosePartPhysicsData {
     fn fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
         self._glacier_base.fake_physics()
     }
+    fn fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+        self._glacier_base.fake_physics_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CameraLoosePartPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CAMERALOOSEPARTPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11833,6 +14941,15 @@ impl TypeObject for CameraLoosePartPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11854,11 +14971,15 @@ pub struct NetworkableLoosePartPhysicsData {
 
 pub trait NetworkableLoosePartPhysicsDataTrait: LoosePartPhysicsDataTrait {
     fn networked(&self) -> &bool;
+    fn networked_mut(&mut self) -> &mut bool;
 }
 
 impl NetworkableLoosePartPhysicsDataTrait for NetworkableLoosePartPhysicsData {
     fn networked(&self) -> &bool {
         &self.networked
+    }
+    fn networked_mut(&mut self) -> &mut bool {
+        &mut self.networked
     }
 }
 
@@ -11866,12 +14987,12 @@ impl LoosePartPhysicsDataTrait for NetworkableLoosePartPhysicsData {
     fn fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
         self._glacier_base.fake_physics()
     }
+    fn fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+        self._glacier_base.fake_physics_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for NetworkableLoosePartPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NETWORKABLELOOSEPARTPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11903,6 +15024,15 @@ impl TypeObject for NetworkableLoosePartPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11924,18 +15054,19 @@ pub struct LoosePartPhysicsData {
 
 pub trait LoosePartPhysicsDataTrait: super::core::DataContainerTrait {
     fn fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>>;
+    fn fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>>;
 }
 
 impl LoosePartPhysicsDataTrait for LoosePartPhysicsData {
     fn fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
         &self.fake_physics
     }
+    fn fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+        &mut self.fake_physics
+    }
 }
 
 impl super::core::DataContainerTrait for LoosePartPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOOSEPARTPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11967,6 +15098,15 @@ impl TypeObject for LoosePartPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11990,19 +15130,31 @@ pub struct WheelConfigMotorbikeData {
 
 pub trait WheelConfigMotorbikeDataTrait: WheelConfigDataTrait {
     fn max_spring_force(&self) -> &f32;
+    fn max_spring_force_mut(&mut self) -> &mut f32;
     fn collision_yaw_dampening_duration(&self) -> &f32;
+    fn collision_yaw_dampening_duration_mut(&mut self) -> &mut f32;
     fn collision_yaw_dampening(&self) -> &f32;
+    fn collision_yaw_dampening_mut(&mut self) -> &mut f32;
 }
 
 impl WheelConfigMotorbikeDataTrait for WheelConfigMotorbikeData {
     fn max_spring_force(&self) -> &f32 {
         &self.max_spring_force
     }
+    fn max_spring_force_mut(&mut self) -> &mut f32 {
+        &mut self.max_spring_force
+    }
     fn collision_yaw_dampening_duration(&self) -> &f32 {
         &self.collision_yaw_dampening_duration
     }
+    fn collision_yaw_dampening_duration_mut(&mut self) -> &mut f32 {
+        &mut self.collision_yaw_dampening_duration
+    }
     fn collision_yaw_dampening(&self) -> &f32 {
         &self.collision_yaw_dampening
+    }
+    fn collision_yaw_dampening_mut(&mut self) -> &mut f32 {
+        &mut self.collision_yaw_dampening
     }
 }
 
@@ -12010,249 +15162,486 @@ impl WheelConfigDataTrait for WheelConfigMotorbikeData {
     fn offset(&self) -> &super::core::Vec3 {
         self._glacier_base.offset()
     }
+    fn offset_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.offset_mut()
+    }
     fn inertia(&self) -> &super::core::Vec3 {
         self._glacier_base.inertia()
+    }
+    fn inertia_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.inertia_mut()
     }
     fn rotation_body(&self) -> &Option<Arc<Mutex<dyn RotationBodyDataTrait>>> {
         self._glacier_base.rotation_body()
     }
+    fn rotation_body_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RotationBodyDataTrait>>> {
+        self._glacier_base.rotation_body_mut()
+    }
     fn sphere_collision(&self) -> &SphereCollisionData {
         self._glacier_base.sphere_collision()
+    }
+    fn sphere_collision_mut(&mut self) -> &mut SphereCollisionData {
+        self._glacier_base.sphere_collision_mut()
     }
     fn spring(&self) -> &SpringData {
         self._glacier_base.spring()
     }
+    fn spring_mut(&mut self) -> &mut SpringData {
+        self._glacier_base.spring_mut()
+    }
     fn mass(&self) -> &f32 {
         self._glacier_base.mass()
+    }
+    fn mass_mut(&mut self) -> &mut f32 {
+        self._glacier_base.mass_mut()
     }
     fn radius(&self) -> &f32 {
         self._glacier_base.radius()
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.radius_mut()
+    }
     fn width(&self) -> &f32 {
         self._glacier_base.width()
+    }
+    fn width_mut(&mut self) -> &mut f32 {
+        self._glacier_base.width_mut()
     }
     fn rolling_resistance_internal_base_factor(&self) -> &f32 {
         self._glacier_base.rolling_resistance_internal_base_factor()
     }
+    fn rolling_resistance_internal_base_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rolling_resistance_internal_base_factor_mut()
+    }
     fn rolling_resistance_base_factor(&self) -> &f32 {
         self._glacier_base.rolling_resistance_base_factor()
+    }
+    fn rolling_resistance_base_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rolling_resistance_base_factor_mut()
     }
     fn rolling_resistance_velocity_factor(&self) -> &f32 {
         self._glacier_base.rolling_resistance_velocity_factor()
     }
+    fn rolling_resistance_velocity_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rolling_resistance_velocity_factor_mut()
+    }
     fn engine_brake_velocity_factor(&self) -> &f32 {
         self._glacier_base.engine_brake_velocity_factor()
+    }
+    fn engine_brake_velocity_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.engine_brake_velocity_factor_mut()
     }
     fn engine_brake_min_factor(&self) -> &f32 {
         self._glacier_base.engine_brake_min_factor()
     }
+    fn engine_brake_min_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.engine_brake_min_factor_mut()
+    }
     fn engine_brake_max_factor(&self) -> &f32 {
         self._glacier_base.engine_brake_max_factor()
+    }
+    fn engine_brake_max_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.engine_brake_max_factor_mut()
     }
     fn transmission_loss(&self) -> &Vec<super::core::Vec2> {
         self._glacier_base.transmission_loss()
     }
+    fn transmission_loss_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+        self._glacier_base.transmission_loss_mut()
+    }
     fn diff_gear_ratio(&self) -> &f32 {
         self._glacier_base.diff_gear_ratio()
+    }
+    fn diff_gear_ratio_mut(&mut self) -> &mut f32 {
+        self._glacier_base.diff_gear_ratio_mut()
     }
     fn low_speed_steering_sensitivity(&self) -> &f32 {
         self._glacier_base.low_speed_steering_sensitivity()
     }
+    fn low_speed_steering_sensitivity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.low_speed_steering_sensitivity_mut()
+    }
     fn mid_speed_steering_sensitivity(&self) -> &f32 {
         self._glacier_base.mid_speed_steering_sensitivity()
+    }
+    fn mid_speed_steering_sensitivity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.mid_speed_steering_sensitivity_mut()
     }
     fn high_speed_steering_sensitivity(&self) -> &f32 {
         self._glacier_base.high_speed_steering_sensitivity()
     }
+    fn high_speed_steering_sensitivity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.high_speed_steering_sensitivity_mut()
+    }
     fn sensitivity_range_scale(&self) -> &f32 {
         self._glacier_base.sensitivity_range_scale()
+    }
+    fn sensitivity_range_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sensitivity_range_scale_mut()
     }
     fn low_speed_steering_sensitivity_limit(&self) -> &f32 {
         self._glacier_base.low_speed_steering_sensitivity_limit()
     }
+    fn low_speed_steering_sensitivity_limit_mut(&mut self) -> &mut f32 {
+        self._glacier_base.low_speed_steering_sensitivity_limit_mut()
+    }
     fn mid_speed_steering_sensitivity_limit(&self) -> &f32 {
         self._glacier_base.mid_speed_steering_sensitivity_limit()
+    }
+    fn mid_speed_steering_sensitivity_limit_mut(&mut self) -> &mut f32 {
+        self._glacier_base.mid_speed_steering_sensitivity_limit_mut()
     }
     fn high_speed_steering_sensitivity_limit(&self) -> &f32 {
         self._glacier_base.high_speed_steering_sensitivity_limit()
     }
+    fn high_speed_steering_sensitivity_limit_mut(&mut self) -> &mut f32 {
+        self._glacier_base.high_speed_steering_sensitivity_limit_mut()
+    }
     fn tracked_turn_speed_limit(&self) -> &f32 {
         self._glacier_base.tracked_turn_speed_limit()
+    }
+    fn tracked_turn_speed_limit_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tracked_turn_speed_limit_mut()
     }
     fn tracked_forward_speed_limit(&self) -> &f32 {
         self._glacier_base.tracked_forward_speed_limit()
     }
+    fn tracked_forward_speed_limit_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tracked_forward_speed_limit_mut()
+    }
     fn tracked_slip_steer_reduction_scale(&self) -> &f32 {
         self._glacier_base.tracked_slip_steer_reduction_scale()
+    }
+    fn tracked_slip_steer_reduction_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tracked_slip_steer_reduction_scale_mut()
     }
     fn steer_inertia(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>> {
         self._glacier_base.steer_inertia()
     }
+    fn steer_inertia_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>> {
+        self._glacier_base.steer_inertia_mut()
+    }
     fn steering_sensitivity(&self) -> &Vec<SensitivityAtVelocity> {
         self._glacier_base.steering_sensitivity()
+    }
+    fn steering_sensitivity_mut(&mut self) -> &mut Vec<SensitivityAtVelocity> {
+        self._glacier_base.steering_sensitivity_mut()
     }
     fn tracked_steering_boost_on_opposite_torque(&self) -> &f32 {
         self._glacier_base.tracked_steering_boost_on_opposite_torque()
     }
+    fn tracked_steering_boost_on_opposite_torque_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tracked_steering_boost_on_opposite_torque_mut()
+    }
     fn slope_grip_min_angle(&self) -> &f32 {
         self._glacier_base.slope_grip_min_angle()
+    }
+    fn slope_grip_min_angle_mut(&mut self) -> &mut f32 {
+        self._glacier_base.slope_grip_min_angle_mut()
     }
     fn slope_grip_max_angle(&self) -> &f32 {
         self._glacier_base.slope_grip_max_angle()
     }
+    fn slope_grip_max_angle_mut(&mut self) -> &mut f32 {
+        self._glacier_base.slope_grip_max_angle_mut()
+    }
     fn slope_grip_exponent(&self) -> &i32 {
         self._glacier_base.slope_grip_exponent()
+    }
+    fn slope_grip_exponent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.slope_grip_exponent_mut()
     }
     fn off_ground_gravity_modifier(&self) -> &f32 {
         self._glacier_base.off_ground_gravity_modifier()
     }
+    fn off_ground_gravity_modifier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.off_ground_gravity_modifier_mut()
+    }
     fn side_slip_angle_max_slip_condition(&self) -> &f32 {
         self._glacier_base.side_slip_angle_max_slip_condition()
+    }
+    fn side_slip_angle_max_slip_condition_mut(&mut self) -> &mut f32 {
+        self._glacier_base.side_slip_angle_max_slip_condition_mut()
     }
     fn angular_velocity_min_slip_condition(&self) -> &f32 {
         self._glacier_base.angular_velocity_min_slip_condition()
     }
+    fn angular_velocity_min_slip_condition_mut(&mut self) -> &mut f32 {
+        self._glacier_base.angular_velocity_min_slip_condition_mut()
+    }
     fn wheel_velocity_x_min_slip_condition(&self) -> &f32 {
         self._glacier_base.wheel_velocity_x_min_slip_condition()
+    }
+    fn wheel_velocity_x_min_slip_condition_mut(&mut self) -> &mut f32 {
+        self._glacier_base.wheel_velocity_x_min_slip_condition_mut()
     }
     fn wheel_slip_ratio_max_slip_condition(&self) -> &f32 {
         self._glacier_base.wheel_slip_ratio_max_slip_condition()
     }
+    fn wheel_slip_ratio_max_slip_condition_mut(&mut self) -> &mut f32 {
+        self._glacier_base.wheel_slip_ratio_max_slip_condition_mut()
+    }
     fn longitudinal_friction_force_max_factor(&self) -> &f32 {
         self._glacier_base.longitudinal_friction_force_max_factor()
+    }
+    fn longitudinal_friction_force_max_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.longitudinal_friction_force_max_factor_mut()
     }
     fn lateral_friction_force_max_factor(&self) -> &f32 {
         self._glacier_base.lateral_friction_force_max_factor()
     }
+    fn lateral_friction_force_max_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.lateral_friction_force_max_factor_mut()
+    }
     fn allow_grip_slip_transition(&self) -> &bool {
         self._glacier_base.allow_grip_slip_transition()
+    }
+    fn allow_grip_slip_transition_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_grip_slip_transition_mut()
     }
     fn longitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity> {
         self._glacier_base.longitude_friction_scale()
     }
+    fn longitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity> {
+        self._glacier_base.longitude_friction_scale_mut()
+    }
     fn lattitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity> {
         self._glacier_base.lattitude_friction_scale()
+    }
+    fn lattitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity> {
+        self._glacier_base.lattitude_friction_scale_mut()
     }
     fn wheel_friction_lattitude_brake_scale(&self) -> &f32 {
         self._glacier_base.wheel_friction_lattitude_brake_scale()
     }
+    fn wheel_friction_lattitude_brake_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.wheel_friction_lattitude_brake_scale_mut()
+    }
     fn resistance(&self) -> &f32 {
         self._glacier_base.resistance()
+    }
+    fn resistance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.resistance_mut()
     }
     fn fx_torque_radius_multiplier(&self) -> &f32 {
         self._glacier_base.fx_torque_radius_multiplier()
     }
+    fn fx_torque_radius_multiplier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.fx_torque_radius_multiplier_mut()
+    }
     fn friction_moment_velocity_min(&self) -> &f32 {
         self._glacier_base.friction_moment_velocity_min()
+    }
+    fn friction_moment_velocity_min_mut(&mut self) -> &mut f32 {
+        self._glacier_base.friction_moment_velocity_min_mut()
     }
     fn friction_moment_velocity_max(&self) -> &f32 {
         self._glacier_base.friction_moment_velocity_max()
     }
+    fn friction_moment_velocity_max_mut(&mut self) -> &mut f32 {
+        self._glacier_base.friction_moment_velocity_max_mut()
+    }
     fn friction_moment_multiplier(&self) -> &f32 {
         self._glacier_base.friction_moment_multiplier()
+    }
+    fn friction_moment_multiplier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.friction_moment_multiplier_mut()
     }
     fn friction_moment_max_factor(&self) -> &f32 {
         self._glacier_base.friction_moment_max_factor()
     }
+    fn friction_moment_max_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.friction_moment_max_factor_mut()
+    }
     fn brake_factor(&self) -> &f32 {
         self._glacier_base.brake_factor()
+    }
+    fn brake_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.brake_factor_mut()
     }
     fn brake_force(&self) -> &f32 {
         self._glacier_base.brake_force()
     }
+    fn brake_force_mut(&mut self) -> &mut f32 {
+        self._glacier_base.brake_force_mut()
+    }
     fn auto_hand_brake_if_no_throttle_and_steer(&self) -> &bool {
         self._glacier_base.auto_hand_brake_if_no_throttle_and_steer()
+    }
+    fn auto_hand_brake_if_no_throttle_and_steer_mut(&mut self) -> &mut bool {
+        self._glacier_base.auto_hand_brake_if_no_throttle_and_steer_mut()
     }
     fn hand_brake_factor(&self) -> &f32 {
         self._glacier_base.hand_brake_factor()
     }
+    fn hand_brake_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.hand_brake_factor_mut()
+    }
     fn hand_brake_force(&self) -> &f32 {
         self._glacier_base.hand_brake_force()
+    }
+    fn hand_brake_force_mut(&mut self) -> &mut f32 {
+        self._glacier_base.hand_brake_force_mut()
     }
     fn total_friction_scale(&self) -> &f32 {
         self._glacier_base.total_friction_scale()
     }
+    fn total_friction_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.total_friction_scale_mut()
+    }
     fn total_lateral_friction_scale(&self) -> &f32 {
         self._glacier_base.total_lateral_friction_scale()
+    }
+    fn total_lateral_friction_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.total_lateral_friction_scale_mut()
     }
     fn lateral_pos_k(&self) -> &f32 {
         self._glacier_base.lateral_pos_k()
     }
+    fn lateral_pos_k_mut(&mut self) -> &mut f32 {
+        self._glacier_base.lateral_pos_k_mut()
+    }
     fn lateral_neg_k(&self) -> &f32 {
         self._glacier_base.lateral_neg_k()
+    }
+    fn lateral_neg_k_mut(&mut self) -> &mut f32 {
+        self._glacier_base.lateral_neg_k_mut()
     }
     fn longitudinal_pos_k(&self) -> &f32 {
         self._glacier_base.longitudinal_pos_k()
     }
+    fn longitudinal_pos_k_mut(&mut self) -> &mut f32 {
+        self._glacier_base.longitudinal_pos_k_mut()
+    }
     fn longitudinal_neg_k(&self) -> &f32 {
         self._glacier_base.longitudinal_neg_k()
+    }
+    fn longitudinal_neg_k_mut(&mut self) -> &mut f32 {
+        self._glacier_base.longitudinal_neg_k_mut()
     }
     fn align_mom_scale(&self) -> &f32 {
         self._glacier_base.align_mom_scale()
     }
+    fn align_mom_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.align_mom_scale_mut()
+    }
     fn wheel_base_lateral(&self) -> &f32 {
         self._glacier_base.wheel_base_lateral()
+    }
+    fn wheel_base_lateral_mut(&mut self) -> &mut f32 {
+        self._glacier_base.wheel_base_lateral_mut()
     }
     fn wheel_base_longitudinal(&self) -> &f32 {
         self._glacier_base.wheel_base_longitudinal()
     }
+    fn wheel_base_longitudinal_mut(&mut self) -> &mut f32 {
+        self._glacier_base.wheel_base_longitudinal_mut()
+    }
     fn driving_type(&self) -> &i32 {
         self._glacier_base.driving_type()
+    }
+    fn driving_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.driving_type_mut()
     }
     fn steering_type(&self) -> &i32 {
         self._glacier_base.steering_type()
     }
+    fn steering_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.steering_type_mut()
+    }
     fn friction_method(&self) -> &i32 {
         self._glacier_base.friction_method()
+    }
+    fn friction_method_mut(&mut self) -> &mut i32 {
+        self._glacier_base.friction_method_mut()
     }
     fn rotation_direction_index(&self) -> &i32 {
         self._glacier_base.rotation_direction_index()
     }
+    fn rotation_direction_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.rotation_direction_index_mut()
+    }
     fn steering_angle_index(&self) -> &i32 {
         self._glacier_base.steering_angle_index()
+    }
+    fn steering_angle_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.steering_angle_index_mut()
     }
     fn pacejka_config_index(&self) -> &i32 {
         self._glacier_base.pacejka_config_index()
     }
+    fn pacejka_config_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.pacejka_config_index_mut()
+    }
     fn engine_index(&self) -> &i32 {
         self._glacier_base.engine_index()
+    }
+    fn engine_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.engine_index_mut()
     }
     fn ackerman_device_type(&self) -> &i32 {
         self._glacier_base.ackerman_device_type()
     }
+    fn ackerman_device_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.ackerman_device_type_mut()
+    }
     fn use_rolling_resistance_velocity_factor(&self) -> &bool {
         self._glacier_base.use_rolling_resistance_velocity_factor()
+    }
+    fn use_rolling_resistance_velocity_factor_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_rolling_resistance_velocity_factor_mut()
     }
     fn use_rolling_resistance_base_factor(&self) -> &bool {
         self._glacier_base.use_rolling_resistance_base_factor()
     }
+    fn use_rolling_resistance_base_factor_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_rolling_resistance_base_factor_mut()
+    }
     fn use_engine_brake(&self) -> &bool {
         self._glacier_base.use_engine_brake()
+    }
+    fn use_engine_brake_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_engine_brake_mut()
     }
     fn is_allowed_to_spin(&self) -> &bool {
         self._glacier_base.is_allowed_to_spin()
     }
+    fn is_allowed_to_spin_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_allowed_to_spin_mut()
+    }
     fn has_steering_inverted(&self) -> &bool {
         self._glacier_base.has_steering_inverted()
+    }
+    fn has_steering_inverted_mut(&mut self) -> &mut bool {
+        self._glacier_base.has_steering_inverted_mut()
     }
     fn use_friction_moment(&self) -> &bool {
         self._glacier_base.use_friction_moment()
     }
+    fn use_friction_moment_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_friction_moment_mut()
+    }
     fn use_low_speed_auto_brake(&self) -> &bool {
         self._glacier_base.use_low_speed_auto_brake()
+    }
+    fn use_low_speed_auto_brake_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_low_speed_auto_brake_mut()
     }
     fn adjust_wheel_rotation(&self) -> &bool {
         self._glacier_base.adjust_wheel_rotation()
     }
+    fn adjust_wheel_rotation_mut(&mut self) -> &mut bool {
+        self._glacier_base.adjust_wheel_rotation_mut()
+    }
     fn collision_material_pair(&self) -> &super::entity::MaterialDecl {
         self._glacier_base.collision_material_pair()
+    }
+    fn collision_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        self._glacier_base.collision_material_pair_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WheelConfigMotorbikeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WHEELCONFIGMOTORBIKEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12295,6 +15684,15 @@ impl TypeObject for WheelConfigMotorbikeData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -12396,334 +15794,651 @@ pub struct WheelConfigData {
 
 pub trait WheelConfigDataTrait: super::core::DataContainerTrait {
     fn offset(&self) -> &super::core::Vec3;
+    fn offset_mut(&mut self) -> &mut super::core::Vec3;
     fn inertia(&self) -> &super::core::Vec3;
+    fn inertia_mut(&mut self) -> &mut super::core::Vec3;
     fn rotation_body(&self) -> &Option<Arc<Mutex<dyn RotationBodyDataTrait>>>;
+    fn rotation_body_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RotationBodyDataTrait>>>;
     fn sphere_collision(&self) -> &SphereCollisionData;
+    fn sphere_collision_mut(&mut self) -> &mut SphereCollisionData;
     fn spring(&self) -> &SpringData;
+    fn spring_mut(&mut self) -> &mut SpringData;
     fn mass(&self) -> &f32;
+    fn mass_mut(&mut self) -> &mut f32;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn rolling_resistance_internal_base_factor(&self) -> &f32;
+    fn rolling_resistance_internal_base_factor_mut(&mut self) -> &mut f32;
     fn rolling_resistance_base_factor(&self) -> &f32;
+    fn rolling_resistance_base_factor_mut(&mut self) -> &mut f32;
     fn rolling_resistance_velocity_factor(&self) -> &f32;
+    fn rolling_resistance_velocity_factor_mut(&mut self) -> &mut f32;
     fn engine_brake_velocity_factor(&self) -> &f32;
+    fn engine_brake_velocity_factor_mut(&mut self) -> &mut f32;
     fn engine_brake_min_factor(&self) -> &f32;
+    fn engine_brake_min_factor_mut(&mut self) -> &mut f32;
     fn engine_brake_max_factor(&self) -> &f32;
+    fn engine_brake_max_factor_mut(&mut self) -> &mut f32;
     fn transmission_loss(&self) -> &Vec<super::core::Vec2>;
+    fn transmission_loss_mut(&mut self) -> &mut Vec<super::core::Vec2>;
     fn diff_gear_ratio(&self) -> &f32;
+    fn diff_gear_ratio_mut(&mut self) -> &mut f32;
     fn low_speed_steering_sensitivity(&self) -> &f32;
+    fn low_speed_steering_sensitivity_mut(&mut self) -> &mut f32;
     fn mid_speed_steering_sensitivity(&self) -> &f32;
+    fn mid_speed_steering_sensitivity_mut(&mut self) -> &mut f32;
     fn high_speed_steering_sensitivity(&self) -> &f32;
+    fn high_speed_steering_sensitivity_mut(&mut self) -> &mut f32;
     fn sensitivity_range_scale(&self) -> &f32;
+    fn sensitivity_range_scale_mut(&mut self) -> &mut f32;
     fn low_speed_steering_sensitivity_limit(&self) -> &f32;
+    fn low_speed_steering_sensitivity_limit_mut(&mut self) -> &mut f32;
     fn mid_speed_steering_sensitivity_limit(&self) -> &f32;
+    fn mid_speed_steering_sensitivity_limit_mut(&mut self) -> &mut f32;
     fn high_speed_steering_sensitivity_limit(&self) -> &f32;
+    fn high_speed_steering_sensitivity_limit_mut(&mut self) -> &mut f32;
     fn tracked_turn_speed_limit(&self) -> &f32;
+    fn tracked_turn_speed_limit_mut(&mut self) -> &mut f32;
     fn tracked_forward_speed_limit(&self) -> &f32;
+    fn tracked_forward_speed_limit_mut(&mut self) -> &mut f32;
     fn tracked_slip_steer_reduction_scale(&self) -> &f32;
+    fn tracked_slip_steer_reduction_scale_mut(&mut self) -> &mut f32;
     fn steer_inertia(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>>;
+    fn steer_inertia_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>>;
     fn steering_sensitivity(&self) -> &Vec<SensitivityAtVelocity>;
+    fn steering_sensitivity_mut(&mut self) -> &mut Vec<SensitivityAtVelocity>;
     fn tracked_steering_boost_on_opposite_torque(&self) -> &f32;
+    fn tracked_steering_boost_on_opposite_torque_mut(&mut self) -> &mut f32;
     fn slope_grip_min_angle(&self) -> &f32;
+    fn slope_grip_min_angle_mut(&mut self) -> &mut f32;
     fn slope_grip_max_angle(&self) -> &f32;
+    fn slope_grip_max_angle_mut(&mut self) -> &mut f32;
     fn slope_grip_exponent(&self) -> &i32;
+    fn slope_grip_exponent_mut(&mut self) -> &mut i32;
     fn off_ground_gravity_modifier(&self) -> &f32;
+    fn off_ground_gravity_modifier_mut(&mut self) -> &mut f32;
     fn side_slip_angle_max_slip_condition(&self) -> &f32;
+    fn side_slip_angle_max_slip_condition_mut(&mut self) -> &mut f32;
     fn angular_velocity_min_slip_condition(&self) -> &f32;
+    fn angular_velocity_min_slip_condition_mut(&mut self) -> &mut f32;
     fn wheel_velocity_x_min_slip_condition(&self) -> &f32;
+    fn wheel_velocity_x_min_slip_condition_mut(&mut self) -> &mut f32;
     fn wheel_slip_ratio_max_slip_condition(&self) -> &f32;
+    fn wheel_slip_ratio_max_slip_condition_mut(&mut self) -> &mut f32;
     fn longitudinal_friction_force_max_factor(&self) -> &f32;
+    fn longitudinal_friction_force_max_factor_mut(&mut self) -> &mut f32;
     fn lateral_friction_force_max_factor(&self) -> &f32;
+    fn lateral_friction_force_max_factor_mut(&mut self) -> &mut f32;
     fn allow_grip_slip_transition(&self) -> &bool;
+    fn allow_grip_slip_transition_mut(&mut self) -> &mut bool;
     fn longitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity>;
+    fn longitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity>;
     fn lattitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity>;
+    fn lattitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity>;
     fn wheel_friction_lattitude_brake_scale(&self) -> &f32;
+    fn wheel_friction_lattitude_brake_scale_mut(&mut self) -> &mut f32;
     fn resistance(&self) -> &f32;
+    fn resistance_mut(&mut self) -> &mut f32;
     fn fx_torque_radius_multiplier(&self) -> &f32;
+    fn fx_torque_radius_multiplier_mut(&mut self) -> &mut f32;
     fn friction_moment_velocity_min(&self) -> &f32;
+    fn friction_moment_velocity_min_mut(&mut self) -> &mut f32;
     fn friction_moment_velocity_max(&self) -> &f32;
+    fn friction_moment_velocity_max_mut(&mut self) -> &mut f32;
     fn friction_moment_multiplier(&self) -> &f32;
+    fn friction_moment_multiplier_mut(&mut self) -> &mut f32;
     fn friction_moment_max_factor(&self) -> &f32;
+    fn friction_moment_max_factor_mut(&mut self) -> &mut f32;
     fn brake_factor(&self) -> &f32;
+    fn brake_factor_mut(&mut self) -> &mut f32;
     fn brake_force(&self) -> &f32;
+    fn brake_force_mut(&mut self) -> &mut f32;
     fn auto_hand_brake_if_no_throttle_and_steer(&self) -> &bool;
+    fn auto_hand_brake_if_no_throttle_and_steer_mut(&mut self) -> &mut bool;
     fn hand_brake_factor(&self) -> &f32;
+    fn hand_brake_factor_mut(&mut self) -> &mut f32;
     fn hand_brake_force(&self) -> &f32;
+    fn hand_brake_force_mut(&mut self) -> &mut f32;
     fn total_friction_scale(&self) -> &f32;
+    fn total_friction_scale_mut(&mut self) -> &mut f32;
     fn total_lateral_friction_scale(&self) -> &f32;
+    fn total_lateral_friction_scale_mut(&mut self) -> &mut f32;
     fn lateral_pos_k(&self) -> &f32;
+    fn lateral_pos_k_mut(&mut self) -> &mut f32;
     fn lateral_neg_k(&self) -> &f32;
+    fn lateral_neg_k_mut(&mut self) -> &mut f32;
     fn longitudinal_pos_k(&self) -> &f32;
+    fn longitudinal_pos_k_mut(&mut self) -> &mut f32;
     fn longitudinal_neg_k(&self) -> &f32;
+    fn longitudinal_neg_k_mut(&mut self) -> &mut f32;
     fn align_mom_scale(&self) -> &f32;
+    fn align_mom_scale_mut(&mut self) -> &mut f32;
     fn wheel_base_lateral(&self) -> &f32;
+    fn wheel_base_lateral_mut(&mut self) -> &mut f32;
     fn wheel_base_longitudinal(&self) -> &f32;
+    fn wheel_base_longitudinal_mut(&mut self) -> &mut f32;
     fn driving_type(&self) -> &i32;
+    fn driving_type_mut(&mut self) -> &mut i32;
     fn steering_type(&self) -> &i32;
+    fn steering_type_mut(&mut self) -> &mut i32;
     fn friction_method(&self) -> &i32;
+    fn friction_method_mut(&mut self) -> &mut i32;
     fn rotation_direction_index(&self) -> &i32;
+    fn rotation_direction_index_mut(&mut self) -> &mut i32;
     fn steering_angle_index(&self) -> &i32;
+    fn steering_angle_index_mut(&mut self) -> &mut i32;
     fn pacejka_config_index(&self) -> &i32;
+    fn pacejka_config_index_mut(&mut self) -> &mut i32;
     fn engine_index(&self) -> &i32;
+    fn engine_index_mut(&mut self) -> &mut i32;
     fn ackerman_device_type(&self) -> &i32;
+    fn ackerman_device_type_mut(&mut self) -> &mut i32;
     fn use_rolling_resistance_velocity_factor(&self) -> &bool;
+    fn use_rolling_resistance_velocity_factor_mut(&mut self) -> &mut bool;
     fn use_rolling_resistance_base_factor(&self) -> &bool;
+    fn use_rolling_resistance_base_factor_mut(&mut self) -> &mut bool;
     fn use_engine_brake(&self) -> &bool;
+    fn use_engine_brake_mut(&mut self) -> &mut bool;
     fn is_allowed_to_spin(&self) -> &bool;
+    fn is_allowed_to_spin_mut(&mut self) -> &mut bool;
     fn has_steering_inverted(&self) -> &bool;
+    fn has_steering_inverted_mut(&mut self) -> &mut bool;
     fn use_friction_moment(&self) -> &bool;
+    fn use_friction_moment_mut(&mut self) -> &mut bool;
     fn use_low_speed_auto_brake(&self) -> &bool;
+    fn use_low_speed_auto_brake_mut(&mut self) -> &mut bool;
     fn adjust_wheel_rotation(&self) -> &bool;
+    fn adjust_wheel_rotation_mut(&mut self) -> &mut bool;
     fn collision_material_pair(&self) -> &super::entity::MaterialDecl;
+    fn collision_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl;
 }
 
 impl WheelConfigDataTrait for WheelConfigData {
     fn offset(&self) -> &super::core::Vec3 {
         &self.offset
     }
+    fn offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.offset
+    }
     fn inertia(&self) -> &super::core::Vec3 {
         &self.inertia
+    }
+    fn inertia_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.inertia
     }
     fn rotation_body(&self) -> &Option<Arc<Mutex<dyn RotationBodyDataTrait>>> {
         &self.rotation_body
     }
+    fn rotation_body_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RotationBodyDataTrait>>> {
+        &mut self.rotation_body
+    }
     fn sphere_collision(&self) -> &SphereCollisionData {
         &self.sphere_collision
+    }
+    fn sphere_collision_mut(&mut self) -> &mut SphereCollisionData {
+        &mut self.sphere_collision
     }
     fn spring(&self) -> &SpringData {
         &self.spring
     }
+    fn spring_mut(&mut self) -> &mut SpringData {
+        &mut self.spring
+    }
     fn mass(&self) -> &f32 {
         &self.mass
+    }
+    fn mass_mut(&mut self) -> &mut f32 {
+        &mut self.mass
     }
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn width(&self) -> &f32 {
         &self.width
+    }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
     }
     fn rolling_resistance_internal_base_factor(&self) -> &f32 {
         &self.rolling_resistance_internal_base_factor
     }
+    fn rolling_resistance_internal_base_factor_mut(&mut self) -> &mut f32 {
+        &mut self.rolling_resistance_internal_base_factor
+    }
     fn rolling_resistance_base_factor(&self) -> &f32 {
         &self.rolling_resistance_base_factor
+    }
+    fn rolling_resistance_base_factor_mut(&mut self) -> &mut f32 {
+        &mut self.rolling_resistance_base_factor
     }
     fn rolling_resistance_velocity_factor(&self) -> &f32 {
         &self.rolling_resistance_velocity_factor
     }
+    fn rolling_resistance_velocity_factor_mut(&mut self) -> &mut f32 {
+        &mut self.rolling_resistance_velocity_factor
+    }
     fn engine_brake_velocity_factor(&self) -> &f32 {
         &self.engine_brake_velocity_factor
+    }
+    fn engine_brake_velocity_factor_mut(&mut self) -> &mut f32 {
+        &mut self.engine_brake_velocity_factor
     }
     fn engine_brake_min_factor(&self) -> &f32 {
         &self.engine_brake_min_factor
     }
+    fn engine_brake_min_factor_mut(&mut self) -> &mut f32 {
+        &mut self.engine_brake_min_factor
+    }
     fn engine_brake_max_factor(&self) -> &f32 {
         &self.engine_brake_max_factor
+    }
+    fn engine_brake_max_factor_mut(&mut self) -> &mut f32 {
+        &mut self.engine_brake_max_factor
     }
     fn transmission_loss(&self) -> &Vec<super::core::Vec2> {
         &self.transmission_loss
     }
+    fn transmission_loss_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+        &mut self.transmission_loss
+    }
     fn diff_gear_ratio(&self) -> &f32 {
         &self.diff_gear_ratio
+    }
+    fn diff_gear_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.diff_gear_ratio
     }
     fn low_speed_steering_sensitivity(&self) -> &f32 {
         &self.low_speed_steering_sensitivity
     }
+    fn low_speed_steering_sensitivity_mut(&mut self) -> &mut f32 {
+        &mut self.low_speed_steering_sensitivity
+    }
     fn mid_speed_steering_sensitivity(&self) -> &f32 {
         &self.mid_speed_steering_sensitivity
+    }
+    fn mid_speed_steering_sensitivity_mut(&mut self) -> &mut f32 {
+        &mut self.mid_speed_steering_sensitivity
     }
     fn high_speed_steering_sensitivity(&self) -> &f32 {
         &self.high_speed_steering_sensitivity
     }
+    fn high_speed_steering_sensitivity_mut(&mut self) -> &mut f32 {
+        &mut self.high_speed_steering_sensitivity
+    }
     fn sensitivity_range_scale(&self) -> &f32 {
         &self.sensitivity_range_scale
+    }
+    fn sensitivity_range_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sensitivity_range_scale
     }
     fn low_speed_steering_sensitivity_limit(&self) -> &f32 {
         &self.low_speed_steering_sensitivity_limit
     }
+    fn low_speed_steering_sensitivity_limit_mut(&mut self) -> &mut f32 {
+        &mut self.low_speed_steering_sensitivity_limit
+    }
     fn mid_speed_steering_sensitivity_limit(&self) -> &f32 {
         &self.mid_speed_steering_sensitivity_limit
+    }
+    fn mid_speed_steering_sensitivity_limit_mut(&mut self) -> &mut f32 {
+        &mut self.mid_speed_steering_sensitivity_limit
     }
     fn high_speed_steering_sensitivity_limit(&self) -> &f32 {
         &self.high_speed_steering_sensitivity_limit
     }
+    fn high_speed_steering_sensitivity_limit_mut(&mut self) -> &mut f32 {
+        &mut self.high_speed_steering_sensitivity_limit
+    }
     fn tracked_turn_speed_limit(&self) -> &f32 {
         &self.tracked_turn_speed_limit
+    }
+    fn tracked_turn_speed_limit_mut(&mut self) -> &mut f32 {
+        &mut self.tracked_turn_speed_limit
     }
     fn tracked_forward_speed_limit(&self) -> &f32 {
         &self.tracked_forward_speed_limit
     }
+    fn tracked_forward_speed_limit_mut(&mut self) -> &mut f32 {
+        &mut self.tracked_forward_speed_limit
+    }
     fn tracked_slip_steer_reduction_scale(&self) -> &f32 {
         &self.tracked_slip_steer_reduction_scale
+    }
+    fn tracked_slip_steer_reduction_scale_mut(&mut self) -> &mut f32 {
+        &mut self.tracked_slip_steer_reduction_scale
     }
     fn steer_inertia(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>> {
         &self.steer_inertia
     }
+    fn steer_inertia_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>> {
+        &mut self.steer_inertia
+    }
     fn steering_sensitivity(&self) -> &Vec<SensitivityAtVelocity> {
         &self.steering_sensitivity
+    }
+    fn steering_sensitivity_mut(&mut self) -> &mut Vec<SensitivityAtVelocity> {
+        &mut self.steering_sensitivity
     }
     fn tracked_steering_boost_on_opposite_torque(&self) -> &f32 {
         &self.tracked_steering_boost_on_opposite_torque
     }
+    fn tracked_steering_boost_on_opposite_torque_mut(&mut self) -> &mut f32 {
+        &mut self.tracked_steering_boost_on_opposite_torque
+    }
     fn slope_grip_min_angle(&self) -> &f32 {
         &self.slope_grip_min_angle
+    }
+    fn slope_grip_min_angle_mut(&mut self) -> &mut f32 {
+        &mut self.slope_grip_min_angle
     }
     fn slope_grip_max_angle(&self) -> &f32 {
         &self.slope_grip_max_angle
     }
+    fn slope_grip_max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.slope_grip_max_angle
+    }
     fn slope_grip_exponent(&self) -> &i32 {
         &self.slope_grip_exponent
+    }
+    fn slope_grip_exponent_mut(&mut self) -> &mut i32 {
+        &mut self.slope_grip_exponent
     }
     fn off_ground_gravity_modifier(&self) -> &f32 {
         &self.off_ground_gravity_modifier
     }
+    fn off_ground_gravity_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.off_ground_gravity_modifier
+    }
     fn side_slip_angle_max_slip_condition(&self) -> &f32 {
         &self.side_slip_angle_max_slip_condition
+    }
+    fn side_slip_angle_max_slip_condition_mut(&mut self) -> &mut f32 {
+        &mut self.side_slip_angle_max_slip_condition
     }
     fn angular_velocity_min_slip_condition(&self) -> &f32 {
         &self.angular_velocity_min_slip_condition
     }
+    fn angular_velocity_min_slip_condition_mut(&mut self) -> &mut f32 {
+        &mut self.angular_velocity_min_slip_condition
+    }
     fn wheel_velocity_x_min_slip_condition(&self) -> &f32 {
         &self.wheel_velocity_x_min_slip_condition
+    }
+    fn wheel_velocity_x_min_slip_condition_mut(&mut self) -> &mut f32 {
+        &mut self.wheel_velocity_x_min_slip_condition
     }
     fn wheel_slip_ratio_max_slip_condition(&self) -> &f32 {
         &self.wheel_slip_ratio_max_slip_condition
     }
+    fn wheel_slip_ratio_max_slip_condition_mut(&mut self) -> &mut f32 {
+        &mut self.wheel_slip_ratio_max_slip_condition
+    }
     fn longitudinal_friction_force_max_factor(&self) -> &f32 {
         &self.longitudinal_friction_force_max_factor
+    }
+    fn longitudinal_friction_force_max_factor_mut(&mut self) -> &mut f32 {
+        &mut self.longitudinal_friction_force_max_factor
     }
     fn lateral_friction_force_max_factor(&self) -> &f32 {
         &self.lateral_friction_force_max_factor
     }
+    fn lateral_friction_force_max_factor_mut(&mut self) -> &mut f32 {
+        &mut self.lateral_friction_force_max_factor
+    }
     fn allow_grip_slip_transition(&self) -> &bool {
         &self.allow_grip_slip_transition
+    }
+    fn allow_grip_slip_transition_mut(&mut self) -> &mut bool {
+        &mut self.allow_grip_slip_transition
     }
     fn longitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity> {
         &self.longitude_friction_scale
     }
+    fn longitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity> {
+        &mut self.longitude_friction_scale
+    }
     fn lattitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity> {
         &self.lattitude_friction_scale
+    }
+    fn lattitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity> {
+        &mut self.lattitude_friction_scale
     }
     fn wheel_friction_lattitude_brake_scale(&self) -> &f32 {
         &self.wheel_friction_lattitude_brake_scale
     }
+    fn wheel_friction_lattitude_brake_scale_mut(&mut self) -> &mut f32 {
+        &mut self.wheel_friction_lattitude_brake_scale
+    }
     fn resistance(&self) -> &f32 {
         &self.resistance
+    }
+    fn resistance_mut(&mut self) -> &mut f32 {
+        &mut self.resistance
     }
     fn fx_torque_radius_multiplier(&self) -> &f32 {
         &self.fx_torque_radius_multiplier
     }
+    fn fx_torque_radius_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.fx_torque_radius_multiplier
+    }
     fn friction_moment_velocity_min(&self) -> &f32 {
         &self.friction_moment_velocity_min
+    }
+    fn friction_moment_velocity_min_mut(&mut self) -> &mut f32 {
+        &mut self.friction_moment_velocity_min
     }
     fn friction_moment_velocity_max(&self) -> &f32 {
         &self.friction_moment_velocity_max
     }
+    fn friction_moment_velocity_max_mut(&mut self) -> &mut f32 {
+        &mut self.friction_moment_velocity_max
+    }
     fn friction_moment_multiplier(&self) -> &f32 {
         &self.friction_moment_multiplier
+    }
+    fn friction_moment_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.friction_moment_multiplier
     }
     fn friction_moment_max_factor(&self) -> &f32 {
         &self.friction_moment_max_factor
     }
+    fn friction_moment_max_factor_mut(&mut self) -> &mut f32 {
+        &mut self.friction_moment_max_factor
+    }
     fn brake_factor(&self) -> &f32 {
         &self.brake_factor
+    }
+    fn brake_factor_mut(&mut self) -> &mut f32 {
+        &mut self.brake_factor
     }
     fn brake_force(&self) -> &f32 {
         &self.brake_force
     }
+    fn brake_force_mut(&mut self) -> &mut f32 {
+        &mut self.brake_force
+    }
     fn auto_hand_brake_if_no_throttle_and_steer(&self) -> &bool {
         &self.auto_hand_brake_if_no_throttle_and_steer
+    }
+    fn auto_hand_brake_if_no_throttle_and_steer_mut(&mut self) -> &mut bool {
+        &mut self.auto_hand_brake_if_no_throttle_and_steer
     }
     fn hand_brake_factor(&self) -> &f32 {
         &self.hand_brake_factor
     }
+    fn hand_brake_factor_mut(&mut self) -> &mut f32 {
+        &mut self.hand_brake_factor
+    }
     fn hand_brake_force(&self) -> &f32 {
         &self.hand_brake_force
+    }
+    fn hand_brake_force_mut(&mut self) -> &mut f32 {
+        &mut self.hand_brake_force
     }
     fn total_friction_scale(&self) -> &f32 {
         &self.total_friction_scale
     }
+    fn total_friction_scale_mut(&mut self) -> &mut f32 {
+        &mut self.total_friction_scale
+    }
     fn total_lateral_friction_scale(&self) -> &f32 {
         &self.total_lateral_friction_scale
+    }
+    fn total_lateral_friction_scale_mut(&mut self) -> &mut f32 {
+        &mut self.total_lateral_friction_scale
     }
     fn lateral_pos_k(&self) -> &f32 {
         &self.lateral_pos_k
     }
+    fn lateral_pos_k_mut(&mut self) -> &mut f32 {
+        &mut self.lateral_pos_k
+    }
     fn lateral_neg_k(&self) -> &f32 {
         &self.lateral_neg_k
+    }
+    fn lateral_neg_k_mut(&mut self) -> &mut f32 {
+        &mut self.lateral_neg_k
     }
     fn longitudinal_pos_k(&self) -> &f32 {
         &self.longitudinal_pos_k
     }
+    fn longitudinal_pos_k_mut(&mut self) -> &mut f32 {
+        &mut self.longitudinal_pos_k
+    }
     fn longitudinal_neg_k(&self) -> &f32 {
         &self.longitudinal_neg_k
+    }
+    fn longitudinal_neg_k_mut(&mut self) -> &mut f32 {
+        &mut self.longitudinal_neg_k
     }
     fn align_mom_scale(&self) -> &f32 {
         &self.align_mom_scale
     }
+    fn align_mom_scale_mut(&mut self) -> &mut f32 {
+        &mut self.align_mom_scale
+    }
     fn wheel_base_lateral(&self) -> &f32 {
         &self.wheel_base_lateral
+    }
+    fn wheel_base_lateral_mut(&mut self) -> &mut f32 {
+        &mut self.wheel_base_lateral
     }
     fn wheel_base_longitudinal(&self) -> &f32 {
         &self.wheel_base_longitudinal
     }
+    fn wheel_base_longitudinal_mut(&mut self) -> &mut f32 {
+        &mut self.wheel_base_longitudinal
+    }
     fn driving_type(&self) -> &i32 {
         &self.driving_type
+    }
+    fn driving_type_mut(&mut self) -> &mut i32 {
+        &mut self.driving_type
     }
     fn steering_type(&self) -> &i32 {
         &self.steering_type
     }
+    fn steering_type_mut(&mut self) -> &mut i32 {
+        &mut self.steering_type
+    }
     fn friction_method(&self) -> &i32 {
         &self.friction_method
+    }
+    fn friction_method_mut(&mut self) -> &mut i32 {
+        &mut self.friction_method
     }
     fn rotation_direction_index(&self) -> &i32 {
         &self.rotation_direction_index
     }
+    fn rotation_direction_index_mut(&mut self) -> &mut i32 {
+        &mut self.rotation_direction_index
+    }
     fn steering_angle_index(&self) -> &i32 {
         &self.steering_angle_index
+    }
+    fn steering_angle_index_mut(&mut self) -> &mut i32 {
+        &mut self.steering_angle_index
     }
     fn pacejka_config_index(&self) -> &i32 {
         &self.pacejka_config_index
     }
+    fn pacejka_config_index_mut(&mut self) -> &mut i32 {
+        &mut self.pacejka_config_index
+    }
     fn engine_index(&self) -> &i32 {
         &self.engine_index
+    }
+    fn engine_index_mut(&mut self) -> &mut i32 {
+        &mut self.engine_index
     }
     fn ackerman_device_type(&self) -> &i32 {
         &self.ackerman_device_type
     }
+    fn ackerman_device_type_mut(&mut self) -> &mut i32 {
+        &mut self.ackerman_device_type
+    }
     fn use_rolling_resistance_velocity_factor(&self) -> &bool {
         &self.use_rolling_resistance_velocity_factor
+    }
+    fn use_rolling_resistance_velocity_factor_mut(&mut self) -> &mut bool {
+        &mut self.use_rolling_resistance_velocity_factor
     }
     fn use_rolling_resistance_base_factor(&self) -> &bool {
         &self.use_rolling_resistance_base_factor
     }
+    fn use_rolling_resistance_base_factor_mut(&mut self) -> &mut bool {
+        &mut self.use_rolling_resistance_base_factor
+    }
     fn use_engine_brake(&self) -> &bool {
         &self.use_engine_brake
+    }
+    fn use_engine_brake_mut(&mut self) -> &mut bool {
+        &mut self.use_engine_brake
     }
     fn is_allowed_to_spin(&self) -> &bool {
         &self.is_allowed_to_spin
     }
+    fn is_allowed_to_spin_mut(&mut self) -> &mut bool {
+        &mut self.is_allowed_to_spin
+    }
     fn has_steering_inverted(&self) -> &bool {
         &self.has_steering_inverted
+    }
+    fn has_steering_inverted_mut(&mut self) -> &mut bool {
+        &mut self.has_steering_inverted
     }
     fn use_friction_moment(&self) -> &bool {
         &self.use_friction_moment
     }
+    fn use_friction_moment_mut(&mut self) -> &mut bool {
+        &mut self.use_friction_moment
+    }
     fn use_low_speed_auto_brake(&self) -> &bool {
         &self.use_low_speed_auto_brake
+    }
+    fn use_low_speed_auto_brake_mut(&mut self) -> &mut bool {
+        &mut self.use_low_speed_auto_brake
     }
     fn adjust_wheel_rotation(&self) -> &bool {
         &self.adjust_wheel_rotation
     }
+    fn adjust_wheel_rotation_mut(&mut self) -> &mut bool {
+        &mut self.adjust_wheel_rotation
+    }
     fn collision_material_pair(&self) -> &super::entity::MaterialDecl {
         &self.collision_material_pair
+    }
+    fn collision_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.collision_material_pair
     }
 }
 
 impl super::core::DataContainerTrait for WheelConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WHEELCONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13229,6 +16944,15 @@ impl TypeObject for WheelConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13250,15 +16974,23 @@ pub struct FrictionScaleAtVelocity {
 
 pub trait FrictionScaleAtVelocityTrait: TypeObject {
     fn friction_scale(&self) -> &f32;
+    fn friction_scale_mut(&mut self) -> &mut f32;
     fn velocity(&self) -> &f32;
+    fn velocity_mut(&mut self) -> &mut f32;
 }
 
 impl FrictionScaleAtVelocityTrait for FrictionScaleAtVelocity {
     fn friction_scale(&self) -> &f32 {
         &self.friction_scale
     }
+    fn friction_scale_mut(&mut self) -> &mut f32 {
+        &mut self.friction_scale
+    }
     fn velocity(&self) -> &f32 {
         &self.velocity
+    }
+    fn velocity_mut(&mut self) -> &mut f32 {
+        &mut self.velocity
     }
 }
 
@@ -13296,6 +17028,15 @@ impl TypeObject for FrictionScaleAtVelocity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13317,15 +17058,23 @@ pub struct SensitivityAtVelocity {
 
 pub trait SensitivityAtVelocityTrait: TypeObject {
     fn steering_sensitivity(&self) -> &f32;
+    fn steering_sensitivity_mut(&mut self) -> &mut f32;
     fn velocity(&self) -> &f32;
+    fn velocity_mut(&mut self) -> &mut f32;
 }
 
 impl SensitivityAtVelocityTrait for SensitivityAtVelocity {
     fn steering_sensitivity(&self) -> &f32 {
         &self.steering_sensitivity
     }
+    fn steering_sensitivity_mut(&mut self) -> &mut f32 {
+        &mut self.steering_sensitivity
+    }
     fn velocity(&self) -> &f32 {
         &self.velocity
+    }
+    fn velocity_mut(&mut self) -> &mut f32 {
+        &mut self.velocity
     }
 }
 
@@ -13363,6 +17112,15 @@ impl TypeObject for SensitivityAtVelocity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13390,39 +17148,71 @@ pub struct SpringData {
 
 pub trait SpringDataTrait: TypeObject {
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn stiffness(&self) -> &f32;
+    fn stiffness_mut(&mut self) -> &mut f32;
     fn damping(&self) -> &f32;
+    fn damping_mut(&mut self) -> &mut f32;
     fn progressive_start_ratio(&self) -> &f32;
+    fn progressive_start_ratio_mut(&mut self) -> &mut f32;
     fn progressive_exponent(&self) -> &f32;
+    fn progressive_exponent_mut(&mut self) -> &mut f32;
     fn visual_clip_offset(&self) -> &f32;
+    fn visual_clip_offset_mut(&mut self) -> &mut f32;
     fn attach_offset_y(&self) -> &f32;
+    fn attach_offset_y_mut(&mut self) -> &mut f32;
     fn disabled_strengh_modifier(&self) -> &f32;
+    fn disabled_strengh_modifier_mut(&mut self) -> &mut f32;
 }
 
 impl SpringDataTrait for SpringData {
     fn length(&self) -> &f32 {
         &self.length
     }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
+    }
     fn stiffness(&self) -> &f32 {
         &self.stiffness
+    }
+    fn stiffness_mut(&mut self) -> &mut f32 {
+        &mut self.stiffness
     }
     fn damping(&self) -> &f32 {
         &self.damping
     }
+    fn damping_mut(&mut self) -> &mut f32 {
+        &mut self.damping
+    }
     fn progressive_start_ratio(&self) -> &f32 {
         &self.progressive_start_ratio
+    }
+    fn progressive_start_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.progressive_start_ratio
     }
     fn progressive_exponent(&self) -> &f32 {
         &self.progressive_exponent
     }
+    fn progressive_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.progressive_exponent
+    }
     fn visual_clip_offset(&self) -> &f32 {
         &self.visual_clip_offset
+    }
+    fn visual_clip_offset_mut(&mut self) -> &mut f32 {
+        &mut self.visual_clip_offset
     }
     fn attach_offset_y(&self) -> &f32 {
         &self.attach_offset_y
     }
+    fn attach_offset_y_mut(&mut self) -> &mut f32 {
+        &mut self.attach_offset_y
+    }
     fn disabled_strengh_modifier(&self) -> &f32 {
         &self.disabled_strengh_modifier
+    }
+    fn disabled_strengh_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.disabled_strengh_modifier
     }
 }
 
@@ -13496,6 +17286,15 @@ impl TypeObject for SpringData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13516,11 +17315,15 @@ pub struct SphereCollisionData {
 
 pub trait SphereCollisionDataTrait: TypeObject {
     fn counter_normal_brake_force_mod(&self) -> &f32;
+    fn counter_normal_brake_force_mod_mut(&mut self) -> &mut f32;
 }
 
 impl SphereCollisionDataTrait for SphereCollisionData {
     fn counter_normal_brake_force_mod(&self) -> &f32 {
         &self.counter_normal_brake_force_mod
+    }
+    fn counter_normal_brake_force_mod_mut(&mut self) -> &mut f32 {
+        &mut self.counter_normal_brake_force_mod
     }
 }
 
@@ -13551,6 +17354,15 @@ impl TypeObject for SphereCollisionData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -13584,55 +17396,103 @@ pub struct JetEngineConfigData {
 
 pub trait JetEngineConfigDataTrait: EngineConfigDataTrait {
     fn direction_vector_index(&self) -> &u32;
+    fn direction_vector_index_mut(&mut self) -> &mut u32;
     fn force_magnitude_multiplier(&self) -> &f32;
+    fn force_magnitude_multiplier_mut(&mut self) -> &mut f32;
     fn angle_input_y_multiplier(&self) -> &f32;
+    fn angle_input_y_multiplier_mut(&mut self) -> &mut f32;
     fn angle_input_pitch_multiplier(&self) -> &f32;
+    fn angle_input_pitch_multiplier_mut(&mut self) -> &mut f32;
     fn pitch_force_modifier(&self) -> &f32;
+    fn pitch_force_modifier_mut(&mut self) -> &mut f32;
     fn max_velocity(&self) -> &f32;
+    fn max_velocity_mut(&mut self) -> &mut f32;
     fn is_turnable(&self) -> &bool;
+    fn is_turnable_mut(&mut self) -> &mut bool;
     fn is_water_jet_engine(&self) -> &bool;
+    fn is_water_jet_engine_mut(&mut self) -> &mut bool;
     fn use_force_position_water_test(&self) -> &bool;
+    fn use_force_position_water_test_mut(&mut self) -> &mut bool;
     fn use_hull_in_water_test(&self) -> &bool;
+    fn use_hull_in_water_test_mut(&mut self) -> &mut bool;
     fn steering_sensitivity(&self) -> &Vec<SensitivityAtVelocity>;
+    fn steering_sensitivity_mut(&mut self) -> &mut Vec<SensitivityAtVelocity>;
     fn power_fade_out_range(&self) -> &super::core::Vec2;
+    fn power_fade_out_range_mut(&mut self) -> &mut super::core::Vec2;
 }
 
 impl JetEngineConfigDataTrait for JetEngineConfigData {
     fn direction_vector_index(&self) -> &u32 {
         &self.direction_vector_index
     }
+    fn direction_vector_index_mut(&mut self) -> &mut u32 {
+        &mut self.direction_vector_index
+    }
     fn force_magnitude_multiplier(&self) -> &f32 {
         &self.force_magnitude_multiplier
+    }
+    fn force_magnitude_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.force_magnitude_multiplier
     }
     fn angle_input_y_multiplier(&self) -> &f32 {
         &self.angle_input_y_multiplier
     }
+    fn angle_input_y_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.angle_input_y_multiplier
+    }
     fn angle_input_pitch_multiplier(&self) -> &f32 {
         &self.angle_input_pitch_multiplier
+    }
+    fn angle_input_pitch_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.angle_input_pitch_multiplier
     }
     fn pitch_force_modifier(&self) -> &f32 {
         &self.pitch_force_modifier
     }
+    fn pitch_force_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_force_modifier
+    }
     fn max_velocity(&self) -> &f32 {
         &self.max_velocity
+    }
+    fn max_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.max_velocity
     }
     fn is_turnable(&self) -> &bool {
         &self.is_turnable
     }
+    fn is_turnable_mut(&mut self) -> &mut bool {
+        &mut self.is_turnable
+    }
     fn is_water_jet_engine(&self) -> &bool {
         &self.is_water_jet_engine
+    }
+    fn is_water_jet_engine_mut(&mut self) -> &mut bool {
+        &mut self.is_water_jet_engine
     }
     fn use_force_position_water_test(&self) -> &bool {
         &self.use_force_position_water_test
     }
+    fn use_force_position_water_test_mut(&mut self) -> &mut bool {
+        &mut self.use_force_position_water_test
+    }
     fn use_hull_in_water_test(&self) -> &bool {
         &self.use_hull_in_water_test
+    }
+    fn use_hull_in_water_test_mut(&mut self) -> &mut bool {
+        &mut self.use_hull_in_water_test
     }
     fn steering_sensitivity(&self) -> &Vec<SensitivityAtVelocity> {
         &self.steering_sensitivity
     }
+    fn steering_sensitivity_mut(&mut self) -> &mut Vec<SensitivityAtVelocity> {
+        &mut self.steering_sensitivity
+    }
     fn power_fade_out_range(&self) -> &super::core::Vec2 {
         &self.power_fade_out_range
+    }
+    fn power_fade_out_range_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.power_fade_out_range
     }
 }
 
@@ -13640,45 +17500,78 @@ impl EngineConfigDataTrait for JetEngineConfigData {
     fn position(&self) -> &super::core::Vec3 {
         self._glacier_base.position()
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.position_mut()
+    }
     fn rpm_curve_points(&self) -> &Vec<f32> {
         self._glacier_base.rpm_curve_points()
+    }
+    fn rpm_curve_points_mut(&mut self) -> &mut Vec<f32> {
+        self._glacier_base.rpm_curve_points_mut()
     }
     fn torque_curve_points(&self) -> &Vec<f32> {
         self._glacier_base.torque_curve_points()
     }
+    fn torque_curve_points_mut(&mut self) -> &mut Vec<f32> {
+        self._glacier_base.torque_curve_points_mut()
+    }
     fn rpm_min(&self) -> &f32 {
         self._glacier_base.rpm_min()
+    }
+    fn rpm_min_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rpm_min_mut()
     }
     fn rpm_max(&self) -> &f32 {
         self._glacier_base.rpm_max()
     }
+    fn rpm_max_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rpm_max_mut()
+    }
     fn rpm_cut(&self) -> &f32 {
         self._glacier_base.rpm_cut()
+    }
+    fn rpm_cut_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rpm_cut_mut()
     }
     fn engine_power_multiplier(&self) -> &f32 {
         self._glacier_base.engine_power_multiplier()
     }
+    fn engine_power_multiplier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.engine_power_multiplier_mut()
+    }
     fn internal_acceleration_factor(&self) -> &f32 {
         self._glacier_base.internal_acceleration_factor()
+    }
+    fn internal_acceleration_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.internal_acceleration_factor_mut()
     }
     fn internal_deacceleration_factor(&self) -> &f32 {
         self._glacier_base.internal_deacceleration_factor()
     }
+    fn internal_deacceleration_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.internal_deacceleration_factor_mut()
+    }
     fn max_reverse_speed(&self) -> &f32 {
         self._glacier_base.max_reverse_speed()
+    }
+    fn max_reverse_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_reverse_speed_mut()
     }
     fn boost(&self) -> &Boost {
         self._glacier_base.boost()
     }
+    fn boost_mut(&mut self) -> &mut Boost {
+        self._glacier_base.boost_mut()
+    }
     fn max_vehicle_height_offset(&self) -> &f32 {
         self._glacier_base.max_vehicle_height_offset()
+    }
+    fn max_vehicle_height_offset_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_vehicle_height_offset_mut()
     }
 }
 
 impl super::core::DataContainerTrait for JetEngineConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static JETENGINECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13776,6 +17669,15 @@ impl TypeObject for JetEngineConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13842,191 +17744,375 @@ pub struct PropellerEngineConfigData {
 
 pub trait PropellerEngineConfigDataTrait: EngineConfigDataTrait {
     fn horisontal_force_offset(&self) -> &super::core::Vec3;
+    fn horisontal_force_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn propeller_type(&self) -> &PropellerType;
+    fn propeller_type_mut(&mut self) -> &mut PropellerType;
     fn rotor_config(&self) -> &Option<Arc<Mutex<dyn RotorParametersTrait>>>;
+    fn rotor_config_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RotorParametersTrait>>>;
     fn force_magnitude_input_type(&self) -> &ForceMagnitudeInputType;
+    fn force_magnitude_input_type_mut(&mut self) -> &mut ForceMagnitudeInputType;
     fn direction_vector_index(&self) -> &u32;
+    fn direction_vector_index_mut(&mut self) -> &mut u32;
     fn apply_force_as_torque(&self) -> &bool;
+    fn apply_force_as_torque_mut(&mut self) -> &mut bool;
     fn force_magnitude_multiplier(&self) -> &f32;
+    fn force_magnitude_multiplier_mut(&mut self) -> &mut f32;
     fn lift_force_spring_constant(&self) -> &f32;
+    fn lift_force_spring_constant_mut(&mut self) -> &mut f32;
     fn lift_force_damping_constant(&self) -> &f32;
+    fn lift_force_damping_constant_mut(&mut self) -> &mut f32;
     fn cyclic_input_scale_roll(&self) -> &f32;
+    fn cyclic_input_scale_roll_mut(&mut self) -> &mut f32;
     fn cyclic_roll_lift_mod(&self) -> &f32;
+    fn cyclic_roll_lift_mod_mut(&mut self) -> &mut f32;
     fn cyclic_roll_strafe_mod(&self) -> &f32;
+    fn cyclic_roll_strafe_mod_mut(&mut self) -> &mut f32;
     fn cyclic_input_scale_pitch(&self) -> &f32;
+    fn cyclic_input_scale_pitch_mut(&mut self) -> &mut f32;
     fn cyclic_pitch_lift_mod(&self) -> &f32;
+    fn cyclic_pitch_lift_mod_mut(&mut self) -> &mut f32;
     fn cyclic_pitch_strafe_mod(&self) -> &f32;
+    fn cyclic_pitch_strafe_mod_mut(&mut self) -> &mut f32;
     fn cyclic_pitch_strafe_brake_mod(&self) -> &f32;
+    fn cyclic_pitch_strafe_brake_mod_mut(&mut self) -> &mut f32;
     fn collective_input_idle(&self) -> &f32;
+    fn collective_input_idle_mut(&mut self) -> &mut f32;
     fn collective_throttle_input_scale(&self) -> &f32;
+    fn collective_throttle_input_scale_mut(&mut self) -> &mut f32;
     fn collective_brake_input_scale(&self) -> &f32;
+    fn collective_brake_input_scale_mut(&mut self) -> &mut f32;
     fn default_angle_of_attack(&self) -> &f32;
+    fn default_angle_of_attack_mut(&mut self) -> &mut f32;
     fn attack_angle_mod(&self) -> &f32;
+    fn attack_angle_mod_mut(&mut self) -> &mut f32;
     fn stabilizer_mod(&self) -> &f32;
+    fn stabilizer_mod_mut(&mut self) -> &mut f32;
     fn horisontal_min_effect_velocity(&self) -> &f32;
+    fn horisontal_min_effect_velocity_mut(&mut self) -> &mut f32;
     fn horisontal_min_effect_mod(&self) -> &f32;
+    fn horisontal_min_effect_mod_mut(&mut self) -> &mut f32;
     fn enable_new_helicopter(&self) -> &bool;
+    fn enable_new_helicopter_mut(&mut self) -> &mut bool;
     fn s_p_allowed(&self) -> &bool;
+    fn s_p_allowed_mut(&mut self) -> &mut bool;
     fn s_p_default(&self) -> &bool;
+    fn s_p_default_mut(&mut self) -> &mut bool;
     fn s_p_forward_input(&self) -> &ForceMagnitudeInputType;
+    fn s_p_forward_input_mut(&mut self) -> &mut ForceMagnitudeInputType;
     fn s_p_sideways_input(&self) -> &ForceMagnitudeInputType;
+    fn s_p_sideways_input_mut(&mut self) -> &mut ForceMagnitudeInputType;
     fn s_p_vertical_input(&self) -> &ForceMagnitudeInputType;
+    fn s_p_vertical_input_mut(&mut self) -> &mut ForceMagnitudeInputType;
     fn s_p_pitch_input(&self) -> &ForceMagnitudeInputType;
+    fn s_p_pitch_input_mut(&mut self) -> &mut ForceMagnitudeInputType;
     fn s_p_yaw_input(&self) -> &ForceMagnitudeInputType;
+    fn s_p_yaw_input_mut(&mut self) -> &mut ForceMagnitudeInputType;
     fn s_p_forward_strength(&self) -> &f32;
+    fn s_p_forward_strength_mut(&mut self) -> &mut f32;
     fn s_p_sideways_strength(&self) -> &f32;
+    fn s_p_sideways_strength_mut(&mut self) -> &mut f32;
     fn s_p_vertical_strength(&self) -> &f32;
+    fn s_p_vertical_strength_mut(&mut self) -> &mut f32;
     fn s_p_reverse_force_mod(&self) -> &f32;
+    fn s_p_reverse_force_mod_mut(&mut self) -> &mut f32;
     fn pitch_strength(&self) -> &f32;
+    fn pitch_strength_mut(&mut self) -> &mut f32;
     fn pitch_limit(&self) -> &f32;
+    fn pitch_limit_mut(&mut self) -> &mut f32;
     fn pitch_from_vel(&self) -> &f32;
+    fn pitch_from_vel_mut(&mut self) -> &mut f32;
     fn velocity_from_pitch(&self) -> &f32;
+    fn velocity_from_pitch_mut(&mut self) -> &mut f32;
     fn roll_strength(&self) -> &f32;
+    fn roll_strength_mut(&mut self) -> &mut f32;
     fn banking_strength(&self) -> &f32;
+    fn banking_strength_mut(&mut self) -> &mut f32;
     fn banking_limit(&self) -> &f32;
+    fn banking_limit_mut(&mut self) -> &mut f32;
     fn pitch_up_when_bank_strength(&self) -> &f32;
+    fn pitch_up_when_bank_strength_mut(&mut self) -> &mut f32;
     fn pitch_up_when_bank_limit(&self) -> &f32;
+    fn pitch_up_when_bank_limit_mut(&mut self) -> &mut f32;
     fn gravity_mod(&self) -> &f32;
+    fn gravity_mod_mut(&mut self) -> &mut f32;
 }
 
 impl PropellerEngineConfigDataTrait for PropellerEngineConfigData {
     fn horisontal_force_offset(&self) -> &super::core::Vec3 {
         &self.horisontal_force_offset
     }
+    fn horisontal_force_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.horisontal_force_offset
+    }
     fn propeller_type(&self) -> &PropellerType {
         &self.propeller_type
+    }
+    fn propeller_type_mut(&mut self) -> &mut PropellerType {
+        &mut self.propeller_type
     }
     fn rotor_config(&self) -> &Option<Arc<Mutex<dyn RotorParametersTrait>>> {
         &self.rotor_config
     }
+    fn rotor_config_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RotorParametersTrait>>> {
+        &mut self.rotor_config
+    }
     fn force_magnitude_input_type(&self) -> &ForceMagnitudeInputType {
         &self.force_magnitude_input_type
+    }
+    fn force_magnitude_input_type_mut(&mut self) -> &mut ForceMagnitudeInputType {
+        &mut self.force_magnitude_input_type
     }
     fn direction_vector_index(&self) -> &u32 {
         &self.direction_vector_index
     }
+    fn direction_vector_index_mut(&mut self) -> &mut u32 {
+        &mut self.direction_vector_index
+    }
     fn apply_force_as_torque(&self) -> &bool {
         &self.apply_force_as_torque
+    }
+    fn apply_force_as_torque_mut(&mut self) -> &mut bool {
+        &mut self.apply_force_as_torque
     }
     fn force_magnitude_multiplier(&self) -> &f32 {
         &self.force_magnitude_multiplier
     }
+    fn force_magnitude_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.force_magnitude_multiplier
+    }
     fn lift_force_spring_constant(&self) -> &f32 {
         &self.lift_force_spring_constant
+    }
+    fn lift_force_spring_constant_mut(&mut self) -> &mut f32 {
+        &mut self.lift_force_spring_constant
     }
     fn lift_force_damping_constant(&self) -> &f32 {
         &self.lift_force_damping_constant
     }
+    fn lift_force_damping_constant_mut(&mut self) -> &mut f32 {
+        &mut self.lift_force_damping_constant
+    }
     fn cyclic_input_scale_roll(&self) -> &f32 {
         &self.cyclic_input_scale_roll
+    }
+    fn cyclic_input_scale_roll_mut(&mut self) -> &mut f32 {
+        &mut self.cyclic_input_scale_roll
     }
     fn cyclic_roll_lift_mod(&self) -> &f32 {
         &self.cyclic_roll_lift_mod
     }
+    fn cyclic_roll_lift_mod_mut(&mut self) -> &mut f32 {
+        &mut self.cyclic_roll_lift_mod
+    }
     fn cyclic_roll_strafe_mod(&self) -> &f32 {
         &self.cyclic_roll_strafe_mod
+    }
+    fn cyclic_roll_strafe_mod_mut(&mut self) -> &mut f32 {
+        &mut self.cyclic_roll_strafe_mod
     }
     fn cyclic_input_scale_pitch(&self) -> &f32 {
         &self.cyclic_input_scale_pitch
     }
+    fn cyclic_input_scale_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.cyclic_input_scale_pitch
+    }
     fn cyclic_pitch_lift_mod(&self) -> &f32 {
         &self.cyclic_pitch_lift_mod
+    }
+    fn cyclic_pitch_lift_mod_mut(&mut self) -> &mut f32 {
+        &mut self.cyclic_pitch_lift_mod
     }
     fn cyclic_pitch_strafe_mod(&self) -> &f32 {
         &self.cyclic_pitch_strafe_mod
     }
+    fn cyclic_pitch_strafe_mod_mut(&mut self) -> &mut f32 {
+        &mut self.cyclic_pitch_strafe_mod
+    }
     fn cyclic_pitch_strafe_brake_mod(&self) -> &f32 {
         &self.cyclic_pitch_strafe_brake_mod
+    }
+    fn cyclic_pitch_strafe_brake_mod_mut(&mut self) -> &mut f32 {
+        &mut self.cyclic_pitch_strafe_brake_mod
     }
     fn collective_input_idle(&self) -> &f32 {
         &self.collective_input_idle
     }
+    fn collective_input_idle_mut(&mut self) -> &mut f32 {
+        &mut self.collective_input_idle
+    }
     fn collective_throttle_input_scale(&self) -> &f32 {
         &self.collective_throttle_input_scale
+    }
+    fn collective_throttle_input_scale_mut(&mut self) -> &mut f32 {
+        &mut self.collective_throttle_input_scale
     }
     fn collective_brake_input_scale(&self) -> &f32 {
         &self.collective_brake_input_scale
     }
+    fn collective_brake_input_scale_mut(&mut self) -> &mut f32 {
+        &mut self.collective_brake_input_scale
+    }
     fn default_angle_of_attack(&self) -> &f32 {
         &self.default_angle_of_attack
+    }
+    fn default_angle_of_attack_mut(&mut self) -> &mut f32 {
+        &mut self.default_angle_of_attack
     }
     fn attack_angle_mod(&self) -> &f32 {
         &self.attack_angle_mod
     }
+    fn attack_angle_mod_mut(&mut self) -> &mut f32 {
+        &mut self.attack_angle_mod
+    }
     fn stabilizer_mod(&self) -> &f32 {
         &self.stabilizer_mod
+    }
+    fn stabilizer_mod_mut(&mut self) -> &mut f32 {
+        &mut self.stabilizer_mod
     }
     fn horisontal_min_effect_velocity(&self) -> &f32 {
         &self.horisontal_min_effect_velocity
     }
+    fn horisontal_min_effect_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.horisontal_min_effect_velocity
+    }
     fn horisontal_min_effect_mod(&self) -> &f32 {
         &self.horisontal_min_effect_mod
+    }
+    fn horisontal_min_effect_mod_mut(&mut self) -> &mut f32 {
+        &mut self.horisontal_min_effect_mod
     }
     fn enable_new_helicopter(&self) -> &bool {
         &self.enable_new_helicopter
     }
+    fn enable_new_helicopter_mut(&mut self) -> &mut bool {
+        &mut self.enable_new_helicopter
+    }
     fn s_p_allowed(&self) -> &bool {
         &self.s_p_allowed
+    }
+    fn s_p_allowed_mut(&mut self) -> &mut bool {
+        &mut self.s_p_allowed
     }
     fn s_p_default(&self) -> &bool {
         &self.s_p_default
     }
+    fn s_p_default_mut(&mut self) -> &mut bool {
+        &mut self.s_p_default
+    }
     fn s_p_forward_input(&self) -> &ForceMagnitudeInputType {
         &self.s_p_forward_input
+    }
+    fn s_p_forward_input_mut(&mut self) -> &mut ForceMagnitudeInputType {
+        &mut self.s_p_forward_input
     }
     fn s_p_sideways_input(&self) -> &ForceMagnitudeInputType {
         &self.s_p_sideways_input
     }
+    fn s_p_sideways_input_mut(&mut self) -> &mut ForceMagnitudeInputType {
+        &mut self.s_p_sideways_input
+    }
     fn s_p_vertical_input(&self) -> &ForceMagnitudeInputType {
         &self.s_p_vertical_input
+    }
+    fn s_p_vertical_input_mut(&mut self) -> &mut ForceMagnitudeInputType {
+        &mut self.s_p_vertical_input
     }
     fn s_p_pitch_input(&self) -> &ForceMagnitudeInputType {
         &self.s_p_pitch_input
     }
+    fn s_p_pitch_input_mut(&mut self) -> &mut ForceMagnitudeInputType {
+        &mut self.s_p_pitch_input
+    }
     fn s_p_yaw_input(&self) -> &ForceMagnitudeInputType {
         &self.s_p_yaw_input
+    }
+    fn s_p_yaw_input_mut(&mut self) -> &mut ForceMagnitudeInputType {
+        &mut self.s_p_yaw_input
     }
     fn s_p_forward_strength(&self) -> &f32 {
         &self.s_p_forward_strength
     }
+    fn s_p_forward_strength_mut(&mut self) -> &mut f32 {
+        &mut self.s_p_forward_strength
+    }
     fn s_p_sideways_strength(&self) -> &f32 {
         &self.s_p_sideways_strength
+    }
+    fn s_p_sideways_strength_mut(&mut self) -> &mut f32 {
+        &mut self.s_p_sideways_strength
     }
     fn s_p_vertical_strength(&self) -> &f32 {
         &self.s_p_vertical_strength
     }
+    fn s_p_vertical_strength_mut(&mut self) -> &mut f32 {
+        &mut self.s_p_vertical_strength
+    }
     fn s_p_reverse_force_mod(&self) -> &f32 {
         &self.s_p_reverse_force_mod
+    }
+    fn s_p_reverse_force_mod_mut(&mut self) -> &mut f32 {
+        &mut self.s_p_reverse_force_mod
     }
     fn pitch_strength(&self) -> &f32 {
         &self.pitch_strength
     }
+    fn pitch_strength_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_strength
+    }
     fn pitch_limit(&self) -> &f32 {
         &self.pitch_limit
+    }
+    fn pitch_limit_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_limit
     }
     fn pitch_from_vel(&self) -> &f32 {
         &self.pitch_from_vel
     }
+    fn pitch_from_vel_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_from_vel
+    }
     fn velocity_from_pitch(&self) -> &f32 {
         &self.velocity_from_pitch
+    }
+    fn velocity_from_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.velocity_from_pitch
     }
     fn roll_strength(&self) -> &f32 {
         &self.roll_strength
     }
+    fn roll_strength_mut(&mut self) -> &mut f32 {
+        &mut self.roll_strength
+    }
     fn banking_strength(&self) -> &f32 {
         &self.banking_strength
+    }
+    fn banking_strength_mut(&mut self) -> &mut f32 {
+        &mut self.banking_strength
     }
     fn banking_limit(&self) -> &f32 {
         &self.banking_limit
     }
+    fn banking_limit_mut(&mut self) -> &mut f32 {
+        &mut self.banking_limit
+    }
     fn pitch_up_when_bank_strength(&self) -> &f32 {
         &self.pitch_up_when_bank_strength
+    }
+    fn pitch_up_when_bank_strength_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_up_when_bank_strength
     }
     fn pitch_up_when_bank_limit(&self) -> &f32 {
         &self.pitch_up_when_bank_limit
     }
+    fn pitch_up_when_bank_limit_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_up_when_bank_limit
+    }
     fn gravity_mod(&self) -> &f32 {
         &self.gravity_mod
+    }
+    fn gravity_mod_mut(&mut self) -> &mut f32 {
+        &mut self.gravity_mod
     }
 }
 
@@ -14034,45 +18120,78 @@ impl EngineConfigDataTrait for PropellerEngineConfigData {
     fn position(&self) -> &super::core::Vec3 {
         self._glacier_base.position()
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.position_mut()
+    }
     fn rpm_curve_points(&self) -> &Vec<f32> {
         self._glacier_base.rpm_curve_points()
+    }
+    fn rpm_curve_points_mut(&mut self) -> &mut Vec<f32> {
+        self._glacier_base.rpm_curve_points_mut()
     }
     fn torque_curve_points(&self) -> &Vec<f32> {
         self._glacier_base.torque_curve_points()
     }
+    fn torque_curve_points_mut(&mut self) -> &mut Vec<f32> {
+        self._glacier_base.torque_curve_points_mut()
+    }
     fn rpm_min(&self) -> &f32 {
         self._glacier_base.rpm_min()
+    }
+    fn rpm_min_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rpm_min_mut()
     }
     fn rpm_max(&self) -> &f32 {
         self._glacier_base.rpm_max()
     }
+    fn rpm_max_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rpm_max_mut()
+    }
     fn rpm_cut(&self) -> &f32 {
         self._glacier_base.rpm_cut()
+    }
+    fn rpm_cut_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rpm_cut_mut()
     }
     fn engine_power_multiplier(&self) -> &f32 {
         self._glacier_base.engine_power_multiplier()
     }
+    fn engine_power_multiplier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.engine_power_multiplier_mut()
+    }
     fn internal_acceleration_factor(&self) -> &f32 {
         self._glacier_base.internal_acceleration_factor()
+    }
+    fn internal_acceleration_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.internal_acceleration_factor_mut()
     }
     fn internal_deacceleration_factor(&self) -> &f32 {
         self._glacier_base.internal_deacceleration_factor()
     }
+    fn internal_deacceleration_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.internal_deacceleration_factor_mut()
+    }
     fn max_reverse_speed(&self) -> &f32 {
         self._glacier_base.max_reverse_speed()
+    }
+    fn max_reverse_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_reverse_speed_mut()
     }
     fn boost(&self) -> &Boost {
         self._glacier_base.boost()
     }
+    fn boost_mut(&mut self) -> &mut Boost {
+        self._glacier_base.boost_mut()
+    }
     fn max_vehicle_height_offset(&self) -> &f32 {
         self._glacier_base.max_vehicle_height_offset()
+    }
+    fn max_vehicle_height_offset_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_vehicle_height_offset_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PropellerEngineConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROPELLERENGINECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14374,6 +18493,15 @@ impl TypeObject for PropellerEngineConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14407,66 +18535,115 @@ pub struct RotorParameters {
 
 pub trait RotorParametersTrait: super::core::DataContainerTrait {
     fn cyclic_input_scale_roll(&self) -> &f32;
+    fn cyclic_input_scale_roll_mut(&mut self) -> &mut f32;
     fn cyclic_input_scale_pitch(&self) -> &f32;
+    fn cyclic_input_scale_pitch_mut(&mut self) -> &mut f32;
     fn collective_throttle_input_scale(&self) -> &f32;
+    fn collective_throttle_input_scale_mut(&mut self) -> &mut f32;
     fn collective_brake_input_scale(&self) -> &f32;
+    fn collective_brake_input_scale_mut(&mut self) -> &mut f32;
     fn collective_input_idle(&self) -> &f32;
+    fn collective_input_idle_mut(&mut self) -> &mut f32;
     fn horizontal_force_modifier(&self) -> &f32;
+    fn horizontal_force_modifier_mut(&mut self) -> &mut f32;
     fn angle_of_attack(&self) -> &Vec<super::core::Vec2>;
+    fn angle_of_attack_mut(&mut self) -> &mut Vec<super::core::Vec2>;
     fn cyclic_fade_out_offset(&self) -> &f32;
+    fn cyclic_fade_out_offset_mut(&mut self) -> &mut f32;
     fn additional_gravity_modifier(&self) -> &f32;
+    fn additional_gravity_modifier_mut(&mut self) -> &mut f32;
     fn reverse_throttle(&self) -> &bool;
+    fn reverse_throttle_mut(&mut self) -> &mut bool;
     fn enable_horisontal_min_effect(&self) -> &bool;
+    fn enable_horisontal_min_effect_mut(&mut self) -> &mut bool;
     fn horisontal_min_effect_velocity(&self) -> &f32;
+    fn horisontal_min_effect_velocity_mut(&mut self) -> &mut f32;
     fn horisontal_min_effect_mod(&self) -> &f32;
+    fn horisontal_min_effect_mod_mut(&mut self) -> &mut f32;
 }
 
 impl RotorParametersTrait for RotorParameters {
     fn cyclic_input_scale_roll(&self) -> &f32 {
         &self.cyclic_input_scale_roll
     }
+    fn cyclic_input_scale_roll_mut(&mut self) -> &mut f32 {
+        &mut self.cyclic_input_scale_roll
+    }
     fn cyclic_input_scale_pitch(&self) -> &f32 {
         &self.cyclic_input_scale_pitch
+    }
+    fn cyclic_input_scale_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.cyclic_input_scale_pitch
     }
     fn collective_throttle_input_scale(&self) -> &f32 {
         &self.collective_throttle_input_scale
     }
+    fn collective_throttle_input_scale_mut(&mut self) -> &mut f32 {
+        &mut self.collective_throttle_input_scale
+    }
     fn collective_brake_input_scale(&self) -> &f32 {
         &self.collective_brake_input_scale
+    }
+    fn collective_brake_input_scale_mut(&mut self) -> &mut f32 {
+        &mut self.collective_brake_input_scale
     }
     fn collective_input_idle(&self) -> &f32 {
         &self.collective_input_idle
     }
+    fn collective_input_idle_mut(&mut self) -> &mut f32 {
+        &mut self.collective_input_idle
+    }
     fn horizontal_force_modifier(&self) -> &f32 {
         &self.horizontal_force_modifier
+    }
+    fn horizontal_force_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.horizontal_force_modifier
     }
     fn angle_of_attack(&self) -> &Vec<super::core::Vec2> {
         &self.angle_of_attack
     }
+    fn angle_of_attack_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+        &mut self.angle_of_attack
+    }
     fn cyclic_fade_out_offset(&self) -> &f32 {
         &self.cyclic_fade_out_offset
+    }
+    fn cyclic_fade_out_offset_mut(&mut self) -> &mut f32 {
+        &mut self.cyclic_fade_out_offset
     }
     fn additional_gravity_modifier(&self) -> &f32 {
         &self.additional_gravity_modifier
     }
+    fn additional_gravity_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.additional_gravity_modifier
+    }
     fn reverse_throttle(&self) -> &bool {
         &self.reverse_throttle
+    }
+    fn reverse_throttle_mut(&mut self) -> &mut bool {
+        &mut self.reverse_throttle
     }
     fn enable_horisontal_min_effect(&self) -> &bool {
         &self.enable_horisontal_min_effect
     }
+    fn enable_horisontal_min_effect_mut(&mut self) -> &mut bool {
+        &mut self.enable_horisontal_min_effect
+    }
     fn horisontal_min_effect_velocity(&self) -> &f32 {
         &self.horisontal_min_effect_velocity
+    }
+    fn horisontal_min_effect_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.horisontal_min_effect_velocity
     }
     fn horisontal_min_effect_mod(&self) -> &f32 {
         &self.horisontal_min_effect_mod
     }
+    fn horisontal_min_effect_mod_mut(&mut self) -> &mut f32 {
+        &mut self.horisontal_min_effect_mod
+    }
 }
 
 impl super::core::DataContainerTrait for RotorParameters {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ROTORPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14570,6 +18747,15 @@ impl TypeObject for RotorParameters {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14611,6 +18797,15 @@ impl TypeObject for ForceMagnitudeInputType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14649,6 +18844,15 @@ impl TypeObject for PropellerType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14677,45 +18881,78 @@ impl EngineConfigDataTrait for CombustionEngineConfigData {
     fn position(&self) -> &super::core::Vec3 {
         self._glacier_base.position()
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.position_mut()
+    }
     fn rpm_curve_points(&self) -> &Vec<f32> {
         self._glacier_base.rpm_curve_points()
+    }
+    fn rpm_curve_points_mut(&mut self) -> &mut Vec<f32> {
+        self._glacier_base.rpm_curve_points_mut()
     }
     fn torque_curve_points(&self) -> &Vec<f32> {
         self._glacier_base.torque_curve_points()
     }
+    fn torque_curve_points_mut(&mut self) -> &mut Vec<f32> {
+        self._glacier_base.torque_curve_points_mut()
+    }
     fn rpm_min(&self) -> &f32 {
         self._glacier_base.rpm_min()
+    }
+    fn rpm_min_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rpm_min_mut()
     }
     fn rpm_max(&self) -> &f32 {
         self._glacier_base.rpm_max()
     }
+    fn rpm_max_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rpm_max_mut()
+    }
     fn rpm_cut(&self) -> &f32 {
         self._glacier_base.rpm_cut()
+    }
+    fn rpm_cut_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rpm_cut_mut()
     }
     fn engine_power_multiplier(&self) -> &f32 {
         self._glacier_base.engine_power_multiplier()
     }
+    fn engine_power_multiplier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.engine_power_multiplier_mut()
+    }
     fn internal_acceleration_factor(&self) -> &f32 {
         self._glacier_base.internal_acceleration_factor()
+    }
+    fn internal_acceleration_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.internal_acceleration_factor_mut()
     }
     fn internal_deacceleration_factor(&self) -> &f32 {
         self._glacier_base.internal_deacceleration_factor()
     }
+    fn internal_deacceleration_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.internal_deacceleration_factor_mut()
+    }
     fn max_reverse_speed(&self) -> &f32 {
         self._glacier_base.max_reverse_speed()
+    }
+    fn max_reverse_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_reverse_speed_mut()
     }
     fn boost(&self) -> &Boost {
         self._glacier_base.boost()
     }
+    fn boost_mut(&mut self) -> &mut Boost {
+        self._glacier_base.boost_mut()
+    }
     fn max_vehicle_height_offset(&self) -> &f32 {
         self._glacier_base.max_vehicle_height_offset()
+    }
+    fn max_vehicle_height_offset_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_vehicle_height_offset_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CombustionEngineConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COMBUSTIONENGINECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14740,6 +18977,15 @@ impl TypeObject for CombustionEngineConfigData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14773,62 +19019,107 @@ pub struct EngineConfigData {
 
 pub trait EngineConfigDataTrait: super::core::DataContainerTrait {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn rpm_curve_points(&self) -> &Vec<f32>;
+    fn rpm_curve_points_mut(&mut self) -> &mut Vec<f32>;
     fn torque_curve_points(&self) -> &Vec<f32>;
+    fn torque_curve_points_mut(&mut self) -> &mut Vec<f32>;
     fn rpm_min(&self) -> &f32;
+    fn rpm_min_mut(&mut self) -> &mut f32;
     fn rpm_max(&self) -> &f32;
+    fn rpm_max_mut(&mut self) -> &mut f32;
     fn rpm_cut(&self) -> &f32;
+    fn rpm_cut_mut(&mut self) -> &mut f32;
     fn engine_power_multiplier(&self) -> &f32;
+    fn engine_power_multiplier_mut(&mut self) -> &mut f32;
     fn internal_acceleration_factor(&self) -> &f32;
+    fn internal_acceleration_factor_mut(&mut self) -> &mut f32;
     fn internal_deacceleration_factor(&self) -> &f32;
+    fn internal_deacceleration_factor_mut(&mut self) -> &mut f32;
     fn max_reverse_speed(&self) -> &f32;
+    fn max_reverse_speed_mut(&mut self) -> &mut f32;
     fn boost(&self) -> &Boost;
+    fn boost_mut(&mut self) -> &mut Boost;
     fn max_vehicle_height_offset(&self) -> &f32;
+    fn max_vehicle_height_offset_mut(&mut self) -> &mut f32;
 }
 
 impl EngineConfigDataTrait for EngineConfigData {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
+    }
     fn rpm_curve_points(&self) -> &Vec<f32> {
         &self.rpm_curve_points
+    }
+    fn rpm_curve_points_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.rpm_curve_points
     }
     fn torque_curve_points(&self) -> &Vec<f32> {
         &self.torque_curve_points
     }
+    fn torque_curve_points_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.torque_curve_points
+    }
     fn rpm_min(&self) -> &f32 {
         &self.rpm_min
+    }
+    fn rpm_min_mut(&mut self) -> &mut f32 {
+        &mut self.rpm_min
     }
     fn rpm_max(&self) -> &f32 {
         &self.rpm_max
     }
+    fn rpm_max_mut(&mut self) -> &mut f32 {
+        &mut self.rpm_max
+    }
     fn rpm_cut(&self) -> &f32 {
         &self.rpm_cut
+    }
+    fn rpm_cut_mut(&mut self) -> &mut f32 {
+        &mut self.rpm_cut
     }
     fn engine_power_multiplier(&self) -> &f32 {
         &self.engine_power_multiplier
     }
+    fn engine_power_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.engine_power_multiplier
+    }
     fn internal_acceleration_factor(&self) -> &f32 {
         &self.internal_acceleration_factor
+    }
+    fn internal_acceleration_factor_mut(&mut self) -> &mut f32 {
+        &mut self.internal_acceleration_factor
     }
     fn internal_deacceleration_factor(&self) -> &f32 {
         &self.internal_deacceleration_factor
     }
+    fn internal_deacceleration_factor_mut(&mut self) -> &mut f32 {
+        &mut self.internal_deacceleration_factor
+    }
     fn max_reverse_speed(&self) -> &f32 {
         &self.max_reverse_speed
+    }
+    fn max_reverse_speed_mut(&mut self) -> &mut f32 {
+        &mut self.max_reverse_speed
     }
     fn boost(&self) -> &Boost {
         &self.boost
     }
+    fn boost_mut(&mut self) -> &mut Boost {
+        &mut self.boost
+    }
     fn max_vehicle_height_offset(&self) -> &f32 {
         &self.max_vehicle_height_offset
+    }
+    fn max_vehicle_height_offset_mut(&mut self) -> &mut f32 {
+        &mut self.max_vehicle_height_offset
     }
 }
 
 impl super::core::DataContainerTrait for EngineConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENGINECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14926,6 +19217,15 @@ impl TypeObject for EngineConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14951,31 +19251,55 @@ pub struct Boost {
 
 pub trait BoostTrait: TypeObject {
     fn forward_strength(&self) -> &f32;
+    fn forward_strength_mut(&mut self) -> &mut f32;
     fn reverse_strength(&self) -> &f32;
+    fn reverse_strength_mut(&mut self) -> &mut f32;
     fn dissipation_time(&self) -> &f32;
+    fn dissipation_time_mut(&mut self) -> &mut f32;
     fn recovery_time(&self) -> &f32;
+    fn recovery_time_mut(&mut self) -> &mut f32;
     fn crawl_strength(&self) -> &f32;
+    fn crawl_strength_mut(&mut self) -> &mut f32;
     fn acceleration_scale(&self) -> &f32;
+    fn acceleration_scale_mut(&mut self) -> &mut f32;
 }
 
 impl BoostTrait for Boost {
     fn forward_strength(&self) -> &f32 {
         &self.forward_strength
     }
+    fn forward_strength_mut(&mut self) -> &mut f32 {
+        &mut self.forward_strength
+    }
     fn reverse_strength(&self) -> &f32 {
         &self.reverse_strength
+    }
+    fn reverse_strength_mut(&mut self) -> &mut f32 {
+        &mut self.reverse_strength
     }
     fn dissipation_time(&self) -> &f32 {
         &self.dissipation_time
     }
+    fn dissipation_time_mut(&mut self) -> &mut f32 {
+        &mut self.dissipation_time
+    }
     fn recovery_time(&self) -> &f32 {
         &self.recovery_time
+    }
+    fn recovery_time_mut(&mut self) -> &mut f32 {
+        &mut self.recovery_time
     }
     fn crawl_strength(&self) -> &f32 {
         &self.crawl_strength
     }
+    fn crawl_strength_mut(&mut self) -> &mut f32 {
+        &mut self.crawl_strength
+    }
     fn acceleration_scale(&self) -> &f32 {
         &self.acceleration_scale
+    }
+    fn acceleration_scale_mut(&mut self) -> &mut f32 {
+        &mut self.acceleration_scale
     }
 }
 
@@ -15037,6 +19361,15 @@ impl TypeObject for Boost {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15072,74 +19405,131 @@ pub struct GearboxConfigData {
 
 pub trait GearboxConfigDataTrait: super::core::DataContainerTrait {
     fn forward_gear_ratios(&self) -> &Vec<f32>;
+    fn forward_gear_ratios_mut(&mut self) -> &mut Vec<f32>;
     fn forward_gear_speeds(&self) -> &Vec<f32>;
+    fn forward_gear_speeds_mut(&mut self) -> &mut Vec<f32>;
     fn reverse_gear_ratios(&self) -> &Vec<f32>;
+    fn reverse_gear_ratios_mut(&mut self) -> &mut Vec<f32>;
     fn reverse_gear_speeds(&self) -> &Vec<f32>;
+    fn reverse_gear_speeds_mut(&mut self) -> &mut Vec<f32>;
     fn gearbox_type(&self) -> &i32;
+    fn gearbox_type_mut(&mut self) -> &mut i32;
     fn gearbox_mode(&self) -> &i32;
+    fn gearbox_mode_mut(&mut self) -> &mut i32;
     fn gear_change_time(&self) -> &f32;
+    fn gear_change_time_mut(&mut self) -> &mut f32;
     fn gear_down_speed_factor(&self) -> &f32;
+    fn gear_down_speed_factor_mut(&mut self) -> &mut f32;
     fn opposite_dir_gear_change_max_speed(&self) -> &f32;
+    fn opposite_dir_gear_change_max_speed_mut(&mut self) -> &mut f32;
     fn opposite_dir_gear_change_time(&self) -> &f32;
+    fn opposite_dir_gear_change_time_mut(&mut self) -> &mut f32;
     fn clutch_speed_factor(&self) -> &f32;
+    fn clutch_speed_factor_mut(&mut self) -> &mut f32;
     fn transmission_efficiency(&self) -> &f32;
+    fn transmission_efficiency_mut(&mut self) -> &mut f32;
     fn use_auto_clutch(&self) -> &bool;
+    fn use_auto_clutch_mut(&mut self) -> &mut bool;
     fn use_classic_gear_box_auto_clutch(&self) -> &bool;
+    fn use_classic_gear_box_auto_clutch_mut(&mut self) -> &mut bool;
     fn use_neutral_gear(&self) -> &bool;
+    fn use_neutral_gear_mut(&mut self) -> &mut bool;
 }
 
 impl GearboxConfigDataTrait for GearboxConfigData {
     fn forward_gear_ratios(&self) -> &Vec<f32> {
         &self.forward_gear_ratios
     }
+    fn forward_gear_ratios_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.forward_gear_ratios
+    }
     fn forward_gear_speeds(&self) -> &Vec<f32> {
         &self.forward_gear_speeds
+    }
+    fn forward_gear_speeds_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.forward_gear_speeds
     }
     fn reverse_gear_ratios(&self) -> &Vec<f32> {
         &self.reverse_gear_ratios
     }
+    fn reverse_gear_ratios_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.reverse_gear_ratios
+    }
     fn reverse_gear_speeds(&self) -> &Vec<f32> {
         &self.reverse_gear_speeds
+    }
+    fn reverse_gear_speeds_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.reverse_gear_speeds
     }
     fn gearbox_type(&self) -> &i32 {
         &self.gearbox_type
     }
+    fn gearbox_type_mut(&mut self) -> &mut i32 {
+        &mut self.gearbox_type
+    }
     fn gearbox_mode(&self) -> &i32 {
         &self.gearbox_mode
+    }
+    fn gearbox_mode_mut(&mut self) -> &mut i32 {
+        &mut self.gearbox_mode
     }
     fn gear_change_time(&self) -> &f32 {
         &self.gear_change_time
     }
+    fn gear_change_time_mut(&mut self) -> &mut f32 {
+        &mut self.gear_change_time
+    }
     fn gear_down_speed_factor(&self) -> &f32 {
         &self.gear_down_speed_factor
+    }
+    fn gear_down_speed_factor_mut(&mut self) -> &mut f32 {
+        &mut self.gear_down_speed_factor
     }
     fn opposite_dir_gear_change_max_speed(&self) -> &f32 {
         &self.opposite_dir_gear_change_max_speed
     }
+    fn opposite_dir_gear_change_max_speed_mut(&mut self) -> &mut f32 {
+        &mut self.opposite_dir_gear_change_max_speed
+    }
     fn opposite_dir_gear_change_time(&self) -> &f32 {
         &self.opposite_dir_gear_change_time
+    }
+    fn opposite_dir_gear_change_time_mut(&mut self) -> &mut f32 {
+        &mut self.opposite_dir_gear_change_time
     }
     fn clutch_speed_factor(&self) -> &f32 {
         &self.clutch_speed_factor
     }
+    fn clutch_speed_factor_mut(&mut self) -> &mut f32 {
+        &mut self.clutch_speed_factor
+    }
     fn transmission_efficiency(&self) -> &f32 {
         &self.transmission_efficiency
+    }
+    fn transmission_efficiency_mut(&mut self) -> &mut f32 {
+        &mut self.transmission_efficiency
     }
     fn use_auto_clutch(&self) -> &bool {
         &self.use_auto_clutch
     }
+    fn use_auto_clutch_mut(&mut self) -> &mut bool {
+        &mut self.use_auto_clutch
+    }
     fn use_classic_gear_box_auto_clutch(&self) -> &bool {
         &self.use_classic_gear_box_auto_clutch
+    }
+    fn use_classic_gear_box_auto_clutch_mut(&mut self) -> &mut bool {
+        &mut self.use_classic_gear_box_auto_clutch
     }
     fn use_neutral_gear(&self) -> &bool {
         &self.use_neutral_gear
     }
+    fn use_neutral_gear_mut(&mut self) -> &mut bool {
+        &mut self.use_neutral_gear
+    }
 }
 
 impl super::core::DataContainerTrait for GearboxConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GEARBOXCONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15255,6 +19645,15 @@ impl TypeObject for GearboxConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15280,34 +19679,51 @@ pub struct VehicleInputTweakData {
 
 pub trait VehicleInputTweakDataTrait: super::core::DataContainerTrait {
     fn input_tweak_type(&self) -> &VehicleInputTweakType;
+    fn input_tweak_type_mut(&mut self) -> &mut VehicleInputTweakType;
     fn min_speed(&self) -> &f32;
+    fn min_speed_mut(&mut self) -> &mut f32;
     fn max_speed(&self) -> &f32;
+    fn max_speed_mut(&mut self) -> &mut f32;
     fn min_speed_scale(&self) -> &f32;
+    fn min_speed_scale_mut(&mut self) -> &mut f32;
     fn max_speed_scale(&self) -> &f32;
+    fn max_speed_scale_mut(&mut self) -> &mut f32;
 }
 
 impl VehicleInputTweakDataTrait for VehicleInputTweakData {
     fn input_tweak_type(&self) -> &VehicleInputTweakType {
         &self.input_tweak_type
     }
+    fn input_tweak_type_mut(&mut self) -> &mut VehicleInputTweakType {
+        &mut self.input_tweak_type
+    }
     fn min_speed(&self) -> &f32 {
         &self.min_speed
+    }
+    fn min_speed_mut(&mut self) -> &mut f32 {
+        &mut self.min_speed
     }
     fn max_speed(&self) -> &f32 {
         &self.max_speed
     }
+    fn max_speed_mut(&mut self) -> &mut f32 {
+        &mut self.max_speed
+    }
     fn min_speed_scale(&self) -> &f32 {
         &self.min_speed_scale
+    }
+    fn min_speed_scale_mut(&mut self) -> &mut f32 {
+        &mut self.min_speed_scale
     }
     fn max_speed_scale(&self) -> &f32 {
         &self.max_speed_scale
     }
+    fn max_speed_scale_mut(&mut self) -> &mut f32 {
+        &mut self.max_speed_scale
+    }
 }
 
 impl super::core::DataContainerTrait for VehicleInputTweakData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEHICLEINPUTTWEAKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15363,6 +19779,15 @@ impl TypeObject for VehicleInputTweakData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15403,6 +19828,15 @@ impl TypeObject for VehicleInputTweakType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15428,34 +19862,51 @@ pub struct MotionDampingData {
 
 pub trait MotionDampingDataTrait: super::core::DataContainerTrait {
     fn linear_modifier(&self) -> &super::core::Vec3;
+    fn linear_modifier_mut(&mut self) -> &mut super::core::Vec3;
     fn pitch(&self) -> &f32;
+    fn pitch_mut(&mut self) -> &mut f32;
     fn yaw(&self) -> &f32;
+    fn yaw_mut(&mut self) -> &mut f32;
     fn roll(&self) -> &f32;
+    fn roll_mut(&mut self) -> &mut f32;
     fn linear(&self) -> &f32;
+    fn linear_mut(&mut self) -> &mut f32;
 }
 
 impl MotionDampingDataTrait for MotionDampingData {
     fn linear_modifier(&self) -> &super::core::Vec3 {
         &self.linear_modifier
     }
+    fn linear_modifier_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.linear_modifier
+    }
     fn pitch(&self) -> &f32 {
         &self.pitch
+    }
+    fn pitch_mut(&mut self) -> &mut f32 {
+        &mut self.pitch
     }
     fn yaw(&self) -> &f32 {
         &self.yaw
     }
+    fn yaw_mut(&mut self) -> &mut f32 {
+        &mut self.yaw
+    }
     fn roll(&self) -> &f32 {
         &self.roll
+    }
+    fn roll_mut(&mut self) -> &mut f32 {
+        &mut self.roll
     }
     fn linear(&self) -> &f32 {
         &self.linear
     }
+    fn linear_mut(&mut self) -> &mut f32 {
+        &mut self.linear
+    }
 }
 
 impl super::core::DataContainerTrait for MotionDampingData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOTIONDAMPINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15511,6 +19962,15 @@ impl TypeObject for MotionDampingData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15537,38 +19997,59 @@ pub struct StabilizerData {
 
 pub trait StabilizerDataTrait: super::core::DataContainerTrait {
     fn pitch_strength(&self) -> &f32;
+    fn pitch_strength_mut(&mut self) -> &mut f32;
     fn roll_strength(&self) -> &f32;
+    fn roll_strength_mut(&mut self) -> &mut f32;
     fn advanced(&self) -> &bool;
+    fn advanced_mut(&mut self) -> &mut bool;
     fn yaw_strength(&self) -> &f32;
+    fn yaw_strength_mut(&mut self) -> &mut f32;
     fn advanced_yaw(&self) -> &bool;
+    fn advanced_yaw_mut(&mut self) -> &mut bool;
     fn vertical_velocity_strength(&self) -> &f32;
+    fn vertical_velocity_strength_mut(&mut self) -> &mut f32;
 }
 
 impl StabilizerDataTrait for StabilizerData {
     fn pitch_strength(&self) -> &f32 {
         &self.pitch_strength
     }
+    fn pitch_strength_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_strength
+    }
     fn roll_strength(&self) -> &f32 {
         &self.roll_strength
+    }
+    fn roll_strength_mut(&mut self) -> &mut f32 {
+        &mut self.roll_strength
     }
     fn advanced(&self) -> &bool {
         &self.advanced
     }
+    fn advanced_mut(&mut self) -> &mut bool {
+        &mut self.advanced
+    }
     fn yaw_strength(&self) -> &f32 {
         &self.yaw_strength
+    }
+    fn yaw_strength_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_strength
     }
     fn advanced_yaw(&self) -> &bool {
         &self.advanced_yaw
     }
+    fn advanced_yaw_mut(&mut self) -> &mut bool {
+        &mut self.advanced_yaw
+    }
     fn vertical_velocity_strength(&self) -> &f32 {
         &self.vertical_velocity_strength
+    }
+    fn vertical_velocity_strength_mut(&mut self) -> &mut f32 {
+        &mut self.vertical_velocity_strength
     }
 }
 
 impl super::core::DataContainerTrait for StabilizerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STABILIZERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15630,6 +20111,15 @@ impl TypeObject for StabilizerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15666,78 +20156,139 @@ pub struct WingPhysicsData {
 
 pub trait WingPhysicsDataTrait: super::core::DataContainerTrait {
     fn lift(&self) -> &f32;
+    fn lift_mut(&mut self) -> &mut f32;
     fn flap_lift(&self) -> &f32;
+    fn flap_lift_mut(&mut self) -> &mut f32;
     fn lift_coefficient(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>>;
+    fn lift_coefficient_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>>;
     fn drag(&self) -> &f32;
+    fn drag_mut(&mut self) -> &mut f32;
     fn flap_drag(&self) -> &f32;
+    fn flap_drag_mut(&mut self) -> &mut f32;
     fn drag_coefficient(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>>;
+    fn drag_coefficient_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>>;
     fn angular_velocity_lift_modifier(&self) -> &f32;
+    fn angular_velocity_lift_modifier_mut(&mut self) -> &mut f32;
     fn drag_rotation_modifier(&self) -> &f32;
+    fn drag_rotation_modifier_mut(&mut self) -> &mut f32;
     fn base_angle_of_attack(&self) -> &f32;
+    fn base_angle_of_attack_mut(&mut self) -> &mut f32;
     fn input_for_flap(&self) -> &i32;
+    fn input_for_flap_mut(&mut self) -> &mut i32;
     fn flap_turn_speed(&self) -> &f32;
+    fn flap_turn_speed_mut(&mut self) -> &mut f32;
     fn visual_flap_turn_speed(&self) -> &f32;
+    fn visual_flap_turn_speed_mut(&mut self) -> &mut f32;
     fn visual_flap_angle_limit(&self) -> &f32;
+    fn visual_flap_angle_limit_mut(&mut self) -> &mut f32;
     fn max_flap_angle_scale_factor(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>>;
+    fn max_flap_angle_scale_factor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>>;
     fn landing_flap_lift(&self) -> &f32;
+    fn landing_flap_lift_mut(&mut self) -> &mut f32;
     fn landing_flap_logic(&self) -> &Option<Arc<Mutex<dyn LandingFlapDataTrait>>>;
+    fn landing_flap_logic_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LandingFlapDataTrait>>>;
 }
 
 impl WingPhysicsDataTrait for WingPhysicsData {
     fn lift(&self) -> &f32 {
         &self.lift
     }
+    fn lift_mut(&mut self) -> &mut f32 {
+        &mut self.lift
+    }
     fn flap_lift(&self) -> &f32 {
         &self.flap_lift
+    }
+    fn flap_lift_mut(&mut self) -> &mut f32 {
+        &mut self.flap_lift
     }
     fn lift_coefficient(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>> {
         &self.lift_coefficient
     }
+    fn lift_coefficient_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>> {
+        &mut self.lift_coefficient
+    }
     fn drag(&self) -> &f32 {
         &self.drag
+    }
+    fn drag_mut(&mut self) -> &mut f32 {
+        &mut self.drag
     }
     fn flap_drag(&self) -> &f32 {
         &self.flap_drag
     }
+    fn flap_drag_mut(&mut self) -> &mut f32 {
+        &mut self.flap_drag
+    }
     fn drag_coefficient(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>> {
         &self.drag_coefficient
+    }
+    fn drag_coefficient_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>> {
+        &mut self.drag_coefficient
     }
     fn angular_velocity_lift_modifier(&self) -> &f32 {
         &self.angular_velocity_lift_modifier
     }
+    fn angular_velocity_lift_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.angular_velocity_lift_modifier
+    }
     fn drag_rotation_modifier(&self) -> &f32 {
         &self.drag_rotation_modifier
+    }
+    fn drag_rotation_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.drag_rotation_modifier
     }
     fn base_angle_of_attack(&self) -> &f32 {
         &self.base_angle_of_attack
     }
+    fn base_angle_of_attack_mut(&mut self) -> &mut f32 {
+        &mut self.base_angle_of_attack
+    }
     fn input_for_flap(&self) -> &i32 {
         &self.input_for_flap
+    }
+    fn input_for_flap_mut(&mut self) -> &mut i32 {
+        &mut self.input_for_flap
     }
     fn flap_turn_speed(&self) -> &f32 {
         &self.flap_turn_speed
     }
+    fn flap_turn_speed_mut(&mut self) -> &mut f32 {
+        &mut self.flap_turn_speed
+    }
     fn visual_flap_turn_speed(&self) -> &f32 {
         &self.visual_flap_turn_speed
+    }
+    fn visual_flap_turn_speed_mut(&mut self) -> &mut f32 {
+        &mut self.visual_flap_turn_speed
     }
     fn visual_flap_angle_limit(&self) -> &f32 {
         &self.visual_flap_angle_limit
     }
+    fn visual_flap_angle_limit_mut(&mut self) -> &mut f32 {
+        &mut self.visual_flap_angle_limit
+    }
     fn max_flap_angle_scale_factor(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>> {
         &self.max_flap_angle_scale_factor
+    }
+    fn max_flap_angle_scale_factor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>> {
+        &mut self.max_flap_angle_scale_factor
     }
     fn landing_flap_lift(&self) -> &f32 {
         &self.landing_flap_lift
     }
+    fn landing_flap_lift_mut(&mut self) -> &mut f32 {
+        &mut self.landing_flap_lift
+    }
     fn landing_flap_logic(&self) -> &Option<Arc<Mutex<dyn LandingFlapDataTrait>>> {
         &self.landing_flap_logic
+    }
+    fn landing_flap_logic_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LandingFlapDataTrait>>> {
+        &mut self.landing_flap_logic
     }
 }
 
 impl super::core::DataContainerTrait for WingPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WINGPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15859,6 +20410,15 @@ impl TypeObject for WingPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15880,18 +20440,19 @@ pub struct Curve2D {
 
 pub trait Curve2DTrait: super::core::DataContainerTrait {
     fn curve(&self) -> &Vec<super::core::Vec2>;
+    fn curve_mut(&mut self) -> &mut Vec<super::core::Vec2>;
 }
 
 impl Curve2DTrait for Curve2D {
     fn curve(&self) -> &Vec<super::core::Vec2> {
         &self.curve
     }
+    fn curve_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+        &mut self.curve
+    }
 }
 
 impl super::core::DataContainerTrait for Curve2D {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CURVE2D_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15923,6 +20484,15 @@ impl TypeObject for Curve2D {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15947,30 +20517,43 @@ pub struct LandingFlapData {
 
 pub trait LandingFlapDataTrait: super::core::DataContainerTrait {
     fn activation_height(&self) -> &f32;
+    fn activation_height_mut(&mut self) -> &mut f32;
     fn height_tolerance(&self) -> &f32;
+    fn height_tolerance_mut(&mut self) -> &mut f32;
     fn activation_velocity(&self) -> &f32;
+    fn activation_velocity_mut(&mut self) -> &mut f32;
     fn velocity_tolerance(&self) -> &f32;
+    fn velocity_tolerance_mut(&mut self) -> &mut f32;
 }
 
 impl LandingFlapDataTrait for LandingFlapData {
     fn activation_height(&self) -> &f32 {
         &self.activation_height
     }
+    fn activation_height_mut(&mut self) -> &mut f32 {
+        &mut self.activation_height
+    }
     fn height_tolerance(&self) -> &f32 {
         &self.height_tolerance
+    }
+    fn height_tolerance_mut(&mut self) -> &mut f32 {
+        &mut self.height_tolerance
     }
     fn activation_velocity(&self) -> &f32 {
         &self.activation_velocity
     }
+    fn activation_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.activation_velocity
+    }
     fn velocity_tolerance(&self) -> &f32 {
         &self.velocity_tolerance
+    }
+    fn velocity_tolerance_mut(&mut self) -> &mut f32 {
+        &mut self.velocity_tolerance
     }
 }
 
 impl super::core::DataContainerTrait for LandingFlapData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LANDINGFLAPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16020,6 +20603,15 @@ impl TypeObject for LandingFlapData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16044,30 +20636,43 @@ pub struct AeroDynamicPhysicsData {
 
 pub trait AeroDynamicPhysicsDataTrait: super::core::DataContainerTrait {
     fn body_drag(&self) -> &super::core::Vec3;
+    fn body_drag_mut(&mut self) -> &mut super::core::Vec3;
     fn body_drag_offset_y_z(&self) -> &super::core::Vec3;
+    fn body_drag_offset_y_z_mut(&mut self) -> &mut super::core::Vec3;
     fn body_drag_offset_x_z(&self) -> &super::core::Vec3;
+    fn body_drag_offset_x_z_mut(&mut self) -> &mut super::core::Vec3;
     fn body_drag_offset_x_y(&self) -> &super::core::Vec3;
+    fn body_drag_offset_x_y_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl AeroDynamicPhysicsDataTrait for AeroDynamicPhysicsData {
     fn body_drag(&self) -> &super::core::Vec3 {
         &self.body_drag
     }
+    fn body_drag_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.body_drag
+    }
     fn body_drag_offset_y_z(&self) -> &super::core::Vec3 {
         &self.body_drag_offset_y_z
+    }
+    fn body_drag_offset_y_z_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.body_drag_offset_y_z
     }
     fn body_drag_offset_x_z(&self) -> &super::core::Vec3 {
         &self.body_drag_offset_x_z
     }
+    fn body_drag_offset_x_z_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.body_drag_offset_x_z
+    }
     fn body_drag_offset_x_y(&self) -> &super::core::Vec3 {
         &self.body_drag_offset_x_y
+    }
+    fn body_drag_offset_x_y_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.body_drag_offset_x_y
     }
 }
 
 impl super::core::DataContainerTrait for AeroDynamicPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AERODYNAMICPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16117,6 +20722,15 @@ impl TypeObject for AeroDynamicPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16141,23 +20755,39 @@ pub struct HovercraftFloatPhysicsData {
 
 pub trait HovercraftFloatPhysicsDataTrait: HullFloatPhysicsDataTrait {
     fn land_resistance_axis_mod(&self) -> &super::core::Vec3;
+    fn land_resistance_axis_mod_mut(&mut self) -> &mut super::core::Vec3;
     fn land_friction_axis_mod(&self) -> &super::core::Vec3;
+    fn land_friction_axis_mod_mut(&mut self) -> &mut super::core::Vec3;
     fn front_length(&self) -> &f32;
+    fn front_length_mut(&mut self) -> &mut f32;
     fn side_length(&self) -> &f32;
+    fn side_length_mut(&mut self) -> &mut f32;
 }
 
 impl HovercraftFloatPhysicsDataTrait for HovercraftFloatPhysicsData {
     fn land_resistance_axis_mod(&self) -> &super::core::Vec3 {
         &self.land_resistance_axis_mod
     }
+    fn land_resistance_axis_mod_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.land_resistance_axis_mod
+    }
     fn land_friction_axis_mod(&self) -> &super::core::Vec3 {
         &self.land_friction_axis_mod
+    }
+    fn land_friction_axis_mod_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.land_friction_axis_mod
     }
     fn front_length(&self) -> &f32 {
         &self.front_length
     }
+    fn front_length_mut(&mut self) -> &mut f32 {
+        &mut self.front_length
+    }
     fn side_length(&self) -> &f32 {
         &self.side_length
+    }
+    fn side_length_mut(&mut self) -> &mut f32 {
+        &mut self.side_length
     }
 }
 
@@ -16165,53 +20795,104 @@ impl HullFloatPhysicsDataTrait for HovercraftFloatPhysicsData {
     fn water_resistance_axis_mod(&self) -> &super::core::Vec3 {
         self._glacier_base.water_resistance_axis_mod()
     }
+    fn water_resistance_axis_mod_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.water_resistance_axis_mod_mut()
+    }
     fn water_friction_axis_mod(&self) -> &super::core::Vec3 {
         self._glacier_base.water_friction_axis_mod()
+    }
+    fn water_friction_axis_mod_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.water_friction_axis_mod_mut()
     }
     fn offset(&self) -> &super::core::Vec3 {
         self._glacier_base.offset()
     }
+    fn offset_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.offset_mut()
+    }
     fn sub_surface_splits(&self) -> &i32 {
         self._glacier_base.sub_surface_splits()
+    }
+    fn sub_surface_splits_mut(&mut self) -> &mut i32 {
+        self._glacier_base.sub_surface_splits_mut()
     }
     fn depth(&self) -> &f32 {
         self._glacier_base.depth()
     }
+    fn depth_mut(&mut self) -> &mut f32 {
+        self._glacier_base.depth_mut()
+    }
     fn width(&self) -> &f32 {
         self._glacier_base.width()
+    }
+    fn width_mut(&mut self) -> &mut f32 {
+        self._glacier_base.width_mut()
     }
     fn length(&self) -> &f32 {
         self._glacier_base.length()
     }
+    fn length_mut(&mut self) -> &mut f32 {
+        self._glacier_base.length_mut()
+    }
     fn front_curve_degree(&self) -> &f32 {
         self._glacier_base.front_curve_degree()
+    }
+    fn front_curve_degree_mut(&mut self) -> &mut f32 {
+        self._glacier_base.front_curve_degree_mut()
     }
     fn side_curve_degree(&self) -> &f32 {
         self._glacier_base.side_curve_degree()
     }
+    fn side_curve_degree_mut(&mut self) -> &mut f32 {
+        self._glacier_base.side_curve_degree_mut()
+    }
     fn non_engine_steer(&self) -> &f32 {
         self._glacier_base.non_engine_steer()
+    }
+    fn non_engine_steer_mut(&mut self) -> &mut f32 {
+        self._glacier_base.non_engine_steer_mut()
     }
     fn non_engine_steer_min_speed(&self) -> &f32 {
         self._glacier_base.non_engine_steer_min_speed()
     }
+    fn non_engine_steer_min_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.non_engine_steer_min_speed_mut()
+    }
     fn non_engine_steer_max_speed(&self) -> &f32 {
         self._glacier_base.non_engine_steer_max_speed()
+    }
+    fn non_engine_steer_max_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.non_engine_steer_max_speed_mut()
     }
     fn water_dampening_mod(&self) -> &f32 {
         self._glacier_base.water_dampening_mod()
     }
+    fn water_dampening_mod_mut(&mut self) -> &mut f32 {
+        self._glacier_base.water_dampening_mod_mut()
+    }
     fn lift_modifier(&self) -> &f32 {
         self._glacier_base.lift_modifier()
+    }
+    fn lift_modifier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.lift_modifier_mut()
     }
     fn support_size_mod(&self) -> &f32 {
         self._glacier_base.support_size_mod()
     }
+    fn support_size_mod_mut(&mut self) -> &mut f32 {
+        self._glacier_base.support_size_mod_mut()
+    }
     fn angular_dampening(&self) -> &f32 {
         self._glacier_base.angular_dampening()
     }
+    fn angular_dampening_mut(&mut self) -> &mut f32 {
+        self._glacier_base.angular_dampening_mut()
+    }
     fn friction_throttle_modifier(&self) -> &f32 {
         self._glacier_base.friction_throttle_modifier()
+    }
+    fn friction_throttle_modifier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.friction_throttle_modifier_mut()
     }
 }
 
@@ -16219,15 +20900,18 @@ impl FloatPhysicsDataTrait for HovercraftFloatPhysicsData {
     fn density(&self) -> &f32 {
         self._glacier_base.density()
     }
+    fn density_mut(&mut self) -> &mut f32 {
+        self._glacier_base.density_mut()
+    }
     fn filled_density(&self) -> &f32 {
         self._glacier_base.filled_density()
+    }
+    fn filled_density_mut(&mut self) -> &mut f32 {
+        self._glacier_base.filled_density_mut()
     }
 }
 
 impl super::core::DataContainerTrait for HovercraftFloatPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HOVERCRAFTFLOATPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16277,6 +20961,15 @@ impl TypeObject for HovercraftFloatPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16298,11 +20991,15 @@ pub struct BoatFloatPhysicsData {
 
 pub trait BoatFloatPhysicsDataTrait: HullFloatPhysicsDataTrait {
     fn front_ratio(&self) -> &f32;
+    fn front_ratio_mut(&mut self) -> &mut f32;
 }
 
 impl BoatFloatPhysicsDataTrait for BoatFloatPhysicsData {
     fn front_ratio(&self) -> &f32 {
         &self.front_ratio
+    }
+    fn front_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.front_ratio
     }
 }
 
@@ -16310,53 +21007,104 @@ impl HullFloatPhysicsDataTrait for BoatFloatPhysicsData {
     fn water_resistance_axis_mod(&self) -> &super::core::Vec3 {
         self._glacier_base.water_resistance_axis_mod()
     }
+    fn water_resistance_axis_mod_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.water_resistance_axis_mod_mut()
+    }
     fn water_friction_axis_mod(&self) -> &super::core::Vec3 {
         self._glacier_base.water_friction_axis_mod()
+    }
+    fn water_friction_axis_mod_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.water_friction_axis_mod_mut()
     }
     fn offset(&self) -> &super::core::Vec3 {
         self._glacier_base.offset()
     }
+    fn offset_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.offset_mut()
+    }
     fn sub_surface_splits(&self) -> &i32 {
         self._glacier_base.sub_surface_splits()
+    }
+    fn sub_surface_splits_mut(&mut self) -> &mut i32 {
+        self._glacier_base.sub_surface_splits_mut()
     }
     fn depth(&self) -> &f32 {
         self._glacier_base.depth()
     }
+    fn depth_mut(&mut self) -> &mut f32 {
+        self._glacier_base.depth_mut()
+    }
     fn width(&self) -> &f32 {
         self._glacier_base.width()
+    }
+    fn width_mut(&mut self) -> &mut f32 {
+        self._glacier_base.width_mut()
     }
     fn length(&self) -> &f32 {
         self._glacier_base.length()
     }
+    fn length_mut(&mut self) -> &mut f32 {
+        self._glacier_base.length_mut()
+    }
     fn front_curve_degree(&self) -> &f32 {
         self._glacier_base.front_curve_degree()
+    }
+    fn front_curve_degree_mut(&mut self) -> &mut f32 {
+        self._glacier_base.front_curve_degree_mut()
     }
     fn side_curve_degree(&self) -> &f32 {
         self._glacier_base.side_curve_degree()
     }
+    fn side_curve_degree_mut(&mut self) -> &mut f32 {
+        self._glacier_base.side_curve_degree_mut()
+    }
     fn non_engine_steer(&self) -> &f32 {
         self._glacier_base.non_engine_steer()
+    }
+    fn non_engine_steer_mut(&mut self) -> &mut f32 {
+        self._glacier_base.non_engine_steer_mut()
     }
     fn non_engine_steer_min_speed(&self) -> &f32 {
         self._glacier_base.non_engine_steer_min_speed()
     }
+    fn non_engine_steer_min_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.non_engine_steer_min_speed_mut()
+    }
     fn non_engine_steer_max_speed(&self) -> &f32 {
         self._glacier_base.non_engine_steer_max_speed()
+    }
+    fn non_engine_steer_max_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.non_engine_steer_max_speed_mut()
     }
     fn water_dampening_mod(&self) -> &f32 {
         self._glacier_base.water_dampening_mod()
     }
+    fn water_dampening_mod_mut(&mut self) -> &mut f32 {
+        self._glacier_base.water_dampening_mod_mut()
+    }
     fn lift_modifier(&self) -> &f32 {
         self._glacier_base.lift_modifier()
+    }
+    fn lift_modifier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.lift_modifier_mut()
     }
     fn support_size_mod(&self) -> &f32 {
         self._glacier_base.support_size_mod()
     }
+    fn support_size_mod_mut(&mut self) -> &mut f32 {
+        self._glacier_base.support_size_mod_mut()
+    }
     fn angular_dampening(&self) -> &f32 {
         self._glacier_base.angular_dampening()
     }
+    fn angular_dampening_mut(&mut self) -> &mut f32 {
+        self._glacier_base.angular_dampening_mut()
+    }
     fn friction_throttle_modifier(&self) -> &f32 {
         self._glacier_base.friction_throttle_modifier()
+    }
+    fn friction_throttle_modifier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.friction_throttle_modifier_mut()
     }
 }
 
@@ -16364,15 +21112,18 @@ impl FloatPhysicsDataTrait for BoatFloatPhysicsData {
     fn density(&self) -> &f32 {
         self._glacier_base.density()
     }
+    fn density_mut(&mut self) -> &mut f32 {
+        self._glacier_base.density_mut()
+    }
     fn filled_density(&self) -> &f32 {
         self._glacier_base.filled_density()
+    }
+    fn filled_density_mut(&mut self) -> &mut f32 {
+        self._glacier_base.filled_density_mut()
     }
 }
 
 impl super::core::DataContainerTrait for BoatFloatPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BOATFLOATPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16403,6 +21154,15 @@ impl TypeObject for BoatFloatPhysicsData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -16441,75 +21201,143 @@ pub struct HullFloatPhysicsData {
 
 pub trait HullFloatPhysicsDataTrait: FloatPhysicsDataTrait {
     fn water_resistance_axis_mod(&self) -> &super::core::Vec3;
+    fn water_resistance_axis_mod_mut(&mut self) -> &mut super::core::Vec3;
     fn water_friction_axis_mod(&self) -> &super::core::Vec3;
+    fn water_friction_axis_mod_mut(&mut self) -> &mut super::core::Vec3;
     fn offset(&self) -> &super::core::Vec3;
+    fn offset_mut(&mut self) -> &mut super::core::Vec3;
     fn sub_surface_splits(&self) -> &i32;
+    fn sub_surface_splits_mut(&mut self) -> &mut i32;
     fn depth(&self) -> &f32;
+    fn depth_mut(&mut self) -> &mut f32;
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn front_curve_degree(&self) -> &f32;
+    fn front_curve_degree_mut(&mut self) -> &mut f32;
     fn side_curve_degree(&self) -> &f32;
+    fn side_curve_degree_mut(&mut self) -> &mut f32;
     fn non_engine_steer(&self) -> &f32;
+    fn non_engine_steer_mut(&mut self) -> &mut f32;
     fn non_engine_steer_min_speed(&self) -> &f32;
+    fn non_engine_steer_min_speed_mut(&mut self) -> &mut f32;
     fn non_engine_steer_max_speed(&self) -> &f32;
+    fn non_engine_steer_max_speed_mut(&mut self) -> &mut f32;
     fn water_dampening_mod(&self) -> &f32;
+    fn water_dampening_mod_mut(&mut self) -> &mut f32;
     fn lift_modifier(&self) -> &f32;
+    fn lift_modifier_mut(&mut self) -> &mut f32;
     fn support_size_mod(&self) -> &f32;
+    fn support_size_mod_mut(&mut self) -> &mut f32;
     fn angular_dampening(&self) -> &f32;
+    fn angular_dampening_mut(&mut self) -> &mut f32;
     fn friction_throttle_modifier(&self) -> &f32;
+    fn friction_throttle_modifier_mut(&mut self) -> &mut f32;
 }
 
 impl HullFloatPhysicsDataTrait for HullFloatPhysicsData {
     fn water_resistance_axis_mod(&self) -> &super::core::Vec3 {
         &self.water_resistance_axis_mod
     }
+    fn water_resistance_axis_mod_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.water_resistance_axis_mod
+    }
     fn water_friction_axis_mod(&self) -> &super::core::Vec3 {
         &self.water_friction_axis_mod
+    }
+    fn water_friction_axis_mod_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.water_friction_axis_mod
     }
     fn offset(&self) -> &super::core::Vec3 {
         &self.offset
     }
+    fn offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.offset
+    }
     fn sub_surface_splits(&self) -> &i32 {
         &self.sub_surface_splits
+    }
+    fn sub_surface_splits_mut(&mut self) -> &mut i32 {
+        &mut self.sub_surface_splits
     }
     fn depth(&self) -> &f32 {
         &self.depth
     }
+    fn depth_mut(&mut self) -> &mut f32 {
+        &mut self.depth
+    }
     fn width(&self) -> &f32 {
         &self.width
+    }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
     }
     fn length(&self) -> &f32 {
         &self.length
     }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
+    }
     fn front_curve_degree(&self) -> &f32 {
         &self.front_curve_degree
+    }
+    fn front_curve_degree_mut(&mut self) -> &mut f32 {
+        &mut self.front_curve_degree
     }
     fn side_curve_degree(&self) -> &f32 {
         &self.side_curve_degree
     }
+    fn side_curve_degree_mut(&mut self) -> &mut f32 {
+        &mut self.side_curve_degree
+    }
     fn non_engine_steer(&self) -> &f32 {
         &self.non_engine_steer
+    }
+    fn non_engine_steer_mut(&mut self) -> &mut f32 {
+        &mut self.non_engine_steer
     }
     fn non_engine_steer_min_speed(&self) -> &f32 {
         &self.non_engine_steer_min_speed
     }
+    fn non_engine_steer_min_speed_mut(&mut self) -> &mut f32 {
+        &mut self.non_engine_steer_min_speed
+    }
     fn non_engine_steer_max_speed(&self) -> &f32 {
         &self.non_engine_steer_max_speed
+    }
+    fn non_engine_steer_max_speed_mut(&mut self) -> &mut f32 {
+        &mut self.non_engine_steer_max_speed
     }
     fn water_dampening_mod(&self) -> &f32 {
         &self.water_dampening_mod
     }
+    fn water_dampening_mod_mut(&mut self) -> &mut f32 {
+        &mut self.water_dampening_mod
+    }
     fn lift_modifier(&self) -> &f32 {
         &self.lift_modifier
+    }
+    fn lift_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.lift_modifier
     }
     fn support_size_mod(&self) -> &f32 {
         &self.support_size_mod
     }
+    fn support_size_mod_mut(&mut self) -> &mut f32 {
+        &mut self.support_size_mod
+    }
     fn angular_dampening(&self) -> &f32 {
         &self.angular_dampening
     }
+    fn angular_dampening_mut(&mut self) -> &mut f32 {
+        &mut self.angular_dampening
+    }
     fn friction_throttle_modifier(&self) -> &f32 {
         &self.friction_throttle_modifier
+    }
+    fn friction_throttle_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.friction_throttle_modifier
     }
 }
 
@@ -16517,15 +21345,18 @@ impl FloatPhysicsDataTrait for HullFloatPhysicsData {
     fn density(&self) -> &f32 {
         self._glacier_base.density()
     }
+    fn density_mut(&mut self) -> &mut f32 {
+        self._glacier_base.density_mut()
+    }
     fn filled_density(&self) -> &f32 {
         self._glacier_base.filled_density()
+    }
+    fn filled_density_mut(&mut self) -> &mut f32 {
+        self._glacier_base.filled_density_mut()
     }
 }
 
 impl super::core::DataContainerTrait for HullFloatPhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HULLFLOATPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16653,6 +21484,15 @@ impl TypeObject for HullFloatPhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16690,15 +21530,15 @@ impl super::core::DataBusPeerTrait for VehiclePhysicsActionData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VehiclePhysicsActionData {
 }
 
 impl super::core::DataContainerTrait for VehiclePhysicsActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEHICLEPHYSICSACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16723,6 +21563,15 @@ impl TypeObject for VehiclePhysicsActionData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -16793,210 +21642,403 @@ pub struct VehicleConfigData {
 
 pub trait VehicleConfigDataTrait: super::core::DataContainerTrait {
     fn center_of_mass(&self) -> &super::core::Vec3;
+    fn center_of_mass_mut(&mut self) -> &mut super::core::Vec3;
     fn center_of_mass_handling_offset(&self) -> &super::core::Vec3;
+    fn center_of_mass_handling_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn inertia_override(&self) -> &super::core::Vec3;
+    fn inertia_override_mut(&mut self) -> &mut super::core::Vec3;
     fn inertia_modifier(&self) -> &super::core::Vec3;
+    fn inertia_modifier_mut(&mut self) -> &mut super::core::Vec3;
     fn aero_dynamic_physics(&self) -> &Option<Arc<Mutex<dyn AeroDynamicPhysicsDataTrait>>>;
+    fn aero_dynamic_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AeroDynamicPhysicsDataTrait>>>;
     fn motorbike_physics(&self) -> &Option<Arc<Mutex<dyn MotorbikeDataTrait>>>;
+    fn motorbike_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MotorbikeDataTrait>>>;
     fn motion_damping(&self) -> &Option<Arc<Mutex<dyn MotionDampingDataTrait>>>;
+    fn motion_damping_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MotionDampingDataTrait>>>;
     fn input(&self) -> &VehicleInputData;
+    fn input_mut(&mut self) -> &mut VehicleInputData;
     fn float_physics(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>>;
+    fn float_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>>;
     fn stabilizer(&self) -> &Option<Arc<Mutex<dyn StabilizerDataTrait>>>;
+    fn stabilizer_mut(&mut self) -> &mut Option<Arc<Mutex<dyn StabilizerDataTrait>>>;
     fn stabilizers(&self) -> &Vec<StabilizerSettings>;
+    fn stabilizers_mut(&mut self) -> &mut Vec<StabilizerSettings>;
     fn constant_force(&self) -> &Vec<ConstantForceData>;
+    fn constant_force_mut(&mut self) -> &mut Vec<ConstantForceData>;
     fn vehicle_mode_at_reset(&self) -> &VehicleMode;
+    fn vehicle_mode_at_reset_mut(&mut self) -> &mut VehicleMode;
     fn body_mass(&self) -> &f32;
+    fn body_mass_mut(&mut self) -> &mut f32;
     fn gravity_modifier(&self) -> &f32;
+    fn gravity_modifier_mut(&mut self) -> &mut f32;
     fn yaw_min(&self) -> &f32;
+    fn yaw_min_mut(&mut self) -> &mut f32;
     fn yaw_max(&self) -> &f32;
+    fn yaw_max_mut(&mut self) -> &mut f32;
     fn down_force_base_factor(&self) -> &f32;
+    fn down_force_base_factor_mut(&mut self) -> &mut f32;
     fn down_force_wheel_factor(&self) -> &f32;
+    fn down_force_wheel_factor_mut(&mut self) -> &mut f32;
     fn vehicle_mode_change_entering_time(&self) -> &f32;
+    fn vehicle_mode_change_entering_time_mut(&mut self) -> &mut f32;
     fn vehicle_mode_change_starting_time(&self) -> &f32;
+    fn vehicle_mode_change_starting_time_mut(&mut self) -> &mut f32;
     fn vehicle_mode_change_stopping_time(&self) -> &f32;
+    fn vehicle_mode_change_stopping_time_mut(&mut self) -> &mut f32;
     fn vehicle_mode_change_leaving_time(&self) -> &f32;
+    fn vehicle_mode_change_leaving_time_mut(&mut self) -> &mut f32;
     fn stand_still_low_speed_time_limit(&self) -> &f32;
+    fn stand_still_low_speed_time_limit_mut(&mut self) -> &mut f32;
     fn static_friction_break_collision_mod(&self) -> &f32;
+    fn static_friction_break_collision_mod_mut(&mut self) -> &mut f32;
     fn static_friction_break_velocity_mod(&self) -> &f32;
+    fn static_friction_break_velocity_mod_mut(&mut self) -> &mut f32;
     fn coefficient_of_air_friction(&self) -> &f32;
+    fn coefficient_of_air_friction_mut(&mut self) -> &mut f32;
     fn air_density(&self) -> &f32;
+    fn air_density_mut(&mut self) -> &mut f32;
     fn air_drag_area(&self) -> &f32;
+    fn air_drag_area_mut(&mut self) -> &mut f32;
     fn wind_resistance_base_factor(&self) -> &f32;
+    fn wind_resistance_base_factor_mut(&mut self) -> &mut f32;
     fn wind_resistance_velocity_factor(&self) -> &f32;
+    fn wind_resistance_velocity_factor_mut(&mut self) -> &mut f32;
     fn wind_resistance_velocity_factor_min(&self) -> &f32;
+    fn wind_resistance_velocity_factor_min_mut(&mut self) -> &mut f32;
     fn wind_resistance_velocity_factor_max(&self) -> &f32;
+    fn wind_resistance_velocity_factor_max_mut(&mut self) -> &mut f32;
     fn use_down_force(&self) -> &bool;
+    fn use_down_force_mut(&mut self) -> &mut bool;
     fn use_down_force_wheel_factor(&self) -> &bool;
+    fn use_down_force_wheel_factor_mut(&mut self) -> &mut bool;
     fn use_gearbox(&self) -> &bool;
+    fn use_gearbox_mut(&mut self) -> &mut bool;
     fn use_stand_still_brake(&self) -> &bool;
+    fn use_stand_still_brake_mut(&mut self) -> &mut bool;
     fn use_stand_still_sleep(&self) -> &bool;
+    fn use_stand_still_sleep_mut(&mut self) -> &mut bool;
     fn use_turn_around_force(&self) -> &bool;
+    fn use_turn_around_force_mut(&mut self) -> &mut bool;
     fn use_motorcycle_control(&self) -> &bool;
+    fn use_motorcycle_control_mut(&mut self) -> &mut bool;
     fn invert_pitch_allowed(&self) -> &bool;
+    fn invert_pitch_allowed_mut(&mut self) -> &mut bool;
     fn use_wind_resistance(&self) -> &bool;
+    fn use_wind_resistance_mut(&mut self) -> &mut bool;
     fn use_input_yaw_as_throttle(&self) -> &InputThrottle;
+    fn use_input_yaw_as_throttle_mut(&mut self) -> &mut InputThrottle;
     fn anti_roll_bars(&self) -> &AntiRollBars;
+    fn anti_roll_bars_mut(&mut self) -> &mut AntiRollBars;
     fn max_ground_speed(&self) -> &f32;
+    fn max_ground_speed_mut(&mut self) -> &mut f32;
     fn proximity_ext_scale(&self) -> &super::core::Vec3;
+    fn proximity_ext_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn proximity_height_translation(&self) -> &f32;
+    fn proximity_height_translation_mut(&mut self) -> &mut f32;
     fn friction_at_low_velocity(&self) -> &f32;
+    fn friction_at_low_velocity_mut(&mut self) -> &mut f32;
     fn contact_material_velocity_threshold(&self) -> &f32;
+    fn contact_material_velocity_threshold_mut(&mut self) -> &mut f32;
 }
 
 impl VehicleConfigDataTrait for VehicleConfigData {
     fn center_of_mass(&self) -> &super::core::Vec3 {
         &self.center_of_mass
     }
+    fn center_of_mass_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.center_of_mass
+    }
     fn center_of_mass_handling_offset(&self) -> &super::core::Vec3 {
         &self.center_of_mass_handling_offset
+    }
+    fn center_of_mass_handling_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.center_of_mass_handling_offset
     }
     fn inertia_override(&self) -> &super::core::Vec3 {
         &self.inertia_override
     }
+    fn inertia_override_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.inertia_override
+    }
     fn inertia_modifier(&self) -> &super::core::Vec3 {
         &self.inertia_modifier
+    }
+    fn inertia_modifier_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.inertia_modifier
     }
     fn aero_dynamic_physics(&self) -> &Option<Arc<Mutex<dyn AeroDynamicPhysicsDataTrait>>> {
         &self.aero_dynamic_physics
     }
+    fn aero_dynamic_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AeroDynamicPhysicsDataTrait>>> {
+        &mut self.aero_dynamic_physics
+    }
     fn motorbike_physics(&self) -> &Option<Arc<Mutex<dyn MotorbikeDataTrait>>> {
         &self.motorbike_physics
+    }
+    fn motorbike_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MotorbikeDataTrait>>> {
+        &mut self.motorbike_physics
     }
     fn motion_damping(&self) -> &Option<Arc<Mutex<dyn MotionDampingDataTrait>>> {
         &self.motion_damping
     }
+    fn motion_damping_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MotionDampingDataTrait>>> {
+        &mut self.motion_damping
+    }
     fn input(&self) -> &VehicleInputData {
         &self.input
+    }
+    fn input_mut(&mut self) -> &mut VehicleInputData {
+        &mut self.input
     }
     fn float_physics(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
         &self.float_physics
     }
+    fn float_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
+        &mut self.float_physics
+    }
     fn stabilizer(&self) -> &Option<Arc<Mutex<dyn StabilizerDataTrait>>> {
         &self.stabilizer
+    }
+    fn stabilizer_mut(&mut self) -> &mut Option<Arc<Mutex<dyn StabilizerDataTrait>>> {
+        &mut self.stabilizer
     }
     fn stabilizers(&self) -> &Vec<StabilizerSettings> {
         &self.stabilizers
     }
+    fn stabilizers_mut(&mut self) -> &mut Vec<StabilizerSettings> {
+        &mut self.stabilizers
+    }
     fn constant_force(&self) -> &Vec<ConstantForceData> {
         &self.constant_force
+    }
+    fn constant_force_mut(&mut self) -> &mut Vec<ConstantForceData> {
+        &mut self.constant_force
     }
     fn vehicle_mode_at_reset(&self) -> &VehicleMode {
         &self.vehicle_mode_at_reset
     }
+    fn vehicle_mode_at_reset_mut(&mut self) -> &mut VehicleMode {
+        &mut self.vehicle_mode_at_reset
+    }
     fn body_mass(&self) -> &f32 {
         &self.body_mass
+    }
+    fn body_mass_mut(&mut self) -> &mut f32 {
+        &mut self.body_mass
     }
     fn gravity_modifier(&self) -> &f32 {
         &self.gravity_modifier
     }
+    fn gravity_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.gravity_modifier
+    }
     fn yaw_min(&self) -> &f32 {
         &self.yaw_min
+    }
+    fn yaw_min_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_min
     }
     fn yaw_max(&self) -> &f32 {
         &self.yaw_max
     }
+    fn yaw_max_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_max
+    }
     fn down_force_base_factor(&self) -> &f32 {
         &self.down_force_base_factor
+    }
+    fn down_force_base_factor_mut(&mut self) -> &mut f32 {
+        &mut self.down_force_base_factor
     }
     fn down_force_wheel_factor(&self) -> &f32 {
         &self.down_force_wheel_factor
     }
+    fn down_force_wheel_factor_mut(&mut self) -> &mut f32 {
+        &mut self.down_force_wheel_factor
+    }
     fn vehicle_mode_change_entering_time(&self) -> &f32 {
         &self.vehicle_mode_change_entering_time
+    }
+    fn vehicle_mode_change_entering_time_mut(&mut self) -> &mut f32 {
+        &mut self.vehicle_mode_change_entering_time
     }
     fn vehicle_mode_change_starting_time(&self) -> &f32 {
         &self.vehicle_mode_change_starting_time
     }
+    fn vehicle_mode_change_starting_time_mut(&mut self) -> &mut f32 {
+        &mut self.vehicle_mode_change_starting_time
+    }
     fn vehicle_mode_change_stopping_time(&self) -> &f32 {
         &self.vehicle_mode_change_stopping_time
+    }
+    fn vehicle_mode_change_stopping_time_mut(&mut self) -> &mut f32 {
+        &mut self.vehicle_mode_change_stopping_time
     }
     fn vehicle_mode_change_leaving_time(&self) -> &f32 {
         &self.vehicle_mode_change_leaving_time
     }
+    fn vehicle_mode_change_leaving_time_mut(&mut self) -> &mut f32 {
+        &mut self.vehicle_mode_change_leaving_time
+    }
     fn stand_still_low_speed_time_limit(&self) -> &f32 {
         &self.stand_still_low_speed_time_limit
+    }
+    fn stand_still_low_speed_time_limit_mut(&mut self) -> &mut f32 {
+        &mut self.stand_still_low_speed_time_limit
     }
     fn static_friction_break_collision_mod(&self) -> &f32 {
         &self.static_friction_break_collision_mod
     }
+    fn static_friction_break_collision_mod_mut(&mut self) -> &mut f32 {
+        &mut self.static_friction_break_collision_mod
+    }
     fn static_friction_break_velocity_mod(&self) -> &f32 {
         &self.static_friction_break_velocity_mod
+    }
+    fn static_friction_break_velocity_mod_mut(&mut self) -> &mut f32 {
+        &mut self.static_friction_break_velocity_mod
     }
     fn coefficient_of_air_friction(&self) -> &f32 {
         &self.coefficient_of_air_friction
     }
+    fn coefficient_of_air_friction_mut(&mut self) -> &mut f32 {
+        &mut self.coefficient_of_air_friction
+    }
     fn air_density(&self) -> &f32 {
         &self.air_density
+    }
+    fn air_density_mut(&mut self) -> &mut f32 {
+        &mut self.air_density
     }
     fn air_drag_area(&self) -> &f32 {
         &self.air_drag_area
     }
+    fn air_drag_area_mut(&mut self) -> &mut f32 {
+        &mut self.air_drag_area
+    }
     fn wind_resistance_base_factor(&self) -> &f32 {
         &self.wind_resistance_base_factor
+    }
+    fn wind_resistance_base_factor_mut(&mut self) -> &mut f32 {
+        &mut self.wind_resistance_base_factor
     }
     fn wind_resistance_velocity_factor(&self) -> &f32 {
         &self.wind_resistance_velocity_factor
     }
+    fn wind_resistance_velocity_factor_mut(&mut self) -> &mut f32 {
+        &mut self.wind_resistance_velocity_factor
+    }
     fn wind_resistance_velocity_factor_min(&self) -> &f32 {
         &self.wind_resistance_velocity_factor_min
+    }
+    fn wind_resistance_velocity_factor_min_mut(&mut self) -> &mut f32 {
+        &mut self.wind_resistance_velocity_factor_min
     }
     fn wind_resistance_velocity_factor_max(&self) -> &f32 {
         &self.wind_resistance_velocity_factor_max
     }
+    fn wind_resistance_velocity_factor_max_mut(&mut self) -> &mut f32 {
+        &mut self.wind_resistance_velocity_factor_max
+    }
     fn use_down_force(&self) -> &bool {
         &self.use_down_force
+    }
+    fn use_down_force_mut(&mut self) -> &mut bool {
+        &mut self.use_down_force
     }
     fn use_down_force_wheel_factor(&self) -> &bool {
         &self.use_down_force_wheel_factor
     }
+    fn use_down_force_wheel_factor_mut(&mut self) -> &mut bool {
+        &mut self.use_down_force_wheel_factor
+    }
     fn use_gearbox(&self) -> &bool {
         &self.use_gearbox
+    }
+    fn use_gearbox_mut(&mut self) -> &mut bool {
+        &mut self.use_gearbox
     }
     fn use_stand_still_brake(&self) -> &bool {
         &self.use_stand_still_brake
     }
+    fn use_stand_still_brake_mut(&mut self) -> &mut bool {
+        &mut self.use_stand_still_brake
+    }
     fn use_stand_still_sleep(&self) -> &bool {
         &self.use_stand_still_sleep
+    }
+    fn use_stand_still_sleep_mut(&mut self) -> &mut bool {
+        &mut self.use_stand_still_sleep
     }
     fn use_turn_around_force(&self) -> &bool {
         &self.use_turn_around_force
     }
+    fn use_turn_around_force_mut(&mut self) -> &mut bool {
+        &mut self.use_turn_around_force
+    }
     fn use_motorcycle_control(&self) -> &bool {
         &self.use_motorcycle_control
+    }
+    fn use_motorcycle_control_mut(&mut self) -> &mut bool {
+        &mut self.use_motorcycle_control
     }
     fn invert_pitch_allowed(&self) -> &bool {
         &self.invert_pitch_allowed
     }
+    fn invert_pitch_allowed_mut(&mut self) -> &mut bool {
+        &mut self.invert_pitch_allowed
+    }
     fn use_wind_resistance(&self) -> &bool {
         &self.use_wind_resistance
+    }
+    fn use_wind_resistance_mut(&mut self) -> &mut bool {
+        &mut self.use_wind_resistance
     }
     fn use_input_yaw_as_throttle(&self) -> &InputThrottle {
         &self.use_input_yaw_as_throttle
     }
+    fn use_input_yaw_as_throttle_mut(&mut self) -> &mut InputThrottle {
+        &mut self.use_input_yaw_as_throttle
+    }
     fn anti_roll_bars(&self) -> &AntiRollBars {
         &self.anti_roll_bars
+    }
+    fn anti_roll_bars_mut(&mut self) -> &mut AntiRollBars {
+        &mut self.anti_roll_bars
     }
     fn max_ground_speed(&self) -> &f32 {
         &self.max_ground_speed
     }
+    fn max_ground_speed_mut(&mut self) -> &mut f32 {
+        &mut self.max_ground_speed
+    }
     fn proximity_ext_scale(&self) -> &super::core::Vec3 {
         &self.proximity_ext_scale
+    }
+    fn proximity_ext_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.proximity_ext_scale
     }
     fn proximity_height_translation(&self) -> &f32 {
         &self.proximity_height_translation
     }
+    fn proximity_height_translation_mut(&mut self) -> &mut f32 {
+        &mut self.proximity_height_translation
+    }
     fn friction_at_low_velocity(&self) -> &f32 {
         &self.friction_at_low_velocity
+    }
+    fn friction_at_low_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.friction_at_low_velocity
     }
     fn contact_material_velocity_threshold(&self) -> &f32 {
         &self.contact_material_velocity_threshold
     }
+    fn contact_material_velocity_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.contact_material_velocity_threshold
+    }
 }
 
 impl super::core::DataContainerTrait for VehicleConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEHICLECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17316,6 +22358,15 @@ impl TypeObject for VehicleConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17379,186 +22430,355 @@ pub struct MotorbikeData {
 
 pub trait MotorbikeDataTrait: super::core::DataContainerTrait {
     fn max_leaning_roll(&self) -> &f32;
+    fn max_leaning_roll_mut(&mut self) -> &mut f32;
     fn counter_lean_force(&self) -> &f32;
+    fn counter_lean_force_mut(&mut self) -> &mut f32;
     fn stand_still_lean_force(&self) -> &f32;
+    fn stand_still_lean_force_mut(&mut self) -> &mut f32;
     fn lean_force(&self) -> &f32;
+    fn lean_force_mut(&mut self) -> &mut f32;
     fn jump_forward_lean_min_angle(&self) -> &f32;
+    fn jump_forward_lean_min_angle_mut(&mut self) -> &mut f32;
     fn jump_forward_lean_momentum(&self) -> &f32;
+    fn jump_forward_lean_momentum_mut(&mut self) -> &mut f32;
     fn jump_forward_lean_min_no_contact_time(&self) -> &f32;
+    fn jump_forward_lean_min_no_contact_time_mut(&mut self) -> &mut f32;
     fn lean_force_max_vel(&self) -> &f32;
+    fn lean_force_max_vel_mut(&mut self) -> &mut f32;
     fn kickstand_roll(&self) -> &f32;
+    fn kickstand_roll_mut(&mut self) -> &mut f32;
     fn kickstand_linear_damping(&self) -> &f32;
+    fn kickstand_linear_damping_mut(&mut self) -> &mut f32;
     fn stand_still_roll(&self) -> &f32;
+    fn stand_still_roll_mut(&mut self) -> &mut f32;
     fn damp_big_jump_impact(&self) -> &bool;
+    fn damp_big_jump_impact_mut(&mut self) -> &mut bool;
     fn damp_big_jump_impact_counter_force(&self) -> &super::core::Vec3;
+    fn damp_big_jump_impact_counter_force_mut(&mut self) -> &mut super::core::Vec3;
     fn damp_big_jump_impact_velocity(&self) -> &f32;
+    fn damp_big_jump_impact_velocity_mut(&mut self) -> &mut f32;
     fn damp_big_jump_max_spring_force_fraction(&self) -> &f32;
+    fn damp_big_jump_max_spring_force_fraction_mut(&mut self) -> &mut f32;
     fn damp_big_jump_impact_vertical_velocity(&self) -> &f32;
+    fn damp_big_jump_impact_vertical_velocity_mut(&mut self) -> &mut f32;
     fn yaw_brake_damping_lerp_start_scale(&self) -> &f32;
+    fn yaw_brake_damping_lerp_start_scale_mut(&mut self) -> &mut f32;
     fn yaw_brake_damping_lerp_end_scale(&self) -> &f32;
+    fn yaw_brake_damping_lerp_end_scale_mut(&mut self) -> &mut f32;
     fn stoppie_activation_velocity(&self) -> &f32;
+    fn stoppie_activation_velocity_mut(&mut self) -> &mut f32;
     fn stoppie_start_velocity(&self) -> &f32;
+    fn stoppie_start_velocity_mut(&mut self) -> &mut f32;
     fn stoppie_stop_velocity(&self) -> &f32;
+    fn stoppie_stop_velocity_mut(&mut self) -> &mut f32;
     fn stoppie_momentum(&self) -> &f32;
+    fn stoppie_momentum_mut(&mut self) -> &mut f32;
     fn short_offground_gravity_multiplier(&self) -> &f32;
+    fn short_offground_gravity_multiplier_mut(&mut self) -> &mut f32;
     fn short_offground_period(&self) -> &f32;
+    fn short_offground_period_mut(&mut self) -> &mut f32;
     fn wheelie_switch_off_no_contact_time(&self) -> &f32;
+    fn wheelie_switch_off_no_contact_time_mut(&mut self) -> &mut f32;
     fn wheelie_max_no_down_force_contact_time(&self) -> &f32;
+    fn wheelie_max_no_down_force_contact_time_mut(&mut self) -> &mut f32;
     fn wheelie_max_no_contact_time(&self) -> &f32;
+    fn wheelie_max_no_contact_time_mut(&mut self) -> &mut f32;
     fn wheelie_steering_factor(&self) -> &f32;
+    fn wheelie_steering_factor_mut(&mut self) -> &mut f32;
     fn wheelie_inertia(&self) -> &f32;
+    fn wheelie_inertia_mut(&mut self) -> &mut f32;
     fn wheelie_start_velocity(&self) -> &f32;
+    fn wheelie_start_velocity_mut(&mut self) -> &mut f32;
     fn wheelie_max_velocity_undamped(&self) -> &f32;
+    fn wheelie_max_velocity_undamped_mut(&mut self) -> &mut f32;
     fn wheelie_max_velocity_damp_range(&self) -> &f32;
+    fn wheelie_max_velocity_damp_range_mut(&mut self) -> &mut f32;
     fn wheelie_out_angular_momentum(&self) -> &f32;
+    fn wheelie_out_angular_momentum_mut(&mut self) -> &mut f32;
     fn wheelie_spring_damping(&self) -> &f32;
+    fn wheelie_spring_damping_mut(&mut self) -> &mut f32;
     fn wheelie_spring_k_scale(&self) -> &f32;
+    fn wheelie_spring_k_scale_mut(&mut self) -> &mut f32;
     fn wheelie_angular_damping(&self) -> &f32;
+    fn wheelie_angular_damping_mut(&mut self) -> &mut f32;
     fn wheelie_angular_damping_speed(&self) -> &f32;
+    fn wheelie_angular_damping_speed_mut(&mut self) -> &mut f32;
     fn wheelie_force(&self) -> &super::core::Vec3;
+    fn wheelie_force_mut(&mut self) -> &mut super::core::Vec3;
     fn wheelie_force_body_offset(&self) -> &super::core::Vec3;
+    fn wheelie_force_body_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn wheelie_max_angle(&self) -> &f32;
+    fn wheelie_max_angle_mut(&mut self) -> &mut f32;
     fn wheelie_max_velocity(&self) -> &f32;
+    fn wheelie_max_velocity_mut(&mut self) -> &mut f32;
     fn wheelie_velocity_force_scale(&self) -> &f32;
+    fn wheelie_velocity_force_scale_mut(&mut self) -> &mut f32;
     fn wheelie_angular_start_momentum(&self) -> &f32;
+    fn wheelie_angular_start_momentum_mut(&mut self) -> &mut f32;
 }
 
 impl MotorbikeDataTrait for MotorbikeData {
     fn max_leaning_roll(&self) -> &f32 {
         &self.max_leaning_roll
     }
+    fn max_leaning_roll_mut(&mut self) -> &mut f32 {
+        &mut self.max_leaning_roll
+    }
     fn counter_lean_force(&self) -> &f32 {
         &self.counter_lean_force
+    }
+    fn counter_lean_force_mut(&mut self) -> &mut f32 {
+        &mut self.counter_lean_force
     }
     fn stand_still_lean_force(&self) -> &f32 {
         &self.stand_still_lean_force
     }
+    fn stand_still_lean_force_mut(&mut self) -> &mut f32 {
+        &mut self.stand_still_lean_force
+    }
     fn lean_force(&self) -> &f32 {
         &self.lean_force
+    }
+    fn lean_force_mut(&mut self) -> &mut f32 {
+        &mut self.lean_force
     }
     fn jump_forward_lean_min_angle(&self) -> &f32 {
         &self.jump_forward_lean_min_angle
     }
+    fn jump_forward_lean_min_angle_mut(&mut self) -> &mut f32 {
+        &mut self.jump_forward_lean_min_angle
+    }
     fn jump_forward_lean_momentum(&self) -> &f32 {
         &self.jump_forward_lean_momentum
+    }
+    fn jump_forward_lean_momentum_mut(&mut self) -> &mut f32 {
+        &mut self.jump_forward_lean_momentum
     }
     fn jump_forward_lean_min_no_contact_time(&self) -> &f32 {
         &self.jump_forward_lean_min_no_contact_time
     }
+    fn jump_forward_lean_min_no_contact_time_mut(&mut self) -> &mut f32 {
+        &mut self.jump_forward_lean_min_no_contact_time
+    }
     fn lean_force_max_vel(&self) -> &f32 {
         &self.lean_force_max_vel
+    }
+    fn lean_force_max_vel_mut(&mut self) -> &mut f32 {
+        &mut self.lean_force_max_vel
     }
     fn kickstand_roll(&self) -> &f32 {
         &self.kickstand_roll
     }
+    fn kickstand_roll_mut(&mut self) -> &mut f32 {
+        &mut self.kickstand_roll
+    }
     fn kickstand_linear_damping(&self) -> &f32 {
         &self.kickstand_linear_damping
+    }
+    fn kickstand_linear_damping_mut(&mut self) -> &mut f32 {
+        &mut self.kickstand_linear_damping
     }
     fn stand_still_roll(&self) -> &f32 {
         &self.stand_still_roll
     }
+    fn stand_still_roll_mut(&mut self) -> &mut f32 {
+        &mut self.stand_still_roll
+    }
     fn damp_big_jump_impact(&self) -> &bool {
         &self.damp_big_jump_impact
+    }
+    fn damp_big_jump_impact_mut(&mut self) -> &mut bool {
+        &mut self.damp_big_jump_impact
     }
     fn damp_big_jump_impact_counter_force(&self) -> &super::core::Vec3 {
         &self.damp_big_jump_impact_counter_force
     }
+    fn damp_big_jump_impact_counter_force_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.damp_big_jump_impact_counter_force
+    }
     fn damp_big_jump_impact_velocity(&self) -> &f32 {
         &self.damp_big_jump_impact_velocity
+    }
+    fn damp_big_jump_impact_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.damp_big_jump_impact_velocity
     }
     fn damp_big_jump_max_spring_force_fraction(&self) -> &f32 {
         &self.damp_big_jump_max_spring_force_fraction
     }
+    fn damp_big_jump_max_spring_force_fraction_mut(&mut self) -> &mut f32 {
+        &mut self.damp_big_jump_max_spring_force_fraction
+    }
     fn damp_big_jump_impact_vertical_velocity(&self) -> &f32 {
         &self.damp_big_jump_impact_vertical_velocity
+    }
+    fn damp_big_jump_impact_vertical_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.damp_big_jump_impact_vertical_velocity
     }
     fn yaw_brake_damping_lerp_start_scale(&self) -> &f32 {
         &self.yaw_brake_damping_lerp_start_scale
     }
+    fn yaw_brake_damping_lerp_start_scale_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_brake_damping_lerp_start_scale
+    }
     fn yaw_brake_damping_lerp_end_scale(&self) -> &f32 {
         &self.yaw_brake_damping_lerp_end_scale
+    }
+    fn yaw_brake_damping_lerp_end_scale_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_brake_damping_lerp_end_scale
     }
     fn stoppie_activation_velocity(&self) -> &f32 {
         &self.stoppie_activation_velocity
     }
+    fn stoppie_activation_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.stoppie_activation_velocity
+    }
     fn stoppie_start_velocity(&self) -> &f32 {
         &self.stoppie_start_velocity
+    }
+    fn stoppie_start_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.stoppie_start_velocity
     }
     fn stoppie_stop_velocity(&self) -> &f32 {
         &self.stoppie_stop_velocity
     }
+    fn stoppie_stop_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.stoppie_stop_velocity
+    }
     fn stoppie_momentum(&self) -> &f32 {
         &self.stoppie_momentum
+    }
+    fn stoppie_momentum_mut(&mut self) -> &mut f32 {
+        &mut self.stoppie_momentum
     }
     fn short_offground_gravity_multiplier(&self) -> &f32 {
         &self.short_offground_gravity_multiplier
     }
+    fn short_offground_gravity_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.short_offground_gravity_multiplier
+    }
     fn short_offground_period(&self) -> &f32 {
         &self.short_offground_period
+    }
+    fn short_offground_period_mut(&mut self) -> &mut f32 {
+        &mut self.short_offground_period
     }
     fn wheelie_switch_off_no_contact_time(&self) -> &f32 {
         &self.wheelie_switch_off_no_contact_time
     }
+    fn wheelie_switch_off_no_contact_time_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_switch_off_no_contact_time
+    }
     fn wheelie_max_no_down_force_contact_time(&self) -> &f32 {
         &self.wheelie_max_no_down_force_contact_time
+    }
+    fn wheelie_max_no_down_force_contact_time_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_max_no_down_force_contact_time
     }
     fn wheelie_max_no_contact_time(&self) -> &f32 {
         &self.wheelie_max_no_contact_time
     }
+    fn wheelie_max_no_contact_time_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_max_no_contact_time
+    }
     fn wheelie_steering_factor(&self) -> &f32 {
         &self.wheelie_steering_factor
+    }
+    fn wheelie_steering_factor_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_steering_factor
     }
     fn wheelie_inertia(&self) -> &f32 {
         &self.wheelie_inertia
     }
+    fn wheelie_inertia_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_inertia
+    }
     fn wheelie_start_velocity(&self) -> &f32 {
         &self.wheelie_start_velocity
+    }
+    fn wheelie_start_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_start_velocity
     }
     fn wheelie_max_velocity_undamped(&self) -> &f32 {
         &self.wheelie_max_velocity_undamped
     }
+    fn wheelie_max_velocity_undamped_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_max_velocity_undamped
+    }
     fn wheelie_max_velocity_damp_range(&self) -> &f32 {
         &self.wheelie_max_velocity_damp_range
+    }
+    fn wheelie_max_velocity_damp_range_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_max_velocity_damp_range
     }
     fn wheelie_out_angular_momentum(&self) -> &f32 {
         &self.wheelie_out_angular_momentum
     }
+    fn wheelie_out_angular_momentum_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_out_angular_momentum
+    }
     fn wheelie_spring_damping(&self) -> &f32 {
         &self.wheelie_spring_damping
+    }
+    fn wheelie_spring_damping_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_spring_damping
     }
     fn wheelie_spring_k_scale(&self) -> &f32 {
         &self.wheelie_spring_k_scale
     }
+    fn wheelie_spring_k_scale_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_spring_k_scale
+    }
     fn wheelie_angular_damping(&self) -> &f32 {
         &self.wheelie_angular_damping
+    }
+    fn wheelie_angular_damping_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_angular_damping
     }
     fn wheelie_angular_damping_speed(&self) -> &f32 {
         &self.wheelie_angular_damping_speed
     }
+    fn wheelie_angular_damping_speed_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_angular_damping_speed
+    }
     fn wheelie_force(&self) -> &super::core::Vec3 {
         &self.wheelie_force
+    }
+    fn wheelie_force_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.wheelie_force
     }
     fn wheelie_force_body_offset(&self) -> &super::core::Vec3 {
         &self.wheelie_force_body_offset
     }
+    fn wheelie_force_body_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.wheelie_force_body_offset
+    }
     fn wheelie_max_angle(&self) -> &f32 {
         &self.wheelie_max_angle
+    }
+    fn wheelie_max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_max_angle
     }
     fn wheelie_max_velocity(&self) -> &f32 {
         &self.wheelie_max_velocity
     }
+    fn wheelie_max_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_max_velocity
+    }
     fn wheelie_velocity_force_scale(&self) -> &f32 {
         &self.wheelie_velocity_force_scale
+    }
+    fn wheelie_velocity_force_scale_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_velocity_force_scale
     }
     fn wheelie_angular_start_momentum(&self) -> &f32 {
         &self.wheelie_angular_start_momentum
     }
+    fn wheelie_angular_start_momentum_mut(&mut self) -> &mut f32 {
+        &mut self.wheelie_angular_start_momentum
+    }
 }
 
 impl super::core::DataContainerTrait for MotorbikeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOTORBIKEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17842,6 +23062,15 @@ impl TypeObject for MotorbikeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17866,27 +23095,47 @@ pub struct InputThrottle {
 
 pub trait InputThrottleTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn forward_speed_supression_amount(&self) -> &f32;
+    fn forward_speed_supression_amount_mut(&mut self) -> &mut f32;
     fn backward_speed_supression_amount(&self) -> &f32;
+    fn backward_speed_supression_amount_mut(&mut self) -> &mut f32;
     fn side_speed_supression_amount(&self) -> &f32;
+    fn side_speed_supression_amount_mut(&mut self) -> &mut f32;
     fn ignore_brake_speed_threshold(&self) -> &f32;
+    fn ignore_brake_speed_threshold_mut(&mut self) -> &mut f32;
 }
 
 impl InputThrottleTrait for InputThrottle {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn forward_speed_supression_amount(&self) -> &f32 {
         &self.forward_speed_supression_amount
+    }
+    fn forward_speed_supression_amount_mut(&mut self) -> &mut f32 {
+        &mut self.forward_speed_supression_amount
     }
     fn backward_speed_supression_amount(&self) -> &f32 {
         &self.backward_speed_supression_amount
     }
+    fn backward_speed_supression_amount_mut(&mut self) -> &mut f32 {
+        &mut self.backward_speed_supression_amount
+    }
     fn side_speed_supression_amount(&self) -> &f32 {
         &self.side_speed_supression_amount
     }
+    fn side_speed_supression_amount_mut(&mut self) -> &mut f32 {
+        &mut self.side_speed_supression_amount
+    }
     fn ignore_brake_speed_threshold(&self) -> &f32 {
         &self.ignore_brake_speed_threshold
+    }
+    fn ignore_brake_speed_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.ignore_brake_speed_threshold
     }
 }
 
@@ -17942,6 +23191,15 @@ impl TypeObject for InputThrottle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17965,23 +23223,39 @@ pub struct ConstantForceData {
 
 pub trait ConstantForceDataTrait: TypeObject {
     fn condition(&self) -> &ForceCondition;
+    fn condition_mut(&mut self) -> &mut ForceCondition;
     fn type_of_force(&self) -> &ForceType;
+    fn type_of_force_mut(&mut self) -> &mut ForceType;
     fn value(&self) -> &super::core::Vec3;
+    fn value_mut(&mut self) -> &mut super::core::Vec3;
     fn space(&self) -> &SpaceType;
+    fn space_mut(&mut self) -> &mut SpaceType;
 }
 
 impl ConstantForceDataTrait for ConstantForceData {
     fn condition(&self) -> &ForceCondition {
         &self.condition
     }
+    fn condition_mut(&mut self) -> &mut ForceCondition {
+        &mut self.condition
+    }
     fn type_of_force(&self) -> &ForceType {
         &self.type_of_force
+    }
+    fn type_of_force_mut(&mut self) -> &mut ForceType {
+        &mut self.type_of_force
     }
     fn value(&self) -> &super::core::Vec3 {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.value
+    }
     fn space(&self) -> &SpaceType {
         &self.space
+    }
+    fn space_mut(&mut self) -> &mut SpaceType {
+        &mut self.space
     }
 }
 
@@ -18031,6 +23305,15 @@ impl TypeObject for ConstantForceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18069,6 +23352,15 @@ impl TypeObject for SpaceType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18106,6 +23398,15 @@ impl TypeObject for ForceType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -18149,6 +23450,15 @@ impl TypeObject for ForceCondition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18174,31 +23484,55 @@ pub struct StabilizerSettings {
 
 pub trait StabilizerSettingsTrait: TypeObject {
     fn property(&self) -> &StabilizerProperty;
+    fn property_mut(&mut self) -> &mut StabilizerProperty;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn advanced(&self) -> &bool;
+    fn advanced_mut(&mut self) -> &mut bool;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn use2_d_radius_test(&self) -> &bool;
+    fn use2_d_radius_test_mut(&mut self) -> &mut bool;
     fn use_input_override(&self) -> &bool;
+    fn use_input_override_mut(&mut self) -> &mut bool;
 }
 
 impl StabilizerSettingsTrait for StabilizerSettings {
     fn property(&self) -> &StabilizerProperty {
         &self.property
     }
+    fn property_mut(&mut self) -> &mut StabilizerProperty {
+        &mut self.property
+    }
     fn strength(&self) -> &f32 {
         &self.strength
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
     }
     fn advanced(&self) -> &bool {
         &self.advanced
     }
+    fn advanced_mut(&mut self) -> &mut bool {
+        &mut self.advanced
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn use2_d_radius_test(&self) -> &bool {
         &self.use2_d_radius_test
     }
+    fn use2_d_radius_test_mut(&mut self) -> &mut bool {
+        &mut self.use2_d_radius_test
+    }
     fn use_input_override(&self) -> &bool {
         &self.use_input_override
+    }
+    fn use_input_override_mut(&mut self) -> &mut bool {
+        &mut self.use_input_override
     }
 }
 
@@ -18260,6 +23594,15 @@ impl TypeObject for StabilizerSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18304,6 +23647,15 @@ impl TypeObject for StabilizerProperty {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18325,15 +23677,23 @@ pub struct AntiRollBars {
 
 pub trait AntiRollBarsTrait: TypeObject {
     fn front(&self) -> &Option<Arc<Mutex<dyn AntiRollBarTrait>>>;
+    fn front_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AntiRollBarTrait>>>;
     fn rear(&self) -> &Option<Arc<Mutex<dyn AntiRollBarTrait>>>;
+    fn rear_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AntiRollBarTrait>>>;
 }
 
 impl AntiRollBarsTrait for AntiRollBars {
     fn front(&self) -> &Option<Arc<Mutex<dyn AntiRollBarTrait>>> {
         &self.front
     }
+    fn front_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AntiRollBarTrait>>> {
+        &mut self.front
+    }
     fn rear(&self) -> &Option<Arc<Mutex<dyn AntiRollBarTrait>>> {
         &self.rear
+    }
+    fn rear_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AntiRollBarTrait>>> {
+        &mut self.rear
     }
 }
 
@@ -18371,6 +23731,15 @@ impl TypeObject for AntiRollBars {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18393,22 +23762,27 @@ pub struct AntiRollBar {
 
 pub trait AntiRollBarTrait: super::core::DataContainerTrait {
     fn stiffness(&self) -> &f32;
+    fn stiffness_mut(&mut self) -> &mut f32;
     fn torque_activation_limit(&self) -> &f32;
+    fn torque_activation_limit_mut(&mut self) -> &mut f32;
 }
 
 impl AntiRollBarTrait for AntiRollBar {
     fn stiffness(&self) -> &f32 {
         &self.stiffness
     }
+    fn stiffness_mut(&mut self) -> &mut f32 {
+        &mut self.stiffness
+    }
     fn torque_activation_limit(&self) -> &f32 {
         &self.torque_activation_limit
+    }
+    fn torque_activation_limit_mut(&mut self) -> &mut f32 {
+        &mut self.torque_activation_limit
     }
 }
 
 impl super::core::DataContainerTrait for AntiRollBar {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTIROLLBAR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18445,6 +23819,15 @@ impl TypeObject for AntiRollBar {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -18485,87 +23868,167 @@ pub struct VehicleInputData {
 
 pub trait VehicleInputDataTrait: TypeObject {
     fn throttle_deadzone(&self) -> &f32;
+    fn throttle_deadzone_mut(&mut self) -> &mut f32;
     fn brake_deadzone(&self) -> &f32;
+    fn brake_deadzone_mut(&mut self) -> &mut f32;
     fn yaw_deadzone(&self) -> &f32;
+    fn yaw_deadzone_mut(&mut self) -> &mut f32;
     fn pitch_deadzone(&self) -> &f32;
+    fn pitch_deadzone_mut(&mut self) -> &mut f32;
     fn roll_deadzone(&self) -> &f32;
+    fn roll_deadzone_mut(&mut self) -> &mut f32;
     fn throttle_inertia_out_duration(&self) -> &f32;
+    fn throttle_inertia_out_duration_mut(&mut self) -> &mut f32;
     fn throttle_inertia_in_duration(&self) -> &f32;
+    fn throttle_inertia_in_duration_mut(&mut self) -> &mut f32;
     fn throttle_inertia_min_ratio(&self) -> &f32;
+    fn throttle_inertia_min_ratio_mut(&mut self) -> &mut f32;
     fn brake_inertia_out_duration(&self) -> &f32;
+    fn brake_inertia_out_duration_mut(&mut self) -> &mut f32;
     fn brake_inertia_in_duration(&self) -> &f32;
+    fn brake_inertia_in_duration_mut(&mut self) -> &mut f32;
     fn brake_inertia_min_ratio(&self) -> &f32;
+    fn brake_inertia_min_ratio_mut(&mut self) -> &mut f32;
     fn yaw_inertia_out_duration(&self) -> &f32;
+    fn yaw_inertia_out_duration_mut(&mut self) -> &mut f32;
     fn yaw_inertia_in_duration(&self) -> &f32;
+    fn yaw_inertia_in_duration_mut(&mut self) -> &mut f32;
     fn yaw_inertia_min_ratio(&self) -> &f32;
+    fn yaw_inertia_min_ratio_mut(&mut self) -> &mut f32;
     fn pitch_inertia_out_duration(&self) -> &f32;
+    fn pitch_inertia_out_duration_mut(&mut self) -> &mut f32;
     fn pitch_inertia_in_duration(&self) -> &f32;
+    fn pitch_inertia_in_duration_mut(&mut self) -> &mut f32;
     fn pitch_inertia_min_ratio(&self) -> &f32;
+    fn pitch_inertia_min_ratio_mut(&mut self) -> &mut f32;
     fn roll_inertia_out_duration(&self) -> &f32;
+    fn roll_inertia_out_duration_mut(&mut self) -> &mut f32;
     fn roll_inertia_in_duration(&self) -> &f32;
+    fn roll_inertia_in_duration_mut(&mut self) -> &mut f32;
     fn roll_inertia_min_ratio(&self) -> &f32;
+    fn roll_inertia_min_ratio_mut(&mut self) -> &mut f32;
 }
 
 impl VehicleInputDataTrait for VehicleInputData {
     fn throttle_deadzone(&self) -> &f32 {
         &self.throttle_deadzone
     }
+    fn throttle_deadzone_mut(&mut self) -> &mut f32 {
+        &mut self.throttle_deadzone
+    }
     fn brake_deadzone(&self) -> &f32 {
         &self.brake_deadzone
+    }
+    fn brake_deadzone_mut(&mut self) -> &mut f32 {
+        &mut self.brake_deadzone
     }
     fn yaw_deadzone(&self) -> &f32 {
         &self.yaw_deadzone
     }
+    fn yaw_deadzone_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_deadzone
+    }
     fn pitch_deadzone(&self) -> &f32 {
         &self.pitch_deadzone
+    }
+    fn pitch_deadzone_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_deadzone
     }
     fn roll_deadzone(&self) -> &f32 {
         &self.roll_deadzone
     }
+    fn roll_deadzone_mut(&mut self) -> &mut f32 {
+        &mut self.roll_deadzone
+    }
     fn throttle_inertia_out_duration(&self) -> &f32 {
         &self.throttle_inertia_out_duration
+    }
+    fn throttle_inertia_out_duration_mut(&mut self) -> &mut f32 {
+        &mut self.throttle_inertia_out_duration
     }
     fn throttle_inertia_in_duration(&self) -> &f32 {
         &self.throttle_inertia_in_duration
     }
+    fn throttle_inertia_in_duration_mut(&mut self) -> &mut f32 {
+        &mut self.throttle_inertia_in_duration
+    }
     fn throttle_inertia_min_ratio(&self) -> &f32 {
         &self.throttle_inertia_min_ratio
+    }
+    fn throttle_inertia_min_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.throttle_inertia_min_ratio
     }
     fn brake_inertia_out_duration(&self) -> &f32 {
         &self.brake_inertia_out_duration
     }
+    fn brake_inertia_out_duration_mut(&mut self) -> &mut f32 {
+        &mut self.brake_inertia_out_duration
+    }
     fn brake_inertia_in_duration(&self) -> &f32 {
         &self.brake_inertia_in_duration
+    }
+    fn brake_inertia_in_duration_mut(&mut self) -> &mut f32 {
+        &mut self.brake_inertia_in_duration
     }
     fn brake_inertia_min_ratio(&self) -> &f32 {
         &self.brake_inertia_min_ratio
     }
+    fn brake_inertia_min_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.brake_inertia_min_ratio
+    }
     fn yaw_inertia_out_duration(&self) -> &f32 {
         &self.yaw_inertia_out_duration
+    }
+    fn yaw_inertia_out_duration_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_inertia_out_duration
     }
     fn yaw_inertia_in_duration(&self) -> &f32 {
         &self.yaw_inertia_in_duration
     }
+    fn yaw_inertia_in_duration_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_inertia_in_duration
+    }
     fn yaw_inertia_min_ratio(&self) -> &f32 {
         &self.yaw_inertia_min_ratio
+    }
+    fn yaw_inertia_min_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_inertia_min_ratio
     }
     fn pitch_inertia_out_duration(&self) -> &f32 {
         &self.pitch_inertia_out_duration
     }
+    fn pitch_inertia_out_duration_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_inertia_out_duration
+    }
     fn pitch_inertia_in_duration(&self) -> &f32 {
         &self.pitch_inertia_in_duration
+    }
+    fn pitch_inertia_in_duration_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_inertia_in_duration
     }
     fn pitch_inertia_min_ratio(&self) -> &f32 {
         &self.pitch_inertia_min_ratio
     }
+    fn pitch_inertia_min_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_inertia_min_ratio
+    }
     fn roll_inertia_out_duration(&self) -> &f32 {
         &self.roll_inertia_out_duration
+    }
+    fn roll_inertia_out_duration_mut(&mut self) -> &mut f32 {
+        &mut self.roll_inertia_out_duration
     }
     fn roll_inertia_in_duration(&self) -> &f32 {
         &self.roll_inertia_in_duration
     }
+    fn roll_inertia_in_duration_mut(&mut self) -> &mut f32 {
+        &mut self.roll_inertia_in_duration
+    }
     fn roll_inertia_min_ratio(&self) -> &f32 {
         &self.roll_inertia_min_ratio
+    }
+    fn roll_inertia_min_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.roll_inertia_min_ratio
     }
 }
 
@@ -18711,6 +24174,15 @@ impl TypeObject for VehicleInputData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18754,6 +24226,15 @@ impl TypeObject for VehicleMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18782,43 +24263,79 @@ pub struct GearboxNetState {
 
 pub trait GearboxNetStateTrait: TypeObject {
     fn gearbox_lock_mode(&self) -> &GearboxLockMode;
+    fn gearbox_lock_mode_mut(&mut self) -> &mut GearboxLockMode;
     fn gearbox_status(&self) -> &GearboxStatus;
+    fn gearbox_status_mut(&mut self) -> &mut GearboxStatus;
     fn gear_status(&self) -> &GearStatus;
+    fn gear_status_mut(&mut self) -> &mut GearStatus;
     fn clutch_status(&self) -> &ClutchStatus;
+    fn clutch_status_mut(&mut self) -> &mut ClutchStatus;
     fn gear(&self) -> &i8;
+    fn gear_mut(&mut self) -> &mut i8;
     fn gear_timer(&self) -> &f32;
+    fn gear_timer_mut(&mut self) -> &mut f32;
     fn inverted_timer(&self) -> &f32;
+    fn inverted_timer_mut(&mut self) -> &mut f32;
     fn clutch_toggle(&self) -> &bool;
+    fn clutch_toggle_mut(&mut self) -> &mut bool;
     fn is_gearbox_inverted(&self) -> &bool;
+    fn is_gearbox_inverted_mut(&mut self) -> &mut bool;
 }
 
 impl GearboxNetStateTrait for GearboxNetState {
     fn gearbox_lock_mode(&self) -> &GearboxLockMode {
         &self.gearbox_lock_mode
     }
+    fn gearbox_lock_mode_mut(&mut self) -> &mut GearboxLockMode {
+        &mut self.gearbox_lock_mode
+    }
     fn gearbox_status(&self) -> &GearboxStatus {
         &self.gearbox_status
+    }
+    fn gearbox_status_mut(&mut self) -> &mut GearboxStatus {
+        &mut self.gearbox_status
     }
     fn gear_status(&self) -> &GearStatus {
         &self.gear_status
     }
+    fn gear_status_mut(&mut self) -> &mut GearStatus {
+        &mut self.gear_status
+    }
     fn clutch_status(&self) -> &ClutchStatus {
         &self.clutch_status
+    }
+    fn clutch_status_mut(&mut self) -> &mut ClutchStatus {
+        &mut self.clutch_status
     }
     fn gear(&self) -> &i8 {
         &self.gear
     }
+    fn gear_mut(&mut self) -> &mut i8 {
+        &mut self.gear
+    }
     fn gear_timer(&self) -> &f32 {
         &self.gear_timer
+    }
+    fn gear_timer_mut(&mut self) -> &mut f32 {
+        &mut self.gear_timer
     }
     fn inverted_timer(&self) -> &f32 {
         &self.inverted_timer
     }
+    fn inverted_timer_mut(&mut self) -> &mut f32 {
+        &mut self.inverted_timer
+    }
     fn clutch_toggle(&self) -> &bool {
         &self.clutch_toggle
     }
+    fn clutch_toggle_mut(&mut self) -> &mut bool {
+        &mut self.clutch_toggle
+    }
     fn is_gearbox_inverted(&self) -> &bool {
         &self.is_gearbox_inverted
+    }
+    fn is_gearbox_inverted_mut(&mut self) -> &mut bool {
+        &mut self.is_gearbox_inverted
     }
 }
 
@@ -18898,6 +24415,15 @@ impl TypeObject for GearboxNetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18935,6 +24461,15 @@ impl TypeObject for GearboxGearLimits {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -18975,6 +24510,15 @@ impl TypeObject for ClutchStatus {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -19018,6 +24562,15 @@ impl TypeObject for GearStatus {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19055,6 +24608,15 @@ impl TypeObject for GearboxStatus {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -19095,6 +24657,15 @@ impl TypeObject for GearboxLockMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19134,6 +24705,15 @@ impl TypeObject for GearboxMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19172,6 +24752,15 @@ impl TypeObject for GearboxType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19201,50 +24790,83 @@ pub struct IglooGrabToolSettings {
 
 pub trait IglooGrabToolSettingsTrait: super::core::DataContainerTrait {
     fn max_grab_distance(&self) -> &f32;
+    fn max_grab_distance_mut(&mut self) -> &mut f32;
     fn debug_pick_point_sphere_radius(&self) -> &f32;
+    fn debug_pick_point_sphere_radius_mut(&mut self) -> &mut f32;
     fn debug_pick_point_normal_length(&self) -> &f32;
+    fn debug_pick_point_normal_length_mut(&mut self) -> &mut f32;
     fn debug_grab_hand_square_size(&self) -> &f32;
+    fn debug_grab_hand_square_size_mut(&mut self) -> &mut f32;
     fn debug_color_grab_hand(&self) -> &super::core::Vec4;
+    fn debug_color_grab_hand_mut(&mut self) -> &mut super::core::Vec4;
     fn debug_color_grab_target_position(&self) -> &super::core::Vec4;
+    fn debug_color_grab_target_position_mut(&mut self) -> &mut super::core::Vec4;
     fn debug_color_grab_on_server(&self) -> &super::core::Vec4;
+    fn debug_color_grab_on_server_mut(&mut self) -> &mut super::core::Vec4;
     fn debug_color_grab_on_client(&self) -> &super::core::Vec4;
+    fn debug_color_grab_on_client_mut(&mut self) -> &mut super::core::Vec4;
     fn debug_color_grab_on_effect(&self) -> &super::core::Vec4;
+    fn debug_color_grab_on_effect_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl IglooGrabToolSettingsTrait for IglooGrabToolSettings {
     fn max_grab_distance(&self) -> &f32 {
         &self.max_grab_distance
     }
+    fn max_grab_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_grab_distance
+    }
     fn debug_pick_point_sphere_radius(&self) -> &f32 {
         &self.debug_pick_point_sphere_radius
+    }
+    fn debug_pick_point_sphere_radius_mut(&mut self) -> &mut f32 {
+        &mut self.debug_pick_point_sphere_radius
     }
     fn debug_pick_point_normal_length(&self) -> &f32 {
         &self.debug_pick_point_normal_length
     }
+    fn debug_pick_point_normal_length_mut(&mut self) -> &mut f32 {
+        &mut self.debug_pick_point_normal_length
+    }
     fn debug_grab_hand_square_size(&self) -> &f32 {
         &self.debug_grab_hand_square_size
+    }
+    fn debug_grab_hand_square_size_mut(&mut self) -> &mut f32 {
+        &mut self.debug_grab_hand_square_size
     }
     fn debug_color_grab_hand(&self) -> &super::core::Vec4 {
         &self.debug_color_grab_hand
     }
+    fn debug_color_grab_hand_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.debug_color_grab_hand
+    }
     fn debug_color_grab_target_position(&self) -> &super::core::Vec4 {
         &self.debug_color_grab_target_position
+    }
+    fn debug_color_grab_target_position_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.debug_color_grab_target_position
     }
     fn debug_color_grab_on_server(&self) -> &super::core::Vec4 {
         &self.debug_color_grab_on_server
     }
+    fn debug_color_grab_on_server_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.debug_color_grab_on_server
+    }
     fn debug_color_grab_on_client(&self) -> &super::core::Vec4 {
         &self.debug_color_grab_on_client
+    }
+    fn debug_color_grab_on_client_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.debug_color_grab_on_client
     }
     fn debug_color_grab_on_effect(&self) -> &super::core::Vec4 {
         &self.debug_color_grab_on_effect
     }
+    fn debug_color_grab_on_effect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.debug_color_grab_on_effect
+    }
 }
 
 impl super::core::DataContainerTrait for IglooGrabToolSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static IGLOOGRABTOOLSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19324,6 +24946,15 @@ impl TypeObject for IglooGrabToolSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19348,27 +24979,47 @@ pub struct PhysicsRenderWorldDynamicState {
 
 pub trait PhysicsRenderWorldDynamicStateTrait: TypeObject {
     fn part_enabled(&self) -> &Vec<bool>;
+    fn part_enabled_mut(&mut self) -> &mut Vec<bool>;
     fn add_to_world(&self) -> &bool;
+    fn add_to_world_mut(&mut self) -> &mut bool;
     fn character_pose(&self) -> &CharacterPoseType;
+    fn character_pose_mut(&mut self) -> &mut CharacterPoseType;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl PhysicsRenderWorldDynamicStateTrait for PhysicsRenderWorldDynamicState {
     fn part_enabled(&self) -> &Vec<bool> {
         &self.part_enabled
     }
+    fn part_enabled_mut(&mut self) -> &mut Vec<bool> {
+        &mut self.part_enabled
+    }
     fn add_to_world(&self) -> &bool {
         &self.add_to_world
+    }
+    fn add_to_world_mut(&mut self) -> &mut bool {
+        &mut self.add_to_world
     }
     fn character_pose(&self) -> &CharacterPoseType {
         &self.character_pose
     }
+    fn character_pose_mut(&mut self) -> &mut CharacterPoseType {
+        &mut self.character_pose
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -19424,6 +25075,15 @@ impl TypeObject for PhysicsRenderWorldDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19448,27 +25108,47 @@ pub struct PhysicsRenderWorldStaticState {
 
 pub trait PhysicsRenderWorldStaticStateTrait: TypeObject {
     fn physics_component_data(&self) -> &Option<Arc<Mutex<dyn PhysicsComponentDataTrait>>>;
+    fn physics_component_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsComponentDataTrait>>>;
     fn physics_body_data(&self) -> &Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>;
+    fn physics_body_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>;
     fn body_transform_fixups(&self) -> &Vec<super::core::LinearTransform>;
+    fn body_transform_fixups_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl PhysicsRenderWorldStaticStateTrait for PhysicsRenderWorldStaticState {
     fn physics_component_data(&self) -> &Option<Arc<Mutex<dyn PhysicsComponentDataTrait>>> {
         &self.physics_component_data
     }
+    fn physics_component_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsComponentDataTrait>>> {
+        &mut self.physics_component_data
+    }
     fn physics_body_data(&self) -> &Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>> {
         &self.physics_body_data
+    }
+    fn physics_body_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>> {
+        &mut self.physics_body_data
     }
     fn body_transform_fixups(&self) -> &Vec<super::core::LinearTransform> {
         &self.body_transform_fixups
     }
+    fn body_transform_fixups_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+        &mut self.body_transform_fixups
+    }
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -19524,6 +25204,15 @@ impl TypeObject for PhysicsRenderWorldStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19569,6 +25258,15 @@ impl TypeObject for PhysicsRenderWorldHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19589,11 +25287,15 @@ pub struct PhysicsCategorySet {
 
 pub trait PhysicsCategorySetTrait: TypeObject {
     fn categories(&self) -> &u32;
+    fn categories_mut(&mut self) -> &mut u32;
 }
 
 impl PhysicsCategorySetTrait for PhysicsCategorySet {
     fn categories(&self) -> &u32 {
         &self.categories
+    }
+    fn categories_mut(&mut self) -> &mut u32 {
+        &mut self.categories
     }
 }
 
@@ -19624,6 +25326,15 @@ impl TypeObject for PhysicsCategorySet {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -19673,119 +25384,231 @@ pub struct FBPhysicsWorldData {
 
 pub trait FBPhysicsWorldDataTrait: super::entity::SubWorldDataComponentTrait {
     fn max_body_count(&self) -> &u32;
+    fn max_body_count_mut(&mut self) -> &mut u32;
     fn max_heightfield_count(&self) -> &u32;
+    fn max_heightfield_count_mut(&mut self) -> &mut u32;
     fn max_non_fixed_shape_count(&self) -> &u32;
+    fn max_non_fixed_shape_count_mut(&mut self) -> &mut u32;
     fn max_fixed_shape_count(&self) -> &u32;
+    fn max_fixed_shape_count_mut(&mut self) -> &mut u32;
     fn max_shape_pairs(&self) -> &u32;
+    fn max_shape_pairs_mut(&mut self) -> &mut u32;
     fn max_shape_pair_batches(&self) -> &u32;
+    fn max_shape_pair_batches_mut(&mut self) -> &mut u32;
     fn shape_pair_index_count(&self) -> &u32;
+    fn shape_pair_index_count_mut(&mut self) -> &mut u32;
     fn max_contact_count(&self) -> &u32;
+    fn max_contact_count_mut(&mut self) -> &mut u32;
     fn max_ray_query_count(&self) -> &u32;
+    fn max_ray_query_count_mut(&mut self) -> &mut u32;
     fn max_ray_query_result_count(&self) -> &u32;
+    fn max_ray_query_result_count_mut(&mut self) -> &mut u32;
     fn max_directional_drive_count(&self) -> &u32;
+    fn max_directional_drive_count_mut(&mut self) -> &mut u32;
     fn max_temporary_directional_drive_count(&self) -> &u32;
+    fn max_temporary_directional_drive_count_mut(&mut self) -> &mut u32;
     fn max_locked_linear_joint_count(&self) -> &u32;
+    fn max_locked_linear_joint_count_mut(&mut self) -> &mut u32;
     fn max_temporary_locked_linear_joint_count(&self) -> &u32;
+    fn max_temporary_locked_linear_joint_count_mut(&mut self) -> &mut u32;
     fn max_angular_joint_count(&self) -> &u32;
+    fn max_angular_joint_count_mut(&mut self) -> &mut u32;
     fn max_temporary_angular_joint_count(&self) -> &u32;
+    fn max_temporary_angular_joint_count_mut(&mut self) -> &mut u32;
     fn max_vertex_count(&self) -> &u32;
+    fn max_vertex_count_mut(&mut self) -> &mut u32;
     fn max_edge_count(&self) -> &u32;
+    fn max_edge_count_mut(&mut self) -> &mut u32;
     fn max_fixed_partition_count(&self) -> &u32;
+    fn max_fixed_partition_count_mut(&mut self) -> &mut u32;
     fn max_collision_report_count(&self) -> &u32;
+    fn max_collision_report_count_mut(&mut self) -> &mut u32;
     fn max_immediate_query_count(&self) -> &u32;
+    fn max_immediate_query_count_mut(&mut self) -> &mut u32;
     fn max_results_per_immediate_query(&self) -> &u32;
+    fn max_results_per_immediate_query_mut(&mut self) -> &mut u32;
     fn max_culling_tables(&self) -> &u32;
+    fn max_culling_tables_mut(&mut self) -> &mut u32;
     fn max_culling_group_pairs(&self) -> &u32;
+    fn max_culling_group_pairs_mut(&mut self) -> &mut u32;
     fn max_culling_table_size(&self) -> &u32;
+    fn max_culling_table_size_mut(&mut self) -> &mut u32;
     fn gravity(&self) -> &super::core::Vec3;
+    fn gravity_mut(&mut self) -> &mut super::core::Vec3;
     fn max_g_j_k_iterations(&self) -> &u32;
+    fn max_g_j_k_iterations_mut(&mut self) -> &mut u32;
     fn max_solve_iterations(&self) -> &u32;
+    fn max_solve_iterations_mut(&mut self) -> &mut u32;
 }
 
 impl FBPhysicsWorldDataTrait for FBPhysicsWorldData {
     fn max_body_count(&self) -> &u32 {
         &self.max_body_count
     }
+    fn max_body_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_body_count
+    }
     fn max_heightfield_count(&self) -> &u32 {
         &self.max_heightfield_count
+    }
+    fn max_heightfield_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_heightfield_count
     }
     fn max_non_fixed_shape_count(&self) -> &u32 {
         &self.max_non_fixed_shape_count
     }
+    fn max_non_fixed_shape_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_non_fixed_shape_count
+    }
     fn max_fixed_shape_count(&self) -> &u32 {
         &self.max_fixed_shape_count
+    }
+    fn max_fixed_shape_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_fixed_shape_count
     }
     fn max_shape_pairs(&self) -> &u32 {
         &self.max_shape_pairs
     }
+    fn max_shape_pairs_mut(&mut self) -> &mut u32 {
+        &mut self.max_shape_pairs
+    }
     fn max_shape_pair_batches(&self) -> &u32 {
         &self.max_shape_pair_batches
+    }
+    fn max_shape_pair_batches_mut(&mut self) -> &mut u32 {
+        &mut self.max_shape_pair_batches
     }
     fn shape_pair_index_count(&self) -> &u32 {
         &self.shape_pair_index_count
     }
+    fn shape_pair_index_count_mut(&mut self) -> &mut u32 {
+        &mut self.shape_pair_index_count
+    }
     fn max_contact_count(&self) -> &u32 {
         &self.max_contact_count
+    }
+    fn max_contact_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_contact_count
     }
     fn max_ray_query_count(&self) -> &u32 {
         &self.max_ray_query_count
     }
+    fn max_ray_query_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_ray_query_count
+    }
     fn max_ray_query_result_count(&self) -> &u32 {
         &self.max_ray_query_result_count
+    }
+    fn max_ray_query_result_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_ray_query_result_count
     }
     fn max_directional_drive_count(&self) -> &u32 {
         &self.max_directional_drive_count
     }
+    fn max_directional_drive_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_directional_drive_count
+    }
     fn max_temporary_directional_drive_count(&self) -> &u32 {
         &self.max_temporary_directional_drive_count
+    }
+    fn max_temporary_directional_drive_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_temporary_directional_drive_count
     }
     fn max_locked_linear_joint_count(&self) -> &u32 {
         &self.max_locked_linear_joint_count
     }
+    fn max_locked_linear_joint_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_locked_linear_joint_count
+    }
     fn max_temporary_locked_linear_joint_count(&self) -> &u32 {
         &self.max_temporary_locked_linear_joint_count
+    }
+    fn max_temporary_locked_linear_joint_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_temporary_locked_linear_joint_count
     }
     fn max_angular_joint_count(&self) -> &u32 {
         &self.max_angular_joint_count
     }
+    fn max_angular_joint_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_angular_joint_count
+    }
     fn max_temporary_angular_joint_count(&self) -> &u32 {
         &self.max_temporary_angular_joint_count
+    }
+    fn max_temporary_angular_joint_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_temporary_angular_joint_count
     }
     fn max_vertex_count(&self) -> &u32 {
         &self.max_vertex_count
     }
+    fn max_vertex_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_vertex_count
+    }
     fn max_edge_count(&self) -> &u32 {
         &self.max_edge_count
+    }
+    fn max_edge_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_edge_count
     }
     fn max_fixed_partition_count(&self) -> &u32 {
         &self.max_fixed_partition_count
     }
+    fn max_fixed_partition_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_fixed_partition_count
+    }
     fn max_collision_report_count(&self) -> &u32 {
         &self.max_collision_report_count
+    }
+    fn max_collision_report_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_collision_report_count
     }
     fn max_immediate_query_count(&self) -> &u32 {
         &self.max_immediate_query_count
     }
+    fn max_immediate_query_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_immediate_query_count
+    }
     fn max_results_per_immediate_query(&self) -> &u32 {
         &self.max_results_per_immediate_query
+    }
+    fn max_results_per_immediate_query_mut(&mut self) -> &mut u32 {
+        &mut self.max_results_per_immediate_query
     }
     fn max_culling_tables(&self) -> &u32 {
         &self.max_culling_tables
     }
+    fn max_culling_tables_mut(&mut self) -> &mut u32 {
+        &mut self.max_culling_tables
+    }
     fn max_culling_group_pairs(&self) -> &u32 {
         &self.max_culling_group_pairs
+    }
+    fn max_culling_group_pairs_mut(&mut self) -> &mut u32 {
+        &mut self.max_culling_group_pairs
     }
     fn max_culling_table_size(&self) -> &u32 {
         &self.max_culling_table_size
     }
+    fn max_culling_table_size_mut(&mut self) -> &mut u32 {
+        &mut self.max_culling_table_size
+    }
     fn gravity(&self) -> &super::core::Vec3 {
         &self.gravity
+    }
+    fn gravity_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.gravity
     }
     fn max_g_j_k_iterations(&self) -> &u32 {
         &self.max_g_j_k_iterations
     }
+    fn max_g_j_k_iterations_mut(&mut self) -> &mut u32 {
+        &mut self.max_g_j_k_iterations
+    }
     fn max_solve_iterations(&self) -> &u32 {
         &self.max_solve_iterations
+    }
+    fn max_solve_iterations_mut(&mut self) -> &mut u32 {
+        &mut self.max_solve_iterations
     }
 }
 
@@ -19793,9 +25616,6 @@ impl super::entity::SubWorldDataComponentTrait for FBPhysicsWorldData {
 }
 
 impl super::core::DataContainerTrait for FBPhysicsWorldData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FBPHYSICSWORLDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19989,6 +25809,15 @@ impl TypeObject for FBPhysicsWorldData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20012,19 +25841,31 @@ pub struct FBPhysicsSubLevelData {
 
 pub trait FBPhysicsSubLevelDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn server_fixed_shape_count(&self) -> &u32;
+    fn server_fixed_shape_count_mut(&mut self) -> &mut u32;
     fn client_fixed_shape_count(&self) -> &u32;
+    fn client_fixed_shape_count_mut(&mut self) -> &mut u32;
 }
 
 impl FBPhysicsSubLevelDataTrait for FBPhysicsSubLevelData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn server_fixed_shape_count(&self) -> &u32 {
         &self.server_fixed_shape_count
     }
+    fn server_fixed_shape_count_mut(&mut self) -> &mut u32 {
+        &mut self.server_fixed_shape_count
+    }
     fn client_fixed_shape_count(&self) -> &u32 {
         &self.client_fixed_shape_count
+    }
+    fn client_fixed_shape_count_mut(&mut self) -> &mut u32 {
+        &mut self.client_fixed_shape_count
     }
 }
 
@@ -20038,15 +25879,15 @@ impl super::core::DataBusPeerTrait for FBPhysicsSubLevelData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FBPhysicsSubLevelData {
 }
 
 impl super::core::DataContainerTrait for FBPhysicsSubLevelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FBPHYSICSSUBLEVELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20089,6 +25930,15 @@ impl TypeObject for FBPhysicsSubLevelData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -20140,6 +25990,15 @@ impl TypeObject for PhysicsCollisionCategory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20163,19 +26022,31 @@ pub struct FBPhysicsComponentData {
 
 pub trait FBPhysicsComponentDataTrait: super::entity::ComponentDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn bones(&self) -> &Vec<PhysicsBoneData>;
+    fn bones_mut(&mut self) -> &mut Vec<PhysicsBoneData>;
     fn asset(&self) -> &Option<Arc<Mutex<dyn PhysicsAssetTrait>>>;
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsAssetTrait>>>;
 }
 
 impl FBPhysicsComponentDataTrait for FBPhysicsComponentData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn bones(&self) -> &Vec<PhysicsBoneData> {
         &self.bones
     }
+    fn bones_mut(&mut self) -> &mut Vec<PhysicsBoneData> {
+        &mut self.bones
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn PhysicsAssetTrait>>> {
         &self.asset
+    }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsAssetTrait>>> {
+        &mut self.asset
     }
 }
 
@@ -20183,17 +26054,32 @@ impl super::entity::ComponentDataTrait for FBPhysicsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -20204,15 +26090,15 @@ impl super::core::DataBusPeerTrait for FBPhysicsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FBPhysicsComponentData {
 }
 
 impl super::core::DataContainerTrait for FBPhysicsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FBPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20256,6 +26142,15 @@ impl TypeObject for FBPhysicsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20282,31 +26177,55 @@ pub struct PhysicsAsset {
 
 pub trait PhysicsAssetTrait: super::core::AssetTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn locked_linear_joints(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsLockedLinearJointDataTrait>>>>;
+    fn locked_linear_joints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsLockedLinearJointDataTrait>>>>;
     fn angular_joints(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsAngularJointDataTrait>>>>;
+    fn angular_joints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsAngularJointDataTrait>>>>;
     fn directional_drives(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsDirectionalDriveDataTrait>>>>;
+    fn directional_drives_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsDirectionalDriveDataTrait>>>>;
     fn culling_tables(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsCullingTableDataTrait>>>>;
+    fn culling_tables_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsCullingTableDataTrait>>>>;
 }
 
 impl PhysicsAssetTrait for PhysicsAsset {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.resource
+    }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.resource
     }
     fn locked_linear_joints(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsLockedLinearJointDataTrait>>>> {
         &self.locked_linear_joints
     }
+    fn locked_linear_joints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsLockedLinearJointDataTrait>>>> {
+        &mut self.locked_linear_joints
+    }
     fn angular_joints(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsAngularJointDataTrait>>>> {
         &self.angular_joints
+    }
+    fn angular_joints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsAngularJointDataTrait>>>> {
+        &mut self.angular_joints
     }
     fn directional_drives(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsDirectionalDriveDataTrait>>>> {
         &self.directional_drives
     }
+    fn directional_drives_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsDirectionalDriveDataTrait>>>> {
+        &mut self.directional_drives
+    }
     fn culling_tables(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsCullingTableDataTrait>>>> {
         &self.culling_tables
+    }
+    fn culling_tables_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsCullingTableDataTrait>>>> {
+        &mut self.culling_tables
     }
 }
 
@@ -20314,12 +26233,12 @@ impl super::core::AssetTrait for PhysicsAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PhysicsAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20381,6 +26300,15 @@ impl TypeObject for PhysicsAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20404,26 +26332,35 @@ pub struct PhysicsCullingTableData {
 
 pub trait PhysicsCullingTableDataTrait: super::core::DataContainerTrait {
     fn entries(&self) -> &Vec<bool>;
+    fn entries_mut(&mut self) -> &mut Vec<bool>;
     fn group_a_size(&self) -> &u32;
+    fn group_a_size_mut(&mut self) -> &mut u32;
     fn group_b_size(&self) -> &u32;
+    fn group_b_size_mut(&mut self) -> &mut u32;
 }
 
 impl PhysicsCullingTableDataTrait for PhysicsCullingTableData {
     fn entries(&self) -> &Vec<bool> {
         &self.entries
     }
+    fn entries_mut(&mut self) -> &mut Vec<bool> {
+        &mut self.entries
+    }
     fn group_a_size(&self) -> &u32 {
         &self.group_a_size
+    }
+    fn group_a_size_mut(&mut self) -> &mut u32 {
+        &mut self.group_a_size
     }
     fn group_b_size(&self) -> &u32 {
         &self.group_b_size
     }
+    fn group_b_size_mut(&mut self) -> &mut u32 {
+        &mut self.group_b_size
+    }
 }
 
 impl super::core::DataContainerTrait for PhysicsCullingTableData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSCULLINGTABLEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20467,6 +26404,15 @@ impl TypeObject for PhysicsCullingTableData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20496,47 +26442,87 @@ pub struct FBPhysicsShapeData {
 
 pub trait FBPhysicsShapeDataTrait: TypeObject {
     fn convex_hull_index(&self) -> &u32;
+    fn convex_hull_index_mut(&mut self) -> &mut u32;
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn orientation(&self) -> &super::core::Quat;
+    fn orientation_mut(&mut self) -> &mut super::core::Quat;
     fn shape_type(&self) -> &PhysicsShapeType;
+    fn shape_type_mut(&mut self) -> &mut PhysicsShapeType;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn body_index_in_physics_component(&self) -> &u32;
+    fn body_index_in_physics_component_mut(&mut self) -> &mut u32;
     fn part_index(&self) -> &u32;
+    fn part_index_mut(&mut self) -> &mut u32;
     fn in_categories(&self) -> &PhysicsCategorySet;
+    fn in_categories_mut(&mut self) -> &mut PhysicsCategorySet;
     fn collides_with_categories(&self) -> &PhysicsCategorySet;
+    fn collides_with_categories_mut(&mut self) -> &mut PhysicsCategorySet;
     fn material(&self) -> &super::entity::MaterialDecl;
+    fn material_mut(&mut self) -> &mut super::entity::MaterialDecl;
 }
 
 impl FBPhysicsShapeDataTrait for FBPhysicsShapeData {
     fn convex_hull_index(&self) -> &u32 {
         &self.convex_hull_index
     }
+    fn convex_hull_index_mut(&mut self) -> &mut u32 {
+        &mut self.convex_hull_index
+    }
     fn position(&self) -> &super::core::Vec3 {
         &self.position
+    }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
     }
     fn orientation(&self) -> &super::core::Quat {
         &self.orientation
     }
+    fn orientation_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.orientation
+    }
     fn shape_type(&self) -> &PhysicsShapeType {
         &self.shape_type
+    }
+    fn shape_type_mut(&mut self) -> &mut PhysicsShapeType {
+        &mut self.shape_type
     }
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn body_index_in_physics_component(&self) -> &u32 {
         &self.body_index_in_physics_component
+    }
+    fn body_index_in_physics_component_mut(&mut self) -> &mut u32 {
+        &mut self.body_index_in_physics_component
     }
     fn part_index(&self) -> &u32 {
         &self.part_index
     }
+    fn part_index_mut(&mut self) -> &mut u32 {
+        &mut self.part_index
+    }
     fn in_categories(&self) -> &PhysicsCategorySet {
         &self.in_categories
+    }
+    fn in_categories_mut(&mut self) -> &mut PhysicsCategorySet {
+        &mut self.in_categories
     }
     fn collides_with_categories(&self) -> &PhysicsCategorySet {
         &self.collides_with_categories
     }
+    fn collides_with_categories_mut(&mut self) -> &mut PhysicsCategorySet {
+        &mut self.collides_with_categories
+    }
     fn material(&self) -> &super::entity::MaterialDecl {
         &self.material
+    }
+    fn material_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.material
     }
 }
 
@@ -20622,6 +26608,15 @@ impl TypeObject for FBPhysicsShapeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20645,23 +26640,39 @@ pub struct FBPhysicsConvexHullData {
 
 pub trait FBPhysicsConvexHullDataTrait: TypeObject {
     fn positions(&self) -> &Vec<super::core::Vec3>;
+    fn positions_mut(&mut self) -> &mut Vec<super::core::Vec3>;
     fn end_vertices(&self) -> &Vec<u32>;
+    fn end_vertices_mut(&mut self) -> &mut Vec<u32>;
     fn edge_cosines(&self) -> &Vec<f32>;
+    fn edge_cosines_mut(&mut self) -> &mut Vec<f32>;
     fn next_edge_in_faces(&self) -> &Vec<u32>;
+    fn next_edge_in_faces_mut(&mut self) -> &mut Vec<u32>;
 }
 
 impl FBPhysicsConvexHullDataTrait for FBPhysicsConvexHullData {
     fn positions(&self) -> &Vec<super::core::Vec3> {
         &self.positions
     }
+    fn positions_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        &mut self.positions
+    }
     fn end_vertices(&self) -> &Vec<u32> {
         &self.end_vertices
+    }
+    fn end_vertices_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.end_vertices
     }
     fn edge_cosines(&self) -> &Vec<f32> {
         &self.edge_cosines
     }
+    fn edge_cosines_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.edge_cosines
+    }
     fn next_edge_in_faces(&self) -> &Vec<u32> {
         &self.next_edge_in_faces
+    }
+    fn next_edge_in_faces_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.next_edge_in_faces
     }
 }
 
@@ -20711,6 +26722,15 @@ impl TypeObject for FBPhysicsConvexHullData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20750,90 +26770,163 @@ pub struct FBPhysicsDirectionalDriveData {
 
 pub trait FBPhysicsDirectionalDriveDataTrait: super::core::DataContainerTrait {
     fn body_a_index_in_component(&self) -> &u32;
+    fn body_a_index_in_component_mut(&mut self) -> &mut u32;
     fn body_b_index_in_component(&self) -> &u32;
+    fn body_b_index_in_component_mut(&mut self) -> &mut u32;
     fn position_on_body_a(&self) -> &super::core::Vec3;
+    fn position_on_body_a_mut(&mut self) -> &mut super::core::Vec3;
     fn position_on_body_b(&self) -> &super::core::Vec3;
+    fn position_on_body_b_mut(&mut self) -> &mut super::core::Vec3;
     fn orientation_on_body_a(&self) -> &super::core::Quat;
+    fn orientation_on_body_a_mut(&mut self) -> &mut super::core::Quat;
     fn orientation_on_body_b(&self) -> &super::core::Quat;
+    fn orientation_on_body_b_mut(&mut self) -> &mut super::core::Quat;
     fn angular_spring(&self) -> &f32;
+    fn angular_spring_mut(&mut self) -> &mut f32;
     fn angular_damping(&self) -> &f32;
+    fn angular_damping_mut(&mut self) -> &mut f32;
     fn linear_spring(&self) -> &f32;
+    fn linear_spring_mut(&mut self) -> &mut f32;
     fn linear_damping(&self) -> &f32;
+    fn linear_damping_mut(&mut self) -> &mut f32;
     fn angular_limit_axis_space(&self) -> &PhysicsConstraintLimitSpace;
+    fn angular_limit_axis_space_mut(&mut self) -> &mut PhysicsConstraintLimitSpace;
     fn angular_limit_axis(&self) -> &super::core::Vec3;
+    fn angular_limit_axis_mut(&mut self) -> &mut super::core::Vec3;
     fn swing_torque_limit(&self) -> &f32;
+    fn swing_torque_limit_mut(&mut self) -> &mut f32;
     fn twist_torque_limit(&self) -> &f32;
+    fn twist_torque_limit_mut(&mut self) -> &mut f32;
     fn linear_limit_axis_space(&self) -> &PhysicsConstraintLimitSpace;
+    fn linear_limit_axis_space_mut(&mut self) -> &mut PhysicsConstraintLimitSpace;
     fn linear_limit_axis(&self) -> &super::core::Vec3;
+    fn linear_limit_axis_mut(&mut self) -> &mut super::core::Vec3;
     fn forward_force_limit(&self) -> &f32;
+    fn forward_force_limit_mut(&mut self) -> &mut f32;
     fn backward_force_limit(&self) -> &f32;
+    fn backward_force_limit_mut(&mut self) -> &mut f32;
     fn radial_force_limit(&self) -> &f32;
+    fn radial_force_limit_mut(&mut self) -> &mut f32;
 }
 
 impl FBPhysicsDirectionalDriveDataTrait for FBPhysicsDirectionalDriveData {
     fn body_a_index_in_component(&self) -> &u32 {
         &self.body_a_index_in_component
     }
+    fn body_a_index_in_component_mut(&mut self) -> &mut u32 {
+        &mut self.body_a_index_in_component
+    }
     fn body_b_index_in_component(&self) -> &u32 {
         &self.body_b_index_in_component
+    }
+    fn body_b_index_in_component_mut(&mut self) -> &mut u32 {
+        &mut self.body_b_index_in_component
     }
     fn position_on_body_a(&self) -> &super::core::Vec3 {
         &self.position_on_body_a
     }
+    fn position_on_body_a_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position_on_body_a
+    }
     fn position_on_body_b(&self) -> &super::core::Vec3 {
         &self.position_on_body_b
+    }
+    fn position_on_body_b_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position_on_body_b
     }
     fn orientation_on_body_a(&self) -> &super::core::Quat {
         &self.orientation_on_body_a
     }
+    fn orientation_on_body_a_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.orientation_on_body_a
+    }
     fn orientation_on_body_b(&self) -> &super::core::Quat {
         &self.orientation_on_body_b
+    }
+    fn orientation_on_body_b_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.orientation_on_body_b
     }
     fn angular_spring(&self) -> &f32 {
         &self.angular_spring
     }
+    fn angular_spring_mut(&mut self) -> &mut f32 {
+        &mut self.angular_spring
+    }
     fn angular_damping(&self) -> &f32 {
         &self.angular_damping
+    }
+    fn angular_damping_mut(&mut self) -> &mut f32 {
+        &mut self.angular_damping
     }
     fn linear_spring(&self) -> &f32 {
         &self.linear_spring
     }
+    fn linear_spring_mut(&mut self) -> &mut f32 {
+        &mut self.linear_spring
+    }
     fn linear_damping(&self) -> &f32 {
         &self.linear_damping
+    }
+    fn linear_damping_mut(&mut self) -> &mut f32 {
+        &mut self.linear_damping
     }
     fn angular_limit_axis_space(&self) -> &PhysicsConstraintLimitSpace {
         &self.angular_limit_axis_space
     }
+    fn angular_limit_axis_space_mut(&mut self) -> &mut PhysicsConstraintLimitSpace {
+        &mut self.angular_limit_axis_space
+    }
     fn angular_limit_axis(&self) -> &super::core::Vec3 {
         &self.angular_limit_axis
+    }
+    fn angular_limit_axis_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.angular_limit_axis
     }
     fn swing_torque_limit(&self) -> &f32 {
         &self.swing_torque_limit
     }
+    fn swing_torque_limit_mut(&mut self) -> &mut f32 {
+        &mut self.swing_torque_limit
+    }
     fn twist_torque_limit(&self) -> &f32 {
         &self.twist_torque_limit
+    }
+    fn twist_torque_limit_mut(&mut self) -> &mut f32 {
+        &mut self.twist_torque_limit
     }
     fn linear_limit_axis_space(&self) -> &PhysicsConstraintLimitSpace {
         &self.linear_limit_axis_space
     }
+    fn linear_limit_axis_space_mut(&mut self) -> &mut PhysicsConstraintLimitSpace {
+        &mut self.linear_limit_axis_space
+    }
     fn linear_limit_axis(&self) -> &super::core::Vec3 {
         &self.linear_limit_axis
+    }
+    fn linear_limit_axis_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.linear_limit_axis
     }
     fn forward_force_limit(&self) -> &f32 {
         &self.forward_force_limit
     }
+    fn forward_force_limit_mut(&mut self) -> &mut f32 {
+        &mut self.forward_force_limit
+    }
     fn backward_force_limit(&self) -> &f32 {
         &self.backward_force_limit
+    }
+    fn backward_force_limit_mut(&mut self) -> &mut f32 {
+        &mut self.backward_force_limit
     }
     fn radial_force_limit(&self) -> &f32 {
         &self.radial_force_limit
     }
+    fn radial_force_limit_mut(&mut self) -> &mut f32 {
+        &mut self.radial_force_limit
+    }
 }
 
 impl super::core::DataContainerTrait for FBPhysicsDirectionalDriveData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FBPHYSICSDIRECTIONALDRIVEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20973,6 +27066,15 @@ impl TypeObject for FBPhysicsDirectionalDriveData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -21011,86 +27113,155 @@ pub struct FBPhysicsAngularJointData {
 
 pub trait FBPhysicsAngularJointDataTrait: super::core::DataContainerTrait {
     fn body_a_index_in_component(&self) -> &u32;
+    fn body_a_index_in_component_mut(&mut self) -> &mut u32;
     fn body_b_index_in_component(&self) -> &u32;
+    fn body_b_index_in_component_mut(&mut self) -> &mut u32;
     fn swing_spring(&self) -> &f32;
+    fn swing_spring_mut(&mut self) -> &mut f32;
     fn swing_damping(&self) -> &f32;
+    fn swing_damping_mut(&mut self) -> &mut f32;
     fn twist_spring(&self) -> &f32;
+    fn twist_spring_mut(&mut self) -> &mut f32;
     fn twist_damping(&self) -> &f32;
+    fn twist_damping_mut(&mut self) -> &mut f32;
     fn swing_limit_y(&self) -> &f32;
+    fn swing_limit_y_mut(&mut self) -> &mut f32;
     fn swing_limit_z(&self) -> &f32;
+    fn swing_limit_z_mut(&mut self) -> &mut f32;
     fn twist_limit(&self) -> &f32;
+    fn twist_limit_mut(&mut self) -> &mut f32;
     fn soft_swing_limit_y(&self) -> &f32;
+    fn soft_swing_limit_y_mut(&mut self) -> &mut f32;
     fn soft_swing_limit_z(&self) -> &f32;
+    fn soft_swing_limit_z_mut(&mut self) -> &mut f32;
     fn soft_twist_limit(&self) -> &f32;
+    fn soft_twist_limit_mut(&mut self) -> &mut f32;
     fn swing_velocity_limit(&self) -> &f32;
+    fn swing_velocity_limit_mut(&mut self) -> &mut f32;
     fn twist_velocity_limit(&self) -> &f32;
+    fn twist_velocity_limit_mut(&mut self) -> &mut f32;
     fn orientation_on_body_a(&self) -> &super::core::Quat;
+    fn orientation_on_body_a_mut(&mut self) -> &mut super::core::Quat;
     fn orientation_on_body_b(&self) -> &super::core::Quat;
+    fn orientation_on_body_b_mut(&mut self) -> &mut super::core::Quat;
     fn swing_type(&self) -> &PhysicsAngularJointSwingType;
+    fn swing_type_mut(&mut self) -> &mut PhysicsAngularJointSwingType;
     fn twist_type(&self) -> &PhysicsAngularJointTwistType;
+    fn twist_type_mut(&mut self) -> &mut PhysicsAngularJointTwistType;
 }
 
 impl FBPhysicsAngularJointDataTrait for FBPhysicsAngularJointData {
     fn body_a_index_in_component(&self) -> &u32 {
         &self.body_a_index_in_component
     }
+    fn body_a_index_in_component_mut(&mut self) -> &mut u32 {
+        &mut self.body_a_index_in_component
+    }
     fn body_b_index_in_component(&self) -> &u32 {
         &self.body_b_index_in_component
+    }
+    fn body_b_index_in_component_mut(&mut self) -> &mut u32 {
+        &mut self.body_b_index_in_component
     }
     fn swing_spring(&self) -> &f32 {
         &self.swing_spring
     }
+    fn swing_spring_mut(&mut self) -> &mut f32 {
+        &mut self.swing_spring
+    }
     fn swing_damping(&self) -> &f32 {
         &self.swing_damping
+    }
+    fn swing_damping_mut(&mut self) -> &mut f32 {
+        &mut self.swing_damping
     }
     fn twist_spring(&self) -> &f32 {
         &self.twist_spring
     }
+    fn twist_spring_mut(&mut self) -> &mut f32 {
+        &mut self.twist_spring
+    }
     fn twist_damping(&self) -> &f32 {
         &self.twist_damping
+    }
+    fn twist_damping_mut(&mut self) -> &mut f32 {
+        &mut self.twist_damping
     }
     fn swing_limit_y(&self) -> &f32 {
         &self.swing_limit_y
     }
+    fn swing_limit_y_mut(&mut self) -> &mut f32 {
+        &mut self.swing_limit_y
+    }
     fn swing_limit_z(&self) -> &f32 {
         &self.swing_limit_z
+    }
+    fn swing_limit_z_mut(&mut self) -> &mut f32 {
+        &mut self.swing_limit_z
     }
     fn twist_limit(&self) -> &f32 {
         &self.twist_limit
     }
+    fn twist_limit_mut(&mut self) -> &mut f32 {
+        &mut self.twist_limit
+    }
     fn soft_swing_limit_y(&self) -> &f32 {
         &self.soft_swing_limit_y
+    }
+    fn soft_swing_limit_y_mut(&mut self) -> &mut f32 {
+        &mut self.soft_swing_limit_y
     }
     fn soft_swing_limit_z(&self) -> &f32 {
         &self.soft_swing_limit_z
     }
+    fn soft_swing_limit_z_mut(&mut self) -> &mut f32 {
+        &mut self.soft_swing_limit_z
+    }
     fn soft_twist_limit(&self) -> &f32 {
         &self.soft_twist_limit
+    }
+    fn soft_twist_limit_mut(&mut self) -> &mut f32 {
+        &mut self.soft_twist_limit
     }
     fn swing_velocity_limit(&self) -> &f32 {
         &self.swing_velocity_limit
     }
+    fn swing_velocity_limit_mut(&mut self) -> &mut f32 {
+        &mut self.swing_velocity_limit
+    }
     fn twist_velocity_limit(&self) -> &f32 {
         &self.twist_velocity_limit
+    }
+    fn twist_velocity_limit_mut(&mut self) -> &mut f32 {
+        &mut self.twist_velocity_limit
     }
     fn orientation_on_body_a(&self) -> &super::core::Quat {
         &self.orientation_on_body_a
     }
+    fn orientation_on_body_a_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.orientation_on_body_a
+    }
     fn orientation_on_body_b(&self) -> &super::core::Quat {
         &self.orientation_on_body_b
+    }
+    fn orientation_on_body_b_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.orientation_on_body_b
     }
     fn swing_type(&self) -> &PhysicsAngularJointSwingType {
         &self.swing_type
     }
+    fn swing_type_mut(&mut self) -> &mut PhysicsAngularJointSwingType {
+        &mut self.swing_type
+    }
     fn twist_type(&self) -> &PhysicsAngularJointTwistType {
         &self.twist_type
+    }
+    fn twist_type_mut(&mut self) -> &mut PhysicsAngularJointTwistType {
+        &mut self.twist_type
     }
 }
 
 impl super::core::DataContainerTrait for FBPhysicsAngularJointData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FBPHYSICSANGULARJOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21224,6 +27395,15 @@ impl TypeObject for FBPhysicsAngularJointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -21248,30 +27428,43 @@ pub struct FBPhysicsLockedLinearJointData {
 
 pub trait FBPhysicsLockedLinearJointDataTrait: super::core::DataContainerTrait {
     fn body_a_index_in_component(&self) -> &u32;
+    fn body_a_index_in_component_mut(&mut self) -> &mut u32;
     fn body_b_index_in_component(&self) -> &u32;
+    fn body_b_index_in_component_mut(&mut self) -> &mut u32;
     fn position_on_body_a(&self) -> &super::core::Vec3;
+    fn position_on_body_a_mut(&mut self) -> &mut super::core::Vec3;
     fn position_on_body_b(&self) -> &super::core::Vec3;
+    fn position_on_body_b_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl FBPhysicsLockedLinearJointDataTrait for FBPhysicsLockedLinearJointData {
     fn body_a_index_in_component(&self) -> &u32 {
         &self.body_a_index_in_component
     }
+    fn body_a_index_in_component_mut(&mut self) -> &mut u32 {
+        &mut self.body_a_index_in_component
+    }
     fn body_b_index_in_component(&self) -> &u32 {
         &self.body_b_index_in_component
+    }
+    fn body_b_index_in_component_mut(&mut self) -> &mut u32 {
+        &mut self.body_b_index_in_component
     }
     fn position_on_body_a(&self) -> &super::core::Vec3 {
         &self.position_on_body_a
     }
+    fn position_on_body_a_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position_on_body_a
+    }
     fn position_on_body_b(&self) -> &super::core::Vec3 {
         &self.position_on_body_b
+    }
+    fn position_on_body_b_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position_on_body_b
     }
 }
 
 impl super::core::DataContainerTrait for FBPhysicsLockedLinearJointData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FBPHYSICSLOCKEDLINEARJOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21321,6 +27514,15 @@ impl TypeObject for FBPhysicsLockedLinearJointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -21345,27 +27547,47 @@ pub struct FBPhysicsBodyData {
 
 pub trait FBPhysicsBodyDataTrait: TypeObject {
     fn motion_type(&self) -> &RigidBodyMotionType;
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType;
     fn reciprocal_mass(&self) -> &f32;
+    fn reciprocal_mass_mut(&mut self) -> &mut f32;
     fn principal_axes_of_inertia(&self) -> &super::core::Quat;
+    fn principal_axes_of_inertia_mut(&mut self) -> &mut super::core::Quat;
     fn unit_mass_inverse_inertia(&self) -> &super::core::Vec3;
+    fn unit_mass_inverse_inertia_mut(&mut self) -> &mut super::core::Vec3;
     fn center_of_mass_offset(&self) -> &super::core::Vec3;
+    fn center_of_mass_offset_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl FBPhysicsBodyDataTrait for FBPhysicsBodyData {
     fn motion_type(&self) -> &RigidBodyMotionType {
         &self.motion_type
     }
+    fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType {
+        &mut self.motion_type
+    }
     fn reciprocal_mass(&self) -> &f32 {
         &self.reciprocal_mass
+    }
+    fn reciprocal_mass_mut(&mut self) -> &mut f32 {
+        &mut self.reciprocal_mass
     }
     fn principal_axes_of_inertia(&self) -> &super::core::Quat {
         &self.principal_axes_of_inertia
     }
+    fn principal_axes_of_inertia_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.principal_axes_of_inertia
+    }
     fn unit_mass_inverse_inertia(&self) -> &super::core::Vec3 {
         &self.unit_mass_inverse_inertia
     }
+    fn unit_mass_inverse_inertia_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.unit_mass_inverse_inertia
+    }
     fn center_of_mass_offset(&self) -> &super::core::Vec3 {
         &self.center_of_mass_offset
+    }
+    fn center_of_mass_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.center_of_mass_offset
     }
 }
 
@@ -21421,6 +27643,15 @@ impl TypeObject for FBPhysicsBodyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21442,15 +27673,23 @@ pub struct PhysicsBoneData {
 
 pub trait PhysicsBoneDataTrait: TypeObject {
     fn bone(&self) -> &Option<Arc<Mutex<dyn super::entity::ComponentDataTrait>>>;
+    fn bone_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ComponentDataTrait>>>;
     fn body_index(&self) -> &u32;
+    fn body_index_mut(&mut self) -> &mut u32;
 }
 
 impl PhysicsBoneDataTrait for PhysicsBoneData {
     fn bone(&self) -> &Option<Arc<Mutex<dyn super::entity::ComponentDataTrait>>> {
         &self.bone
     }
+    fn bone_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ComponentDataTrait>>> {
+        &mut self.bone
+    }
     fn body_index(&self) -> &u32 {
         &self.body_index
+    }
+    fn body_index_mut(&mut self) -> &mut u32 {
+        &mut self.body_index
     }
 }
 
@@ -21488,6 +27727,15 @@ impl TypeObject for PhysicsBoneData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21509,18 +27757,19 @@ pub struct PhysicsTriangleArrayData {
 
 pub trait PhysicsTriangleArrayDataTrait: super::core::DataContainerTrait {
     fn triangles(&self) -> &Vec<PhysicsTriangle>;
+    fn triangles_mut(&mut self) -> &mut Vec<PhysicsTriangle>;
 }
 
 impl PhysicsTriangleArrayDataTrait for PhysicsTriangleArrayData {
     fn triangles(&self) -> &Vec<PhysicsTriangle> {
         &self.triangles
     }
+    fn triangles_mut(&mut self) -> &mut Vec<PhysicsTriangle> {
+        &mut self.triangles
+    }
 }
 
 impl super::core::DataContainerTrait for PhysicsTriangleArrayData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSTRIANGLEARRAYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21552,6 +27801,15 @@ impl TypeObject for PhysicsTriangleArrayData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -21574,19 +27832,31 @@ pub struct PhysicsTriangle {
 
 pub trait PhysicsTriangleTrait: TypeObject {
     fn p0(&self) -> &super::core::Vec3;
+    fn p0_mut(&mut self) -> &mut super::core::Vec3;
     fn p1(&self) -> &super::core::Vec3;
+    fn p1_mut(&mut self) -> &mut super::core::Vec3;
     fn p2(&self) -> &super::core::Vec3;
+    fn p2_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl PhysicsTriangleTrait for PhysicsTriangle {
     fn p0(&self) -> &super::core::Vec3 {
         &self.p0
     }
+    fn p0_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p0
+    }
     fn p1(&self) -> &super::core::Vec3 {
         &self.p1
     }
+    fn p1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p1
+    }
     fn p2(&self) -> &super::core::Vec3 {
         &self.p2
+    }
+    fn p2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p2
     }
 }
 
@@ -21630,6 +27900,15 @@ impl TypeObject for PhysicsTriangle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21668,6 +27947,15 @@ impl TypeObject for PhysicsConstraintLimitSpace {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -21711,6 +27999,15 @@ impl TypeObject for PhysicsAngularJointSwingType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21749,6 +28046,15 @@ impl TypeObject for PhysicsAngularJointTwistType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -21792,6 +28098,15 @@ impl TypeObject for PhysicsShapeType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21828,6 +28143,15 @@ impl TypeObject for PhysicsComponentConstants {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -21878,6 +28202,15 @@ impl TypeObject for HavokMemoryContext {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -21935,6 +28268,15 @@ impl TypeObject for WindPhysicsAction {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -21984,6 +28326,15 @@ impl TypeObject for ClientDestructionInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -22035,6 +28386,15 @@ impl TypeObject for ServerDestructionInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22080,6 +28440,15 @@ impl TypeObject for DestructionInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -22137,6 +28506,15 @@ impl TypeObject for DestructionPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22187,6 +28565,15 @@ impl TypeObject for DestructionEntityFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22232,6 +28619,15 @@ impl TypeObject for IglooSubsystem {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -22292,6 +28688,15 @@ impl TypeObject for PhysicsProxyEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22345,6 +28750,15 @@ impl TypeObject for PhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22394,6 +28808,15 @@ impl TypeObject for MultiCollisionEvent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -22445,6 +28868,15 @@ impl TypeObject for PreSolveCollisionInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22494,6 +28926,15 @@ impl TypeObject for ServerShockwaveCollisionInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -22545,6 +28986,15 @@ impl TypeObject for ClientShockwaveCollisionInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22590,6 +29040,15 @@ impl TypeObject for ShockwaveCollisionInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -22641,6 +29100,15 @@ impl TypeObject for ServerFakeCollisionInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22691,6 +29159,15 @@ impl TypeObject for ClientFakeCollisionInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22737,6 +29214,15 @@ impl TypeObject for FakeCollisionInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22782,6 +29268,15 @@ impl TypeObject for CollisionInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -22839,6 +29334,15 @@ impl TypeObject for PartPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22895,6 +29399,15 @@ impl TypeObject for GroupPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22947,6 +29460,15 @@ impl TypeObject for ForceComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23007,6 +29529,15 @@ impl TypeObject for DefaultPartPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23063,6 +29594,15 @@ impl TypeObject for CharacterPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23116,6 +29656,15 @@ impl TypeObject for PhysicsConstraintOwner {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23168,6 +29717,15 @@ impl TypeObject for PhysicsConstraint {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23228,6 +29786,15 @@ impl TypeObject for StaticWaterPhysicsBody {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23281,6 +29848,15 @@ impl TypeObject for PhysicsBody {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23333,6 +29909,15 @@ impl TypeObject for PhysicsAction {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23390,6 +29975,15 @@ impl TypeObject for FloatPhysicsAction {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23439,6 +30033,15 @@ impl TypeObject for FloatPhysicsActionFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23496,6 +30099,15 @@ impl TypeObject for RagdollPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23551,6 +30163,15 @@ impl TypeObject for WaterPhysicsBody {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23608,6 +30229,15 @@ impl TypeObject for TerrainPhysicsBody {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23663,6 +30293,15 @@ impl TypeObject for RigidBody {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23720,6 +30359,15 @@ impl TypeObject for GroupRigidBody {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23775,6 +30423,15 @@ impl TypeObject for CharacterPhysicsBody {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23832,6 +30489,15 @@ impl TypeObject for AabbTriggerPhysicsBody {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23881,6 +30547,15 @@ impl TypeObject for PhysicsManager {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23932,6 +30607,15 @@ impl TypeObject for PhysicsEntityCreator {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23982,6 +30666,15 @@ impl TypeObject for PhysicsEntityFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24006,23 +30699,39 @@ pub struct DestructionDebrisReferenceObjectData {
 
 pub trait DestructionDebrisReferenceObjectDataTrait: super::entity::SpatialReferenceObjectDataTrait {
     fn insert_type(&self) -> &DebrisInsertType;
+    fn insert_type_mut(&mut self) -> &mut DebrisInsertType;
     fn gap(&self) -> &f32;
+    fn gap_mut(&mut self) -> &mut f32;
     fn max_piece_count(&self) -> &super::core::QualityScalableInt;
+    fn max_piece_count_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn random_seed(&self) -> &u32;
+    fn random_seed_mut(&mut self) -> &mut u32;
 }
 
 impl DestructionDebrisReferenceObjectDataTrait for DestructionDebrisReferenceObjectData {
     fn insert_type(&self) -> &DebrisInsertType {
         &self.insert_type
     }
+    fn insert_type_mut(&mut self) -> &mut DebrisInsertType {
+        &mut self.insert_type
+    }
     fn gap(&self) -> &f32 {
         &self.gap
+    }
+    fn gap_mut(&mut self) -> &mut f32 {
+        &mut self.gap
     }
     fn max_piece_count(&self) -> &super::core::QualityScalableInt {
         &self.max_piece_count
     }
+    fn max_piece_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.max_piece_count
+    }
     fn random_seed(&self) -> &u32 {
         &self.random_seed
+    }
+    fn random_seed_mut(&mut self) -> &mut u32 {
+        &mut self.random_seed
     }
 }
 
@@ -24030,38 +30739,71 @@ impl super::entity::SpatialReferenceObjectDataTrait for DestructionDebrisReferen
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
 }
 
 impl super::entity::ReferenceObjectDataTrait for DestructionDebrisReferenceObjectData {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -24072,15 +30814,15 @@ impl super::core::DataBusPeerTrait for DestructionDebrisReferenceObjectData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DestructionDebrisReferenceObjectData {
 }
 
 impl super::core::DataContainerTrait for DestructionDebrisReferenceObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONDEBRISREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24130,6 +30872,15 @@ impl TypeObject for DestructionDebrisReferenceObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24169,6 +30920,15 @@ impl TypeObject for DebrisInsertType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24195,31 +30955,55 @@ pub struct DestructionControllerComponentData {
 
 pub trait DestructionControllerComponentDataTrait: super::entity::GameComponentDataTrait {
     fn structural_integrity_analyzer_enable(&self) -> &bool;
+    fn structural_integrity_analyzer_enable_mut(&mut self) -> &mut bool;
     fn breaking_length(&self) -> &f32;
+    fn breaking_length_mut(&mut self) -> &mut f32;
     fn fracture_position(&self) -> &f32;
+    fn fracture_position_mut(&mut self) -> &mut f32;
     fn destruction_radius(&self) -> &f32;
+    fn destruction_radius_mut(&mut self) -> &mut f32;
     fn delay(&self) -> &f32;
+    fn delay_mut(&mut self) -> &mut f32;
     fn refine_radius(&self) -> &f32;
+    fn refine_radius_mut(&mut self) -> &mut f32;
 }
 
 impl DestructionControllerComponentDataTrait for DestructionControllerComponentData {
     fn structural_integrity_analyzer_enable(&self) -> &bool {
         &self.structural_integrity_analyzer_enable
     }
+    fn structural_integrity_analyzer_enable_mut(&mut self) -> &mut bool {
+        &mut self.structural_integrity_analyzer_enable
+    }
     fn breaking_length(&self) -> &f32 {
         &self.breaking_length
+    }
+    fn breaking_length_mut(&mut self) -> &mut f32 {
+        &mut self.breaking_length
     }
     fn fracture_position(&self) -> &f32 {
         &self.fracture_position
     }
+    fn fracture_position_mut(&mut self) -> &mut f32 {
+        &mut self.fracture_position
+    }
     fn destruction_radius(&self) -> &f32 {
         &self.destruction_radius
+    }
+    fn destruction_radius_mut(&mut self) -> &mut f32 {
+        &mut self.destruction_radius
     }
     fn delay(&self) -> &f32 {
         &self.delay
     }
+    fn delay_mut(&mut self) -> &mut f32 {
+        &mut self.delay
+    }
     fn refine_radius(&self) -> &f32 {
         &self.refine_radius
+    }
+    fn refine_radius_mut(&mut self) -> &mut f32 {
+        &mut self.refine_radius
     }
 }
 
@@ -24230,17 +31014,32 @@ impl super::entity::ComponentDataTrait for DestructionControllerComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -24251,15 +31050,15 @@ impl super::core::DataBusPeerTrait for DestructionControllerComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DestructionControllerComponentData {
 }
 
 impl super::core::DataContainerTrait for DestructionControllerComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONCONTROLLERCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24321,6 +31120,15 @@ impl TypeObject for DestructionControllerComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24341,11 +31149,15 @@ pub struct EdgeModelInstance {
 
 pub trait EdgeModelInstanceTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl EdgeModelInstanceTrait for EdgeModelInstance {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
 }
 
@@ -24377,6 +31189,15 @@ impl TypeObject for EdgeModelInstance {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24401,23 +31222,39 @@ pub struct DestructionPartComponentData {
 
 pub trait DestructionPartComponentDataTrait: super::entity::GameComponentDataTrait {
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
     fn part_index(&self) -> &u32;
+    fn part_index_mut(&mut self) -> &mut u32;
     fn fixed(&self) -> &bool;
+    fn fixed_mut(&mut self) -> &mut bool;
     fn fragile(&self) -> &bool;
+    fn fragile_mut(&mut self) -> &mut bool;
 }
 
 impl DestructionPartComponentDataTrait for DestructionPartComponentData {
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         &self.objects
     }
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        &mut self.objects
+    }
     fn part_index(&self) -> &u32 {
         &self.part_index
+    }
+    fn part_index_mut(&mut self) -> &mut u32 {
+        &mut self.part_index
     }
     fn fixed(&self) -> &bool {
         &self.fixed
     }
+    fn fixed_mut(&mut self) -> &mut bool {
+        &mut self.fixed
+    }
     fn fragile(&self) -> &bool {
         &self.fragile
+    }
+    fn fragile_mut(&mut self) -> &mut bool {
+        &mut self.fragile
     }
 }
 
@@ -24428,17 +31265,32 @@ impl super::entity::ComponentDataTrait for DestructionPartComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -24449,15 +31301,15 @@ impl super::core::DataBusPeerTrait for DestructionPartComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DestructionPartComponentData {
 }
 
 impl super::core::DataContainerTrait for DestructionPartComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONPARTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24507,6 +31359,15 @@ impl TypeObject for DestructionPartComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24536,43 +31397,79 @@ pub struct FakeHingeData {
 
 pub trait FakeHingeDataTrait: FakePhysicsDataTrait {
     fn pivot(&self) -> &super::core::Vec3;
+    fn pivot_mut(&mut self) -> &mut super::core::Vec3;
     fn rotation_axis(&self) -> &super::core::Vec3;
+    fn rotation_axis_mut(&mut self) -> &mut super::core::Vec3;
     fn extension_axis(&self) -> &super::core::Vec3;
+    fn extension_axis_mut(&mut self) -> &mut super::core::Vec3;
     fn min_angle(&self) -> &f32;
+    fn min_angle_mut(&mut self) -> &mut f32;
     fn max_angle(&self) -> &f32;
+    fn max_angle_mut(&mut self) -> &mut f32;
     fn angular_dampening(&self) -> &f32;
+    fn angular_dampening_mut(&mut self) -> &mut f32;
     fn pullback_acceleration(&self) -> &f32;
+    fn pullback_acceleration_mut(&mut self) -> &mut f32;
     fn progressive_exponent(&self) -> &f32;
+    fn progressive_exponent_mut(&mut self) -> &mut f32;
     fn inertia_modifier(&self) -> &f32;
+    fn inertia_modifier_mut(&mut self) -> &mut f32;
 }
 
 impl FakeHingeDataTrait for FakeHingeData {
     fn pivot(&self) -> &super::core::Vec3 {
         &self.pivot
     }
+    fn pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.pivot
+    }
     fn rotation_axis(&self) -> &super::core::Vec3 {
         &self.rotation_axis
+    }
+    fn rotation_axis_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.rotation_axis
     }
     fn extension_axis(&self) -> &super::core::Vec3 {
         &self.extension_axis
     }
+    fn extension_axis_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.extension_axis
+    }
     fn min_angle(&self) -> &f32 {
         &self.min_angle
+    }
+    fn min_angle_mut(&mut self) -> &mut f32 {
+        &mut self.min_angle
     }
     fn max_angle(&self) -> &f32 {
         &self.max_angle
     }
+    fn max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.max_angle
+    }
     fn angular_dampening(&self) -> &f32 {
         &self.angular_dampening
+    }
+    fn angular_dampening_mut(&mut self) -> &mut f32 {
+        &mut self.angular_dampening
     }
     fn pullback_acceleration(&self) -> &f32 {
         &self.pullback_acceleration
     }
+    fn pullback_acceleration_mut(&mut self) -> &mut f32 {
+        &mut self.pullback_acceleration
+    }
     fn progressive_exponent(&self) -> &f32 {
         &self.progressive_exponent
     }
+    fn progressive_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.progressive_exponent
+    }
     fn inertia_modifier(&self) -> &f32 {
         &self.inertia_modifier
+    }
+    fn inertia_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.inertia_modifier
     }
 }
 
@@ -24580,33 +31477,54 @@ impl FakePhysicsDataTrait for FakeHingeData {
     fn child_fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
         self._glacier_base.child_fake_physics()
     }
+    fn child_fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+        self._glacier_base.child_fake_physics_mut()
+    }
     fn start_speed(&self) -> &f32 {
         self._glacier_base.start_speed()
+    }
+    fn start_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.start_speed_mut()
     }
     fn gravity_modifier(&self) -> &f32 {
         self._glacier_base.gravity_modifier()
     }
+    fn gravity_modifier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.gravity_modifier_mut()
+    }
     fn start_dampening(&self) -> &f32 {
         self._glacier_base.start_dampening()
+    }
+    fn start_dampening_mut(&mut self) -> &mut f32 {
+        self._glacier_base.start_dampening_mut()
     }
     fn end_dampening(&self) -> &f32 {
         self._glacier_base.end_dampening()
     }
+    fn end_dampening_mut(&mut self) -> &mut f32 {
+        self._glacier_base.end_dampening_mut()
+    }
     fn min_speed(&self) -> &f32 {
         self._glacier_base.min_speed()
+    }
+    fn min_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.min_speed_mut()
     }
     fn max_speed(&self) -> &f32 {
         self._glacier_base.max_speed()
     }
+    fn max_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_speed_mut()
+    }
     fn mass(&self) -> &f32 {
         self._glacier_base.mass()
+    }
+    fn mass_mut(&mut self) -> &mut f32 {
+        self._glacier_base.mass_mut()
     }
 }
 
 impl super::core::DataContainerTrait for FakeHingeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FAKEHINGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24686,6 +31604,15 @@ impl TypeObject for FakeHingeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24711,27 +31638,47 @@ pub struct FakeSpringData {
 
 pub trait FakeSpringDataTrait: FakePhysicsDataTrait {
     fn direction(&self) -> &super::core::Vec3;
+    fn direction_mut(&mut self) -> &mut super::core::Vec3;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn acceleration(&self) -> &f32;
+    fn acceleration_mut(&mut self) -> &mut f32;
     fn progressive_exponent(&self) -> &f32;
+    fn progressive_exponent_mut(&mut self) -> &mut f32;
     fn damping(&self) -> &f32;
+    fn damping_mut(&mut self) -> &mut f32;
 }
 
 impl FakeSpringDataTrait for FakeSpringData {
     fn direction(&self) -> &super::core::Vec3 {
         &self.direction
     }
+    fn direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.direction
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
     fn acceleration(&self) -> &f32 {
         &self.acceleration
     }
+    fn acceleration_mut(&mut self) -> &mut f32 {
+        &mut self.acceleration
+    }
     fn progressive_exponent(&self) -> &f32 {
         &self.progressive_exponent
     }
+    fn progressive_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.progressive_exponent
+    }
     fn damping(&self) -> &f32 {
         &self.damping
+    }
+    fn damping_mut(&mut self) -> &mut f32 {
+        &mut self.damping
     }
 }
 
@@ -24739,33 +31686,54 @@ impl FakePhysicsDataTrait for FakeSpringData {
     fn child_fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
         self._glacier_base.child_fake_physics()
     }
+    fn child_fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+        self._glacier_base.child_fake_physics_mut()
+    }
     fn start_speed(&self) -> &f32 {
         self._glacier_base.start_speed()
+    }
+    fn start_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.start_speed_mut()
     }
     fn gravity_modifier(&self) -> &f32 {
         self._glacier_base.gravity_modifier()
     }
+    fn gravity_modifier_mut(&mut self) -> &mut f32 {
+        self._glacier_base.gravity_modifier_mut()
+    }
     fn start_dampening(&self) -> &f32 {
         self._glacier_base.start_dampening()
+    }
+    fn start_dampening_mut(&mut self) -> &mut f32 {
+        self._glacier_base.start_dampening_mut()
     }
     fn end_dampening(&self) -> &f32 {
         self._glacier_base.end_dampening()
     }
+    fn end_dampening_mut(&mut self) -> &mut f32 {
+        self._glacier_base.end_dampening_mut()
+    }
     fn min_speed(&self) -> &f32 {
         self._glacier_base.min_speed()
+    }
+    fn min_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.min_speed_mut()
     }
     fn max_speed(&self) -> &f32 {
         self._glacier_base.max_speed()
     }
+    fn max_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_speed_mut()
+    }
     fn mass(&self) -> &f32 {
         self._glacier_base.mass()
+    }
+    fn mass_mut(&mut self) -> &mut f32 {
+        self._glacier_base.mass_mut()
     }
 }
 
 impl super::core::DataContainerTrait for FakeSpringData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FAKESPRINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24821,6 +31789,15 @@ impl TypeObject for FakeSpringData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24849,46 +31826,75 @@ pub struct FakePhysicsData {
 
 pub trait FakePhysicsDataTrait: super::core::DataContainerTrait {
     fn child_fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>>;
+    fn child_fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>>;
     fn start_speed(&self) -> &f32;
+    fn start_speed_mut(&mut self) -> &mut f32;
     fn gravity_modifier(&self) -> &f32;
+    fn gravity_modifier_mut(&mut self) -> &mut f32;
     fn start_dampening(&self) -> &f32;
+    fn start_dampening_mut(&mut self) -> &mut f32;
     fn end_dampening(&self) -> &f32;
+    fn end_dampening_mut(&mut self) -> &mut f32;
     fn min_speed(&self) -> &f32;
+    fn min_speed_mut(&mut self) -> &mut f32;
     fn max_speed(&self) -> &f32;
+    fn max_speed_mut(&mut self) -> &mut f32;
     fn mass(&self) -> &f32;
+    fn mass_mut(&mut self) -> &mut f32;
 }
 
 impl FakePhysicsDataTrait for FakePhysicsData {
     fn child_fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
         &self.child_fake_physics
     }
+    fn child_fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+        &mut self.child_fake_physics
+    }
     fn start_speed(&self) -> &f32 {
         &self.start_speed
+    }
+    fn start_speed_mut(&mut self) -> &mut f32 {
+        &mut self.start_speed
     }
     fn gravity_modifier(&self) -> &f32 {
         &self.gravity_modifier
     }
+    fn gravity_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.gravity_modifier
+    }
     fn start_dampening(&self) -> &f32 {
         &self.start_dampening
+    }
+    fn start_dampening_mut(&mut self) -> &mut f32 {
+        &mut self.start_dampening
     }
     fn end_dampening(&self) -> &f32 {
         &self.end_dampening
     }
+    fn end_dampening_mut(&mut self) -> &mut f32 {
+        &mut self.end_dampening
+    }
     fn min_speed(&self) -> &f32 {
         &self.min_speed
+    }
+    fn min_speed_mut(&mut self) -> &mut f32 {
+        &mut self.min_speed
     }
     fn max_speed(&self) -> &f32 {
         &self.max_speed
     }
+    fn max_speed_mut(&mut self) -> &mut f32 {
+        &mut self.max_speed
+    }
     fn mass(&self) -> &f32 {
         &self.mass
+    }
+    fn mass_mut(&mut self) -> &mut f32 {
+        &mut self.mass
     }
 }
 
 impl super::core::DataContainerTrait for FakePhysicsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FAKEPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24962,6 +31968,15 @@ impl TypeObject for FakePhysicsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24987,27 +32002,47 @@ pub struct PhysicsAngularLimitConstraintData {
 
 pub trait PhysicsAngularLimitConstraintDataTrait: PhysicsConstraintDataTrait {
     fn min_angle(&self) -> &f32;
+    fn min_angle_mut(&mut self) -> &mut f32;
     fn max_angle(&self) -> &f32;
+    fn max_angle_mut(&mut self) -> &mut f32;
     fn constrained_axis(&self) -> &AngularLimitConstraintAxis;
+    fn constrained_axis_mut(&mut self) -> &mut AngularLimitConstraintAxis;
     fn angular_stiffness(&self) -> &f32;
+    fn angular_stiffness_mut(&mut self) -> &mut f32;
     fn target_transform(&self) -> &super::core::LinearTransform;
+    fn target_transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl PhysicsAngularLimitConstraintDataTrait for PhysicsAngularLimitConstraintData {
     fn min_angle(&self) -> &f32 {
         &self.min_angle
     }
+    fn min_angle_mut(&mut self) -> &mut f32 {
+        &mut self.min_angle
+    }
     fn max_angle(&self) -> &f32 {
         &self.max_angle
+    }
+    fn max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.max_angle
     }
     fn constrained_axis(&self) -> &AngularLimitConstraintAxis {
         &self.constrained_axis
     }
+    fn constrained_axis_mut(&mut self) -> &mut AngularLimitConstraintAxis {
+        &mut self.constrained_axis
+    }
     fn angular_stiffness(&self) -> &f32 {
         &self.angular_stiffness
     }
+    fn angular_stiffness_mut(&mut self) -> &mut f32 {
+        &mut self.angular_stiffness
+    }
     fn target_transform(&self) -> &super::core::LinearTransform {
         &self.target_transform
+    }
+    fn target_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.target_transform
     }
 }
 
@@ -25015,26 +32050,50 @@ impl PhysicsConstraintDataTrait for PhysicsAngularLimitConstraintData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn is_breakable(&self) -> &bool {
         self._glacier_base.is_breakable()
+    }
+    fn is_breakable_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_breakable_mut()
     }
     fn break_threshold(&self) -> &f32 {
         self._glacier_base.break_threshold()
     }
+    fn break_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.break_threshold_mut()
+    }
     fn stabilized(&self) -> &bool {
         self._glacier_base.stabilized()
+    }
+    fn stabilized_mut(&mut self) -> &mut bool {
+        self._glacier_base.stabilized_mut()
     }
     fn enable_continuous_simulation(&self) -> &bool {
         self._glacier_base.enable_continuous_simulation()
     }
+    fn enable_continuous_simulation_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_continuous_simulation_mut()
+    }
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
     fn world_index(&self) -> &u8 {
         self._glacier_base.world_index()
     }
+    fn world_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.world_index_mut()
+    }
     fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
         self._glacier_base.initial_stance_data()
+    }
+    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+        self._glacier_base.initial_stance_data_mut()
     }
 }
 
@@ -25048,15 +32107,15 @@ impl super::core::DataBusPeerTrait for PhysicsAngularLimitConstraintData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsAngularLimitConstraintData {
 }
 
 impl super::core::DataContainerTrait for PhysicsAngularLimitConstraintData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSANGULARLIMITCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -25112,6 +32171,15 @@ impl TypeObject for PhysicsAngularLimitConstraintData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25150,6 +32218,15 @@ impl TypeObject for AngularLimitConstraintAxis {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -25200,6 +32277,15 @@ impl TypeObject for VehiclePhysicsActionFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -25256,6 +32342,15 @@ impl TypeObject for VehiclePhysicsAction {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -36,23 +36,39 @@ pub struct ShadowExtrusionLevelSettings {
 
 pub trait ShadowExtrusionLevelSettingsTrait: super::entity::SubWorldDataComponentTrait {
     fn dynamic_light_direction(&self) -> &bool;
+    fn dynamic_light_direction_mut(&mut self) -> &mut bool;
     fn allow_extrusion_back_face_hit(&self) -> &bool;
+    fn allow_extrusion_back_face_hit_mut(&mut self) -> &mut bool;
     fn allow_full_occluded_back_face_hit(&self) -> &bool;
+    fn allow_full_occluded_back_face_hit_mut(&mut self) -> &mut bool;
     fn additional_extrusion_length(&self) -> &f32;
+    fn additional_extrusion_length_mut(&mut self) -> &mut f32;
 }
 
 impl ShadowExtrusionLevelSettingsTrait for ShadowExtrusionLevelSettings {
     fn dynamic_light_direction(&self) -> &bool {
         &self.dynamic_light_direction
     }
+    fn dynamic_light_direction_mut(&mut self) -> &mut bool {
+        &mut self.dynamic_light_direction
+    }
     fn allow_extrusion_back_face_hit(&self) -> &bool {
         &self.allow_extrusion_back_face_hit
+    }
+    fn allow_extrusion_back_face_hit_mut(&mut self) -> &mut bool {
+        &mut self.allow_extrusion_back_face_hit
     }
     fn allow_full_occluded_back_face_hit(&self) -> &bool {
         &self.allow_full_occluded_back_face_hit
     }
+    fn allow_full_occluded_back_face_hit_mut(&mut self) -> &mut bool {
+        &mut self.allow_full_occluded_back_face_hit
+    }
     fn additional_extrusion_length(&self) -> &f32 {
         &self.additional_extrusion_length
+    }
+    fn additional_extrusion_length_mut(&mut self) -> &mut f32 {
+        &mut self.additional_extrusion_length
     }
 }
 
@@ -60,9 +76,6 @@ impl super::entity::SubWorldDataComponentTrait for ShadowExtrusionLevelSettings 
 }
 
 impl super::core::DataContainerTrait for ShadowExtrusionLevelSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADOWEXTRUSIONLEVELSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -112,6 +125,15 @@ impl TypeObject for ShadowExtrusionLevelSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -133,11 +155,15 @@ pub struct ShadowExtrusionLightDirectionEntityData {
 
 pub trait ShadowExtrusionLightDirectionEntityDataTrait: super::entity::EntityDataTrait {
     fn light_direction(&self) -> &super::core::Vec3;
+    fn light_direction_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl ShadowExtrusionLightDirectionEntityDataTrait for ShadowExtrusionLightDirectionEntityData {
     fn light_direction(&self) -> &super::core::Vec3 {
         &self.light_direction
+    }
+    fn light_direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.light_direction
     }
 }
 
@@ -151,15 +177,15 @@ impl super::core::DataBusPeerTrait for ShadowExtrusionLightDirectionEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ShadowExtrusionLightDirectionEntityData {
 }
 
 impl super::core::DataContainerTrait for ShadowExtrusionLightDirectionEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADOWEXTRUSIONLIGHTDIRECTIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -191,6 +217,15 @@ impl TypeObject for ShadowExtrusionLightDirectionEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -212,11 +247,15 @@ pub struct ShadowExtrusionLevelDataEntityData {
 
 pub trait ShadowExtrusionLevelDataEntityDataTrait: super::entity::EntityDataTrait {
     fn extrusion_directions(&self) -> &Vec<super::core::Vec3>;
+    fn extrusion_directions_mut(&mut self) -> &mut Vec<super::core::Vec3>;
 }
 
 impl ShadowExtrusionLevelDataEntityDataTrait for ShadowExtrusionLevelDataEntityData {
     fn extrusion_directions(&self) -> &Vec<super::core::Vec3> {
         &self.extrusion_directions
+    }
+    fn extrusion_directions_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        &mut self.extrusion_directions
     }
 }
 
@@ -230,15 +269,15 @@ impl super::core::DataBusPeerTrait for ShadowExtrusionLevelDataEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ShadowExtrusionLevelDataEntityData {
 }
 
 impl super::core::DataContainerTrait for ShadowExtrusionLevelDataEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADOWEXTRUSIONLEVELDATAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -270,6 +309,15 @@ impl TypeObject for ShadowExtrusionLevelDataEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -292,15 +340,23 @@ pub struct ShadowExtrusionDataEntityData {
 
 pub trait ShadowExtrusionDataEntityDataTrait: super::entity::EntityDataTrait {
     fn extrusion_data(&self) -> &Option<Arc<Mutex<dyn ShadowExtrusionAssetTrait>>>;
+    fn extrusion_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ShadowExtrusionAssetTrait>>>;
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl ShadowExtrusionDataEntityDataTrait for ShadowExtrusionDataEntityData {
     fn extrusion_data(&self) -> &Option<Arc<Mutex<dyn ShadowExtrusionAssetTrait>>> {
         &self.extrusion_data
     }
+    fn extrusion_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ShadowExtrusionAssetTrait>>> {
+        &mut self.extrusion_data
+    }
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
 }
 
@@ -314,15 +370,15 @@ impl super::core::DataBusPeerTrait for ShadowExtrusionDataEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ShadowExtrusionDataEntityData {
 }
 
 impl super::core::DataContainerTrait for ShadowExtrusionDataEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADOWEXTRUSIONDATAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -360,6 +416,15 @@ impl TypeObject for ShadowExtrusionDataEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -381,11 +446,15 @@ pub struct ShadowExtrusionAsset {
 
 pub trait ShadowExtrusionAssetTrait: super::core::AssetTrait {
     fn extrusion_data(&self) -> &Option<Arc<Mutex<dyn ShadowExtrusionObjectDataTrait>>>;
+    fn extrusion_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ShadowExtrusionObjectDataTrait>>>;
 }
 
 impl ShadowExtrusionAssetTrait for ShadowExtrusionAsset {
     fn extrusion_data(&self) -> &Option<Arc<Mutex<dyn ShadowExtrusionObjectDataTrait>>> {
         &self.extrusion_data
+    }
+    fn extrusion_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ShadowExtrusionObjectDataTrait>>> {
+        &mut self.extrusion_data
     }
 }
 
@@ -393,12 +462,12 @@ impl super::core::AssetTrait for ShadowExtrusionAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ShadowExtrusionAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADOWEXTRUSIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -430,6 +499,15 @@ impl TypeObject for ShadowExtrusionAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -451,11 +529,15 @@ pub struct ShadowExtrusionObjectData {
 
 pub trait ShadowExtrusionObjectDataTrait: super::entity::GameObjectDataTrait {
     fn object_extrusions(&self) -> &Vec<ShadowExtrusionObjectInstance>;
+    fn object_extrusions_mut(&mut self) -> &mut Vec<ShadowExtrusionObjectInstance>;
 }
 
 impl ShadowExtrusionObjectDataTrait for ShadowExtrusionObjectData {
     fn object_extrusions(&self) -> &Vec<ShadowExtrusionObjectInstance> {
         &self.object_extrusions
+    }
+    fn object_extrusions_mut(&mut self) -> &mut Vec<ShadowExtrusionObjectInstance> {
+        &mut self.object_extrusions
     }
 }
 
@@ -466,15 +548,15 @@ impl super::core::DataBusPeerTrait for ShadowExtrusionObjectData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ShadowExtrusionObjectData {
 }
 
 impl super::core::DataContainerTrait for ShadowExtrusionObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADOWEXTRUSIONOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -506,6 +588,15 @@ impl TypeObject for ShadowExtrusionObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -527,15 +618,23 @@ pub struct ShadowExtrusionObjectInstance {
 
 pub trait ShadowExtrusionObjectInstanceTrait: TypeObject {
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn extrusion_lengths(&self) -> &Vec<f32>;
+    fn extrusion_lengths_mut(&mut self) -> &mut Vec<f32>;
 }
 
 impl ShadowExtrusionObjectInstanceTrait for ShadowExtrusionObjectInstance {
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
     }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
+    }
     fn extrusion_lengths(&self) -> &Vec<f32> {
         &self.extrusion_lengths
+    }
+    fn extrusion_lengths_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.extrusion_lengths
     }
 }
 
@@ -572,6 +671,15 @@ impl TypeObject for ShadowExtrusionObjectInstance {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

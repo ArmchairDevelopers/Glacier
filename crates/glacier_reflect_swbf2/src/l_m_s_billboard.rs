@@ -52,46 +52,75 @@ pub struct LinearMediaBillboardSettings {
 
 pub trait LinearMediaBillboardSettingsTrait: super::core::DataContainerTrait {
     fn debug_entity_logic_update_enable(&self) -> &bool;
+    fn debug_entity_logic_update_enable_mut(&mut self) -> &mut bool;
     fn streaming_enable(&self) -> &bool;
+    fn streaming_enable_mut(&mut self) -> &mut bool;
     fn skip_l_o_d(&self) -> &i32;
+    fn skip_l_o_d_mut(&mut self) -> &mut i32;
     fn max_active_feeds(&self) -> &i32;
+    fn max_active_feeds_mut(&mut self) -> &mut i32;
     fn support_texture2_enable(&self) -> &bool;
+    fn support_texture2_enable_mut(&mut self) -> &mut bool;
     fn support_emissive_enable(&self) -> &bool;
+    fn support_emissive_enable_mut(&mut self) -> &mut bool;
     fn l_o_d_screen_surface_scale(&self) -> &f32;
+    fn l_o_d_screen_surface_scale_mut(&mut self) -> &mut f32;
     fn force_lowest_mip_dynamic(&self) -> &bool;
+    fn force_lowest_mip_dynamic_mut(&mut self) -> &mut bool;
 }
 
 impl LinearMediaBillboardSettingsTrait for LinearMediaBillboardSettings {
     fn debug_entity_logic_update_enable(&self) -> &bool {
         &self.debug_entity_logic_update_enable
     }
+    fn debug_entity_logic_update_enable_mut(&mut self) -> &mut bool {
+        &mut self.debug_entity_logic_update_enable
+    }
     fn streaming_enable(&self) -> &bool {
         &self.streaming_enable
+    }
+    fn streaming_enable_mut(&mut self) -> &mut bool {
+        &mut self.streaming_enable
     }
     fn skip_l_o_d(&self) -> &i32 {
         &self.skip_l_o_d
     }
+    fn skip_l_o_d_mut(&mut self) -> &mut i32 {
+        &mut self.skip_l_o_d
+    }
     fn max_active_feeds(&self) -> &i32 {
         &self.max_active_feeds
+    }
+    fn max_active_feeds_mut(&mut self) -> &mut i32 {
+        &mut self.max_active_feeds
     }
     fn support_texture2_enable(&self) -> &bool {
         &self.support_texture2_enable
     }
+    fn support_texture2_enable_mut(&mut self) -> &mut bool {
+        &mut self.support_texture2_enable
+    }
     fn support_emissive_enable(&self) -> &bool {
         &self.support_emissive_enable
+    }
+    fn support_emissive_enable_mut(&mut self) -> &mut bool {
+        &mut self.support_emissive_enable
     }
     fn l_o_d_screen_surface_scale(&self) -> &f32 {
         &self.l_o_d_screen_surface_scale
     }
+    fn l_o_d_screen_surface_scale_mut(&mut self) -> &mut f32 {
+        &mut self.l_o_d_screen_surface_scale
+    }
     fn force_lowest_mip_dynamic(&self) -> &bool {
         &self.force_lowest_mip_dynamic
+    }
+    fn force_lowest_mip_dynamic_mut(&mut self) -> &mut bool {
+        &mut self.force_lowest_mip_dynamic
     }
 }
 
 impl super::core::DataContainerTrait for LinearMediaBillboardSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINEARMEDIABILLBOARDSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -165,6 +194,15 @@ impl TypeObject for LinearMediaBillboardSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -192,35 +230,63 @@ pub struct LinearMediaBillboardClientEntityData {
 
 pub trait LinearMediaBillboardClientEntityDataTrait: super::entity::EntityDataTrait {
     fn receiving_channel(&self) -> &i32;
+    fn receiving_channel_mut(&mut self) -> &mut i32;
     fn is_dynamic_object(&self) -> &bool;
+    fn is_dynamic_object_mut(&mut self) -> &mut bool;
     fn size_in_meter_sqr(&self) -> &f32;
+    fn size_in_meter_sqr_mut(&mut self) -> &mut f32;
     fn disable_l_o_d(&self) -> &bool;
+    fn disable_l_o_d_mut(&mut self) -> &mut bool;
     fn use_second_texture_stream(&self) -> &bool;
+    fn use_second_texture_stream_mut(&mut self) -> &mut bool;
     fn enabled_on_startup(&self) -> &bool;
+    fn enabled_on_startup_mut(&mut self) -> &mut bool;
     fn fallback_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
+    fn fallback_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
 }
 
 impl LinearMediaBillboardClientEntityDataTrait for LinearMediaBillboardClientEntityData {
     fn receiving_channel(&self) -> &i32 {
         &self.receiving_channel
     }
+    fn receiving_channel_mut(&mut self) -> &mut i32 {
+        &mut self.receiving_channel
+    }
     fn is_dynamic_object(&self) -> &bool {
         &self.is_dynamic_object
+    }
+    fn is_dynamic_object_mut(&mut self) -> &mut bool {
+        &mut self.is_dynamic_object
     }
     fn size_in_meter_sqr(&self) -> &f32 {
         &self.size_in_meter_sqr
     }
+    fn size_in_meter_sqr_mut(&mut self) -> &mut f32 {
+        &mut self.size_in_meter_sqr
+    }
     fn disable_l_o_d(&self) -> &bool {
         &self.disable_l_o_d
+    }
+    fn disable_l_o_d_mut(&mut self) -> &mut bool {
+        &mut self.disable_l_o_d
     }
     fn use_second_texture_stream(&self) -> &bool {
         &self.use_second_texture_stream
     }
+    fn use_second_texture_stream_mut(&mut self) -> &mut bool {
+        &mut self.use_second_texture_stream
+    }
     fn enabled_on_startup(&self) -> &bool {
         &self.enabled_on_startup
     }
+    fn enabled_on_startup_mut(&mut self) -> &mut bool {
+        &mut self.enabled_on_startup
+    }
     fn fallback_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
         &self.fallback_texture
+    }
+    fn fallback_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+        &mut self.fallback_texture
     }
 }
 
@@ -234,15 +300,15 @@ impl super::core::DataBusPeerTrait for LinearMediaBillboardClientEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LinearMediaBillboardClientEntityData {
 }
 
 impl super::core::DataContainerTrait for LinearMediaBillboardClientEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINEARMEDIABILLBOARDCLIENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -310,6 +376,15 @@ impl TypeObject for LinearMediaBillboardClientEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -331,11 +406,15 @@ pub struct LinearMediaBillboardOverrideFeedEntityData {
 
 pub trait LinearMediaBillboardOverrideFeedEntityDataTrait: LinearMediaBillboardFeedEntityDataTrait {
     fn channels_to_override(&self) -> &Vec<i32>;
+    fn channels_to_override_mut(&mut self) -> &mut Vec<i32>;
 }
 
 impl LinearMediaBillboardOverrideFeedEntityDataTrait for LinearMediaBillboardOverrideFeedEntityData {
     fn channels_to_override(&self) -> &Vec<i32> {
         &self.channels_to_override
+    }
+    fn channels_to_override_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.channels_to_override
     }
 }
 
@@ -343,20 +422,38 @@ impl LinearMediaBillboardFeedEntityDataTrait for LinearMediaBillboardOverrideFee
     fn emitting_channel(&self) -> &i32 {
         self._glacier_base.emitting_channel()
     }
+    fn emitting_channel_mut(&mut self) -> &mut i32 {
+        self._glacier_base.emitting_channel_mut()
+    }
     fn texture_codes(&self) -> &Vec<LinearMediaLODCodes> {
         self._glacier_base.texture_codes()
+    }
+    fn texture_codes_mut(&mut self) -> &mut Vec<LinearMediaLODCodes> {
+        self._glacier_base.texture_codes_mut()
     }
     fn linear_media_billboard_asset(&self) -> &Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>> {
         self._glacier_base.linear_media_billboard_asset()
     }
+    fn linear_media_billboard_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>> {
+        self._glacier_base.linear_media_billboard_asset_mut()
+    }
     fn start_on_load(&self) -> &bool {
         self._glacier_base.start_on_load()
+    }
+    fn start_on_load_mut(&mut self) -> &mut bool {
+        self._glacier_base.start_on_load_mut()
     }
     fn r#loop(&self) -> &bool {
         self._glacier_base.r#loop()
     }
+    fn r#loop_mut(&mut self) -> &mut bool {
+        self._glacier_base.r#loop_mut()
+    }
     fn external_time(&self) -> &f32 {
         self._glacier_base.external_time()
+    }
+    fn external_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.external_time_mut()
     }
 }
 
@@ -370,15 +467,15 @@ impl super::core::DataBusPeerTrait for LinearMediaBillboardOverrideFeedEntityDat
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LinearMediaBillboardOverrideFeedEntityData {
 }
 
 impl super::core::DataContainerTrait for LinearMediaBillboardOverrideFeedEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINEARMEDIABILLBOARDOVERRIDEFEEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -410,6 +507,15 @@ impl TypeObject for LinearMediaBillboardOverrideFeedEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -436,31 +542,55 @@ pub struct LinearMediaBillboardFeedEntityData {
 
 pub trait LinearMediaBillboardFeedEntityDataTrait: super::entity::EntityDataTrait {
     fn emitting_channel(&self) -> &i32;
+    fn emitting_channel_mut(&mut self) -> &mut i32;
     fn texture_codes(&self) -> &Vec<LinearMediaLODCodes>;
+    fn texture_codes_mut(&mut self) -> &mut Vec<LinearMediaLODCodes>;
     fn linear_media_billboard_asset(&self) -> &Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>>;
+    fn linear_media_billboard_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>>;
     fn start_on_load(&self) -> &bool;
+    fn start_on_load_mut(&mut self) -> &mut bool;
     fn r#loop(&self) -> &bool;
+    fn r#loop_mut(&mut self) -> &mut bool;
     fn external_time(&self) -> &f32;
+    fn external_time_mut(&mut self) -> &mut f32;
 }
 
 impl LinearMediaBillboardFeedEntityDataTrait for LinearMediaBillboardFeedEntityData {
     fn emitting_channel(&self) -> &i32 {
         &self.emitting_channel
     }
+    fn emitting_channel_mut(&mut self) -> &mut i32 {
+        &mut self.emitting_channel
+    }
     fn texture_codes(&self) -> &Vec<LinearMediaLODCodes> {
         &self.texture_codes
+    }
+    fn texture_codes_mut(&mut self) -> &mut Vec<LinearMediaLODCodes> {
+        &mut self.texture_codes
     }
     fn linear_media_billboard_asset(&self) -> &Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>> {
         &self.linear_media_billboard_asset
     }
+    fn linear_media_billboard_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>> {
+        &mut self.linear_media_billboard_asset
+    }
     fn start_on_load(&self) -> &bool {
         &self.start_on_load
+    }
+    fn start_on_load_mut(&mut self) -> &mut bool {
+        &mut self.start_on_load
     }
     fn r#loop(&self) -> &bool {
         &self.r#loop
     }
+    fn r#loop_mut(&mut self) -> &mut bool {
+        &mut self.r#loop
+    }
     fn external_time(&self) -> &f32 {
         &self.external_time
+    }
+    fn external_time_mut(&mut self) -> &mut f32 {
+        &mut self.external_time
     }
 }
 
@@ -474,15 +604,15 @@ impl super::core::DataBusPeerTrait for LinearMediaBillboardFeedEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LinearMediaBillboardFeedEntityData {
 }
 
 impl super::core::DataContainerTrait for LinearMediaBillboardFeedEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINEARMEDIABILLBOARDFEEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -544,6 +674,15 @@ impl TypeObject for LinearMediaBillboardFeedEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -566,19 +705,31 @@ pub struct LinearMediaLODCodes {
 
 pub trait LinearMediaLODCodesTrait: TypeObject {
     fn texture_out_code(&self) -> &u64;
+    fn texture_out_code_mut(&mut self) -> &mut u64;
     fn texture2_out_code(&self) -> &u64;
+    fn texture2_out_code_mut(&mut self) -> &mut u64;
     fn emissive_texture_out_code(&self) -> &u64;
+    fn emissive_texture_out_code_mut(&mut self) -> &mut u64;
 }
 
 impl LinearMediaLODCodesTrait for LinearMediaLODCodes {
     fn texture_out_code(&self) -> &u64 {
         &self.texture_out_code
     }
+    fn texture_out_code_mut(&mut self) -> &mut u64 {
+        &mut self.texture_out_code
+    }
     fn texture2_out_code(&self) -> &u64 {
         &self.texture2_out_code
     }
+    fn texture2_out_code_mut(&mut self) -> &mut u64 {
+        &mut self.texture2_out_code
+    }
     fn emissive_texture_out_code(&self) -> &u64 {
         &self.emissive_texture_out_code
+    }
+    fn emissive_texture_out_code_mut(&mut self) -> &mut u64 {
+        &mut self.emissive_texture_out_code
     }
 }
 
@@ -622,6 +773,15 @@ impl TypeObject for LinearMediaLODCodes {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -644,15 +804,23 @@ pub struct LinearMediaBillboardProviderEntityData {
 
 pub trait LinearMediaBillboardProviderEntityDataTrait: super::entity::EntityDataTrait {
     fn fallbacktexture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
+    fn fallbacktexture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
     fn is_active(&self) -> &bool;
+    fn is_active_mut(&mut self) -> &mut bool;
 }
 
 impl LinearMediaBillboardProviderEntityDataTrait for LinearMediaBillboardProviderEntityData {
     fn fallbacktexture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
         &self.fallbacktexture
     }
+    fn fallbacktexture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+        &mut self.fallbacktexture
+    }
     fn is_active(&self) -> &bool {
         &self.is_active
+    }
+    fn is_active_mut(&mut self) -> &mut bool {
+        &mut self.is_active
     }
 }
 
@@ -666,15 +834,15 @@ impl super::core::DataBusPeerTrait for LinearMediaBillboardProviderEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LinearMediaBillboardProviderEntityData {
 }
 
 impl super::core::DataContainerTrait for LinearMediaBillboardProviderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINEARMEDIABILLBOARDPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -712,6 +880,15 @@ impl TypeObject for LinearMediaBillboardProviderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -733,11 +910,15 @@ pub struct LMSBillboardAsset {
 
 pub trait LMSBillboardAssetTrait: super::linear_media::LinearMediaAssetDescTrait {
     fn base_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
+    fn base_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
 }
 
 impl LMSBillboardAssetTrait for LMSBillboardAsset {
     fn base_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
         &self.base_texture
+    }
+    fn base_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+        &mut self.base_texture
     }
 }
 
@@ -745,18 +926,21 @@ impl super::linear_media::LinearMediaAssetDescTrait for LMSBillboardAsset {
     fn resources(&self) -> &Vec<super::linear_media::LinearMediaRuntimeResource> {
         self._glacier_base.resources()
     }
+    fn resources_mut(&mut self) -> &mut Vec<super::linear_media::LinearMediaRuntimeResource> {
+        self._glacier_base.resources_mut()
+    }
 }
 
 impl super::core::AssetTrait for LMSBillboardAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LMSBillboardAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LMSBILLBOARDASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -788,6 +972,15 @@ impl TypeObject for LMSBillboardAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -809,15 +1002,23 @@ pub struct LODDimension {
 
 pub trait LODDimensionTrait: TypeObject {
     fn width(&self) -> &i32;
+    fn width_mut(&mut self) -> &mut i32;
     fn height(&self) -> &i32;
+    fn height_mut(&mut self) -> &mut i32;
 }
 
 impl LODDimensionTrait for LODDimension {
     fn width(&self) -> &i32 {
         &self.width
     }
+    fn width_mut(&mut self) -> &mut i32 {
+        &mut self.width
+    }
     fn height(&self) -> &i32 {
         &self.height
+    }
+    fn height_mut(&mut self) -> &mut i32 {
+        &mut self.height
     }
 }
 
@@ -854,6 +1055,15 @@ impl TypeObject for LODDimension {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -892,6 +1102,15 @@ impl TypeObject for LinearMediaBillboardDefs {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -946,6 +1165,15 @@ impl TypeObject for LinearMediaBillboardProviderEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -998,6 +1226,15 @@ impl TypeObject for LinearMediaBillboardOverrideFeedEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1052,6 +1289,15 @@ impl TypeObject for LinearMediaBillboardFeedEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1104,6 +1350,15 @@ impl TypeObject for LinearMediaBillboardClientEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

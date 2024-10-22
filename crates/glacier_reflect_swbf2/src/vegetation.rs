@@ -56,94 +56,171 @@ pub struct VegetationSystemSettings {
 
 pub trait VegetationSystemSettingsTrait: super::core::DataContainerTrait {
     fn destruction_enable(&self) -> &bool;
+    fn destruction_enable_mut(&mut self) -> &mut bool;
     fn max_active_distance(&self) -> &f32;
+    fn max_active_distance_mut(&mut self) -> &mut f32;
     fn max_effect_distance(&self) -> &f32;
+    fn max_effect_distance_mut(&mut self) -> &mut f32;
     fn max_active_bones(&self) -> &u32;
+    fn max_active_bones_mut(&mut self) -> &mut u32;
     fn max_wiggle_distance(&self) -> &f32;
+    fn max_wiggle_distance_mut(&mut self) -> &mut f32;
     fn dissolve_enable(&self) -> &bool;
+    fn dissolve_enable_mut(&mut self) -> &mut bool;
     fn simulation_ease_out_time(&self) -> &f32;
+    fn simulation_ease_out_time_mut(&mut self) -> &mut f32;
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn time_scale(&self) -> &f32;
+    fn time_scale_mut(&mut self) -> &mut f32;
     fn enable_jobs(&self) -> &bool;
+    fn enable_jobs_mut(&mut self) -> &mut bool;
     fn job_count(&self) -> &u32;
+    fn job_count_mut(&mut self) -> &mut u32;
     fn draw_nodes(&self) -> &bool;
+    fn draw_nodes_mut(&mut self) -> &mut bool;
     fn draw_node_i_ds(&self) -> &bool;
+    fn draw_node_i_ds_mut(&mut self) -> &mut bool;
     fn draw_node_stiffness(&self) -> &bool;
+    fn draw_node_stiffness_mut(&mut self) -> &mut bool;
     fn draw_non_simulated_as_rigid(&self) -> &bool;
+    fn draw_non_simulated_as_rigid_mut(&mut self) -> &mut bool;
     fn draw_active_instance_boxes_enable(&self) -> &bool;
+    fn draw_active_instance_boxes_enable_mut(&mut self) -> &mut bool;
     fn draw_effect_debug_info_enable(&self) -> &bool;
+    fn draw_effect_debug_info_enable_mut(&mut self) -> &mut bool;
     fn draw_damage_debug_info_enable(&self) -> &bool;
+    fn draw_damage_debug_info_enable_mut(&mut self) -> &mut bool;
     fn draw_stats_enable(&self) -> &bool;
+    fn draw_stats_enable_mut(&mut self) -> &mut bool;
     fn procedural_animation_enable(&self) -> &bool;
+    fn procedural_animation_enable_mut(&mut self) -> &mut bool;
 }
 
 impl VegetationSystemSettingsTrait for VegetationSystemSettings {
     fn destruction_enable(&self) -> &bool {
         &self.destruction_enable
     }
+    fn destruction_enable_mut(&mut self) -> &mut bool {
+        &mut self.destruction_enable
+    }
     fn max_active_distance(&self) -> &f32 {
         &self.max_active_distance
+    }
+    fn max_active_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_active_distance
     }
     fn max_effect_distance(&self) -> &f32 {
         &self.max_effect_distance
     }
+    fn max_effect_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_effect_distance
+    }
     fn max_active_bones(&self) -> &u32 {
         &self.max_active_bones
+    }
+    fn max_active_bones_mut(&mut self) -> &mut u32 {
+        &mut self.max_active_bones
     }
     fn max_wiggle_distance(&self) -> &f32 {
         &self.max_wiggle_distance
     }
+    fn max_wiggle_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_wiggle_distance
+    }
     fn dissolve_enable(&self) -> &bool {
         &self.dissolve_enable
+    }
+    fn dissolve_enable_mut(&mut self) -> &mut bool {
+        &mut self.dissolve_enable
     }
     fn simulation_ease_out_time(&self) -> &f32 {
         &self.simulation_ease_out_time
     }
+    fn simulation_ease_out_time_mut(&mut self) -> &mut f32 {
+        &mut self.simulation_ease_out_time
+    }
     fn enable(&self) -> &bool {
         &self.enable
+    }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
     }
     fn time_scale(&self) -> &f32 {
         &self.time_scale
     }
+    fn time_scale_mut(&mut self) -> &mut f32 {
+        &mut self.time_scale
+    }
     fn enable_jobs(&self) -> &bool {
         &self.enable_jobs
+    }
+    fn enable_jobs_mut(&mut self) -> &mut bool {
+        &mut self.enable_jobs
     }
     fn job_count(&self) -> &u32 {
         &self.job_count
     }
+    fn job_count_mut(&mut self) -> &mut u32 {
+        &mut self.job_count
+    }
     fn draw_nodes(&self) -> &bool {
         &self.draw_nodes
+    }
+    fn draw_nodes_mut(&mut self) -> &mut bool {
+        &mut self.draw_nodes
     }
     fn draw_node_i_ds(&self) -> &bool {
         &self.draw_node_i_ds
     }
+    fn draw_node_i_ds_mut(&mut self) -> &mut bool {
+        &mut self.draw_node_i_ds
+    }
     fn draw_node_stiffness(&self) -> &bool {
         &self.draw_node_stiffness
+    }
+    fn draw_node_stiffness_mut(&mut self) -> &mut bool {
+        &mut self.draw_node_stiffness
     }
     fn draw_non_simulated_as_rigid(&self) -> &bool {
         &self.draw_non_simulated_as_rigid
     }
+    fn draw_non_simulated_as_rigid_mut(&mut self) -> &mut bool {
+        &mut self.draw_non_simulated_as_rigid
+    }
     fn draw_active_instance_boxes_enable(&self) -> &bool {
         &self.draw_active_instance_boxes_enable
+    }
+    fn draw_active_instance_boxes_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_active_instance_boxes_enable
     }
     fn draw_effect_debug_info_enable(&self) -> &bool {
         &self.draw_effect_debug_info_enable
     }
+    fn draw_effect_debug_info_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_effect_debug_info_enable
+    }
     fn draw_damage_debug_info_enable(&self) -> &bool {
         &self.draw_damage_debug_info_enable
+    }
+    fn draw_damage_debug_info_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_damage_debug_info_enable
     }
     fn draw_stats_enable(&self) -> &bool {
         &self.draw_stats_enable
     }
+    fn draw_stats_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_stats_enable
+    }
     fn procedural_animation_enable(&self) -> &bool {
         &self.procedural_animation_enable
+    }
+    fn procedural_animation_enable_mut(&mut self) -> &mut bool {
+        &mut self.procedural_animation_enable
     }
 }
 
 impl super::core::DataContainerTrait for VegetationSystemSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEGETATIONSYSTEMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -289,6 +366,15 @@ impl TypeObject for VegetationSystemSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -311,19 +397,31 @@ pub struct VegetationTreeBreakNodeState {
 
 pub trait VegetationTreeBreakNodeStateTrait: TypeObject {
     fn break_node_bit(&self) -> &bool;
+    fn break_node_bit_mut(&mut self) -> &mut bool;
     fn trans(&self) -> &super::core::Vec3;
+    fn trans_mut(&mut self) -> &mut super::core::Vec3;
     fn rotation(&self) -> &super::core::Quat;
+    fn rotation_mut(&mut self) -> &mut super::core::Quat;
 }
 
 impl VegetationTreeBreakNodeStateTrait for VegetationTreeBreakNodeState {
     fn break_node_bit(&self) -> &bool {
         &self.break_node_bit
     }
+    fn break_node_bit_mut(&mut self) -> &mut bool {
+        &mut self.break_node_bit
+    }
     fn trans(&self) -> &super::core::Vec3 {
         &self.trans
     }
+    fn trans_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.trans
+    }
     fn rotation(&self) -> &super::core::Quat {
         &self.rotation
+    }
+    fn rotation_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.rotation
     }
 }
 
@@ -367,6 +465,15 @@ impl TypeObject for VegetationTreeBreakNodeState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -389,19 +496,31 @@ pub struct VegetationTreeBreakNodeDestruction {
 
 pub trait VegetationTreeBreakNodeDestructionTrait: TypeObject {
     fn break_node_bit(&self) -> &bool;
+    fn break_node_bit_mut(&mut self) -> &mut bool;
     fn height(&self) -> &f32;
+    fn height_mut(&mut self) -> &mut f32;
     fn part_index(&self) -> &u32;
+    fn part_index_mut(&mut self) -> &mut u32;
 }
 
 impl VegetationTreeBreakNodeDestructionTrait for VegetationTreeBreakNodeDestruction {
     fn break_node_bit(&self) -> &bool {
         &self.break_node_bit
     }
+    fn break_node_bit_mut(&mut self) -> &mut bool {
+        &mut self.break_node_bit
+    }
     fn height(&self) -> &f32 {
         &self.height
     }
+    fn height_mut(&mut self) -> &mut f32 {
+        &mut self.height
+    }
     fn part_index(&self) -> &u32 {
         &self.part_index
+    }
+    fn part_index_mut(&mut self) -> &mut u32 {
+        &mut self.part_index
     }
 }
 
@@ -444,6 +563,15 @@ impl TypeObject for VegetationTreeBreakNodeDestruction {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -498,139 +626,271 @@ pub struct VegetationTreeEntityData {
 
 pub trait VegetationTreeEntityDataTrait: VegetationBaseEntityDataTrait {
     fn stiffness(&self) -> &f32;
+    fn stiffness_mut(&mut self) -> &mut f32;
     fn damping(&self) -> &f32;
+    fn damping_mut(&mut self) -> &mut f32;
     fn stem_mass(&self) -> &f32;
+    fn stem_mass_mut(&mut self) -> &mut f32;
     fn stiffness_spread(&self) -> &f32;
+    fn stiffness_spread_mut(&mut self) -> &mut f32;
     fn damping_spread(&self) -> &f32;
+    fn damping_spread_mut(&mut self) -> &mut f32;
     fn mass_spread(&self) -> &f32;
+    fn mass_spread_mut(&mut self) -> &mut f32;
     fn stem_locked_up_to(&self) -> &f32;
+    fn stem_locked_up_to_mut(&mut self) -> &mut f32;
     fn stem_bone_count(&self) -> &i32;
+    fn stem_bone_count_mut(&mut self) -> &mut i32;
     fn breakable_joint_threshold(&self) -> &f32;
+    fn breakable_joint_threshold_mut(&mut self) -> &mut f32;
     fn constant_falloff(&self) -> &bool;
+    fn constant_falloff_mut(&mut self) -> &mut bool;
     fn bounding_box_scale_factor(&self) -> &f32;
+    fn bounding_box_scale_factor_mut(&mut self) -> &mut f32;
     fn indestructable(&self) -> &bool;
+    fn indestructable_mut(&mut self) -> &mut bool;
     fn parts_time_to_live(&self) -> &f32;
+    fn parts_time_to_live_mut(&mut self) -> &mut f32;
     fn linear_velocity_damping(&self) -> &f32;
+    fn linear_velocity_damping_mut(&mut self) -> &mut f32;
     fn angular_velocity_damping(&self) -> &f32;
+    fn angular_velocity_damping_mut(&mut self) -> &mut f32;
     fn friction(&self) -> &f32;
+    fn friction_mut(&mut self) -> &mut f32;
     fn restitution(&self) -> &f32;
+    fn restitution_mut(&mut self) -> &mut f32;
     fn stem_physics_width(&self) -> &f32;
+    fn stem_physics_width_mut(&mut self) -> &mut f32;
     fn stem_physics_height_scale(&self) -> &f32;
+    fn stem_physics_height_scale_mut(&mut self) -> &mut f32;
     fn branch_physics_width(&self) -> &f32;
+    fn branch_physics_width_mut(&mut self) -> &mut f32;
     fn branch_physics_height_scale(&self) -> &f32;
+    fn branch_physics_height_scale_mut(&mut self) -> &mut f32;
     fn destruction_mass_scale(&self) -> &f32;
+    fn destruction_mass_scale_mut(&mut self) -> &mut f32;
     fn inertia_modifier(&self) -> &super::core::Vec3;
+    fn inertia_modifier_mut(&mut self) -> &mut super::core::Vec3;
     fn center_of_mass_vertical_scale(&self) -> &f32;
+    fn center_of_mass_vertical_scale_mut(&mut self) -> &mut f32;
     fn stem_break_effect(&self) -> &VegetationEffectSlot;
+    fn stem_break_effect_mut(&mut self) -> &mut VegetationEffectSlot;
     fn branch_break_effect(&self) -> &VegetationEffectSlot;
+    fn branch_break_effect_mut(&mut self) -> &mut VegetationEffectSlot;
     fn impact_effect(&self) -> &VegetationEffectSlot;
+    fn impact_effect_mut(&mut self) -> &mut VegetationEffectSlot;
     fn wind_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn wind_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
     fn min_respawn_time(&self) -> &f32;
+    fn min_respawn_time_mut(&mut self) -> &mut f32;
     fn stem_effect_node_threshold(&self) -> &u32;
+    fn stem_effect_node_threshold_mut(&mut self) -> &mut u32;
     fn shadow_l_o_d_offset(&self) -> &u32;
+    fn shadow_l_o_d_offset_mut(&mut self) -> &mut u32;
     fn translucency_enabled(&self) -> &bool;
+    fn translucency_enabled_mut(&mut self) -> &mut bool;
     fn translucency_volume_center(&self) -> &super::core::Vec3;
+    fn translucency_volume_center_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl VegetationTreeEntityDataTrait for VegetationTreeEntityData {
     fn stiffness(&self) -> &f32 {
         &self.stiffness
     }
+    fn stiffness_mut(&mut self) -> &mut f32 {
+        &mut self.stiffness
+    }
     fn damping(&self) -> &f32 {
         &self.damping
+    }
+    fn damping_mut(&mut self) -> &mut f32 {
+        &mut self.damping
     }
     fn stem_mass(&self) -> &f32 {
         &self.stem_mass
     }
+    fn stem_mass_mut(&mut self) -> &mut f32 {
+        &mut self.stem_mass
+    }
     fn stiffness_spread(&self) -> &f32 {
         &self.stiffness_spread
+    }
+    fn stiffness_spread_mut(&mut self) -> &mut f32 {
+        &mut self.stiffness_spread
     }
     fn damping_spread(&self) -> &f32 {
         &self.damping_spread
     }
+    fn damping_spread_mut(&mut self) -> &mut f32 {
+        &mut self.damping_spread
+    }
     fn mass_spread(&self) -> &f32 {
         &self.mass_spread
+    }
+    fn mass_spread_mut(&mut self) -> &mut f32 {
+        &mut self.mass_spread
     }
     fn stem_locked_up_to(&self) -> &f32 {
         &self.stem_locked_up_to
     }
+    fn stem_locked_up_to_mut(&mut self) -> &mut f32 {
+        &mut self.stem_locked_up_to
+    }
     fn stem_bone_count(&self) -> &i32 {
         &self.stem_bone_count
+    }
+    fn stem_bone_count_mut(&mut self) -> &mut i32 {
+        &mut self.stem_bone_count
     }
     fn breakable_joint_threshold(&self) -> &f32 {
         &self.breakable_joint_threshold
     }
+    fn breakable_joint_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.breakable_joint_threshold
+    }
     fn constant_falloff(&self) -> &bool {
         &self.constant_falloff
+    }
+    fn constant_falloff_mut(&mut self) -> &mut bool {
+        &mut self.constant_falloff
     }
     fn bounding_box_scale_factor(&self) -> &f32 {
         &self.bounding_box_scale_factor
     }
+    fn bounding_box_scale_factor_mut(&mut self) -> &mut f32 {
+        &mut self.bounding_box_scale_factor
+    }
     fn indestructable(&self) -> &bool {
         &self.indestructable
+    }
+    fn indestructable_mut(&mut self) -> &mut bool {
+        &mut self.indestructable
     }
     fn parts_time_to_live(&self) -> &f32 {
         &self.parts_time_to_live
     }
+    fn parts_time_to_live_mut(&mut self) -> &mut f32 {
+        &mut self.parts_time_to_live
+    }
     fn linear_velocity_damping(&self) -> &f32 {
         &self.linear_velocity_damping
+    }
+    fn linear_velocity_damping_mut(&mut self) -> &mut f32 {
+        &mut self.linear_velocity_damping
     }
     fn angular_velocity_damping(&self) -> &f32 {
         &self.angular_velocity_damping
     }
+    fn angular_velocity_damping_mut(&mut self) -> &mut f32 {
+        &mut self.angular_velocity_damping
+    }
     fn friction(&self) -> &f32 {
         &self.friction
+    }
+    fn friction_mut(&mut self) -> &mut f32 {
+        &mut self.friction
     }
     fn restitution(&self) -> &f32 {
         &self.restitution
     }
+    fn restitution_mut(&mut self) -> &mut f32 {
+        &mut self.restitution
+    }
     fn stem_physics_width(&self) -> &f32 {
         &self.stem_physics_width
+    }
+    fn stem_physics_width_mut(&mut self) -> &mut f32 {
+        &mut self.stem_physics_width
     }
     fn stem_physics_height_scale(&self) -> &f32 {
         &self.stem_physics_height_scale
     }
+    fn stem_physics_height_scale_mut(&mut self) -> &mut f32 {
+        &mut self.stem_physics_height_scale
+    }
     fn branch_physics_width(&self) -> &f32 {
         &self.branch_physics_width
+    }
+    fn branch_physics_width_mut(&mut self) -> &mut f32 {
+        &mut self.branch_physics_width
     }
     fn branch_physics_height_scale(&self) -> &f32 {
         &self.branch_physics_height_scale
     }
+    fn branch_physics_height_scale_mut(&mut self) -> &mut f32 {
+        &mut self.branch_physics_height_scale
+    }
     fn destruction_mass_scale(&self) -> &f32 {
         &self.destruction_mass_scale
+    }
+    fn destruction_mass_scale_mut(&mut self) -> &mut f32 {
+        &mut self.destruction_mass_scale
     }
     fn inertia_modifier(&self) -> &super::core::Vec3 {
         &self.inertia_modifier
     }
+    fn inertia_modifier_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.inertia_modifier
+    }
     fn center_of_mass_vertical_scale(&self) -> &f32 {
         &self.center_of_mass_vertical_scale
+    }
+    fn center_of_mass_vertical_scale_mut(&mut self) -> &mut f32 {
+        &mut self.center_of_mass_vertical_scale
     }
     fn stem_break_effect(&self) -> &VegetationEffectSlot {
         &self.stem_break_effect
     }
+    fn stem_break_effect_mut(&mut self) -> &mut VegetationEffectSlot {
+        &mut self.stem_break_effect
+    }
     fn branch_break_effect(&self) -> &VegetationEffectSlot {
         &self.branch_break_effect
+    }
+    fn branch_break_effect_mut(&mut self) -> &mut VegetationEffectSlot {
+        &mut self.branch_break_effect
     }
     fn impact_effect(&self) -> &VegetationEffectSlot {
         &self.impact_effect
     }
+    fn impact_effect_mut(&mut self) -> &mut VegetationEffectSlot {
+        &mut self.impact_effect
+    }
     fn wind_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
         &self.wind_effect
+    }
+    fn wind_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+        &mut self.wind_effect
     }
     fn min_respawn_time(&self) -> &f32 {
         &self.min_respawn_time
     }
+    fn min_respawn_time_mut(&mut self) -> &mut f32 {
+        &mut self.min_respawn_time
+    }
     fn stem_effect_node_threshold(&self) -> &u32 {
         &self.stem_effect_node_threshold
+    }
+    fn stem_effect_node_threshold_mut(&mut self) -> &mut u32 {
+        &mut self.stem_effect_node_threshold
     }
     fn shadow_l_o_d_offset(&self) -> &u32 {
         &self.shadow_l_o_d_offset
     }
+    fn shadow_l_o_d_offset_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_l_o_d_offset
+    }
     fn translucency_enabled(&self) -> &bool {
         &self.translucency_enabled
     }
+    fn translucency_enabled_mut(&mut self) -> &mut bool {
+        &mut self.translucency_enabled
+    }
     fn translucency_volume_center(&self) -> &super::core::Vec3 {
         &self.translucency_volume_center
+    }
+    fn translucency_volume_center_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.translucency_volume_center
     }
 }
 
@@ -638,26 +898,50 @@ impl VegetationBaseEntityDataTrait for VegetationTreeEntityData {
     fn base_pose_transforms(&self) -> &super::core::SparseTransformArray {
         self._glacier_base.base_pose_transforms()
     }
+    fn base_pose_transforms_mut(&mut self) -> &mut super::core::SparseTransformArray {
+        self._glacier_base.base_pose_transforms_mut()
+    }
     fn hierarchy(&self) -> &Vec<i32> {
         self._glacier_base.hierarchy()
+    }
+    fn hierarchy_mut(&mut self) -> &mut Vec<i32> {
+        self._glacier_base.hierarchy_mut()
     }
     fn part_indirection(&self) -> &Vec<i32> {
         self._glacier_base.part_indirection()
     }
+    fn part_indirection_mut(&mut self) -> &mut Vec<i32> {
+        self._glacier_base.part_indirection_mut()
+    }
     fn part_hierarchy(&self) -> &Vec<i32> {
         self._glacier_base.part_hierarchy()
+    }
+    fn part_hierarchy_mut(&mut self) -> &mut Vec<i32> {
+        self._glacier_base.part_hierarchy_mut()
     }
     fn part_initial_healths(&self) -> &Vec<f32> {
         self._glacier_base.part_initial_healths()
     }
+    fn part_initial_healths_mut(&mut self) -> &mut Vec<f32> {
+        self._glacier_base.part_initial_healths_mut()
+    }
     fn bone_is_stem(&self) -> &Vec<bool> {
         self._glacier_base.bone_is_stem()
+    }
+    fn bone_is_stem_mut(&mut self) -> &mut Vec<bool> {
+        self._glacier_base.bone_is_stem_mut()
     }
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         self._glacier_base.mesh()
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        self._glacier_base.mesh_mut()
+    }
     fn rigid_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
         self._glacier_base.rigid_bodies()
+    }
+    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
+        self._glacier_base.rigid_bodies_mut()
     }
 }
 
@@ -665,32 +949,56 @@ impl super::entity::GameComponentEntityDataTrait for VegetationTreeEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for VegetationTreeEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for VegetationTreeEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -704,15 +1012,15 @@ impl super::core::DataBusPeerTrait for VegetationTreeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VegetationTreeEntityData {
 }
 
 impl super::core::DataContainerTrait for VegetationTreeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEGETATIONTREEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -936,6 +1244,15 @@ impl TypeObject for VegetationTreeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -960,27 +1277,47 @@ pub struct VegetationEffectSlot {
 
 pub trait VegetationEffectSlotTrait: TypeObject {
     fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
     fn strength_min(&self) -> &f32;
+    fn strength_min_mut(&mut self) -> &mut f32;
     fn strength_max(&self) -> &f32;
+    fn strength_max_mut(&mut self) -> &mut f32;
     fn size_min(&self) -> &f32;
+    fn size_min_mut(&mut self) -> &mut f32;
     fn size_max(&self) -> &f32;
+    fn size_max_mut(&mut self) -> &mut f32;
 }
 
 impl VegetationEffectSlotTrait for VegetationEffectSlot {
     fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
         &self.effect
     }
+    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+        &mut self.effect
+    }
     fn strength_min(&self) -> &f32 {
         &self.strength_min
+    }
+    fn strength_min_mut(&mut self) -> &mut f32 {
+        &mut self.strength_min
     }
     fn strength_max(&self) -> &f32 {
         &self.strength_max
     }
+    fn strength_max_mut(&mut self) -> &mut f32 {
+        &mut self.strength_max
+    }
     fn size_min(&self) -> &f32 {
         &self.size_min
     }
+    fn size_min_mut(&mut self) -> &mut f32 {
+        &mut self.size_min
+    }
     fn size_max(&self) -> &f32 {
         &self.size_max
+    }
+    fn size_max_mut(&mut self) -> &mut f32 {
+        &mut self.size_max
     }
 }
 
@@ -1036,6 +1373,15 @@ impl TypeObject for VegetationEffectSlot {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1064,39 +1410,71 @@ pub struct VegetationBaseEntityData {
 
 pub trait VegetationBaseEntityDataTrait: super::entity::GameComponentEntityDataTrait {
     fn base_pose_transforms(&self) -> &super::core::SparseTransformArray;
+    fn base_pose_transforms_mut(&mut self) -> &mut super::core::SparseTransformArray;
     fn hierarchy(&self) -> &Vec<i32>;
+    fn hierarchy_mut(&mut self) -> &mut Vec<i32>;
     fn part_indirection(&self) -> &Vec<i32>;
+    fn part_indirection_mut(&mut self) -> &mut Vec<i32>;
     fn part_hierarchy(&self) -> &Vec<i32>;
+    fn part_hierarchy_mut(&mut self) -> &mut Vec<i32>;
     fn part_initial_healths(&self) -> &Vec<f32>;
+    fn part_initial_healths_mut(&mut self) -> &mut Vec<f32>;
     fn bone_is_stem(&self) -> &Vec<bool>;
+    fn bone_is_stem_mut(&mut self) -> &mut Vec<bool>;
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
     fn rigid_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>>;
+    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>>;
 }
 
 impl VegetationBaseEntityDataTrait for VegetationBaseEntityData {
     fn base_pose_transforms(&self) -> &super::core::SparseTransformArray {
         &self.base_pose_transforms
     }
+    fn base_pose_transforms_mut(&mut self) -> &mut super::core::SparseTransformArray {
+        &mut self.base_pose_transforms
+    }
     fn hierarchy(&self) -> &Vec<i32> {
         &self.hierarchy
+    }
+    fn hierarchy_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.hierarchy
     }
     fn part_indirection(&self) -> &Vec<i32> {
         &self.part_indirection
     }
+    fn part_indirection_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.part_indirection
+    }
     fn part_hierarchy(&self) -> &Vec<i32> {
         &self.part_hierarchy
+    }
+    fn part_hierarchy_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.part_hierarchy
     }
     fn part_initial_healths(&self) -> &Vec<f32> {
         &self.part_initial_healths
     }
+    fn part_initial_healths_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.part_initial_healths
+    }
     fn bone_is_stem(&self) -> &Vec<bool> {
         &self.bone_is_stem
+    }
+    fn bone_is_stem_mut(&mut self) -> &mut Vec<bool> {
+        &mut self.bone_is_stem
     }
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         &self.mesh
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &mut self.mesh
+    }
     fn rigid_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
         &self.rigid_bodies
+    }
+    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
+        &mut self.rigid_bodies
     }
 }
 
@@ -1104,32 +1482,56 @@ impl super::entity::GameComponentEntityDataTrait for VegetationBaseEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for VegetationBaseEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for VegetationBaseEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -1143,15 +1545,15 @@ impl super::core::DataBusPeerTrait for VegetationBaseEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VegetationBaseEntityData {
 }
 
 impl super::core::DataContainerTrait for VegetationBaseEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEGETATIONBASEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1225,6 +1627,15 @@ impl TypeObject for VegetationBaseEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1283,6 +1694,15 @@ impl TypeObject for VegetationTreeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1346,6 +1766,15 @@ impl TypeObject for ServerVegetationTreeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1407,6 +1836,15 @@ impl TypeObject for ClientVegetationTreeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

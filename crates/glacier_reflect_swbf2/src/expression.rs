@@ -43,15 +43,23 @@ pub struct ExpressionConstantEmptyArrayPatch {
 
 pub trait ExpressionConstantEmptyArrayPatchTrait: TypeObject {
     fn register_offset(&self) -> &u32;
+    fn register_offset_mut(&mut self) -> &mut u32;
     fn data_offset(&self) -> &u32;
+    fn data_offset_mut(&mut self) -> &mut u32;
 }
 
 impl ExpressionConstantEmptyArrayPatchTrait for ExpressionConstantEmptyArrayPatch {
     fn register_offset(&self) -> &u32 {
         &self.register_offset
     }
+    fn register_offset_mut(&mut self) -> &mut u32 {
+        &mut self.register_offset
+    }
     fn data_offset(&self) -> &u32 {
         &self.data_offset
+    }
+    fn data_offset_mut(&mut self) -> &mut u32 {
+        &mut self.data_offset
     }
 }
 
@@ -89,6 +97,15 @@ impl TypeObject for ExpressionConstantEmptyArrayPatch {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -111,19 +128,31 @@ pub struct ExpressionConstantReferencePatch {
 
 pub trait ExpressionConstantReferencePatchTrait: TypeObject {
     fn value(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
+    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
     fn register_offset(&self) -> &u32;
+    fn register_offset_mut(&mut self) -> &mut u32;
     fn data_offset(&self) -> &u32;
+    fn data_offset_mut(&mut self) -> &mut u32;
 }
 
 impl ExpressionConstantReferencePatchTrait for ExpressionConstantReferencePatch {
     fn value(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+        &mut self.value
+    }
     fn register_offset(&self) -> &u32 {
         &self.register_offset
     }
+    fn register_offset_mut(&mut self) -> &mut u32 {
+        &mut self.register_offset
+    }
     fn data_offset(&self) -> &u32 {
         &self.data_offset
+    }
+    fn data_offset_mut(&mut self) -> &mut u32 {
+        &mut self.data_offset
     }
 }
 
@@ -167,6 +196,15 @@ impl TypeObject for ExpressionConstantReferencePatch {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -188,15 +226,23 @@ pub struct ExpressionNopPatch {
 
 pub trait ExpressionNopPatchTrait: TypeObject {
     fn value(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn register_offset(&self) -> &u32;
+    fn register_offset_mut(&mut self) -> &mut u32;
 }
 
 impl ExpressionNopPatchTrait for ExpressionNopPatch {
     fn value(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.value
+    }
     fn register_offset(&self) -> &u32 {
         &self.register_offset
+    }
+    fn register_offset_mut(&mut self) -> &mut u32 {
+        &mut self.register_offset
     }
 }
 
@@ -234,6 +280,15 @@ impl TypeObject for ExpressionNopPatch {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -255,15 +310,23 @@ pub struct ExpressionStateData {
 
 pub trait ExpressionStateDataTrait: TypeObject {
     fn graph_port_offset(&self) -> &u32;
+    fn graph_port_offset_mut(&mut self) -> &mut u32;
     fn port_type(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn port_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl ExpressionStateDataTrait for ExpressionStateData {
     fn graph_port_offset(&self) -> &u32 {
         &self.graph_port_offset
     }
+    fn graph_port_offset_mut(&mut self) -> &mut u32 {
+        &mut self.graph_port_offset
+    }
     fn port_type(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.port_type
+    }
+    fn port_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.port_type
     }
 }
 
@@ -301,6 +364,15 @@ impl TypeObject for ExpressionStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -324,23 +396,39 @@ pub struct ExpressionPropertyData {
 
 pub trait ExpressionPropertyDataTrait: TypeObject {
     fn property_name_hash(&self) -> &u32;
+    fn property_name_hash_mut(&mut self) -> &mut u32;
     fn graph_port_offset(&self) -> &u32;
+    fn graph_port_offset_mut(&mut self) -> &mut u32;
     fn port_type(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn port_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn is_reference(&self) -> &bool;
+    fn is_reference_mut(&mut self) -> &mut bool;
 }
 
 impl ExpressionPropertyDataTrait for ExpressionPropertyData {
     fn property_name_hash(&self) -> &u32 {
         &self.property_name_hash
     }
+    fn property_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.property_name_hash
+    }
     fn graph_port_offset(&self) -> &u32 {
         &self.graph_port_offset
+    }
+    fn graph_port_offset_mut(&mut self) -> &mut u32 {
+        &mut self.graph_port_offset
     }
     fn port_type(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.port_type
     }
+    fn port_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.port_type
+    }
     fn is_reference(&self) -> &bool {
         &self.is_reference
+    }
+    fn is_reference_mut(&mut self) -> &mut bool {
+        &mut self.is_reference
     }
 }
 
@@ -390,6 +478,15 @@ impl TypeObject for ExpressionPropertyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -415,31 +512,55 @@ pub struct ExpressionPortData {
 
 pub trait ExpressionPortDataTrait: TypeObject {
     fn port_key(&self) -> &u64;
+    fn port_key_mut(&mut self) -> &mut u64;
     fn node_name_hash(&self) -> &u32;
+    fn node_name_hash_mut(&mut self) -> &mut u32;
     fn port_name_hash(&self) -> &u32;
+    fn port_name_hash_mut(&mut self) -> &mut u32;
     fn graph_port_offset(&self) -> &u32;
+    fn graph_port_offset_mut(&mut self) -> &mut u32;
     fn port_direction(&self) -> &ExpressionPortDirection;
+    fn port_direction_mut(&mut self) -> &mut ExpressionPortDirection;
     fn port_type(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn port_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl ExpressionPortDataTrait for ExpressionPortData {
     fn port_key(&self) -> &u64 {
         &self.port_key
     }
+    fn port_key_mut(&mut self) -> &mut u64 {
+        &mut self.port_key
+    }
     fn node_name_hash(&self) -> &u32 {
         &self.node_name_hash
+    }
+    fn node_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.node_name_hash
     }
     fn port_name_hash(&self) -> &u32 {
         &self.port_name_hash
     }
+    fn port_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.port_name_hash
+    }
     fn graph_port_offset(&self) -> &u32 {
         &self.graph_port_offset
+    }
+    fn graph_port_offset_mut(&mut self) -> &mut u32 {
+        &mut self.graph_port_offset
     }
     fn port_direction(&self) -> &ExpressionPortDirection {
         &self.port_direction
     }
+    fn port_direction_mut(&mut self) -> &mut ExpressionPortDirection {
+        &mut self.port_direction
+    }
     fn port_type(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.port_type
+    }
+    fn port_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.port_type
     }
 }
 
@@ -501,6 +622,15 @@ impl TypeObject for ExpressionPortData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -539,6 +669,15 @@ impl TypeObject for ExpressionPortDirection {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -567,46 +706,75 @@ pub struct ExpressionNodeGraphData {
 
 pub trait ExpressionNodeGraphDataTrait: super::core::DataContainerTrait {
     fn ports(&self) -> &Vec<ExpressionPortData>;
+    fn ports_mut(&mut self) -> &mut Vec<ExpressionPortData>;
     fn inputs(&self) -> &Vec<ExpressionPropertyData>;
+    fn inputs_mut(&mut self) -> &mut Vec<ExpressionPropertyData>;
     fn outputs(&self) -> &Vec<ExpressionPropertyData>;
+    fn outputs_mut(&mut self) -> &mut Vec<ExpressionPropertyData>;
     fn states(&self) -> &Vec<ExpressionStateData>;
+    fn states_mut(&mut self) -> &mut Vec<ExpressionStateData>;
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn nop_patches(&self) -> &Vec<ExpressionNopPatch>;
+    fn nop_patches_mut(&mut self) -> &mut Vec<ExpressionNopPatch>;
     fn constant_reference_patches(&self) -> &Vec<ExpressionConstantReferencePatch>;
+    fn constant_reference_patches_mut(&mut self) -> &mut Vec<ExpressionConstantReferencePatch>;
     fn constant_empty_array_patches(&self) -> &Vec<ExpressionConstantEmptyArrayPatch>;
+    fn constant_empty_array_patches_mut(&mut self) -> &mut Vec<ExpressionConstantEmptyArrayPatch>;
 }
 
 impl ExpressionNodeGraphDataTrait for ExpressionNodeGraphData {
     fn ports(&self) -> &Vec<ExpressionPortData> {
         &self.ports
     }
+    fn ports_mut(&mut self) -> &mut Vec<ExpressionPortData> {
+        &mut self.ports
+    }
     fn inputs(&self) -> &Vec<ExpressionPropertyData> {
         &self.inputs
+    }
+    fn inputs_mut(&mut self) -> &mut Vec<ExpressionPropertyData> {
+        &mut self.inputs
     }
     fn outputs(&self) -> &Vec<ExpressionPropertyData> {
         &self.outputs
     }
+    fn outputs_mut(&mut self) -> &mut Vec<ExpressionPropertyData> {
+        &mut self.outputs
+    }
     fn states(&self) -> &Vec<ExpressionStateData> {
         &self.states
+    }
+    fn states_mut(&mut self) -> &mut Vec<ExpressionStateData> {
+        &mut self.states
     }
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.resource
     }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.resource
+    }
     fn nop_patches(&self) -> &Vec<ExpressionNopPatch> {
         &self.nop_patches
+    }
+    fn nop_patches_mut(&mut self) -> &mut Vec<ExpressionNopPatch> {
+        &mut self.nop_patches
     }
     fn constant_reference_patches(&self) -> &Vec<ExpressionConstantReferencePatch> {
         &self.constant_reference_patches
     }
+    fn constant_reference_patches_mut(&mut self) -> &mut Vec<ExpressionConstantReferencePatch> {
+        &mut self.constant_reference_patches
+    }
     fn constant_empty_array_patches(&self) -> &Vec<ExpressionConstantEmptyArrayPatch> {
         &self.constant_empty_array_patches
+    }
+    fn constant_empty_array_patches_mut(&mut self) -> &mut Vec<ExpressionConstantEmptyArrayPatch> {
+        &mut self.constant_empty_array_patches
     }
 }
 
 impl super::core::DataContainerTrait for ExpressionNodeGraphData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPRESSIONNODEGRAPHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -680,6 +848,15 @@ impl TypeObject for ExpressionNodeGraphData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -701,15 +878,23 @@ pub struct ReferencedType {
 
 pub trait ReferencedTypeTrait: TypeObject {
     fn blox_data_type_hash(&self) -> &u32;
+    fn blox_data_type_hash_mut(&mut self) -> &mut u32;
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl ReferencedTypeTrait for ReferencedType {
     fn blox_data_type_hash(&self) -> &u32 {
         &self.blox_data_type_hash
     }
+    fn blox_data_type_hash_mut(&mut self) -> &mut u32 {
+        &mut self.blox_data_type_hash
+    }
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.type_info
+    }
+    fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.type_info
     }
 }
 
@@ -747,6 +932,15 @@ impl TypeObject for ReferencedType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -768,11 +962,15 @@ pub struct ExpressionFunctionTypeInfoAsset {
 
 pub trait ExpressionFunctionTypeInfoAssetTrait: super::core::FunctionTypeInfoAssetTrait {
     fn graph_data(&self) -> &Option<Arc<Mutex<dyn ExpressionNodeGraphDataTrait>>>;
+    fn graph_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ExpressionNodeGraphDataTrait>>>;
 }
 
 impl ExpressionFunctionTypeInfoAssetTrait for ExpressionFunctionTypeInfoAsset {
     fn graph_data(&self) -> &Option<Arc<Mutex<dyn ExpressionNodeGraphDataTrait>>> {
         &self.graph_data
+    }
+    fn graph_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ExpressionNodeGraphDataTrait>>> {
+        &mut self.graph_data
     }
 }
 
@@ -780,8 +978,14 @@ impl super::core::FunctionTypeInfoAssetTrait for ExpressionFunctionTypeInfoAsset
     fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoParameterDataContainerTrait>>>> {
         self._glacier_base.parameters()
     }
+    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoParameterDataContainerTrait>>>> {
+        self._glacier_base.parameters_mut()
+    }
     fn owner(&self) -> &Option<Arc<Mutex<dyn super::core::ClassInfoAssetTrait>>> {
         self._glacier_base.owner()
+    }
+    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::ClassInfoAssetTrait>>> {
+        self._glacier_base.owner_mut()
     }
 }
 
@@ -789,17 +993,32 @@ impl super::core::TypeInfoAssetTrait for ExpressionFunctionTypeInfoAsset {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -807,12 +1026,12 @@ impl super::core::AssetTrait for ExpressionFunctionTypeInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ExpressionFunctionTypeInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPRESSIONFUNCTIONTYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -843,6 +1062,15 @@ impl TypeObject for ExpressionFunctionTypeInfoAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -890,6 +1118,15 @@ impl TypeObject for SerializedExpressionNodeGraph {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -935,6 +1172,15 @@ impl TypeObject for ExpressionRuntimeContext {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

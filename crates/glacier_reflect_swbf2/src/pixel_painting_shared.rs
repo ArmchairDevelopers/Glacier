@@ -28,14 +28,23 @@ impl super::entity::ObjectBlueprintTrait for PixelPaintingBlueprint {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
         self._glacier_base.object()
     }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+        self._glacier_base.object_mut()
+    }
 }
 
 impl super::entity::BlueprintTrait for PixelPaintingBlueprint {
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.objects()
     }
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.objects_mut()
+    }
     fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
         self._glacier_base.schematics()
+    }
+    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+        self._glacier_base.schematics_mut()
     }
 }
 
@@ -43,20 +52,35 @@ impl super::entity::EntityBusDataTrait for PixelPaintingBlueprint {
     fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
         self._glacier_base.event_connections()
     }
+    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+        self._glacier_base.event_connections_mut()
+    }
 }
 
 impl super::core::DataBusDataTrait for PixelPaintingBlueprint {
     fn flags(&self) -> &u16 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.flags_mut()
+    }
     fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
         self._glacier_base.property_connections()
+    }
+    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+        self._glacier_base.property_connections_mut()
     }
     fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
         self._glacier_base.link_connections()
     }
+    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+        self._glacier_base.link_connections_mut()
+    }
     fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
         self._glacier_base.interface()
+    }
+    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+        self._glacier_base.interface_mut()
     }
 }
 
@@ -64,12 +88,12 @@ impl super::core::AssetTrait for PixelPaintingBlueprint {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PixelPaintingBlueprint {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PIXELPAINTINGBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -94,6 +118,15 @@ impl TypeObject for PixelPaintingBlueprint {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -50,17 +50,32 @@ impl super::entity::ComponentDataTrait for DebrisCollisionComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -71,15 +86,15 @@ impl super::core::DataBusPeerTrait for DebrisCollisionComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DebrisCollisionComponentData {
 }
 
 impl super::core::DataContainerTrait for DebrisCollisionComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEBRISCOLLISIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -104,6 +119,15 @@ impl TypeObject for DebrisCollisionComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -130,27 +154,47 @@ pub struct ProceduralDestructionForceData {
 
 pub trait ProceduralDestructionForceDataTrait: super::entity::PhysicsPropertyRelationPropertyDataTrait {
     fn force(&self) -> &f32;
+    fn force_mut(&mut self) -> &mut f32;
     fn min_force(&self) -> &f32;
+    fn min_force_mut(&mut self) -> &mut f32;
     fn max_force(&self) -> &f32;
+    fn max_force_mut(&mut self) -> &mut f32;
     fn layered_impact_delay(&self) -> &f32;
+    fn layered_impact_delay_mut(&mut self) -> &mut f32;
     fn layered_collision_delay(&self) -> &f32;
+    fn layered_collision_delay_mut(&mut self) -> &mut f32;
 }
 
 impl ProceduralDestructionForceDataTrait for ProceduralDestructionForceData {
     fn force(&self) -> &f32 {
         &self.force
     }
+    fn force_mut(&mut self) -> &mut f32 {
+        &mut self.force
+    }
     fn min_force(&self) -> &f32 {
         &self.min_force
+    }
+    fn min_force_mut(&mut self) -> &mut f32 {
+        &mut self.min_force
     }
     fn max_force(&self) -> &f32 {
         &self.max_force
     }
+    fn max_force_mut(&mut self) -> &mut f32 {
+        &mut self.max_force
+    }
     fn layered_impact_delay(&self) -> &f32 {
         &self.layered_impact_delay
     }
+    fn layered_impact_delay_mut(&mut self) -> &mut f32 {
+        &mut self.layered_impact_delay
+    }
     fn layered_collision_delay(&self) -> &f32 {
         &self.layered_collision_delay
+    }
+    fn layered_collision_delay_mut(&mut self) -> &mut f32 {
+        &mut self.layered_collision_delay
     }
 }
 
@@ -161,9 +205,6 @@ impl super::entity::MaterialRelationPropertyDataTrait for ProceduralDestructionF
 }
 
 impl super::core::DataContainerTrait for ProceduralDestructionForceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROCEDURALDESTRUCTIONFORCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -219,6 +260,15 @@ impl TypeObject for ProceduralDestructionForceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -267,119 +317,231 @@ pub struct DebrisClusterData {
 
 pub trait DebrisClusterDataTrait: super::entity::GameComponentEntityDataTrait {
     fn max_active_parts_count(&self) -> &u32;
+    fn max_active_parts_count_mut(&mut self) -> &mut u32;
     fn cull_distance_scale(&self) -> &f32;
+    fn cull_distance_scale_mut(&mut self) -> &mut f32;
     fn light_sampling_offset(&self) -> &f32;
+    fn light_sampling_offset_mut(&mut self) -> &mut f32;
     fn height_limit(&self) -> &f32;
+    fn height_limit_mut(&mut self) -> &mut f32;
     fn runtime_cluster_lifetime(&self) -> &f32;
+    fn runtime_cluster_lifetime_mut(&mut self) -> &mut f32;
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
     fn composite_part_count(&self) -> &u32;
+    fn composite_part_count_mut(&mut self) -> &mut u32;
     fn part_hierarchy(&self) -> &Vec<DebrisClusterPartInfoData>;
+    fn part_hierarchy_mut(&mut self) -> &mut Vec<DebrisClusterPartInfoData>;
     fn rigid_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>>;
+    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>>;
     fn partial_destruction(&self) -> &bool;
+    fn partial_destruction_mut(&mut self) -> &mut bool;
     fn client_side_only(&self) -> &bool;
+    fn client_side_only_mut(&mut self) -> &mut bool;
     fn activation_push_force_mul(&self) -> &f32;
+    fn activation_push_force_mul_mut(&mut self) -> &mut f32;
     fn push_velocity_mul(&self) -> &super::core::Vec3;
+    fn push_velocity_mul_mut(&mut self) -> &mut super::core::Vec3;
     fn push_velocity_rnd_mul(&self) -> &super::core::Vec3;
+    fn push_velocity_rnd_mul_mut(&mut self) -> &mut super::core::Vec3;
     fn init_rotation_rnd_mul(&self) -> &super::core::Vec3;
+    fn init_rotation_rnd_mul_mut(&mut self) -> &mut super::core::Vec3;
     fn projectile_force_transfer_mul(&self) -> &f32;
+    fn projectile_force_transfer_mul_mut(&mut self) -> &mut f32;
     fn activate_on_spawn(&self) -> &bool;
+    fn activate_on_spawn_mut(&mut self) -> &mut bool;
     fn in_effect_world_only(&self) -> &bool;
+    fn in_effect_world_only_mut(&mut self) -> &mut bool;
     fn no_collision(&self) -> &bool;
+    fn no_collision_mut(&mut self) -> &mut bool;
     fn activation_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn activation_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
     fn is_activation_effect_dynamic(&self) -> &bool;
+    fn is_activation_effect_dynamic_mut(&mut self) -> &mut bool;
     fn deactivate_parts_on_sleep(&self) -> &bool;
+    fn deactivate_parts_on_sleep_mut(&mut self) -> &mut bool;
     fn on_part_collision_enable(&self) -> &bool;
+    fn on_part_collision_enable_mut(&mut self) -> &mut bool;
     fn on_part_collision_speed_threshold(&self) -> &f32;
+    fn on_part_collision_speed_threshold_mut(&mut self) -> &mut f32;
     fn kill_parts_on_collision(&self) -> &bool;
+    fn kill_parts_on_collision_mut(&mut self) -> &mut bool;
     fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
     fn explosion(&self) -> &Option<Arc<Mutex<dyn super::entity::SpatialEntityDataTrait>>>;
+    fn explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SpatialEntityDataTrait>>>;
     fn spawn_explosion_on_first_impact_only(&self) -> &bool;
+    fn spawn_explosion_on_first_impact_only_mut(&mut self) -> &mut bool;
 }
 
 impl DebrisClusterDataTrait for DebrisClusterData {
     fn max_active_parts_count(&self) -> &u32 {
         &self.max_active_parts_count
     }
+    fn max_active_parts_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_active_parts_count
+    }
     fn cull_distance_scale(&self) -> &f32 {
         &self.cull_distance_scale
+    }
+    fn cull_distance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance_scale
     }
     fn light_sampling_offset(&self) -> &f32 {
         &self.light_sampling_offset
     }
+    fn light_sampling_offset_mut(&mut self) -> &mut f32 {
+        &mut self.light_sampling_offset
+    }
     fn height_limit(&self) -> &f32 {
         &self.height_limit
+    }
+    fn height_limit_mut(&mut self) -> &mut f32 {
+        &mut self.height_limit
     }
     fn runtime_cluster_lifetime(&self) -> &f32 {
         &self.runtime_cluster_lifetime
     }
+    fn runtime_cluster_lifetime_mut(&mut self) -> &mut f32 {
+        &mut self.runtime_cluster_lifetime
+    }
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         &self.mesh
+    }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &mut self.mesh
     }
     fn composite_part_count(&self) -> &u32 {
         &self.composite_part_count
     }
+    fn composite_part_count_mut(&mut self) -> &mut u32 {
+        &mut self.composite_part_count
+    }
     fn part_hierarchy(&self) -> &Vec<DebrisClusterPartInfoData> {
         &self.part_hierarchy
+    }
+    fn part_hierarchy_mut(&mut self) -> &mut Vec<DebrisClusterPartInfoData> {
+        &mut self.part_hierarchy
     }
     fn rigid_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
         &self.rigid_bodies
     }
+    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
+        &mut self.rigid_bodies
+    }
     fn partial_destruction(&self) -> &bool {
         &self.partial_destruction
+    }
+    fn partial_destruction_mut(&mut self) -> &mut bool {
+        &mut self.partial_destruction
     }
     fn client_side_only(&self) -> &bool {
         &self.client_side_only
     }
+    fn client_side_only_mut(&mut self) -> &mut bool {
+        &mut self.client_side_only
+    }
     fn activation_push_force_mul(&self) -> &f32 {
         &self.activation_push_force_mul
+    }
+    fn activation_push_force_mul_mut(&mut self) -> &mut f32 {
+        &mut self.activation_push_force_mul
     }
     fn push_velocity_mul(&self) -> &super::core::Vec3 {
         &self.push_velocity_mul
     }
+    fn push_velocity_mul_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.push_velocity_mul
+    }
     fn push_velocity_rnd_mul(&self) -> &super::core::Vec3 {
         &self.push_velocity_rnd_mul
+    }
+    fn push_velocity_rnd_mul_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.push_velocity_rnd_mul
     }
     fn init_rotation_rnd_mul(&self) -> &super::core::Vec3 {
         &self.init_rotation_rnd_mul
     }
+    fn init_rotation_rnd_mul_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.init_rotation_rnd_mul
+    }
     fn projectile_force_transfer_mul(&self) -> &f32 {
         &self.projectile_force_transfer_mul
+    }
+    fn projectile_force_transfer_mul_mut(&mut self) -> &mut f32 {
+        &mut self.projectile_force_transfer_mul
     }
     fn activate_on_spawn(&self) -> &bool {
         &self.activate_on_spawn
     }
+    fn activate_on_spawn_mut(&mut self) -> &mut bool {
+        &mut self.activate_on_spawn
+    }
     fn in_effect_world_only(&self) -> &bool {
         &self.in_effect_world_only
+    }
+    fn in_effect_world_only_mut(&mut self) -> &mut bool {
+        &mut self.in_effect_world_only
     }
     fn no_collision(&self) -> &bool {
         &self.no_collision
     }
+    fn no_collision_mut(&mut self) -> &mut bool {
+        &mut self.no_collision
+    }
     fn activation_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
         &self.activation_effect
+    }
+    fn activation_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+        &mut self.activation_effect
     }
     fn is_activation_effect_dynamic(&self) -> &bool {
         &self.is_activation_effect_dynamic
     }
+    fn is_activation_effect_dynamic_mut(&mut self) -> &mut bool {
+        &mut self.is_activation_effect_dynamic
+    }
     fn deactivate_parts_on_sleep(&self) -> &bool {
         &self.deactivate_parts_on_sleep
+    }
+    fn deactivate_parts_on_sleep_mut(&mut self) -> &mut bool {
+        &mut self.deactivate_parts_on_sleep
     }
     fn on_part_collision_enable(&self) -> &bool {
         &self.on_part_collision_enable
     }
+    fn on_part_collision_enable_mut(&mut self) -> &mut bool {
+        &mut self.on_part_collision_enable
+    }
     fn on_part_collision_speed_threshold(&self) -> &f32 {
         &self.on_part_collision_speed_threshold
+    }
+    fn on_part_collision_speed_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.on_part_collision_speed_threshold
     }
     fn kill_parts_on_collision(&self) -> &bool {
         &self.kill_parts_on_collision
     }
+    fn kill_parts_on_collision_mut(&mut self) -> &mut bool {
+        &mut self.kill_parts_on_collision
+    }
     fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
         &self.effect
+    }
+    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+        &mut self.effect
     }
     fn explosion(&self) -> &Option<Arc<Mutex<dyn super::entity::SpatialEntityDataTrait>>> {
         &self.explosion
     }
+    fn explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SpatialEntityDataTrait>>> {
+        &mut self.explosion
+    }
     fn spawn_explosion_on_first_impact_only(&self) -> &bool {
         &self.spawn_explosion_on_first_impact_only
+    }
+    fn spawn_explosion_on_first_impact_only_mut(&mut self) -> &mut bool {
+        &mut self.spawn_explosion_on_first_impact_only
     }
 }
 
@@ -387,32 +549,56 @@ impl super::entity::GameComponentEntityDataTrait for DebrisClusterData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for DebrisClusterData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for DebrisClusterData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -426,15 +612,15 @@ impl super::core::DataBusPeerTrait for DebrisClusterData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DebrisClusterData {
 }
 
 impl super::core::DataContainerTrait for DebrisClusterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEBRISCLUSTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -628,6 +814,15 @@ impl TypeObject for DebrisClusterData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -662,67 +857,127 @@ pub struct DebrisClusterPartInfoData {
 
 pub trait DebrisClusterPartInfoDataTrait: TypeObject {
     fn part_index(&self) -> &i32;
+    fn part_index_mut(&mut self) -> &mut i32;
     fn number_of_children(&self) -> &i32;
+    fn number_of_children_mut(&mut self) -> &mut i32;
     fn in_effect_world_only(&self) -> &bool;
+    fn in_effect_world_only_mut(&mut self) -> &mut bool;
     fn affected_by_collision(&self) -> &bool;
+    fn affected_by_collision_mut(&mut self) -> &mut bool;
     fn split_speed_threshold(&self) -> &f32;
+    fn split_speed_threshold_mut(&mut self) -> &mut f32;
     fn delay(&self) -> &f32;
+    fn delay_mut(&mut self) -> &mut f32;
     fn force(&self) -> &f32;
+    fn force_mut(&mut self) -> &mut f32;
     fn min_force(&self) -> &f32;
+    fn min_force_mut(&mut self) -> &mut f32;
     fn max_force(&self) -> &f32;
+    fn max_force_mut(&mut self) -> &mut f32;
     fn layered_impact_delay(&self) -> &f32;
+    fn layered_impact_delay_mut(&mut self) -> &mut f32;
     fn layered_collision_delay(&self) -> &f32;
+    fn layered_collision_delay_mut(&mut self) -> &mut f32;
     fn linear_velocity(&self) -> &super::core::Vec3;
+    fn linear_velocity_mut(&mut self) -> &mut super::core::Vec3;
     fn angular_velocity(&self) -> &super::core::Vec3;
+    fn angular_velocity_mut(&mut self) -> &mut super::core::Vec3;
     fn sync_rest_position(&self) -> &bool;
+    fn sync_rest_position_mut(&mut self) -> &mut bool;
     fn sync_continous(&self) -> &bool;
+    fn sync_continous_mut(&mut self) -> &mut bool;
 }
 
 impl DebrisClusterPartInfoDataTrait for DebrisClusterPartInfoData {
     fn part_index(&self) -> &i32 {
         &self.part_index
     }
+    fn part_index_mut(&mut self) -> &mut i32 {
+        &mut self.part_index
+    }
     fn number_of_children(&self) -> &i32 {
         &self.number_of_children
+    }
+    fn number_of_children_mut(&mut self) -> &mut i32 {
+        &mut self.number_of_children
     }
     fn in_effect_world_only(&self) -> &bool {
         &self.in_effect_world_only
     }
+    fn in_effect_world_only_mut(&mut self) -> &mut bool {
+        &mut self.in_effect_world_only
+    }
     fn affected_by_collision(&self) -> &bool {
         &self.affected_by_collision
+    }
+    fn affected_by_collision_mut(&mut self) -> &mut bool {
+        &mut self.affected_by_collision
     }
     fn split_speed_threshold(&self) -> &f32 {
         &self.split_speed_threshold
     }
+    fn split_speed_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.split_speed_threshold
+    }
     fn delay(&self) -> &f32 {
         &self.delay
+    }
+    fn delay_mut(&mut self) -> &mut f32 {
+        &mut self.delay
     }
     fn force(&self) -> &f32 {
         &self.force
     }
+    fn force_mut(&mut self) -> &mut f32 {
+        &mut self.force
+    }
     fn min_force(&self) -> &f32 {
         &self.min_force
+    }
+    fn min_force_mut(&mut self) -> &mut f32 {
+        &mut self.min_force
     }
     fn max_force(&self) -> &f32 {
         &self.max_force
     }
+    fn max_force_mut(&mut self) -> &mut f32 {
+        &mut self.max_force
+    }
     fn layered_impact_delay(&self) -> &f32 {
         &self.layered_impact_delay
+    }
+    fn layered_impact_delay_mut(&mut self) -> &mut f32 {
+        &mut self.layered_impact_delay
     }
     fn layered_collision_delay(&self) -> &f32 {
         &self.layered_collision_delay
     }
+    fn layered_collision_delay_mut(&mut self) -> &mut f32 {
+        &mut self.layered_collision_delay
+    }
     fn linear_velocity(&self) -> &super::core::Vec3 {
         &self.linear_velocity
+    }
+    fn linear_velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.linear_velocity
     }
     fn angular_velocity(&self) -> &super::core::Vec3 {
         &self.angular_velocity
     }
+    fn angular_velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.angular_velocity
+    }
     fn sync_rest_position(&self) -> &bool {
         &self.sync_rest_position
     }
+    fn sync_rest_position_mut(&mut self) -> &mut bool {
+        &mut self.sync_rest_position
+    }
     fn sync_continous(&self) -> &bool {
         &self.sync_continous
+    }
+    fn sync_continous_mut(&mut self) -> &mut bool {
+        &mut self.sync_continous
     }
 }
 
@@ -838,6 +1093,15 @@ impl TypeObject for DebrisClusterPartInfoData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -876,86 +1140,155 @@ pub struct DebrisSystemSettings {
 
 pub trait DebrisSystemSettingsTrait: super::core::DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn time_scale(&self) -> &f32;
+    fn time_scale_mut(&mut self) -> &mut f32;
     fn enable_jobs(&self) -> &bool;
+    fn enable_jobs_mut(&mut self) -> &mut bool;
     fn draw_stats(&self) -> &u32;
+    fn draw_stats_mut(&mut self) -> &mut u32;
     fn draw_enable(&self) -> &bool;
+    fn draw_enable_mut(&mut self) -> &mut bool;
     fn mesh_havok_rendering_enable(&self) -> &bool;
+    fn mesh_havok_rendering_enable_mut(&mut self) -> &mut bool;
     fn mesh_draw_transforms(&self) -> &bool;
+    fn mesh_draw_transforms_mut(&mut self) -> &mut bool;
     fn mesh_draw_bounding_boxes(&self) -> &bool;
+    fn mesh_draw_bounding_boxes_mut(&mut self) -> &mut bool;
     fn mesh_shadow_enable(&self) -> &bool;
+    fn mesh_shadow_enable_mut(&mut self) -> &mut bool;
     fn mesh_view_culling_enable(&self) -> &bool;
+    fn mesh_view_culling_enable_mut(&mut self) -> &mut bool;
     fn mesh_culling_distance(&self) -> &f32;
+    fn mesh_culling_distance_mut(&mut self) -> &mut f32;
     fn mesh_batch_count_limit(&self) -> &u32;
+    fn mesh_batch_count_limit_mut(&mut self) -> &mut u32;
     fn debris_pool_size(&self) -> &u32;
+    fn debris_pool_size_mut(&mut self) -> &mut u32;
     fn mesh_draw_count_limit(&self) -> &u32;
+    fn mesh_draw_count_limit_mut(&mut self) -> &mut u32;
     fn mesh_streaming_priority_multiplier(&self) -> &f32;
+    fn mesh_streaming_priority_multiplier_mut(&mut self) -> &mut f32;
     fn mesh_draw_cull_stats(&self) -> &bool;
+    fn mesh_draw_cull_stats_mut(&mut self) -> &mut bool;
     fn client_max_debris_instances(&self) -> &u32;
+    fn client_max_debris_instances_mut(&mut self) -> &mut u32;
     fn debris_quality_level(&self) -> &super::core::QualityLevel;
+    fn debris_quality_level_mut(&mut self) -> &mut super::core::QualityLevel;
 }
 
 impl DebrisSystemSettingsTrait for DebrisSystemSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn time_scale(&self) -> &f32 {
         &self.time_scale
+    }
+    fn time_scale_mut(&mut self) -> &mut f32 {
+        &mut self.time_scale
     }
     fn enable_jobs(&self) -> &bool {
         &self.enable_jobs
     }
+    fn enable_jobs_mut(&mut self) -> &mut bool {
+        &mut self.enable_jobs
+    }
     fn draw_stats(&self) -> &u32 {
         &self.draw_stats
+    }
+    fn draw_stats_mut(&mut self) -> &mut u32 {
+        &mut self.draw_stats
     }
     fn draw_enable(&self) -> &bool {
         &self.draw_enable
     }
+    fn draw_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_enable
+    }
     fn mesh_havok_rendering_enable(&self) -> &bool {
         &self.mesh_havok_rendering_enable
+    }
+    fn mesh_havok_rendering_enable_mut(&mut self) -> &mut bool {
+        &mut self.mesh_havok_rendering_enable
     }
     fn mesh_draw_transforms(&self) -> &bool {
         &self.mesh_draw_transforms
     }
+    fn mesh_draw_transforms_mut(&mut self) -> &mut bool {
+        &mut self.mesh_draw_transforms
+    }
     fn mesh_draw_bounding_boxes(&self) -> &bool {
         &self.mesh_draw_bounding_boxes
+    }
+    fn mesh_draw_bounding_boxes_mut(&mut self) -> &mut bool {
+        &mut self.mesh_draw_bounding_boxes
     }
     fn mesh_shadow_enable(&self) -> &bool {
         &self.mesh_shadow_enable
     }
+    fn mesh_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.mesh_shadow_enable
+    }
     fn mesh_view_culling_enable(&self) -> &bool {
         &self.mesh_view_culling_enable
+    }
+    fn mesh_view_culling_enable_mut(&mut self) -> &mut bool {
+        &mut self.mesh_view_culling_enable
     }
     fn mesh_culling_distance(&self) -> &f32 {
         &self.mesh_culling_distance
     }
+    fn mesh_culling_distance_mut(&mut self) -> &mut f32 {
+        &mut self.mesh_culling_distance
+    }
     fn mesh_batch_count_limit(&self) -> &u32 {
         &self.mesh_batch_count_limit
+    }
+    fn mesh_batch_count_limit_mut(&mut self) -> &mut u32 {
+        &mut self.mesh_batch_count_limit
     }
     fn debris_pool_size(&self) -> &u32 {
         &self.debris_pool_size
     }
+    fn debris_pool_size_mut(&mut self) -> &mut u32 {
+        &mut self.debris_pool_size
+    }
     fn mesh_draw_count_limit(&self) -> &u32 {
         &self.mesh_draw_count_limit
+    }
+    fn mesh_draw_count_limit_mut(&mut self) -> &mut u32 {
+        &mut self.mesh_draw_count_limit
     }
     fn mesh_streaming_priority_multiplier(&self) -> &f32 {
         &self.mesh_streaming_priority_multiplier
     }
+    fn mesh_streaming_priority_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.mesh_streaming_priority_multiplier
+    }
     fn mesh_draw_cull_stats(&self) -> &bool {
         &self.mesh_draw_cull_stats
+    }
+    fn mesh_draw_cull_stats_mut(&mut self) -> &mut bool {
+        &mut self.mesh_draw_cull_stats
     }
     fn client_max_debris_instances(&self) -> &u32 {
         &self.client_max_debris_instances
     }
+    fn client_max_debris_instances_mut(&mut self) -> &mut u32 {
+        &mut self.client_max_debris_instances
+    }
     fn debris_quality_level(&self) -> &super::core::QualityLevel {
         &self.debris_quality_level
+    }
+    fn debris_quality_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.debris_quality_level
     }
 }
 
 impl super::core::DataContainerTrait for DebrisSystemSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEBRISSYSTEMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1089,6 +1422,15 @@ impl TypeObject for DebrisSystemSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1111,15 +1453,23 @@ pub struct DebrisSystemAsset {
 
 pub trait DebrisSystemAssetTrait: super::core::AssetTrait {
     fn havok_meshes(&self) -> &Vec<DebrisHavokInfo>;
+    fn havok_meshes_mut(&mut self) -> &mut Vec<DebrisHavokInfo>;
     fn havok_mesh_count(&self) -> &i32;
+    fn havok_mesh_count_mut(&mut self) -> &mut i32;
 }
 
 impl DebrisSystemAssetTrait for DebrisSystemAsset {
     fn havok_meshes(&self) -> &Vec<DebrisHavokInfo> {
         &self.havok_meshes
     }
+    fn havok_meshes_mut(&mut self) -> &mut Vec<DebrisHavokInfo> {
+        &mut self.havok_meshes
+    }
     fn havok_mesh_count(&self) -> &i32 {
         &self.havok_mesh_count
+    }
+    fn havok_mesh_count_mut(&mut self) -> &mut i32 {
+        &mut self.havok_mesh_count
     }
 }
 
@@ -1127,12 +1477,12 @@ impl super::core::AssetTrait for DebrisSystemAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DebrisSystemAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEBRISSYSTEMASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1170,6 +1520,15 @@ impl TypeObject for DebrisSystemAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1191,15 +1550,23 @@ pub struct DebrisHavokInfo {
 
 pub trait DebrisHavokInfoTrait: TypeObject {
     fn havok_asset(&self) -> &Option<Arc<Mutex<dyn super::physics::HavokAssetTrait>>>;
+    fn havok_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::physics::HavokAssetTrait>>>;
     fn reserve_count(&self) -> &i32;
+    fn reserve_count_mut(&mut self) -> &mut i32;
 }
 
 impl DebrisHavokInfoTrait for DebrisHavokInfo {
     fn havok_asset(&self) -> &Option<Arc<Mutex<dyn super::physics::HavokAssetTrait>>> {
         &self.havok_asset
     }
+    fn havok_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::physics::HavokAssetTrait>>> {
+        &mut self.havok_asset
+    }
     fn reserve_count(&self) -> &i32 {
         &self.reserve_count
+    }
+    fn reserve_count_mut(&mut self) -> &mut i32 {
+        &mut self.reserve_count
     }
 }
 
@@ -1237,6 +1604,15 @@ impl TypeObject for DebrisHavokInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1258,15 +1634,23 @@ pub struct DebrisSystemMetrics {
 
 pub trait DebrisSystemMetricsTrait: TypeObject {
     fn havok_particle_count(&self) -> &i32;
+    fn havok_particle_count_mut(&mut self) -> &mut i32;
     fn havok_particle_part_count(&self) -> &i32;
+    fn havok_particle_part_count_mut(&mut self) -> &mut i32;
 }
 
 impl DebrisSystemMetricsTrait for DebrisSystemMetrics {
     fn havok_particle_count(&self) -> &i32 {
         &self.havok_particle_count
     }
+    fn havok_particle_count_mut(&mut self) -> &mut i32 {
+        &mut self.havok_particle_count
+    }
     fn havok_particle_part_count(&self) -> &i32 {
         &self.havok_particle_part_count
+    }
+    fn havok_particle_part_count_mut(&mut self) -> &mut i32 {
+        &mut self.havok_particle_part_count
     }
 }
 
@@ -1303,6 +1687,15 @@ impl TypeObject for DebrisSystemMetrics {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1366,6 +1759,15 @@ impl TypeObject for ServerDebrisCluster {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1415,6 +1817,15 @@ impl TypeObject for DebrisSpawnEvent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1474,6 +1885,15 @@ impl TypeObject for DebrisCluster {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1536,6 +1956,15 @@ impl TypeObject for ClientDebrisCluster {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

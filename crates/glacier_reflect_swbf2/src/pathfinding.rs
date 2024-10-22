@@ -114,15 +114,23 @@ pub struct ObstacleControllerEntityData {
 
 pub trait ObstacleControllerEntityDataTrait: super::entity::EntityDataTrait {
     fn active_at_start(&self) -> &bool;
+    fn active_at_start_mut(&mut self) -> &mut bool;
     fn obstacle_data(&self) -> &Option<Arc<Mutex<dyn ObstacleDatTrait>>>;
+    fn obstacle_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObstacleDatTrait>>>;
 }
 
 impl ObstacleControllerEntityDataTrait for ObstacleControllerEntityData {
     fn active_at_start(&self) -> &bool {
         &self.active_at_start
     }
+    fn active_at_start_mut(&mut self) -> &mut bool {
+        &mut self.active_at_start
+    }
     fn obstacle_data(&self) -> &Option<Arc<Mutex<dyn ObstacleDatTrait>>> {
         &self.obstacle_data
+    }
+    fn obstacle_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObstacleDatTrait>>> {
+        &mut self.obstacle_data
     }
 }
 
@@ -136,15 +144,15 @@ impl super::core::DataBusPeerTrait for ObstacleControllerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ObstacleControllerEntityData {
 }
 
 impl super::core::DataContainerTrait for ObstacleControllerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OBSTACLECONTROLLERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -182,6 +190,15 @@ impl TypeObject for ObstacleControllerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -203,11 +220,15 @@ pub struct PathfindingNavMeshVolumeData {
 
 pub trait PathfindingNavMeshVolumeDataTrait: super::entity::OBBDataTrait {
     fn category(&self) -> &Option<Arc<Mutex<dyn super::entity::PathfindingObjectCategoryAssetTrait>>>;
+    fn category_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PathfindingObjectCategoryAssetTrait>>>;
 }
 
 impl PathfindingNavMeshVolumeDataTrait for PathfindingNavMeshVolumeData {
     fn category(&self) -> &Option<Arc<Mutex<dyn super::entity::PathfindingObjectCategoryAssetTrait>>> {
         &self.category
+    }
+    fn category_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PathfindingObjectCategoryAssetTrait>>> {
+        &mut self.category
     }
 }
 
@@ -215,8 +236,14 @@ impl super::entity::OBBDataTrait for PathfindingNavMeshVolumeData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn half_extents(&self) -> &super::core::Vec3 {
         self._glacier_base.half_extents()
+    }
+    fn half_extents_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.half_extents_mut()
     }
 }
 
@@ -233,15 +260,15 @@ impl super::core::DataBusPeerTrait for PathfindingNavMeshVolumeData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PathfindingNavMeshVolumeData {
 }
 
 impl super::core::DataContainerTrait for PathfindingNavMeshVolumeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFINDINGNAVMESHVOLUMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -273,6 +300,15 @@ impl TypeObject for PathfindingNavMeshVolumeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -298,34 +334,51 @@ pub struct ObstacleDat {
 
 pub trait ObstacleDatTrait: super::core::DataContainerTrait {
     fn layer_mask(&self) -> &u32;
+    fn layer_mask_mut(&mut self) -> &mut u32;
     fn penalty_mult(&self) -> &f32;
+    fn penalty_mult_mut(&mut self) -> &mut f32;
     fn obstacle_blockage_flags(&self) -> &u32;
+    fn obstacle_blockage_flags_mut(&mut self) -> &mut u32;
     fn user_data(&self) -> &Option<Arc<Mutex<dyn CustomObstacleDataTrait>>>;
+    fn user_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CustomObstacleDataTrait>>>;
     fn obstacle_name(&self) -> &String;
+    fn obstacle_name_mut(&mut self) -> &mut String;
 }
 
 impl ObstacleDatTrait for ObstacleDat {
     fn layer_mask(&self) -> &u32 {
         &self.layer_mask
     }
+    fn layer_mask_mut(&mut self) -> &mut u32 {
+        &mut self.layer_mask
+    }
     fn penalty_mult(&self) -> &f32 {
         &self.penalty_mult
+    }
+    fn penalty_mult_mut(&mut self) -> &mut f32 {
+        &mut self.penalty_mult
     }
     fn obstacle_blockage_flags(&self) -> &u32 {
         &self.obstacle_blockage_flags
     }
+    fn obstacle_blockage_flags_mut(&mut self) -> &mut u32 {
+        &mut self.obstacle_blockage_flags
+    }
     fn user_data(&self) -> &Option<Arc<Mutex<dyn CustomObstacleDataTrait>>> {
         &self.user_data
+    }
+    fn user_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CustomObstacleDataTrait>>> {
+        &mut self.user_data
     }
     fn obstacle_name(&self) -> &String {
         &self.obstacle_name
     }
+    fn obstacle_name_mut(&mut self) -> &mut String {
+        &mut self.obstacle_name
+    }
 }
 
 impl super::core::DataContainerTrait for ObstacleDat {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OBSTACLEDAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -381,6 +434,15 @@ impl TypeObject for ObstacleDat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -406,9 +468,6 @@ impl CustomObstacleDataTrait for CustomObstacleData {
 }
 
 impl super::core::DataContainerTrait for CustomObstacleData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CUSTOMOBSTACLEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -433,6 +492,15 @@ impl TypeObject for CustomObstacleData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -459,33 +527,56 @@ pub struct PathLinkEntityData {
 
 pub trait PathLinkEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn points(&self) -> &Vec<super::core::Vec3>;
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3>;
     fn direction(&self) -> &PathLinkDirection;
+    fn direction_mut(&mut self) -> &mut PathLinkDirection;
     fn link_dat(&self) -> &Option<Arc<Mutex<dyn super::pathfinding_shared::LinkDatTrait>>>;
+    fn link_dat_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::pathfinding_shared::LinkDatTrait>>>;
     fn active_at_start(&self) -> &bool;
+    fn active_at_start_mut(&mut self) -> &mut bool;
     fn deferred_creation(&self) -> &bool;
+    fn deferred_creation_mut(&mut self) -> &mut bool;
 }
 
 impl PathLinkEntityDataTrait for PathLinkEntityData {
     fn points(&self) -> &Vec<super::core::Vec3> {
         &self.points
     }
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        &mut self.points
+    }
     fn direction(&self) -> &PathLinkDirection {
         &self.direction
+    }
+    fn direction_mut(&mut self) -> &mut PathLinkDirection {
+        &mut self.direction
     }
     fn link_dat(&self) -> &Option<Arc<Mutex<dyn super::pathfinding_shared::LinkDatTrait>>> {
         &self.link_dat
     }
+    fn link_dat_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::pathfinding_shared::LinkDatTrait>>> {
+        &mut self.link_dat
+    }
     fn active_at_start(&self) -> &bool {
         &self.active_at_start
     }
+    fn active_at_start_mut(&mut self) -> &mut bool {
+        &mut self.active_at_start
+    }
     fn deferred_creation(&self) -> &bool {
         &self.deferred_creation
+    }
+    fn deferred_creation_mut(&mut self) -> &mut bool {
+        &mut self.deferred_creation
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for PathLinkEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -499,15 +590,15 @@ impl super::core::DataBusPeerTrait for PathLinkEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PathLinkEntityData {
 }
 
 impl super::core::DataContainerTrait for PathLinkEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHLINKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -563,6 +654,15 @@ impl TypeObject for PathLinkEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -602,6 +702,15 @@ impl TypeObject for PathLinkDirection {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -624,15 +733,23 @@ pub struct MoverFollowLeaderEntityData {
 
 pub trait MoverFollowLeaderEntityDataTrait: super::entity::EntityDataTrait {
     fn following_parameters(&self) -> &FollowMoverSpec;
+    fn following_parameters_mut(&mut self) -> &mut FollowMoverSpec;
     fn flock_id(&self) -> &u32;
+    fn flock_id_mut(&mut self) -> &mut u32;
 }
 
 impl MoverFollowLeaderEntityDataTrait for MoverFollowLeaderEntityData {
     fn following_parameters(&self) -> &FollowMoverSpec {
         &self.following_parameters
     }
+    fn following_parameters_mut(&mut self) -> &mut FollowMoverSpec {
+        &mut self.following_parameters
+    }
     fn flock_id(&self) -> &u32 {
         &self.flock_id
+    }
+    fn flock_id_mut(&mut self) -> &mut u32 {
+        &mut self.flock_id
     }
 }
 
@@ -646,15 +763,15 @@ impl super::core::DataBusPeerTrait for MoverFollowLeaderEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MoverFollowLeaderEntityData {
 }
 
 impl super::core::DataContainerTrait for MoverFollowLeaderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVERFOLLOWLEADERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -692,6 +809,15 @@ impl TypeObject for MoverFollowLeaderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -718,31 +844,55 @@ pub struct MoverFollowWaypointsEntityData {
 
 pub trait MoverFollowWaypointsEntityDataTrait: super::entity::EntityDataTrait {
     fn type_of_route(&self) -> &super::pathfinding_shared::RouteType;
+    fn type_of_route_mut(&mut self) -> &mut super::pathfinding_shared::RouteType;
     fn stop_at_waypoints(&self) -> &bool;
+    fn stop_at_waypoints_mut(&mut self) -> &mut bool;
     fn start_at_geometrically_closest_waypoint(&self) -> &bool;
+    fn start_at_geometrically_closest_waypoint_mut(&mut self) -> &mut bool;
     fn intermediate_allowed_stop_dist_override(&self) -> &f32;
+    fn intermediate_allowed_stop_dist_override_mut(&mut self) -> &mut f32;
     fn destination_allowed_stop_dist_override(&self) -> &f32;
+    fn destination_allowed_stop_dist_override_mut(&mut self) -> &mut f32;
     fn destination_set_orientation(&self) -> &bool;
+    fn destination_set_orientation_mut(&mut self) -> &mut bool;
 }
 
 impl MoverFollowWaypointsEntityDataTrait for MoverFollowWaypointsEntityData {
     fn type_of_route(&self) -> &super::pathfinding_shared::RouteType {
         &self.type_of_route
     }
+    fn type_of_route_mut(&mut self) -> &mut super::pathfinding_shared::RouteType {
+        &mut self.type_of_route
+    }
     fn stop_at_waypoints(&self) -> &bool {
         &self.stop_at_waypoints
+    }
+    fn stop_at_waypoints_mut(&mut self) -> &mut bool {
+        &mut self.stop_at_waypoints
     }
     fn start_at_geometrically_closest_waypoint(&self) -> &bool {
         &self.start_at_geometrically_closest_waypoint
     }
+    fn start_at_geometrically_closest_waypoint_mut(&mut self) -> &mut bool {
+        &mut self.start_at_geometrically_closest_waypoint
+    }
     fn intermediate_allowed_stop_dist_override(&self) -> &f32 {
         &self.intermediate_allowed_stop_dist_override
+    }
+    fn intermediate_allowed_stop_dist_override_mut(&mut self) -> &mut f32 {
+        &mut self.intermediate_allowed_stop_dist_override
     }
     fn destination_allowed_stop_dist_override(&self) -> &f32 {
         &self.destination_allowed_stop_dist_override
     }
+    fn destination_allowed_stop_dist_override_mut(&mut self) -> &mut f32 {
+        &mut self.destination_allowed_stop_dist_override
+    }
     fn destination_set_orientation(&self) -> &bool {
         &self.destination_set_orientation
+    }
+    fn destination_set_orientation_mut(&mut self) -> &mut bool {
+        &mut self.destination_set_orientation
     }
 }
 
@@ -756,15 +906,15 @@ impl super::core::DataBusPeerTrait for MoverFollowWaypointsEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MoverFollowWaypointsEntityData {
 }
 
 impl super::core::DataContainerTrait for MoverFollowWaypointsEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVERFOLLOWWAYPOINTSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -826,6 +976,15 @@ impl TypeObject for MoverFollowWaypointsEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -859,59 +1018,111 @@ pub struct MoverComponentData {
 
 pub trait MoverComponentDataTrait: super::entity::GameComponentDataTrait {
     fn r#type(&self) -> &EntityMoverType;
+    fn r#type_mut(&mut self) -> &mut EntityMoverType;
     fn mover_tune(&self) -> &Option<Arc<Mutex<dyn MoverTuneTrait>>>;
+    fn mover_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MoverTuneTrait>>>;
     fn goal_plan_failure_treshold(&self) -> &f32;
+    fn goal_plan_failure_treshold_mut(&mut self) -> &mut f32;
     fn goal_height_failure_treshold(&self) -> &f32;
+    fn goal_height_failure_treshold_mut(&mut self) -> &mut f32;
     fn radius_data(&self) -> &Option<Arc<Mutex<dyn RadiusDataTrait>>>;
+    fn radius_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RadiusDataTrait>>>;
     fn enable_puppet_mode(&self) -> &bool;
+    fn enable_puppet_mode_mut(&mut self) -> &mut bool;
     fn move_speed_modifier(&self) -> &f32;
+    fn move_speed_modifier_mut(&mut self) -> &mut f32;
     fn desired_movement_angle_game_state(&self) -> &super::ant::AntRef;
+    fn desired_movement_angle_game_state_mut(&mut self) -> &mut super::ant::AntRef;
     fn desired_relative_movement_angle_game_state(&self) -> &super::ant::AntRef;
+    fn desired_relative_movement_angle_game_state_mut(&mut self) -> &mut super::ant::AntRef;
     fn desired_movement_speed_game_state(&self) -> &super::ant::AntRef;
+    fn desired_movement_speed_game_state_mut(&mut self) -> &mut super::ant::AntRef;
     fn desired_facing_angle_game_state(&self) -> &super::ant::AntRef;
+    fn desired_facing_angle_game_state_mut(&mut self) -> &mut super::ant::AntRef;
     fn desired_relative_facing_angle_game_state(&self) -> &super::ant::AntRef;
+    fn desired_relative_facing_angle_game_state_mut(&mut self) -> &mut super::ant::AntRef;
     fn distance_to_goal_game_state(&self) -> &super::ant::AntRef;
+    fn distance_to_goal_game_state_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl MoverComponentDataTrait for MoverComponentData {
     fn r#type(&self) -> &EntityMoverType {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut EntityMoverType {
+        &mut self.r#type
+    }
     fn mover_tune(&self) -> &Option<Arc<Mutex<dyn MoverTuneTrait>>> {
         &self.mover_tune
+    }
+    fn mover_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MoverTuneTrait>>> {
+        &mut self.mover_tune
     }
     fn goal_plan_failure_treshold(&self) -> &f32 {
         &self.goal_plan_failure_treshold
     }
+    fn goal_plan_failure_treshold_mut(&mut self) -> &mut f32 {
+        &mut self.goal_plan_failure_treshold
+    }
     fn goal_height_failure_treshold(&self) -> &f32 {
         &self.goal_height_failure_treshold
+    }
+    fn goal_height_failure_treshold_mut(&mut self) -> &mut f32 {
+        &mut self.goal_height_failure_treshold
     }
     fn radius_data(&self) -> &Option<Arc<Mutex<dyn RadiusDataTrait>>> {
         &self.radius_data
     }
+    fn radius_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RadiusDataTrait>>> {
+        &mut self.radius_data
+    }
     fn enable_puppet_mode(&self) -> &bool {
         &self.enable_puppet_mode
+    }
+    fn enable_puppet_mode_mut(&mut self) -> &mut bool {
+        &mut self.enable_puppet_mode
     }
     fn move_speed_modifier(&self) -> &f32 {
         &self.move_speed_modifier
     }
+    fn move_speed_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.move_speed_modifier
+    }
     fn desired_movement_angle_game_state(&self) -> &super::ant::AntRef {
         &self.desired_movement_angle_game_state
+    }
+    fn desired_movement_angle_game_state_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.desired_movement_angle_game_state
     }
     fn desired_relative_movement_angle_game_state(&self) -> &super::ant::AntRef {
         &self.desired_relative_movement_angle_game_state
     }
+    fn desired_relative_movement_angle_game_state_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.desired_relative_movement_angle_game_state
+    }
     fn desired_movement_speed_game_state(&self) -> &super::ant::AntRef {
         &self.desired_movement_speed_game_state
+    }
+    fn desired_movement_speed_game_state_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.desired_movement_speed_game_state
     }
     fn desired_facing_angle_game_state(&self) -> &super::ant::AntRef {
         &self.desired_facing_angle_game_state
     }
+    fn desired_facing_angle_game_state_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.desired_facing_angle_game_state
+    }
     fn desired_relative_facing_angle_game_state(&self) -> &super::ant::AntRef {
         &self.desired_relative_facing_angle_game_state
     }
+    fn desired_relative_facing_angle_game_state_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.desired_relative_facing_angle_game_state
+    }
     fn distance_to_goal_game_state(&self) -> &super::ant::AntRef {
         &self.distance_to_goal_game_state
+    }
+    fn distance_to_goal_game_state_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.distance_to_goal_game_state
     }
 }
 
@@ -922,17 +1133,32 @@ impl super::entity::ComponentDataTrait for MoverComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -943,15 +1169,15 @@ impl super::core::DataBusPeerTrait for MoverComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MoverComponentData {
 }
 
 impl super::core::DataContainerTrait for MoverComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVERCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1055,6 +1281,15 @@ impl TypeObject for MoverComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1093,6 +1328,15 @@ impl TypeObject for EntityMoverType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1121,104 +1365,206 @@ impl MoverTuneTrait for MoverTuneOverride {
     fn speed(&self) -> &f32 {
         self._glacier_base.speed()
     }
+    fn speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.speed_mut()
+    }
     fn max_speed_fraction(&self) -> &f32 {
         self._glacier_base.max_speed_fraction()
+    }
+    fn max_speed_fraction_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_speed_fraction_mut()
     }
     fn radius_data(&self) -> &Option<Arc<Mutex<dyn RadiusDataTrait>>> {
         self._glacier_base.radius_data()
     }
+    fn radius_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RadiusDataTrait>>> {
+        self._glacier_base.radius_data_mut()
+    }
     fn bulk(&self) -> &f32 {
         self._glacier_base.bulk()
+    }
+    fn bulk_mut(&mut self) -> &mut f32 {
+        self._glacier_base.bulk_mut()
     }
     fn cruise_acc(&self) -> &f32 {
         self._glacier_base.cruise_acc()
     }
+    fn cruise_acc_mut(&mut self) -> &mut f32 {
+        self._glacier_base.cruise_acc_mut()
+    }
     fn start_stop_acc(&self) -> &f32 {
         self._glacier_base.start_stop_acc()
+    }
+    fn start_stop_acc_mut(&mut self) -> &mut f32 {
+        self._glacier_base.start_stop_acc_mut()
     }
     fn repulsor_type(&self) -> &i32 {
         self._glacier_base.repulsor_type()
     }
+    fn repulsor_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.repulsor_type_mut()
+    }
     fn flock_acc(&self) -> &f32 {
         self._glacier_base.flock_acc()
+    }
+    fn flock_acc_mut(&mut self) -> &mut f32 {
+        self._glacier_base.flock_acc_mut()
     }
     fn max_flock_acc_dist(&self) -> &f32 {
         self._glacier_base.max_flock_acc_dist()
     }
+    fn max_flock_acc_dist_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_flock_acc_dist_mut()
+    }
     fn path_acc(&self) -> &f32 {
         self._glacier_base.path_acc()
+    }
+    fn path_acc_mut(&mut self) -> &mut f32 {
+        self._glacier_base.path_acc_mut()
     }
     fn caution_tune(&self) -> &Option<Arc<Mutex<dyn CautionTuneTrait>>> {
         self._glacier_base.caution_tune()
     }
+    fn caution_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CautionTuneTrait>>> {
+        self._glacier_base.caution_tune_mut()
+    }
     fn backpedal_fraction(&self) -> &f32 {
         self._glacier_base.backpedal_fraction()
+    }
+    fn backpedal_fraction_mut(&mut self) -> &mut f32 {
+        self._glacier_base.backpedal_fraction_mut()
     }
     fn plan_layer(&self) -> &u32 {
         self._glacier_base.plan_layer()
     }
+    fn plan_layer_mut(&mut self) -> &mut u32 {
+        self._glacier_base.plan_layer_mut()
+    }
     fn path_sharing_penalty(&self) -> &f32 {
         self._glacier_base.path_sharing_penalty()
+    }
+    fn path_sharing_penalty_mut(&mut self) -> &mut f32 {
+        self._glacier_base.path_sharing_penalty_mut()
     }
     fn obstacle_mode(&self) -> &BlockageMode {
         self._glacier_base.obstacle_mode()
     }
+    fn obstacle_mode_mut(&mut self) -> &mut BlockageMode {
+        self._glacier_base.obstacle_mode_mut()
+    }
     fn obstacle_blockage_flags(&self) -> &u32 {
         self._glacier_base.obstacle_blockage_flags()
+    }
+    fn obstacle_blockage_flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.obstacle_blockage_flags_mut()
     }
     fn auto_ob_tune(&self) -> &Option<Arc<Mutex<dyn AutoObstacleTuneTrait>>> {
         self._glacier_base.auto_ob_tune()
     }
+    fn auto_ob_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutoObstacleTuneTrait>>> {
+        self._glacier_base.auto_ob_tune_mut()
+    }
     fn repulsor_blockage_flags(&self) -> &u32 {
         self._glacier_base.repulsor_blockage_flags()
+    }
+    fn repulsor_blockage_flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.repulsor_blockage_flags_mut()
     }
     fn repulsor_identity_flags(&self) -> &u32 {
         self._glacier_base.repulsor_identity_flags()
     }
+    fn repulsor_identity_flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.repulsor_identity_flags_mut()
+    }
     fn link_usage_flags(&self) -> &u32 {
         self._glacier_base.link_usage_flags()
+    }
+    fn link_usage_flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.link_usage_flags_mut()
     }
     fn path_options(&self) -> &Option<Arc<Mutex<dyn PathCreationOptionsTrait>>> {
         self._glacier_base.path_options()
     }
+    fn path_options_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PathCreationOptionsTrait>>> {
+        self._glacier_base.path_options_mut()
+    }
     fn jumper_tune(&self) -> &Option<Arc<Mutex<dyn JumperTuneTrait>>> {
         self._glacier_base.jumper_tune()
+    }
+    fn jumper_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn JumperTuneTrait>>> {
+        self._glacier_base.jumper_tune_mut()
     }
     fn exit_puppet_in_obstacles(&self) -> &bool {
         self._glacier_base.exit_puppet_in_obstacles()
     }
+    fn exit_puppet_in_obstacles_mut(&mut self) -> &mut bool {
+        self._glacier_base.exit_puppet_in_obstacles_mut()
+    }
     fn prober_tune(&self) -> &Option<Arc<Mutex<dyn ProberTuneTrait>>> {
         self._glacier_base.prober_tune()
+    }
+    fn prober_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProberTuneTrait>>> {
+        self._glacier_base.prober_tune_mut()
     }
     fn allow_detour(&self) -> &bool {
         self._glacier_base.allow_detour()
     }
+    fn allow_detour_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_detour_mut()
+    }
     fn goal_tune(&self) -> &Option<Arc<Mutex<dyn GoalTuneTrait>>> {
         self._glacier_base.goal_tune()
+    }
+    fn goal_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GoalTuneTrait>>> {
+        self._glacier_base.goal_tune_mut()
     }
     fn idle_tune(&self) -> &Option<Arc<Mutex<dyn IdleTuneTrait>>> {
         self._glacier_base.idle_tune()
     }
+    fn idle_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn IdleTuneTrait>>> {
+        self._glacier_base.idle_tune_mut()
+    }
     fn turn_in_place(&self) -> &Option<Arc<Mutex<dyn TurnInPlaceTuneTrait>>> {
         self._glacier_base.turn_in_place()
+    }
+    fn turn_in_place_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TurnInPlaceTuneTrait>>> {
+        self._glacier_base.turn_in_place_mut()
     }
     fn repulsion_acceleration_tune(&self) -> &Option<Arc<Mutex<dyn RepulsionAccelerationTuneTrait>>> {
         self._glacier_base.repulsion_acceleration_tune()
     }
+    fn repulsion_acceleration_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RepulsionAccelerationTuneTrait>>> {
+        self._glacier_base.repulsion_acceleration_tune_mut()
+    }
     fn surface_orient_tune(&self) -> &Option<Arc<Mutex<dyn SurfaceOrientTuneTrait>>> {
         self._glacier_base.surface_orient_tune()
+    }
+    fn surface_orient_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SurfaceOrientTuneTrait>>> {
+        self._glacier_base.surface_orient_tune_mut()
     }
     fn sidestep_fraction(&self) -> &f32 {
         self._glacier_base.sidestep_fraction()
     }
+    fn sidestep_fraction_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sidestep_fraction_mut()
+    }
     fn custom_geo_match_flags(&self) -> &u32 {
         self._glacier_base.custom_geo_match_flags()
+    }
+    fn custom_geo_match_flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.custom_geo_match_flags_mut()
     }
     fn client_motion(&self) -> &bool {
         self._glacier_base.client_motion()
     }
+    fn client_motion_mut(&mut self) -> &mut bool {
+        self._glacier_base.client_motion_mut()
+    }
     fn follower_tune(&self) -> &Option<Arc<Mutex<dyn FollowerTuneTrait>>> {
         self._glacier_base.follower_tune()
+    }
+    fn follower_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FollowerTuneTrait>>> {
+        self._glacier_base.follower_tune_mut()
     }
 }
 
@@ -1226,12 +1572,12 @@ impl super::core::AssetTrait for MoverTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MoverTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVERTUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1256,6 +1602,15 @@ impl TypeObject for MoverTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1285,20 +1640,38 @@ impl FollowerTuneTrait for FollowerTuneOverride {
     fn circulate_enable(&self) -> &bool {
         self._glacier_base.circulate_enable()
     }
+    fn circulate_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.circulate_enable_mut()
+    }
     fn circulate_min_time(&self) -> &f32 {
         self._glacier_base.circulate_min_time()
+    }
+    fn circulate_min_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.circulate_min_time_mut()
     }
     fn circulate_max_time(&self) -> &f32 {
         self._glacier_base.circulate_max_time()
     }
+    fn circulate_max_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.circulate_max_time_mut()
+    }
     fn startup_slowness(&self) -> &f32 {
         self._glacier_base.startup_slowness()
+    }
+    fn startup_slowness_mut(&mut self) -> &mut f32 {
+        self._glacier_base.startup_slowness_mut()
     }
     fn startup_bulk(&self) -> &f32 {
         self._glacier_base.startup_bulk()
     }
+    fn startup_bulk_mut(&mut self) -> &mut f32 {
+        self._glacier_base.startup_bulk_mut()
+    }
     fn packing_padding(&self) -> &f32 {
         self._glacier_base.packing_padding()
+    }
+    fn packing_padding_mut(&mut self) -> &mut f32 {
+        self._glacier_base.packing_padding_mut()
     }
 }
 
@@ -1306,12 +1679,12 @@ impl super::core::AssetTrait for FollowerTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FollowerTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FOLLOWERTUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1336,6 +1709,15 @@ impl TypeObject for FollowerTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1365,11 +1747,20 @@ impl SurfaceOrientTuneTrait for SurfaceOrientTuneOverride {
     fn surface_orient_threshold(&self) -> &f32 {
         self._glacier_base.surface_orient_threshold()
     }
+    fn surface_orient_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.surface_orient_threshold_mut()
+    }
     fn always_vertical_on_auto_gen(&self) -> &bool {
         self._glacier_base.always_vertical_on_auto_gen()
     }
+    fn always_vertical_on_auto_gen_mut(&mut self) -> &mut bool {
+        self._glacier_base.always_vertical_on_auto_gen_mut()
+    }
     fn surface_orient_slerp_time(&self) -> &f32 {
         self._glacier_base.surface_orient_slerp_time()
+    }
+    fn surface_orient_slerp_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.surface_orient_slerp_time_mut()
     }
 }
 
@@ -1377,12 +1768,12 @@ impl super::core::AssetTrait for SurfaceOrientTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SurfaceOrientTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SURFACEORIENTTUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1407,6 +1798,15 @@ impl TypeObject for SurfaceOrientTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1436,11 +1836,20 @@ impl AutoObstacleTuneTrait for AutoObstacleTuneOverride {
     fn auto_create_obstacle(&self) -> &bool {
         self._glacier_base.auto_create_obstacle()
     }
+    fn auto_create_obstacle_mut(&mut self) -> &mut bool {
+        self._glacier_base.auto_create_obstacle_mut()
+    }
     fn delay(&self) -> &f32 {
         self._glacier_base.delay()
     }
+    fn delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.delay_mut()
+    }
     fn obstacle_blockage_flags(&self) -> &u32 {
         self._glacier_base.obstacle_blockage_flags()
+    }
+    fn obstacle_blockage_flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.obstacle_blockage_flags_mut()
     }
 }
 
@@ -1448,12 +1857,12 @@ impl super::core::AssetTrait for AutoObstacleTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AutoObstacleTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOOBSTACLETUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1478,6 +1887,15 @@ impl TypeObject for AutoObstacleTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1507,8 +1925,14 @@ impl IdleTuneTrait for IdleTuneOverride {
     fn tether_dist(&self) -> &f32 {
         self._glacier_base.tether_dist()
     }
+    fn tether_dist_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tether_dist_mut()
+    }
     fn return_delay(&self) -> &f32 {
         self._glacier_base.return_delay()
+    }
+    fn return_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.return_delay_mut()
     }
 }
 
@@ -1516,12 +1940,12 @@ impl super::core::AssetTrait for IdleTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for IdleTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static IDLETUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1546,6 +1970,15 @@ impl TypeObject for IdleTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1575,8 +2008,14 @@ impl GoalTuneTrait for GoalTuneOverride {
     fn use_circular_approach(&self) -> &bool {
         self._glacier_base.use_circular_approach()
     }
+    fn use_circular_approach_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_circular_approach_mut()
+    }
     fn preferred_turning_radius(&self) -> &f32 {
         self._glacier_base.preferred_turning_radius()
+    }
+    fn preferred_turning_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.preferred_turning_radius_mut()
     }
 }
 
@@ -1584,12 +2023,12 @@ impl super::core::AssetTrait for GoalTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for GoalTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GOALTUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1614,6 +2053,15 @@ impl TypeObject for GoalTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1643,8 +2091,14 @@ impl ProberTuneTrait for ProberTuneOverride {
     fn probe_for_ground(&self) -> &bool {
         self._glacier_base.probe_for_ground()
     }
+    fn probe_for_ground_mut(&mut self) -> &mut bool {
+        self._glacier_base.probe_for_ground_mut()
+    }
     fn probe_interval(&self) -> &f32 {
         self._glacier_base.probe_interval()
+    }
+    fn probe_interval_mut(&mut self) -> &mut f32 {
+        self._glacier_base.probe_interval_mut()
     }
 }
 
@@ -1652,12 +2106,12 @@ impl super::core::AssetTrait for ProberTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ProberTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROBERTUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1682,6 +2136,15 @@ impl TypeObject for ProberTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1711,17 +2174,32 @@ impl JumperTuneTrait for JumperTuneOverride {
     fn speed(&self) -> &f32 {
         self._glacier_base.speed()
     }
+    fn speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.speed_mut()
+    }
     fn arc_fraction(&self) -> &f32 {
         self._glacier_base.arc_fraction()
+    }
+    fn arc_fraction_mut(&mut self) -> &mut f32 {
+        self._glacier_base.arc_fraction_mut()
     }
     fn turn_before_jump_angle(&self) -> &f32 {
         self._glacier_base.turn_before_jump_angle()
     }
+    fn turn_before_jump_angle_mut(&mut self) -> &mut f32 {
+        self._glacier_base.turn_before_jump_angle_mut()
+    }
     fn keep_speed_when_swap_to_default(&self) -> &bool {
         self._glacier_base.keep_speed_when_swap_to_default()
     }
+    fn keep_speed_when_swap_to_default_mut(&mut self) -> &mut bool {
+        self._glacier_base.keep_speed_when_swap_to_default_mut()
+    }
     fn only_jump_to_end_point(&self) -> &bool {
         self._glacier_base.only_jump_to_end_point()
+    }
+    fn only_jump_to_end_point_mut(&mut self) -> &mut bool {
+        self._glacier_base.only_jump_to_end_point_mut()
     }
 }
 
@@ -1729,12 +2207,12 @@ impl super::core::AssetTrait for JumperTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for JumperTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static JUMPERTUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1759,6 +2237,15 @@ impl TypeObject for JumperTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1788,8 +2275,14 @@ impl CautionTuneTrait for CautionTuneOverride {
     fn speed_x(&self) -> &f32 {
         self._glacier_base.speed_x()
     }
+    fn speed_x_mut(&mut self) -> &mut f32 {
+        self._glacier_base.speed_x_mut()
+    }
     fn tight_turn_degrees(&self) -> &f32 {
         self._glacier_base.tight_turn_degrees()
+    }
+    fn tight_turn_degrees_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tight_turn_degrees_mut()
     }
 }
 
@@ -1797,12 +2290,12 @@ impl super::core::AssetTrait for CautionTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CautionTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CAUTIONTUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1827,6 +2320,15 @@ impl TypeObject for CautionTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1856,11 +2358,20 @@ impl RepulsionAccelerationTuneTrait for RepulsionAccelerationTuneOverride {
     fn initial_acc(&self) -> &f32 {
         self._glacier_base.initial_acc()
     }
+    fn initial_acc_mut(&mut self) -> &mut f32 {
+        self._glacier_base.initial_acc_mut()
+    }
     fn outer_cushion_acc(&self) -> &f32 {
         self._glacier_base.outer_cushion_acc()
     }
+    fn outer_cushion_acc_mut(&mut self) -> &mut f32 {
+        self._glacier_base.outer_cushion_acc_mut()
+    }
     fn inner_cushion_acc(&self) -> &f32 {
         self._glacier_base.inner_cushion_acc()
+    }
+    fn inner_cushion_acc_mut(&mut self) -> &mut f32 {
+        self._glacier_base.inner_cushion_acc_mut()
     }
 }
 
@@ -1868,12 +2379,12 @@ impl super::core::AssetTrait for RepulsionAccelerationTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RepulsionAccelerationTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static REPULSIONACCELERATIONTUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1898,6 +2409,15 @@ impl TypeObject for RepulsionAccelerationTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1927,20 +2447,38 @@ impl TurnInPlaceTuneTrait for TurnInPlaceTuneOverride {
     fn when_moving_angle(&self) -> &f32 {
         self._glacier_base.when_moving_angle()
     }
+    fn when_moving_angle_mut(&mut self) -> &mut f32 {
+        self._glacier_base.when_moving_angle_mut()
+    }
     fn when_stopped_angle(&self) -> &f32 {
         self._glacier_base.when_stopped_angle()
+    }
+    fn when_stopped_angle_mut(&mut self) -> &mut f32 {
+        self._glacier_base.when_stopped_angle_mut()
     }
     fn speed(&self) -> &f32 {
         self._glacier_base.speed()
     }
+    fn speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.speed_mut()
+    }
     fn accel_angle(&self) -> &f32 {
         self._glacier_base.accel_angle()
+    }
+    fn accel_angle_mut(&mut self) -> &mut f32 {
+        self._glacier_base.accel_angle_mut()
     }
     fn slide_spin_threshold(&self) -> &f32 {
         self._glacier_base.slide_spin_threshold()
     }
+    fn slide_spin_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.slide_spin_threshold_mut()
+    }
     fn enable_u_turn(&self) -> &bool {
         self._glacier_base.enable_u_turn()
+    }
+    fn enable_u_turn_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_u_turn_mut()
     }
 }
 
@@ -1948,12 +2486,12 @@ impl super::core::AssetTrait for TurnInPlaceTuneOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TurnInPlaceTuneOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TURNINPLACETUNEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1978,6 +2516,15 @@ impl TypeObject for TurnInPlaceTuneOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2007,11 +2554,20 @@ impl RadiusDataTrait for RadiusDataOverride {
     fn radius(&self) -> &f32 {
         self._glacier_base.radius()
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.radius_mut()
+    }
     fn outer_cushion(&self) -> &f32 {
         self._glacier_base.outer_cushion()
     }
+    fn outer_cushion_mut(&mut self) -> &mut f32 {
+        self._glacier_base.outer_cushion_mut()
+    }
     fn inner_cushion(&self) -> &f32 {
         self._glacier_base.inner_cushion()
+    }
+    fn inner_cushion_mut(&mut self) -> &mut f32 {
+        self._glacier_base.inner_cushion_mut()
     }
 }
 
@@ -2019,12 +2575,12 @@ impl super::core::AssetTrait for RadiusDataOverride {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RadiusDataOverride {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RADIUSDATAOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2049,6 +2605,15 @@ impl TypeObject for RadiusDataOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2104,143 +2669,279 @@ pub struct MoverTune {
 
 pub trait MoverTuneTrait: super::core::AssetTrait {
     fn speed(&self) -> &f32;
+    fn speed_mut(&mut self) -> &mut f32;
     fn max_speed_fraction(&self) -> &f32;
+    fn max_speed_fraction_mut(&mut self) -> &mut f32;
     fn radius_data(&self) -> &Option<Arc<Mutex<dyn RadiusDataTrait>>>;
+    fn radius_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RadiusDataTrait>>>;
     fn bulk(&self) -> &f32;
+    fn bulk_mut(&mut self) -> &mut f32;
     fn cruise_acc(&self) -> &f32;
+    fn cruise_acc_mut(&mut self) -> &mut f32;
     fn start_stop_acc(&self) -> &f32;
+    fn start_stop_acc_mut(&mut self) -> &mut f32;
     fn repulsor_type(&self) -> &i32;
+    fn repulsor_type_mut(&mut self) -> &mut i32;
     fn flock_acc(&self) -> &f32;
+    fn flock_acc_mut(&mut self) -> &mut f32;
     fn max_flock_acc_dist(&self) -> &f32;
+    fn max_flock_acc_dist_mut(&mut self) -> &mut f32;
     fn path_acc(&self) -> &f32;
+    fn path_acc_mut(&mut self) -> &mut f32;
     fn caution_tune(&self) -> &Option<Arc<Mutex<dyn CautionTuneTrait>>>;
+    fn caution_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CautionTuneTrait>>>;
     fn backpedal_fraction(&self) -> &f32;
+    fn backpedal_fraction_mut(&mut self) -> &mut f32;
     fn plan_layer(&self) -> &u32;
+    fn plan_layer_mut(&mut self) -> &mut u32;
     fn path_sharing_penalty(&self) -> &f32;
+    fn path_sharing_penalty_mut(&mut self) -> &mut f32;
     fn obstacle_mode(&self) -> &BlockageMode;
+    fn obstacle_mode_mut(&mut self) -> &mut BlockageMode;
     fn obstacle_blockage_flags(&self) -> &u32;
+    fn obstacle_blockage_flags_mut(&mut self) -> &mut u32;
     fn auto_ob_tune(&self) -> &Option<Arc<Mutex<dyn AutoObstacleTuneTrait>>>;
+    fn auto_ob_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutoObstacleTuneTrait>>>;
     fn repulsor_blockage_flags(&self) -> &u32;
+    fn repulsor_blockage_flags_mut(&mut self) -> &mut u32;
     fn repulsor_identity_flags(&self) -> &u32;
+    fn repulsor_identity_flags_mut(&mut self) -> &mut u32;
     fn link_usage_flags(&self) -> &u32;
+    fn link_usage_flags_mut(&mut self) -> &mut u32;
     fn path_options(&self) -> &Option<Arc<Mutex<dyn PathCreationOptionsTrait>>>;
+    fn path_options_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PathCreationOptionsTrait>>>;
     fn jumper_tune(&self) -> &Option<Arc<Mutex<dyn JumperTuneTrait>>>;
+    fn jumper_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn JumperTuneTrait>>>;
     fn exit_puppet_in_obstacles(&self) -> &bool;
+    fn exit_puppet_in_obstacles_mut(&mut self) -> &mut bool;
     fn prober_tune(&self) -> &Option<Arc<Mutex<dyn ProberTuneTrait>>>;
+    fn prober_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProberTuneTrait>>>;
     fn allow_detour(&self) -> &bool;
+    fn allow_detour_mut(&mut self) -> &mut bool;
     fn goal_tune(&self) -> &Option<Arc<Mutex<dyn GoalTuneTrait>>>;
+    fn goal_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GoalTuneTrait>>>;
     fn idle_tune(&self) -> &Option<Arc<Mutex<dyn IdleTuneTrait>>>;
+    fn idle_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn IdleTuneTrait>>>;
     fn turn_in_place(&self) -> &Option<Arc<Mutex<dyn TurnInPlaceTuneTrait>>>;
+    fn turn_in_place_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TurnInPlaceTuneTrait>>>;
     fn repulsion_acceleration_tune(&self) -> &Option<Arc<Mutex<dyn RepulsionAccelerationTuneTrait>>>;
+    fn repulsion_acceleration_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RepulsionAccelerationTuneTrait>>>;
     fn surface_orient_tune(&self) -> &Option<Arc<Mutex<dyn SurfaceOrientTuneTrait>>>;
+    fn surface_orient_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SurfaceOrientTuneTrait>>>;
     fn sidestep_fraction(&self) -> &f32;
+    fn sidestep_fraction_mut(&mut self) -> &mut f32;
     fn custom_geo_match_flags(&self) -> &u32;
+    fn custom_geo_match_flags_mut(&mut self) -> &mut u32;
     fn client_motion(&self) -> &bool;
+    fn client_motion_mut(&mut self) -> &mut bool;
     fn follower_tune(&self) -> &Option<Arc<Mutex<dyn FollowerTuneTrait>>>;
+    fn follower_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FollowerTuneTrait>>>;
 }
 
 impl MoverTuneTrait for MoverTune {
     fn speed(&self) -> &f32 {
         &self.speed
     }
+    fn speed_mut(&mut self) -> &mut f32 {
+        &mut self.speed
+    }
     fn max_speed_fraction(&self) -> &f32 {
         &self.max_speed_fraction
+    }
+    fn max_speed_fraction_mut(&mut self) -> &mut f32 {
+        &mut self.max_speed_fraction
     }
     fn radius_data(&self) -> &Option<Arc<Mutex<dyn RadiusDataTrait>>> {
         &self.radius_data
     }
+    fn radius_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RadiusDataTrait>>> {
+        &mut self.radius_data
+    }
     fn bulk(&self) -> &f32 {
         &self.bulk
+    }
+    fn bulk_mut(&mut self) -> &mut f32 {
+        &mut self.bulk
     }
     fn cruise_acc(&self) -> &f32 {
         &self.cruise_acc
     }
+    fn cruise_acc_mut(&mut self) -> &mut f32 {
+        &mut self.cruise_acc
+    }
     fn start_stop_acc(&self) -> &f32 {
         &self.start_stop_acc
+    }
+    fn start_stop_acc_mut(&mut self) -> &mut f32 {
+        &mut self.start_stop_acc
     }
     fn repulsor_type(&self) -> &i32 {
         &self.repulsor_type
     }
+    fn repulsor_type_mut(&mut self) -> &mut i32 {
+        &mut self.repulsor_type
+    }
     fn flock_acc(&self) -> &f32 {
         &self.flock_acc
+    }
+    fn flock_acc_mut(&mut self) -> &mut f32 {
+        &mut self.flock_acc
     }
     fn max_flock_acc_dist(&self) -> &f32 {
         &self.max_flock_acc_dist
     }
+    fn max_flock_acc_dist_mut(&mut self) -> &mut f32 {
+        &mut self.max_flock_acc_dist
+    }
     fn path_acc(&self) -> &f32 {
         &self.path_acc
+    }
+    fn path_acc_mut(&mut self) -> &mut f32 {
+        &mut self.path_acc
     }
     fn caution_tune(&self) -> &Option<Arc<Mutex<dyn CautionTuneTrait>>> {
         &self.caution_tune
     }
+    fn caution_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CautionTuneTrait>>> {
+        &mut self.caution_tune
+    }
     fn backpedal_fraction(&self) -> &f32 {
         &self.backpedal_fraction
+    }
+    fn backpedal_fraction_mut(&mut self) -> &mut f32 {
+        &mut self.backpedal_fraction
     }
     fn plan_layer(&self) -> &u32 {
         &self.plan_layer
     }
+    fn plan_layer_mut(&mut self) -> &mut u32 {
+        &mut self.plan_layer
+    }
     fn path_sharing_penalty(&self) -> &f32 {
         &self.path_sharing_penalty
+    }
+    fn path_sharing_penalty_mut(&mut self) -> &mut f32 {
+        &mut self.path_sharing_penalty
     }
     fn obstacle_mode(&self) -> &BlockageMode {
         &self.obstacle_mode
     }
+    fn obstacle_mode_mut(&mut self) -> &mut BlockageMode {
+        &mut self.obstacle_mode
+    }
     fn obstacle_blockage_flags(&self) -> &u32 {
         &self.obstacle_blockage_flags
+    }
+    fn obstacle_blockage_flags_mut(&mut self) -> &mut u32 {
+        &mut self.obstacle_blockage_flags
     }
     fn auto_ob_tune(&self) -> &Option<Arc<Mutex<dyn AutoObstacleTuneTrait>>> {
         &self.auto_ob_tune
     }
+    fn auto_ob_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutoObstacleTuneTrait>>> {
+        &mut self.auto_ob_tune
+    }
     fn repulsor_blockage_flags(&self) -> &u32 {
         &self.repulsor_blockage_flags
+    }
+    fn repulsor_blockage_flags_mut(&mut self) -> &mut u32 {
+        &mut self.repulsor_blockage_flags
     }
     fn repulsor_identity_flags(&self) -> &u32 {
         &self.repulsor_identity_flags
     }
+    fn repulsor_identity_flags_mut(&mut self) -> &mut u32 {
+        &mut self.repulsor_identity_flags
+    }
     fn link_usage_flags(&self) -> &u32 {
         &self.link_usage_flags
+    }
+    fn link_usage_flags_mut(&mut self) -> &mut u32 {
+        &mut self.link_usage_flags
     }
     fn path_options(&self) -> &Option<Arc<Mutex<dyn PathCreationOptionsTrait>>> {
         &self.path_options
     }
+    fn path_options_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PathCreationOptionsTrait>>> {
+        &mut self.path_options
+    }
     fn jumper_tune(&self) -> &Option<Arc<Mutex<dyn JumperTuneTrait>>> {
         &self.jumper_tune
+    }
+    fn jumper_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn JumperTuneTrait>>> {
+        &mut self.jumper_tune
     }
     fn exit_puppet_in_obstacles(&self) -> &bool {
         &self.exit_puppet_in_obstacles
     }
+    fn exit_puppet_in_obstacles_mut(&mut self) -> &mut bool {
+        &mut self.exit_puppet_in_obstacles
+    }
     fn prober_tune(&self) -> &Option<Arc<Mutex<dyn ProberTuneTrait>>> {
         &self.prober_tune
+    }
+    fn prober_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProberTuneTrait>>> {
+        &mut self.prober_tune
     }
     fn allow_detour(&self) -> &bool {
         &self.allow_detour
     }
+    fn allow_detour_mut(&mut self) -> &mut bool {
+        &mut self.allow_detour
+    }
     fn goal_tune(&self) -> &Option<Arc<Mutex<dyn GoalTuneTrait>>> {
         &self.goal_tune
+    }
+    fn goal_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GoalTuneTrait>>> {
+        &mut self.goal_tune
     }
     fn idle_tune(&self) -> &Option<Arc<Mutex<dyn IdleTuneTrait>>> {
         &self.idle_tune
     }
+    fn idle_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn IdleTuneTrait>>> {
+        &mut self.idle_tune
+    }
     fn turn_in_place(&self) -> &Option<Arc<Mutex<dyn TurnInPlaceTuneTrait>>> {
         &self.turn_in_place
+    }
+    fn turn_in_place_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TurnInPlaceTuneTrait>>> {
+        &mut self.turn_in_place
     }
     fn repulsion_acceleration_tune(&self) -> &Option<Arc<Mutex<dyn RepulsionAccelerationTuneTrait>>> {
         &self.repulsion_acceleration_tune
     }
+    fn repulsion_acceleration_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RepulsionAccelerationTuneTrait>>> {
+        &mut self.repulsion_acceleration_tune
+    }
     fn surface_orient_tune(&self) -> &Option<Arc<Mutex<dyn SurfaceOrientTuneTrait>>> {
         &self.surface_orient_tune
+    }
+    fn surface_orient_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SurfaceOrientTuneTrait>>> {
+        &mut self.surface_orient_tune
     }
     fn sidestep_fraction(&self) -> &f32 {
         &self.sidestep_fraction
     }
+    fn sidestep_fraction_mut(&mut self) -> &mut f32 {
+        &mut self.sidestep_fraction
+    }
     fn custom_geo_match_flags(&self) -> &u32 {
         &self.custom_geo_match_flags
+    }
+    fn custom_geo_match_flags_mut(&mut self) -> &mut u32 {
+        &mut self.custom_geo_match_flags
     }
     fn client_motion(&self) -> &bool {
         &self.client_motion
     }
+    fn client_motion_mut(&mut self) -> &mut bool {
+        &mut self.client_motion
+    }
     fn follower_tune(&self) -> &Option<Arc<Mutex<dyn FollowerTuneTrait>>> {
         &self.follower_tune
+    }
+    fn follower_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FollowerTuneTrait>>> {
+        &mut self.follower_tune
     }
 }
 
@@ -2248,12 +2949,12 @@ impl super::core::AssetTrait for MoverTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MoverTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVERTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2483,6 +3184,15 @@ impl TypeObject for MoverTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2504,11 +3214,15 @@ pub struct PathCreationOptions {
 
 pub trait PathCreationOptionsTrait: super::core::AssetTrait {
     fn perform_initial_nav_probe(&self) -> &bool;
+    fn perform_initial_nav_probe_mut(&mut self) -> &mut bool;
 }
 
 impl PathCreationOptionsTrait for PathCreationOptions {
     fn perform_initial_nav_probe(&self) -> &bool {
         &self.perform_initial_nav_probe
+    }
+    fn perform_initial_nav_probe_mut(&mut self) -> &mut bool {
+        &mut self.perform_initial_nav_probe
     }
 }
 
@@ -2516,12 +3230,12 @@ impl super::core::AssetTrait for PathCreationOptions {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PathCreationOptions {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHCREATIONOPTIONS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2553,6 +3267,15 @@ impl TypeObject for PathCreationOptions {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2579,31 +3302,55 @@ pub struct FollowerTune {
 
 pub trait FollowerTuneTrait: super::core::AssetTrait {
     fn circulate_enable(&self) -> &bool;
+    fn circulate_enable_mut(&mut self) -> &mut bool;
     fn circulate_min_time(&self) -> &f32;
+    fn circulate_min_time_mut(&mut self) -> &mut f32;
     fn circulate_max_time(&self) -> &f32;
+    fn circulate_max_time_mut(&mut self) -> &mut f32;
     fn startup_slowness(&self) -> &f32;
+    fn startup_slowness_mut(&mut self) -> &mut f32;
     fn startup_bulk(&self) -> &f32;
+    fn startup_bulk_mut(&mut self) -> &mut f32;
     fn packing_padding(&self) -> &f32;
+    fn packing_padding_mut(&mut self) -> &mut f32;
 }
 
 impl FollowerTuneTrait for FollowerTune {
     fn circulate_enable(&self) -> &bool {
         &self.circulate_enable
     }
+    fn circulate_enable_mut(&mut self) -> &mut bool {
+        &mut self.circulate_enable
+    }
     fn circulate_min_time(&self) -> &f32 {
         &self.circulate_min_time
+    }
+    fn circulate_min_time_mut(&mut self) -> &mut f32 {
+        &mut self.circulate_min_time
     }
     fn circulate_max_time(&self) -> &f32 {
         &self.circulate_max_time
     }
+    fn circulate_max_time_mut(&mut self) -> &mut f32 {
+        &mut self.circulate_max_time
+    }
     fn startup_slowness(&self) -> &f32 {
         &self.startup_slowness
+    }
+    fn startup_slowness_mut(&mut self) -> &mut f32 {
+        &mut self.startup_slowness
     }
     fn startup_bulk(&self) -> &f32 {
         &self.startup_bulk
     }
+    fn startup_bulk_mut(&mut self) -> &mut f32 {
+        &mut self.startup_bulk
+    }
     fn packing_padding(&self) -> &f32 {
         &self.packing_padding
+    }
+    fn packing_padding_mut(&mut self) -> &mut f32 {
+        &mut self.packing_padding
     }
 }
 
@@ -2611,12 +3358,12 @@ impl super::core::AssetTrait for FollowerTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FollowerTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FOLLOWERTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2678,6 +3425,15 @@ impl TypeObject for FollowerTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2701,19 +3457,31 @@ pub struct SurfaceOrientTune {
 
 pub trait SurfaceOrientTuneTrait: super::core::AssetTrait {
     fn surface_orient_threshold(&self) -> &f32;
+    fn surface_orient_threshold_mut(&mut self) -> &mut f32;
     fn always_vertical_on_auto_gen(&self) -> &bool;
+    fn always_vertical_on_auto_gen_mut(&mut self) -> &mut bool;
     fn surface_orient_slerp_time(&self) -> &f32;
+    fn surface_orient_slerp_time_mut(&mut self) -> &mut f32;
 }
 
 impl SurfaceOrientTuneTrait for SurfaceOrientTune {
     fn surface_orient_threshold(&self) -> &f32 {
         &self.surface_orient_threshold
     }
+    fn surface_orient_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.surface_orient_threshold
+    }
     fn always_vertical_on_auto_gen(&self) -> &bool {
         &self.always_vertical_on_auto_gen
     }
+    fn always_vertical_on_auto_gen_mut(&mut self) -> &mut bool {
+        &mut self.always_vertical_on_auto_gen
+    }
     fn surface_orient_slerp_time(&self) -> &f32 {
         &self.surface_orient_slerp_time
+    }
+    fn surface_orient_slerp_time_mut(&mut self) -> &mut f32 {
+        &mut self.surface_orient_slerp_time
     }
 }
 
@@ -2721,12 +3489,12 @@ impl super::core::AssetTrait for SurfaceOrientTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SurfaceOrientTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SURFACEORIENTTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2770,6 +3538,15 @@ impl TypeObject for SurfaceOrientTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2793,19 +3570,31 @@ pub struct AutoObstacleTune {
 
 pub trait AutoObstacleTuneTrait: super::core::AssetTrait {
     fn auto_create_obstacle(&self) -> &bool;
+    fn auto_create_obstacle_mut(&mut self) -> &mut bool;
     fn delay(&self) -> &f32;
+    fn delay_mut(&mut self) -> &mut f32;
     fn obstacle_blockage_flags(&self) -> &u32;
+    fn obstacle_blockage_flags_mut(&mut self) -> &mut u32;
 }
 
 impl AutoObstacleTuneTrait for AutoObstacleTune {
     fn auto_create_obstacle(&self) -> &bool {
         &self.auto_create_obstacle
     }
+    fn auto_create_obstacle_mut(&mut self) -> &mut bool {
+        &mut self.auto_create_obstacle
+    }
     fn delay(&self) -> &f32 {
         &self.delay
     }
+    fn delay_mut(&mut self) -> &mut f32 {
+        &mut self.delay
+    }
     fn obstacle_blockage_flags(&self) -> &u32 {
         &self.obstacle_blockage_flags
+    }
+    fn obstacle_blockage_flags_mut(&mut self) -> &mut u32 {
+        &mut self.obstacle_blockage_flags
     }
 }
 
@@ -2813,12 +3602,12 @@ impl super::core::AssetTrait for AutoObstacleTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AutoObstacleTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOOBSTACLETUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2862,6 +3651,15 @@ impl TypeObject for AutoObstacleTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2884,15 +3682,23 @@ pub struct IdleTune {
 
 pub trait IdleTuneTrait: super::core::AssetTrait {
     fn tether_dist(&self) -> &f32;
+    fn tether_dist_mut(&mut self) -> &mut f32;
     fn return_delay(&self) -> &f32;
+    fn return_delay_mut(&mut self) -> &mut f32;
 }
 
 impl IdleTuneTrait for IdleTune {
     fn tether_dist(&self) -> &f32 {
         &self.tether_dist
     }
+    fn tether_dist_mut(&mut self) -> &mut f32 {
+        &mut self.tether_dist
+    }
     fn return_delay(&self) -> &f32 {
         &self.return_delay
+    }
+    fn return_delay_mut(&mut self) -> &mut f32 {
+        &mut self.return_delay
     }
 }
 
@@ -2900,12 +3706,12 @@ impl super::core::AssetTrait for IdleTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for IdleTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static IDLETUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2943,6 +3749,15 @@ impl TypeObject for IdleTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2965,15 +3780,23 @@ pub struct GoalTune {
 
 pub trait GoalTuneTrait: super::core::AssetTrait {
     fn use_circular_approach(&self) -> &bool;
+    fn use_circular_approach_mut(&mut self) -> &mut bool;
     fn preferred_turning_radius(&self) -> &f32;
+    fn preferred_turning_radius_mut(&mut self) -> &mut f32;
 }
 
 impl GoalTuneTrait for GoalTune {
     fn use_circular_approach(&self) -> &bool {
         &self.use_circular_approach
     }
+    fn use_circular_approach_mut(&mut self) -> &mut bool {
+        &mut self.use_circular_approach
+    }
     fn preferred_turning_radius(&self) -> &f32 {
         &self.preferred_turning_radius
+    }
+    fn preferred_turning_radius_mut(&mut self) -> &mut f32 {
+        &mut self.preferred_turning_radius
     }
 }
 
@@ -2981,12 +3804,12 @@ impl super::core::AssetTrait for GoalTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for GoalTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GOALTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3024,6 +3847,15 @@ impl TypeObject for GoalTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3046,15 +3878,23 @@ pub struct ProberTune {
 
 pub trait ProberTuneTrait: super::core::AssetTrait {
     fn probe_for_ground(&self) -> &bool;
+    fn probe_for_ground_mut(&mut self) -> &mut bool;
     fn probe_interval(&self) -> &f32;
+    fn probe_interval_mut(&mut self) -> &mut f32;
 }
 
 impl ProberTuneTrait for ProberTune {
     fn probe_for_ground(&self) -> &bool {
         &self.probe_for_ground
     }
+    fn probe_for_ground_mut(&mut self) -> &mut bool {
+        &mut self.probe_for_ground
+    }
     fn probe_interval(&self) -> &f32 {
         &self.probe_interval
+    }
+    fn probe_interval_mut(&mut self) -> &mut f32 {
+        &mut self.probe_interval
     }
 }
 
@@ -3062,12 +3902,12 @@ impl super::core::AssetTrait for ProberTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ProberTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROBERTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3105,6 +3945,15 @@ impl TypeObject for ProberTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3130,27 +3979,47 @@ pub struct JumperTune {
 
 pub trait JumperTuneTrait: super::core::AssetTrait {
     fn speed(&self) -> &f32;
+    fn speed_mut(&mut self) -> &mut f32;
     fn arc_fraction(&self) -> &f32;
+    fn arc_fraction_mut(&mut self) -> &mut f32;
     fn turn_before_jump_angle(&self) -> &f32;
+    fn turn_before_jump_angle_mut(&mut self) -> &mut f32;
     fn keep_speed_when_swap_to_default(&self) -> &bool;
+    fn keep_speed_when_swap_to_default_mut(&mut self) -> &mut bool;
     fn only_jump_to_end_point(&self) -> &bool;
+    fn only_jump_to_end_point_mut(&mut self) -> &mut bool;
 }
 
 impl JumperTuneTrait for JumperTune {
     fn speed(&self) -> &f32 {
         &self.speed
     }
+    fn speed_mut(&mut self) -> &mut f32 {
+        &mut self.speed
+    }
     fn arc_fraction(&self) -> &f32 {
         &self.arc_fraction
+    }
+    fn arc_fraction_mut(&mut self) -> &mut f32 {
+        &mut self.arc_fraction
     }
     fn turn_before_jump_angle(&self) -> &f32 {
         &self.turn_before_jump_angle
     }
+    fn turn_before_jump_angle_mut(&mut self) -> &mut f32 {
+        &mut self.turn_before_jump_angle
+    }
     fn keep_speed_when_swap_to_default(&self) -> &bool {
         &self.keep_speed_when_swap_to_default
     }
+    fn keep_speed_when_swap_to_default_mut(&mut self) -> &mut bool {
+        &mut self.keep_speed_when_swap_to_default
+    }
     fn only_jump_to_end_point(&self) -> &bool {
         &self.only_jump_to_end_point
+    }
+    fn only_jump_to_end_point_mut(&mut self) -> &mut bool {
+        &mut self.only_jump_to_end_point
     }
 }
 
@@ -3158,12 +4027,12 @@ impl super::core::AssetTrait for JumperTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for JumperTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static JUMPERTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3219,6 +4088,15 @@ impl TypeObject for JumperTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3241,15 +4119,23 @@ pub struct CautionTune {
 
 pub trait CautionTuneTrait: super::core::AssetTrait {
     fn speed_x(&self) -> &f32;
+    fn speed_x_mut(&mut self) -> &mut f32;
     fn tight_turn_degrees(&self) -> &f32;
+    fn tight_turn_degrees_mut(&mut self) -> &mut f32;
 }
 
 impl CautionTuneTrait for CautionTune {
     fn speed_x(&self) -> &f32 {
         &self.speed_x
     }
+    fn speed_x_mut(&mut self) -> &mut f32 {
+        &mut self.speed_x
+    }
     fn tight_turn_degrees(&self) -> &f32 {
         &self.tight_turn_degrees
+    }
+    fn tight_turn_degrees_mut(&mut self) -> &mut f32 {
+        &mut self.tight_turn_degrees
     }
 }
 
@@ -3257,12 +4143,12 @@ impl super::core::AssetTrait for CautionTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CautionTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CAUTIONTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3300,6 +4186,15 @@ impl TypeObject for CautionTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3323,19 +4218,31 @@ pub struct RepulsionAccelerationTune {
 
 pub trait RepulsionAccelerationTuneTrait: super::core::AssetTrait {
     fn initial_acc(&self) -> &f32;
+    fn initial_acc_mut(&mut self) -> &mut f32;
     fn outer_cushion_acc(&self) -> &f32;
+    fn outer_cushion_acc_mut(&mut self) -> &mut f32;
     fn inner_cushion_acc(&self) -> &f32;
+    fn inner_cushion_acc_mut(&mut self) -> &mut f32;
 }
 
 impl RepulsionAccelerationTuneTrait for RepulsionAccelerationTune {
     fn initial_acc(&self) -> &f32 {
         &self.initial_acc
     }
+    fn initial_acc_mut(&mut self) -> &mut f32 {
+        &mut self.initial_acc
+    }
     fn outer_cushion_acc(&self) -> &f32 {
         &self.outer_cushion_acc
     }
+    fn outer_cushion_acc_mut(&mut self) -> &mut f32 {
+        &mut self.outer_cushion_acc
+    }
     fn inner_cushion_acc(&self) -> &f32 {
         &self.inner_cushion_acc
+    }
+    fn inner_cushion_acc_mut(&mut self) -> &mut f32 {
+        &mut self.inner_cushion_acc
     }
 }
 
@@ -3343,12 +4250,12 @@ impl super::core::AssetTrait for RepulsionAccelerationTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RepulsionAccelerationTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static REPULSIONACCELERATIONTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3392,6 +4299,15 @@ impl TypeObject for RepulsionAccelerationTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3418,31 +4334,55 @@ pub struct TurnInPlaceTune {
 
 pub trait TurnInPlaceTuneTrait: super::core::AssetTrait {
     fn when_moving_angle(&self) -> &f32;
+    fn when_moving_angle_mut(&mut self) -> &mut f32;
     fn when_stopped_angle(&self) -> &f32;
+    fn when_stopped_angle_mut(&mut self) -> &mut f32;
     fn speed(&self) -> &f32;
+    fn speed_mut(&mut self) -> &mut f32;
     fn accel_angle(&self) -> &f32;
+    fn accel_angle_mut(&mut self) -> &mut f32;
     fn slide_spin_threshold(&self) -> &f32;
+    fn slide_spin_threshold_mut(&mut self) -> &mut f32;
     fn enable_u_turn(&self) -> &bool;
+    fn enable_u_turn_mut(&mut self) -> &mut bool;
 }
 
 impl TurnInPlaceTuneTrait for TurnInPlaceTune {
     fn when_moving_angle(&self) -> &f32 {
         &self.when_moving_angle
     }
+    fn when_moving_angle_mut(&mut self) -> &mut f32 {
+        &mut self.when_moving_angle
+    }
     fn when_stopped_angle(&self) -> &f32 {
         &self.when_stopped_angle
+    }
+    fn when_stopped_angle_mut(&mut self) -> &mut f32 {
+        &mut self.when_stopped_angle
     }
     fn speed(&self) -> &f32 {
         &self.speed
     }
+    fn speed_mut(&mut self) -> &mut f32 {
+        &mut self.speed
+    }
     fn accel_angle(&self) -> &f32 {
         &self.accel_angle
+    }
+    fn accel_angle_mut(&mut self) -> &mut f32 {
+        &mut self.accel_angle
     }
     fn slide_spin_threshold(&self) -> &f32 {
         &self.slide_spin_threshold
     }
+    fn slide_spin_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.slide_spin_threshold
+    }
     fn enable_u_turn(&self) -> &bool {
         &self.enable_u_turn
+    }
+    fn enable_u_turn_mut(&mut self) -> &mut bool {
+        &mut self.enable_u_turn
     }
 }
 
@@ -3450,12 +4390,12 @@ impl super::core::AssetTrait for TurnInPlaceTune {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TurnInPlaceTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TURNINPLACETUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3517,6 +4457,15 @@ impl TypeObject for TurnInPlaceTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3540,19 +4489,31 @@ pub struct RadiusData {
 
 pub trait RadiusDataTrait: super::core::AssetTrait {
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn outer_cushion(&self) -> &f32;
+    fn outer_cushion_mut(&mut self) -> &mut f32;
     fn inner_cushion(&self) -> &f32;
+    fn inner_cushion_mut(&mut self) -> &mut f32;
 }
 
 impl RadiusDataTrait for RadiusData {
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn outer_cushion(&self) -> &f32 {
         &self.outer_cushion
     }
+    fn outer_cushion_mut(&mut self) -> &mut f32 {
+        &mut self.outer_cushion
+    }
     fn inner_cushion(&self) -> &f32 {
         &self.inner_cushion
+    }
+    fn inner_cushion_mut(&mut self) -> &mut f32 {
+        &mut self.inner_cushion
     }
 }
 
@@ -3560,12 +4521,12 @@ impl super::core::AssetTrait for RadiusData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RadiusData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RADIUSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3609,6 +4570,15 @@ impl TypeObject for RadiusData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3646,6 +4616,15 @@ impl TypeObject for BlockageMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3687,6 +4666,15 @@ impl TypeObject for OrientMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3709,19 +4697,31 @@ pub struct FollowMoverSpec {
 
 pub trait FollowMoverSpecTrait: TypeObject {
     fn formation(&self) -> &FollowFormation;
+    fn formation_mut(&mut self) -> &mut FollowFormation;
     fn follow_distance(&self) -> &f32;
+    fn follow_distance_mut(&mut self) -> &mut f32;
     fn arc_spread(&self) -> &f32;
+    fn arc_spread_mut(&mut self) -> &mut f32;
 }
 
 impl FollowMoverSpecTrait for FollowMoverSpec {
     fn formation(&self) -> &FollowFormation {
         &self.formation
     }
+    fn formation_mut(&mut self) -> &mut FollowFormation {
+        &mut self.formation
+    }
     fn follow_distance(&self) -> &f32 {
         &self.follow_distance
     }
+    fn follow_distance_mut(&mut self) -> &mut f32 {
+        &mut self.follow_distance
+    }
     fn arc_spread(&self) -> &f32 {
         &self.arc_spread
+    }
+    fn arc_spread_mut(&mut self) -> &mut f32 {
+        &mut self.arc_spread
     }
 }
 
@@ -3765,6 +4765,15 @@ impl TypeObject for FollowMoverSpec {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3803,6 +4812,15 @@ impl TypeObject for FollowFormation {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3823,11 +4841,15 @@ pub struct StopSpec {
 
 pub trait StopSpecTrait: TypeObject {
     fn stop_immediately(&self) -> &bool;
+    fn stop_immediately_mut(&mut self) -> &mut bool;
 }
 
 impl StopSpecTrait for StopSpec {
     fn stop_immediately(&self) -> &bool {
         &self.stop_immediately
+    }
+    fn stop_immediately_mut(&mut self) -> &mut bool {
+        &mut self.stop_immediately
     }
 }
 
@@ -3859,6 +4881,15 @@ impl TypeObject for StopSpec {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3885,35 +4916,63 @@ pub struct GotoPosSpec {
 
 pub trait GotoPosSpecTrait: TypeObject {
     fn allowed_to_stop_dist(&self) -> &f32;
+    fn allowed_to_stop_dist_mut(&mut self) -> &mut f32;
     fn desired_stop_dist(&self) -> &f32;
+    fn desired_stop_dist_mut(&mut self) -> &mut f32;
     fn stop_at_goal(&self) -> &bool;
+    fn stop_at_goal_mut(&mut self) -> &mut bool;
     fn push_through_crowd_at_goal(&self) -> &bool;
+    fn push_through_crowd_at_goal_mut(&mut self) -> &mut bool;
     fn orient_at_goal_enable(&self) -> &bool;
+    fn orient_at_goal_enable_mut(&mut self) -> &mut bool;
     fn orient_at_goal_dir(&self) -> &super::core::Vec3;
+    fn orient_at_goal_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn try_flank(&self) -> &bool;
+    fn try_flank_mut(&mut self) -> &mut bool;
 }
 
 impl GotoPosSpecTrait for GotoPosSpec {
     fn allowed_to_stop_dist(&self) -> &f32 {
         &self.allowed_to_stop_dist
     }
+    fn allowed_to_stop_dist_mut(&mut self) -> &mut f32 {
+        &mut self.allowed_to_stop_dist
+    }
     fn desired_stop_dist(&self) -> &f32 {
         &self.desired_stop_dist
+    }
+    fn desired_stop_dist_mut(&mut self) -> &mut f32 {
+        &mut self.desired_stop_dist
     }
     fn stop_at_goal(&self) -> &bool {
         &self.stop_at_goal
     }
+    fn stop_at_goal_mut(&mut self) -> &mut bool {
+        &mut self.stop_at_goal
+    }
     fn push_through_crowd_at_goal(&self) -> &bool {
         &self.push_through_crowd_at_goal
+    }
+    fn push_through_crowd_at_goal_mut(&mut self) -> &mut bool {
+        &mut self.push_through_crowd_at_goal
     }
     fn orient_at_goal_enable(&self) -> &bool {
         &self.orient_at_goal_enable
     }
+    fn orient_at_goal_enable_mut(&mut self) -> &mut bool {
+        &mut self.orient_at_goal_enable
+    }
     fn orient_at_goal_dir(&self) -> &super::core::Vec3 {
         &self.orient_at_goal_dir
     }
+    fn orient_at_goal_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.orient_at_goal_dir
+    }
     fn try_flank(&self) -> &bool {
         &self.try_flank
+    }
+    fn try_flank_mut(&mut self) -> &mut bool {
+        &mut self.try_flank
     }
 }
 
@@ -3981,6 +5040,15 @@ impl TypeObject for GotoPosSpec {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4027,6 +5095,15 @@ impl TypeObject for PathSpec {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4072,6 +5149,15 @@ impl TypeObject for PathfindingRuntimeResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4129,6 +5215,15 @@ impl TypeObject for ServerObstacleControllerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4181,6 +5276,15 @@ impl TypeObject for ServerNavPowerSystemEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4235,6 +5339,15 @@ impl TypeObject for ObstacleControllerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4284,6 +5397,15 @@ impl TypeObject for NavPowerPathSpec {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -1,6 +1,10 @@
 use glacier_sdk::{
     reflect::{type_info::TypeInfoData, type_registry::TypeRegistry},
-    reflect_swbf2::{core::AssetTrait, entity::Blueprint, register_mod_types},
+    reflect_swbf2::{
+        core::{AssetTrait, DataContainer, DataContainerTrait},
+        entity::Blueprint,
+        register_mod_types,
+    },
 };
 
 #[tokio::main]
@@ -8,7 +12,7 @@ async fn main() {
     let mut registry = TypeRegistry::new();
     register_mod_types(&mut registry);
 
-    let bp_type = registry.get_type("Blueprint").unwrap();
+    let bp_type = registry.type_by_name("Blueprint").unwrap();
     if let TypeInfoData::Class(class_info) = &bp_type.data {
         let value = (class_info.functions.create)();
         println!("{:#?}", value);

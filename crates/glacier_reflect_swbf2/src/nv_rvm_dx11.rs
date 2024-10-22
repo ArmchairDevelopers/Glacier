@@ -65,6 +65,15 @@ impl TypeObject for Dx11NvDrawStateFTInstructionFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -114,6 +123,15 @@ impl TypeObject for Dx11NvViewStateFTInstructionFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -165,6 +183,15 @@ impl TypeObject for Dx11NvDrawStateDepthInstructionFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -215,6 +242,15 @@ impl TypeObject for Dx11NvViewStateDepthInstructionFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -229,13 +265,13 @@ pub static DX11NVVIEWSTATEDEPTHINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static Type
 
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData {
+pub struct RvmSerializedDbnsDx11NvViewStateDepthInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx11NvViewStateDepthInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionDataTrait for RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData {
+impl RvmSerializedDbnsDx11NvViewStateDepthInstructionDataTrait for RvmSerializedDbnsDx11NvViewStateDepthInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -244,7 +280,7 @@ pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_TYPE_INFO: &'s
     module: "NvRvmDx11",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11NvViewStateDepthInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -253,23 +289,32 @@ pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_TYPE_INFO: &'s
     alignment: 2,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData {
+impl TypeObject for RvmSerializedDbnsDx11NvViewStateDepthInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx11NvDrawStateInstructionData {
+pub struct RvmSerializedDbnsDx11NvDrawStateInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx11NvDrawStateInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx11NvDrawStateInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx11NvDrawStateInstructionDataTrait for RvmSerializedDb_ns_Dx11NvDrawStateInstructionData {
+impl RvmSerializedDbnsDx11NvDrawStateInstructionDataTrait for RvmSerializedDbnsDx11NvDrawStateInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -278,7 +323,7 @@ pub static RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static
     module: "NvRvmDx11",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx11NvDrawStateInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11NvDrawStateInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -287,23 +332,32 @@ pub static RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static
     alignment: 2,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx11NvDrawStateInstructionData {
+impl TypeObject for RvmSerializedDbnsDx11NvDrawStateInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx11NvViewStateInstructionData {
+pub struct RvmSerializedDbnsDx11NvViewStateInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx11NvViewStateInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx11NvViewStateInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx11NvViewStateInstructionDataTrait for RvmSerializedDb_ns_Dx11NvViewStateInstructionData {
+impl RvmSerializedDbnsDx11NvViewStateInstructionDataTrait for RvmSerializedDbnsDx11NvViewStateInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -312,7 +366,7 @@ pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static
     module: "NvRvmDx11",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx11NvViewStateInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11NvViewStateInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -321,12 +375,21 @@ pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static
     alignment: 2,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx11NvViewStateInstructionData {
+impl TypeObject for RvmSerializedDbnsDx11NvViewStateInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -351,12 +414,12 @@ impl super::core::AssetTrait for Dx11NvRvmBackendConfig {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for Dx11NvRvmBackendConfig {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DX11NVRVMBACKENDCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -381,6 +444,15 @@ impl TypeObject for Dx11NvRvmBackendConfig {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -434,6 +506,15 @@ impl TypeObject for Dx11NvRvmDatabaseLoader {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -496,6 +577,15 @@ impl TypeObject for Dx11NvRvmDatabase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

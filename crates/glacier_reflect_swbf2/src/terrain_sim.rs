@@ -30,18 +30,21 @@ impl super::physics::PhysicsResourceContainerAssetTrait for WaterAsset {
     fn physics_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         self._glacier_base.physics_resource()
     }
+    fn physics_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        self._glacier_base.physics_resource_mut()
+    }
 }
 
 impl super::core::AssetTrait for WaterAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for WaterAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WATERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -67,6 +70,15 @@ impl TypeObject for WaterAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -89,15 +101,23 @@ pub struct PhysicsTerrainUpdaterComponentData {
 
 pub trait PhysicsTerrainUpdaterComponentDataTrait: super::entity::ComponentDataTrait {
     fn in_categories(&self) -> &super::physics::PhysicsCategorySet;
+    fn in_categories_mut(&mut self) -> &mut super::physics::PhysicsCategorySet;
     fn collides_with_categories(&self) -> &super::physics::PhysicsCategorySet;
+    fn collides_with_categories_mut(&mut self) -> &mut super::physics::PhysicsCategorySet;
 }
 
 impl PhysicsTerrainUpdaterComponentDataTrait for PhysicsTerrainUpdaterComponentData {
     fn in_categories(&self) -> &super::physics::PhysicsCategorySet {
         &self.in_categories
     }
+    fn in_categories_mut(&mut self) -> &mut super::physics::PhysicsCategorySet {
+        &mut self.in_categories
+    }
     fn collides_with_categories(&self) -> &super::physics::PhysicsCategorySet {
         &self.collides_with_categories
+    }
+    fn collides_with_categories_mut(&mut self) -> &mut super::physics::PhysicsCategorySet {
+        &mut self.collides_with_categories
     }
 }
 
@@ -105,17 +125,32 @@ impl super::entity::ComponentDataTrait for PhysicsTerrainUpdaterComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -126,15 +161,15 @@ impl super::core::DataBusPeerTrait for PhysicsTerrainUpdaterComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhysicsTerrainUpdaterComponentData {
 }
 
 impl super::core::DataContainerTrait for PhysicsTerrainUpdaterComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHYSICSTERRAINUPDATERCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -171,6 +206,15 @@ impl TypeObject for PhysicsTerrainUpdaterComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

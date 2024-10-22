@@ -30,39 +30,71 @@ pub struct MovieEntityData {
 
 pub trait MovieEntityDataTrait: super::entity::EntityDataTrait {
     fn movie(&self) -> &Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>;
+    fn movie_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>;
     fn external_time(&self) -> &f32;
+    fn external_time_mut(&mut self) -> &mut f32;
     fn is_normal_map(&self) -> &bool;
+    fn is_normal_map_mut(&mut self) -> &mut bool;
     fn is_looping(&self) -> &bool;
+    fn is_looping_mut(&mut self) -> &mut bool;
     fn pre_buffer(&self) -> &bool;
+    fn pre_buffer_mut(&mut self) -> &mut bool;
     fn volume(&self) -> &f32;
+    fn volume_mut(&mut self) -> &mut f32;
     fn renderable_count(&self) -> &u32;
+    fn renderable_count_mut(&mut self) -> &mut u32;
     fn thread_count(&self) -> &u32;
+    fn thread_count_mut(&mut self) -> &mut u32;
 }
 
 impl MovieEntityDataTrait for MovieEntityData {
     fn movie(&self) -> &Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>> {
         &self.movie
     }
+    fn movie_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>> {
+        &mut self.movie
+    }
     fn external_time(&self) -> &f32 {
         &self.external_time
+    }
+    fn external_time_mut(&mut self) -> &mut f32 {
+        &mut self.external_time
     }
     fn is_normal_map(&self) -> &bool {
         &self.is_normal_map
     }
+    fn is_normal_map_mut(&mut self) -> &mut bool {
+        &mut self.is_normal_map
+    }
     fn is_looping(&self) -> &bool {
         &self.is_looping
+    }
+    fn is_looping_mut(&mut self) -> &mut bool {
+        &mut self.is_looping
     }
     fn pre_buffer(&self) -> &bool {
         &self.pre_buffer
     }
+    fn pre_buffer_mut(&mut self) -> &mut bool {
+        &mut self.pre_buffer
+    }
     fn volume(&self) -> &f32 {
         &self.volume
+    }
+    fn volume_mut(&mut self) -> &mut f32 {
+        &mut self.volume
     }
     fn renderable_count(&self) -> &u32 {
         &self.renderable_count
     }
+    fn renderable_count_mut(&mut self) -> &mut u32 {
+        &mut self.renderable_count
+    }
     fn thread_count(&self) -> &u32 {
         &self.thread_count
+    }
+    fn thread_count_mut(&mut self) -> &mut u32 {
+        &mut self.thread_count
     }
 }
 
@@ -76,15 +108,15 @@ impl super::core::DataBusPeerTrait for MovieEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MovieEntityData {
 }
 
 impl super::core::DataContainerTrait for MovieEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVIEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -158,6 +190,15 @@ impl TypeObject for MovieEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -210,6 +251,15 @@ impl TypeObject for ClientMovieEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

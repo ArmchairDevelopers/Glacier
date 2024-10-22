@@ -346,35 +346,63 @@ pub struct LocalFogVolumeDynamicState {
 
 pub trait LocalFogVolumeDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn refresh_counter(&self) -> &u32;
+    fn refresh_counter_mut(&mut self) -> &mut u32;
     fn participating_media(&self) -> &ParticipatingMedia;
+    fn participating_media_mut(&mut self) -> &mut ParticipatingMedia;
     fn ambient_lighting_scale(&self) -> &f32;
+    fn ambient_lighting_scale_mut(&mut self) -> &mut f32;
     fn density_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn density_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl LocalFogVolumeDynamicStateTrait for LocalFogVolumeDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
     fn refresh_counter(&self) -> &u32 {
         &self.refresh_counter
     }
+    fn refresh_counter_mut(&mut self) -> &mut u32 {
+        &mut self.refresh_counter
+    }
     fn participating_media(&self) -> &ParticipatingMedia {
         &self.participating_media
+    }
+    fn participating_media_mut(&mut self) -> &mut ParticipatingMedia {
+        &mut self.participating_media
     }
     fn ambient_lighting_scale(&self) -> &f32 {
         &self.ambient_lighting_scale
     }
+    fn ambient_lighting_scale_mut(&mut self) -> &mut f32 {
+        &mut self.ambient_lighting_scale
+    }
     fn density_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.density_texture
     }
+    fn density_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.density_texture
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -442,6 +470,15 @@ impl TypeObject for LocalFogVolumeDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -464,19 +501,31 @@ pub struct LocalFogVolumeStaticState {
 
 pub trait LocalFogVolumeStaticStateTrait: TypeObject {
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl LocalFogVolumeStaticStateTrait for LocalFogVolumeStaticState {
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
     }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
+    }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
     }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -520,6 +569,15 @@ impl TypeObject for LocalFogVolumeStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -545,31 +603,55 @@ pub struct VolumetricDynamicState {
 
 pub trait VolumetricDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn refresh_counter(&self) -> &u32;
+    fn refresh_counter_mut(&mut self) -> &mut u32;
     fn participating_media(&self) -> &ParticipatingMedia;
+    fn participating_media_mut(&mut self) -> &mut ParticipatingMedia;
     fn ambient_lighting_scale(&self) -> &f32;
+    fn ambient_lighting_scale_mut(&mut self) -> &mut f32;
     fn density_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn density_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
 }
 
 impl VolumetricDynamicStateTrait for VolumetricDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
     fn refresh_counter(&self) -> &u32 {
         &self.refresh_counter
     }
+    fn refresh_counter_mut(&mut self) -> &mut u32 {
+        &mut self.refresh_counter
+    }
     fn participating_media(&self) -> &ParticipatingMedia {
         &self.participating_media
+    }
+    fn participating_media_mut(&mut self) -> &mut ParticipatingMedia {
+        &mut self.participating_media
     }
     fn ambient_lighting_scale(&self) -> &f32 {
         &self.ambient_lighting_scale
     }
+    fn ambient_lighting_scale_mut(&mut self) -> &mut f32 {
+        &mut self.ambient_lighting_scale
+    }
     fn density_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.density_texture
+    }
+    fn density_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.density_texture
     }
 }
 
@@ -631,6 +713,15 @@ impl TypeObject for VolumetricDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -652,15 +743,23 @@ pub struct VolumetricStaticState {
 
 pub trait VolumetricStaticStateTrait: TypeObject {
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
 }
 
 impl VolumetricStaticStateTrait for VolumetricStaticState {
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
     }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
+    }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
+    }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
     }
 }
 
@@ -698,6 +797,15 @@ impl TypeObject for VolumetricStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -724,35 +832,63 @@ pub struct ParticipatingMedia {
 
 pub trait ParticipatingMediaTrait: TypeObject {
     fn specification_mode(&self) -> &ParticipatingMediaSpecificationMode;
+    fn specification_mode_mut(&mut self) -> &mut ParticipatingMediaSpecificationMode;
     fn absorption(&self) -> &f32;
+    fn absorption_mut(&mut self) -> &mut f32;
     fn scattering(&self) -> &super::core::Vec3;
+    fn scattering_mut(&mut self) -> &mut super::core::Vec3;
     fn exctinction(&self) -> &f32;
+    fn exctinction_mut(&mut self) -> &mut f32;
     fn albedo(&self) -> &super::core::Vec3;
+    fn albedo_mut(&mut self) -> &mut super::core::Vec3;
     fn emissive(&self) -> &super::core::Vec3;
+    fn emissive_mut(&mut self) -> &mut super::core::Vec3;
     fn phase(&self) -> &f32;
+    fn phase_mut(&mut self) -> &mut f32;
 }
 
 impl ParticipatingMediaTrait for ParticipatingMedia {
     fn specification_mode(&self) -> &ParticipatingMediaSpecificationMode {
         &self.specification_mode
     }
+    fn specification_mode_mut(&mut self) -> &mut ParticipatingMediaSpecificationMode {
+        &mut self.specification_mode
+    }
     fn absorption(&self) -> &f32 {
         &self.absorption
+    }
+    fn absorption_mut(&mut self) -> &mut f32 {
+        &mut self.absorption
     }
     fn scattering(&self) -> &super::core::Vec3 {
         &self.scattering
     }
+    fn scattering_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.scattering
+    }
     fn exctinction(&self) -> &f32 {
         &self.exctinction
+    }
+    fn exctinction_mut(&mut self) -> &mut f32 {
+        &mut self.exctinction
     }
     fn albedo(&self) -> &super::core::Vec3 {
         &self.albedo
     }
+    fn albedo_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.albedo
+    }
     fn emissive(&self) -> &super::core::Vec3 {
         &self.emissive
     }
+    fn emissive_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.emissive
+    }
     fn phase(&self) -> &f32 {
         &self.phase
+    }
+    fn phase_mut(&mut self) -> &mut f32 {
+        &mut self.phase
     }
 }
 
@@ -820,6 +956,15 @@ impl TypeObject for ParticipatingMedia {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -846,35 +991,63 @@ pub struct ParticipatingMediaMaterialData {
 
 pub trait ParticipatingMediaMaterialDataTrait: TypeObject {
     fn specification_mode(&self) -> &ParticipatingMediaSpecificationMode;
+    fn specification_mode_mut(&mut self) -> &mut ParticipatingMediaSpecificationMode;
     fn absorption(&self) -> &f32;
+    fn absorption_mut(&mut self) -> &mut f32;
     fn scattering(&self) -> &super::core::Vec3;
+    fn scattering_mut(&mut self) -> &mut super::core::Vec3;
     fn exctinction(&self) -> &f32;
+    fn exctinction_mut(&mut self) -> &mut f32;
     fn albedo(&self) -> &super::core::Vec3;
+    fn albedo_mut(&mut self) -> &mut super::core::Vec3;
     fn emissive(&self) -> &super::core::Vec3;
+    fn emissive_mut(&mut self) -> &mut super::core::Vec3;
     fn phase(&self) -> &f32;
+    fn phase_mut(&mut self) -> &mut f32;
 }
 
 impl ParticipatingMediaMaterialDataTrait for ParticipatingMediaMaterialData {
     fn specification_mode(&self) -> &ParticipatingMediaSpecificationMode {
         &self.specification_mode
     }
+    fn specification_mode_mut(&mut self) -> &mut ParticipatingMediaSpecificationMode {
+        &mut self.specification_mode
+    }
     fn absorption(&self) -> &f32 {
         &self.absorption
+    }
+    fn absorption_mut(&mut self) -> &mut f32 {
+        &mut self.absorption
     }
     fn scattering(&self) -> &super::core::Vec3 {
         &self.scattering
     }
+    fn scattering_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.scattering
+    }
     fn exctinction(&self) -> &f32 {
         &self.exctinction
+    }
+    fn exctinction_mut(&mut self) -> &mut f32 {
+        &mut self.exctinction
     }
     fn albedo(&self) -> &super::core::Vec3 {
         &self.albedo
     }
+    fn albedo_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.albedo
+    }
     fn emissive(&self) -> &super::core::Vec3 {
         &self.emissive
     }
+    fn emissive_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.emissive
+    }
     fn phase(&self) -> &f32 {
         &self.phase
+    }
+    fn phase_mut(&mut self) -> &mut f32 {
+        &mut self.phase
     }
 }
 
@@ -942,6 +1115,15 @@ impl TypeObject for ParticipatingMediaMaterialData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -979,6 +1161,15 @@ impl TypeObject for ParticipatingMediaSpecificationMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1032,139 +1223,271 @@ pub struct CloudComponentState {
 
 pub trait CloudComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn base_to_top_multiplier(&self) -> &f32;
+    fn base_to_top_multiplier_mut(&mut self) -> &mut f32;
     fn edge_detail_multiplier(&self) -> &f32;
+    fn edge_detail_multiplier_mut(&mut self) -> &mut f32;
     fn cloud_density_multiplier(&self) -> &f32;
+    fn cloud_density_multiplier_mut(&mut self) -> &mut f32;
     fn absorption(&self) -> &super::core::Vec3;
+    fn absorption_mut(&mut self) -> &mut super::core::Vec3;
     fn scattering(&self) -> &super::core::Vec3;
+    fn scattering_mut(&mut self) -> &mut super::core::Vec3;
     fn phase_g0(&self) -> &f32;
+    fn phase_g0_mut(&mut self) -> &mut f32;
     fn phase_g1(&self) -> &f32;
+    fn phase_g1_mut(&mut self) -> &mut f32;
     fn phase_blend(&self) -> &f32;
+    fn phase_blend_mut(&mut self) -> &mut f32;
     fn ambient_multiplicator(&self) -> &f32;
+    fn ambient_multiplicator_mut(&mut self) -> &mut f32;
     fn ambient_desaturate(&self) -> &f32;
+    fn ambient_desaturate_mut(&mut self) -> &mut f32;
     fn aerial_perspective_scale(&self) -> &f32;
+    fn aerial_perspective_scale_mut(&mut self) -> &mut f32;
     fn enable_shadow(&self) -> &bool;
+    fn enable_shadow_mut(&mut self) -> &mut bool;
     fn scattering_order(&self) -> &i32;
+    fn scattering_order_mut(&mut self) -> &mut i32;
     fn scattering_factor(&self) -> &f32;
+    fn scattering_factor_mut(&mut self) -> &mut f32;
     fn extinction_factor(&self) -> &f32;
+    fn extinction_factor_mut(&mut self) -> &mut f32;
     fn phase_factor(&self) -> &f32;
+    fn phase_factor_mut(&mut self) -> &mut f32;
     fn shape_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn shape_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn shape_texture_scale(&self) -> &f32;
+    fn shape_texture_scale_mut(&mut self) -> &mut f32;
     fn shape_texture_contrast(&self) -> &f32;
+    fn shape_texture_contrast_mut(&mut self) -> &mut f32;
     fn detail_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn detail_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn detail_texture_scale(&self) -> &f32;
+    fn detail_texture_scale_mut(&mut self) -> &mut f32;
     fn weather_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn weather_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn weather_texture_scale(&self) -> &f32;
+    fn weather_texture_scale_mut(&mut self) -> &mut f32;
     fn cloud_type_density_gradient_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_type_density_gradient_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn planet_radius(&self) -> &f32;
+    fn planet_radius_mut(&mut self) -> &mut f32;
     fn cut_off_distance(&self) -> &f32;
+    fn cut_off_distance_mut(&mut self) -> &mut f32;
     fn cloud_layer_start_height(&self) -> &f32;
+    fn cloud_layer_start_height_mut(&mut self) -> &mut f32;
     fn cloud_layer_thickness(&self) -> &f32;
+    fn cloud_layer_thickness_mut(&mut self) -> &mut f32;
     fn wind_scale(&self) -> &f32;
+    fn wind_scale_mut(&mut self) -> &mut f32;
     fn offset(&self) -> &super::core::Vec2;
+    fn offset_mut(&mut self) -> &mut super::core::Vec2;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl CloudComponentStateTrait for CloudComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn base_to_top_multiplier(&self) -> &f32 {
         &self.base_to_top_multiplier
+    }
+    fn base_to_top_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.base_to_top_multiplier
     }
     fn edge_detail_multiplier(&self) -> &f32 {
         &self.edge_detail_multiplier
     }
+    fn edge_detail_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.edge_detail_multiplier
+    }
     fn cloud_density_multiplier(&self) -> &f32 {
         &self.cloud_density_multiplier
+    }
+    fn cloud_density_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_density_multiplier
     }
     fn absorption(&self) -> &super::core::Vec3 {
         &self.absorption
     }
+    fn absorption_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.absorption
+    }
     fn scattering(&self) -> &super::core::Vec3 {
         &self.scattering
+    }
+    fn scattering_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.scattering
     }
     fn phase_g0(&self) -> &f32 {
         &self.phase_g0
     }
+    fn phase_g0_mut(&mut self) -> &mut f32 {
+        &mut self.phase_g0
+    }
     fn phase_g1(&self) -> &f32 {
         &self.phase_g1
+    }
+    fn phase_g1_mut(&mut self) -> &mut f32 {
+        &mut self.phase_g1
     }
     fn phase_blend(&self) -> &f32 {
         &self.phase_blend
     }
+    fn phase_blend_mut(&mut self) -> &mut f32 {
+        &mut self.phase_blend
+    }
     fn ambient_multiplicator(&self) -> &f32 {
         &self.ambient_multiplicator
+    }
+    fn ambient_multiplicator_mut(&mut self) -> &mut f32 {
+        &mut self.ambient_multiplicator
     }
     fn ambient_desaturate(&self) -> &f32 {
         &self.ambient_desaturate
     }
+    fn ambient_desaturate_mut(&mut self) -> &mut f32 {
+        &mut self.ambient_desaturate
+    }
     fn aerial_perspective_scale(&self) -> &f32 {
         &self.aerial_perspective_scale
+    }
+    fn aerial_perspective_scale_mut(&mut self) -> &mut f32 {
+        &mut self.aerial_perspective_scale
     }
     fn enable_shadow(&self) -> &bool {
         &self.enable_shadow
     }
+    fn enable_shadow_mut(&mut self) -> &mut bool {
+        &mut self.enable_shadow
+    }
     fn scattering_order(&self) -> &i32 {
         &self.scattering_order
+    }
+    fn scattering_order_mut(&mut self) -> &mut i32 {
+        &mut self.scattering_order
     }
     fn scattering_factor(&self) -> &f32 {
         &self.scattering_factor
     }
+    fn scattering_factor_mut(&mut self) -> &mut f32 {
+        &mut self.scattering_factor
+    }
     fn extinction_factor(&self) -> &f32 {
         &self.extinction_factor
+    }
+    fn extinction_factor_mut(&mut self) -> &mut f32 {
+        &mut self.extinction_factor
     }
     fn phase_factor(&self) -> &f32 {
         &self.phase_factor
     }
+    fn phase_factor_mut(&mut self) -> &mut f32 {
+        &mut self.phase_factor
+    }
     fn shape_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.shape_texture
+    }
+    fn shape_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.shape_texture
     }
     fn shape_texture_scale(&self) -> &f32 {
         &self.shape_texture_scale
     }
+    fn shape_texture_scale_mut(&mut self) -> &mut f32 {
+        &mut self.shape_texture_scale
+    }
     fn shape_texture_contrast(&self) -> &f32 {
         &self.shape_texture_contrast
+    }
+    fn shape_texture_contrast_mut(&mut self) -> &mut f32 {
+        &mut self.shape_texture_contrast
     }
     fn detail_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.detail_texture
     }
+    fn detail_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.detail_texture
+    }
     fn detail_texture_scale(&self) -> &f32 {
         &self.detail_texture_scale
+    }
+    fn detail_texture_scale_mut(&mut self) -> &mut f32 {
+        &mut self.detail_texture_scale
     }
     fn weather_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.weather_texture
     }
+    fn weather_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.weather_texture
+    }
     fn weather_texture_scale(&self) -> &f32 {
         &self.weather_texture_scale
+    }
+    fn weather_texture_scale_mut(&mut self) -> &mut f32 {
+        &mut self.weather_texture_scale
     }
     fn cloud_type_density_gradient_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_type_density_gradient_texture
     }
+    fn cloud_type_density_gradient_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_type_density_gradient_texture
+    }
     fn planet_radius(&self) -> &f32 {
         &self.planet_radius
+    }
+    fn planet_radius_mut(&mut self) -> &mut f32 {
+        &mut self.planet_radius
     }
     fn cut_off_distance(&self) -> &f32 {
         &self.cut_off_distance
     }
+    fn cut_off_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cut_off_distance
+    }
     fn cloud_layer_start_height(&self) -> &f32 {
         &self.cloud_layer_start_height
+    }
+    fn cloud_layer_start_height_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer_start_height
     }
     fn cloud_layer_thickness(&self) -> &f32 {
         &self.cloud_layer_thickness
     }
+    fn cloud_layer_thickness_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer_thickness
+    }
     fn wind_scale(&self) -> &f32 {
         &self.wind_scale
+    }
+    fn wind_scale_mut(&mut self) -> &mut f32 {
+        &mut self.wind_scale
     }
     fn offset(&self) -> &super::core::Vec2 {
         &self.offset
     }
+    fn offset_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.offset
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1388,6 +1711,15 @@ impl TypeObject for CloudComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1451,186 +1783,355 @@ pub struct SunFlareEffectComponentState {
 
 pub trait SunFlareEffectComponentStateTrait: super::core::DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn debug_draw_occluder(&self) -> &bool;
+    fn debug_draw_occluder_mut(&mut self) -> &mut bool;
     fn occluder_size(&self) -> &f32;
+    fn occluder_size_mut(&mut self) -> &mut f32;
     fn element1_enable(&self) -> &bool;
+    fn element1_enable_mut(&mut self) -> &mut bool;
     fn element1_shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn element1_shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn element1_ray_distance(&self) -> &f32;
+    fn element1_ray_distance_mut(&mut self) -> &mut f32;
     fn element1_size(&self) -> &super::core::Vec2;
+    fn element1_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element1_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element1_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element1_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element1_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element1_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_enable(&self) -> &bool;
+    fn element2_enable_mut(&mut self) -> &mut bool;
     fn element2_shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn element2_shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn element2_ray_distance(&self) -> &f32;
+    fn element2_ray_distance_mut(&mut self) -> &mut f32;
     fn element2_size(&self) -> &super::core::Vec2;
+    fn element2_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element2_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element2_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element2_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element2_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element2_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_enable(&self) -> &bool;
+    fn element3_enable_mut(&mut self) -> &mut bool;
     fn element3_shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn element3_shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn element3_ray_distance(&self) -> &f32;
+    fn element3_ray_distance_mut(&mut self) -> &mut f32;
     fn element3_size(&self) -> &super::core::Vec2;
+    fn element3_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element3_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element3_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element3_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element3_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element3_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_enable(&self) -> &bool;
+    fn element4_enable_mut(&mut self) -> &mut bool;
     fn element4_shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn element4_shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn element4_ray_distance(&self) -> &f32;
+    fn element4_ray_distance_mut(&mut self) -> &mut f32;
     fn element4_size(&self) -> &super::core::Vec2;
+    fn element4_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element4_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element4_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element4_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element4_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element4_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_enable(&self) -> &bool;
+    fn element5_enable_mut(&mut self) -> &mut bool;
     fn element5_shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn element5_shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn element5_ray_distance(&self) -> &f32;
+    fn element5_ray_distance_mut(&mut self) -> &mut f32;
     fn element5_size(&self) -> &super::core::Vec2;
+    fn element5_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element5_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element5_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element5_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element5_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element5_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl SunFlareEffectComponentStateTrait for SunFlareEffectComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn debug_draw_occluder(&self) -> &bool {
         &self.debug_draw_occluder
+    }
+    fn debug_draw_occluder_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_occluder
     }
     fn occluder_size(&self) -> &f32 {
         &self.occluder_size
     }
+    fn occluder_size_mut(&mut self) -> &mut f32 {
+        &mut self.occluder_size
+    }
     fn element1_enable(&self) -> &bool {
         &self.element1_enable
+    }
+    fn element1_enable_mut(&mut self) -> &mut bool {
+        &mut self.element1_enable
     }
     fn element1_shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.element1_shader
     }
+    fn element1_shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.element1_shader
+    }
     fn element1_ray_distance(&self) -> &f32 {
         &self.element1_ray_distance
+    }
+    fn element1_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element1_ray_distance
     }
     fn element1_size(&self) -> &super::core::Vec2 {
         &self.element1_size
     }
+    fn element1_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element1_size
+    }
     fn element1_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element1_size_occluder_curve
+    }
+    fn element1_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_size_occluder_curve
     }
     fn element1_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element1_size_screen_pos_curve
     }
+    fn element1_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_size_screen_pos_curve
+    }
     fn element1_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element1_alpha_occluder_curve
+    }
+    fn element1_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_alpha_occluder_curve
     }
     fn element1_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element1_alpha_screen_pos_curve
     }
+    fn element1_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_alpha_screen_pos_curve
+    }
     fn element2_enable(&self) -> &bool {
         &self.element2_enable
+    }
+    fn element2_enable_mut(&mut self) -> &mut bool {
+        &mut self.element2_enable
     }
     fn element2_shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.element2_shader
     }
+    fn element2_shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.element2_shader
+    }
     fn element2_ray_distance(&self) -> &f32 {
         &self.element2_ray_distance
+    }
+    fn element2_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element2_ray_distance
     }
     fn element2_size(&self) -> &super::core::Vec2 {
         &self.element2_size
     }
+    fn element2_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element2_size
+    }
     fn element2_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element2_size_occluder_curve
+    }
+    fn element2_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_size_occluder_curve
     }
     fn element2_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element2_size_screen_pos_curve
     }
+    fn element2_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_size_screen_pos_curve
+    }
     fn element2_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element2_alpha_occluder_curve
+    }
+    fn element2_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_alpha_occluder_curve
     }
     fn element2_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element2_alpha_screen_pos_curve
     }
+    fn element2_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_alpha_screen_pos_curve
+    }
     fn element3_enable(&self) -> &bool {
         &self.element3_enable
+    }
+    fn element3_enable_mut(&mut self) -> &mut bool {
+        &mut self.element3_enable
     }
     fn element3_shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.element3_shader
     }
+    fn element3_shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.element3_shader
+    }
     fn element3_ray_distance(&self) -> &f32 {
         &self.element3_ray_distance
+    }
+    fn element3_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element3_ray_distance
     }
     fn element3_size(&self) -> &super::core::Vec2 {
         &self.element3_size
     }
+    fn element3_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element3_size
+    }
     fn element3_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element3_size_occluder_curve
+    }
+    fn element3_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_size_occluder_curve
     }
     fn element3_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element3_size_screen_pos_curve
     }
+    fn element3_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_size_screen_pos_curve
+    }
     fn element3_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element3_alpha_occluder_curve
+    }
+    fn element3_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_alpha_occluder_curve
     }
     fn element3_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element3_alpha_screen_pos_curve
     }
+    fn element3_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_alpha_screen_pos_curve
+    }
     fn element4_enable(&self) -> &bool {
         &self.element4_enable
+    }
+    fn element4_enable_mut(&mut self) -> &mut bool {
+        &mut self.element4_enable
     }
     fn element4_shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.element4_shader
     }
+    fn element4_shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.element4_shader
+    }
     fn element4_ray_distance(&self) -> &f32 {
         &self.element4_ray_distance
+    }
+    fn element4_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element4_ray_distance
     }
     fn element4_size(&self) -> &super::core::Vec2 {
         &self.element4_size
     }
+    fn element4_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element4_size
+    }
     fn element4_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element4_size_occluder_curve
+    }
+    fn element4_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_size_occluder_curve
     }
     fn element4_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element4_size_screen_pos_curve
     }
+    fn element4_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_size_screen_pos_curve
+    }
     fn element4_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element4_alpha_occluder_curve
+    }
+    fn element4_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_alpha_occluder_curve
     }
     fn element4_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element4_alpha_screen_pos_curve
     }
+    fn element4_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_alpha_screen_pos_curve
+    }
     fn element5_enable(&self) -> &bool {
         &self.element5_enable
+    }
+    fn element5_enable_mut(&mut self) -> &mut bool {
+        &mut self.element5_enable
     }
     fn element5_shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.element5_shader
     }
+    fn element5_shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.element5_shader
+    }
     fn element5_ray_distance(&self) -> &f32 {
         &self.element5_ray_distance
+    }
+    fn element5_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element5_ray_distance
     }
     fn element5_size(&self) -> &super::core::Vec2 {
         &self.element5_size
     }
+    fn element5_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element5_size
+    }
     fn element5_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element5_size_occluder_curve
+    }
+    fn element5_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_size_occluder_curve
     }
     fn element5_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element5_size_screen_pos_curve
     }
+    fn element5_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_size_screen_pos_curve
+    }
     fn element5_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element5_alpha_occluder_curve
+    }
+    fn element5_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_alpha_occluder_curve
     }
     fn element5_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element5_alpha_screen_pos_curve
     }
+    fn element5_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_alpha_screen_pos_curve
+    }
 }
 
 impl super::core::DataContainerTrait for SunFlareEffectComponentState {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SUNFLAREEFFECTCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1914,6 +2415,15 @@ impl TypeObject for SunFlareEffectComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1953,90 +2463,163 @@ pub struct SkyEffectComponentState {
 
 pub trait SkyEffectComponentStateTrait: super::core::DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn sun_size(&self) -> &f32;
+    fn sun_size_mut(&mut self) -> &mut f32;
     fn sun_scale(&self) -> &f32;
+    fn sun_scale_mut(&mut self) -> &mut f32;
     fn sky_gradient_scale(&self) -> &f32;
+    fn sky_gradient_scale_mut(&mut self) -> &mut f32;
     fn sky_gradient_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn sky_gradient_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn panoramic_u_v_min_x(&self) -> &f32;
+    fn panoramic_u_v_min_x_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_max_x(&self) -> &f32;
+    fn panoramic_u_v_max_x_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_min_y(&self) -> &f32;
+    fn panoramic_u_v_min_y_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_max_y(&self) -> &f32;
+    fn panoramic_u_v_max_y_mut(&mut self) -> &mut f32;
     fn panoramic_tile_factor(&self) -> &f32;
+    fn panoramic_tile_factor_mut(&mut self) -> &mut f32;
     fn panoramic_rotation(&self) -> &f32;
+    fn panoramic_rotation_mut(&mut self) -> &mut f32;
     fn panoramic_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn panoramic_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn panoramic_alpha_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn panoramic_alpha_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_layer_sun_color(&self) -> &super::core::Vec3;
+    fn cloud_layer_sun_color_mut(&mut self) -> &mut super::core::Vec3;
     fn cloud_layer_mask_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_layer_mask_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_layer1(&self) -> &SkyCloudLayer;
+    fn cloud_layer1_mut(&mut self) -> &mut SkyCloudLayer;
     fn cloud_layer2(&self) -> &SkyCloudLayer;
+    fn cloud_layer2_mut(&mut self) -> &mut SkyCloudLayer;
     fn static_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn static_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn wind_direction(&self) -> &f32;
+    fn wind_direction_mut(&mut self) -> &mut f32;
 }
 
 impl SkyEffectComponentStateTrait for SkyEffectComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn sun_size(&self) -> &f32 {
         &self.sun_size
+    }
+    fn sun_size_mut(&mut self) -> &mut f32 {
+        &mut self.sun_size
     }
     fn sun_scale(&self) -> &f32 {
         &self.sun_scale
     }
+    fn sun_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_scale
+    }
     fn sky_gradient_scale(&self) -> &f32 {
         &self.sky_gradient_scale
+    }
+    fn sky_gradient_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sky_gradient_scale
     }
     fn sky_gradient_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.sky_gradient_texture
     }
+    fn sky_gradient_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.sky_gradient_texture
+    }
     fn panoramic_u_v_min_x(&self) -> &f32 {
         &self.panoramic_u_v_min_x
+    }
+    fn panoramic_u_v_min_x_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_min_x
     }
     fn panoramic_u_v_max_x(&self) -> &f32 {
         &self.panoramic_u_v_max_x
     }
+    fn panoramic_u_v_max_x_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_max_x
+    }
     fn panoramic_u_v_min_y(&self) -> &f32 {
         &self.panoramic_u_v_min_y
+    }
+    fn panoramic_u_v_min_y_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_min_y
     }
     fn panoramic_u_v_max_y(&self) -> &f32 {
         &self.panoramic_u_v_max_y
     }
+    fn panoramic_u_v_max_y_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_max_y
+    }
     fn panoramic_tile_factor(&self) -> &f32 {
         &self.panoramic_tile_factor
+    }
+    fn panoramic_tile_factor_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_tile_factor
     }
     fn panoramic_rotation(&self) -> &f32 {
         &self.panoramic_rotation
     }
+    fn panoramic_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_rotation
+    }
     fn panoramic_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.panoramic_texture
+    }
+    fn panoramic_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.panoramic_texture
     }
     fn panoramic_alpha_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.panoramic_alpha_texture
     }
+    fn panoramic_alpha_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.panoramic_alpha_texture
+    }
     fn cloud_layer_sun_color(&self) -> &super::core::Vec3 {
         &self.cloud_layer_sun_color
+    }
+    fn cloud_layer_sun_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.cloud_layer_sun_color
     }
     fn cloud_layer_mask_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_layer_mask_texture
     }
+    fn cloud_layer_mask_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_layer_mask_texture
+    }
     fn cloud_layer1(&self) -> &SkyCloudLayer {
         &self.cloud_layer1
+    }
+    fn cloud_layer1_mut(&mut self) -> &mut SkyCloudLayer {
+        &mut self.cloud_layer1
     }
     fn cloud_layer2(&self) -> &SkyCloudLayer {
         &self.cloud_layer2
     }
+    fn cloud_layer2_mut(&mut self) -> &mut SkyCloudLayer {
+        &mut self.cloud_layer2
+    }
     fn static_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.static_envmap_texture
+    }
+    fn static_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.static_envmap_texture
     }
     fn wind_direction(&self) -> &f32 {
         &self.wind_direction
     }
+    fn wind_direction_mut(&mut self) -> &mut f32 {
+        &mut self.wind_direction
+    }
 }
 
 impl super::core::DataContainerTrait for SkyEffectComponentState {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SKYEFFECTCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2176,6 +2759,15 @@ impl TypeObject for SkyEffectComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2205,47 +2797,87 @@ pub struct SkyCloudLayer {
 
 pub trait SkyCloudLayerTrait: TypeObject {
     fn altitude(&self) -> &f32;
+    fn altitude_mut(&mut self) -> &mut f32;
     fn tile_factor(&self) -> &f32;
+    fn tile_factor_mut(&mut self) -> &mut f32;
     fn rotation(&self) -> &f32;
+    fn rotation_mut(&mut self) -> &mut f32;
     fn speed(&self) -> &f32;
+    fn speed_mut(&mut self) -> &mut f32;
     fn sun_light_intensity(&self) -> &f32;
+    fn sun_light_intensity_mut(&mut self) -> &mut f32;
     fn sun_light_power(&self) -> &f32;
+    fn sun_light_power_mut(&mut self) -> &mut f32;
     fn ambient_light_intensity(&self) -> &f32;
+    fn ambient_light_intensity_mut(&mut self) -> &mut f32;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn alpha_mul(&self) -> &f32;
+    fn alpha_mul_mut(&mut self) -> &mut f32;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
 }
 
 impl SkyCloudLayerTrait for SkyCloudLayer {
     fn altitude(&self) -> &f32 {
         &self.altitude
     }
+    fn altitude_mut(&mut self) -> &mut f32 {
+        &mut self.altitude
+    }
     fn tile_factor(&self) -> &f32 {
         &self.tile_factor
+    }
+    fn tile_factor_mut(&mut self) -> &mut f32 {
+        &mut self.tile_factor
     }
     fn rotation(&self) -> &f32 {
         &self.rotation
     }
+    fn rotation_mut(&mut self) -> &mut f32 {
+        &mut self.rotation
+    }
     fn speed(&self) -> &f32 {
         &self.speed
+    }
+    fn speed_mut(&mut self) -> &mut f32 {
+        &mut self.speed
     }
     fn sun_light_intensity(&self) -> &f32 {
         &self.sun_light_intensity
     }
+    fn sun_light_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.sun_light_intensity
+    }
     fn sun_light_power(&self) -> &f32 {
         &self.sun_light_power
+    }
+    fn sun_light_power_mut(&mut self) -> &mut f32 {
+        &mut self.sun_light_power
     }
     fn ambient_light_intensity(&self) -> &f32 {
         &self.ambient_light_intensity
     }
+    fn ambient_light_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.ambient_light_intensity
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
     fn alpha_mul(&self) -> &f32 {
         &self.alpha_mul
     }
+    fn alpha_mul_mut(&mut self) -> &mut f32 {
+        &mut self.alpha_mul
+    }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
+    }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
     }
 }
 
@@ -2331,6 +2963,15 @@ impl TypeObject for SkyCloudLayer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2375,110 +3016,203 @@ pub struct FogEffectComponentState {
 
 pub trait FogEffectComponentStateTrait: super::core::DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn start(&self) -> &f32;
+    fn start_mut(&mut self) -> &mut f32;
     fn end(&self) -> &f32;
+    fn end_mut(&mut self) -> &mut f32;
     fn curve(&self) -> &super::core::Vec4;
+    fn curve_mut(&mut self) -> &mut super::core::Vec4;
     fn fog_color(&self) -> &super::core::Vec3;
+    fn fog_color_mut(&mut self) -> &mut super::core::Vec3;
     fn fog_color_start(&self) -> &f32;
+    fn fog_color_start_mut(&mut self) -> &mut f32;
     fn fog_color_end(&self) -> &f32;
+    fn fog_color_end_mut(&mut self) -> &mut f32;
     fn fog_color_curve(&self) -> &super::core::Vec4;
+    fn fog_color_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn transparency_fade_start(&self) -> &f32;
+    fn transparency_fade_start_mut(&mut self) -> &mut f32;
     fn transparency_fade_end(&self) -> &f32;
+    fn transparency_fade_end_mut(&mut self) -> &mut f32;
     fn transparency_fade_clamp(&self) -> &f32;
+    fn transparency_fade_clamp_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_color(&self) -> &super::core::Vec3;
+    fn forward_light_scattering_color_mut(&mut self) -> &mut super::core::Vec3;
     fn forward_light_scattering_enabled(&self) -> &bool;
+    fn forward_light_scattering_enabled_mut(&mut self) -> &mut bool;
     fn forward_light_scattering_phase_g(&self) -> &f32;
+    fn forward_light_scattering_phase_g_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_strength(&self) -> &f32;
+    fn forward_light_scattering_strength_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_presence(&self) -> &f32;
+    fn forward_light_scattering_presence_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_max_blur_length(&self) -> &f32;
+    fn forward_light_scattering_max_blur_length_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_extinction(&self) -> &f32;
+    fn forward_light_scattering_extinction_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_smoothness(&self) -> &f32;
+    fn forward_light_scattering_smoothness_mut(&mut self) -> &mut f32;
     fn height_fog_enable(&self) -> &bool;
+    fn height_fog_enable_mut(&mut self) -> &mut bool;
     fn height_fog_follow_camera(&self) -> &f32;
+    fn height_fog_follow_camera_mut(&mut self) -> &mut f32;
     fn height_fog_altitude(&self) -> &f32;
+    fn height_fog_altitude_mut(&mut self) -> &mut f32;
     fn height_fog_depth(&self) -> &f32;
+    fn height_fog_depth_mut(&mut self) -> &mut f32;
     fn height_fog_visibility_range(&self) -> &f32;
+    fn height_fog_visibility_range_mut(&mut self) -> &mut f32;
 }
 
 impl FogEffectComponentStateTrait for FogEffectComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn start(&self) -> &f32 {
         &self.start
+    }
+    fn start_mut(&mut self) -> &mut f32 {
+        &mut self.start
     }
     fn end(&self) -> &f32 {
         &self.end
     }
+    fn end_mut(&mut self) -> &mut f32 {
+        &mut self.end
+    }
     fn curve(&self) -> &super::core::Vec4 {
         &self.curve
+    }
+    fn curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.curve
     }
     fn fog_color(&self) -> &super::core::Vec3 {
         &self.fog_color
     }
+    fn fog_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.fog_color
+    }
     fn fog_color_start(&self) -> &f32 {
         &self.fog_color_start
+    }
+    fn fog_color_start_mut(&mut self) -> &mut f32 {
+        &mut self.fog_color_start
     }
     fn fog_color_end(&self) -> &f32 {
         &self.fog_color_end
     }
+    fn fog_color_end_mut(&mut self) -> &mut f32 {
+        &mut self.fog_color_end
+    }
     fn fog_color_curve(&self) -> &super::core::Vec4 {
         &self.fog_color_curve
+    }
+    fn fog_color_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.fog_color_curve
     }
     fn transparency_fade_start(&self) -> &f32 {
         &self.transparency_fade_start
     }
+    fn transparency_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.transparency_fade_start
+    }
     fn transparency_fade_end(&self) -> &f32 {
         &self.transparency_fade_end
+    }
+    fn transparency_fade_end_mut(&mut self) -> &mut f32 {
+        &mut self.transparency_fade_end
     }
     fn transparency_fade_clamp(&self) -> &f32 {
         &self.transparency_fade_clamp
     }
+    fn transparency_fade_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.transparency_fade_clamp
+    }
     fn forward_light_scattering_color(&self) -> &super::core::Vec3 {
         &self.forward_light_scattering_color
+    }
+    fn forward_light_scattering_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.forward_light_scattering_color
     }
     fn forward_light_scattering_enabled(&self) -> &bool {
         &self.forward_light_scattering_enabled
     }
+    fn forward_light_scattering_enabled_mut(&mut self) -> &mut bool {
+        &mut self.forward_light_scattering_enabled
+    }
     fn forward_light_scattering_phase_g(&self) -> &f32 {
         &self.forward_light_scattering_phase_g
+    }
+    fn forward_light_scattering_phase_g_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_phase_g
     }
     fn forward_light_scattering_strength(&self) -> &f32 {
         &self.forward_light_scattering_strength
     }
+    fn forward_light_scattering_strength_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_strength
+    }
     fn forward_light_scattering_presence(&self) -> &f32 {
         &self.forward_light_scattering_presence
+    }
+    fn forward_light_scattering_presence_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_presence
     }
     fn forward_light_scattering_max_blur_length(&self) -> &f32 {
         &self.forward_light_scattering_max_blur_length
     }
+    fn forward_light_scattering_max_blur_length_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_max_blur_length
+    }
     fn forward_light_scattering_extinction(&self) -> &f32 {
         &self.forward_light_scattering_extinction
+    }
+    fn forward_light_scattering_extinction_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_extinction
     }
     fn forward_light_scattering_smoothness(&self) -> &f32 {
         &self.forward_light_scattering_smoothness
     }
+    fn forward_light_scattering_smoothness_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_smoothness
+    }
     fn height_fog_enable(&self) -> &bool {
         &self.height_fog_enable
+    }
+    fn height_fog_enable_mut(&mut self) -> &mut bool {
+        &mut self.height_fog_enable
     }
     fn height_fog_follow_camera(&self) -> &f32 {
         &self.height_fog_follow_camera
     }
+    fn height_fog_follow_camera_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_follow_camera
+    }
     fn height_fog_altitude(&self) -> &f32 {
         &self.height_fog_altitude
+    }
+    fn height_fog_altitude_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_altitude
     }
     fn height_fog_depth(&self) -> &f32 {
         &self.height_fog_depth
     }
+    fn height_fog_depth_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_depth
+    }
     fn height_fog_visibility_range(&self) -> &f32 {
         &self.height_fog_visibility_range
+    }
+    fn height_fog_visibility_range_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_visibility_range
     }
 }
 
 impl super::core::DataContainerTrait for FogEffectComponentState {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FOGEFFECTCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2648,6 +3382,15 @@ impl TypeObject for FogEffectComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2682,70 +3425,123 @@ pub struct OutdoorLightEffectComponentState {
 
 pub trait OutdoorLightEffectComponentStateTrait: super::core::DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn sun_rotation_x(&self) -> &f32;
+    fn sun_rotation_x_mut(&mut self) -> &mut f32;
     fn sun_rotation_y(&self) -> &f32;
+    fn sun_rotation_y_mut(&mut self) -> &mut f32;
     fn sun_color(&self) -> &super::core::Vec3;
+    fn sun_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_color(&self) -> &super::core::Vec3;
+    fn sky_color_mut(&mut self) -> &mut super::core::Vec3;
     fn ground_color(&self) -> &super::core::Vec3;
+    fn ground_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_light_angle_factor(&self) -> &f32;
+    fn sky_light_angle_factor_mut(&mut self) -> &mut f32;
     fn sun_shadow_height_scale(&self) -> &f32;
+    fn sun_shadow_height_scale_mut(&mut self) -> &mut f32;
     fn cloud_shadow_enable(&self) -> &bool;
+    fn cloud_shadow_enable_mut(&mut self) -> &mut bool;
     fn cloud_shadow_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_shadow_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_shadow_speed(&self) -> &super::core::Vec2;
+    fn cloud_shadow_speed_mut(&mut self) -> &mut super::core::Vec2;
     fn cloud_shadow_size(&self) -> &f32;
+    fn cloud_shadow_size_mut(&mut self) -> &mut f32;
     fn cloud_shadow_coverage(&self) -> &f32;
+    fn cloud_shadow_coverage_mut(&mut self) -> &mut f32;
     fn cloud_shadow_exponent(&self) -> &f32;
+    fn cloud_shadow_exponent_mut(&mut self) -> &mut f32;
 }
 
 impl OutdoorLightEffectComponentStateTrait for OutdoorLightEffectComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn sun_rotation_x(&self) -> &f32 {
         &self.sun_rotation_x
+    }
+    fn sun_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.sun_rotation_x
     }
     fn sun_rotation_y(&self) -> &f32 {
         &self.sun_rotation_y
     }
+    fn sun_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.sun_rotation_y
+    }
     fn sun_color(&self) -> &super::core::Vec3 {
         &self.sun_color
+    }
+    fn sun_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sun_color
     }
     fn sky_color(&self) -> &super::core::Vec3 {
         &self.sky_color
     }
+    fn sky_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_color
+    }
     fn ground_color(&self) -> &super::core::Vec3 {
         &self.ground_color
+    }
+    fn ground_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ground_color
     }
     fn sky_light_angle_factor(&self) -> &f32 {
         &self.sky_light_angle_factor
     }
+    fn sky_light_angle_factor_mut(&mut self) -> &mut f32 {
+        &mut self.sky_light_angle_factor
+    }
     fn sun_shadow_height_scale(&self) -> &f32 {
         &self.sun_shadow_height_scale
+    }
+    fn sun_shadow_height_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadow_height_scale
     }
     fn cloud_shadow_enable(&self) -> &bool {
         &self.cloud_shadow_enable
     }
+    fn cloud_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.cloud_shadow_enable
+    }
     fn cloud_shadow_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_shadow_texture
+    }
+    fn cloud_shadow_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_shadow_texture
     }
     fn cloud_shadow_speed(&self) -> &super::core::Vec2 {
         &self.cloud_shadow_speed
     }
+    fn cloud_shadow_speed_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.cloud_shadow_speed
+    }
     fn cloud_shadow_size(&self) -> &f32 {
         &self.cloud_shadow_size
+    }
+    fn cloud_shadow_size_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_size
     }
     fn cloud_shadow_coverage(&self) -> &f32 {
         &self.cloud_shadow_coverage
     }
+    fn cloud_shadow_coverage_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_coverage
+    }
     fn cloud_shadow_exponent(&self) -> &f32 {
         &self.cloud_shadow_exponent
+    }
+    fn cloud_shadow_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_exponent
     }
 }
 
 impl super::core::DataContainerTrait for OutdoorLightEffectComponentState {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OUTDOORLIGHTEFFECTCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2855,6 +3651,15 @@ impl TypeObject for OutdoorLightEffectComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2880,31 +3685,55 @@ pub struct SonarParamsComponentState {
 
 pub trait SonarParamsComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn color2(&self) -> &super::core::Vec3;
+    fn color2_mut(&mut self) -> &mut super::core::Vec3;
     fn color3(&self) -> &super::core::Vec3;
+    fn color3_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl SonarParamsComponentStateTrait for SonarParamsComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
+    }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
     }
     fn color2(&self) -> &super::core::Vec3 {
         &self.color2
     }
+    fn color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color2
+    }
     fn color3(&self) -> &super::core::Vec3 {
         &self.color3
+    }
+    fn color3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color3
     }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2965,6 +3794,15 @@ impl TypeObject for SonarParamsComponentState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3044,243 +3882,479 @@ pub struct HologramParamsComponentState {
 
 pub trait HologramParamsComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn render_mode(&self) -> &HologramRenderMode;
+    fn render_mode_mut(&mut self) -> &mut HologramRenderMode;
     fn key_illuminance(&self) -> &super::core::Vec3;
+    fn key_illuminance_mut(&mut self) -> &mut super::core::Vec3;
     fn key_light_dir(&self) -> &super::core::Vec3;
+    fn key_light_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn resolution_scale(&self) -> &f32;
+    fn resolution_scale_mut(&mut self) -> &mut f32;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn color2(&self) -> &super::core::Vec3;
+    fn color2_mut(&mut self) -> &mut super::core::Vec3;
     fn color3(&self) -> &super::core::Vec3;
+    fn color3_mut(&mut self) -> &mut super::core::Vec3;
     fn color4(&self) -> &super::core::Vec3;
+    fn color4_mut(&mut self) -> &mut super::core::Vec3;
     fn color5(&self) -> &super::core::Vec3;
+    fn color5_mut(&mut self) -> &mut super::core::Vec3;
     fn float1(&self) -> &f32;
+    fn float1_mut(&mut self) -> &mut f32;
     fn float2(&self) -> &f32;
+    fn float2_mut(&mut self) -> &mut f32;
     fn float3(&self) -> &f32;
+    fn float3_mut(&mut self) -> &mut f32;
     fn float4(&self) -> &f32;
+    fn float4_mut(&mut self) -> &mut f32;
     fn float5(&self) -> &f32;
+    fn float5_mut(&mut self) -> &mut f32;
     fn float6(&self) -> &f32;
+    fn float6_mut(&mut self) -> &mut f32;
     fn float7(&self) -> &f32;
+    fn float7_mut(&mut self) -> &mut f32;
     fn float8(&self) -> &f32;
+    fn float8_mut(&mut self) -> &mut f32;
     fn float9(&self) -> &f32;
+    fn float9_mut(&mut self) -> &mut f32;
     fn brightness2(&self) -> &f32;
+    fn brightness2_mut(&mut self) -> &mut f32;
     fn brightness3(&self) -> &f32;
+    fn brightness3_mut(&mut self) -> &mut f32;
     fn brightness4(&self) -> &f32;
+    fn brightness4_mut(&mut self) -> &mut f32;
     fn brightness5(&self) -> &f32;
+    fn brightness5_mut(&mut self) -> &mut f32;
     fn streaks_enabled(&self) -> &bool;
+    fn streaks_enabled_mut(&mut self) -> &mut bool;
     fn time_offset(&self) -> &f32;
+    fn time_offset_mut(&mut self) -> &mut f32;
     fn opacity1(&self) -> &f32;
+    fn opacity1_mut(&mut self) -> &mut f32;
     fn distortion_scale1(&self) -> &f32;
+    fn distortion_scale1_mut(&mut self) -> &mut f32;
     fn source_pos1(&self) -> &super::core::Vec3;
+    fn source_pos1_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pos1(&self) -> &super::core::Vec3;
+    fn target_pos1_mut(&mut self) -> &mut super::core::Vec3;
     fn source_radius1(&self) -> &f32;
+    fn source_radius1_mut(&mut self) -> &mut f32;
     fn target_radius1(&self) -> &f32;
+    fn target_radius1_mut(&mut self) -> &mut f32;
     fn opacity2(&self) -> &f32;
+    fn opacity2_mut(&mut self) -> &mut f32;
     fn distortion_scale2(&self) -> &f32;
+    fn distortion_scale2_mut(&mut self) -> &mut f32;
     fn source_pos2(&self) -> &super::core::Vec3;
+    fn source_pos2_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pos2(&self) -> &super::core::Vec3;
+    fn target_pos2_mut(&mut self) -> &mut super::core::Vec3;
     fn source_radius2(&self) -> &f32;
+    fn source_radius2_mut(&mut self) -> &mut f32;
     fn target_radius2(&self) -> &f32;
+    fn target_radius2_mut(&mut self) -> &mut f32;
     fn opacity3(&self) -> &f32;
+    fn opacity3_mut(&mut self) -> &mut f32;
     fn distortion_scale3(&self) -> &f32;
+    fn distortion_scale3_mut(&mut self) -> &mut f32;
     fn source_pos3(&self) -> &super::core::Vec3;
+    fn source_pos3_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pos3(&self) -> &super::core::Vec3;
+    fn target_pos3_mut(&mut self) -> &mut super::core::Vec3;
     fn source_radius3(&self) -> &f32;
+    fn source_radius3_mut(&mut self) -> &mut f32;
     fn target_radius3(&self) -> &f32;
+    fn target_radius3_mut(&mut self) -> &mut f32;
     fn opacity4(&self) -> &f32;
+    fn opacity4_mut(&mut self) -> &mut f32;
     fn distortion_scale4(&self) -> &f32;
+    fn distortion_scale4_mut(&mut self) -> &mut f32;
     fn source_pos4(&self) -> &super::core::Vec3;
+    fn source_pos4_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pos4(&self) -> &super::core::Vec3;
+    fn target_pos4_mut(&mut self) -> &mut super::core::Vec3;
     fn source_radius4(&self) -> &f32;
+    fn source_radius4_mut(&mut self) -> &mut f32;
     fn target_radius4(&self) -> &f32;
+    fn target_radius4_mut(&mut self) -> &mut f32;
     fn opacity5(&self) -> &f32;
+    fn opacity5_mut(&mut self) -> &mut f32;
     fn distortion_scale5(&self) -> &f32;
+    fn distortion_scale5_mut(&mut self) -> &mut f32;
     fn source_pos5(&self) -> &super::core::Vec3;
+    fn source_pos5_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pos5(&self) -> &super::core::Vec3;
+    fn target_pos5_mut(&mut self) -> &mut super::core::Vec3;
     fn source_radius5(&self) -> &f32;
+    fn source_radius5_mut(&mut self) -> &mut f32;
     fn target_radius5(&self) -> &f32;
+    fn target_radius5_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u32;
+    fn field_flag_override1_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u32;
+    fn field_flag_changed1_mut(&mut self) -> &mut u32;
 }
 
 impl HologramParamsComponentStateTrait for HologramParamsComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn render_mode(&self) -> &HologramRenderMode {
         &self.render_mode
+    }
+    fn render_mode_mut(&mut self) -> &mut HologramRenderMode {
+        &mut self.render_mode
     }
     fn key_illuminance(&self) -> &super::core::Vec3 {
         &self.key_illuminance
     }
+    fn key_illuminance_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.key_illuminance
+    }
     fn key_light_dir(&self) -> &super::core::Vec3 {
         &self.key_light_dir
+    }
+    fn key_light_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.key_light_dir
     }
     fn resolution_scale(&self) -> &f32 {
         &self.resolution_scale
     }
+    fn resolution_scale_mut(&mut self) -> &mut f32 {
+        &mut self.resolution_scale
+    }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
+    }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
     }
     fn color2(&self) -> &super::core::Vec3 {
         &self.color2
     }
+    fn color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color2
+    }
     fn color3(&self) -> &super::core::Vec3 {
         &self.color3
+    }
+    fn color3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color3
     }
     fn color4(&self) -> &super::core::Vec3 {
         &self.color4
     }
+    fn color4_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color4
+    }
     fn color5(&self) -> &super::core::Vec3 {
         &self.color5
+    }
+    fn color5_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color5
     }
     fn float1(&self) -> &f32 {
         &self.float1
     }
+    fn float1_mut(&mut self) -> &mut f32 {
+        &mut self.float1
+    }
     fn float2(&self) -> &f32 {
         &self.float2
+    }
+    fn float2_mut(&mut self) -> &mut f32 {
+        &mut self.float2
     }
     fn float3(&self) -> &f32 {
         &self.float3
     }
+    fn float3_mut(&mut self) -> &mut f32 {
+        &mut self.float3
+    }
     fn float4(&self) -> &f32 {
         &self.float4
+    }
+    fn float4_mut(&mut self) -> &mut f32 {
+        &mut self.float4
     }
     fn float5(&self) -> &f32 {
         &self.float5
     }
+    fn float5_mut(&mut self) -> &mut f32 {
+        &mut self.float5
+    }
     fn float6(&self) -> &f32 {
         &self.float6
+    }
+    fn float6_mut(&mut self) -> &mut f32 {
+        &mut self.float6
     }
     fn float7(&self) -> &f32 {
         &self.float7
     }
+    fn float7_mut(&mut self) -> &mut f32 {
+        &mut self.float7
+    }
     fn float8(&self) -> &f32 {
         &self.float8
+    }
+    fn float8_mut(&mut self) -> &mut f32 {
+        &mut self.float8
     }
     fn float9(&self) -> &f32 {
         &self.float9
     }
+    fn float9_mut(&mut self) -> &mut f32 {
+        &mut self.float9
+    }
     fn brightness2(&self) -> &f32 {
         &self.brightness2
+    }
+    fn brightness2_mut(&mut self) -> &mut f32 {
+        &mut self.brightness2
     }
     fn brightness3(&self) -> &f32 {
         &self.brightness3
     }
+    fn brightness3_mut(&mut self) -> &mut f32 {
+        &mut self.brightness3
+    }
     fn brightness4(&self) -> &f32 {
         &self.brightness4
+    }
+    fn brightness4_mut(&mut self) -> &mut f32 {
+        &mut self.brightness4
     }
     fn brightness5(&self) -> &f32 {
         &self.brightness5
     }
+    fn brightness5_mut(&mut self) -> &mut f32 {
+        &mut self.brightness5
+    }
     fn streaks_enabled(&self) -> &bool {
         &self.streaks_enabled
+    }
+    fn streaks_enabled_mut(&mut self) -> &mut bool {
+        &mut self.streaks_enabled
     }
     fn time_offset(&self) -> &f32 {
         &self.time_offset
     }
+    fn time_offset_mut(&mut self) -> &mut f32 {
+        &mut self.time_offset
+    }
     fn opacity1(&self) -> &f32 {
         &self.opacity1
+    }
+    fn opacity1_mut(&mut self) -> &mut f32 {
+        &mut self.opacity1
     }
     fn distortion_scale1(&self) -> &f32 {
         &self.distortion_scale1
     }
+    fn distortion_scale1_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_scale1
+    }
     fn source_pos1(&self) -> &super::core::Vec3 {
         &self.source_pos1
+    }
+    fn source_pos1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pos1
     }
     fn target_pos1(&self) -> &super::core::Vec3 {
         &self.target_pos1
     }
+    fn target_pos1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pos1
+    }
     fn source_radius1(&self) -> &f32 {
         &self.source_radius1
+    }
+    fn source_radius1_mut(&mut self) -> &mut f32 {
+        &mut self.source_radius1
     }
     fn target_radius1(&self) -> &f32 {
         &self.target_radius1
     }
+    fn target_radius1_mut(&mut self) -> &mut f32 {
+        &mut self.target_radius1
+    }
     fn opacity2(&self) -> &f32 {
         &self.opacity2
+    }
+    fn opacity2_mut(&mut self) -> &mut f32 {
+        &mut self.opacity2
     }
     fn distortion_scale2(&self) -> &f32 {
         &self.distortion_scale2
     }
+    fn distortion_scale2_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_scale2
+    }
     fn source_pos2(&self) -> &super::core::Vec3 {
         &self.source_pos2
+    }
+    fn source_pos2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pos2
     }
     fn target_pos2(&self) -> &super::core::Vec3 {
         &self.target_pos2
     }
+    fn target_pos2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pos2
+    }
     fn source_radius2(&self) -> &f32 {
         &self.source_radius2
+    }
+    fn source_radius2_mut(&mut self) -> &mut f32 {
+        &mut self.source_radius2
     }
     fn target_radius2(&self) -> &f32 {
         &self.target_radius2
     }
+    fn target_radius2_mut(&mut self) -> &mut f32 {
+        &mut self.target_radius2
+    }
     fn opacity3(&self) -> &f32 {
         &self.opacity3
+    }
+    fn opacity3_mut(&mut self) -> &mut f32 {
+        &mut self.opacity3
     }
     fn distortion_scale3(&self) -> &f32 {
         &self.distortion_scale3
     }
+    fn distortion_scale3_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_scale3
+    }
     fn source_pos3(&self) -> &super::core::Vec3 {
         &self.source_pos3
+    }
+    fn source_pos3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pos3
     }
     fn target_pos3(&self) -> &super::core::Vec3 {
         &self.target_pos3
     }
+    fn target_pos3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pos3
+    }
     fn source_radius3(&self) -> &f32 {
         &self.source_radius3
+    }
+    fn source_radius3_mut(&mut self) -> &mut f32 {
+        &mut self.source_radius3
     }
     fn target_radius3(&self) -> &f32 {
         &self.target_radius3
     }
+    fn target_radius3_mut(&mut self) -> &mut f32 {
+        &mut self.target_radius3
+    }
     fn opacity4(&self) -> &f32 {
         &self.opacity4
+    }
+    fn opacity4_mut(&mut self) -> &mut f32 {
+        &mut self.opacity4
     }
     fn distortion_scale4(&self) -> &f32 {
         &self.distortion_scale4
     }
+    fn distortion_scale4_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_scale4
+    }
     fn source_pos4(&self) -> &super::core::Vec3 {
         &self.source_pos4
+    }
+    fn source_pos4_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pos4
     }
     fn target_pos4(&self) -> &super::core::Vec3 {
         &self.target_pos4
     }
+    fn target_pos4_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pos4
+    }
     fn source_radius4(&self) -> &f32 {
         &self.source_radius4
+    }
+    fn source_radius4_mut(&mut self) -> &mut f32 {
+        &mut self.source_radius4
     }
     fn target_radius4(&self) -> &f32 {
         &self.target_radius4
     }
+    fn target_radius4_mut(&mut self) -> &mut f32 {
+        &mut self.target_radius4
+    }
     fn opacity5(&self) -> &f32 {
         &self.opacity5
+    }
+    fn opacity5_mut(&mut self) -> &mut f32 {
+        &mut self.opacity5
     }
     fn distortion_scale5(&self) -> &f32 {
         &self.distortion_scale5
     }
+    fn distortion_scale5_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_scale5
+    }
     fn source_pos5(&self) -> &super::core::Vec3 {
         &self.source_pos5
+    }
+    fn source_pos5_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pos5
     }
     fn target_pos5(&self) -> &super::core::Vec3 {
         &self.target_pos5
     }
+    fn target_pos5_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pos5
+    }
     fn source_radius5(&self) -> &f32 {
         &self.source_radius5
+    }
+    fn source_radius5_mut(&mut self) -> &mut f32 {
+        &mut self.source_radius5
     }
     fn target_radius5(&self) -> &f32 {
         &self.target_radius5
     }
+    fn target_radius5_mut(&mut self) -> &mut f32 {
+        &mut self.target_radius5
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
     }
     fn field_flag_override1(&self) -> &u32 {
         &self.field_flag_override1
     }
+    fn field_flag_override1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override1
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
     }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
+    }
     fn field_flag_changed1(&self) -> &u32 {
         &self.field_flag_changed1
+    }
+    fn field_flag_changed1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed1
     }
 }
 
@@ -3660,6 +4734,15 @@ impl TypeObject for HologramParamsComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3696,6 +4779,15 @@ impl TypeObject for HologramPlaneCount {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3734,6 +4826,15 @@ impl TypeObject for HologramRenderMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3776,95 +4877,183 @@ pub struct ThreatAlertHighlightParamsComponentState {
 
 pub trait ThreatAlertHighlightParamsComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn color2(&self) -> &super::core::Vec3;
+    fn color2_mut(&mut self) -> &mut super::core::Vec3;
     fn color3(&self) -> &super::core::Vec3;
+    fn color3_mut(&mut self) -> &mut super::core::Vec3;
     fn color4(&self) -> &super::core::Vec3;
+    fn color4_mut(&mut self) -> &mut super::core::Vec3;
     fn color5(&self) -> &super::core::Vec3;
+    fn color5_mut(&mut self) -> &mut super::core::Vec3;
     fn use_outline(&self) -> &bool;
+    fn use_outline_mut(&mut self) -> &mut bool;
     fn outline_opacity(&self) -> &f32;
+    fn outline_opacity_mut(&mut self) -> &mut f32;
     fn use_scan_lines(&self) -> &bool;
+    fn use_scan_lines_mut(&mut self) -> &mut bool;
     fn scan_line_offset(&self) -> &i32;
+    fn scan_line_offset_mut(&mut self) -> &mut i32;
     fn scan_line_opacity(&self) -> &f32;
+    fn scan_line_opacity_mut(&mut self) -> &mut f32;
     fn scan_line_thickness(&self) -> &i32;
+    fn scan_line_thickness_mut(&mut self) -> &mut i32;
     fn scan_line_spacing(&self) -> &i32;
+    fn scan_line_spacing_mut(&mut self) -> &mut i32;
     fn use_horizontal_scan_lines(&self) -> &bool;
+    fn use_horizontal_scan_lines_mut(&mut self) -> &mut bool;
     fn use_alt_lines(&self) -> &bool;
+    fn use_alt_lines_mut(&mut self) -> &mut bool;
     fn alt_line_offset(&self) -> &i32;
+    fn alt_line_offset_mut(&mut self) -> &mut i32;
     fn alt_line_opacity(&self) -> &f32;
+    fn alt_line_opacity_mut(&mut self) -> &mut f32;
     fn alt_line_thickness(&self) -> &i32;
+    fn alt_line_thickness_mut(&mut self) -> &mut i32;
     fn alt_line_spacing(&self) -> &i32;
+    fn alt_line_spacing_mut(&mut self) -> &mut i32;
     fn use_horizontal_alt_lines(&self) -> &bool;
+    fn use_horizontal_alt_lines_mut(&mut self) -> &mut bool;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl ThreatAlertHighlightParamsComponentStateTrait for ThreatAlertHighlightParamsComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
+    }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
     }
     fn color2(&self) -> &super::core::Vec3 {
         &self.color2
     }
+    fn color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color2
+    }
     fn color3(&self) -> &super::core::Vec3 {
         &self.color3
+    }
+    fn color3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color3
     }
     fn color4(&self) -> &super::core::Vec3 {
         &self.color4
     }
+    fn color4_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color4
+    }
     fn color5(&self) -> &super::core::Vec3 {
         &self.color5
+    }
+    fn color5_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color5
     }
     fn use_outline(&self) -> &bool {
         &self.use_outline
     }
+    fn use_outline_mut(&mut self) -> &mut bool {
+        &mut self.use_outline
+    }
     fn outline_opacity(&self) -> &f32 {
         &self.outline_opacity
+    }
+    fn outline_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.outline_opacity
     }
     fn use_scan_lines(&self) -> &bool {
         &self.use_scan_lines
     }
+    fn use_scan_lines_mut(&mut self) -> &mut bool {
+        &mut self.use_scan_lines
+    }
     fn scan_line_offset(&self) -> &i32 {
         &self.scan_line_offset
+    }
+    fn scan_line_offset_mut(&mut self) -> &mut i32 {
+        &mut self.scan_line_offset
     }
     fn scan_line_opacity(&self) -> &f32 {
         &self.scan_line_opacity
     }
+    fn scan_line_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.scan_line_opacity
+    }
     fn scan_line_thickness(&self) -> &i32 {
         &self.scan_line_thickness
+    }
+    fn scan_line_thickness_mut(&mut self) -> &mut i32 {
+        &mut self.scan_line_thickness
     }
     fn scan_line_spacing(&self) -> &i32 {
         &self.scan_line_spacing
     }
+    fn scan_line_spacing_mut(&mut self) -> &mut i32 {
+        &mut self.scan_line_spacing
+    }
     fn use_horizontal_scan_lines(&self) -> &bool {
         &self.use_horizontal_scan_lines
+    }
+    fn use_horizontal_scan_lines_mut(&mut self) -> &mut bool {
+        &mut self.use_horizontal_scan_lines
     }
     fn use_alt_lines(&self) -> &bool {
         &self.use_alt_lines
     }
+    fn use_alt_lines_mut(&mut self) -> &mut bool {
+        &mut self.use_alt_lines
+    }
     fn alt_line_offset(&self) -> &i32 {
         &self.alt_line_offset
+    }
+    fn alt_line_offset_mut(&mut self) -> &mut i32 {
+        &mut self.alt_line_offset
     }
     fn alt_line_opacity(&self) -> &f32 {
         &self.alt_line_opacity
     }
+    fn alt_line_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.alt_line_opacity
+    }
     fn alt_line_thickness(&self) -> &i32 {
         &self.alt_line_thickness
+    }
+    fn alt_line_thickness_mut(&mut self) -> &mut i32 {
+        &mut self.alt_line_thickness
     }
     fn alt_line_spacing(&self) -> &i32 {
         &self.alt_line_spacing
     }
+    fn alt_line_spacing_mut(&mut self) -> &mut i32 {
+        &mut self.alt_line_spacing
+    }
     fn use_horizontal_alt_lines(&self) -> &bool {
         &self.use_horizontal_alt_lines
+    }
+    fn use_horizontal_alt_lines_mut(&mut self) -> &mut bool {
+        &mut self.use_horizontal_alt_lines
     }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4022,6 +5211,15 @@ impl TypeObject for ThreatAlertHighlightParamsComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4053,55 +5251,103 @@ pub struct ObjectHighlightParamsComponentState {
 
 pub trait ObjectHighlightParamsComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn brightness(&self) -> &f32;
+    fn brightness_mut(&mut self) -> &mut f32;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn color1_alpha(&self) -> &f32;
+    fn color1_alpha_mut(&mut self) -> &mut f32;
     fn color2(&self) -> &super::core::Vec3;
+    fn color2_mut(&mut self) -> &mut super::core::Vec3;
     fn color2_alpha(&self) -> &f32;
+    fn color2_alpha_mut(&mut self) -> &mut f32;
     fn color3(&self) -> &super::core::Vec3;
+    fn color3_mut(&mut self) -> &mut super::core::Vec3;
     fn color3_alpha(&self) -> &f32;
+    fn color3_alpha_mut(&mut self) -> &mut f32;
     fn color4(&self) -> &super::core::Vec3;
+    fn color4_mut(&mut self) -> &mut super::core::Vec3;
     fn color4_alpha(&self) -> &f32;
+    fn color4_alpha_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl ObjectHighlightParamsComponentStateTrait for ObjectHighlightParamsComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn brightness(&self) -> &f32 {
         &self.brightness
+    }
+    fn brightness_mut(&mut self) -> &mut f32 {
+        &mut self.brightness
     }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
     }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
+    }
     fn color1_alpha(&self) -> &f32 {
         &self.color1_alpha
+    }
+    fn color1_alpha_mut(&mut self) -> &mut f32 {
+        &mut self.color1_alpha
     }
     fn color2(&self) -> &super::core::Vec3 {
         &self.color2
     }
+    fn color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color2
+    }
     fn color2_alpha(&self) -> &f32 {
         &self.color2_alpha
+    }
+    fn color2_alpha_mut(&mut self) -> &mut f32 {
+        &mut self.color2_alpha
     }
     fn color3(&self) -> &super::core::Vec3 {
         &self.color3
     }
+    fn color3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color3
+    }
     fn color3_alpha(&self) -> &f32 {
         &self.color3_alpha
+    }
+    fn color3_alpha_mut(&mut self) -> &mut f32 {
+        &mut self.color3_alpha
     }
     fn color4(&self) -> &super::core::Vec3 {
         &self.color4
     }
+    fn color4_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color4
+    }
     fn color4_alpha(&self) -> &f32 {
         &self.color4_alpha
+    }
+    fn color4_alpha_mut(&mut self) -> &mut f32 {
+        &mut self.color4_alpha
     }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4199,6 +5445,15 @@ impl TypeObject for ObjectHighlightParamsComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4222,23 +5477,39 @@ pub struct AntiAliasComponentState {
 
 pub trait AntiAliasComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn disocclusion_rejection_factor(&self) -> &f32;
+    fn disocclusion_rejection_factor_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl AntiAliasComponentStateTrait for AntiAliasComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn disocclusion_rejection_factor(&self) -> &f32 {
         &self.disocclusion_rejection_factor
+    }
+    fn disocclusion_rejection_factor_mut(&mut self) -> &mut f32 {
+        &mut self.disocclusion_rejection_factor
     }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4288,6 +5559,15 @@ impl TypeObject for AntiAliasComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4328,91 +5608,175 @@ pub struct SkyCelestialMultiComponentState {
 
 pub trait SkyCelestialMultiComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn enabled_on_quality_levels(&self) -> &super::core::QualityScalableBool;
+    fn enabled_on_quality_levels_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn draw_order(&self) -> &u32;
+    fn draw_order_mut(&mut self) -> &mut u32;
     fn planar_reflection(&self) -> &super::core::QualityScalableBool;
+    fn planar_reflection_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn render_in_sky_env_map(&self) -> &bool;
+    fn render_in_sky_env_map_mut(&mut self) -> &mut bool;
     fn write_alpha(&self) -> &bool;
+    fn write_alpha_mut(&mut self) -> &mut bool;
     fn quad_count(&self) -> &super::core::QualityScalableInt;
+    fn quad_count_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn u_v_start(&self) -> &super::core::Vec2;
+    fn u_v_start_mut(&mut self) -> &mut super::core::Vec2;
     fn u_v_end(&self) -> &super::core::Vec2;
+    fn u_v_end_mut(&mut self) -> &mut super::core::Vec2;
     fn u_v_grid(&self) -> &super::core::Vec2;
+    fn u_v_grid_mut(&mut self) -> &mut super::core::Vec2;
     fn tint(&self) -> &super::core::Vec3;
+    fn tint_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_envmap_tint_scale(&self) -> &f32;
+    fn sky_envmap_tint_scale_mut(&mut self) -> &mut f32;
     fn random_seed(&self) -> &i32;
+    fn random_seed_mut(&mut self) -> &mut i32;
     fn min_scale(&self) -> &f32;
+    fn min_scale_mut(&mut self) -> &mut f32;
     fn max_scale(&self) -> &f32;
+    fn max_scale_mut(&mut self) -> &mut f32;
     fn scale_multiplier(&self) -> &f32;
+    fn scale_multiplier_mut(&mut self) -> &mut f32;
     fn zenith_stop(&self) -> &f32;
+    fn zenith_stop_mut(&mut self) -> &mut f32;
     fn nadir_stop(&self) -> &f32;
+    fn nadir_stop_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl SkyCelestialMultiComponentStateTrait for SkyCelestialMultiComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn enabled_on_quality_levels(&self) -> &super::core::QualityScalableBool {
         &self.enabled_on_quality_levels
+    }
+    fn enabled_on_quality_levels_mut(&mut self) -> &mut super::core::QualityScalableBool {
+        &mut self.enabled_on_quality_levels
     }
     fn draw_order(&self) -> &u32 {
         &self.draw_order
     }
+    fn draw_order_mut(&mut self) -> &mut u32 {
+        &mut self.draw_order
+    }
     fn planar_reflection(&self) -> &super::core::QualityScalableBool {
         &self.planar_reflection
+    }
+    fn planar_reflection_mut(&mut self) -> &mut super::core::QualityScalableBool {
+        &mut self.planar_reflection
     }
     fn render_in_sky_env_map(&self) -> &bool {
         &self.render_in_sky_env_map
     }
+    fn render_in_sky_env_map_mut(&mut self) -> &mut bool {
+        &mut self.render_in_sky_env_map
+    }
     fn write_alpha(&self) -> &bool {
         &self.write_alpha
+    }
+    fn write_alpha_mut(&mut self) -> &mut bool {
+        &mut self.write_alpha
     }
     fn quad_count(&self) -> &super::core::QualityScalableInt {
         &self.quad_count
     }
+    fn quad_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.quad_count
+    }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
+    }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
     }
     fn u_v_start(&self) -> &super::core::Vec2 {
         &self.u_v_start
     }
+    fn u_v_start_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.u_v_start
+    }
     fn u_v_end(&self) -> &super::core::Vec2 {
         &self.u_v_end
+    }
+    fn u_v_end_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.u_v_end
     }
     fn u_v_grid(&self) -> &super::core::Vec2 {
         &self.u_v_grid
     }
+    fn u_v_grid_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.u_v_grid
+    }
     fn tint(&self) -> &super::core::Vec3 {
         &self.tint
+    }
+    fn tint_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.tint
     }
     fn sky_envmap_tint_scale(&self) -> &f32 {
         &self.sky_envmap_tint_scale
     }
+    fn sky_envmap_tint_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap_tint_scale
+    }
     fn random_seed(&self) -> &i32 {
         &self.random_seed
+    }
+    fn random_seed_mut(&mut self) -> &mut i32 {
+        &mut self.random_seed
     }
     fn min_scale(&self) -> &f32 {
         &self.min_scale
     }
+    fn min_scale_mut(&mut self) -> &mut f32 {
+        &mut self.min_scale
+    }
     fn max_scale(&self) -> &f32 {
         &self.max_scale
+    }
+    fn max_scale_mut(&mut self) -> &mut f32 {
+        &mut self.max_scale
     }
     fn scale_multiplier(&self) -> &f32 {
         &self.scale_multiplier
     }
+    fn scale_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.scale_multiplier
+    }
     fn zenith_stop(&self) -> &f32 {
         &self.zenith_stop
+    }
+    fn zenith_stop_mut(&mut self) -> &mut f32 {
+        &mut self.zenith_stop
     }
     fn nadir_stop(&self) -> &f32 {
         &self.nadir_stop
     }
+    fn nadir_stop_mut(&mut self) -> &mut f32 {
+        &mut self.nadir_stop
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4564,6 +5928,15 @@ impl TypeObject for SkyCelestialMultiComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4600,75 +5973,143 @@ pub struct SkyCelestialSingleComponentState {
 
 pub trait SkyCelestialSingleComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn enabled_on_quality_levels(&self) -> &super::core::QualityScalableBool;
+    fn enabled_on_quality_levels_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn draw_order(&self) -> &u32;
+    fn draw_order_mut(&mut self) -> &mut u32;
     fn planar_reflection(&self) -> &super::core::QualityScalableBool;
+    fn planar_reflection_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn render_in_sky_env_map(&self) -> &bool;
+    fn render_in_sky_env_map_mut(&mut self) -> &mut bool;
     fn write_alpha(&self) -> &bool;
+    fn write_alpha_mut(&mut self) -> &mut bool;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn u_v_start(&self) -> &super::core::Vec2;
+    fn u_v_start_mut(&mut self) -> &mut super::core::Vec2;
     fn u_v_end(&self) -> &super::core::Vec2;
+    fn u_v_end_mut(&mut self) -> &mut super::core::Vec2;
     fn tint(&self) -> &super::core::Vec3;
+    fn tint_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_envmap_tint_scale(&self) -> &f32;
+    fn sky_envmap_tint_scale_mut(&mut self) -> &mut f32;
     fn longitude(&self) -> &f32;
+    fn longitude_mut(&mut self) -> &mut f32;
     fn latitude(&self) -> &f32;
+    fn latitude_mut(&mut self) -> &mut f32;
     fn rotation(&self) -> &f32;
+    fn rotation_mut(&mut self) -> &mut f32;
     fn scale(&self) -> &super::core::Vec2;
+    fn scale_mut(&mut self) -> &mut super::core::Vec2;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl SkyCelestialSingleComponentStateTrait for SkyCelestialSingleComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn enabled_on_quality_levels(&self) -> &super::core::QualityScalableBool {
         &self.enabled_on_quality_levels
+    }
+    fn enabled_on_quality_levels_mut(&mut self) -> &mut super::core::QualityScalableBool {
+        &mut self.enabled_on_quality_levels
     }
     fn draw_order(&self) -> &u32 {
         &self.draw_order
     }
+    fn draw_order_mut(&mut self) -> &mut u32 {
+        &mut self.draw_order
+    }
     fn planar_reflection(&self) -> &super::core::QualityScalableBool {
         &self.planar_reflection
+    }
+    fn planar_reflection_mut(&mut self) -> &mut super::core::QualityScalableBool {
+        &mut self.planar_reflection
     }
     fn render_in_sky_env_map(&self) -> &bool {
         &self.render_in_sky_env_map
     }
+    fn render_in_sky_env_map_mut(&mut self) -> &mut bool {
+        &mut self.render_in_sky_env_map
+    }
     fn write_alpha(&self) -> &bool {
         &self.write_alpha
+    }
+    fn write_alpha_mut(&mut self) -> &mut bool {
+        &mut self.write_alpha
     }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
     }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
+    }
     fn u_v_start(&self) -> &super::core::Vec2 {
         &self.u_v_start
+    }
+    fn u_v_start_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.u_v_start
     }
     fn u_v_end(&self) -> &super::core::Vec2 {
         &self.u_v_end
     }
+    fn u_v_end_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.u_v_end
+    }
     fn tint(&self) -> &super::core::Vec3 {
         &self.tint
+    }
+    fn tint_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.tint
     }
     fn sky_envmap_tint_scale(&self) -> &f32 {
         &self.sky_envmap_tint_scale
     }
+    fn sky_envmap_tint_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap_tint_scale
+    }
     fn longitude(&self) -> &f32 {
         &self.longitude
+    }
+    fn longitude_mut(&mut self) -> &mut f32 {
+        &mut self.longitude
     }
     fn latitude(&self) -> &f32 {
         &self.latitude
     }
+    fn latitude_mut(&mut self) -> &mut f32 {
+        &mut self.latitude
+    }
     fn rotation(&self) -> &f32 {
         &self.rotation
+    }
+    fn rotation_mut(&mut self) -> &mut f32 {
+        &mut self.rotation
     }
     fn scale(&self) -> &super::core::Vec2 {
         &self.scale
     }
+    fn scale_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.scale
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4796,6 +6237,15 @@ impl TypeObject for SkyCelestialSingleComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4820,27 +6270,47 @@ pub struct SkyCelestialRotationComponentState {
 
 pub trait SkyCelestialRotationComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn rotation(&self) -> &f32;
+    fn rotation_mut(&mut self) -> &mut f32;
     fn rotation_axis(&self) -> &super::core::Vec3;
+    fn rotation_axis_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl SkyCelestialRotationComponentStateTrait for SkyCelestialRotationComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn rotation(&self) -> &f32 {
         &self.rotation
+    }
+    fn rotation_mut(&mut self) -> &mut f32 {
+        &mut self.rotation
     }
     fn rotation_axis(&self) -> &super::core::Vec3 {
         &self.rotation_axis
     }
+    fn rotation_axis_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.rotation_axis
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4896,6 +6366,15 @@ impl TypeObject for SkyCelestialRotationComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4934,6 +6413,15 @@ impl TypeObject for SkyCelestialComponentCountMax {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4957,23 +6445,39 @@ pub struct EmitterParamGlobalComponentState {
 
 pub trait EmitterParamGlobalComponentStateTrait: TypeObject {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
     fn value(&self) -> &super::core::Vec4;
+    fn value_mut(&mut self) -> &mut super::core::Vec4;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl EmitterParamGlobalComponentStateTrait for EmitterParamGlobalComponentState {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         &self.parameter
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        &mut self.parameter
+    }
     fn value(&self) -> &super::core::Vec4 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.value
     }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -5023,6 +6527,15 @@ impl TypeObject for EmitterParamGlobalComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5060,6 +6573,15 @@ impl TypeObject for EmitterParamGlobalCountMax {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5082,19 +6604,31 @@ pub struct EmitterParamComponentState {
 
 pub trait EmitterParamComponentStateTrait: TypeObject {
     fn value(&self) -> &f32;
+    fn value_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl EmitterParamComponentStateTrait for EmitterParamComponentState {
     fn value(&self) -> &f32 {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut f32 {
+        &mut self.value
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -5138,6 +6672,15 @@ impl TypeObject for EmitterParamComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5178,6 +6721,15 @@ impl TypeObject for EmitterParamOverride {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5201,23 +6753,39 @@ pub struct RaytraceReflectionComponentState {
 
 pub trait RaytraceReflectionComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn min_smoothness(&self) -> &f32;
+    fn min_smoothness_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl RaytraceReflectionComponentStateTrait for RaytraceReflectionComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn min_smoothness(&self) -> &f32 {
         &self.min_smoothness
+    }
+    fn min_smoothness_mut(&mut self) -> &mut f32 {
+        &mut self.min_smoothness
     }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -5266,6 +6834,15 @@ impl TypeObject for RaytraceReflectionComponentState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5319,139 +6896,271 @@ pub struct ScreenSpaceRaytraceComponentState {
 
 pub trait ScreenSpaceRaytraceComponentStateTrait: TypeObject {
     fn raytrace_enable(&self) -> &bool;
+    fn raytrace_enable_mut(&mut self) -> &mut bool;
     fn camera_fade_start(&self) -> &f32;
+    fn camera_fade_start_mut(&mut self) -> &mut f32;
     fn camera_fade_length(&self) -> &f32;
+    fn camera_fade_length_mut(&mut self) -> &mut f32;
     fn radial_fade_start(&self) -> &f32;
+    fn radial_fade_start_mut(&mut self) -> &mut f32;
     fn radial_fade_length(&self) -> &f32;
+    fn radial_fade_length_mut(&mut self) -> &mut f32;
     fn distance_fade_start(&self) -> &f32;
+    fn distance_fade_start_mut(&mut self) -> &mut f32;
     fn distance_fade_length(&self) -> &f32;
+    fn distance_fade_length_mut(&mut self) -> &mut f32;
     fn screen_fade_start(&self) -> &f32;
+    fn screen_fade_start_mut(&mut self) -> &mut f32;
     fn screen_fade_length(&self) -> &f32;
+    fn screen_fade_length_mut(&mut self) -> &mut f32;
     fn border_fade_start(&self) -> &f32;
+    fn border_fade_start_mut(&mut self) -> &mut f32;
     fn border_fade_length(&self) -> &f32;
+    fn border_fade_length_mut(&mut self) -> &mut f32;
     fn mirror_fade_start(&self) -> &f32;
+    fn mirror_fade_start_mut(&mut self) -> &mut f32;
     fn mirror_fade_length(&self) -> &f32;
+    fn mirror_fade_length_mut(&mut self) -> &mut f32;
     fn thickness_fade_start(&self) -> &f32;
+    fn thickness_fade_start_mut(&mut self) -> &mut f32;
     fn thickness_fade_length(&self) -> &f32;
+    fn thickness_fade_length_mut(&mut self) -> &mut f32;
     fn roughness_fade_start(&self) -> &f32;
+    fn roughness_fade_start_mut(&mut self) -> &mut f32;
     fn roughness_fade_length(&self) -> &f32;
+    fn roughness_fade_length_mut(&mut self) -> &mut f32;
     fn normal_fade_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn normal_fade_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn min_samples(&self) -> &u32;
+    fn min_samples_mut(&mut self) -> &mut u32;
     fn max_samples(&self) -> &u32;
+    fn max_samples_mut(&mut self) -> &mut u32;
     fn temporal_samples(&self) -> &u32;
+    fn temporal_samples_mut(&mut self) -> &mut u32;
     fn temporal_period(&self) -> &u32;
+    fn temporal_period_mut(&mut self) -> &mut u32;
     fn min_roughness(&self) -> &f32;
+    fn min_roughness_mut(&mut self) -> &mut f32;
     fn max_roughness(&self) -> &f32;
+    fn max_roughness_mut(&mut self) -> &mut f32;
     fn resolve_samples(&self) -> &u32;
+    fn resolve_samples_mut(&mut self) -> &mut u32;
     fn noise_threshold(&self) -> &f32;
+    fn noise_threshold_mut(&mut self) -> &mut f32;
     fn clamp_threshold(&self) -> &f32;
+    fn clamp_threshold_mut(&mut self) -> &mut f32;
     fn importance_sampling_bias(&self) -> &f32;
+    fn importance_sampling_bias_mut(&mut self) -> &mut f32;
     fn filter_bias(&self) -> &f32;
+    fn filter_bias_mut(&mut self) -> &mut f32;
     fn filter_angular_bias(&self) -> &f32;
+    fn filter_angular_bias_mut(&mut self) -> &mut f32;
     fn temporal_filter_responsiveness(&self) -> &f32;
+    fn temporal_filter_responsiveness_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl ScreenSpaceRaytraceComponentStateTrait for ScreenSpaceRaytraceComponentState {
     fn raytrace_enable(&self) -> &bool {
         &self.raytrace_enable
     }
+    fn raytrace_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_enable
+    }
     fn camera_fade_start(&self) -> &f32 {
         &self.camera_fade_start
+    }
+    fn camera_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.camera_fade_start
     }
     fn camera_fade_length(&self) -> &f32 {
         &self.camera_fade_length
     }
+    fn camera_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.camera_fade_length
+    }
     fn radial_fade_start(&self) -> &f32 {
         &self.radial_fade_start
+    }
+    fn radial_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.radial_fade_start
     }
     fn radial_fade_length(&self) -> &f32 {
         &self.radial_fade_length
     }
+    fn radial_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.radial_fade_length
+    }
     fn distance_fade_start(&self) -> &f32 {
         &self.distance_fade_start
+    }
+    fn distance_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.distance_fade_start
     }
     fn distance_fade_length(&self) -> &f32 {
         &self.distance_fade_length
     }
+    fn distance_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.distance_fade_length
+    }
     fn screen_fade_start(&self) -> &f32 {
         &self.screen_fade_start
+    }
+    fn screen_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.screen_fade_start
     }
     fn screen_fade_length(&self) -> &f32 {
         &self.screen_fade_length
     }
+    fn screen_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.screen_fade_length
+    }
     fn border_fade_start(&self) -> &f32 {
         &self.border_fade_start
+    }
+    fn border_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.border_fade_start
     }
     fn border_fade_length(&self) -> &f32 {
         &self.border_fade_length
     }
+    fn border_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.border_fade_length
+    }
     fn mirror_fade_start(&self) -> &f32 {
         &self.mirror_fade_start
+    }
+    fn mirror_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.mirror_fade_start
     }
     fn mirror_fade_length(&self) -> &f32 {
         &self.mirror_fade_length
     }
+    fn mirror_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.mirror_fade_length
+    }
     fn thickness_fade_start(&self) -> &f32 {
         &self.thickness_fade_start
+    }
+    fn thickness_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.thickness_fade_start
     }
     fn thickness_fade_length(&self) -> &f32 {
         &self.thickness_fade_length
     }
+    fn thickness_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.thickness_fade_length
+    }
     fn roughness_fade_start(&self) -> &f32 {
         &self.roughness_fade_start
+    }
+    fn roughness_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.roughness_fade_start
     }
     fn roughness_fade_length(&self) -> &f32 {
         &self.roughness_fade_length
     }
+    fn roughness_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.roughness_fade_length
+    }
     fn normal_fade_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.normal_fade_texture
+    }
+    fn normal_fade_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.normal_fade_texture
     }
     fn min_samples(&self) -> &u32 {
         &self.min_samples
     }
+    fn min_samples_mut(&mut self) -> &mut u32 {
+        &mut self.min_samples
+    }
     fn max_samples(&self) -> &u32 {
         &self.max_samples
+    }
+    fn max_samples_mut(&mut self) -> &mut u32 {
+        &mut self.max_samples
     }
     fn temporal_samples(&self) -> &u32 {
         &self.temporal_samples
     }
+    fn temporal_samples_mut(&mut self) -> &mut u32 {
+        &mut self.temporal_samples
+    }
     fn temporal_period(&self) -> &u32 {
         &self.temporal_period
+    }
+    fn temporal_period_mut(&mut self) -> &mut u32 {
+        &mut self.temporal_period
     }
     fn min_roughness(&self) -> &f32 {
         &self.min_roughness
     }
+    fn min_roughness_mut(&mut self) -> &mut f32 {
+        &mut self.min_roughness
+    }
     fn max_roughness(&self) -> &f32 {
         &self.max_roughness
+    }
+    fn max_roughness_mut(&mut self) -> &mut f32 {
+        &mut self.max_roughness
     }
     fn resolve_samples(&self) -> &u32 {
         &self.resolve_samples
     }
+    fn resolve_samples_mut(&mut self) -> &mut u32 {
+        &mut self.resolve_samples
+    }
     fn noise_threshold(&self) -> &f32 {
         &self.noise_threshold
+    }
+    fn noise_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.noise_threshold
     }
     fn clamp_threshold(&self) -> &f32 {
         &self.clamp_threshold
     }
+    fn clamp_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.clamp_threshold
+    }
     fn importance_sampling_bias(&self) -> &f32 {
         &self.importance_sampling_bias
+    }
+    fn importance_sampling_bias_mut(&mut self) -> &mut f32 {
+        &mut self.importance_sampling_bias
     }
     fn filter_bias(&self) -> &f32 {
         &self.filter_bias
     }
+    fn filter_bias_mut(&mut self) -> &mut f32 {
+        &mut self.filter_bias
+    }
     fn filter_angular_bias(&self) -> &f32 {
         &self.filter_angular_bias
+    }
+    fn filter_angular_bias_mut(&mut self) -> &mut f32 {
+        &mut self.filter_angular_bias
     }
     fn temporal_filter_responsiveness(&self) -> &f32 {
         &self.temporal_filter_responsiveness
     }
+    fn temporal_filter_responsiveness_mut(&mut self) -> &mut f32 {
+        &mut self.temporal_filter_responsiveness
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -5675,6 +7384,15 @@ impl TypeObject for ScreenSpaceRaytraceComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5705,51 +7423,95 @@ pub struct MotionBlurComponentState {
 
 pub trait MotionBlurComponentStateTrait: TypeObject {
     fn motion_blur_enable(&self) -> &bool;
+    fn motion_blur_enable_mut(&mut self) -> &mut bool;
     fn motion_blur_scale(&self) -> &f32;
+    fn motion_blur_scale_mut(&mut self) -> &mut f32;
     fn motion_blur_centered(&self) -> &bool;
+    fn motion_blur_centered_mut(&mut self) -> &mut bool;
     fn depth_check_max_distance(&self) -> &f32;
+    fn depth_check_max_distance_mut(&mut self) -> &mut f32;
     fn radial_blur_enable(&self) -> &bool;
+    fn radial_blur_enable_mut(&mut self) -> &mut bool;
     fn radial_blur_center(&self) -> &super::core::Vec2;
+    fn radial_blur_center_mut(&mut self) -> &mut super::core::Vec2;
     fn radial_blur_offset(&self) -> &f32;
+    fn radial_blur_offset_mut(&mut self) -> &mut f32;
     fn circular_offset_factor(&self) -> &f32;
+    fn circular_offset_factor_mut(&mut self) -> &mut f32;
     fn radial_blur_scale(&self) -> &f32;
+    fn radial_blur_scale_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl MotionBlurComponentStateTrait for MotionBlurComponentState {
     fn motion_blur_enable(&self) -> &bool {
         &self.motion_blur_enable
     }
+    fn motion_blur_enable_mut(&mut self) -> &mut bool {
+        &mut self.motion_blur_enable
+    }
     fn motion_blur_scale(&self) -> &f32 {
         &self.motion_blur_scale
+    }
+    fn motion_blur_scale_mut(&mut self) -> &mut f32 {
+        &mut self.motion_blur_scale
     }
     fn motion_blur_centered(&self) -> &bool {
         &self.motion_blur_centered
     }
+    fn motion_blur_centered_mut(&mut self) -> &mut bool {
+        &mut self.motion_blur_centered
+    }
     fn depth_check_max_distance(&self) -> &f32 {
         &self.depth_check_max_distance
+    }
+    fn depth_check_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.depth_check_max_distance
     }
     fn radial_blur_enable(&self) -> &bool {
         &self.radial_blur_enable
     }
+    fn radial_blur_enable_mut(&mut self) -> &mut bool {
+        &mut self.radial_blur_enable
+    }
     fn radial_blur_center(&self) -> &super::core::Vec2 {
         &self.radial_blur_center
+    }
+    fn radial_blur_center_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.radial_blur_center
     }
     fn radial_blur_offset(&self) -> &f32 {
         &self.radial_blur_offset
     }
+    fn radial_blur_offset_mut(&mut self) -> &mut f32 {
+        &mut self.radial_blur_offset
+    }
     fn circular_offset_factor(&self) -> &f32 {
         &self.circular_offset_factor
+    }
+    fn circular_offset_factor_mut(&mut self) -> &mut f32 {
+        &mut self.circular_offset_factor
     }
     fn radial_blur_scale(&self) -> &f32 {
         &self.radial_blur_scale
     }
+    fn radial_blur_scale_mut(&mut self) -> &mut f32 {
+        &mut self.radial_blur_scale
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -5841,6 +7603,15 @@ impl TypeObject for MotionBlurComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5874,63 +7645,119 @@ pub struct CharacterLightingComponentState {
 
 pub trait CharacterLightingComponentStateTrait: TypeObject {
     fn character_light_enable(&self) -> &bool;
+    fn character_light_enable_mut(&mut self) -> &mut bool;
     fn first_person_enable(&self) -> &bool;
+    fn first_person_enable_mut(&mut self) -> &mut bool;
     fn lock_to_camera_direction(&self) -> &bool;
+    fn lock_to_camera_direction_mut(&mut self) -> &mut bool;
     fn camera_up_rotation(&self) -> &f32;
+    fn camera_up_rotation_mut(&mut self) -> &mut f32;
     fn character_lighting_mode(&self) -> &CharacterLightingMode;
+    fn character_lighting_mode_mut(&mut self) -> &mut CharacterLightingMode;
     fn blend_factor(&self) -> &f32;
+    fn blend_factor_mut(&mut self) -> &mut f32;
     fn top_light(&self) -> &super::core::Vec3;
+    fn top_light_mut(&mut self) -> &mut super::core::Vec3;
     fn bottom_light(&self) -> &super::core::Vec3;
+    fn bottom_light_mut(&mut self) -> &mut super::core::Vec3;
     fn top_light_dir_x(&self) -> &f32;
+    fn top_light_dir_x_mut(&mut self) -> &mut f32;
     fn top_light_dir_y(&self) -> &f32;
+    fn top_light_dir_y_mut(&mut self) -> &mut f32;
     fn start_fade_distance(&self) -> &f32;
+    fn start_fade_distance_mut(&mut self) -> &mut f32;
     fn end_fade_distance(&self) -> &f32;
+    fn end_fade_distance_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl CharacterLightingComponentStateTrait for CharacterLightingComponentState {
     fn character_light_enable(&self) -> &bool {
         &self.character_light_enable
     }
+    fn character_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.character_light_enable
+    }
     fn first_person_enable(&self) -> &bool {
         &self.first_person_enable
+    }
+    fn first_person_enable_mut(&mut self) -> &mut bool {
+        &mut self.first_person_enable
     }
     fn lock_to_camera_direction(&self) -> &bool {
         &self.lock_to_camera_direction
     }
+    fn lock_to_camera_direction_mut(&mut self) -> &mut bool {
+        &mut self.lock_to_camera_direction
+    }
     fn camera_up_rotation(&self) -> &f32 {
         &self.camera_up_rotation
+    }
+    fn camera_up_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.camera_up_rotation
     }
     fn character_lighting_mode(&self) -> &CharacterLightingMode {
         &self.character_lighting_mode
     }
+    fn character_lighting_mode_mut(&mut self) -> &mut CharacterLightingMode {
+        &mut self.character_lighting_mode
+    }
     fn blend_factor(&self) -> &f32 {
         &self.blend_factor
+    }
+    fn blend_factor_mut(&mut self) -> &mut f32 {
+        &mut self.blend_factor
     }
     fn top_light(&self) -> &super::core::Vec3 {
         &self.top_light
     }
+    fn top_light_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.top_light
+    }
     fn bottom_light(&self) -> &super::core::Vec3 {
         &self.bottom_light
+    }
+    fn bottom_light_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.bottom_light
     }
     fn top_light_dir_x(&self) -> &f32 {
         &self.top_light_dir_x
     }
+    fn top_light_dir_x_mut(&mut self) -> &mut f32 {
+        &mut self.top_light_dir_x
+    }
     fn top_light_dir_y(&self) -> &f32 {
         &self.top_light_dir_y
+    }
+    fn top_light_dir_y_mut(&mut self) -> &mut f32 {
+        &mut self.top_light_dir_y
     }
     fn start_fade_distance(&self) -> &f32 {
         &self.start_fade_distance
     }
+    fn start_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.start_fade_distance
+    }
     fn end_fade_distance(&self) -> &f32 {
         &self.end_fade_distance
+    }
+    fn end_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.end_fade_distance
     }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -6040,6 +7867,15 @@ impl TypeObject for CharacterLightingComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6079,6 +7915,15 @@ impl TypeObject for CharacterLightingMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6114,71 +7959,135 @@ pub struct DamageEffectComponentState {
 
 pub trait DamageEffectComponentStateTrait: TypeObject {
     fn shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn frame_width(&self) -> &f32;
+    fn frame_width_mut(&mut self) -> &mut f32;
     fn outer_frame_opacity(&self) -> &f32;
+    fn outer_frame_opacity_mut(&mut self) -> &mut f32;
     fn inner_frame_opacity(&self) -> &f32;
+    fn inner_frame_opacity_mut(&mut self) -> &mut f32;
     fn fallof_time(&self) -> &f32;
+    fn fallof_time_mut(&mut self) -> &mut f32;
     fn min_damage_percentage_threshold(&self) -> &f32;
+    fn min_damage_percentage_threshold_mut(&mut self) -> &mut f32;
     fn max_opacity_damage_percentage(&self) -> &f32;
+    fn max_opacity_damage_percentage_mut(&mut self) -> &mut f32;
     fn start_critical_effect_health_threshold(&self) -> &f32;
+    fn start_critical_effect_health_threshold_mut(&mut self) -> &mut f32;
     fn end_critical_effect_health_threshold(&self) -> &f32;
+    fn end_critical_effect_health_threshold_mut(&mut self) -> &mut f32;
     fn debug_damage(&self) -> &bool;
+    fn debug_damage_mut(&mut self) -> &mut bool;
     fn top_damage(&self) -> &super::core::Vec4;
+    fn top_damage_mut(&mut self) -> &mut super::core::Vec4;
     fn left_damage(&self) -> &super::core::Vec4;
+    fn left_damage_mut(&mut self) -> &mut super::core::Vec4;
     fn bottom_damage(&self) -> &super::core::Vec4;
+    fn bottom_damage_mut(&mut self) -> &mut super::core::Vec4;
     fn right_damage(&self) -> &super::core::Vec4;
+    fn right_damage_mut(&mut self) -> &mut super::core::Vec4;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl DamageEffectComponentStateTrait for DamageEffectComponentState {
     fn shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader
     }
+    fn shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader
+    }
     fn frame_width(&self) -> &f32 {
         &self.frame_width
+    }
+    fn frame_width_mut(&mut self) -> &mut f32 {
+        &mut self.frame_width
     }
     fn outer_frame_opacity(&self) -> &f32 {
         &self.outer_frame_opacity
     }
+    fn outer_frame_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.outer_frame_opacity
+    }
     fn inner_frame_opacity(&self) -> &f32 {
         &self.inner_frame_opacity
+    }
+    fn inner_frame_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.inner_frame_opacity
     }
     fn fallof_time(&self) -> &f32 {
         &self.fallof_time
     }
+    fn fallof_time_mut(&mut self) -> &mut f32 {
+        &mut self.fallof_time
+    }
     fn min_damage_percentage_threshold(&self) -> &f32 {
         &self.min_damage_percentage_threshold
+    }
+    fn min_damage_percentage_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.min_damage_percentage_threshold
     }
     fn max_opacity_damage_percentage(&self) -> &f32 {
         &self.max_opacity_damage_percentage
     }
+    fn max_opacity_damage_percentage_mut(&mut self) -> &mut f32 {
+        &mut self.max_opacity_damage_percentage
+    }
     fn start_critical_effect_health_threshold(&self) -> &f32 {
         &self.start_critical_effect_health_threshold
+    }
+    fn start_critical_effect_health_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.start_critical_effect_health_threshold
     }
     fn end_critical_effect_health_threshold(&self) -> &f32 {
         &self.end_critical_effect_health_threshold
     }
+    fn end_critical_effect_health_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.end_critical_effect_health_threshold
+    }
     fn debug_damage(&self) -> &bool {
         &self.debug_damage
+    }
+    fn debug_damage_mut(&mut self) -> &mut bool {
+        &mut self.debug_damage
     }
     fn top_damage(&self) -> &super::core::Vec4 {
         &self.top_damage
     }
+    fn top_damage_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.top_damage
+    }
     fn left_damage(&self) -> &super::core::Vec4 {
         &self.left_damage
+    }
+    fn left_damage_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.left_damage
     }
     fn bottom_damage(&self) -> &super::core::Vec4 {
         &self.bottom_damage
     }
+    fn bottom_damage_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.bottom_damage
+    }
     fn right_damage(&self) -> &super::core::Vec4 {
         &self.right_damage
+    }
+    fn right_damage_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.right_damage
     }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -6300,6 +8209,15 @@ impl TypeObject for DamageEffectComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6331,55 +8249,103 @@ pub struct ScreenEffectComponentState {
 
 pub trait ScreenEffectComponentStateTrait: TypeObject {
     fn frame_type(&self) -> &ScreenEffectFrameType;
+    fn frame_type_mut(&mut self) -> &mut ScreenEffectFrameType;
     fn shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn frame_width(&self) -> &f32;
+    fn frame_width_mut(&mut self) -> &mut f32;
     fn outer_frame_opacity(&self) -> &f32;
+    fn outer_frame_opacity_mut(&mut self) -> &mut f32;
     fn inner_frame_opacity(&self) -> &f32;
+    fn inner_frame_opacity_mut(&mut self) -> &mut f32;
     fn angle(&self) -> &f32;
+    fn angle_mut(&mut self) -> &mut f32;
     fn screen_effect_params(&self) -> &super::core::Vec4;
+    fn screen_effect_params_mut(&mut self) -> &mut super::core::Vec4;
     fn active_position(&self) -> &super::core::Vec3;
+    fn active_position_mut(&mut self) -> &mut super::core::Vec3;
     fn state_id(&self) -> &u32;
+    fn state_id_mut(&mut self) -> &mut u32;
     fn visibilty(&self) -> &f32;
+    fn visibilty_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl ScreenEffectComponentStateTrait for ScreenEffectComponentState {
     fn frame_type(&self) -> &ScreenEffectFrameType {
         &self.frame_type
     }
+    fn frame_type_mut(&mut self) -> &mut ScreenEffectFrameType {
+        &mut self.frame_type
+    }
     fn shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader
+    }
+    fn shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader
     }
     fn frame_width(&self) -> &f32 {
         &self.frame_width
     }
+    fn frame_width_mut(&mut self) -> &mut f32 {
+        &mut self.frame_width
+    }
     fn outer_frame_opacity(&self) -> &f32 {
         &self.outer_frame_opacity
+    }
+    fn outer_frame_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.outer_frame_opacity
     }
     fn inner_frame_opacity(&self) -> &f32 {
         &self.inner_frame_opacity
     }
+    fn inner_frame_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.inner_frame_opacity
+    }
     fn angle(&self) -> &f32 {
         &self.angle
+    }
+    fn angle_mut(&mut self) -> &mut f32 {
+        &mut self.angle
     }
     fn screen_effect_params(&self) -> &super::core::Vec4 {
         &self.screen_effect_params
     }
+    fn screen_effect_params_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.screen_effect_params
+    }
     fn active_position(&self) -> &super::core::Vec3 {
         &self.active_position
+    }
+    fn active_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.active_position
     }
     fn state_id(&self) -> &u32 {
         &self.state_id
     }
+    fn state_id_mut(&mut self) -> &mut u32 {
+        &mut self.state_id
+    }
     fn visibilty(&self) -> &f32 {
         &self.visibilty
+    }
+    fn visibilty_mut(&mut self) -> &mut f32 {
+        &mut self.visibilty
     }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -6477,6 +8443,15 @@ impl TypeObject for ScreenEffectComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6516,6 +8491,15 @@ impl TypeObject for ScreenEffectFrameType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6548,59 +8532,111 @@ pub struct ShadowsComponentState {
 
 pub trait ShadowsComponentStateTrait: TypeObject {
     fn def_sun_shadowmap_view_distance(&self) -> &f32;
+    fn def_sun_shadowmap_view_distance_mut(&mut self) -> &mut f32;
     fn sun_shadowmap_view_distance(&self) -> &super::core::QualityScalableFloat;
+    fn sun_shadowmap_view_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn sun_shadowmap_extrusion_length(&self) -> &f32;
+    fn sun_shadowmap_extrusion_length_mut(&mut self) -> &mut f32;
     fn sun_shadowmap_slice_scheme_weight(&self) -> &f32;
+    fn sun_shadowmap_slice_scheme_weight_mut(&mut self) -> &mut f32;
     fn sun_shadowmap_first_slice_scale(&self) -> &f32;
+    fn sun_shadowmap_first_slice_scale_mut(&mut self) -> &mut f32;
     fn sun_shadowmap_first_slice_extrusion_length(&self) -> &f32;
+    fn sun_shadowmap_first_slice_extrusion_length_mut(&mut self) -> &mut f32;
     fn smooth_transition_to_distant_shadows(&self) -> &bool;
+    fn smooth_transition_to_distant_shadows_mut(&mut self) -> &mut bool;
     fn sun_shadowmap_slice_count_offset(&self) -> &super::core::QualityScalableInt;
+    fn sun_shadowmap_slice_count_offset_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn sun_shadowmap_slice_count_min(&self) -> &super::core::QualityScalableInt;
+    fn sun_shadowmap_slice_count_min_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn sun_shadowmap_slice_count_max(&self) -> &super::core::QualityScalableInt;
+    fn sun_shadowmap_slice_count_max_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn sun_shadowmap_slice_resolution_scale(&self) -> &super::core::QualityScalableFloat;
+    fn sun_shadowmap_slice_resolution_scale_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl ShadowsComponentStateTrait for ShadowsComponentState {
     fn def_sun_shadowmap_view_distance(&self) -> &f32 {
         &self.def_sun_shadowmap_view_distance
     }
+    fn def_sun_shadowmap_view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.def_sun_shadowmap_view_distance
+    }
     fn sun_shadowmap_view_distance(&self) -> &super::core::QualityScalableFloat {
         &self.sun_shadowmap_view_distance
+    }
+    fn sun_shadowmap_view_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.sun_shadowmap_view_distance
     }
     fn sun_shadowmap_extrusion_length(&self) -> &f32 {
         &self.sun_shadowmap_extrusion_length
     }
+    fn sun_shadowmap_extrusion_length_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadowmap_extrusion_length
+    }
     fn sun_shadowmap_slice_scheme_weight(&self) -> &f32 {
         &self.sun_shadowmap_slice_scheme_weight
+    }
+    fn sun_shadowmap_slice_scheme_weight_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadowmap_slice_scheme_weight
     }
     fn sun_shadowmap_first_slice_scale(&self) -> &f32 {
         &self.sun_shadowmap_first_slice_scale
     }
+    fn sun_shadowmap_first_slice_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadowmap_first_slice_scale
+    }
     fn sun_shadowmap_first_slice_extrusion_length(&self) -> &f32 {
         &self.sun_shadowmap_first_slice_extrusion_length
+    }
+    fn sun_shadowmap_first_slice_extrusion_length_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadowmap_first_slice_extrusion_length
     }
     fn smooth_transition_to_distant_shadows(&self) -> &bool {
         &self.smooth_transition_to_distant_shadows
     }
+    fn smooth_transition_to_distant_shadows_mut(&mut self) -> &mut bool {
+        &mut self.smooth_transition_to_distant_shadows
+    }
     fn sun_shadowmap_slice_count_offset(&self) -> &super::core::QualityScalableInt {
         &self.sun_shadowmap_slice_count_offset
+    }
+    fn sun_shadowmap_slice_count_offset_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.sun_shadowmap_slice_count_offset
     }
     fn sun_shadowmap_slice_count_min(&self) -> &super::core::QualityScalableInt {
         &self.sun_shadowmap_slice_count_min
     }
+    fn sun_shadowmap_slice_count_min_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.sun_shadowmap_slice_count_min
+    }
     fn sun_shadowmap_slice_count_max(&self) -> &super::core::QualityScalableInt {
         &self.sun_shadowmap_slice_count_max
+    }
+    fn sun_shadowmap_slice_count_max_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.sun_shadowmap_slice_count_max
     }
     fn sun_shadowmap_slice_resolution_scale(&self) -> &super::core::QualityScalableFloat {
         &self.sun_shadowmap_slice_resolution_scale
     }
+    fn sun_shadowmap_slice_resolution_scale_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.sun_shadowmap_slice_resolution_scale
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -6704,6 +8740,15 @@ impl TypeObject for ShadowsComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6729,31 +8774,55 @@ pub struct MeshSettingsComponentState {
 
 pub trait MeshSettingsComponentStateTrait: TypeObject {
     fn lod_scale(&self) -> &f32;
+    fn lod_scale_mut(&mut self) -> &mut f32;
     fn force_lod(&self) -> &i32;
+    fn force_lod_mut(&mut self) -> &mut i32;
     fn cull_screen_area_scale(&self) -> &f32;
+    fn cull_screen_area_scale_mut(&mut self) -> &mut f32;
     fn shadow_distance_scale(&self) -> &f32;
+    fn shadow_distance_scale_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl MeshSettingsComponentStateTrait for MeshSettingsComponentState {
     fn lod_scale(&self) -> &f32 {
         &self.lod_scale
     }
+    fn lod_scale_mut(&mut self) -> &mut f32 {
+        &mut self.lod_scale
+    }
     fn force_lod(&self) -> &i32 {
         &self.force_lod
+    }
+    fn force_lod_mut(&mut self) -> &mut i32 {
+        &mut self.force_lod
     }
     fn cull_screen_area_scale(&self) -> &f32 {
         &self.cull_screen_area_scale
     }
+    fn cull_screen_area_scale_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area_scale
+    }
     fn shadow_distance_scale(&self) -> &f32 {
         &self.shadow_distance_scale
+    }
+    fn shadow_distance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_distance_scale
     }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -6815,6 +8884,15 @@ impl TypeObject for MeshSettingsComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6839,27 +8917,47 @@ pub struct CameraParamsComponentState {
 
 pub trait CameraParamsComponentStateTrait: TypeObject {
     fn view_distance(&self) -> &f32;
+    fn view_distance_mut(&mut self) -> &mut f32;
     fn near_plane(&self) -> &f32;
+    fn near_plane_mut(&mut self) -> &mut f32;
     fn vegetation_max_wiggle_distance(&self) -> &f32;
+    fn vegetation_max_wiggle_distance_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl CameraParamsComponentStateTrait for CameraParamsComponentState {
     fn view_distance(&self) -> &f32 {
         &self.view_distance
     }
+    fn view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.view_distance
+    }
     fn near_plane(&self) -> &f32 {
         &self.near_plane
+    }
+    fn near_plane_mut(&mut self) -> &mut f32 {
+        &mut self.near_plane
     }
     fn vegetation_max_wiggle_distance(&self) -> &f32 {
         &self.vegetation_max_wiggle_distance
     }
+    fn vegetation_max_wiggle_distance_mut(&mut self) -> &mut f32 {
+        &mut self.vegetation_max_wiggle_distance
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -6915,6 +9013,15 @@ impl TypeObject for CameraParamsComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6938,23 +9045,39 @@ pub struct ShaderColorParamsComponentState {
 
 pub trait ShaderColorParamsComponentStateTrait: TypeObject {
     fn vec4_value(&self) -> &super::core::Vec4;
+    fn vec4_value_mut(&mut self) -> &mut super::core::Vec4;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl ShaderColorParamsComponentStateTrait for ShaderColorParamsComponentState {
     fn vec4_value(&self) -> &super::core::Vec4 {
         &self.vec4_value
     }
+    fn vec4_value_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.vec4_value
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7004,6 +9127,15 @@ impl TypeObject for ShaderColorParamsComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7032,43 +9164,79 @@ pub struct ShaderParamsComponentState {
 
 pub trait ShaderParamsComponentStateTrait: TypeObject {
     fn vec4_value(&self) -> &super::core::Vec4;
+    fn vec4_value_mut(&mut self) -> &mut super::core::Vec4;
     fn bool_value(&self) -> &bool;
+    fn bool_value_mut(&mut self) -> &mut bool;
     fn texture_value(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn value_type(&self) -> &super::render_base::ExternalValueConstantType;
+    fn value_type_mut(&mut self) -> &mut super::render_base::ExternalValueConstantType;
     fn conditional_value(&self) -> &u32;
+    fn conditional_value_mut(&mut self) -> &mut u32;
     fn conditional_name(&self) -> &String;
+    fn conditional_name_mut(&mut self) -> &mut String;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl ShaderParamsComponentStateTrait for ShaderParamsComponentState {
     fn vec4_value(&self) -> &super::core::Vec4 {
         &self.vec4_value
     }
+    fn vec4_value_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.vec4_value
+    }
     fn bool_value(&self) -> &bool {
         &self.bool_value
+    }
+    fn bool_value_mut(&mut self) -> &mut bool {
+        &mut self.bool_value
     }
     fn texture_value(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture_value
     }
+    fn texture_value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture_value
+    }
     fn value_type(&self) -> &super::render_base::ExternalValueConstantType {
         &self.value_type
+    }
+    fn value_type_mut(&mut self) -> &mut super::render_base::ExternalValueConstantType {
+        &mut self.value_type
     }
     fn conditional_value(&self) -> &u32 {
         &self.conditional_value
     }
+    fn conditional_value_mut(&mut self) -> &mut u32 {
+        &mut self.conditional_value
+    }
     fn conditional_name(&self) -> &String {
         &self.conditional_name
+    }
+    fn conditional_name_mut(&mut self) -> &mut String {
+        &mut self.conditional_name
     }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
     }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7148,6 +9316,15 @@ impl TypeObject for ShaderParamsComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7188,91 +9365,175 @@ pub struct EnlightenComponentState {
 
 pub trait EnlightenComponentStateTrait: TypeObject {
     fn bounce_scale(&self) -> &f32;
+    fn bounce_scale_mut(&mut self) -> &mut f32;
     fn sun_scale(&self) -> &f32;
+    fn sun_scale_mut(&mut self) -> &mut f32;
     fn sun_direct_lightmap_enable(&self) -> &bool;
+    fn sun_direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn terrain_color(&self) -> &super::core::Vec3;
+    fn terrain_color_mut(&mut self) -> &mut super::core::Vec3;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn cull_radius(&self) -> &f32;
+    fn cull_radius_mut(&mut self) -> &mut f32;
     fn sky_box_enable(&self) -> &bool;
+    fn sky_box_enable_mut(&mut self) -> &mut bool;
     fn sky_box_cut_bottom(&self) -> &bool;
+    fn sky_box_cut_bottom_mut(&mut self) -> &mut bool;
     fn sky_box_blend_mode(&self) -> &SkyBoxBlendMode;
+    fn sky_box_blend_mode_mut(&mut self) -> &mut SkyBoxBlendMode;
     fn sky_box_blend(&self) -> &f32;
+    fn sky_box_blend_mut(&mut self) -> &mut f32;
     fn sky_box_sky_color(&self) -> &super::core::Vec3;
+    fn sky_box_sky_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_ground_color(&self) -> &super::core::Vec3;
+    fn sky_box_ground_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_sun_light_color(&self) -> &super::core::Vec3;
+    fn sky_box_sun_light_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_sun_light_color_size(&self) -> &f32;
+    fn sky_box_sun_light_color_size_mut(&mut self) -> &mut f32;
     fn sky_box_back_light_color(&self) -> &super::core::Vec3;
+    fn sky_box_back_light_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_back_light_color_size(&self) -> &f32;
+    fn sky_box_back_light_color_size_mut(&mut self) -> &mut f32;
     fn sky_box_back_light_rotation_x(&self) -> &f32;
+    fn sky_box_back_light_rotation_x_mut(&mut self) -> &mut f32;
     fn sky_box_back_light_rotation_y(&self) -> &f32;
+    fn sky_box_back_light_rotation_y_mut(&mut self) -> &mut f32;
     fn opaque_alpha_test_simple_scale(&self) -> &super::core::Vec3;
+    fn opaque_alpha_test_simple_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl EnlightenComponentStateTrait for EnlightenComponentState {
     fn bounce_scale(&self) -> &f32 {
         &self.bounce_scale
     }
+    fn bounce_scale_mut(&mut self) -> &mut f32 {
+        &mut self.bounce_scale
+    }
     fn sun_scale(&self) -> &f32 {
         &self.sun_scale
+    }
+    fn sun_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_scale
     }
     fn sun_direct_lightmap_enable(&self) -> &bool {
         &self.sun_direct_lightmap_enable
     }
+    fn sun_direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.sun_direct_lightmap_enable
+    }
     fn terrain_color(&self) -> &super::core::Vec3 {
         &self.terrain_color
+    }
+    fn terrain_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.terrain_color
     }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
     }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
+    }
     fn cull_radius(&self) -> &f32 {
         &self.cull_radius
+    }
+    fn cull_radius_mut(&mut self) -> &mut f32 {
+        &mut self.cull_radius
     }
     fn sky_box_enable(&self) -> &bool {
         &self.sky_box_enable
     }
+    fn sky_box_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_box_enable
+    }
     fn sky_box_cut_bottom(&self) -> &bool {
         &self.sky_box_cut_bottom
+    }
+    fn sky_box_cut_bottom_mut(&mut self) -> &mut bool {
+        &mut self.sky_box_cut_bottom
     }
     fn sky_box_blend_mode(&self) -> &SkyBoxBlendMode {
         &self.sky_box_blend_mode
     }
+    fn sky_box_blend_mode_mut(&mut self) -> &mut SkyBoxBlendMode {
+        &mut self.sky_box_blend_mode
+    }
     fn sky_box_blend(&self) -> &f32 {
         &self.sky_box_blend
+    }
+    fn sky_box_blend_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_blend
     }
     fn sky_box_sky_color(&self) -> &super::core::Vec3 {
         &self.sky_box_sky_color
     }
+    fn sky_box_sky_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_sky_color
+    }
     fn sky_box_ground_color(&self) -> &super::core::Vec3 {
         &self.sky_box_ground_color
+    }
+    fn sky_box_ground_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_ground_color
     }
     fn sky_box_sun_light_color(&self) -> &super::core::Vec3 {
         &self.sky_box_sun_light_color
     }
+    fn sky_box_sun_light_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_sun_light_color
+    }
     fn sky_box_sun_light_color_size(&self) -> &f32 {
         &self.sky_box_sun_light_color_size
+    }
+    fn sky_box_sun_light_color_size_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_sun_light_color_size
     }
     fn sky_box_back_light_color(&self) -> &super::core::Vec3 {
         &self.sky_box_back_light_color
     }
+    fn sky_box_back_light_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_back_light_color
+    }
     fn sky_box_back_light_color_size(&self) -> &f32 {
         &self.sky_box_back_light_color_size
+    }
+    fn sky_box_back_light_color_size_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_back_light_color_size
     }
     fn sky_box_back_light_rotation_x(&self) -> &f32 {
         &self.sky_box_back_light_rotation_x
     }
+    fn sky_box_back_light_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_back_light_rotation_x
+    }
     fn sky_box_back_light_rotation_y(&self) -> &f32 {
         &self.sky_box_back_light_rotation_y
+    }
+    fn sky_box_back_light_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_back_light_rotation_y
     }
     fn opaque_alpha_test_simple_scale(&self) -> &super::core::Vec3 {
         &self.opaque_alpha_test_simple_scale
     }
+    fn opaque_alpha_test_simple_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.opaque_alpha_test_simple_scale
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7424,6 +9685,15 @@ impl TypeObject for EnlightenComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7463,6 +9733,15 @@ impl TypeObject for SkyBoxBlendMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7496,63 +9775,119 @@ pub struct SubSurfaceScatteringComponentState {
 
 pub trait SubSurfaceScatteringComponentStateTrait: TypeObject {
     fn simple_sss_color(&self) -> &super::core::Vec3;
+    fn simple_sss_color_mut(&mut self) -> &mut super::core::Vec3;
     fn simple_sss_rolloff_key_light(&self) -> &f32;
+    fn simple_sss_rolloff_key_light_mut(&mut self) -> &mut f32;
     fn simple_sss_rolloff_local_light(&self) -> &f32;
+    fn simple_sss_rolloff_local_light_mut(&mut self) -> &mut f32;
     fn local_light_translucency_enable(&self) -> &bool;
+    fn local_light_translucency_enable_mut(&mut self) -> &mut bool;
     fn profile0(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile0_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile1(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile1_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile2(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile2_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile3(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile3_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile4(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile4_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile5(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile5_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile6(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile6_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile_o_a_t_s(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile_o_a_t_s_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl SubSurfaceScatteringComponentStateTrait for SubSurfaceScatteringComponentState {
     fn simple_sss_color(&self) -> &super::core::Vec3 {
         &self.simple_sss_color
     }
+    fn simple_sss_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.simple_sss_color
+    }
     fn simple_sss_rolloff_key_light(&self) -> &f32 {
         &self.simple_sss_rolloff_key_light
+    }
+    fn simple_sss_rolloff_key_light_mut(&mut self) -> &mut f32 {
+        &mut self.simple_sss_rolloff_key_light
     }
     fn simple_sss_rolloff_local_light(&self) -> &f32 {
         &self.simple_sss_rolloff_local_light
     }
+    fn simple_sss_rolloff_local_light_mut(&mut self) -> &mut f32 {
+        &mut self.simple_sss_rolloff_local_light
+    }
     fn local_light_translucency_enable(&self) -> &bool {
         &self.local_light_translucency_enable
+    }
+    fn local_light_translucency_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_light_translucency_enable
     }
     fn profile0(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile0
     }
+    fn profile0_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile0
+    }
     fn profile1(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile1
+    }
+    fn profile1_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile1
     }
     fn profile2(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile2
     }
+    fn profile2_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile2
+    }
     fn profile3(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile3
+    }
+    fn profile3_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile3
     }
     fn profile4(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile4
     }
+    fn profile4_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile4
+    }
     fn profile5(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile5
+    }
+    fn profile5_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile5
     }
     fn profile6(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile6
     }
+    fn profile6_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile6
+    }
     fn profile_o_a_t_s(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile_o_a_t_s
+    }
+    fn profile_o_a_t_s_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile_o_a_t_s
     }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7662,6 +9997,15 @@ impl TypeObject for SubSurfaceScatteringComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7712,131 +10056,255 @@ pub struct DynamicAOComponentState {
 
 pub trait DynamicAOComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn affect_outdoor_light(&self) -> &bool;
+    fn affect_outdoor_light_mut(&mut self) -> &mut bool;
     fn affect_local_light(&self) -> &bool;
+    fn affect_local_light_mut(&mut self) -> &mut bool;
     fn dynamic_a_o_factor(&self) -> &f32;
+    fn dynamic_a_o_factor_mut(&mut self) -> &mut f32;
     fn ssao_fade(&self) -> &f32;
+    fn ssao_fade_mut(&mut self) -> &mut f32;
     fn ssao_radius(&self) -> &f32;
+    fn ssao_radius_mut(&mut self) -> &mut f32;
     fn ssao_max_distance_inner(&self) -> &f32;
+    fn ssao_max_distance_inner_mut(&mut self) -> &mut f32;
     fn ssao_max_distance_outer(&self) -> &f32;
+    fn ssao_max_distance_outer_mut(&mut self) -> &mut f32;
     fn hbao_radius(&self) -> &f32;
+    fn hbao_radius_mut(&mut self) -> &mut f32;
     fn hbao_angle_bias(&self) -> &f32;
+    fn hbao_angle_bias_mut(&mut self) -> &mut f32;
     fn hbao_attenuation(&self) -> &f32;
+    fn hbao_attenuation_mut(&mut self) -> &mut f32;
     fn hbao_contrast(&self) -> &f32;
+    fn hbao_contrast_mut(&mut self) -> &mut f32;
     fn hbao_max_footprint_radius(&self) -> &f32;
+    fn hbao_max_footprint_radius_mut(&mut self) -> &mut f32;
     fn hbao_power_exponent(&self) -> &f32;
+    fn hbao_power_exponent_mut(&mut self) -> &mut f32;
     fn hbao_blur_radius(&self) -> &f32;
+    fn hbao_blur_radius_mut(&mut self) -> &mut f32;
     fn hbao_blur_sharpness(&self) -> &f32;
+    fn hbao_blur_sharpness_mut(&mut self) -> &mut f32;
     fn temporal_filter_enable(&self) -> &bool;
+    fn temporal_filter_enable_mut(&mut self) -> &mut bool;
     fn aao_dynamic_weight(&self) -> &bool;
+    fn aao_dynamic_weight_mut(&mut self) -> &mut bool;
     fn aao_bias(&self) -> &f32;
+    fn aao_bias_mut(&mut self) -> &mut f32;
     fn aao_intensity(&self) -> &f32;
+    fn aao_intensity_mut(&mut self) -> &mut f32;
     fn aao_contrast(&self) -> &f32;
+    fn aao_contrast_mut(&mut self) -> &mut f32;
     fn aao_range_reduction(&self) -> &f32;
+    fn aao_range_reduction_mut(&mut self) -> &mut f32;
     fn aao_screen_radius(&self) -> &f32;
+    fn aao_screen_radius_mut(&mut self) -> &mut f32;
     fn aao_near_occlusion_max(&self) -> &f32;
+    fn aao_near_occlusion_max_mut(&mut self) -> &mut f32;
     fn aao_near_falloff_threshold(&self) -> &f32;
+    fn aao_near_falloff_threshold_mut(&mut self) -> &mut f32;
     fn aao_clip_distance(&self) -> &f32;
+    fn aao_clip_distance_mut(&mut self) -> &mut f32;
     fn aao_clip_fade_distance(&self) -> &f32;
+    fn aao_clip_fade_distance_mut(&mut self) -> &mut f32;
     fn aao_blur_depth_threshold(&self) -> &f32;
+    fn aao_blur_depth_threshold_mut(&mut self) -> &mut f32;
     fn aao_blur_const_falloff(&self) -> &f32;
+    fn aao_blur_const_falloff_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl DynamicAOComponentStateTrait for DynamicAOComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn affect_outdoor_light(&self) -> &bool {
         &self.affect_outdoor_light
+    }
+    fn affect_outdoor_light_mut(&mut self) -> &mut bool {
+        &mut self.affect_outdoor_light
     }
     fn affect_local_light(&self) -> &bool {
         &self.affect_local_light
     }
+    fn affect_local_light_mut(&mut self) -> &mut bool {
+        &mut self.affect_local_light
+    }
     fn dynamic_a_o_factor(&self) -> &f32 {
         &self.dynamic_a_o_factor
+    }
+    fn dynamic_a_o_factor_mut(&mut self) -> &mut f32 {
+        &mut self.dynamic_a_o_factor
     }
     fn ssao_fade(&self) -> &f32 {
         &self.ssao_fade
     }
+    fn ssao_fade_mut(&mut self) -> &mut f32 {
+        &mut self.ssao_fade
+    }
     fn ssao_radius(&self) -> &f32 {
         &self.ssao_radius
+    }
+    fn ssao_radius_mut(&mut self) -> &mut f32 {
+        &mut self.ssao_radius
     }
     fn ssao_max_distance_inner(&self) -> &f32 {
         &self.ssao_max_distance_inner
     }
+    fn ssao_max_distance_inner_mut(&mut self) -> &mut f32 {
+        &mut self.ssao_max_distance_inner
+    }
     fn ssao_max_distance_outer(&self) -> &f32 {
         &self.ssao_max_distance_outer
+    }
+    fn ssao_max_distance_outer_mut(&mut self) -> &mut f32 {
+        &mut self.ssao_max_distance_outer
     }
     fn hbao_radius(&self) -> &f32 {
         &self.hbao_radius
     }
+    fn hbao_radius_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_radius
+    }
     fn hbao_angle_bias(&self) -> &f32 {
         &self.hbao_angle_bias
+    }
+    fn hbao_angle_bias_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_angle_bias
     }
     fn hbao_attenuation(&self) -> &f32 {
         &self.hbao_attenuation
     }
+    fn hbao_attenuation_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_attenuation
+    }
     fn hbao_contrast(&self) -> &f32 {
         &self.hbao_contrast
+    }
+    fn hbao_contrast_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_contrast
     }
     fn hbao_max_footprint_radius(&self) -> &f32 {
         &self.hbao_max_footprint_radius
     }
+    fn hbao_max_footprint_radius_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_max_footprint_radius
+    }
     fn hbao_power_exponent(&self) -> &f32 {
         &self.hbao_power_exponent
+    }
+    fn hbao_power_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_power_exponent
     }
     fn hbao_blur_radius(&self) -> &f32 {
         &self.hbao_blur_radius
     }
+    fn hbao_blur_radius_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_blur_radius
+    }
     fn hbao_blur_sharpness(&self) -> &f32 {
         &self.hbao_blur_sharpness
+    }
+    fn hbao_blur_sharpness_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_blur_sharpness
     }
     fn temporal_filter_enable(&self) -> &bool {
         &self.temporal_filter_enable
     }
+    fn temporal_filter_enable_mut(&mut self) -> &mut bool {
+        &mut self.temporal_filter_enable
+    }
     fn aao_dynamic_weight(&self) -> &bool {
         &self.aao_dynamic_weight
+    }
+    fn aao_dynamic_weight_mut(&mut self) -> &mut bool {
+        &mut self.aao_dynamic_weight
     }
     fn aao_bias(&self) -> &f32 {
         &self.aao_bias
     }
+    fn aao_bias_mut(&mut self) -> &mut f32 {
+        &mut self.aao_bias
+    }
     fn aao_intensity(&self) -> &f32 {
         &self.aao_intensity
+    }
+    fn aao_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.aao_intensity
     }
     fn aao_contrast(&self) -> &f32 {
         &self.aao_contrast
     }
+    fn aao_contrast_mut(&mut self) -> &mut f32 {
+        &mut self.aao_contrast
+    }
     fn aao_range_reduction(&self) -> &f32 {
         &self.aao_range_reduction
+    }
+    fn aao_range_reduction_mut(&mut self) -> &mut f32 {
+        &mut self.aao_range_reduction
     }
     fn aao_screen_radius(&self) -> &f32 {
         &self.aao_screen_radius
     }
+    fn aao_screen_radius_mut(&mut self) -> &mut f32 {
+        &mut self.aao_screen_radius
+    }
     fn aao_near_occlusion_max(&self) -> &f32 {
         &self.aao_near_occlusion_max
+    }
+    fn aao_near_occlusion_max_mut(&mut self) -> &mut f32 {
+        &mut self.aao_near_occlusion_max
     }
     fn aao_near_falloff_threshold(&self) -> &f32 {
         &self.aao_near_falloff_threshold
     }
+    fn aao_near_falloff_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.aao_near_falloff_threshold
+    }
     fn aao_clip_distance(&self) -> &f32 {
         &self.aao_clip_distance
+    }
+    fn aao_clip_distance_mut(&mut self) -> &mut f32 {
+        &mut self.aao_clip_distance
     }
     fn aao_clip_fade_distance(&self) -> &f32 {
         &self.aao_clip_fade_distance
     }
+    fn aao_clip_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.aao_clip_fade_distance
+    }
     fn aao_blur_depth_threshold(&self) -> &f32 {
         &self.aao_blur_depth_threshold
+    }
+    fn aao_blur_depth_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.aao_blur_depth_threshold
     }
     fn aao_blur_const_falloff(&self) -> &f32 {
         &self.aao_blur_const_falloff
     }
+    fn aao_blur_const_falloff_mut(&mut self) -> &mut f32 {
+        &mut self.aao_blur_const_falloff
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -8048,6 +10516,15 @@ impl TypeObject for DynamicAOComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8141,303 +10618,599 @@ pub struct SunFlareComponentState {
 
 pub trait SunFlareComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn debug_draw_occluder(&self) -> &bool;
+    fn debug_draw_occluder_mut(&mut self) -> &mut bool;
     fn occluder_size(&self) -> &f32;
+    fn occluder_size_mut(&mut self) -> &mut f32;
     fn screen_clip(&self) -> &bool;
+    fn screen_clip_mut(&mut self) -> &mut bool;
     fn render_mode(&self) -> &LensFlareRenderMode;
+    fn render_mode_mut(&mut self) -> &mut LensFlareRenderMode;
     fn use_sun_position(&self) -> &bool;
+    fn use_sun_position_mut(&mut self) -> &mut bool;
     fn rotation_x(&self) -> &f32;
+    fn rotation_x_mut(&mut self) -> &mut f32;
     fn rotation_y(&self) -> &f32;
+    fn rotation_y_mut(&mut self) -> &mut f32;
     fn element1_enable(&self) -> &bool;
+    fn element1_enable_mut(&mut self) -> &mut bool;
     fn element1_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn element1_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn element1_ray_distance(&self) -> &f32;
+    fn element1_ray_distance_mut(&mut self) -> &mut f32;
     fn element1_size(&self) -> &super::core::Vec2;
+    fn element1_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element1_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element1_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element1_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element1_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element1_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_rotation_local(&self) -> &f32;
+    fn element1_rotation_local_mut(&mut self) -> &mut f32;
     fn element1_rotation_aligned_to_ray(&self) -> &bool;
+    fn element1_rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn element1_rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn element1_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_rotation_dist_multiplier(&self) -> &f32;
+    fn element1_rotation_dist_multiplier_mut(&mut self) -> &mut f32;
     fn element2_enable(&self) -> &bool;
+    fn element2_enable_mut(&mut self) -> &mut bool;
     fn element2_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn element2_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn element2_ray_distance(&self) -> &f32;
+    fn element2_ray_distance_mut(&mut self) -> &mut f32;
     fn element2_size(&self) -> &super::core::Vec2;
+    fn element2_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element2_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element2_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element2_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element2_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element2_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_rotation_local(&self) -> &f32;
+    fn element2_rotation_local_mut(&mut self) -> &mut f32;
     fn element2_rotation_aligned_to_ray(&self) -> &bool;
+    fn element2_rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn element2_rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn element2_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_rotation_dist_multiplier(&self) -> &f32;
+    fn element2_rotation_dist_multiplier_mut(&mut self) -> &mut f32;
     fn element3_enable(&self) -> &bool;
+    fn element3_enable_mut(&mut self) -> &mut bool;
     fn element3_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn element3_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn element3_ray_distance(&self) -> &f32;
+    fn element3_ray_distance_mut(&mut self) -> &mut f32;
     fn element3_size(&self) -> &super::core::Vec2;
+    fn element3_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element3_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element3_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element3_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element3_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element3_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_rotation_local(&self) -> &f32;
+    fn element3_rotation_local_mut(&mut self) -> &mut f32;
     fn element3_rotation_aligned_to_ray(&self) -> &bool;
+    fn element3_rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn element3_rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn element3_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_rotation_dist_multiplier(&self) -> &f32;
+    fn element3_rotation_dist_multiplier_mut(&mut self) -> &mut f32;
     fn element4_enable(&self) -> &bool;
+    fn element4_enable_mut(&mut self) -> &mut bool;
     fn element4_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn element4_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn element4_ray_distance(&self) -> &f32;
+    fn element4_ray_distance_mut(&mut self) -> &mut f32;
     fn element4_size(&self) -> &super::core::Vec2;
+    fn element4_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element4_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element4_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element4_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element4_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element4_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_rotation_local(&self) -> &f32;
+    fn element4_rotation_local_mut(&mut self) -> &mut f32;
     fn element4_rotation_aligned_to_ray(&self) -> &bool;
+    fn element4_rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn element4_rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn element4_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_rotation_dist_multiplier(&self) -> &f32;
+    fn element4_rotation_dist_multiplier_mut(&mut self) -> &mut f32;
     fn element5_enable(&self) -> &bool;
+    fn element5_enable_mut(&mut self) -> &mut bool;
     fn element5_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn element5_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn element5_ray_distance(&self) -> &f32;
+    fn element5_ray_distance_mut(&mut self) -> &mut f32;
     fn element5_size(&self) -> &super::core::Vec2;
+    fn element5_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element5_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element5_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element5_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element5_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element5_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_rotation_local(&self) -> &f32;
+    fn element5_rotation_local_mut(&mut self) -> &mut f32;
     fn element5_rotation_aligned_to_ray(&self) -> &bool;
+    fn element5_rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn element5_rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn element5_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_rotation_dist_multiplier(&self) -> &f32;
+    fn element5_rotation_dist_multiplier_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u32;
+    fn field_flag_override1_mut(&mut self) -> &mut u32;
     fn field_flag_override2(&self) -> &u8;
+    fn field_flag_override2_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u32;
+    fn field_flag_changed1_mut(&mut self) -> &mut u32;
     fn field_flag_changed2(&self) -> &u8;
+    fn field_flag_changed2_mut(&mut self) -> &mut u8;
 }
 
 impl SunFlareComponentStateTrait for SunFlareComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn debug_draw_occluder(&self) -> &bool {
         &self.debug_draw_occluder
+    }
+    fn debug_draw_occluder_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_occluder
     }
     fn occluder_size(&self) -> &f32 {
         &self.occluder_size
     }
+    fn occluder_size_mut(&mut self) -> &mut f32 {
+        &mut self.occluder_size
+    }
     fn screen_clip(&self) -> &bool {
         &self.screen_clip
+    }
+    fn screen_clip_mut(&mut self) -> &mut bool {
+        &mut self.screen_clip
     }
     fn render_mode(&self) -> &LensFlareRenderMode {
         &self.render_mode
     }
+    fn render_mode_mut(&mut self) -> &mut LensFlareRenderMode {
+        &mut self.render_mode
+    }
     fn use_sun_position(&self) -> &bool {
         &self.use_sun_position
+    }
+    fn use_sun_position_mut(&mut self) -> &mut bool {
+        &mut self.use_sun_position
     }
     fn rotation_x(&self) -> &f32 {
         &self.rotation_x
     }
+    fn rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_x
+    }
     fn rotation_y(&self) -> &f32 {
         &self.rotation_y
+    }
+    fn rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_y
     }
     fn element1_enable(&self) -> &bool {
         &self.element1_enable
     }
+    fn element1_enable_mut(&mut self) -> &mut bool {
+        &mut self.element1_enable
+    }
     fn element1_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.element1_shader
+    }
+    fn element1_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.element1_shader
     }
     fn element1_ray_distance(&self) -> &f32 {
         &self.element1_ray_distance
     }
+    fn element1_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element1_ray_distance
+    }
     fn element1_size(&self) -> &super::core::Vec2 {
         &self.element1_size
+    }
+    fn element1_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element1_size
     }
     fn element1_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element1_size_occluder_curve
     }
+    fn element1_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_size_occluder_curve
+    }
     fn element1_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element1_size_screen_pos_curve
+    }
+    fn element1_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_size_screen_pos_curve
     }
     fn element1_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element1_alpha_occluder_curve
     }
+    fn element1_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_alpha_occluder_curve
+    }
     fn element1_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element1_alpha_screen_pos_curve
+    }
+    fn element1_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_alpha_screen_pos_curve
     }
     fn element1_rotation_local(&self) -> &f32 {
         &self.element1_rotation_local
     }
+    fn element1_rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.element1_rotation_local
+    }
     fn element1_rotation_aligned_to_ray(&self) -> &bool {
         &self.element1_rotation_aligned_to_ray
+    }
+    fn element1_rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.element1_rotation_aligned_to_ray
     }
     fn element1_rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.element1_rotation_dist_curve
     }
+    fn element1_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_rotation_dist_curve
+    }
     fn element1_rotation_dist_multiplier(&self) -> &f32 {
         &self.element1_rotation_dist_multiplier
+    }
+    fn element1_rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.element1_rotation_dist_multiplier
     }
     fn element2_enable(&self) -> &bool {
         &self.element2_enable
     }
+    fn element2_enable_mut(&mut self) -> &mut bool {
+        &mut self.element2_enable
+    }
     fn element2_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.element2_shader
+    }
+    fn element2_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.element2_shader
     }
     fn element2_ray_distance(&self) -> &f32 {
         &self.element2_ray_distance
     }
+    fn element2_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element2_ray_distance
+    }
     fn element2_size(&self) -> &super::core::Vec2 {
         &self.element2_size
+    }
+    fn element2_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element2_size
     }
     fn element2_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element2_size_occluder_curve
     }
+    fn element2_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_size_occluder_curve
+    }
     fn element2_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element2_size_screen_pos_curve
+    }
+    fn element2_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_size_screen_pos_curve
     }
     fn element2_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element2_alpha_occluder_curve
     }
+    fn element2_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_alpha_occluder_curve
+    }
     fn element2_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element2_alpha_screen_pos_curve
+    }
+    fn element2_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_alpha_screen_pos_curve
     }
     fn element2_rotation_local(&self) -> &f32 {
         &self.element2_rotation_local
     }
+    fn element2_rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.element2_rotation_local
+    }
     fn element2_rotation_aligned_to_ray(&self) -> &bool {
         &self.element2_rotation_aligned_to_ray
+    }
+    fn element2_rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.element2_rotation_aligned_to_ray
     }
     fn element2_rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.element2_rotation_dist_curve
     }
+    fn element2_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_rotation_dist_curve
+    }
     fn element2_rotation_dist_multiplier(&self) -> &f32 {
         &self.element2_rotation_dist_multiplier
+    }
+    fn element2_rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.element2_rotation_dist_multiplier
     }
     fn element3_enable(&self) -> &bool {
         &self.element3_enable
     }
+    fn element3_enable_mut(&mut self) -> &mut bool {
+        &mut self.element3_enable
+    }
     fn element3_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.element3_shader
+    }
+    fn element3_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.element3_shader
     }
     fn element3_ray_distance(&self) -> &f32 {
         &self.element3_ray_distance
     }
+    fn element3_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element3_ray_distance
+    }
     fn element3_size(&self) -> &super::core::Vec2 {
         &self.element3_size
+    }
+    fn element3_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element3_size
     }
     fn element3_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element3_size_occluder_curve
     }
+    fn element3_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_size_occluder_curve
+    }
     fn element3_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element3_size_screen_pos_curve
+    }
+    fn element3_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_size_screen_pos_curve
     }
     fn element3_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element3_alpha_occluder_curve
     }
+    fn element3_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_alpha_occluder_curve
+    }
     fn element3_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element3_alpha_screen_pos_curve
+    }
+    fn element3_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_alpha_screen_pos_curve
     }
     fn element3_rotation_local(&self) -> &f32 {
         &self.element3_rotation_local
     }
+    fn element3_rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.element3_rotation_local
+    }
     fn element3_rotation_aligned_to_ray(&self) -> &bool {
         &self.element3_rotation_aligned_to_ray
+    }
+    fn element3_rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.element3_rotation_aligned_to_ray
     }
     fn element3_rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.element3_rotation_dist_curve
     }
+    fn element3_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_rotation_dist_curve
+    }
     fn element3_rotation_dist_multiplier(&self) -> &f32 {
         &self.element3_rotation_dist_multiplier
+    }
+    fn element3_rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.element3_rotation_dist_multiplier
     }
     fn element4_enable(&self) -> &bool {
         &self.element4_enable
     }
+    fn element4_enable_mut(&mut self) -> &mut bool {
+        &mut self.element4_enable
+    }
     fn element4_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.element4_shader
+    }
+    fn element4_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.element4_shader
     }
     fn element4_ray_distance(&self) -> &f32 {
         &self.element4_ray_distance
     }
+    fn element4_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element4_ray_distance
+    }
     fn element4_size(&self) -> &super::core::Vec2 {
         &self.element4_size
+    }
+    fn element4_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element4_size
     }
     fn element4_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element4_size_occluder_curve
     }
+    fn element4_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_size_occluder_curve
+    }
     fn element4_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element4_size_screen_pos_curve
+    }
+    fn element4_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_size_screen_pos_curve
     }
     fn element4_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element4_alpha_occluder_curve
     }
+    fn element4_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_alpha_occluder_curve
+    }
     fn element4_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element4_alpha_screen_pos_curve
+    }
+    fn element4_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_alpha_screen_pos_curve
     }
     fn element4_rotation_local(&self) -> &f32 {
         &self.element4_rotation_local
     }
+    fn element4_rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.element4_rotation_local
+    }
     fn element4_rotation_aligned_to_ray(&self) -> &bool {
         &self.element4_rotation_aligned_to_ray
+    }
+    fn element4_rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.element4_rotation_aligned_to_ray
     }
     fn element4_rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.element4_rotation_dist_curve
     }
+    fn element4_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_rotation_dist_curve
+    }
     fn element4_rotation_dist_multiplier(&self) -> &f32 {
         &self.element4_rotation_dist_multiplier
+    }
+    fn element4_rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.element4_rotation_dist_multiplier
     }
     fn element5_enable(&self) -> &bool {
         &self.element5_enable
     }
+    fn element5_enable_mut(&mut self) -> &mut bool {
+        &mut self.element5_enable
+    }
     fn element5_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.element5_shader
+    }
+    fn element5_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.element5_shader
     }
     fn element5_ray_distance(&self) -> &f32 {
         &self.element5_ray_distance
     }
+    fn element5_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element5_ray_distance
+    }
     fn element5_size(&self) -> &super::core::Vec2 {
         &self.element5_size
+    }
+    fn element5_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element5_size
     }
     fn element5_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element5_size_occluder_curve
     }
+    fn element5_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_size_occluder_curve
+    }
     fn element5_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element5_size_screen_pos_curve
+    }
+    fn element5_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_size_screen_pos_curve
     }
     fn element5_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element5_alpha_occluder_curve
     }
+    fn element5_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_alpha_occluder_curve
+    }
     fn element5_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element5_alpha_screen_pos_curve
+    }
+    fn element5_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_alpha_screen_pos_curve
     }
     fn element5_rotation_local(&self) -> &f32 {
         &self.element5_rotation_local
     }
+    fn element5_rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.element5_rotation_local
+    }
     fn element5_rotation_aligned_to_ray(&self) -> &bool {
         &self.element5_rotation_aligned_to_ray
+    }
+    fn element5_rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.element5_rotation_aligned_to_ray
     }
     fn element5_rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.element5_rotation_dist_curve
     }
+    fn element5_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_rotation_dist_curve
+    }
     fn element5_rotation_dist_multiplier(&self) -> &f32 {
         &self.element5_rotation_dist_multiplier
+    }
+    fn element5_rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.element5_rotation_dist_multiplier
     }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_override1(&self) -> &u32 {
         &self.field_flag_override1
+    }
+    fn field_flag_override1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override1
     }
     fn field_flag_override2(&self) -> &u8 {
         &self.field_flag_override2
     }
+    fn field_flag_override2_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override2
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
     fn field_flag_changed1(&self) -> &u32 {
         &self.field_flag_changed1
     }
+    fn field_flag_changed1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed1
+    }
     fn field_flag_changed2(&self) -> &u8 {
         &self.field_flag_changed2
+    }
+    fn field_flag_changed2_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed2
     }
 }
 
@@ -8907,6 +11680,15 @@ impl TypeObject for SunFlareComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8935,43 +11717,79 @@ pub struct WindComponentState {
 
 pub trait WindComponentStateTrait: TypeObject {
     fn wind_direction(&self) -> &f32;
+    fn wind_direction_mut(&mut self) -> &mut f32;
     fn wind_strength(&self) -> &f32;
+    fn wind_strength_mut(&mut self) -> &mut f32;
     fn wind_variation_multiplier(&self) -> &f32;
+    fn wind_variation_multiplier_mut(&mut self) -> &mut f32;
     fn wind_variation_rate_multiplier(&self) -> &f32;
+    fn wind_variation_rate_multiplier_mut(&mut self) -> &mut f32;
     fn wind_micro_variation_multiplier(&self) -> &f32;
+    fn wind_micro_variation_multiplier_mut(&mut self) -> &mut f32;
     fn turbulence_multiplier(&self) -> &f32;
+    fn turbulence_multiplier_mut(&mut self) -> &mut f32;
     fn turbulence_scale(&self) -> &f32;
+    fn turbulence_scale_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl WindComponentStateTrait for WindComponentState {
     fn wind_direction(&self) -> &f32 {
         &self.wind_direction
     }
+    fn wind_direction_mut(&mut self) -> &mut f32 {
+        &mut self.wind_direction
+    }
     fn wind_strength(&self) -> &f32 {
         &self.wind_strength
+    }
+    fn wind_strength_mut(&mut self) -> &mut f32 {
+        &mut self.wind_strength
     }
     fn wind_variation_multiplier(&self) -> &f32 {
         &self.wind_variation_multiplier
     }
+    fn wind_variation_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.wind_variation_multiplier
+    }
     fn wind_variation_rate_multiplier(&self) -> &f32 {
         &self.wind_variation_rate_multiplier
+    }
+    fn wind_variation_rate_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.wind_variation_rate_multiplier
     }
     fn wind_micro_variation_multiplier(&self) -> &f32 {
         &self.wind_micro_variation_multiplier
     }
+    fn wind_micro_variation_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.wind_micro_variation_multiplier
+    }
     fn turbulence_multiplier(&self) -> &f32 {
         &self.turbulence_multiplier
+    }
+    fn turbulence_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.turbulence_multiplier
     }
     fn turbulence_scale(&self) -> &f32 {
         &self.turbulence_scale
     }
+    fn turbulence_scale_mut(&mut self) -> &mut f32 {
+        &mut self.turbulence_scale
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -9051,6 +11869,15 @@ impl TypeObject for WindComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9077,35 +11904,63 @@ pub struct DynamicEnvmapComponentState {
 
 pub trait DynamicEnvmapComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn terrain_reflections_enable(&self) -> &bool;
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool;
     fn key_color_envmap(&self) -> &super::core::Vec3;
+    fn key_color_envmap_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_color_envmap(&self) -> &super::core::Vec3;
+    fn sky_color_envmap_mut(&mut self) -> &mut super::core::Vec3;
     fn ground_color_envmap(&self) -> &super::core::Vec3;
+    fn ground_color_envmap_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl DynamicEnvmapComponentStateTrait for DynamicEnvmapComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn terrain_reflections_enable(&self) -> &bool {
         &self.terrain_reflections_enable
+    }
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool {
+        &mut self.terrain_reflections_enable
     }
     fn key_color_envmap(&self) -> &super::core::Vec3 {
         &self.key_color_envmap
     }
+    fn key_color_envmap_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.key_color_envmap
+    }
     fn sky_color_envmap(&self) -> &super::core::Vec3 {
         &self.sky_color_envmap
+    }
+    fn sky_color_envmap_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_color_envmap
     }
     fn ground_color_envmap(&self) -> &super::core::Vec3 {
         &self.ground_color_envmap
     }
+    fn ground_color_envmap_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ground_color_envmap
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -9173,6 +12028,15 @@ impl TypeObject for DynamicEnvmapComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9208,71 +12072,135 @@ pub struct PlanarReflectionComponentState {
 
 pub trait PlanarReflectionComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn terrain_reflections_enable(&self) -> &bool;
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool;
     fn sky_render_enable(&self) -> &bool;
+    fn sky_render_enable_mut(&mut self) -> &mut bool;
     fn ground_height(&self) -> &f32;
+    fn ground_height_mut(&mut self) -> &mut f32;
     fn view_distance(&self) -> &f32;
+    fn view_distance_mut(&mut self) -> &mut f32;
     fn vertical_blur_filter(&self) -> &super::render_base::BlurFilter;
+    fn vertical_blur_filter_mut(&mut self) -> &mut super::render_base::BlurFilter;
     fn vertical_deviation(&self) -> &f32;
+    fn vertical_deviation_mut(&mut self) -> &mut f32;
     fn horizontal_blur_filter(&self) -> &super::render_base::BlurFilter;
+    fn horizontal_blur_filter_mut(&mut self) -> &mut super::render_base::BlurFilter;
     fn horizontal_deviation(&self) -> &f32;
+    fn horizontal_deviation_mut(&mut self) -> &mut f32;
     fn clipping_offset(&self) -> &f32;
+    fn clipping_offset_mut(&mut self) -> &mut f32;
     fn overide_outdoor_light_colors(&self) -> &bool;
+    fn overide_outdoor_light_colors_mut(&mut self) -> &mut bool;
     fn key_color_reflection(&self) -> &super::core::Vec3;
+    fn key_color_reflection_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_color_reflection(&self) -> &super::core::Vec3;
+    fn sky_color_reflection_mut(&mut self) -> &mut super::core::Vec3;
     fn ground_color_reflection(&self) -> &super::core::Vec3;
+    fn ground_color_reflection_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl PlanarReflectionComponentStateTrait for PlanarReflectionComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn terrain_reflections_enable(&self) -> &bool {
         &self.terrain_reflections_enable
+    }
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool {
+        &mut self.terrain_reflections_enable
     }
     fn sky_render_enable(&self) -> &bool {
         &self.sky_render_enable
     }
+    fn sky_render_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_render_enable
+    }
     fn ground_height(&self) -> &f32 {
         &self.ground_height
+    }
+    fn ground_height_mut(&mut self) -> &mut f32 {
+        &mut self.ground_height
     }
     fn view_distance(&self) -> &f32 {
         &self.view_distance
     }
+    fn view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.view_distance
+    }
     fn vertical_blur_filter(&self) -> &super::render_base::BlurFilter {
         &self.vertical_blur_filter
+    }
+    fn vertical_blur_filter_mut(&mut self) -> &mut super::render_base::BlurFilter {
+        &mut self.vertical_blur_filter
     }
     fn vertical_deviation(&self) -> &f32 {
         &self.vertical_deviation
     }
+    fn vertical_deviation_mut(&mut self) -> &mut f32 {
+        &mut self.vertical_deviation
+    }
     fn horizontal_blur_filter(&self) -> &super::render_base::BlurFilter {
         &self.horizontal_blur_filter
+    }
+    fn horizontal_blur_filter_mut(&mut self) -> &mut super::render_base::BlurFilter {
+        &mut self.horizontal_blur_filter
     }
     fn horizontal_deviation(&self) -> &f32 {
         &self.horizontal_deviation
     }
+    fn horizontal_deviation_mut(&mut self) -> &mut f32 {
+        &mut self.horizontal_deviation
+    }
     fn clipping_offset(&self) -> &f32 {
         &self.clipping_offset
+    }
+    fn clipping_offset_mut(&mut self) -> &mut f32 {
+        &mut self.clipping_offset
     }
     fn overide_outdoor_light_colors(&self) -> &bool {
         &self.overide_outdoor_light_colors
     }
+    fn overide_outdoor_light_colors_mut(&mut self) -> &mut bool {
+        &mut self.overide_outdoor_light_colors
+    }
     fn key_color_reflection(&self) -> &super::core::Vec3 {
         &self.key_color_reflection
+    }
+    fn key_color_reflection_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.key_color_reflection
     }
     fn sky_color_reflection(&self) -> &super::core::Vec3 {
         &self.sky_color_reflection
     }
+    fn sky_color_reflection_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_color_reflection
+    }
     fn ground_color_reflection(&self) -> &super::core::Vec3 {
         &self.ground_color_reflection
+    }
+    fn ground_color_reflection_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ground_color_reflection
     }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -9393,6 +12321,15 @@ impl TypeObject for PlanarReflectionComponentState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -9539,511 +12476,1015 @@ pub struct SkyComponentState {
 
 pub trait SkyComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn draw_sky_geo(&self) -> &bool;
+    fn draw_sky_geo_mut(&mut self) -> &mut bool;
     fn sky_type(&self) -> &SkyType;
+    fn sky_type_mut(&mut self) -> &mut SkyType;
     fn luminance_scale(&self) -> &f32;
+    fn luminance_scale_mut(&mut self) -> &mut f32;
     fn sky_gradient_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn sky_gradient_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn alpha_output(&self) -> &AlphaOutputMode;
+    fn alpha_output_mut(&mut self) -> &mut AlphaOutputMode;
     fn use_sky_visibility_as_a_o(&self) -> &bool;
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool;
     fn hdri_rotation(&self) -> &f32;
+    fn hdri_rotation_mut(&mut self) -> &mut f32;
     fn hdri_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn hdri_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn sun_size(&self) -> &f32;
+    fn sun_size_mut(&mut self) -> &mut f32;
     fn sun_scale(&self) -> &f32;
+    fn sun_scale_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_min_x(&self) -> &f32;
+    fn panoramic_u_v_min_x_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_max_x(&self) -> &f32;
+    fn panoramic_u_v_max_x_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_min_y(&self) -> &f32;
+    fn panoramic_u_v_min_y_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_max_y(&self) -> &f32;
+    fn panoramic_u_v_max_y_mut(&mut self) -> &mut f32;
     fn panoramic_tile_factor(&self) -> &f32;
+    fn panoramic_tile_factor_mut(&mut self) -> &mut f32;
     fn panoramic_rotation(&self) -> &f32;
+    fn panoramic_rotation_mut(&mut self) -> &mut f32;
     fn panoramic_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn panoramic_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn panoramic_alpha_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn panoramic_alpha_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn sky_gradient_follows_panoramic_u_vs(&self) -> &bool;
+    fn sky_gradient_follows_panoramic_u_vs_mut(&mut self) -> &mut bool;
     fn flow_enable(&self) -> &bool;
+    fn flow_enable_mut(&mut self) -> &mut bool;
     fn flow_period(&self) -> &f32;
+    fn flow_period_mut(&mut self) -> &mut f32;
     fn flow_distance(&self) -> &f32;
+    fn flow_distance_mut(&mut self) -> &mut f32;
     fn flow_direction(&self) -> &f32;
+    fn flow_direction_mut(&mut self) -> &mut f32;
     fn flow_height_mask_scale(&self) -> &f32;
+    fn flow_height_mask_scale_mut(&mut self) -> &mut f32;
     fn flow_height_mask_bias(&self) -> &f32;
+    fn flow_height_mask_bias_mut(&mut self) -> &mut f32;
     fn flow_mask_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn flow_mask_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_layer_sun_color(&self) -> &super::core::Vec3;
+    fn cloud_layer_sun_color_mut(&mut self) -> &mut super::core::Vec3;
     fn cloud_layer_mask_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_layer_mask_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_layer1_altitude(&self) -> &f32;
+    fn cloud_layer1_altitude_mut(&mut self) -> &mut f32;
     fn cloud_layer1_tile_factor(&self) -> &f32;
+    fn cloud_layer1_tile_factor_mut(&mut self) -> &mut f32;
     fn cloud_layer1_rotation(&self) -> &f32;
+    fn cloud_layer1_rotation_mut(&mut self) -> &mut f32;
     fn cloud_layer1_speed(&self) -> &f32;
+    fn cloud_layer1_speed_mut(&mut self) -> &mut f32;
     fn cloud_layer1_sun_light_intensity(&self) -> &f32;
+    fn cloud_layer1_sun_light_intensity_mut(&mut self) -> &mut f32;
     fn cloud_layer1_sun_light_power(&self) -> &f32;
+    fn cloud_layer1_sun_light_power_mut(&mut self) -> &mut f32;
     fn cloud_layer1_ambient_light_intensity(&self) -> &f32;
+    fn cloud_layer1_ambient_light_intensity_mut(&mut self) -> &mut f32;
     fn cloud_layer1_color(&self) -> &super::core::Vec3;
+    fn cloud_layer1_color_mut(&mut self) -> &mut super::core::Vec3;
     fn cloud_layer1_alpha_mul(&self) -> &f32;
+    fn cloud_layer1_alpha_mul_mut(&mut self) -> &mut f32;
     fn cloud_layer1_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_layer1_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_layer1_absorption(&self) -> &f32;
+    fn cloud_layer1_absorption_mut(&mut self) -> &mut f32;
     fn cloud_layer1_scattering(&self) -> &f32;
+    fn cloud_layer1_scattering_mut(&mut self) -> &mut f32;
     fn cloud_layer1_phase(&self) -> &f32;
+    fn cloud_layer1_phase_mut(&mut self) -> &mut f32;
     fn cloud_layer1_thickness(&self) -> &f32;
+    fn cloud_layer1_thickness_mut(&mut self) -> &mut f32;
     fn cloud_layer2_altitude(&self) -> &f32;
+    fn cloud_layer2_altitude_mut(&mut self) -> &mut f32;
     fn cloud_layer2_tile_factor(&self) -> &f32;
+    fn cloud_layer2_tile_factor_mut(&mut self) -> &mut f32;
     fn cloud_layer2_rotation(&self) -> &f32;
+    fn cloud_layer2_rotation_mut(&mut self) -> &mut f32;
     fn cloud_layer2_speed(&self) -> &f32;
+    fn cloud_layer2_speed_mut(&mut self) -> &mut f32;
     fn cloud_layer2_sun_light_intensity(&self) -> &f32;
+    fn cloud_layer2_sun_light_intensity_mut(&mut self) -> &mut f32;
     fn cloud_layer2_sun_light_power(&self) -> &f32;
+    fn cloud_layer2_sun_light_power_mut(&mut self) -> &mut f32;
     fn cloud_layer2_ambient_light_intensity(&self) -> &f32;
+    fn cloud_layer2_ambient_light_intensity_mut(&mut self) -> &mut f32;
     fn cloud_layer2_color(&self) -> &super::core::Vec3;
+    fn cloud_layer2_color_mut(&mut self) -> &mut super::core::Vec3;
     fn cloud_layer2_alpha_mul(&self) -> &f32;
+    fn cloud_layer2_alpha_mul_mut(&mut self) -> &mut f32;
     fn cloud_layer2_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_layer2_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_layer2_absorption(&self) -> &f32;
+    fn cloud_layer2_absorption_mut(&mut self) -> &mut f32;
     fn cloud_layer2_scattering(&self) -> &f32;
+    fn cloud_layer2_scattering_mut(&mut self) -> &mut f32;
     fn cloud_layer2_phase(&self) -> &f32;
+    fn cloud_layer2_phase_mut(&mut self) -> &mut f32;
     fn cloud_layer2_thickness(&self) -> &f32;
+    fn cloud_layer2_thickness_mut(&mut self) -> &mut f32;
     fn static_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn static_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn static_envmap_scale(&self) -> &f32;
+    fn static_envmap_scale_mut(&mut self) -> &mut f32;
     fn sky_envmap8_bit_tex_scale(&self) -> &f32;
+    fn sky_envmap8_bit_tex_scale_mut(&mut self) -> &mut f32;
     fn custom_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn custom_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn custom_envmap_scale(&self) -> &f32;
+    fn custom_envmap_scale_mut(&mut self) -> &mut f32;
     fn custom_envmap_ambient(&self) -> &f32;
+    fn custom_envmap_ambient_mut(&mut self) -> &mut f32;
     fn sky_visibility_exponent(&self) -> &f32;
+    fn sky_visibility_exponent_mut(&mut self) -> &mut f32;
     fn interior_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn interior_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn interior_envmap_exp(&self) -> &super::core::Vec4;
+    fn interior_envmap_exp_mut(&mut self) -> &mut super::core::Vec4;
     fn interior_envmap_scale(&self) -> &super::core::Vec4;
+    fn interior_envmap_scale_mut(&mut self) -> &mut super::core::Vec4;
     fn interior_envmap_bias(&self) -> &super::core::Vec4;
+    fn interior_envmap_bias_mut(&mut self) -> &mut super::core::Vec4;
     fn interior_envmap_sky_visibility_fade_start(&self) -> &f32;
+    fn interior_envmap_sky_visibility_fade_start_mut(&mut self) -> &mut f32;
     fn interior_envmap_sky_visibility_fade_length(&self) -> &f32;
+    fn interior_envmap_sky_visibility_fade_length_mut(&mut self) -> &mut f32;
     fn earth_radius(&self) -> &f32;
+    fn earth_radius_mut(&mut self) -> &mut f32;
     fn atmosphere_radius(&self) -> &f32;
+    fn atmosphere_radius_mut(&mut self) -> &mut f32;
     fn mie_scattering_coefficient(&self) -> &f32;
+    fn mie_scattering_coefficient_mut(&mut self) -> &mut f32;
     fn mie_g(&self) -> &f32;
+    fn mie_g_mut(&mut self) -> &mut f32;
     fn mie_extinction_coefficient_relation(&self) -> &f32;
+    fn mie_extinction_coefficient_relation_mut(&mut self) -> &mut f32;
     fn scale_height_mie(&self) -> &f32;
+    fn scale_height_mie_mut(&mut self) -> &mut f32;
     fn rayleigh_scattering_coefficient(&self) -> &super::core::Vec3;
+    fn rayleigh_scattering_coefficient_mut(&mut self) -> &mut super::core::Vec3;
     fn rayleigh_scattering_coefficient_scale(&self) -> &f32;
+    fn rayleigh_scattering_coefficient_scale_mut(&mut self) -> &mut f32;
     fn rayleigh_extinction_coefficient_relation(&self) -> &f32;
+    fn rayleigh_extinction_coefficient_relation_mut(&mut self) -> &mut f32;
     fn scale_height_rayleigh(&self) -> &f32;
+    fn scale_height_rayleigh_mut(&mut self) -> &mut f32;
     fn use_ozone(&self) -> &bool;
+    fn use_ozone_mut(&mut self) -> &mut bool;
     fn ozone_percentage(&self) -> &f32;
+    fn ozone_percentage_mut(&mut self) -> &mut f32;
     fn use_aerial_perspective(&self) -> &bool;
+    fn use_aerial_perspective_mut(&mut self) -> &mut bool;
     fn aerial_perspective_scale(&self) -> &f32;
+    fn aerial_perspective_scale_mut(&mut self) -> &mut f32;
     fn aerial_perspective_intensity(&self) -> &f32;
+    fn aerial_perspective_intensity_mut(&mut self) -> &mut f32;
     fn aerial_perspective_dithering(&self) -> &f32;
+    fn aerial_perspective_dithering_mut(&mut self) -> &mut f32;
     fn light1_color(&self) -> &super::core::Vec3;
+    fn light1_color_mut(&mut self) -> &mut super::core::Vec3;
     fn light1_intensity(&self) -> &f32;
+    fn light1_intensity_mut(&mut self) -> &mut f32;
     fn light1_follow_outdoor_light(&self) -> &bool;
+    fn light1_follow_outdoor_light_mut(&mut self) -> &mut bool;
     fn light1_takes_color_from_outdoor_light(&self) -> &bool;
+    fn light1_takes_color_from_outdoor_light_mut(&mut self) -> &mut bool;
     fn light1_rot_x(&self) -> &f32;
+    fn light1_rot_x_mut(&mut self) -> &mut f32;
     fn light1_rot_y(&self) -> &f32;
+    fn light1_rot_y_mut(&mut self) -> &mut f32;
     fn light2_color(&self) -> &super::core::Vec3;
+    fn light2_color_mut(&mut self) -> &mut super::core::Vec3;
     fn light2_intensity(&self) -> &f32;
+    fn light2_intensity_mut(&mut self) -> &mut f32;
     fn use_light_source2(&self) -> &bool;
+    fn use_light_source2_mut(&mut self) -> &mut bool;
     fn light2_rot_x(&self) -> &f32;
+    fn light2_rot_x_mut(&mut self) -> &mut f32;
     fn light2_rot_y(&self) -> &f32;
+    fn light2_rot_y_mut(&mut self) -> &mut f32;
     fn use_noise(&self) -> &bool;
+    fn use_noise_mut(&mut self) -> &mut bool;
     fn fog_start_distance(&self) -> &f32;
+    fn fog_start_distance_mut(&mut self) -> &mut f32;
     fn rayleigh_polarization(&self) -> &super::core::Vec3;
+    fn rayleigh_polarization_mut(&mut self) -> &mut super::core::Vec3;
     fn mie_polarization(&self) -> &super::core::Vec3;
+    fn mie_polarization_mut(&mut self) -> &mut super::core::Vec3;
     fn outdoor_light_scale(&self) -> &super::core::Vec3;
+    fn outdoor_light_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn draw_sun_disc(&self) -> &bool;
+    fn draw_sun_disc_mut(&mut self) -> &mut bool;
     fn forward_scattering_depth_visibility(&self) -> &super::core::Vec4;
+    fn forward_scattering_depth_visibility_mut(&mut self) -> &mut super::core::Vec4;
     fn forward_scattering_start_depth(&self) -> &f32;
+    fn forward_scattering_start_depth_mut(&mut self) -> &mut f32;
     fn forward_scattering_end_depth(&self) -> &f32;
+    fn forward_scattering_end_depth_mut(&mut self) -> &mut f32;
     fn forward_scattering_takes_color_from_outdoor_light(&self) -> &f32;
+    fn forward_scattering_takes_color_from_outdoor_light_mut(&mut self) -> &mut f32;
     fn forward_scattering_outdoor_light_tint(&self) -> &super::core::Vec3;
+    fn forward_scattering_outdoor_light_tint_mut(&mut self) -> &mut super::core::Vec3;
     fn height_fog_color_add(&self) -> &super::core::Vec3;
+    fn height_fog_color_add_mut(&mut self) -> &mut super::core::Vec3;
     fn height_fog_color_mult(&self) -> &super::core::Vec3;
+    fn height_fog_color_mult_mut(&mut self) -> &mut super::core::Vec3;
     fn min_height_fog_transmittance(&self) -> &f32;
+    fn min_height_fog_transmittance_mut(&mut self) -> &mut f32;
     fn gradient_texture_blend_factor(&self) -> &f32;
+    fn gradient_texture_blend_factor_mut(&mut self) -> &mut f32;
     fn panoramic_blend_rotation(&self) -> &f32;
+    fn panoramic_blend_rotation_mut(&mut self) -> &mut f32;
     fn gradient_blend_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn gradient_blend_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn panoramic_blend_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn panoramic_blend_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn panoramic_alpha_blend_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn panoramic_alpha_blend_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn static_envmap_blend_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn static_envmap_blend_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn flow_mask_blend_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn flow_mask_blend_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u32;
+    fn field_flag_override1_mut(&mut self) -> &mut u32;
     fn field_flag_override2(&self) -> &u32;
+    fn field_flag_override2_mut(&mut self) -> &mut u32;
     fn field_flag_override3(&self) -> &u32;
+    fn field_flag_override3_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u32;
+    fn field_flag_changed1_mut(&mut self) -> &mut u32;
     fn field_flag_changed2(&self) -> &u32;
+    fn field_flag_changed2_mut(&mut self) -> &mut u32;
     fn field_flag_changed3(&self) -> &u32;
+    fn field_flag_changed3_mut(&mut self) -> &mut u32;
 }
 
 impl SkyComponentStateTrait for SkyComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn draw_sky_geo(&self) -> &bool {
         &self.draw_sky_geo
+    }
+    fn draw_sky_geo_mut(&mut self) -> &mut bool {
+        &mut self.draw_sky_geo
     }
     fn sky_type(&self) -> &SkyType {
         &self.sky_type
     }
+    fn sky_type_mut(&mut self) -> &mut SkyType {
+        &mut self.sky_type
+    }
     fn luminance_scale(&self) -> &f32 {
         &self.luminance_scale
+    }
+    fn luminance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.luminance_scale
     }
     fn sky_gradient_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.sky_gradient_texture
     }
+    fn sky_gradient_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.sky_gradient_texture
+    }
     fn alpha_output(&self) -> &AlphaOutputMode {
         &self.alpha_output
+    }
+    fn alpha_output_mut(&mut self) -> &mut AlphaOutputMode {
+        &mut self.alpha_output
     }
     fn use_sky_visibility_as_a_o(&self) -> &bool {
         &self.use_sky_visibility_as_a_o
     }
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_a_o
+    }
     fn hdri_rotation(&self) -> &f32 {
         &self.hdri_rotation
+    }
+    fn hdri_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.hdri_rotation
     }
     fn hdri_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.hdri_texture
     }
+    fn hdri_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.hdri_texture
+    }
     fn sun_size(&self) -> &f32 {
         &self.sun_size
+    }
+    fn sun_size_mut(&mut self) -> &mut f32 {
+        &mut self.sun_size
     }
     fn sun_scale(&self) -> &f32 {
         &self.sun_scale
     }
+    fn sun_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_scale
+    }
     fn panoramic_u_v_min_x(&self) -> &f32 {
         &self.panoramic_u_v_min_x
+    }
+    fn panoramic_u_v_min_x_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_min_x
     }
     fn panoramic_u_v_max_x(&self) -> &f32 {
         &self.panoramic_u_v_max_x
     }
+    fn panoramic_u_v_max_x_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_max_x
+    }
     fn panoramic_u_v_min_y(&self) -> &f32 {
         &self.panoramic_u_v_min_y
+    }
+    fn panoramic_u_v_min_y_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_min_y
     }
     fn panoramic_u_v_max_y(&self) -> &f32 {
         &self.panoramic_u_v_max_y
     }
+    fn panoramic_u_v_max_y_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_max_y
+    }
     fn panoramic_tile_factor(&self) -> &f32 {
         &self.panoramic_tile_factor
+    }
+    fn panoramic_tile_factor_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_tile_factor
     }
     fn panoramic_rotation(&self) -> &f32 {
         &self.panoramic_rotation
     }
+    fn panoramic_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_rotation
+    }
     fn panoramic_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.panoramic_texture
+    }
+    fn panoramic_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.panoramic_texture
     }
     fn panoramic_alpha_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.panoramic_alpha_texture
     }
+    fn panoramic_alpha_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.panoramic_alpha_texture
+    }
     fn sky_gradient_follows_panoramic_u_vs(&self) -> &bool {
         &self.sky_gradient_follows_panoramic_u_vs
+    }
+    fn sky_gradient_follows_panoramic_u_vs_mut(&mut self) -> &mut bool {
+        &mut self.sky_gradient_follows_panoramic_u_vs
     }
     fn flow_enable(&self) -> &bool {
         &self.flow_enable
     }
+    fn flow_enable_mut(&mut self) -> &mut bool {
+        &mut self.flow_enable
+    }
     fn flow_period(&self) -> &f32 {
         &self.flow_period
+    }
+    fn flow_period_mut(&mut self) -> &mut f32 {
+        &mut self.flow_period
     }
     fn flow_distance(&self) -> &f32 {
         &self.flow_distance
     }
+    fn flow_distance_mut(&mut self) -> &mut f32 {
+        &mut self.flow_distance
+    }
     fn flow_direction(&self) -> &f32 {
         &self.flow_direction
+    }
+    fn flow_direction_mut(&mut self) -> &mut f32 {
+        &mut self.flow_direction
     }
     fn flow_height_mask_scale(&self) -> &f32 {
         &self.flow_height_mask_scale
     }
+    fn flow_height_mask_scale_mut(&mut self) -> &mut f32 {
+        &mut self.flow_height_mask_scale
+    }
     fn flow_height_mask_bias(&self) -> &f32 {
         &self.flow_height_mask_bias
+    }
+    fn flow_height_mask_bias_mut(&mut self) -> &mut f32 {
+        &mut self.flow_height_mask_bias
     }
     fn flow_mask_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.flow_mask_texture
     }
+    fn flow_mask_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.flow_mask_texture
+    }
     fn cloud_layer_sun_color(&self) -> &super::core::Vec3 {
         &self.cloud_layer_sun_color
+    }
+    fn cloud_layer_sun_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.cloud_layer_sun_color
     }
     fn cloud_layer_mask_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_layer_mask_texture
     }
+    fn cloud_layer_mask_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_layer_mask_texture
+    }
     fn cloud_layer1_altitude(&self) -> &f32 {
         &self.cloud_layer1_altitude
+    }
+    fn cloud_layer1_altitude_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_altitude
     }
     fn cloud_layer1_tile_factor(&self) -> &f32 {
         &self.cloud_layer1_tile_factor
     }
+    fn cloud_layer1_tile_factor_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_tile_factor
+    }
     fn cloud_layer1_rotation(&self) -> &f32 {
         &self.cloud_layer1_rotation
+    }
+    fn cloud_layer1_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_rotation
     }
     fn cloud_layer1_speed(&self) -> &f32 {
         &self.cloud_layer1_speed
     }
+    fn cloud_layer1_speed_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_speed
+    }
     fn cloud_layer1_sun_light_intensity(&self) -> &f32 {
         &self.cloud_layer1_sun_light_intensity
+    }
+    fn cloud_layer1_sun_light_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_sun_light_intensity
     }
     fn cloud_layer1_sun_light_power(&self) -> &f32 {
         &self.cloud_layer1_sun_light_power
     }
+    fn cloud_layer1_sun_light_power_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_sun_light_power
+    }
     fn cloud_layer1_ambient_light_intensity(&self) -> &f32 {
         &self.cloud_layer1_ambient_light_intensity
+    }
+    fn cloud_layer1_ambient_light_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_ambient_light_intensity
     }
     fn cloud_layer1_color(&self) -> &super::core::Vec3 {
         &self.cloud_layer1_color
     }
+    fn cloud_layer1_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.cloud_layer1_color
+    }
     fn cloud_layer1_alpha_mul(&self) -> &f32 {
         &self.cloud_layer1_alpha_mul
+    }
+    fn cloud_layer1_alpha_mul_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_alpha_mul
     }
     fn cloud_layer1_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_layer1_texture
     }
+    fn cloud_layer1_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_layer1_texture
+    }
     fn cloud_layer1_absorption(&self) -> &f32 {
         &self.cloud_layer1_absorption
+    }
+    fn cloud_layer1_absorption_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_absorption
     }
     fn cloud_layer1_scattering(&self) -> &f32 {
         &self.cloud_layer1_scattering
     }
+    fn cloud_layer1_scattering_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_scattering
+    }
     fn cloud_layer1_phase(&self) -> &f32 {
         &self.cloud_layer1_phase
+    }
+    fn cloud_layer1_phase_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_phase
     }
     fn cloud_layer1_thickness(&self) -> &f32 {
         &self.cloud_layer1_thickness
     }
+    fn cloud_layer1_thickness_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_thickness
+    }
     fn cloud_layer2_altitude(&self) -> &f32 {
         &self.cloud_layer2_altitude
+    }
+    fn cloud_layer2_altitude_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_altitude
     }
     fn cloud_layer2_tile_factor(&self) -> &f32 {
         &self.cloud_layer2_tile_factor
     }
+    fn cloud_layer2_tile_factor_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_tile_factor
+    }
     fn cloud_layer2_rotation(&self) -> &f32 {
         &self.cloud_layer2_rotation
+    }
+    fn cloud_layer2_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_rotation
     }
     fn cloud_layer2_speed(&self) -> &f32 {
         &self.cloud_layer2_speed
     }
+    fn cloud_layer2_speed_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_speed
+    }
     fn cloud_layer2_sun_light_intensity(&self) -> &f32 {
         &self.cloud_layer2_sun_light_intensity
+    }
+    fn cloud_layer2_sun_light_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_sun_light_intensity
     }
     fn cloud_layer2_sun_light_power(&self) -> &f32 {
         &self.cloud_layer2_sun_light_power
     }
+    fn cloud_layer2_sun_light_power_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_sun_light_power
+    }
     fn cloud_layer2_ambient_light_intensity(&self) -> &f32 {
         &self.cloud_layer2_ambient_light_intensity
+    }
+    fn cloud_layer2_ambient_light_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_ambient_light_intensity
     }
     fn cloud_layer2_color(&self) -> &super::core::Vec3 {
         &self.cloud_layer2_color
     }
+    fn cloud_layer2_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.cloud_layer2_color
+    }
     fn cloud_layer2_alpha_mul(&self) -> &f32 {
         &self.cloud_layer2_alpha_mul
+    }
+    fn cloud_layer2_alpha_mul_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_alpha_mul
     }
     fn cloud_layer2_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_layer2_texture
     }
+    fn cloud_layer2_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_layer2_texture
+    }
     fn cloud_layer2_absorption(&self) -> &f32 {
         &self.cloud_layer2_absorption
+    }
+    fn cloud_layer2_absorption_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_absorption
     }
     fn cloud_layer2_scattering(&self) -> &f32 {
         &self.cloud_layer2_scattering
     }
+    fn cloud_layer2_scattering_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_scattering
+    }
     fn cloud_layer2_phase(&self) -> &f32 {
         &self.cloud_layer2_phase
+    }
+    fn cloud_layer2_phase_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_phase
     }
     fn cloud_layer2_thickness(&self) -> &f32 {
         &self.cloud_layer2_thickness
     }
+    fn cloud_layer2_thickness_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_thickness
+    }
     fn static_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.static_envmap_texture
+    }
+    fn static_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.static_envmap_texture
     }
     fn static_envmap_scale(&self) -> &f32 {
         &self.static_envmap_scale
     }
+    fn static_envmap_scale_mut(&mut self) -> &mut f32 {
+        &mut self.static_envmap_scale
+    }
     fn sky_envmap8_bit_tex_scale(&self) -> &f32 {
         &self.sky_envmap8_bit_tex_scale
+    }
+    fn sky_envmap8_bit_tex_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap8_bit_tex_scale
     }
     fn custom_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.custom_envmap_texture
     }
+    fn custom_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.custom_envmap_texture
+    }
     fn custom_envmap_scale(&self) -> &f32 {
         &self.custom_envmap_scale
+    }
+    fn custom_envmap_scale_mut(&mut self) -> &mut f32 {
+        &mut self.custom_envmap_scale
     }
     fn custom_envmap_ambient(&self) -> &f32 {
         &self.custom_envmap_ambient
     }
+    fn custom_envmap_ambient_mut(&mut self) -> &mut f32 {
+        &mut self.custom_envmap_ambient
+    }
     fn sky_visibility_exponent(&self) -> &f32 {
         &self.sky_visibility_exponent
+    }
+    fn sky_visibility_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.sky_visibility_exponent
     }
     fn interior_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.interior_envmap_texture
     }
+    fn interior_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.interior_envmap_texture
+    }
     fn interior_envmap_exp(&self) -> &super::core::Vec4 {
         &self.interior_envmap_exp
+    }
+    fn interior_envmap_exp_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.interior_envmap_exp
     }
     fn interior_envmap_scale(&self) -> &super::core::Vec4 {
         &self.interior_envmap_scale
     }
+    fn interior_envmap_scale_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.interior_envmap_scale
+    }
     fn interior_envmap_bias(&self) -> &super::core::Vec4 {
         &self.interior_envmap_bias
+    }
+    fn interior_envmap_bias_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.interior_envmap_bias
     }
     fn interior_envmap_sky_visibility_fade_start(&self) -> &f32 {
         &self.interior_envmap_sky_visibility_fade_start
     }
+    fn interior_envmap_sky_visibility_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.interior_envmap_sky_visibility_fade_start
+    }
     fn interior_envmap_sky_visibility_fade_length(&self) -> &f32 {
         &self.interior_envmap_sky_visibility_fade_length
+    }
+    fn interior_envmap_sky_visibility_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.interior_envmap_sky_visibility_fade_length
     }
     fn earth_radius(&self) -> &f32 {
         &self.earth_radius
     }
+    fn earth_radius_mut(&mut self) -> &mut f32 {
+        &mut self.earth_radius
+    }
     fn atmosphere_radius(&self) -> &f32 {
         &self.atmosphere_radius
+    }
+    fn atmosphere_radius_mut(&mut self) -> &mut f32 {
+        &mut self.atmosphere_radius
     }
     fn mie_scattering_coefficient(&self) -> &f32 {
         &self.mie_scattering_coefficient
     }
+    fn mie_scattering_coefficient_mut(&mut self) -> &mut f32 {
+        &mut self.mie_scattering_coefficient
+    }
     fn mie_g(&self) -> &f32 {
         &self.mie_g
+    }
+    fn mie_g_mut(&mut self) -> &mut f32 {
+        &mut self.mie_g
     }
     fn mie_extinction_coefficient_relation(&self) -> &f32 {
         &self.mie_extinction_coefficient_relation
     }
+    fn mie_extinction_coefficient_relation_mut(&mut self) -> &mut f32 {
+        &mut self.mie_extinction_coefficient_relation
+    }
     fn scale_height_mie(&self) -> &f32 {
         &self.scale_height_mie
+    }
+    fn scale_height_mie_mut(&mut self) -> &mut f32 {
+        &mut self.scale_height_mie
     }
     fn rayleigh_scattering_coefficient(&self) -> &super::core::Vec3 {
         &self.rayleigh_scattering_coefficient
     }
+    fn rayleigh_scattering_coefficient_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.rayleigh_scattering_coefficient
+    }
     fn rayleigh_scattering_coefficient_scale(&self) -> &f32 {
         &self.rayleigh_scattering_coefficient_scale
+    }
+    fn rayleigh_scattering_coefficient_scale_mut(&mut self) -> &mut f32 {
+        &mut self.rayleigh_scattering_coefficient_scale
     }
     fn rayleigh_extinction_coefficient_relation(&self) -> &f32 {
         &self.rayleigh_extinction_coefficient_relation
     }
+    fn rayleigh_extinction_coefficient_relation_mut(&mut self) -> &mut f32 {
+        &mut self.rayleigh_extinction_coefficient_relation
+    }
     fn scale_height_rayleigh(&self) -> &f32 {
         &self.scale_height_rayleigh
+    }
+    fn scale_height_rayleigh_mut(&mut self) -> &mut f32 {
+        &mut self.scale_height_rayleigh
     }
     fn use_ozone(&self) -> &bool {
         &self.use_ozone
     }
+    fn use_ozone_mut(&mut self) -> &mut bool {
+        &mut self.use_ozone
+    }
     fn ozone_percentage(&self) -> &f32 {
         &self.ozone_percentage
+    }
+    fn ozone_percentage_mut(&mut self) -> &mut f32 {
+        &mut self.ozone_percentage
     }
     fn use_aerial_perspective(&self) -> &bool {
         &self.use_aerial_perspective
     }
+    fn use_aerial_perspective_mut(&mut self) -> &mut bool {
+        &mut self.use_aerial_perspective
+    }
     fn aerial_perspective_scale(&self) -> &f32 {
         &self.aerial_perspective_scale
+    }
+    fn aerial_perspective_scale_mut(&mut self) -> &mut f32 {
+        &mut self.aerial_perspective_scale
     }
     fn aerial_perspective_intensity(&self) -> &f32 {
         &self.aerial_perspective_intensity
     }
+    fn aerial_perspective_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.aerial_perspective_intensity
+    }
     fn aerial_perspective_dithering(&self) -> &f32 {
         &self.aerial_perspective_dithering
+    }
+    fn aerial_perspective_dithering_mut(&mut self) -> &mut f32 {
+        &mut self.aerial_perspective_dithering
     }
     fn light1_color(&self) -> &super::core::Vec3 {
         &self.light1_color
     }
+    fn light1_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.light1_color
+    }
     fn light1_intensity(&self) -> &f32 {
         &self.light1_intensity
+    }
+    fn light1_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.light1_intensity
     }
     fn light1_follow_outdoor_light(&self) -> &bool {
         &self.light1_follow_outdoor_light
     }
+    fn light1_follow_outdoor_light_mut(&mut self) -> &mut bool {
+        &mut self.light1_follow_outdoor_light
+    }
     fn light1_takes_color_from_outdoor_light(&self) -> &bool {
         &self.light1_takes_color_from_outdoor_light
+    }
+    fn light1_takes_color_from_outdoor_light_mut(&mut self) -> &mut bool {
+        &mut self.light1_takes_color_from_outdoor_light
     }
     fn light1_rot_x(&self) -> &f32 {
         &self.light1_rot_x
     }
+    fn light1_rot_x_mut(&mut self) -> &mut f32 {
+        &mut self.light1_rot_x
+    }
     fn light1_rot_y(&self) -> &f32 {
         &self.light1_rot_y
+    }
+    fn light1_rot_y_mut(&mut self) -> &mut f32 {
+        &mut self.light1_rot_y
     }
     fn light2_color(&self) -> &super::core::Vec3 {
         &self.light2_color
     }
+    fn light2_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.light2_color
+    }
     fn light2_intensity(&self) -> &f32 {
         &self.light2_intensity
+    }
+    fn light2_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.light2_intensity
     }
     fn use_light_source2(&self) -> &bool {
         &self.use_light_source2
     }
+    fn use_light_source2_mut(&mut self) -> &mut bool {
+        &mut self.use_light_source2
+    }
     fn light2_rot_x(&self) -> &f32 {
         &self.light2_rot_x
+    }
+    fn light2_rot_x_mut(&mut self) -> &mut f32 {
+        &mut self.light2_rot_x
     }
     fn light2_rot_y(&self) -> &f32 {
         &self.light2_rot_y
     }
+    fn light2_rot_y_mut(&mut self) -> &mut f32 {
+        &mut self.light2_rot_y
+    }
     fn use_noise(&self) -> &bool {
         &self.use_noise
+    }
+    fn use_noise_mut(&mut self) -> &mut bool {
+        &mut self.use_noise
     }
     fn fog_start_distance(&self) -> &f32 {
         &self.fog_start_distance
     }
+    fn fog_start_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fog_start_distance
+    }
     fn rayleigh_polarization(&self) -> &super::core::Vec3 {
         &self.rayleigh_polarization
+    }
+    fn rayleigh_polarization_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.rayleigh_polarization
     }
     fn mie_polarization(&self) -> &super::core::Vec3 {
         &self.mie_polarization
     }
+    fn mie_polarization_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.mie_polarization
+    }
     fn outdoor_light_scale(&self) -> &super::core::Vec3 {
         &self.outdoor_light_scale
+    }
+    fn outdoor_light_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.outdoor_light_scale
     }
     fn draw_sun_disc(&self) -> &bool {
         &self.draw_sun_disc
     }
+    fn draw_sun_disc_mut(&mut self) -> &mut bool {
+        &mut self.draw_sun_disc
+    }
     fn forward_scattering_depth_visibility(&self) -> &super::core::Vec4 {
         &self.forward_scattering_depth_visibility
+    }
+    fn forward_scattering_depth_visibility_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.forward_scattering_depth_visibility
     }
     fn forward_scattering_start_depth(&self) -> &f32 {
         &self.forward_scattering_start_depth
     }
+    fn forward_scattering_start_depth_mut(&mut self) -> &mut f32 {
+        &mut self.forward_scattering_start_depth
+    }
     fn forward_scattering_end_depth(&self) -> &f32 {
         &self.forward_scattering_end_depth
+    }
+    fn forward_scattering_end_depth_mut(&mut self) -> &mut f32 {
+        &mut self.forward_scattering_end_depth
     }
     fn forward_scattering_takes_color_from_outdoor_light(&self) -> &f32 {
         &self.forward_scattering_takes_color_from_outdoor_light
     }
+    fn forward_scattering_takes_color_from_outdoor_light_mut(&mut self) -> &mut f32 {
+        &mut self.forward_scattering_takes_color_from_outdoor_light
+    }
     fn forward_scattering_outdoor_light_tint(&self) -> &super::core::Vec3 {
         &self.forward_scattering_outdoor_light_tint
+    }
+    fn forward_scattering_outdoor_light_tint_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.forward_scattering_outdoor_light_tint
     }
     fn height_fog_color_add(&self) -> &super::core::Vec3 {
         &self.height_fog_color_add
     }
+    fn height_fog_color_add_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.height_fog_color_add
+    }
     fn height_fog_color_mult(&self) -> &super::core::Vec3 {
         &self.height_fog_color_mult
+    }
+    fn height_fog_color_mult_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.height_fog_color_mult
     }
     fn min_height_fog_transmittance(&self) -> &f32 {
         &self.min_height_fog_transmittance
     }
+    fn min_height_fog_transmittance_mut(&mut self) -> &mut f32 {
+        &mut self.min_height_fog_transmittance
+    }
     fn gradient_texture_blend_factor(&self) -> &f32 {
         &self.gradient_texture_blend_factor
+    }
+    fn gradient_texture_blend_factor_mut(&mut self) -> &mut f32 {
+        &mut self.gradient_texture_blend_factor
     }
     fn panoramic_blend_rotation(&self) -> &f32 {
         &self.panoramic_blend_rotation
     }
+    fn panoramic_blend_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_blend_rotation
+    }
     fn gradient_blend_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.gradient_blend_texture
+    }
+    fn gradient_blend_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.gradient_blend_texture
     }
     fn panoramic_blend_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.panoramic_blend_texture
     }
+    fn panoramic_blend_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.panoramic_blend_texture
+    }
     fn panoramic_alpha_blend_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.panoramic_alpha_blend_texture
+    }
+    fn panoramic_alpha_blend_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.panoramic_alpha_blend_texture
     }
     fn static_envmap_blend_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.static_envmap_blend_texture
     }
+    fn static_envmap_blend_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.static_envmap_blend_texture
+    }
     fn flow_mask_blend_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.flow_mask_blend_texture
+    }
+    fn flow_mask_blend_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.flow_mask_blend_texture
     }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_override1(&self) -> &u32 {
         &self.field_flag_override1
+    }
+    fn field_flag_override1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override1
     }
     fn field_flag_override2(&self) -> &u32 {
         &self.field_flag_override2
     }
+    fn field_flag_override2_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override2
+    }
     fn field_flag_override3(&self) -> &u32 {
         &self.field_flag_override3
+    }
+    fn field_flag_override3_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override3
     }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
     }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
+    }
     fn field_flag_changed1(&self) -> &u32 {
         &self.field_flag_changed1
+    }
+    fn field_flag_changed1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed1
     }
     fn field_flag_changed2(&self) -> &u32 {
         &self.field_flag_changed2
     }
+    fn field_flag_changed2_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed2
+    }
     fn field_flag_changed3(&self) -> &u32 {
         &self.field_flag_changed3
+    }
+    fn field_flag_changed3_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed3
     }
 }
 
@@ -10825,6 +14266,15 @@ impl TypeObject for SkyComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10863,6 +14313,15 @@ impl TypeObject for SkyType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -10908,6 +14367,15 @@ impl TypeObject for AlphaOutputMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -10971,179 +14439,351 @@ pub struct FogComponentState {
 
 pub trait FogComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn fog_distance_multiplier(&self) -> &f32;
+    fn fog_distance_multiplier_mut(&mut self) -> &mut f32;
     fn fog_gradient_enable(&self) -> &bool;
+    fn fog_gradient_enable_mut(&mut self) -> &mut bool;
     fn start(&self) -> &f32;
+    fn start_mut(&mut self) -> &mut f32;
     fn end(&self) -> &f32;
+    fn end_mut(&mut self) -> &mut f32;
     fn curve(&self) -> &super::core::Vec4;
+    fn curve_mut(&mut self) -> &mut super::core::Vec4;
     fn fog_gradient_height_fade_enable(&self) -> &bool;
+    fn fog_gradient_height_fade_enable_mut(&mut self) -> &mut bool;
     fn fade_start(&self) -> &f32;
+    fn fade_start_mut(&mut self) -> &mut f32;
     fn fade_end(&self) -> &f32;
+    fn fade_end_mut(&mut self) -> &mut f32;
     fn fog_color_enable(&self) -> &bool;
+    fn fog_color_enable_mut(&mut self) -> &mut bool;
     fn fog_color(&self) -> &super::core::Vec3;
+    fn fog_color_mut(&mut self) -> &mut super::core::Vec3;
     fn fog_color_start(&self) -> &f32;
+    fn fog_color_start_mut(&mut self) -> &mut f32;
     fn fog_color_end(&self) -> &f32;
+    fn fog_color_end_mut(&mut self) -> &mut f32;
     fn fog_color_curve(&self) -> &super::core::Vec4;
+    fn fog_color_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn transparency_fade_start(&self) -> &f32;
+    fn transparency_fade_start_mut(&mut self) -> &mut f32;
     fn transparency_fade_end(&self) -> &f32;
+    fn transparency_fade_end_mut(&mut self) -> &mut f32;
     fn transparency_fade_clamp(&self) -> &f32;
+    fn transparency_fade_clamp_mut(&mut self) -> &mut f32;
     fn transparency_fade_curve(&self) -> &super::core::Vec4;
+    fn transparency_fade_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn forward_light_scattering_enabled(&self) -> &bool;
+    fn forward_light_scattering_enabled_mut(&mut self) -> &mut bool;
     fn forward_light_scattering_use_sun_position(&self) -> &bool;
+    fn forward_light_scattering_use_sun_position_mut(&mut self) -> &mut bool;
     fn forward_light_scattering_rotation_x(&self) -> &f32;
+    fn forward_light_scattering_rotation_x_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_rotation_y(&self) -> &f32;
+    fn forward_light_scattering_rotation_y_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_phase_g(&self) -> &f32;
+    fn forward_light_scattering_phase_g_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_strength(&self) -> &f32;
+    fn forward_light_scattering_strength_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_color(&self) -> &super::core::Vec3;
+    fn forward_light_scattering_color_mut(&mut self) -> &mut super::core::Vec3;
     fn forward_light_scattering_presence(&self) -> &f32;
+    fn forward_light_scattering_presence_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_max_blur_length(&self) -> &f32;
+    fn forward_light_scattering_max_blur_length_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_extinction(&self) -> &f32;
+    fn forward_light_scattering_extinction_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_smoothness(&self) -> &f32;
+    fn forward_light_scattering_smoothness_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_attenuation_type(&self) -> &ForwardLightScatteringAttenuation;
+    fn forward_light_scattering_attenuation_type_mut(&mut self) -> &mut ForwardLightScatteringAttenuation;
     fn height_fog_enable(&self) -> &bool;
+    fn height_fog_enable_mut(&mut self) -> &mut bool;
     fn height_fog_follow_camera(&self) -> &f32;
+    fn height_fog_follow_camera_mut(&mut self) -> &mut f32;
     fn height_fog_altitude(&self) -> &f32;
+    fn height_fog_altitude_mut(&mut self) -> &mut f32;
     fn height_fog_depth(&self) -> &f32;
+    fn height_fog_depth_mut(&mut self) -> &mut f32;
     fn height_fog_visibility_range(&self) -> &f32;
+    fn height_fog_visibility_range_mut(&mut self) -> &mut f32;
     fn participating_media_enable(&self) -> &bool;
+    fn participating_media_enable_mut(&mut self) -> &mut bool;
     fn depth_fog_participating_media(&self) -> &ParticipatingMedia;
+    fn depth_fog_participating_media_mut(&mut self) -> &mut ParticipatingMedia;
     fn height_fog_participating_media(&self) -> &ParticipatingMedia;
+    fn height_fog_participating_media_mut(&mut self) -> &mut ParticipatingMedia;
     fn fog_volume_strength(&self) -> &f32;
+    fn fog_volume_strength_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u8;
+    fn field_flag_override1_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u16;
+    fn field_flag_changed1_mut(&mut self) -> &mut u16;
 }
 
 impl FogComponentStateTrait for FogComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn fog_distance_multiplier(&self) -> &f32 {
         &self.fog_distance_multiplier
+    }
+    fn fog_distance_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.fog_distance_multiplier
     }
     fn fog_gradient_enable(&self) -> &bool {
         &self.fog_gradient_enable
     }
+    fn fog_gradient_enable_mut(&mut self) -> &mut bool {
+        &mut self.fog_gradient_enable
+    }
     fn start(&self) -> &f32 {
         &self.start
+    }
+    fn start_mut(&mut self) -> &mut f32 {
+        &mut self.start
     }
     fn end(&self) -> &f32 {
         &self.end
     }
+    fn end_mut(&mut self) -> &mut f32 {
+        &mut self.end
+    }
     fn curve(&self) -> &super::core::Vec4 {
         &self.curve
+    }
+    fn curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.curve
     }
     fn fog_gradient_height_fade_enable(&self) -> &bool {
         &self.fog_gradient_height_fade_enable
     }
+    fn fog_gradient_height_fade_enable_mut(&mut self) -> &mut bool {
+        &mut self.fog_gradient_height_fade_enable
+    }
     fn fade_start(&self) -> &f32 {
         &self.fade_start
+    }
+    fn fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.fade_start
     }
     fn fade_end(&self) -> &f32 {
         &self.fade_end
     }
+    fn fade_end_mut(&mut self) -> &mut f32 {
+        &mut self.fade_end
+    }
     fn fog_color_enable(&self) -> &bool {
         &self.fog_color_enable
+    }
+    fn fog_color_enable_mut(&mut self) -> &mut bool {
+        &mut self.fog_color_enable
     }
     fn fog_color(&self) -> &super::core::Vec3 {
         &self.fog_color
     }
+    fn fog_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.fog_color
+    }
     fn fog_color_start(&self) -> &f32 {
         &self.fog_color_start
+    }
+    fn fog_color_start_mut(&mut self) -> &mut f32 {
+        &mut self.fog_color_start
     }
     fn fog_color_end(&self) -> &f32 {
         &self.fog_color_end
     }
+    fn fog_color_end_mut(&mut self) -> &mut f32 {
+        &mut self.fog_color_end
+    }
     fn fog_color_curve(&self) -> &super::core::Vec4 {
         &self.fog_color_curve
+    }
+    fn fog_color_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.fog_color_curve
     }
     fn transparency_fade_start(&self) -> &f32 {
         &self.transparency_fade_start
     }
+    fn transparency_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.transparency_fade_start
+    }
     fn transparency_fade_end(&self) -> &f32 {
         &self.transparency_fade_end
+    }
+    fn transparency_fade_end_mut(&mut self) -> &mut f32 {
+        &mut self.transparency_fade_end
     }
     fn transparency_fade_clamp(&self) -> &f32 {
         &self.transparency_fade_clamp
     }
+    fn transparency_fade_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.transparency_fade_clamp
+    }
     fn transparency_fade_curve(&self) -> &super::core::Vec4 {
         &self.transparency_fade_curve
+    }
+    fn transparency_fade_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.transparency_fade_curve
     }
     fn forward_light_scattering_enabled(&self) -> &bool {
         &self.forward_light_scattering_enabled
     }
+    fn forward_light_scattering_enabled_mut(&mut self) -> &mut bool {
+        &mut self.forward_light_scattering_enabled
+    }
     fn forward_light_scattering_use_sun_position(&self) -> &bool {
         &self.forward_light_scattering_use_sun_position
+    }
+    fn forward_light_scattering_use_sun_position_mut(&mut self) -> &mut bool {
+        &mut self.forward_light_scattering_use_sun_position
     }
     fn forward_light_scattering_rotation_x(&self) -> &f32 {
         &self.forward_light_scattering_rotation_x
     }
+    fn forward_light_scattering_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_rotation_x
+    }
     fn forward_light_scattering_rotation_y(&self) -> &f32 {
         &self.forward_light_scattering_rotation_y
+    }
+    fn forward_light_scattering_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_rotation_y
     }
     fn forward_light_scattering_phase_g(&self) -> &f32 {
         &self.forward_light_scattering_phase_g
     }
+    fn forward_light_scattering_phase_g_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_phase_g
+    }
     fn forward_light_scattering_strength(&self) -> &f32 {
         &self.forward_light_scattering_strength
+    }
+    fn forward_light_scattering_strength_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_strength
     }
     fn forward_light_scattering_color(&self) -> &super::core::Vec3 {
         &self.forward_light_scattering_color
     }
+    fn forward_light_scattering_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.forward_light_scattering_color
+    }
     fn forward_light_scattering_presence(&self) -> &f32 {
         &self.forward_light_scattering_presence
+    }
+    fn forward_light_scattering_presence_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_presence
     }
     fn forward_light_scattering_max_blur_length(&self) -> &f32 {
         &self.forward_light_scattering_max_blur_length
     }
+    fn forward_light_scattering_max_blur_length_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_max_blur_length
+    }
     fn forward_light_scattering_extinction(&self) -> &f32 {
         &self.forward_light_scattering_extinction
+    }
+    fn forward_light_scattering_extinction_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_extinction
     }
     fn forward_light_scattering_smoothness(&self) -> &f32 {
         &self.forward_light_scattering_smoothness
     }
+    fn forward_light_scattering_smoothness_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_smoothness
+    }
     fn forward_light_scattering_attenuation_type(&self) -> &ForwardLightScatteringAttenuation {
         &self.forward_light_scattering_attenuation_type
+    }
+    fn forward_light_scattering_attenuation_type_mut(&mut self) -> &mut ForwardLightScatteringAttenuation {
+        &mut self.forward_light_scattering_attenuation_type
     }
     fn height_fog_enable(&self) -> &bool {
         &self.height_fog_enable
     }
+    fn height_fog_enable_mut(&mut self) -> &mut bool {
+        &mut self.height_fog_enable
+    }
     fn height_fog_follow_camera(&self) -> &f32 {
         &self.height_fog_follow_camera
+    }
+    fn height_fog_follow_camera_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_follow_camera
     }
     fn height_fog_altitude(&self) -> &f32 {
         &self.height_fog_altitude
     }
+    fn height_fog_altitude_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_altitude
+    }
     fn height_fog_depth(&self) -> &f32 {
         &self.height_fog_depth
+    }
+    fn height_fog_depth_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_depth
     }
     fn height_fog_visibility_range(&self) -> &f32 {
         &self.height_fog_visibility_range
     }
+    fn height_fog_visibility_range_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_visibility_range
+    }
     fn participating_media_enable(&self) -> &bool {
         &self.participating_media_enable
+    }
+    fn participating_media_enable_mut(&mut self) -> &mut bool {
+        &mut self.participating_media_enable
     }
     fn depth_fog_participating_media(&self) -> &ParticipatingMedia {
         &self.depth_fog_participating_media
     }
+    fn depth_fog_participating_media_mut(&mut self) -> &mut ParticipatingMedia {
+        &mut self.depth_fog_participating_media
+    }
     fn height_fog_participating_media(&self) -> &ParticipatingMedia {
         &self.height_fog_participating_media
+    }
+    fn height_fog_participating_media_mut(&mut self) -> &mut ParticipatingMedia {
+        &mut self.height_fog_participating_media
     }
     fn fog_volume_strength(&self) -> &f32 {
         &self.fog_volume_strength
     }
+    fn fog_volume_strength_mut(&mut self) -> &mut f32 {
+        &mut self.fog_volume_strength
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
     }
     fn field_flag_override1(&self) -> &u8 {
         &self.field_flag_override1
     }
+    fn field_flag_override1_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override1
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
     }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
+    }
     fn field_flag_changed1(&self) -> &u16 {
         &self.field_flag_changed1
+    }
+    fn field_flag_changed1_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed1
     }
 }
 
@@ -11427,6 +15067,15 @@ impl TypeObject for FogComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -11509,259 +15158,511 @@ pub struct OutdoorLightComponentState {
 
 pub trait OutdoorLightComponentStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn sun_rotation_x(&self) -> &f32;
+    fn sun_rotation_x_mut(&mut self) -> &mut f32;
     fn sun_rotation_y(&self) -> &f32;
+    fn sun_rotation_y_mut(&mut self) -> &mut f32;
     fn shadow_sun_rotation_enable(&self) -> &bool;
+    fn shadow_sun_rotation_enable_mut(&mut self) -> &mut bool;
     fn shadow_sun_rotation_x(&self) -> &f32;
+    fn shadow_sun_rotation_x_mut(&mut self) -> &mut f32;
     fn shadow_sun_rotation_y(&self) -> &f32;
+    fn shadow_sun_rotation_y_mut(&mut self) -> &mut f32;
     fn sun_color(&self) -> &super::core::Vec3;
+    fn sun_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sun_intensity(&self) -> &f32;
+    fn sun_intensity_mut(&mut self) -> &mut f32;
     fn final_sun_luminance(&self) -> &super::core::Vec3;
+    fn final_sun_luminance_mut(&mut self) -> &mut super::core::Vec3;
     fn final_sun_illuminance(&self) -> &super::core::Vec3;
+    fn final_sun_illuminance_mut(&mut self) -> &mut super::core::Vec3;
     fn outer_space_sun_luminance(&self) -> &super::core::Vec3;
+    fn outer_space_sun_luminance_mut(&mut self) -> &mut super::core::Vec3;
     fn outer_space_sun_illuminance1(&self) -> &super::core::Vec3;
+    fn outer_space_sun_illuminance1_mut(&mut self) -> &mut super::core::Vec3;
     fn outer_space_sun_illuminance2(&self) -> &super::core::Vec3;
+    fn outer_space_sun_illuminance2_mut(&mut self) -> &mut super::core::Vec3;
     fn sun_angular_radius(&self) -> &f32;
+    fn sun_angular_radius_mut(&mut self) -> &mut f32;
     fn sky_color(&self) -> &super::core::Vec3;
+    fn sky_color_mut(&mut self) -> &mut super::core::Vec3;
     fn ground_color(&self) -> &super::core::Vec3;
+    fn ground_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_light_angle_factor(&self) -> &f32;
+    fn sky_light_angle_factor_mut(&mut self) -> &mut f32;
     fn sun_specular_scale(&self) -> &f32;
+    fn sun_specular_scale_mut(&mut self) -> &mut f32;
     fn sky_envmap_shadow_scale(&self) -> &f32;
+    fn sky_envmap_shadow_scale_mut(&mut self) -> &mut f32;
     fn cascade_shadow_enable(&self) -> &bool;
+    fn cascade_shadow_enable_mut(&mut self) -> &mut bool;
     fn sun_shadow_height_scale(&self) -> &f32;
+    fn sun_shadow_height_scale_mut(&mut self) -> &mut f32;
     fn sun_shadow_filter_type(&self) -> &ShadowFilteringType;
+    fn sun_shadow_filter_type_mut(&mut self) -> &mut ShadowFilteringType;
     fn sun_shadow_forward_quality(&self) -> &super::render_base::ShaderShadowmapQuality;
+    fn sun_shadow_forward_quality_mut(&mut self) -> &mut super::render_base::ShaderShadowmapQuality;
     fn sun_pcss_filter_adaptive(&self) -> &bool;
+    fn sun_pcss_filter_adaptive_mut(&mut self) -> &mut bool;
     fn sun_pcss_initial_sample_count(&self) -> &i32;
+    fn sun_pcss_initial_sample_count_mut(&mut self) -> &mut i32;
     fn sun_pcss_maximum_sample_count(&self) -> &i32;
+    fn sun_pcss_maximum_sample_count_mut(&mut self) -> &mut i32;
     fn sun_pcss_filter_error_threshold_pct(&self) -> &f32;
+    fn sun_pcss_filter_error_threshold_pct_mut(&mut self) -> &mut f32;
     fn sun_penumbra_size(&self) -> &f32;
+    fn sun_penumbra_size_mut(&mut self) -> &mut f32;
     fn sun_pcss_shadow_filter_scale(&self) -> &f32;
+    fn sun_pcss_shadow_filter_scale_mut(&mut self) -> &mut f32;
     fn cloud_shadow_enable(&self) -> &bool;
+    fn cloud_shadow_enable_mut(&mut self) -> &mut bool;
     fn cloud_shadow_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_shadow_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_shadow_speed(&self) -> &super::core::Vec2;
+    fn cloud_shadow_speed_mut(&mut self) -> &mut super::core::Vec2;
     fn cloud_shadow_size(&self) -> &f32;
+    fn cloud_shadow_size_mut(&mut self) -> &mut f32;
     fn cloud_shadow_coverage(&self) -> &f32;
+    fn cloud_shadow_coverage_mut(&mut self) -> &mut f32;
     fn cloud_shadow_exponent(&self) -> &f32;
+    fn cloud_shadow_exponent_mut(&mut self) -> &mut f32;
     fn cloud_shadow_is_top_down(&self) -> &bool;
+    fn cloud_shadow_is_top_down_mut(&mut self) -> &mut bool;
     fn cloud_shadow_start_fade(&self) -> &f32;
+    fn cloud_shadow_start_fade_mut(&mut self) -> &mut f32;
     fn cloud_shadows_fade_distance(&self) -> &f32;
+    fn cloud_shadows_fade_distance_mut(&mut self) -> &mut f32;
     fn cloud_shadow_height_fade_enable(&self) -> &bool;
+    fn cloud_shadow_height_fade_enable_mut(&mut self) -> &mut bool;
     fn cloud_shadow_start_height_fade(&self) -> &f32;
+    fn cloud_shadow_start_height_fade_mut(&mut self) -> &mut f32;
     fn cloud_shadows_height_fade_distance(&self) -> &f32;
+    fn cloud_shadows_height_fade_distance_mut(&mut self) -> &mut f32;
     fn cloud_x_z_translation(&self) -> &super::core::Vec2;
+    fn cloud_x_z_translation_mut(&mut self) -> &mut super::core::Vec2;
     fn cloud_shadow_addressing_mode(&self) -> &super::render_base::TextureAddress;
+    fn cloud_shadow_addressing_mode_mut(&mut self) -> &mut super::render_base::TextureAddress;
     fn cloud_radiosity_enable(&self) -> &bool;
+    fn cloud_radiosity_enable_mut(&mut self) -> &mut bool;
     fn secondary_cloud_shadow_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn secondary_cloud_shadow_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn secondary_cloud_shadow_speed(&self) -> &super::core::Vec2;
+    fn secondary_cloud_shadow_speed_mut(&mut self) -> &mut super::core::Vec2;
     fn secondary_cloud_shadow_size(&self) -> &f32;
+    fn secondary_cloud_shadow_size_mut(&mut self) -> &mut f32;
     fn secondary_cloud_shadow_coverage(&self) -> &f32;
+    fn secondary_cloud_shadow_coverage_mut(&mut self) -> &mut f32;
     fn secondary_cloud_shadow_exponent(&self) -> &f32;
+    fn secondary_cloud_shadow_exponent_mut(&mut self) -> &mut f32;
     fn secondary_cloud_shadow_is_top_down(&self) -> &bool;
+    fn secondary_cloud_shadow_is_top_down_mut(&mut self) -> &mut bool;
     fn secondary_cloud_x_z_translation(&self) -> &super::core::Vec2;
+    fn secondary_cloud_x_z_translation_mut(&mut self) -> &mut super::core::Vec2;
     fn secondary_cloud_shadow_addressing_mode(&self) -> &super::render_base::TextureAddress;
+    fn secondary_cloud_shadow_addressing_mode_mut(&mut self) -> &mut super::render_base::TextureAddress;
     fn cast_terrain_shadows_enable(&self) -> &bool;
+    fn cast_terrain_shadows_enable_mut(&mut self) -> &mut bool;
     fn translucency_ambient(&self) -> &f32;
+    fn translucency_ambient_mut(&mut self) -> &mut f32;
     fn translucency_scale(&self) -> &f32;
+    fn translucency_scale_mut(&mut self) -> &mut f32;
     fn translucency_power(&self) -> &f32;
+    fn translucency_power_mut(&mut self) -> &mut f32;
     fn translucency_distortion(&self) -> &f32;
+    fn translucency_distortion_mut(&mut self) -> &mut f32;
     fn particle_sun_shadow_factor(&self) -> &f32;
+    fn particle_sun_shadow_factor_mut(&mut self) -> &mut f32;
     fn particle_sun_shadow_smoothing(&self) -> &f32;
+    fn particle_sun_shadow_smoothing_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u32;
+    fn field_flag_override1_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u32;
+    fn field_flag_changed1_mut(&mut self) -> &mut u32;
 }
 
 impl OutdoorLightComponentStateTrait for OutdoorLightComponentState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn sun_rotation_x(&self) -> &f32 {
         &self.sun_rotation_x
+    }
+    fn sun_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.sun_rotation_x
     }
     fn sun_rotation_y(&self) -> &f32 {
         &self.sun_rotation_y
     }
+    fn sun_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.sun_rotation_y
+    }
     fn shadow_sun_rotation_enable(&self) -> &bool {
         &self.shadow_sun_rotation_enable
+    }
+    fn shadow_sun_rotation_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_sun_rotation_enable
     }
     fn shadow_sun_rotation_x(&self) -> &f32 {
         &self.shadow_sun_rotation_x
     }
+    fn shadow_sun_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_sun_rotation_x
+    }
     fn shadow_sun_rotation_y(&self) -> &f32 {
         &self.shadow_sun_rotation_y
+    }
+    fn shadow_sun_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_sun_rotation_y
     }
     fn sun_color(&self) -> &super::core::Vec3 {
         &self.sun_color
     }
+    fn sun_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sun_color
+    }
     fn sun_intensity(&self) -> &f32 {
         &self.sun_intensity
+    }
+    fn sun_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.sun_intensity
     }
     fn final_sun_luminance(&self) -> &super::core::Vec3 {
         &self.final_sun_luminance
     }
+    fn final_sun_luminance_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.final_sun_luminance
+    }
     fn final_sun_illuminance(&self) -> &super::core::Vec3 {
         &self.final_sun_illuminance
+    }
+    fn final_sun_illuminance_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.final_sun_illuminance
     }
     fn outer_space_sun_luminance(&self) -> &super::core::Vec3 {
         &self.outer_space_sun_luminance
     }
+    fn outer_space_sun_luminance_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.outer_space_sun_luminance
+    }
     fn outer_space_sun_illuminance1(&self) -> &super::core::Vec3 {
         &self.outer_space_sun_illuminance1
+    }
+    fn outer_space_sun_illuminance1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.outer_space_sun_illuminance1
     }
     fn outer_space_sun_illuminance2(&self) -> &super::core::Vec3 {
         &self.outer_space_sun_illuminance2
     }
+    fn outer_space_sun_illuminance2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.outer_space_sun_illuminance2
+    }
     fn sun_angular_radius(&self) -> &f32 {
         &self.sun_angular_radius
+    }
+    fn sun_angular_radius_mut(&mut self) -> &mut f32 {
+        &mut self.sun_angular_radius
     }
     fn sky_color(&self) -> &super::core::Vec3 {
         &self.sky_color
     }
+    fn sky_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_color
+    }
     fn ground_color(&self) -> &super::core::Vec3 {
         &self.ground_color
+    }
+    fn ground_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ground_color
     }
     fn sky_light_angle_factor(&self) -> &f32 {
         &self.sky_light_angle_factor
     }
+    fn sky_light_angle_factor_mut(&mut self) -> &mut f32 {
+        &mut self.sky_light_angle_factor
+    }
     fn sun_specular_scale(&self) -> &f32 {
         &self.sun_specular_scale
+    }
+    fn sun_specular_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_specular_scale
     }
     fn sky_envmap_shadow_scale(&self) -> &f32 {
         &self.sky_envmap_shadow_scale
     }
+    fn sky_envmap_shadow_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap_shadow_scale
+    }
     fn cascade_shadow_enable(&self) -> &bool {
         &self.cascade_shadow_enable
+    }
+    fn cascade_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.cascade_shadow_enable
     }
     fn sun_shadow_height_scale(&self) -> &f32 {
         &self.sun_shadow_height_scale
     }
+    fn sun_shadow_height_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadow_height_scale
+    }
     fn sun_shadow_filter_type(&self) -> &ShadowFilteringType {
         &self.sun_shadow_filter_type
+    }
+    fn sun_shadow_filter_type_mut(&mut self) -> &mut ShadowFilteringType {
+        &mut self.sun_shadow_filter_type
     }
     fn sun_shadow_forward_quality(&self) -> &super::render_base::ShaderShadowmapQuality {
         &self.sun_shadow_forward_quality
     }
+    fn sun_shadow_forward_quality_mut(&mut self) -> &mut super::render_base::ShaderShadowmapQuality {
+        &mut self.sun_shadow_forward_quality
+    }
     fn sun_pcss_filter_adaptive(&self) -> &bool {
         &self.sun_pcss_filter_adaptive
+    }
+    fn sun_pcss_filter_adaptive_mut(&mut self) -> &mut bool {
+        &mut self.sun_pcss_filter_adaptive
     }
     fn sun_pcss_initial_sample_count(&self) -> &i32 {
         &self.sun_pcss_initial_sample_count
     }
+    fn sun_pcss_initial_sample_count_mut(&mut self) -> &mut i32 {
+        &mut self.sun_pcss_initial_sample_count
+    }
     fn sun_pcss_maximum_sample_count(&self) -> &i32 {
         &self.sun_pcss_maximum_sample_count
+    }
+    fn sun_pcss_maximum_sample_count_mut(&mut self) -> &mut i32 {
+        &mut self.sun_pcss_maximum_sample_count
     }
     fn sun_pcss_filter_error_threshold_pct(&self) -> &f32 {
         &self.sun_pcss_filter_error_threshold_pct
     }
+    fn sun_pcss_filter_error_threshold_pct_mut(&mut self) -> &mut f32 {
+        &mut self.sun_pcss_filter_error_threshold_pct
+    }
     fn sun_penumbra_size(&self) -> &f32 {
         &self.sun_penumbra_size
+    }
+    fn sun_penumbra_size_mut(&mut self) -> &mut f32 {
+        &mut self.sun_penumbra_size
     }
     fn sun_pcss_shadow_filter_scale(&self) -> &f32 {
         &self.sun_pcss_shadow_filter_scale
     }
+    fn sun_pcss_shadow_filter_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_pcss_shadow_filter_scale
+    }
     fn cloud_shadow_enable(&self) -> &bool {
         &self.cloud_shadow_enable
+    }
+    fn cloud_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.cloud_shadow_enable
     }
     fn cloud_shadow_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_shadow_texture
     }
+    fn cloud_shadow_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_shadow_texture
+    }
     fn cloud_shadow_speed(&self) -> &super::core::Vec2 {
         &self.cloud_shadow_speed
+    }
+    fn cloud_shadow_speed_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.cloud_shadow_speed
     }
     fn cloud_shadow_size(&self) -> &f32 {
         &self.cloud_shadow_size
     }
+    fn cloud_shadow_size_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_size
+    }
     fn cloud_shadow_coverage(&self) -> &f32 {
         &self.cloud_shadow_coverage
+    }
+    fn cloud_shadow_coverage_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_coverage
     }
     fn cloud_shadow_exponent(&self) -> &f32 {
         &self.cloud_shadow_exponent
     }
+    fn cloud_shadow_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_exponent
+    }
     fn cloud_shadow_is_top_down(&self) -> &bool {
         &self.cloud_shadow_is_top_down
+    }
+    fn cloud_shadow_is_top_down_mut(&mut self) -> &mut bool {
+        &mut self.cloud_shadow_is_top_down
     }
     fn cloud_shadow_start_fade(&self) -> &f32 {
         &self.cloud_shadow_start_fade
     }
+    fn cloud_shadow_start_fade_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_start_fade
+    }
     fn cloud_shadows_fade_distance(&self) -> &f32 {
         &self.cloud_shadows_fade_distance
+    }
+    fn cloud_shadows_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadows_fade_distance
     }
     fn cloud_shadow_height_fade_enable(&self) -> &bool {
         &self.cloud_shadow_height_fade_enable
     }
+    fn cloud_shadow_height_fade_enable_mut(&mut self) -> &mut bool {
+        &mut self.cloud_shadow_height_fade_enable
+    }
     fn cloud_shadow_start_height_fade(&self) -> &f32 {
         &self.cloud_shadow_start_height_fade
+    }
+    fn cloud_shadow_start_height_fade_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_start_height_fade
     }
     fn cloud_shadows_height_fade_distance(&self) -> &f32 {
         &self.cloud_shadows_height_fade_distance
     }
+    fn cloud_shadows_height_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadows_height_fade_distance
+    }
     fn cloud_x_z_translation(&self) -> &super::core::Vec2 {
         &self.cloud_x_z_translation
+    }
+    fn cloud_x_z_translation_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.cloud_x_z_translation
     }
     fn cloud_shadow_addressing_mode(&self) -> &super::render_base::TextureAddress {
         &self.cloud_shadow_addressing_mode
     }
+    fn cloud_shadow_addressing_mode_mut(&mut self) -> &mut super::render_base::TextureAddress {
+        &mut self.cloud_shadow_addressing_mode
+    }
     fn cloud_radiosity_enable(&self) -> &bool {
         &self.cloud_radiosity_enable
+    }
+    fn cloud_radiosity_enable_mut(&mut self) -> &mut bool {
+        &mut self.cloud_radiosity_enable
     }
     fn secondary_cloud_shadow_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.secondary_cloud_shadow_texture
     }
+    fn secondary_cloud_shadow_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.secondary_cloud_shadow_texture
+    }
     fn secondary_cloud_shadow_speed(&self) -> &super::core::Vec2 {
         &self.secondary_cloud_shadow_speed
+    }
+    fn secondary_cloud_shadow_speed_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.secondary_cloud_shadow_speed
     }
     fn secondary_cloud_shadow_size(&self) -> &f32 {
         &self.secondary_cloud_shadow_size
     }
+    fn secondary_cloud_shadow_size_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_cloud_shadow_size
+    }
     fn secondary_cloud_shadow_coverage(&self) -> &f32 {
         &self.secondary_cloud_shadow_coverage
+    }
+    fn secondary_cloud_shadow_coverage_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_cloud_shadow_coverage
     }
     fn secondary_cloud_shadow_exponent(&self) -> &f32 {
         &self.secondary_cloud_shadow_exponent
     }
+    fn secondary_cloud_shadow_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_cloud_shadow_exponent
+    }
     fn secondary_cloud_shadow_is_top_down(&self) -> &bool {
         &self.secondary_cloud_shadow_is_top_down
+    }
+    fn secondary_cloud_shadow_is_top_down_mut(&mut self) -> &mut bool {
+        &mut self.secondary_cloud_shadow_is_top_down
     }
     fn secondary_cloud_x_z_translation(&self) -> &super::core::Vec2 {
         &self.secondary_cloud_x_z_translation
     }
+    fn secondary_cloud_x_z_translation_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.secondary_cloud_x_z_translation
+    }
     fn secondary_cloud_shadow_addressing_mode(&self) -> &super::render_base::TextureAddress {
         &self.secondary_cloud_shadow_addressing_mode
+    }
+    fn secondary_cloud_shadow_addressing_mode_mut(&mut self) -> &mut super::render_base::TextureAddress {
+        &mut self.secondary_cloud_shadow_addressing_mode
     }
     fn cast_terrain_shadows_enable(&self) -> &bool {
         &self.cast_terrain_shadows_enable
     }
+    fn cast_terrain_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_terrain_shadows_enable
+    }
     fn translucency_ambient(&self) -> &f32 {
         &self.translucency_ambient
+    }
+    fn translucency_ambient_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_ambient
     }
     fn translucency_scale(&self) -> &f32 {
         &self.translucency_scale
     }
+    fn translucency_scale_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_scale
+    }
     fn translucency_power(&self) -> &f32 {
         &self.translucency_power
+    }
+    fn translucency_power_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_power
     }
     fn translucency_distortion(&self) -> &f32 {
         &self.translucency_distortion
     }
+    fn translucency_distortion_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_distortion
+    }
     fn particle_sun_shadow_factor(&self) -> &f32 {
         &self.particle_sun_shadow_factor
+    }
+    fn particle_sun_shadow_factor_mut(&mut self) -> &mut f32 {
+        &mut self.particle_sun_shadow_factor
     }
     fn particle_sun_shadow_smoothing(&self) -> &f32 {
         &self.particle_sun_shadow_smoothing
     }
+    fn particle_sun_shadow_smoothing_mut(&mut self) -> &mut f32 {
+        &mut self.particle_sun_shadow_smoothing
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
     }
     fn field_flag_override1(&self) -> &u32 {
         &self.field_flag_override1
     }
+    fn field_flag_override1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override1
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
     }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
+    }
     fn field_flag_changed1(&self) -> &u32 {
         &self.field_flag_changed1
+    }
+    fn field_flag_changed1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed1
     }
 }
 
@@ -12165,6 +16066,15 @@ impl TypeObject for OutdoorLightComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12191,35 +16101,63 @@ pub struct IndirectSpecularComponentState {
 
 pub trait IndirectSpecularComponentStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn reflectance_scale(&self) -> &f32;
+    fn reflectance_scale_mut(&mut self) -> &mut f32;
     fn probes_intensity(&self) -> &f32;
+    fn probes_intensity_mut(&mut self) -> &mut f32;
     fn probes_reflectance_scale(&self) -> &f32;
+    fn probes_reflectance_scale_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl IndirectSpecularComponentStateTrait for IndirectSpecularComponentState {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn reflectance_scale(&self) -> &f32 {
         &self.reflectance_scale
     }
+    fn reflectance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.reflectance_scale
+    }
     fn probes_intensity(&self) -> &f32 {
         &self.probes_intensity
+    }
+    fn probes_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.probes_intensity
     }
     fn probes_reflectance_scale(&self) -> &f32 {
         &self.probes_reflectance_scale
     }
+    fn probes_reflectance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.probes_reflectance_scale
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -12287,6 +16225,15 @@ impl TypeObject for IndirectSpecularComponentState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12326,6 +16273,15 @@ impl TypeObject for ShadowFilteringType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12348,19 +16304,31 @@ pub struct VisualEnvironmentComponentStaticState {
 
 pub trait VisualEnvironmentComponentStaticStateTrait: TypeObject {
     fn visual_environment(&self) -> &VisualEnvironmentHandle;
+    fn visual_environment_mut(&mut self) -> &mut VisualEnvironmentHandle;
     fn index(&self) -> &u32;
+    fn index_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl VisualEnvironmentComponentStaticStateTrait for VisualEnvironmentComponentStaticState {
     fn visual_environment(&self) -> &VisualEnvironmentHandle {
         &self.visual_environment
     }
+    fn visual_environment_mut(&mut self) -> &mut VisualEnvironmentHandle {
+        &mut self.visual_environment
+    }
     fn index(&self) -> &u32 {
         &self.index
     }
+    fn index_mut(&mut self) -> &mut u32 {
+        &mut self.index
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -12404,6 +16372,15 @@ impl TypeObject for VisualEnvironmentComponentStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12430,35 +16407,63 @@ pub struct VisualEnvironmentDynamicState {
 
 pub trait VisualEnvironmentDynamicStateTrait: TypeObject {
     fn visibility(&self) -> &f32;
+    fn visibility_mut(&mut self) -> &mut f32;
     fn priority(&self) -> &i32;
+    fn priority_mut(&mut self) -> &mut i32;
     fn blend_mode(&self) -> &u8;
+    fn blend_mode_mut(&mut self) -> &mut u8;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn override_visibility(&self) -> &bool;
+    fn override_visibility_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl VisualEnvironmentDynamicStateTrait for VisualEnvironmentDynamicState {
     fn visibility(&self) -> &f32 {
         &self.visibility
     }
+    fn visibility_mut(&mut self) -> &mut f32 {
+        &mut self.visibility
+    }
     fn priority(&self) -> &i32 {
         &self.priority
+    }
+    fn priority_mut(&mut self) -> &mut i32 {
+        &mut self.priority
     }
     fn blend_mode(&self) -> &u8 {
         &self.blend_mode
     }
+    fn blend_mode_mut(&mut self) -> &mut u8 {
+        &mut self.blend_mode
+    }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
+    }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
     }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
     }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
+    }
     fn override_visibility(&self) -> &bool {
         &self.override_visibility
     }
+    fn override_visibility_mut(&mut self) -> &mut bool {
+        &mut self.override_visibility
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -12526,6 +16531,15 @@ impl TypeObject for VisualEnvironmentDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12548,19 +16562,31 @@ pub struct VisualEnvironmentStaticState {
 
 pub trait VisualEnvironmentStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn debug_name(&self) -> &String;
+    fn debug_name_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl VisualEnvironmentStaticStateTrait for VisualEnvironmentStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn debug_name(&self) -> &String {
         &self.debug_name
     }
+    fn debug_name_mut(&mut self) -> &mut String {
+        &mut self.debug_name
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -12603,6 +16629,15 @@ impl TypeObject for VisualEnvironmentStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -12649,6 +16684,15 @@ impl TypeObject for VisualEnvironmentHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12687,6 +16731,15 @@ impl TypeObject for ForwardLightScatteringAttenuation {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12713,38 +16766,59 @@ pub struct VisualEnvironmentSettings {
 
 pub trait VisualEnvironmentSettingsTrait: super::core::DataContainerTrait {
     fn sun_rotation_x(&self) -> &f32;
+    fn sun_rotation_x_mut(&mut self) -> &mut f32;
     fn sun_rotation_y(&self) -> &f32;
+    fn sun_rotation_y_mut(&mut self) -> &mut f32;
     fn sky_rotation_phi(&self) -> &f32;
+    fn sky_rotation_phi_mut(&mut self) -> &mut f32;
     fn draw_stats(&self) -> &i32;
+    fn draw_stats_mut(&mut self) -> &mut i32;
     fn draw_only_visible_stats(&self) -> &bool;
+    fn draw_only_visible_stats_mut(&mut self) -> &mut bool;
     fn hdr_grading_enable(&self) -> &bool;
+    fn hdr_grading_enable_mut(&mut self) -> &mut bool;
 }
 
 impl VisualEnvironmentSettingsTrait for VisualEnvironmentSettings {
     fn sun_rotation_x(&self) -> &f32 {
         &self.sun_rotation_x
     }
+    fn sun_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.sun_rotation_x
+    }
     fn sun_rotation_y(&self) -> &f32 {
         &self.sun_rotation_y
+    }
+    fn sun_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.sun_rotation_y
     }
     fn sky_rotation_phi(&self) -> &f32 {
         &self.sky_rotation_phi
     }
+    fn sky_rotation_phi_mut(&mut self) -> &mut f32 {
+        &mut self.sky_rotation_phi
+    }
     fn draw_stats(&self) -> &i32 {
         &self.draw_stats
+    }
+    fn draw_stats_mut(&mut self) -> &mut i32 {
+        &mut self.draw_stats
     }
     fn draw_only_visible_stats(&self) -> &bool {
         &self.draw_only_visible_stats
     }
+    fn draw_only_visible_stats_mut(&mut self) -> &mut bool {
+        &mut self.draw_only_visible_stats
+    }
     fn hdr_grading_enable(&self) -> &bool {
         &self.hdr_grading_enable
+    }
+    fn hdr_grading_enable_mut(&mut self) -> &mut bool {
+        &mut self.hdr_grading_enable
     }
 }
 
 impl super::core::DataContainerTrait for VisualEnvironmentSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VISUALENVIRONMENTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12806,6 +16880,15 @@ impl TypeObject for VisualEnvironmentSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12851,6 +16934,15 @@ impl TypeObject for TextureSetDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12873,19 +16965,31 @@ pub struct TextureSetStaticState {
 
 pub trait TextureSetStaticStateTrait: TypeObject {
     fn dds(&self) -> &Vec<u8>;
+    fn dds_mut(&mut self) -> &mut Vec<u8>;
     fn texture(&self) -> &super::render_base::TextureResourceHandle;
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TextureSetStaticStateTrait for TextureSetStaticState {
     fn dds(&self) -> &Vec<u8> {
         &self.dds
     }
+    fn dds_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.dds
+    }
     fn texture(&self) -> &super::render_base::TextureResourceHandle {
         &self.texture
     }
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle {
+        &mut self.texture
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -12928,6 +17032,15 @@ impl TypeObject for TextureSetStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -12974,6 +17087,15 @@ impl TypeObject for MeshDeformerHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13018,6 +17140,15 @@ impl TypeObject for LightHandle {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -13064,6 +17195,15 @@ impl TypeObject for ModelHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13109,6 +17249,15 @@ impl TypeObject for WasVisibleHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13133,27 +17282,47 @@ pub struct SimpleVolumetricsDynamicState {
 
 pub trait SimpleVolumetricsDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn exponent(&self) -> &f32;
+    fn exponent_mut(&mut self) -> &mut f32;
     fn emission(&self) -> &super::core::Vec3;
+    fn emission_mut(&mut self) -> &mut super::core::Vec3;
     fn emission_scale(&self) -> &f32;
+    fn emission_scale_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl SimpleVolumetricsDynamicStateTrait for SimpleVolumetricsDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn exponent(&self) -> &f32 {
         &self.exponent
+    }
+    fn exponent_mut(&mut self) -> &mut f32 {
+        &mut self.exponent
     }
     fn emission(&self) -> &super::core::Vec3 {
         &self.emission
     }
+    fn emission_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.emission
+    }
     fn emission_scale(&self) -> &f32 {
         &self.emission_scale
     }
+    fn emission_scale_mut(&mut self) -> &mut f32 {
+        &mut self.emission_scale
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13209,6 +17378,15 @@ impl TypeObject for SimpleVolumetricsDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13237,43 +17415,79 @@ pub struct SimpleVolumetricsStaticState {
 
 pub trait SimpleVolumetricsStaticStateTrait: TypeObject {
     fn fade_out_end_radius(&self) -> &f32;
+    fn fade_out_end_radius_mut(&mut self) -> &mut f32;
     fn fade_out_start_radius(&self) -> &f32;
+    fn fade_out_start_radius_mut(&mut self) -> &mut f32;
     fn far_fade_start_distance(&self) -> &f32;
+    fn far_fade_start_distance_mut(&mut self) -> &mut f32;
     fn far_fade_end_distance(&self) -> &f32;
+    fn far_fade_end_distance_mut(&mut self) -> &mut f32;
     fn use_clipping_plane(&self) -> &bool;
+    fn use_clipping_plane_mut(&mut self) -> &mut bool;
     fn clipping_plane_offset(&self) -> &f32;
+    fn clipping_plane_offset_mut(&mut self) -> &mut f32;
     fn draw_pass(&self) -> &SimpleVolumetricsDrawPass;
+    fn draw_pass_mut(&mut self) -> &mut SimpleVolumetricsDrawPass;
     fn scale_to_exposure(&self) -> &bool;
+    fn scale_to_exposure_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl SimpleVolumetricsStaticStateTrait for SimpleVolumetricsStaticState {
     fn fade_out_end_radius(&self) -> &f32 {
         &self.fade_out_end_radius
     }
+    fn fade_out_end_radius_mut(&mut self) -> &mut f32 {
+        &mut self.fade_out_end_radius
+    }
     fn fade_out_start_radius(&self) -> &f32 {
         &self.fade_out_start_radius
+    }
+    fn fade_out_start_radius_mut(&mut self) -> &mut f32 {
+        &mut self.fade_out_start_radius
     }
     fn far_fade_start_distance(&self) -> &f32 {
         &self.far_fade_start_distance
     }
+    fn far_fade_start_distance_mut(&mut self) -> &mut f32 {
+        &mut self.far_fade_start_distance
+    }
     fn far_fade_end_distance(&self) -> &f32 {
         &self.far_fade_end_distance
+    }
+    fn far_fade_end_distance_mut(&mut self) -> &mut f32 {
+        &mut self.far_fade_end_distance
     }
     fn use_clipping_plane(&self) -> &bool {
         &self.use_clipping_plane
     }
+    fn use_clipping_plane_mut(&mut self) -> &mut bool {
+        &mut self.use_clipping_plane
+    }
     fn clipping_plane_offset(&self) -> &f32 {
         &self.clipping_plane_offset
+    }
+    fn clipping_plane_offset_mut(&mut self) -> &mut f32 {
+        &mut self.clipping_plane_offset
     }
     fn draw_pass(&self) -> &SimpleVolumetricsDrawPass {
         &self.draw_pass
     }
+    fn draw_pass_mut(&mut self) -> &mut SimpleVolumetricsDrawPass {
+        &mut self.draw_pass
+    }
     fn scale_to_exposure(&self) -> &bool {
         &self.scale_to_exposure
     }
+    fn scale_to_exposure_mut(&mut self) -> &mut bool {
+        &mut self.scale_to_exposure
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13353,6 +17567,15 @@ impl TypeObject for SimpleVolumetricsStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13391,6 +17614,15 @@ impl TypeObject for SimpleVolumetricsDrawPass {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -13437,6 +17669,15 @@ impl TypeObject for ResourceRefDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13459,19 +17700,31 @@ pub struct ResourceRefStaticState {
 
 pub trait ResourceRefStaticStateTrait: TypeObject {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
     fn field_id(&self) -> &u32;
+    fn field_id_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl ResourceRefStaticStateTrait for ResourceRefStaticState {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
         &self.object
     }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+        &mut self.object
+    }
     fn field_id(&self) -> &u32 {
         &self.field_id
     }
+    fn field_id_mut(&mut self) -> &mut u32 {
+        &mut self.field_id
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13514,6 +17767,15 @@ impl TypeObject for ResourceRefStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -13560,6 +17822,15 @@ impl TypeObject for ResourceRefHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13582,19 +17853,31 @@ pub struct OccluderPlaneDynamicState {
 
 pub trait OccluderPlaneDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl OccluderPlaneDynamicStateTrait for OccluderPlaneDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn visible(&self) -> &bool {
         &self.visible
     }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13638,6 +17921,15 @@ impl TypeObject for OccluderPlaneDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13662,27 +17954,47 @@ pub struct OccluderPlaneStaticState {
 
 pub trait OccluderPlaneStaticStateTrait: TypeObject {
     fn occluder_high_priority(&self) -> &bool;
+    fn occluder_high_priority_mut(&mut self) -> &mut bool;
     fn occluder_is_conservative(&self) -> &bool;
+    fn occluder_is_conservative_mut(&mut self) -> &mut bool;
     fn doubled_sided(&self) -> &bool;
+    fn doubled_sided_mut(&mut self) -> &mut bool;
     fn coverage_value(&self) -> &f32;
+    fn coverage_value_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl OccluderPlaneStaticStateTrait for OccluderPlaneStaticState {
     fn occluder_high_priority(&self) -> &bool {
         &self.occluder_high_priority
     }
+    fn occluder_high_priority_mut(&mut self) -> &mut bool {
+        &mut self.occluder_high_priority
+    }
     fn occluder_is_conservative(&self) -> &bool {
         &self.occluder_is_conservative
+    }
+    fn occluder_is_conservative_mut(&mut self) -> &mut bool {
+        &mut self.occluder_is_conservative
     }
     fn doubled_sided(&self) -> &bool {
         &self.doubled_sided
     }
+    fn doubled_sided_mut(&mut self) -> &mut bool {
+        &mut self.doubled_sided
+    }
     fn coverage_value(&self) -> &f32 {
         &self.coverage_value
     }
+    fn coverage_value_mut(&mut self) -> &mut f32 {
+        &mut self.coverage_value
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13738,6 +18050,15 @@ impl TypeObject for OccluderPlaneStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13760,19 +18081,31 @@ pub struct OccluderVolumeDynamicState {
 
 pub trait OccluderVolumeDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl OccluderVolumeDynamicStateTrait for OccluderVolumeDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn visible(&self) -> &bool {
         &self.visible
     }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13816,6 +18149,15 @@ impl TypeObject for OccluderVolumeDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13839,23 +18181,39 @@ pub struct OccluderVolumeStaticState {
 
 pub trait OccluderVolumeStaticStateTrait: TypeObject {
     fn occluder_high_priority(&self) -> &bool;
+    fn occluder_high_priority_mut(&mut self) -> &mut bool;
     fn occluder_is_conservative(&self) -> &bool;
+    fn occluder_is_conservative_mut(&mut self) -> &mut bool;
     fn coverage_value(&self) -> &f32;
+    fn coverage_value_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl OccluderVolumeStaticStateTrait for OccluderVolumeStaticState {
     fn occluder_high_priority(&self) -> &bool {
         &self.occluder_high_priority
     }
+    fn occluder_high_priority_mut(&mut self) -> &mut bool {
+        &mut self.occluder_high_priority
+    }
     fn occluder_is_conservative(&self) -> &bool {
         &self.occluder_is_conservative
+    }
+    fn occluder_is_conservative_mut(&mut self) -> &mut bool {
+        &mut self.occluder_is_conservative
     }
     fn coverage_value(&self) -> &f32 {
         &self.coverage_value
     }
+    fn coverage_value_mut(&mut self) -> &mut f32 {
+        &mut self.coverage_value
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13905,6 +18263,15 @@ impl TypeObject for OccluderVolumeStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13927,19 +18294,31 @@ pub struct OccluderMeshDynamicState {
 
 pub trait OccluderMeshDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl OccluderMeshDynamicStateTrait for OccluderMeshDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn visible(&self) -> &bool {
         &self.visible
     }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13983,6 +18362,15 @@ impl TypeObject for OccluderMeshDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14004,15 +18392,23 @@ pub struct OccluderMeshStaticState {
 
 pub trait OccluderMeshStaticStateTrait: TypeObject {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl OccluderMeshStaticStateTrait for OccluderMeshStaticState {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         &self.mesh
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &mut self.mesh
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -14050,6 +18446,15 @@ impl TypeObject for OccluderMeshStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14075,31 +18480,55 @@ pub struct ObjectHighlightDynamicState {
 
 pub trait ObjectHighlightDynamicStateTrait: TypeObject {
     fn object_highlight_type(&self) -> &ObjectHighlightType;
+    fn object_highlight_type_mut(&mut self) -> &mut ObjectHighlightType;
     fn index(&self) -> &i32;
+    fn index_mut(&mut self) -> &mut i32;
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn draw_at_foreground(&self) -> &bool;
+    fn draw_at_foreground_mut(&mut self) -> &mut bool;
     fn is_mask(&self) -> &bool;
+    fn is_mask_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl ObjectHighlightDynamicStateTrait for ObjectHighlightDynamicState {
     fn object_highlight_type(&self) -> &ObjectHighlightType {
         &self.object_highlight_type
     }
+    fn object_highlight_type_mut(&mut self) -> &mut ObjectHighlightType {
+        &mut self.object_highlight_type
+    }
     fn index(&self) -> &i32 {
         &self.index
+    }
+    fn index_mut(&mut self) -> &mut i32 {
+        &mut self.index
     }
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn draw_at_foreground(&self) -> &bool {
         &self.draw_at_foreground
+    }
+    fn draw_at_foreground_mut(&mut self) -> &mut bool {
+        &mut self.draw_at_foreground
     }
     fn is_mask(&self) -> &bool {
         &self.is_mask
     }
+    fn is_mask_mut(&mut self) -> &mut bool {
+        &mut self.is_mask
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -14161,6 +18590,15 @@ impl TypeObject for ObjectHighlightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14183,19 +18621,31 @@ pub struct ObjectHighlightStaticState {
 
 pub trait ObjectHighlightStaticStateTrait: TypeObject {
     fn render_view_handle(&self) -> &super::render_base::RenderViewHandle;
+    fn render_view_handle_mut(&mut self) -> &mut super::render_base::RenderViewHandle;
     fn model_handle(&self) -> &ModelHandle;
+    fn model_handle_mut(&mut self) -> &mut ModelHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl ObjectHighlightStaticStateTrait for ObjectHighlightStaticState {
     fn render_view_handle(&self) -> &super::render_base::RenderViewHandle {
         &self.render_view_handle
     }
+    fn render_view_handle_mut(&mut self) -> &mut super::render_base::RenderViewHandle {
+        &mut self.render_view_handle
+    }
     fn model_handle(&self) -> &ModelHandle {
         &self.model_handle
     }
+    fn model_handle_mut(&mut self) -> &mut ModelHandle {
+        &mut self.model_handle
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -14239,6 +18689,15 @@ impl TypeObject for ObjectHighlightStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14279,6 +18738,15 @@ impl TypeObject for ObjectHighlightType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14304,34 +18772,51 @@ pub struct EdgeModelsBaseData {
 
 pub trait EdgeModelsBaseDataTrait: super::core::DataContainerTrait {
     fn instance_transforms(&self) -> &Vec<super::core::LinearTransform>;
+    fn instance_transforms_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
     fn mesh_instance_ranges(&self) -> &Vec<u16>;
+    fn mesh_instance_ranges_mut(&mut self) -> &mut Vec<u16>;
     fn connection_instance_lookup_table(&self) -> &Vec<u16>;
+    fn connection_instance_lookup_table_mut(&mut self) -> &mut Vec<u16>;
     fn connections(&self) -> &Vec<EdgeModelConnectionInfo>;
+    fn connections_mut(&mut self) -> &mut Vec<EdgeModelConnectionInfo>;
     fn part_connection_ranges(&self) -> &Vec<u16>;
+    fn part_connection_ranges_mut(&mut self) -> &mut Vec<u16>;
 }
 
 impl EdgeModelsBaseDataTrait for EdgeModelsBaseData {
     fn instance_transforms(&self) -> &Vec<super::core::LinearTransform> {
         &self.instance_transforms
     }
+    fn instance_transforms_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+        &mut self.instance_transforms
+    }
     fn mesh_instance_ranges(&self) -> &Vec<u16> {
         &self.mesh_instance_ranges
+    }
+    fn mesh_instance_ranges_mut(&mut self) -> &mut Vec<u16> {
+        &mut self.mesh_instance_ranges
     }
     fn connection_instance_lookup_table(&self) -> &Vec<u16> {
         &self.connection_instance_lookup_table
     }
+    fn connection_instance_lookup_table_mut(&mut self) -> &mut Vec<u16> {
+        &mut self.connection_instance_lookup_table
+    }
     fn connections(&self) -> &Vec<EdgeModelConnectionInfo> {
         &self.connections
+    }
+    fn connections_mut(&mut self) -> &mut Vec<EdgeModelConnectionInfo> {
+        &mut self.connections
     }
     fn part_connection_ranges(&self) -> &Vec<u16> {
         &self.part_connection_ranges
     }
+    fn part_connection_ranges_mut(&mut self) -> &mut Vec<u16> {
+        &mut self.part_connection_ranges
+    }
 }
 
 impl super::core::DataContainerTrait for EdgeModelsBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EDGEMODELSBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14387,6 +18872,15 @@ impl TypeObject for EdgeModelsBaseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14408,15 +18902,23 @@ pub struct EdgeModelConnectionInfo {
 
 pub trait EdgeModelConnectionInfoTrait: TypeObject {
     fn connection_instance_range(&self) -> &u16;
+    fn connection_instance_range_mut(&mut self) -> &mut u16;
     fn neighbour_part_index(&self) -> &u16;
+    fn neighbour_part_index_mut(&mut self) -> &mut u16;
 }
 
 impl EdgeModelConnectionInfoTrait for EdgeModelConnectionInfo {
     fn connection_instance_range(&self) -> &u16 {
         &self.connection_instance_range
     }
+    fn connection_instance_range_mut(&mut self) -> &mut u16 {
+        &mut self.connection_instance_range
+    }
     fn neighbour_part_index(&self) -> &u16 {
         &self.neighbour_part_index
+    }
+    fn neighbour_part_index_mut(&mut self) -> &mut u16 {
+        &mut self.neighbour_part_index
     }
 }
 
@@ -14454,6 +18956,15 @@ impl TypeObject for EdgeModelConnectionInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14482,12 +18993,12 @@ impl super::core::AssetTrait for DestructionVolumeBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DestructionVolumeBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONVOLUMEBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14512,6 +19023,15 @@ impl TypeObject for DestructionVolumeBaseAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14538,9 +19058,6 @@ impl DestructionVolumeBaseDataTrait for DestructionVolumeBaseData {
 }
 
 impl super::core::DataContainerTrait for DestructionVolumeBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONVOLUMEBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14565,6 +19082,15 @@ impl TypeObject for DestructionVolumeBaseData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14602,75 +19128,143 @@ pub struct MeshDynamicState {
 
 pub trait MeshDynamicStateTrait: TypeObject {
     fn object_variation_name_hash(&self) -> &u32;
+    fn object_variation_name_hash_mut(&mut self) -> &mut u32;
     fn asset_dependancies(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>>;
+    fn asset_dependancies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>>;
     fn shader_parameter_blocks(&self) -> &Vec<super::render_base::ShaderParameterBlockHandle>;
+    fn shader_parameter_blocks_mut(&mut self) -> &mut Vec<super::render_base::ShaderParameterBlockHandle>;
     fn is_streaming(&self) -> &bool;
+    fn is_streaming_mut(&mut self) -> &mut bool;
     fn streaming_priority(&self) -> &f32;
+    fn streaming_priority_mut(&mut self) -> &mut f32;
     fn render_flags(&self) -> &u32;
+    fn render_flags_mut(&mut self) -> &mut u32;
     fn parent_render_flags_mask(&self) -> &u32;
+    fn parent_render_flags_mask_mut(&mut self) -> &mut u32;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn light_map_weight(&self) -> &f32;
+    fn light_map_weight_mut(&mut self) -> &mut f32;
     fn destruction_volume(&self) -> &Option<Arc<Mutex<dyn DestructionVolumeBaseDataTrait>>>;
+    fn destruction_volume_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DestructionVolumeBaseDataTrait>>>;
     fn edge_models(&self) -> &Option<Arc<Mutex<dyn EdgeModelsBaseDataTrait>>>;
+    fn edge_models_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EdgeModelsBaseDataTrait>>>;
     fn stencil_bits(&self) -> &u8;
+    fn stencil_bits_mut(&mut self) -> &mut u8;
     fn render_object_stencil_mask(&self) -> &u8;
+    fn render_object_stencil_mask_mut(&mut self) -> &mut u8;
     fn is_visible(&self) -> &bool;
+    fn is_visible_mut(&mut self) -> &mut bool;
     fn vertex_shader_fragment_override(&self) -> &super::render_base::VertexShaderFragmentHandle;
+    fn vertex_shader_fragment_override_mut(&mut self) -> &mut super::render_base::VertexShaderFragmentHandle;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl MeshDynamicStateTrait for MeshDynamicState {
     fn object_variation_name_hash(&self) -> &u32 {
         &self.object_variation_name_hash
     }
+    fn object_variation_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.object_variation_name_hash
+    }
     fn asset_dependancies(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>> {
         &self.asset_dependancies
+    }
+    fn asset_dependancies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>> {
+        &mut self.asset_dependancies
     }
     fn shader_parameter_blocks(&self) -> &Vec<super::render_base::ShaderParameterBlockHandle> {
         &self.shader_parameter_blocks
     }
+    fn shader_parameter_blocks_mut(&mut self) -> &mut Vec<super::render_base::ShaderParameterBlockHandle> {
+        &mut self.shader_parameter_blocks
+    }
     fn is_streaming(&self) -> &bool {
         &self.is_streaming
+    }
+    fn is_streaming_mut(&mut self) -> &mut bool {
+        &mut self.is_streaming
     }
     fn streaming_priority(&self) -> &f32 {
         &self.streaming_priority
     }
+    fn streaming_priority_mut(&mut self) -> &mut f32 {
+        &mut self.streaming_priority
+    }
     fn render_flags(&self) -> &u32 {
         &self.render_flags
+    }
+    fn render_flags_mut(&mut self) -> &mut u32 {
+        &mut self.render_flags
     }
     fn parent_render_flags_mask(&self) -> &u32 {
         &self.parent_render_flags_mask
     }
+    fn parent_render_flags_mask_mut(&mut self) -> &mut u32 {
+        &mut self.parent_render_flags_mask
+    }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
+    }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
     }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
     }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
+    }
     fn light_map_weight(&self) -> &f32 {
         &self.light_map_weight
+    }
+    fn light_map_weight_mut(&mut self) -> &mut f32 {
+        &mut self.light_map_weight
     }
     fn destruction_volume(&self) -> &Option<Arc<Mutex<dyn DestructionVolumeBaseDataTrait>>> {
         &self.destruction_volume
     }
+    fn destruction_volume_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DestructionVolumeBaseDataTrait>>> {
+        &mut self.destruction_volume
+    }
     fn edge_models(&self) -> &Option<Arc<Mutex<dyn EdgeModelsBaseDataTrait>>> {
         &self.edge_models
+    }
+    fn edge_models_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EdgeModelsBaseDataTrait>>> {
+        &mut self.edge_models
     }
     fn stencil_bits(&self) -> &u8 {
         &self.stencil_bits
     }
+    fn stencil_bits_mut(&mut self) -> &mut u8 {
+        &mut self.stencil_bits
+    }
     fn render_object_stencil_mask(&self) -> &u8 {
         &self.render_object_stencil_mask
+    }
+    fn render_object_stencil_mask_mut(&mut self) -> &mut u8 {
+        &mut self.render_object_stencil_mask
     }
     fn is_visible(&self) -> &bool {
         &self.is_visible
     }
+    fn is_visible_mut(&mut self) -> &mut bool {
+        &mut self.is_visible
+    }
     fn vertex_shader_fragment_override(&self) -> &super::render_base::VertexShaderFragmentHandle {
         &self.vertex_shader_fragment_override
     }
+    fn vertex_shader_fragment_override_mut(&mut self) -> &mut super::render_base::VertexShaderFragmentHandle {
+        &mut self.vertex_shader_fragment_override
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -14798,6 +19392,15 @@ impl TypeObject for MeshDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14829,55 +19432,103 @@ pub struct MeshStaticState {
 
 pub trait MeshStaticStateTrait: TypeObject {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
     fn mesh_deformer(&self) -> &MeshDeformerHandle;
+    fn mesh_deformer_mut(&mut self) -> &mut MeshDeformerHandle;
     fn vertex_shader_fragment(&self) -> &super::render_base::VertexShaderFragmentHandle;
+    fn vertex_shader_fragment_mut(&mut self) -> &mut super::render_base::VertexShaderFragmentHandle;
     fn procedural_animation_max_distance(&self) -> &f32;
+    fn procedural_animation_max_distance_mut(&mut self) -> &mut f32;
     fn shadow_lod_offset(&self) -> &u8;
+    fn shadow_lod_offset_mut(&mut self) -> &mut u8;
     fn is_terrain_shader_nodes_enable(&self) -> &bool;
+    fn is_terrain_shader_nodes_enable_mut(&mut self) -> &mut bool;
     fn use_for_bounding_box_calculations(&self) -> &bool;
+    fn use_for_bounding_box_calculations_mut(&mut self) -> &mut bool;
     fn use_parts_for_bounding_box_calculations(&self) -> &bool;
+    fn use_parts_for_bounding_box_calculations_mut(&mut self) -> &mut bool;
     fn decals_enable(&self) -> &bool;
+    fn decals_enable_mut(&mut self) -> &mut bool;
     fn shader_draw_order(&self) -> &i32;
+    fn shader_draw_order_mut(&mut self) -> &mut i32;
     fn shader_draw_order_sub_order(&self) -> &i32;
+    fn shader_draw_order_sub_order_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl MeshStaticStateTrait for MeshStaticState {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         &self.mesh
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &mut self.mesh
+    }
     fn mesh_deformer(&self) -> &MeshDeformerHandle {
         &self.mesh_deformer
+    }
+    fn mesh_deformer_mut(&mut self) -> &mut MeshDeformerHandle {
+        &mut self.mesh_deformer
     }
     fn vertex_shader_fragment(&self) -> &super::render_base::VertexShaderFragmentHandle {
         &self.vertex_shader_fragment
     }
+    fn vertex_shader_fragment_mut(&mut self) -> &mut super::render_base::VertexShaderFragmentHandle {
+        &mut self.vertex_shader_fragment
+    }
     fn procedural_animation_max_distance(&self) -> &f32 {
         &self.procedural_animation_max_distance
+    }
+    fn procedural_animation_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.procedural_animation_max_distance
     }
     fn shadow_lod_offset(&self) -> &u8 {
         &self.shadow_lod_offset
     }
+    fn shadow_lod_offset_mut(&mut self) -> &mut u8 {
+        &mut self.shadow_lod_offset
+    }
     fn is_terrain_shader_nodes_enable(&self) -> &bool {
         &self.is_terrain_shader_nodes_enable
+    }
+    fn is_terrain_shader_nodes_enable_mut(&mut self) -> &mut bool {
+        &mut self.is_terrain_shader_nodes_enable
     }
     fn use_for_bounding_box_calculations(&self) -> &bool {
         &self.use_for_bounding_box_calculations
     }
+    fn use_for_bounding_box_calculations_mut(&mut self) -> &mut bool {
+        &mut self.use_for_bounding_box_calculations
+    }
     fn use_parts_for_bounding_box_calculations(&self) -> &bool {
         &self.use_parts_for_bounding_box_calculations
+    }
+    fn use_parts_for_bounding_box_calculations_mut(&mut self) -> &mut bool {
+        &mut self.use_parts_for_bounding_box_calculations
     }
     fn decals_enable(&self) -> &bool {
         &self.decals_enable
     }
+    fn decals_enable_mut(&mut self) -> &mut bool {
+        &mut self.decals_enable
+    }
     fn shader_draw_order(&self) -> &i32 {
         &self.shader_draw_order
+    }
+    fn shader_draw_order_mut(&mut self) -> &mut i32 {
+        &mut self.shader_draw_order
     }
     fn shader_draw_order_sub_order(&self) -> &i32 {
         &self.shader_draw_order_sub_order
     }
+    fn shader_draw_order_sub_order_mut(&mut self) -> &mut i32 {
+        &mut self.shader_draw_order_sub_order
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -14975,6 +19626,15 @@ impl TypeObject for MeshStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15002,39 +19662,71 @@ pub struct ModelCreateInfo {
 
 pub trait ModelCreateInfoTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn bone_or_part_transforms(&self) -> &Vec<super::core::FbVec>;
+    fn bone_or_part_transforms_mut(&mut self) -> &mut Vec<super::core::FbVec>;
     fn should_apply_world_transform(&self) -> &bool;
+    fn should_apply_world_transform_mut(&mut self) -> &mut bool;
     fn should_apply_reference_translation(&self) -> &bool;
+    fn should_apply_reference_translation_mut(&mut self) -> &mut bool;
     fn reference_translation(&self) -> &super::core::Vec3;
+    fn reference_translation_mut(&mut self) -> &mut super::core::Vec3;
     fn is_visible(&self) -> &bool;
+    fn is_visible_mut(&mut self) -> &mut bool;
     fn is_world_space(&self) -> &bool;
+    fn is_world_space_mut(&mut self) -> &mut bool;
     fn parent_transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn parent_transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
 }
 
 impl ModelCreateInfoTrait for ModelCreateInfo {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn bone_or_part_transforms(&self) -> &Vec<super::core::FbVec> {
         &self.bone_or_part_transforms
+    }
+    fn bone_or_part_transforms_mut(&mut self) -> &mut Vec<super::core::FbVec> {
+        &mut self.bone_or_part_transforms
     }
     fn should_apply_world_transform(&self) -> &bool {
         &self.should_apply_world_transform
     }
+    fn should_apply_world_transform_mut(&mut self) -> &mut bool {
+        &mut self.should_apply_world_transform
+    }
     fn should_apply_reference_translation(&self) -> &bool {
         &self.should_apply_reference_translation
+    }
+    fn should_apply_reference_translation_mut(&mut self) -> &mut bool {
+        &mut self.should_apply_reference_translation
     }
     fn reference_translation(&self) -> &super::core::Vec3 {
         &self.reference_translation
     }
+    fn reference_translation_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.reference_translation
+    }
     fn is_visible(&self) -> &bool {
         &self.is_visible
+    }
+    fn is_visible_mut(&mut self) -> &mut bool {
+        &mut self.is_visible
     }
     fn is_world_space(&self) -> &bool {
         &self.is_world_space
     }
+    fn is_world_space_mut(&mut self) -> &mut bool {
+        &mut self.is_world_space
+    }
     fn parent_transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.parent_transform_space
+    }
+    fn parent_transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.parent_transform_space
     }
 }
 
@@ -15108,6 +19800,15 @@ impl TypeObject for ModelCreateInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15149,95 +19850,183 @@ pub struct ModelDynamicState {
 
 pub trait ModelDynamicStateTrait: TypeObject {
     fn bone_or_part_visible_flags(&self) -> &Vec<u8>;
+    fn bone_or_part_visible_flags_mut(&mut self) -> &mut Vec<u8>;
     fn children(&self) -> &Vec<ModelHandle>;
+    fn children_mut(&mut self) -> &mut Vec<ModelHandle>;
     fn shader_parameter_blocks(&self) -> &Vec<super::render_base::ShaderParameterBlockHandle>;
+    fn shader_parameter_blocks_mut(&mut self) -> &mut Vec<super::render_base::ShaderParameterBlockHandle>;
     fn fallback_branch(&self) -> &ModelHandle;
+    fn fallback_branch_mut(&mut self) -> &mut ModelHandle;
     fn object_variation_name_hash(&self) -> &u32;
+    fn object_variation_name_hash_mut(&mut self) -> &mut u32;
     fn render_flags(&self) -> &u32;
+    fn render_flags_mut(&mut self) -> &mut u32;
     fn parent_render_flags_mask(&self) -> &u32;
+    fn parent_render_flags_mask_mut(&mut self) -> &mut u32;
     fn streaming_priority(&self) -> &f32;
+    fn streaming_priority_mut(&mut self) -> &mut f32;
     fn is_meshes_visible(&self) -> &bool;
+    fn is_meshes_visible_mut(&mut self) -> &mut bool;
     fn is_occlusion_test_enable(&self) -> &bool;
+    fn is_occlusion_test_enable_mut(&mut self) -> &mut bool;
     fn was_visible_callback(&self) -> &WasVisibleHandle;
+    fn was_visible_callback_mut(&mut self) -> &mut WasVisibleHandle;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn render_fov_deg(&self) -> &f32;
+    fn render_fov_deg_mut(&mut self) -> &mut f32;
     fn custom_light_probe_type(&self) -> &super::core::LocalPlayerId;
+    fn custom_light_probe_type_mut(&mut self) -> &mut super::core::LocalPlayerId;
     fn cast_shadow_override(&self) -> &super::core::BoolOverride;
+    fn cast_shadow_override_mut(&mut self) -> &mut super::core::BoolOverride;
     fn stencil_bits(&self) -> &u8;
+    fn stencil_bits_mut(&mut self) -> &mut u8;
     fn render_object_stencil_mask(&self) -> &u8;
+    fn render_object_stencil_mask_mut(&mut self) -> &mut u8;
     fn fallback_disable_min_required_lod_index(&self) -> &i8;
+    fn fallback_disable_min_required_lod_index_mut(&mut self) -> &mut i8;
     fn light_probe_sample_offset(&self) -> &super::core::Vec3;
+    fn light_probe_sample_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl ModelDynamicStateTrait for ModelDynamicState {
     fn bone_or_part_visible_flags(&self) -> &Vec<u8> {
         &self.bone_or_part_visible_flags
     }
+    fn bone_or_part_visible_flags_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.bone_or_part_visible_flags
+    }
     fn children(&self) -> &Vec<ModelHandle> {
         &self.children
+    }
+    fn children_mut(&mut self) -> &mut Vec<ModelHandle> {
+        &mut self.children
     }
     fn shader_parameter_blocks(&self) -> &Vec<super::render_base::ShaderParameterBlockHandle> {
         &self.shader_parameter_blocks
     }
+    fn shader_parameter_blocks_mut(&mut self) -> &mut Vec<super::render_base::ShaderParameterBlockHandle> {
+        &mut self.shader_parameter_blocks
+    }
     fn fallback_branch(&self) -> &ModelHandle {
         &self.fallback_branch
+    }
+    fn fallback_branch_mut(&mut self) -> &mut ModelHandle {
+        &mut self.fallback_branch
     }
     fn object_variation_name_hash(&self) -> &u32 {
         &self.object_variation_name_hash
     }
+    fn object_variation_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.object_variation_name_hash
+    }
     fn render_flags(&self) -> &u32 {
         &self.render_flags
+    }
+    fn render_flags_mut(&mut self) -> &mut u32 {
+        &mut self.render_flags
     }
     fn parent_render_flags_mask(&self) -> &u32 {
         &self.parent_render_flags_mask
     }
+    fn parent_render_flags_mask_mut(&mut self) -> &mut u32 {
+        &mut self.parent_render_flags_mask
+    }
     fn streaming_priority(&self) -> &f32 {
         &self.streaming_priority
+    }
+    fn streaming_priority_mut(&mut self) -> &mut f32 {
+        &mut self.streaming_priority
     }
     fn is_meshes_visible(&self) -> &bool {
         &self.is_meshes_visible
     }
+    fn is_meshes_visible_mut(&mut self) -> &mut bool {
+        &mut self.is_meshes_visible
+    }
     fn is_occlusion_test_enable(&self) -> &bool {
         &self.is_occlusion_test_enable
+    }
+    fn is_occlusion_test_enable_mut(&mut self) -> &mut bool {
+        &mut self.is_occlusion_test_enable
     }
     fn was_visible_callback(&self) -> &WasVisibleHandle {
         &self.was_visible_callback
     }
+    fn was_visible_callback_mut(&mut self) -> &mut WasVisibleHandle {
+        &mut self.was_visible_callback
+    }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
+    }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
     }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
     }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
+    }
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
+    }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
     }
     fn render_fov_deg(&self) -> &f32 {
         &self.render_fov_deg
     }
+    fn render_fov_deg_mut(&mut self) -> &mut f32 {
+        &mut self.render_fov_deg
+    }
     fn custom_light_probe_type(&self) -> &super::core::LocalPlayerId {
         &self.custom_light_probe_type
+    }
+    fn custom_light_probe_type_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        &mut self.custom_light_probe_type
     }
     fn cast_shadow_override(&self) -> &super::core::BoolOverride {
         &self.cast_shadow_override
     }
+    fn cast_shadow_override_mut(&mut self) -> &mut super::core::BoolOverride {
+        &mut self.cast_shadow_override
+    }
     fn stencil_bits(&self) -> &u8 {
         &self.stencil_bits
+    }
+    fn stencil_bits_mut(&mut self) -> &mut u8 {
+        &mut self.stencil_bits
     }
     fn render_object_stencil_mask(&self) -> &u8 {
         &self.render_object_stencil_mask
     }
+    fn render_object_stencil_mask_mut(&mut self) -> &mut u8 {
+        &mut self.render_object_stencil_mask
+    }
     fn fallback_disable_min_required_lod_index(&self) -> &i8 {
         &self.fallback_disable_min_required_lod_index
+    }
+    fn fallback_disable_min_required_lod_index_mut(&mut self) -> &mut i8 {
+        &mut self.fallback_disable_min_required_lod_index
     }
     fn light_probe_sample_offset(&self) -> &super::core::Vec3 {
         &self.light_probe_sample_offset
     }
+    fn light_probe_sample_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.light_probe_sample_offset
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15395,6 +20184,15 @@ impl TypeObject for ModelDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15425,51 +20223,95 @@ pub struct ModelStaticState {
 
 pub trait ModelStaticStateTrait: TypeObject {
     fn mesh_type(&self) -> &super::render_base::MeshType;
+    fn mesh_type_mut(&mut self) -> &mut super::render_base::MeshType;
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn bone_or_part_count(&self) -> &u32;
+    fn bone_or_part_count_mut(&mut self) -> &mut u32;
     fn movable_parts(&self) -> &bool;
+    fn movable_parts_mut(&mut self) -> &mut bool;
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride;
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride;
     fn hierarchy_level(&self) -> &ModelHierarchyLevel;
+    fn hierarchy_level_mut(&mut self) -> &mut ModelHierarchyLevel;
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides;
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides;
     fn use_top_of_bounding_box_for_light_probe(&self) -> &bool;
+    fn use_top_of_bounding_box_for_light_probe_mut(&mut self) -> &mut bool;
     fn include_bounding_box_when_not_visible(&self) -> &bool;
+    fn include_bounding_box_when_not_visible_mut(&mut self) -> &mut bool;
     fn lightmap_hash(&self) -> &u32;
+    fn lightmap_hash_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl ModelStaticStateTrait for ModelStaticState {
     fn mesh_type(&self) -> &super::render_base::MeshType {
         &self.mesh_type
     }
+    fn mesh_type_mut(&mut self) -> &mut super::render_base::MeshType {
+        &mut self.mesh_type
+    }
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
+    }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
     }
     fn bone_or_part_count(&self) -> &u32 {
         &self.bone_or_part_count
     }
+    fn bone_or_part_count_mut(&mut self) -> &mut u32 {
+        &mut self.bone_or_part_count
+    }
     fn movable_parts(&self) -> &bool {
         &self.movable_parts
+    }
+    fn movable_parts_mut(&mut self) -> &mut bool {
+        &mut self.movable_parts
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         &self.radiosity_type_override
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        &mut self.radiosity_type_override
+    }
     fn hierarchy_level(&self) -> &ModelHierarchyLevel {
         &self.hierarchy_level
+    }
+    fn hierarchy_level_mut(&mut self) -> &mut ModelHierarchyLevel {
+        &mut self.hierarchy_level
     }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         &self.rendering_overrides
     }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        &mut self.rendering_overrides
+    }
     fn use_top_of_bounding_box_for_light_probe(&self) -> &bool {
         &self.use_top_of_bounding_box_for_light_probe
+    }
+    fn use_top_of_bounding_box_for_light_probe_mut(&mut self) -> &mut bool {
+        &mut self.use_top_of_bounding_box_for_light_probe
     }
     fn include_bounding_box_when_not_visible(&self) -> &bool {
         &self.include_bounding_box_when_not_visible
     }
+    fn include_bounding_box_when_not_visible_mut(&mut self) -> &mut bool {
+        &mut self.include_bounding_box_when_not_visible
+    }
     fn lightmap_hash(&self) -> &u32 {
         &self.lightmap_hash
     }
+    fn lightmap_hash_mut(&mut self) -> &mut u32 {
+        &mut self.lightmap_hash
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15561,6 +20403,15 @@ impl TypeObject for ModelStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15600,6 +20451,15 @@ impl TypeObject for ModelHierarchyLevel {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15621,15 +20481,23 @@ pub struct VisibleAreaDynamicState {
 
 pub trait VisibleAreaDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl VisibleAreaDynamicStateTrait for VisibleAreaDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15667,6 +20535,15 @@ impl TypeObject for VisibleAreaDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15689,19 +20566,31 @@ pub struct VisibleAreaStaticState {
 
 pub trait VisibleAreaStaticStateTrait: TypeObject {
     fn visual_cull_screen_area(&self) -> &f32;
+    fn visual_cull_screen_area_mut(&mut self) -> &mut f32;
     fn was_visible_handle(&self) -> &WasVisibleHandle;
+    fn was_visible_handle_mut(&mut self) -> &mut WasVisibleHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl VisibleAreaStaticStateTrait for VisibleAreaStaticState {
     fn visual_cull_screen_area(&self) -> &f32 {
         &self.visual_cull_screen_area
     }
+    fn visual_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.visual_cull_screen_area
+    }
     fn was_visible_handle(&self) -> &WasVisibleHandle {
         &self.was_visible_handle
     }
+    fn was_visible_handle_mut(&mut self) -> &mut WasVisibleHandle {
+        &mut self.was_visible_handle
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15745,6 +20634,15 @@ impl TypeObject for VisibleAreaStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15767,19 +20665,31 @@ pub struct PlanarReflectionLocatorDynamicState {
 
 pub trait PlanarReflectionLocatorDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl PlanarReflectionLocatorDynamicStateTrait for PlanarReflectionLocatorDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15822,6 +20732,15 @@ impl TypeObject for PlanarReflectionLocatorDynamicState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -15868,6 +20787,15 @@ impl TypeObject for PlanarReflectionLocatorStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15891,23 +20819,39 @@ pub struct LightProbeVolumeDynamicState {
 
 pub trait LightProbeVolumeDynamicStateTrait: TypeObject {
     fn blend_distance(&self) -> &f32;
+    fn blend_distance_mut(&mut self) -> &mut f32;
     fn priority(&self) -> &u32;
+    fn priority_mut(&mut self) -> &mut u32;
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl LightProbeVolumeDynamicStateTrait for LightProbeVolumeDynamicState {
     fn blend_distance(&self) -> &f32 {
         &self.blend_distance
     }
+    fn blend_distance_mut(&mut self) -> &mut f32 {
+        &mut self.blend_distance
+    }
     fn priority(&self) -> &u32 {
         &self.priority
+    }
+    fn priority_mut(&mut self) -> &mut u32 {
+        &mut self.priority
     }
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15957,6 +20901,15 @@ impl TypeObject for LightProbeVolumeDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15978,15 +20931,23 @@ pub struct LightProbeVolumeStaticState {
 
 pub trait LightProbeVolumeStaticStateTrait: TypeObject {
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl LightProbeVolumeStaticStateTrait for LightProbeVolumeStaticState {
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
     }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16024,6 +20985,15 @@ impl TypeObject for LightProbeVolumeStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16046,19 +21016,31 @@ pub struct DynamicEnlightenDynamicState {
 
 pub trait DynamicEnlightenDynamicStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn database_version(&self) -> &i32;
+    fn database_version_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl DynamicEnlightenDynamicStateTrait for DynamicEnlightenDynamicState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn database_version(&self) -> &i32 {
         &self.database_version
     }
+    fn database_version_mut(&mut self) -> &mut i32 {
+        &mut self.database_version
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16102,6 +21084,15 @@ impl TypeObject for DynamicEnlightenDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16125,23 +21116,39 @@ pub struct DynamicEnlightenStaticState {
 
 pub trait DynamicEnlightenStaticStateTrait: TypeObject {
     fn priority(&self) -> &i32;
+    fn priority_mut(&mut self) -> &mut i32;
     fn enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>>;
+    fn enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>>;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl DynamicEnlightenStaticStateTrait for DynamicEnlightenStaticState {
     fn priority(&self) -> &i32 {
         &self.priority
     }
+    fn priority_mut(&mut self) -> &mut i32 {
+        &mut self.priority
+    }
     fn enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>> {
         &self.enlighten_data
+    }
+    fn enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>> {
+        &mut self.enlighten_data
     }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
     }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16191,6 +21198,15 @@ impl TypeObject for DynamicEnlightenStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16213,19 +21229,31 @@ pub struct StaticEnlightenDynamicState {
 
 pub trait StaticEnlightenDynamicStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn mixed(&self) -> &bool;
+    fn mixed_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl StaticEnlightenDynamicStateTrait for StaticEnlightenDynamicState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn mixed(&self) -> &bool {
         &self.mixed
     }
+    fn mixed_mut(&mut self) -> &mut bool {
+        &mut self.mixed
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16269,6 +21297,15 @@ impl TypeObject for StaticEnlightenDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16294,31 +21331,55 @@ pub struct StaticEnlightenStaticState {
 
 pub trait StaticEnlightenStaticStateTrait: TypeObject {
     fn priority(&self) -> &i32;
+    fn priority_mut(&mut self) -> &mut i32;
     fn enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::StaticEnlightenBaseAssetTrait>>>;
+    fn enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::StaticEnlightenBaseAssetTrait>>>;
     fn dynamic_enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>>;
+    fn dynamic_enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>>;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn flux_auto_bake(&self) -> &bool;
+    fn flux_auto_bake_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl StaticEnlightenStaticStateTrait for StaticEnlightenStaticState {
     fn priority(&self) -> &i32 {
         &self.priority
     }
+    fn priority_mut(&mut self) -> &mut i32 {
+        &mut self.priority
+    }
     fn enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::StaticEnlightenBaseAssetTrait>>> {
         &self.enlighten_data
+    }
+    fn enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::StaticEnlightenBaseAssetTrait>>> {
+        &mut self.enlighten_data
     }
     fn dynamic_enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>> {
         &self.dynamic_enlighten_data
     }
+    fn dynamic_enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>> {
+        &mut self.dynamic_enlighten_data
+    }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
+    }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
     }
     fn flux_auto_bake(&self) -> &bool {
         &self.flux_auto_bake
     }
+    fn flux_auto_bake_mut(&mut self) -> &mut bool {
+        &mut self.flux_auto_bake
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16380,6 +21441,15 @@ impl TypeObject for StaticEnlightenStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16404,27 +21474,47 @@ pub struct RadiosityModifierDynamicState {
 
 pub trait RadiosityModifierDynamicStateTrait: TypeObject {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn bounce_scale(&self) -> &f32;
+    fn bounce_scale_mut(&mut self) -> &mut f32;
     fn sun_scale(&self) -> &f32;
+    fn sun_scale_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl RadiosityModifierDynamicStateTrait for RadiosityModifierDynamicState {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn bounce_scale(&self) -> &f32 {
         &self.bounce_scale
     }
+    fn bounce_scale_mut(&mut self) -> &mut f32 {
+        &mut self.bounce_scale
+    }
     fn sun_scale(&self) -> &f32 {
         &self.sun_scale
     }
+    fn sun_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_scale
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16480,6 +21570,15 @@ impl TypeObject for RadiosityModifierDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16525,6 +21624,15 @@ impl TypeObject for RadiosityModifierStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16547,19 +21655,31 @@ pub struct RadiosityMaterialTriggerDynamicState {
 
 pub trait RadiosityMaterialTriggerDynamicStateTrait: TypeObject {
     fn opacity(&self) -> &f32;
+    fn opacity_mut(&mut self) -> &mut f32;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl RadiosityMaterialTriggerDynamicStateTrait for RadiosityMaterialTriggerDynamicState {
     fn opacity(&self) -> &f32 {
         &self.opacity
     }
+    fn opacity_mut(&mut self) -> &mut f32 {
+        &mut self.opacity
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16603,6 +21723,15 @@ impl TypeObject for RadiosityMaterialTriggerDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16624,15 +21753,23 @@ pub struct RadiosityMaterialTriggerStaticState {
 
 pub trait RadiosityMaterialTriggerStaticStateTrait: TypeObject {
     fn material_guid(&self) -> &glacier_util::guid::Guid;
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl RadiosityMaterialTriggerStaticStateTrait for RadiosityMaterialTriggerStaticState {
     fn material_guid(&self) -> &glacier_util::guid::Guid {
         &self.material_guid
     }
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.material_guid
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16670,6 +21807,15 @@ impl TypeObject for RadiosityMaterialTriggerStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16695,31 +21841,55 @@ pub struct RadiosityMaterialDynamicState {
 
 pub trait RadiosityMaterialDynamicStateTrait: TypeObject {
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn emissive_intensity(&self) -> &f32;
+    fn emissive_intensity_mut(&mut self) -> &mut f32;
     fn opacity(&self) -> &f32;
+    fn opacity_mut(&mut self) -> &mut f32;
     fn backface_type(&self) -> &super::render_base::RadiosityBackfaceType;
+    fn backface_type_mut(&mut self) -> &mut super::render_base::RadiosityBackfaceType;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl RadiosityMaterialDynamicStateTrait for RadiosityMaterialDynamicState {
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn emissive_intensity(&self) -> &f32 {
         &self.emissive_intensity
+    }
+    fn emissive_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.emissive_intensity
     }
     fn opacity(&self) -> &f32 {
         &self.opacity
     }
+    fn opacity_mut(&mut self) -> &mut f32 {
+        &mut self.opacity
+    }
     fn backface_type(&self) -> &super::render_base::RadiosityBackfaceType {
         &self.backface_type
+    }
+    fn backface_type_mut(&mut self) -> &mut super::render_base::RadiosityBackfaceType {
+        &mut self.backface_type
     }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16781,6 +21951,15 @@ impl TypeObject for RadiosityMaterialDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16803,19 +21982,31 @@ pub struct RadiosityMaterialStaticState {
 
 pub trait RadiosityMaterialStaticStateTrait: TypeObject {
     fn material_guid(&self) -> &glacier_util::guid::Guid;
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn material_update_mask(&self) -> &u8;
+    fn material_update_mask_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl RadiosityMaterialStaticStateTrait for RadiosityMaterialStaticState {
     fn material_guid(&self) -> &glacier_util::guid::Guid {
         &self.material_guid
     }
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.material_guid
+    }
     fn material_update_mask(&self) -> &u8 {
         &self.material_update_mask
     }
+    fn material_update_mask_mut(&mut self) -> &mut u8 {
+        &mut self.material_update_mask
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16858,6 +22049,15 @@ impl TypeObject for RadiosityMaterialStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16904,6 +22104,15 @@ impl TypeObject for GroundHeightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16926,19 +22135,31 @@ pub struct GroundHeightStaticState {
 
 pub trait GroundHeightStaticStateTrait: TypeObject {
     fn ground_origo(&self) -> &super::core::Vec3;
+    fn ground_origo_mut(&mut self) -> &mut super::core::Vec3;
     fn data(&self) -> &GroundHeightData;
+    fn data_mut(&mut self) -> &mut GroundHeightData;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl GroundHeightStaticStateTrait for GroundHeightStaticState {
     fn ground_origo(&self) -> &super::core::Vec3 {
         &self.ground_origo
     }
+    fn ground_origo_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ground_origo
+    }
     fn data(&self) -> &GroundHeightData {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut GroundHeightData {
+        &mut self.data
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16982,6 +22203,15 @@ impl TypeObject for GroundHeightStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17004,19 +22234,31 @@ pub struct GroundHeightData {
 
 pub trait GroundHeightDataTrait: TypeObject {
     fn world_size(&self) -> &f32;
+    fn world_size_mut(&mut self) -> &mut f32;
     fn height_span(&self) -> &super::core::Vec2;
+    fn height_span_mut(&mut self) -> &mut super::core::Vec2;
     fn data(&self) -> &Vec<u16>;
+    fn data_mut(&mut self) -> &mut Vec<u16>;
 }
 
 impl GroundHeightDataTrait for GroundHeightData {
     fn world_size(&self) -> &f32 {
         &self.world_size
     }
+    fn world_size_mut(&mut self) -> &mut f32 {
+        &mut self.world_size
+    }
     fn height_span(&self) -> &super::core::Vec2 {
         &self.height_span
     }
+    fn height_span_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.height_span
+    }
     fn data(&self) -> &Vec<u16> {
         &self.data
+    }
+    fn data_mut(&mut self) -> &mut Vec<u16> {
+        &mut self.data
     }
 }
 
@@ -17060,6 +22302,15 @@ impl TypeObject for GroundHeightData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17082,19 +22333,31 @@ pub struct RenderVolumeDynamicState {
 
 pub trait RenderVolumeDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl RenderVolumeDynamicStateTrait for RenderVolumeDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -17138,6 +22401,15 @@ impl TypeObject for RenderVolumeDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17161,23 +22433,39 @@ pub struct RenderVolumeStaticState {
 
 pub trait RenderVolumeStaticStateTrait: TypeObject {
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn user_masks(&self) -> &super::core::Vec4;
+    fn user_masks_mut(&mut self) -> &mut super::core::Vec4;
     fn transform_type(&self) -> &RenderVolumeTransformType;
+    fn transform_type_mut(&mut self) -> &mut RenderVolumeTransformType;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl RenderVolumeStaticStateTrait for RenderVolumeStaticState {
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.shader
     }
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.shader
+    }
     fn user_masks(&self) -> &super::core::Vec4 {
         &self.user_masks
+    }
+    fn user_masks_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.user_masks
     }
     fn transform_type(&self) -> &RenderVolumeTransformType {
         &self.transform_type
     }
+    fn transform_type_mut(&mut self) -> &mut RenderVolumeTransformType {
+        &mut self.transform_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -17227,6 +22515,15 @@ impl TypeObject for RenderVolumeStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17264,6 +22561,15 @@ impl TypeObject for RenderVolumeTransformType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17333,203 +22639,399 @@ pub struct PbrRectangularLightDynamicState {
 
 pub trait PbrRectangularLightDynamicStateTrait: TypeObject {
     fn shape(&self) -> &super::render_base::RectangularLightShape;
+    fn shape_mut(&mut self) -> &mut super::render_base::RectangularLightShape;
     fn outer_angle(&self) -> &f32;
+    fn outer_angle_mut(&mut self) -> &mut f32;
     fn aspect(&self) -> &f32;
+    fn aspect_mut(&mut self) -> &mut f32;
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn height(&self) -> &f32;
+    fn height_mut(&mut self) -> &mut f32;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn shadow_max_angle(&self) -> &f32;
+    fn shadow_max_angle_mut(&mut self) -> &mut f32;
     fn shadow_fade_out_range(&self) -> &f32;
+    fn shadow_fade_out_range_mut(&mut self) -> &mut f32;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn attenuation_radius(&self) -> &f32;
+    fn attenuation_radius_mut(&mut self) -> &mut f32;
     fn emissive_shape_enable(&self) -> &bool;
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn light_unit(&self) -> &super::render_base::LightUnitType;
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType;
     fn affect_diffuse(&self) -> &bool;
+    fn affect_diffuse_mut(&mut self) -> &mut bool;
     fn affect_specular(&self) -> &bool;
+    fn affect_specular_mut(&mut self) -> &mut bool;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_near_radius(&self) -> &f32;
+    fn shadow_near_radius_mut(&mut self) -> &mut f32;
     fn shadow_far_radius(&self) -> &f32;
+    fn shadow_far_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn affect_radiosity(&self) -> &bool;
+    fn affect_radiosity_mut(&mut self) -> &mut bool;
     fn radiosity_color_scale(&self) -> &super::core::Vec3;
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
     fn cull_screen_area(&self) -> &f32;
+    fn cull_screen_area_mut(&mut self) -> &mut f32;
     fn fade_screen_area(&self) -> &f32;
+    fn fade_screen_area_mut(&mut self) -> &mut f32;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn fade_distance(&self) -> &f32;
+    fn fade_distance_mut(&mut self) -> &mut f32;
     fn shadow_cull_screen_area(&self) -> &f32;
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_fade_screen_area(&self) -> &f32;
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_cull_distance(&self) -> &f32;
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32;
     fn shadow_fade_distance(&self) -> &f32;
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn intensity_multiplier(&self) -> &f32;
+    fn intensity_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u16;
+    fn field_flag_changed1_mut(&mut self) -> &mut u16;
 }
 
 impl PbrRectangularLightDynamicStateTrait for PbrRectangularLightDynamicState {
     fn shape(&self) -> &super::render_base::RectangularLightShape {
         &self.shape
     }
+    fn shape_mut(&mut self) -> &mut super::render_base::RectangularLightShape {
+        &mut self.shape
+    }
     fn outer_angle(&self) -> &f32 {
         &self.outer_angle
+    }
+    fn outer_angle_mut(&mut self) -> &mut f32 {
+        &mut self.outer_angle
     }
     fn aspect(&self) -> &f32 {
         &self.aspect
     }
+    fn aspect_mut(&mut self) -> &mut f32 {
+        &mut self.aspect
+    }
     fn width(&self) -> &f32 {
         &self.width
+    }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
     }
     fn height(&self) -> &f32 {
         &self.height
     }
+    fn height_mut(&mut self) -> &mut f32 {
+        &mut self.height
+    }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
+    }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
     }
     fn shadow_max_angle(&self) -> &f32 {
         &self.shadow_max_angle
     }
+    fn shadow_max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_max_angle
+    }
     fn shadow_fade_out_range(&self) -> &f32 {
         &self.shadow_fade_out_range
+    }
+    fn shadow_fade_out_range_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_out_range
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
     }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
+    }
     fn attenuation_radius(&self) -> &f32 {
         &self.attenuation_radius
+    }
+    fn attenuation_radius_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_radius
     }
     fn emissive_shape_enable(&self) -> &bool {
         &self.emissive_shape_enable
     }
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_shape_enable
+    }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
+    }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
     }
     fn light_unit(&self) -> &super::render_base::LightUnitType {
         &self.light_unit
     }
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType {
+        &mut self.light_unit
+    }
     fn affect_diffuse(&self) -> &bool {
         &self.affect_diffuse
+    }
+    fn affect_diffuse_mut(&mut self) -> &mut bool {
+        &mut self.affect_diffuse
     }
     fn affect_specular(&self) -> &bool {
         &self.affect_specular
     }
+    fn affect_specular_mut(&mut self) -> &mut bool {
+        &mut self.affect_specular
+    }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
+    }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
     }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
     }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
+    }
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric
+    }
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric
     }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
     }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
+    }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
+    }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
     }
     fn shadow_near_radius(&self) -> &f32 {
         &self.shadow_near_radius
     }
+    fn shadow_near_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_near_radius
+    }
     fn shadow_far_radius(&self) -> &f32 {
         &self.shadow_far_radius
+    }
+    fn shadow_far_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_far_radius
     }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
     }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
+    }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
+    }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
     }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
     }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
+    }
     fn affect_radiosity(&self) -> &bool {
         &self.affect_radiosity
+    }
+    fn affect_radiosity_mut(&mut self) -> &mut bool {
+        &mut self.affect_radiosity
     }
     fn radiosity_color_scale(&self) -> &super::core::Vec3 {
         &self.radiosity_color_scale
     }
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.radiosity_color_scale
+    }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
+    }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
     }
     fn cull_screen_area(&self) -> &f32 {
         &self.cull_screen_area
     }
+    fn cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area
+    }
     fn fade_screen_area(&self) -> &f32 {
         &self.fade_screen_area
+    }
+    fn fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.fade_screen_area
     }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
     }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
+    }
     fn fade_distance(&self) -> &f32 {
         &self.fade_distance
+    }
+    fn fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_distance
     }
     fn shadow_cull_screen_area(&self) -> &f32 {
         &self.shadow_cull_screen_area
     }
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_screen_area
+    }
     fn shadow_fade_screen_area(&self) -> &f32 {
         &self.shadow_fade_screen_area
+    }
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_screen_area
     }
     fn shadow_cull_distance(&self) -> &f32 {
         &self.shadow_cull_distance
     }
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_distance
+    }
     fn shadow_fade_distance(&self) -> &f32 {
         &self.shadow_fade_distance
+    }
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_distance
     }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
     }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
+    }
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
+    }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
     }
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
     }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
+    }
     fn intensity_multiplier(&self) -> &f32 {
         &self.intensity_multiplier
+    }
+    fn intensity_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.intensity_multiplier
     }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
     }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
+    }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
+    }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
     }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
     }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
+    }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
+    }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
     }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
     }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
     }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
+    }
     fn field_flag_changed1(&self) -> &u16 {
         &self.field_flag_changed1
+    }
+    fn field_flag_changed1_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed1
     }
 }
 
@@ -17849,6 +23351,15 @@ impl TypeObject for PbrRectangularLightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17870,15 +23381,23 @@ pub struct PbrRectangularLightStaticState {
 
 pub trait PbrRectangularLightStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl PbrRectangularLightStaticStateTrait for PbrRectangularLightStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -17915,6 +23434,15 @@ impl TypeObject for PbrRectangularLightStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -17980,187 +23508,367 @@ pub struct PbrTubeLightDynamicState {
 
 pub trait PbrTubeLightDynamicStateTrait: TypeObject {
     fn tube_radius(&self) -> &f32;
+    fn tube_radius_mut(&mut self) -> &mut f32;
     fn tube_width(&self) -> &f32;
+    fn tube_width_mut(&mut self) -> &mut f32;
     fn only_hempishere(&self) -> &bool;
+    fn only_hempishere_mut(&mut self) -> &mut bool;
     fn is_capsule(&self) -> &bool;
+    fn is_capsule_mut(&mut self) -> &mut bool;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn attenuation_radius(&self) -> &f32;
+    fn attenuation_radius_mut(&mut self) -> &mut f32;
     fn emissive_shape_enable(&self) -> &bool;
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn light_unit(&self) -> &super::render_base::LightUnitType;
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType;
     fn affect_diffuse(&self) -> &bool;
+    fn affect_diffuse_mut(&mut self) -> &mut bool;
     fn affect_specular(&self) -> &bool;
+    fn affect_specular_mut(&mut self) -> &mut bool;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_near_radius(&self) -> &f32;
+    fn shadow_near_radius_mut(&mut self) -> &mut f32;
     fn shadow_far_radius(&self) -> &f32;
+    fn shadow_far_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn affect_radiosity(&self) -> &bool;
+    fn affect_radiosity_mut(&mut self) -> &mut bool;
     fn radiosity_color_scale(&self) -> &super::core::Vec3;
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
     fn cull_screen_area(&self) -> &f32;
+    fn cull_screen_area_mut(&mut self) -> &mut f32;
     fn fade_screen_area(&self) -> &f32;
+    fn fade_screen_area_mut(&mut self) -> &mut f32;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn fade_distance(&self) -> &f32;
+    fn fade_distance_mut(&mut self) -> &mut f32;
     fn shadow_cull_screen_area(&self) -> &f32;
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_fade_screen_area(&self) -> &f32;
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_cull_distance(&self) -> &f32;
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32;
     fn shadow_fade_distance(&self) -> &f32;
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn intensity_multiplier(&self) -> &f32;
+    fn intensity_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u16;
+    fn field_flag_changed1_mut(&mut self) -> &mut u16;
 }
 
 impl PbrTubeLightDynamicStateTrait for PbrTubeLightDynamicState {
     fn tube_radius(&self) -> &f32 {
         &self.tube_radius
     }
+    fn tube_radius_mut(&mut self) -> &mut f32 {
+        &mut self.tube_radius
+    }
     fn tube_width(&self) -> &f32 {
         &self.tube_width
+    }
+    fn tube_width_mut(&mut self) -> &mut f32 {
+        &mut self.tube_width
     }
     fn only_hempishere(&self) -> &bool {
         &self.only_hempishere
     }
+    fn only_hempishere_mut(&mut self) -> &mut bool {
+        &mut self.only_hempishere
+    }
     fn is_capsule(&self) -> &bool {
         &self.is_capsule
+    }
+    fn is_capsule_mut(&mut self) -> &mut bool {
+        &mut self.is_capsule
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
     }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
+    }
     fn attenuation_radius(&self) -> &f32 {
         &self.attenuation_radius
+    }
+    fn attenuation_radius_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_radius
     }
     fn emissive_shape_enable(&self) -> &bool {
         &self.emissive_shape_enable
     }
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_shape_enable
+    }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
+    }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
     }
     fn light_unit(&self) -> &super::render_base::LightUnitType {
         &self.light_unit
     }
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType {
+        &mut self.light_unit
+    }
     fn affect_diffuse(&self) -> &bool {
         &self.affect_diffuse
+    }
+    fn affect_diffuse_mut(&mut self) -> &mut bool {
+        &mut self.affect_diffuse
     }
     fn affect_specular(&self) -> &bool {
         &self.affect_specular
     }
+    fn affect_specular_mut(&mut self) -> &mut bool {
+        &mut self.affect_specular
+    }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
+    }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
     }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
     }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
+    }
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric
+    }
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric
     }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
     }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
+    }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
+    }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
     }
     fn shadow_near_radius(&self) -> &f32 {
         &self.shadow_near_radius
     }
+    fn shadow_near_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_near_radius
+    }
     fn shadow_far_radius(&self) -> &f32 {
         &self.shadow_far_radius
+    }
+    fn shadow_far_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_far_radius
     }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
     }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
+    }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
+    }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
     }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
     }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
+    }
     fn affect_radiosity(&self) -> &bool {
         &self.affect_radiosity
+    }
+    fn affect_radiosity_mut(&mut self) -> &mut bool {
+        &mut self.affect_radiosity
     }
     fn radiosity_color_scale(&self) -> &super::core::Vec3 {
         &self.radiosity_color_scale
     }
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.radiosity_color_scale
+    }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
+    }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
     }
     fn cull_screen_area(&self) -> &f32 {
         &self.cull_screen_area
     }
+    fn cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area
+    }
     fn fade_screen_area(&self) -> &f32 {
         &self.fade_screen_area
+    }
+    fn fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.fade_screen_area
     }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
     }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
+    }
     fn fade_distance(&self) -> &f32 {
         &self.fade_distance
+    }
+    fn fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_distance
     }
     fn shadow_cull_screen_area(&self) -> &f32 {
         &self.shadow_cull_screen_area
     }
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_screen_area
+    }
     fn shadow_fade_screen_area(&self) -> &f32 {
         &self.shadow_fade_screen_area
+    }
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_screen_area
     }
     fn shadow_cull_distance(&self) -> &f32 {
         &self.shadow_cull_distance
     }
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_distance
+    }
     fn shadow_fade_distance(&self) -> &f32 {
         &self.shadow_fade_distance
+    }
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_distance
     }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
     }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
+    }
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
+    }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
     }
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
     }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
+    }
     fn intensity_multiplier(&self) -> &f32 {
         &self.intensity_multiplier
+    }
+    fn intensity_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.intensity_multiplier
     }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
     }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
+    }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
+    }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
     }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
     }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
+    }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
+    }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
     }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
     }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
     }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
+    }
     fn field_flag_changed1(&self) -> &u16 {
         &self.field_flag_changed1
+    }
+    fn field_flag_changed1_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed1
     }
 }
 
@@ -18456,6 +24164,15 @@ impl TypeObject for PbrTubeLightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18477,15 +24194,23 @@ pub struct PbrTubeLightStaticState {
 
 pub trait PbrTubeLightStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl PbrTubeLightStaticStateTrait for PbrTubeLightStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -18522,6 +24247,15 @@ impl TypeObject for PbrTubeLightStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -18591,203 +24325,399 @@ pub struct PbrSpotLightDynamicState {
 
 pub trait PbrSpotLightDynamicStateTrait: TypeObject {
     fn disc_radius(&self) -> &f32;
+    fn disc_radius_mut(&mut self) -> &mut f32;
     fn inner_angle(&self) -> &f32;
+    fn inner_angle_mut(&mut self) -> &mut f32;
     fn outer_angle(&self) -> &f32;
+    fn outer_angle_mut(&mut self) -> &mut f32;
     fn i_e_s_profile(&self) -> &Option<Arc<Mutex<dyn IesProfileAssetTrait>>>;
+    fn i_e_s_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn IesProfileAssetTrait>>>;
     fn use_i_e_s_profile_as_mask(&self) -> &bool;
+    fn use_i_e_s_profile_as_mask_mut(&mut self) -> &mut bool;
     fn i_e_s_multiplier(&self) -> &f32;
+    fn i_e_s_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_max_angle(&self) -> &f32;
+    fn shadow_max_angle_mut(&mut self) -> &mut f32;
     fn shadow_fade_out_range(&self) -> &f32;
+    fn shadow_fade_out_range_mut(&mut self) -> &mut f32;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn attenuation_radius(&self) -> &f32;
+    fn attenuation_radius_mut(&mut self) -> &mut f32;
     fn emissive_shape_enable(&self) -> &bool;
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn light_unit(&self) -> &super::render_base::LightUnitType;
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType;
     fn affect_diffuse(&self) -> &bool;
+    fn affect_diffuse_mut(&mut self) -> &mut bool;
     fn affect_specular(&self) -> &bool;
+    fn affect_specular_mut(&mut self) -> &mut bool;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_near_radius(&self) -> &f32;
+    fn shadow_near_radius_mut(&mut self) -> &mut f32;
     fn shadow_far_radius(&self) -> &f32;
+    fn shadow_far_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn affect_radiosity(&self) -> &bool;
+    fn affect_radiosity_mut(&mut self) -> &mut bool;
     fn radiosity_color_scale(&self) -> &super::core::Vec3;
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
     fn cull_screen_area(&self) -> &f32;
+    fn cull_screen_area_mut(&mut self) -> &mut f32;
     fn fade_screen_area(&self) -> &f32;
+    fn fade_screen_area_mut(&mut self) -> &mut f32;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn fade_distance(&self) -> &f32;
+    fn fade_distance_mut(&mut self) -> &mut f32;
     fn shadow_cull_screen_area(&self) -> &f32;
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_fade_screen_area(&self) -> &f32;
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_cull_distance(&self) -> &f32;
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32;
     fn shadow_fade_distance(&self) -> &f32;
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn intensity_multiplier(&self) -> &f32;
+    fn intensity_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u16;
+    fn field_flag_changed1_mut(&mut self) -> &mut u16;
 }
 
 impl PbrSpotLightDynamicStateTrait for PbrSpotLightDynamicState {
     fn disc_radius(&self) -> &f32 {
         &self.disc_radius
     }
+    fn disc_radius_mut(&mut self) -> &mut f32 {
+        &mut self.disc_radius
+    }
     fn inner_angle(&self) -> &f32 {
         &self.inner_angle
+    }
+    fn inner_angle_mut(&mut self) -> &mut f32 {
+        &mut self.inner_angle
     }
     fn outer_angle(&self) -> &f32 {
         &self.outer_angle
     }
+    fn outer_angle_mut(&mut self) -> &mut f32 {
+        &mut self.outer_angle
+    }
     fn i_e_s_profile(&self) -> &Option<Arc<Mutex<dyn IesProfileAssetTrait>>> {
         &self.i_e_s_profile
+    }
+    fn i_e_s_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn IesProfileAssetTrait>>> {
+        &mut self.i_e_s_profile
     }
     fn use_i_e_s_profile_as_mask(&self) -> &bool {
         &self.use_i_e_s_profile_as_mask
     }
+    fn use_i_e_s_profile_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_i_e_s_profile_as_mask
+    }
     fn i_e_s_multiplier(&self) -> &f32 {
         &self.i_e_s_multiplier
+    }
+    fn i_e_s_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.i_e_s_multiplier
     }
     fn shadow_max_angle(&self) -> &f32 {
         &self.shadow_max_angle
     }
+    fn shadow_max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_max_angle
+    }
     fn shadow_fade_out_range(&self) -> &f32 {
         &self.shadow_fade_out_range
+    }
+    fn shadow_fade_out_range_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_out_range
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
     }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
+    }
     fn attenuation_radius(&self) -> &f32 {
         &self.attenuation_radius
+    }
+    fn attenuation_radius_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_radius
     }
     fn emissive_shape_enable(&self) -> &bool {
         &self.emissive_shape_enable
     }
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_shape_enable
+    }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
+    }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
     }
     fn light_unit(&self) -> &super::render_base::LightUnitType {
         &self.light_unit
     }
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType {
+        &mut self.light_unit
+    }
     fn affect_diffuse(&self) -> &bool {
         &self.affect_diffuse
+    }
+    fn affect_diffuse_mut(&mut self) -> &mut bool {
+        &mut self.affect_diffuse
     }
     fn affect_specular(&self) -> &bool {
         &self.affect_specular
     }
+    fn affect_specular_mut(&mut self) -> &mut bool {
+        &mut self.affect_specular
+    }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
+    }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
     }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
     }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
+    }
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric
+    }
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric
     }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
     }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
+    }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
+    }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
     }
     fn shadow_near_radius(&self) -> &f32 {
         &self.shadow_near_radius
     }
+    fn shadow_near_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_near_radius
+    }
     fn shadow_far_radius(&self) -> &f32 {
         &self.shadow_far_radius
+    }
+    fn shadow_far_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_far_radius
     }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
     }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
+    }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
+    }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
     }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
     }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
+    }
     fn affect_radiosity(&self) -> &bool {
         &self.affect_radiosity
+    }
+    fn affect_radiosity_mut(&mut self) -> &mut bool {
+        &mut self.affect_radiosity
     }
     fn radiosity_color_scale(&self) -> &super::core::Vec3 {
         &self.radiosity_color_scale
     }
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.radiosity_color_scale
+    }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
+    }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
     }
     fn cull_screen_area(&self) -> &f32 {
         &self.cull_screen_area
     }
+    fn cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area
+    }
     fn fade_screen_area(&self) -> &f32 {
         &self.fade_screen_area
+    }
+    fn fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.fade_screen_area
     }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
     }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
+    }
     fn fade_distance(&self) -> &f32 {
         &self.fade_distance
+    }
+    fn fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_distance
     }
     fn shadow_cull_screen_area(&self) -> &f32 {
         &self.shadow_cull_screen_area
     }
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_screen_area
+    }
     fn shadow_fade_screen_area(&self) -> &f32 {
         &self.shadow_fade_screen_area
+    }
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_screen_area
     }
     fn shadow_cull_distance(&self) -> &f32 {
         &self.shadow_cull_distance
     }
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_distance
+    }
     fn shadow_fade_distance(&self) -> &f32 {
         &self.shadow_fade_distance
+    }
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_distance
     }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
     }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
+    }
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
+    }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
     }
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
     }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
+    }
     fn intensity_multiplier(&self) -> &f32 {
         &self.intensity_multiplier
+    }
+    fn intensity_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.intensity_multiplier
     }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
     }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
+    }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
+    }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
     }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
     }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
+    }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
+    }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
     }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
     }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
     }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
+    }
     fn field_flag_changed1(&self) -> &u16 {
         &self.field_flag_changed1
+    }
+    fn field_flag_changed1_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed1
     }
 }
 
@@ -19107,6 +25037,15 @@ impl TypeObject for PbrSpotLightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19128,15 +25067,23 @@ pub struct PbrSpotLightStaticState {
 
 pub trait PbrSpotLightStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl PbrSpotLightStaticStateTrait for PbrSpotLightStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -19173,6 +25120,15 @@ impl TypeObject for PbrSpotLightStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -19239,191 +25195,375 @@ pub struct PbrSphereLightDynamicState {
 
 pub trait PbrSphereLightDynamicStateTrait: TypeObject {
     fn sphere_radius(&self) -> &f32;
+    fn sphere_radius_mut(&mut self) -> &mut f32;
     fn only_hempishere(&self) -> &bool;
+    fn only_hempishere_mut(&mut self) -> &mut bool;
     fn i_e_s_profile(&self) -> &Option<Arc<Mutex<dyn IesProfileAssetTrait>>>;
+    fn i_e_s_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn IesProfileAssetTrait>>>;
     fn use_i_e_s_profile_as_mask(&self) -> &bool;
+    fn use_i_e_s_profile_as_mask_mut(&mut self) -> &mut bool;
     fn i_e_s_multiplier(&self) -> &f32;
+    fn i_e_s_multiplier_mut(&mut self) -> &mut f32;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn attenuation_radius(&self) -> &f32;
+    fn attenuation_radius_mut(&mut self) -> &mut f32;
     fn emissive_shape_enable(&self) -> &bool;
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn light_unit(&self) -> &super::render_base::LightUnitType;
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType;
     fn affect_diffuse(&self) -> &bool;
+    fn affect_diffuse_mut(&mut self) -> &mut bool;
     fn affect_specular(&self) -> &bool;
+    fn affect_specular_mut(&mut self) -> &mut bool;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_near_radius(&self) -> &f32;
+    fn shadow_near_radius_mut(&mut self) -> &mut f32;
     fn shadow_far_radius(&self) -> &f32;
+    fn shadow_far_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn affect_radiosity(&self) -> &bool;
+    fn affect_radiosity_mut(&mut self) -> &mut bool;
     fn radiosity_color_scale(&self) -> &super::core::Vec3;
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
     fn cull_screen_area(&self) -> &f32;
+    fn cull_screen_area_mut(&mut self) -> &mut f32;
     fn fade_screen_area(&self) -> &f32;
+    fn fade_screen_area_mut(&mut self) -> &mut f32;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn fade_distance(&self) -> &f32;
+    fn fade_distance_mut(&mut self) -> &mut f32;
     fn shadow_cull_screen_area(&self) -> &f32;
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_fade_screen_area(&self) -> &f32;
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_cull_distance(&self) -> &f32;
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32;
     fn shadow_fade_distance(&self) -> &f32;
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn intensity_multiplier(&self) -> &f32;
+    fn intensity_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u16;
+    fn field_flag_changed1_mut(&mut self) -> &mut u16;
 }
 
 impl PbrSphereLightDynamicStateTrait for PbrSphereLightDynamicState {
     fn sphere_radius(&self) -> &f32 {
         &self.sphere_radius
     }
+    fn sphere_radius_mut(&mut self) -> &mut f32 {
+        &mut self.sphere_radius
+    }
     fn only_hempishere(&self) -> &bool {
         &self.only_hempishere
+    }
+    fn only_hempishere_mut(&mut self) -> &mut bool {
+        &mut self.only_hempishere
     }
     fn i_e_s_profile(&self) -> &Option<Arc<Mutex<dyn IesProfileAssetTrait>>> {
         &self.i_e_s_profile
     }
+    fn i_e_s_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn IesProfileAssetTrait>>> {
+        &mut self.i_e_s_profile
+    }
     fn use_i_e_s_profile_as_mask(&self) -> &bool {
         &self.use_i_e_s_profile_as_mask
+    }
+    fn use_i_e_s_profile_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_i_e_s_profile_as_mask
     }
     fn i_e_s_multiplier(&self) -> &f32 {
         &self.i_e_s_multiplier
     }
+    fn i_e_s_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.i_e_s_multiplier
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
     fn intensity(&self) -> &f32 {
         &self.intensity
     }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
+    }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
+    }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
     }
     fn attenuation_radius(&self) -> &f32 {
         &self.attenuation_radius
     }
+    fn attenuation_radius_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_radius
+    }
     fn emissive_shape_enable(&self) -> &bool {
         &self.emissive_shape_enable
+    }
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_shape_enable
     }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
     }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
+    }
     fn light_unit(&self) -> &super::render_base::LightUnitType {
         &self.light_unit
+    }
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType {
+        &mut self.light_unit
     }
     fn affect_diffuse(&self) -> &bool {
         &self.affect_diffuse
     }
+    fn affect_diffuse_mut(&mut self) -> &mut bool {
+        &mut self.affect_diffuse
+    }
     fn affect_specular(&self) -> &bool {
         &self.affect_specular
+    }
+    fn affect_specular_mut(&mut self) -> &mut bool {
+        &mut self.affect_specular
     }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
     }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
+    }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
+    }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
     }
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric
     }
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric
+    }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
+    }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
     }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
     }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
+    }
     fn shadow_near_radius(&self) -> &f32 {
         &self.shadow_near_radius
+    }
+    fn shadow_near_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_near_radius
     }
     fn shadow_far_radius(&self) -> &f32 {
         &self.shadow_far_radius
     }
+    fn shadow_far_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_far_radius
+    }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
+    }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
     }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
     }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
+    }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
+    }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
     }
     fn affect_radiosity(&self) -> &bool {
         &self.affect_radiosity
     }
+    fn affect_radiosity_mut(&mut self) -> &mut bool {
+        &mut self.affect_radiosity
+    }
     fn radiosity_color_scale(&self) -> &super::core::Vec3 {
         &self.radiosity_color_scale
+    }
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.radiosity_color_scale
     }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
     }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
+    }
     fn cull_screen_area(&self) -> &f32 {
         &self.cull_screen_area
+    }
+    fn cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area
     }
     fn fade_screen_area(&self) -> &f32 {
         &self.fade_screen_area
     }
+    fn fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.fade_screen_area
+    }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
+    }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
     }
     fn fade_distance(&self) -> &f32 {
         &self.fade_distance
     }
+    fn fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_distance
+    }
     fn shadow_cull_screen_area(&self) -> &f32 {
         &self.shadow_cull_screen_area
+    }
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_screen_area
     }
     fn shadow_fade_screen_area(&self) -> &f32 {
         &self.shadow_fade_screen_area
     }
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_screen_area
+    }
     fn shadow_cull_distance(&self) -> &f32 {
         &self.shadow_cull_distance
+    }
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_distance
     }
     fn shadow_fade_distance(&self) -> &f32 {
         &self.shadow_fade_distance
     }
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_distance
+    }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
+    }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
     }
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
     }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
+    }
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
+    }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
     }
     fn intensity_multiplier(&self) -> &f32 {
         &self.intensity_multiplier
     }
+    fn intensity_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.intensity_multiplier
+    }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
+    }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
     }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
     }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
+    }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
+    }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
     }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
     }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
+    }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
+    }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
     }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
     }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
+    }
     fn field_flag_changed1(&self) -> &u16 {
         &self.field_flag_changed1
+    }
+    fn field_flag_changed1_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed1
     }
 }
 
@@ -19725,6 +25865,15 @@ impl TypeObject for PbrSphereLightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19746,15 +25895,23 @@ pub struct PbrSphereLightStaticState {
 
 pub trait PbrSphereLightStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl PbrSphereLightStaticStateTrait for PbrSphereLightStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -19791,6 +25948,15 @@ impl TypeObject for PbrSphereLightStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -19850,163 +26016,319 @@ pub struct PbrAnalyticLightDynamicState {
 
 pub trait PbrAnalyticLightDynamicStateTrait: TypeObject {
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn attenuation_radius(&self) -> &f32;
+    fn attenuation_radius_mut(&mut self) -> &mut f32;
     fn emissive_shape_enable(&self) -> &bool;
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn light_unit(&self) -> &super::render_base::LightUnitType;
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType;
     fn affect_diffuse(&self) -> &bool;
+    fn affect_diffuse_mut(&mut self) -> &mut bool;
     fn affect_specular(&self) -> &bool;
+    fn affect_specular_mut(&mut self) -> &mut bool;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_near_radius(&self) -> &f32;
+    fn shadow_near_radius_mut(&mut self) -> &mut f32;
     fn shadow_far_radius(&self) -> &f32;
+    fn shadow_far_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn affect_radiosity(&self) -> &bool;
+    fn affect_radiosity_mut(&mut self) -> &mut bool;
     fn radiosity_color_scale(&self) -> &super::core::Vec3;
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
     fn cull_screen_area(&self) -> &f32;
+    fn cull_screen_area_mut(&mut self) -> &mut f32;
     fn fade_screen_area(&self) -> &f32;
+    fn fade_screen_area_mut(&mut self) -> &mut f32;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn fade_distance(&self) -> &f32;
+    fn fade_distance_mut(&mut self) -> &mut f32;
     fn shadow_cull_screen_area(&self) -> &f32;
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_fade_screen_area(&self) -> &f32;
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_cull_distance(&self) -> &f32;
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32;
     fn shadow_fade_distance(&self) -> &f32;
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn intensity_multiplier(&self) -> &f32;
+    fn intensity_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
 }
 
 impl PbrAnalyticLightDynamicStateTrait for PbrAnalyticLightDynamicState {
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
     }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
+    }
     fn attenuation_radius(&self) -> &f32 {
         &self.attenuation_radius
+    }
+    fn attenuation_radius_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_radius
     }
     fn emissive_shape_enable(&self) -> &bool {
         &self.emissive_shape_enable
     }
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_shape_enable
+    }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
+    }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
     }
     fn light_unit(&self) -> &super::render_base::LightUnitType {
         &self.light_unit
     }
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType {
+        &mut self.light_unit
+    }
     fn affect_diffuse(&self) -> &bool {
         &self.affect_diffuse
+    }
+    fn affect_diffuse_mut(&mut self) -> &mut bool {
+        &mut self.affect_diffuse
     }
     fn affect_specular(&self) -> &bool {
         &self.affect_specular
     }
+    fn affect_specular_mut(&mut self) -> &mut bool {
+        &mut self.affect_specular
+    }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
+    }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
     }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
     }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
+    }
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric
+    }
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric
     }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
     }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
+    }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
+    }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
     }
     fn shadow_near_radius(&self) -> &f32 {
         &self.shadow_near_radius
     }
+    fn shadow_near_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_near_radius
+    }
     fn shadow_far_radius(&self) -> &f32 {
         &self.shadow_far_radius
+    }
+    fn shadow_far_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_far_radius
     }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
     }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
+    }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
+    }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
     }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
     }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
+    }
     fn affect_radiosity(&self) -> &bool {
         &self.affect_radiosity
+    }
+    fn affect_radiosity_mut(&mut self) -> &mut bool {
+        &mut self.affect_radiosity
     }
     fn radiosity_color_scale(&self) -> &super::core::Vec3 {
         &self.radiosity_color_scale
     }
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.radiosity_color_scale
+    }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
+    }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
     }
     fn cull_screen_area(&self) -> &f32 {
         &self.cull_screen_area
     }
+    fn cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area
+    }
     fn fade_screen_area(&self) -> &f32 {
         &self.fade_screen_area
+    }
+    fn fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.fade_screen_area
     }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
     }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
+    }
     fn fade_distance(&self) -> &f32 {
         &self.fade_distance
+    }
+    fn fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_distance
     }
     fn shadow_cull_screen_area(&self) -> &f32 {
         &self.shadow_cull_screen_area
     }
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_screen_area
+    }
     fn shadow_fade_screen_area(&self) -> &f32 {
         &self.shadow_fade_screen_area
+    }
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_screen_area
     }
     fn shadow_cull_distance(&self) -> &f32 {
         &self.shadow_cull_distance
     }
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_distance
+    }
     fn shadow_fade_distance(&self) -> &f32 {
         &self.shadow_fade_distance
+    }
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_distance
     }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
     }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
+    }
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
+    }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
     }
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
     }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
+    }
     fn intensity_multiplier(&self) -> &f32 {
         &self.intensity_multiplier
+    }
+    fn intensity_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.intensity_multiplier
     }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
     }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
+    }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
+    }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
     }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
     }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
+    }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
     }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
+    }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
+    }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
     }
 }
 
@@ -20266,6 +26588,15 @@ impl TypeObject for PbrAnalyticLightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20327,175 +26658,343 @@ pub struct OldSpotLightDynamicState {
 
 pub trait OldSpotLightDynamicStateTrait: TypeObject {
     fn shape(&self) -> &SpotLightShape;
+    fn shape_mut(&mut self) -> &mut SpotLightShape;
     fn cone_inner_angle(&self) -> &f32;
+    fn cone_inner_angle_mut(&mut self) -> &mut f32;
     fn cone_outer_angle(&self) -> &f32;
+    fn cone_outer_angle_mut(&mut self) -> &mut f32;
     fn frustum_fov(&self) -> &f32;
+    fn frustum_fov_mut(&mut self) -> &mut f32;
     fn frustum_aspect(&self) -> &f32;
+    fn frustum_aspect_mut(&mut self) -> &mut f32;
     fn ortho_width(&self) -> &f32;
+    fn ortho_width_mut(&mut self) -> &mut f32;
     fn ortho_height(&self) -> &f32;
+    fn ortho_height_mut(&mut self) -> &mut f32;
     fn near_plane(&self) -> &f32;
+    fn near_plane_mut(&mut self) -> &mut f32;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_radius(&self) -> &f32;
+    fn shadow_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn frustum_as_cone(&self) -> &super::core::QualityScalableEnabled;
+    fn frustum_as_cone_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn frustum_as_cone_angle(&self) -> &bool;
+    fn frustum_as_cone_angle_mut(&mut self) -> &mut bool;
     fn frustum_as_cone_intensity_scale(&self) -> &f32;
+    fn frustum_as_cone_intensity_scale_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_shadows_min_level(&self) -> &super::core::QualityLevel;
+    fn cast_shadows_min_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn direct_light_enable(&self) -> &bool;
+    fn direct_light_enable_mut(&mut self) -> &mut bool;
     fn specular_enable(&self) -> &bool;
+    fn specular_enable_mut(&mut self) -> &mut bool;
     fn enlighten_color_mode(&self) -> &EnlightenColorMode;
+    fn enlighten_color_mode_mut(&mut self) -> &mut EnlightenColorMode;
     fn enlighten_enable(&self) -> &bool;
+    fn enlighten_enable_mut(&mut self) -> &mut bool;
     fn enlighten_color_scale(&self) -> &super::core::Vec3;
+    fn enlighten_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn intensity_multiplier(&self) -> &f32;
+    fn intensity_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u8;
+    fn field_flag_changed1_mut(&mut self) -> &mut u8;
 }
 
 impl OldSpotLightDynamicStateTrait for OldSpotLightDynamicState {
     fn shape(&self) -> &SpotLightShape {
         &self.shape
     }
+    fn shape_mut(&mut self) -> &mut SpotLightShape {
+        &mut self.shape
+    }
     fn cone_inner_angle(&self) -> &f32 {
         &self.cone_inner_angle
+    }
+    fn cone_inner_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cone_inner_angle
     }
     fn cone_outer_angle(&self) -> &f32 {
         &self.cone_outer_angle
     }
+    fn cone_outer_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cone_outer_angle
+    }
     fn frustum_fov(&self) -> &f32 {
         &self.frustum_fov
+    }
+    fn frustum_fov_mut(&mut self) -> &mut f32 {
+        &mut self.frustum_fov
     }
     fn frustum_aspect(&self) -> &f32 {
         &self.frustum_aspect
     }
+    fn frustum_aspect_mut(&mut self) -> &mut f32 {
+        &mut self.frustum_aspect
+    }
     fn ortho_width(&self) -> &f32 {
         &self.ortho_width
+    }
+    fn ortho_width_mut(&mut self) -> &mut f32 {
+        &mut self.ortho_width
     }
     fn ortho_height(&self) -> &f32 {
         &self.ortho_height
     }
+    fn ortho_height_mut(&mut self) -> &mut f32 {
+        &mut self.ortho_height
+    }
     fn near_plane(&self) -> &f32 {
         &self.near_plane
+    }
+    fn near_plane_mut(&mut self) -> &mut f32 {
+        &mut self.near_plane
     }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
     }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
+    }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
+    }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
     }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
     }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
+    }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
+    }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
     }
     fn shadow_radius(&self) -> &f32 {
         &self.shadow_radius
     }
+    fn shadow_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_radius
+    }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
+    }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
     }
     fn frustum_as_cone(&self) -> &super::core::QualityScalableEnabled {
         &self.frustum_as_cone
     }
+    fn frustum_as_cone_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.frustum_as_cone
+    }
     fn frustum_as_cone_angle(&self) -> &bool {
         &self.frustum_as_cone_angle
+    }
+    fn frustum_as_cone_angle_mut(&mut self) -> &mut bool {
+        &mut self.frustum_as_cone_angle
     }
     fn frustum_as_cone_intensity_scale(&self) -> &f32 {
         &self.frustum_as_cone_intensity_scale
     }
+    fn frustum_as_cone_intensity_scale_mut(&mut self) -> &mut f32 {
+        &mut self.frustum_as_cone_intensity_scale
+    }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
+    }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
     }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
     }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
+    }
     fn cast_shadows_min_level(&self) -> &super::core::QualityLevel {
         &self.cast_shadows_min_level
+    }
+    fn cast_shadows_min_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.cast_shadows_min_level
     }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
     }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
     }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
+    }
     fn direct_light_enable(&self) -> &bool {
         &self.direct_light_enable
+    }
+    fn direct_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_light_enable
     }
     fn specular_enable(&self) -> &bool {
         &self.specular_enable
     }
+    fn specular_enable_mut(&mut self) -> &mut bool {
+        &mut self.specular_enable
+    }
     fn enlighten_color_mode(&self) -> &EnlightenColorMode {
         &self.enlighten_color_mode
+    }
+    fn enlighten_color_mode_mut(&mut self) -> &mut EnlightenColorMode {
+        &mut self.enlighten_color_mode
     }
     fn enlighten_enable(&self) -> &bool {
         &self.enlighten_enable
     }
+    fn enlighten_enable_mut(&mut self) -> &mut bool {
+        &mut self.enlighten_enable
+    }
     fn enlighten_color_scale(&self) -> &super::core::Vec3 {
         &self.enlighten_color_scale
+    }
+    fn enlighten_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.enlighten_color_scale
     }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
     }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
+    }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
+    }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
     }
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
     }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
+    }
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
+    }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
     }
     fn intensity_multiplier(&self) -> &f32 {
         &self.intensity_multiplier
     }
+    fn intensity_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.intensity_multiplier
+    }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
+    }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
     }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
     }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
+    }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
+    }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
     }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
     }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
+    }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
+    }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
     }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
     }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
+    }
     fn field_flag_changed1(&self) -> &u8 {
         &self.field_flag_changed1
+    }
+    fn field_flag_changed1_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed1
     }
 }
 
@@ -20773,6 +27272,15 @@ impl TypeObject for OldSpotLightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20794,15 +27302,23 @@ pub struct OldSpotLightStaticState {
 
 pub trait OldSpotLightStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl OldSpotLightStaticStateTrait for OldSpotLightStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -20839,6 +27355,15 @@ impl TypeObject for OldSpotLightStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -20885,111 +27410,215 @@ pub struct OldPointLightDynamicState {
 
 pub trait OldPointLightDynamicStateTrait: TypeObject {
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn translucency_ambient(&self) -> &f32;
+    fn translucency_ambient_mut(&mut self) -> &mut f32;
     fn translucency_scale(&self) -> &f32;
+    fn translucency_scale_mut(&mut self) -> &mut f32;
     fn translucency_power(&self) -> &f32;
+    fn translucency_power_mut(&mut self) -> &mut f32;
     fn translucency_distortion(&self) -> &f32;
+    fn translucency_distortion_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn direct_light_enable(&self) -> &bool;
+    fn direct_light_enable_mut(&mut self) -> &mut bool;
     fn specular_enable(&self) -> &bool;
+    fn specular_enable_mut(&mut self) -> &mut bool;
     fn enlighten_color_mode(&self) -> &EnlightenColorMode;
+    fn enlighten_color_mode_mut(&mut self) -> &mut EnlightenColorMode;
     fn enlighten_enable(&self) -> &bool;
+    fn enlighten_enable_mut(&mut self) -> &mut bool;
     fn enlighten_color_scale(&self) -> &super::core::Vec3;
+    fn enlighten_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn intensity_multiplier(&self) -> &f32;
+    fn intensity_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl OldPointLightDynamicStateTrait for OldPointLightDynamicState {
     fn width(&self) -> &f32 {
         &self.width
     }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
+    }
     fn translucency_ambient(&self) -> &f32 {
         &self.translucency_ambient
+    }
+    fn translucency_ambient_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_ambient
     }
     fn translucency_scale(&self) -> &f32 {
         &self.translucency_scale
     }
+    fn translucency_scale_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_scale
+    }
     fn translucency_power(&self) -> &f32 {
         &self.translucency_power
+    }
+    fn translucency_power_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_power
     }
     fn translucency_distortion(&self) -> &f32 {
         &self.translucency_distortion
     }
+    fn translucency_distortion_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_distortion
+    }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
+    }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn intensity(&self) -> &f32 {
         &self.intensity
     }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
+    }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
+    }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
     }
     fn direct_light_enable(&self) -> &bool {
         &self.direct_light_enable
     }
+    fn direct_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_light_enable
+    }
     fn specular_enable(&self) -> &bool {
         &self.specular_enable
+    }
+    fn specular_enable_mut(&mut self) -> &mut bool {
+        &mut self.specular_enable
     }
     fn enlighten_color_mode(&self) -> &EnlightenColorMode {
         &self.enlighten_color_mode
     }
+    fn enlighten_color_mode_mut(&mut self) -> &mut EnlightenColorMode {
+        &mut self.enlighten_color_mode
+    }
     fn enlighten_enable(&self) -> &bool {
         &self.enlighten_enable
+    }
+    fn enlighten_enable_mut(&mut self) -> &mut bool {
+        &mut self.enlighten_enable
     }
     fn enlighten_color_scale(&self) -> &super::core::Vec3 {
         &self.enlighten_color_scale
     }
+    fn enlighten_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.enlighten_color_scale
+    }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
+    }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
     }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
     }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
+    }
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
+    }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
     }
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
     }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
+    }
     fn intensity_multiplier(&self) -> &f32 {
         &self.intensity_multiplier
+    }
+    fn intensity_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.intensity_multiplier
     }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
     }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
+    }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
+    }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
     }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
     }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
+    }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
+    }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
     }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
     }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -21171,6 +27800,15 @@ impl TypeObject for OldPointLightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21192,15 +27830,23 @@ pub struct OldPointLightStaticState {
 
 pub trait OldPointLightStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl OldPointLightStaticStateTrait for OldPointLightStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -21237,6 +27883,15 @@ impl TypeObject for OldPointLightStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -21276,83 +27931,159 @@ pub struct OldLightDynamicState {
 
 pub trait OldLightDynamicStateTrait: TypeObject {
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn direct_light_enable(&self) -> &bool;
+    fn direct_light_enable_mut(&mut self) -> &mut bool;
     fn specular_enable(&self) -> &bool;
+    fn specular_enable_mut(&mut self) -> &mut bool;
     fn enlighten_color_mode(&self) -> &EnlightenColorMode;
+    fn enlighten_color_mode_mut(&mut self) -> &mut EnlightenColorMode;
     fn enlighten_enable(&self) -> &bool;
+    fn enlighten_enable_mut(&mut self) -> &mut bool;
     fn enlighten_color_scale(&self) -> &super::core::Vec3;
+    fn enlighten_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn intensity_multiplier(&self) -> &f32;
+    fn intensity_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
 }
 
 impl OldLightDynamicStateTrait for OldLightDynamicState {
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn intensity(&self) -> &f32 {
         &self.intensity
     }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
+    }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
+    }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
     }
     fn direct_light_enable(&self) -> &bool {
         &self.direct_light_enable
     }
+    fn direct_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_light_enable
+    }
     fn specular_enable(&self) -> &bool {
         &self.specular_enable
+    }
+    fn specular_enable_mut(&mut self) -> &mut bool {
+        &mut self.specular_enable
     }
     fn enlighten_color_mode(&self) -> &EnlightenColorMode {
         &self.enlighten_color_mode
     }
+    fn enlighten_color_mode_mut(&mut self) -> &mut EnlightenColorMode {
+        &mut self.enlighten_color_mode
+    }
     fn enlighten_enable(&self) -> &bool {
         &self.enlighten_enable
+    }
+    fn enlighten_enable_mut(&mut self) -> &mut bool {
+        &mut self.enlighten_enable
     }
     fn enlighten_color_scale(&self) -> &super::core::Vec3 {
         &self.enlighten_color_scale
     }
+    fn enlighten_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.enlighten_color_scale
+    }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
+    }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
     }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
     }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
+    }
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
+    }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
     }
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
     }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
+    }
     fn intensity_multiplier(&self) -> &f32 {
         &self.intensity_multiplier
+    }
+    fn intensity_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.intensity_multiplier
     }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
     }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
+    }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
+    }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
     }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
     }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
+    }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
     }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
+    }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
+    }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
     }
 }
 
@@ -21492,6 +28223,15 @@ impl TypeObject for OldLightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21519,39 +28259,71 @@ pub struct LightDynamicState {
 
 pub trait LightDynamicStateTrait: TypeObject {
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn intensity_multiplier(&self) -> &f32;
+    fn intensity_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
 }
 
 impl LightDynamicStateTrait for LightDynamicState {
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
     }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
+    }
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
+    }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
     }
     fn intensity_multiplier(&self) -> &f32 {
         &self.intensity_multiplier
     }
+    fn intensity_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.intensity_multiplier
+    }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
+    }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
     }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
     }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
+    }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
+    }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
     }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
     }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
+    }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
+    }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
     }
 }
 
@@ -21625,6 +28397,15 @@ impl TypeObject for LightDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21645,11 +28426,15 @@ pub struct LightStaticState {
 
 pub trait LightStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
 }
 
 impl LightStaticStateTrait for LightStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
+    }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
     }
 }
 
@@ -21681,6 +28466,15 @@ impl TypeObject for LightStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21702,11 +28496,15 @@ pub struct IesProfileAsset {
 
 pub trait IesProfileAssetTrait: super::core::AssetTrait {
     fn source_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn source_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl IesProfileAssetTrait for IesProfileAsset {
     fn source_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.source_resource
+    }
+    fn source_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.source_resource
     }
 }
 
@@ -21714,12 +28512,12 @@ impl super::core::AssetTrait for IesProfileAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for IesProfileAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static IESPROFILEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21750,6 +28548,15 @@ impl TypeObject for IesProfileAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -21790,6 +28597,15 @@ impl TypeObject for SpotLightShape {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21827,6 +28643,15 @@ impl TypeObject for EnlightenColorMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -21872,19 +28697,31 @@ pub struct LensFlareCreateState {
 
 pub trait LensFlareCreateStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn is_world_space(&self) -> &bool;
+    fn is_world_space_mut(&mut self) -> &mut bool;
     fn parent_transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn parent_transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
 }
 
 impl LensFlareCreateStateTrait for LensFlareCreateState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn is_world_space(&self) -> &bool {
         &self.is_world_space
     }
+    fn is_world_space_mut(&mut self) -> &mut bool {
+        &mut self.is_world_space
+    }
     fn parent_transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.parent_transform_space
+    }
+    fn parent_transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.parent_transform_space
     }
 }
 
@@ -21928,6 +28765,15 @@ impl TypeObject for LensFlareCreateState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21951,23 +28797,39 @@ pub struct LensFlareDynamicState {
 
 pub trait LensFlareDynamicStateTrait: TypeObject {
     fn flare_direction_mode(&self) -> &FlareDirectionMode;
+    fn flare_direction_mode_mut(&mut self) -> &mut FlareDirectionMode;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl LensFlareDynamicStateTrait for LensFlareDynamicState {
     fn flare_direction_mode(&self) -> &FlareDirectionMode {
         &self.flare_direction_mode
     }
+    fn flare_direction_mode_mut(&mut self) -> &mut FlareDirectionMode {
+        &mut self.flare_direction_mode
+    }
     fn visible(&self) -> &bool {
         &self.visible
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
     }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
     }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -22017,6 +28879,15 @@ impl TypeObject for LensFlareDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22045,43 +28916,79 @@ pub struct LensFlareStaticState {
 
 pub trait LensFlareStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn debug_draw_occluder(&self) -> &bool;
+    fn debug_draw_occluder_mut(&mut self) -> &mut bool;
     fn half_res(&self) -> &bool;
+    fn half_res_mut(&mut self) -> &mut bool;
     fn occluder_size(&self) -> &f32;
+    fn occluder_size_mut(&mut self) -> &mut f32;
     fn render_mode(&self) -> &LensFlareRenderMode;
+    fn render_mode_mut(&mut self) -> &mut LensFlareRenderMode;
     fn screen_clip(&self) -> &bool;
+    fn screen_clip_mut(&mut self) -> &mut bool;
     fn depth_bias(&self) -> &f32;
+    fn depth_bias_mut(&mut self) -> &mut f32;
     fn elements(&self) -> &Vec<LensFlareElement>;
+    fn elements_mut(&mut self) -> &mut Vec<LensFlareElement>;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl LensFlareStaticStateTrait for LensFlareStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn debug_draw_occluder(&self) -> &bool {
         &self.debug_draw_occluder
+    }
+    fn debug_draw_occluder_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_occluder
     }
     fn half_res(&self) -> &bool {
         &self.half_res
     }
+    fn half_res_mut(&mut self) -> &mut bool {
+        &mut self.half_res
+    }
     fn occluder_size(&self) -> &f32 {
         &self.occluder_size
+    }
+    fn occluder_size_mut(&mut self) -> &mut f32 {
+        &mut self.occluder_size
     }
     fn render_mode(&self) -> &LensFlareRenderMode {
         &self.render_mode
     }
+    fn render_mode_mut(&mut self) -> &mut LensFlareRenderMode {
+        &mut self.render_mode
+    }
     fn screen_clip(&self) -> &bool {
         &self.screen_clip
+    }
+    fn screen_clip_mut(&mut self) -> &mut bool {
+        &mut self.screen_clip
     }
     fn depth_bias(&self) -> &f32 {
         &self.depth_bias
     }
+    fn depth_bias_mut(&mut self) -> &mut f32 {
+        &mut self.depth_bias
+    }
     fn elements(&self) -> &Vec<LensFlareElement> {
         &self.elements
     }
+    fn elements_mut(&mut self) -> &mut Vec<LensFlareElement> {
+        &mut self.elements
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -22161,6 +29068,15 @@ impl TypeObject for LensFlareStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22201,6 +29117,15 @@ impl TypeObject for LensFlareRenderMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22238,6 +29163,15 @@ impl TypeObject for FlareDirectionMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -22280,95 +29214,183 @@ pub struct LensFlareElement {
 
 pub trait LensFlareElementTrait: TypeObject {
     fn enable(&self) -> &super::core::QualityScalableEnabled;
+    fn enable_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn enable_element(&self) -> &bool;
+    fn enable_element_mut(&mut self) -> &mut bool;
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn ray_distance(&self) -> &f32;
+    fn ray_distance_mut(&mut self) -> &mut f32;
     fn ray_distance_x(&self) -> &f32;
+    fn ray_distance_x_mut(&mut self) -> &mut f32;
     fn ray_distance_y(&self) -> &f32;
+    fn ray_distance_y_mut(&mut self) -> &mut f32;
     fn center_offset(&self) -> &super::core::Vec2;
+    fn center_offset_mut(&mut self) -> &mut super::core::Vec2;
     fn size(&self) -> &super::core::Vec2;
+    fn size_mut(&mut self) -> &mut super::core::Vec2;
     fn size_occluder_curve(&self) -> &super::core::Vec4;
+    fn size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn size_angle_curve(&self) -> &super::core::Vec4;
+    fn size_angle_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn size_cam_dist_curve(&self) -> &super::core::Vec4;
+    fn size_cam_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn size_cam_dist_max(&self) -> &f32;
+    fn size_cam_dist_max_mut(&mut self) -> &mut f32;
     fn alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn alpha_angle_curve(&self) -> &super::core::Vec4;
+    fn alpha_angle_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn alpha_cam_dist_curve(&self) -> &super::core::Vec4;
+    fn alpha_cam_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn alpha_cam_dist_max(&self) -> &f32;
+    fn alpha_cam_dist_max_mut(&mut self) -> &mut f32;
     fn rotation_local(&self) -> &f32;
+    fn rotation_local_mut(&mut self) -> &mut f32;
     fn rotation_aligned_to_ray(&self) -> &bool;
+    fn rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn rotation_dist_multiplier(&self) -> &f32;
+    fn rotation_dist_multiplier_mut(&mut self) -> &mut f32;
 }
 
 impl LensFlareElementTrait for LensFlareElement {
     fn enable(&self) -> &super::core::QualityScalableEnabled {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.enable
+    }
     fn enable_element(&self) -> &bool {
         &self.enable_element
+    }
+    fn enable_element_mut(&mut self) -> &mut bool {
+        &mut self.enable_element
     }
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.shader
     }
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.shader
+    }
     fn ray_distance(&self) -> &f32 {
         &self.ray_distance
+    }
+    fn ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.ray_distance
     }
     fn ray_distance_x(&self) -> &f32 {
         &self.ray_distance_x
     }
+    fn ray_distance_x_mut(&mut self) -> &mut f32 {
+        &mut self.ray_distance_x
+    }
     fn ray_distance_y(&self) -> &f32 {
         &self.ray_distance_y
+    }
+    fn ray_distance_y_mut(&mut self) -> &mut f32 {
+        &mut self.ray_distance_y
     }
     fn center_offset(&self) -> &super::core::Vec2 {
         &self.center_offset
     }
+    fn center_offset_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.center_offset
+    }
     fn size(&self) -> &super::core::Vec2 {
         &self.size
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.size
     }
     fn size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.size_occluder_curve
     }
+    fn size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.size_occluder_curve
+    }
     fn size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.size_screen_pos_curve
+    }
+    fn size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.size_screen_pos_curve
     }
     fn size_angle_curve(&self) -> &super::core::Vec4 {
         &self.size_angle_curve
     }
+    fn size_angle_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.size_angle_curve
+    }
     fn size_cam_dist_curve(&self) -> &super::core::Vec4 {
         &self.size_cam_dist_curve
+    }
+    fn size_cam_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.size_cam_dist_curve
     }
     fn size_cam_dist_max(&self) -> &f32 {
         &self.size_cam_dist_max
     }
+    fn size_cam_dist_max_mut(&mut self) -> &mut f32 {
+        &mut self.size_cam_dist_max
+    }
     fn alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.alpha_occluder_curve
+    }
+    fn alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.alpha_occluder_curve
     }
     fn alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.alpha_screen_pos_curve
     }
+    fn alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.alpha_screen_pos_curve
+    }
     fn alpha_angle_curve(&self) -> &super::core::Vec4 {
         &self.alpha_angle_curve
+    }
+    fn alpha_angle_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.alpha_angle_curve
     }
     fn alpha_cam_dist_curve(&self) -> &super::core::Vec4 {
         &self.alpha_cam_dist_curve
     }
+    fn alpha_cam_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.alpha_cam_dist_curve
+    }
     fn alpha_cam_dist_max(&self) -> &f32 {
         &self.alpha_cam_dist_max
+    }
+    fn alpha_cam_dist_max_mut(&mut self) -> &mut f32 {
+        &mut self.alpha_cam_dist_max
     }
     fn rotation_local(&self) -> &f32 {
         &self.rotation_local
     }
+    fn rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_local
+    }
     fn rotation_aligned_to_ray(&self) -> &bool {
         &self.rotation_aligned_to_ray
+    }
+    fn rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.rotation_aligned_to_ray
     }
     fn rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.rotation_dist_curve
     }
+    fn rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.rotation_dist_curve
+    }
     fn rotation_dist_multiplier(&self) -> &f32 {
         &self.rotation_dist_multiplier
+    }
+    fn rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_dist_multiplier
     }
 }
 
@@ -22526,6 +29548,15 @@ impl TypeObject for LensFlareElement {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22547,15 +29578,23 @@ pub struct ReflectionVolumeQueryDynamicState {
 
 pub trait ReflectionVolumeQueryDynamicStateTrait: TypeObject {
     fn query_counter(&self) -> &u32;
+    fn query_counter_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl ReflectionVolumeQueryDynamicStateTrait for ReflectionVolumeQueryDynamicState {
     fn query_counter(&self) -> &u32 {
         &self.query_counter
     }
+    fn query_counter_mut(&mut self) -> &mut u32 {
+        &mut self.query_counter
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -22592,6 +29631,15 @@ impl TypeObject for ReflectionVolumeQueryDynamicState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -22638,6 +29686,15 @@ impl TypeObject for ReflectionVolumeQueryHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22662,27 +29719,47 @@ pub struct LocalPlanarReflectionDynamicState {
 
 pub trait LocalPlanarReflectionDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn terrain_reflections_enable(&self) -> &bool;
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool;
     fn sky_reflection_enable(&self) -> &bool;
+    fn sky_reflection_enable_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl LocalPlanarReflectionDynamicStateTrait for LocalPlanarReflectionDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn enable(&self) -> &bool {
         &self.enable
+    }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
     }
     fn terrain_reflections_enable(&self) -> &bool {
         &self.terrain_reflections_enable
     }
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool {
+        &mut self.terrain_reflections_enable
+    }
     fn sky_reflection_enable(&self) -> &bool {
         &self.sky_reflection_enable
     }
+    fn sky_reflection_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_reflection_enable
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -22738,6 +29815,15 @@ impl TypeObject for LocalPlanarReflectionDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22767,47 +29853,87 @@ pub struct LocalPlanarReflectionStaticState {
 
 pub trait LocalPlanarReflectionStaticStateTrait: TypeObject {
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn far_plane(&self) -> &f32;
+    fn far_plane_mut(&mut self) -> &mut f32;
     fn clipping_offset(&self) -> &f32;
+    fn clipping_offset_mut(&mut self) -> &mut f32;
     fn clipping_enable(&self) -> &bool;
+    fn clipping_enable_mut(&mut self) -> &mut bool;
     fn distance_tolerance(&self) -> &f32;
+    fn distance_tolerance_mut(&mut self) -> &mut f32;
     fn distance_falloff(&self) -> &f32;
+    fn distance_falloff_mut(&mut self) -> &mut f32;
     fn normal_tolerance(&self) -> &f32;
+    fn normal_tolerance_mut(&mut self) -> &mut f32;
     fn normal_falloff(&self) -> &f32;
+    fn normal_falloff_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl LocalPlanarReflectionStaticStateTrait for LocalPlanarReflectionStaticState {
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
     }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
+    }
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
+    }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
     }
     fn far_plane(&self) -> &f32 {
         &self.far_plane
     }
+    fn far_plane_mut(&mut self) -> &mut f32 {
+        &mut self.far_plane
+    }
     fn clipping_offset(&self) -> &f32 {
         &self.clipping_offset
+    }
+    fn clipping_offset_mut(&mut self) -> &mut f32 {
+        &mut self.clipping_offset
     }
     fn clipping_enable(&self) -> &bool {
         &self.clipping_enable
     }
+    fn clipping_enable_mut(&mut self) -> &mut bool {
+        &mut self.clipping_enable
+    }
     fn distance_tolerance(&self) -> &f32 {
         &self.distance_tolerance
+    }
+    fn distance_tolerance_mut(&mut self) -> &mut f32 {
+        &mut self.distance_tolerance
     }
     fn distance_falloff(&self) -> &f32 {
         &self.distance_falloff
     }
+    fn distance_falloff_mut(&mut self) -> &mut f32 {
+        &mut self.distance_falloff
+    }
     fn normal_tolerance(&self) -> &f32 {
         &self.normal_tolerance
+    }
+    fn normal_tolerance_mut(&mut self) -> &mut f32 {
+        &mut self.normal_tolerance
     }
     fn normal_falloff(&self) -> &f32 {
         &self.normal_falloff
     }
+    fn normal_falloff_mut(&mut self) -> &mut f32 {
+        &mut self.normal_falloff
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -22893,6 +30019,15 @@ impl TypeObject for LocalPlanarReflectionStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22916,23 +30051,39 @@ pub struct DistantIBLDynamicState {
 
 pub trait DistantIBLDynamicStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn is_visible(&self) -> &bool;
+    fn is_visible_mut(&mut self) -> &mut bool;
     fn refresh_counter(&self) -> &u32;
+    fn refresh_counter_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl DistantIBLDynamicStateTrait for DistantIBLDynamicState {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn is_visible(&self) -> &bool {
         &self.is_visible
+    }
+    fn is_visible_mut(&mut self) -> &mut bool {
+        &mut self.is_visible
     }
     fn refresh_counter(&self) -> &u32 {
         &self.refresh_counter
     }
+    fn refresh_counter_mut(&mut self) -> &mut u32 {
+        &mut self.refresh_counter
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -22982,6 +30133,15 @@ impl TypeObject for DistantIBLDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -23023,95 +30183,183 @@ pub struct DistantIBLStaticState {
 
 pub trait DistantIBLStaticStateTrait: TypeObject {
     fn location_type(&self) -> &super::render_base::DistantIBLLocationType;
+    fn location_type_mut(&mut self) -> &mut super::render_base::DistantIBLLocationType;
     fn local_offset(&self) -> &super::core::Vec3;
+    fn local_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn mode(&self) -> &super::render_base::LocalIBLMode;
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode;
     fn capture_distance(&self) -> &f32;
+    fn capture_distance_mut(&mut self) -> &mut f32;
     fn capture_fade_distance(&self) -> &f32;
+    fn capture_fade_distance_mut(&mut self) -> &mut f32;
     fn influence_expand_distance(&self) -> &f32;
+    fn influence_expand_distance_mut(&mut self) -> &mut f32;
     fn influence_fade_distance(&self) -> &f32;
+    fn influence_fade_distance_mut(&mut self) -> &mut f32;
     fn update_when_moving(&self) -> &bool;
+    fn update_when_moving_mut(&mut self) -> &mut bool;
     fn capture_sky(&self) -> &bool;
+    fn capture_sky_mut(&mut self) -> &mut bool;
     fn capture_sky_mask(&self) -> &bool;
+    fn capture_sky_mask_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_a_o(&self) -> &bool;
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_mask(&self) -> &bool;
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool;
     fn sharpen_sky_visibility(&self) -> &f32;
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32;
     fn bias_sky_visibility(&self) -> &f32;
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32;
     fn use_proxy_reprojection(&self) -> &bool;
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool;
     fn capture_fog(&self) -> &bool;
+    fn capture_fog_mut(&mut self) -> &mut bool;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn do_not_update_baked_texture(&self) -> &bool;
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool;
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl DistantIBLStaticStateTrait for DistantIBLStaticState {
     fn location_type(&self) -> &super::render_base::DistantIBLLocationType {
         &self.location_type
     }
+    fn location_type_mut(&mut self) -> &mut super::render_base::DistantIBLLocationType {
+        &mut self.location_type
+    }
     fn local_offset(&self) -> &super::core::Vec3 {
         &self.local_offset
+    }
+    fn local_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.local_offset
     }
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
+    }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
     }
     fn mode(&self) -> &super::render_base::LocalIBLMode {
         &self.mode
     }
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode {
+        &mut self.mode
+    }
     fn capture_distance(&self) -> &f32 {
         &self.capture_distance
+    }
+    fn capture_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_distance
     }
     fn capture_fade_distance(&self) -> &f32 {
         &self.capture_fade_distance
     }
+    fn capture_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_fade_distance
+    }
     fn influence_expand_distance(&self) -> &f32 {
         &self.influence_expand_distance
+    }
+    fn influence_expand_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_expand_distance
     }
     fn influence_fade_distance(&self) -> &f32 {
         &self.influence_fade_distance
     }
+    fn influence_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_fade_distance
+    }
     fn update_when_moving(&self) -> &bool {
         &self.update_when_moving
+    }
+    fn update_when_moving_mut(&mut self) -> &mut bool {
+        &mut self.update_when_moving
     }
     fn capture_sky(&self) -> &bool {
         &self.capture_sky
     }
+    fn capture_sky_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky
+    }
     fn capture_sky_mask(&self) -> &bool {
         &self.capture_sky_mask
+    }
+    fn capture_sky_mask_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky_mask
     }
     fn use_sky_visibility_as_a_o(&self) -> &bool {
         &self.use_sky_visibility_as_a_o
     }
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_a_o
+    }
     fn use_sky_visibility_as_mask(&self) -> &bool {
         &self.use_sky_visibility_as_mask
+    }
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_mask
     }
     fn sharpen_sky_visibility(&self) -> &f32 {
         &self.sharpen_sky_visibility
     }
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.sharpen_sky_visibility
+    }
     fn bias_sky_visibility(&self) -> &f32 {
         &self.bias_sky_visibility
+    }
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.bias_sky_visibility
     }
     fn use_proxy_reprojection(&self) -> &bool {
         &self.use_proxy_reprojection
     }
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool {
+        &mut self.use_proxy_reprojection
+    }
     fn capture_fog(&self) -> &bool {
         &self.capture_fog
+    }
+    fn capture_fog_mut(&mut self) -> &mut bool {
+        &mut self.capture_fog
     }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
     }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
+    }
     fn do_not_update_baked_texture(&self) -> &bool {
         &self.do_not_update_baked_texture
+    }
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool {
+        &mut self.do_not_update_baked_texture
     }
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.baked_texture
     }
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.baked_texture
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -23269,6 +30517,15 @@ impl TypeObject for DistantIBLStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -23292,23 +30549,39 @@ pub struct BoxIBLDynamicState {
 
 pub trait BoxIBLDynamicStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn is_visible(&self) -> &bool;
+    fn is_visible_mut(&mut self) -> &mut bool;
     fn refresh_counter(&self) -> &u32;
+    fn refresh_counter_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl BoxIBLDynamicStateTrait for BoxIBLDynamicState {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn is_visible(&self) -> &bool {
         &self.is_visible
+    }
+    fn is_visible_mut(&mut self) -> &mut bool {
+        &mut self.is_visible
     }
     fn refresh_counter(&self) -> &u32 {
         &self.refresh_counter
     }
+    fn refresh_counter_mut(&mut self) -> &mut u32 {
+        &mut self.refresh_counter
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -23358,6 +30631,15 @@ impl TypeObject for BoxIBLDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -23405,119 +30687,231 @@ pub struct BoxIBLStaticState {
 
 pub trait BoxIBLStaticStateTrait: TypeObject {
     fn influence_fade_normal(&self) -> &super::core::Vec3;
+    fn influence_fade_normal_mut(&mut self) -> &mut super::core::Vec3;
     fn side_fade_pos_x(&self) -> &f32;
+    fn side_fade_pos_x_mut(&mut self) -> &mut f32;
     fn side_fade_neg_x(&self) -> &f32;
+    fn side_fade_neg_x_mut(&mut self) -> &mut f32;
     fn side_fade_pos_y(&self) -> &f32;
+    fn side_fade_pos_y_mut(&mut self) -> &mut f32;
     fn side_fade_neg_y(&self) -> &f32;
+    fn side_fade_neg_y_mut(&mut self) -> &mut f32;
     fn side_fade_pos_z(&self) -> &f32;
+    fn side_fade_pos_z_mut(&mut self) -> &mut f32;
     fn side_fade_neg_z(&self) -> &f32;
+    fn side_fade_neg_z_mut(&mut self) -> &mut f32;
     fn local_offset(&self) -> &super::core::Vec3;
+    fn local_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn mode(&self) -> &super::render_base::LocalIBLMode;
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode;
     fn capture_distance(&self) -> &f32;
+    fn capture_distance_mut(&mut self) -> &mut f32;
     fn capture_fade_distance(&self) -> &f32;
+    fn capture_fade_distance_mut(&mut self) -> &mut f32;
     fn influence_expand_distance(&self) -> &f32;
+    fn influence_expand_distance_mut(&mut self) -> &mut f32;
     fn influence_fade_distance(&self) -> &f32;
+    fn influence_fade_distance_mut(&mut self) -> &mut f32;
     fn update_when_moving(&self) -> &bool;
+    fn update_when_moving_mut(&mut self) -> &mut bool;
     fn capture_sky(&self) -> &bool;
+    fn capture_sky_mut(&mut self) -> &mut bool;
     fn capture_sky_mask(&self) -> &bool;
+    fn capture_sky_mask_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_a_o(&self) -> &bool;
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_mask(&self) -> &bool;
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool;
     fn sharpen_sky_visibility(&self) -> &f32;
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32;
     fn bias_sky_visibility(&self) -> &f32;
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32;
     fn use_proxy_reprojection(&self) -> &bool;
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool;
     fn capture_fog(&self) -> &bool;
+    fn capture_fog_mut(&mut self) -> &mut bool;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn do_not_update_baked_texture(&self) -> &bool;
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool;
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl BoxIBLStaticStateTrait for BoxIBLStaticState {
     fn influence_fade_normal(&self) -> &super::core::Vec3 {
         &self.influence_fade_normal
     }
+    fn influence_fade_normal_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.influence_fade_normal
+    }
     fn side_fade_pos_x(&self) -> &f32 {
         &self.side_fade_pos_x
+    }
+    fn side_fade_pos_x_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_pos_x
     }
     fn side_fade_neg_x(&self) -> &f32 {
         &self.side_fade_neg_x
     }
+    fn side_fade_neg_x_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_neg_x
+    }
     fn side_fade_pos_y(&self) -> &f32 {
         &self.side_fade_pos_y
+    }
+    fn side_fade_pos_y_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_pos_y
     }
     fn side_fade_neg_y(&self) -> &f32 {
         &self.side_fade_neg_y
     }
+    fn side_fade_neg_y_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_neg_y
+    }
     fn side_fade_pos_z(&self) -> &f32 {
         &self.side_fade_pos_z
+    }
+    fn side_fade_pos_z_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_pos_z
     }
     fn side_fade_neg_z(&self) -> &f32 {
         &self.side_fade_neg_z
     }
+    fn side_fade_neg_z_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_neg_z
+    }
     fn local_offset(&self) -> &super::core::Vec3 {
         &self.local_offset
+    }
+    fn local_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.local_offset
     }
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
+    }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
     }
     fn mode(&self) -> &super::render_base::LocalIBLMode {
         &self.mode
     }
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode {
+        &mut self.mode
+    }
     fn capture_distance(&self) -> &f32 {
         &self.capture_distance
+    }
+    fn capture_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_distance
     }
     fn capture_fade_distance(&self) -> &f32 {
         &self.capture_fade_distance
     }
+    fn capture_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_fade_distance
+    }
     fn influence_expand_distance(&self) -> &f32 {
         &self.influence_expand_distance
+    }
+    fn influence_expand_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_expand_distance
     }
     fn influence_fade_distance(&self) -> &f32 {
         &self.influence_fade_distance
     }
+    fn influence_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_fade_distance
+    }
     fn update_when_moving(&self) -> &bool {
         &self.update_when_moving
+    }
+    fn update_when_moving_mut(&mut self) -> &mut bool {
+        &mut self.update_when_moving
     }
     fn capture_sky(&self) -> &bool {
         &self.capture_sky
     }
+    fn capture_sky_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky
+    }
     fn capture_sky_mask(&self) -> &bool {
         &self.capture_sky_mask
+    }
+    fn capture_sky_mask_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky_mask
     }
     fn use_sky_visibility_as_a_o(&self) -> &bool {
         &self.use_sky_visibility_as_a_o
     }
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_a_o
+    }
     fn use_sky_visibility_as_mask(&self) -> &bool {
         &self.use_sky_visibility_as_mask
+    }
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_mask
     }
     fn sharpen_sky_visibility(&self) -> &f32 {
         &self.sharpen_sky_visibility
     }
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.sharpen_sky_visibility
+    }
     fn bias_sky_visibility(&self) -> &f32 {
         &self.bias_sky_visibility
+    }
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.bias_sky_visibility
     }
     fn use_proxy_reprojection(&self) -> &bool {
         &self.use_proxy_reprojection
     }
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool {
+        &mut self.use_proxy_reprojection
+    }
     fn capture_fog(&self) -> &bool {
         &self.capture_fog
+    }
+    fn capture_fog_mut(&mut self) -> &mut bool {
+        &mut self.capture_fog
     }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
     }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
+    }
     fn do_not_update_baked_texture(&self) -> &bool {
         &self.do_not_update_baked_texture
+    }
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool {
+        &mut self.do_not_update_baked_texture
     }
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.baked_texture
     }
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.baked_texture
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -23711,6 +31105,15 @@ impl TypeObject for BoxIBLStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -23734,23 +31137,39 @@ pub struct SphereIBLDynamicState {
 
 pub trait SphereIBLDynamicStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn is_visible(&self) -> &bool;
+    fn is_visible_mut(&mut self) -> &mut bool;
     fn refresh_counter(&self) -> &u32;
+    fn refresh_counter_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl SphereIBLDynamicStateTrait for SphereIBLDynamicState {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn is_visible(&self) -> &bool {
         &self.is_visible
+    }
+    fn is_visible_mut(&mut self) -> &mut bool {
+        &mut self.is_visible
     }
     fn refresh_counter(&self) -> &u32 {
         &self.refresh_counter
     }
+    fn refresh_counter_mut(&mut self) -> &mut u32 {
+        &mut self.refresh_counter
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -23800,6 +31219,15 @@ impl TypeObject for SphereIBLDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -23840,91 +31268,175 @@ pub struct SphereIBLStaticState {
 
 pub trait SphereIBLStaticStateTrait: TypeObject {
     fn influence_fade_normal(&self) -> &f32;
+    fn influence_fade_normal_mut(&mut self) -> &mut f32;
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn mode(&self) -> &super::render_base::LocalIBLMode;
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode;
     fn capture_distance(&self) -> &f32;
+    fn capture_distance_mut(&mut self) -> &mut f32;
     fn capture_fade_distance(&self) -> &f32;
+    fn capture_fade_distance_mut(&mut self) -> &mut f32;
     fn influence_expand_distance(&self) -> &f32;
+    fn influence_expand_distance_mut(&mut self) -> &mut f32;
     fn influence_fade_distance(&self) -> &f32;
+    fn influence_fade_distance_mut(&mut self) -> &mut f32;
     fn update_when_moving(&self) -> &bool;
+    fn update_when_moving_mut(&mut self) -> &mut bool;
     fn capture_sky(&self) -> &bool;
+    fn capture_sky_mut(&mut self) -> &mut bool;
     fn capture_sky_mask(&self) -> &bool;
+    fn capture_sky_mask_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_a_o(&self) -> &bool;
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_mask(&self) -> &bool;
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool;
     fn sharpen_sky_visibility(&self) -> &f32;
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32;
     fn bias_sky_visibility(&self) -> &f32;
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32;
     fn use_proxy_reprojection(&self) -> &bool;
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool;
     fn capture_fog(&self) -> &bool;
+    fn capture_fog_mut(&mut self) -> &mut bool;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn do_not_update_baked_texture(&self) -> &bool;
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool;
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl SphereIBLStaticStateTrait for SphereIBLStaticState {
     fn influence_fade_normal(&self) -> &f32 {
         &self.influence_fade_normal
     }
+    fn influence_fade_normal_mut(&mut self) -> &mut f32 {
+        &mut self.influence_fade_normal
+    }
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
+    }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
     }
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
     }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
+    }
     fn mode(&self) -> &super::render_base::LocalIBLMode {
         &self.mode
+    }
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode {
+        &mut self.mode
     }
     fn capture_distance(&self) -> &f32 {
         &self.capture_distance
     }
+    fn capture_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_distance
+    }
     fn capture_fade_distance(&self) -> &f32 {
         &self.capture_fade_distance
+    }
+    fn capture_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_fade_distance
     }
     fn influence_expand_distance(&self) -> &f32 {
         &self.influence_expand_distance
     }
+    fn influence_expand_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_expand_distance
+    }
     fn influence_fade_distance(&self) -> &f32 {
         &self.influence_fade_distance
+    }
+    fn influence_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_fade_distance
     }
     fn update_when_moving(&self) -> &bool {
         &self.update_when_moving
     }
+    fn update_when_moving_mut(&mut self) -> &mut bool {
+        &mut self.update_when_moving
+    }
     fn capture_sky(&self) -> &bool {
         &self.capture_sky
+    }
+    fn capture_sky_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky
     }
     fn capture_sky_mask(&self) -> &bool {
         &self.capture_sky_mask
     }
+    fn capture_sky_mask_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky_mask
+    }
     fn use_sky_visibility_as_a_o(&self) -> &bool {
         &self.use_sky_visibility_as_a_o
+    }
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_a_o
     }
     fn use_sky_visibility_as_mask(&self) -> &bool {
         &self.use_sky_visibility_as_mask
     }
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_mask
+    }
     fn sharpen_sky_visibility(&self) -> &f32 {
         &self.sharpen_sky_visibility
+    }
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.sharpen_sky_visibility
     }
     fn bias_sky_visibility(&self) -> &f32 {
         &self.bias_sky_visibility
     }
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.bias_sky_visibility
+    }
     fn use_proxy_reprojection(&self) -> &bool {
         &self.use_proxy_reprojection
+    }
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool {
+        &mut self.use_proxy_reprojection
     }
     fn capture_fog(&self) -> &bool {
         &self.capture_fog
     }
+    fn capture_fog_mut(&mut self) -> &mut bool {
+        &mut self.capture_fog
+    }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
+    }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
     }
     fn do_not_update_baked_texture(&self) -> &bool {
         &self.do_not_update_baked_texture
     }
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool {
+        &mut self.do_not_update_baked_texture
+    }
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.baked_texture
     }
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.baked_texture
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -24076,6 +31588,15 @@ impl TypeObject for SphereIBLStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24098,19 +31619,31 @@ pub struct IBLDynamicState {
 
 pub trait IBLDynamicStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn is_visible(&self) -> &bool;
+    fn is_visible_mut(&mut self) -> &mut bool;
     fn refresh_counter(&self) -> &u32;
+    fn refresh_counter_mut(&mut self) -> &mut u32;
 }
 
 impl IBLDynamicStateTrait for IBLDynamicState {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn is_visible(&self) -> &bool {
         &self.is_visible
     }
+    fn is_visible_mut(&mut self) -> &mut bool {
+        &mut self.is_visible
+    }
     fn refresh_counter(&self) -> &u32 {
         &self.refresh_counter
+    }
+    fn refresh_counter_mut(&mut self) -> &mut u32 {
+        &mut self.refresh_counter
     }
 }
 
@@ -24154,6 +31687,15 @@ impl TypeObject for IBLDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24192,83 +31734,159 @@ pub struct IBLStaticState {
 
 pub trait IBLStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn mode(&self) -> &super::render_base::LocalIBLMode;
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode;
     fn capture_distance(&self) -> &f32;
+    fn capture_distance_mut(&mut self) -> &mut f32;
     fn capture_fade_distance(&self) -> &f32;
+    fn capture_fade_distance_mut(&mut self) -> &mut f32;
     fn influence_expand_distance(&self) -> &f32;
+    fn influence_expand_distance_mut(&mut self) -> &mut f32;
     fn influence_fade_distance(&self) -> &f32;
+    fn influence_fade_distance_mut(&mut self) -> &mut f32;
     fn update_when_moving(&self) -> &bool;
+    fn update_when_moving_mut(&mut self) -> &mut bool;
     fn capture_sky(&self) -> &bool;
+    fn capture_sky_mut(&mut self) -> &mut bool;
     fn capture_sky_mask(&self) -> &bool;
+    fn capture_sky_mask_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_a_o(&self) -> &bool;
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_mask(&self) -> &bool;
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool;
     fn sharpen_sky_visibility(&self) -> &f32;
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32;
     fn bias_sky_visibility(&self) -> &f32;
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32;
     fn use_proxy_reprojection(&self) -> &bool;
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool;
     fn capture_fog(&self) -> &bool;
+    fn capture_fog_mut(&mut self) -> &mut bool;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn do_not_update_baked_texture(&self) -> &bool;
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool;
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
 }
 
 impl IBLStaticStateTrait for IBLStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
+    }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
     }
     fn mode(&self) -> &super::render_base::LocalIBLMode {
         &self.mode
     }
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode {
+        &mut self.mode
+    }
     fn capture_distance(&self) -> &f32 {
         &self.capture_distance
+    }
+    fn capture_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_distance
     }
     fn capture_fade_distance(&self) -> &f32 {
         &self.capture_fade_distance
     }
+    fn capture_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_fade_distance
+    }
     fn influence_expand_distance(&self) -> &f32 {
         &self.influence_expand_distance
+    }
+    fn influence_expand_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_expand_distance
     }
     fn influence_fade_distance(&self) -> &f32 {
         &self.influence_fade_distance
     }
+    fn influence_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_fade_distance
+    }
     fn update_when_moving(&self) -> &bool {
         &self.update_when_moving
+    }
+    fn update_when_moving_mut(&mut self) -> &mut bool {
+        &mut self.update_when_moving
     }
     fn capture_sky(&self) -> &bool {
         &self.capture_sky
     }
+    fn capture_sky_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky
+    }
     fn capture_sky_mask(&self) -> &bool {
         &self.capture_sky_mask
+    }
+    fn capture_sky_mask_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky_mask
     }
     fn use_sky_visibility_as_a_o(&self) -> &bool {
         &self.use_sky_visibility_as_a_o
     }
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_a_o
+    }
     fn use_sky_visibility_as_mask(&self) -> &bool {
         &self.use_sky_visibility_as_mask
+    }
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_mask
     }
     fn sharpen_sky_visibility(&self) -> &f32 {
         &self.sharpen_sky_visibility
     }
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.sharpen_sky_visibility
+    }
     fn bias_sky_visibility(&self) -> &f32 {
         &self.bias_sky_visibility
+    }
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.bias_sky_visibility
     }
     fn use_proxy_reprojection(&self) -> &bool {
         &self.use_proxy_reprojection
     }
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool {
+        &mut self.use_proxy_reprojection
+    }
     fn capture_fog(&self) -> &bool {
         &self.capture_fog
+    }
+    fn capture_fog_mut(&mut self) -> &mut bool {
+        &mut self.capture_fog
     }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
     }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
+    }
     fn do_not_update_baked_texture(&self) -> &bool {
         &self.do_not_update_baked_texture
     }
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool {
+        &mut self.do_not_update_baked_texture
+    }
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.baked_texture
+    }
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.baked_texture
     }
 }
 
@@ -24408,6 +32026,15 @@ impl TypeObject for IBLStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24430,19 +32057,31 @@ pub struct FogExclusionVolumeDynamicState {
 
 pub trait FogExclusionVolumeDynamicStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl FogExclusionVolumeDynamicStateTrait for FogExclusionVolumeDynamicState {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -24486,6 +32125,15 @@ impl TypeObject for FogExclusionVolumeDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24510,27 +32158,47 @@ pub struct FogExclusionVolumeStaticState {
 
 pub trait FogExclusionVolumeStaticStateTrait: TypeObject {
     fn fog_exclusion_volume_shape(&self) -> &FogExclusionVolumeShape;
+    fn fog_exclusion_volume_shape_mut(&mut self) -> &mut FogExclusionVolumeShape;
     fn fog_volume_strength(&self) -> &f32;
+    fn fog_volume_strength_mut(&mut self) -> &mut f32;
     fn fade_out_start(&self) -> &f32;
+    fn fade_out_start_mut(&mut self) -> &mut f32;
     fn fade_out_end(&self) -> &f32;
+    fn fade_out_end_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl FogExclusionVolumeStaticStateTrait for FogExclusionVolumeStaticState {
     fn fog_exclusion_volume_shape(&self) -> &FogExclusionVolumeShape {
         &self.fog_exclusion_volume_shape
     }
+    fn fog_exclusion_volume_shape_mut(&mut self) -> &mut FogExclusionVolumeShape {
+        &mut self.fog_exclusion_volume_shape
+    }
     fn fog_volume_strength(&self) -> &f32 {
         &self.fog_volume_strength
+    }
+    fn fog_volume_strength_mut(&mut self) -> &mut f32 {
+        &mut self.fog_volume_strength
     }
     fn fade_out_start(&self) -> &f32 {
         &self.fade_out_start
     }
+    fn fade_out_start_mut(&mut self) -> &mut f32 {
+        &mut self.fade_out_start
+    }
     fn fade_out_end(&self) -> &f32 {
         &self.fade_out_end
     }
+    fn fade_out_end_mut(&mut self) -> &mut f32 {
+        &mut self.fade_out_end
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -24586,6 +32254,15 @@ impl TypeObject for FogExclusionVolumeStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24624,6 +32301,15 @@ impl TypeObject for FogExclusionVolumeShape {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24647,23 +32333,39 @@ pub struct DistantShadowCacheDynamicState {
 
 pub trait DistantShadowCacheDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn refresh_counter(&self) -> &u32;
+    fn refresh_counter_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl DistantShadowCacheDynamicStateTrait for DistantShadowCacheDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
     fn refresh_counter(&self) -> &u32 {
         &self.refresh_counter
     }
+    fn refresh_counter_mut(&mut self) -> &mut u32 {
+        &mut self.refresh_counter
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -24713,6 +32415,15 @@ impl TypeObject for DistantShadowCacheDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24742,47 +32453,87 @@ pub struct DistantShadowCacheStaticState {
 
 pub trait DistantShadowCacheStaticStateTrait: TypeObject {
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn mode(&self) -> &super::render_base::ShadowCacheMode;
+    fn mode_mut(&mut self) -> &mut super::render_base::ShadowCacheMode;
     fn resolution(&self) -> &u32;
+    fn resolution_mut(&mut self) -> &mut u32;
     fn doublebuffer(&self) -> &bool;
+    fn doublebuffer_mut(&mut self) -> &mut bool;
     fn depth_bias(&self) -> &super::render_base::ShadowCacheDepthBias;
+    fn depth_bias_mut(&mut self) -> &mut super::render_base::ShadowCacheDepthBias;
     fn dynamic_prod_priority(&self) -> &u32;
+    fn dynamic_prod_priority_mut(&mut self) -> &mut u32;
     fn tiles_per_side(&self) -> &u32;
+    fn tiles_per_side_mut(&mut self) -> &mut u32;
     fn do_not_update_baked_texture(&self) -> &bool;
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool;
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl DistantShadowCacheStaticStateTrait for DistantShadowCacheStaticState {
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
     }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
+    }
     fn mode(&self) -> &super::render_base::ShadowCacheMode {
         &self.mode
+    }
+    fn mode_mut(&mut self) -> &mut super::render_base::ShadowCacheMode {
+        &mut self.mode
     }
     fn resolution(&self) -> &u32 {
         &self.resolution
     }
+    fn resolution_mut(&mut self) -> &mut u32 {
+        &mut self.resolution
+    }
     fn doublebuffer(&self) -> &bool {
         &self.doublebuffer
+    }
+    fn doublebuffer_mut(&mut self) -> &mut bool {
+        &mut self.doublebuffer
     }
     fn depth_bias(&self) -> &super::render_base::ShadowCacheDepthBias {
         &self.depth_bias
     }
+    fn depth_bias_mut(&mut self) -> &mut super::render_base::ShadowCacheDepthBias {
+        &mut self.depth_bias
+    }
     fn dynamic_prod_priority(&self) -> &u32 {
         &self.dynamic_prod_priority
+    }
+    fn dynamic_prod_priority_mut(&mut self) -> &mut u32 {
+        &mut self.dynamic_prod_priority
     }
     fn tiles_per_side(&self) -> &u32 {
         &self.tiles_per_side
     }
+    fn tiles_per_side_mut(&mut self) -> &mut u32 {
+        &mut self.tiles_per_side
+    }
     fn do_not_update_baked_texture(&self) -> &bool {
         &self.do_not_update_baked_texture
+    }
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool {
+        &mut self.do_not_update_baked_texture
     }
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.baked_texture
     }
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.baked_texture
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -24868,6 +32619,15 @@ impl TypeObject for DistantShadowCacheStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24913,6 +32673,15 @@ impl TypeObject for BakeableTextureDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24934,15 +32703,23 @@ pub struct BakeableTextureStaticState {
 
 pub trait BakeableTextureStaticStateTrait: TypeObject {
     fn do_not_update_baked_texture(&self) -> &bool;
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool;
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
 }
 
 impl BakeableTextureStaticStateTrait for BakeableTextureStaticState {
     fn do_not_update_baked_texture(&self) -> &bool {
         &self.do_not_update_baked_texture
     }
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool {
+        &mut self.do_not_update_baked_texture
+    }
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.baked_texture
+    }
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.baked_texture
     }
 }
 
@@ -24979,6 +32756,15 @@ impl TypeObject for BakeableTextureStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -25026,6 +32812,15 @@ impl TypeObject for PoseConsumer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -25060,6 +32855,15 @@ impl TypeObject for MeshHandle {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

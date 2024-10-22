@@ -24,15 +24,23 @@ pub struct FlapComponentData {
 
 pub trait FlapComponentDataTrait: super::entity::BoneComponentDataTrait {
     fn rotation_axis(&self) -> &super::game_shared::RotationAxisEnum;
+    fn rotation_axis_mut(&mut self) -> &mut super::game_shared::RotationAxisEnum;
     fn rotation_scale(&self) -> &f32;
+    fn rotation_scale_mut(&mut self) -> &mut f32;
 }
 
 impl FlapComponentDataTrait for FlapComponentData {
     fn rotation_axis(&self) -> &super::game_shared::RotationAxisEnum {
         &self.rotation_axis
     }
+    fn rotation_axis_mut(&mut self) -> &mut super::game_shared::RotationAxisEnum {
+        &mut self.rotation_axis
+    }
     fn rotation_scale(&self) -> &f32 {
         &self.rotation_scale
+    }
+    fn rotation_scale_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_scale
     }
 }
 
@@ -46,17 +54,32 @@ impl super::entity::ComponentDataTrait for FlapComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -67,15 +90,15 @@ impl super::core::DataBusPeerTrait for FlapComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FlapComponentData {
 }
 
 impl super::core::DataContainerTrait for FlapComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FLAPCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -113,6 +136,15 @@ impl TypeObject for FlapComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -134,11 +166,15 @@ pub struct WingComponentData {
 
 pub trait WingComponentDataTrait: super::entity::BoneComponentDataTrait {
     fn config(&self) -> &Option<Arc<Mutex<dyn super::physics::WingPhysicsDataTrait>>>;
+    fn config_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::physics::WingPhysicsDataTrait>>>;
 }
 
 impl WingComponentDataTrait for WingComponentData {
     fn config(&self) -> &Option<Arc<Mutex<dyn super::physics::WingPhysicsDataTrait>>> {
         &self.config
+    }
+    fn config_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::physics::WingPhysicsDataTrait>>> {
+        &mut self.config
     }
 }
 
@@ -152,17 +188,32 @@ impl super::entity::ComponentDataTrait for WingComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -173,15 +224,15 @@ impl super::core::DataBusPeerTrait for WingComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WingComponentData {
 }
 
 impl super::core::DataContainerTrait for WingComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WINGCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -212,6 +263,15 @@ impl TypeObject for WingComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

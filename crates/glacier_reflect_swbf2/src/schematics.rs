@@ -59,19 +59,31 @@ pub struct SetVariableTypeInfoAsset {
 
 pub trait SetVariableTypeInfoAssetTrait: super::core::FunctionTypeInfoAssetTrait {
     fn class_type(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn class_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn field_type(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn field_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn field_offset(&self) -> &u32;
+    fn field_offset_mut(&mut self) -> &mut u32;
 }
 
 impl SetVariableTypeInfoAssetTrait for SetVariableTypeInfoAsset {
     fn class_type(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.class_type
     }
+    fn class_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.class_type
+    }
     fn field_type(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.field_type
     }
+    fn field_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.field_type
+    }
     fn field_offset(&self) -> &u32 {
         &self.field_offset
+    }
+    fn field_offset_mut(&mut self) -> &mut u32 {
+        &mut self.field_offset
     }
 }
 
@@ -79,8 +91,14 @@ impl super::core::FunctionTypeInfoAssetTrait for SetVariableTypeInfoAsset {
     fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoParameterDataContainerTrait>>>> {
         self._glacier_base.parameters()
     }
+    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoParameterDataContainerTrait>>>> {
+        self._glacier_base.parameters_mut()
+    }
     fn owner(&self) -> &Option<Arc<Mutex<dyn super::core::ClassInfoAssetTrait>>> {
         self._glacier_base.owner()
+    }
+    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::ClassInfoAssetTrait>>> {
+        self._glacier_base.owner_mut()
     }
 }
 
@@ -88,17 +106,32 @@ impl super::core::TypeInfoAssetTrait for SetVariableTypeInfoAsset {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -106,12 +139,12 @@ impl super::core::AssetTrait for SetVariableTypeInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SetVariableTypeInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SETVARIABLETYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -155,6 +188,15 @@ impl TypeObject for SetVariableTypeInfoAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -178,19 +220,31 @@ pub struct GetVariableTypeInfoAsset {
 
 pub trait GetVariableTypeInfoAssetTrait: super::core::FunctionTypeInfoAssetTrait {
     fn class_type(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn class_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn field_type(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn field_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn field_offset(&self) -> &u32;
+    fn field_offset_mut(&mut self) -> &mut u32;
 }
 
 impl GetVariableTypeInfoAssetTrait for GetVariableTypeInfoAsset {
     fn class_type(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.class_type
     }
+    fn class_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.class_type
+    }
     fn field_type(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.field_type
     }
+    fn field_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.field_type
+    }
     fn field_offset(&self) -> &u32 {
         &self.field_offset
+    }
+    fn field_offset_mut(&mut self) -> &mut u32 {
+        &mut self.field_offset
     }
 }
 
@@ -198,8 +252,14 @@ impl super::core::FunctionTypeInfoAssetTrait for GetVariableTypeInfoAsset {
     fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoParameterDataContainerTrait>>>> {
         self._glacier_base.parameters()
     }
+    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoParameterDataContainerTrait>>>> {
+        self._glacier_base.parameters_mut()
+    }
     fn owner(&self) -> &Option<Arc<Mutex<dyn super::core::ClassInfoAssetTrait>>> {
         self._glacier_base.owner()
+    }
+    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::ClassInfoAssetTrait>>> {
+        self._glacier_base.owner_mut()
     }
 }
 
@@ -207,17 +267,32 @@ impl super::core::TypeInfoAssetTrait for GetVariableTypeInfoAsset {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -225,12 +300,12 @@ impl super::core::AssetTrait for GetVariableTypeInfoAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for GetVariableTypeInfoAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GETVARIABLETYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -274,6 +349,15 @@ impl TypeObject for GetVariableTypeInfoAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -295,11 +379,15 @@ pub struct SchematicsUpdatePassAsset {
 
 pub trait SchematicsUpdatePassAssetTrait: super::core::AssetTrait {
     fn depends_on(&self) -> &Vec<Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>>>;
+    fn depends_on_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>>>;
 }
 
 impl SchematicsUpdatePassAssetTrait for SchematicsUpdatePassAsset {
     fn depends_on(&self) -> &Vec<Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>>> {
         &self.depends_on
+    }
+    fn depends_on_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>>> {
+        &mut self.depends_on
     }
 }
 
@@ -307,12 +395,12 @@ impl super::core::AssetTrait for SchematicsUpdatePassAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SchematicsUpdatePassAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCHEMATICSUPDATEPASSASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -344,6 +432,15 @@ impl TypeObject for SchematicsUpdatePassAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -369,9 +466,6 @@ impl SchematicsBasePatchDataTrait for SchematicsBasePatchData {
 }
 
 impl super::core::DataContainerTrait for SchematicsBasePatchData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCHEMATICSBASEPATCHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -396,6 +490,15 @@ impl TypeObject for SchematicsBasePatchData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -425,12 +528,12 @@ impl super::core::AssetTrait for SchematicsBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SchematicsBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCHEMATICSBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -456,6 +559,15 @@ impl TypeObject for SchematicsBaseAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -480,23 +592,39 @@ pub struct SchematicsPatchData {
 
 pub trait SchematicsPatchDataTrait: SchematicsBasePatchDataTrait {
     fn field_patches(&self) -> &Vec<SchematicsFieldPatch>;
+    fn field_patches_mut(&mut self) -> &mut Vec<SchematicsFieldPatch>;
     fn constructor_patches(&self) -> &Vec<SchematicsParameterPatch>;
+    fn constructor_patches_mut(&mut self) -> &mut Vec<SchematicsParameterPatch>;
     fn nested_patches(&self) -> &Vec<SchematicsNestedPatch>;
+    fn nested_patches_mut(&mut self) -> &mut Vec<SchematicsNestedPatch>;
     fn observer_patches(&self) -> &Vec<SchematicsObserverPatch>;
+    fn observer_patches_mut(&mut self) -> &mut Vec<SchematicsObserverPatch>;
 }
 
 impl SchematicsPatchDataTrait for SchematicsPatchData {
     fn field_patches(&self) -> &Vec<SchematicsFieldPatch> {
         &self.field_patches
     }
+    fn field_patches_mut(&mut self) -> &mut Vec<SchematicsFieldPatch> {
+        &mut self.field_patches
+    }
     fn constructor_patches(&self) -> &Vec<SchematicsParameterPatch> {
         &self.constructor_patches
+    }
+    fn constructor_patches_mut(&mut self) -> &mut Vec<SchematicsParameterPatch> {
+        &mut self.constructor_patches
     }
     fn nested_patches(&self) -> &Vec<SchematicsNestedPatch> {
         &self.nested_patches
     }
+    fn nested_patches_mut(&mut self) -> &mut Vec<SchematicsNestedPatch> {
+        &mut self.nested_patches
+    }
     fn observer_patches(&self) -> &Vec<SchematicsObserverPatch> {
         &self.observer_patches
+    }
+    fn observer_patches_mut(&mut self) -> &mut Vec<SchematicsObserverPatch> {
+        &mut self.observer_patches
     }
 }
 
@@ -504,9 +632,6 @@ impl SchematicsBasePatchDataTrait for SchematicsPatchData {
 }
 
 impl super::core::DataContainerTrait for SchematicsPatchData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCHEMATICSPATCHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -556,6 +681,15 @@ impl TypeObject for SchematicsPatchData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -578,19 +712,31 @@ pub struct SchematicsObserverPatch {
 
 pub trait SchematicsObserverPatchTrait: TypeObject {
     fn field_offset(&self) -> &u16;
+    fn field_offset_mut(&mut self) -> &mut u16;
     fn function(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn update_pass(&self) -> &Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>>;
+    fn update_pass_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>>;
 }
 
 impl SchematicsObserverPatchTrait for SchematicsObserverPatch {
     fn field_offset(&self) -> &u16 {
         &self.field_offset
     }
+    fn field_offset_mut(&mut self) -> &mut u16 {
+        &mut self.field_offset
+    }
     fn function(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.function
     }
+    fn function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.function
+    }
     fn update_pass(&self) -> &Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>> {
         &self.update_pass
+    }
+    fn update_pass_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>> {
+        &mut self.update_pass
     }
 }
 
@@ -634,6 +780,15 @@ impl TypeObject for SchematicsObserverPatch {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -655,15 +810,23 @@ pub struct SchematicsNestedPatch {
 
 pub trait SchematicsNestedPatchTrait: TypeObject {
     fn target_offset(&self) -> &u16;
+    fn target_offset_mut(&mut self) -> &mut u16;
     fn data(&self) -> &Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>>;
+    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>>;
 }
 
 impl SchematicsNestedPatchTrait for SchematicsNestedPatch {
     fn target_offset(&self) -> &u16 {
         &self.target_offset
     }
+    fn target_offset_mut(&mut self) -> &mut u16 {
+        &mut self.target_offset
+    }
     fn data(&self) -> &Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>> {
         &self.data
+    }
+    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>> {
+        &mut self.data
     }
 }
 
@@ -701,6 +864,15 @@ impl TypeObject for SchematicsNestedPatch {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -723,19 +895,31 @@ pub struct SchematicsParameterPatch {
 
 pub trait SchematicsParameterPatchTrait: TypeObject {
     fn value(&self) -> &glacier_reflect::builtin::BoxedValueRef;
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::BoxedValueRef;
     fn parameter_index(&self) -> &u8;
+    fn parameter_index_mut(&mut self) -> &mut u8;
     fn target_offset(&self) -> &u16;
+    fn target_offset_mut(&mut self) -> &mut u16;
 }
 
 impl SchematicsParameterPatchTrait for SchematicsParameterPatch {
     fn value(&self) -> &glacier_reflect::builtin::BoxedValueRef {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::BoxedValueRef {
+        &mut self.value
+    }
     fn parameter_index(&self) -> &u8 {
         &self.parameter_index
     }
+    fn parameter_index_mut(&mut self) -> &mut u8 {
+        &mut self.parameter_index
+    }
     fn target_offset(&self) -> &u16 {
         &self.target_offset
+    }
+    fn target_offset_mut(&mut self) -> &mut u16 {
+        &mut self.target_offset
     }
 }
 
@@ -779,6 +963,15 @@ impl TypeObject for SchematicsParameterPatch {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -800,15 +993,23 @@ pub struct SchematicsFieldPatch {
 
 pub trait SchematicsFieldPatchTrait: TypeObject {
     fn value(&self) -> &glacier_reflect::builtin::BoxedValueRef;
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::BoxedValueRef;
     fn target_offset(&self) -> &u16;
+    fn target_offset_mut(&mut self) -> &mut u16;
 }
 
 impl SchematicsFieldPatchTrait for SchematicsFieldPatch {
     fn value(&self) -> &glacier_reflect::builtin::BoxedValueRef {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::BoxedValueRef {
+        &mut self.value
+    }
     fn target_offset(&self) -> &u16 {
         &self.target_offset
+    }
+    fn target_offset_mut(&mut self) -> &mut u16 {
+        &mut self.target_offset
     }
 }
 
@@ -846,6 +1047,15 @@ impl TypeObject for SchematicsFieldPatch {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -866,11 +1076,15 @@ pub struct ConstField {
 
 pub trait ConstFieldTrait: TypeObject {
     fn value(&self) -> &glacier_reflect::builtin::BoxedValueRef;
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::BoxedValueRef;
 }
 
 impl ConstFieldTrait for ConstField {
     fn value(&self) -> &glacier_reflect::builtin::BoxedValueRef {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut glacier_reflect::builtin::BoxedValueRef {
+        &mut self.value
     }
 }
 
@@ -902,6 +1116,15 @@ impl TypeObject for ConstField {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -923,15 +1146,23 @@ pub struct AutoCreatedDispatcher {
 
 pub trait AutoCreatedDispatcherTrait: TypeObject {
     fn field_offset(&self) -> &u16;
+    fn field_offset_mut(&mut self) -> &mut u16;
     fn parameter_type(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn parameter_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl AutoCreatedDispatcherTrait for AutoCreatedDispatcher {
     fn field_offset(&self) -> &u16 {
         &self.field_offset
     }
+    fn field_offset_mut(&mut self) -> &mut u16 {
+        &mut self.field_offset
+    }
     fn parameter_type(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.parameter_type
+    }
+    fn parameter_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.parameter_type
     }
 }
 
@@ -969,6 +1200,15 @@ impl TypeObject for AutoCreatedDispatcher {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -991,19 +1231,31 @@ pub struct AutoCreatedField {
 
 pub trait AutoCreatedFieldTrait: TypeObject {
     fn field_offset(&self) -> &u16;
+    fn field_offset_mut(&mut self) -> &mut u16;
     fn asset(&self) -> &Option<Arc<Mutex<dyn SchematicsAssetTrait>>>;
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsAssetTrait>>>;
     fn patch_data(&self) -> &Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>>;
+    fn patch_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>>;
 }
 
 impl AutoCreatedFieldTrait for AutoCreatedField {
     fn field_offset(&self) -> &u16 {
         &self.field_offset
     }
+    fn field_offset_mut(&mut self) -> &mut u16 {
+        &mut self.field_offset
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn SchematicsAssetTrait>>> {
         &self.asset
     }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsAssetTrait>>> {
+        &mut self.asset
+    }
     fn patch_data(&self) -> &Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>> {
         &self.patch_data
+    }
+    fn patch_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>> {
+        &mut self.patch_data
     }
 }
 
@@ -1047,6 +1299,15 @@ impl TypeObject for AutoCreatedField {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1068,15 +1329,23 @@ pub struct EventObserverEntry {
 
 pub trait EventObserverEntryTrait: TypeObject {
     fn function(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn update_pass(&self) -> &Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>>;
+    fn update_pass_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>>;
 }
 
 impl EventObserverEntryTrait for EventObserverEntry {
     fn function(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.function
     }
+    fn function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.function
+    }
     fn update_pass(&self) -> &Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>> {
         &self.update_pass
+    }
+    fn update_pass_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsUpdatePassAssetTrait>>> {
+        &mut self.update_pass
     }
 }
 
@@ -1114,6 +1383,15 @@ impl TypeObject for EventObserverEntry {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1143,43 +1421,79 @@ pub struct SchematicsAsset {
 
 pub trait SchematicsAssetTrait: SchematicsBaseAssetTrait {
     fn instance_type(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn instance_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn constructor_function(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn constructor_function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn destructor_function(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn destructor_function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn tweaker_function(&self) -> &glacier_reflect::builtin::TypeRef;
+    fn tweaker_function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
     fn auto_created_fields(&self) -> &Vec<AutoCreatedField>;
+    fn auto_created_fields_mut(&mut self) -> &mut Vec<AutoCreatedField>;
     fn auto_created_dispatchers(&self) -> &Vec<AutoCreatedDispatcher>;
+    fn auto_created_dispatchers_mut(&mut self) -> &mut Vec<AutoCreatedDispatcher>;
     fn patch_data(&self) -> &Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>>;
+    fn patch_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>>;
     fn observers(&self) -> &Vec<EventObserverEntry>;
+    fn observers_mut(&mut self) -> &mut Vec<EventObserverEntry>;
     fn const_fields(&self) -> &Vec<ConstField>;
+    fn const_fields_mut(&mut self) -> &mut Vec<ConstField>;
 }
 
 impl SchematicsAssetTrait for SchematicsAsset {
     fn instance_type(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.instance_type
     }
+    fn instance_type_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.instance_type
+    }
     fn constructor_function(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.constructor_function
+    }
+    fn constructor_function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.constructor_function
     }
     fn destructor_function(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.destructor_function
     }
+    fn destructor_function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.destructor_function
+    }
     fn tweaker_function(&self) -> &glacier_reflect::builtin::TypeRef {
         &self.tweaker_function
+    }
+    fn tweaker_function_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef {
+        &mut self.tweaker_function
     }
     fn auto_created_fields(&self) -> &Vec<AutoCreatedField> {
         &self.auto_created_fields
     }
+    fn auto_created_fields_mut(&mut self) -> &mut Vec<AutoCreatedField> {
+        &mut self.auto_created_fields
+    }
     fn auto_created_dispatchers(&self) -> &Vec<AutoCreatedDispatcher> {
         &self.auto_created_dispatchers
+    }
+    fn auto_created_dispatchers_mut(&mut self) -> &mut Vec<AutoCreatedDispatcher> {
+        &mut self.auto_created_dispatchers
     }
     fn patch_data(&self) -> &Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>> {
         &self.patch_data
     }
+    fn patch_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicsPatchDataTrait>>> {
+        &mut self.patch_data
+    }
     fn observers(&self) -> &Vec<EventObserverEntry> {
         &self.observers
     }
+    fn observers_mut(&mut self) -> &mut Vec<EventObserverEntry> {
+        &mut self.observers
+    }
     fn const_fields(&self) -> &Vec<ConstField> {
         &self.const_fields
+    }
+    fn const_fields_mut(&mut self) -> &mut Vec<ConstField> {
+        &mut self.const_fields
     }
 }
 
@@ -1190,12 +1504,12 @@ impl super::core::AssetTrait for SchematicsAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SchematicsAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCHEMATICSASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1275,6 +1589,15 @@ impl TypeObject for SchematicsAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1320,6 +1643,15 @@ impl TypeObject for SchematicsInstance {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1371,6 +1703,15 @@ impl TypeObject for SchematicsEventDispatcher {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1417,6 +1758,15 @@ impl TypeObject for SchematicsContext {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1462,6 +1812,15 @@ impl TypeObject for SchematicsPipelineBuilder {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

@@ -27,11 +27,15 @@ pub struct EACharacterPhysicsStateTestEntityData {
 
 pub trait EACharacterPhysicsStateTestEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl EACharacterPhysicsStateTestEntityDataTrait for EACharacterPhysicsStateTestEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
 }
 
@@ -45,15 +49,15 @@ impl super::core::DataBusPeerTrait for EACharacterPhysicsStateTestEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EACharacterPhysicsStateTestEntityData {
 }
 
 impl super::core::DataContainerTrait for EACharacterPhysicsStateTestEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EACHARACTERPHYSICSSTATETESTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -84,6 +88,15 @@ impl TypeObject for EACharacterPhysicsStateTestEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -130,6 +143,15 @@ impl TypeObject for EACharacterPhysicsComponentPositions {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -151,15 +173,23 @@ pub struct EACharacterPhysicsComponentPosition {
 
 pub trait EACharacterPhysicsComponentPositionTrait: TypeObject {
     fn orientation(&self) -> &super::core::Quat;
+    fn orientation_mut(&mut self) -> &mut super::core::Quat;
     fn translation(&self) -> &super::core::Vec3;
+    fn translation_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl EACharacterPhysicsComponentPositionTrait for EACharacterPhysicsComponentPosition {
     fn orientation(&self) -> &super::core::Quat {
         &self.orientation
     }
+    fn orientation_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.orientation
+    }
     fn translation(&self) -> &super::core::Vec3 {
         &self.translation
+    }
+    fn translation_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.translation
     }
 }
 
@@ -197,6 +227,15 @@ impl TypeObject for EACharacterPhysicsComponentPosition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -222,27 +261,47 @@ pub struct EACharacterPhysicsComponentData {
 
 pub trait EACharacterPhysicsComponentDataTrait: super::entity::GameComponentDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn client_authoritative(&self) -> &bool;
+    fn client_authoritative_mut(&mut self) -> &mut bool;
     fn material_pair(&self) -> &super::entity::MaterialDecl;
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn physics_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn physics_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
     fn bone_materials(&self) -> &Vec<super::entity::MaterialDecl>;
+    fn bone_materials_mut(&mut self) -> &mut Vec<super::entity::MaterialDecl>;
 }
 
 impl EACharacterPhysicsComponentDataTrait for EACharacterPhysicsComponentData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn client_authoritative(&self) -> &bool {
         &self.client_authoritative
+    }
+    fn client_authoritative_mut(&mut self) -> &mut bool {
+        &mut self.client_authoritative
     }
     fn material_pair(&self) -> &super::entity::MaterialDecl {
         &self.material_pair
     }
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.material_pair
+    }
     fn physics_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         &self.physics_blueprint
     }
+    fn physics_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        &mut self.physics_blueprint
+    }
     fn bone_materials(&self) -> &Vec<super::entity::MaterialDecl> {
         &self.bone_materials
+    }
+    fn bone_materials_mut(&mut self) -> &mut Vec<super::entity::MaterialDecl> {
+        &mut self.bone_materials
     }
 }
 
@@ -253,17 +312,32 @@ impl super::entity::ComponentDataTrait for EACharacterPhysicsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -274,15 +348,15 @@ impl super::core::DataBusPeerTrait for EACharacterPhysicsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EACharacterPhysicsComponentData {
 }
 
 impl super::core::DataContainerTrait for EACharacterPhysicsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EACHARACTERPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -337,6 +411,15 @@ impl TypeObject for EACharacterPhysicsComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

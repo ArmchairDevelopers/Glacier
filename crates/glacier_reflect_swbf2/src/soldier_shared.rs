@@ -611,8 +611,14 @@ impl super::weapon_shared::WeaponDataTrait for ZeroingWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -620,12 +626,12 @@ impl super::gameplay_sim::ToolDataTrait for ZeroingWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ZeroingWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZEROINGWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -651,6 +657,15 @@ impl TypeObject for ZeroingWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -673,15 +688,23 @@ pub struct WeaponZeroingComponentData {
 
 pub trait WeaponZeroingComponentDataTrait: super::entity::GameComponentDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn cycle_input_action(&self) -> &i32;
+    fn cycle_input_action_mut(&mut self) -> &mut i32;
 }
 
 impl WeaponZeroingComponentDataTrait for WeaponZeroingComponentData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn cycle_input_action(&self) -> &i32 {
         &self.cycle_input_action
+    }
+    fn cycle_input_action_mut(&mut self) -> &mut i32 {
+        &mut self.cycle_input_action
     }
 }
 
@@ -692,17 +715,32 @@ impl super::entity::ComponentDataTrait for WeaponZeroingComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -713,15 +751,15 @@ impl super::core::DataBusPeerTrait for WeaponZeroingComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WeaponZeroingComponentData {
 }
 
 impl super::core::DataContainerTrait for WeaponZeroingComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONZEROINGCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -759,6 +797,15 @@ impl TypeObject for WeaponZeroingComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -780,11 +827,15 @@ pub struct WeaponZeroingModifier {
 
 pub trait WeaponZeroingModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn modes(&self) -> &Vec<WeaponZeroingEntry>;
+    fn modes_mut(&mut self) -> &mut Vec<WeaponZeroingEntry>;
 }
 
 impl WeaponZeroingModifierTrait for WeaponZeroingModifier {
     fn modes(&self) -> &Vec<WeaponZeroingEntry> {
         &self.modes
+    }
+    fn modes_mut(&mut self) -> &mut Vec<WeaponZeroingEntry> {
+        &mut self.modes
     }
 }
 
@@ -792,15 +843,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponZeroingModifier {
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponZeroingModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONZEROINGMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -832,6 +886,15 @@ impl TypeObject for WeaponZeroingModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -853,15 +916,23 @@ pub struct WeaponZeroingEntry {
 
 pub trait WeaponZeroingEntryTrait: TypeObject {
     fn distance(&self) -> &f32;
+    fn distance_mut(&mut self) -> &mut f32;
     fn angle(&self) -> &f32;
+    fn angle_mut(&mut self) -> &mut f32;
 }
 
 impl WeaponZeroingEntryTrait for WeaponZeroingEntry {
     fn distance(&self) -> &f32 {
         &self.distance
     }
+    fn distance_mut(&mut self) -> &mut f32 {
+        &mut self.distance
+    }
     fn angle(&self) -> &f32 {
         &self.angle
+    }
+    fn angle_mut(&mut self) -> &mut f32 {
+        &mut self.angle
     }
 }
 
@@ -898,6 +969,15 @@ impl TypeObject for WeaponZeroingEntry {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -944,107 +1024,207 @@ pub struct GunSwayData {
 
 pub trait GunSwayDataTrait: super::weapon_shared::WeaponSwayDataTrait {
     fn dispersion(&self) -> &Vec<GunSwayDispersionData>;
+    fn dispersion_mut(&mut self) -> &mut Vec<GunSwayDispersionData>;
     fn recoil(&self) -> &Vec<GunSwayRecoilData>;
+    fn recoil_mut(&mut self) -> &mut Vec<GunSwayRecoilData>;
     fn stance_transition_dispersion(&self) -> &Vec<GunSwayStanceTransition>;
+    fn stance_transition_dispersion_mut(&mut self) -> &mut Vec<GunSwayStanceTransition>;
     fn suppression_dispersion_modifiers(&self) -> &Vec<GunSwayDispersionModData>;
+    fn suppression_dispersion_modifiers_mut(&mut self) -> &mut Vec<GunSwayDispersionModData>;
     fn suppression_recoil_modifiers(&self) -> &Vec<GunSwayRecoilModData>;
+    fn suppression_recoil_modifiers_mut(&mut self) -> &mut Vec<GunSwayRecoilModData>;
     fn stand(&self) -> &GunSwayStandData;
+    fn stand_mut(&mut self) -> &mut GunSwayStandData;
     fn crouch(&self) -> &GunSwayCrouchProneData;
+    fn crouch_mut(&mut self) -> &mut GunSwayCrouchProneData;
     fn prone(&self) -> &GunSwayCrouchProneData;
+    fn prone_mut(&mut self) -> &mut GunSwayCrouchProneData;
     fn prone_to_crouch(&self) -> &GunSwayStanceTransition;
+    fn prone_to_crouch_mut(&mut self) -> &mut GunSwayStanceTransition;
     fn prone_to_stand(&self) -> &GunSwayStanceTransition;
+    fn prone_to_stand_mut(&mut self) -> &mut GunSwayStanceTransition;
     fn crouch_to_prone(&self) -> &GunSwayStanceTransition;
+    fn crouch_to_prone_mut(&mut self) -> &mut GunSwayStanceTransition;
     fn crouch_to_stand(&self) -> &GunSwayStanceTransition;
+    fn crouch_to_stand_mut(&mut self) -> &mut GunSwayStanceTransition;
     fn stand_to_prone(&self) -> &GunSwayStanceTransition;
+    fn stand_to_prone_mut(&mut self) -> &mut GunSwayStanceTransition;
     fn stand_to_crouch(&self) -> &GunSwayStanceTransition;
+    fn stand_to_crouch_mut(&mut self) -> &mut GunSwayStanceTransition;
     fn suppression_modifier_unzoomed(&self) -> &GunSwayStanceZoomModifierData;
+    fn suppression_modifier_unzoomed_mut(&mut self) -> &mut GunSwayStanceZoomModifierData;
     fn suppression_modifier_zoomed(&self) -> &GunSwayStanceZoomModifierData;
+    fn suppression_modifier_zoomed_mut(&mut self) -> &mut GunSwayStanceZoomModifierData;
     fn modifier_unlocks(&self) -> &Vec<GunSwayModifierUnlock>;
+    fn modifier_unlocks_mut(&mut self) -> &mut Vec<GunSwayModifierUnlock>;
     fn shooting_recoil_decrease_scale(&self) -> &f32;
+    fn shooting_recoil_decrease_scale_mut(&mut self) -> &mut f32;
     fn first_shot_no_zoom_dispersion_multiplier(&self) -> &f32;
+    fn first_shot_no_zoom_dispersion_multiplier_mut(&mut self) -> &mut f32;
     fn first_shot_zoom_dispersion_multiplier(&self) -> &f32;
+    fn first_shot_zoom_dispersion_multiplier_mut(&mut self) -> &mut f32;
     fn first_shot_recoil_multiplier(&self) -> &f32;
+    fn first_shot_recoil_multiplier_mut(&mut self) -> &mut f32;
     fn camera_recoil_when_zoomed(&self) -> &bool;
+    fn camera_recoil_when_zoomed_mut(&mut self) -> &mut bool;
     fn power_of_dispersion_random(&self) -> &f32;
+    fn power_of_dispersion_random_mut(&mut self) -> &mut f32;
     fn minimum_power_required_to_fire(&self) -> &f32;
+    fn minimum_power_required_to_fire_mut(&mut self) -> &mut f32;
     fn camera_recoil(&self) -> &Option<Arc<Mutex<dyn CameraRecoilDataTrait>>>;
+    fn camera_recoil_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CameraRecoilDataTrait>>>;
 }
 
 impl GunSwayDataTrait for GunSwayData {
     fn dispersion(&self) -> &Vec<GunSwayDispersionData> {
         &self.dispersion
     }
+    fn dispersion_mut(&mut self) -> &mut Vec<GunSwayDispersionData> {
+        &mut self.dispersion
+    }
     fn recoil(&self) -> &Vec<GunSwayRecoilData> {
         &self.recoil
+    }
+    fn recoil_mut(&mut self) -> &mut Vec<GunSwayRecoilData> {
+        &mut self.recoil
     }
     fn stance_transition_dispersion(&self) -> &Vec<GunSwayStanceTransition> {
         &self.stance_transition_dispersion
     }
+    fn stance_transition_dispersion_mut(&mut self) -> &mut Vec<GunSwayStanceTransition> {
+        &mut self.stance_transition_dispersion
+    }
     fn suppression_dispersion_modifiers(&self) -> &Vec<GunSwayDispersionModData> {
         &self.suppression_dispersion_modifiers
+    }
+    fn suppression_dispersion_modifiers_mut(&mut self) -> &mut Vec<GunSwayDispersionModData> {
+        &mut self.suppression_dispersion_modifiers
     }
     fn suppression_recoil_modifiers(&self) -> &Vec<GunSwayRecoilModData> {
         &self.suppression_recoil_modifiers
     }
+    fn suppression_recoil_modifiers_mut(&mut self) -> &mut Vec<GunSwayRecoilModData> {
+        &mut self.suppression_recoil_modifiers
+    }
     fn stand(&self) -> &GunSwayStandData {
         &self.stand
+    }
+    fn stand_mut(&mut self) -> &mut GunSwayStandData {
+        &mut self.stand
     }
     fn crouch(&self) -> &GunSwayCrouchProneData {
         &self.crouch
     }
+    fn crouch_mut(&mut self) -> &mut GunSwayCrouchProneData {
+        &mut self.crouch
+    }
     fn prone(&self) -> &GunSwayCrouchProneData {
         &self.prone
+    }
+    fn prone_mut(&mut self) -> &mut GunSwayCrouchProneData {
+        &mut self.prone
     }
     fn prone_to_crouch(&self) -> &GunSwayStanceTransition {
         &self.prone_to_crouch
     }
+    fn prone_to_crouch_mut(&mut self) -> &mut GunSwayStanceTransition {
+        &mut self.prone_to_crouch
+    }
     fn prone_to_stand(&self) -> &GunSwayStanceTransition {
         &self.prone_to_stand
+    }
+    fn prone_to_stand_mut(&mut self) -> &mut GunSwayStanceTransition {
+        &mut self.prone_to_stand
     }
     fn crouch_to_prone(&self) -> &GunSwayStanceTransition {
         &self.crouch_to_prone
     }
+    fn crouch_to_prone_mut(&mut self) -> &mut GunSwayStanceTransition {
+        &mut self.crouch_to_prone
+    }
     fn crouch_to_stand(&self) -> &GunSwayStanceTransition {
         &self.crouch_to_stand
+    }
+    fn crouch_to_stand_mut(&mut self) -> &mut GunSwayStanceTransition {
+        &mut self.crouch_to_stand
     }
     fn stand_to_prone(&self) -> &GunSwayStanceTransition {
         &self.stand_to_prone
     }
+    fn stand_to_prone_mut(&mut self) -> &mut GunSwayStanceTransition {
+        &mut self.stand_to_prone
+    }
     fn stand_to_crouch(&self) -> &GunSwayStanceTransition {
         &self.stand_to_crouch
+    }
+    fn stand_to_crouch_mut(&mut self) -> &mut GunSwayStanceTransition {
+        &mut self.stand_to_crouch
     }
     fn suppression_modifier_unzoomed(&self) -> &GunSwayStanceZoomModifierData {
         &self.suppression_modifier_unzoomed
     }
+    fn suppression_modifier_unzoomed_mut(&mut self) -> &mut GunSwayStanceZoomModifierData {
+        &mut self.suppression_modifier_unzoomed
+    }
     fn suppression_modifier_zoomed(&self) -> &GunSwayStanceZoomModifierData {
         &self.suppression_modifier_zoomed
+    }
+    fn suppression_modifier_zoomed_mut(&mut self) -> &mut GunSwayStanceZoomModifierData {
+        &mut self.suppression_modifier_zoomed
     }
     fn modifier_unlocks(&self) -> &Vec<GunSwayModifierUnlock> {
         &self.modifier_unlocks
     }
+    fn modifier_unlocks_mut(&mut self) -> &mut Vec<GunSwayModifierUnlock> {
+        &mut self.modifier_unlocks
+    }
     fn shooting_recoil_decrease_scale(&self) -> &f32 {
         &self.shooting_recoil_decrease_scale
+    }
+    fn shooting_recoil_decrease_scale_mut(&mut self) -> &mut f32 {
+        &mut self.shooting_recoil_decrease_scale
     }
     fn first_shot_no_zoom_dispersion_multiplier(&self) -> &f32 {
         &self.first_shot_no_zoom_dispersion_multiplier
     }
+    fn first_shot_no_zoom_dispersion_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.first_shot_no_zoom_dispersion_multiplier
+    }
     fn first_shot_zoom_dispersion_multiplier(&self) -> &f32 {
         &self.first_shot_zoom_dispersion_multiplier
+    }
+    fn first_shot_zoom_dispersion_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.first_shot_zoom_dispersion_multiplier
     }
     fn first_shot_recoil_multiplier(&self) -> &f32 {
         &self.first_shot_recoil_multiplier
     }
+    fn first_shot_recoil_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.first_shot_recoil_multiplier
+    }
     fn camera_recoil_when_zoomed(&self) -> &bool {
         &self.camera_recoil_when_zoomed
+    }
+    fn camera_recoil_when_zoomed_mut(&mut self) -> &mut bool {
+        &mut self.camera_recoil_when_zoomed
     }
     fn power_of_dispersion_random(&self) -> &f32 {
         &self.power_of_dispersion_random
     }
+    fn power_of_dispersion_random_mut(&mut self) -> &mut f32 {
+        &mut self.power_of_dispersion_random
+    }
     fn minimum_power_required_to_fire(&self) -> &f32 {
         &self.minimum_power_required_to_fire
     }
+    fn minimum_power_required_to_fire_mut(&mut self) -> &mut f32 {
+        &mut self.minimum_power_required_to_fire
+    }
     fn camera_recoil(&self) -> &Option<Arc<Mutex<dyn CameraRecoilDataTrait>>> {
         &self.camera_recoil
+    }
+    fn camera_recoil_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CameraRecoilDataTrait>>> {
+        &mut self.camera_recoil
     }
 }
 
@@ -1052,9 +1232,6 @@ impl super::weapon_shared::WeaponSwayDataTrait for GunSwayData {
 }
 
 impl super::core::DataContainerTrait for GunSwayData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GUNSWAYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1230,6 +1407,15 @@ impl TypeObject for GunSwayData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1251,15 +1437,23 @@ pub struct GunSwayModifierUnlock {
 
 pub trait GunSwayModifierUnlockTrait: TypeObject {
     fn unlock_asset_guid(&self) -> &glacier_util::guid::Guid;
+    fn unlock_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn modifier(&self) -> &Option<Arc<Mutex<dyn GunSwayModifierDataTrait>>>;
+    fn modifier_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GunSwayModifierDataTrait>>>;
 }
 
 impl GunSwayModifierUnlockTrait for GunSwayModifierUnlock {
     fn unlock_asset_guid(&self) -> &glacier_util::guid::Guid {
         &self.unlock_asset_guid
     }
+    fn unlock_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.unlock_asset_guid
+    }
     fn modifier(&self) -> &Option<Arc<Mutex<dyn GunSwayModifierDataTrait>>> {
         &self.modifier
+    }
+    fn modifier_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GunSwayModifierDataTrait>>> {
+        &mut self.modifier
     }
 }
 
@@ -1297,6 +1491,15 @@ impl TypeObject for GunSwayModifierUnlock {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1328,51 +1531,95 @@ pub struct GunSwayModifierData {
 
 pub trait GunSwayModifierDataTrait: super::core::AssetTrait {
     fn dispersion_modifiers(&self) -> &Vec<GunSwayDispersionModData>;
+    fn dispersion_modifiers_mut(&mut self) -> &mut Vec<GunSwayDispersionModData>;
     fn recoil_modifiers(&self) -> &Vec<GunSwayRecoilModData>;
+    fn recoil_modifiers_mut(&mut self) -> &mut Vec<GunSwayRecoilModData>;
     fn stand_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData;
+    fn stand_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData;
     fn stand_no_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData;
+    fn stand_no_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData;
     fn crouch_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData;
+    fn crouch_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData;
     fn crouch_no_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData;
+    fn crouch_no_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData;
     fn prone_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData;
+    fn prone_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData;
     fn prone_no_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData;
+    fn prone_no_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData;
     fn only_in_supported_shooting(&self) -> &bool;
+    fn only_in_supported_shooting_mut(&mut self) -> &mut bool;
     fn only_on_weapon_light_enabled(&self) -> &bool;
+    fn only_on_weapon_light_enabled_mut(&mut self) -> &mut bool;
     fn dynamic_update_enabled(&self) -> &bool;
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool;
 }
 
 impl GunSwayModifierDataTrait for GunSwayModifierData {
     fn dispersion_modifiers(&self) -> &Vec<GunSwayDispersionModData> {
         &self.dispersion_modifiers
     }
+    fn dispersion_modifiers_mut(&mut self) -> &mut Vec<GunSwayDispersionModData> {
+        &mut self.dispersion_modifiers
+    }
     fn recoil_modifiers(&self) -> &Vec<GunSwayRecoilModData> {
         &self.recoil_modifiers
+    }
+    fn recoil_modifiers_mut(&mut self) -> &mut Vec<GunSwayRecoilModData> {
+        &mut self.recoil_modifiers
     }
     fn stand_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData {
         &self.stand_zoom_modifier
     }
+    fn stand_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData {
+        &mut self.stand_zoom_modifier
+    }
     fn stand_no_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData {
         &self.stand_no_zoom_modifier
+    }
+    fn stand_no_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData {
+        &mut self.stand_no_zoom_modifier
     }
     fn crouch_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData {
         &self.crouch_zoom_modifier
     }
+    fn crouch_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData {
+        &mut self.crouch_zoom_modifier
+    }
     fn crouch_no_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData {
         &self.crouch_no_zoom_modifier
+    }
+    fn crouch_no_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData {
+        &mut self.crouch_no_zoom_modifier
     }
     fn prone_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData {
         &self.prone_zoom_modifier
     }
+    fn prone_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData {
+        &mut self.prone_zoom_modifier
+    }
     fn prone_no_zoom_modifier(&self) -> &GunSwayStanceZoomModifierData {
         &self.prone_no_zoom_modifier
+    }
+    fn prone_no_zoom_modifier_mut(&mut self) -> &mut GunSwayStanceZoomModifierData {
+        &mut self.prone_no_zoom_modifier
     }
     fn only_in_supported_shooting(&self) -> &bool {
         &self.only_in_supported_shooting
     }
+    fn only_in_supported_shooting_mut(&mut self) -> &mut bool {
+        &mut self.only_in_supported_shooting
+    }
     fn only_on_weapon_light_enabled(&self) -> &bool {
         &self.only_on_weapon_light_enabled
     }
+    fn only_on_weapon_light_enabled_mut(&mut self) -> &mut bool {
+        &mut self.only_on_weapon_light_enabled
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         &self.dynamic_update_enabled
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        &mut self.dynamic_update_enabled
     }
 }
 
@@ -1380,12 +1627,12 @@ impl super::core::AssetTrait for GunSwayModifierData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for GunSwayModifierData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GUNSWAYMODIFIERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1477,6 +1724,15 @@ impl TypeObject for GunSwayModifierData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1504,39 +1760,71 @@ pub struct GunSwayStanceZoomModifierData {
 
 pub trait GunSwayStanceZoomModifierDataTrait: TypeObject {
     fn dispersion_mod(&self) -> &GunSwayDispersionModData;
+    fn dispersion_mod_mut(&mut self) -> &mut GunSwayDispersionModData;
     fn moving_dispersion_mod(&self) -> &GunSwayDispersionModData;
+    fn moving_dispersion_mod_mut(&mut self) -> &mut GunSwayDispersionModData;
     fn sprinting_dispersion_mod(&self) -> &GunSwayDispersionModData;
+    fn sprinting_dispersion_mod_mut(&mut self) -> &mut GunSwayDispersionModData;
     fn recoil_magnitude_mod(&self) -> &f32;
+    fn recoil_magnitude_mod_mut(&mut self) -> &mut f32;
     fn recoil_angle_mod(&self) -> &f32;
+    fn recoil_angle_mod_mut(&mut self) -> &mut f32;
     fn recoil_angle_offset(&self) -> &f32;
+    fn recoil_angle_offset_mut(&mut self) -> &mut f32;
     fn first_shot_recoil_mod(&self) -> &f32;
+    fn first_shot_recoil_mod_mut(&mut self) -> &mut f32;
     fn recoil_amplitude_decrease_factor_mod(&self) -> &f32;
+    fn recoil_amplitude_decrease_factor_mod_mut(&mut self) -> &mut f32;
 }
 
 impl GunSwayStanceZoomModifierDataTrait for GunSwayStanceZoomModifierData {
     fn dispersion_mod(&self) -> &GunSwayDispersionModData {
         &self.dispersion_mod
     }
+    fn dispersion_mod_mut(&mut self) -> &mut GunSwayDispersionModData {
+        &mut self.dispersion_mod
+    }
     fn moving_dispersion_mod(&self) -> &GunSwayDispersionModData {
         &self.moving_dispersion_mod
+    }
+    fn moving_dispersion_mod_mut(&mut self) -> &mut GunSwayDispersionModData {
+        &mut self.moving_dispersion_mod
     }
     fn sprinting_dispersion_mod(&self) -> &GunSwayDispersionModData {
         &self.sprinting_dispersion_mod
     }
+    fn sprinting_dispersion_mod_mut(&mut self) -> &mut GunSwayDispersionModData {
+        &mut self.sprinting_dispersion_mod
+    }
     fn recoil_magnitude_mod(&self) -> &f32 {
         &self.recoil_magnitude_mod
+    }
+    fn recoil_magnitude_mod_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_magnitude_mod
     }
     fn recoil_angle_mod(&self) -> &f32 {
         &self.recoil_angle_mod
     }
+    fn recoil_angle_mod_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_angle_mod
+    }
     fn recoil_angle_offset(&self) -> &f32 {
         &self.recoil_angle_offset
+    }
+    fn recoil_angle_offset_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_angle_offset
     }
     fn first_shot_recoil_mod(&self) -> &f32 {
         &self.first_shot_recoil_mod
     }
+    fn first_shot_recoil_mod_mut(&mut self) -> &mut f32 {
+        &mut self.first_shot_recoil_mod
+    }
     fn recoil_amplitude_decrease_factor_mod(&self) -> &f32 {
         &self.recoil_amplitude_decrease_factor_mod
+    }
+    fn recoil_amplitude_decrease_factor_mod_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_amplitude_decrease_factor_mod
     }
 }
 
@@ -1610,6 +1898,15 @@ impl TypeObject for GunSwayStanceZoomModifierData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1631,15 +1928,23 @@ pub struct GunSwayCrouchProneData {
 
 pub trait GunSwayCrouchProneDataTrait: TypeObject {
     fn no_zoom(&self) -> &GunSwayBaseMoveData;
+    fn no_zoom_mut(&mut self) -> &mut GunSwayBaseMoveData;
     fn zoom(&self) -> &GunSwayBaseMoveData;
+    fn zoom_mut(&mut self) -> &mut GunSwayBaseMoveData;
 }
 
 impl GunSwayCrouchProneDataTrait for GunSwayCrouchProneData {
     fn no_zoom(&self) -> &GunSwayBaseMoveData {
         &self.no_zoom
     }
+    fn no_zoom_mut(&mut self) -> &mut GunSwayBaseMoveData {
+        &mut self.no_zoom
+    }
     fn zoom(&self) -> &GunSwayBaseMoveData {
         &self.zoom
+    }
+    fn zoom_mut(&mut self) -> &mut GunSwayBaseMoveData {
+        &mut self.zoom
     }
 }
 
@@ -1677,6 +1982,15 @@ impl TypeObject for GunSwayCrouchProneData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1698,15 +2012,23 @@ pub struct GunSwayStandData {
 
 pub trait GunSwayStandDataTrait: TypeObject {
     fn no_zoom(&self) -> &GunSwayBaseMoveJumpData;
+    fn no_zoom_mut(&mut self) -> &mut GunSwayBaseMoveJumpData;
     fn zoom(&self) -> &GunSwayBaseMoveJumpData;
+    fn zoom_mut(&mut self) -> &mut GunSwayBaseMoveJumpData;
 }
 
 impl GunSwayStandDataTrait for GunSwayStandData {
     fn no_zoom(&self) -> &GunSwayBaseMoveJumpData {
         &self.no_zoom
     }
+    fn no_zoom_mut(&mut self) -> &mut GunSwayBaseMoveJumpData {
+        &mut self.no_zoom
+    }
     fn zoom(&self) -> &GunSwayBaseMoveJumpData {
         &self.zoom
+    }
+    fn zoom_mut(&mut self) -> &mut GunSwayBaseMoveJumpData {
+        &mut self.zoom
     }
 }
 
@@ -1744,6 +2066,15 @@ impl TypeObject for GunSwayStandData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1768,27 +2099,47 @@ pub struct GunSwayBaseMoveJumpData {
 
 pub trait GunSwayBaseMoveJumpDataTrait: TypeObject {
     fn base_value(&self) -> &GunSwayDispersionData;
+    fn base_value_mut(&mut self) -> &mut GunSwayDispersionData;
     fn moving(&self) -> &GunSwayDispersionData;
+    fn moving_mut(&mut self) -> &mut GunSwayDispersionData;
     fn jumping(&self) -> &GunSwayDispersionData;
+    fn jumping_mut(&mut self) -> &mut GunSwayDispersionData;
     fn sprinting(&self) -> &GunSwayDispersionData;
+    fn sprinting_mut(&mut self) -> &mut GunSwayDispersionData;
     fn recoil(&self) -> &GunSwayRecoilData;
+    fn recoil_mut(&mut self) -> &mut GunSwayRecoilData;
 }
 
 impl GunSwayBaseMoveJumpDataTrait for GunSwayBaseMoveJumpData {
     fn base_value(&self) -> &GunSwayDispersionData {
         &self.base_value
     }
+    fn base_value_mut(&mut self) -> &mut GunSwayDispersionData {
+        &mut self.base_value
+    }
     fn moving(&self) -> &GunSwayDispersionData {
         &self.moving
+    }
+    fn moving_mut(&mut self) -> &mut GunSwayDispersionData {
+        &mut self.moving
     }
     fn jumping(&self) -> &GunSwayDispersionData {
         &self.jumping
     }
+    fn jumping_mut(&mut self) -> &mut GunSwayDispersionData {
+        &mut self.jumping
+    }
     fn sprinting(&self) -> &GunSwayDispersionData {
         &self.sprinting
     }
+    fn sprinting_mut(&mut self) -> &mut GunSwayDispersionData {
+        &mut self.sprinting
+    }
     fn recoil(&self) -> &GunSwayRecoilData {
         &self.recoil
+    }
+    fn recoil_mut(&mut self) -> &mut GunSwayRecoilData {
+        &mut self.recoil
     }
 }
 
@@ -1844,6 +2195,15 @@ impl TypeObject for GunSwayBaseMoveJumpData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1882,6 +2242,15 @@ impl TypeObject for GunSwayZoomLevel {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1924,6 +2293,15 @@ impl TypeObject for GunSwayDispersionAction {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1946,19 +2324,31 @@ pub struct GunSwayBaseMoveData {
 
 pub trait GunSwayBaseMoveDataTrait: TypeObject {
     fn base_value(&self) -> &GunSwayDispersionData;
+    fn base_value_mut(&mut self) -> &mut GunSwayDispersionData;
     fn moving(&self) -> &GunSwayDispersionData;
+    fn moving_mut(&mut self) -> &mut GunSwayDispersionData;
     fn recoil(&self) -> &GunSwayRecoilData;
+    fn recoil_mut(&mut self) -> &mut GunSwayRecoilData;
 }
 
 impl GunSwayBaseMoveDataTrait for GunSwayBaseMoveData {
     fn base_value(&self) -> &GunSwayDispersionData {
         &self.base_value
     }
+    fn base_value_mut(&mut self) -> &mut GunSwayDispersionData {
+        &mut self.base_value
+    }
     fn moving(&self) -> &GunSwayDispersionData {
         &self.moving
     }
+    fn moving_mut(&mut self) -> &mut GunSwayDispersionData {
+        &mut self.moving
+    }
     fn recoil(&self) -> &GunSwayRecoilData {
         &self.recoil
+    }
+    fn recoil_mut(&mut self) -> &mut GunSwayRecoilData {
+        &mut self.recoil
     }
 }
 
@@ -2002,6 +2392,15 @@ impl TypeObject for GunSwayBaseMoveData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2023,15 +2422,23 @@ pub struct GunSwayBaseData {
 
 pub trait GunSwayBaseDataTrait: TypeObject {
     fn base_value(&self) -> &GunSwayDispersionData;
+    fn base_value_mut(&mut self) -> &mut GunSwayDispersionData;
     fn recoil(&self) -> &GunSwayRecoilData;
+    fn recoil_mut(&mut self) -> &mut GunSwayRecoilData;
 }
 
 impl GunSwayBaseDataTrait for GunSwayBaseData {
     fn base_value(&self) -> &GunSwayDispersionData {
         &self.base_value
     }
+    fn base_value_mut(&mut self) -> &mut GunSwayDispersionData {
+        &mut self.base_value
+    }
     fn recoil(&self) -> &GunSwayRecoilData {
         &self.recoil
+    }
+    fn recoil_mut(&mut self) -> &mut GunSwayRecoilData {
+        &mut self.recoil
     }
 }
 
@@ -2069,6 +2476,15 @@ impl TypeObject for GunSwayBaseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2090,15 +2506,23 @@ pub struct GunSwayStanceTransition {
 
 pub trait GunSwayStanceTransitionTrait: TypeObject {
     fn max_penalty_value(&self) -> &GunSwayDispersionData;
+    fn max_penalty_value_mut(&mut self) -> &mut GunSwayDispersionData;
     fn cool_down(&self) -> &f32;
+    fn cool_down_mut(&mut self) -> &mut f32;
 }
 
 impl GunSwayStanceTransitionTrait for GunSwayStanceTransition {
     fn max_penalty_value(&self) -> &GunSwayDispersionData {
         &self.max_penalty_value
     }
+    fn max_penalty_value_mut(&mut self) -> &mut GunSwayDispersionData {
+        &mut self.max_penalty_value
+    }
     fn cool_down(&self) -> &f32 {
         &self.cool_down
+    }
+    fn cool_down_mut(&mut self) -> &mut f32 {
+        &mut self.cool_down
     }
 }
 
@@ -2136,6 +2560,15 @@ impl TypeObject for GunSwayStanceTransition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2160,27 +2593,47 @@ pub struct GunSwayRecoilModData {
 
 pub trait GunSwayRecoilModDataTrait: TypeObject {
     fn recoil_magnitude_mod(&self) -> &f32;
+    fn recoil_magnitude_mod_mut(&mut self) -> &mut f32;
     fn recoil_angle_mod(&self) -> &f32;
+    fn recoil_angle_mod_mut(&mut self) -> &mut f32;
     fn first_shot_recoil_mod(&self) -> &f32;
+    fn first_shot_recoil_mod_mut(&mut self) -> &mut f32;
     fn recoil_amplitude_decrease_factor_mod(&self) -> &f32;
+    fn recoil_amplitude_decrease_factor_mod_mut(&mut self) -> &mut f32;
     fn recoil_angle_offset(&self) -> &f32;
+    fn recoil_angle_offset_mut(&mut self) -> &mut f32;
 }
 
 impl GunSwayRecoilModDataTrait for GunSwayRecoilModData {
     fn recoil_magnitude_mod(&self) -> &f32 {
         &self.recoil_magnitude_mod
     }
+    fn recoil_magnitude_mod_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_magnitude_mod
+    }
     fn recoil_angle_mod(&self) -> &f32 {
         &self.recoil_angle_mod
+    }
+    fn recoil_angle_mod_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_angle_mod
     }
     fn first_shot_recoil_mod(&self) -> &f32 {
         &self.first_shot_recoil_mod
     }
+    fn first_shot_recoil_mod_mut(&mut self) -> &mut f32 {
+        &mut self.first_shot_recoil_mod
+    }
     fn recoil_amplitude_decrease_factor_mod(&self) -> &f32 {
         &self.recoil_amplitude_decrease_factor_mod
     }
+    fn recoil_amplitude_decrease_factor_mod_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_amplitude_decrease_factor_mod
+    }
     fn recoil_angle_offset(&self) -> &f32 {
         &self.recoil_angle_offset
+    }
+    fn recoil_angle_offset_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_angle_offset
     }
 }
 
@@ -2236,6 +2689,15 @@ impl TypeObject for GunSwayRecoilModData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2261,31 +2723,55 @@ pub struct GunSwayRecoilData {
 
 pub trait GunSwayRecoilDataTrait: TypeObject {
     fn recoil_amplitude_max(&self) -> &f32;
+    fn recoil_amplitude_max_mut(&mut self) -> &mut f32;
     fn recoil_amplitude_inc_per_shot(&self) -> &f32;
+    fn recoil_amplitude_inc_per_shot_mut(&mut self) -> &mut f32;
     fn horizontal_recoil_amplitude_inc_per_shot_min(&self) -> &f32;
+    fn horizontal_recoil_amplitude_inc_per_shot_min_mut(&mut self) -> &mut f32;
     fn horizontal_recoil_amplitude_inc_per_shot_max(&self) -> &f32;
+    fn horizontal_recoil_amplitude_inc_per_shot_max_mut(&mut self) -> &mut f32;
     fn horizontal_recoil_amplitude_max(&self) -> &f32;
+    fn horizontal_recoil_amplitude_max_mut(&mut self) -> &mut f32;
     fn recoil_amplitude_decrease_factor(&self) -> &f32;
+    fn recoil_amplitude_decrease_factor_mut(&mut self) -> &mut f32;
 }
 
 impl GunSwayRecoilDataTrait for GunSwayRecoilData {
     fn recoil_amplitude_max(&self) -> &f32 {
         &self.recoil_amplitude_max
     }
+    fn recoil_amplitude_max_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_amplitude_max
+    }
     fn recoil_amplitude_inc_per_shot(&self) -> &f32 {
         &self.recoil_amplitude_inc_per_shot
+    }
+    fn recoil_amplitude_inc_per_shot_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_amplitude_inc_per_shot
     }
     fn horizontal_recoil_amplitude_inc_per_shot_min(&self) -> &f32 {
         &self.horizontal_recoil_amplitude_inc_per_shot_min
     }
+    fn horizontal_recoil_amplitude_inc_per_shot_min_mut(&mut self) -> &mut f32 {
+        &mut self.horizontal_recoil_amplitude_inc_per_shot_min
+    }
     fn horizontal_recoil_amplitude_inc_per_shot_max(&self) -> &f32 {
         &self.horizontal_recoil_amplitude_inc_per_shot_max
+    }
+    fn horizontal_recoil_amplitude_inc_per_shot_max_mut(&mut self) -> &mut f32 {
+        &mut self.horizontal_recoil_amplitude_inc_per_shot_max
     }
     fn horizontal_recoil_amplitude_max(&self) -> &f32 {
         &self.horizontal_recoil_amplitude_max
     }
+    fn horizontal_recoil_amplitude_max_mut(&mut self) -> &mut f32 {
+        &mut self.horizontal_recoil_amplitude_max
+    }
     fn recoil_amplitude_decrease_factor(&self) -> &f32 {
         &self.recoil_amplitude_decrease_factor
+    }
+    fn recoil_amplitude_decrease_factor_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_amplitude_decrease_factor
     }
 }
 
@@ -2347,6 +2833,15 @@ impl TypeObject for GunSwayRecoilData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2370,26 +2865,35 @@ pub struct CameraRecoilData {
 
 pub trait CameraRecoilDataTrait: super::core::DataContainerTrait {
     fn spring_constant(&self) -> &f32;
+    fn spring_constant_mut(&mut self) -> &mut f32;
     fn spring_damping(&self) -> &f32;
+    fn spring_damping_mut(&mut self) -> &mut f32;
     fn spring_min_threshold_angle(&self) -> &f32;
+    fn spring_min_threshold_angle_mut(&mut self) -> &mut f32;
 }
 
 impl CameraRecoilDataTrait for CameraRecoilData {
     fn spring_constant(&self) -> &f32 {
         &self.spring_constant
     }
+    fn spring_constant_mut(&mut self) -> &mut f32 {
+        &mut self.spring_constant
+    }
     fn spring_damping(&self) -> &f32 {
         &self.spring_damping
+    }
+    fn spring_damping_mut(&mut self) -> &mut f32 {
+        &mut self.spring_damping
     }
     fn spring_min_threshold_angle(&self) -> &f32 {
         &self.spring_min_threshold_angle
     }
+    fn spring_min_threshold_angle_mut(&mut self) -> &mut f32 {
+        &mut self.spring_min_threshold_angle
+    }
 }
 
 impl super::core::DataContainerTrait for CameraRecoilData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CAMERARECOILDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2433,6 +2937,15 @@ impl TypeObject for CameraRecoilData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2459,35 +2972,63 @@ pub struct GunSwayDispersionModData {
 
 pub trait GunSwayDispersionModDataTrait: TypeObject {
     fn min_angle_modifier(&self) -> &f32;
+    fn min_angle_modifier_mut(&mut self) -> &mut f32;
     fn max_angle_modifier(&self) -> &f32;
+    fn max_angle_modifier_mut(&mut self) -> &mut f32;
     fn increase_per_shot_modifier(&self) -> &f32;
+    fn increase_per_shot_modifier_mut(&mut self) -> &mut f32;
     fn decrease_per_second_modifier(&self) -> &f32;
+    fn decrease_per_second_modifier_mut(&mut self) -> &mut f32;
     fn no_fire_decrease_per_second_modifier(&self) -> &f32;
+    fn no_fire_decrease_per_second_modifier_mut(&mut self) -> &mut f32;
     fn no_fire_time_threshold_modifier(&self) -> &f32;
+    fn no_fire_time_threshold_modifier_mut(&mut self) -> &mut f32;
     fn first_shot_dispersion_modifier(&self) -> &f32;
+    fn first_shot_dispersion_modifier_mut(&mut self) -> &mut f32;
 }
 
 impl GunSwayDispersionModDataTrait for GunSwayDispersionModData {
     fn min_angle_modifier(&self) -> &f32 {
         &self.min_angle_modifier
     }
+    fn min_angle_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.min_angle_modifier
+    }
     fn max_angle_modifier(&self) -> &f32 {
         &self.max_angle_modifier
+    }
+    fn max_angle_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.max_angle_modifier
     }
     fn increase_per_shot_modifier(&self) -> &f32 {
         &self.increase_per_shot_modifier
     }
+    fn increase_per_shot_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.increase_per_shot_modifier
+    }
     fn decrease_per_second_modifier(&self) -> &f32 {
         &self.decrease_per_second_modifier
+    }
+    fn decrease_per_second_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.decrease_per_second_modifier
     }
     fn no_fire_decrease_per_second_modifier(&self) -> &f32 {
         &self.no_fire_decrease_per_second_modifier
     }
+    fn no_fire_decrease_per_second_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.no_fire_decrease_per_second_modifier
+    }
     fn no_fire_time_threshold_modifier(&self) -> &f32 {
         &self.no_fire_time_threshold_modifier
     }
+    fn no_fire_time_threshold_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.no_fire_time_threshold_modifier
+    }
     fn first_shot_dispersion_modifier(&self) -> &f32 {
         &self.first_shot_dispersion_modifier
+    }
+    fn first_shot_dispersion_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.first_shot_dispersion_modifier
     }
 }
 
@@ -2555,6 +3096,15 @@ impl TypeObject for GunSwayDispersionModData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2580,31 +3130,55 @@ pub struct GunSwayDispersionData {
 
 pub trait GunSwayDispersionDataTrait: TypeObject {
     fn min_angle(&self) -> &f32;
+    fn min_angle_mut(&mut self) -> &mut f32;
     fn max_angle(&self) -> &f32;
+    fn max_angle_mut(&mut self) -> &mut f32;
     fn increase_per_shot(&self) -> &f32;
+    fn increase_per_shot_mut(&mut self) -> &mut f32;
     fn decrease_per_second(&self) -> &f32;
+    fn decrease_per_second_mut(&mut self) -> &mut f32;
     fn no_fire_decrease_per_second(&self) -> &f32;
+    fn no_fire_decrease_per_second_mut(&mut self) -> &mut f32;
     fn no_fire_time_threshold(&self) -> &f32;
+    fn no_fire_time_threshold_mut(&mut self) -> &mut f32;
 }
 
 impl GunSwayDispersionDataTrait for GunSwayDispersionData {
     fn min_angle(&self) -> &f32 {
         &self.min_angle
     }
+    fn min_angle_mut(&mut self) -> &mut f32 {
+        &mut self.min_angle
+    }
     fn max_angle(&self) -> &f32 {
         &self.max_angle
+    }
+    fn max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.max_angle
     }
     fn increase_per_shot(&self) -> &f32 {
         &self.increase_per_shot
     }
+    fn increase_per_shot_mut(&mut self) -> &mut f32 {
+        &mut self.increase_per_shot
+    }
     fn decrease_per_second(&self) -> &f32 {
         &self.decrease_per_second
+    }
+    fn decrease_per_second_mut(&mut self) -> &mut f32 {
+        &mut self.decrease_per_second
     }
     fn no_fire_decrease_per_second(&self) -> &f32 {
         &self.no_fire_decrease_per_second
     }
+    fn no_fire_decrease_per_second_mut(&mut self) -> &mut f32 {
+        &mut self.no_fire_decrease_per_second
+    }
     fn no_fire_time_threshold(&self) -> &f32 {
         &self.no_fire_time_threshold
+    }
+    fn no_fire_time_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.no_fire_time_threshold
     }
 }
 
@@ -2666,6 +3240,15 @@ impl TypeObject for GunSwayDispersionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2686,11 +3269,15 @@ pub struct WeaponModifierNetStateData {
 
 pub trait WeaponModifierNetStateDataTrait: TypeObject {
     fn weapon_dynamic_modifier_active_mask(&self) -> &u32;
+    fn weapon_dynamic_modifier_active_mask_mut(&mut self) -> &mut u32;
 }
 
 impl WeaponModifierNetStateDataTrait for WeaponModifierNetStateData {
     fn weapon_dynamic_modifier_active_mask(&self) -> &u32 {
         &self.weapon_dynamic_modifier_active_mask
+    }
+    fn weapon_dynamic_modifier_active_mask_mut(&mut self) -> &mut u32 {
+        &mut self.weapon_dynamic_modifier_active_mask
     }
 }
 
@@ -2722,6 +3309,15 @@ impl TypeObject for WeaponModifierNetStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2748,35 +3344,63 @@ pub struct WeaponSwitchingNetState {
 
 pub trait WeaponSwitchingNetStateTrait: TypeObject {
     fn current_weapon_id(&self) -> &i8;
+    fn current_weapon_id_mut(&mut self) -> &mut i8;
     fn player_switched_weapon(&self) -> &bool;
+    fn player_switched_weapon_mut(&mut self) -> &mut bool;
     fn quick_switch(&self) -> &bool;
+    fn quick_switch_mut(&mut self) -> &mut bool;
     fn disable_switch_on_delayed_button_release(&self) -> &u32;
+    fn disable_switch_on_delayed_button_release_mut(&mut self) -> &mut u32;
     fn automatic_fire(&self) -> &bool;
+    fn automatic_fire_mut(&mut self) -> &mut bool;
     fn switch_back_to_prev_max_time_pressed(&self) -> &f32;
+    fn switch_back_to_prev_max_time_pressed_mut(&mut self) -> &mut f32;
     fn fire_and_switch_back_to_prev_action(&self) -> &u32;
+    fn fire_and_switch_back_to_prev_action_mut(&mut self) -> &mut u32;
 }
 
 impl WeaponSwitchingNetStateTrait for WeaponSwitchingNetState {
     fn current_weapon_id(&self) -> &i8 {
         &self.current_weapon_id
     }
+    fn current_weapon_id_mut(&mut self) -> &mut i8 {
+        &mut self.current_weapon_id
+    }
     fn player_switched_weapon(&self) -> &bool {
         &self.player_switched_weapon
+    }
+    fn player_switched_weapon_mut(&mut self) -> &mut bool {
+        &mut self.player_switched_weapon
     }
     fn quick_switch(&self) -> &bool {
         &self.quick_switch
     }
+    fn quick_switch_mut(&mut self) -> &mut bool {
+        &mut self.quick_switch
+    }
     fn disable_switch_on_delayed_button_release(&self) -> &u32 {
         &self.disable_switch_on_delayed_button_release
+    }
+    fn disable_switch_on_delayed_button_release_mut(&mut self) -> &mut u32 {
+        &mut self.disable_switch_on_delayed_button_release
     }
     fn automatic_fire(&self) -> &bool {
         &self.automatic_fire
     }
+    fn automatic_fire_mut(&mut self) -> &mut bool {
+        &mut self.automatic_fire
+    }
     fn switch_back_to_prev_max_time_pressed(&self) -> &f32 {
         &self.switch_back_to_prev_max_time_pressed
     }
+    fn switch_back_to_prev_max_time_pressed_mut(&mut self) -> &mut f32 {
+        &mut self.switch_back_to_prev_max_time_pressed
+    }
     fn fire_and_switch_back_to_prev_action(&self) -> &u32 {
         &self.fire_and_switch_back_to_prev_action
+    }
+    fn fire_and_switch_back_to_prev_action_mut(&mut self) -> &mut u32 {
+        &mut self.fire_and_switch_back_to_prev_action
     }
 }
 
@@ -2844,6 +3468,15 @@ impl TypeObject for WeaponSwitchingNetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2889,6 +3522,15 @@ impl TypeObject for WeaponsNetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2911,19 +3553,31 @@ pub struct SoldierWeaponsNetState {
 
 pub trait SoldierWeaponsNetStateTrait: TypeObject {
     fn soldier_weapon_unlock_asset(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
+    fn soldier_weapon_unlock_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
     fn weapon_instance_id(&self) -> &u8;
+    fn weapon_instance_id_mut(&mut self) -> &mut u8;
     fn sub_level_id(&self) -> &u16;
+    fn sub_level_id_mut(&mut self) -> &mut u16;
 }
 
 impl SoldierWeaponsNetStateTrait for SoldierWeaponsNetState {
     fn soldier_weapon_unlock_asset(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
         &self.soldier_weapon_unlock_asset
     }
+    fn soldier_weapon_unlock_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
+        &mut self.soldier_weapon_unlock_asset
+    }
     fn weapon_instance_id(&self) -> &u8 {
         &self.weapon_instance_id
     }
+    fn weapon_instance_id_mut(&mut self) -> &mut u8 {
+        &mut self.weapon_instance_id
+    }
     fn sub_level_id(&self) -> &u16 {
         &self.sub_level_id
+    }
+    fn sub_level_id_mut(&mut self) -> &mut u16 {
+        &mut self.sub_level_id
     }
 }
 
@@ -2967,6 +3621,15 @@ impl TypeObject for SoldierWeaponsNetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2988,11 +3651,15 @@ pub struct WeaponLagEntityData {
 
 pub trait WeaponLagEntityDataTrait: super::entity::EntityDataTrait {
     fn binding(&self) -> &WeaponLagBinding;
+    fn binding_mut(&mut self) -> &mut WeaponLagBinding;
 }
 
 impl WeaponLagEntityDataTrait for WeaponLagEntityData {
     fn binding(&self) -> &WeaponLagBinding {
         &self.binding
+    }
+    fn binding_mut(&mut self) -> &mut WeaponLagBinding {
+        &mut self.binding
     }
 }
 
@@ -3006,15 +3673,15 @@ impl super::core::DataBusPeerTrait for WeaponLagEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WeaponLagEntityData {
 }
 
 impl super::core::DataContainerTrait for WeaponLagEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONLAGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3046,6 +3713,15 @@ impl TypeObject for WeaponLagEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3070,27 +3746,47 @@ pub struct WeaponLagBinding {
 
 pub trait WeaponLagBindingTrait: TypeObject {
     fn entity_pitch(&self) -> &super::ant::AntRef;
+    fn entity_pitch_mut(&mut self) -> &mut super::ant::AntRef;
     fn entity_yaw(&self) -> &super::ant::AntRef;
+    fn entity_yaw_mut(&mut self) -> &mut super::ant::AntRef;
     fn pitch_result(&self) -> &super::ant::AntRef;
+    fn pitch_result_mut(&mut self) -> &mut super::ant::AntRef;
     fn yaw_result(&self) -> &super::ant::AntRef;
+    fn yaw_result_mut(&mut self) -> &mut super::ant::AntRef;
     fn roll_result(&self) -> &super::ant::AntRef;
+    fn roll_result_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl WeaponLagBindingTrait for WeaponLagBinding {
     fn entity_pitch(&self) -> &super::ant::AntRef {
         &self.entity_pitch
     }
+    fn entity_pitch_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.entity_pitch
+    }
     fn entity_yaw(&self) -> &super::ant::AntRef {
         &self.entity_yaw
+    }
+    fn entity_yaw_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.entity_yaw
     }
     fn pitch_result(&self) -> &super::ant::AntRef {
         &self.pitch_result
     }
+    fn pitch_result_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.pitch_result
+    }
     fn yaw_result(&self) -> &super::ant::AntRef {
         &self.yaw_result
     }
+    fn yaw_result_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.yaw_result
+    }
     fn roll_result(&self) -> &super::ant::AntRef {
         &self.roll_result
+    }
+    fn roll_result_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.roll_result
     }
 }
 
@@ -3146,6 +3842,15 @@ impl TypeObject for WeaponLagBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3167,11 +3872,15 @@ pub struct SoldierWeaponHudData {
 
 pub trait SoldierWeaponHudDataTrait: super::gameplay_sim::HudDataTrait {
     fn reload_prompt(&self) -> &f32;
+    fn reload_prompt_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierWeaponHudDataTrait for SoldierWeaponHudData {
     fn reload_prompt(&self) -> &f32 {
         &self.reload_prompt
+    }
+    fn reload_prompt_mut(&mut self) -> &mut f32 {
+        &mut self.reload_prompt
     }
 }
 
@@ -3179,9 +3888,6 @@ impl super::gameplay_sim::HudDataTrait for SoldierWeaponHudData {
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponHudData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONHUDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3213,6 +3919,15 @@ impl TypeObject for SoldierWeaponHudData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3234,18 +3949,19 @@ pub struct WeaponStateData1p {
 
 pub trait WeaponStateData1pTrait: super::core::DataContainerTrait {
     fn weapon_mesh1p(&self) -> &Vec<WeaponMesh1p>;
+    fn weapon_mesh1p_mut(&mut self) -> &mut Vec<WeaponMesh1p>;
 }
 
 impl WeaponStateData1pTrait for WeaponStateData1p {
     fn weapon_mesh1p(&self) -> &Vec<WeaponMesh1p> {
         &self.weapon_mesh1p
     }
+    fn weapon_mesh1p_mut(&mut self) -> &mut Vec<WeaponMesh1p> {
+        &mut self.weapon_mesh1p
+    }
 }
 
 impl super::core::DataContainerTrait for WeaponStateData1p {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONSTATEDATA1P_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3277,6 +3993,15 @@ impl TypeObject for WeaponStateData1p {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3298,15 +4023,23 @@ pub struct WeaponMesh1p {
 
 pub trait WeaponMesh1pTrait: TypeObject {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>>;
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>>;
     fn mesh_zoom(&self) -> &Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>>;
+    fn mesh_zoom_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>>;
 }
 
 impl WeaponMesh1pTrait for WeaponMesh1p {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>> {
         &self.mesh
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>> {
+        &mut self.mesh
+    }
     fn mesh_zoom(&self) -> &Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>> {
         &self.mesh_zoom
+    }
+    fn mesh_zoom_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>> {
+        &mut self.mesh_zoom
     }
 }
 
@@ -3344,6 +4077,15 @@ impl TypeObject for WeaponMesh1p {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3365,11 +4107,15 @@ pub struct ExplosionPackTripwireTrigger {
 
 pub trait ExplosionPackTripwireTriggerTrait: ExplosionPackTriggerTrait {
     fn tripwire(&self) -> &Option<Arc<Mutex<dyn TripwireEntityDataTrait>>>;
+    fn tripwire_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TripwireEntityDataTrait>>>;
 }
 
 impl ExplosionPackTripwireTriggerTrait for ExplosionPackTripwireTrigger {
     fn tripwire(&self) -> &Option<Arc<Mutex<dyn TripwireEntityDataTrait>>> {
         &self.tripwire
+    }
+    fn tripwire_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TripwireEntityDataTrait>>> {
+        &mut self.tripwire
     }
 }
 
@@ -3377,9 +4123,6 @@ impl ExplosionPackTriggerTrait for ExplosionPackTripwireTrigger {
 }
 
 impl super::core::DataContainerTrait for ExplosionPackTripwireTrigger {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPLOSIONPACKTRIPWIRETRIGGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3410,6 +4153,15 @@ impl TypeObject for ExplosionPackTripwireTrigger {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3453,95 +4205,183 @@ pub struct TripwireEntityData {
 
 pub trait TripwireEntityDataTrait: super::entity::GameComponentEntityDataTrait {
     fn wire_mesh(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn wire_mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
     fn wire_mesh_scale(&self) -> &super::core::Vec3;
+    fn wire_mesh_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn wire_impact_material(&self) -> &super::entity::MaterialDecl;
+    fn wire_impact_material_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn deploy_sound_effect(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn deploy_sound_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn trip_sound_effect(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn trip_sound_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn max_wire_count(&self) -> &i32;
+    fn max_wire_count_mut(&mut self) -> &mut i32;
     fn wire_max_length(&self) -> &f32;
+    fn wire_max_length_mut(&mut self) -> &mut f32;
     fn wire_min_length(&self) -> &f32;
+    fn wire_min_length_mut(&mut self) -> &mut f32;
     fn wire_min2_d_length(&self) -> &f32;
+    fn wire_min2_d_length_mut(&mut self) -> &mut f32;
     fn wire_min_vertical_offset(&self) -> &f32;
+    fn wire_min_vertical_offset_mut(&mut self) -> &mut f32;
     fn wire_origin_offset(&self) -> &super::core::Vec3;
+    fn wire_origin_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn min_yaw(&self) -> &f32;
+    fn min_yaw_mut(&mut self) -> &mut f32;
     fn max_yaw(&self) -> &f32;
+    fn max_yaw_mut(&mut self) -> &mut f32;
     fn min_pitch(&self) -> &f32;
+    fn min_pitch_mut(&mut self) -> &mut f32;
     fn max_pitch(&self) -> &f32;
+    fn max_pitch_mut(&mut self) -> &mut f32;
     fn density_angle(&self) -> &u32;
+    fn density_angle_mut(&mut self) -> &mut u32;
     fn attach_wires_to_neutral_vehicles(&self) -> &bool;
+    fn attach_wires_to_neutral_vehicles_mut(&mut self) -> &mut bool;
     fn attach_wires_to_hostile_vehicles(&self) -> &bool;
+    fn attach_wires_to_hostile_vehicles_mut(&mut self) -> &mut bool;
     fn attach_wires_to_friendly_vehicles(&self) -> &bool;
+    fn attach_wires_to_friendly_vehicles_mut(&mut self) -> &mut bool;
     fn force_trip_by_friendly_vehicles(&self) -> &bool;
+    fn force_trip_by_friendly_vehicles_mut(&mut self) -> &mut bool;
     fn force_trip_by_friendly_soldiers(&self) -> &bool;
+    fn force_trip_by_friendly_soldiers_mut(&mut self) -> &mut bool;
     fn wire_deploy_speed(&self) -> &f32;
+    fn wire_deploy_speed_mut(&mut self) -> &mut f32;
 }
 
 impl TripwireEntityDataTrait for TripwireEntityData {
     fn wire_mesh(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         &self.wire_mesh
     }
+    fn wire_mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        &mut self.wire_mesh
+    }
     fn wire_mesh_scale(&self) -> &super::core::Vec3 {
         &self.wire_mesh_scale
+    }
+    fn wire_mesh_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.wire_mesh_scale
     }
     fn wire_impact_material(&self) -> &super::entity::MaterialDecl {
         &self.wire_impact_material
     }
+    fn wire_impact_material_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.wire_impact_material
+    }
     fn deploy_sound_effect(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.deploy_sound_effect
+    }
+    fn deploy_sound_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.deploy_sound_effect
     }
     fn trip_sound_effect(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.trip_sound_effect
     }
+    fn trip_sound_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.trip_sound_effect
+    }
     fn max_wire_count(&self) -> &i32 {
         &self.max_wire_count
+    }
+    fn max_wire_count_mut(&mut self) -> &mut i32 {
+        &mut self.max_wire_count
     }
     fn wire_max_length(&self) -> &f32 {
         &self.wire_max_length
     }
+    fn wire_max_length_mut(&mut self) -> &mut f32 {
+        &mut self.wire_max_length
+    }
     fn wire_min_length(&self) -> &f32 {
         &self.wire_min_length
+    }
+    fn wire_min_length_mut(&mut self) -> &mut f32 {
+        &mut self.wire_min_length
     }
     fn wire_min2_d_length(&self) -> &f32 {
         &self.wire_min2_d_length
     }
+    fn wire_min2_d_length_mut(&mut self) -> &mut f32 {
+        &mut self.wire_min2_d_length
+    }
     fn wire_min_vertical_offset(&self) -> &f32 {
         &self.wire_min_vertical_offset
+    }
+    fn wire_min_vertical_offset_mut(&mut self) -> &mut f32 {
+        &mut self.wire_min_vertical_offset
     }
     fn wire_origin_offset(&self) -> &super::core::Vec3 {
         &self.wire_origin_offset
     }
+    fn wire_origin_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.wire_origin_offset
+    }
     fn min_yaw(&self) -> &f32 {
         &self.min_yaw
+    }
+    fn min_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.min_yaw
     }
     fn max_yaw(&self) -> &f32 {
         &self.max_yaw
     }
+    fn max_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.max_yaw
+    }
     fn min_pitch(&self) -> &f32 {
         &self.min_pitch
+    }
+    fn min_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.min_pitch
     }
     fn max_pitch(&self) -> &f32 {
         &self.max_pitch
     }
+    fn max_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.max_pitch
+    }
     fn density_angle(&self) -> &u32 {
         &self.density_angle
+    }
+    fn density_angle_mut(&mut self) -> &mut u32 {
+        &mut self.density_angle
     }
     fn attach_wires_to_neutral_vehicles(&self) -> &bool {
         &self.attach_wires_to_neutral_vehicles
     }
+    fn attach_wires_to_neutral_vehicles_mut(&mut self) -> &mut bool {
+        &mut self.attach_wires_to_neutral_vehicles
+    }
     fn attach_wires_to_hostile_vehicles(&self) -> &bool {
         &self.attach_wires_to_hostile_vehicles
+    }
+    fn attach_wires_to_hostile_vehicles_mut(&mut self) -> &mut bool {
+        &mut self.attach_wires_to_hostile_vehicles
     }
     fn attach_wires_to_friendly_vehicles(&self) -> &bool {
         &self.attach_wires_to_friendly_vehicles
     }
+    fn attach_wires_to_friendly_vehicles_mut(&mut self) -> &mut bool {
+        &mut self.attach_wires_to_friendly_vehicles
+    }
     fn force_trip_by_friendly_vehicles(&self) -> &bool {
         &self.force_trip_by_friendly_vehicles
+    }
+    fn force_trip_by_friendly_vehicles_mut(&mut self) -> &mut bool {
+        &mut self.force_trip_by_friendly_vehicles
     }
     fn force_trip_by_friendly_soldiers(&self) -> &bool {
         &self.force_trip_by_friendly_soldiers
     }
+    fn force_trip_by_friendly_soldiers_mut(&mut self) -> &mut bool {
+        &mut self.force_trip_by_friendly_soldiers
+    }
     fn wire_deploy_speed(&self) -> &f32 {
         &self.wire_deploy_speed
+    }
+    fn wire_deploy_speed_mut(&mut self) -> &mut f32 {
+        &mut self.wire_deploy_speed
     }
 }
 
@@ -3549,32 +4389,56 @@ impl super::entity::GameComponentEntityDataTrait for TripwireEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for TripwireEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for TripwireEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -3588,15 +4452,15 @@ impl super::core::DataBusPeerTrait for TripwireEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TripwireEntityData {
 }
 
 impl super::core::DataContainerTrait for TripwireEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TRIPWIREENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3754,6 +4618,15 @@ impl TypeObject for TripwireEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3775,17 +4648,24 @@ pub struct SoldierWeaponBlueprintBundle {
 
 pub trait SoldierWeaponBlueprintBundleTrait: super::gameplay_sim::BlueprintBundleTrait {
     fn ant_state_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::ant::AntStateAssetTrait>>>>;
+    fn ant_state_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::ant::AntStateAssetTrait>>>>;
 }
 
 impl SoldierWeaponBlueprintBundleTrait for SoldierWeaponBlueprintBundle {
     fn ant_state_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::ant::AntStateAssetTrait>>>> {
         &self.ant_state_assets
     }
+    fn ant_state_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::ant::AntStateAssetTrait>>>> {
+        &mut self.ant_state_assets
+    }
 }
 
 impl super::gameplay_sim::BlueprintBundleTrait for SoldierWeaponBlueprintBundle {
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
 }
 
@@ -3796,12 +4676,12 @@ impl super::core::AssetTrait for SoldierWeaponBlueprintBundle {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponBlueprintBundle {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONBLUEPRINTBUNDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3833,6 +4713,15 @@ impl TypeObject for SoldierWeaponBlueprintBundle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3861,17 +4750,32 @@ impl WeaponSocketObjectDataTrait for WeaponSkinnedSocketObjectData {
     fn used_common(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.used_common()
     }
+    fn used_common_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.used_common_mut()
+    }
     fn used1p(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.used1p()
+    }
+    fn used1p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.used1p_mut()
     }
     fn used1p_zoom(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.used1p_zoom()
     }
+    fn used1p_zoom_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.used1p_zoom_mut()
+    }
     fn used3p(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.used3p()
     }
+    fn used3p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.used3p_mut()
+    }
     fn used3p_zoom(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.used3p_zoom()
+    }
+    fn used3p_zoom_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.used3p_zoom_mut()
     }
 }
 
@@ -3879,9 +4783,6 @@ impl SocketObjectDataBaseTrait for WeaponSkinnedSocketObjectData {
 }
 
 impl super::core::DataContainerTrait for WeaponSkinnedSocketObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONSKINNEDSOCKETOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3907,6 +4808,15 @@ impl TypeObject for WeaponSkinnedSocketObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3929,15 +4839,23 @@ pub struct WeaponRegularSocketObjectData {
 
 pub trait WeaponRegularSocketObjectDataTrait: WeaponSocketObjectDataTrait {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn mesh3p_transforms(&self) -> &Vec<super::core::SparseTransformArray>;
+    fn mesh3p_transforms_mut(&mut self) -> &mut Vec<super::core::SparseTransformArray>;
 }
 
 impl WeaponRegularSocketObjectDataTrait for WeaponRegularSocketObjectData {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn mesh3p_transforms(&self) -> &Vec<super::core::SparseTransformArray> {
         &self.mesh3p_transforms
+    }
+    fn mesh3p_transforms_mut(&mut self) -> &mut Vec<super::core::SparseTransformArray> {
+        &mut self.mesh3p_transforms
     }
 }
 
@@ -3945,17 +4863,32 @@ impl WeaponSocketObjectDataTrait for WeaponRegularSocketObjectData {
     fn used_common(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.used_common()
     }
+    fn used_common_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.used_common_mut()
+    }
     fn used1p(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.used1p()
+    }
+    fn used1p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.used1p_mut()
     }
     fn used1p_zoom(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.used1p_zoom()
     }
+    fn used1p_zoom_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.used1p_zoom_mut()
+    }
     fn used3p(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.used3p()
     }
+    fn used3p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.used3p_mut()
+    }
     fn used3p_zoom(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         self._glacier_base.used3p_zoom()
+    }
+    fn used3p_zoom_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        self._glacier_base.used3p_zoom_mut()
     }
 }
 
@@ -3963,9 +4896,6 @@ impl SocketObjectDataBaseTrait for WeaponRegularSocketObjectData {
 }
 
 impl super::core::DataContainerTrait for WeaponRegularSocketObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONREGULARSOCKETOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4003,6 +4933,15 @@ impl TypeObject for WeaponRegularSocketObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4028,27 +4967,47 @@ pub struct WeaponSocketObjectData {
 
 pub trait WeaponSocketObjectDataTrait: SocketObjectDataBaseTrait {
     fn used_common(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn used_common_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
     fn used1p(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn used1p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
     fn used1p_zoom(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn used1p_zoom_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
     fn used3p(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn used3p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
     fn used3p_zoom(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn used3p_zoom_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
 }
 
 impl WeaponSocketObjectDataTrait for WeaponSocketObjectData {
     fn used_common(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         &self.used_common
     }
+    fn used_common_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        &mut self.used_common
+    }
     fn used1p(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         &self.used1p
+    }
+    fn used1p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        &mut self.used1p
     }
     fn used1p_zoom(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         &self.used1p_zoom
     }
+    fn used1p_zoom_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        &mut self.used1p_zoom
+    }
     fn used3p(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         &self.used3p
     }
+    fn used3p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        &mut self.used3p
+    }
     fn used3p_zoom(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         &self.used3p_zoom
+    }
+    fn used3p_zoom_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        &mut self.used3p_zoom
     }
 }
 
@@ -4056,9 +5015,6 @@ impl SocketObjectDataBaseTrait for WeaponSocketObjectData {
 }
 
 impl super::core::DataContainerTrait for WeaponSocketObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONSOCKETOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4114,6 +5070,15 @@ impl TypeObject for WeaponSocketObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4135,15 +5100,23 @@ pub struct WeaponModifierData {
 
 pub trait WeaponModifierDataTrait: TypeObject {
     fn unlock_asset_guid(&self) -> &glacier_util::guid::Guid;
+    fn unlock_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn modifiers(&self) -> &Vec<Option<Arc<Mutex<dyn super::weapon_shared::WeaponModifierBaseTrait>>>>;
+    fn modifiers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::weapon_shared::WeaponModifierBaseTrait>>>>;
 }
 
 impl WeaponModifierDataTrait for WeaponModifierData {
     fn unlock_asset_guid(&self) -> &glacier_util::guid::Guid {
         &self.unlock_asset_guid
     }
+    fn unlock_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.unlock_asset_guid
+    }
     fn modifiers(&self) -> &Vec<Option<Arc<Mutex<dyn super::weapon_shared::WeaponModifierBaseTrait>>>> {
         &self.modifiers
+    }
+    fn modifiers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::weapon_shared::WeaponModifierBaseTrait>>>> {
+        &mut self.modifiers
     }
 }
 
@@ -4180,6 +5153,15 @@ impl TypeObject for WeaponModifierData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4226,6 +5208,15 @@ impl TypeObject for ClientSoldierWeaponWeaponModifierChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4260,6 +5251,15 @@ impl TypeObject for ServerSoldierWeaponWeaponModifierChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4270,11 +5270,15 @@ pub struct WeaponAIDataModifier {
 
 pub trait WeaponAIDataModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn a_i_data(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>>;
+    fn a_i_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>>;
 }
 
 impl WeaponAIDataModifierTrait for WeaponAIDataModifier {
     fn a_i_data(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>> {
         &self.a_i_data
+    }
+    fn a_i_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>> {
+        &mut self.a_i_data
     }
 }
 
@@ -4282,15 +5286,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponAIDataModifier {
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponAIDataModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONAIDATAMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4322,6 +5329,15 @@ impl TypeObject for WeaponAIDataModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4343,11 +5359,15 @@ pub struct WeaponSprintSettingsModifier {
 
 pub trait WeaponSprintSettingsModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn sprint_settings(&self) -> &Option<Arc<Mutex<dyn WeaponSprintSettingsTrait>>>;
+    fn sprint_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSprintSettingsTrait>>>;
 }
 
 impl WeaponSprintSettingsModifierTrait for WeaponSprintSettingsModifier {
     fn sprint_settings(&self) -> &Option<Arc<Mutex<dyn WeaponSprintSettingsTrait>>> {
         &self.sprint_settings
+    }
+    fn sprint_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSprintSettingsTrait>>> {
+        &mut self.sprint_settings
     }
 }
 
@@ -4355,15 +5375,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponSprintSettingsModif
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponSprintSettingsModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONSPRINTSETTINGSMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4395,6 +5418,15 @@ impl TypeObject for WeaponSprintSettingsModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4416,11 +5448,15 @@ pub struct WeaponSocketModifier {
 
 pub trait WeaponSocketModifierTrait: super::weapon_shared::WeaponModifierDynamicBaseTrait {
     fn socket_hash(&self) -> &Vec<u32>;
+    fn socket_hash_mut(&mut self) -> &mut Vec<u32>;
 }
 
 impl WeaponSocketModifierTrait for WeaponSocketModifier {
     fn socket_hash(&self) -> &Vec<u32> {
         &self.socket_hash
+    }
+    fn socket_hash_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.socket_hash
     }
 }
 
@@ -4431,15 +5467,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponSocketModifier {
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponSocketModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONSOCKETMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4471,6 +5510,15 @@ impl TypeObject for WeaponSocketModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4492,11 +5540,15 @@ pub struct WeaponAnimBaseModifier {
 
 pub trait WeaponAnimBaseModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn anim_base_set(&self) -> &WeaponAnimBaseSetEnum;
+    fn anim_base_set_mut(&mut self) -> &mut WeaponAnimBaseSetEnum;
 }
 
 impl WeaponAnimBaseModifierTrait for WeaponAnimBaseModifier {
     fn anim_base_set(&self) -> &WeaponAnimBaseSetEnum {
         &self.anim_base_set
+    }
+    fn anim_base_set_mut(&mut self) -> &mut WeaponAnimBaseSetEnum {
+        &mut self.anim_base_set
     }
 }
 
@@ -4504,15 +5556,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponAnimBaseModifier {
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponAnimBaseModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONANIMBASEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4544,6 +5599,15 @@ impl TypeObject for WeaponAnimBaseModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4565,11 +5629,15 @@ pub struct CustomWeaponTypeModifier {
 
 pub trait CustomWeaponTypeModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn custom_weapon_type(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::WeaponDataTrait>>>;
+    fn custom_weapon_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::WeaponDataTrait>>>;
 }
 
 impl CustomWeaponTypeModifierTrait for CustomWeaponTypeModifier {
     fn custom_weapon_type(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::WeaponDataTrait>>> {
         &self.custom_weapon_type
+    }
+    fn custom_weapon_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::WeaponDataTrait>>> {
+        &mut self.custom_weapon_type
     }
 }
 
@@ -4577,15 +5645,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for CustomWeaponTypeModifier 
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CustomWeaponTypeModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CUSTOMWEAPONTYPEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4617,6 +5688,15 @@ impl TypeObject for CustomWeaponTypeModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4640,19 +5720,31 @@ pub struct WeaponZoomLevelModifier {
 
 pub trait WeaponZoomLevelModifierTrait: super::weapon_shared::WeaponModifierDynamicBaseTrait {
     fn zoom_level_index(&self) -> &i32;
+    fn zoom_level_index_mut(&mut self) -> &mut i32;
     fn zoom_level(&self) -> &Option<Arc<Mutex<dyn ZoomLevelDataTrait>>>;
+    fn zoom_level_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ZoomLevelDataTrait>>>;
     fn weapon_zoom_level(&self) -> &Option<Arc<Mutex<dyn WeaponZoomLevelDataTrait>>>;
+    fn weapon_zoom_level_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponZoomLevelDataTrait>>>;
 }
 
 impl WeaponZoomLevelModifierTrait for WeaponZoomLevelModifier {
     fn zoom_level_index(&self) -> &i32 {
         &self.zoom_level_index
     }
+    fn zoom_level_index_mut(&mut self) -> &mut i32 {
+        &mut self.zoom_level_index
+    }
     fn zoom_level(&self) -> &Option<Arc<Mutex<dyn ZoomLevelDataTrait>>> {
         &self.zoom_level
     }
+    fn zoom_level_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ZoomLevelDataTrait>>> {
+        &mut self.zoom_level
+    }
     fn weapon_zoom_level(&self) -> &Option<Arc<Mutex<dyn WeaponZoomLevelDataTrait>>> {
         &self.weapon_zoom_level
+    }
+    fn weapon_zoom_level_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponZoomLevelDataTrait>>> {
+        &mut self.weapon_zoom_level
     }
 }
 
@@ -4663,15 +5755,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponZoomLevelModifier {
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponZoomLevelModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONZOOMLEVELMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4715,6 +5810,15 @@ impl TypeObject for WeaponZoomLevelModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4736,11 +5840,15 @@ pub struct WeaponZoomModifier {
 
 pub trait WeaponZoomModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn zoom_render_fov(&self) -> &f32;
+    fn zoom_render_fov_mut(&mut self) -> &mut f32;
 }
 
 impl WeaponZoomModifierTrait for WeaponZoomModifier {
     fn zoom_render_fov(&self) -> &f32 {
         &self.zoom_render_fov
+    }
+    fn zoom_render_fov_mut(&mut self) -> &mut f32 {
+        &mut self.zoom_render_fov
     }
 }
 
@@ -4748,15 +5856,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponZoomModifier {
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponZoomModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONZOOMMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4788,6 +5899,15 @@ impl TypeObject for WeaponZoomModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4809,11 +5929,15 @@ pub struct WeaponClassModifier {
 
 pub trait WeaponClassModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn weapon_class(&self) -> &WeaponClassEnum;
+    fn weapon_class_mut(&mut self) -> &mut WeaponClassEnum;
 }
 
 impl WeaponClassModifierTrait for WeaponClassModifier {
     fn weapon_class(&self) -> &WeaponClassEnum {
         &self.weapon_class
+    }
+    fn weapon_class_mut(&mut self) -> &mut WeaponClassEnum {
+        &mut self.weapon_class
     }
 }
 
@@ -4821,15 +5945,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponClassModifier {
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponClassModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONCLASSMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4861,6 +5988,15 @@ impl TypeObject for WeaponClassModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4882,11 +6018,15 @@ pub struct WeaponAnimatedFireTypeModifier {
 
 pub trait WeaponAnimatedFireTypeModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn animated_fire_type(&self) -> &AnimatedFireEnum;
+    fn animated_fire_type_mut(&mut self) -> &mut AnimatedFireEnum;
 }
 
 impl WeaponAnimatedFireTypeModifierTrait for WeaponAnimatedFireTypeModifier {
     fn animated_fire_type(&self) -> &AnimatedFireEnum {
         &self.animated_fire_type
+    }
+    fn animated_fire_type_mut(&mut self) -> &mut AnimatedFireEnum {
+        &mut self.animated_fire_type
     }
 }
 
@@ -4894,15 +6034,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponAnimatedFireTypeMod
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponAnimatedFireTypeModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONANIMATEDFIRETYPEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4934,6 +6077,15 @@ impl TypeObject for WeaponAnimatedFireTypeModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4955,11 +6107,15 @@ pub struct WeaponAnimTypeModifier {
 
 pub trait WeaponAnimTypeModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn weapon_anim_type(&self) -> &WeaponAnimType;
+    fn weapon_anim_type_mut(&mut self) -> &mut WeaponAnimType;
 }
 
 impl WeaponAnimTypeModifierTrait for WeaponAnimTypeModifier {
     fn weapon_anim_type(&self) -> &WeaponAnimType {
         &self.weapon_anim_type
+    }
+    fn weapon_anim_type_mut(&mut self) -> &mut WeaponAnimType {
+        &mut self.weapon_anim_type
     }
 }
 
@@ -4967,15 +6123,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponAnimTypeModifier {
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponAnimTypeModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONANIMTYPEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5006,6 +6165,15 @@ impl TypeObject for WeaponAnimTypeModifier {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5052,6 +6220,15 @@ impl TypeObject for WeaponAnimType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5073,11 +6250,15 @@ pub struct WeaponAnimationConfigurationModifier {
 
 pub trait WeaponAnimationConfigurationModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn animated_fire_type(&self) -> &AnimatedFireEnum;
+    fn animated_fire_type_mut(&mut self) -> &mut AnimatedFireEnum;
 }
 
 impl WeaponAnimationConfigurationModifierTrait for WeaponAnimationConfigurationModifier {
     fn animated_fire_type(&self) -> &AnimatedFireEnum {
         &self.animated_fire_type
+    }
+    fn animated_fire_type_mut(&mut self) -> &mut AnimatedFireEnum {
+        &mut self.animated_fire_type
     }
 }
 
@@ -5085,15 +6266,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponAnimationConfigurat
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponAnimationConfigurationModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONANIMATIONCONFIGURATIONMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5124,6 +6308,15 @@ impl TypeObject for WeaponAnimationConfigurationModifier {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5156,51 +6349,95 @@ pub struct GrenadeEntityData {
 
 pub trait GrenadeEntityDataTrait: super::weapon_shared::GhostedProjectileEntityDataTrait {
     fn gravity(&self) -> &f32;
+    fn gravity_mut(&mut self) -> &mut f32;
     fn collision_speed_multiplier(&self) -> &f32;
+    fn collision_speed_multiplier_mut(&mut self) -> &mut f32;
     fn min_bounce_speed(&self) -> &f32;
+    fn min_bounce_speed_mut(&mut self) -> &mut f32;
     fn damage_multiplier(&self) -> &f32;
+    fn damage_multiplier_mut(&mut self) -> &mut f32;
     fn inner_blast_radius_multiplier(&self) -> &f32;
+    fn inner_blast_radius_multiplier_mut(&mut self) -> &mut f32;
     fn blast_radius_multiplier(&self) -> &f32;
+    fn blast_radius_multiplier_mut(&mut self) -> &mut f32;
     fn shockwave_radius_multiplier(&self) -> &f32;
+    fn shockwave_radius_multiplier_mut(&mut self) -> &mut f32;
     fn collision_damage(&self) -> &f32;
+    fn collision_damage_mut(&mut self) -> &mut f32;
     fn grenade_type(&self) -> &GrenadeType;
+    fn grenade_type_mut(&mut self) -> &mut GrenadeType;
     fn show_hud_indicator(&self) -> &bool;
+    fn show_hud_indicator_mut(&mut self) -> &mut bool;
     fn hud_indicator_icon(&self) -> &String;
+    fn hud_indicator_icon_mut(&mut self) -> &mut String;
 }
 
 impl GrenadeEntityDataTrait for GrenadeEntityData {
     fn gravity(&self) -> &f32 {
         &self.gravity
     }
+    fn gravity_mut(&mut self) -> &mut f32 {
+        &mut self.gravity
+    }
     fn collision_speed_multiplier(&self) -> &f32 {
         &self.collision_speed_multiplier
+    }
+    fn collision_speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.collision_speed_multiplier
     }
     fn min_bounce_speed(&self) -> &f32 {
         &self.min_bounce_speed
     }
+    fn min_bounce_speed_mut(&mut self) -> &mut f32 {
+        &mut self.min_bounce_speed
+    }
     fn damage_multiplier(&self) -> &f32 {
         &self.damage_multiplier
+    }
+    fn damage_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.damage_multiplier
     }
     fn inner_blast_radius_multiplier(&self) -> &f32 {
         &self.inner_blast_radius_multiplier
     }
+    fn inner_blast_radius_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.inner_blast_radius_multiplier
+    }
     fn blast_radius_multiplier(&self) -> &f32 {
         &self.blast_radius_multiplier
+    }
+    fn blast_radius_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.blast_radius_multiplier
     }
     fn shockwave_radius_multiplier(&self) -> &f32 {
         &self.shockwave_radius_multiplier
     }
+    fn shockwave_radius_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.shockwave_radius_multiplier
+    }
     fn collision_damage(&self) -> &f32 {
         &self.collision_damage
+    }
+    fn collision_damage_mut(&mut self) -> &mut f32 {
+        &mut self.collision_damage
     }
     fn grenade_type(&self) -> &GrenadeType {
         &self.grenade_type
     }
+    fn grenade_type_mut(&mut self) -> &mut GrenadeType {
+        &mut self.grenade_type
+    }
     fn show_hud_indicator(&self) -> &bool {
         &self.show_hud_indicator
     }
+    fn show_hud_indicator_mut(&mut self) -> &mut bool {
+        &mut self.show_hud_indicator
+    }
     fn hud_indicator_icon(&self) -> &String {
         &self.hud_indicator_icon
+    }
+    fn hud_indicator_icon_mut(&mut self) -> &mut String {
+        &mut self.hud_indicator_icon
     }
 }
 
@@ -5208,17 +6445,32 @@ impl super::weapon_shared::GhostedProjectileEntityDataTrait for GrenadeEntityDat
     fn proxy_convergence_delay(&self) -> &f32 {
         self._glacier_base.proxy_convergence_delay()
     }
+    fn proxy_convergence_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.proxy_convergence_delay_mut()
+    }
     fn proxy_convergence_duration(&self) -> &f32 {
         self._glacier_base.proxy_convergence_duration()
+    }
+    fn proxy_convergence_duration_mut(&mut self) -> &mut f32 {
+        self._glacier_base.proxy_convergence_duration_mut()
     }
     fn proxy_convergence_instant_on_attach(&self) -> &bool {
         self._glacier_base.proxy_convergence_instant_on_attach()
     }
+    fn proxy_convergence_instant_on_attach_mut(&mut self) -> &mut bool {
+        self._glacier_base.proxy_convergence_instant_on_attach_mut()
+    }
     fn force_proxy_convergence(&self) -> &bool {
         self._glacier_base.force_proxy_convergence()
     }
+    fn force_proxy_convergence_mut(&mut self) -> &mut bool {
+        self._glacier_base.force_proxy_convergence_mut()
+    }
     fn convergence_using_initial_speed(&self) -> &bool {
         self._glacier_base.convergence_using_initial_speed()
+    }
+    fn convergence_using_initial_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.convergence_using_initial_speed_mut()
     }
 }
 
@@ -5226,35 +6478,68 @@ impl super::weapon_shared::MeshProjectileEntityDataTrait for GrenadeEntityData {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         self._glacier_base.mesh()
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        self._glacier_base.mesh_mut()
+    }
     fn trail_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
         self._glacier_base.trail_effect()
+    }
+    fn trail_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+        self._glacier_base.trail_effect_mut()
     }
     fn is_attachable(&self) -> &bool {
         self._glacier_base.is_attachable()
     }
+    fn is_attachable_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_attachable_mut()
+    }
     fn instant_attachable_test_distance(&self) -> &f32 {
         self._glacier_base.instant_attachable_test_distance()
+    }
+    fn instant_attachable_test_distance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.instant_attachable_test_distance_mut()
     }
     fn instant_attachable_visual_convergence_delay(&self) -> &f32 {
         self._glacier_base.instant_attachable_visual_convergence_delay()
     }
+    fn instant_attachable_visual_convergence_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.instant_attachable_visual_convergence_delay_mut()
+    }
     fn instant_attachable_visual_convergence_duration(&self) -> &f32 {
         self._glacier_base.instant_attachable_visual_convergence_duration()
+    }
+    fn instant_attachable_visual_convergence_duration_mut(&mut self) -> &mut f32 {
+        self._glacier_base.instant_attachable_visual_convergence_duration_mut()
     }
     fn instant_attachable_test_under_reticule(&self) -> &bool {
         self._glacier_base.instant_attachable_test_under_reticule()
     }
+    fn instant_attachable_test_under_reticule_mut(&mut self) -> &mut bool {
+        self._glacier_base.instant_attachable_test_under_reticule_mut()
+    }
     fn max_attachable_inclination(&self) -> &f32 {
         self._glacier_base.max_attachable_inclination()
+    }
+    fn max_attachable_inclination_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_attachable_inclination_mut()
     }
     fn extra_damping(&self) -> &bool {
         self._glacier_base.extra_damping()
     }
+    fn extra_damping_mut(&mut self) -> &mut bool {
+        self._glacier_base.extra_damping_mut()
+    }
     fn initial_angular_velocity(&self) -> &super::core::Vec3 {
         self._glacier_base.initial_angular_velocity()
     }
+    fn initial_angular_velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.initial_angular_velocity_mut()
+    }
     fn unspawn_after_detonation_delay(&self) -> &f32 {
         self._glacier_base.unspawn_after_detonation_delay()
+    }
+    fn unspawn_after_detonation_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.unspawn_after_detonation_delay_mut()
     }
 }
 
@@ -5262,56 +6547,110 @@ impl super::weapon_shared::ProjectileEntityDataTrait for GrenadeEntityData {
     fn initial_speed(&self) -> &f32 {
         self._glacier_base.initial_speed()
     }
+    fn initial_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.initial_speed_mut()
+    }
     fn time_to_live(&self) -> &f32 {
         self._glacier_base.time_to_live()
+    }
+    fn time_to_live_mut(&mut self) -> &mut f32 {
+        self._glacier_base.time_to_live_mut()
     }
     fn max_count(&self) -> &u32 {
         self._glacier_base.max_count()
     }
+    fn max_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.max_count_mut()
+    }
     fn init_mesh_hide_time(&self) -> &f32 {
         self._glacier_base.init_mesh_hide_time()
+    }
+    fn init_mesh_hide_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.init_mesh_hide_time_mut()
     }
     fn visual_converge_distance(&self) -> &f32 {
         self._glacier_base.visual_converge_distance()
     }
+    fn visual_converge_distance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.visual_converge_distance_mut()
+    }
     fn visual_convergence_delay(&self) -> &f32 {
         self._glacier_base.visual_convergence_delay()
+    }
+    fn visual_convergence_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.visual_convergence_delay_mut()
     }
     fn visual_convergence_duration(&self) -> &f32 {
         self._glacier_base.visual_convergence_duration()
     }
+    fn visual_convergence_duration_mut(&mut self) -> &mut f32 {
+        self._glacier_base.visual_convergence_duration_mut()
+    }
     fn proxy_visual_convergence_delay(&self) -> &f32 {
         self._glacier_base.proxy_visual_convergence_delay()
+    }
+    fn proxy_visual_convergence_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.proxy_visual_convergence_delay_mut()
     }
     fn proxy_visual_convergence_duration(&self) -> &f32 {
         self._glacier_base.proxy_visual_convergence_duration()
     }
+    fn proxy_visual_convergence_duration_mut(&mut self) -> &mut f32 {
+        self._glacier_base.proxy_visual_convergence_duration_mut()
+    }
     fn detonate_on_timeout(&self) -> &bool {
         self._glacier_base.detonate_on_timeout()
+    }
+    fn detonate_on_timeout_mut(&mut self) -> &mut bool {
+        self._glacier_base.detonate_on_timeout_mut()
     }
     fn server_projectile_disabled(&self) -> &bool {
         self._glacier_base.server_projectile_disabled()
     }
+    fn server_projectile_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.server_projectile_disabled_mut()
+    }
     fn explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
         self._glacier_base.explosion()
+    }
+    fn explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+        self._glacier_base.explosion_mut()
     }
     fn suppression_data(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::WeaponSuppressionDataTrait>>> {
         self._glacier_base.suppression_data()
     }
+    fn suppression_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::WeaponSuppressionDataTrait>>> {
+        self._glacier_base.suppression_data_mut()
+    }
     fn ammunition_type(&self) -> &String {
         self._glacier_base.ammunition_type()
+    }
+    fn ammunition_type_mut(&mut self) -> &mut String {
+        self._glacier_base.ammunition_type_mut()
     }
     fn material_pair(&self) -> &super::entity::MaterialDecl {
         self._glacier_base.material_pair()
     }
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        self._glacier_base.material_pair_mut()
+    }
     fn hit_reaction_weapon_type(&self) -> &super::weapon_shared::AntHitReactionWeaponType {
         self._glacier_base.hit_reaction_weapon_type()
+    }
+    fn hit_reaction_weapon_type_mut(&mut self) -> &mut super::weapon_shared::AntHitReactionWeaponType {
+        self._glacier_base.hit_reaction_weapon_type_mut()
     }
     fn hide_on_detonation(&self) -> &bool {
         self._glacier_base.hide_on_detonation()
     }
+    fn hide_on_detonation_mut(&mut self) -> &mut bool {
+        self._glacier_base.hide_on_detonation_mut()
+    }
     fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
         self._glacier_base.voice_over_info()
+    }
+    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+        self._glacier_base.voice_over_info_mut()
     }
 }
 
@@ -5322,32 +6661,56 @@ impl super::entity::GameComponentEntityDataTrait for GrenadeEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for GrenadeEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for GrenadeEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -5361,15 +6724,15 @@ impl super::core::DataBusPeerTrait for GrenadeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for GrenadeEntityData {
 }
 
 impl super::core::DataContainerTrait for GrenadeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GRENADEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5461,6 +6824,15 @@ impl TypeObject for GrenadeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5501,6 +6873,15 @@ impl TypeObject for GrenadeType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5522,11 +6903,15 @@ pub struct SupplySphereWeaponData {
 
 pub trait SupplySphereWeaponDataTrait: super::weapon_shared::WeaponDataTrait {
     fn supply_data(&self) -> &SupplyData;
+    fn supply_data_mut(&mut self) -> &mut SupplyData;
 }
 
 impl SupplySphereWeaponDataTrait for SupplySphereWeaponData {
     fn supply_data(&self) -> &SupplyData {
         &self.supply_data
+    }
+    fn supply_data_mut(&mut self) -> &mut SupplyData {
+        &mut self.supply_data
     }
 }
 
@@ -5534,8 +6919,14 @@ impl super::weapon_shared::WeaponDataTrait for SupplySphereWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -5543,12 +6934,12 @@ impl super::gameplay_sim::ToolDataTrait for SupplySphereWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SupplySphereWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SUPPLYSPHEREWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5580,6 +6971,15 @@ impl TypeObject for SupplySphereWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5606,35 +7006,63 @@ pub struct SupplyData {
 
 pub trait SupplyDataTrait: TypeObject {
     fn supply_soldiers(&self) -> &bool;
+    fn supply_soldiers_mut(&mut self) -> &mut bool;
     fn supply_vehicles(&self) -> &bool;
+    fn supply_vehicles_mut(&mut self) -> &mut bool;
     fn healing(&self) -> &Option<Arc<Mutex<dyn HealingSupplyUnitSphereDataTrait>>>;
+    fn healing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn HealingSupplyUnitSphereDataTrait>>>;
     fn ammo(&self) -> &Option<Arc<Mutex<dyn AmmoSupplyUnitSphereDataTrait>>>;
+    fn ammo_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AmmoSupplyUnitSphereDataTrait>>>;
     fn team_specific(&self) -> &bool;
+    fn team_specific_mut(&mut self) -> &mut bool;
     fn exclude_self(&self) -> &bool;
+    fn exclude_self_mut(&mut self) -> &mut bool;
     fn exclusion_timeout(&self) -> &f32;
+    fn exclusion_timeout_mut(&mut self) -> &mut f32;
 }
 
 impl SupplyDataTrait for SupplyData {
     fn supply_soldiers(&self) -> &bool {
         &self.supply_soldiers
     }
+    fn supply_soldiers_mut(&mut self) -> &mut bool {
+        &mut self.supply_soldiers
+    }
     fn supply_vehicles(&self) -> &bool {
         &self.supply_vehicles
+    }
+    fn supply_vehicles_mut(&mut self) -> &mut bool {
+        &mut self.supply_vehicles
     }
     fn healing(&self) -> &Option<Arc<Mutex<dyn HealingSupplyUnitSphereDataTrait>>> {
         &self.healing
     }
+    fn healing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn HealingSupplyUnitSphereDataTrait>>> {
+        &mut self.healing
+    }
     fn ammo(&self) -> &Option<Arc<Mutex<dyn AmmoSupplyUnitSphereDataTrait>>> {
         &self.ammo
+    }
+    fn ammo_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AmmoSupplyUnitSphereDataTrait>>> {
+        &mut self.ammo
     }
     fn team_specific(&self) -> &bool {
         &self.team_specific
     }
+    fn team_specific_mut(&mut self) -> &mut bool {
+        &mut self.team_specific
+    }
     fn exclude_self(&self) -> &bool {
         &self.exclude_self
     }
+    fn exclude_self_mut(&mut self) -> &mut bool {
+        &mut self.exclude_self
+    }
     fn exclusion_timeout(&self) -> &f32 {
         &self.exclusion_timeout
+    }
+    fn exclusion_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.exclusion_timeout
     }
 }
 
@@ -5702,6 +7130,15 @@ impl TypeObject for SupplyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5723,11 +7160,15 @@ pub struct AmmoSupplyUnitSphereData {
 
 pub trait AmmoSupplyUnitSphereDataTrait: SupplyUnitSphereDataTrait {
     fn ignored_weapon_classes(&self) -> &Vec<WeaponClassEnum>;
+    fn ignored_weapon_classes_mut(&mut self) -> &mut Vec<WeaponClassEnum>;
 }
 
 impl AmmoSupplyUnitSphereDataTrait for AmmoSupplyUnitSphereData {
     fn ignored_weapon_classes(&self) -> &Vec<WeaponClassEnum> {
         &self.ignored_weapon_classes
+    }
+    fn ignored_weapon_classes_mut(&mut self) -> &mut Vec<WeaponClassEnum> {
+        &mut self.ignored_weapon_classes
     }
 }
 
@@ -5735,36 +7176,60 @@ impl SupplyUnitSphereDataTrait for AmmoSupplyUnitSphereData {
     fn radius(&self) -> &f32 {
         self._glacier_base.radius()
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.radius_mut()
+    }
     fn max_radius(&self) -> &f32 {
         self._glacier_base.max_radius()
+    }
+    fn max_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_radius_mut()
     }
     fn radius_change_time(&self) -> &f32 {
         self._glacier_base.radius_change_time()
     }
+    fn radius_change_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.radius_change_time_mut()
+    }
     fn supply_inc_speed(&self) -> &f32 {
         self._glacier_base.supply_inc_speed()
+    }
+    fn supply_inc_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.supply_inc_speed_mut()
     }
     fn instant_refill(&self) -> &f32 {
         self._glacier_base.instant_refill()
     }
+    fn instant_refill_mut(&mut self) -> &mut f32 {
+        self._glacier_base.instant_refill_mut()
+    }
     fn force_use_instant_refill(&self) -> &bool {
         self._glacier_base.force_use_instant_refill()
+    }
+    fn force_use_instant_refill_mut(&mut self) -> &mut bool {
+        self._glacier_base.force_use_instant_refill_mut()
     }
     fn infinite_capacity(&self) -> &bool {
         self._glacier_base.infinite_capacity()
     }
+    fn infinite_capacity_mut(&mut self) -> &mut bool {
+        self._glacier_base.infinite_capacity_mut()
+    }
     fn supply_points_refill_speed(&self) -> &f32 {
         self._glacier_base.supply_points_refill_speed()
+    }
+    fn supply_points_refill_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.supply_points_refill_speed_mut()
     }
     fn supply_points_capacity(&self) -> &f32 {
         self._glacier_base.supply_points_capacity()
     }
+    fn supply_points_capacity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.supply_points_capacity_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AmmoSupplyUnitSphereData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AMMOSUPPLYUNITSPHEREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5796,6 +7261,15 @@ impl TypeObject for AmmoSupplyUnitSphereData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5817,11 +7291,15 @@ pub struct HealingSupplyUnitSphereData {
 
 pub trait HealingSupplyUnitSphereDataTrait: SupplyUnitSphereDataTrait {
     fn distribute_healing_over_time(&self) -> &f32;
+    fn distribute_healing_over_time_mut(&mut self) -> &mut f32;
 }
 
 impl HealingSupplyUnitSphereDataTrait for HealingSupplyUnitSphereData {
     fn distribute_healing_over_time(&self) -> &f32 {
         &self.distribute_healing_over_time
+    }
+    fn distribute_healing_over_time_mut(&mut self) -> &mut f32 {
+        &mut self.distribute_healing_over_time
     }
 }
 
@@ -5829,36 +7307,60 @@ impl SupplyUnitSphereDataTrait for HealingSupplyUnitSphereData {
     fn radius(&self) -> &f32 {
         self._glacier_base.radius()
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.radius_mut()
+    }
     fn max_radius(&self) -> &f32 {
         self._glacier_base.max_radius()
+    }
+    fn max_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_radius_mut()
     }
     fn radius_change_time(&self) -> &f32 {
         self._glacier_base.radius_change_time()
     }
+    fn radius_change_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.radius_change_time_mut()
+    }
     fn supply_inc_speed(&self) -> &f32 {
         self._glacier_base.supply_inc_speed()
+    }
+    fn supply_inc_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.supply_inc_speed_mut()
     }
     fn instant_refill(&self) -> &f32 {
         self._glacier_base.instant_refill()
     }
+    fn instant_refill_mut(&mut self) -> &mut f32 {
+        self._glacier_base.instant_refill_mut()
+    }
     fn force_use_instant_refill(&self) -> &bool {
         self._glacier_base.force_use_instant_refill()
+    }
+    fn force_use_instant_refill_mut(&mut self) -> &mut bool {
+        self._glacier_base.force_use_instant_refill_mut()
     }
     fn infinite_capacity(&self) -> &bool {
         self._glacier_base.infinite_capacity()
     }
+    fn infinite_capacity_mut(&mut self) -> &mut bool {
+        self._glacier_base.infinite_capacity_mut()
+    }
     fn supply_points_refill_speed(&self) -> &f32 {
         self._glacier_base.supply_points_refill_speed()
+    }
+    fn supply_points_refill_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.supply_points_refill_speed_mut()
     }
     fn supply_points_capacity(&self) -> &f32 {
         self._glacier_base.supply_points_capacity()
     }
+    fn supply_points_capacity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.supply_points_capacity_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for HealingSupplyUnitSphereData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HEALINGSUPPLYUNITSPHEREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5890,6 +7392,15 @@ impl TypeObject for HealingSupplyUnitSphereData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5919,50 +7430,83 @@ pub struct SupplyUnitSphereData {
 
 pub trait SupplyUnitSphereDataTrait: super::core::DataContainerTrait {
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn max_radius(&self) -> &f32;
+    fn max_radius_mut(&mut self) -> &mut f32;
     fn radius_change_time(&self) -> &f32;
+    fn radius_change_time_mut(&mut self) -> &mut f32;
     fn supply_inc_speed(&self) -> &f32;
+    fn supply_inc_speed_mut(&mut self) -> &mut f32;
     fn instant_refill(&self) -> &f32;
+    fn instant_refill_mut(&mut self) -> &mut f32;
     fn force_use_instant_refill(&self) -> &bool;
+    fn force_use_instant_refill_mut(&mut self) -> &mut bool;
     fn infinite_capacity(&self) -> &bool;
+    fn infinite_capacity_mut(&mut self) -> &mut bool;
     fn supply_points_refill_speed(&self) -> &f32;
+    fn supply_points_refill_speed_mut(&mut self) -> &mut f32;
     fn supply_points_capacity(&self) -> &f32;
+    fn supply_points_capacity_mut(&mut self) -> &mut f32;
 }
 
 impl SupplyUnitSphereDataTrait for SupplyUnitSphereData {
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn max_radius(&self) -> &f32 {
         &self.max_radius
+    }
+    fn max_radius_mut(&mut self) -> &mut f32 {
+        &mut self.max_radius
     }
     fn radius_change_time(&self) -> &f32 {
         &self.radius_change_time
     }
+    fn radius_change_time_mut(&mut self) -> &mut f32 {
+        &mut self.radius_change_time
+    }
     fn supply_inc_speed(&self) -> &f32 {
         &self.supply_inc_speed
+    }
+    fn supply_inc_speed_mut(&mut self) -> &mut f32 {
+        &mut self.supply_inc_speed
     }
     fn instant_refill(&self) -> &f32 {
         &self.instant_refill
     }
+    fn instant_refill_mut(&mut self) -> &mut f32 {
+        &mut self.instant_refill
+    }
     fn force_use_instant_refill(&self) -> &bool {
         &self.force_use_instant_refill
+    }
+    fn force_use_instant_refill_mut(&mut self) -> &mut bool {
+        &mut self.force_use_instant_refill
     }
     fn infinite_capacity(&self) -> &bool {
         &self.infinite_capacity
     }
+    fn infinite_capacity_mut(&mut self) -> &mut bool {
+        &mut self.infinite_capacity
+    }
     fn supply_points_refill_speed(&self) -> &f32 {
         &self.supply_points_refill_speed
+    }
+    fn supply_points_refill_speed_mut(&mut self) -> &mut f32 {
+        &mut self.supply_points_refill_speed
     }
     fn supply_points_capacity(&self) -> &f32 {
         &self.supply_points_capacity
     }
+    fn supply_points_capacity_mut(&mut self) -> &mut f32 {
+        &mut self.supply_points_capacity
+    }
 }
 
 impl super::core::DataContainerTrait for SupplyUnitSphereData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SUPPLYUNITSPHEREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6042,6 +7586,15 @@ impl TypeObject for SupplyUnitSphereData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6063,11 +7616,15 @@ pub struct WeaponAimingSimulationModifier {
 
 pub trait WeaponAimingSimulationModifierTrait: super::weapon_shared::WeaponModifierBaseTrait {
     fn aiming_controller(&self) -> &Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>;
+    fn aiming_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>;
 }
 
 impl WeaponAimingSimulationModifierTrait for WeaponAimingSimulationModifier {
     fn aiming_controller(&self) -> &Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>> {
         &self.aiming_controller
+    }
+    fn aiming_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>> {
+        &mut self.aiming_controller
     }
 }
 
@@ -6075,15 +7632,18 @@ impl super::weapon_shared::WeaponModifierBaseTrait for WeaponAimingSimulationMod
     fn apply_order(&self) -> &i32 {
         self._glacier_base.apply_order()
     }
+    fn apply_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.apply_order_mut()
+    }
     fn dynamic_update_enabled(&self) -> &bool {
         self._glacier_base.dynamic_update_enabled()
+    }
+    fn dynamic_update_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_update_enabled_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WeaponAimingSimulationModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONAIMINGSIMULATIONMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6114,6 +7674,15 @@ impl TypeObject for WeaponAimingSimulationModifier {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6150,67 +7719,127 @@ pub struct SoldierAimingSimulationData {
 
 pub trait SoldierAimingSimulationDataTrait: super::core::GameDataContainerTrait {
     fn zoom_levels(&self) -> &Vec<Option<Arc<Mutex<dyn ZoomLevelDataTrait>>>>;
+    fn zoom_levels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ZoomLevelDataTrait>>>>;
     fn return_to_zoom_after_reload(&self) -> &bool;
+    fn return_to_zoom_after_reload_mut(&mut self) -> &mut bool;
     fn ignore_zoom_toggle(&self) -> &bool;
+    fn ignore_zoom_toggle_mut(&mut self) -> &mut bool;
     fn aim_assist(&self) -> &Option<Arc<Mutex<dyn SoldierAimAssistDataTrait>>>;
+    fn aim_assist_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimAssistDataTrait>>>;
     fn stand_pose(&self) -> &AimingPoseData;
+    fn stand_pose_mut(&mut self) -> &mut AimingPoseData;
     fn crouch_pose(&self) -> &AimingPoseData;
+    fn crouch_pose_mut(&mut self) -> &mut AimingPoseData;
     fn prone_pose(&self) -> &AimingPoseData;
+    fn prone_pose_mut(&mut self) -> &mut AimingPoseData;
     fn zoom_transition_time(&self) -> &f32;
+    fn zoom_transition_time_mut(&mut self) -> &mut f32;
     fn zoom_transition_time_array(&self) -> &Vec<ZoomLevelSpecificTransitionTime>;
+    fn zoom_transition_time_array_mut(&mut self) -> &mut Vec<ZoomLevelSpecificTransitionTime>;
     fn update_camera_f_o_v(&self) -> &bool;
+    fn update_camera_f_o_v_mut(&mut self) -> &mut bool;
     fn fov_delay_time(&self) -> &f32;
+    fn fov_delay_time_mut(&mut self) -> &mut f32;
     fn fov_transition_time(&self) -> &f32;
+    fn fov_transition_time_mut(&mut self) -> &mut f32;
     fn aiming_range(&self) -> &f32;
+    fn aiming_range_mut(&mut self) -> &mut f32;
     fn lock_aim_to_target_speed(&self) -> &f32;
+    fn lock_aim_to_target_speed_mut(&mut self) -> &mut f32;
     fn force1p_on_zoom(&self) -> &bool;
+    fn force1p_on_zoom_mut(&mut self) -> &mut bool;
 }
 
 impl SoldierAimingSimulationDataTrait for SoldierAimingSimulationData {
     fn zoom_levels(&self) -> &Vec<Option<Arc<Mutex<dyn ZoomLevelDataTrait>>>> {
         &self.zoom_levels
     }
+    fn zoom_levels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ZoomLevelDataTrait>>>> {
+        &mut self.zoom_levels
+    }
     fn return_to_zoom_after_reload(&self) -> &bool {
         &self.return_to_zoom_after_reload
+    }
+    fn return_to_zoom_after_reload_mut(&mut self) -> &mut bool {
+        &mut self.return_to_zoom_after_reload
     }
     fn ignore_zoom_toggle(&self) -> &bool {
         &self.ignore_zoom_toggle
     }
+    fn ignore_zoom_toggle_mut(&mut self) -> &mut bool {
+        &mut self.ignore_zoom_toggle
+    }
     fn aim_assist(&self) -> &Option<Arc<Mutex<dyn SoldierAimAssistDataTrait>>> {
         &self.aim_assist
+    }
+    fn aim_assist_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimAssistDataTrait>>> {
+        &mut self.aim_assist
     }
     fn stand_pose(&self) -> &AimingPoseData {
         &self.stand_pose
     }
+    fn stand_pose_mut(&mut self) -> &mut AimingPoseData {
+        &mut self.stand_pose
+    }
     fn crouch_pose(&self) -> &AimingPoseData {
         &self.crouch_pose
+    }
+    fn crouch_pose_mut(&mut self) -> &mut AimingPoseData {
+        &mut self.crouch_pose
     }
     fn prone_pose(&self) -> &AimingPoseData {
         &self.prone_pose
     }
+    fn prone_pose_mut(&mut self) -> &mut AimingPoseData {
+        &mut self.prone_pose
+    }
     fn zoom_transition_time(&self) -> &f32 {
         &self.zoom_transition_time
+    }
+    fn zoom_transition_time_mut(&mut self) -> &mut f32 {
+        &mut self.zoom_transition_time
     }
     fn zoom_transition_time_array(&self) -> &Vec<ZoomLevelSpecificTransitionTime> {
         &self.zoom_transition_time_array
     }
+    fn zoom_transition_time_array_mut(&mut self) -> &mut Vec<ZoomLevelSpecificTransitionTime> {
+        &mut self.zoom_transition_time_array
+    }
     fn update_camera_f_o_v(&self) -> &bool {
         &self.update_camera_f_o_v
+    }
+    fn update_camera_f_o_v_mut(&mut self) -> &mut bool {
+        &mut self.update_camera_f_o_v
     }
     fn fov_delay_time(&self) -> &f32 {
         &self.fov_delay_time
     }
+    fn fov_delay_time_mut(&mut self) -> &mut f32 {
+        &mut self.fov_delay_time
+    }
     fn fov_transition_time(&self) -> &f32 {
         &self.fov_transition_time
+    }
+    fn fov_transition_time_mut(&mut self) -> &mut f32 {
+        &mut self.fov_transition_time
     }
     fn aiming_range(&self) -> &f32 {
         &self.aiming_range
     }
+    fn aiming_range_mut(&mut self) -> &mut f32 {
+        &mut self.aiming_range
+    }
     fn lock_aim_to_target_speed(&self) -> &f32 {
         &self.lock_aim_to_target_speed
     }
+    fn lock_aim_to_target_speed_mut(&mut self) -> &mut f32 {
+        &mut self.lock_aim_to_target_speed
+    }
     fn force1p_on_zoom(&self) -> &bool {
         &self.force1p_on_zoom
+    }
+    fn force1p_on_zoom_mut(&mut self) -> &mut bool {
+        &mut self.force1p_on_zoom
     }
 }
 
@@ -6218,9 +7847,6 @@ impl super::core::GameDataContainerTrait for SoldierAimingSimulationData {
 }
 
 impl super::core::DataContainerTrait for SoldierAimingSimulationData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERAIMINGSIMULATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6336,6 +7962,15 @@ impl TypeObject for SoldierAimingSimulationData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6388,142 +8023,267 @@ pub struct ZoomLevelData {
 
 pub trait ZoomLevelDataTrait: super::core::DataContainerTrait {
     fn field_of_view(&self) -> &f32;
+    fn field_of_view_mut(&mut self) -> &mut f32;
     fn field_of_view_s_p(&self) -> &f32;
+    fn field_of_view_s_p_mut(&mut self) -> &mut f32;
     fn field_of_view_transition(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::FOVTransitionDataTrait>>>;
+    fn field_of_view_transition_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::FOVTransitionDataTrait>>>;
     fn allow_field_of_view_scaling(&self) -> &bool;
+    fn allow_field_of_view_scaling_mut(&mut self) -> &mut bool;
     fn look_speed_multiplier(&self) -> &f32;
+    fn look_speed_multiplier_mut(&mut self) -> &mut f32;
     fn sprint_look_speed_multiplier(&self) -> &f32;
+    fn sprint_look_speed_multiplier_mut(&mut self) -> &mut f32;
     fn look_speed_sensitivity_profile_option(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataFloatTrait>>>;
+    fn look_speed_sensitivity_profile_option_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataFloatTrait>>>;
     fn move_speed_multiplier(&self) -> &f32;
+    fn move_speed_multiplier_mut(&mut self) -> &mut f32;
     fn sway_pitch_magnitude(&self) -> &f32;
+    fn sway_pitch_magnitude_mut(&mut self) -> &mut f32;
     fn sway_yaw_magnitude(&self) -> &f32;
+    fn sway_yaw_magnitude_mut(&mut self) -> &mut f32;
     fn supported_sway_pitch_magnitude(&self) -> &f32;
+    fn supported_sway_pitch_magnitude_mut(&mut self) -> &mut f32;
     fn supported_sway_yaw_magnitude(&self) -> &f32;
+    fn supported_sway_yaw_magnitude_mut(&mut self) -> &mut f32;
     fn suppressed_sway_pitch_magnitude(&self) -> &f32;
+    fn suppressed_sway_pitch_magnitude_mut(&mut self) -> &mut f32;
     fn suppressed_sway_yaw_magnitude(&self) -> &f32;
+    fn suppressed_sway_yaw_magnitude_mut(&mut self) -> &mut f32;
     fn suppressed_sway_min_factor(&self) -> &f32;
+    fn suppressed_sway_min_factor_mut(&mut self) -> &mut f32;
     fn time_pitch_multiplier(&self) -> &f32;
+    fn time_pitch_multiplier_mut(&mut self) -> &mut f32;
     fn time_yaw_multiplier(&self) -> &f32;
+    fn time_yaw_multiplier_mut(&mut self) -> &mut f32;
     fn dispersion_multiplier(&self) -> &f32;
+    fn dispersion_multiplier_mut(&mut self) -> &mut f32;
     fn dispersion_rotation(&self) -> &f32;
+    fn dispersion_rotation_mut(&mut self) -> &mut f32;
     fn recoil_multiplier(&self) -> &f32;
+    fn recoil_multiplier_mut(&mut self) -> &mut f32;
     fn recoil_fov_multiplier(&self) -> &f32;
+    fn recoil_fov_multiplier_mut(&mut self) -> &mut f32;
     fn camera_impulse_multiplier(&self) -> &f32;
+    fn camera_impulse_multiplier_mut(&mut self) -> &mut f32;
     fn fade_to_black_in_zoom_transition(&self) -> &bool;
+    fn fade_to_black_in_zoom_transition_mut(&mut self) -> &mut bool;
     fn start_fade_to_black_at_time(&self) -> &f32;
+    fn start_fade_to_black_at_time_mut(&mut self) -> &mut f32;
     fn fade_to_black_duration(&self) -> &f32;
+    fn fade_to_black_duration_mut(&mut self) -> &mut f32;
     fn start_fade_from_black_at_time(&self) -> &f32;
+    fn start_fade_from_black_at_time_mut(&mut self) -> &mut f32;
     fn fade_from_black_duration(&self) -> &f32;
+    fn fade_from_black_duration_mut(&mut self) -> &mut f32;
     fn screen_exposure_area_scale(&self) -> &f32;
+    fn screen_exposure_area_scale_mut(&mut self) -> &mut f32;
     fn on_activate_event_type(&self) -> &ZoomLevelActivateEventType;
+    fn on_activate_event_type_mut(&mut self) -> &mut ZoomLevelActivateEventType;
     fn use_weapon_mesh_zoom1p(&self) -> &bool;
+    fn use_weapon_mesh_zoom1p_mut(&mut self) -> &mut bool;
     fn attract_yaw_strength(&self) -> &f32;
+    fn attract_yaw_strength_mut(&mut self) -> &mut f32;
     fn attract_pitch_strength(&self) -> &f32;
+    fn attract_pitch_strength_mut(&mut self) -> &mut f32;
 }
 
 impl ZoomLevelDataTrait for ZoomLevelData {
     fn field_of_view(&self) -> &f32 {
         &self.field_of_view
     }
+    fn field_of_view_mut(&mut self) -> &mut f32 {
+        &mut self.field_of_view
+    }
     fn field_of_view_s_p(&self) -> &f32 {
         &self.field_of_view_s_p
+    }
+    fn field_of_view_s_p_mut(&mut self) -> &mut f32 {
+        &mut self.field_of_view_s_p
     }
     fn field_of_view_transition(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::FOVTransitionDataTrait>>> {
         &self.field_of_view_transition
     }
+    fn field_of_view_transition_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::FOVTransitionDataTrait>>> {
+        &mut self.field_of_view_transition
+    }
     fn allow_field_of_view_scaling(&self) -> &bool {
         &self.allow_field_of_view_scaling
+    }
+    fn allow_field_of_view_scaling_mut(&mut self) -> &mut bool {
+        &mut self.allow_field_of_view_scaling
     }
     fn look_speed_multiplier(&self) -> &f32 {
         &self.look_speed_multiplier
     }
+    fn look_speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.look_speed_multiplier
+    }
     fn sprint_look_speed_multiplier(&self) -> &f32 {
         &self.sprint_look_speed_multiplier
+    }
+    fn sprint_look_speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_look_speed_multiplier
     }
     fn look_speed_sensitivity_profile_option(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataFloatTrait>>> {
         &self.look_speed_sensitivity_profile_option
     }
+    fn look_speed_sensitivity_profile_option_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataFloatTrait>>> {
+        &mut self.look_speed_sensitivity_profile_option
+    }
     fn move_speed_multiplier(&self) -> &f32 {
         &self.move_speed_multiplier
+    }
+    fn move_speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.move_speed_multiplier
     }
     fn sway_pitch_magnitude(&self) -> &f32 {
         &self.sway_pitch_magnitude
     }
+    fn sway_pitch_magnitude_mut(&mut self) -> &mut f32 {
+        &mut self.sway_pitch_magnitude
+    }
     fn sway_yaw_magnitude(&self) -> &f32 {
         &self.sway_yaw_magnitude
+    }
+    fn sway_yaw_magnitude_mut(&mut self) -> &mut f32 {
+        &mut self.sway_yaw_magnitude
     }
     fn supported_sway_pitch_magnitude(&self) -> &f32 {
         &self.supported_sway_pitch_magnitude
     }
+    fn supported_sway_pitch_magnitude_mut(&mut self) -> &mut f32 {
+        &mut self.supported_sway_pitch_magnitude
+    }
     fn supported_sway_yaw_magnitude(&self) -> &f32 {
         &self.supported_sway_yaw_magnitude
+    }
+    fn supported_sway_yaw_magnitude_mut(&mut self) -> &mut f32 {
+        &mut self.supported_sway_yaw_magnitude
     }
     fn suppressed_sway_pitch_magnitude(&self) -> &f32 {
         &self.suppressed_sway_pitch_magnitude
     }
+    fn suppressed_sway_pitch_magnitude_mut(&mut self) -> &mut f32 {
+        &mut self.suppressed_sway_pitch_magnitude
+    }
     fn suppressed_sway_yaw_magnitude(&self) -> &f32 {
         &self.suppressed_sway_yaw_magnitude
+    }
+    fn suppressed_sway_yaw_magnitude_mut(&mut self) -> &mut f32 {
+        &mut self.suppressed_sway_yaw_magnitude
     }
     fn suppressed_sway_min_factor(&self) -> &f32 {
         &self.suppressed_sway_min_factor
     }
+    fn suppressed_sway_min_factor_mut(&mut self) -> &mut f32 {
+        &mut self.suppressed_sway_min_factor
+    }
     fn time_pitch_multiplier(&self) -> &f32 {
         &self.time_pitch_multiplier
+    }
+    fn time_pitch_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.time_pitch_multiplier
     }
     fn time_yaw_multiplier(&self) -> &f32 {
         &self.time_yaw_multiplier
     }
+    fn time_yaw_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.time_yaw_multiplier
+    }
     fn dispersion_multiplier(&self) -> &f32 {
         &self.dispersion_multiplier
+    }
+    fn dispersion_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.dispersion_multiplier
     }
     fn dispersion_rotation(&self) -> &f32 {
         &self.dispersion_rotation
     }
+    fn dispersion_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.dispersion_rotation
+    }
     fn recoil_multiplier(&self) -> &f32 {
         &self.recoil_multiplier
+    }
+    fn recoil_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_multiplier
     }
     fn recoil_fov_multiplier(&self) -> &f32 {
         &self.recoil_fov_multiplier
     }
+    fn recoil_fov_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_fov_multiplier
+    }
     fn camera_impulse_multiplier(&self) -> &f32 {
         &self.camera_impulse_multiplier
+    }
+    fn camera_impulse_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.camera_impulse_multiplier
     }
     fn fade_to_black_in_zoom_transition(&self) -> &bool {
         &self.fade_to_black_in_zoom_transition
     }
+    fn fade_to_black_in_zoom_transition_mut(&mut self) -> &mut bool {
+        &mut self.fade_to_black_in_zoom_transition
+    }
     fn start_fade_to_black_at_time(&self) -> &f32 {
         &self.start_fade_to_black_at_time
+    }
+    fn start_fade_to_black_at_time_mut(&mut self) -> &mut f32 {
+        &mut self.start_fade_to_black_at_time
     }
     fn fade_to_black_duration(&self) -> &f32 {
         &self.fade_to_black_duration
     }
+    fn fade_to_black_duration_mut(&mut self) -> &mut f32 {
+        &mut self.fade_to_black_duration
+    }
     fn start_fade_from_black_at_time(&self) -> &f32 {
         &self.start_fade_from_black_at_time
+    }
+    fn start_fade_from_black_at_time_mut(&mut self) -> &mut f32 {
+        &mut self.start_fade_from_black_at_time
     }
     fn fade_from_black_duration(&self) -> &f32 {
         &self.fade_from_black_duration
     }
+    fn fade_from_black_duration_mut(&mut self) -> &mut f32 {
+        &mut self.fade_from_black_duration
+    }
     fn screen_exposure_area_scale(&self) -> &f32 {
         &self.screen_exposure_area_scale
+    }
+    fn screen_exposure_area_scale_mut(&mut self) -> &mut f32 {
+        &mut self.screen_exposure_area_scale
     }
     fn on_activate_event_type(&self) -> &ZoomLevelActivateEventType {
         &self.on_activate_event_type
     }
+    fn on_activate_event_type_mut(&mut self) -> &mut ZoomLevelActivateEventType {
+        &mut self.on_activate_event_type
+    }
     fn use_weapon_mesh_zoom1p(&self) -> &bool {
         &self.use_weapon_mesh_zoom1p
+    }
+    fn use_weapon_mesh_zoom1p_mut(&mut self) -> &mut bool {
+        &mut self.use_weapon_mesh_zoom1p
     }
     fn attract_yaw_strength(&self) -> &f32 {
         &self.attract_yaw_strength
     }
+    fn attract_yaw_strength_mut(&mut self) -> &mut f32 {
+        &mut self.attract_yaw_strength
+    }
     fn attract_pitch_strength(&self) -> &f32 {
         &self.attract_pitch_strength
+    }
+    fn attract_pitch_strength_mut(&mut self) -> &mut f32 {
+        &mut self.attract_pitch_strength
     }
 }
 
 impl super::core::DataContainerTrait for ZoomLevelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZOOMLEVELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6741,6 +8501,15 @@ impl TypeObject for ZoomLevelData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6780,6 +8549,15 @@ impl TypeObject for ZoomLevelActivateEventType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6801,15 +8579,23 @@ pub struct PlatformAimAssistData {
 
 pub trait PlatformAimAssistDataTrait: TypeObject {
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn aim_assist_data(&self) -> &Option<Arc<Mutex<dyn SoldierAimAssistDataTrait>>>;
+    fn aim_assist_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimAssistDataTrait>>>;
 }
 
 impl PlatformAimAssistDataTrait for PlatformAimAssistData {
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
+    }
     fn aim_assist_data(&self) -> &Option<Arc<Mutex<dyn SoldierAimAssistDataTrait>>> {
         &self.aim_assist_data
+    }
+    fn aim_assist_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimAssistDataTrait>>> {
+        &mut self.aim_assist_data
     }
 }
 
@@ -6846,6 +8632,15 @@ impl TypeObject for PlatformAimAssistData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6915,199 +8710,391 @@ pub struct SoldierAimAssistData {
 
 pub trait SoldierAimAssistDataTrait: super::core::GameDataContainerTrait {
     fn input_polynomial(&self) -> &Vec<f32>;
+    fn input_polynomial_mut(&mut self) -> &mut Vec<f32>;
     fn zoomed_input_polynomial(&self) -> &Vec<f32>;
+    fn zoomed_input_polynomial_mut(&mut self) -> &mut Vec<f32>;
     fn use_yaw_acceleration(&self) -> &bool;
+    fn use_yaw_acceleration_mut(&mut self) -> &mut bool;
     fn use_pitch_acceleration(&self) -> &bool;
+    fn use_pitch_acceleration_mut(&mut self) -> &mut bool;
     fn acceleration_input_threshold(&self) -> &f32;
+    fn acceleration_input_threshold_mut(&mut self) -> &mut f32;
     fn acceleration_multiplier(&self) -> &f32;
+    fn acceleration_multiplier_mut(&mut self) -> &mut f32;
     fn acceleration_damping(&self) -> &f32;
+    fn acceleration_damping_mut(&mut self) -> &mut f32;
     fn acceleration_time_threshold(&self) -> &f32;
+    fn acceleration_time_threshold_mut(&mut self) -> &mut f32;
     fn squared_acceleration(&self) -> &f32;
+    fn squared_acceleration_mut(&mut self) -> &mut f32;
     fn max_acceleration(&self) -> &super::core::Vec2;
+    fn max_acceleration_mut(&mut self) -> &mut super::core::Vec2;
     fn yaw_speed_strength(&self) -> &f32;
+    fn yaw_speed_strength_mut(&mut self) -> &mut f32;
     fn pitch_speed_strength(&self) -> &f32;
+    fn pitch_speed_strength_mut(&mut self) -> &mut f32;
     fn attract_distance_fall_offs(&self) -> &super::core::Vec2;
+    fn attract_distance_fall_offs_mut(&mut self) -> &mut super::core::Vec2;
     fn attract_soft_zone(&self) -> &f32;
+    fn attract_soft_zone_mut(&mut self) -> &mut f32;
     fn attract_user_input_multiplier(&self) -> &f32;
+    fn attract_user_input_multiplier_mut(&mut self) -> &mut f32;
     fn attract_user_input_multiplier_no_zoom(&self) -> &f32;
+    fn attract_user_input_multiplier_no_zoom_mut(&mut self) -> &mut f32;
     fn attract_own_speed_influence(&self) -> &f32;
+    fn attract_own_speed_influence_mut(&mut self) -> &mut f32;
     fn attract_target_speed_influence(&self) -> &f32;
+    fn attract_target_speed_influence_mut(&mut self) -> &mut f32;
     fn attract_start_input_threshold(&self) -> &f32;
+    fn attract_start_input_threshold_mut(&mut self) -> &mut f32;
     fn attract_move_input_cap(&self) -> &f32;
+    fn attract_move_input_cap_mut(&mut self) -> &mut f32;
     fn attract_yaw_strength(&self) -> &f32;
+    fn attract_yaw_strength_mut(&mut self) -> &mut f32;
     fn attract_pitch_strength(&self) -> &f32;
+    fn attract_pitch_strength_mut(&mut self) -> &mut f32;
     fn max_to_target_angle(&self) -> &f32;
+    fn max_to_target_angle_mut(&mut self) -> &mut f32;
     fn max_to_target_x_z_angle(&self) -> &f32;
+    fn max_to_target_x_z_angle_mut(&mut self) -> &mut f32;
     fn sticky_box_scale(&self) -> &super::core::Vec3;
+    fn sticky_box_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn sticky_distance_scale(&self) -> &super::core::Vec3;
+    fn sticky_distance_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn view_obstructed_keep_time(&self) -> &f32;
+    fn view_obstructed_keep_time_mut(&mut self) -> &mut f32;
     fn snap_zoom_lateral_speed_limit(&self) -> &f32;
+    fn snap_zoom_lateral_speed_limit_mut(&mut self) -> &mut f32;
     fn snap_zoom_time(&self) -> &f32;
+    fn snap_zoom_time_mut(&mut self) -> &mut f32;
     fn snap_zoom_user_shorter_weapon_time(&self) -> &bool;
+    fn snap_zoom_user_shorter_weapon_time_mut(&mut self) -> &mut bool;
     fn snap_zoom_post_time_no_input(&self) -> &f32;
+    fn snap_zoom_post_time_no_input_mut(&mut self) -> &mut f32;
     fn snap_zoom_post_time(&self) -> &f32;
+    fn snap_zoom_post_time_mut(&mut self) -> &mut f32;
     fn snap_zoom_post_time_dynamic_point(&self) -> &bool;
+    fn snap_zoom_post_time_dynamic_point_mut(&mut self) -> &mut bool;
     fn snap_zoom_reticle_point_priority(&self) -> &u32;
+    fn snap_zoom_reticle_point_priority_mut(&mut self) -> &mut u32;
     fn snap_zoom_break_time_at_max_input(&self) -> &f32;
+    fn snap_zoom_break_time_at_max_input_mut(&mut self) -> &mut f32;
     fn snap_zoom_break_max_input(&self) -> &f32;
+    fn snap_zoom_break_max_input_mut(&mut self) -> &mut f32;
     fn snap_zoom_break_min_angle(&self) -> &f32;
+    fn snap_zoom_break_min_angle_mut(&mut self) -> &mut f32;
     fn snap_zoom_spam_guard_time(&self) -> &f32;
+    fn snap_zoom_spam_guard_time_mut(&mut self) -> &mut f32;
     fn soldier_backup_skeleton_collision_data(&self) -> &Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>>;
+    fn soldier_backup_skeleton_collision_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>>;
     fn force_soldier_backup_skeleton_collision_use(&self) -> &bool;
+    fn force_soldier_backup_skeleton_collision_use_mut(&mut self) -> &mut bool;
     fn check_bone_center_only_distance(&self) -> &f32;
+    fn check_bone_center_only_distance_mut(&mut self) -> &mut f32;
     fn disable_forced_target_recalc_distance(&self) -> &f32;
+    fn disable_forced_target_recalc_distance_mut(&mut self) -> &mut f32;
     fn override_aiming_range(&self) -> &f32;
+    fn override_aiming_range_mut(&mut self) -> &mut f32;
     fn override_aiming_range_crouch(&self) -> &f32;
+    fn override_aiming_range_crouch_mut(&mut self) -> &mut f32;
     fn override_aiming_range_prone(&self) -> &f32;
+    fn override_aiming_range_prone_mut(&mut self) -> &mut f32;
     fn snap_box_scale(&self) -> &super::core::Vec3;
+    fn snap_box_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn snap_distance_scale(&self) -> &super::core::Vec3;
+    fn snap_distance_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn eye_pos_offset(&self) -> &super::core::Vec3;
+    fn eye_pos_offset_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl SoldierAimAssistDataTrait for SoldierAimAssistData {
     fn input_polynomial(&self) -> &Vec<f32> {
         &self.input_polynomial
     }
+    fn input_polynomial_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.input_polynomial
+    }
     fn zoomed_input_polynomial(&self) -> &Vec<f32> {
         &self.zoomed_input_polynomial
+    }
+    fn zoomed_input_polynomial_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.zoomed_input_polynomial
     }
     fn use_yaw_acceleration(&self) -> &bool {
         &self.use_yaw_acceleration
     }
+    fn use_yaw_acceleration_mut(&mut self) -> &mut bool {
+        &mut self.use_yaw_acceleration
+    }
     fn use_pitch_acceleration(&self) -> &bool {
         &self.use_pitch_acceleration
+    }
+    fn use_pitch_acceleration_mut(&mut self) -> &mut bool {
+        &mut self.use_pitch_acceleration
     }
     fn acceleration_input_threshold(&self) -> &f32 {
         &self.acceleration_input_threshold
     }
+    fn acceleration_input_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.acceleration_input_threshold
+    }
     fn acceleration_multiplier(&self) -> &f32 {
         &self.acceleration_multiplier
+    }
+    fn acceleration_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.acceleration_multiplier
     }
     fn acceleration_damping(&self) -> &f32 {
         &self.acceleration_damping
     }
+    fn acceleration_damping_mut(&mut self) -> &mut f32 {
+        &mut self.acceleration_damping
+    }
     fn acceleration_time_threshold(&self) -> &f32 {
         &self.acceleration_time_threshold
+    }
+    fn acceleration_time_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.acceleration_time_threshold
     }
     fn squared_acceleration(&self) -> &f32 {
         &self.squared_acceleration
     }
+    fn squared_acceleration_mut(&mut self) -> &mut f32 {
+        &mut self.squared_acceleration
+    }
     fn max_acceleration(&self) -> &super::core::Vec2 {
         &self.max_acceleration
+    }
+    fn max_acceleration_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.max_acceleration
     }
     fn yaw_speed_strength(&self) -> &f32 {
         &self.yaw_speed_strength
     }
+    fn yaw_speed_strength_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_speed_strength
+    }
     fn pitch_speed_strength(&self) -> &f32 {
         &self.pitch_speed_strength
+    }
+    fn pitch_speed_strength_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_speed_strength
     }
     fn attract_distance_fall_offs(&self) -> &super::core::Vec2 {
         &self.attract_distance_fall_offs
     }
+    fn attract_distance_fall_offs_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.attract_distance_fall_offs
+    }
     fn attract_soft_zone(&self) -> &f32 {
         &self.attract_soft_zone
+    }
+    fn attract_soft_zone_mut(&mut self) -> &mut f32 {
+        &mut self.attract_soft_zone
     }
     fn attract_user_input_multiplier(&self) -> &f32 {
         &self.attract_user_input_multiplier
     }
+    fn attract_user_input_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.attract_user_input_multiplier
+    }
     fn attract_user_input_multiplier_no_zoom(&self) -> &f32 {
         &self.attract_user_input_multiplier_no_zoom
+    }
+    fn attract_user_input_multiplier_no_zoom_mut(&mut self) -> &mut f32 {
+        &mut self.attract_user_input_multiplier_no_zoom
     }
     fn attract_own_speed_influence(&self) -> &f32 {
         &self.attract_own_speed_influence
     }
+    fn attract_own_speed_influence_mut(&mut self) -> &mut f32 {
+        &mut self.attract_own_speed_influence
+    }
     fn attract_target_speed_influence(&self) -> &f32 {
         &self.attract_target_speed_influence
+    }
+    fn attract_target_speed_influence_mut(&mut self) -> &mut f32 {
+        &mut self.attract_target_speed_influence
     }
     fn attract_start_input_threshold(&self) -> &f32 {
         &self.attract_start_input_threshold
     }
+    fn attract_start_input_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.attract_start_input_threshold
+    }
     fn attract_move_input_cap(&self) -> &f32 {
         &self.attract_move_input_cap
+    }
+    fn attract_move_input_cap_mut(&mut self) -> &mut f32 {
+        &mut self.attract_move_input_cap
     }
     fn attract_yaw_strength(&self) -> &f32 {
         &self.attract_yaw_strength
     }
+    fn attract_yaw_strength_mut(&mut self) -> &mut f32 {
+        &mut self.attract_yaw_strength
+    }
     fn attract_pitch_strength(&self) -> &f32 {
         &self.attract_pitch_strength
+    }
+    fn attract_pitch_strength_mut(&mut self) -> &mut f32 {
+        &mut self.attract_pitch_strength
     }
     fn max_to_target_angle(&self) -> &f32 {
         &self.max_to_target_angle
     }
+    fn max_to_target_angle_mut(&mut self) -> &mut f32 {
+        &mut self.max_to_target_angle
+    }
     fn max_to_target_x_z_angle(&self) -> &f32 {
         &self.max_to_target_x_z_angle
+    }
+    fn max_to_target_x_z_angle_mut(&mut self) -> &mut f32 {
+        &mut self.max_to_target_x_z_angle
     }
     fn sticky_box_scale(&self) -> &super::core::Vec3 {
         &self.sticky_box_scale
     }
+    fn sticky_box_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sticky_box_scale
+    }
     fn sticky_distance_scale(&self) -> &super::core::Vec3 {
         &self.sticky_distance_scale
+    }
+    fn sticky_distance_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sticky_distance_scale
     }
     fn view_obstructed_keep_time(&self) -> &f32 {
         &self.view_obstructed_keep_time
     }
+    fn view_obstructed_keep_time_mut(&mut self) -> &mut f32 {
+        &mut self.view_obstructed_keep_time
+    }
     fn snap_zoom_lateral_speed_limit(&self) -> &f32 {
         &self.snap_zoom_lateral_speed_limit
+    }
+    fn snap_zoom_lateral_speed_limit_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_lateral_speed_limit
     }
     fn snap_zoom_time(&self) -> &f32 {
         &self.snap_zoom_time
     }
+    fn snap_zoom_time_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_time
+    }
     fn snap_zoom_user_shorter_weapon_time(&self) -> &bool {
         &self.snap_zoom_user_shorter_weapon_time
+    }
+    fn snap_zoom_user_shorter_weapon_time_mut(&mut self) -> &mut bool {
+        &mut self.snap_zoom_user_shorter_weapon_time
     }
     fn snap_zoom_post_time_no_input(&self) -> &f32 {
         &self.snap_zoom_post_time_no_input
     }
+    fn snap_zoom_post_time_no_input_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_post_time_no_input
+    }
     fn snap_zoom_post_time(&self) -> &f32 {
         &self.snap_zoom_post_time
+    }
+    fn snap_zoom_post_time_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_post_time
     }
     fn snap_zoom_post_time_dynamic_point(&self) -> &bool {
         &self.snap_zoom_post_time_dynamic_point
     }
+    fn snap_zoom_post_time_dynamic_point_mut(&mut self) -> &mut bool {
+        &mut self.snap_zoom_post_time_dynamic_point
+    }
     fn snap_zoom_reticle_point_priority(&self) -> &u32 {
         &self.snap_zoom_reticle_point_priority
+    }
+    fn snap_zoom_reticle_point_priority_mut(&mut self) -> &mut u32 {
+        &mut self.snap_zoom_reticle_point_priority
     }
     fn snap_zoom_break_time_at_max_input(&self) -> &f32 {
         &self.snap_zoom_break_time_at_max_input
     }
+    fn snap_zoom_break_time_at_max_input_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_break_time_at_max_input
+    }
     fn snap_zoom_break_max_input(&self) -> &f32 {
         &self.snap_zoom_break_max_input
+    }
+    fn snap_zoom_break_max_input_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_break_max_input
     }
     fn snap_zoom_break_min_angle(&self) -> &f32 {
         &self.snap_zoom_break_min_angle
     }
+    fn snap_zoom_break_min_angle_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_break_min_angle
+    }
     fn snap_zoom_spam_guard_time(&self) -> &f32 {
         &self.snap_zoom_spam_guard_time
+    }
+    fn snap_zoom_spam_guard_time_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_spam_guard_time
     }
     fn soldier_backup_skeleton_collision_data(&self) -> &Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>> {
         &self.soldier_backup_skeleton_collision_data
     }
+    fn soldier_backup_skeleton_collision_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>> {
+        &mut self.soldier_backup_skeleton_collision_data
+    }
     fn force_soldier_backup_skeleton_collision_use(&self) -> &bool {
         &self.force_soldier_backup_skeleton_collision_use
+    }
+    fn force_soldier_backup_skeleton_collision_use_mut(&mut self) -> &mut bool {
+        &mut self.force_soldier_backup_skeleton_collision_use
     }
     fn check_bone_center_only_distance(&self) -> &f32 {
         &self.check_bone_center_only_distance
     }
+    fn check_bone_center_only_distance_mut(&mut self) -> &mut f32 {
+        &mut self.check_bone_center_only_distance
+    }
     fn disable_forced_target_recalc_distance(&self) -> &f32 {
         &self.disable_forced_target_recalc_distance
+    }
+    fn disable_forced_target_recalc_distance_mut(&mut self) -> &mut f32 {
+        &mut self.disable_forced_target_recalc_distance
     }
     fn override_aiming_range(&self) -> &f32 {
         &self.override_aiming_range
     }
+    fn override_aiming_range_mut(&mut self) -> &mut f32 {
+        &mut self.override_aiming_range
+    }
     fn override_aiming_range_crouch(&self) -> &f32 {
         &self.override_aiming_range_crouch
+    }
+    fn override_aiming_range_crouch_mut(&mut self) -> &mut f32 {
+        &mut self.override_aiming_range_crouch
     }
     fn override_aiming_range_prone(&self) -> &f32 {
         &self.override_aiming_range_prone
     }
+    fn override_aiming_range_prone_mut(&mut self) -> &mut f32 {
+        &mut self.override_aiming_range_prone
+    }
     fn snap_box_scale(&self) -> &super::core::Vec3 {
         &self.snap_box_scale
+    }
+    fn snap_box_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.snap_box_scale
     }
     fn snap_distance_scale(&self) -> &super::core::Vec3 {
         &self.snap_distance_scale
     }
+    fn snap_distance_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.snap_distance_scale
+    }
     fn eye_pos_offset(&self) -> &super::core::Vec3 {
         &self.eye_pos_offset
+    }
+    fn eye_pos_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.eye_pos_offset
     }
 }
 
@@ -7115,9 +9102,6 @@ impl super::core::GameDataContainerTrait for SoldierAimAssistData {
 }
 
 impl super::core::DataContainerTrait for SoldierAimAssistData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERAIMASSISTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7431,6 +9415,15 @@ impl TypeObject for SoldierAimAssistData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7462,51 +9455,95 @@ pub struct ThrowAtTargetWeaponData {
 
 pub trait ThrowAtTargetWeaponDataTrait: super::weapon_shared::WeaponDataTrait {
     fn default_power_modifier(&self) -> &f32;
+    fn default_power_modifier_mut(&mut self) -> &mut f32;
     fn throw_to_soldier_distance(&self) -> &f32;
+    fn throw_to_soldier_distance_mut(&mut self) -> &mut f32;
     fn max_travel_time(&self) -> &f32;
+    fn max_travel_time_mut(&mut self) -> &mut f32;
     fn min_travel_time(&self) -> &f32;
+    fn min_travel_time_mut(&mut self) -> &mut f32;
     fn clamp_maximum_velocity(&self) -> &bool;
+    fn clamp_maximum_velocity_mut(&mut self) -> &mut bool;
     fn max_query_angle(&self) -> &f32;
+    fn max_query_angle_mut(&mut self) -> &mut f32;
     fn max_aim_adjustment_angle(&self) -> &f32;
+    fn max_aim_adjustment_angle_mut(&mut self) -> &mut f32;
     fn weight_current_distance(&self) -> &f32;
+    fn weight_current_distance_mut(&mut self) -> &mut f32;
     fn weight_target_distance(&self) -> &f32;
+    fn weight_target_distance_mut(&mut self) -> &mut f32;
     fn weight_current_angle(&self) -> &f32;
+    fn weight_current_angle_mut(&mut self) -> &mut f32;
     fn weight_target_angle(&self) -> &f32;
+    fn weight_target_angle_mut(&mut self) -> &mut f32;
 }
 
 impl ThrowAtTargetWeaponDataTrait for ThrowAtTargetWeaponData {
     fn default_power_modifier(&self) -> &f32 {
         &self.default_power_modifier
     }
+    fn default_power_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.default_power_modifier
+    }
     fn throw_to_soldier_distance(&self) -> &f32 {
         &self.throw_to_soldier_distance
+    }
+    fn throw_to_soldier_distance_mut(&mut self) -> &mut f32 {
+        &mut self.throw_to_soldier_distance
     }
     fn max_travel_time(&self) -> &f32 {
         &self.max_travel_time
     }
+    fn max_travel_time_mut(&mut self) -> &mut f32 {
+        &mut self.max_travel_time
+    }
     fn min_travel_time(&self) -> &f32 {
         &self.min_travel_time
+    }
+    fn min_travel_time_mut(&mut self) -> &mut f32 {
+        &mut self.min_travel_time
     }
     fn clamp_maximum_velocity(&self) -> &bool {
         &self.clamp_maximum_velocity
     }
+    fn clamp_maximum_velocity_mut(&mut self) -> &mut bool {
+        &mut self.clamp_maximum_velocity
+    }
     fn max_query_angle(&self) -> &f32 {
         &self.max_query_angle
+    }
+    fn max_query_angle_mut(&mut self) -> &mut f32 {
+        &mut self.max_query_angle
     }
     fn max_aim_adjustment_angle(&self) -> &f32 {
         &self.max_aim_adjustment_angle
     }
+    fn max_aim_adjustment_angle_mut(&mut self) -> &mut f32 {
+        &mut self.max_aim_adjustment_angle
+    }
     fn weight_current_distance(&self) -> &f32 {
         &self.weight_current_distance
+    }
+    fn weight_current_distance_mut(&mut self) -> &mut f32 {
+        &mut self.weight_current_distance
     }
     fn weight_target_distance(&self) -> &f32 {
         &self.weight_target_distance
     }
+    fn weight_target_distance_mut(&mut self) -> &mut f32 {
+        &mut self.weight_target_distance
+    }
     fn weight_current_angle(&self) -> &f32 {
         &self.weight_current_angle
     }
+    fn weight_current_angle_mut(&mut self) -> &mut f32 {
+        &mut self.weight_current_angle
+    }
     fn weight_target_angle(&self) -> &f32 {
         &self.weight_target_angle
+    }
+    fn weight_target_angle_mut(&mut self) -> &mut f32 {
+        &mut self.weight_target_angle
     }
 }
 
@@ -7514,8 +9551,14 @@ impl super::weapon_shared::WeaponDataTrait for ThrowAtTargetWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -7523,12 +9566,12 @@ impl super::gameplay_sim::ToolDataTrait for ThrowAtTargetWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ThrowAtTargetWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static THROWATTARGETWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7620,6 +9663,15 @@ impl TypeObject for ThrowAtTargetWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7642,15 +9694,23 @@ pub struct MeleeWeaponData {
 
 pub trait MeleeWeaponDataTrait: super::weapon_shared::WeaponDataTrait {
     fn use_canned_animation(&self) -> &bool;
+    fn use_canned_animation_mut(&mut self) -> &mut bool;
     fn use_sphere_damage(&self) -> &bool;
+    fn use_sphere_damage_mut(&mut self) -> &mut bool;
 }
 
 impl MeleeWeaponDataTrait for MeleeWeaponData {
     fn use_canned_animation(&self) -> &bool {
         &self.use_canned_animation
     }
+    fn use_canned_animation_mut(&mut self) -> &mut bool {
+        &mut self.use_canned_animation
+    }
     fn use_sphere_damage(&self) -> &bool {
         &self.use_sphere_damage
+    }
+    fn use_sphere_damage_mut(&mut self) -> &mut bool {
+        &mut self.use_sphere_damage
     }
 }
 
@@ -7658,8 +9718,14 @@ impl super::weapon_shared::WeaponDataTrait for MeleeWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -7667,12 +9733,12 @@ impl super::gameplay_sim::ToolDataTrait for MeleeWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MeleeWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MELEEWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7710,6 +9776,15 @@ impl TypeObject for MeleeWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7733,19 +9808,31 @@ pub struct FlashlightWeaponData {
 
 pub trait FlashlightWeaponDataTrait: super::weapon_shared::WeaponDataTrait {
     fn update_frequency(&self) -> &f32;
+    fn update_frequency_mut(&mut self) -> &mut f32;
     fn range(&self) -> &f32;
+    fn range_mut(&mut self) -> &mut f32;
     fn angle(&self) -> &f32;
+    fn angle_mut(&mut self) -> &mut f32;
 }
 
 impl FlashlightWeaponDataTrait for FlashlightWeaponData {
     fn update_frequency(&self) -> &f32 {
         &self.update_frequency
     }
+    fn update_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.update_frequency
+    }
     fn range(&self) -> &f32 {
         &self.range
     }
+    fn range_mut(&mut self) -> &mut f32 {
+        &mut self.range
+    }
     fn angle(&self) -> &f32 {
         &self.angle
+    }
+    fn angle_mut(&mut self) -> &mut f32 {
+        &mut self.angle
     }
 }
 
@@ -7753,8 +9840,14 @@ impl super::weapon_shared::WeaponDataTrait for FlashlightWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -7762,12 +9855,12 @@ impl super::gameplay_sim::ToolDataTrait for FlashlightWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FlashlightWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FLASHLIGHTWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7810,6 +9903,15 @@ impl TypeObject for FlashlightWeaponData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7856,6 +9958,15 @@ impl TypeObject for NetworkDefibrillatorReviveMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -7873,39 +9984,71 @@ pub struct DefibrillatorWeaponData {
 
 pub trait DefibrillatorWeaponDataTrait: super::weapon_shared::WeaponDataTrait {
     fn attack_time(&self) -> &f32;
+    fn attack_time_mut(&mut self) -> &mut f32;
     fn full_health_time(&self) -> &f32;
+    fn full_health_time_mut(&mut self) -> &mut f32;
     fn initial_start_health(&self) -> &f32;
+    fn initial_start_health_mut(&mut self) -> &mut f32;
     fn max_angle_to_victim_x_z(&self) -> &f32;
+    fn max_angle_to_victim_x_z_mut(&mut self) -> &mut f32;
     fn defib_action_cooldown_time(&self) -> &f32;
+    fn defib_action_cooldown_time_mut(&mut self) -> &mut f32;
     fn client_side_revive(&self) -> &bool;
+    fn client_side_revive_mut(&mut self) -> &mut bool;
     fn max_client_body_distance(&self) -> &f32;
+    fn max_client_body_distance_mut(&mut self) -> &mut f32;
     fn upgrade_weapon_data(&self) -> &DefibrillatorUpgradeWeaponData;
+    fn upgrade_weapon_data_mut(&mut self) -> &mut DefibrillatorUpgradeWeaponData;
 }
 
 impl DefibrillatorWeaponDataTrait for DefibrillatorWeaponData {
     fn attack_time(&self) -> &f32 {
         &self.attack_time
     }
+    fn attack_time_mut(&mut self) -> &mut f32 {
+        &mut self.attack_time
+    }
     fn full_health_time(&self) -> &f32 {
         &self.full_health_time
+    }
+    fn full_health_time_mut(&mut self) -> &mut f32 {
+        &mut self.full_health_time
     }
     fn initial_start_health(&self) -> &f32 {
         &self.initial_start_health
     }
+    fn initial_start_health_mut(&mut self) -> &mut f32 {
+        &mut self.initial_start_health
+    }
     fn max_angle_to_victim_x_z(&self) -> &f32 {
         &self.max_angle_to_victim_x_z
+    }
+    fn max_angle_to_victim_x_z_mut(&mut self) -> &mut f32 {
+        &mut self.max_angle_to_victim_x_z
     }
     fn defib_action_cooldown_time(&self) -> &f32 {
         &self.defib_action_cooldown_time
     }
+    fn defib_action_cooldown_time_mut(&mut self) -> &mut f32 {
+        &mut self.defib_action_cooldown_time
+    }
     fn client_side_revive(&self) -> &bool {
         &self.client_side_revive
+    }
+    fn client_side_revive_mut(&mut self) -> &mut bool {
+        &mut self.client_side_revive
     }
     fn max_client_body_distance(&self) -> &f32 {
         &self.max_client_body_distance
     }
+    fn max_client_body_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_client_body_distance
+    }
     fn upgrade_weapon_data(&self) -> &DefibrillatorUpgradeWeaponData {
         &self.upgrade_weapon_data
+    }
+    fn upgrade_weapon_data_mut(&mut self) -> &mut DefibrillatorUpgradeWeaponData {
+        &mut self.upgrade_weapon_data
     }
 }
 
@@ -7913,8 +10056,14 @@ impl super::weapon_shared::WeaponDataTrait for DefibrillatorWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -7922,12 +10071,12 @@ impl super::gameplay_sim::ToolDataTrait for DefibrillatorWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DefibrillatorWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEFIBRILLATORWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8001,6 +10150,15 @@ impl TypeObject for DefibrillatorWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8025,27 +10183,47 @@ pub struct DefibrillatorUpgradeWeaponData {
 
 pub trait DefibrillatorUpgradeWeaponDataTrait: TypeObject {
     fn upgrade_unlock(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ValueUnlockAssetTrait>>>;
+    fn upgrade_unlock_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ValueUnlockAssetTrait>>>;
     fn attack_time(&self) -> &f32;
+    fn attack_time_mut(&mut self) -> &mut f32;
     fn full_health_time(&self) -> &f32;
+    fn full_health_time_mut(&mut self) -> &mut f32;
     fn initial_start_health(&self) -> &f32;
+    fn initial_start_health_mut(&mut self) -> &mut f32;
     fn defib_action_cooldown_time(&self) -> &f32;
+    fn defib_action_cooldown_time_mut(&mut self) -> &mut f32;
 }
 
 impl DefibrillatorUpgradeWeaponDataTrait for DefibrillatorUpgradeWeaponData {
     fn upgrade_unlock(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ValueUnlockAssetTrait>>> {
         &self.upgrade_unlock
     }
+    fn upgrade_unlock_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ValueUnlockAssetTrait>>> {
+        &mut self.upgrade_unlock
+    }
     fn attack_time(&self) -> &f32 {
         &self.attack_time
+    }
+    fn attack_time_mut(&mut self) -> &mut f32 {
+        &mut self.attack_time
     }
     fn full_health_time(&self) -> &f32 {
         &self.full_health_time
     }
+    fn full_health_time_mut(&mut self) -> &mut f32 {
+        &mut self.full_health_time
+    }
     fn initial_start_health(&self) -> &f32 {
         &self.initial_start_health
     }
+    fn initial_start_health_mut(&mut self) -> &mut f32 {
+        &mut self.initial_start_health
+    }
     fn defib_action_cooldown_time(&self) -> &f32 {
         &self.defib_action_cooldown_time
+    }
+    fn defib_action_cooldown_time_mut(&mut self) -> &mut f32 {
+        &mut self.defib_action_cooldown_time
     }
 }
 
@@ -8101,6 +10279,15 @@ impl TypeObject for DefibrillatorUpgradeWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8122,11 +10309,15 @@ pub struct RepairToolWeaponData {
 
 pub trait RepairToolWeaponDataTrait: PowerToolWeaponDataTrait {
     fn recharge_speed(&self) -> &f32;
+    fn recharge_speed_mut(&mut self) -> &mut f32;
 }
 
 impl RepairToolWeaponDataTrait for RepairToolWeaponData {
     fn recharge_speed(&self) -> &f32 {
         &self.recharge_speed
+    }
+    fn recharge_speed_mut(&mut self) -> &mut f32 {
+        &mut self.recharge_speed
     }
 }
 
@@ -8134,17 +10325,32 @@ impl PowerToolWeaponDataTrait for RepairToolWeaponData {
     fn repair_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         self._glacier_base.repair_sound()
     }
+    fn repair_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        self._glacier_base.repair_sound_mut()
+    }
     fn repair_completed_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         self._glacier_base.repair_completed_sound()
+    }
+    fn repair_completed_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        self._glacier_base.repair_completed_sound_mut()
     }
     fn damage_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         self._glacier_base.damage_sound()
     }
+    fn damage_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        self._glacier_base.damage_sound_mut()
+    }
     fn repair_material_pair(&self) -> &super::entity::MaterialDecl {
         self._glacier_base.repair_material_pair()
     }
+    fn repair_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        self._glacier_base.repair_material_pair_mut()
+    }
     fn play_fire_effect_on_repair_only(&self) -> &bool {
         self._glacier_base.play_fire_effect_on_repair_only()
+    }
+    fn play_fire_effect_on_repair_only_mut(&mut self) -> &mut bool {
+        self._glacier_base.play_fire_effect_on_repair_only_mut()
     }
 }
 
@@ -8152,8 +10358,14 @@ impl super::weapon_shared::WeaponDataTrait for RepairToolWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -8161,12 +10373,12 @@ impl super::gameplay_sim::ToolDataTrait for RepairToolWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RepairToolWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static REPAIRTOOLWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8198,6 +10410,15 @@ impl TypeObject for RepairToolWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8223,27 +10444,47 @@ pub struct PowerToolWeaponData {
 
 pub trait PowerToolWeaponDataTrait: super::weapon_shared::WeaponDataTrait {
     fn repair_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn repair_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn repair_completed_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn repair_completed_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn damage_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn damage_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn repair_material_pair(&self) -> &super::entity::MaterialDecl;
+    fn repair_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn play_fire_effect_on_repair_only(&self) -> &bool;
+    fn play_fire_effect_on_repair_only_mut(&mut self) -> &mut bool;
 }
 
 impl PowerToolWeaponDataTrait for PowerToolWeaponData {
     fn repair_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.repair_sound
     }
+    fn repair_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.repair_sound
+    }
     fn repair_completed_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.repair_completed_sound
+    }
+    fn repair_completed_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.repair_completed_sound
     }
     fn damage_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.damage_sound
     }
+    fn damage_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.damage_sound
+    }
     fn repair_material_pair(&self) -> &super::entity::MaterialDecl {
         &self.repair_material_pair
     }
+    fn repair_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.repair_material_pair
+    }
     fn play_fire_effect_on_repair_only(&self) -> &bool {
         &self.play_fire_effect_on_repair_only
+    }
+    fn play_fire_effect_on_repair_only_mut(&mut self) -> &mut bool {
+        &mut self.play_fire_effect_on_repair_only
     }
 }
 
@@ -8251,8 +10492,14 @@ impl super::weapon_shared::WeaponDataTrait for PowerToolWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -8260,12 +10507,12 @@ impl super::gameplay_sim::ToolDataTrait for PowerToolWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PowerToolWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POWERTOOLWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8321,6 +10568,15 @@ impl TypeObject for PowerToolWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8344,19 +10600,31 @@ pub struct MedicBagHealingSphereWeaponData {
 
 pub trait MedicBagHealingSphereWeaponDataTrait: super::weapon_shared::WeaponDataTrait {
     fn healer(&self) -> &super::weapon_shared::HealingSphereData;
+    fn healer_mut(&mut self) -> &mut super::weapon_shared::HealingSphereData;
     fn health_points_refill_speed(&self) -> &f32;
+    fn health_points_refill_speed_mut(&mut self) -> &mut f32;
     fn health_points_per_bag(&self) -> &f32;
+    fn health_points_per_bag_mut(&mut self) -> &mut f32;
 }
 
 impl MedicBagHealingSphereWeaponDataTrait for MedicBagHealingSphereWeaponData {
     fn healer(&self) -> &super::weapon_shared::HealingSphereData {
         &self.healer
     }
+    fn healer_mut(&mut self) -> &mut super::weapon_shared::HealingSphereData {
+        &mut self.healer
+    }
     fn health_points_refill_speed(&self) -> &f32 {
         &self.health_points_refill_speed
     }
+    fn health_points_refill_speed_mut(&mut self) -> &mut f32 {
+        &mut self.health_points_refill_speed
+    }
     fn health_points_per_bag(&self) -> &f32 {
         &self.health_points_per_bag
+    }
+    fn health_points_per_bag_mut(&mut self) -> &mut f32 {
+        &mut self.health_points_per_bag
     }
 }
 
@@ -8364,8 +10632,14 @@ impl super::weapon_shared::WeaponDataTrait for MedicBagHealingSphereWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -8373,12 +10647,12 @@ impl super::gameplay_sim::ToolDataTrait for MedicBagHealingSphereWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MedicBagHealingSphereWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MEDICBAGHEALINGSPHEREWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8422,6 +10696,15 @@ impl TypeObject for MedicBagHealingSphereWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8450,8 +10733,14 @@ impl super::weapon_shared::WeaponDataTrait for MedkitWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -8459,12 +10748,12 @@ impl super::gameplay_sim::ToolDataTrait for MedkitWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MedkitWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MEDKITWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8490,6 +10779,15 @@ impl TypeObject for MedkitWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8512,15 +10810,23 @@ pub struct DetonatedWeaponData {
 
 pub trait DetonatedWeaponDataTrait: super::weapon_shared::WeaponDataTrait {
     fn locking_controller(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::LockingControllerDataTrait>>>;
+    fn locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::LockingControllerDataTrait>>>;
     fn range(&self) -> &f32;
+    fn range_mut(&mut self) -> &mut f32;
 }
 
 impl DetonatedWeaponDataTrait for DetonatedWeaponData {
     fn locking_controller(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::LockingControllerDataTrait>>> {
         &self.locking_controller
     }
+    fn locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::LockingControllerDataTrait>>> {
+        &mut self.locking_controller
+    }
     fn range(&self) -> &f32 {
         &self.range
+    }
+    fn range_mut(&mut self) -> &mut f32 {
+        &mut self.range
     }
 }
 
@@ -8528,8 +10834,14 @@ impl super::weapon_shared::WeaponDataTrait for DetonatedWeaponData {
     fn show_laser_painted_vehicles(&self) -> &bool {
         self._glacier_base.show_laser_painted_vehicles()
     }
+    fn show_laser_painted_vehicles_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_laser_painted_vehicles_mut()
+    }
     fn apply_power_to_speed(&self) -> &bool {
         self._glacier_base.apply_power_to_speed()
+    }
+    fn apply_power_to_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_power_to_speed_mut()
     }
 }
 
@@ -8537,12 +10849,12 @@ impl super::gameplay_sim::ToolDataTrait for DetonatedWeaponData {
     fn is_always_active(&self) -> &bool {
         self._glacier_base.is_always_active()
     }
+    fn is_always_active_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_always_active_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DetonatedWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DETONATEDWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8580,6 +10892,15 @@ impl TypeObject for DetonatedWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8601,11 +10922,15 @@ pub struct MissileHealthComponentData {
 
 pub trait MissileHealthComponentDataTrait: super::gameplay_sim::GameHealthComponentDataTrait {
     fn health(&self) -> &f32;
+    fn health_mut(&mut self) -> &mut f32;
 }
 
 impl MissileHealthComponentDataTrait for MissileHealthComponentData {
     fn health(&self) -> &f32 {
         &self.health
+    }
+    fn health_mut(&mut self) -> &mut f32 {
+        &mut self.health
     }
 }
 
@@ -8619,17 +10944,32 @@ impl super::entity::ComponentDataTrait for MissileHealthComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -8640,15 +10980,15 @@ impl super::core::DataBusPeerTrait for MissileHealthComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MissileHealthComponentData {
 }
 
 impl super::core::DataContainerTrait for MissileHealthComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MISSILEHEALTHCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8680,6 +11020,15 @@ impl TypeObject for MissileHealthComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8701,11 +11050,15 @@ pub struct ExplosionPackHealthComponentData {
 
 pub trait ExplosionPackHealthComponentDataTrait: super::gameplay_sim::GameHealthComponentDataTrait {
     fn on_damage_explosion_inherit_unlock(&self) -> &bool;
+    fn on_damage_explosion_inherit_unlock_mut(&mut self) -> &mut bool;
 }
 
 impl ExplosionPackHealthComponentDataTrait for ExplosionPackHealthComponentData {
     fn on_damage_explosion_inherit_unlock(&self) -> &bool {
         &self.on_damage_explosion_inherit_unlock
+    }
+    fn on_damage_explosion_inherit_unlock_mut(&mut self) -> &mut bool {
+        &mut self.on_damage_explosion_inherit_unlock
     }
 }
 
@@ -8719,17 +11072,32 @@ impl super::entity::ComponentDataTrait for ExplosionPackHealthComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -8740,15 +11108,15 @@ impl super::core::DataBusPeerTrait for ExplosionPackHealthComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ExplosionPackHealthComponentData {
 }
 
 impl super::core::DataContainerTrait for ExplosionPackHealthComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPLOSIONPACKHEALTHCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8780,6 +11148,15 @@ impl TypeObject for ExplosionPackHealthComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8808,8 +11185,14 @@ impl super::gameplay_sim::GamePhysicsComponentDataTrait for ExplosionPackPhysics
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
         self._glacier_base.effect_parameters()
+    }
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+        self._glacier_base.effect_parameters_mut()
     }
 }
 
@@ -8817,20 +11200,38 @@ impl super::physics::PhysicsComponentDataTrait for ExplosionPackPhysicsComponent
     fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
         self._glacier_base.physics_bodies()
     }
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
+        self._glacier_base.physics_bodies_mut()
+    }
     fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
         self._glacier_base.physics_constraints()
+    }
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
+        self._glacier_base.physics_constraints_mut()
     }
     fn parts(&self) -> &Vec<super::physics::PhysicsPartData> {
         self._glacier_base.parts()
     }
+    fn parts_mut(&mut self) -> &mut Vec<super::physics::PhysicsPartData> {
+        self._glacier_base.parts_mut()
+    }
     fn movable_parts(&self) -> &bool {
         self._glacier_base.movable_parts()
+    }
+    fn movable_parts_mut(&mut self) -> &mut bool {
+        self._glacier_base.movable_parts_mut()
     }
     fn internal_collision_disabling(&self) -> &super::physics::InternalCollisionDisablingBehavior {
         self._glacier_base.internal_collision_disabling()
     }
+    fn internal_collision_disabling_mut(&mut self) -> &mut super::physics::InternalCollisionDisablingBehavior {
+        self._glacier_base.internal_collision_disabling_mut()
+    }
     fn enable_collision_events(&self) -> &bool {
         self._glacier_base.enable_collision_events()
+    }
+    fn enable_collision_events_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_collision_events_mut()
     }
 }
 
@@ -8838,17 +11239,32 @@ impl super::entity::ComponentDataTrait for ExplosionPackPhysicsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -8859,15 +11275,15 @@ impl super::core::DataBusPeerTrait for ExplosionPackPhysicsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ExplosionPackPhysicsComponentData {
 }
 
 impl super::core::DataContainerTrait for ExplosionPackPhysicsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPLOSIONPACKPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8892,6 +11308,15 @@ impl TypeObject for ExplosionPackPhysicsComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8928,67 +11353,127 @@ pub struct ExplosionPackEntityData {
 
 pub trait ExplosionPackEntityDataTrait: super::weapon_shared::GhostedProjectileEntityDataTrait {
     fn soldier_detonation_data(&self) -> &SoldierDetonationData;
+    fn soldier_detonation_data_mut(&mut self) -> &mut SoldierDetonationData;
     fn explosion_pack_triggers(&self) -> &Vec<Option<Arc<Mutex<dyn ExplosionPackTriggerTrait>>>>;
+    fn explosion_pack_triggers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ExplosionPackTriggerTrait>>>>;
     fn explosion_offset_transform(&self) -> &super::core::LinearTransform;
+    fn explosion_offset_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn gravity_scale(&self) -> &f32;
+    fn gravity_scale_mut(&mut self) -> &mut f32;
     fn time_to_live_on_player_death(&self) -> &f32;
+    fn time_to_live_on_player_death_mut(&mut self) -> &mut f32;
     fn is_destructible(&self) -> &bool;
+    fn is_destructible_mut(&mut self) -> &mut bool;
     fn receives_explosion_damage(&self) -> &bool;
+    fn receives_explosion_damage_mut(&mut self) -> &mut bool;
     fn health(&self) -> &f32;
+    fn health_mut(&mut self) -> &mut f32;
     fn spotted_time(&self) -> &f32;
+    fn spotted_time_mut(&mut self) -> &mut f32;
     fn defuse_radius(&self) -> &f32;
+    fn defuse_radius_mut(&mut self) -> &mut f32;
     fn icon_name(&self) -> &String;
+    fn icon_name_mut(&mut self) -> &mut String;
     fn show_in_spectator_u_i(&self) -> &bool;
+    fn show_in_spectator_u_i_mut(&mut self) -> &mut bool;
     fn world_icon_offset(&self) -> &super::core::Vec3;
+    fn world_icon_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn align_with_ground(&self) -> &bool;
+    fn align_with_ground_mut(&mut self) -> &mut bool;
     fn align_with_ground_ray_length(&self) -> &f32;
+    fn align_with_ground_ray_length_mut(&mut self) -> &mut f32;
 }
 
 impl ExplosionPackEntityDataTrait for ExplosionPackEntityData {
     fn soldier_detonation_data(&self) -> &SoldierDetonationData {
         &self.soldier_detonation_data
     }
+    fn soldier_detonation_data_mut(&mut self) -> &mut SoldierDetonationData {
+        &mut self.soldier_detonation_data
+    }
     fn explosion_pack_triggers(&self) -> &Vec<Option<Arc<Mutex<dyn ExplosionPackTriggerTrait>>>> {
         &self.explosion_pack_triggers
+    }
+    fn explosion_pack_triggers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ExplosionPackTriggerTrait>>>> {
+        &mut self.explosion_pack_triggers
     }
     fn explosion_offset_transform(&self) -> &super::core::LinearTransform {
         &self.explosion_offset_transform
     }
+    fn explosion_offset_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.explosion_offset_transform
+    }
     fn gravity_scale(&self) -> &f32 {
         &self.gravity_scale
+    }
+    fn gravity_scale_mut(&mut self) -> &mut f32 {
+        &mut self.gravity_scale
     }
     fn time_to_live_on_player_death(&self) -> &f32 {
         &self.time_to_live_on_player_death
     }
+    fn time_to_live_on_player_death_mut(&mut self) -> &mut f32 {
+        &mut self.time_to_live_on_player_death
+    }
     fn is_destructible(&self) -> &bool {
         &self.is_destructible
+    }
+    fn is_destructible_mut(&mut self) -> &mut bool {
+        &mut self.is_destructible
     }
     fn receives_explosion_damage(&self) -> &bool {
         &self.receives_explosion_damage
     }
+    fn receives_explosion_damage_mut(&mut self) -> &mut bool {
+        &mut self.receives_explosion_damage
+    }
     fn health(&self) -> &f32 {
         &self.health
+    }
+    fn health_mut(&mut self) -> &mut f32 {
+        &mut self.health
     }
     fn spotted_time(&self) -> &f32 {
         &self.spotted_time
     }
+    fn spotted_time_mut(&mut self) -> &mut f32 {
+        &mut self.spotted_time
+    }
     fn defuse_radius(&self) -> &f32 {
         &self.defuse_radius
+    }
+    fn defuse_radius_mut(&mut self) -> &mut f32 {
+        &mut self.defuse_radius
     }
     fn icon_name(&self) -> &String {
         &self.icon_name
     }
+    fn icon_name_mut(&mut self) -> &mut String {
+        &mut self.icon_name
+    }
     fn show_in_spectator_u_i(&self) -> &bool {
         &self.show_in_spectator_u_i
+    }
+    fn show_in_spectator_u_i_mut(&mut self) -> &mut bool {
+        &mut self.show_in_spectator_u_i
     }
     fn world_icon_offset(&self) -> &super::core::Vec3 {
         &self.world_icon_offset
     }
+    fn world_icon_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.world_icon_offset
+    }
     fn align_with_ground(&self) -> &bool {
         &self.align_with_ground
     }
+    fn align_with_ground_mut(&mut self) -> &mut bool {
+        &mut self.align_with_ground
+    }
     fn align_with_ground_ray_length(&self) -> &f32 {
         &self.align_with_ground_ray_length
+    }
+    fn align_with_ground_ray_length_mut(&mut self) -> &mut f32 {
+        &mut self.align_with_ground_ray_length
     }
 }
 
@@ -8996,17 +11481,32 @@ impl super::weapon_shared::GhostedProjectileEntityDataTrait for ExplosionPackEnt
     fn proxy_convergence_delay(&self) -> &f32 {
         self._glacier_base.proxy_convergence_delay()
     }
+    fn proxy_convergence_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.proxy_convergence_delay_mut()
+    }
     fn proxy_convergence_duration(&self) -> &f32 {
         self._glacier_base.proxy_convergence_duration()
+    }
+    fn proxy_convergence_duration_mut(&mut self) -> &mut f32 {
+        self._glacier_base.proxy_convergence_duration_mut()
     }
     fn proxy_convergence_instant_on_attach(&self) -> &bool {
         self._glacier_base.proxy_convergence_instant_on_attach()
     }
+    fn proxy_convergence_instant_on_attach_mut(&mut self) -> &mut bool {
+        self._glacier_base.proxy_convergence_instant_on_attach_mut()
+    }
     fn force_proxy_convergence(&self) -> &bool {
         self._glacier_base.force_proxy_convergence()
     }
+    fn force_proxy_convergence_mut(&mut self) -> &mut bool {
+        self._glacier_base.force_proxy_convergence_mut()
+    }
     fn convergence_using_initial_speed(&self) -> &bool {
         self._glacier_base.convergence_using_initial_speed()
+    }
+    fn convergence_using_initial_speed_mut(&mut self) -> &mut bool {
+        self._glacier_base.convergence_using_initial_speed_mut()
     }
 }
 
@@ -9014,35 +11514,68 @@ impl super::weapon_shared::MeshProjectileEntityDataTrait for ExplosionPackEntity
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         self._glacier_base.mesh()
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        self._glacier_base.mesh_mut()
+    }
     fn trail_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
         self._glacier_base.trail_effect()
+    }
+    fn trail_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+        self._glacier_base.trail_effect_mut()
     }
     fn is_attachable(&self) -> &bool {
         self._glacier_base.is_attachable()
     }
+    fn is_attachable_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_attachable_mut()
+    }
     fn instant_attachable_test_distance(&self) -> &f32 {
         self._glacier_base.instant_attachable_test_distance()
+    }
+    fn instant_attachable_test_distance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.instant_attachable_test_distance_mut()
     }
     fn instant_attachable_visual_convergence_delay(&self) -> &f32 {
         self._glacier_base.instant_attachable_visual_convergence_delay()
     }
+    fn instant_attachable_visual_convergence_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.instant_attachable_visual_convergence_delay_mut()
+    }
     fn instant_attachable_visual_convergence_duration(&self) -> &f32 {
         self._glacier_base.instant_attachable_visual_convergence_duration()
+    }
+    fn instant_attachable_visual_convergence_duration_mut(&mut self) -> &mut f32 {
+        self._glacier_base.instant_attachable_visual_convergence_duration_mut()
     }
     fn instant_attachable_test_under_reticule(&self) -> &bool {
         self._glacier_base.instant_attachable_test_under_reticule()
     }
+    fn instant_attachable_test_under_reticule_mut(&mut self) -> &mut bool {
+        self._glacier_base.instant_attachable_test_under_reticule_mut()
+    }
     fn max_attachable_inclination(&self) -> &f32 {
         self._glacier_base.max_attachable_inclination()
+    }
+    fn max_attachable_inclination_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_attachable_inclination_mut()
     }
     fn extra_damping(&self) -> &bool {
         self._glacier_base.extra_damping()
     }
+    fn extra_damping_mut(&mut self) -> &mut bool {
+        self._glacier_base.extra_damping_mut()
+    }
     fn initial_angular_velocity(&self) -> &super::core::Vec3 {
         self._glacier_base.initial_angular_velocity()
     }
+    fn initial_angular_velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.initial_angular_velocity_mut()
+    }
     fn unspawn_after_detonation_delay(&self) -> &f32 {
         self._glacier_base.unspawn_after_detonation_delay()
+    }
+    fn unspawn_after_detonation_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.unspawn_after_detonation_delay_mut()
     }
 }
 
@@ -9050,56 +11583,110 @@ impl super::weapon_shared::ProjectileEntityDataTrait for ExplosionPackEntityData
     fn initial_speed(&self) -> &f32 {
         self._glacier_base.initial_speed()
     }
+    fn initial_speed_mut(&mut self) -> &mut f32 {
+        self._glacier_base.initial_speed_mut()
+    }
     fn time_to_live(&self) -> &f32 {
         self._glacier_base.time_to_live()
+    }
+    fn time_to_live_mut(&mut self) -> &mut f32 {
+        self._glacier_base.time_to_live_mut()
     }
     fn max_count(&self) -> &u32 {
         self._glacier_base.max_count()
     }
+    fn max_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.max_count_mut()
+    }
     fn init_mesh_hide_time(&self) -> &f32 {
         self._glacier_base.init_mesh_hide_time()
+    }
+    fn init_mesh_hide_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.init_mesh_hide_time_mut()
     }
     fn visual_converge_distance(&self) -> &f32 {
         self._glacier_base.visual_converge_distance()
     }
+    fn visual_converge_distance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.visual_converge_distance_mut()
+    }
     fn visual_convergence_delay(&self) -> &f32 {
         self._glacier_base.visual_convergence_delay()
+    }
+    fn visual_convergence_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.visual_convergence_delay_mut()
     }
     fn visual_convergence_duration(&self) -> &f32 {
         self._glacier_base.visual_convergence_duration()
     }
+    fn visual_convergence_duration_mut(&mut self) -> &mut f32 {
+        self._glacier_base.visual_convergence_duration_mut()
+    }
     fn proxy_visual_convergence_delay(&self) -> &f32 {
         self._glacier_base.proxy_visual_convergence_delay()
+    }
+    fn proxy_visual_convergence_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.proxy_visual_convergence_delay_mut()
     }
     fn proxy_visual_convergence_duration(&self) -> &f32 {
         self._glacier_base.proxy_visual_convergence_duration()
     }
+    fn proxy_visual_convergence_duration_mut(&mut self) -> &mut f32 {
+        self._glacier_base.proxy_visual_convergence_duration_mut()
+    }
     fn detonate_on_timeout(&self) -> &bool {
         self._glacier_base.detonate_on_timeout()
+    }
+    fn detonate_on_timeout_mut(&mut self) -> &mut bool {
+        self._glacier_base.detonate_on_timeout_mut()
     }
     fn server_projectile_disabled(&self) -> &bool {
         self._glacier_base.server_projectile_disabled()
     }
+    fn server_projectile_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.server_projectile_disabled_mut()
+    }
     fn explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
         self._glacier_base.explosion()
+    }
+    fn explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+        self._glacier_base.explosion_mut()
     }
     fn suppression_data(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::WeaponSuppressionDataTrait>>> {
         self._glacier_base.suppression_data()
     }
+    fn suppression_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::WeaponSuppressionDataTrait>>> {
+        self._glacier_base.suppression_data_mut()
+    }
     fn ammunition_type(&self) -> &String {
         self._glacier_base.ammunition_type()
+    }
+    fn ammunition_type_mut(&mut self) -> &mut String {
+        self._glacier_base.ammunition_type_mut()
     }
     fn material_pair(&self) -> &super::entity::MaterialDecl {
         self._glacier_base.material_pair()
     }
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        self._glacier_base.material_pair_mut()
+    }
     fn hit_reaction_weapon_type(&self) -> &super::weapon_shared::AntHitReactionWeaponType {
         self._glacier_base.hit_reaction_weapon_type()
+    }
+    fn hit_reaction_weapon_type_mut(&mut self) -> &mut super::weapon_shared::AntHitReactionWeaponType {
+        self._glacier_base.hit_reaction_weapon_type_mut()
     }
     fn hide_on_detonation(&self) -> &bool {
         self._glacier_base.hide_on_detonation()
     }
+    fn hide_on_detonation_mut(&mut self) -> &mut bool {
+        self._glacier_base.hide_on_detonation_mut()
+    }
     fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
         self._glacier_base.voice_over_info()
+    }
+    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+        self._glacier_base.voice_over_info_mut()
     }
 }
 
@@ -9110,32 +11697,56 @@ impl super::entity::GameComponentEntityDataTrait for ExplosionPackEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for ExplosionPackEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for ExplosionPackEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -9149,15 +11760,15 @@ impl super::core::DataBusPeerTrait for ExplosionPackEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ExplosionPackEntityData {
 }
 
 impl super::core::DataContainerTrait for ExplosionPackEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPLOSIONPACKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9273,6 +11884,15 @@ impl TypeObject for ExplosionPackEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9301,9 +11921,6 @@ impl ExplosionPackTriggerTrait for ExplosionPackRemoteDetonatorTrigger {
 }
 
 impl super::core::DataContainerTrait for ExplosionPackRemoteDetonatorTrigger {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPLOSIONPACKREMOTEDETONATORTRIGGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9328,6 +11945,15 @@ impl TypeObject for ExplosionPackRemoteDetonatorTrigger {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9357,9 +11983,6 @@ impl ExplosionPackTriggerTrait for ExplosionPackInfantryTrigger {
 }
 
 impl super::core::DataContainerTrait for ExplosionPackInfantryTrigger {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPLOSIONPACKINFANTRYTRIGGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9385,6 +12008,15 @@ impl TypeObject for ExplosionPackInfantryTrigger {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9407,15 +12039,23 @@ pub struct ExplosionPackVehicleRayTrigger {
 
 pub trait ExplosionPackVehicleRayTriggerTrait: ExplosionPackTriggerTrait {
     fn activation_delay(&self) -> &f32;
+    fn activation_delay_mut(&mut self) -> &mut f32;
     fn distance(&self) -> &f32;
+    fn distance_mut(&mut self) -> &mut f32;
 }
 
 impl ExplosionPackVehicleRayTriggerTrait for ExplosionPackVehicleRayTrigger {
     fn activation_delay(&self) -> &f32 {
         &self.activation_delay
     }
+    fn activation_delay_mut(&mut self) -> &mut f32 {
+        &mut self.activation_delay
+    }
     fn distance(&self) -> &f32 {
         &self.distance
+    }
+    fn distance_mut(&mut self) -> &mut f32 {
+        &mut self.distance
     }
 }
 
@@ -9423,9 +12063,6 @@ impl ExplosionPackTriggerTrait for ExplosionPackVehicleRayTrigger {
 }
 
 impl super::core::DataContainerTrait for ExplosionPackVehicleRayTrigger {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPLOSIONPACKVEHICLERAYTRIGGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9463,6 +12100,15 @@ impl TypeObject for ExplosionPackVehicleRayTrigger {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9486,19 +12132,31 @@ pub struct ExplosionPackVehicleProximityTrigger {
 
 pub trait ExplosionPackVehicleProximityTriggerTrait: ExplosionPackTriggerTrait {
     fn activation_delay(&self) -> &f32;
+    fn activation_delay_mut(&mut self) -> &mut f32;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn use_detailed_collision_check(&self) -> &bool;
+    fn use_detailed_collision_check_mut(&mut self) -> &mut bool;
 }
 
 impl ExplosionPackVehicleProximityTriggerTrait for ExplosionPackVehicleProximityTrigger {
     fn activation_delay(&self) -> &f32 {
         &self.activation_delay
     }
+    fn activation_delay_mut(&mut self) -> &mut f32 {
+        &mut self.activation_delay
+    }
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn use_detailed_collision_check(&self) -> &bool {
         &self.use_detailed_collision_check
+    }
+    fn use_detailed_collision_check_mut(&mut self) -> &mut bool {
+        &mut self.use_detailed_collision_check
     }
 }
 
@@ -9506,9 +12164,6 @@ impl ExplosionPackTriggerTrait for ExplosionPackVehicleProximityTrigger {
 }
 
 impl super::core::DataContainerTrait for ExplosionPackVehicleProximityTrigger {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPLOSIONPACKVEHICLEPROXIMITYTRIGGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9552,6 +12207,15 @@ impl TypeObject for ExplosionPackVehicleProximityTrigger {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9577,9 +12241,6 @@ impl ExplosionPackTriggerTrait for ExplosionPackTrigger {
 }
 
 impl super::core::DataContainerTrait for ExplosionPackTrigger {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPLOSIONPACKTRIGGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9604,6 +12265,15 @@ impl TypeObject for ExplosionPackTrigger {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9630,31 +12300,55 @@ pub struct SoldierDetonationData {
 
 pub trait SoldierDetonationDataTrait: TypeObject {
     fn has_soldier_detonation(&self) -> &bool;
+    fn has_soldier_detonation_mut(&mut self) -> &mut bool;
     fn use_angle(&self) -> &bool;
+    fn use_angle_mut(&mut self) -> &mut bool;
     fn angle(&self) -> &f32;
+    fn angle_mut(&mut self) -> &mut f32;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn soldier_detonation_activation_delay(&self) -> &f32;
+    fn soldier_detonation_activation_delay_mut(&mut self) -> &mut f32;
     fn min_speed_for_activation(&self) -> &f32;
+    fn min_speed_for_activation_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierDetonationDataTrait for SoldierDetonationData {
     fn has_soldier_detonation(&self) -> &bool {
         &self.has_soldier_detonation
     }
+    fn has_soldier_detonation_mut(&mut self) -> &mut bool {
+        &mut self.has_soldier_detonation
+    }
     fn use_angle(&self) -> &bool {
         &self.use_angle
+    }
+    fn use_angle_mut(&mut self) -> &mut bool {
+        &mut self.use_angle
     }
     fn angle(&self) -> &f32 {
         &self.angle
     }
+    fn angle_mut(&mut self) -> &mut f32 {
+        &mut self.angle
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn soldier_detonation_activation_delay(&self) -> &f32 {
         &self.soldier_detonation_activation_delay
     }
+    fn soldier_detonation_activation_delay_mut(&mut self) -> &mut f32 {
+        &mut self.soldier_detonation_activation_delay
+    }
     fn min_speed_for_activation(&self) -> &f32 {
         &self.min_speed_for_activation
+    }
+    fn min_speed_for_activation_mut(&mut self) -> &mut f32 {
+        &mut self.min_speed_for_activation
     }
 }
 
@@ -9716,6 +12410,15 @@ impl TypeObject for SoldierDetonationData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9761,6 +12464,15 @@ impl TypeObject for NetworkSetActiveWeaponSlotMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -9794,6 +12506,15 @@ impl TypeObject for ExplosionToCharacterComponentsHitMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -9829,6 +12550,15 @@ impl TypeObject for BulletToCharacterComponentsHitMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -9844,35 +12574,63 @@ pub struct ExplosionHitInfo {
 
 pub trait ExplosionHitInfoTrait: TypeObject {
     fn direction(&self) -> &super::core::Vec3;
+    fn direction_mut(&mut self) -> &mut super::core::Vec3;
     fn spawn_position(&self) -> &super::core::Vec3;
+    fn spawn_position_mut(&mut self) -> &mut super::core::Vec3;
     fn hit_position(&self) -> &super::core::Vec3;
+    fn hit_position_mut(&mut self) -> &mut super::core::Vec3;
     fn weapon_unlock_asset(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>;
+    fn weapon_unlock_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>;
     fn shooter_player_id(&self) -> &i32;
+    fn shooter_player_id_mut(&mut self) -> &mut i32;
     fn shooter_is_a_i_player(&self) -> &bool;
+    fn shooter_is_a_i_player_mut(&mut self) -> &mut bool;
     fn within_blast_radius(&self) -> &bool;
+    fn within_blast_radius_mut(&mut self) -> &mut bool;
 }
 
 impl ExplosionHitInfoTrait for ExplosionHitInfo {
     fn direction(&self) -> &super::core::Vec3 {
         &self.direction
     }
+    fn direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.direction
+    }
     fn spawn_position(&self) -> &super::core::Vec3 {
         &self.spawn_position
+    }
+    fn spawn_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.spawn_position
     }
     fn hit_position(&self) -> &super::core::Vec3 {
         &self.hit_position
     }
+    fn hit_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.hit_position
+    }
     fn weapon_unlock_asset(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
         &self.weapon_unlock_asset
+    }
+    fn weapon_unlock_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
+        &mut self.weapon_unlock_asset
     }
     fn shooter_player_id(&self) -> &i32 {
         &self.shooter_player_id
     }
+    fn shooter_player_id_mut(&mut self) -> &mut i32 {
+        &mut self.shooter_player_id
+    }
     fn shooter_is_a_i_player(&self) -> &bool {
         &self.shooter_is_a_i_player
     }
+    fn shooter_is_a_i_player_mut(&mut self) -> &mut bool {
+        &mut self.shooter_is_a_i_player
+    }
     fn within_blast_radius(&self) -> &bool {
         &self.within_blast_radius
+    }
+    fn within_blast_radius_mut(&mut self) -> &mut bool {
+        &mut self.within_blast_radius
     }
 }
 
@@ -9940,6 +12698,15 @@ impl TypeObject for ExplosionHitInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9967,39 +12734,71 @@ pub struct BulletHitInfo {
 
 pub trait BulletHitInfoTrait: TypeObject {
     fn direction(&self) -> &super::core::Vec3;
+    fn direction_mut(&mut self) -> &mut super::core::Vec3;
     fn spawn_position(&self) -> &super::core::Vec3;
+    fn spawn_position_mut(&mut self) -> &mut super::core::Vec3;
     fn hit_position(&self) -> &super::core::Vec3;
+    fn hit_position_mut(&mut self) -> &mut super::core::Vec3;
     fn weapon_unlock_asset(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>;
+    fn weapon_unlock_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>;
     fn weapon_type(&self) -> &super::weapon_shared::AntHitReactionWeaponType;
+    fn weapon_type_mut(&mut self) -> &mut super::weapon_shared::AntHitReactionWeaponType;
     fn bone_type(&self) -> &i32;
+    fn bone_type_mut(&mut self) -> &mut i32;
     fn shooter_player_id(&self) -> &i32;
+    fn shooter_player_id_mut(&mut self) -> &mut i32;
     fn shooter_is_a_i_player(&self) -> &bool;
+    fn shooter_is_a_i_player_mut(&mut self) -> &mut bool;
 }
 
 impl BulletHitInfoTrait for BulletHitInfo {
     fn direction(&self) -> &super::core::Vec3 {
         &self.direction
     }
+    fn direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.direction
+    }
     fn spawn_position(&self) -> &super::core::Vec3 {
         &self.spawn_position
+    }
+    fn spawn_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.spawn_position
     }
     fn hit_position(&self) -> &super::core::Vec3 {
         &self.hit_position
     }
+    fn hit_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.hit_position
+    }
     fn weapon_unlock_asset(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
         &self.weapon_unlock_asset
+    }
+    fn weapon_unlock_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
+        &mut self.weapon_unlock_asset
     }
     fn weapon_type(&self) -> &super::weapon_shared::AntHitReactionWeaponType {
         &self.weapon_type
     }
+    fn weapon_type_mut(&mut self) -> &mut super::weapon_shared::AntHitReactionWeaponType {
+        &mut self.weapon_type
+    }
     fn bone_type(&self) -> &i32 {
         &self.bone_type
+    }
+    fn bone_type_mut(&mut self) -> &mut i32 {
+        &mut self.bone_type
     }
     fn shooter_player_id(&self) -> &i32 {
         &self.shooter_player_id
     }
+    fn shooter_player_id_mut(&mut self) -> &mut i32 {
+        &mut self.shooter_player_id
+    }
     fn shooter_is_a_i_player(&self) -> &bool {
         &self.shooter_is_a_i_player
+    }
+    fn shooter_is_a_i_player_mut(&mut self) -> &mut bool {
+        &mut self.shooter_is_a_i_player
     }
 }
 
@@ -10073,6 +12872,15 @@ impl TypeObject for BulletHitInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10133,167 +12941,327 @@ pub struct SoldierWeaponData {
 
 pub trait SoldierWeaponDataTrait: WeaponEntityDataTrait {
     fn damage_giver_name(&self) -> &String;
+    fn damage_giver_name_mut(&mut self) -> &mut String;
     fn zoom_levels(&self) -> &Vec<Option<Arc<Mutex<dyn WeaponZoomLevelDataTrait>>>>;
+    fn zoom_levels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn WeaponZoomLevelDataTrait>>>>;
     fn weapon_modifier_data(&self) -> &Vec<WeaponModifierData>;
+    fn weapon_modifier_data_mut(&mut self) -> &mut Vec<WeaponModifierData>;
     fn aiming_controller(&self) -> &Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>;
+    fn aiming_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>;
     fn first_person_camera(&self) -> &Option<Arc<Mutex<dyn FirstPersonCameraDataTrait>>>;
+    fn first_person_camera_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FirstPersonCameraDataTrait>>>;
     fn sprint_settings(&self) -> &Option<Arc<Mutex<dyn WeaponSprintSettingsTrait>>>;
+    fn sprint_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSprintSettingsTrait>>>;
     fn hud(&self) -> &Vec<Option<Arc<Mutex<dyn super::gameplay_sim::HudDataTrait>>>>;
+    fn hud_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::gameplay_sim::HudDataTrait>>>>;
     fn pickup_settings(&self) -> &PickupSettingsData;
+    fn pickup_settings_mut(&mut self) -> &mut PickupSettingsData;
     fn anim_base_set(&self) -> &WeaponAnimBaseSetEnum;
+    fn anim_base_set_mut(&mut self) -> &mut WeaponAnimBaseSetEnum;
     fn hide_when_out_of_ammo(&self) -> &bool;
+    fn hide_when_out_of_ammo_mut(&mut self) -> &mut bool;
     fn allow_switching_to_weapon_out_of_ammo(&self) -> &bool;
+    fn allow_switching_to_weapon_out_of_ammo_mut(&mut self) -> &mut bool;
     fn allow_switching_to_weapon_reloading(&self) -> &bool;
+    fn allow_switching_to_weapon_reloading_mut(&mut self) -> &mut bool;
     fn switch_to_primary_when_out_of_ammo(&self) -> &bool;
+    fn switch_to_primary_when_out_of_ammo_mut(&mut self) -> &mut bool;
     fn switch_to_primary_when_out_of_ammo_delay(&self) -> &f32;
+    fn switch_to_primary_when_out_of_ammo_delay_mut(&mut self) -> &mut f32;
     fn wait_for_fire_before_switch_to_primary_when_out_of_ammo(&self) -> &bool;
+    fn wait_for_fire_before_switch_to_primary_when_out_of_ammo_mut(&mut self) -> &mut bool;
     fn wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo(&self) -> &bool;
+    fn wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo_mut(&mut self) -> &mut bool;
     fn wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo_delay(&self) -> &f32;
+    fn wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo_delay_mut(&mut self) -> &mut f32;
     fn undeploy_time(&self) -> &f32;
+    fn undeploy_time_mut(&mut self) -> &mut f32;
     fn fire_and_switch_back_to_prev_supported(&self) -> &bool;
+    fn fire_and_switch_back_to_prev_supported_mut(&mut self) -> &mut bool;
     fn allow_switching_to_weapon_in_vehicles(&self) -> &bool;
+    fn allow_switching_to_weapon_in_vehicles_mut(&mut self) -> &mut bool;
     fn allow_switching_to_weapon_in_water(&self) -> &bool;
+    fn allow_switching_to_weapon_in_water_mut(&mut self) -> &mut bool;
     fn interaction_offset(&self) -> &super::core::Vec3;
+    fn interaction_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn lower_on_own_team(&self) -> &bool;
+    fn lower_on_own_team_mut(&mut self) -> &mut bool;
     fn redeploy_when_switching_weapon_states(&self) -> &bool;
+    fn redeploy_when_switching_weapon_states_mut(&mut self) -> &mut bool;
     fn use_quick_throw_on_automatic_switchback(&self) -> &bool;
+    fn use_quick_throw_on_automatic_switchback_mut(&mut self) -> &mut bool;
     fn quick_throw_type(&self) -> &QuickThrowTypeEnum;
+    fn quick_throw_type_mut(&mut self) -> &mut QuickThrowTypeEnum;
     fn soldier_weapon_blueprint(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponBlueprintTrait>>>;
+    fn soldier_weapon_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponBlueprintTrait>>>;
     fn persistence_id(&self) -> &String;
+    fn persistence_id_mut(&mut self) -> &mut String;
     fn enable_breath_control(&self) -> &bool;
+    fn enable_breath_control_mut(&mut self) -> &mut bool;
     fn can_be_in_supported_shooting(&self) -> &bool;
+    fn can_be_in_supported_shooting_mut(&mut self) -> &mut bool;
     fn secondary_action_input_action(&self) -> &i32;
+    fn secondary_action_input_action_mut(&mut self) -> &mut i32;
     fn tertiary_action_input_action(&self) -> &i32;
+    fn tertiary_action_input_action_mut(&mut self) -> &mut i32;
     fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
+    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
     fn weapon_float_param(&self) -> &f32;
+    fn weapon_float_param_mut(&mut self) -> &mut f32;
     fn max_range_meter_distance(&self) -> &f32;
+    fn max_range_meter_distance_mut(&mut self) -> &mut f32;
     fn use_detailed_range_meter_query(&self) -> &bool;
+    fn use_detailed_range_meter_query_mut(&mut self) -> &mut bool;
     fn is_silenced(&self) -> &bool;
+    fn is_silenced_mut(&mut self) -> &mut bool;
     fn skip_first_zoom_level(&self) -> &bool;
+    fn skip_first_zoom_level_mut(&mut self) -> &mut bool;
     fn customization_accessory_pivots(&self) -> &CustomizationAccessoryPivots;
+    fn customization_accessory_pivots_mut(&mut self) -> &mut CustomizationAccessoryPivots;
     fn sockets_in_weapon(&self) -> &Vec<Option<Arc<Mutex<dyn SocketDataTrait>>>>;
+    fn sockets_in_weapon_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SocketDataTrait>>>>;
 }
 
 impl SoldierWeaponDataTrait for SoldierWeaponData {
     fn damage_giver_name(&self) -> &String {
         &self.damage_giver_name
     }
+    fn damage_giver_name_mut(&mut self) -> &mut String {
+        &mut self.damage_giver_name
+    }
     fn zoom_levels(&self) -> &Vec<Option<Arc<Mutex<dyn WeaponZoomLevelDataTrait>>>> {
         &self.zoom_levels
+    }
+    fn zoom_levels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn WeaponZoomLevelDataTrait>>>> {
+        &mut self.zoom_levels
     }
     fn weapon_modifier_data(&self) -> &Vec<WeaponModifierData> {
         &self.weapon_modifier_data
     }
+    fn weapon_modifier_data_mut(&mut self) -> &mut Vec<WeaponModifierData> {
+        &mut self.weapon_modifier_data
+    }
     fn aiming_controller(&self) -> &Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>> {
         &self.aiming_controller
+    }
+    fn aiming_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>> {
+        &mut self.aiming_controller
     }
     fn first_person_camera(&self) -> &Option<Arc<Mutex<dyn FirstPersonCameraDataTrait>>> {
         &self.first_person_camera
     }
+    fn first_person_camera_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FirstPersonCameraDataTrait>>> {
+        &mut self.first_person_camera
+    }
     fn sprint_settings(&self) -> &Option<Arc<Mutex<dyn WeaponSprintSettingsTrait>>> {
         &self.sprint_settings
+    }
+    fn sprint_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSprintSettingsTrait>>> {
+        &mut self.sprint_settings
     }
     fn hud(&self) -> &Vec<Option<Arc<Mutex<dyn super::gameplay_sim::HudDataTrait>>>> {
         &self.hud
     }
+    fn hud_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::gameplay_sim::HudDataTrait>>>> {
+        &mut self.hud
+    }
     fn pickup_settings(&self) -> &PickupSettingsData {
         &self.pickup_settings
+    }
+    fn pickup_settings_mut(&mut self) -> &mut PickupSettingsData {
+        &mut self.pickup_settings
     }
     fn anim_base_set(&self) -> &WeaponAnimBaseSetEnum {
         &self.anim_base_set
     }
+    fn anim_base_set_mut(&mut self) -> &mut WeaponAnimBaseSetEnum {
+        &mut self.anim_base_set
+    }
     fn hide_when_out_of_ammo(&self) -> &bool {
         &self.hide_when_out_of_ammo
+    }
+    fn hide_when_out_of_ammo_mut(&mut self) -> &mut bool {
+        &mut self.hide_when_out_of_ammo
     }
     fn allow_switching_to_weapon_out_of_ammo(&self) -> &bool {
         &self.allow_switching_to_weapon_out_of_ammo
     }
+    fn allow_switching_to_weapon_out_of_ammo_mut(&mut self) -> &mut bool {
+        &mut self.allow_switching_to_weapon_out_of_ammo
+    }
     fn allow_switching_to_weapon_reloading(&self) -> &bool {
         &self.allow_switching_to_weapon_reloading
+    }
+    fn allow_switching_to_weapon_reloading_mut(&mut self) -> &mut bool {
+        &mut self.allow_switching_to_weapon_reloading
     }
     fn switch_to_primary_when_out_of_ammo(&self) -> &bool {
         &self.switch_to_primary_when_out_of_ammo
     }
+    fn switch_to_primary_when_out_of_ammo_mut(&mut self) -> &mut bool {
+        &mut self.switch_to_primary_when_out_of_ammo
+    }
     fn switch_to_primary_when_out_of_ammo_delay(&self) -> &f32 {
         &self.switch_to_primary_when_out_of_ammo_delay
+    }
+    fn switch_to_primary_when_out_of_ammo_delay_mut(&mut self) -> &mut f32 {
+        &mut self.switch_to_primary_when_out_of_ammo_delay
     }
     fn wait_for_fire_before_switch_to_primary_when_out_of_ammo(&self) -> &bool {
         &self.wait_for_fire_before_switch_to_primary_when_out_of_ammo
     }
+    fn wait_for_fire_before_switch_to_primary_when_out_of_ammo_mut(&mut self) -> &mut bool {
+        &mut self.wait_for_fire_before_switch_to_primary_when_out_of_ammo
+    }
     fn wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo(&self) -> &bool {
         &self.wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo
+    }
+    fn wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo_mut(&mut self) -> &mut bool {
+        &mut self.wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo
     }
     fn wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo_delay(&self) -> &f32 {
         &self.wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo_delay
     }
+    fn wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo_delay_mut(&mut self) -> &mut f32 {
+        &mut self.wait_for_zoom_out_before_switch_to_primary_when_out_of_ammo_delay
+    }
     fn undeploy_time(&self) -> &f32 {
         &self.undeploy_time
+    }
+    fn undeploy_time_mut(&mut self) -> &mut f32 {
+        &mut self.undeploy_time
     }
     fn fire_and_switch_back_to_prev_supported(&self) -> &bool {
         &self.fire_and_switch_back_to_prev_supported
     }
+    fn fire_and_switch_back_to_prev_supported_mut(&mut self) -> &mut bool {
+        &mut self.fire_and_switch_back_to_prev_supported
+    }
     fn allow_switching_to_weapon_in_vehicles(&self) -> &bool {
         &self.allow_switching_to_weapon_in_vehicles
+    }
+    fn allow_switching_to_weapon_in_vehicles_mut(&mut self) -> &mut bool {
+        &mut self.allow_switching_to_weapon_in_vehicles
     }
     fn allow_switching_to_weapon_in_water(&self) -> &bool {
         &self.allow_switching_to_weapon_in_water
     }
+    fn allow_switching_to_weapon_in_water_mut(&mut self) -> &mut bool {
+        &mut self.allow_switching_to_weapon_in_water
+    }
     fn interaction_offset(&self) -> &super::core::Vec3 {
         &self.interaction_offset
+    }
+    fn interaction_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.interaction_offset
     }
     fn lower_on_own_team(&self) -> &bool {
         &self.lower_on_own_team
     }
+    fn lower_on_own_team_mut(&mut self) -> &mut bool {
+        &mut self.lower_on_own_team
+    }
     fn redeploy_when_switching_weapon_states(&self) -> &bool {
         &self.redeploy_when_switching_weapon_states
+    }
+    fn redeploy_when_switching_weapon_states_mut(&mut self) -> &mut bool {
+        &mut self.redeploy_when_switching_weapon_states
     }
     fn use_quick_throw_on_automatic_switchback(&self) -> &bool {
         &self.use_quick_throw_on_automatic_switchback
     }
+    fn use_quick_throw_on_automatic_switchback_mut(&mut self) -> &mut bool {
+        &mut self.use_quick_throw_on_automatic_switchback
+    }
     fn quick_throw_type(&self) -> &QuickThrowTypeEnum {
         &self.quick_throw_type
+    }
+    fn quick_throw_type_mut(&mut self) -> &mut QuickThrowTypeEnum {
+        &mut self.quick_throw_type
     }
     fn soldier_weapon_blueprint(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponBlueprintTrait>>> {
         &self.soldier_weapon_blueprint
     }
+    fn soldier_weapon_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponBlueprintTrait>>> {
+        &mut self.soldier_weapon_blueprint
+    }
     fn persistence_id(&self) -> &String {
         &self.persistence_id
+    }
+    fn persistence_id_mut(&mut self) -> &mut String {
+        &mut self.persistence_id
     }
     fn enable_breath_control(&self) -> &bool {
         &self.enable_breath_control
     }
+    fn enable_breath_control_mut(&mut self) -> &mut bool {
+        &mut self.enable_breath_control
+    }
     fn can_be_in_supported_shooting(&self) -> &bool {
         &self.can_be_in_supported_shooting
+    }
+    fn can_be_in_supported_shooting_mut(&mut self) -> &mut bool {
+        &mut self.can_be_in_supported_shooting
     }
     fn secondary_action_input_action(&self) -> &i32 {
         &self.secondary_action_input_action
     }
+    fn secondary_action_input_action_mut(&mut self) -> &mut i32 {
+        &mut self.secondary_action_input_action
+    }
     fn tertiary_action_input_action(&self) -> &i32 {
         &self.tertiary_action_input_action
+    }
+    fn tertiary_action_input_action_mut(&mut self) -> &mut i32 {
+        &mut self.tertiary_action_input_action
     }
     fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
         &self.voice_over_info
     }
+    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+        &mut self.voice_over_info
+    }
     fn weapon_float_param(&self) -> &f32 {
         &self.weapon_float_param
+    }
+    fn weapon_float_param_mut(&mut self) -> &mut f32 {
+        &mut self.weapon_float_param
     }
     fn max_range_meter_distance(&self) -> &f32 {
         &self.max_range_meter_distance
     }
+    fn max_range_meter_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_range_meter_distance
+    }
     fn use_detailed_range_meter_query(&self) -> &bool {
         &self.use_detailed_range_meter_query
+    }
+    fn use_detailed_range_meter_query_mut(&mut self) -> &mut bool {
+        &mut self.use_detailed_range_meter_query
     }
     fn is_silenced(&self) -> &bool {
         &self.is_silenced
     }
+    fn is_silenced_mut(&mut self) -> &mut bool {
+        &mut self.is_silenced
+    }
     fn skip_first_zoom_level(&self) -> &bool {
         &self.skip_first_zoom_level
+    }
+    fn skip_first_zoom_level_mut(&mut self) -> &mut bool {
+        &mut self.skip_first_zoom_level
     }
     fn customization_accessory_pivots(&self) -> &CustomizationAccessoryPivots {
         &self.customization_accessory_pivots
     }
+    fn customization_accessory_pivots_mut(&mut self) -> &mut CustomizationAccessoryPivots {
+        &mut self.customization_accessory_pivots
+    }
     fn sockets_in_weapon(&self) -> &Vec<Option<Arc<Mutex<dyn SocketDataTrait>>>> {
         &self.sockets_in_weapon
+    }
+    fn sockets_in_weapon_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SocketDataTrait>>>> {
+        &mut self.sockets_in_weapon
     }
 }
 
@@ -10301,17 +13269,32 @@ impl WeaponEntityDataTrait for SoldierWeaponData {
     fn weapon_class(&self) -> &WeaponClassEnum {
         self._glacier_base.weapon_class()
     }
+    fn weapon_class_mut(&mut self) -> &mut WeaponClassEnum {
+        self._glacier_base.weapon_class_mut()
+    }
     fn weapon_states(&self) -> &Vec<WeaponStateData> {
         self._glacier_base.weapon_states()
+    }
+    fn weapon_states_mut(&mut self) -> &mut Vec<WeaponStateData> {
+        self._glacier_base.weapon_states_mut()
     }
     fn weapon_firing(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::WeaponFiringDataTrait>>> {
         self._glacier_base.weapon_firing()
     }
+    fn weapon_firing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::WeaponFiringDataTrait>>> {
+        self._glacier_base.weapon_firing_mut()
+    }
     fn custom_weapon_type(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::WeaponDataTrait>>> {
         self._glacier_base.custom_weapon_type()
     }
+    fn custom_weapon_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::WeaponDataTrait>>> {
+        self._glacier_base.custom_weapon_type_mut()
+    }
     fn a_i_data(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>> {
         self._glacier_base.a_i_data()
+    }
+    fn a_i_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>> {
+        self._glacier_base.a_i_data_mut()
     }
 }
 
@@ -10319,32 +13302,56 @@ impl super::entity::GameComponentEntityDataTrait for SoldierWeaponData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for SoldierWeaponData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for SoldierWeaponData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -10358,15 +13365,15 @@ impl super::core::DataBusPeerTrait for SoldierWeaponData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierWeaponData {
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10632,6 +13639,15 @@ impl TypeObject for SoldierWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10654,22 +13670,27 @@ pub struct WeaponSprintSettings {
 
 pub trait WeaponSprintSettingsTrait: super::core::DataContainerTrait {
     fn sprint_recover_time_multiplier(&self) -> &f32;
+    fn sprint_recover_time_multiplier_mut(&mut self) -> &mut f32;
     fn sprint_to_prone_recover_time_multiplier(&self) -> &f32;
+    fn sprint_to_prone_recover_time_multiplier_mut(&mut self) -> &mut f32;
 }
 
 impl WeaponSprintSettingsTrait for WeaponSprintSettings {
     fn sprint_recover_time_multiplier(&self) -> &f32 {
         &self.sprint_recover_time_multiplier
     }
+    fn sprint_recover_time_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_recover_time_multiplier
+    }
     fn sprint_to_prone_recover_time_multiplier(&self) -> &f32 {
         &self.sprint_to_prone_recover_time_multiplier
+    }
+    fn sprint_to_prone_recover_time_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_to_prone_recover_time_multiplier
     }
 }
 
 impl super::core::DataContainerTrait for WeaponSprintSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONSPRINTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10706,6 +13727,15 @@ impl TypeObject for WeaponSprintSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10752,6 +13782,15 @@ impl TypeObject for ClientSoldierWeaponSpawnedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -10786,6 +13825,15 @@ impl TypeObject for ServerSoldierWeaponSpawnedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -10799,27 +13847,47 @@ pub struct CustomizationAccessoryPivots {
 
 pub trait CustomizationAccessoryPivotsTrait: TypeObject {
     fn base_pivot_pos(&self) -> &super::core::Vec3;
+    fn base_pivot_pos_mut(&mut self) -> &mut super::core::Vec3;
     fn optic_pivot_pos(&self) -> &super::core::Vec3;
+    fn optic_pivot_pos_mut(&mut self) -> &mut super::core::Vec3;
     fn barrel_pivot_pos(&self) -> &super::core::Vec3;
+    fn barrel_pivot_pos_mut(&mut self) -> &mut super::core::Vec3;
     fn accessory_pivot_pos(&self) -> &super::core::Vec3;
+    fn accessory_pivot_pos_mut(&mut self) -> &mut super::core::Vec3;
     fn under_barrel_pivot_pos(&self) -> &super::core::Vec3;
+    fn under_barrel_pivot_pos_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl CustomizationAccessoryPivotsTrait for CustomizationAccessoryPivots {
     fn base_pivot_pos(&self) -> &super::core::Vec3 {
         &self.base_pivot_pos
     }
+    fn base_pivot_pos_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.base_pivot_pos
+    }
     fn optic_pivot_pos(&self) -> &super::core::Vec3 {
         &self.optic_pivot_pos
+    }
+    fn optic_pivot_pos_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.optic_pivot_pos
     }
     fn barrel_pivot_pos(&self) -> &super::core::Vec3 {
         &self.barrel_pivot_pos
     }
+    fn barrel_pivot_pos_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.barrel_pivot_pos
+    }
     fn accessory_pivot_pos(&self) -> &super::core::Vec3 {
         &self.accessory_pivot_pos
     }
+    fn accessory_pivot_pos_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.accessory_pivot_pos
+    }
     fn under_barrel_pivot_pos(&self) -> &super::core::Vec3 {
         &self.under_barrel_pivot_pos
+    }
+    fn under_barrel_pivot_pos_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.under_barrel_pivot_pos
     }
 }
 
@@ -10875,6 +13943,15 @@ impl TypeObject for CustomizationAccessoryPivots {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10901,38 +13978,59 @@ pub struct WeaponZoomLevelData {
 
 pub trait WeaponZoomLevelDataTrait: super::core::DataContainerTrait {
     fn render_fov(&self) -> &f32;
+    fn render_fov_mut(&mut self) -> &mut f32;
     fn render_fov_transition(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::FOVTransitionDataTrait>>>;
+    fn render_fov_transition_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::FOVTransitionDataTrait>>>;
     fn zoom_in_out_mesh_transition_factors(&self) -> &Vec<f32>;
+    fn zoom_in_out_mesh_transition_factors_mut(&mut self) -> &mut Vec<f32>;
     fn zoom_disabled_transition_timer(&self) -> &f32;
+    fn zoom_disabled_transition_timer_mut(&mut self) -> &mut f32;
     fn sight_type(&self) -> &SightType;
+    fn sight_type_mut(&mut self) -> &mut SightType;
     fn animation_settings(&self) -> &WeaponAnimationSettingsData;
+    fn animation_settings_mut(&mut self) -> &mut WeaponAnimationSettingsData;
 }
 
 impl WeaponZoomLevelDataTrait for WeaponZoomLevelData {
     fn render_fov(&self) -> &f32 {
         &self.render_fov
     }
+    fn render_fov_mut(&mut self) -> &mut f32 {
+        &mut self.render_fov
+    }
     fn render_fov_transition(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::FOVTransitionDataTrait>>> {
         &self.render_fov_transition
+    }
+    fn render_fov_transition_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::FOVTransitionDataTrait>>> {
+        &mut self.render_fov_transition
     }
     fn zoom_in_out_mesh_transition_factors(&self) -> &Vec<f32> {
         &self.zoom_in_out_mesh_transition_factors
     }
+    fn zoom_in_out_mesh_transition_factors_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.zoom_in_out_mesh_transition_factors
+    }
     fn zoom_disabled_transition_timer(&self) -> &f32 {
         &self.zoom_disabled_transition_timer
+    }
+    fn zoom_disabled_transition_timer_mut(&mut self) -> &mut f32 {
+        &mut self.zoom_disabled_transition_timer
     }
     fn sight_type(&self) -> &SightType {
         &self.sight_type
     }
+    fn sight_type_mut(&mut self) -> &mut SightType {
+        &mut self.sight_type
+    }
     fn animation_settings(&self) -> &WeaponAnimationSettingsData {
         &self.animation_settings
+    }
+    fn animation_settings_mut(&mut self) -> &mut WeaponAnimationSettingsData {
+        &mut self.animation_settings
     }
 }
 
 impl super::core::DataContainerTrait for WeaponZoomLevelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONZOOMLEVELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10994,6 +14092,15 @@ impl TypeObject for WeaponZoomLevelData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11020,35 +14127,63 @@ pub struct WeaponAnimationSettingsData {
 
 pub trait WeaponAnimationSettingsDataTrait: TypeObject {
     fn kickback_factor(&self) -> &f32;
+    fn kickback_factor_mut(&mut self) -> &mut f32;
     fn kickback_speed_factor(&self) -> &f32;
+    fn kickback_speed_factor_mut(&mut self) -> &mut f32;
     fn weapon_offset_x(&self) -> &f32;
+    fn weapon_offset_x_mut(&mut self) -> &mut f32;
     fn weapon_offset_y(&self) -> &f32;
+    fn weapon_offset_y_mut(&mut self) -> &mut f32;
     fn weapon_offset_z(&self) -> &f32;
+    fn weapon_offset_z_mut(&mut self) -> &mut f32;
     fn zoom_out_speed(&self) -> &f32;
+    fn zoom_out_speed_mut(&mut self) -> &mut f32;
     fn zoom_in_speed(&self) -> &f32;
+    fn zoom_in_speed_mut(&mut self) -> &mut f32;
 }
 
 impl WeaponAnimationSettingsDataTrait for WeaponAnimationSettingsData {
     fn kickback_factor(&self) -> &f32 {
         &self.kickback_factor
     }
+    fn kickback_factor_mut(&mut self) -> &mut f32 {
+        &mut self.kickback_factor
+    }
     fn kickback_speed_factor(&self) -> &f32 {
         &self.kickback_speed_factor
+    }
+    fn kickback_speed_factor_mut(&mut self) -> &mut f32 {
+        &mut self.kickback_speed_factor
     }
     fn weapon_offset_x(&self) -> &f32 {
         &self.weapon_offset_x
     }
+    fn weapon_offset_x_mut(&mut self) -> &mut f32 {
+        &mut self.weapon_offset_x
+    }
     fn weapon_offset_y(&self) -> &f32 {
         &self.weapon_offset_y
+    }
+    fn weapon_offset_y_mut(&mut self) -> &mut f32 {
+        &mut self.weapon_offset_y
     }
     fn weapon_offset_z(&self) -> &f32 {
         &self.weapon_offset_z
     }
+    fn weapon_offset_z_mut(&mut self) -> &mut f32 {
+        &mut self.weapon_offset_z
+    }
     fn zoom_out_speed(&self) -> &f32 {
         &self.zoom_out_speed
     }
+    fn zoom_out_speed_mut(&mut self) -> &mut f32 {
+        &mut self.zoom_out_speed
+    }
     fn zoom_in_speed(&self) -> &f32 {
         &self.zoom_in_speed
+    }
+    fn zoom_in_speed_mut(&mut self) -> &mut f32 {
+        &mut self.zoom_in_speed
     }
 }
 
@@ -11116,6 +14251,15 @@ impl TypeObject for WeaponAnimationSettingsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -11155,6 +14299,15 @@ impl TypeObject for SightType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -11177,22 +14330,27 @@ pub struct WeaponOverrideData {
 
 pub trait WeaponOverrideDataTrait: super::core::DataContainerTrait {
     fn data(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
+    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
     fn values(&self) -> &Vec<WeaponOverrideValue>;
+    fn values_mut(&mut self) -> &mut Vec<WeaponOverrideValue>;
 }
 
 impl WeaponOverrideDataTrait for WeaponOverrideData {
     fn data(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+        &mut self.data
+    }
     fn values(&self) -> &Vec<WeaponOverrideValue> {
         &self.values
+    }
+    fn values_mut(&mut self) -> &mut Vec<WeaponOverrideValue> {
+        &mut self.values
     }
 }
 
 impl super::core::DataContainerTrait for WeaponOverrideData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONOVERRIDEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11230,6 +14388,15 @@ impl TypeObject for WeaponOverrideData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11251,15 +14418,23 @@ pub struct WeaponOverrideValue {
 
 pub trait WeaponOverrideValueTrait: TypeObject {
     fn value_type(&self) -> &WeaponOverrideValueType;
+    fn value_type_mut(&mut self) -> &mut WeaponOverrideValueType;
     fn value(&self) -> &f32;
+    fn value_mut(&mut self) -> &mut f32;
 }
 
 impl WeaponOverrideValueTrait for WeaponOverrideValue {
     fn value_type(&self) -> &WeaponOverrideValueType {
         &self.value_type
     }
+    fn value_type_mut(&mut self) -> &mut WeaponOverrideValueType {
+        &mut self.value_type
+    }
     fn value(&self) -> &f32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut f32 {
+        &mut self.value
     }
 }
 
@@ -11296,6 +14471,15 @@ impl TypeObject for WeaponOverrideValue {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -11338,6 +14522,15 @@ impl TypeObject for WeaponOverrideValueType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -11376,6 +14569,15 @@ impl TypeObject for QuickThrowTypeEnum {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -11401,27 +14603,47 @@ pub struct WeaponEntityData {
 
 pub trait WeaponEntityDataTrait: super::entity::GameComponentEntityDataTrait {
     fn weapon_class(&self) -> &WeaponClassEnum;
+    fn weapon_class_mut(&mut self) -> &mut WeaponClassEnum;
     fn weapon_states(&self) -> &Vec<WeaponStateData>;
+    fn weapon_states_mut(&mut self) -> &mut Vec<WeaponStateData>;
     fn weapon_firing(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::WeaponFiringDataTrait>>>;
+    fn weapon_firing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::WeaponFiringDataTrait>>>;
     fn custom_weapon_type(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::WeaponDataTrait>>>;
+    fn custom_weapon_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::WeaponDataTrait>>>;
     fn a_i_data(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>>;
+    fn a_i_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>>;
 }
 
 impl WeaponEntityDataTrait for WeaponEntityData {
     fn weapon_class(&self) -> &WeaponClassEnum {
         &self.weapon_class
     }
+    fn weapon_class_mut(&mut self) -> &mut WeaponClassEnum {
+        &mut self.weapon_class
+    }
     fn weapon_states(&self) -> &Vec<WeaponStateData> {
         &self.weapon_states
+    }
+    fn weapon_states_mut(&mut self) -> &mut Vec<WeaponStateData> {
+        &mut self.weapon_states
     }
     fn weapon_firing(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::WeaponFiringDataTrait>>> {
         &self.weapon_firing
     }
+    fn weapon_firing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::WeaponFiringDataTrait>>> {
+        &mut self.weapon_firing
+    }
     fn custom_weapon_type(&self) -> &Option<Arc<Mutex<dyn super::weapon_shared::WeaponDataTrait>>> {
         &self.custom_weapon_type
     }
+    fn custom_weapon_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::weapon_shared::WeaponDataTrait>>> {
+        &mut self.custom_weapon_type
+    }
     fn a_i_data(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>> {
         &self.a_i_data
+    }
+    fn a_i_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>> {
+        &mut self.a_i_data
     }
 }
 
@@ -11429,32 +14651,56 @@ impl super::entity::GameComponentEntityDataTrait for WeaponEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for WeaponEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for WeaponEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -11468,15 +14714,15 @@ impl super::core::DataBusPeerTrait for WeaponEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WeaponEntityData {
 }
 
 impl super::core::DataContainerTrait for WeaponEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11532,6 +14778,15 @@ impl TypeObject for WeaponEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11559,35 +14814,63 @@ pub struct SoldierWeaponsPreviewComponentData {
 
 pub trait SoldierWeaponsPreviewComponentDataTrait: super::entity::GameComponentDataTrait {
     fn weapon_skeleton(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
+    fn weapon_skeleton_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
     fn soldier_weapon_unlock(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
+    fn soldier_weapon_unlock_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
     fn soldier_customization(&self) -> &Option<Arc<Mutex<dyn SoldierCustomizationAssetTrait>>>;
+    fn soldier_customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierCustomizationAssetTrait>>>;
     fn animated_static_weapon_binding(&self) -> &AnimatedStaticWeaponBinding;
+    fn animated_static_weapon_binding_mut(&mut self) -> &mut AnimatedStaticWeaponBinding;
     fn animated_weapon_binding(&self) -> &AnimatedWeaponBinding;
+    fn animated_weapon_binding_mut(&mut self) -> &mut AnimatedWeaponBinding;
     fn animated3p_only_weapon_binding(&self) -> &Animated3pOnlyWeaponBinding;
+    fn animated3p_only_weapon_binding_mut(&mut self) -> &mut Animated3pOnlyWeaponBinding;
 }
 
 impl SoldierWeaponsPreviewComponentDataTrait for SoldierWeaponsPreviewComponentData {
     fn weapon_skeleton(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
         &self.weapon_skeleton
     }
+    fn weapon_skeleton_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
+        &mut self.weapon_skeleton
+    }
     fn visible(&self) -> &bool {
         &self.visible
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
     }
     fn soldier_weapon_unlock(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
         &self.soldier_weapon_unlock
     }
+    fn soldier_weapon_unlock_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
+        &mut self.soldier_weapon_unlock
+    }
     fn soldier_customization(&self) -> &Option<Arc<Mutex<dyn SoldierCustomizationAssetTrait>>> {
         &self.soldier_customization
+    }
+    fn soldier_customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierCustomizationAssetTrait>>> {
+        &mut self.soldier_customization
     }
     fn animated_static_weapon_binding(&self) -> &AnimatedStaticWeaponBinding {
         &self.animated_static_weapon_binding
     }
+    fn animated_static_weapon_binding_mut(&mut self) -> &mut AnimatedStaticWeaponBinding {
+        &mut self.animated_static_weapon_binding
+    }
     fn animated_weapon_binding(&self) -> &AnimatedWeaponBinding {
         &self.animated_weapon_binding
     }
+    fn animated_weapon_binding_mut(&mut self) -> &mut AnimatedWeaponBinding {
+        &mut self.animated_weapon_binding
+    }
     fn animated3p_only_weapon_binding(&self) -> &Animated3pOnlyWeaponBinding {
         &self.animated3p_only_weapon_binding
+    }
+    fn animated3p_only_weapon_binding_mut(&mut self) -> &mut Animated3pOnlyWeaponBinding {
+        &mut self.animated3p_only_weapon_binding
     }
 }
 
@@ -11598,17 +14881,32 @@ impl super::entity::ComponentDataTrait for SoldierWeaponsPreviewComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -11619,15 +14917,15 @@ impl super::core::DataBusPeerTrait for SoldierWeaponsPreviewComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierWeaponsPreviewComponentData {
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponsPreviewComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONSPREVIEWCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11695,6 +14993,15 @@ impl TypeObject for SoldierWeaponsPreviewComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11736,91 +15043,175 @@ pub struct SoldierWeaponsComponentData {
 
 pub trait SoldierWeaponsComponentDataTrait: super::entity::GameComponentDataTrait {
     fn primary_weapon_id(&self) -> &i32;
+    fn primary_weapon_id_mut(&mut self) -> &mut i32;
     fn default_aiming_controller(&self) -> &Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>;
+    fn default_aiming_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>;
     fn use_external_aim_dir(&self) -> &bool;
+    fn use_external_aim_dir_mut(&mut self) -> &mut bool;
     fn aim_dir(&self) -> &super::core::LinearTransform;
+    fn aim_dir_mut(&mut self) -> &mut super::core::LinearTransform;
     fn animated_static_weapon_binding(&self) -> &AnimatedStaticWeaponBinding;
+    fn animated_static_weapon_binding_mut(&mut self) -> &mut AnimatedStaticWeaponBinding;
     fn animated_weapon_binding(&self) -> &AnimatedWeaponBinding;
+    fn animated_weapon_binding_mut(&mut self) -> &mut AnimatedWeaponBinding;
     fn default_weapon_animation(&self) -> &super::ant::AntRef;
+    fn default_weapon_animation_mut(&mut self) -> &mut super::ant::AntRef;
     fn animated1p_only_weapon_binding(&self) -> &Animated1pOnlyWeaponBinding;
+    fn animated1p_only_weapon_binding_mut(&mut self) -> &mut Animated1pOnlyWeaponBinding;
     fn animated3p_only_weapon_binding(&self) -> &Animated3pOnlyWeaponBinding;
+    fn animated3p_only_weapon_binding_mut(&mut self) -> &mut Animated3pOnlyWeaponBinding;
     fn anim_base_set_to_ant_weapon_type_conversion(&self) -> &Vec<AnimBaseSetToAntWeaponType>;
+    fn anim_base_set_to_ant_weapon_type_conversion_mut(&mut self) -> &mut Vec<AnimBaseSetToAntWeaponType>;
     fn weapon_skeleton(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
+    fn weapon_skeleton_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
     fn unlimited_ammo(&self) -> &bool;
+    fn unlimited_ammo_mut(&mut self) -> &mut bool;
     fn unlimited_mags(&self) -> &bool;
+    fn unlimited_mags_mut(&mut self) -> &mut bool;
     fn ammo_clip_increase_multiplier(&self) -> &f32;
+    fn ammo_clip_increase_multiplier_mut(&mut self) -> &mut f32;
     fn grenade_increase(&self) -> &i32;
+    fn grenade_increase_mut(&mut self) -> &mut i32;
     fn underslung_grenade_increase(&self) -> &i32;
+    fn underslung_grenade_increase_mut(&mut self) -> &mut i32;
     fn explosive_increase_multiplier(&self) -> &f32;
+    fn explosive_increase_multiplier_mut(&mut self) -> &mut f32;
     fn suppression_value(&self) -> &f32;
+    fn suppression_value_mut(&mut self) -> &mut f32;
     fn drop_weapon_pickup(&self) -> &Option<Arc<Mutex<dyn PickupEntityAssetTrait>>>;
+    fn drop_weapon_pickup_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PickupEntityAssetTrait>>>;
     fn is_owned_by_a_i(&self) -> &bool;
+    fn is_owned_by_a_i_mut(&mut self) -> &mut bool;
     fn supports_weapon_prediction_and_correction(&self) -> &bool;
+    fn supports_weapon_prediction_and_correction_mut(&mut self) -> &mut bool;
 }
 
 impl SoldierWeaponsComponentDataTrait for SoldierWeaponsComponentData {
     fn primary_weapon_id(&self) -> &i32 {
         &self.primary_weapon_id
     }
+    fn primary_weapon_id_mut(&mut self) -> &mut i32 {
+        &mut self.primary_weapon_id
+    }
     fn default_aiming_controller(&self) -> &Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>> {
         &self.default_aiming_controller
+    }
+    fn default_aiming_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>> {
+        &mut self.default_aiming_controller
     }
     fn use_external_aim_dir(&self) -> &bool {
         &self.use_external_aim_dir
     }
+    fn use_external_aim_dir_mut(&mut self) -> &mut bool {
+        &mut self.use_external_aim_dir
+    }
     fn aim_dir(&self) -> &super::core::LinearTransform {
         &self.aim_dir
+    }
+    fn aim_dir_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.aim_dir
     }
     fn animated_static_weapon_binding(&self) -> &AnimatedStaticWeaponBinding {
         &self.animated_static_weapon_binding
     }
+    fn animated_static_weapon_binding_mut(&mut self) -> &mut AnimatedStaticWeaponBinding {
+        &mut self.animated_static_weapon_binding
+    }
     fn animated_weapon_binding(&self) -> &AnimatedWeaponBinding {
         &self.animated_weapon_binding
+    }
+    fn animated_weapon_binding_mut(&mut self) -> &mut AnimatedWeaponBinding {
+        &mut self.animated_weapon_binding
     }
     fn default_weapon_animation(&self) -> &super::ant::AntRef {
         &self.default_weapon_animation
     }
+    fn default_weapon_animation_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.default_weapon_animation
+    }
     fn animated1p_only_weapon_binding(&self) -> &Animated1pOnlyWeaponBinding {
         &self.animated1p_only_weapon_binding
+    }
+    fn animated1p_only_weapon_binding_mut(&mut self) -> &mut Animated1pOnlyWeaponBinding {
+        &mut self.animated1p_only_weapon_binding
     }
     fn animated3p_only_weapon_binding(&self) -> &Animated3pOnlyWeaponBinding {
         &self.animated3p_only_weapon_binding
     }
+    fn animated3p_only_weapon_binding_mut(&mut self) -> &mut Animated3pOnlyWeaponBinding {
+        &mut self.animated3p_only_weapon_binding
+    }
     fn anim_base_set_to_ant_weapon_type_conversion(&self) -> &Vec<AnimBaseSetToAntWeaponType> {
         &self.anim_base_set_to_ant_weapon_type_conversion
+    }
+    fn anim_base_set_to_ant_weapon_type_conversion_mut(&mut self) -> &mut Vec<AnimBaseSetToAntWeaponType> {
+        &mut self.anim_base_set_to_ant_weapon_type_conversion
     }
     fn weapon_skeleton(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
         &self.weapon_skeleton
     }
+    fn weapon_skeleton_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
+        &mut self.weapon_skeleton
+    }
     fn unlimited_ammo(&self) -> &bool {
         &self.unlimited_ammo
+    }
+    fn unlimited_ammo_mut(&mut self) -> &mut bool {
+        &mut self.unlimited_ammo
     }
     fn unlimited_mags(&self) -> &bool {
         &self.unlimited_mags
     }
+    fn unlimited_mags_mut(&mut self) -> &mut bool {
+        &mut self.unlimited_mags
+    }
     fn ammo_clip_increase_multiplier(&self) -> &f32 {
         &self.ammo_clip_increase_multiplier
+    }
+    fn ammo_clip_increase_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.ammo_clip_increase_multiplier
     }
     fn grenade_increase(&self) -> &i32 {
         &self.grenade_increase
     }
+    fn grenade_increase_mut(&mut self) -> &mut i32 {
+        &mut self.grenade_increase
+    }
     fn underslung_grenade_increase(&self) -> &i32 {
         &self.underslung_grenade_increase
+    }
+    fn underslung_grenade_increase_mut(&mut self) -> &mut i32 {
+        &mut self.underslung_grenade_increase
     }
     fn explosive_increase_multiplier(&self) -> &f32 {
         &self.explosive_increase_multiplier
     }
+    fn explosive_increase_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.explosive_increase_multiplier
+    }
     fn suppression_value(&self) -> &f32 {
         &self.suppression_value
+    }
+    fn suppression_value_mut(&mut self) -> &mut f32 {
+        &mut self.suppression_value
     }
     fn drop_weapon_pickup(&self) -> &Option<Arc<Mutex<dyn PickupEntityAssetTrait>>> {
         &self.drop_weapon_pickup
     }
+    fn drop_weapon_pickup_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PickupEntityAssetTrait>>> {
+        &mut self.drop_weapon_pickup
+    }
     fn is_owned_by_a_i(&self) -> &bool {
         &self.is_owned_by_a_i
     }
+    fn is_owned_by_a_i_mut(&mut self) -> &mut bool {
+        &mut self.is_owned_by_a_i
+    }
     fn supports_weapon_prediction_and_correction(&self) -> &bool {
         &self.supports_weapon_prediction_and_correction
+    }
+    fn supports_weapon_prediction_and_correction_mut(&mut self) -> &mut bool {
+        &mut self.supports_weapon_prediction_and_correction
     }
 }
 
@@ -11831,17 +15222,32 @@ impl super::entity::ComponentDataTrait for SoldierWeaponsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -11852,15 +15258,15 @@ impl super::core::DataBusPeerTrait for SoldierWeaponsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierWeaponsComponentData {
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12012,6 +15418,15 @@ impl TypeObject for SoldierWeaponsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12033,15 +15448,23 @@ pub struct AnimBaseSetToAntWeaponType {
 
 pub trait AnimBaseSetToAntWeaponTypeTrait: TypeObject {
     fn anim_base_set(&self) -> &WeaponAnimBaseSetEnum;
+    fn anim_base_set_mut(&mut self) -> &mut WeaponAnimBaseSetEnum;
     fn ant_weapon_type(&self) -> &i32;
+    fn ant_weapon_type_mut(&mut self) -> &mut i32;
 }
 
 impl AnimBaseSetToAntWeaponTypeTrait for AnimBaseSetToAntWeaponType {
     fn anim_base_set(&self) -> &WeaponAnimBaseSetEnum {
         &self.anim_base_set
     }
+    fn anim_base_set_mut(&mut self) -> &mut WeaponAnimBaseSetEnum {
+        &mut self.anim_base_set
+    }
     fn ant_weapon_type(&self) -> &i32 {
         &self.ant_weapon_type
+    }
+    fn ant_weapon_type_mut(&mut self) -> &mut i32 {
+        &mut self.ant_weapon_type
     }
 }
 
@@ -12079,6 +15502,15 @@ impl TypeObject for AnimBaseSetToAntWeaponType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12100,15 +15532,23 @@ pub struct PickupSettingsData {
 
 pub trait PickupSettingsDataTrait: TypeObject {
     fn mesh_render_offset(&self) -> &super::core::Vec3;
+    fn mesh_render_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn mesh_render_rotation(&self) -> &super::core::Vec3;
+    fn mesh_render_rotation_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl PickupSettingsDataTrait for PickupSettingsData {
     fn mesh_render_offset(&self) -> &super::core::Vec3 {
         &self.mesh_render_offset
     }
+    fn mesh_render_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.mesh_render_offset
+    }
     fn mesh_render_rotation(&self) -> &super::core::Vec3 {
         &self.mesh_render_rotation
+    }
+    fn mesh_render_rotation_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.mesh_render_rotation
     }
 }
 
@@ -12145,6 +15585,15 @@ impl TypeObject for PickupSettingsData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -12224,6 +15673,15 @@ impl TypeObject for WeaponClassEnum {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12270,6 +15728,15 @@ impl TypeObject for WeaponAnimBaseSetEnum {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12312,99 +15779,191 @@ pub struct WeaponStateData {
 
 pub trait WeaponStateDataTrait: TypeObject {
     fn referenced_asset_hashes(&self) -> &Vec<u32>;
+    fn referenced_asset_hashes_mut(&mut self) -> &mut Vec<u32>;
     fn bone_fake_physics(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::BoneFakePhysicsDataTrait>>>>;
+    fn bone_fake_physics_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::BoneFakePhysicsDataTrait>>>>;
     fn weapon_mesh3p(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn weapon_mesh3p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
     fn mesh3p(&self) -> &Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>>;
+    fn mesh3p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>>;
     fn weapon(&self) -> &super::ant::AntRef;
+    fn weapon_mut(&mut self) -> &mut super::ant::AntRef;
     fn weapon3p(&self) -> &super::ant::AntRef;
+    fn weapon3p_mut(&mut self) -> &mut super::ant::AntRef;
     fn zoom_mesh_transition_factor(&self) -> &f32;
+    fn zoom_mesh_transition_factor_mut(&mut self) -> &mut f32;
     fn zoom_scale_factor(&self) -> &f32;
+    fn zoom_scale_factor_mut(&mut self) -> &mut f32;
     fn zoom_in_out_mesh_transition_factors(&self) -> &Vec<f32>;
+    fn zoom_in_out_mesh_transition_factors_mut(&mut self) -> &mut Vec<f32>;
     fn keep_aiming_time(&self) -> &f32;
+    fn keep_aiming_time_mut(&mut self) -> &mut f32;
     fn always_aim_head(&self) -> &bool;
+    fn always_aim_head_mut(&mut self) -> &mut bool;
     fn animated_fire_type(&self) -> &AnimatedFireEnum;
+    fn animated_fire_type_mut(&mut self) -> &mut AnimatedFireEnum;
     fn animated_aiming_type(&self) -> &AnimatedAimingEnum;
+    fn animated_aiming_type_mut(&mut self) -> &mut AnimatedAimingEnum;
     fn is_one_handed(&self) -> &bool;
+    fn is_one_handed_mut(&mut self) -> &mut bool;
     fn play_deploy_after_fire(&self) -> &bool;
+    fn play_deploy_after_fire_mut(&mut self) -> &mut bool;
     fn skip_deploy_animation(&self) -> &bool;
+    fn skip_deploy_animation_mut(&mut self) -> &mut bool;
     fn skip_reload_animation(&self) -> &bool;
+    fn skip_reload_animation_mut(&mut self) -> &mut bool;
     fn skip_fire_animation(&self) -> &bool;
+    fn skip_fire_animation_mut(&mut self) -> &mut bool;
     fn hide_projectile_after_fire_time(&self) -> &f32;
+    fn hide_projectile_after_fire_time_mut(&mut self) -> &mut f32;
     fn projectile_bone_name(&self) -> &String;
+    fn projectile_bone_name_mut(&mut self) -> &mut String;
     fn un_deploy_speed(&self) -> &f32;
+    fn un_deploy_speed_mut(&mut self) -> &mut f32;
     fn deploy_speed(&self) -> &f32;
+    fn deploy_speed_mut(&mut self) -> &mut f32;
     fn mesh3p_transforms(&self) -> &super::core::SparseTransformArray;
+    fn mesh3p_transforms_mut(&mut self) -> &mut super::core::SparseTransformArray;
 }
 
 impl WeaponStateDataTrait for WeaponStateData {
     fn referenced_asset_hashes(&self) -> &Vec<u32> {
         &self.referenced_asset_hashes
     }
+    fn referenced_asset_hashes_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.referenced_asset_hashes
+    }
     fn bone_fake_physics(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::BoneFakePhysicsDataTrait>>>> {
         &self.bone_fake_physics
+    }
+    fn bone_fake_physics_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::BoneFakePhysicsDataTrait>>>> {
+        &mut self.bone_fake_physics
     }
     fn weapon_mesh3p(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         &self.weapon_mesh3p
     }
+    fn weapon_mesh3p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        &mut self.weapon_mesh3p
+    }
     fn mesh3p(&self) -> &Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>> {
         &self.mesh3p
+    }
+    fn mesh3p_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>> {
+        &mut self.mesh3p
     }
     fn weapon(&self) -> &super::ant::AntRef {
         &self.weapon
     }
+    fn weapon_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.weapon
+    }
     fn weapon3p(&self) -> &super::ant::AntRef {
         &self.weapon3p
+    }
+    fn weapon3p_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.weapon3p
     }
     fn zoom_mesh_transition_factor(&self) -> &f32 {
         &self.zoom_mesh_transition_factor
     }
+    fn zoom_mesh_transition_factor_mut(&mut self) -> &mut f32 {
+        &mut self.zoom_mesh_transition_factor
+    }
     fn zoom_scale_factor(&self) -> &f32 {
         &self.zoom_scale_factor
+    }
+    fn zoom_scale_factor_mut(&mut self) -> &mut f32 {
+        &mut self.zoom_scale_factor
     }
     fn zoom_in_out_mesh_transition_factors(&self) -> &Vec<f32> {
         &self.zoom_in_out_mesh_transition_factors
     }
+    fn zoom_in_out_mesh_transition_factors_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.zoom_in_out_mesh_transition_factors
+    }
     fn keep_aiming_time(&self) -> &f32 {
         &self.keep_aiming_time
+    }
+    fn keep_aiming_time_mut(&mut self) -> &mut f32 {
+        &mut self.keep_aiming_time
     }
     fn always_aim_head(&self) -> &bool {
         &self.always_aim_head
     }
+    fn always_aim_head_mut(&mut self) -> &mut bool {
+        &mut self.always_aim_head
+    }
     fn animated_fire_type(&self) -> &AnimatedFireEnum {
         &self.animated_fire_type
+    }
+    fn animated_fire_type_mut(&mut self) -> &mut AnimatedFireEnum {
+        &mut self.animated_fire_type
     }
     fn animated_aiming_type(&self) -> &AnimatedAimingEnum {
         &self.animated_aiming_type
     }
+    fn animated_aiming_type_mut(&mut self) -> &mut AnimatedAimingEnum {
+        &mut self.animated_aiming_type
+    }
     fn is_one_handed(&self) -> &bool {
         &self.is_one_handed
+    }
+    fn is_one_handed_mut(&mut self) -> &mut bool {
+        &mut self.is_one_handed
     }
     fn play_deploy_after_fire(&self) -> &bool {
         &self.play_deploy_after_fire
     }
+    fn play_deploy_after_fire_mut(&mut self) -> &mut bool {
+        &mut self.play_deploy_after_fire
+    }
     fn skip_deploy_animation(&self) -> &bool {
         &self.skip_deploy_animation
+    }
+    fn skip_deploy_animation_mut(&mut self) -> &mut bool {
+        &mut self.skip_deploy_animation
     }
     fn skip_reload_animation(&self) -> &bool {
         &self.skip_reload_animation
     }
+    fn skip_reload_animation_mut(&mut self) -> &mut bool {
+        &mut self.skip_reload_animation
+    }
     fn skip_fire_animation(&self) -> &bool {
         &self.skip_fire_animation
+    }
+    fn skip_fire_animation_mut(&mut self) -> &mut bool {
+        &mut self.skip_fire_animation
     }
     fn hide_projectile_after_fire_time(&self) -> &f32 {
         &self.hide_projectile_after_fire_time
     }
+    fn hide_projectile_after_fire_time_mut(&mut self) -> &mut f32 {
+        &mut self.hide_projectile_after_fire_time
+    }
     fn projectile_bone_name(&self) -> &String {
         &self.projectile_bone_name
+    }
+    fn projectile_bone_name_mut(&mut self) -> &mut String {
+        &mut self.projectile_bone_name
     }
     fn un_deploy_speed(&self) -> &f32 {
         &self.un_deploy_speed
     }
+    fn un_deploy_speed_mut(&mut self) -> &mut f32 {
+        &mut self.un_deploy_speed
+    }
     fn deploy_speed(&self) -> &f32 {
         &self.deploy_speed
     }
+    fn deploy_speed_mut(&mut self) -> &mut f32 {
+        &mut self.deploy_speed
+    }
     fn mesh3p_transforms(&self) -> &super::core::SparseTransformArray {
         &self.mesh3p_transforms
+    }
+    fn mesh3p_transforms_mut(&mut self) -> &mut super::core::SparseTransformArray {
+        &mut self.mesh3p_transforms
     }
 }
 
@@ -12568,6 +16127,15 @@ impl TypeObject for WeaponStateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12606,6 +16174,15 @@ impl TypeObject for AnimatedAimingEnum {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -12648,6 +16225,15 @@ impl TypeObject for AnimatedFireEnum {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12670,22 +16256,27 @@ pub struct FirstPersonCameraData {
 
 pub trait FirstPersonCameraDataTrait: super::core::DataContainerTrait {
     fn offset(&self) -> &super::core::Vec3;
+    fn offset_mut(&mut self) -> &mut super::core::Vec3;
     fn rotation(&self) -> &super::core::Vec3;
+    fn rotation_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl FirstPersonCameraDataTrait for FirstPersonCameraData {
     fn offset(&self) -> &super::core::Vec3 {
         &self.offset
     }
+    fn offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.offset
+    }
     fn rotation(&self) -> &super::core::Vec3 {
         &self.rotation
+    }
+    fn rotation_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.rotation
     }
 }
 
 impl super::core::DataContainerTrait for FirstPersonCameraData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FIRSTPERSONCAMERADATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12723,6 +16314,15 @@ impl TypeObject for FirstPersonCameraData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12746,23 +16346,39 @@ pub struct ZoomLevelSpecificTransitionTime {
 
 pub trait ZoomLevelSpecificTransitionTimeTrait: TypeObject {
     fn from_zoom_level(&self) -> &i32;
+    fn from_zoom_level_mut(&mut self) -> &mut i32;
     fn to_zoom_level(&self) -> &i32;
+    fn to_zoom_level_mut(&mut self) -> &mut i32;
     fn zoom_transition_time(&self) -> &f32;
+    fn zoom_transition_time_mut(&mut self) -> &mut f32;
     fn fov_transition_time(&self) -> &f32;
+    fn fov_transition_time_mut(&mut self) -> &mut f32;
 }
 
 impl ZoomLevelSpecificTransitionTimeTrait for ZoomLevelSpecificTransitionTime {
     fn from_zoom_level(&self) -> &i32 {
         &self.from_zoom_level
     }
+    fn from_zoom_level_mut(&mut self) -> &mut i32 {
+        &mut self.from_zoom_level
+    }
     fn to_zoom_level(&self) -> &i32 {
         &self.to_zoom_level
+    }
+    fn to_zoom_level_mut(&mut self) -> &mut i32 {
+        &mut self.to_zoom_level
     }
     fn zoom_transition_time(&self) -> &f32 {
         &self.zoom_transition_time
     }
+    fn zoom_transition_time_mut(&mut self) -> &mut f32 {
+        &mut self.zoom_transition_time
+    }
     fn fov_transition_time(&self) -> &f32 {
         &self.fov_transition_time
+    }
+    fn fov_transition_time_mut(&mut self) -> &mut f32 {
+        &mut self.fov_transition_time
     }
 }
 
@@ -12812,6 +16428,15 @@ impl TypeObject for ZoomLevelSpecificTransitionTime {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12837,31 +16462,55 @@ pub struct AimingPoseData {
 
 pub trait AimingPoseDataTrait: TypeObject {
     fn minimum_pitch(&self) -> &f32;
+    fn minimum_pitch_mut(&mut self) -> &mut f32;
     fn maximum_pitch(&self) -> &f32;
+    fn maximum_pitch_mut(&mut self) -> &mut f32;
     fn targeting_fov(&self) -> &f32;
+    fn targeting_fov_mut(&mut self) -> &mut f32;
     fn aim_steadiness(&self) -> &f32;
+    fn aim_steadiness_mut(&mut self) -> &mut f32;
     fn speed_multiplier(&self) -> &f32;
+    fn speed_multiplier_mut(&mut self) -> &mut f32;
     fn recoil_multiplier(&self) -> &f32;
+    fn recoil_multiplier_mut(&mut self) -> &mut f32;
 }
 
 impl AimingPoseDataTrait for AimingPoseData {
     fn minimum_pitch(&self) -> &f32 {
         &self.minimum_pitch
     }
+    fn minimum_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.minimum_pitch
+    }
     fn maximum_pitch(&self) -> &f32 {
         &self.maximum_pitch
+    }
+    fn maximum_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.maximum_pitch
     }
     fn targeting_fov(&self) -> &f32 {
         &self.targeting_fov
     }
+    fn targeting_fov_mut(&mut self) -> &mut f32 {
+        &mut self.targeting_fov
+    }
     fn aim_steadiness(&self) -> &f32 {
         &self.aim_steadiness
+    }
+    fn aim_steadiness_mut(&mut self) -> &mut f32 {
+        &mut self.aim_steadiness
     }
     fn speed_multiplier(&self) -> &f32 {
         &self.speed_multiplier
     }
+    fn speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.speed_multiplier
+    }
     fn recoil_multiplier(&self) -> &f32 {
         &self.recoil_multiplier
+    }
+    fn recoil_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_multiplier
     }
 }
 
@@ -12923,6 +16572,15 @@ impl TypeObject for AimingPoseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12945,15 +16603,23 @@ pub struct AimerModifierData {
 
 pub trait AimerModifierDataTrait: super::core::AssetTrait {
     fn look_speed_multiplier(&self) -> &f32;
+    fn look_speed_multiplier_mut(&mut self) -> &mut f32;
     fn only_in_supported_shooting(&self) -> &bool;
+    fn only_in_supported_shooting_mut(&mut self) -> &mut bool;
 }
 
 impl AimerModifierDataTrait for AimerModifierData {
     fn look_speed_multiplier(&self) -> &f32 {
         &self.look_speed_multiplier
     }
+    fn look_speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.look_speed_multiplier
+    }
     fn only_in_supported_shooting(&self) -> &bool {
         &self.only_in_supported_shooting
+    }
+    fn only_in_supported_shooting_mut(&mut self) -> &mut bool {
+        &mut self.only_in_supported_shooting
     }
 }
 
@@ -12961,12 +16627,12 @@ impl super::core::AssetTrait for AimerModifierData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AimerModifierData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AIMERMODIFIERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13004,6 +16670,15 @@ impl TypeObject for AimerModifierData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13025,11 +16700,15 @@ pub struct VoiceOverObjectReaderWatcherEntityData {
 
 pub trait VoiceOverObjectReaderWatcherEntityDataTrait: super::entity::EntityDataTrait {
     fn vo_object_properties_array(&self) -> &Vec<VoObjectPropertiesReader>;
+    fn vo_object_properties_array_mut(&mut self) -> &mut Vec<VoObjectPropertiesReader>;
 }
 
 impl VoiceOverObjectReaderWatcherEntityDataTrait for VoiceOverObjectReaderWatcherEntityData {
     fn vo_object_properties_array(&self) -> &Vec<VoObjectPropertiesReader> {
         &self.vo_object_properties_array
+    }
+    fn vo_object_properties_array_mut(&mut self) -> &mut Vec<VoObjectPropertiesReader> {
+        &mut self.vo_object_properties_array
     }
 }
 
@@ -13043,15 +16722,15 @@ impl super::core::DataBusPeerTrait for VoiceOverObjectReaderWatcherEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VoiceOverObjectReaderWatcherEntityData {
 }
 
 impl super::core::DataContainerTrait for VoiceOverObjectReaderWatcherEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VOICEOVEROBJECTREADERWATCHERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13083,6 +16762,15 @@ impl TypeObject for VoiceOverObjectReaderWatcherEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13104,11 +16792,15 @@ pub struct VoiceOverObjectReaderEntityData {
 
 pub trait VoiceOverObjectReaderEntityDataTrait: super::entity::EntityDataTrait {
     fn vo_object_properties_array(&self) -> &Vec<VoObjectPropertiesReader>;
+    fn vo_object_properties_array_mut(&mut self) -> &mut Vec<VoObjectPropertiesReader>;
 }
 
 impl VoiceOverObjectReaderEntityDataTrait for VoiceOverObjectReaderEntityData {
     fn vo_object_properties_array(&self) -> &Vec<VoObjectPropertiesReader> {
         &self.vo_object_properties_array
+    }
+    fn vo_object_properties_array_mut(&mut self) -> &mut Vec<VoObjectPropertiesReader> {
+        &mut self.vo_object_properties_array
     }
 }
 
@@ -13122,15 +16814,15 @@ impl super::core::DataBusPeerTrait for VoiceOverObjectReaderEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VoiceOverObjectReaderEntityData {
 }
 
 impl super::core::DataContainerTrait for VoiceOverObjectReaderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VOICEOVEROBJECTREADERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13162,6 +16854,15 @@ impl TypeObject for VoiceOverObjectReaderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13183,15 +16884,23 @@ pub struct VoObjectPropertiesReader {
 
 pub trait VoObjectPropertiesReaderTrait: TypeObject {
     fn object_name(&self) -> &String;
+    fn object_name_mut(&mut self) -> &mut String;
     fn object_type(&self) -> &VoiceOverObjectType;
+    fn object_type_mut(&mut self) -> &mut VoiceOverObjectType;
 }
 
 impl VoObjectPropertiesReaderTrait for VoObjectPropertiesReader {
     fn object_name(&self) -> &String {
         &self.object_name
     }
+    fn object_name_mut(&mut self) -> &mut String {
+        &mut self.object_name
+    }
     fn object_type(&self) -> &VoiceOverObjectType {
         &self.object_type
+    }
+    fn object_type_mut(&mut self) -> &mut VoiceOverObjectType {
+        &mut self.object_type
     }
 }
 
@@ -13228,6 +16937,15 @@ impl TypeObject for VoObjectPropertiesReader {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -13268,6 +16986,15 @@ impl TypeObject for VoiceOverObjectType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -13314,6 +17041,15 @@ impl TypeObject for UnlockDynamicToggleMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -13324,11 +17060,15 @@ pub struct SoldierWeaponCustomizationAsset {
 
 pub trait SoldierWeaponCustomizationAssetTrait: super::core::DataContainerPolicyAssetTrait {
     fn customization(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>>;
+    fn customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>>;
 }
 
 impl SoldierWeaponCustomizationAssetTrait for SoldierWeaponCustomizationAsset {
     fn customization(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>> {
         &self.customization
+    }
+    fn customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>> {
+        &mut self.customization
     }
 }
 
@@ -13339,12 +17079,12 @@ impl super::core::AssetTrait for SoldierWeaponCustomizationAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponCustomizationAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONCUSTOMIZATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13376,6 +17116,15 @@ impl TypeObject for SoldierWeaponCustomizationAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13399,23 +17148,39 @@ pub struct UnlockWeaponAndSlot {
 
 pub trait UnlockWeaponAndSlotTrait: TypeObject {
     fn weapon(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
+    fn weapon_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
     fn slot(&self) -> &super::weapon_shared::WeaponSlot;
+    fn slot_mut(&mut self) -> &mut super::weapon_shared::WeaponSlot;
     fn customization_unlock_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>>;
+    fn customization_unlock_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>>;
     fn unlock_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>>;
+    fn unlock_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>>;
 }
 
 impl UnlockWeaponAndSlotTrait for UnlockWeaponAndSlot {
     fn weapon(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
         &self.weapon
     }
+    fn weapon_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
+        &mut self.weapon
+    }
     fn slot(&self) -> &super::weapon_shared::WeaponSlot {
         &self.slot
+    }
+    fn slot_mut(&mut self) -> &mut super::weapon_shared::WeaponSlot {
+        &mut self.slot
     }
     fn customization_unlock_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>> {
         &self.customization_unlock_assets
     }
+    fn customization_unlock_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>> {
+        &mut self.customization_unlock_assets
+    }
     fn unlock_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>> {
         &self.unlock_assets
+    }
+    fn unlock_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>> {
+        &mut self.unlock_assets
     }
 }
 
@@ -13465,6 +17230,15 @@ impl TypeObject for UnlockWeaponAndSlot {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13494,43 +17268,79 @@ pub struct SoldierWeaponUnlockAsset {
 
 pub trait SoldierWeaponUnlockAssetTrait: super::weapon_shared::WeaponUnlockAssetTrait {
     fn weapon_blueprint_bundle_reference(&self) -> &super::gameplay_sim::BlueprintBundleReference;
+    fn weapon_blueprint_bundle_reference_mut(&mut self) -> &mut super::gameplay_sim::BlueprintBundleReference;
     fn weapon1p_blueprint_bundle_reference(&self) -> &super::gameplay_sim::BlueprintBundleReference;
+    fn weapon1p_blueprint_bundle_reference_mut(&mut self) -> &mut super::gameplay_sim::BlueprintBundleReference;
     fn non_streamed_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>>;
+    fn non_streamed_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>>;
     fn customization(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponCustomizationAssetTrait>>>;
+    fn customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponCustomizationAssetTrait>>>;
     fn extra(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>;
+    fn extra_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>;
     fn weapon_identifier(&self) -> &u32;
+    fn weapon_identifier_mut(&mut self) -> &mut u32;
     fn category(&self) -> &u32;
+    fn category_mut(&mut self) -> &mut u32;
     fn weapon_data(&self) -> &StoredWeaponData;
+    fn weapon_data_mut(&mut self) -> &mut StoredWeaponData;
     fn unlock_to_blueprint_bundle(&self) -> &Vec<UnlockToBlueprintBundle>;
+    fn unlock_to_blueprint_bundle_mut(&mut self) -> &mut Vec<UnlockToBlueprintBundle>;
 }
 
 impl SoldierWeaponUnlockAssetTrait for SoldierWeaponUnlockAsset {
     fn weapon_blueprint_bundle_reference(&self) -> &super::gameplay_sim::BlueprintBundleReference {
         &self.weapon_blueprint_bundle_reference
     }
+    fn weapon_blueprint_bundle_reference_mut(&mut self) -> &mut super::gameplay_sim::BlueprintBundleReference {
+        &mut self.weapon_blueprint_bundle_reference
+    }
     fn weapon1p_blueprint_bundle_reference(&self) -> &super::gameplay_sim::BlueprintBundleReference {
         &self.weapon1p_blueprint_bundle_reference
+    }
+    fn weapon1p_blueprint_bundle_reference_mut(&mut self) -> &mut super::gameplay_sim::BlueprintBundleReference {
+        &mut self.weapon1p_blueprint_bundle_reference
     }
     fn non_streamed_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         &self.non_streamed_blueprint
     }
+    fn non_streamed_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        &mut self.non_streamed_blueprint
+    }
     fn customization(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponCustomizationAssetTrait>>> {
         &self.customization
+    }
+    fn customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponCustomizationAssetTrait>>> {
+        &mut self.customization
     }
     fn extra(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
         &self.extra
     }
+    fn extra_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
+        &mut self.extra
+    }
     fn weapon_identifier(&self) -> &u32 {
         &self.weapon_identifier
+    }
+    fn weapon_identifier_mut(&mut self) -> &mut u32 {
+        &mut self.weapon_identifier
     }
     fn category(&self) -> &u32 {
         &self.category
     }
+    fn category_mut(&mut self) -> &mut u32 {
+        &mut self.category
+    }
     fn weapon_data(&self) -> &StoredWeaponData {
         &self.weapon_data
     }
+    fn weapon_data_mut(&mut self) -> &mut StoredWeaponData {
+        &mut self.weapon_data
+    }
     fn unlock_to_blueprint_bundle(&self) -> &Vec<UnlockToBlueprintBundle> {
         &self.unlock_to_blueprint_bundle
+    }
+    fn unlock_to_blueprint_bundle_mut(&mut self) -> &mut Vec<UnlockToBlueprintBundle> {
+        &mut self.unlock_to_blueprint_bundle
     }
 }
 
@@ -13541,26 +17351,50 @@ impl super::game_shared::UnlockAssetBaseTrait for SoldierWeaponUnlockAsset {
     fn unlock_user_data(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockUserDataBaseTrait>>> {
         self._glacier_base.unlock_user_data()
     }
+    fn unlock_user_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockUserDataBaseTrait>>> {
+        self._glacier_base.unlock_user_data_mut()
+    }
     fn debug_unlock_id(&self) -> &String {
         self._glacier_base.debug_unlock_id()
+    }
+    fn debug_unlock_id_mut(&mut self) -> &mut String {
+        self._glacier_base.debug_unlock_id_mut()
     }
     fn identifier(&self) -> &u32 {
         self._glacier_base.identifier()
     }
+    fn identifier_mut(&mut self) -> &mut u32 {
+        self._glacier_base.identifier_mut()
+    }
     fn unlock_score(&self) -> &u32 {
         self._glacier_base.unlock_score()
+    }
+    fn unlock_score_mut(&mut self) -> &mut u32 {
+        self._glacier_base.unlock_score_mut()
     }
     fn auto_available(&self) -> &bool {
         self._glacier_base.auto_available()
     }
+    fn auto_available_mut(&mut self) -> &mut bool {
+        self._glacier_base.auto_available_mut()
+    }
     fn next_level_unlock_asset(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
         self._glacier_base.next_level_unlock_asset()
+    }
+    fn next_level_unlock_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
+        self._glacier_base.next_level_unlock_asset_mut()
     }
     fn hidden_in_progression(&self) -> &bool {
         self._glacier_base.hidden_in_progression()
     }
+    fn hidden_in_progression_mut(&mut self) -> &mut bool {
+        self._glacier_base.hidden_in_progression_mut()
+    }
     fn available_for_player(&self) -> &super::game_shared::UnlockAvailability {
         self._glacier_base.available_for_player()
+    }
+    fn available_for_player_mut(&mut self) -> &mut super::game_shared::UnlockAvailability {
+        self._glacier_base.available_for_player_mut()
     }
 }
 
@@ -13571,12 +17405,12 @@ impl super::core::AssetTrait for SoldierWeaponUnlockAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponUnlockAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONUNLOCKASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13656,6 +17490,15 @@ impl TypeObject for SoldierWeaponUnlockAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13678,19 +17521,31 @@ pub struct UnlockToBlueprintBundle {
 
 pub trait UnlockToBlueprintBundleTrait: TypeObject {
     fn unlock_asset_guid(&self) -> &glacier_util::guid::Guid;
+    fn unlock_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn is_first_person_only(&self) -> &bool;
+    fn is_first_person_only_mut(&mut self) -> &mut bool;
     fn blueprint_bundle_reference(&self) -> &super::gameplay_sim::BlueprintBundleReference;
+    fn blueprint_bundle_reference_mut(&mut self) -> &mut super::gameplay_sim::BlueprintBundleReference;
 }
 
 impl UnlockToBlueprintBundleTrait for UnlockToBlueprintBundle {
     fn unlock_asset_guid(&self) -> &glacier_util::guid::Guid {
         &self.unlock_asset_guid
     }
+    fn unlock_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.unlock_asset_guid
+    }
     fn is_first_person_only(&self) -> &bool {
         &self.is_first_person_only
     }
+    fn is_first_person_only_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person_only
+    }
     fn blueprint_bundle_reference(&self) -> &super::gameplay_sim::BlueprintBundleReference {
         &self.blueprint_bundle_reference
+    }
+    fn blueprint_bundle_reference_mut(&mut self) -> &mut super::gameplay_sim::BlueprintBundleReference {
+        &mut self.blueprint_bundle_reference
     }
 }
 
@@ -13734,6 +17589,15 @@ impl TypeObject for UnlockToBlueprintBundle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13759,31 +17623,55 @@ pub struct StoredWeaponData {
 
 pub trait StoredWeaponDataTrait: TypeObject {
     fn weapon_class(&self) -> &i32;
+    fn weapon_class_mut(&mut self) -> &mut i32;
     fn mag_count(&self) -> &i32;
+    fn mag_count_mut(&mut self) -> &mut i32;
     fn mag_capacity(&self) -> &i32;
+    fn mag_capacity_mut(&mut self) -> &mut i32;
     fn anim_base_set(&self) -> &i32;
+    fn anim_base_set_mut(&mut self) -> &mut i32;
     fn switch_to_primary_when_out_of_ammo(&self) -> &bool;
+    fn switch_to_primary_when_out_of_ammo_mut(&mut self) -> &mut bool;
     fn undeploy_time(&self) -> &f32;
+    fn undeploy_time_mut(&mut self) -> &mut f32;
 }
 
 impl StoredWeaponDataTrait for StoredWeaponData {
     fn weapon_class(&self) -> &i32 {
         &self.weapon_class
     }
+    fn weapon_class_mut(&mut self) -> &mut i32 {
+        &mut self.weapon_class
+    }
     fn mag_count(&self) -> &i32 {
         &self.mag_count
+    }
+    fn mag_count_mut(&mut self) -> &mut i32 {
+        &mut self.mag_count
     }
     fn mag_capacity(&self) -> &i32 {
         &self.mag_capacity
     }
+    fn mag_capacity_mut(&mut self) -> &mut i32 {
+        &mut self.mag_capacity
+    }
     fn anim_base_set(&self) -> &i32 {
         &self.anim_base_set
+    }
+    fn anim_base_set_mut(&mut self) -> &mut i32 {
+        &mut self.anim_base_set
     }
     fn switch_to_primary_when_out_of_ammo(&self) -> &bool {
         &self.switch_to_primary_when_out_of_ammo
     }
+    fn switch_to_primary_when_out_of_ammo_mut(&mut self) -> &mut bool {
+        &mut self.switch_to_primary_when_out_of_ammo
+    }
     fn undeploy_time(&self) -> &f32 {
         &self.undeploy_time
+    }
+    fn undeploy_time_mut(&mut self) -> &mut f32 {
+        &mut self.undeploy_time
     }
 }
 
@@ -13845,6 +17733,15 @@ impl TypeObject for StoredWeaponData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13867,15 +17764,23 @@ pub struct SoldierWeaponMultiUnlock {
 
 pub trait SoldierWeaponMultiUnlockTrait: super::game_shared::UnlockUserDataBaseTrait {
     fn first(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>;
+    fn first_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>;
     fn unlock_asset_pairs(&self) -> &Vec<super::game_shared::UnlockAssetPair>;
+    fn unlock_asset_pairs_mut(&mut self) -> &mut Vec<super::game_shared::UnlockAssetPair>;
 }
 
 impl SoldierWeaponMultiUnlockTrait for SoldierWeaponMultiUnlock {
     fn first(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
         &self.first
     }
+    fn first_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
+        &mut self.first
+    }
     fn unlock_asset_pairs(&self) -> &Vec<super::game_shared::UnlockAssetPair> {
         &self.unlock_asset_pairs
+    }
+    fn unlock_asset_pairs_mut(&mut self) -> &mut Vec<super::game_shared::UnlockAssetPair> {
+        &mut self.unlock_asset_pairs
     }
 }
 
@@ -13889,12 +17794,12 @@ impl super::core::AssetTrait for SoldierWeaponMultiUnlock {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponMultiUnlock {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONMULTIUNLOCK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13932,6 +17837,15 @@ impl TypeObject for SoldierWeaponMultiUnlock {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13954,19 +17868,31 @@ pub struct TripwireNetData {
 
 pub trait TripwireNetDataTrait: TypeObject {
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn pitch(&self) -> &f32;
+    fn pitch_mut(&mut self) -> &mut f32;
     fn yaw(&self) -> &f32;
+    fn yaw_mut(&mut self) -> &mut f32;
 }
 
 impl TripwireNetDataTrait for TripwireNetData {
     fn length(&self) -> &f32 {
         &self.length
     }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
+    }
     fn pitch(&self) -> &f32 {
         &self.pitch
     }
+    fn pitch_mut(&mut self) -> &mut f32 {
+        &mut self.pitch
+    }
     fn yaw(&self) -> &f32 {
         &self.yaw
+    }
+    fn yaw_mut(&mut self) -> &mut f32 {
+        &mut self.yaw
     }
 }
 
@@ -14010,6 +17936,15 @@ impl TypeObject for TripwireNetData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14032,15 +17967,23 @@ pub struct TriggerMoveEntityData {
 
 pub trait TriggerMoveEntityDataTrait: super::entity::EntityDataTrait {
     fn move_to_target(&self) -> &MoveToTargetData;
+    fn move_to_target_mut(&mut self) -> &mut MoveToTargetData;
     fn move_to_transform(&self) -> &super::core::LinearTransform;
+    fn move_to_transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl TriggerMoveEntityDataTrait for TriggerMoveEntityData {
     fn move_to_target(&self) -> &MoveToTargetData {
         &self.move_to_target
     }
+    fn move_to_target_mut(&mut self) -> &mut MoveToTargetData {
+        &mut self.move_to_target
+    }
     fn move_to_transform(&self) -> &super::core::LinearTransform {
         &self.move_to_transform
+    }
+    fn move_to_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.move_to_transform
     }
 }
 
@@ -14054,15 +17997,15 @@ impl super::core::DataBusPeerTrait for TriggerMoveEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TriggerMoveEntityData {
 }
 
 impl super::core::DataContainerTrait for TriggerMoveEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TRIGGERMOVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14099,6 +18042,15 @@ impl TypeObject for TriggerMoveEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14147,115 +18099,223 @@ pub struct CharacterStateTriggerEntityData {
 
 pub trait CharacterStateTriggerEntityDataTrait: super::game_shared::TriggerEntityDataTrait {
     fn use_pitch(&self) -> &bool;
+    fn use_pitch_mut(&mut self) -> &mut bool;
     fn pitch(&self) -> &f32;
+    fn pitch_mut(&mut self) -> &mut f32;
     fn character_pose(&self) -> &super::game_shared::CharacterPoseAction;
+    fn character_pose_mut(&mut self) -> &mut super::game_shared::CharacterPoseAction;
     fn exclude_connected_vehicles(&self) -> &bool;
+    fn exclude_connected_vehicles_mut(&mut self) -> &mut bool;
     fn stay_in_vehicle_on_move(&self) -> &bool;
+    fn stay_in_vehicle_on_move_mut(&mut self) -> &mut bool;
     fn leave_vehicle_on_move(&self) -> &bool;
+    fn leave_vehicle_on_move_mut(&mut self) -> &mut bool;
     fn clear_out_nearby_vehicles_on_move(&self) -> &bool;
+    fn clear_out_nearby_vehicles_on_move_mut(&mut self) -> &mut bool;
     fn soldier_weapon(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
+    fn soldier_weapon_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
     fn check_all_weapons(&self) -> &bool;
+    fn check_all_weapons_mut(&mut self) -> &mut bool;
     fn check_only_ready_weapons(&self) -> &bool;
+    fn check_only_ready_weapons_mut(&mut self) -> &mut bool;
     fn continue_to_check_if_holding_wrong_weapon(&self) -> &bool;
+    fn continue_to_check_if_holding_wrong_weapon_mut(&mut self) -> &mut bool;
     fn should_check_seat_index(&self) -> &bool;
+    fn should_check_seat_index_mut(&mut self) -> &mut bool;
     fn seat_index(&self) -> &u32;
+    fn seat_index_mut(&mut self) -> &mut u32;
     fn allow_remote_controlled_vehicles(&self) -> &bool;
+    fn allow_remote_controlled_vehicles_mut(&mut self) -> &mut bool;
     fn health_to_set(&self) -> &u32;
+    fn health_to_set_mut(&mut self) -> &mut u32;
     fn health_to_check(&self) -> &u32;
+    fn health_to_check_mut(&mut self) -> &mut u32;
     fn check_health_greater_or_equal(&self) -> &bool;
+    fn check_health_greater_or_equal_mut(&mut self) -> &mut bool;
     fn ammo_to_set(&self) -> &u32;
+    fn ammo_to_set_mut(&mut self) -> &mut u32;
     fn pose_to_check(&self) -> &super::game_shared::CharacterPoseAction;
+    fn pose_to_check_mut(&mut self) -> &mut super::game_shared::CharacterPoseAction;
     fn use_exit_point_when_leaving_vehicle(&self) -> &bool;
+    fn use_exit_point_when_leaving_vehicle_mut(&mut self) -> &mut bool;
     fn disable_physics_when_leaving_vehicle(&self) -> &bool;
+    fn disable_physics_when_leaving_vehicle_mut(&mut self) -> &mut bool;
     fn leave_remote_vehicles(&self) -> &bool;
+    fn leave_remote_vehicles_mut(&mut self) -> &mut bool;
     fn active_weapon_slot(&self) -> &u32;
+    fn active_weapon_slot_mut(&mut self) -> &mut u32;
     fn move_speed_multiplier(&self) -> &f32;
+    fn move_speed_multiplier_mut(&mut self) -> &mut f32;
     fn sprint_speed_multiplier(&self) -> &f32;
+    fn sprint_speed_multiplier_mut(&mut self) -> &mut f32;
     fn jump_height_multiplier(&self) -> &f32;
+    fn jump_height_multiplier_mut(&mut self) -> &mut f32;
     fn look_speed_multiplier(&self) -> &f32;
+    fn look_speed_multiplier_mut(&mut self) -> &mut f32;
 }
 
 impl CharacterStateTriggerEntityDataTrait for CharacterStateTriggerEntityData {
     fn use_pitch(&self) -> &bool {
         &self.use_pitch
     }
+    fn use_pitch_mut(&mut self) -> &mut bool {
+        &mut self.use_pitch
+    }
     fn pitch(&self) -> &f32 {
         &self.pitch
+    }
+    fn pitch_mut(&mut self) -> &mut f32 {
+        &mut self.pitch
     }
     fn character_pose(&self) -> &super::game_shared::CharacterPoseAction {
         &self.character_pose
     }
+    fn character_pose_mut(&mut self) -> &mut super::game_shared::CharacterPoseAction {
+        &mut self.character_pose
+    }
     fn exclude_connected_vehicles(&self) -> &bool {
         &self.exclude_connected_vehicles
+    }
+    fn exclude_connected_vehicles_mut(&mut self) -> &mut bool {
+        &mut self.exclude_connected_vehicles
     }
     fn stay_in_vehicle_on_move(&self) -> &bool {
         &self.stay_in_vehicle_on_move
     }
+    fn stay_in_vehicle_on_move_mut(&mut self) -> &mut bool {
+        &mut self.stay_in_vehicle_on_move
+    }
     fn leave_vehicle_on_move(&self) -> &bool {
         &self.leave_vehicle_on_move
+    }
+    fn leave_vehicle_on_move_mut(&mut self) -> &mut bool {
+        &mut self.leave_vehicle_on_move
     }
     fn clear_out_nearby_vehicles_on_move(&self) -> &bool {
         &self.clear_out_nearby_vehicles_on_move
     }
+    fn clear_out_nearby_vehicles_on_move_mut(&mut self) -> &mut bool {
+        &mut self.clear_out_nearby_vehicles_on_move
+    }
     fn soldier_weapon(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
         &self.soldier_weapon
+    }
+    fn soldier_weapon_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
+        &mut self.soldier_weapon
     }
     fn check_all_weapons(&self) -> &bool {
         &self.check_all_weapons
     }
+    fn check_all_weapons_mut(&mut self) -> &mut bool {
+        &mut self.check_all_weapons
+    }
     fn check_only_ready_weapons(&self) -> &bool {
         &self.check_only_ready_weapons
+    }
+    fn check_only_ready_weapons_mut(&mut self) -> &mut bool {
+        &mut self.check_only_ready_weapons
     }
     fn continue_to_check_if_holding_wrong_weapon(&self) -> &bool {
         &self.continue_to_check_if_holding_wrong_weapon
     }
+    fn continue_to_check_if_holding_wrong_weapon_mut(&mut self) -> &mut bool {
+        &mut self.continue_to_check_if_holding_wrong_weapon
+    }
     fn should_check_seat_index(&self) -> &bool {
         &self.should_check_seat_index
+    }
+    fn should_check_seat_index_mut(&mut self) -> &mut bool {
+        &mut self.should_check_seat_index
     }
     fn seat_index(&self) -> &u32 {
         &self.seat_index
     }
+    fn seat_index_mut(&mut self) -> &mut u32 {
+        &mut self.seat_index
+    }
     fn allow_remote_controlled_vehicles(&self) -> &bool {
         &self.allow_remote_controlled_vehicles
+    }
+    fn allow_remote_controlled_vehicles_mut(&mut self) -> &mut bool {
+        &mut self.allow_remote_controlled_vehicles
     }
     fn health_to_set(&self) -> &u32 {
         &self.health_to_set
     }
+    fn health_to_set_mut(&mut self) -> &mut u32 {
+        &mut self.health_to_set
+    }
     fn health_to_check(&self) -> &u32 {
         &self.health_to_check
+    }
+    fn health_to_check_mut(&mut self) -> &mut u32 {
+        &mut self.health_to_check
     }
     fn check_health_greater_or_equal(&self) -> &bool {
         &self.check_health_greater_or_equal
     }
+    fn check_health_greater_or_equal_mut(&mut self) -> &mut bool {
+        &mut self.check_health_greater_or_equal
+    }
     fn ammo_to_set(&self) -> &u32 {
         &self.ammo_to_set
+    }
+    fn ammo_to_set_mut(&mut self) -> &mut u32 {
+        &mut self.ammo_to_set
     }
     fn pose_to_check(&self) -> &super::game_shared::CharacterPoseAction {
         &self.pose_to_check
     }
+    fn pose_to_check_mut(&mut self) -> &mut super::game_shared::CharacterPoseAction {
+        &mut self.pose_to_check
+    }
     fn use_exit_point_when_leaving_vehicle(&self) -> &bool {
         &self.use_exit_point_when_leaving_vehicle
+    }
+    fn use_exit_point_when_leaving_vehicle_mut(&mut self) -> &mut bool {
+        &mut self.use_exit_point_when_leaving_vehicle
     }
     fn disable_physics_when_leaving_vehicle(&self) -> &bool {
         &self.disable_physics_when_leaving_vehicle
     }
+    fn disable_physics_when_leaving_vehicle_mut(&mut self) -> &mut bool {
+        &mut self.disable_physics_when_leaving_vehicle
+    }
     fn leave_remote_vehicles(&self) -> &bool {
         &self.leave_remote_vehicles
+    }
+    fn leave_remote_vehicles_mut(&mut self) -> &mut bool {
+        &mut self.leave_remote_vehicles
     }
     fn active_weapon_slot(&self) -> &u32 {
         &self.active_weapon_slot
     }
+    fn active_weapon_slot_mut(&mut self) -> &mut u32 {
+        &mut self.active_weapon_slot
+    }
     fn move_speed_multiplier(&self) -> &f32 {
         &self.move_speed_multiplier
+    }
+    fn move_speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.move_speed_multiplier
     }
     fn sprint_speed_multiplier(&self) -> &f32 {
         &self.sprint_speed_multiplier
     }
+    fn sprint_speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_speed_multiplier
+    }
     fn jump_height_multiplier(&self) -> &f32 {
         &self.jump_height_multiplier
     }
+    fn jump_height_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.jump_height_multiplier
+    }
     fn look_speed_multiplier(&self) -> &f32 {
         &self.look_speed_multiplier
+    }
+    fn look_speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.look_speed_multiplier
     }
 }
 
@@ -14263,17 +18323,29 @@ impl super::game_shared::TriggerEntityDataTrait for CharacterStateTriggerEntityD
     fn delay(&self) -> &f32 {
         self._glacier_base.delay()
     }
+    fn delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.delay_mut()
+    }
     fn run_once(&self) -> &bool {
         self._glacier_base.run_once()
     }
+    fn run_once_mut(&mut self) -> &mut bool {
+        self._glacier_base.run_once_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for CharacterStateTriggerEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -14287,15 +18359,15 @@ impl super::core::DataBusPeerTrait for CharacterStateTriggerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CharacterStateTriggerEntityData {
 }
 
 impl super::core::DataContainerTrait for CharacterStateTriggerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATETRIGGERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14483,6 +18555,15 @@ impl TypeObject for CharacterStateTriggerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14505,15 +18586,23 @@ pub struct LookAtTriggerEntityData {
 
 pub trait LookAtTriggerEntityDataTrait: super::game_shared::CharacterLookAtTriggerEntityDataTrait {
     fn soldier_weapon(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
+    fn soldier_weapon_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
     fn zoom_level(&self) -> &u32;
+    fn zoom_level_mut(&mut self) -> &mut u32;
 }
 
 impl LookAtTriggerEntityDataTrait for LookAtTriggerEntityData {
     fn soldier_weapon(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
         &self.soldier_weapon
     }
+    fn soldier_weapon_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
+        &mut self.soldier_weapon
+    }
     fn zoom_level(&self) -> &u32 {
         &self.zoom_level
+    }
+    fn zoom_level_mut(&mut self) -> &mut u32 {
+        &mut self.zoom_level
     }
 }
 
@@ -14521,20 +18610,38 @@ impl super::game_shared::CharacterLookAtTriggerEntityDataTrait for LookAtTrigger
     fn f_o_v(&self) -> &f32 {
         self._glacier_base.f_o_v()
     }
+    fn f_o_v_mut(&mut self) -> &mut f32 {
+        self._glacier_base.f_o_v_mut()
+    }
     fn min_distance_to_object(&self) -> &f32 {
         self._glacier_base.min_distance_to_object()
+    }
+    fn min_distance_to_object_mut(&mut self) -> &mut f32 {
+        self._glacier_base.min_distance_to_object_mut()
     }
     fn max_distance_to_object(&self) -> &f32 {
         self._glacier_base.max_distance_to_object()
     }
+    fn max_distance_to_object_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_distance_to_object_mut()
+    }
     fn start_trigger_looking_at(&self) -> &bool {
         self._glacier_base.start_trigger_looking_at()
+    }
+    fn start_trigger_looking_at_mut(&mut self) -> &mut bool {
+        self._glacier_base.start_trigger_looking_at_mut()
     }
     fn check_occlusion(&self) -> &bool {
         self._glacier_base.check_occlusion()
     }
+    fn check_occlusion_mut(&mut self) -> &mut bool {
+        self._glacier_base.check_occlusion_mut()
+    }
     fn use_entity_direction(&self) -> &bool {
         self._glacier_base.use_entity_direction()
+    }
+    fn use_entity_direction_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_entity_direction_mut()
     }
 }
 
@@ -14545,17 +18652,29 @@ impl super::game_shared::TriggerEntityDataTrait for LookAtTriggerEntityData {
     fn delay(&self) -> &f32 {
         self._glacier_base.delay()
     }
+    fn delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.delay_mut()
+    }
     fn run_once(&self) -> &bool {
         self._glacier_base.run_once()
     }
+    fn run_once_mut(&mut self) -> &mut bool {
+        self._glacier_base.run_once_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for LookAtTriggerEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -14569,15 +18688,15 @@ impl super::core::DataBusPeerTrait for LookAtTriggerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LookAtTriggerEntityData {
 }
 
 impl super::core::DataContainerTrait for LookAtTriggerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOOKATTRIGGERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14615,6 +18734,15 @@ impl TypeObject for LookAtTriggerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14643,32 +18771,62 @@ impl super::game_shared::CharacterSpawnReferenceObjectDataTrait for SoldierSpawn
     fn vehicle_entry_index(&self) -> &u32 {
         self._glacier_base.vehicle_entry_index()
     }
+    fn vehicle_entry_index_mut(&mut self) -> &mut u32 {
+        self._glacier_base.vehicle_entry_index_mut()
+    }
     fn allow_fallback_on_next_availabe_vehicle_entry(&self) -> &bool {
         self._glacier_base.allow_fallback_on_next_availabe_vehicle_entry()
+    }
+    fn allow_fallback_on_next_availabe_vehicle_entry_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_fallback_on_next_availabe_vehicle_entry_mut()
     }
     fn template(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>> {
         self._glacier_base.template()
     }
+    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>> {
+        self._glacier_base.template_mut()
+    }
     fn spawn_visible(&self) -> &bool {
         self._glacier_base.spawn_visible()
+    }
+    fn spawn_visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.spawn_visible_mut()
     }
     fn human_target_preference(&self) -> &f32 {
         self._glacier_base.human_target_preference()
     }
+    fn human_target_preference_mut(&mut self) -> &mut f32 {
+        self._glacier_base.human_target_preference_mut()
+    }
     fn is_target(&self) -> &bool {
         self._glacier_base.is_target()
+    }
+    fn is_target_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_target_mut()
     }
     fn affect_minimap_position(&self) -> &bool {
         self._glacier_base.affect_minimap_position()
     }
+    fn affect_minimap_position_mut(&mut self) -> &mut bool {
+        self._glacier_base.affect_minimap_position_mut()
+    }
     fn show_as_label_only(&self) -> &bool {
         self._glacier_base.show_as_label_only()
+    }
+    fn show_as_label_only_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_as_label_only_mut()
     }
     fn show_in_menu(&self) -> &bool {
         self._glacier_base.show_in_menu()
     }
+    fn show_in_menu_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_in_menu_mut()
+    }
     fn menu_show_order(&self) -> &i32 {
         self._glacier_base.menu_show_order()
+    }
+    fn menu_show_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.menu_show_order_mut()
     }
 }
 
@@ -14676,59 +18834,116 @@ impl super::game_shared::SpawnReferenceObjectDataTrait for SoldierSpawnReference
     fn team(&self) -> &super::gameplay_sim::TeamId {
         self._glacier_base.team()
     }
+    fn team_mut(&mut self) -> &mut super::gameplay_sim::TeamId {
+        self._glacier_base.team_mut()
+    }
     fn locked_team(&self) -> &bool {
         self._glacier_base.locked_team()
+    }
+    fn locked_team_mut(&mut self) -> &mut bool {
+        self._glacier_base.locked_team_mut()
     }
     fn spawn_area_radius(&self) -> &f32 {
         self._glacier_base.spawn_area_radius()
     }
+    fn spawn_area_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spawn_area_radius_mut()
+    }
     fn spawn_protection_radius(&self) -> &f32 {
         self._glacier_base.spawn_protection_radius()
+    }
+    fn spawn_protection_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spawn_protection_radius_mut()
     }
     fn spawn_protection_check_all_teams(&self) -> &bool {
         self._glacier_base.spawn_protection_check_all_teams()
     }
+    fn spawn_protection_check_all_teams_mut(&mut self) -> &mut bool {
+        self._glacier_base.spawn_protection_check_all_teams_mut()
+    }
     fn spawn_protection_friendly_killed_count(&self) -> &u32 {
         self._glacier_base.spawn_protection_friendly_killed_count()
+    }
+    fn spawn_protection_friendly_killed_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.spawn_protection_friendly_killed_count_mut()
     }
     fn spawn_protection_friendly_killed_time(&self) -> &f32 {
         self._glacier_base.spawn_protection_friendly_killed_time()
     }
+    fn spawn_protection_friendly_killed_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spawn_protection_friendly_killed_time_mut()
+    }
     fn clear_bangers_on_spawn(&self) -> &bool {
         self._glacier_base.clear_bangers_on_spawn()
+    }
+    fn clear_bangers_on_spawn_mut(&mut self) -> &mut bool {
+        self._glacier_base.clear_bangers_on_spawn_mut()
     }
     fn try_to_spawn_out_of_sight(&self) -> &bool {
         self._glacier_base.try_to_spawn_out_of_sight()
     }
+    fn try_to_spawn_out_of_sight_mut(&mut self) -> &mut bool {
+        self._glacier_base.try_to_spawn_out_of_sight_mut()
+    }
     fn send_weapon_events(&self) -> &bool {
         self._glacier_base.send_weapon_events()
+    }
+    fn send_weapon_events_mut(&mut self) -> &mut bool {
+        self._glacier_base.send_weapon_events_mut()
     }
     fn take_control_on_transform_change(&self) -> &bool {
         self._glacier_base.take_control_on_transform_change()
     }
+    fn take_control_on_transform_change_mut(&mut self) -> &mut bool {
+        self._glacier_base.take_control_on_transform_change_mut()
+    }
     fn return_control_on_idle(&self) -> &bool {
         self._glacier_base.return_control_on_idle()
+    }
+    fn return_control_on_idle_mut(&mut self) -> &mut bool {
+        self._glacier_base.return_control_on_idle_mut()
     }
     fn take_control_entry_index(&self) -> &i32 {
         self._glacier_base.take_control_entry_index()
     }
+    fn take_control_entry_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.take_control_entry_index_mut()
+    }
     fn rotation_yaw(&self) -> &f32 {
         self._glacier_base.rotation_yaw()
+    }
+    fn rotation_yaw_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rotation_yaw_mut()
     }
     fn rotation_pitch(&self) -> &f32 {
         self._glacier_base.rotation_pitch()
     }
+    fn rotation_pitch_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rotation_pitch_mut()
+    }
     fn rotation_roll(&self) -> &f32 {
         self._glacier_base.rotation_roll()
+    }
+    fn rotation_roll_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rotation_roll_mut()
     }
     fn throttle(&self) -> &f32 {
         self._glacier_base.throttle()
     }
+    fn throttle_mut(&mut self) -> &mut f32 {
+        self._glacier_base.throttle_mut()
+    }
     fn time_delta_type(&self) -> &super::entity::TimeDeltaType {
         self._glacier_base.time_delta_type()
     }
+    fn time_delta_type_mut(&mut self) -> &mut super::entity::TimeDeltaType {
+        self._glacier_base.time_delta_type_mut()
+    }
     fn max_unspawn_in_frame(&self) -> &i32 {
         self._glacier_base.max_unspawn_in_frame()
+    }
+    fn max_unspawn_in_frame_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_unspawn_in_frame_mut()
     }
 }
 
@@ -14736,53 +18951,104 @@ impl super::gameplay_sim::GameplaySpawnReferenceObjectDataTrait for SoldierSpawn
     fn extra_spawn_data(&self) -> &Vec<Option<Arc<Mutex<dyn super::gameplay_sim::ExtraSpawnDataTrait>>>> {
         self._glacier_base.extra_spawn_data()
     }
+    fn extra_spawn_data_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::gameplay_sim::ExtraSpawnDataTrait>>>> {
+        self._glacier_base.extra_spawn_data_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
     fn location_name_sid(&self) -> &String {
         self._glacier_base.location_name_sid()
     }
+    fn location_name_sid_mut(&mut self) -> &mut String {
+        self._glacier_base.location_name_sid_mut()
+    }
     fn location_text_sid(&self) -> &String {
         self._glacier_base.location_text_sid()
+    }
+    fn location_text_sid_mut(&mut self) -> &mut String {
+        self._glacier_base.location_text_sid_mut()
     }
     fn initial_auto_spawn(&self) -> &bool {
         self._glacier_base.initial_auto_spawn()
     }
+    fn initial_auto_spawn_mut(&mut self) -> &mut bool {
+        self._glacier_base.initial_auto_spawn_mut()
+    }
     fn auto_spawn(&self) -> &bool {
         self._glacier_base.auto_spawn()
+    }
+    fn auto_spawn_mut(&mut self) -> &mut bool {
+        self._glacier_base.auto_spawn_mut()
     }
     fn queue_spawn_event(&self) -> &bool {
         self._glacier_base.queue_spawn_event()
     }
+    fn queue_spawn_event_mut(&mut self) -> &mut bool {
+        self._glacier_base.queue_spawn_event_mut()
+    }
     fn use_as_spawn_point(&self) -> &bool {
         self._glacier_base.use_as_spawn_point()
+    }
+    fn use_as_spawn_point_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_as_spawn_point_mut()
     }
     fn initial_spawn_delay(&self) -> &f32 {
         self._glacier_base.initial_spawn_delay()
     }
+    fn initial_spawn_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.initial_spawn_delay_mut()
+    }
     fn spawn_delay(&self) -> &f32 {
         self._glacier_base.spawn_delay()
+    }
+    fn spawn_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spawn_delay_mut()
     }
     fn max_count(&self) -> &i32 {
         self._glacier_base.max_count()
     }
+    fn max_count_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_count_mut()
+    }
     fn max_count_simultaneously(&self) -> &i32 {
         self._glacier_base.max_count_simultaneously()
+    }
+    fn max_count_simultaneously_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_count_simultaneously_mut()
     }
     fn total_count_simultaneously_of_type(&self) -> &i32 {
         self._glacier_base.total_count_simultaneously_of_type()
     }
+    fn total_count_simultaneously_of_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.total_count_simultaneously_of_type_mut()
+    }
     fn max_spawn_in_frame(&self) -> &i32 {
         self._glacier_base.max_spawn_in_frame()
+    }
+    fn max_spawn_in_frame_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_spawn_in_frame_mut()
     }
     fn only_send_event_for_human_players(&self) -> &bool {
         self._glacier_base.only_send_event_for_human_players()
     }
+    fn only_send_event_for_human_players_mut(&mut self) -> &mut bool {
+        self._glacier_base.only_send_event_for_human_players_mut()
+    }
     fn controllable_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.controllable_transform()
     }
+    fn controllable_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.controllable_transform_mut()
+    }
     fn controllable_input(&self) -> &super::core::LinearTransform {
         self._glacier_base.controllable_input()
+    }
+    fn controllable_input_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.controllable_input_mut()
     }
 }
 
@@ -14790,38 +19056,71 @@ impl super::entity::SpatialReferenceObjectDataTrait for SoldierSpawnReferenceObj
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
 }
 
 impl super::entity::ReferenceObjectDataTrait for SoldierSpawnReferenceObjectData {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -14832,15 +19131,15 @@ impl super::core::DataBusPeerTrait for SoldierSpawnReferenceObjectData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierSpawnReferenceObjectData {
 }
 
 impl super::core::DataContainerTrait for SoldierSpawnReferenceObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERSPAWNREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14866,6 +19165,15 @@ impl TypeObject for SoldierSpawnReferenceObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14888,21 +19196,32 @@ pub struct CustomizeSoldierEntityData {
 
 pub trait CustomizeSoldierEntityDataTrait: super::game_shared::CustomizeBaseEntityDataTrait {
     fn auto_preload_on_creation(&self) -> &bool;
+    fn auto_preload_on_creation_mut(&mut self) -> &mut bool;
     fn customize_soldier_data(&self) -> &Option<Arc<Mutex<dyn CustomizeSoldierDataTrait>>>;
+    fn customize_soldier_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CustomizeSoldierDataTrait>>>;
 }
 
 impl CustomizeSoldierEntityDataTrait for CustomizeSoldierEntityData {
     fn auto_preload_on_creation(&self) -> &bool {
         &self.auto_preload_on_creation
     }
+    fn auto_preload_on_creation_mut(&mut self) -> &mut bool {
+        &mut self.auto_preload_on_creation
+    }
     fn customize_soldier_data(&self) -> &Option<Arc<Mutex<dyn CustomizeSoldierDataTrait>>> {
         &self.customize_soldier_data
+    }
+    fn customize_soldier_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CustomizeSoldierDataTrait>>> {
+        &mut self.customize_soldier_data
     }
 }
 
 impl super::game_shared::CustomizeBaseEntityDataTrait for CustomizeSoldierEntityData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
 }
 
@@ -14916,15 +19235,15 @@ impl super::core::DataBusPeerTrait for CustomizeSoldierEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CustomizeSoldierEntityData {
 }
 
 impl super::core::DataContainerTrait for CustomizeSoldierEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CUSTOMIZESOLDIERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14962,6 +19281,15 @@ impl TypeObject for CustomizeSoldierEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14983,11 +19311,15 @@ pub struct SoldierSpawnAppearanceTemplateData {
 
 pub trait SoldierSpawnAppearanceTemplateDataTrait: super::core::AssetTrait {
     fn body(&self) -> &u32;
+    fn body_mut(&mut self) -> &mut u32;
 }
 
 impl SoldierSpawnAppearanceTemplateDataTrait for SoldierSpawnAppearanceTemplateData {
     fn body(&self) -> &u32 {
         &self.body
+    }
+    fn body_mut(&mut self) -> &mut u32 {
+        &mut self.body
     }
 }
 
@@ -14995,12 +19327,12 @@ impl super::core::AssetTrait for SoldierSpawnAppearanceTemplateData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierSpawnAppearanceTemplateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERSPAWNAPPEARANCETEMPLATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15032,6 +19364,15 @@ impl TypeObject for SoldierSpawnAppearanceTemplateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15054,15 +19395,23 @@ pub struct SoldierSpawnKitTemplateData {
 
 pub trait SoldierSpawnKitTemplateDataTrait: super::core::AssetTrait {
     fn kit(&self) -> &u32;
+    fn kit_mut(&mut self) -> &mut u32;
     fn main_gun(&self) -> &u32;
+    fn main_gun_mut(&mut self) -> &mut u32;
 }
 
 impl SoldierSpawnKitTemplateDataTrait for SoldierSpawnKitTemplateData {
     fn kit(&self) -> &u32 {
         &self.kit
     }
+    fn kit_mut(&mut self) -> &mut u32 {
+        &mut self.kit
+    }
     fn main_gun(&self) -> &u32 {
         &self.main_gun
+    }
+    fn main_gun_mut(&mut self) -> &mut u32 {
+        &mut self.main_gun
     }
 }
 
@@ -15070,12 +19419,12 @@ impl super::core::AssetTrait for SoldierSpawnKitTemplateData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierSpawnKitTemplateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERSPAWNKITTEMPLATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15113,6 +19462,15 @@ impl TypeObject for SoldierSpawnKitTemplateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15139,31 +19497,55 @@ pub struct SoldierWeaponSwitchingData {
 
 pub trait SoldierWeaponSwitchingDataTrait: super::core::AssetTrait {
     fn switch_map(&self) -> &Vec<WeaponSwitchingMapData>;
+    fn switch_map_mut(&mut self) -> &mut Vec<WeaponSwitchingMapData>;
     fn direct_switch_map(&self) -> &Vec<DirectWeaponSwitchingMapData>;
+    fn direct_switch_map_mut(&mut self) -> &mut Vec<DirectWeaponSwitchingMapData>;
     fn auto_drop_slots(&self) -> &Vec<WeaponSwitchingEnum>;
+    fn auto_drop_slots_mut(&mut self) -> &mut Vec<WeaponSwitchingEnum>;
     fn toggle_action(&self) -> &i32;
+    fn toggle_action_mut(&mut self) -> &mut i32;
     fn toggle_max_hold_time(&self) -> &f32;
+    fn toggle_max_hold_time_mut(&mut self) -> &mut f32;
     fn always_use_max_hold_times(&self) -> &bool;
+    fn always_use_max_hold_times_mut(&mut self) -> &mut bool;
 }
 
 impl SoldierWeaponSwitchingDataTrait for SoldierWeaponSwitchingData {
     fn switch_map(&self) -> &Vec<WeaponSwitchingMapData> {
         &self.switch_map
     }
+    fn switch_map_mut(&mut self) -> &mut Vec<WeaponSwitchingMapData> {
+        &mut self.switch_map
+    }
     fn direct_switch_map(&self) -> &Vec<DirectWeaponSwitchingMapData> {
         &self.direct_switch_map
+    }
+    fn direct_switch_map_mut(&mut self) -> &mut Vec<DirectWeaponSwitchingMapData> {
+        &mut self.direct_switch_map
     }
     fn auto_drop_slots(&self) -> &Vec<WeaponSwitchingEnum> {
         &self.auto_drop_slots
     }
+    fn auto_drop_slots_mut(&mut self) -> &mut Vec<WeaponSwitchingEnum> {
+        &mut self.auto_drop_slots
+    }
     fn toggle_action(&self) -> &i32 {
         &self.toggle_action
+    }
+    fn toggle_action_mut(&mut self) -> &mut i32 {
+        &mut self.toggle_action
     }
     fn toggle_max_hold_time(&self) -> &f32 {
         &self.toggle_max_hold_time
     }
+    fn toggle_max_hold_time_mut(&mut self) -> &mut f32 {
+        &mut self.toggle_max_hold_time
+    }
     fn always_use_max_hold_times(&self) -> &bool {
         &self.always_use_max_hold_times
+    }
+    fn always_use_max_hold_times_mut(&mut self) -> &mut bool {
+        &mut self.always_use_max_hold_times
     }
 }
 
@@ -15171,12 +19553,12 @@ impl super::core::AssetTrait for SoldierWeaponSwitchingData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponSwitchingData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONSWITCHINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15238,6 +19620,15 @@ impl TypeObject for SoldierWeaponSwitchingData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15265,39 +19656,71 @@ pub struct DirectWeaponSwitchingMapData {
 
 pub trait DirectWeaponSwitchingMapDataTrait: TypeObject {
     fn action(&self) -> &i32;
+    fn action_mut(&mut self) -> &mut i32;
     fn max_hold_time(&self) -> &f32;
+    fn max_hold_time_mut(&mut self) -> &mut f32;
     fn to_weapon(&self) -> &WeaponSwitchingEnum;
+    fn to_weapon_mut(&mut self) -> &mut WeaponSwitchingEnum;
     fn fire_and_switch_back_to_prev(&self) -> &bool;
+    fn fire_and_switch_back_to_prev_mut(&mut self) -> &mut bool;
     fn fire_until_action_released(&self) -> &bool;
+    fn fire_until_action_released_mut(&mut self) -> &mut bool;
     fn switch_back_to_prev_max_time_pressed(&self) -> &f32;
+    fn switch_back_to_prev_max_time_pressed_mut(&mut self) -> &mut f32;
     fn use_quick_switch(&self) -> &bool;
+    fn use_quick_switch_mut(&mut self) -> &mut bool;
     fn prevent_melee_repeat_time(&self) -> &f32;
+    fn prevent_melee_repeat_time_mut(&mut self) -> &mut f32;
 }
 
 impl DirectWeaponSwitchingMapDataTrait for DirectWeaponSwitchingMapData {
     fn action(&self) -> &i32 {
         &self.action
     }
+    fn action_mut(&mut self) -> &mut i32 {
+        &mut self.action
+    }
     fn max_hold_time(&self) -> &f32 {
         &self.max_hold_time
+    }
+    fn max_hold_time_mut(&mut self) -> &mut f32 {
+        &mut self.max_hold_time
     }
     fn to_weapon(&self) -> &WeaponSwitchingEnum {
         &self.to_weapon
     }
+    fn to_weapon_mut(&mut self) -> &mut WeaponSwitchingEnum {
+        &mut self.to_weapon
+    }
     fn fire_and_switch_back_to_prev(&self) -> &bool {
         &self.fire_and_switch_back_to_prev
+    }
+    fn fire_and_switch_back_to_prev_mut(&mut self) -> &mut bool {
+        &mut self.fire_and_switch_back_to_prev
     }
     fn fire_until_action_released(&self) -> &bool {
         &self.fire_until_action_released
     }
+    fn fire_until_action_released_mut(&mut self) -> &mut bool {
+        &mut self.fire_until_action_released
+    }
     fn switch_back_to_prev_max_time_pressed(&self) -> &f32 {
         &self.switch_back_to_prev_max_time_pressed
+    }
+    fn switch_back_to_prev_max_time_pressed_mut(&mut self) -> &mut f32 {
+        &mut self.switch_back_to_prev_max_time_pressed
     }
     fn use_quick_switch(&self) -> &bool {
         &self.use_quick_switch
     }
+    fn use_quick_switch_mut(&mut self) -> &mut bool {
+        &mut self.use_quick_switch
+    }
     fn prevent_melee_repeat_time(&self) -> &f32 {
         &self.prevent_melee_repeat_time
+    }
+    fn prevent_melee_repeat_time_mut(&mut self) -> &mut f32 {
+        &mut self.prevent_melee_repeat_time
     }
 }
 
@@ -15371,6 +19794,15 @@ impl TypeObject for DirectWeaponSwitchingMapData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15395,27 +19827,47 @@ pub struct WeaponSwitchingMapData {
 
 pub trait WeaponSwitchingMapDataTrait: TypeObject {
     fn from_weapon(&self) -> &WeaponSwitchingEnum;
+    fn from_weapon_mut(&mut self) -> &mut WeaponSwitchingEnum;
     fn action(&self) -> &i32;
+    fn action_mut(&mut self) -> &mut i32;
     fn max_hold_time(&self) -> &f32;
+    fn max_hold_time_mut(&mut self) -> &mut f32;
     fn to_weapon(&self) -> &Vec<WeaponSwitchingEnum>;
+    fn to_weapon_mut(&mut self) -> &mut Vec<WeaponSwitchingEnum>;
     fn fire_and_switch_back_to_prev(&self) -> &bool;
+    fn fire_and_switch_back_to_prev_mut(&mut self) -> &mut bool;
 }
 
 impl WeaponSwitchingMapDataTrait for WeaponSwitchingMapData {
     fn from_weapon(&self) -> &WeaponSwitchingEnum {
         &self.from_weapon
     }
+    fn from_weapon_mut(&mut self) -> &mut WeaponSwitchingEnum {
+        &mut self.from_weapon
+    }
     fn action(&self) -> &i32 {
         &self.action
+    }
+    fn action_mut(&mut self) -> &mut i32 {
+        &mut self.action
     }
     fn max_hold_time(&self) -> &f32 {
         &self.max_hold_time
     }
+    fn max_hold_time_mut(&mut self) -> &mut f32 {
+        &mut self.max_hold_time
+    }
     fn to_weapon(&self) -> &Vec<WeaponSwitchingEnum> {
         &self.to_weapon
     }
+    fn to_weapon_mut(&mut self) -> &mut Vec<WeaponSwitchingEnum> {
+        &mut self.to_weapon
+    }
     fn fire_and_switch_back_to_prev(&self) -> &bool {
         &self.fire_and_switch_back_to_prev
+    }
+    fn fire_and_switch_back_to_prev_mut(&mut self) -> &mut bool {
+        &mut self.fire_and_switch_back_to_prev
     }
 }
 
@@ -15471,6 +19923,15 @@ impl TypeObject for WeaponSwitchingMapData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15521,6 +19982,15 @@ impl TypeObject for WeaponSwitchingEnum {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15565,103 +20035,199 @@ pub struct SoldierInputSettings {
 
 pub trait SoldierInputSettingsTrait: super::input_shared::BaseInputSettingsTrait {
     fn toggle_pose_action(&self) -> &i32;
+    fn toggle_pose_action_mut(&mut self) -> &mut i32;
     fn crouch_action(&self) -> &i32;
+    fn crouch_action_mut(&mut self) -> &mut i32;
     fn crouch_and_hold_action(&self) -> &i32;
+    fn crouch_and_hold_action_mut(&mut self) -> &mut i32;
     fn pickup_interaction_action(&self) -> &i32;
+    fn pickup_interaction_action_mut(&mut self) -> &mut i32;
     fn pickup_interaction_action_keyboard(&self) -> &i32;
+    fn pickup_interaction_action_keyboard_mut(&mut self) -> &mut i32;
     fn prone_to_stand_on_jump(&self) -> &bool;
+    fn prone_to_stand_on_jump_mut(&mut self) -> &mut bool;
     fn stand_automatically_if_sprinting(&self) -> &bool;
+    fn stand_automatically_if_sprinting_mut(&mut self) -> &mut bool;
     fn sprint_release_time(&self) -> &f32;
+    fn sprint_release_time_mut(&mut self) -> &mut f32;
     fn throttle_input_required_for_sprint(&self) -> &f32;
+    fn throttle_input_required_for_sprint_mut(&mut self) -> &mut f32;
     fn disable_crouch(&self) -> &bool;
+    fn disable_crouch_mut(&mut self) -> &mut bool;
     fn disable_prone(&self) -> &bool;
+    fn disable_prone_mut(&mut self) -> &mut bool;
     fn disable_crawling_while_firing(&self) -> &bool;
+    fn disable_crawling_while_firing_mut(&mut self) -> &mut bool;
     fn disable_crawling_while_reloading(&self) -> &bool;
+    fn disable_crawling_while_reloading_mut(&mut self) -> &mut bool;
     fn disable_firing_while_deploying_bipod(&self) -> &bool;
+    fn disable_firing_while_deploying_bipod_mut(&mut self) -> &mut bool;
     fn disable_firing_while_jumping(&self) -> &bool;
+    fn disable_firing_while_jumping_mut(&mut self) -> &mut bool;
     fn disable_sprinting_while_reloading(&self) -> &bool;
+    fn disable_sprinting_while_reloading_mut(&mut self) -> &mut bool;
     fn disable_sprinting_while_firing(&self) -> &bool;
+    fn disable_sprinting_while_firing_mut(&mut self) -> &mut bool;
     fn double_tap_sprint_enabled(&self) -> &bool;
+    fn double_tap_sprint_enabled_mut(&mut self) -> &mut bool;
     fn enable_sprint_to_crouch_transition(&self) -> &bool;
+    fn enable_sprint_to_crouch_transition_mut(&mut self) -> &mut bool;
     fn stop_sprinting_when_releasing_throttle(&self) -> &bool;
+    fn stop_sprinting_when_releasing_throttle_mut(&mut self) -> &mut bool;
     fn stop_sprinting_when_releasing_sprint(&self) -> &bool;
+    fn stop_sprinting_when_releasing_sprint_mut(&mut self) -> &mut bool;
     fn wait_for_sprint_release_before_sprint_again(&self) -> &bool;
+    fn wait_for_sprint_release_before_sprint_again_mut(&mut self) -> &mut bool;
     fn firing_disabling_transitions(&self) -> &Vec<PoseTransition>;
+    fn firing_disabling_transitions_mut(&mut self) -> &mut Vec<PoseTransition>;
     fn enter_vehicle_hold_time(&self) -> &f32;
+    fn enter_vehicle_hold_time_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierInputSettingsTrait for SoldierInputSettings {
     fn toggle_pose_action(&self) -> &i32 {
         &self.toggle_pose_action
     }
+    fn toggle_pose_action_mut(&mut self) -> &mut i32 {
+        &mut self.toggle_pose_action
+    }
     fn crouch_action(&self) -> &i32 {
         &self.crouch_action
+    }
+    fn crouch_action_mut(&mut self) -> &mut i32 {
+        &mut self.crouch_action
     }
     fn crouch_and_hold_action(&self) -> &i32 {
         &self.crouch_and_hold_action
     }
+    fn crouch_and_hold_action_mut(&mut self) -> &mut i32 {
+        &mut self.crouch_and_hold_action
+    }
     fn pickup_interaction_action(&self) -> &i32 {
         &self.pickup_interaction_action
+    }
+    fn pickup_interaction_action_mut(&mut self) -> &mut i32 {
+        &mut self.pickup_interaction_action
     }
     fn pickup_interaction_action_keyboard(&self) -> &i32 {
         &self.pickup_interaction_action_keyboard
     }
+    fn pickup_interaction_action_keyboard_mut(&mut self) -> &mut i32 {
+        &mut self.pickup_interaction_action_keyboard
+    }
     fn prone_to_stand_on_jump(&self) -> &bool {
         &self.prone_to_stand_on_jump
+    }
+    fn prone_to_stand_on_jump_mut(&mut self) -> &mut bool {
+        &mut self.prone_to_stand_on_jump
     }
     fn stand_automatically_if_sprinting(&self) -> &bool {
         &self.stand_automatically_if_sprinting
     }
+    fn stand_automatically_if_sprinting_mut(&mut self) -> &mut bool {
+        &mut self.stand_automatically_if_sprinting
+    }
     fn sprint_release_time(&self) -> &f32 {
         &self.sprint_release_time
+    }
+    fn sprint_release_time_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_release_time
     }
     fn throttle_input_required_for_sprint(&self) -> &f32 {
         &self.throttle_input_required_for_sprint
     }
+    fn throttle_input_required_for_sprint_mut(&mut self) -> &mut f32 {
+        &mut self.throttle_input_required_for_sprint
+    }
     fn disable_crouch(&self) -> &bool {
         &self.disable_crouch
+    }
+    fn disable_crouch_mut(&mut self) -> &mut bool {
+        &mut self.disable_crouch
     }
     fn disable_prone(&self) -> &bool {
         &self.disable_prone
     }
+    fn disable_prone_mut(&mut self) -> &mut bool {
+        &mut self.disable_prone
+    }
     fn disable_crawling_while_firing(&self) -> &bool {
         &self.disable_crawling_while_firing
+    }
+    fn disable_crawling_while_firing_mut(&mut self) -> &mut bool {
+        &mut self.disable_crawling_while_firing
     }
     fn disable_crawling_while_reloading(&self) -> &bool {
         &self.disable_crawling_while_reloading
     }
+    fn disable_crawling_while_reloading_mut(&mut self) -> &mut bool {
+        &mut self.disable_crawling_while_reloading
+    }
     fn disable_firing_while_deploying_bipod(&self) -> &bool {
         &self.disable_firing_while_deploying_bipod
+    }
+    fn disable_firing_while_deploying_bipod_mut(&mut self) -> &mut bool {
+        &mut self.disable_firing_while_deploying_bipod
     }
     fn disable_firing_while_jumping(&self) -> &bool {
         &self.disable_firing_while_jumping
     }
+    fn disable_firing_while_jumping_mut(&mut self) -> &mut bool {
+        &mut self.disable_firing_while_jumping
+    }
     fn disable_sprinting_while_reloading(&self) -> &bool {
         &self.disable_sprinting_while_reloading
+    }
+    fn disable_sprinting_while_reloading_mut(&mut self) -> &mut bool {
+        &mut self.disable_sprinting_while_reloading
     }
     fn disable_sprinting_while_firing(&self) -> &bool {
         &self.disable_sprinting_while_firing
     }
+    fn disable_sprinting_while_firing_mut(&mut self) -> &mut bool {
+        &mut self.disable_sprinting_while_firing
+    }
     fn double_tap_sprint_enabled(&self) -> &bool {
         &self.double_tap_sprint_enabled
+    }
+    fn double_tap_sprint_enabled_mut(&mut self) -> &mut bool {
+        &mut self.double_tap_sprint_enabled
     }
     fn enable_sprint_to_crouch_transition(&self) -> &bool {
         &self.enable_sprint_to_crouch_transition
     }
+    fn enable_sprint_to_crouch_transition_mut(&mut self) -> &mut bool {
+        &mut self.enable_sprint_to_crouch_transition
+    }
     fn stop_sprinting_when_releasing_throttle(&self) -> &bool {
         &self.stop_sprinting_when_releasing_throttle
+    }
+    fn stop_sprinting_when_releasing_throttle_mut(&mut self) -> &mut bool {
+        &mut self.stop_sprinting_when_releasing_throttle
     }
     fn stop_sprinting_when_releasing_sprint(&self) -> &bool {
         &self.stop_sprinting_when_releasing_sprint
     }
+    fn stop_sprinting_when_releasing_sprint_mut(&mut self) -> &mut bool {
+        &mut self.stop_sprinting_when_releasing_sprint
+    }
     fn wait_for_sprint_release_before_sprint_again(&self) -> &bool {
         &self.wait_for_sprint_release_before_sprint_again
+    }
+    fn wait_for_sprint_release_before_sprint_again_mut(&mut self) -> &mut bool {
+        &mut self.wait_for_sprint_release_before_sprint_again
     }
     fn firing_disabling_transitions(&self) -> &Vec<PoseTransition> {
         &self.firing_disabling_transitions
     }
+    fn firing_disabling_transitions_mut(&mut self) -> &mut Vec<PoseTransition> {
+        &mut self.firing_disabling_transitions
+    }
     fn enter_vehicle_hold_time(&self) -> &f32 {
         &self.enter_vehicle_hold_time
+    }
+    fn enter_vehicle_hold_time_mut(&mut self) -> &mut f32 {
+        &mut self.enter_vehicle_hold_time
     }
 }
 
@@ -15669,9 +20235,6 @@ impl super::input_shared::BaseInputSettingsTrait for SoldierInputSettings {
 }
 
 impl super::core::DataContainerTrait for SoldierInputSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERINPUTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15841,6 +20404,15 @@ impl TypeObject for SoldierInputSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15883,6 +20455,15 @@ impl TypeObject for PoseTransition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15920,6 +20501,15 @@ impl TypeObject for SoldierBuffId {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -15960,6 +20550,15 @@ impl TypeObject for PlayerRole {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15984,23 +20583,39 @@ pub struct SoldierHealthComponentData {
 
 pub trait SoldierHealthComponentDataTrait: super::game_shared::CharacterHealthComponentDataTrait {
     fn under_water_hold_breath_time(&self) -> &f32;
+    fn under_water_hold_breath_time_mut(&mut self) -> &mut f32;
     fn under_water_breath_regeneration_time(&self) -> &f32;
+    fn under_water_breath_regeneration_time_mut(&mut self) -> &mut f32;
     fn under_water_damage_table(&self) -> &Vec<DamageEntryData>;
+    fn under_water_damage_table_mut(&mut self) -> &mut Vec<DamageEntryData>;
     fn under_water_clear_spotting_time(&self) -> &f32;
+    fn under_water_clear_spotting_time_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierHealthComponentDataTrait for SoldierHealthComponentData {
     fn under_water_hold_breath_time(&self) -> &f32 {
         &self.under_water_hold_breath_time
     }
+    fn under_water_hold_breath_time_mut(&mut self) -> &mut f32 {
+        &mut self.under_water_hold_breath_time
+    }
     fn under_water_breath_regeneration_time(&self) -> &f32 {
         &self.under_water_breath_regeneration_time
+    }
+    fn under_water_breath_regeneration_time_mut(&mut self) -> &mut f32 {
+        &mut self.under_water_breath_regeneration_time
     }
     fn under_water_damage_table(&self) -> &Vec<DamageEntryData> {
         &self.under_water_damage_table
     }
+    fn under_water_damage_table_mut(&mut self) -> &mut Vec<DamageEntryData> {
+        &mut self.under_water_damage_table
+    }
     fn under_water_clear_spotting_time(&self) -> &f32 {
         &self.under_water_clear_spotting_time
+    }
+    fn under_water_clear_spotting_time_mut(&mut self) -> &mut f32 {
+        &mut self.under_water_clear_spotting_time
     }
 }
 
@@ -16008,8 +20623,14 @@ impl super::game_shared::CharacterHealthComponentDataTrait for SoldierHealthComp
     fn max_health(&self) -> &f32 {
         self._glacier_base.max_health()
     }
+    fn max_health_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_health_mut()
+    }
     fn time_for_corpse(&self) -> &f32 {
         self._glacier_base.time_for_corpse()
+    }
+    fn time_for_corpse_mut(&mut self) -> &mut f32 {
+        self._glacier_base.time_for_corpse_mut()
     }
 }
 
@@ -16026,17 +20647,32 @@ impl super::entity::ComponentDataTrait for SoldierHealthComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -16047,15 +20683,15 @@ impl super::core::DataBusPeerTrait for SoldierHealthComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierHealthComponentData {
 }
 
 impl super::core::DataContainerTrait for SoldierHealthComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERHEALTHCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16105,6 +20741,15 @@ impl TypeObject for SoldierHealthComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16126,15 +20771,23 @@ pub struct DamageEntryData {
 
 pub trait DamageEntryDataTrait: TypeObject {
     fn damage(&self) -> &f32;
+    fn damage_mut(&mut self) -> &mut f32;
     fn timeout(&self) -> &f32;
+    fn timeout_mut(&mut self) -> &mut f32;
 }
 
 impl DamageEntryDataTrait for DamageEntryData {
     fn damage(&self) -> &f32 {
         &self.damage
     }
+    fn damage_mut(&mut self) -> &mut f32 {
+        &mut self.damage
+    }
     fn timeout(&self) -> &f32 {
         &self.timeout
+    }
+    fn timeout_mut(&mut self) -> &mut f32 {
+        &mut self.timeout
     }
 }
 
@@ -16172,6 +20825,15 @@ impl TypeObject for DamageEntryData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16194,15 +20856,23 @@ pub struct SoldierPhysicsComponentData {
 
 pub trait SoldierPhysicsComponentDataTrait: super::game_shared::CharacterMasterPhysicsComponentDataTrait {
     fn radius_to_predict_collision_on_characters(&self) -> &f32;
+    fn radius_to_predict_collision_on_characters_mut(&mut self) -> &mut f32;
     fn proximity_tracker_data(&self) -> &Option<Arc<Mutex<dyn super::physics::ProximityTrackerDataTrait>>>;
+    fn proximity_tracker_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::physics::ProximityTrackerDataTrait>>>;
 }
 
 impl SoldierPhysicsComponentDataTrait for SoldierPhysicsComponentData {
     fn radius_to_predict_collision_on_characters(&self) -> &f32 {
         &self.radius_to_predict_collision_on_characters
     }
+    fn radius_to_predict_collision_on_characters_mut(&mut self) -> &mut f32 {
+        &mut self.radius_to_predict_collision_on_characters
+    }
     fn proximity_tracker_data(&self) -> &Option<Arc<Mutex<dyn super::physics::ProximityTrackerDataTrait>>> {
         &self.proximity_tracker_data
+    }
+    fn proximity_tracker_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::physics::ProximityTrackerDataTrait>>> {
+        &mut self.proximity_tracker_data
     }
 }
 
@@ -16216,8 +20886,14 @@ impl super::gameplay_sim::GamePhysicsComponentDataTrait for SoldierPhysicsCompon
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
         self._glacier_base.effect_parameters()
+    }
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+        self._glacier_base.effect_parameters_mut()
     }
 }
 
@@ -16225,20 +20901,38 @@ impl super::physics::PhysicsComponentDataTrait for SoldierPhysicsComponentData {
     fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
         self._glacier_base.physics_bodies()
     }
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
+        self._glacier_base.physics_bodies_mut()
+    }
     fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
         self._glacier_base.physics_constraints()
+    }
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
+        self._glacier_base.physics_constraints_mut()
     }
     fn parts(&self) -> &Vec<super::physics::PhysicsPartData> {
         self._glacier_base.parts()
     }
+    fn parts_mut(&mut self) -> &mut Vec<super::physics::PhysicsPartData> {
+        self._glacier_base.parts_mut()
+    }
     fn movable_parts(&self) -> &bool {
         self._glacier_base.movable_parts()
+    }
+    fn movable_parts_mut(&mut self) -> &mut bool {
+        self._glacier_base.movable_parts_mut()
     }
     fn internal_collision_disabling(&self) -> &super::physics::InternalCollisionDisablingBehavior {
         self._glacier_base.internal_collision_disabling()
     }
+    fn internal_collision_disabling_mut(&mut self) -> &mut super::physics::InternalCollisionDisablingBehavior {
+        self._glacier_base.internal_collision_disabling_mut()
+    }
     fn enable_collision_events(&self) -> &bool {
         self._glacier_base.enable_collision_events()
+    }
+    fn enable_collision_events_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_collision_events_mut()
     }
 }
 
@@ -16246,17 +20940,32 @@ impl super::entity::ComponentDataTrait for SoldierPhysicsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -16267,15 +20976,15 @@ impl super::core::DataBusPeerTrait for SoldierPhysicsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierPhysicsComponentData {
 }
 
 impl super::core::DataContainerTrait for SoldierPhysicsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16313,6 +21022,15 @@ impl TypeObject for SoldierPhysicsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16339,31 +21057,55 @@ pub struct CustomizeSoldierData {
 
 pub trait CustomizeSoldierDataTrait: super::game_shared::CustomizeCharacterDataTrait {
     fn weapons(&self) -> &Vec<UnlockWeaponAndSlot>;
+    fn weapons_mut(&mut self) -> &mut Vec<UnlockWeaponAndSlot>;
     fn active_slot(&self) -> &super::weapon_shared::WeaponSlot;
+    fn active_slot_mut(&mut self) -> &mut super::weapon_shared::WeaponSlot;
     fn keep_current_active_slot(&self) -> &bool;
+    fn keep_current_active_slot_mut(&mut self) -> &mut bool;
     fn remove_all_existing_weapons(&self) -> &bool;
+    fn remove_all_existing_weapons_mut(&mut self) -> &mut bool;
     fn death_pickup(&self) -> &Option<Arc<Mutex<dyn PickupEntityAssetTrait>>>;
+    fn death_pickup_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PickupEntityAssetTrait>>>;
     fn disable_death_pickup(&self) -> &bool;
+    fn disable_death_pickup_mut(&mut self) -> &mut bool;
 }
 
 impl CustomizeSoldierDataTrait for CustomizeSoldierData {
     fn weapons(&self) -> &Vec<UnlockWeaponAndSlot> {
         &self.weapons
     }
+    fn weapons_mut(&mut self) -> &mut Vec<UnlockWeaponAndSlot> {
+        &mut self.weapons
+    }
     fn active_slot(&self) -> &super::weapon_shared::WeaponSlot {
         &self.active_slot
+    }
+    fn active_slot_mut(&mut self) -> &mut super::weapon_shared::WeaponSlot {
+        &mut self.active_slot
     }
     fn keep_current_active_slot(&self) -> &bool {
         &self.keep_current_active_slot
     }
+    fn keep_current_active_slot_mut(&mut self) -> &mut bool {
+        &mut self.keep_current_active_slot
+    }
     fn remove_all_existing_weapons(&self) -> &bool {
         &self.remove_all_existing_weapons
+    }
+    fn remove_all_existing_weapons_mut(&mut self) -> &mut bool {
+        &mut self.remove_all_existing_weapons
     }
     fn death_pickup(&self) -> &Option<Arc<Mutex<dyn PickupEntityAssetTrait>>> {
         &self.death_pickup
     }
+    fn death_pickup_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PickupEntityAssetTrait>>> {
+        &mut self.death_pickup
+    }
     fn disable_death_pickup(&self) -> &bool {
         &self.disable_death_pickup
+    }
+    fn disable_death_pickup_mut(&mut self) -> &mut bool {
+        &mut self.disable_death_pickup
     }
 }
 
@@ -16371,20 +21113,38 @@ impl super::game_shared::CustomizeCharacterDataTrait for CustomizeSoldierData {
     fn restore_to_original_visual_state(&self) -> &bool {
         self._glacier_base.restore_to_original_visual_state()
     }
+    fn restore_to_original_visual_state_mut(&mut self) -> &mut bool {
+        self._glacier_base.restore_to_original_visual_state_mut()
+    }
     fn clear_visual_state(&self) -> &bool {
         self._glacier_base.clear_visual_state()
+    }
+    fn clear_visual_state_mut(&mut self) -> &mut bool {
+        self._glacier_base.clear_visual_state_mut()
     }
     fn visual_groups(&self) -> &Vec<super::game_shared::CustomizeVisual> {
         self._glacier_base.visual_groups()
     }
+    fn visual_groups_mut(&mut self) -> &mut Vec<super::game_shared::CustomizeVisual> {
+        self._glacier_base.visual_groups_mut()
+    }
     fn unlocks(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>> {
         self._glacier_base.unlocks()
+    }
+    fn unlocks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>>> {
+        self._glacier_base.unlocks_mut()
     }
     fn override_max_health(&self) -> &f32 {
         self._glacier_base.override_max_health()
     }
+    fn override_max_health_mut(&mut self) -> &mut f32 {
+        self._glacier_base.override_max_health_mut()
+    }
     fn override_critical_health_threshold(&self) -> &f32 {
         self._glacier_base.override_critical_health_threshold()
+    }
+    fn override_critical_health_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.override_critical_health_threshold_mut()
     }
 }
 
@@ -16392,12 +21152,12 @@ impl super::core::AssetTrait for CustomizeSoldierData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CustomizeSoldierData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CUSTOMIZESOLDIERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16459,6 +21219,15 @@ impl TypeObject for CustomizeSoldierData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16482,19 +21251,31 @@ pub struct SoldierSettings {
 
 pub trait SoldierSettingsTrait: super::core::SystemSettingsTrait {
     fn soldier_weapon_switching(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponSwitchingDataTrait>>>;
+    fn soldier_weapon_switching_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponSwitchingDataTrait>>>;
     fn max_number_dropped_pickups(&self) -> &u32;
+    fn max_number_dropped_pickups_mut(&mut self) -> &mut u32;
     fn max_visible_pickup_weapons(&self) -> &u32;
+    fn max_visible_pickup_weapons_mut(&mut self) -> &mut u32;
 }
 
 impl SoldierSettingsTrait for SoldierSettings {
     fn soldier_weapon_switching(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponSwitchingDataTrait>>> {
         &self.soldier_weapon_switching
     }
+    fn soldier_weapon_switching_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponSwitchingDataTrait>>> {
+        &mut self.soldier_weapon_switching
+    }
     fn max_number_dropped_pickups(&self) -> &u32 {
         &self.max_number_dropped_pickups
     }
+    fn max_number_dropped_pickups_mut(&mut self) -> &mut u32 {
+        &mut self.max_number_dropped_pickups
+    }
     fn max_visible_pickup_weapons(&self) -> &u32 {
         &self.max_visible_pickup_weapons
+    }
+    fn max_visible_pickup_weapons_mut(&mut self) -> &mut u32 {
+        &mut self.max_visible_pickup_weapons
     }
 }
 
@@ -16502,12 +21283,12 @@ impl super::core::SystemSettingsTrait for SoldierSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16550,6 +21331,15 @@ impl TypeObject for SoldierSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -16596,6 +21386,15 @@ impl TypeObject for ServerSoldierOnActionStateChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -16629,6 +21428,15 @@ impl TypeObject for SoldierToComponentsOnClearSpottingMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16664,6 +21472,15 @@ impl TypeObject for ClientSoldierToComponentsOnHandleDamageMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -16697,6 +21514,15 @@ impl TypeObject for ClientSoldierToComponentsOnImpulseMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16732,6 +21558,15 @@ impl TypeObject for SoldierToComponentsOnActionStateChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -16766,6 +21601,15 @@ impl TypeObject for SoldierToComponentsOnIncapableMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -16799,6 +21643,15 @@ impl TypeObject for SoldierToComponentsOnCustomizeSoldierMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16843,143 +21696,279 @@ pub struct SoldierEntityData {
 
 pub trait SoldierEntityDataTrait: super::game_shared::CharacterEntityDataTrait {
     fn foot_material_pair(&self) -> &super::entity::MaterialDecl;
+    fn foot_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn head_material_pair(&self) -> &super::entity::MaterialDecl;
+    fn head_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn bone_fake_physics(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::BoneFakePhysicsDataTrait>>>>;
+    fn bone_fake_physics_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::BoneFakePhysicsDataTrait>>>>;
     fn auto_aim(&self) -> &Option<Arc<Mutex<dyn SoldierAutoAimDataTrait>>>;
+    fn auto_aim_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAutoAimDataTrait>>>;
     fn aiming_constraints(&self) -> &Option<Arc<Mutex<dyn SoldierAimingConstraintsDataTrait>>>;
+    fn aiming_constraints_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimingConstraintsDataTrait>>>;
     fn head_collision(&self) -> &Option<Arc<Mutex<dyn SoldierHeadCollisionDataTrait>>>;
+    fn head_collision_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierHeadCollisionDataTrait>>>;
     fn character_physics(&self) -> &Option<Arc<Mutex<dyn super::physics::CharacterPhysicsDataTrait>>>;
+    fn character_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::physics::CharacterPhysicsDataTrait>>>;
     fn sprint_settings(&self) -> &Option<Arc<Mutex<dyn SoldierSprintSettingsDataTrait>>>;
+    fn sprint_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierSprintSettingsDataTrait>>>;
     fn hidable_mesh_parts(&self) -> &Vec<HidableSoldierMeshWeaponPart>;
+    fn hidable_mesh_parts_mut(&mut self) -> &mut Vec<HidableSoldierMeshWeaponPart>;
     fn impulse_reaction_time(&self) -> &f32;
+    fn impulse_reaction_time_mut(&mut self) -> &mut f32;
     fn show_weapon_when_dead(&self) -> &bool;
+    fn show_weapon_when_dead_mut(&mut self) -> &mut bool;
     fn health_module(&self) -> &Option<Arc<Mutex<dyn SoldierHealthModuleDataTrait>>>;
+    fn health_module_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierHealthModuleDataTrait>>>;
     fn abort_spawn_invisibility_inputs(&self) -> &Vec<i32>;
+    fn abort_spawn_invisibility_inputs_mut(&mut self) -> &mut Vec<i32>;
     fn enable_groundmap_lighting(&self) -> &bool;
+    fn enable_groundmap_lighting_mut(&mut self) -> &mut bool;
     fn lower_gun_on_own_team(&self) -> &bool;
+    fn lower_gun_on_own_team_mut(&mut self) -> &mut bool;
     fn proximity_check(&self) -> &bool;
+    fn proximity_check_mut(&mut self) -> &mut bool;
     fn free_space_check(&self) -> &bool;
+    fn free_space_check_mut(&mut self) -> &mut bool;
     fn breath_control(&self) -> &Vec<Option<Arc<Mutex<dyn BreathControlDataTrait>>>>;
+    fn breath_control_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn BreathControlDataTrait>>>>;
     fn collision_info(&self) -> &Option<Arc<Mutex<dyn CollisionDataTrait>>>;
+    fn collision_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CollisionDataTrait>>>;
     fn f_l_i_r_value(&self) -> &f32;
+    fn f_l_i_r_value_mut(&mut self) -> &mut f32;
     fn f_l_i_r_key_color(&self) -> &super::core::Vec3;
+    fn f_l_i_r_key_color_mut(&mut self) -> &mut super::core::Vec3;
     fn explosion_damage_modifier(&self) -> &f32;
+    fn explosion_damage_modifier_mut(&mut self) -> &mut f32;
     fn regeneration_delay_modifier(&self) -> &f32;
+    fn regeneration_delay_modifier_mut(&mut self) -> &mut f32;
     fn fall_damage_threshold(&self) -> &f32;
+    fn fall_damage_threshold_mut(&mut self) -> &mut f32;
     fn collision_enabled(&self) -> &bool;
+    fn collision_enabled_mut(&mut self) -> &mut bool;
     fn physics_controlled(&self) -> &bool;
+    fn physics_controlled_mut(&mut self) -> &mut bool;
     fn is_pushable(&self) -> &bool;
+    fn is_pushable_mut(&mut self) -> &mut bool;
     fn human_player_controlled(&self) -> &bool;
+    fn human_player_controlled_mut(&mut self) -> &mut bool;
     fn blueprint_name_hash(&self) -> &u32;
+    fn blueprint_name_hash_mut(&mut self) -> &mut u32;
     fn interactive_man_down_allowed(&self) -> &bool;
+    fn interactive_man_down_allowed_mut(&mut self) -> &mut bool;
     fn show_nametag(&self) -> &bool;
+    fn show_nametag_mut(&mut self) -> &mut bool;
     fn visual_cull_screen_area(&self) -> &f32;
+    fn visual_cull_screen_area_mut(&mut self) -> &mut f32;
     fn aim_follow_eye_transform(&self) -> &bool;
+    fn aim_follow_eye_transform_mut(&mut self) -> &mut bool;
     fn force_disable_render_first_person_in_foreground(&self) -> &bool;
+    fn force_disable_render_first_person_in_foreground_mut(&mut self) -> &mut bool;
 }
 
 impl SoldierEntityDataTrait for SoldierEntityData {
     fn foot_material_pair(&self) -> &super::entity::MaterialDecl {
         &self.foot_material_pair
     }
+    fn foot_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.foot_material_pair
+    }
     fn head_material_pair(&self) -> &super::entity::MaterialDecl {
         &self.head_material_pair
+    }
+    fn head_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.head_material_pair
     }
     fn bone_fake_physics(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::BoneFakePhysicsDataTrait>>>> {
         &self.bone_fake_physics
     }
+    fn bone_fake_physics_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::BoneFakePhysicsDataTrait>>>> {
+        &mut self.bone_fake_physics
+    }
     fn auto_aim(&self) -> &Option<Arc<Mutex<dyn SoldierAutoAimDataTrait>>> {
         &self.auto_aim
+    }
+    fn auto_aim_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAutoAimDataTrait>>> {
+        &mut self.auto_aim
     }
     fn aiming_constraints(&self) -> &Option<Arc<Mutex<dyn SoldierAimingConstraintsDataTrait>>> {
         &self.aiming_constraints
     }
+    fn aiming_constraints_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimingConstraintsDataTrait>>> {
+        &mut self.aiming_constraints
+    }
     fn head_collision(&self) -> &Option<Arc<Mutex<dyn SoldierHeadCollisionDataTrait>>> {
         &self.head_collision
+    }
+    fn head_collision_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierHeadCollisionDataTrait>>> {
+        &mut self.head_collision
     }
     fn character_physics(&self) -> &Option<Arc<Mutex<dyn super::physics::CharacterPhysicsDataTrait>>> {
         &self.character_physics
     }
+    fn character_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::physics::CharacterPhysicsDataTrait>>> {
+        &mut self.character_physics
+    }
     fn sprint_settings(&self) -> &Option<Arc<Mutex<dyn SoldierSprintSettingsDataTrait>>> {
         &self.sprint_settings
+    }
+    fn sprint_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierSprintSettingsDataTrait>>> {
+        &mut self.sprint_settings
     }
     fn hidable_mesh_parts(&self) -> &Vec<HidableSoldierMeshWeaponPart> {
         &self.hidable_mesh_parts
     }
+    fn hidable_mesh_parts_mut(&mut self) -> &mut Vec<HidableSoldierMeshWeaponPart> {
+        &mut self.hidable_mesh_parts
+    }
     fn impulse_reaction_time(&self) -> &f32 {
         &self.impulse_reaction_time
+    }
+    fn impulse_reaction_time_mut(&mut self) -> &mut f32 {
+        &mut self.impulse_reaction_time
     }
     fn show_weapon_when_dead(&self) -> &bool {
         &self.show_weapon_when_dead
     }
+    fn show_weapon_when_dead_mut(&mut self) -> &mut bool {
+        &mut self.show_weapon_when_dead
+    }
     fn health_module(&self) -> &Option<Arc<Mutex<dyn SoldierHealthModuleDataTrait>>> {
         &self.health_module
+    }
+    fn health_module_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierHealthModuleDataTrait>>> {
+        &mut self.health_module
     }
     fn abort_spawn_invisibility_inputs(&self) -> &Vec<i32> {
         &self.abort_spawn_invisibility_inputs
     }
+    fn abort_spawn_invisibility_inputs_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.abort_spawn_invisibility_inputs
+    }
     fn enable_groundmap_lighting(&self) -> &bool {
         &self.enable_groundmap_lighting
+    }
+    fn enable_groundmap_lighting_mut(&mut self) -> &mut bool {
+        &mut self.enable_groundmap_lighting
     }
     fn lower_gun_on_own_team(&self) -> &bool {
         &self.lower_gun_on_own_team
     }
+    fn lower_gun_on_own_team_mut(&mut self) -> &mut bool {
+        &mut self.lower_gun_on_own_team
+    }
     fn proximity_check(&self) -> &bool {
         &self.proximity_check
+    }
+    fn proximity_check_mut(&mut self) -> &mut bool {
+        &mut self.proximity_check
     }
     fn free_space_check(&self) -> &bool {
         &self.free_space_check
     }
+    fn free_space_check_mut(&mut self) -> &mut bool {
+        &mut self.free_space_check
+    }
     fn breath_control(&self) -> &Vec<Option<Arc<Mutex<dyn BreathControlDataTrait>>>> {
         &self.breath_control
+    }
+    fn breath_control_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn BreathControlDataTrait>>>> {
+        &mut self.breath_control
     }
     fn collision_info(&self) -> &Option<Arc<Mutex<dyn CollisionDataTrait>>> {
         &self.collision_info
     }
+    fn collision_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CollisionDataTrait>>> {
+        &mut self.collision_info
+    }
     fn f_l_i_r_value(&self) -> &f32 {
         &self.f_l_i_r_value
+    }
+    fn f_l_i_r_value_mut(&mut self) -> &mut f32 {
+        &mut self.f_l_i_r_value
     }
     fn f_l_i_r_key_color(&self) -> &super::core::Vec3 {
         &self.f_l_i_r_key_color
     }
+    fn f_l_i_r_key_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.f_l_i_r_key_color
+    }
     fn explosion_damage_modifier(&self) -> &f32 {
         &self.explosion_damage_modifier
+    }
+    fn explosion_damage_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.explosion_damage_modifier
     }
     fn regeneration_delay_modifier(&self) -> &f32 {
         &self.regeneration_delay_modifier
     }
+    fn regeneration_delay_modifier_mut(&mut self) -> &mut f32 {
+        &mut self.regeneration_delay_modifier
+    }
     fn fall_damage_threshold(&self) -> &f32 {
         &self.fall_damage_threshold
+    }
+    fn fall_damage_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.fall_damage_threshold
     }
     fn collision_enabled(&self) -> &bool {
         &self.collision_enabled
     }
+    fn collision_enabled_mut(&mut self) -> &mut bool {
+        &mut self.collision_enabled
+    }
     fn physics_controlled(&self) -> &bool {
         &self.physics_controlled
+    }
+    fn physics_controlled_mut(&mut self) -> &mut bool {
+        &mut self.physics_controlled
     }
     fn is_pushable(&self) -> &bool {
         &self.is_pushable
     }
+    fn is_pushable_mut(&mut self) -> &mut bool {
+        &mut self.is_pushable
+    }
     fn human_player_controlled(&self) -> &bool {
         &self.human_player_controlled
+    }
+    fn human_player_controlled_mut(&mut self) -> &mut bool {
+        &mut self.human_player_controlled
     }
     fn blueprint_name_hash(&self) -> &u32 {
         &self.blueprint_name_hash
     }
+    fn blueprint_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.blueprint_name_hash
+    }
     fn interactive_man_down_allowed(&self) -> &bool {
         &self.interactive_man_down_allowed
+    }
+    fn interactive_man_down_allowed_mut(&mut self) -> &mut bool {
+        &mut self.interactive_man_down_allowed
     }
     fn show_nametag(&self) -> &bool {
         &self.show_nametag
     }
+    fn show_nametag_mut(&mut self) -> &mut bool {
+        &mut self.show_nametag
+    }
     fn visual_cull_screen_area(&self) -> &f32 {
         &self.visual_cull_screen_area
+    }
+    fn visual_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.visual_cull_screen_area
     }
     fn aim_follow_eye_transform(&self) -> &bool {
         &self.aim_follow_eye_transform
     }
+    fn aim_follow_eye_transform_mut(&mut self) -> &mut bool {
+        &mut self.aim_follow_eye_transform
+    }
     fn force_disable_render_first_person_in_foreground(&self) -> &bool {
         &self.force_disable_render_first_person_in_foreground
+    }
+    fn force_disable_render_first_person_in_foreground_mut(&mut self) -> &mut bool {
+        &mut self.force_disable_render_first_person_in_foreground
     }
 }
 
@@ -16987,20 +21976,38 @@ impl super::game_shared::CharacterEntityDataTrait for SoldierEntityData {
     fn max_health(&self) -> &f32 {
         self._glacier_base.max_health()
     }
+    fn max_health_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_health_mut()
+    }
     fn default_view_mode(&self) -> &super::game_shared::PersonViewMode {
         self._glacier_base.default_view_mode()
+    }
+    fn default_view_mode_mut(&mut self) -> &mut super::game_shared::PersonViewMode {
+        self._glacier_base.default_view_mode_mut()
     }
     fn player_spawn_type(&self) -> &super::game_shared::PlayerSpawnType {
         self._glacier_base.player_spawn_type()
     }
+    fn player_spawn_type_mut(&mut self) -> &mut super::game_shared::PlayerSpawnType {
+        self._glacier_base.player_spawn_type_mut()
+    }
     fn character_lighting_enable(&self) -> &bool {
         self._glacier_base.character_lighting_enable()
+    }
+    fn character_lighting_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.character_lighting_enable_mut()
     }
     fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
         self._glacier_base.voice_over_info()
     }
+    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+        self._glacier_base.voice_over_info_mut()
+    }
     fn sound(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterSoundDataTrait>>> {
         self._glacier_base.sound()
+    }
+    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterSoundDataTrait>>> {
+        self._glacier_base.sound_mut()
     }
 }
 
@@ -17008,29 +22015,56 @@ impl super::gameplay_sim::ControllableEntityDataTrait for SoldierEntityData {
     fn use_prediction(&self) -> &bool {
         self._glacier_base.use_prediction()
     }
+    fn use_prediction_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_prediction_mut()
+    }
     fn default_team(&self) -> &super::gameplay_sim::TeamId {
         self._glacier_base.default_team()
+    }
+    fn default_team_mut(&mut self) -> &mut super::gameplay_sim::TeamId {
+        self._glacier_base.default_team_mut()
     }
     fn reset_team_on_last_player_exits(&self) -> &bool {
         self._glacier_base.reset_team_on_last_player_exits()
     }
+    fn reset_team_on_last_player_exits_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_team_on_last_player_exits_mut()
+    }
     fn immortal(&self) -> &bool {
         self._glacier_base.immortal()
+    }
+    fn immortal_mut(&mut self) -> &mut bool {
+        self._glacier_base.immortal_mut()
     }
     fn fake_immortal(&self) -> &bool {
         self._glacier_base.fake_immortal()
     }
+    fn fake_immortal_mut(&mut self) -> &mut bool {
+        self._glacier_base.fake_immortal_mut()
+    }
     fn low_health_threshold(&self) -> &f32 {
         self._glacier_base.low_health_threshold()
+    }
+    fn low_health_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.low_health_threshold_mut()
     }
     fn material_pair(&self) -> &super::entity::MaterialDecl {
         self._glacier_base.material_pair()
     }
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        self._glacier_base.material_pair_mut()
+    }
     fn force_foreground_rendering(&self) -> &bool {
         self._glacier_base.force_foreground_rendering()
     }
+    fn force_foreground_rendering_mut(&mut self) -> &mut bool {
+        self._glacier_base.force_foreground_rendering_mut()
+    }
     fn suppressed_inputs(&self) -> &Vec<i32> {
         self._glacier_base.suppressed_inputs()
+    }
+    fn suppressed_inputs_mut(&mut self) -> &mut Vec<i32> {
+        self._glacier_base.suppressed_inputs_mut()
     }
 }
 
@@ -17041,32 +22075,56 @@ impl super::entity::GameComponentEntityDataTrait for SoldierEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for SoldierEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for SoldierEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -17080,15 +22138,15 @@ impl super::core::DataBusPeerTrait for SoldierEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierEntityData {
 }
 
 impl super::core::DataContainerTrait for SoldierEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17318,6 +22376,15 @@ impl TypeObject for SoldierEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17363,6 +22430,15 @@ impl TypeObject for SoldierActionState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17388,9 +22464,6 @@ impl SoldierHealthModuleDataTrait for SoldierHealthModuleData {
 }
 
 impl super::core::DataContainerTrait for SoldierHealthModuleData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERHEALTHMODULEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17416,6 +22489,15 @@ impl TypeObject for SoldierHealthModuleData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17440,30 +22522,43 @@ pub struct BreathControlData {
 
 pub trait BreathControlDataTrait: super::core::DataContainerTrait {
     fn breath_control_time(&self) -> &f32;
+    fn breath_control_time_mut(&mut self) -> &mut f32;
     fn breath_control_release_time(&self) -> &f32;
+    fn breath_control_release_time_mut(&mut self) -> &mut f32;
     fn breath_control_penalty_multiplier(&self) -> &f32;
+    fn breath_control_penalty_multiplier_mut(&mut self) -> &mut f32;
     fn breath_control_penalty_timeout(&self) -> &f32;
+    fn breath_control_penalty_timeout_mut(&mut self) -> &mut f32;
 }
 
 impl BreathControlDataTrait for BreathControlData {
     fn breath_control_time(&self) -> &f32 {
         &self.breath_control_time
     }
+    fn breath_control_time_mut(&mut self) -> &mut f32 {
+        &mut self.breath_control_time
+    }
     fn breath_control_release_time(&self) -> &f32 {
         &self.breath_control_release_time
+    }
+    fn breath_control_release_time_mut(&mut self) -> &mut f32 {
+        &mut self.breath_control_release_time
     }
     fn breath_control_penalty_multiplier(&self) -> &f32 {
         &self.breath_control_penalty_multiplier
     }
+    fn breath_control_penalty_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.breath_control_penalty_multiplier
+    }
     fn breath_control_penalty_timeout(&self) -> &f32 {
         &self.breath_control_penalty_timeout
+    }
+    fn breath_control_penalty_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.breath_control_penalty_timeout
     }
 }
 
 impl super::core::DataContainerTrait for BreathControlData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BREATHCONTROLDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17513,6 +22608,15 @@ impl TypeObject for BreathControlData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17535,22 +22639,27 @@ pub struct CollisionData {
 
 pub trait CollisionDataTrait: super::core::DataContainerTrait {
     fn damage_at_vertical_velocity(&self) -> &Vec<ValueAtX>;
+    fn damage_at_vertical_velocity_mut(&mut self) -> &mut Vec<ValueAtX>;
     fn damage_at_horiz_velocity(&self) -> &Vec<ValueAtX>;
+    fn damage_at_horiz_velocity_mut(&mut self) -> &mut Vec<ValueAtX>;
 }
 
 impl CollisionDataTrait for CollisionData {
     fn damage_at_vertical_velocity(&self) -> &Vec<ValueAtX> {
         &self.damage_at_vertical_velocity
     }
+    fn damage_at_vertical_velocity_mut(&mut self) -> &mut Vec<ValueAtX> {
+        &mut self.damage_at_vertical_velocity
+    }
     fn damage_at_horiz_velocity(&self) -> &Vec<ValueAtX> {
         &self.damage_at_horiz_velocity
+    }
+    fn damage_at_horiz_velocity_mut(&mut self) -> &mut Vec<ValueAtX> {
+        &mut self.damage_at_horiz_velocity
     }
 }
 
 impl super::core::DataContainerTrait for CollisionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COLLISIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17588,6 +22697,15 @@ impl TypeObject for CollisionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17609,15 +22727,23 @@ pub struct ValueAtX {
 
 pub trait ValueAtXTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn value(&self) -> &f32;
+    fn value_mut(&mut self) -> &mut f32;
 }
 
 impl ValueAtXTrait for ValueAtX {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn value(&self) -> &f32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut f32 {
+        &mut self.value
     }
 }
 
@@ -17655,6 +22781,15 @@ impl TypeObject for ValueAtX {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17676,18 +22811,19 @@ pub struct SoldierWeaponOverrideData {
 
 pub trait SoldierWeaponOverrideDataTrait: super::core::DataContainerTrait {
     fn overrides(&self) -> &Vec<Option<Arc<Mutex<dyn WeaponOverrideDataTrait>>>>;
+    fn overrides_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn WeaponOverrideDataTrait>>>>;
 }
 
 impl SoldierWeaponOverrideDataTrait for SoldierWeaponOverrideData {
     fn overrides(&self) -> &Vec<Option<Arc<Mutex<dyn WeaponOverrideDataTrait>>>> {
         &self.overrides
     }
+    fn overrides_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn WeaponOverrideDataTrait>>>> {
+        &mut self.overrides
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponOverrideData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONOVERRIDEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17719,6 +22855,15 @@ impl TypeObject for SoldierWeaponOverrideData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17748,50 +22893,83 @@ pub struct SoldierSprintSettingsData {
 
 pub trait SoldierSprintSettingsDataTrait: super::core::DataContainerTrait {
     fn fov(&self) -> &f32;
+    fn fov_mut(&mut self) -> &mut f32;
     fn fov_in_delay(&self) -> &f32;
+    fn fov_in_delay_mut(&mut self) -> &mut f32;
     fn fov_in_time(&self) -> &f32;
+    fn fov_in_time_mut(&mut self) -> &mut f32;
     fn fov_out_delay(&self) -> &f32;
+    fn fov_out_delay_mut(&mut self) -> &mut f32;
     fn fov_out_time(&self) -> &f32;
+    fn fov_out_time_mut(&mut self) -> &mut f32;
     fn recover_time(&self) -> &f32;
+    fn recover_time_mut(&mut self) -> &mut f32;
     fn sprint_to_prone_recover_time(&self) -> &f32;
+    fn sprint_to_prone_recover_time_mut(&mut self) -> &mut f32;
     fn interrupting_actions(&self) -> &Vec<i32>;
+    fn interrupting_actions_mut(&mut self) -> &mut Vec<i32>;
     fn sprint_interrupt_recover_time(&self) -> &f32;
+    fn sprint_interrupt_recover_time_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierSprintSettingsDataTrait for SoldierSprintSettingsData {
     fn fov(&self) -> &f32 {
         &self.fov
     }
+    fn fov_mut(&mut self) -> &mut f32 {
+        &mut self.fov
+    }
     fn fov_in_delay(&self) -> &f32 {
         &self.fov_in_delay
+    }
+    fn fov_in_delay_mut(&mut self) -> &mut f32 {
+        &mut self.fov_in_delay
     }
     fn fov_in_time(&self) -> &f32 {
         &self.fov_in_time
     }
+    fn fov_in_time_mut(&mut self) -> &mut f32 {
+        &mut self.fov_in_time
+    }
     fn fov_out_delay(&self) -> &f32 {
         &self.fov_out_delay
+    }
+    fn fov_out_delay_mut(&mut self) -> &mut f32 {
+        &mut self.fov_out_delay
     }
     fn fov_out_time(&self) -> &f32 {
         &self.fov_out_time
     }
+    fn fov_out_time_mut(&mut self) -> &mut f32 {
+        &mut self.fov_out_time
+    }
     fn recover_time(&self) -> &f32 {
         &self.recover_time
+    }
+    fn recover_time_mut(&mut self) -> &mut f32 {
+        &mut self.recover_time
     }
     fn sprint_to_prone_recover_time(&self) -> &f32 {
         &self.sprint_to_prone_recover_time
     }
+    fn sprint_to_prone_recover_time_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_to_prone_recover_time
+    }
     fn interrupting_actions(&self) -> &Vec<i32> {
         &self.interrupting_actions
+    }
+    fn interrupting_actions_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.interrupting_actions
     }
     fn sprint_interrupt_recover_time(&self) -> &f32 {
         &self.sprint_interrupt_recover_time
     }
+    fn sprint_interrupt_recover_time_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_interrupt_recover_time
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierSprintSettingsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERSPRINTSETTINGSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17871,6 +23049,15 @@ impl TypeObject for SoldierSprintSettingsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17910,6 +23097,15 @@ impl TypeObject for DeathAnimationOperation {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17934,27 +23130,47 @@ pub struct HidableSoldierMeshWeaponPart {
 
 pub trait HidableSoldierMeshWeaponPartTrait: TypeObject {
     fn weapon_mesh(&self) -> &Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>>;
+    fn weapon_mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>>;
     fn weapon_mesh_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn weapon_mesh_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
     fn bone_name(&self) -> &String;
+    fn bone_name_mut(&mut self) -> &mut String;
     fn hide_always(&self) -> &bool;
+    fn hide_always_mut(&mut self) -> &mut bool;
     fn hide_in_vehicle_entries(&self) -> &bool;
+    fn hide_in_vehicle_entries_mut(&mut self) -> &mut bool;
 }
 
 impl HidableSoldierMeshWeaponPartTrait for HidableSoldierMeshWeaponPart {
     fn weapon_mesh(&self) -> &Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>> {
         &self.weapon_mesh
     }
+    fn weapon_mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::SkinnedMeshAssetTrait>>> {
+        &mut self.weapon_mesh
+    }
     fn weapon_mesh_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         &self.weapon_mesh_blueprint
+    }
+    fn weapon_mesh_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        &mut self.weapon_mesh_blueprint
     }
     fn bone_name(&self) -> &String {
         &self.bone_name
     }
+    fn bone_name_mut(&mut self) -> &mut String {
+        &mut self.bone_name
+    }
     fn hide_always(&self) -> &bool {
         &self.hide_always
     }
+    fn hide_always_mut(&mut self) -> &mut bool {
+        &mut self.hide_always
+    }
     fn hide_in_vehicle_entries(&self) -> &bool {
         &self.hide_in_vehicle_entries
+    }
+    fn hide_in_vehicle_entries_mut(&mut self) -> &mut bool {
+        &mut self.hide_in_vehicle_entries
     }
 }
 
@@ -18010,6 +23226,15 @@ impl TypeObject for HidableSoldierMeshWeaponPart {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18032,22 +23257,27 @@ pub struct SoldierHeadCollisionData {
 
 pub trait SoldierHeadCollisionDataTrait: super::core::DataContainerTrait {
     fn head_radius(&self) -> &f32;
+    fn head_radius_mut(&mut self) -> &mut f32;
     fn pose_states(&self) -> &Vec<SoldierHeadCollisionPoseData>;
+    fn pose_states_mut(&mut self) -> &mut Vec<SoldierHeadCollisionPoseData>;
 }
 
 impl SoldierHeadCollisionDataTrait for SoldierHeadCollisionData {
     fn head_radius(&self) -> &f32 {
         &self.head_radius
     }
+    fn head_radius_mut(&mut self) -> &mut f32 {
+        &mut self.head_radius
+    }
     fn pose_states(&self) -> &Vec<SoldierHeadCollisionPoseData> {
         &self.pose_states
+    }
+    fn pose_states_mut(&mut self) -> &mut Vec<SoldierHeadCollisionPoseData> {
+        &mut self.pose_states
     }
 }
 
 impl super::core::DataContainerTrait for SoldierHeadCollisionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERHEADCOLLISIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18085,6 +23315,15 @@ impl TypeObject for SoldierHeadCollisionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18106,15 +23345,23 @@ pub struct SoldierHeadCollisionPoseData {
 
 pub trait SoldierHeadCollisionPoseDataTrait: TypeObject {
     fn idle_offset(&self) -> &super::core::Vec3;
+    fn idle_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn moving_forward_offset(&self) -> &super::core::Vec3;
+    fn moving_forward_offset_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl SoldierHeadCollisionPoseDataTrait for SoldierHeadCollisionPoseData {
     fn idle_offset(&self) -> &super::core::Vec3 {
         &self.idle_offset
     }
+    fn idle_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.idle_offset
+    }
     fn moving_forward_offset(&self) -> &super::core::Vec3 {
         &self.moving_forward_offset
+    }
+    fn moving_forward_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.moving_forward_offset
     }
 }
 
@@ -18152,6 +23399,15 @@ impl TypeObject for SoldierHeadCollisionPoseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18173,18 +23429,19 @@ pub struct SoldierAutoAimData {
 
 pub trait SoldierAutoAimDataTrait: super::core::DataContainerTrait {
     fn poses(&self) -> &Vec<AutoAimData>;
+    fn poses_mut(&mut self) -> &mut Vec<AutoAimData>;
 }
 
 impl SoldierAutoAimDataTrait for SoldierAutoAimData {
     fn poses(&self) -> &Vec<AutoAimData> {
         &self.poses
     }
+    fn poses_mut(&mut self) -> &mut Vec<AutoAimData> {
+        &mut self.poses
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierAutoAimData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERAUTOAIMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18216,6 +23473,15 @@ impl TypeObject for SoldierAutoAimData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18240,27 +23506,47 @@ pub struct AutoAimData {
 
 pub trait AutoAimDataTrait: TypeObject {
     fn auto_aim_outer_box_offset(&self) -> &super::core::Vec3;
+    fn auto_aim_outer_box_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn auto_aim_outer_box_extends(&self) -> &super::core::Vec3;
+    fn auto_aim_outer_box_extends_mut(&mut self) -> &mut super::core::Vec3;
     fn auto_aim_inner_box_offset(&self) -> &super::core::Vec3;
+    fn auto_aim_inner_box_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn auto_aim_inner_box_extends(&self) -> &super::core::Vec3;
+    fn auto_aim_inner_box_extends_mut(&mut self) -> &mut super::core::Vec3;
     fn pose_type(&self) -> &super::physics::CharacterPoseType;
+    fn pose_type_mut(&mut self) -> &mut super::physics::CharacterPoseType;
 }
 
 impl AutoAimDataTrait for AutoAimData {
     fn auto_aim_outer_box_offset(&self) -> &super::core::Vec3 {
         &self.auto_aim_outer_box_offset
     }
+    fn auto_aim_outer_box_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.auto_aim_outer_box_offset
+    }
     fn auto_aim_outer_box_extends(&self) -> &super::core::Vec3 {
         &self.auto_aim_outer_box_extends
+    }
+    fn auto_aim_outer_box_extends_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.auto_aim_outer_box_extends
     }
     fn auto_aim_inner_box_offset(&self) -> &super::core::Vec3 {
         &self.auto_aim_inner_box_offset
     }
+    fn auto_aim_inner_box_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.auto_aim_inner_box_offset
+    }
     fn auto_aim_inner_box_extends(&self) -> &super::core::Vec3 {
         &self.auto_aim_inner_box_extends
     }
+    fn auto_aim_inner_box_extends_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.auto_aim_inner_box_extends
+    }
     fn pose_type(&self) -> &super::physics::CharacterPoseType {
         &self.pose_type
+    }
+    fn pose_type_mut(&mut self) -> &mut super::physics::CharacterPoseType {
+        &mut self.pose_type
     }
 }
 
@@ -18316,6 +23602,15 @@ impl TypeObject for AutoAimData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18336,11 +23631,15 @@ pub struct FootStepTrigger {
 
 pub trait FootStepTriggerTrait: TypeObject {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
 }
 
 impl FootStepTriggerTrait for FootStepTrigger {
     fn time(&self) -> &f32 {
         &self.time
+    }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
     }
 }
 
@@ -18372,6 +23671,15 @@ impl TypeObject for FootStepTrigger {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18402,47 +23710,87 @@ pub struct SoldierSoundData {
 
 pub trait SoldierSoundDataTrait: super::game_shared::CharacterSoundDataTrait {
     fn death(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn death_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn bullet_impact(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn bullet_impact_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn healing(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn healing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn breath_control(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn breath_control_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn hit_indicator(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn hit_indicator_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn pickup_kit(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn pickup_kit_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn pickup_ammo(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn pickup_ammo_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn sprint_time_for_recovery(&self) -> &f32;
+    fn sprint_time_for_recovery_mut(&mut self) -> &mut f32;
     fn movement_threshold(&self) -> &f32;
+    fn movement_threshold_mut(&mut self) -> &mut f32;
     fn min_heal_sound_time(&self) -> &f32;
+    fn min_heal_sound_time_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierSoundDataTrait for SoldierSoundData {
     fn death(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.death
     }
+    fn death_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.death
+    }
     fn bullet_impact(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.bullet_impact
+    }
+    fn bullet_impact_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.bullet_impact
     }
     fn healing(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.healing
     }
+    fn healing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.healing
+    }
     fn breath_control(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.breath_control
+    }
+    fn breath_control_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.breath_control
     }
     fn hit_indicator(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.hit_indicator
     }
+    fn hit_indicator_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.hit_indicator
+    }
     fn pickup_kit(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.pickup_kit
+    }
+    fn pickup_kit_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.pickup_kit
     }
     fn pickup_ammo(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.pickup_ammo
     }
+    fn pickup_ammo_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.pickup_ammo
+    }
     fn sprint_time_for_recovery(&self) -> &f32 {
         &self.sprint_time_for_recovery
+    }
+    fn sprint_time_for_recovery_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_time_for_recovery
     }
     fn movement_threshold(&self) -> &f32 {
         &self.movement_threshold
     }
+    fn movement_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.movement_threshold
+    }
     fn min_heal_sound_time(&self) -> &f32 {
         &self.min_heal_sound_time
+    }
+    fn min_heal_sound_time_mut(&mut self) -> &mut f32 {
+        &mut self.min_heal_sound_time
     }
 }
 
@@ -18450,12 +23798,12 @@ impl super::game_shared::CharacterSoundDataTrait for SoldierSoundData {
     fn movement(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         self._glacier_base.movement()
     }
+    fn movement_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        self._glacier_base.movement_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierSoundData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERSOUNDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18541,6 +23889,15 @@ impl TypeObject for SoldierSoundData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18564,19 +23921,31 @@ pub struct MaterialPropertySolderSoundData {
 
 pub trait MaterialPropertySolderSoundDataTrait: super::gameplay_sim::MaterialPropertyLicenseeSoundDataTrait {
     fn foot_step_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn foot_step_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn prone_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn prone_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn land_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn land_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
 }
 
 impl MaterialPropertySolderSoundDataTrait for MaterialPropertySolderSoundData {
     fn foot_step_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.foot_step_sound
     }
+    fn foot_step_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.foot_step_sound
+    }
     fn prone_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.prone_sound
     }
+    fn prone_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.prone_sound
+    }
     fn land_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.land_sound
+    }
+    fn land_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.land_sound
     }
 }
 
@@ -18584,9 +23953,6 @@ impl super::gameplay_sim::MaterialPropertyLicenseeSoundDataTrait for MaterialPro
 }
 
 impl super::core::DataContainerTrait for MaterialPropertySolderSoundData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MATERIALPROPERTYSOLDERSOUNDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18630,6 +23996,15 @@ impl TypeObject for MaterialPropertySolderSoundData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18651,18 +24026,19 @@ pub struct SoldierAimingConstraintsData {
 
 pub trait SoldierAimingConstraintsDataTrait: super::core::DataContainerTrait {
     fn swimming_constraints(&self) -> &super::gameplay_sim::AimingConstraintsData;
+    fn swimming_constraints_mut(&mut self) -> &mut super::gameplay_sim::AimingConstraintsData;
 }
 
 impl SoldierAimingConstraintsDataTrait for SoldierAimingConstraintsData {
     fn swimming_constraints(&self) -> &super::gameplay_sim::AimingConstraintsData {
         &self.swimming_constraints
     }
+    fn swimming_constraints_mut(&mut self) -> &mut super::gameplay_sim::AimingConstraintsData {
+        &mut self.swimming_constraints
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierAimingConstraintsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERAIMINGCONSTRAINTSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18694,6 +24070,15 @@ impl TypeObject for SoldierAimingConstraintsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18715,15 +24100,23 @@ pub struct EyeRecoilNetState {
 
 pub trait EyeRecoilNetStateTrait: TypeObject {
     fn recoil_compensation_x(&self) -> &f32;
+    fn recoil_compensation_x_mut(&mut self) -> &mut f32;
     fn recoil_compensation_y(&self) -> &f32;
+    fn recoil_compensation_y_mut(&mut self) -> &mut f32;
 }
 
 impl EyeRecoilNetStateTrait for EyeRecoilNetState {
     fn recoil_compensation_x(&self) -> &f32 {
         &self.recoil_compensation_x
     }
+    fn recoil_compensation_x_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_compensation_x
+    }
     fn recoil_compensation_y(&self) -> &f32 {
         &self.recoil_compensation_y
+    }
+    fn recoil_compensation_y_mut(&mut self) -> &mut f32 {
+        &mut self.recoil_compensation_y
     }
 }
 
@@ -18761,6 +24154,15 @@ impl TypeObject for EyeRecoilNetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18782,15 +24184,23 @@ pub struct EyeSwayNetState {
 
 pub trait EyeSwayNetStateTrait: TypeObject {
     fn sway_angle_x(&self) -> &f32;
+    fn sway_angle_x_mut(&mut self) -> &mut f32;
     fn sway_angle_y(&self) -> &f32;
+    fn sway_angle_y_mut(&mut self) -> &mut f32;
 }
 
 impl EyeSwayNetStateTrait for EyeSwayNetState {
     fn sway_angle_x(&self) -> &f32 {
         &self.sway_angle_x
     }
+    fn sway_angle_x_mut(&mut self) -> &mut f32 {
+        &mut self.sway_angle_x
+    }
     fn sway_angle_y(&self) -> &f32 {
         &self.sway_angle_y
+    }
+    fn sway_angle_y_mut(&mut self) -> &mut f32 {
+        &mut self.sway_angle_y
     }
 }
 
@@ -18828,6 +24238,15 @@ impl TypeObject for EyeSwayNetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18849,15 +24268,23 @@ pub struct EyeAngleNetState {
 
 pub trait EyeAngleNetStateTrait: TypeObject {
     fn yaw(&self) -> &f32;
+    fn yaw_mut(&mut self) -> &mut f32;
     fn pitch(&self) -> &f32;
+    fn pitch_mut(&mut self) -> &mut f32;
 }
 
 impl EyeAngleNetStateTrait for EyeAngleNetState {
     fn yaw(&self) -> &f32 {
         &self.yaw
     }
+    fn yaw_mut(&mut self) -> &mut f32 {
+        &mut self.yaw
+    }
     fn pitch(&self) -> &f32 {
         &self.pitch
+    }
+    fn pitch_mut(&mut self) -> &mut f32 {
+        &mut self.pitch
     }
 }
 
@@ -18895,6 +24322,15 @@ impl TypeObject for EyeAngleNetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18923,8 +24359,14 @@ impl super::gameplay_sim::GamePhysicsComponentDataTrait for PickupPhysicsCompone
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
         self._glacier_base.effect_parameters()
+    }
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+        self._glacier_base.effect_parameters_mut()
     }
 }
 
@@ -18932,20 +24374,38 @@ impl super::physics::PhysicsComponentDataTrait for PickupPhysicsComponentData {
     fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
         self._glacier_base.physics_bodies()
     }
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
+        self._glacier_base.physics_bodies_mut()
+    }
     fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
         self._glacier_base.physics_constraints()
+    }
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
+        self._glacier_base.physics_constraints_mut()
     }
     fn parts(&self) -> &Vec<super::physics::PhysicsPartData> {
         self._glacier_base.parts()
     }
+    fn parts_mut(&mut self) -> &mut Vec<super::physics::PhysicsPartData> {
+        self._glacier_base.parts_mut()
+    }
     fn movable_parts(&self) -> &bool {
         self._glacier_base.movable_parts()
+    }
+    fn movable_parts_mut(&mut self) -> &mut bool {
+        self._glacier_base.movable_parts_mut()
     }
     fn internal_collision_disabling(&self) -> &super::physics::InternalCollisionDisablingBehavior {
         self._glacier_base.internal_collision_disabling()
     }
+    fn internal_collision_disabling_mut(&mut self) -> &mut super::physics::InternalCollisionDisablingBehavior {
+        self._glacier_base.internal_collision_disabling_mut()
+    }
     fn enable_collision_events(&self) -> &bool {
         self._glacier_base.enable_collision_events()
+    }
+    fn enable_collision_events_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_collision_events_mut()
     }
 }
 
@@ -18953,17 +24413,32 @@ impl super::entity::ComponentDataTrait for PickupPhysicsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -18974,15 +24449,15 @@ impl super::core::DataBusPeerTrait for PickupPhysicsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PickupPhysicsComponentData {
 }
 
 impl super::core::DataContainerTrait for PickupPhysicsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PICKUPPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19007,6 +24482,15 @@ impl TypeObject for PickupPhysicsComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -19053,6 +24537,15 @@ impl TypeObject for NetworkPickupWeaponFromKitMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -19063,11 +24556,15 @@ pub struct DynamicWeaponPickupEntityData {
 
 pub trait DynamicWeaponPickupEntityDataTrait: PickupEntityDataTrait {
     fn weapon_slots(&self) -> &Vec<DynamicWeaponPickupSlotData>;
+    fn weapon_slots_mut(&mut self) -> &mut Vec<DynamicWeaponPickupSlotData>;
 }
 
 impl DynamicWeaponPickupEntityDataTrait for DynamicWeaponPickupEntityData {
     fn weapon_slots(&self) -> &Vec<DynamicWeaponPickupSlotData> {
         &self.weapon_slots
+    }
+    fn weapon_slots_mut(&mut self) -> &mut Vec<DynamicWeaponPickupSlotData> {
+        &mut self.weapon_slots
     }
 }
 
@@ -19075,86 +24572,170 @@ impl PickupEntityDataTrait for DynamicWeaponPickupEntityData {
     fn physics_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         self._glacier_base.physics_blueprint()
     }
+    fn physics_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        self._glacier_base.physics_blueprint_mut()
+    }
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         self._glacier_base.mesh()
+    }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        self._glacier_base.mesh_mut()
     }
     fn use_weapon_mesh(&self) -> &bool {
         self._glacier_base.use_weapon_mesh()
     }
+    fn use_weapon_mesh_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_weapon_mesh_mut()
+    }
     fn time_to_show_weapon_mesh(&self) -> &f32 {
         self._glacier_base.time_to_show_weapon_mesh()
+    }
+    fn time_to_show_weapon_mesh_mut(&mut self) -> &mut f32 {
+        self._glacier_base.time_to_show_weapon_mesh_mut()
     }
     fn preferred_weapon_slot(&self) -> &u32 {
         self._glacier_base.preferred_weapon_slot()
     }
+    fn preferred_weapon_slot_mut(&mut self) -> &mut u32 {
+        self._glacier_base.preferred_weapon_slot_mut()
+    }
     fn time_to_live(&self) -> &f32 {
         self._glacier_base.time_to_live()
+    }
+    fn time_to_live_mut(&mut self) -> &mut f32 {
+        self._glacier_base.time_to_live_mut()
     }
     fn unspawn_on_pickup(&self) -> &bool {
         self._glacier_base.unspawn_on_pickup()
     }
+    fn unspawn_on_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.unspawn_on_pickup_mut()
+    }
     fn unspawn_on_ammo_pickup(&self) -> &bool {
         self._glacier_base.unspawn_on_ammo_pickup()
+    }
+    fn unspawn_on_ammo_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.unspawn_on_ammo_pickup_mut()
     }
     fn content_is_static(&self) -> &bool {
         self._glacier_base.content_is_static()
     }
+    fn content_is_static_mut(&mut self) -> &mut bool {
+        self._glacier_base.content_is_static_mut()
+    }
     fn position_is_static(&self) -> &bool {
         self._glacier_base.position_is_static()
+    }
+    fn position_is_static_mut(&mut self) -> &mut bool {
+        self._glacier_base.position_is_static_mut()
     }
     fn allow_pickup(&self) -> &bool {
         self._glacier_base.allow_pickup()
     }
+    fn allow_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_pickup_mut()
+    }
     fn ignore_null_weapon_slots(&self) -> &bool {
         self._glacier_base.ignore_null_weapon_slots()
+    }
+    fn ignore_null_weapon_slots_mut(&mut self) -> &mut bool {
+        self._glacier_base.ignore_null_weapon_slots_mut()
     }
     fn force_weapon_slot_selection(&self) -> &bool {
         self._glacier_base.force_weapon_slot_selection()
     }
+    fn force_weapon_slot_selection_mut(&mut self) -> &mut bool {
+        self._glacier_base.force_weapon_slot_selection_mut()
+    }
     fn display_in_mini_map(&self) -> &bool {
         self._glacier_base.display_in_mini_map()
+    }
+    fn display_in_mini_map_mut(&mut self) -> &mut bool {
+        self._glacier_base.display_in_mini_map_mut()
     }
     fn icon_name(&self) -> &String {
         self._glacier_base.icon_name()
     }
+    fn icon_name_mut(&mut self) -> &mut String {
+        self._glacier_base.icon_name_mut()
+    }
     fn has_automatic_ammo_pickup(&self) -> &bool {
         self._glacier_base.has_automatic_ammo_pickup()
+    }
+    fn has_automatic_ammo_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.has_automatic_ammo_pickup_mut()
     }
     fn min_random_spare_ammo_percent(&self) -> &i32 {
         self._glacier_base.min_random_spare_ammo_percent()
     }
+    fn min_random_spare_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.min_random_spare_ammo_percent_mut()
+    }
     fn max_random_spare_ammo_percent(&self) -> &i32 {
         self._glacier_base.max_random_spare_ammo_percent()
+    }
+    fn max_random_spare_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_random_spare_ammo_percent_mut()
     }
     fn min_random_clip_ammo_percent(&self) -> &i32 {
         self._glacier_base.min_random_clip_ammo_percent()
     }
+    fn min_random_clip_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.min_random_clip_ammo_percent_mut()
+    }
     fn max_random_clip_ammo_percent(&self) -> &i32 {
         self._glacier_base.max_random_clip_ammo_percent()
+    }
+    fn max_random_clip_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_random_clip_ammo_percent_mut()
     }
     fn randomize_ammo_on_drop_for_player(&self) -> &PickupPlayerEnum {
         self._glacier_base.randomize_ammo_on_drop_for_player()
     }
+    fn randomize_ammo_on_drop_for_player_mut(&mut self) -> &mut PickupPlayerEnum {
+        self._glacier_base.randomize_ammo_on_drop_for_player_mut()
+    }
     fn interaction_radius(&self) -> &f32 {
         self._glacier_base.interaction_radius()
+    }
+    fn interaction_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.interaction_radius_mut()
     }
     fn replace_all_content(&self) -> &bool {
         self._glacier_base.replace_all_content()
     }
+    fn replace_all_content_mut(&mut self) -> &mut bool {
+        self._glacier_base.replace_all_content_mut()
+    }
     fn remove_weapon_on_drop(&self) -> &bool {
         self._glacier_base.remove_weapon_on_drop()
+    }
+    fn remove_weapon_on_drop_mut(&mut self) -> &mut bool {
+        self._glacier_base.remove_weapon_on_drop_mut()
     }
     fn display_within_radius(&self) -> &f32 {
         self._glacier_base.display_within_radius()
     }
+    fn display_within_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.display_within_radius_mut()
+    }
     fn use_display_within_radius(&self) -> &bool {
         self._glacier_base.use_display_within_radius()
+    }
+    fn use_display_within_radius_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_display_within_radius_mut()
     }
     fn tactical_radius(&self) -> &f32 {
         self._glacier_base.tactical_radius()
     }
+    fn tactical_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tactical_radius_mut()
+    }
     fn keep_ammo_state(&self) -> &bool {
         self._glacier_base.keep_ammo_state()
+    }
+    fn keep_ammo_state_mut(&mut self) -> &mut bool {
+        self._glacier_base.keep_ammo_state_mut()
     }
 }
 
@@ -19165,32 +24746,56 @@ impl super::entity::GameComponentEntityDataTrait for DynamicWeaponPickupEntityDa
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for DynamicWeaponPickupEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for DynamicWeaponPickupEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -19204,15 +24809,15 @@ impl super::core::DataBusPeerTrait for DynamicWeaponPickupEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DynamicWeaponPickupEntityData {
 }
 
 impl super::core::DataContainerTrait for DynamicWeaponPickupEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DYNAMICWEAPONPICKUPENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19244,6 +24849,15 @@ impl TypeObject for DynamicWeaponPickupEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19266,19 +24880,31 @@ pub struct DynamicWeaponPickupSlotData {
 
 pub trait DynamicWeaponPickupSlotDataTrait: TypeObject {
     fn weapon_slot(&self) -> &u32;
+    fn weapon_slot_mut(&mut self) -> &mut u32;
     fn alt_weapon_slot(&self) -> &i32;
+    fn alt_weapon_slot_mut(&mut self) -> &mut i32;
     fn linked_to_weapon_slot(&self) -> &i32;
+    fn linked_to_weapon_slot_mut(&mut self) -> &mut i32;
 }
 
 impl DynamicWeaponPickupSlotDataTrait for DynamicWeaponPickupSlotData {
     fn weapon_slot(&self) -> &u32 {
         &self.weapon_slot
     }
+    fn weapon_slot_mut(&mut self) -> &mut u32 {
+        &mut self.weapon_slot
+    }
     fn alt_weapon_slot(&self) -> &i32 {
         &self.alt_weapon_slot
     }
+    fn alt_weapon_slot_mut(&mut self) -> &mut i32 {
+        &mut self.alt_weapon_slot
+    }
     fn linked_to_weapon_slot(&self) -> &i32 {
         &self.linked_to_weapon_slot
+    }
+    fn linked_to_weapon_slot_mut(&mut self) -> &mut i32 {
+        &mut self.linked_to_weapon_slot
     }
 }
 
@@ -19322,6 +24948,15 @@ impl TypeObject for DynamicWeaponPickupSlotData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19343,11 +24978,15 @@ pub struct PickupEntityAsset {
 
 pub trait PickupEntityAssetTrait: super::core::DataContainerPolicyAssetTrait {
     fn data(&self) -> &Option<Arc<Mutex<dyn PickupEntityDataTrait>>>;
+    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PickupEntityDataTrait>>>;
 }
 
 impl PickupEntityAssetTrait for PickupEntityAsset {
     fn data(&self) -> &Option<Arc<Mutex<dyn PickupEntityDataTrait>>> {
         &self.data
+    }
+    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PickupEntityDataTrait>>> {
+        &mut self.data
     }
 }
 
@@ -19358,12 +24997,12 @@ impl super::core::AssetTrait for PickupEntityAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PickupEntityAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PICKUPENTITYASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19395,6 +25034,15 @@ impl TypeObject for PickupEntityAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19416,11 +25064,15 @@ pub struct KitPickupEntityData {
 
 pub trait KitPickupEntityDataTrait: PickupEntityDataTrait {
     fn keep_additional_weapons(&self) -> &bool;
+    fn keep_additional_weapons_mut(&mut self) -> &mut bool;
 }
 
 impl KitPickupEntityDataTrait for KitPickupEntityData {
     fn keep_additional_weapons(&self) -> &bool {
         &self.keep_additional_weapons
+    }
+    fn keep_additional_weapons_mut(&mut self) -> &mut bool {
+        &mut self.keep_additional_weapons
     }
 }
 
@@ -19428,86 +25080,170 @@ impl PickupEntityDataTrait for KitPickupEntityData {
     fn physics_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         self._glacier_base.physics_blueprint()
     }
+    fn physics_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        self._glacier_base.physics_blueprint_mut()
+    }
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         self._glacier_base.mesh()
+    }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        self._glacier_base.mesh_mut()
     }
     fn use_weapon_mesh(&self) -> &bool {
         self._glacier_base.use_weapon_mesh()
     }
+    fn use_weapon_mesh_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_weapon_mesh_mut()
+    }
     fn time_to_show_weapon_mesh(&self) -> &f32 {
         self._glacier_base.time_to_show_weapon_mesh()
+    }
+    fn time_to_show_weapon_mesh_mut(&mut self) -> &mut f32 {
+        self._glacier_base.time_to_show_weapon_mesh_mut()
     }
     fn preferred_weapon_slot(&self) -> &u32 {
         self._glacier_base.preferred_weapon_slot()
     }
+    fn preferred_weapon_slot_mut(&mut self) -> &mut u32 {
+        self._glacier_base.preferred_weapon_slot_mut()
+    }
     fn time_to_live(&self) -> &f32 {
         self._glacier_base.time_to_live()
+    }
+    fn time_to_live_mut(&mut self) -> &mut f32 {
+        self._glacier_base.time_to_live_mut()
     }
     fn unspawn_on_pickup(&self) -> &bool {
         self._glacier_base.unspawn_on_pickup()
     }
+    fn unspawn_on_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.unspawn_on_pickup_mut()
+    }
     fn unspawn_on_ammo_pickup(&self) -> &bool {
         self._glacier_base.unspawn_on_ammo_pickup()
+    }
+    fn unspawn_on_ammo_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.unspawn_on_ammo_pickup_mut()
     }
     fn content_is_static(&self) -> &bool {
         self._glacier_base.content_is_static()
     }
+    fn content_is_static_mut(&mut self) -> &mut bool {
+        self._glacier_base.content_is_static_mut()
+    }
     fn position_is_static(&self) -> &bool {
         self._glacier_base.position_is_static()
+    }
+    fn position_is_static_mut(&mut self) -> &mut bool {
+        self._glacier_base.position_is_static_mut()
     }
     fn allow_pickup(&self) -> &bool {
         self._glacier_base.allow_pickup()
     }
+    fn allow_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_pickup_mut()
+    }
     fn ignore_null_weapon_slots(&self) -> &bool {
         self._glacier_base.ignore_null_weapon_slots()
+    }
+    fn ignore_null_weapon_slots_mut(&mut self) -> &mut bool {
+        self._glacier_base.ignore_null_weapon_slots_mut()
     }
     fn force_weapon_slot_selection(&self) -> &bool {
         self._glacier_base.force_weapon_slot_selection()
     }
+    fn force_weapon_slot_selection_mut(&mut self) -> &mut bool {
+        self._glacier_base.force_weapon_slot_selection_mut()
+    }
     fn display_in_mini_map(&self) -> &bool {
         self._glacier_base.display_in_mini_map()
+    }
+    fn display_in_mini_map_mut(&mut self) -> &mut bool {
+        self._glacier_base.display_in_mini_map_mut()
     }
     fn icon_name(&self) -> &String {
         self._glacier_base.icon_name()
     }
+    fn icon_name_mut(&mut self) -> &mut String {
+        self._glacier_base.icon_name_mut()
+    }
     fn has_automatic_ammo_pickup(&self) -> &bool {
         self._glacier_base.has_automatic_ammo_pickup()
+    }
+    fn has_automatic_ammo_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.has_automatic_ammo_pickup_mut()
     }
     fn min_random_spare_ammo_percent(&self) -> &i32 {
         self._glacier_base.min_random_spare_ammo_percent()
     }
+    fn min_random_spare_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.min_random_spare_ammo_percent_mut()
+    }
     fn max_random_spare_ammo_percent(&self) -> &i32 {
         self._glacier_base.max_random_spare_ammo_percent()
+    }
+    fn max_random_spare_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_random_spare_ammo_percent_mut()
     }
     fn min_random_clip_ammo_percent(&self) -> &i32 {
         self._glacier_base.min_random_clip_ammo_percent()
     }
+    fn min_random_clip_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.min_random_clip_ammo_percent_mut()
+    }
     fn max_random_clip_ammo_percent(&self) -> &i32 {
         self._glacier_base.max_random_clip_ammo_percent()
+    }
+    fn max_random_clip_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_random_clip_ammo_percent_mut()
     }
     fn randomize_ammo_on_drop_for_player(&self) -> &PickupPlayerEnum {
         self._glacier_base.randomize_ammo_on_drop_for_player()
     }
+    fn randomize_ammo_on_drop_for_player_mut(&mut self) -> &mut PickupPlayerEnum {
+        self._glacier_base.randomize_ammo_on_drop_for_player_mut()
+    }
     fn interaction_radius(&self) -> &f32 {
         self._glacier_base.interaction_radius()
+    }
+    fn interaction_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.interaction_radius_mut()
     }
     fn replace_all_content(&self) -> &bool {
         self._glacier_base.replace_all_content()
     }
+    fn replace_all_content_mut(&mut self) -> &mut bool {
+        self._glacier_base.replace_all_content_mut()
+    }
     fn remove_weapon_on_drop(&self) -> &bool {
         self._glacier_base.remove_weapon_on_drop()
+    }
+    fn remove_weapon_on_drop_mut(&mut self) -> &mut bool {
+        self._glacier_base.remove_weapon_on_drop_mut()
     }
     fn display_within_radius(&self) -> &f32 {
         self._glacier_base.display_within_radius()
     }
+    fn display_within_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.display_within_radius_mut()
+    }
     fn use_display_within_radius(&self) -> &bool {
         self._glacier_base.use_display_within_radius()
+    }
+    fn use_display_within_radius_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_display_within_radius_mut()
     }
     fn tactical_radius(&self) -> &f32 {
         self._glacier_base.tactical_radius()
     }
+    fn tactical_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tactical_radius_mut()
+    }
     fn keep_ammo_state(&self) -> &bool {
         self._glacier_base.keep_ammo_state()
+    }
+    fn keep_ammo_state_mut(&mut self) -> &mut bool {
+        self._glacier_base.keep_ammo_state_mut()
     }
 }
 
@@ -19518,32 +25254,56 @@ impl super::entity::GameComponentEntityDataTrait for KitPickupEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for KitPickupEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for KitPickupEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -19557,15 +25317,15 @@ impl super::core::DataBusPeerTrait for KitPickupEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for KitPickupEntityData {
 }
 
 impl super::core::DataContainerTrait for KitPickupEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static KITPICKUPENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19597,6 +25357,15 @@ impl TypeObject for KitPickupEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19619,15 +25388,23 @@ pub struct WeaponUnlockPickupEntityData {
 
 pub trait WeaponUnlockPickupEntityDataTrait: PickupEntityDataTrait {
     fn weapons(&self) -> &Vec<WeaponUnlockPickupData>;
+    fn weapons_mut(&mut self) -> &mut Vec<WeaponUnlockPickupData>;
     fn use_for_persistence(&self) -> &bool;
+    fn use_for_persistence_mut(&mut self) -> &mut bool;
 }
 
 impl WeaponUnlockPickupEntityDataTrait for WeaponUnlockPickupEntityData {
     fn weapons(&self) -> &Vec<WeaponUnlockPickupData> {
         &self.weapons
     }
+    fn weapons_mut(&mut self) -> &mut Vec<WeaponUnlockPickupData> {
+        &mut self.weapons
+    }
     fn use_for_persistence(&self) -> &bool {
         &self.use_for_persistence
+    }
+    fn use_for_persistence_mut(&mut self) -> &mut bool {
+        &mut self.use_for_persistence
     }
 }
 
@@ -19635,86 +25412,170 @@ impl PickupEntityDataTrait for WeaponUnlockPickupEntityData {
     fn physics_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         self._glacier_base.physics_blueprint()
     }
+    fn physics_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        self._glacier_base.physics_blueprint_mut()
+    }
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         self._glacier_base.mesh()
+    }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        self._glacier_base.mesh_mut()
     }
     fn use_weapon_mesh(&self) -> &bool {
         self._glacier_base.use_weapon_mesh()
     }
+    fn use_weapon_mesh_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_weapon_mesh_mut()
+    }
     fn time_to_show_weapon_mesh(&self) -> &f32 {
         self._glacier_base.time_to_show_weapon_mesh()
+    }
+    fn time_to_show_weapon_mesh_mut(&mut self) -> &mut f32 {
+        self._glacier_base.time_to_show_weapon_mesh_mut()
     }
     fn preferred_weapon_slot(&self) -> &u32 {
         self._glacier_base.preferred_weapon_slot()
     }
+    fn preferred_weapon_slot_mut(&mut self) -> &mut u32 {
+        self._glacier_base.preferred_weapon_slot_mut()
+    }
     fn time_to_live(&self) -> &f32 {
         self._glacier_base.time_to_live()
+    }
+    fn time_to_live_mut(&mut self) -> &mut f32 {
+        self._glacier_base.time_to_live_mut()
     }
     fn unspawn_on_pickup(&self) -> &bool {
         self._glacier_base.unspawn_on_pickup()
     }
+    fn unspawn_on_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.unspawn_on_pickup_mut()
+    }
     fn unspawn_on_ammo_pickup(&self) -> &bool {
         self._glacier_base.unspawn_on_ammo_pickup()
+    }
+    fn unspawn_on_ammo_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.unspawn_on_ammo_pickup_mut()
     }
     fn content_is_static(&self) -> &bool {
         self._glacier_base.content_is_static()
     }
+    fn content_is_static_mut(&mut self) -> &mut bool {
+        self._glacier_base.content_is_static_mut()
+    }
     fn position_is_static(&self) -> &bool {
         self._glacier_base.position_is_static()
+    }
+    fn position_is_static_mut(&mut self) -> &mut bool {
+        self._glacier_base.position_is_static_mut()
     }
     fn allow_pickup(&self) -> &bool {
         self._glacier_base.allow_pickup()
     }
+    fn allow_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_pickup_mut()
+    }
     fn ignore_null_weapon_slots(&self) -> &bool {
         self._glacier_base.ignore_null_weapon_slots()
+    }
+    fn ignore_null_weapon_slots_mut(&mut self) -> &mut bool {
+        self._glacier_base.ignore_null_weapon_slots_mut()
     }
     fn force_weapon_slot_selection(&self) -> &bool {
         self._glacier_base.force_weapon_slot_selection()
     }
+    fn force_weapon_slot_selection_mut(&mut self) -> &mut bool {
+        self._glacier_base.force_weapon_slot_selection_mut()
+    }
     fn display_in_mini_map(&self) -> &bool {
         self._glacier_base.display_in_mini_map()
+    }
+    fn display_in_mini_map_mut(&mut self) -> &mut bool {
+        self._glacier_base.display_in_mini_map_mut()
     }
     fn icon_name(&self) -> &String {
         self._glacier_base.icon_name()
     }
+    fn icon_name_mut(&mut self) -> &mut String {
+        self._glacier_base.icon_name_mut()
+    }
     fn has_automatic_ammo_pickup(&self) -> &bool {
         self._glacier_base.has_automatic_ammo_pickup()
+    }
+    fn has_automatic_ammo_pickup_mut(&mut self) -> &mut bool {
+        self._glacier_base.has_automatic_ammo_pickup_mut()
     }
     fn min_random_spare_ammo_percent(&self) -> &i32 {
         self._glacier_base.min_random_spare_ammo_percent()
     }
+    fn min_random_spare_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.min_random_spare_ammo_percent_mut()
+    }
     fn max_random_spare_ammo_percent(&self) -> &i32 {
         self._glacier_base.max_random_spare_ammo_percent()
+    }
+    fn max_random_spare_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_random_spare_ammo_percent_mut()
     }
     fn min_random_clip_ammo_percent(&self) -> &i32 {
         self._glacier_base.min_random_clip_ammo_percent()
     }
+    fn min_random_clip_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.min_random_clip_ammo_percent_mut()
+    }
     fn max_random_clip_ammo_percent(&self) -> &i32 {
         self._glacier_base.max_random_clip_ammo_percent()
+    }
+    fn max_random_clip_ammo_percent_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_random_clip_ammo_percent_mut()
     }
     fn randomize_ammo_on_drop_for_player(&self) -> &PickupPlayerEnum {
         self._glacier_base.randomize_ammo_on_drop_for_player()
     }
+    fn randomize_ammo_on_drop_for_player_mut(&mut self) -> &mut PickupPlayerEnum {
+        self._glacier_base.randomize_ammo_on_drop_for_player_mut()
+    }
     fn interaction_radius(&self) -> &f32 {
         self._glacier_base.interaction_radius()
+    }
+    fn interaction_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.interaction_radius_mut()
     }
     fn replace_all_content(&self) -> &bool {
         self._glacier_base.replace_all_content()
     }
+    fn replace_all_content_mut(&mut self) -> &mut bool {
+        self._glacier_base.replace_all_content_mut()
+    }
     fn remove_weapon_on_drop(&self) -> &bool {
         self._glacier_base.remove_weapon_on_drop()
+    }
+    fn remove_weapon_on_drop_mut(&mut self) -> &mut bool {
+        self._glacier_base.remove_weapon_on_drop_mut()
     }
     fn display_within_radius(&self) -> &f32 {
         self._glacier_base.display_within_radius()
     }
+    fn display_within_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.display_within_radius_mut()
+    }
     fn use_display_within_radius(&self) -> &bool {
         self._glacier_base.use_display_within_radius()
+    }
+    fn use_display_within_radius_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_display_within_radius_mut()
     }
     fn tactical_radius(&self) -> &f32 {
         self._glacier_base.tactical_radius()
     }
+    fn tactical_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tactical_radius_mut()
+    }
     fn keep_ammo_state(&self) -> &bool {
         self._glacier_base.keep_ammo_state()
+    }
+    fn keep_ammo_state_mut(&mut self) -> &mut bool {
+        self._glacier_base.keep_ammo_state_mut()
     }
 }
 
@@ -19725,32 +25586,56 @@ impl super::entity::GameComponentEntityDataTrait for WeaponUnlockPickupEntityDat
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for WeaponUnlockPickupEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for WeaponUnlockPickupEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -19764,15 +25649,15 @@ impl super::core::DataBusPeerTrait for WeaponUnlockPickupEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WeaponUnlockPickupEntityData {
 }
 
 impl super::core::DataContainerTrait for WeaponUnlockPickupEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONUNLOCKPICKUPENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19810,6 +25695,15 @@ impl TypeObject for WeaponUnlockPickupEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19835,31 +25729,55 @@ pub struct WeaponUnlockPickupData {
 
 pub trait WeaponUnlockPickupDataTrait: TypeObject {
     fn unlock_weapon_and_slot(&self) -> &UnlockWeaponAndSlot;
+    fn unlock_weapon_and_slot_mut(&mut self) -> &mut UnlockWeaponAndSlot;
     fn alt_weapon_slot(&self) -> &i32;
+    fn alt_weapon_slot_mut(&mut self) -> &mut i32;
     fn linked_to_weapon_slot(&self) -> &i32;
+    fn linked_to_weapon_slot_mut(&mut self) -> &mut i32;
     fn min_ammo(&self) -> &u32;
+    fn min_ammo_mut(&mut self) -> &mut u32;
     fn max_ammo(&self) -> &u32;
+    fn max_ammo_mut(&mut self) -> &mut u32;
     fn unlimited_ammo_pickup(&self) -> &bool;
+    fn unlimited_ammo_pickup_mut(&mut self) -> &mut bool;
 }
 
 impl WeaponUnlockPickupDataTrait for WeaponUnlockPickupData {
     fn unlock_weapon_and_slot(&self) -> &UnlockWeaponAndSlot {
         &self.unlock_weapon_and_slot
     }
+    fn unlock_weapon_and_slot_mut(&mut self) -> &mut UnlockWeaponAndSlot {
+        &mut self.unlock_weapon_and_slot
+    }
     fn alt_weapon_slot(&self) -> &i32 {
         &self.alt_weapon_slot
+    }
+    fn alt_weapon_slot_mut(&mut self) -> &mut i32 {
+        &mut self.alt_weapon_slot
     }
     fn linked_to_weapon_slot(&self) -> &i32 {
         &self.linked_to_weapon_slot
     }
+    fn linked_to_weapon_slot_mut(&mut self) -> &mut i32 {
+        &mut self.linked_to_weapon_slot
+    }
     fn min_ammo(&self) -> &u32 {
         &self.min_ammo
+    }
+    fn min_ammo_mut(&mut self) -> &mut u32 {
+        &mut self.min_ammo
     }
     fn max_ammo(&self) -> &u32 {
         &self.max_ammo
     }
+    fn max_ammo_mut(&mut self) -> &mut u32 {
+        &mut self.max_ammo
+    }
     fn unlimited_ammo_pickup(&self) -> &bool {
         &self.unlimited_ammo_pickup
+    }
+    fn unlimited_ammo_pickup_mut(&mut self) -> &mut bool {
+        &mut self.unlimited_ammo_pickup
     }
 }
 
@@ -19921,6 +25839,15 @@ impl TypeObject for WeaponUnlockPickupData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19969,119 +25896,231 @@ pub struct PickupEntityData {
 
 pub trait PickupEntityDataTrait: super::physics::GamePhysicsEntityDataTrait {
     fn physics_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn physics_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
     fn use_weapon_mesh(&self) -> &bool;
+    fn use_weapon_mesh_mut(&mut self) -> &mut bool;
     fn time_to_show_weapon_mesh(&self) -> &f32;
+    fn time_to_show_weapon_mesh_mut(&mut self) -> &mut f32;
     fn preferred_weapon_slot(&self) -> &u32;
+    fn preferred_weapon_slot_mut(&mut self) -> &mut u32;
     fn time_to_live(&self) -> &f32;
+    fn time_to_live_mut(&mut self) -> &mut f32;
     fn unspawn_on_pickup(&self) -> &bool;
+    fn unspawn_on_pickup_mut(&mut self) -> &mut bool;
     fn unspawn_on_ammo_pickup(&self) -> &bool;
+    fn unspawn_on_ammo_pickup_mut(&mut self) -> &mut bool;
     fn content_is_static(&self) -> &bool;
+    fn content_is_static_mut(&mut self) -> &mut bool;
     fn position_is_static(&self) -> &bool;
+    fn position_is_static_mut(&mut self) -> &mut bool;
     fn allow_pickup(&self) -> &bool;
+    fn allow_pickup_mut(&mut self) -> &mut bool;
     fn ignore_null_weapon_slots(&self) -> &bool;
+    fn ignore_null_weapon_slots_mut(&mut self) -> &mut bool;
     fn force_weapon_slot_selection(&self) -> &bool;
+    fn force_weapon_slot_selection_mut(&mut self) -> &mut bool;
     fn display_in_mini_map(&self) -> &bool;
+    fn display_in_mini_map_mut(&mut self) -> &mut bool;
     fn icon_name(&self) -> &String;
+    fn icon_name_mut(&mut self) -> &mut String;
     fn has_automatic_ammo_pickup(&self) -> &bool;
+    fn has_automatic_ammo_pickup_mut(&mut self) -> &mut bool;
     fn min_random_spare_ammo_percent(&self) -> &i32;
+    fn min_random_spare_ammo_percent_mut(&mut self) -> &mut i32;
     fn max_random_spare_ammo_percent(&self) -> &i32;
+    fn max_random_spare_ammo_percent_mut(&mut self) -> &mut i32;
     fn min_random_clip_ammo_percent(&self) -> &i32;
+    fn min_random_clip_ammo_percent_mut(&mut self) -> &mut i32;
     fn max_random_clip_ammo_percent(&self) -> &i32;
+    fn max_random_clip_ammo_percent_mut(&mut self) -> &mut i32;
     fn randomize_ammo_on_drop_for_player(&self) -> &PickupPlayerEnum;
+    fn randomize_ammo_on_drop_for_player_mut(&mut self) -> &mut PickupPlayerEnum;
     fn interaction_radius(&self) -> &f32;
+    fn interaction_radius_mut(&mut self) -> &mut f32;
     fn replace_all_content(&self) -> &bool;
+    fn replace_all_content_mut(&mut self) -> &mut bool;
     fn remove_weapon_on_drop(&self) -> &bool;
+    fn remove_weapon_on_drop_mut(&mut self) -> &mut bool;
     fn display_within_radius(&self) -> &f32;
+    fn display_within_radius_mut(&mut self) -> &mut f32;
     fn use_display_within_radius(&self) -> &bool;
+    fn use_display_within_radius_mut(&mut self) -> &mut bool;
     fn tactical_radius(&self) -> &f32;
+    fn tactical_radius_mut(&mut self) -> &mut f32;
     fn keep_ammo_state(&self) -> &bool;
+    fn keep_ammo_state_mut(&mut self) -> &mut bool;
 }
 
 impl PickupEntityDataTrait for PickupEntityData {
     fn physics_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         &self.physics_blueprint
     }
+    fn physics_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        &mut self.physics_blueprint
+    }
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         &self.mesh
+    }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &mut self.mesh
     }
     fn use_weapon_mesh(&self) -> &bool {
         &self.use_weapon_mesh
     }
+    fn use_weapon_mesh_mut(&mut self) -> &mut bool {
+        &mut self.use_weapon_mesh
+    }
     fn time_to_show_weapon_mesh(&self) -> &f32 {
         &self.time_to_show_weapon_mesh
+    }
+    fn time_to_show_weapon_mesh_mut(&mut self) -> &mut f32 {
+        &mut self.time_to_show_weapon_mesh
     }
     fn preferred_weapon_slot(&self) -> &u32 {
         &self.preferred_weapon_slot
     }
+    fn preferred_weapon_slot_mut(&mut self) -> &mut u32 {
+        &mut self.preferred_weapon_slot
+    }
     fn time_to_live(&self) -> &f32 {
         &self.time_to_live
+    }
+    fn time_to_live_mut(&mut self) -> &mut f32 {
+        &mut self.time_to_live
     }
     fn unspawn_on_pickup(&self) -> &bool {
         &self.unspawn_on_pickup
     }
+    fn unspawn_on_pickup_mut(&mut self) -> &mut bool {
+        &mut self.unspawn_on_pickup
+    }
     fn unspawn_on_ammo_pickup(&self) -> &bool {
         &self.unspawn_on_ammo_pickup
+    }
+    fn unspawn_on_ammo_pickup_mut(&mut self) -> &mut bool {
+        &mut self.unspawn_on_ammo_pickup
     }
     fn content_is_static(&self) -> &bool {
         &self.content_is_static
     }
+    fn content_is_static_mut(&mut self) -> &mut bool {
+        &mut self.content_is_static
+    }
     fn position_is_static(&self) -> &bool {
         &self.position_is_static
+    }
+    fn position_is_static_mut(&mut self) -> &mut bool {
+        &mut self.position_is_static
     }
     fn allow_pickup(&self) -> &bool {
         &self.allow_pickup
     }
+    fn allow_pickup_mut(&mut self) -> &mut bool {
+        &mut self.allow_pickup
+    }
     fn ignore_null_weapon_slots(&self) -> &bool {
         &self.ignore_null_weapon_slots
+    }
+    fn ignore_null_weapon_slots_mut(&mut self) -> &mut bool {
+        &mut self.ignore_null_weapon_slots
     }
     fn force_weapon_slot_selection(&self) -> &bool {
         &self.force_weapon_slot_selection
     }
+    fn force_weapon_slot_selection_mut(&mut self) -> &mut bool {
+        &mut self.force_weapon_slot_selection
+    }
     fn display_in_mini_map(&self) -> &bool {
         &self.display_in_mini_map
+    }
+    fn display_in_mini_map_mut(&mut self) -> &mut bool {
+        &mut self.display_in_mini_map
     }
     fn icon_name(&self) -> &String {
         &self.icon_name
     }
+    fn icon_name_mut(&mut self) -> &mut String {
+        &mut self.icon_name
+    }
     fn has_automatic_ammo_pickup(&self) -> &bool {
         &self.has_automatic_ammo_pickup
+    }
+    fn has_automatic_ammo_pickup_mut(&mut self) -> &mut bool {
+        &mut self.has_automatic_ammo_pickup
     }
     fn min_random_spare_ammo_percent(&self) -> &i32 {
         &self.min_random_spare_ammo_percent
     }
+    fn min_random_spare_ammo_percent_mut(&mut self) -> &mut i32 {
+        &mut self.min_random_spare_ammo_percent
+    }
     fn max_random_spare_ammo_percent(&self) -> &i32 {
         &self.max_random_spare_ammo_percent
+    }
+    fn max_random_spare_ammo_percent_mut(&mut self) -> &mut i32 {
+        &mut self.max_random_spare_ammo_percent
     }
     fn min_random_clip_ammo_percent(&self) -> &i32 {
         &self.min_random_clip_ammo_percent
     }
+    fn min_random_clip_ammo_percent_mut(&mut self) -> &mut i32 {
+        &mut self.min_random_clip_ammo_percent
+    }
     fn max_random_clip_ammo_percent(&self) -> &i32 {
         &self.max_random_clip_ammo_percent
+    }
+    fn max_random_clip_ammo_percent_mut(&mut self) -> &mut i32 {
+        &mut self.max_random_clip_ammo_percent
     }
     fn randomize_ammo_on_drop_for_player(&self) -> &PickupPlayerEnum {
         &self.randomize_ammo_on_drop_for_player
     }
+    fn randomize_ammo_on_drop_for_player_mut(&mut self) -> &mut PickupPlayerEnum {
+        &mut self.randomize_ammo_on_drop_for_player
+    }
     fn interaction_radius(&self) -> &f32 {
         &self.interaction_radius
+    }
+    fn interaction_radius_mut(&mut self) -> &mut f32 {
+        &mut self.interaction_radius
     }
     fn replace_all_content(&self) -> &bool {
         &self.replace_all_content
     }
+    fn replace_all_content_mut(&mut self) -> &mut bool {
+        &mut self.replace_all_content
+    }
     fn remove_weapon_on_drop(&self) -> &bool {
         &self.remove_weapon_on_drop
+    }
+    fn remove_weapon_on_drop_mut(&mut self) -> &mut bool {
+        &mut self.remove_weapon_on_drop
     }
     fn display_within_radius(&self) -> &f32 {
         &self.display_within_radius
     }
+    fn display_within_radius_mut(&mut self) -> &mut f32 {
+        &mut self.display_within_radius
+    }
     fn use_display_within_radius(&self) -> &bool {
         &self.use_display_within_radius
+    }
+    fn use_display_within_radius_mut(&mut self) -> &mut bool {
+        &mut self.use_display_within_radius
     }
     fn tactical_radius(&self) -> &f32 {
         &self.tactical_radius
     }
+    fn tactical_radius_mut(&mut self) -> &mut f32 {
+        &mut self.tactical_radius
+    }
     fn keep_ammo_state(&self) -> &bool {
         &self.keep_ammo_state
+    }
+    fn keep_ammo_state_mut(&mut self) -> &mut bool {
+        &mut self.keep_ammo_state
     }
 }
 
@@ -20092,32 +26131,56 @@ impl super::entity::GameComponentEntityDataTrait for PickupEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for PickupEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for PickupEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -20131,15 +26194,15 @@ impl super::core::DataBusPeerTrait for PickupEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PickupEntityData {
 }
 
 impl super::core::DataContainerTrait for PickupEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PICKUPENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20333,6 +26396,15 @@ impl TypeObject for PickupEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20354,15 +26426,23 @@ pub struct WeaponsNoPickupNetState {
 
 pub trait WeaponsNoPickupNetStateTrait: TypeObject {
     fn projectiles_in_magazines(&self) -> &i16;
+    fn projectiles_in_magazines_mut(&mut self) -> &mut i16;
     fn projectiles_loaded(&self) -> &i16;
+    fn projectiles_loaded_mut(&mut self) -> &mut i16;
 }
 
 impl WeaponsNoPickupNetStateTrait for WeaponsNoPickupNetState {
     fn projectiles_in_magazines(&self) -> &i16 {
         &self.projectiles_in_magazines
     }
+    fn projectiles_in_magazines_mut(&mut self) -> &mut i16 {
+        &mut self.projectiles_in_magazines
+    }
     fn projectiles_loaded(&self) -> &i16 {
         &self.projectiles_loaded
+    }
+    fn projectiles_loaded_mut(&mut self) -> &mut i16 {
+        &mut self.projectiles_loaded
     }
 }
 
@@ -20400,6 +26480,15 @@ impl TypeObject for WeaponsNoPickupNetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20430,51 +26519,95 @@ pub struct WeaponsPickupNetState {
 
 pub trait WeaponsPickupNetStateTrait: TypeObject {
     fn soldier_weapon_unlock(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
+    fn soldier_weapon_unlock_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
     fn weapon_slot_unlocks_size(&self) -> &u8;
+    fn weapon_slot_unlocks_size_mut(&mut self) -> &mut u8;
     fn weapon_slot(&self) -> &u8;
+    fn weapon_slot_mut(&mut self) -> &mut u8;
     fn alt_weapon_slot(&self) -> &i8;
+    fn alt_weapon_slot_mut(&mut self) -> &mut i8;
     fn linked_to_weapon_slot(&self) -> &i8;
+    fn linked_to_weapon_slot_mut(&mut self) -> &mut i8;
     fn projectiles_in_magazines(&self) -> &i16;
+    fn projectiles_in_magazines_mut(&mut self) -> &mut i16;
     fn projectiles_loaded(&self) -> &i16;
+    fn projectiles_loaded_mut(&mut self) -> &mut i16;
     fn ammo_pickup(&self) -> &bool;
+    fn ammo_pickup_mut(&mut self) -> &mut bool;
     fn ammo_pickup_unlimited(&self) -> &bool;
+    fn ammo_pickup_unlimited_mut(&mut self) -> &mut bool;
     fn use_weapon_mesh(&self) -> &bool;
+    fn use_weapon_mesh_mut(&mut self) -> &mut bool;
     fn soldier_weapons_net_state(&self) -> &SoldierWeaponsNetState;
+    fn soldier_weapons_net_state_mut(&mut self) -> &mut SoldierWeaponsNetState;
 }
 
 impl WeaponsPickupNetStateTrait for WeaponsPickupNetState {
     fn soldier_weapon_unlock(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
         &self.soldier_weapon_unlock
     }
+    fn soldier_weapon_unlock_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
+        &mut self.soldier_weapon_unlock
+    }
     fn weapon_slot_unlocks_size(&self) -> &u8 {
         &self.weapon_slot_unlocks_size
+    }
+    fn weapon_slot_unlocks_size_mut(&mut self) -> &mut u8 {
+        &mut self.weapon_slot_unlocks_size
     }
     fn weapon_slot(&self) -> &u8 {
         &self.weapon_slot
     }
+    fn weapon_slot_mut(&mut self) -> &mut u8 {
+        &mut self.weapon_slot
+    }
     fn alt_weapon_slot(&self) -> &i8 {
         &self.alt_weapon_slot
+    }
+    fn alt_weapon_slot_mut(&mut self) -> &mut i8 {
+        &mut self.alt_weapon_slot
     }
     fn linked_to_weapon_slot(&self) -> &i8 {
         &self.linked_to_weapon_slot
     }
+    fn linked_to_weapon_slot_mut(&mut self) -> &mut i8 {
+        &mut self.linked_to_weapon_slot
+    }
     fn projectiles_in_magazines(&self) -> &i16 {
         &self.projectiles_in_magazines
+    }
+    fn projectiles_in_magazines_mut(&mut self) -> &mut i16 {
+        &mut self.projectiles_in_magazines
     }
     fn projectiles_loaded(&self) -> &i16 {
         &self.projectiles_loaded
     }
+    fn projectiles_loaded_mut(&mut self) -> &mut i16 {
+        &mut self.projectiles_loaded
+    }
     fn ammo_pickup(&self) -> &bool {
         &self.ammo_pickup
+    }
+    fn ammo_pickup_mut(&mut self) -> &mut bool {
+        &mut self.ammo_pickup
     }
     fn ammo_pickup_unlimited(&self) -> &bool {
         &self.ammo_pickup_unlimited
     }
+    fn ammo_pickup_unlimited_mut(&mut self) -> &mut bool {
+        &mut self.ammo_pickup_unlimited
+    }
     fn use_weapon_mesh(&self) -> &bool {
         &self.use_weapon_mesh
     }
+    fn use_weapon_mesh_mut(&mut self) -> &mut bool {
+        &mut self.use_weapon_mesh
+    }
     fn soldier_weapons_net_state(&self) -> &SoldierWeaponsNetState {
         &self.soldier_weapons_net_state
+    }
+    fn soldier_weapons_net_state_mut(&mut self) -> &mut SoldierWeaponsNetState {
+        &mut self.soldier_weapons_net_state
     }
 }
 
@@ -20566,6 +26699,15 @@ impl TypeObject for WeaponsPickupNetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20606,6 +26748,15 @@ impl TypeObject for PickupPlayerEnum {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20636,51 +26787,95 @@ pub struct NetworkedSpecialDeathParameters {
 
 pub trait NetworkedSpecialDeathParametersTrait: TypeObject {
     fn forward_speed(&self) -> &i32;
+    fn forward_speed_mut(&mut self) -> &mut i32;
     fn right_speed(&self) -> &i32;
+    fn right_speed_mut(&mut self) -> &mut i32;
     fn hit_direction(&self) -> &super::game_shared::CharacterEntityHitDirection;
+    fn hit_direction_mut(&mut self) -> &mut super::game_shared::CharacterEntityHitDirection;
     fn random_value(&self) -> &f32;
+    fn random_value_mut(&mut self) -> &mut f32;
     fn pose(&self) -> &super::physics::CharacterPoseType;
+    fn pose_mut(&mut self) -> &mut super::physics::CharacterPoseType;
     fn hit_reaction_type(&self) -> &super::game_shared::HitReactionType;
+    fn hit_reaction_type_mut(&mut self) -> &mut super::game_shared::HitReactionType;
     fn unique_index(&self) -> &AIDeathReactionAnimationType;
+    fn unique_index_mut(&mut self) -> &mut AIDeathReactionAnimationType;
     fn death_animation_triggered(&self) -> &bool;
+    fn death_animation_triggered_mut(&mut self) -> &mut bool;
     fn on_ground(&self) -> &bool;
+    fn on_ground_mut(&mut self) -> &mut bool;
     fn sprinting(&self) -> &bool;
+    fn sprinting_mut(&mut self) -> &mut bool;
     fn explosion(&self) -> &bool;
+    fn explosion_mut(&mut self) -> &mut bool;
 }
 
 impl NetworkedSpecialDeathParametersTrait for NetworkedSpecialDeathParameters {
     fn forward_speed(&self) -> &i32 {
         &self.forward_speed
     }
+    fn forward_speed_mut(&mut self) -> &mut i32 {
+        &mut self.forward_speed
+    }
     fn right_speed(&self) -> &i32 {
         &self.right_speed
+    }
+    fn right_speed_mut(&mut self) -> &mut i32 {
+        &mut self.right_speed
     }
     fn hit_direction(&self) -> &super::game_shared::CharacterEntityHitDirection {
         &self.hit_direction
     }
+    fn hit_direction_mut(&mut self) -> &mut super::game_shared::CharacterEntityHitDirection {
+        &mut self.hit_direction
+    }
     fn random_value(&self) -> &f32 {
         &self.random_value
+    }
+    fn random_value_mut(&mut self) -> &mut f32 {
+        &mut self.random_value
     }
     fn pose(&self) -> &super::physics::CharacterPoseType {
         &self.pose
     }
+    fn pose_mut(&mut self) -> &mut super::physics::CharacterPoseType {
+        &mut self.pose
+    }
     fn hit_reaction_type(&self) -> &super::game_shared::HitReactionType {
         &self.hit_reaction_type
+    }
+    fn hit_reaction_type_mut(&mut self) -> &mut super::game_shared::HitReactionType {
+        &mut self.hit_reaction_type
     }
     fn unique_index(&self) -> &AIDeathReactionAnimationType {
         &self.unique_index
     }
+    fn unique_index_mut(&mut self) -> &mut AIDeathReactionAnimationType {
+        &mut self.unique_index
+    }
     fn death_animation_triggered(&self) -> &bool {
         &self.death_animation_triggered
+    }
+    fn death_animation_triggered_mut(&mut self) -> &mut bool {
+        &mut self.death_animation_triggered
     }
     fn on_ground(&self) -> &bool {
         &self.on_ground
     }
+    fn on_ground_mut(&mut self) -> &mut bool {
+        &mut self.on_ground
+    }
     fn sprinting(&self) -> &bool {
         &self.sprinting
     }
+    fn sprinting_mut(&mut self) -> &mut bool {
+        &mut self.sprinting
+    }
     fn explosion(&self) -> &bool {
         &self.explosion
+    }
+    fn explosion_mut(&mut self) -> &mut bool {
+        &mut self.explosion
     }
 }
 
@@ -20772,6 +26967,15 @@ impl TypeObject for NetworkedSpecialDeathParameters {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20797,27 +27001,47 @@ pub struct WeaponStateEntityData {
 
 pub trait WeaponStateEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn weapon_slot(&self) -> &i32;
+    fn weapon_slot_mut(&mut self) -> &mut i32;
     fn ammo(&self) -> &i32;
+    fn ammo_mut(&mut self) -> &mut i32;
     fn ammo_in_mags(&self) -> &i32;
+    fn ammo_in_mags_mut(&mut self) -> &mut i32;
     fn use_local_player(&self) -> &bool;
+    fn use_local_player_mut(&mut self) -> &mut bool;
 }
 
 impl WeaponStateEntityDataTrait for WeaponStateEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn weapon_slot(&self) -> &i32 {
         &self.weapon_slot
+    }
+    fn weapon_slot_mut(&mut self) -> &mut i32 {
+        &mut self.weapon_slot
     }
     fn ammo(&self) -> &i32 {
         &self.ammo
     }
+    fn ammo_mut(&mut self) -> &mut i32 {
+        &mut self.ammo
+    }
     fn ammo_in_mags(&self) -> &i32 {
         &self.ammo_in_mags
     }
+    fn ammo_in_mags_mut(&mut self) -> &mut i32 {
+        &mut self.ammo_in_mags
+    }
     fn use_local_player(&self) -> &bool {
         &self.use_local_player
+    }
+    fn use_local_player_mut(&mut self) -> &mut bool {
+        &mut self.use_local_player
     }
 }
 
@@ -20831,15 +27055,15 @@ impl super::core::DataBusPeerTrait for WeaponStateEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WeaponStateEntityData {
 }
 
 impl super::core::DataContainerTrait for WeaponStateEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WEAPONSTATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20895,6 +27119,15 @@ impl TypeObject for WeaponStateEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20929,15 +27162,15 @@ impl super::core::DataBusPeerTrait for SoldierWeaponSocketEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierWeaponSocketEntityData {
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponSocketEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONSOCKETENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20963,6 +27196,15 @@ impl TypeObject for SoldierWeaponSocketEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20984,11 +27226,15 @@ pub struct StateEventGateEntityData {
 
 pub trait StateEventGateEntityDataTrait: super::entity::EntityDataTrait {
     fn checked_state(&self) -> &EventGateState;
+    fn checked_state_mut(&mut self) -> &mut EventGateState;
 }
 
 impl StateEventGateEntityDataTrait for StateEventGateEntityData {
     fn checked_state(&self) -> &EventGateState {
         &self.checked_state
+    }
+    fn checked_state_mut(&mut self) -> &mut EventGateState {
+        &mut self.checked_state
     }
 }
 
@@ -21002,15 +27248,15 @@ impl super::core::DataBusPeerTrait for StateEventGateEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StateEventGateEntityData {
 }
 
 impl super::core::DataContainerTrait for StateEventGateEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STATEEVENTGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21041,6 +27287,15 @@ impl TypeObject for StateEventGateEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -21084,6 +27339,15 @@ impl TypeObject for EventGateState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21105,11 +27369,15 @@ pub struct PlayerLookAtEntityData {
 
 pub trait PlayerLookAtEntityDataTrait: super::entity::EntityDataTrait {
     fn target_transform(&self) -> &super::core::LinearTransform;
+    fn target_transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl PlayerLookAtEntityDataTrait for PlayerLookAtEntityData {
     fn target_transform(&self) -> &super::core::LinearTransform {
         &self.target_transform
+    }
+    fn target_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.target_transform
     }
 }
 
@@ -21123,15 +27391,15 @@ impl super::core::DataBusPeerTrait for PlayerLookAtEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PlayerLookAtEntityData {
 }
 
 impl super::core::DataContainerTrait for PlayerLookAtEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PLAYERLOOKATENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21163,6 +27431,15 @@ impl TypeObject for PlayerLookAtEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -21189,31 +27466,55 @@ pub struct HitReactionComponentData {
 
 pub trait HitReactionComponentDataTrait: super::entity::GameComponentDataTrait {
     fn hit_reaction_binding(&self) -> &HitReactionComponentBinding;
+    fn hit_reaction_binding_mut(&mut self) -> &mut HitReactionComponentBinding;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn settings(&self) -> &HitReactionSettings;
+    fn settings_mut(&mut self) -> &mut HitReactionSettings;
     fn override_settings_for_local_player(&self) -> &bool;
+    fn override_settings_for_local_player_mut(&mut self) -> &mut bool;
     fn local_player_controlled_settings(&self) -> &HitReactionSettings;
+    fn local_player_controlled_settings_mut(&mut self) -> &mut HitReactionSettings;
     fn manually_triggered_hit_reaction_type(&self) -> &super::weapon_shared::AntHitReactionWeaponType;
+    fn manually_triggered_hit_reaction_type_mut(&mut self) -> &mut super::weapon_shared::AntHitReactionWeaponType;
 }
 
 impl HitReactionComponentDataTrait for HitReactionComponentData {
     fn hit_reaction_binding(&self) -> &HitReactionComponentBinding {
         &self.hit_reaction_binding
     }
+    fn hit_reaction_binding_mut(&mut self) -> &mut HitReactionComponentBinding {
+        &mut self.hit_reaction_binding
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
     fn settings(&self) -> &HitReactionSettings {
         &self.settings
     }
+    fn settings_mut(&mut self) -> &mut HitReactionSettings {
+        &mut self.settings
+    }
     fn override_settings_for_local_player(&self) -> &bool {
         &self.override_settings_for_local_player
+    }
+    fn override_settings_for_local_player_mut(&mut self) -> &mut bool {
+        &mut self.override_settings_for_local_player
     }
     fn local_player_controlled_settings(&self) -> &HitReactionSettings {
         &self.local_player_controlled_settings
     }
+    fn local_player_controlled_settings_mut(&mut self) -> &mut HitReactionSettings {
+        &mut self.local_player_controlled_settings
+    }
     fn manually_triggered_hit_reaction_type(&self) -> &super::weapon_shared::AntHitReactionWeaponType {
         &self.manually_triggered_hit_reaction_type
+    }
+    fn manually_triggered_hit_reaction_type_mut(&mut self) -> &mut super::weapon_shared::AntHitReactionWeaponType {
+        &mut self.manually_triggered_hit_reaction_type
     }
 }
 
@@ -21224,17 +27525,32 @@ impl super::entity::ComponentDataTrait for HitReactionComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -21245,15 +27561,15 @@ impl super::core::DataBusPeerTrait for HitReactionComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for HitReactionComponentData {
 }
 
 impl super::core::DataContainerTrait for HitReactionComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HITREACTIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21315,6 +27631,15 @@ impl TypeObject for HitReactionComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -21338,23 +27663,39 @@ pub struct HitReactionSettings {
 
 pub trait HitReactionSettingsTrait: TypeObject {
     fn trigger_on_friendly(&self) -> &bool;
+    fn trigger_on_friendly_mut(&mut self) -> &mut bool;
     fn trigger_on_own_damage(&self) -> &bool;
+    fn trigger_on_own_damage_mut(&mut self) -> &mut bool;
     fn trigger_on_non_friendly(&self) -> &bool;
+    fn trigger_on_non_friendly_mut(&mut self) -> &mut bool;
     fn ignore_shockwave(&self) -> &bool;
+    fn ignore_shockwave_mut(&mut self) -> &mut bool;
 }
 
 impl HitReactionSettingsTrait for HitReactionSettings {
     fn trigger_on_friendly(&self) -> &bool {
         &self.trigger_on_friendly
     }
+    fn trigger_on_friendly_mut(&mut self) -> &mut bool {
+        &mut self.trigger_on_friendly
+    }
     fn trigger_on_own_damage(&self) -> &bool {
         &self.trigger_on_own_damage
+    }
+    fn trigger_on_own_damage_mut(&mut self) -> &mut bool {
+        &mut self.trigger_on_own_damage
     }
     fn trigger_on_non_friendly(&self) -> &bool {
         &self.trigger_on_non_friendly
     }
+    fn trigger_on_non_friendly_mut(&mut self) -> &mut bool {
+        &mut self.trigger_on_non_friendly
+    }
     fn ignore_shockwave(&self) -> &bool {
         &self.ignore_shockwave
+    }
+    fn ignore_shockwave_mut(&mut self) -> &mut bool {
+        &mut self.ignore_shockwave
     }
 }
 
@@ -21404,6 +27745,15 @@ impl TypeObject for HitReactionSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21435,55 +27785,103 @@ pub struct HitReactionComponentBinding {
 
 pub trait HitReactionComponentBindingTrait: TypeObject {
     fn hit(&self) -> &super::ant::AntRef;
+    fn hit_mut(&mut self) -> &mut super::ant::AntRef;
     fn hit_by_a_i_player(&self) -> &super::ant::AntRef;
+    fn hit_by_a_i_player_mut(&mut self) -> &mut super::ant::AntRef;
     fn allow_kill_from_animation(&self) -> &super::ant::AntRef;
+    fn allow_kill_from_animation_mut(&mut self) -> &mut super::ant::AntRef;
     fn direction(&self) -> &super::ant::AntRef;
+    fn direction_mut(&mut self) -> &mut super::ant::AntRef;
     fn firing_distance(&self) -> &super::ant::AntRef;
+    fn firing_distance_mut(&mut self) -> &mut super::ant::AntRef;
     fn bone_type(&self) -> &super::ant::AntRef;
+    fn bone_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn impact_type(&self) -> &super::ant::AntRef;
+    fn impact_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn immortal(&self) -> &super::ant::AntRef;
+    fn immortal_mut(&mut self) -> &mut super::ant::AntRef;
     fn random_animation_index(&self) -> &super::ant::AntRef;
+    fn random_animation_index_mut(&mut self) -> &mut super::ant::AntRef;
     fn explosion_nearby(&self) -> &super::ant::AntRef;
+    fn explosion_nearby_mut(&mut self) -> &mut super::ant::AntRef;
     fn explosion_nearby_a_i_player(&self) -> &super::ant::AntRef;
+    fn explosion_nearby_a_i_player_mut(&mut self) -> &mut super::ant::AntRef;
     fn explosion_direction(&self) -> &super::ant::AntRef;
+    fn explosion_direction_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl HitReactionComponentBindingTrait for HitReactionComponentBinding {
     fn hit(&self) -> &super::ant::AntRef {
         &self.hit
     }
+    fn hit_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.hit
+    }
     fn hit_by_a_i_player(&self) -> &super::ant::AntRef {
         &self.hit_by_a_i_player
+    }
+    fn hit_by_a_i_player_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.hit_by_a_i_player
     }
     fn allow_kill_from_animation(&self) -> &super::ant::AntRef {
         &self.allow_kill_from_animation
     }
+    fn allow_kill_from_animation_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.allow_kill_from_animation
+    }
     fn direction(&self) -> &super::ant::AntRef {
         &self.direction
+    }
+    fn direction_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.direction
     }
     fn firing_distance(&self) -> &super::ant::AntRef {
         &self.firing_distance
     }
+    fn firing_distance_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.firing_distance
+    }
     fn bone_type(&self) -> &super::ant::AntRef {
         &self.bone_type
+    }
+    fn bone_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.bone_type
     }
     fn impact_type(&self) -> &super::ant::AntRef {
         &self.impact_type
     }
+    fn impact_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.impact_type
+    }
     fn immortal(&self) -> &super::ant::AntRef {
         &self.immortal
+    }
+    fn immortal_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.immortal
     }
     fn random_animation_index(&self) -> &super::ant::AntRef {
         &self.random_animation_index
     }
+    fn random_animation_index_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.random_animation_index
+    }
     fn explosion_nearby(&self) -> &super::ant::AntRef {
         &self.explosion_nearby
+    }
+    fn explosion_nearby_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.explosion_nearby
     }
     fn explosion_nearby_a_i_player(&self) -> &super::ant::AntRef {
         &self.explosion_nearby_a_i_player
     }
+    fn explosion_nearby_a_i_player_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.explosion_nearby_a_i_player
+    }
     fn explosion_direction(&self) -> &super::ant::AntRef {
         &self.explosion_direction
+    }
+    fn explosion_direction_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.explosion_direction
     }
 }
 
@@ -21581,6 +27979,15 @@ impl TypeObject for HitReactionComponentBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21623,6 +28030,15 @@ impl TypeObject for AIHitReactionAnimationType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21650,35 +28066,63 @@ pub struct FaceposerComponentData {
 
 pub trait FaceposerComponentDataTrait: super::entity::GameComponentDataTrait {
     fn face_poser_enabled(&self) -> &super::ant::AntRef;
+    fn face_poser_enabled_mut(&mut self) -> &mut super::ant::AntRef;
     fn lod_distance(&self) -> &f32;
+    fn lod_distance_mut(&mut self) -> &mut f32;
     fn face_pose_library_reference(&self) -> &super::ant::AntRef;
+    fn face_pose_library_reference_mut(&mut self) -> &mut super::ant::AntRef;
     fn face_pose_library(&self) -> &Vec<super::ant::AntRef>;
+    fn face_pose_library_mut(&mut self) -> &mut Vec<super::ant::AntRef>;
     fn face_poser_dof_set_name(&self) -> &String;
+    fn face_poser_dof_set_name_mut(&mut self) -> &mut String;
     fn shader_exposed_values(&self) -> &Vec<String>;
+    fn shader_exposed_values_mut(&mut self) -> &mut Vec<String>;
     fn face_pose_library_index(&self) -> &i32;
+    fn face_pose_library_index_mut(&mut self) -> &mut i32;
 }
 
 impl FaceposerComponentDataTrait for FaceposerComponentData {
     fn face_poser_enabled(&self) -> &super::ant::AntRef {
         &self.face_poser_enabled
     }
+    fn face_poser_enabled_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.face_poser_enabled
+    }
     fn lod_distance(&self) -> &f32 {
         &self.lod_distance
+    }
+    fn lod_distance_mut(&mut self) -> &mut f32 {
+        &mut self.lod_distance
     }
     fn face_pose_library_reference(&self) -> &super::ant::AntRef {
         &self.face_pose_library_reference
     }
+    fn face_pose_library_reference_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.face_pose_library_reference
+    }
     fn face_pose_library(&self) -> &Vec<super::ant::AntRef> {
         &self.face_pose_library
+    }
+    fn face_pose_library_mut(&mut self) -> &mut Vec<super::ant::AntRef> {
+        &mut self.face_pose_library
     }
     fn face_poser_dof_set_name(&self) -> &String {
         &self.face_poser_dof_set_name
     }
+    fn face_poser_dof_set_name_mut(&mut self) -> &mut String {
+        &mut self.face_poser_dof_set_name
+    }
     fn shader_exposed_values(&self) -> &Vec<String> {
         &self.shader_exposed_values
     }
+    fn shader_exposed_values_mut(&mut self) -> &mut Vec<String> {
+        &mut self.shader_exposed_values
+    }
     fn face_pose_library_index(&self) -> &i32 {
         &self.face_pose_library_index
+    }
+    fn face_pose_library_index_mut(&mut self) -> &mut i32 {
+        &mut self.face_pose_library_index
     }
 }
 
@@ -21689,17 +28133,32 @@ impl super::entity::ComponentDataTrait for FaceposerComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -21710,15 +28169,15 @@ impl super::core::DataBusPeerTrait for FaceposerComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FaceposerComponentData {
 }
 
 impl super::core::DataContainerTrait for FaceposerComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FACEPOSERCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21786,6 +28245,15 @@ impl TypeObject for FaceposerComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -21831,6 +28299,15 @@ impl TypeObject for CharacterStateCorrectedChannelChangeMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -21865,6 +28342,15 @@ impl TypeObject for CorrectedChannelChangeList {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21885,11 +28371,15 @@ pub struct CorrectedChannelChange {
 
 pub trait CorrectedChannelChangeTrait: TypeObject {
     fn common(&self) -> &CorrectedChannelChangeCommon;
+    fn common_mut(&mut self) -> &mut CorrectedChannelChangeCommon;
 }
 
 impl CorrectedChannelChangeTrait for CorrectedChannelChange {
     fn common(&self) -> &CorrectedChannelChangeCommon {
         &self.common
+    }
+    fn common_mut(&mut self) -> &mut CorrectedChannelChangeCommon {
+        &mut self.common
     }
 }
 
@@ -21921,6 +28411,15 @@ impl TypeObject for CorrectedChannelChange {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -21943,19 +28442,31 @@ pub struct CorrectedVec3ChannelChange {
 
 pub trait CorrectedVec3ChannelChangeTrait: TypeObject {
     fn value(&self) -> &super::core::Vec3;
+    fn value_mut(&mut self) -> &mut super::core::Vec3;
     fn reset_value(&self) -> &super::core::Vec3;
+    fn reset_value_mut(&mut self) -> &mut super::core::Vec3;
     fn reset(&self) -> &bool;
+    fn reset_mut(&mut self) -> &mut bool;
 }
 
 impl CorrectedVec3ChannelChangeTrait for CorrectedVec3ChannelChange {
     fn value(&self) -> &super::core::Vec3 {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.value
+    }
     fn reset_value(&self) -> &super::core::Vec3 {
         &self.reset_value
     }
+    fn reset_value_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.reset_value
+    }
     fn reset(&self) -> &bool {
         &self.reset
+    }
+    fn reset_mut(&mut self) -> &mut bool {
+        &mut self.reset
     }
 }
 
@@ -21999,6 +28510,15 @@ impl TypeObject for CorrectedVec3ChannelChange {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22021,19 +28541,31 @@ pub struct CorrectedFloatChannelChange {
 
 pub trait CorrectedFloatChannelChangeTrait: TypeObject {
     fn value(&self) -> &f32;
+    fn value_mut(&mut self) -> &mut f32;
     fn reset_value(&self) -> &f32;
+    fn reset_value_mut(&mut self) -> &mut f32;
     fn reset(&self) -> &bool;
+    fn reset_mut(&mut self) -> &mut bool;
 }
 
 impl CorrectedFloatChannelChangeTrait for CorrectedFloatChannelChange {
     fn value(&self) -> &f32 {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut f32 {
+        &mut self.value
+    }
     fn reset_value(&self) -> &f32 {
         &self.reset_value
     }
+    fn reset_value_mut(&mut self) -> &mut f32 {
+        &mut self.reset_value
+    }
     fn reset(&self) -> &bool {
         &self.reset
+    }
+    fn reset_mut(&mut self) -> &mut bool {
+        &mut self.reset
     }
 }
 
@@ -22077,6 +28609,15 @@ impl TypeObject for CorrectedFloatChannelChange {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22099,19 +28640,31 @@ pub struct CorrectedIntChannelChange {
 
 pub trait CorrectedIntChannelChangeTrait: TypeObject {
     fn value(&self) -> &i32;
+    fn value_mut(&mut self) -> &mut i32;
     fn reset_value(&self) -> &i32;
+    fn reset_value_mut(&mut self) -> &mut i32;
     fn reset(&self) -> &bool;
+    fn reset_mut(&mut self) -> &mut bool;
 }
 
 impl CorrectedIntChannelChangeTrait for CorrectedIntChannelChange {
     fn value(&self) -> &i32 {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut i32 {
+        &mut self.value
+    }
     fn reset_value(&self) -> &i32 {
         &self.reset_value
     }
+    fn reset_value_mut(&mut self) -> &mut i32 {
+        &mut self.reset_value
+    }
     fn reset(&self) -> &bool {
         &self.reset
+    }
+    fn reset_mut(&mut self) -> &mut bool {
+        &mut self.reset
     }
 }
 
@@ -22155,6 +28708,15 @@ impl TypeObject for CorrectedIntChannelChange {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22177,19 +28739,31 @@ pub struct CorrectedBoolChannelChange {
 
 pub trait CorrectedBoolChannelChangeTrait: TypeObject {
     fn value(&self) -> &bool;
+    fn value_mut(&mut self) -> &mut bool;
     fn reset(&self) -> &bool;
+    fn reset_mut(&mut self) -> &mut bool;
     fn reset_value(&self) -> &bool;
+    fn reset_value_mut(&mut self) -> &mut bool;
 }
 
 impl CorrectedBoolChannelChangeTrait for CorrectedBoolChannelChange {
     fn value(&self) -> &bool {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut bool {
+        &mut self.value
+    }
     fn reset(&self) -> &bool {
         &self.reset
     }
+    fn reset_mut(&mut self) -> &mut bool {
+        &mut self.reset
+    }
     fn reset_value(&self) -> &bool {
         &self.reset_value
+    }
+    fn reset_value_mut(&mut self) -> &mut bool {
+        &mut self.reset_value
     }
 }
 
@@ -22233,6 +28807,15 @@ impl TypeObject for CorrectedBoolChannelChange {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22253,11 +28836,15 @@ pub struct CorrectedTransformChannelChange {
 
 pub trait CorrectedTransformChannelChangeTrait: TypeObject {
     fn value(&self) -> &super::core::LinearTransform;
+    fn value_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl CorrectedTransformChannelChangeTrait for CorrectedTransformChannelChange {
     fn value(&self) -> &super::core::LinearTransform {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.value
     }
 }
 
@@ -22289,6 +28876,15 @@ impl TypeObject for CorrectedTransformChannelChange {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22311,19 +28907,31 @@ pub struct CorrectedInteractionTransformChange {
 
 pub trait CorrectedInteractionTransformChangeTrait: TypeObject {
     fn have_target(&self) -> &bool;
+    fn have_target_mut(&mut self) -> &mut bool;
     fn rotation(&self) -> &super::core::Quat;
+    fn rotation_mut(&mut self) -> &mut super::core::Quat;
     fn translation(&self) -> &super::core::Vec3;
+    fn translation_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl CorrectedInteractionTransformChangeTrait for CorrectedInteractionTransformChange {
     fn have_target(&self) -> &bool {
         &self.have_target
     }
+    fn have_target_mut(&mut self) -> &mut bool {
+        &mut self.have_target
+    }
     fn rotation(&self) -> &super::core::Quat {
         &self.rotation
     }
+    fn rotation_mut(&mut self) -> &mut super::core::Quat {
+        &mut self.rotation
+    }
     fn translation(&self) -> &super::core::Vec3 {
         &self.translation
+    }
+    fn translation_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.translation
     }
 }
 
@@ -22367,6 +28975,15 @@ impl TypeObject for CorrectedInteractionTransformChange {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22389,19 +29006,31 @@ pub struct CorrectedChannelChangeCommon {
 
 pub trait CorrectedChannelChangeCommonTrait: TypeObject {
     fn tick_to_apply(&self) -> &u32;
+    fn tick_to_apply_mut(&mut self) -> &mut u32;
     fn length(&self) -> &u32;
+    fn length_mut(&mut self) -> &mut u32;
     fn hash(&self) -> &u32;
+    fn hash_mut(&mut self) -> &mut u32;
 }
 
 impl CorrectedChannelChangeCommonTrait for CorrectedChannelChangeCommon {
     fn tick_to_apply(&self) -> &u32 {
         &self.tick_to_apply
     }
+    fn tick_to_apply_mut(&mut self) -> &mut u32 {
+        &mut self.tick_to_apply
+    }
     fn length(&self) -> &u32 {
         &self.length
     }
+    fn length_mut(&mut self) -> &mut u32 {
+        &mut self.length
+    }
     fn hash(&self) -> &u32 {
         &self.hash
+    }
+    fn hash_mut(&mut self) -> &mut u32 {
+        &mut self.hash
     }
 }
 
@@ -22445,6 +29074,15 @@ impl TypeObject for CorrectedChannelChangeCommon {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -22466,11 +29104,15 @@ pub struct CharacterStateAndRequiredData {
 
 pub trait CharacterStateAndRequiredDataTrait: CharacterStateRequiredChannelValueDataTrait {
     fn and_values(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStateRequiredChannelValueDataTrait>>>>;
+    fn and_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStateRequiredChannelValueDataTrait>>>>;
 }
 
 impl CharacterStateAndRequiredDataTrait for CharacterStateAndRequiredData {
     fn and_values(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStateRequiredChannelValueDataTrait>>>> {
         &self.and_values
+    }
+    fn and_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStateRequiredChannelValueDataTrait>>>> {
+        &mut self.and_values
     }
 }
 
@@ -22478,12 +29120,12 @@ impl CharacterStateRequiredChannelValueDataTrait for CharacterStateAndRequiredDa
     fn invert_conditions(&self) -> &bool {
         self._glacier_base.invert_conditions()
     }
+    fn invert_conditions_mut(&mut self) -> &mut bool {
+        self._glacier_base.invert_conditions_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterStateAndRequiredData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEANDREQUIREDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -22515,6 +29157,15 @@ impl TypeObject for CharacterStateAndRequiredData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22536,11 +29187,15 @@ pub struct CharacterStateOrRequiredData {
 
 pub trait CharacterStateOrRequiredDataTrait: CharacterStateRequiredChannelValueDataTrait {
     fn or_values(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStateRequiredChannelValueDataTrait>>>>;
+    fn or_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStateRequiredChannelValueDataTrait>>>>;
 }
 
 impl CharacterStateOrRequiredDataTrait for CharacterStateOrRequiredData {
     fn or_values(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStateRequiredChannelValueDataTrait>>>> {
         &self.or_values
+    }
+    fn or_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStateRequiredChannelValueDataTrait>>>> {
+        &mut self.or_values
     }
 }
 
@@ -22548,12 +29203,12 @@ impl CharacterStateRequiredChannelValueDataTrait for CharacterStateOrRequiredDat
     fn invert_conditions(&self) -> &bool {
         self._glacier_base.invert_conditions()
     }
+    fn invert_conditions_mut(&mut self) -> &mut bool {
+        self._glacier_base.invert_conditions_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterStateOrRequiredData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEORREQUIREDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -22585,6 +29240,15 @@ impl TypeObject for CharacterStateOrRequiredData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22607,15 +29271,23 @@ pub struct CharacterStateFloatRequiredChannelValueData {
 
 pub trait CharacterStateFloatRequiredChannelValueDataTrait: CharacterStateRequiredChannelValueDataTrait {
     fn channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelDataTrait>>>;
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelDataTrait>>>;
     fn allowed_values(&self) -> &Vec<f32>;
+    fn allowed_values_mut(&mut self) -> &mut Vec<f32>;
 }
 
 impl CharacterStateFloatRequiredChannelValueDataTrait for CharacterStateFloatRequiredChannelValueData {
     fn channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelDataTrait>>> {
         &self.channel
     }
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelDataTrait>>> {
+        &mut self.channel
+    }
     fn allowed_values(&self) -> &Vec<f32> {
         &self.allowed_values
+    }
+    fn allowed_values_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.allowed_values
     }
 }
 
@@ -22623,12 +29295,12 @@ impl CharacterStateRequiredChannelValueDataTrait for CharacterStateFloatRequired
     fn invert_conditions(&self) -> &bool {
         self._glacier_base.invert_conditions()
     }
+    fn invert_conditions_mut(&mut self) -> &mut bool {
+        self._glacier_base.invert_conditions_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterStateFloatRequiredChannelValueData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEFLOATREQUIREDCHANNELVALUEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -22666,6 +29338,15 @@ impl TypeObject for CharacterStateFloatRequiredChannelValueData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22688,15 +29369,23 @@ pub struct CharacterStateIntRequiredChannelValueData {
 
 pub trait CharacterStateIntRequiredChannelValueDataTrait: CharacterStateRequiredChannelValueDataTrait {
     fn channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicIntChannelDataTrait>>>;
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicIntChannelDataTrait>>>;
     fn allowed_values(&self) -> &Vec<i32>;
+    fn allowed_values_mut(&mut self) -> &mut Vec<i32>;
 }
 
 impl CharacterStateIntRequiredChannelValueDataTrait for CharacterStateIntRequiredChannelValueData {
     fn channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicIntChannelDataTrait>>> {
         &self.channel
     }
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicIntChannelDataTrait>>> {
+        &mut self.channel
+    }
     fn allowed_values(&self) -> &Vec<i32> {
         &self.allowed_values
+    }
+    fn allowed_values_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.allowed_values
     }
 }
 
@@ -22704,12 +29393,12 @@ impl CharacterStateRequiredChannelValueDataTrait for CharacterStateIntRequiredCh
     fn invert_conditions(&self) -> &bool {
         self._glacier_base.invert_conditions()
     }
+    fn invert_conditions_mut(&mut self) -> &mut bool {
+        self._glacier_base.invert_conditions_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterStateIntRequiredChannelValueData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEINTREQUIREDCHANNELVALUEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -22747,6 +29436,15 @@ impl TypeObject for CharacterStateIntRequiredChannelValueData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22769,15 +29467,23 @@ pub struct CharacterStateBoolRequiredChannelValueData {
 
 pub trait CharacterStateBoolRequiredChannelValueDataTrait: CharacterStateRequiredChannelValueDataTrait {
     fn channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelDataTrait>>>;
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelDataTrait>>>;
     fn allowed_values(&self) -> &Vec<bool>;
+    fn allowed_values_mut(&mut self) -> &mut Vec<bool>;
 }
 
 impl CharacterStateBoolRequiredChannelValueDataTrait for CharacterStateBoolRequiredChannelValueData {
     fn channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelDataTrait>>> {
         &self.channel
     }
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelDataTrait>>> {
+        &mut self.channel
+    }
     fn allowed_values(&self) -> &Vec<bool> {
         &self.allowed_values
+    }
+    fn allowed_values_mut(&mut self) -> &mut Vec<bool> {
+        &mut self.allowed_values
     }
 }
 
@@ -22785,12 +29491,12 @@ impl CharacterStateRequiredChannelValueDataTrait for CharacterStateBoolRequiredC
     fn invert_conditions(&self) -> &bool {
         self._glacier_base.invert_conditions()
     }
+    fn invert_conditions_mut(&mut self) -> &mut bool {
+        self._glacier_base.invert_conditions_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterStateBoolRequiredChannelValueData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEBOOLREQUIREDCHANNELVALUEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -22828,6 +29534,15 @@ impl TypeObject for CharacterStateBoolRequiredChannelValueData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22849,18 +29564,19 @@ pub struct CharacterStateRequiredChannelValueData {
 
 pub trait CharacterStateRequiredChannelValueDataTrait: super::core::DataContainerTrait {
     fn invert_conditions(&self) -> &bool;
+    fn invert_conditions_mut(&mut self) -> &mut bool;
 }
 
 impl CharacterStateRequiredChannelValueDataTrait for CharacterStateRequiredChannelValueData {
     fn invert_conditions(&self) -> &bool {
         &self.invert_conditions
     }
+    fn invert_conditions_mut(&mut self) -> &mut bool {
+        &mut self.invert_conditions
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterStateRequiredChannelValueData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEREQUIREDCHANNELVALUEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -22892,6 +29608,15 @@ impl TypeObject for CharacterStateRequiredChannelValueData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22916,27 +29641,47 @@ pub struct CharacterStatePublicChannelMappingTable {
 
 pub trait CharacterStatePublicChannelMappingTableTrait: TypeObject {
     fn bool_channel_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelMappingTrait>>>>;
+    fn bool_channel_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelMappingTrait>>>>;
     fn int_channel_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicIntChannelMappingTrait>>>>;
+    fn int_channel_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicIntChannelMappingTrait>>>>;
     fn float_channel_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelMappingTrait>>>>;
+    fn float_channel_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelMappingTrait>>>>;
     fn vec3_channel_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicVec3ChannelMappingTrait>>>>;
+    fn vec3_channel_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicVec3ChannelMappingTrait>>>>;
     fn transform_channel_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicTransformChannelMappingTrait>>>>;
+    fn transform_channel_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicTransformChannelMappingTrait>>>>;
 }
 
 impl CharacterStatePublicChannelMappingTableTrait for CharacterStatePublicChannelMappingTable {
     fn bool_channel_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelMappingTrait>>>> {
         &self.bool_channel_mappings
     }
+    fn bool_channel_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelMappingTrait>>>> {
+        &mut self.bool_channel_mappings
+    }
     fn int_channel_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicIntChannelMappingTrait>>>> {
         &self.int_channel_mappings
+    }
+    fn int_channel_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicIntChannelMappingTrait>>>> {
+        &mut self.int_channel_mappings
     }
     fn float_channel_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelMappingTrait>>>> {
         &self.float_channel_mappings
     }
+    fn float_channel_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelMappingTrait>>>> {
+        &mut self.float_channel_mappings
+    }
     fn vec3_channel_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicVec3ChannelMappingTrait>>>> {
         &self.vec3_channel_mappings
     }
+    fn vec3_channel_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicVec3ChannelMappingTrait>>>> {
+        &mut self.vec3_channel_mappings
+    }
     fn transform_channel_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicTransformChannelMappingTrait>>>> {
         &self.transform_channel_mappings
+    }
+    fn transform_channel_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicTransformChannelMappingTrait>>>> {
+        &mut self.transform_channel_mappings
     }
 }
 
@@ -22992,6 +29737,15 @@ impl TypeObject for CharacterStatePublicChannelMappingTable {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -23014,15 +29768,23 @@ pub struct CharacterStatePublicVec3ChannelMapping {
 
 pub trait CharacterStatePublicVec3ChannelMappingTrait: CharacterStatePublicChannelMappingTrait {
     fn public_channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicVec3ChannelDataTrait>>>;
+    fn public_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicVec3ChannelDataTrait>>>;
     fn channel(&self) -> &Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>>;
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>>;
 }
 
 impl CharacterStatePublicVec3ChannelMappingTrait for CharacterStatePublicVec3ChannelMapping {
     fn public_channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicVec3ChannelDataTrait>>> {
         &self.public_channel
     }
+    fn public_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicVec3ChannelDataTrait>>> {
+        &mut self.public_channel
+    }
     fn channel(&self) -> &Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>> {
         &self.channel
+    }
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>> {
+        &mut self.channel
     }
 }
 
@@ -23030,9 +29792,6 @@ impl CharacterStatePublicChannelMappingTrait for CharacterStatePublicVec3Channel
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicVec3ChannelMapping {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICVEC3CHANNELMAPPING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23070,6 +29829,15 @@ impl TypeObject for CharacterStatePublicVec3ChannelMapping {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23092,15 +29860,23 @@ pub struct CharacterStatePublicBoolChannelMapping {
 
 pub trait CharacterStatePublicBoolChannelMappingTrait: CharacterStatePublicChannelMappingTrait {
     fn public_channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelDataTrait>>>;
+    fn public_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelDataTrait>>>;
     fn channel(&self) -> &Option<Arc<Mutex<dyn BoolChannelDataTrait>>>;
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BoolChannelDataTrait>>>;
 }
 
 impl CharacterStatePublicBoolChannelMappingTrait for CharacterStatePublicBoolChannelMapping {
     fn public_channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelDataTrait>>> {
         &self.public_channel
     }
+    fn public_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicBoolChannelDataTrait>>> {
+        &mut self.public_channel
+    }
     fn channel(&self) -> &Option<Arc<Mutex<dyn BoolChannelDataTrait>>> {
         &self.channel
+    }
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BoolChannelDataTrait>>> {
+        &mut self.channel
     }
 }
 
@@ -23108,9 +29884,6 @@ impl CharacterStatePublicChannelMappingTrait for CharacterStatePublicBoolChannel
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicBoolChannelMapping {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICBOOLCHANNELMAPPING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23148,6 +29921,15 @@ impl TypeObject for CharacterStatePublicBoolChannelMapping {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23170,15 +29952,23 @@ pub struct CharacterStatePublicIntChannelMapping {
 
 pub trait CharacterStatePublicIntChannelMappingTrait: CharacterStatePublicChannelMappingTrait {
     fn public_channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicIntChannelDataTrait>>>;
+    fn public_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicIntChannelDataTrait>>>;
     fn channel(&self) -> &Option<Arc<Mutex<dyn IntChannelDataTrait>>>;
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn IntChannelDataTrait>>>;
 }
 
 impl CharacterStatePublicIntChannelMappingTrait for CharacterStatePublicIntChannelMapping {
     fn public_channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicIntChannelDataTrait>>> {
         &self.public_channel
     }
+    fn public_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicIntChannelDataTrait>>> {
+        &mut self.public_channel
+    }
     fn channel(&self) -> &Option<Arc<Mutex<dyn IntChannelDataTrait>>> {
         &self.channel
+    }
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn IntChannelDataTrait>>> {
+        &mut self.channel
     }
 }
 
@@ -23186,9 +29976,6 @@ impl CharacterStatePublicChannelMappingTrait for CharacterStatePublicIntChannelM
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicIntChannelMapping {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICINTCHANNELMAPPING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23226,6 +30013,15 @@ impl TypeObject for CharacterStatePublicIntChannelMapping {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23248,15 +30044,23 @@ pub struct CharacterStatePublicFloatChannelMapping {
 
 pub trait CharacterStatePublicFloatChannelMappingTrait: CharacterStatePublicChannelMappingTrait {
     fn public_channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelDataTrait>>>;
+    fn public_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelDataTrait>>>;
     fn channel(&self) -> &Option<Arc<Mutex<dyn FloatChannelDataTrait>>>;
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatChannelDataTrait>>>;
 }
 
 impl CharacterStatePublicFloatChannelMappingTrait for CharacterStatePublicFloatChannelMapping {
     fn public_channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelDataTrait>>> {
         &self.public_channel
     }
+    fn public_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicFloatChannelDataTrait>>> {
+        &mut self.public_channel
+    }
     fn channel(&self) -> &Option<Arc<Mutex<dyn FloatChannelDataTrait>>> {
         &self.channel
+    }
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatChannelDataTrait>>> {
+        &mut self.channel
     }
 }
 
@@ -23264,9 +30068,6 @@ impl CharacterStatePublicChannelMappingTrait for CharacterStatePublicFloatChanne
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicFloatChannelMapping {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICFLOATCHANNELMAPPING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23304,6 +30105,15 @@ impl TypeObject for CharacterStatePublicFloatChannelMapping {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23326,15 +30136,23 @@ pub struct CharacterStatePublicTransformChannelMapping {
 
 pub trait CharacterStatePublicTransformChannelMappingTrait: CharacterStatePublicChannelMappingTrait {
     fn public_channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicTransformChannelDataTrait>>>;
+    fn public_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicTransformChannelDataTrait>>>;
     fn channel(&self) -> &Option<Arc<Mutex<dyn TransformChannelDataTrait>>>;
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TransformChannelDataTrait>>>;
 }
 
 impl CharacterStatePublicTransformChannelMappingTrait for CharacterStatePublicTransformChannelMapping {
     fn public_channel(&self) -> &Option<Arc<Mutex<dyn CharacterStatePublicTransformChannelDataTrait>>> {
         &self.public_channel
     }
+    fn public_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterStatePublicTransformChannelDataTrait>>> {
+        &mut self.public_channel
+    }
     fn channel(&self) -> &Option<Arc<Mutex<dyn TransformChannelDataTrait>>> {
         &self.channel
+    }
+    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TransformChannelDataTrait>>> {
+        &mut self.channel
     }
 }
 
@@ -23342,9 +30160,6 @@ impl CharacterStatePublicChannelMappingTrait for CharacterStatePublicTransformCh
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicTransformChannelMapping {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICTRANSFORMCHANNELMAPPING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23382,6 +30197,15 @@ impl TypeObject for CharacterStatePublicTransformChannelMapping {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23407,9 +30231,6 @@ impl CharacterStatePublicChannelMappingTrait for CharacterStatePublicChannelMapp
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicChannelMapping {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICCHANNELMAPPING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23435,6 +30256,15 @@ impl TypeObject for CharacterStatePublicChannelMapping {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23456,11 +30286,15 @@ pub struct CharacterStatePublicChannelListData {
 
 pub trait CharacterStatePublicChannelListDataTrait: super::core::DataContainerPolicyAssetTrait {
     fn public_channels(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicChannelDataTrait>>>>;
+    fn public_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicChannelDataTrait>>>>;
 }
 
 impl CharacterStatePublicChannelListDataTrait for CharacterStatePublicChannelListData {
     fn public_channels(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePublicChannelDataTrait>>>> {
         &self.public_channels
+    }
+    fn public_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePublicChannelDataTrait>>>> {
+        &mut self.public_channels
     }
 }
 
@@ -23471,12 +30305,12 @@ impl super::core::AssetTrait for CharacterStatePublicChannelListData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicChannelListData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICCHANNELLISTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23508,6 +30342,15 @@ impl TypeObject for CharacterStatePublicChannelListData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23536,15 +30379,18 @@ impl CharacterStatePublicChannelDataTrait for CharacterStatePublicBoolChannelDat
     fn hash(&self) -> &u32 {
         self._glacier_base.hash()
     }
+    fn hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.hash_mut()
+    }
     fn name(&self) -> &String {
         self._glacier_base.name()
+    }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicBoolChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICBOOLCHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23569,6 +30415,15 @@ impl TypeObject for CharacterStatePublicBoolChannelData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23598,15 +30453,18 @@ impl CharacterStatePublicChannelDataTrait for CharacterStatePublicIntChannelData
     fn hash(&self) -> &u32 {
         self._glacier_base.hash()
     }
+    fn hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.hash_mut()
+    }
     fn name(&self) -> &String {
         self._glacier_base.name()
+    }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicIntChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICINTCHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23631,6 +30489,15 @@ impl TypeObject for CharacterStatePublicIntChannelData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23660,15 +30527,18 @@ impl CharacterStatePublicChannelDataTrait for CharacterStatePublicFloatChannelDa
     fn hash(&self) -> &u32 {
         self._glacier_base.hash()
     }
+    fn hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.hash_mut()
+    }
     fn name(&self) -> &String {
         self._glacier_base.name()
+    }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicFloatChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICFLOATCHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23693,6 +30563,15 @@ impl TypeObject for CharacterStatePublicFloatChannelData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23722,15 +30601,18 @@ impl CharacterStatePublicChannelDataTrait for CharacterStatePublicVec3ChannelDat
     fn hash(&self) -> &u32 {
         self._glacier_base.hash()
     }
+    fn hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.hash_mut()
+    }
     fn name(&self) -> &String {
         self._glacier_base.name()
+    }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicVec3ChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICVEC3CHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23755,6 +30637,15 @@ impl TypeObject for CharacterStatePublicVec3ChannelData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23784,15 +30675,18 @@ impl CharacterStatePublicChannelDataTrait for CharacterStatePublicTransformChann
     fn hash(&self) -> &u32 {
         self._glacier_base.hash()
     }
+    fn hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.hash_mut()
+    }
     fn name(&self) -> &String {
         self._glacier_base.name()
+    }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicTransformChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICTRANSFORMCHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23818,6 +30712,15 @@ impl TypeObject for CharacterStatePublicTransformChannelData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23840,22 +30743,27 @@ pub struct CharacterStatePublicChannelData {
 
 pub trait CharacterStatePublicChannelDataTrait: super::core::DataContainerTrait {
     fn hash(&self) -> &u32;
+    fn hash_mut(&mut self) -> &mut u32;
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
 }
 
 impl CharacterStatePublicChannelDataTrait for CharacterStatePublicChannelData {
     fn hash(&self) -> &u32 {
         &self.hash
     }
+    fn hash_mut(&mut self) -> &mut u32 {
+        &mut self.hash
+    }
     fn name(&self) -> &String {
         &self.name
+    }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
     }
 }
 
 impl super::core::DataContainerTrait for CharacterStatePublicChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSTATEPUBLICCHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23893,6 +30801,15 @@ impl TypeObject for CharacterStatePublicChannelData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23923,51 +30840,95 @@ pub struct ChannelTableData {
 
 pub trait ChannelTableDataTrait: TypeObject {
     fn bool_channels(&self) -> &Vec<Option<Arc<Mutex<dyn BoolChannelDataTrait>>>>;
+    fn bool_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn BoolChannelDataTrait>>>>;
     fn int_channels(&self) -> &Vec<Option<Arc<Mutex<dyn IntChannelDataTrait>>>>;
+    fn int_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn IntChannelDataTrait>>>>;
     fn float_channels(&self) -> &Vec<Option<Arc<Mutex<dyn FloatChannelDataTrait>>>>;
+    fn float_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FloatChannelDataTrait>>>>;
     fn vec3_channels(&self) -> &Vec<Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>>>;
+    fn vec3_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>>>;
     fn transform_channels(&self) -> &Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>>;
+    fn transform_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>>;
     fn networked_bool_channels(&self) -> &Vec<Option<Arc<Mutex<dyn BoolChannelDataTrait>>>>;
+    fn networked_bool_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn BoolChannelDataTrait>>>>;
     fn networked_int_channels(&self) -> &Vec<Option<Arc<Mutex<dyn IntChannelDataTrait>>>>;
+    fn networked_int_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn IntChannelDataTrait>>>>;
     fn networked_float_channels(&self) -> &Vec<Option<Arc<Mutex<dyn FloatChannelDataTrait>>>>;
+    fn networked_float_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FloatChannelDataTrait>>>>;
     fn networked_vec3_channels(&self) -> &Vec<Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>>>;
+    fn networked_vec3_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>>>;
     fn networked_transform_channels(&self) -> &Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>>;
+    fn networked_transform_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>>;
     fn reset_every_frame(&self) -> &ResetEveryFrameData;
+    fn reset_every_frame_mut(&mut self) -> &mut ResetEveryFrameData;
 }
 
 impl ChannelTableDataTrait for ChannelTableData {
     fn bool_channels(&self) -> &Vec<Option<Arc<Mutex<dyn BoolChannelDataTrait>>>> {
         &self.bool_channels
     }
+    fn bool_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn BoolChannelDataTrait>>>> {
+        &mut self.bool_channels
+    }
     fn int_channels(&self) -> &Vec<Option<Arc<Mutex<dyn IntChannelDataTrait>>>> {
         &self.int_channels
+    }
+    fn int_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn IntChannelDataTrait>>>> {
+        &mut self.int_channels
     }
     fn float_channels(&self) -> &Vec<Option<Arc<Mutex<dyn FloatChannelDataTrait>>>> {
         &self.float_channels
     }
+    fn float_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FloatChannelDataTrait>>>> {
+        &mut self.float_channels
+    }
     fn vec3_channels(&self) -> &Vec<Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>>> {
         &self.vec3_channels
+    }
+    fn vec3_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>>> {
+        &mut self.vec3_channels
     }
     fn transform_channels(&self) -> &Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>> {
         &self.transform_channels
     }
+    fn transform_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>> {
+        &mut self.transform_channels
+    }
     fn networked_bool_channels(&self) -> &Vec<Option<Arc<Mutex<dyn BoolChannelDataTrait>>>> {
         &self.networked_bool_channels
+    }
+    fn networked_bool_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn BoolChannelDataTrait>>>> {
+        &mut self.networked_bool_channels
     }
     fn networked_int_channels(&self) -> &Vec<Option<Arc<Mutex<dyn IntChannelDataTrait>>>> {
         &self.networked_int_channels
     }
+    fn networked_int_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn IntChannelDataTrait>>>> {
+        &mut self.networked_int_channels
+    }
     fn networked_float_channels(&self) -> &Vec<Option<Arc<Mutex<dyn FloatChannelDataTrait>>>> {
         &self.networked_float_channels
+    }
+    fn networked_float_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FloatChannelDataTrait>>>> {
+        &mut self.networked_float_channels
     }
     fn networked_vec3_channels(&self) -> &Vec<Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>>> {
         &self.networked_vec3_channels
     }
+    fn networked_vec3_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn Vec3ChannelDataTrait>>>> {
+        &mut self.networked_vec3_channels
+    }
     fn networked_transform_channels(&self) -> &Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>> {
         &self.networked_transform_channels
     }
+    fn networked_transform_channels_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>> {
+        &mut self.networked_transform_channels
+    }
     fn reset_every_frame(&self) -> &ResetEveryFrameData {
         &self.reset_every_frame
+    }
+    fn reset_every_frame_mut(&mut self) -> &mut ResetEveryFrameData {
+        &mut self.reset_every_frame
     }
 }
 
@@ -24059,6 +31020,15 @@ impl TypeObject for ChannelTableData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24106,119 +31076,231 @@ pub struct ResetEveryFrameData {
 
 pub trait ResetEveryFrameDataTrait: TypeObject {
     fn bool_bucket_masks(&self) -> &Vec<u8>;
+    fn bool_bucket_masks_mut(&mut self) -> &mut Vec<u8>;
     fn bool_bucket_values(&self) -> &Vec<u8>;
+    fn bool_bucket_values_mut(&mut self) -> &mut Vec<u8>;
     fn net_bool_bucket_masks(&self) -> &Vec<u8>;
+    fn net_bool_bucket_masks_mut(&mut self) -> &mut Vec<u8>;
     fn net_bool_bucket_values(&self) -> &Vec<u8>;
+    fn net_bool_bucket_values_mut(&mut self) -> &mut Vec<u8>;
     fn int_bucket_masks(&self) -> &Vec<u8>;
+    fn int_bucket_masks_mut(&mut self) -> &mut Vec<u8>;
     fn net_int_bucket_masks(&self) -> &Vec<u8>;
+    fn net_int_bucket_masks_mut(&mut self) -> &mut Vec<u8>;
     fn float_bucket_masks(&self) -> &Vec<u8>;
+    fn float_bucket_masks_mut(&mut self) -> &mut Vec<u8>;
     fn net_float_bucket_masks(&self) -> &Vec<u8>;
+    fn net_float_bucket_masks_mut(&mut self) -> &mut Vec<u8>;
     fn vec3_bucket_masks(&self) -> &Vec<u8>;
+    fn vec3_bucket_masks_mut(&mut self) -> &mut Vec<u8>;
     fn net_vec3_bucket_masks(&self) -> &Vec<u8>;
+    fn net_vec3_bucket_masks_mut(&mut self) -> &mut Vec<u8>;
     fn transform_bucket_masks(&self) -> &Vec<u8>;
+    fn transform_bucket_masks_mut(&mut self) -> &mut Vec<u8>;
     fn net_transform_bucket_masks(&self) -> &Vec<u8>;
+    fn net_transform_bucket_masks_mut(&mut self) -> &mut Vec<u8>;
     fn int_channel_indices(&self) -> &Vec<i32>;
+    fn int_channel_indices_mut(&mut self) -> &mut Vec<i32>;
     fn int_channel_values(&self) -> &Vec<i32>;
+    fn int_channel_values_mut(&mut self) -> &mut Vec<i32>;
     fn net_int_channel_indices(&self) -> &Vec<i32>;
+    fn net_int_channel_indices_mut(&mut self) -> &mut Vec<i32>;
     fn net_int_channel_values(&self) -> &Vec<i32>;
+    fn net_int_channel_values_mut(&mut self) -> &mut Vec<i32>;
     fn float_channel_indices(&self) -> &Vec<i32>;
+    fn float_channel_indices_mut(&mut self) -> &mut Vec<i32>;
     fn float_channel_values(&self) -> &Vec<f32>;
+    fn float_channel_values_mut(&mut self) -> &mut Vec<f32>;
     fn net_float_channel_indices(&self) -> &Vec<i32>;
+    fn net_float_channel_indices_mut(&mut self) -> &mut Vec<i32>;
     fn net_float_channel_values(&self) -> &Vec<f32>;
+    fn net_float_channel_values_mut(&mut self) -> &mut Vec<f32>;
     fn vec3_channel_indices(&self) -> &Vec<i32>;
+    fn vec3_channel_indices_mut(&mut self) -> &mut Vec<i32>;
     fn vec3_channel_values(&self) -> &Vec<super::core::Vec3>;
+    fn vec3_channel_values_mut(&mut self) -> &mut Vec<super::core::Vec3>;
     fn net_vec3_channel_indices(&self) -> &Vec<i32>;
+    fn net_vec3_channel_indices_mut(&mut self) -> &mut Vec<i32>;
     fn net_vec3_channel_values(&self) -> &Vec<super::core::Vec3>;
+    fn net_vec3_channel_values_mut(&mut self) -> &mut Vec<super::core::Vec3>;
     fn transform_channel_indices(&self) -> &Vec<i32>;
+    fn transform_channel_indices_mut(&mut self) -> &mut Vec<i32>;
     fn transform_channel_values(&self) -> &Vec<super::core::LinearTransform>;
+    fn transform_channel_values_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
     fn net_transform_channel_indices(&self) -> &Vec<i32>;
+    fn net_transform_channel_indices_mut(&mut self) -> &mut Vec<i32>;
     fn net_transform_channel_values(&self) -> &Vec<super::core::LinearTransform>;
+    fn net_transform_channel_values_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
 }
 
 impl ResetEveryFrameDataTrait for ResetEveryFrameData {
     fn bool_bucket_masks(&self) -> &Vec<u8> {
         &self.bool_bucket_masks
     }
+    fn bool_bucket_masks_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.bool_bucket_masks
+    }
     fn bool_bucket_values(&self) -> &Vec<u8> {
         &self.bool_bucket_values
+    }
+    fn bool_bucket_values_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.bool_bucket_values
     }
     fn net_bool_bucket_masks(&self) -> &Vec<u8> {
         &self.net_bool_bucket_masks
     }
+    fn net_bool_bucket_masks_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.net_bool_bucket_masks
+    }
     fn net_bool_bucket_values(&self) -> &Vec<u8> {
         &self.net_bool_bucket_values
+    }
+    fn net_bool_bucket_values_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.net_bool_bucket_values
     }
     fn int_bucket_masks(&self) -> &Vec<u8> {
         &self.int_bucket_masks
     }
+    fn int_bucket_masks_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.int_bucket_masks
+    }
     fn net_int_bucket_masks(&self) -> &Vec<u8> {
         &self.net_int_bucket_masks
+    }
+    fn net_int_bucket_masks_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.net_int_bucket_masks
     }
     fn float_bucket_masks(&self) -> &Vec<u8> {
         &self.float_bucket_masks
     }
+    fn float_bucket_masks_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.float_bucket_masks
+    }
     fn net_float_bucket_masks(&self) -> &Vec<u8> {
         &self.net_float_bucket_masks
+    }
+    fn net_float_bucket_masks_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.net_float_bucket_masks
     }
     fn vec3_bucket_masks(&self) -> &Vec<u8> {
         &self.vec3_bucket_masks
     }
+    fn vec3_bucket_masks_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.vec3_bucket_masks
+    }
     fn net_vec3_bucket_masks(&self) -> &Vec<u8> {
         &self.net_vec3_bucket_masks
+    }
+    fn net_vec3_bucket_masks_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.net_vec3_bucket_masks
     }
     fn transform_bucket_masks(&self) -> &Vec<u8> {
         &self.transform_bucket_masks
     }
+    fn transform_bucket_masks_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.transform_bucket_masks
+    }
     fn net_transform_bucket_masks(&self) -> &Vec<u8> {
         &self.net_transform_bucket_masks
+    }
+    fn net_transform_bucket_masks_mut(&mut self) -> &mut Vec<u8> {
+        &mut self.net_transform_bucket_masks
     }
     fn int_channel_indices(&self) -> &Vec<i32> {
         &self.int_channel_indices
     }
+    fn int_channel_indices_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.int_channel_indices
+    }
     fn int_channel_values(&self) -> &Vec<i32> {
         &self.int_channel_values
+    }
+    fn int_channel_values_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.int_channel_values
     }
     fn net_int_channel_indices(&self) -> &Vec<i32> {
         &self.net_int_channel_indices
     }
+    fn net_int_channel_indices_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.net_int_channel_indices
+    }
     fn net_int_channel_values(&self) -> &Vec<i32> {
         &self.net_int_channel_values
+    }
+    fn net_int_channel_values_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.net_int_channel_values
     }
     fn float_channel_indices(&self) -> &Vec<i32> {
         &self.float_channel_indices
     }
+    fn float_channel_indices_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.float_channel_indices
+    }
     fn float_channel_values(&self) -> &Vec<f32> {
         &self.float_channel_values
+    }
+    fn float_channel_values_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.float_channel_values
     }
     fn net_float_channel_indices(&self) -> &Vec<i32> {
         &self.net_float_channel_indices
     }
+    fn net_float_channel_indices_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.net_float_channel_indices
+    }
     fn net_float_channel_values(&self) -> &Vec<f32> {
         &self.net_float_channel_values
+    }
+    fn net_float_channel_values_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.net_float_channel_values
     }
     fn vec3_channel_indices(&self) -> &Vec<i32> {
         &self.vec3_channel_indices
     }
+    fn vec3_channel_indices_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.vec3_channel_indices
+    }
     fn vec3_channel_values(&self) -> &Vec<super::core::Vec3> {
         &self.vec3_channel_values
+    }
+    fn vec3_channel_values_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        &mut self.vec3_channel_values
     }
     fn net_vec3_channel_indices(&self) -> &Vec<i32> {
         &self.net_vec3_channel_indices
     }
+    fn net_vec3_channel_indices_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.net_vec3_channel_indices
+    }
     fn net_vec3_channel_values(&self) -> &Vec<super::core::Vec3> {
         &self.net_vec3_channel_values
+    }
+    fn net_vec3_channel_values_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        &mut self.net_vec3_channel_values
     }
     fn transform_channel_indices(&self) -> &Vec<i32> {
         &self.transform_channel_indices
     }
+    fn transform_channel_indices_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.transform_channel_indices
+    }
     fn transform_channel_values(&self) -> &Vec<super::core::LinearTransform> {
         &self.transform_channel_values
+    }
+    fn transform_channel_values_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+        &mut self.transform_channel_values
     }
     fn net_transform_channel_indices(&self) -> &Vec<i32> {
         &self.net_transform_channel_indices
     }
+    fn net_transform_channel_indices_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.net_transform_channel_indices
+    }
     fn net_transform_channel_values(&self) -> &Vec<super::core::LinearTransform> {
         &self.net_transform_channel_values
+    }
+    fn net_transform_channel_values_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+        &mut self.net_transform_channel_values
     }
 }
 
@@ -24412,6 +31494,15 @@ impl TypeObject for ResetEveryFrameData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24459,6 +31550,15 @@ impl TypeObject for ChannelDataType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24480,18 +31580,19 @@ pub struct ChannelSetData {
 
 pub trait ChannelSetDataTrait: super::core::DataContainerTrait {
     fn channel(&self) -> &Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>>;
+    fn channel_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>>;
 }
 
 impl ChannelSetDataTrait for ChannelSetData {
     fn channel(&self) -> &Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>> {
         &self.channel
     }
+    fn channel_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformChannelDataTrait>>>> {
+        &mut self.channel
+    }
 }
 
 impl super::core::DataContainerTrait for ChannelSetData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHANNELSETDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24523,6 +31624,15 @@ impl TypeObject for ChannelSetData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24552,43 +31662,79 @@ pub struct TransformChannelData {
 
 pub trait TransformChannelDataTrait: ChannelDataTrait {
     fn ant_vec(&self) -> &super::ant::AntRef;
+    fn ant_vec_mut(&mut self) -> &mut super::ant::AntRef;
     fn ant_quat(&self) -> &super::ant::AntRef;
+    fn ant_quat_mut(&mut self) -> &mut super::ant::AntRef;
     fn mirror_mode(&self) -> &TransformChannelMirrorToGameStateMode;
+    fn mirror_mode_mut(&mut self) -> &mut TransformChannelMirrorToGameStateMode;
     fn network_quantization(&self) -> &TransformNetworkQuantization;
+    fn network_quantization_mut(&mut self) -> &mut TransformNetworkQuantization;
     fn is_delta_channel(&self) -> &bool;
+    fn is_delta_channel_mut(&mut self) -> &mut bool;
     fn accumulate_delta(&self) -> &bool;
+    fn accumulate_delta_mut(&mut self) -> &mut bool;
     fn joint_name(&self) -> &String;
+    fn joint_name_mut(&mut self) -> &mut String;
     fn parent_channel(&self) -> &Option<Arc<Mutex<dyn TransformChannelDataTrait>>>;
+    fn parent_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TransformChannelDataTrait>>>;
     fn default_value(&self) -> &super::core::LinearTransform;
+    fn default_value_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl TransformChannelDataTrait for TransformChannelData {
     fn ant_vec(&self) -> &super::ant::AntRef {
         &self.ant_vec
     }
+    fn ant_vec_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ant_vec
+    }
     fn ant_quat(&self) -> &super::ant::AntRef {
         &self.ant_quat
+    }
+    fn ant_quat_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ant_quat
     }
     fn mirror_mode(&self) -> &TransformChannelMirrorToGameStateMode {
         &self.mirror_mode
     }
+    fn mirror_mode_mut(&mut self) -> &mut TransformChannelMirrorToGameStateMode {
+        &mut self.mirror_mode
+    }
     fn network_quantization(&self) -> &TransformNetworkQuantization {
         &self.network_quantization
+    }
+    fn network_quantization_mut(&mut self) -> &mut TransformNetworkQuantization {
+        &mut self.network_quantization
     }
     fn is_delta_channel(&self) -> &bool {
         &self.is_delta_channel
     }
+    fn is_delta_channel_mut(&mut self) -> &mut bool {
+        &mut self.is_delta_channel
+    }
     fn accumulate_delta(&self) -> &bool {
         &self.accumulate_delta
+    }
+    fn accumulate_delta_mut(&mut self) -> &mut bool {
+        &mut self.accumulate_delta
     }
     fn joint_name(&self) -> &String {
         &self.joint_name
     }
+    fn joint_name_mut(&mut self) -> &mut String {
+        &mut self.joint_name
+    }
     fn parent_channel(&self) -> &Option<Arc<Mutex<dyn TransformChannelDataTrait>>> {
         &self.parent_channel
     }
+    fn parent_channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TransformChannelDataTrait>>> {
+        &mut self.parent_channel
+    }
     fn default_value(&self) -> &super::core::LinearTransform {
         &self.default_value
+    }
+    fn default_value_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.default_value
     }
 }
 
@@ -24596,33 +31742,54 @@ impl ChannelDataTrait for TransformChannelData {
     fn channel_asset_index(&self) -> &i32 {
         self._glacier_base.channel_asset_index()
     }
+    fn channel_asset_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.channel_asset_index_mut()
+    }
     fn reset_with_controller_tree_reset(&self) -> &bool {
         self._glacier_base.reset_with_controller_tree_reset()
+    }
+    fn reset_with_controller_tree_reset_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_with_controller_tree_reset_mut()
     }
     fn reset_every_frame(&self) -> &bool {
         self._glacier_base.reset_every_frame()
     }
+    fn reset_every_frame_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_every_frame_mut()
+    }
     fn mirror_to_ant(&self) -> &bool {
         self._glacier_base.mirror_to_ant()
+    }
+    fn mirror_to_ant_mut(&mut self) -> &mut bool {
+        self._glacier_base.mirror_to_ant_mut()
     }
     fn replicate(&self) -> &bool {
         self._glacier_base.replicate()
     }
+    fn replicate_mut(&mut self) -> &mut bool {
+        self._glacier_base.replicate_mut()
+    }
     fn name(&self) -> &String {
         self._glacier_base.name()
+    }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
     }
     fn networked(&self) -> &bool {
         self._glacier_base.networked()
     }
+    fn networked_mut(&mut self) -> &mut bool {
+        self._glacier_base.networked_mut()
+    }
     fn table_index(&self) -> &i32 {
         self._glacier_base.table_index()
+    }
+    fn table_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.table_index_mut()
     }
 }
 
 impl super::core::DataContainerTrait for TransformChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TRANSFORMCHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24702,6 +31869,15 @@ impl TypeObject for TransformChannelData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24740,6 +31916,15 @@ impl TypeObject for TransformChannelMirrorToGameStateMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24761,15 +31946,23 @@ pub struct TransformNetworkQuantization {
 
 pub trait TransformNetworkQuantizationTrait: TypeObject {
     fn quat_scale(&self) -> &f32;
+    fn quat_scale_mut(&mut self) -> &mut f32;
     fn translation_quantization(&self) -> &Vec3NetworkQuantization;
+    fn translation_quantization_mut(&mut self) -> &mut Vec3NetworkQuantization;
 }
 
 impl TransformNetworkQuantizationTrait for TransformNetworkQuantization {
     fn quat_scale(&self) -> &f32 {
         &self.quat_scale
     }
+    fn quat_scale_mut(&mut self) -> &mut f32 {
+        &mut self.quat_scale
+    }
     fn translation_quantization(&self) -> &Vec3NetworkQuantization {
         &self.translation_quantization
+    }
+    fn translation_quantization_mut(&mut self) -> &mut Vec3NetworkQuantization {
+        &mut self.translation_quantization
     }
 }
 
@@ -24807,6 +32000,15 @@ impl TypeObject for TransformNetworkQuantization {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -24830,19 +32032,31 @@ pub struct Vec3ChannelData {
 
 pub trait Vec3ChannelDataTrait: ChannelDataTrait {
     fn ant_vec(&self) -> &super::ant::AntRef;
+    fn ant_vec_mut(&mut self) -> &mut super::ant::AntRef;
     fn network_quantization(&self) -> &Vec3NetworkQuantization;
+    fn network_quantization_mut(&mut self) -> &mut Vec3NetworkQuantization;
     fn default_value(&self) -> &super::core::Vec3;
+    fn default_value_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl Vec3ChannelDataTrait for Vec3ChannelData {
     fn ant_vec(&self) -> &super::ant::AntRef {
         &self.ant_vec
     }
+    fn ant_vec_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ant_vec
+    }
     fn network_quantization(&self) -> &Vec3NetworkQuantization {
         &self.network_quantization
     }
+    fn network_quantization_mut(&mut self) -> &mut Vec3NetworkQuantization {
+        &mut self.network_quantization
+    }
     fn default_value(&self) -> &super::core::Vec3 {
         &self.default_value
+    }
+    fn default_value_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.default_value
     }
 }
 
@@ -24850,33 +32064,54 @@ impl ChannelDataTrait for Vec3ChannelData {
     fn channel_asset_index(&self) -> &i32 {
         self._glacier_base.channel_asset_index()
     }
+    fn channel_asset_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.channel_asset_index_mut()
+    }
     fn reset_with_controller_tree_reset(&self) -> &bool {
         self._glacier_base.reset_with_controller_tree_reset()
+    }
+    fn reset_with_controller_tree_reset_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_with_controller_tree_reset_mut()
     }
     fn reset_every_frame(&self) -> &bool {
         self._glacier_base.reset_every_frame()
     }
+    fn reset_every_frame_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_every_frame_mut()
+    }
     fn mirror_to_ant(&self) -> &bool {
         self._glacier_base.mirror_to_ant()
+    }
+    fn mirror_to_ant_mut(&mut self) -> &mut bool {
+        self._glacier_base.mirror_to_ant_mut()
     }
     fn replicate(&self) -> &bool {
         self._glacier_base.replicate()
     }
+    fn replicate_mut(&mut self) -> &mut bool {
+        self._glacier_base.replicate_mut()
+    }
     fn name(&self) -> &String {
         self._glacier_base.name()
+    }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
     }
     fn networked(&self) -> &bool {
         self._glacier_base.networked()
     }
+    fn networked_mut(&mut self) -> &mut bool {
+        self._glacier_base.networked_mut()
+    }
     fn table_index(&self) -> &i32 {
         self._glacier_base.table_index()
+    }
+    fn table_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.table_index_mut()
     }
 }
 
 impl super::core::DataContainerTrait for Vec3ChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEC3CHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24920,6 +32155,15 @@ impl TypeObject for Vec3ChannelData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24942,19 +32186,31 @@ pub struct Vec3NetworkQuantization {
 
 pub trait Vec3NetworkQuantizationTrait: TypeObject {
     fn x_quant(&self) -> &FloatNetworkQuantization;
+    fn x_quant_mut(&mut self) -> &mut FloatNetworkQuantization;
     fn y_quant(&self) -> &FloatNetworkQuantization;
+    fn y_quant_mut(&mut self) -> &mut FloatNetworkQuantization;
     fn z_quant(&self) -> &FloatNetworkQuantization;
+    fn z_quant_mut(&mut self) -> &mut FloatNetworkQuantization;
 }
 
 impl Vec3NetworkQuantizationTrait for Vec3NetworkQuantization {
     fn x_quant(&self) -> &FloatNetworkQuantization {
         &self.x_quant
     }
+    fn x_quant_mut(&mut self) -> &mut FloatNetworkQuantization {
+        &mut self.x_quant
+    }
     fn y_quant(&self) -> &FloatNetworkQuantization {
         &self.y_quant
     }
+    fn y_quant_mut(&mut self) -> &mut FloatNetworkQuantization {
+        &mut self.y_quant
+    }
     fn z_quant(&self) -> &FloatNetworkQuantization {
         &self.z_quant
+    }
+    fn z_quant_mut(&mut self) -> &mut FloatNetworkQuantization {
+        &mut self.z_quant
     }
 }
 
@@ -24998,6 +32254,15 @@ impl TypeObject for Vec3NetworkQuantization {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -25024,31 +32289,55 @@ pub struct FloatChannelData {
 
 pub trait FloatChannelDataTrait: ChannelDataTrait {
     fn ant_float(&self) -> &super::ant::AntRef;
+    fn ant_float_mut(&mut self) -> &mut super::ant::AntRef;
     fn default_value(&self) -> &f32;
+    fn default_value_mut(&mut self) -> &mut f32;
     fn network_quantization(&self) -> &FloatNetworkQuantization;
+    fn network_quantization_mut(&mut self) -> &mut FloatNetworkQuantization;
     fn is_delta_channel(&self) -> &bool;
+    fn is_delta_channel_mut(&mut self) -> &mut bool;
     fn accumulate_delta(&self) -> &bool;
+    fn accumulate_delta_mut(&mut self) -> &mut bool;
     fn treat_as_game_logic(&self) -> &bool;
+    fn treat_as_game_logic_mut(&mut self) -> &mut bool;
 }
 
 impl FloatChannelDataTrait for FloatChannelData {
     fn ant_float(&self) -> &super::ant::AntRef {
         &self.ant_float
     }
+    fn ant_float_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ant_float
+    }
     fn default_value(&self) -> &f32 {
         &self.default_value
+    }
+    fn default_value_mut(&mut self) -> &mut f32 {
+        &mut self.default_value
     }
     fn network_quantization(&self) -> &FloatNetworkQuantization {
         &self.network_quantization
     }
+    fn network_quantization_mut(&mut self) -> &mut FloatNetworkQuantization {
+        &mut self.network_quantization
+    }
     fn is_delta_channel(&self) -> &bool {
         &self.is_delta_channel
+    }
+    fn is_delta_channel_mut(&mut self) -> &mut bool {
+        &mut self.is_delta_channel
     }
     fn accumulate_delta(&self) -> &bool {
         &self.accumulate_delta
     }
+    fn accumulate_delta_mut(&mut self) -> &mut bool {
+        &mut self.accumulate_delta
+    }
     fn treat_as_game_logic(&self) -> &bool {
         &self.treat_as_game_logic
+    }
+    fn treat_as_game_logic_mut(&mut self) -> &mut bool {
+        &mut self.treat_as_game_logic
     }
 }
 
@@ -25056,33 +32345,54 @@ impl ChannelDataTrait for FloatChannelData {
     fn channel_asset_index(&self) -> &i32 {
         self._glacier_base.channel_asset_index()
     }
+    fn channel_asset_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.channel_asset_index_mut()
+    }
     fn reset_with_controller_tree_reset(&self) -> &bool {
         self._glacier_base.reset_with_controller_tree_reset()
+    }
+    fn reset_with_controller_tree_reset_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_with_controller_tree_reset_mut()
     }
     fn reset_every_frame(&self) -> &bool {
         self._glacier_base.reset_every_frame()
     }
+    fn reset_every_frame_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_every_frame_mut()
+    }
     fn mirror_to_ant(&self) -> &bool {
         self._glacier_base.mirror_to_ant()
+    }
+    fn mirror_to_ant_mut(&mut self) -> &mut bool {
+        self._glacier_base.mirror_to_ant_mut()
     }
     fn replicate(&self) -> &bool {
         self._glacier_base.replicate()
     }
+    fn replicate_mut(&mut self) -> &mut bool {
+        self._glacier_base.replicate_mut()
+    }
     fn name(&self) -> &String {
         self._glacier_base.name()
+    }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
     }
     fn networked(&self) -> &bool {
         self._glacier_base.networked()
     }
+    fn networked_mut(&mut self) -> &mut bool {
+        self._glacier_base.networked_mut()
+    }
     fn table_index(&self) -> &i32 {
         self._glacier_base.table_index()
+    }
+    fn table_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.table_index_mut()
     }
 }
 
 impl super::core::DataContainerTrait for FloatChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FLOATCHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -25144,6 +32454,15 @@ impl TypeObject for FloatChannelData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25167,23 +32486,39 @@ pub struct FloatNetworkQuantization {
 
 pub trait FloatNetworkQuantizationTrait: TypeObject {
     fn quantization_scale(&self) -> &f32;
+    fn quantization_scale_mut(&mut self) -> &mut f32;
     fn max_value(&self) -> &f32;
+    fn max_value_mut(&mut self) -> &mut f32;
     fn min_value(&self) -> &f32;
+    fn min_value_mut(&mut self) -> &mut f32;
     fn bits_needed_for_typical_change(&self) -> &i32;
+    fn bits_needed_for_typical_change_mut(&mut self) -> &mut i32;
 }
 
 impl FloatNetworkQuantizationTrait for FloatNetworkQuantization {
     fn quantization_scale(&self) -> &f32 {
         &self.quantization_scale
     }
+    fn quantization_scale_mut(&mut self) -> &mut f32 {
+        &mut self.quantization_scale
+    }
     fn max_value(&self) -> &f32 {
         &self.max_value
+    }
+    fn max_value_mut(&mut self) -> &mut f32 {
+        &mut self.max_value
     }
     fn min_value(&self) -> &f32 {
         &self.min_value
     }
+    fn min_value_mut(&mut self) -> &mut f32 {
+        &mut self.min_value
+    }
     fn bits_needed_for_typical_change(&self) -> &i32 {
         &self.bits_needed_for_typical_change
+    }
+    fn bits_needed_for_typical_change_mut(&mut self) -> &mut i32 {
+        &mut self.bits_needed_for_typical_change
     }
 }
 
@@ -25233,6 +32568,15 @@ impl TypeObject for FloatNetworkQuantization {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -25257,23 +32601,39 @@ pub struct IntChannelData {
 
 pub trait IntChannelDataTrait: ChannelDataTrait {
     fn ant_int(&self) -> &super::ant::AntRef;
+    fn ant_int_mut(&mut self) -> &mut super::ant::AntRef;
     fn default_value(&self) -> &i32;
+    fn default_value_mut(&mut self) -> &mut i32;
     fn network_quantization(&self) -> &IntNetworkQuantization;
+    fn network_quantization_mut(&mut self) -> &mut IntNetworkQuantization;
     fn latency_compensate_tag_frames(&self) -> &i32;
+    fn latency_compensate_tag_frames_mut(&mut self) -> &mut i32;
 }
 
 impl IntChannelDataTrait for IntChannelData {
     fn ant_int(&self) -> &super::ant::AntRef {
         &self.ant_int
     }
+    fn ant_int_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ant_int
+    }
     fn default_value(&self) -> &i32 {
         &self.default_value
+    }
+    fn default_value_mut(&mut self) -> &mut i32 {
+        &mut self.default_value
     }
     fn network_quantization(&self) -> &IntNetworkQuantization {
         &self.network_quantization
     }
+    fn network_quantization_mut(&mut self) -> &mut IntNetworkQuantization {
+        &mut self.network_quantization
+    }
     fn latency_compensate_tag_frames(&self) -> &i32 {
         &self.latency_compensate_tag_frames
+    }
+    fn latency_compensate_tag_frames_mut(&mut self) -> &mut i32 {
+        &mut self.latency_compensate_tag_frames
     }
 }
 
@@ -25281,33 +32641,54 @@ impl ChannelDataTrait for IntChannelData {
     fn channel_asset_index(&self) -> &i32 {
         self._glacier_base.channel_asset_index()
     }
+    fn channel_asset_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.channel_asset_index_mut()
+    }
     fn reset_with_controller_tree_reset(&self) -> &bool {
         self._glacier_base.reset_with_controller_tree_reset()
+    }
+    fn reset_with_controller_tree_reset_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_with_controller_tree_reset_mut()
     }
     fn reset_every_frame(&self) -> &bool {
         self._glacier_base.reset_every_frame()
     }
+    fn reset_every_frame_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_every_frame_mut()
+    }
     fn mirror_to_ant(&self) -> &bool {
         self._glacier_base.mirror_to_ant()
+    }
+    fn mirror_to_ant_mut(&mut self) -> &mut bool {
+        self._glacier_base.mirror_to_ant_mut()
     }
     fn replicate(&self) -> &bool {
         self._glacier_base.replicate()
     }
+    fn replicate_mut(&mut self) -> &mut bool {
+        self._glacier_base.replicate_mut()
+    }
     fn name(&self) -> &String {
         self._glacier_base.name()
+    }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
     }
     fn networked(&self) -> &bool {
         self._glacier_base.networked()
     }
+    fn networked_mut(&mut self) -> &mut bool {
+        self._glacier_base.networked_mut()
+    }
     fn table_index(&self) -> &i32 {
         self._glacier_base.table_index()
+    }
+    fn table_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.table_index_mut()
     }
 }
 
 impl super::core::DataContainerTrait for IntChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INTCHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -25357,6 +32738,15 @@ impl TypeObject for IntChannelData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25378,15 +32768,23 @@ pub struct IntNetworkQuantization {
 
 pub trait IntNetworkQuantizationTrait: TypeObject {
     fn lower_limit(&self) -> &i32;
+    fn lower_limit_mut(&mut self) -> &mut i32;
     fn upper_limit(&self) -> &i32;
+    fn upper_limit_mut(&mut self) -> &mut i32;
 }
 
 impl IntNetworkQuantizationTrait for IntNetworkQuantization {
     fn lower_limit(&self) -> &i32 {
         &self.lower_limit
     }
+    fn lower_limit_mut(&mut self) -> &mut i32 {
+        &mut self.lower_limit
+    }
     fn upper_limit(&self) -> &i32 {
         &self.upper_limit
+    }
+    fn upper_limit_mut(&mut self) -> &mut i32 {
+        &mut self.upper_limit
     }
 }
 
@@ -25424,6 +32822,15 @@ impl TypeObject for IntNetworkQuantization {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -25447,19 +32854,31 @@ pub struct BoolChannelData {
 
 pub trait BoolChannelDataTrait: ChannelDataTrait {
     fn ant_bool(&self) -> &super::ant::AntRef;
+    fn ant_bool_mut(&mut self) -> &mut super::ant::AntRef;
     fn default_value(&self) -> &bool;
+    fn default_value_mut(&mut self) -> &mut bool;
     fn latency_compensate_tag_frames(&self) -> &i32;
+    fn latency_compensate_tag_frames_mut(&mut self) -> &mut i32;
 }
 
 impl BoolChannelDataTrait for BoolChannelData {
     fn ant_bool(&self) -> &super::ant::AntRef {
         &self.ant_bool
     }
+    fn ant_bool_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ant_bool
+    }
     fn default_value(&self) -> &bool {
         &self.default_value
     }
+    fn default_value_mut(&mut self) -> &mut bool {
+        &mut self.default_value
+    }
     fn latency_compensate_tag_frames(&self) -> &i32 {
         &self.latency_compensate_tag_frames
+    }
+    fn latency_compensate_tag_frames_mut(&mut self) -> &mut i32 {
+        &mut self.latency_compensate_tag_frames
     }
 }
 
@@ -25467,33 +32886,54 @@ impl ChannelDataTrait for BoolChannelData {
     fn channel_asset_index(&self) -> &i32 {
         self._glacier_base.channel_asset_index()
     }
+    fn channel_asset_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.channel_asset_index_mut()
+    }
     fn reset_with_controller_tree_reset(&self) -> &bool {
         self._glacier_base.reset_with_controller_tree_reset()
+    }
+    fn reset_with_controller_tree_reset_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_with_controller_tree_reset_mut()
     }
     fn reset_every_frame(&self) -> &bool {
         self._glacier_base.reset_every_frame()
     }
+    fn reset_every_frame_mut(&mut self) -> &mut bool {
+        self._glacier_base.reset_every_frame_mut()
+    }
     fn mirror_to_ant(&self) -> &bool {
         self._glacier_base.mirror_to_ant()
+    }
+    fn mirror_to_ant_mut(&mut self) -> &mut bool {
+        self._glacier_base.mirror_to_ant_mut()
     }
     fn replicate(&self) -> &bool {
         self._glacier_base.replicate()
     }
+    fn replicate_mut(&mut self) -> &mut bool {
+        self._glacier_base.replicate_mut()
+    }
     fn name(&self) -> &String {
         self._glacier_base.name()
+    }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
     }
     fn networked(&self) -> &bool {
         self._glacier_base.networked()
     }
+    fn networked_mut(&mut self) -> &mut bool {
+        self._glacier_base.networked_mut()
+    }
     fn table_index(&self) -> &i32 {
         self._glacier_base.table_index()
+    }
+    fn table_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.table_index_mut()
     }
 }
 
 impl super::core::DataContainerTrait for BoolChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BOOLCHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -25537,6 +32977,15 @@ impl TypeObject for BoolChannelData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25565,46 +33014,75 @@ pub struct ChannelData {
 
 pub trait ChannelDataTrait: super::core::DataContainerTrait {
     fn channel_asset_index(&self) -> &i32;
+    fn channel_asset_index_mut(&mut self) -> &mut i32;
     fn reset_with_controller_tree_reset(&self) -> &bool;
+    fn reset_with_controller_tree_reset_mut(&mut self) -> &mut bool;
     fn reset_every_frame(&self) -> &bool;
+    fn reset_every_frame_mut(&mut self) -> &mut bool;
     fn mirror_to_ant(&self) -> &bool;
+    fn mirror_to_ant_mut(&mut self) -> &mut bool;
     fn replicate(&self) -> &bool;
+    fn replicate_mut(&mut self) -> &mut bool;
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn networked(&self) -> &bool;
+    fn networked_mut(&mut self) -> &mut bool;
     fn table_index(&self) -> &i32;
+    fn table_index_mut(&mut self) -> &mut i32;
 }
 
 impl ChannelDataTrait for ChannelData {
     fn channel_asset_index(&self) -> &i32 {
         &self.channel_asset_index
     }
+    fn channel_asset_index_mut(&mut self) -> &mut i32 {
+        &mut self.channel_asset_index
+    }
     fn reset_with_controller_tree_reset(&self) -> &bool {
         &self.reset_with_controller_tree_reset
+    }
+    fn reset_with_controller_tree_reset_mut(&mut self) -> &mut bool {
+        &mut self.reset_with_controller_tree_reset
     }
     fn reset_every_frame(&self) -> &bool {
         &self.reset_every_frame
     }
+    fn reset_every_frame_mut(&mut self) -> &mut bool {
+        &mut self.reset_every_frame
+    }
     fn mirror_to_ant(&self) -> &bool {
         &self.mirror_to_ant
+    }
+    fn mirror_to_ant_mut(&mut self) -> &mut bool {
+        &mut self.mirror_to_ant
     }
     fn replicate(&self) -> &bool {
         &self.replicate
     }
+    fn replicate_mut(&mut self) -> &mut bool {
+        &mut self.replicate
+    }
     fn name(&self) -> &String {
         &self.name
+    }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
     }
     fn networked(&self) -> &bool {
         &self.networked
     }
+    fn networked_mut(&mut self) -> &mut bool {
+        &mut self.networked
+    }
     fn table_index(&self) -> &i32 {
         &self.table_index
+    }
+    fn table_index_mut(&mut self) -> &mut i32 {
+        &mut self.table_index
     }
 }
 
 impl super::core::DataContainerTrait for ChannelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHANNELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -25678,6 +33156,15 @@ impl TypeObject for ChannelData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25709,17 +33196,32 @@ impl super::entity::ComponentDataTrait for IExternalCharacterStateControlCompone
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -25730,15 +33232,15 @@ impl super::core::DataBusPeerTrait for IExternalCharacterStateControlComponentDa
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for IExternalCharacterStateControlComponentData {
 }
 
 impl super::core::DataContainerTrait for IExternalCharacterStateControlComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static IEXTERNALCHARACTERSTATECONTROLCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -25764,6 +33266,15 @@ impl TypeObject for IExternalCharacterStateControlComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25785,17 +33296,24 @@ pub struct BlockAimAssistEntityData {
 
 pub trait BlockAimAssistEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn block_data(&self) -> &BlockAimAssistData;
+    fn block_data_mut(&mut self) -> &mut BlockAimAssistData;
 }
 
 impl BlockAimAssistEntityDataTrait for BlockAimAssistEntityData {
     fn block_data(&self) -> &BlockAimAssistData {
         &self.block_data
     }
+    fn block_data_mut(&mut self) -> &mut BlockAimAssistData {
+        &mut self.block_data
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for BlockAimAssistEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -25809,15 +33327,15 @@ impl super::core::DataBusPeerTrait for BlockAimAssistEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for BlockAimAssistEntityData {
 }
 
 impl super::core::DataContainerTrait for BlockAimAssistEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BLOCKAIMASSISTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -25849,6 +33367,15 @@ impl TypeObject for BlockAimAssistEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25870,15 +33397,23 @@ pub struct BlockAimAssistData {
 
 pub trait BlockAimAssistDataTrait: TypeObject {
     fn blocking_radius(&self) -> &f32;
+    fn blocking_radius_mut(&mut self) -> &mut f32;
     fn life_time(&self) -> &f32;
+    fn life_time_mut(&mut self) -> &mut f32;
 }
 
 impl BlockAimAssistDataTrait for BlockAimAssistData {
     fn blocking_radius(&self) -> &f32 {
         &self.blocking_radius
     }
+    fn blocking_radius_mut(&mut self) -> &mut f32 {
+        &mut self.blocking_radius
+    }
     fn life_time(&self) -> &f32 {
         &self.life_time
+    }
+    fn life_time_mut(&mut self) -> &mut f32 {
+        &mut self.life_time
     }
 }
 
@@ -25916,6 +33451,15 @@ impl TypeObject for BlockAimAssistData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -25937,11 +33481,15 @@ pub struct SoldierCustomizationAsset {
 
 pub trait SoldierCustomizationAssetTrait: super::game_shared::CharacterCustomizationAssetTrait {
     fn weapon_table(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>>;
+    fn weapon_table_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>>;
 }
 
 impl SoldierCustomizationAssetTrait for SoldierCustomizationAsset {
     fn weapon_table(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>> {
         &self.weapon_table
+    }
+    fn weapon_table_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>> {
+        &mut self.weapon_table
     }
 }
 
@@ -25949,11 +33497,20 @@ impl super::game_shared::CharacterCustomizationAssetTrait for SoldierCustomizati
     fn label_sid(&self) -> &String {
         self._glacier_base.label_sid()
     }
+    fn label_sid_mut(&mut self) -> &mut String {
+        self._glacier_base.label_sid_mut()
+    }
     fn visual_table(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>> {
         self._glacier_base.visual_table()
     }
+    fn visual_table_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>> {
+        self._glacier_base.visual_table_mut()
+    }
     fn specialization_table(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>> {
         self._glacier_base.specialization_table()
+    }
+    fn specialization_table_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CustomizationTableTrait>>> {
+        self._glacier_base.specialization_table_mut()
     }
 }
 
@@ -25964,12 +33521,12 @@ impl super::core::AssetTrait for SoldierCustomizationAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierCustomizationAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERCUSTOMIZATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -26001,6 +33558,15 @@ impl TypeObject for SoldierCustomizationAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26023,15 +33589,23 @@ pub struct SoldierWeaponSocketObjectData {
 
 pub trait SoldierWeaponSocketObjectDataTrait: SocketObjectDataBaseTrait {
     fn soldier_weapon_guid(&self) -> &glacier_util::guid::Guid;
+    fn soldier_weapon_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl SoldierWeaponSocketObjectDataTrait for SoldierWeaponSocketObjectData {
     fn soldier_weapon_guid(&self) -> &glacier_util::guid::Guid {
         &self.soldier_weapon_guid
     }
+    fn soldier_weapon_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.soldier_weapon_guid
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
 }
 
@@ -26039,9 +33613,6 @@ impl SocketObjectDataBaseTrait for SoldierWeaponSocketObjectData {
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponSocketObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONSOCKETOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -26078,6 +33649,15 @@ impl TypeObject for SoldierWeaponSocketObjectData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -26124,6 +33704,15 @@ impl TypeObject for NetworkPlayerSelectedWeaponMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -26138,27 +33727,47 @@ pub struct CoverPeekEntityData {
 
 pub trait CoverPeekEntityDataTrait: super::entity::EntityDataTrait {
     fn binding(&self) -> &CoverPeekBinding;
+    fn binding_mut(&mut self) -> &mut CoverPeekBinding;
     fn over_enabled(&self) -> &bool;
+    fn over_enabled_mut(&mut self) -> &mut bool;
     fn horiz_enabled(&self) -> &bool;
+    fn horiz_enabled_mut(&mut self) -> &mut bool;
     fn detect_distance_forward(&self) -> &f32;
+    fn detect_distance_forward_mut(&mut self) -> &mut f32;
     fn detect_distance_horizontal(&self) -> &f32;
+    fn detect_distance_horizontal_mut(&mut self) -> &mut f32;
 }
 
 impl CoverPeekEntityDataTrait for CoverPeekEntityData {
     fn binding(&self) -> &CoverPeekBinding {
         &self.binding
     }
+    fn binding_mut(&mut self) -> &mut CoverPeekBinding {
+        &mut self.binding
+    }
     fn over_enabled(&self) -> &bool {
         &self.over_enabled
+    }
+    fn over_enabled_mut(&mut self) -> &mut bool {
+        &mut self.over_enabled
     }
     fn horiz_enabled(&self) -> &bool {
         &self.horiz_enabled
     }
+    fn horiz_enabled_mut(&mut self) -> &mut bool {
+        &mut self.horiz_enabled
+    }
     fn detect_distance_forward(&self) -> &f32 {
         &self.detect_distance_forward
     }
+    fn detect_distance_forward_mut(&mut self) -> &mut f32 {
+        &mut self.detect_distance_forward
+    }
     fn detect_distance_horizontal(&self) -> &f32 {
         &self.detect_distance_horizontal
+    }
+    fn detect_distance_horizontal_mut(&mut self) -> &mut f32 {
+        &mut self.detect_distance_horizontal
     }
 }
 
@@ -26172,15 +33781,15 @@ impl super::core::DataBusPeerTrait for CoverPeekEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CoverPeekEntityData {
 }
 
 impl super::core::DataContainerTrait for CoverPeekEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COVERPEEKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -26236,6 +33845,15 @@ impl TypeObject for CoverPeekEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26260,27 +33878,47 @@ pub struct CoverPeekBinding {
 
 pub trait CoverPeekBindingTrait: TypeObject {
     fn cover_height1p(&self) -> &super::ant::AntRef;
+    fn cover_height1p_mut(&mut self) -> &mut super::ant::AntRef;
     fn can_cover_peek(&self) -> &super::ant::AntRef;
+    fn can_cover_peek_mut(&mut self) -> &mut super::ant::AntRef;
     fn can_peek_over(&self) -> &super::ant::AntRef;
+    fn can_peek_over_mut(&mut self) -> &mut super::ant::AntRef;
     fn can_peek_left(&self) -> &super::ant::AntRef;
+    fn can_peek_left_mut(&mut self) -> &mut super::ant::AntRef;
     fn can_peek_right(&self) -> &super::ant::AntRef;
+    fn can_peek_right_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl CoverPeekBindingTrait for CoverPeekBinding {
     fn cover_height1p(&self) -> &super::ant::AntRef {
         &self.cover_height1p
     }
+    fn cover_height1p_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.cover_height1p
+    }
     fn can_cover_peek(&self) -> &super::ant::AntRef {
         &self.can_cover_peek
+    }
+    fn can_cover_peek_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.can_cover_peek
     }
     fn can_peek_over(&self) -> &super::ant::AntRef {
         &self.can_peek_over
     }
+    fn can_peek_over_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.can_peek_over
+    }
     fn can_peek_left(&self) -> &super::ant::AntRef {
         &self.can_peek_left
     }
+    fn can_peek_left_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.can_peek_left
+    }
     fn can_peek_right(&self) -> &super::ant::AntRef {
         &self.can_peek_right
+    }
+    fn can_peek_right_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.can_peek_right
     }
 }
 
@@ -26336,6 +33974,15 @@ impl TypeObject for CoverPeekBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -26360,23 +34007,39 @@ pub struct AnimationTurretRotationComponentData {
 
 pub trait AnimationTurretRotationComponentDataTrait: super::entity::GameComponentDataTrait {
     fn rotations(&self) -> &Vec<super::game_shared::TurretRotationInfo>;
+    fn rotations_mut(&mut self) -> &mut Vec<super::game_shared::TurretRotationInfo>;
     fn soldier_base_index(&self) -> &i32;
+    fn soldier_base_index_mut(&mut self) -> &mut i32;
     fn use_vehicle_world_transform(&self) -> &bool;
+    fn use_vehicle_world_transform_mut(&mut self) -> &mut bool;
     fn output_world_transform(&self) -> &bool;
+    fn output_world_transform_mut(&mut self) -> &mut bool;
 }
 
 impl AnimationTurretRotationComponentDataTrait for AnimationTurretRotationComponentData {
     fn rotations(&self) -> &Vec<super::game_shared::TurretRotationInfo> {
         &self.rotations
     }
+    fn rotations_mut(&mut self) -> &mut Vec<super::game_shared::TurretRotationInfo> {
+        &mut self.rotations
+    }
     fn soldier_base_index(&self) -> &i32 {
         &self.soldier_base_index
+    }
+    fn soldier_base_index_mut(&mut self) -> &mut i32 {
+        &mut self.soldier_base_index
     }
     fn use_vehicle_world_transform(&self) -> &bool {
         &self.use_vehicle_world_transform
     }
+    fn use_vehicle_world_transform_mut(&mut self) -> &mut bool {
+        &mut self.use_vehicle_world_transform
+    }
     fn output_world_transform(&self) -> &bool {
         &self.output_world_transform
+    }
+    fn output_world_transform_mut(&mut self) -> &mut bool {
+        &mut self.output_world_transform
     }
 }
 
@@ -26387,17 +34050,32 @@ impl super::entity::ComponentDataTrait for AnimationTurretRotationComponentData 
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -26408,15 +34086,15 @@ impl super::core::DataBusPeerTrait for AnimationTurretRotationComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AnimationTurretRotationComponentData {
 }
 
 impl super::core::DataContainerTrait for AnimationTurretRotationComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANIMATIONTURRETROTATIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -26466,6 +34144,15 @@ impl TypeObject for AnimationTurretRotationComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26490,23 +34177,39 @@ pub struct PhantomComponentData {
 
 pub trait PhantomComponentDataTrait: super::entity::GameComponentDataTrait {
     fn box_size(&self) -> &super::core::Vec3;
+    fn box_size_mut(&mut self) -> &mut super::core::Vec3;
     fn async_query_pointer_asset(&self) -> &super::ant::AntRef;
+    fn async_query_pointer_asset_mut(&mut self) -> &mut super::ant::AntRef;
     fn enable_trajectory_override(&self) -> &super::ant::AntRef;
+    fn enable_trajectory_override_mut(&mut self) -> &mut super::ant::AntRef;
     fn trajectory_override(&self) -> &super::ant::AntRef;
+    fn trajectory_override_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl PhantomComponentDataTrait for PhantomComponentData {
     fn box_size(&self) -> &super::core::Vec3 {
         &self.box_size
     }
+    fn box_size_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.box_size
+    }
     fn async_query_pointer_asset(&self) -> &super::ant::AntRef {
         &self.async_query_pointer_asset
+    }
+    fn async_query_pointer_asset_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.async_query_pointer_asset
     }
     fn enable_trajectory_override(&self) -> &super::ant::AntRef {
         &self.enable_trajectory_override
     }
+    fn enable_trajectory_override_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.enable_trajectory_override
+    }
     fn trajectory_override(&self) -> &super::ant::AntRef {
         &self.trajectory_override
+    }
+    fn trajectory_override_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.trajectory_override
     }
 }
 
@@ -26517,17 +34220,32 @@ impl super::entity::ComponentDataTrait for PhantomComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -26538,15 +34256,15 @@ impl super::core::DataBusPeerTrait for PhantomComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PhantomComponentData {
 }
 
 impl super::core::DataContainerTrait for PhantomComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PHANTOMCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -26596,6 +34314,15 @@ impl TypeObject for PhantomComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26627,51 +34354,95 @@ pub struct RagdollComponentData {
 
 pub trait RagdollComponentDataTrait: super::entity::GameComponentDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn skeleton_asset(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
+    fn skeleton_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
     fn use_server_ragdoll(&self) -> &bool;
+    fn use_server_ragdoll_mut(&mut self) -> &mut bool;
     fn skeleton_collision_data(&self) -> &Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>>;
+    fn skeleton_collision_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>>;
     fn binding(&self) -> &RagdollBinding;
+    fn binding_mut(&mut self) -> &mut RagdollBinding;
     fn left_leg_bone_name(&self) -> &String;
+    fn left_leg_bone_name_mut(&mut self) -> &mut String;
     fn right_leg_bone_name(&self) -> &String;
+    fn right_leg_bone_name_mut(&mut self) -> &mut String;
     fn allow_client_trigger_on_blend(&self) -> &bool;
+    fn allow_client_trigger_on_blend_mut(&mut self) -> &mut bool;
     fn bone_materials(&self) -> &Vec<super::entity::MaterialDecl>;
+    fn bone_materials_mut(&mut self) -> &mut Vec<super::entity::MaterialDecl>;
     fn buoyant_parts(&self) -> &Vec<super::game_shared::BuoyantPartsData>;
+    fn buoyant_parts_mut(&mut self) -> &mut Vec<super::game_shared::BuoyantPartsData>;
     fn ragdoll_model(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn ragdoll_model_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
 }
 
 impl RagdollComponentDataTrait for RagdollComponentData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn skeleton_asset(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
         &self.skeleton_asset
+    }
+    fn skeleton_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
+        &mut self.skeleton_asset
     }
     fn use_server_ragdoll(&self) -> &bool {
         &self.use_server_ragdoll
     }
+    fn use_server_ragdoll_mut(&mut self) -> &mut bool {
+        &mut self.use_server_ragdoll
+    }
     fn skeleton_collision_data(&self) -> &Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>> {
         &self.skeleton_collision_data
+    }
+    fn skeleton_collision_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>> {
+        &mut self.skeleton_collision_data
     }
     fn binding(&self) -> &RagdollBinding {
         &self.binding
     }
+    fn binding_mut(&mut self) -> &mut RagdollBinding {
+        &mut self.binding
+    }
     fn left_leg_bone_name(&self) -> &String {
         &self.left_leg_bone_name
+    }
+    fn left_leg_bone_name_mut(&mut self) -> &mut String {
+        &mut self.left_leg_bone_name
     }
     fn right_leg_bone_name(&self) -> &String {
         &self.right_leg_bone_name
     }
+    fn right_leg_bone_name_mut(&mut self) -> &mut String {
+        &mut self.right_leg_bone_name
+    }
     fn allow_client_trigger_on_blend(&self) -> &bool {
         &self.allow_client_trigger_on_blend
+    }
+    fn allow_client_trigger_on_blend_mut(&mut self) -> &mut bool {
+        &mut self.allow_client_trigger_on_blend
     }
     fn bone_materials(&self) -> &Vec<super::entity::MaterialDecl> {
         &self.bone_materials
     }
+    fn bone_materials_mut(&mut self) -> &mut Vec<super::entity::MaterialDecl> {
+        &mut self.bone_materials
+    }
     fn buoyant_parts(&self) -> &Vec<super::game_shared::BuoyantPartsData> {
         &self.buoyant_parts
     }
+    fn buoyant_parts_mut(&mut self) -> &mut Vec<super::game_shared::BuoyantPartsData> {
+        &mut self.buoyant_parts
+    }
     fn ragdoll_model(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         &self.ragdoll_model
+    }
+    fn ragdoll_model_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        &mut self.ragdoll_model
     }
 }
 
@@ -26682,17 +34453,32 @@ impl super::entity::ComponentDataTrait for RagdollComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -26703,15 +34489,15 @@ impl super::core::DataBusPeerTrait for RagdollComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RagdollComponentData {
 }
 
 impl super::core::DataContainerTrait for RagdollComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RAGDOLLCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -26803,6 +34589,15 @@ impl TypeObject for RagdollComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26828,31 +34623,55 @@ pub struct RagdollBinding {
 
 pub trait RagdollBindingTrait: TypeObject {
     fn ragdoll_on_back(&self) -> &super::ant::AntRef;
+    fn ragdoll_on_back_mut(&mut self) -> &mut super::ant::AntRef;
     fn ragdoll_blend(&self) -> &super::ant::AntRef;
+    fn ragdoll_blend_mut(&mut self) -> &mut super::ant::AntRef;
     fn ragdoll_blend_early(&self) -> &super::ant::AntRef;
+    fn ragdoll_blend_early_mut(&mut self) -> &mut super::ant::AntRef;
     fn ragdoll_force_blend_disabled(&self) -> &super::ant::AntRef;
+    fn ragdoll_force_blend_disabled_mut(&mut self) -> &mut super::ant::AntRef;
     fn ragdoll_active_time(&self) -> &super::ant::AntRef;
+    fn ragdoll_active_time_mut(&mut self) -> &mut super::ant::AntRef;
     fn ragdoll_fully_blended_in(&self) -> &super::ant::AntRef;
+    fn ragdoll_fully_blended_in_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl RagdollBindingTrait for RagdollBinding {
     fn ragdoll_on_back(&self) -> &super::ant::AntRef {
         &self.ragdoll_on_back
     }
+    fn ragdoll_on_back_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ragdoll_on_back
+    }
     fn ragdoll_blend(&self) -> &super::ant::AntRef {
         &self.ragdoll_blend
+    }
+    fn ragdoll_blend_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ragdoll_blend
     }
     fn ragdoll_blend_early(&self) -> &super::ant::AntRef {
         &self.ragdoll_blend_early
     }
+    fn ragdoll_blend_early_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ragdoll_blend_early
+    }
     fn ragdoll_force_blend_disabled(&self) -> &super::ant::AntRef {
         &self.ragdoll_force_blend_disabled
+    }
+    fn ragdoll_force_blend_disabled_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ragdoll_force_blend_disabled
     }
     fn ragdoll_active_time(&self) -> &super::ant::AntRef {
         &self.ragdoll_active_time
     }
+    fn ragdoll_active_time_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ragdoll_active_time
+    }
     fn ragdoll_fully_blended_in(&self) -> &super::ant::AntRef {
         &self.ragdoll_fully_blended_in
+    }
+    fn ragdoll_fully_blended_in_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ragdoll_fully_blended_in
     }
 }
 
@@ -26914,6 +34733,15 @@ impl TypeObject for RagdollBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -26939,27 +34767,47 @@ pub struct SoldierFootplantEffectComponentData {
 
 pub trait SoldierFootplantEffectComponentDataTrait: super::entity::GameComponentDataTrait {
     fn foot_material_pair(&self) -> &super::entity::MaterialDecl;
+    fn foot_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn height_over_ground_threshold(&self) -> &f32;
+    fn height_over_ground_threshold_mut(&mut self) -> &mut f32;
     fn foot_velocity_threshold(&self) -> &f32;
+    fn foot_velocity_threshold_mut(&mut self) -> &mut f32;
     fn full_footplanting_enabled(&self) -> &bool;
+    fn full_footplanting_enabled_mut(&mut self) -> &mut bool;
     fn lod_distance(&self) -> &f32;
+    fn lod_distance_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierFootplantEffectComponentDataTrait for SoldierFootplantEffectComponentData {
     fn foot_material_pair(&self) -> &super::entity::MaterialDecl {
         &self.foot_material_pair
     }
+    fn foot_material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.foot_material_pair
+    }
     fn height_over_ground_threshold(&self) -> &f32 {
         &self.height_over_ground_threshold
+    }
+    fn height_over_ground_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.height_over_ground_threshold
     }
     fn foot_velocity_threshold(&self) -> &f32 {
         &self.foot_velocity_threshold
     }
+    fn foot_velocity_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.foot_velocity_threshold
+    }
     fn full_footplanting_enabled(&self) -> &bool {
         &self.full_footplanting_enabled
     }
+    fn full_footplanting_enabled_mut(&mut self) -> &mut bool {
+        &mut self.full_footplanting_enabled
+    }
     fn lod_distance(&self) -> &f32 {
         &self.lod_distance
+    }
+    fn lod_distance_mut(&mut self) -> &mut f32 {
+        &mut self.lod_distance
     }
 }
 
@@ -26970,17 +34818,32 @@ impl super::entity::ComponentDataTrait for SoldierFootplantEffectComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -26991,15 +34854,15 @@ impl super::core::DataBusPeerTrait for SoldierFootplantEffectComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierFootplantEffectComponentData {
 }
 
 impl super::core::DataContainerTrait for SoldierFootplantEffectComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERFOOTPLANTEFFECTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -27055,6 +34918,15 @@ impl TypeObject for SoldierFootplantEffectComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27079,23 +34951,39 @@ pub struct OcclutionQueryComponentData {
 
 pub trait OcclutionQueryComponentDataTrait: super::entity::GameComponentDataTrait {
     fn occlusion_box_min_treshold(&self) -> &f32;
+    fn occlusion_box_min_treshold_mut(&mut self) -> &mut f32;
     fn occlusion_box_scale(&self) -> &f32;
+    fn occlusion_box_scale_mut(&mut self) -> &mut f32;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn team_override(&self) -> &super::gameplay_sim::TeamId;
+    fn team_override_mut(&mut self) -> &mut super::gameplay_sim::TeamId;
 }
 
 impl OcclutionQueryComponentDataTrait for OcclutionQueryComponentData {
     fn occlusion_box_min_treshold(&self) -> &f32 {
         &self.occlusion_box_min_treshold
     }
+    fn occlusion_box_min_treshold_mut(&mut self) -> &mut f32 {
+        &mut self.occlusion_box_min_treshold
+    }
     fn occlusion_box_scale(&self) -> &f32 {
         &self.occlusion_box_scale
+    }
+    fn occlusion_box_scale_mut(&mut self) -> &mut f32 {
+        &mut self.occlusion_box_scale
     }
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn team_override(&self) -> &super::gameplay_sim::TeamId {
         &self.team_override
+    }
+    fn team_override_mut(&mut self) -> &mut super::gameplay_sim::TeamId {
+        &mut self.team_override
     }
 }
 
@@ -27106,17 +34994,32 @@ impl super::entity::ComponentDataTrait for OcclutionQueryComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -27127,15 +35030,15 @@ impl super::core::DataBusPeerTrait for OcclutionQueryComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for OcclutionQueryComponentData {
 }
 
 impl super::core::DataContainerTrait for OcclutionQueryComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OCCLUTIONQUERYCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -27185,6 +35088,15 @@ impl TypeObject for OcclutionQueryComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27206,11 +35118,15 @@ pub struct BlockAimAssistComponentData {
 
 pub trait BlockAimAssistComponentDataTrait: super::entity::GameComponentDataTrait {
     fn block_data(&self) -> &BlockAimAssistData;
+    fn block_data_mut(&mut self) -> &mut BlockAimAssistData;
 }
 
 impl BlockAimAssistComponentDataTrait for BlockAimAssistComponentData {
     fn block_data(&self) -> &BlockAimAssistData {
         &self.block_data
+    }
+    fn block_data_mut(&mut self) -> &mut BlockAimAssistData {
+        &mut self.block_data
     }
 }
 
@@ -27221,17 +35137,32 @@ impl super::entity::ComponentDataTrait for BlockAimAssistComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -27242,15 +35173,15 @@ impl super::core::DataBusPeerTrait for BlockAimAssistComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for BlockAimAssistComponentData {
 }
 
 impl super::core::DataContainerTrait for BlockAimAssistComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BLOCKAIMASSISTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -27282,6 +35213,15 @@ impl TypeObject for BlockAimAssistComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27304,15 +35244,23 @@ pub struct EntryAimAssistTargetOptionsComponentData {
 
 pub trait EntryAimAssistTargetOptionsComponentDataTrait: super::entity::GameComponentDataTrait {
     fn allow_soldier_as_target(&self) -> &bool;
+    fn allow_soldier_as_target_mut(&mut self) -> &mut bool;
     fn not_snap_zoom_target_angle(&self) -> &f32;
+    fn not_snap_zoom_target_angle_mut(&mut self) -> &mut f32;
 }
 
 impl EntryAimAssistTargetOptionsComponentDataTrait for EntryAimAssistTargetOptionsComponentData {
     fn allow_soldier_as_target(&self) -> &bool {
         &self.allow_soldier_as_target
     }
+    fn allow_soldier_as_target_mut(&mut self) -> &mut bool {
+        &mut self.allow_soldier_as_target
+    }
     fn not_snap_zoom_target_angle(&self) -> &f32 {
         &self.not_snap_zoom_target_angle
+    }
+    fn not_snap_zoom_target_angle_mut(&mut self) -> &mut f32 {
+        &mut self.not_snap_zoom_target_angle
     }
 }
 
@@ -27323,17 +35271,32 @@ impl super::entity::ComponentDataTrait for EntryAimAssistTargetOptionsComponentD
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -27344,15 +35307,15 @@ impl super::core::DataBusPeerTrait for EntryAimAssistTargetOptionsComponentData 
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EntryAimAssistTargetOptionsComponentData {
 }
 
 impl super::core::DataContainerTrait for EntryAimAssistTargetOptionsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTRYAIMASSISTTARGETOPTIONSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -27390,6 +35353,15 @@ impl TypeObject for EntryAimAssistTargetOptionsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27415,27 +35387,47 @@ pub struct AimAssistNodeSnapPointComponentData {
 
 pub trait AimAssistNodeSnapPointComponentDataTrait: super::entity::GameComponentDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn priority(&self) -> &u32;
+    fn priority_mut(&mut self) -> &mut u32;
     fn under_reticle_sphere_radius(&self) -> &f32;
+    fn under_reticle_sphere_radius_mut(&mut self) -> &mut f32;
     fn under_reticle_capsule_length(&self) -> &f32;
+    fn under_reticle_capsule_length_mut(&mut self) -> &mut f32;
     fn priority_under_reticle(&self) -> &u32;
+    fn priority_under_reticle_mut(&mut self) -> &mut u32;
 }
 
 impl AimAssistNodeSnapPointComponentDataTrait for AimAssistNodeSnapPointComponentData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn priority(&self) -> &u32 {
         &self.priority
+    }
+    fn priority_mut(&mut self) -> &mut u32 {
+        &mut self.priority
     }
     fn under_reticle_sphere_radius(&self) -> &f32 {
         &self.under_reticle_sphere_radius
     }
+    fn under_reticle_sphere_radius_mut(&mut self) -> &mut f32 {
+        &mut self.under_reticle_sphere_radius
+    }
     fn under_reticle_capsule_length(&self) -> &f32 {
         &self.under_reticle_capsule_length
     }
+    fn under_reticle_capsule_length_mut(&mut self) -> &mut f32 {
+        &mut self.under_reticle_capsule_length
+    }
     fn priority_under_reticle(&self) -> &u32 {
         &self.priority_under_reticle
+    }
+    fn priority_under_reticle_mut(&mut self) -> &mut u32 {
+        &mut self.priority_under_reticle
     }
 }
 
@@ -27446,17 +35438,32 @@ impl super::entity::ComponentDataTrait for AimAssistNodeSnapPointComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -27467,15 +35474,15 @@ impl super::core::DataBusPeerTrait for AimAssistNodeSnapPointComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AimAssistNodeSnapPointComponentData {
 }
 
 impl super::core::DataContainerTrait for AimAssistNodeSnapPointComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AIMASSISTNODESNAPPOINTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -27531,6 +35538,15 @@ impl TypeObject for AimAssistNodeSnapPointComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27556,27 +35572,47 @@ pub struct AimAssistNodeComponentData {
 
 pub trait AimAssistNodeComponentDataTrait: super::entity::GameComponentDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn team(&self) -> &super::gameplay_sim::TeamId;
+    fn team_mut(&mut self) -> &mut super::gameplay_sim::TeamId;
     fn get_team_from_owner(&self) -> &bool;
+    fn get_team_from_owner_mut(&mut self) -> &mut bool;
     fn color_player_reticle(&self) -> &bool;
+    fn color_player_reticle_mut(&mut self) -> &mut bool;
     fn sticky_center_offset(&self) -> &super::core::Vec3;
+    fn sticky_center_offset_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl AimAssistNodeComponentDataTrait for AimAssistNodeComponentData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn team(&self) -> &super::gameplay_sim::TeamId {
         &self.team
+    }
+    fn team_mut(&mut self) -> &mut super::gameplay_sim::TeamId {
+        &mut self.team
     }
     fn get_team_from_owner(&self) -> &bool {
         &self.get_team_from_owner
     }
+    fn get_team_from_owner_mut(&mut self) -> &mut bool {
+        &mut self.get_team_from_owner
+    }
     fn color_player_reticle(&self) -> &bool {
         &self.color_player_reticle
     }
+    fn color_player_reticle_mut(&mut self) -> &mut bool {
+        &mut self.color_player_reticle
+    }
     fn sticky_center_offset(&self) -> &super::core::Vec3 {
         &self.sticky_center_offset
+    }
+    fn sticky_center_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sticky_center_offset
     }
 }
 
@@ -27587,17 +35623,32 @@ impl super::entity::ComponentDataTrait for AimAssistNodeComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -27608,15 +35659,15 @@ impl super::core::DataBusPeerTrait for AimAssistNodeComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AimAssistNodeComponentData {
 }
 
 impl super::core::DataContainerTrait for AimAssistNodeComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AIMASSISTNODECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -27672,6 +35723,15 @@ impl TypeObject for AimAssistNodeComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27698,31 +35758,55 @@ pub struct SoldierBreathControlComponentData {
 
 pub trait SoldierBreathControlComponentDataTrait: super::entity::GameComponentDataTrait {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn transition_time(&self) -> &f32;
+    fn transition_time_mut(&mut self) -> &mut f32;
     fn transition_curve_shape(&self) -> &f32;
+    fn transition_curve_shape_mut(&mut self) -> &mut f32;
     fn release_time(&self) -> &f32;
+    fn release_time_mut(&mut self) -> &mut f32;
     fn penalty_multiplier(&self) -> &f32;
+    fn penalty_multiplier_mut(&mut self) -> &mut f32;
     fn penalty_timeout(&self) -> &f32;
+    fn penalty_timeout_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierBreathControlComponentDataTrait for SoldierBreathControlComponentData {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn transition_time(&self) -> &f32 {
         &self.transition_time
+    }
+    fn transition_time_mut(&mut self) -> &mut f32 {
+        &mut self.transition_time
     }
     fn transition_curve_shape(&self) -> &f32 {
         &self.transition_curve_shape
     }
+    fn transition_curve_shape_mut(&mut self) -> &mut f32 {
+        &mut self.transition_curve_shape
+    }
     fn release_time(&self) -> &f32 {
         &self.release_time
+    }
+    fn release_time_mut(&mut self) -> &mut f32 {
+        &mut self.release_time
     }
     fn penalty_multiplier(&self) -> &f32 {
         &self.penalty_multiplier
     }
+    fn penalty_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.penalty_multiplier
+    }
     fn penalty_timeout(&self) -> &f32 {
         &self.penalty_timeout
+    }
+    fn penalty_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.penalty_timeout
     }
 }
 
@@ -27733,17 +35817,32 @@ impl super::entity::ComponentDataTrait for SoldierBreathControlComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -27754,15 +35853,15 @@ impl super::core::DataBusPeerTrait for SoldierBreathControlComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierBreathControlComponentData {
 }
 
 impl super::core::DataContainerTrait for SoldierBreathControlComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERBREATHCONTROLCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -27824,6 +35923,15 @@ impl TypeObject for SoldierBreathControlComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27845,11 +35953,15 @@ pub struct SoldierCustomizationComponentData {
 
 pub trait SoldierCustomizationComponentDataTrait: super::game_shared::CharacterCustomizationComponentDataTrait {
     fn customization_weapon_override(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
+    fn customization_weapon_override_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>>;
 }
 
 impl SoldierCustomizationComponentDataTrait for SoldierCustomizationComponentData {
     fn customization_weapon_override(&self) -> &Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
         &self.customization_weapon_override
+    }
+    fn customization_weapon_override_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierWeaponUnlockAssetTrait>>> {
+        &mut self.customization_weapon_override
     }
 }
 
@@ -27857,11 +35969,20 @@ impl super::game_shared::CharacterCustomizationComponentDataTrait for SoldierCus
     fn customization(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterCustomizationAssetTrait>>> {
         self._glacier_base.customization()
     }
+    fn customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterCustomizationAssetTrait>>> {
+        self._glacier_base.customization_mut()
+    }
     fn visual_unlock(&self) -> &Option<Arc<Mutex<dyn super::game_shared::VisualUnlockAssetTrait>>> {
         self._glacier_base.visual_unlock()
     }
+    fn visual_unlock_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::VisualUnlockAssetTrait>>> {
+        self._glacier_base.visual_unlock_mut()
+    }
     fn character_lighting_enable(&self) -> &bool {
         self._glacier_base.character_lighting_enable()
+    }
+    fn character_lighting_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.character_lighting_enable_mut()
     }
 }
 
@@ -27872,17 +35993,32 @@ impl super::entity::ComponentDataTrait for SoldierCustomizationComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -27893,15 +36029,15 @@ impl super::core::DataBusPeerTrait for SoldierCustomizationComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierCustomizationComponentData {
 }
 
 impl super::core::DataContainerTrait for SoldierCustomizationComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERCUSTOMIZATIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -27933,6 +36069,15 @@ impl TypeObject for SoldierCustomizationComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27954,11 +36099,15 @@ pub struct CharacterSocketListAsset {
 
 pub trait CharacterSocketListAssetTrait: super::core::AssetTrait {
     fn gameplay_sockets(&self) -> &Vec<Option<Arc<Mutex<dyn SocketDataTrait>>>>;
+    fn gameplay_sockets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SocketDataTrait>>>>;
 }
 
 impl CharacterSocketListAssetTrait for CharacterSocketListAsset {
     fn gameplay_sockets(&self) -> &Vec<Option<Arc<Mutex<dyn SocketDataTrait>>>> {
         &self.gameplay_sockets
+    }
+    fn gameplay_sockets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SocketDataTrait>>>> {
+        &mut self.gameplay_sockets
     }
 }
 
@@ -27966,12 +36115,12 @@ impl super::core::AssetTrait for CharacterSocketListAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterSocketListAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERSOCKETLISTASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -28002,6 +36151,15 @@ impl TypeObject for CharacterSocketListAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28035,62 +36193,107 @@ pub struct SocketData {
 
 pub trait SocketDataTrait: super::core::DataContainerTrait {
     fn excluded(&self) -> &bool;
+    fn excluded_mut(&mut self) -> &mut bool;
     fn unlock_asset_guid(&self) -> &glacier_util::guid::Guid;
+    fn unlock_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn belongs_to_unlock_asset_guid(&self) -> &glacier_util::guid::Guid;
+    fn belongs_to_unlock_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn invert_unlock_check(&self) -> &bool;
+    fn invert_unlock_check_mut(&mut self) -> &mut bool;
     fn socket_hash(&self) -> &u32;
+    fn socket_hash_mut(&mut self) -> &mut u32;
     fn bone_name(&self) -> &String;
+    fn bone_name_mut(&mut self) -> &mut String;
     fn bone_id(&self) -> &i32;
+    fn bone_id_mut(&mut self) -> &mut i32;
     fn bone_rigid_transform(&self) -> &super::core::LinearTransform;
+    fn bone_rigid_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn available_objects(&self) -> &Vec<Option<Arc<Mutex<dyn SocketObjectDataBaseTrait>>>>;
+    fn available_objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SocketObjectDataBaseTrait>>>>;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn visibility(&self) -> &SocketVisibility;
+    fn visibility_mut(&mut self) -> &mut SocketVisibility;
     fn hide_by_zoom_transition(&self) -> &bool;
+    fn hide_by_zoom_transition_mut(&mut self) -> &mut bool;
 }
 
 impl SocketDataTrait for SocketData {
     fn excluded(&self) -> &bool {
         &self.excluded
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        &mut self.excluded
+    }
     fn unlock_asset_guid(&self) -> &glacier_util::guid::Guid {
         &self.unlock_asset_guid
+    }
+    fn unlock_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.unlock_asset_guid
     }
     fn belongs_to_unlock_asset_guid(&self) -> &glacier_util::guid::Guid {
         &self.belongs_to_unlock_asset_guid
     }
+    fn belongs_to_unlock_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.belongs_to_unlock_asset_guid
+    }
     fn invert_unlock_check(&self) -> &bool {
         &self.invert_unlock_check
+    }
+    fn invert_unlock_check_mut(&mut self) -> &mut bool {
+        &mut self.invert_unlock_check
     }
     fn socket_hash(&self) -> &u32 {
         &self.socket_hash
     }
+    fn socket_hash_mut(&mut self) -> &mut u32 {
+        &mut self.socket_hash
+    }
     fn bone_name(&self) -> &String {
         &self.bone_name
+    }
+    fn bone_name_mut(&mut self) -> &mut String {
+        &mut self.bone_name
     }
     fn bone_id(&self) -> &i32 {
         &self.bone_id
     }
+    fn bone_id_mut(&mut self) -> &mut i32 {
+        &mut self.bone_id
+    }
     fn bone_rigid_transform(&self) -> &super::core::LinearTransform {
         &self.bone_rigid_transform
+    }
+    fn bone_rigid_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.bone_rigid_transform
     }
     fn available_objects(&self) -> &Vec<Option<Arc<Mutex<dyn SocketObjectDataBaseTrait>>>> {
         &self.available_objects
     }
+    fn available_objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SocketObjectDataBaseTrait>>>> {
+        &mut self.available_objects
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
     fn visibility(&self) -> &SocketVisibility {
         &self.visibility
     }
+    fn visibility_mut(&mut self) -> &mut SocketVisibility {
+        &mut self.visibility
+    }
     fn hide_by_zoom_transition(&self) -> &bool {
         &self.hide_by_zoom_transition
+    }
+    fn hide_by_zoom_transition_mut(&mut self) -> &mut bool {
+        &mut self.hide_by_zoom_transition
     }
 }
 
 impl super::core::DataContainerTrait for SocketData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOCKETDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -28188,6 +36391,15 @@ impl TypeObject for SocketData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28229,6 +36441,15 @@ impl TypeObject for SocketVisibility {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -28257,12 +36478,12 @@ impl super::core::AssetTrait for SocketGroup {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SocketGroup {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOCKETGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -28287,6 +36508,15 @@ impl TypeObject for SocketGroup {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28313,9 +36543,6 @@ impl SocketObjectDataBaseTrait for SocketObjectDataBase {
 }
 
 impl super::core::DataContainerTrait for SocketObjectDataBase {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOCKETOBJECTDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -28340,6 +36567,15 @@ impl TypeObject for SocketObjectDataBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28372,51 +36608,95 @@ pub struct MovementComponentData {
 
 pub trait MovementComponentDataTrait: super::entity::GameComponentDataTrait {
     fn movement_binding(&self) -> &MovementComponentBinding;
+    fn movement_binding_mut(&mut self) -> &mut MovementComponentBinding;
     fn movement_binding_shared(&self) -> &MovementComponentSharedBinding;
+    fn movement_binding_shared_mut(&mut self) -> &mut MovementComponentSharedBinding;
     fn feed_trajectory_corrections_through_game_state(&self) -> &bool;
+    fn feed_trajectory_corrections_through_game_state_mut(&mut self) -> &mut bool;
     fn client_side_physics_controlled(&self) -> &bool;
+    fn client_side_physics_controlled_mut(&mut self) -> &mut bool;
     fn clamp_velocity(&self) -> &f32;
+    fn clamp_velocity_mut(&mut self) -> &mut f32;
     fn move_to_target_list(&self) -> &Vec<MoveToTargetData>;
+    fn move_to_target_list_mut(&mut self) -> &mut Vec<MoveToTargetData>;
     fn move_to_transform(&self) -> &super::core::LinearTransform;
+    fn move_to_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn move_to_target_index(&self) -> &i32;
+    fn move_to_target_index_mut(&mut self) -> &mut i32;
     fn enable_animation_controlled(&self) -> &bool;
+    fn enable_animation_controlled_mut(&mut self) -> &mut bool;
     fn enable_animated_camera(&self) -> &bool;
+    fn enable_animated_camera_mut(&mut self) -> &mut bool;
     fn enable_gravity_active(&self) -> &bool;
+    fn enable_gravity_active_mut(&mut self) -> &mut bool;
 }
 
 impl MovementComponentDataTrait for MovementComponentData {
     fn movement_binding(&self) -> &MovementComponentBinding {
         &self.movement_binding
     }
+    fn movement_binding_mut(&mut self) -> &mut MovementComponentBinding {
+        &mut self.movement_binding
+    }
     fn movement_binding_shared(&self) -> &MovementComponentSharedBinding {
         &self.movement_binding_shared
+    }
+    fn movement_binding_shared_mut(&mut self) -> &mut MovementComponentSharedBinding {
+        &mut self.movement_binding_shared
     }
     fn feed_trajectory_corrections_through_game_state(&self) -> &bool {
         &self.feed_trajectory_corrections_through_game_state
     }
+    fn feed_trajectory_corrections_through_game_state_mut(&mut self) -> &mut bool {
+        &mut self.feed_trajectory_corrections_through_game_state
+    }
     fn client_side_physics_controlled(&self) -> &bool {
         &self.client_side_physics_controlled
+    }
+    fn client_side_physics_controlled_mut(&mut self) -> &mut bool {
+        &mut self.client_side_physics_controlled
     }
     fn clamp_velocity(&self) -> &f32 {
         &self.clamp_velocity
     }
+    fn clamp_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.clamp_velocity
+    }
     fn move_to_target_list(&self) -> &Vec<MoveToTargetData> {
         &self.move_to_target_list
+    }
+    fn move_to_target_list_mut(&mut self) -> &mut Vec<MoveToTargetData> {
+        &mut self.move_to_target_list
     }
     fn move_to_transform(&self) -> &super::core::LinearTransform {
         &self.move_to_transform
     }
+    fn move_to_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.move_to_transform
+    }
     fn move_to_target_index(&self) -> &i32 {
         &self.move_to_target_index
+    }
+    fn move_to_target_index_mut(&mut self) -> &mut i32 {
+        &mut self.move_to_target_index
     }
     fn enable_animation_controlled(&self) -> &bool {
         &self.enable_animation_controlled
     }
+    fn enable_animation_controlled_mut(&mut self) -> &mut bool {
+        &mut self.enable_animation_controlled
+    }
     fn enable_animated_camera(&self) -> &bool {
         &self.enable_animated_camera
     }
+    fn enable_animated_camera_mut(&mut self) -> &mut bool {
+        &mut self.enable_animated_camera
+    }
     fn enable_gravity_active(&self) -> &bool {
         &self.enable_gravity_active
+    }
+    fn enable_gravity_active_mut(&mut self) -> &mut bool {
+        &mut self.enable_gravity_active
     }
 }
 
@@ -28427,17 +36707,32 @@ impl super::entity::ComponentDataTrait for MovementComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -28448,15 +36743,15 @@ impl super::core::DataBusPeerTrait for MovementComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MovementComponentData {
 }
 
 impl super::core::DataContainerTrait for MovementComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVEMENTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -28548,6 +36843,15 @@ impl TypeObject for MovementComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28576,43 +36880,79 @@ pub struct MoveToTargetData {
 
 pub trait MoveToTargetDataTrait: TypeObject {
     fn duration_of_move(&self) -> &f32;
+    fn duration_of_move_mut(&mut self) -> &mut f32;
     fn pause_time_after_move(&self) -> &f32;
+    fn pause_time_after_move_mut(&mut self) -> &mut f32;
     fn slow_down_factor_in_pause(&self) -> &f32;
+    fn slow_down_factor_in_pause_mut(&mut self) -> &mut f32;
     fn move_at_constant_speed(&self) -> &f32;
+    fn move_at_constant_speed_mut(&mut self) -> &mut f32;
     fn rotation_speed(&self) -> &f32;
+    fn rotation_speed_mut(&mut self) -> &mut f32;
     fn snap_to_movement_direction(&self) -> &bool;
+    fn snap_to_movement_direction_mut(&mut self) -> &mut bool;
     fn blend_acceleration(&self) -> &f32;
+    fn blend_acceleration_mut(&mut self) -> &mut f32;
     fn distance_tolerance(&self) -> &f32;
+    fn distance_tolerance_mut(&mut self) -> &mut f32;
     fn gravity_active(&self) -> &bool;
+    fn gravity_active_mut(&mut self) -> &mut bool;
 }
 
 impl MoveToTargetDataTrait for MoveToTargetData {
     fn duration_of_move(&self) -> &f32 {
         &self.duration_of_move
     }
+    fn duration_of_move_mut(&mut self) -> &mut f32 {
+        &mut self.duration_of_move
+    }
     fn pause_time_after_move(&self) -> &f32 {
         &self.pause_time_after_move
+    }
+    fn pause_time_after_move_mut(&mut self) -> &mut f32 {
+        &mut self.pause_time_after_move
     }
     fn slow_down_factor_in_pause(&self) -> &f32 {
         &self.slow_down_factor_in_pause
     }
+    fn slow_down_factor_in_pause_mut(&mut self) -> &mut f32 {
+        &mut self.slow_down_factor_in_pause
+    }
     fn move_at_constant_speed(&self) -> &f32 {
         &self.move_at_constant_speed
+    }
+    fn move_at_constant_speed_mut(&mut self) -> &mut f32 {
+        &mut self.move_at_constant_speed
     }
     fn rotation_speed(&self) -> &f32 {
         &self.rotation_speed
     }
+    fn rotation_speed_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_speed
+    }
     fn snap_to_movement_direction(&self) -> &bool {
         &self.snap_to_movement_direction
+    }
+    fn snap_to_movement_direction_mut(&mut self) -> &mut bool {
+        &mut self.snap_to_movement_direction
     }
     fn blend_acceleration(&self) -> &f32 {
         &self.blend_acceleration
     }
+    fn blend_acceleration_mut(&mut self) -> &mut f32 {
+        &mut self.blend_acceleration
+    }
     fn distance_tolerance(&self) -> &f32 {
         &self.distance_tolerance
     }
+    fn distance_tolerance_mut(&mut self) -> &mut f32 {
+        &mut self.distance_tolerance
+    }
     fn gravity_active(&self) -> &bool {
         &self.gravity_active
+    }
+    fn gravity_active_mut(&mut self) -> &mut bool {
+        &mut self.gravity_active
     }
 }
 
@@ -28692,6 +37032,15 @@ impl TypeObject for MoveToTargetData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -28712,11 +37061,15 @@ pub struct MovementComponentSharedBinding {
 
 pub trait MovementComponentSharedBindingTrait: TypeObject {
     fn moving_to_target(&self) -> &super::ant::AntRef;
+    fn moving_to_target_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl MovementComponentSharedBindingTrait for MovementComponentSharedBinding {
     fn moving_to_target(&self) -> &super::ant::AntRef {
         &self.moving_to_target
+    }
+    fn moving_to_target_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.moving_to_target
     }
 }
 
@@ -28748,6 +37101,15 @@ impl TypeObject for MovementComponentSharedBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -28775,39 +37137,71 @@ pub struct MovementComponentBinding {
 
 pub trait MovementComponentBindingTrait: TypeObject {
     fn animation_controlled(&self) -> &super::ant::AntRef;
+    fn animation_controlled_mut(&mut self) -> &mut super::ant::AntRef;
     fn feedback_collisions(&self) -> &super::ant::AntRef;
+    fn feedback_collisions_mut(&mut self) -> &mut super::ant::AntRef;
     fn disable_animation_controlled_camera(&self) -> &super::ant::AntRef;
+    fn disable_animation_controlled_camera_mut(&mut self) -> &mut super::ant::AntRef;
     fn disable_animation_control_exit_velocity(&self) -> &super::ant::AntRef;
+    fn disable_animation_control_exit_velocity_mut(&mut self) -> &mut super::ant::AntRef;
     fn force_velocity_mode(&self) -> &super::ant::AntRef;
+    fn force_velocity_mode_mut(&mut self) -> &mut super::ant::AntRef;
     fn keep_gravity_active(&self) -> &super::ant::AntRef;
+    fn keep_gravity_active_mut(&mut self) -> &mut super::ant::AntRef;
     fn trajectory_correction_position(&self) -> &super::ant::AntRef;
+    fn trajectory_correction_position_mut(&mut self) -> &mut super::ant::AntRef;
     fn trajectory_needs_correction(&self) -> &super::ant::AntRef;
+    fn trajectory_needs_correction_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl MovementComponentBindingTrait for MovementComponentBinding {
     fn animation_controlled(&self) -> &super::ant::AntRef {
         &self.animation_controlled
     }
+    fn animation_controlled_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.animation_controlled
+    }
     fn feedback_collisions(&self) -> &super::ant::AntRef {
         &self.feedback_collisions
+    }
+    fn feedback_collisions_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.feedback_collisions
     }
     fn disable_animation_controlled_camera(&self) -> &super::ant::AntRef {
         &self.disable_animation_controlled_camera
     }
+    fn disable_animation_controlled_camera_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.disable_animation_controlled_camera
+    }
     fn disable_animation_control_exit_velocity(&self) -> &super::ant::AntRef {
         &self.disable_animation_control_exit_velocity
+    }
+    fn disable_animation_control_exit_velocity_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.disable_animation_control_exit_velocity
     }
     fn force_velocity_mode(&self) -> &super::ant::AntRef {
         &self.force_velocity_mode
     }
+    fn force_velocity_mode_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.force_velocity_mode
+    }
     fn keep_gravity_active(&self) -> &super::ant::AntRef {
         &self.keep_gravity_active
+    }
+    fn keep_gravity_active_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.keep_gravity_active
     }
     fn trajectory_correction_position(&self) -> &super::ant::AntRef {
         &self.trajectory_correction_position
     }
+    fn trajectory_correction_position_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.trajectory_correction_position
+    }
     fn trajectory_needs_correction(&self) -> &super::ant::AntRef {
         &self.trajectory_needs_correction
+    }
+    fn trajectory_needs_correction_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.trajectory_needs_correction
     }
 }
 
@@ -28881,6 +37275,15 @@ impl TypeObject for MovementComponentBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -28922,97 +37325,184 @@ pub struct SoldierCameraComponentData {
 
 pub trait SoldierCameraComponentDataTrait: super::game_shared::CharacterCameraComponentDataTrait {
     fn explosion_impulse_multiplier(&self) -> &f32;
+    fn explosion_impulse_multiplier_mut(&mut self) -> &mut f32;
     fn camera_cull_sphere_radius(&self) -> &f32;
+    fn camera_cull_sphere_radius_mut(&mut self) -> &mut f32;
     fn stand_camera_cull_sqr_distance(&self) -> &f32;
+    fn stand_camera_cull_sqr_distance_mut(&mut self) -> &mut f32;
     fn stand_camera_cull_y_distance(&self) -> &f32;
+    fn stand_camera_cull_y_distance_mut(&mut self) -> &mut f32;
     fn crouch_camera_cull_sqr_distance(&self) -> &f32;
+    fn crouch_camera_cull_sqr_distance_mut(&mut self) -> &mut f32;
     fn crouch_camera_cull_y_distance(&self) -> &f32;
+    fn crouch_camera_cull_y_distance_mut(&mut self) -> &mut f32;
     fn prone_camera_cull_sqr_distance(&self) -> &f32;
+    fn prone_camera_cull_sqr_distance_mut(&mut self) -> &mut f32;
     fn prone_camera_cull_y_distance(&self) -> &f32;
+    fn prone_camera_cull_y_distance_mut(&mut self) -> &mut f32;
     fn dead_camera_cull_y_distance(&self) -> &f32;
+    fn dead_camera_cull_y_distance_mut(&mut self) -> &mut f32;
     fn disable_aiming(&self) -> &bool;
+    fn disable_aiming_mut(&mut self) -> &mut bool;
     fn authoritative_eye_position(&self) -> &bool;
+    fn authoritative_eye_position_mut(&mut self) -> &mut bool;
     fn enable_camera_bob_non_first_person(&self) -> &bool;
+    fn enable_camera_bob_non_first_person_mut(&mut self) -> &mut bool;
     fn override_transform(&self) -> &super::core::LinearTransform;
+    fn override_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn camera1p_binding(&self) -> &Camera1pBinding;
+    fn camera1p_binding_mut(&mut self) -> &mut Camera1pBinding;
     fn camera_common_binding(&self) -> &CameraCommonBinding;
+    fn camera_common_binding_mut(&mut self) -> &mut CameraCommonBinding;
     fn force_field_of_view(&self) -> &f32;
+    fn force_field_of_view_mut(&mut self) -> &mut f32;
     fn roll(&self) -> &f32;
+    fn roll_mut(&mut self) -> &mut f32;
     fn third_person_camera_arm_length(&self) -> &f32;
+    fn third_person_camera_arm_length_mut(&mut self) -> &mut f32;
     fn third_person_camera_local_transform(&self) -> &super::core::LinearTransform;
+    fn third_person_camera_local_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn third_person_camera_free_transform(&self) -> &super::core::LinearTransform;
+    fn third_person_camera_free_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn third_person_camera_free_transform_blend_value(&self) -> &f32;
+    fn third_person_camera_free_transform_blend_value_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierCameraComponentDataTrait for SoldierCameraComponentData {
     fn explosion_impulse_multiplier(&self) -> &f32 {
         &self.explosion_impulse_multiplier
     }
+    fn explosion_impulse_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.explosion_impulse_multiplier
+    }
     fn camera_cull_sphere_radius(&self) -> &f32 {
         &self.camera_cull_sphere_radius
+    }
+    fn camera_cull_sphere_radius_mut(&mut self) -> &mut f32 {
+        &mut self.camera_cull_sphere_radius
     }
     fn stand_camera_cull_sqr_distance(&self) -> &f32 {
         &self.stand_camera_cull_sqr_distance
     }
+    fn stand_camera_cull_sqr_distance_mut(&mut self) -> &mut f32 {
+        &mut self.stand_camera_cull_sqr_distance
+    }
     fn stand_camera_cull_y_distance(&self) -> &f32 {
         &self.stand_camera_cull_y_distance
+    }
+    fn stand_camera_cull_y_distance_mut(&mut self) -> &mut f32 {
+        &mut self.stand_camera_cull_y_distance
     }
     fn crouch_camera_cull_sqr_distance(&self) -> &f32 {
         &self.crouch_camera_cull_sqr_distance
     }
+    fn crouch_camera_cull_sqr_distance_mut(&mut self) -> &mut f32 {
+        &mut self.crouch_camera_cull_sqr_distance
+    }
     fn crouch_camera_cull_y_distance(&self) -> &f32 {
         &self.crouch_camera_cull_y_distance
+    }
+    fn crouch_camera_cull_y_distance_mut(&mut self) -> &mut f32 {
+        &mut self.crouch_camera_cull_y_distance
     }
     fn prone_camera_cull_sqr_distance(&self) -> &f32 {
         &self.prone_camera_cull_sqr_distance
     }
+    fn prone_camera_cull_sqr_distance_mut(&mut self) -> &mut f32 {
+        &mut self.prone_camera_cull_sqr_distance
+    }
     fn prone_camera_cull_y_distance(&self) -> &f32 {
         &self.prone_camera_cull_y_distance
+    }
+    fn prone_camera_cull_y_distance_mut(&mut self) -> &mut f32 {
+        &mut self.prone_camera_cull_y_distance
     }
     fn dead_camera_cull_y_distance(&self) -> &f32 {
         &self.dead_camera_cull_y_distance
     }
+    fn dead_camera_cull_y_distance_mut(&mut self) -> &mut f32 {
+        &mut self.dead_camera_cull_y_distance
+    }
     fn disable_aiming(&self) -> &bool {
         &self.disable_aiming
+    }
+    fn disable_aiming_mut(&mut self) -> &mut bool {
+        &mut self.disable_aiming
     }
     fn authoritative_eye_position(&self) -> &bool {
         &self.authoritative_eye_position
     }
+    fn authoritative_eye_position_mut(&mut self) -> &mut bool {
+        &mut self.authoritative_eye_position
+    }
     fn enable_camera_bob_non_first_person(&self) -> &bool {
         &self.enable_camera_bob_non_first_person
+    }
+    fn enable_camera_bob_non_first_person_mut(&mut self) -> &mut bool {
+        &mut self.enable_camera_bob_non_first_person
     }
     fn override_transform(&self) -> &super::core::LinearTransform {
         &self.override_transform
     }
+    fn override_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.override_transform
+    }
     fn camera1p_binding(&self) -> &Camera1pBinding {
         &self.camera1p_binding
+    }
+    fn camera1p_binding_mut(&mut self) -> &mut Camera1pBinding {
+        &mut self.camera1p_binding
     }
     fn camera_common_binding(&self) -> &CameraCommonBinding {
         &self.camera_common_binding
     }
+    fn camera_common_binding_mut(&mut self) -> &mut CameraCommonBinding {
+        &mut self.camera_common_binding
+    }
     fn force_field_of_view(&self) -> &f32 {
         &self.force_field_of_view
+    }
+    fn force_field_of_view_mut(&mut self) -> &mut f32 {
+        &mut self.force_field_of_view
     }
     fn roll(&self) -> &f32 {
         &self.roll
     }
+    fn roll_mut(&mut self) -> &mut f32 {
+        &mut self.roll
+    }
     fn third_person_camera_arm_length(&self) -> &f32 {
         &self.third_person_camera_arm_length
+    }
+    fn third_person_camera_arm_length_mut(&mut self) -> &mut f32 {
+        &mut self.third_person_camera_arm_length
     }
     fn third_person_camera_local_transform(&self) -> &super::core::LinearTransform {
         &self.third_person_camera_local_transform
     }
+    fn third_person_camera_local_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.third_person_camera_local_transform
+    }
     fn third_person_camera_free_transform(&self) -> &super::core::LinearTransform {
         &self.third_person_camera_free_transform
     }
+    fn third_person_camera_free_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.third_person_camera_free_transform
+    }
     fn third_person_camera_free_transform_blend_value(&self) -> &f32 {
         &self.third_person_camera_free_transform_blend_value
+    }
+    fn third_person_camera_free_transform_blend_value_mut(&mut self) -> &mut f32 {
+        &mut self.third_person_camera_free_transform_blend_value
     }
 }
 
 impl super::game_shared::CharacterCameraComponentDataTrait for SoldierCameraComponentData {
     fn cameras(&self) -> &Vec<Option<Arc<Mutex<dyn super::gameplay_sim::CameraDataTrait>>>> {
         self._glacier_base.cameras()
+    }
+    fn cameras_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::gameplay_sim::CameraDataTrait>>>> {
+        self._glacier_base.cameras_mut()
     }
 }
 
@@ -29023,17 +37513,32 @@ impl super::entity::ComponentDataTrait for SoldierCameraComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -29044,15 +37549,15 @@ impl super::core::DataBusPeerTrait for SoldierCameraComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierCameraComponentData {
 }
 
 impl super::core::DataContainerTrait for SoldierCameraComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERCAMERACOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -29204,6 +37709,15 @@ impl TypeObject for SoldierCameraComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29225,15 +37739,23 @@ pub struct CameraCommonBinding {
 
 pub trait CameraCommonBindingTrait: TypeObject {
     fn first_person_camera_height(&self) -> &super::ant::AntRef;
+    fn first_person_camera_height_mut(&mut self) -> &mut super::ant::AntRef;
     fn animated_camera_blend_time(&self) -> &super::ant::AntRef;
+    fn animated_camera_blend_time_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl CameraCommonBindingTrait for CameraCommonBinding {
     fn first_person_camera_height(&self) -> &super::ant::AntRef {
         &self.first_person_camera_height
     }
+    fn first_person_camera_height_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.first_person_camera_height
+    }
     fn animated_camera_blend_time(&self) -> &super::ant::AntRef {
         &self.animated_camera_blend_time
+    }
+    fn animated_camera_blend_time_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.animated_camera_blend_time
     }
 }
 
@@ -29271,6 +37793,15 @@ impl TypeObject for CameraCommonBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -29293,19 +37824,31 @@ pub struct Camera1pBinding {
 
 pub trait Camera1pBindingTrait: TypeObject {
     fn render1p_in_background(&self) -> &super::ant::AntRef;
+    fn render1p_in_background_mut(&mut self) -> &mut super::ant::AntRef;
     fn force_render1p_in_foreground(&self) -> &super::ant::AntRef;
+    fn force_render1p_in_foreground_mut(&mut self) -> &mut super::ant::AntRef;
     fn force_animated_camera(&self) -> &super::ant::AntRef;
+    fn force_animated_camera_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl Camera1pBindingTrait for Camera1pBinding {
     fn render1p_in_background(&self) -> &super::ant::AntRef {
         &self.render1p_in_background
     }
+    fn render1p_in_background_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.render1p_in_background
+    }
     fn force_render1p_in_foreground(&self) -> &super::ant::AntRef {
         &self.force_render1p_in_foreground
     }
+    fn force_render1p_in_foreground_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.force_render1p_in_foreground
+    }
     fn force_animated_camera(&self) -> &super::ant::AntRef {
         &self.force_animated_camera
+    }
+    fn force_animated_camera_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.force_animated_camera
     }
 }
 
@@ -29349,6 +37892,15 @@ impl TypeObject for Camera1pBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -29380,51 +37932,95 @@ pub struct SoldierBodyComponentData {
 
 pub trait SoldierBodyComponentDataTrait: super::entity::GameComponentDataTrait {
     fn override_gravity(&self) -> &bool;
+    fn override_gravity_mut(&mut self) -> &mut bool;
     fn override_gravity_value(&self) -> &f32;
+    fn override_gravity_value_mut(&mut self) -> &mut f32;
     fn override_velocity(&self) -> &bool;
+    fn override_velocity_mut(&mut self) -> &mut bool;
     fn override_velocity_y(&self) -> &f32;
+    fn override_velocity_y_mut(&mut self) -> &mut f32;
     fn sprint_multiplier(&self) -> &f32;
+    fn sprint_multiplier_mut(&mut self) -> &mut f32;
     fn disable_parachute(&self) -> &bool;
+    fn disable_parachute_mut(&mut self) -> &mut bool;
     fn disable_crouch(&self) -> &bool;
+    fn disable_crouch_mut(&mut self) -> &mut bool;
     fn override_raycast_offset(&self) -> &bool;
+    fn override_raycast_offset_mut(&mut self) -> &mut bool;
     fn override_raycast_offset_stand(&self) -> &super::core::Vec3;
+    fn override_raycast_offset_stand_mut(&mut self) -> &mut super::core::Vec3;
     fn override_raycast_offset_crouch(&self) -> &super::core::Vec3;
+    fn override_raycast_offset_crouch_mut(&mut self) -> &mut super::core::Vec3;
     fn override_raycast_offset_prone(&self) -> &super::core::Vec3;
+    fn override_raycast_offset_prone_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl SoldierBodyComponentDataTrait for SoldierBodyComponentData {
     fn override_gravity(&self) -> &bool {
         &self.override_gravity
     }
+    fn override_gravity_mut(&mut self) -> &mut bool {
+        &mut self.override_gravity
+    }
     fn override_gravity_value(&self) -> &f32 {
         &self.override_gravity_value
+    }
+    fn override_gravity_value_mut(&mut self) -> &mut f32 {
+        &mut self.override_gravity_value
     }
     fn override_velocity(&self) -> &bool {
         &self.override_velocity
     }
+    fn override_velocity_mut(&mut self) -> &mut bool {
+        &mut self.override_velocity
+    }
     fn override_velocity_y(&self) -> &f32 {
         &self.override_velocity_y
+    }
+    fn override_velocity_y_mut(&mut self) -> &mut f32 {
+        &mut self.override_velocity_y
     }
     fn sprint_multiplier(&self) -> &f32 {
         &self.sprint_multiplier
     }
+    fn sprint_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.sprint_multiplier
+    }
     fn disable_parachute(&self) -> &bool {
         &self.disable_parachute
+    }
+    fn disable_parachute_mut(&mut self) -> &mut bool {
+        &mut self.disable_parachute
     }
     fn disable_crouch(&self) -> &bool {
         &self.disable_crouch
     }
+    fn disable_crouch_mut(&mut self) -> &mut bool {
+        &mut self.disable_crouch
+    }
     fn override_raycast_offset(&self) -> &bool {
         &self.override_raycast_offset
+    }
+    fn override_raycast_offset_mut(&mut self) -> &mut bool {
+        &mut self.override_raycast_offset
     }
     fn override_raycast_offset_stand(&self) -> &super::core::Vec3 {
         &self.override_raycast_offset_stand
     }
+    fn override_raycast_offset_stand_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.override_raycast_offset_stand
+    }
     fn override_raycast_offset_crouch(&self) -> &super::core::Vec3 {
         &self.override_raycast_offset_crouch
     }
+    fn override_raycast_offset_crouch_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.override_raycast_offset_crouch
+    }
     fn override_raycast_offset_prone(&self) -> &super::core::Vec3 {
         &self.override_raycast_offset_prone
+    }
+    fn override_raycast_offset_prone_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.override_raycast_offset_prone
     }
 }
 
@@ -29435,17 +38031,32 @@ impl super::entity::ComponentDataTrait for SoldierBodyComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -29456,15 +38067,15 @@ impl super::core::DataBusPeerTrait for SoldierBodyComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierBodyComponentData {
 }
 
 impl super::core::DataContainerTrait for SoldierBodyComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERBODYCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -29556,6 +38167,15 @@ impl TypeObject for SoldierBodyComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29578,15 +38198,23 @@ pub struct BoneCollisionComponentData {
 
 pub trait BoneCollisionComponentDataTrait: super::entity::GameComponentDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn skeleton_collision_data(&self) -> &Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>>;
+    fn skeleton_collision_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>>;
 }
 
 impl BoneCollisionComponentDataTrait for BoneCollisionComponentData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn skeleton_collision_data(&self) -> &Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>> {
         &self.skeleton_collision_data
+    }
+    fn skeleton_collision_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::SkeletonCollisionDataTrait>>> {
+        &mut self.skeleton_collision_data
     }
 }
 
@@ -29597,17 +38225,32 @@ impl super::entity::ComponentDataTrait for BoneCollisionComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -29618,15 +38261,15 @@ impl super::core::DataBusPeerTrait for BoneCollisionComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for BoneCollisionComponentData {
 }
 
 impl super::core::DataContainerTrait for BoneCollisionComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BONECOLLISIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -29664,6 +38307,15 @@ impl TypeObject for BoneCollisionComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29691,35 +38343,63 @@ pub struct SoldierEntryComponentData {
 
 pub trait SoldierEntryComponentDataTrait: super::game_shared::CharacterEntryComponentDataTrait {
     fn ant_entry_enumeration(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::AntEnumerationTrait>>>;
+    fn ant_entry_enumeration_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::AntEnumerationTrait>>>;
     fn animation_acceleration_multiplier(&self) -> &super::core::Vec3;
+    fn animation_acceleration_multiplier_mut(&mut self) -> &mut super::core::Vec3;
     fn world_space_lock_efficiency(&self) -> &AimingWorldSpaceLockEfficiencyData;
+    fn world_space_lock_efficiency_mut(&mut self) -> &mut AimingWorldSpaceLockEfficiencyData;
     fn leave_soldier_in_place(&self) -> &bool;
+    fn leave_soldier_in_place_mut(&mut self) -> &mut bool;
     fn clamp_soldier_offset_to_bounding_box(&self) -> &bool;
+    fn clamp_soldier_offset_to_bounding_box_mut(&mut self) -> &mut bool;
     fn clamp_soldier_y_offset_to_floor(&self) -> &bool;
+    fn clamp_soldier_y_offset_to_floor_mut(&mut self) -> &mut bool;
     fn hide_vehicle_hud(&self) -> &bool;
+    fn hide_vehicle_hud_mut(&mut self) -> &mut bool;
 }
 
 impl SoldierEntryComponentDataTrait for SoldierEntryComponentData {
     fn ant_entry_enumeration(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::AntEnumerationTrait>>> {
         &self.ant_entry_enumeration
     }
+    fn ant_entry_enumeration_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::AntEnumerationTrait>>> {
+        &mut self.ant_entry_enumeration
+    }
     fn animation_acceleration_multiplier(&self) -> &super::core::Vec3 {
         &self.animation_acceleration_multiplier
+    }
+    fn animation_acceleration_multiplier_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.animation_acceleration_multiplier
     }
     fn world_space_lock_efficiency(&self) -> &AimingWorldSpaceLockEfficiencyData {
         &self.world_space_lock_efficiency
     }
+    fn world_space_lock_efficiency_mut(&mut self) -> &mut AimingWorldSpaceLockEfficiencyData {
+        &mut self.world_space_lock_efficiency
+    }
     fn leave_soldier_in_place(&self) -> &bool {
         &self.leave_soldier_in_place
+    }
+    fn leave_soldier_in_place_mut(&mut self) -> &mut bool {
+        &mut self.leave_soldier_in_place
     }
     fn clamp_soldier_offset_to_bounding_box(&self) -> &bool {
         &self.clamp_soldier_offset_to_bounding_box
     }
+    fn clamp_soldier_offset_to_bounding_box_mut(&mut self) -> &mut bool {
+        &mut self.clamp_soldier_offset_to_bounding_box
+    }
     fn clamp_soldier_y_offset_to_floor(&self) -> &bool {
         &self.clamp_soldier_y_offset_to_floor
     }
+    fn clamp_soldier_y_offset_to_floor_mut(&mut self) -> &mut bool {
+        &mut self.clamp_soldier_y_offset_to_floor
+    }
     fn hide_vehicle_hud(&self) -> &bool {
         &self.hide_vehicle_hud
+    }
+    fn hide_vehicle_hud_mut(&mut self) -> &mut bool {
+        &mut self.hide_vehicle_hud
     }
 }
 
@@ -29727,14 +38407,23 @@ impl super::game_shared::CharacterEntryComponentDataTrait for SoldierEntryCompon
     fn aiming_constraints(&self) -> &super::gameplay_sim::AimingConstraintsData {
         self._glacier_base.aiming_constraints()
     }
+    fn aiming_constraints_mut(&mut self) -> &mut super::gameplay_sim::AimingConstraintsData {
+        self._glacier_base.aiming_constraints_mut()
+    }
 }
 
 impl super::game_shared::GameEntryComponentDataTrait for SoldierEntryComponentData {
     fn lock_soldier_aiming_to_entry(&self) -> &bool {
         self._glacier_base.lock_soldier_aiming_to_entry()
     }
+    fn lock_soldier_aiming_to_entry_mut(&mut self) -> &mut bool {
+        self._glacier_base.lock_soldier_aiming_to_entry_mut()
+    }
     fn soldier_offset(&self) -> &super::core::Vec3 {
         self._glacier_base.soldier_offset()
+    }
+    fn soldier_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.soldier_offset_mut()
     }
 }
 
@@ -29742,86 +38431,170 @@ impl super::gameplay_sim::EntryComponentDataTrait for SoldierEntryComponentData 
     fn entry_class(&self) -> &super::gameplay_sim::EntryClass {
         self._glacier_base.entry_class()
     }
+    fn entry_class_mut(&mut self) -> &mut super::gameplay_sim::EntryClass {
+        self._glacier_base.entry_class_mut()
+    }
     fn a_i_data(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::GameAIEntryDataTrait>>> {
         self._glacier_base.a_i_data()
+    }
+    fn a_i_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::GameAIEntryDataTrait>>> {
+        self._glacier_base.a_i_data_mut()
     }
     fn forbidden_for_human(&self) -> &bool {
         self._glacier_base.forbidden_for_human()
     }
+    fn forbidden_for_human_mut(&mut self) -> &mut bool {
+        self._glacier_base.forbidden_for_human_mut()
+    }
     fn input_graph(&self) -> &Option<Arc<Mutex<dyn super::input_shared::InputGraphTrait>>> {
         self._glacier_base.input_graph()
+    }
+    fn input_graph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::input_shared::InputGraphTrait>>> {
+        self._glacier_base.input_graph_mut()
     }
     fn input_concept_definition(&self) -> &Option<Arc<Mutex<dyn super::input_shared::InputActionMapsDataTrait>>> {
         self._glacier_base.input_concept_definition()
     }
+    fn input_concept_definition_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::input_shared::InputActionMapsDataTrait>>> {
+        self._glacier_base.input_concept_definition_mut()
+    }
     fn action_map_settings_flip_y_scheme_override(&self) -> &i32 {
         self._glacier_base.action_map_settings_flip_y_scheme_override()
+    }
+    fn action_map_settings_flip_y_scheme_override_mut(&mut self) -> &mut i32 {
+        self._glacier_base.action_map_settings_flip_y_scheme_override_mut()
     }
     fn input_mapping(&self) -> &Option<Arc<Mutex<dyn super::input_shared::InputConceptToEntryInputActionMappingsTrait>>> {
         self._glacier_base.input_mapping()
     }
+    fn input_mapping_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::input_shared::InputConceptToEntryInputActionMappingsTrait>>> {
+        self._glacier_base.input_mapping_mut()
+    }
     fn input_curves(&self) -> &Vec<Option<Arc<Mutex<dyn super::gameplay_sim::InputCurveDataTrait>>>> {
         self._glacier_base.input_curves()
+    }
+    fn input_curves_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::gameplay_sim::InputCurveDataTrait>>>> {
+        self._glacier_base.input_curves_mut()
     }
     fn hud_data(&self) -> &super::gameplay_sim::EntryComponentHudData {
         self._glacier_base.hud_data()
     }
+    fn hud_data_mut(&mut self) -> &mut super::gameplay_sim::EntryComponentHudData {
+        self._glacier_base.hud_data_mut()
+    }
     fn entry_order_number(&self) -> &i32 {
         self._glacier_base.entry_order_number()
+    }
+    fn entry_order_number_mut(&mut self) -> &mut i32 {
+        self._glacier_base.entry_order_number_mut()
     }
     fn enter_impulse(&self) -> &f32 {
         self._glacier_base.enter_impulse()
     }
+    fn enter_impulse_mut(&mut self) -> &mut f32 {
+        self._glacier_base.enter_impulse_mut()
+    }
     fn entry_radius(&self) -> &f32 {
         self._glacier_base.entry_radius()
+    }
+    fn entry_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.entry_radius_mut()
     }
     fn is_allowed_to_exit_in_air(&self) -> &bool {
         self._glacier_base.is_allowed_to_exit_in_air()
     }
+    fn is_allowed_to_exit_in_air_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_allowed_to_exit_in_air_mut()
+    }
     fn clear_path_to_exit_point_start_offset(&self) -> &super::core::Vec3 {
         self._glacier_base.clear_path_to_exit_point_start_offset()
+    }
+    fn clear_path_to_exit_point_start_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.clear_path_to_exit_point_start_offset_mut()
     }
     fn is_shielded(&self) -> &bool {
         self._glacier_base.is_shielded()
     }
+    fn is_shielded_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_shielded_mut()
+    }
     fn show_soldier_in_entry(&self) -> &bool {
         self._glacier_base.show_soldier_in_entry()
+    }
+    fn show_soldier_in_entry_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_soldier_in_entry_mut()
     }
     fn show1p_soldier_in_entry(&self) -> &bool {
         self._glacier_base.show1p_soldier_in_entry()
     }
+    fn show1p_soldier_in_entry_mut(&mut self) -> &mut bool {
+        self._glacier_base.show1p_soldier_in_entry_mut()
+    }
     fn soldier_transition_invisble_time(&self) -> &f32 {
         self._glacier_base.soldier_transition_invisble_time()
+    }
+    fn soldier_transition_invisble_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.soldier_transition_invisble_time_mut()
     }
     fn entry_spotting_settings(&self) -> &super::gameplay_sim::EntrySpottingSettings {
         self._glacier_base.entry_spotting_settings()
     }
+    fn entry_spotting_settings_mut(&mut self) -> &mut super::gameplay_sim::EntrySpottingSettings {
+        self._glacier_base.entry_spotting_settings_mut()
+    }
     fn show_soldier_weapon_in_entry(&self) -> &bool {
         self._glacier_base.show_soldier_weapon_in_entry()
+    }
+    fn show_soldier_weapon_in_entry_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_soldier_weapon_in_entry_mut()
     }
     fn show1p_soldier_in_entry_for_player_only(&self) -> &bool {
         self._glacier_base.show1p_soldier_in_entry_for_player_only()
     }
+    fn show1p_soldier_in_entry_for_player_only_mut(&mut self) -> &mut bool {
+        self._glacier_base.show1p_soldier_in_entry_for_player_only_mut()
+    }
     fn show3p_soldier_weapon_in_entry(&self) -> &bool {
         self._glacier_base.show3p_soldier_weapon_in_entry()
+    }
+    fn show3p_soldier_weapon_in_entry_mut(&mut self) -> &mut bool {
+        self._glacier_base.show3p_soldier_weapon_in_entry_mut()
     }
     fn show_soldier_gear_in_entry(&self) -> &bool {
         self._glacier_base.show_soldier_gear_in_entry()
     }
+    fn show_soldier_gear_in_entry_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_soldier_gear_in_entry_mut()
+    }
     fn pose_constraints(&self) -> &super::gameplay_sim::PoseConstraintsData {
         self._glacier_base.pose_constraints()
+    }
+    fn pose_constraints_mut(&mut self) -> &mut super::gameplay_sim::PoseConstraintsData {
+        self._glacier_base.pose_constraints_mut()
     }
     fn use_local_transform(&self) -> &bool {
         self._glacier_base.use_local_transform()
     }
+    fn use_local_transform_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_local_transform_mut()
+    }
     fn trigger_event_on_key(&self) -> &i32 {
         self._glacier_base.trigger_event_on_key()
+    }
+    fn trigger_event_on_key_mut(&mut self) -> &mut i32 {
+        self._glacier_base.trigger_event_on_key_mut()
     }
     fn allow_ragdoll_from_entry(&self) -> &bool {
         self._glacier_base.allow_ragdoll_from_entry()
     }
+    fn allow_ragdoll_from_entry_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_ragdoll_from_entry_mut()
+    }
     fn camera_index(&self) -> &i32 {
         self._glacier_base.camera_index()
+    }
+    fn camera_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.camera_index_mut()
     }
 }
 
@@ -29832,17 +38605,32 @@ impl super::entity::ComponentDataTrait for SoldierEntryComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -29853,15 +38641,15 @@ impl super::core::DataBusPeerTrait for SoldierEntryComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierEntryComponentData {
 }
 
 impl super::core::DataContainerTrait for SoldierEntryComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERENTRYCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -29929,6 +38717,15 @@ impl TypeObject for SoldierEntryComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29952,23 +38749,39 @@ pub struct AimingWorldSpaceLockEfficiencyData {
 
 pub trait AimingWorldSpaceLockEfficiencyDataTrait: TypeObject {
     fn efficiency_yaw(&self) -> &f32;
+    fn efficiency_yaw_mut(&mut self) -> &mut f32;
     fn efficiency_pitch(&self) -> &f32;
+    fn efficiency_pitch_mut(&mut self) -> &mut f32;
     fn efficiency_yaw_zoom(&self) -> &f32;
+    fn efficiency_yaw_zoom_mut(&mut self) -> &mut f32;
     fn efficiency_pitch_zoom(&self) -> &f32;
+    fn efficiency_pitch_zoom_mut(&mut self) -> &mut f32;
 }
 
 impl AimingWorldSpaceLockEfficiencyDataTrait for AimingWorldSpaceLockEfficiencyData {
     fn efficiency_yaw(&self) -> &f32 {
         &self.efficiency_yaw
     }
+    fn efficiency_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.efficiency_yaw
+    }
     fn efficiency_pitch(&self) -> &f32 {
         &self.efficiency_pitch
+    }
+    fn efficiency_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.efficiency_pitch
     }
     fn efficiency_yaw_zoom(&self) -> &f32 {
         &self.efficiency_yaw_zoom
     }
+    fn efficiency_yaw_zoom_mut(&mut self) -> &mut f32 {
+        &mut self.efficiency_yaw_zoom
+    }
     fn efficiency_pitch_zoom(&self) -> &f32 {
         &self.efficiency_pitch_zoom
+    }
+    fn efficiency_pitch_zoom_mut(&mut self) -> &mut f32 {
+        &mut self.efficiency_pitch_zoom
     }
 }
 
@@ -30018,6 +38831,15 @@ impl TypeObject for AimingWorldSpaceLockEfficiencyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -30046,39 +38868,71 @@ pub struct SoldierThirdPersonCameraData {
 
 pub trait SoldierThirdPersonCameraDataTrait: SoldierCameraDataTrait {
     fn max_pitch(&self) -> &f32;
+    fn max_pitch_mut(&mut self) -> &mut f32;
     fn reduce_arm_length_looking_up(&self) -> &bool;
+    fn reduce_arm_length_looking_up_mut(&mut self) -> &mut bool;
     fn max_reduced_arm_length(&self) -> &f32;
+    fn max_reduced_arm_length_mut(&mut self) -> &mut f32;
     fn reduce_min_pitch(&self) -> &f32;
+    fn reduce_min_pitch_mut(&mut self) -> &mut f32;
     fn reduce_max_pitch(&self) -> &f32;
+    fn reduce_max_pitch_mut(&mut self) -> &mut f32;
     fn collision_width_padding(&self) -> &f32;
+    fn collision_width_padding_mut(&mut self) -> &mut f32;
     fn collision_blend_in(&self) -> &f32;
+    fn collision_blend_in_mut(&mut self) -> &mut f32;
     fn collision_blend_out(&self) -> &f32;
+    fn collision_blend_out_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierThirdPersonCameraDataTrait for SoldierThirdPersonCameraData {
     fn max_pitch(&self) -> &f32 {
         &self.max_pitch
     }
+    fn max_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.max_pitch
+    }
     fn reduce_arm_length_looking_up(&self) -> &bool {
         &self.reduce_arm_length_looking_up
+    }
+    fn reduce_arm_length_looking_up_mut(&mut self) -> &mut bool {
+        &mut self.reduce_arm_length_looking_up
     }
     fn max_reduced_arm_length(&self) -> &f32 {
         &self.max_reduced_arm_length
     }
+    fn max_reduced_arm_length_mut(&mut self) -> &mut f32 {
+        &mut self.max_reduced_arm_length
+    }
     fn reduce_min_pitch(&self) -> &f32 {
         &self.reduce_min_pitch
+    }
+    fn reduce_min_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.reduce_min_pitch
     }
     fn reduce_max_pitch(&self) -> &f32 {
         &self.reduce_max_pitch
     }
+    fn reduce_max_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.reduce_max_pitch
+    }
     fn collision_width_padding(&self) -> &f32 {
         &self.collision_width_padding
+    }
+    fn collision_width_padding_mut(&mut self) -> &mut f32 {
+        &mut self.collision_width_padding
     }
     fn collision_blend_in(&self) -> &f32 {
         &self.collision_blend_in
     }
+    fn collision_blend_in_mut(&mut self) -> &mut f32 {
+        &mut self.collision_blend_in
+    }
     fn collision_blend_out(&self) -> &f32 {
         &self.collision_blend_out
+    }
+    fn collision_blend_out_mut(&mut self) -> &mut f32 {
+        &mut self.collision_blend_out
     }
 }
 
@@ -30089,41 +38943,80 @@ impl super::gameplay_sim::CameraDataTrait for SoldierThirdPersonCameraData {
     fn occlusion_ray_offset(&self) -> &super::core::Vec3 {
         self._glacier_base.occlusion_ray_offset()
     }
+    fn occlusion_ray_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.occlusion_ray_offset_mut()
+    }
     fn pre_fade_time(&self) -> &f32 {
         self._glacier_base.pre_fade_time()
+    }
+    fn pre_fade_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.pre_fade_time_mut()
     }
     fn fade_time(&self) -> &f32 {
         self._glacier_base.fade_time()
     }
+    fn fade_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.fade_time_mut()
+    }
     fn fade_wait_time(&self) -> &f32 {
         self._glacier_base.fade_wait_time()
+    }
+    fn fade_wait_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.fade_wait_time_mut()
     }
     fn stay_faded_while_streaming(&self) -> &bool {
         self._glacier_base.stay_faded_while_streaming()
     }
+    fn stay_faded_while_streaming_mut(&mut self) -> &mut bool {
+        self._glacier_base.stay_faded_while_streaming_mut()
+    }
     fn near_plane(&self) -> &f32 {
         self._glacier_base.near_plane()
+    }
+    fn near_plane_mut(&mut self) -> &mut f32 {
+        self._glacier_base.near_plane_mut()
     }
     fn shadow_view_distance_scale(&self) -> &f32 {
         self._glacier_base.shadow_view_distance_scale()
     }
+    fn shadow_view_distance_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadow_view_distance_scale_mut()
+    }
     fn sound_occlusion(&self) -> &f32 {
         self._glacier_base.sound_occlusion()
+    }
+    fn sound_occlusion_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sound_occlusion_mut()
     }
     fn sound_listener_radius(&self) -> &f32 {
         self._glacier_base.sound_listener_radius()
     }
+    fn sound_listener_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sound_listener_radius_mut()
+    }
     fn sound_listener_fov(&self) -> &f32 {
         self._glacier_base.sound_listener_fov()
+    }
+    fn sound_listener_fov_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sound_listener_fov_mut()
     }
     fn shake_factor(&self) -> &f32 {
         self._glacier_base.shake_factor()
     }
+    fn shake_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shake_factor_mut()
+    }
     fn view_id(&self) -> &super::render_base::LocalPlayerViewId {
         self._glacier_base.view_id()
     }
+    fn view_id_mut(&mut self) -> &mut super::render_base::LocalPlayerViewId {
+        self._glacier_base.view_id_mut()
+    }
     fn transition_data_pack(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::CameraTransitionEffectDataPackTrait>>> {
         self._glacier_base.transition_data_pack()
+    }
+    fn transition_data_pack_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::CameraTransitionEffectDataPackTrait>>> {
+        self._glacier_base.transition_data_pack_mut()
     }
 }
 
@@ -30134,15 +39027,15 @@ impl super::core::DataBusPeerTrait for SoldierThirdPersonCameraData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierThirdPersonCameraData {
 }
 
 impl super::core::DataContainerTrait for SoldierThirdPersonCameraData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERTHIRDPERSONCAMERADATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -30216,6 +39109,15 @@ impl TypeObject for SoldierThirdPersonCameraData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -30247,41 +39149,80 @@ impl super::gameplay_sim::CameraDataTrait for SoldierFirstPersonCameraData {
     fn occlusion_ray_offset(&self) -> &super::core::Vec3 {
         self._glacier_base.occlusion_ray_offset()
     }
+    fn occlusion_ray_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.occlusion_ray_offset_mut()
+    }
     fn pre_fade_time(&self) -> &f32 {
         self._glacier_base.pre_fade_time()
+    }
+    fn pre_fade_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.pre_fade_time_mut()
     }
     fn fade_time(&self) -> &f32 {
         self._glacier_base.fade_time()
     }
+    fn fade_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.fade_time_mut()
+    }
     fn fade_wait_time(&self) -> &f32 {
         self._glacier_base.fade_wait_time()
+    }
+    fn fade_wait_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.fade_wait_time_mut()
     }
     fn stay_faded_while_streaming(&self) -> &bool {
         self._glacier_base.stay_faded_while_streaming()
     }
+    fn stay_faded_while_streaming_mut(&mut self) -> &mut bool {
+        self._glacier_base.stay_faded_while_streaming_mut()
+    }
     fn near_plane(&self) -> &f32 {
         self._glacier_base.near_plane()
+    }
+    fn near_plane_mut(&mut self) -> &mut f32 {
+        self._glacier_base.near_plane_mut()
     }
     fn shadow_view_distance_scale(&self) -> &f32 {
         self._glacier_base.shadow_view_distance_scale()
     }
+    fn shadow_view_distance_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadow_view_distance_scale_mut()
+    }
     fn sound_occlusion(&self) -> &f32 {
         self._glacier_base.sound_occlusion()
+    }
+    fn sound_occlusion_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sound_occlusion_mut()
     }
     fn sound_listener_radius(&self) -> &f32 {
         self._glacier_base.sound_listener_radius()
     }
+    fn sound_listener_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sound_listener_radius_mut()
+    }
     fn sound_listener_fov(&self) -> &f32 {
         self._glacier_base.sound_listener_fov()
+    }
+    fn sound_listener_fov_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sound_listener_fov_mut()
     }
     fn shake_factor(&self) -> &f32 {
         self._glacier_base.shake_factor()
     }
+    fn shake_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shake_factor_mut()
+    }
     fn view_id(&self) -> &super::render_base::LocalPlayerViewId {
         self._glacier_base.view_id()
     }
+    fn view_id_mut(&mut self) -> &mut super::render_base::LocalPlayerViewId {
+        self._glacier_base.view_id_mut()
+    }
     fn transition_data_pack(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::CameraTransitionEffectDataPackTrait>>> {
         self._glacier_base.transition_data_pack()
+    }
+    fn transition_data_pack_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::CameraTransitionEffectDataPackTrait>>> {
+        self._glacier_base.transition_data_pack_mut()
     }
 }
 
@@ -30292,15 +39233,15 @@ impl super::core::DataBusPeerTrait for SoldierFirstPersonCameraData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierFirstPersonCameraData {
 }
 
 impl super::core::DataContainerTrait for SoldierFirstPersonCameraData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERFIRSTPERSONCAMERADATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -30325,6 +39266,15 @@ impl TypeObject for SoldierFirstPersonCameraData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -30354,41 +39304,80 @@ impl super::gameplay_sim::CameraDataTrait for SoldierCameraData {
     fn occlusion_ray_offset(&self) -> &super::core::Vec3 {
         self._glacier_base.occlusion_ray_offset()
     }
+    fn occlusion_ray_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.occlusion_ray_offset_mut()
+    }
     fn pre_fade_time(&self) -> &f32 {
         self._glacier_base.pre_fade_time()
+    }
+    fn pre_fade_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.pre_fade_time_mut()
     }
     fn fade_time(&self) -> &f32 {
         self._glacier_base.fade_time()
     }
+    fn fade_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.fade_time_mut()
+    }
     fn fade_wait_time(&self) -> &f32 {
         self._glacier_base.fade_wait_time()
+    }
+    fn fade_wait_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.fade_wait_time_mut()
     }
     fn stay_faded_while_streaming(&self) -> &bool {
         self._glacier_base.stay_faded_while_streaming()
     }
+    fn stay_faded_while_streaming_mut(&mut self) -> &mut bool {
+        self._glacier_base.stay_faded_while_streaming_mut()
+    }
     fn near_plane(&self) -> &f32 {
         self._glacier_base.near_plane()
+    }
+    fn near_plane_mut(&mut self) -> &mut f32 {
+        self._glacier_base.near_plane_mut()
     }
     fn shadow_view_distance_scale(&self) -> &f32 {
         self._glacier_base.shadow_view_distance_scale()
     }
+    fn shadow_view_distance_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadow_view_distance_scale_mut()
+    }
     fn sound_occlusion(&self) -> &f32 {
         self._glacier_base.sound_occlusion()
+    }
+    fn sound_occlusion_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sound_occlusion_mut()
     }
     fn sound_listener_radius(&self) -> &f32 {
         self._glacier_base.sound_listener_radius()
     }
+    fn sound_listener_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sound_listener_radius_mut()
+    }
     fn sound_listener_fov(&self) -> &f32 {
         self._glacier_base.sound_listener_fov()
+    }
+    fn sound_listener_fov_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sound_listener_fov_mut()
     }
     fn shake_factor(&self) -> &f32 {
         self._glacier_base.shake_factor()
     }
+    fn shake_factor_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shake_factor_mut()
+    }
     fn view_id(&self) -> &super::render_base::LocalPlayerViewId {
         self._glacier_base.view_id()
     }
+    fn view_id_mut(&mut self) -> &mut super::render_base::LocalPlayerViewId {
+        self._glacier_base.view_id_mut()
+    }
     fn transition_data_pack(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::CameraTransitionEffectDataPackTrait>>> {
         self._glacier_base.transition_data_pack()
+    }
+    fn transition_data_pack_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::CameraTransitionEffectDataPackTrait>>> {
+        self._glacier_base.transition_data_pack_mut()
     }
 }
 
@@ -30399,15 +39388,15 @@ impl super::core::DataBusPeerTrait for SoldierCameraData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoldierCameraData {
 }
 
 impl super::core::DataContainerTrait for SoldierCameraData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERCAMERADATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -30432,6 +39421,15 @@ impl TypeObject for SoldierCameraData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -30464,14 +39462,23 @@ impl super::entity::ObjectBlueprintTrait for SoldierWeaponAsset {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
         self._glacier_base.object()
     }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+        self._glacier_base.object_mut()
+    }
 }
 
 impl super::entity::BlueprintTrait for SoldierWeaponAsset {
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.objects()
     }
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.objects_mut()
+    }
     fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
         self._glacier_base.schematics()
+    }
+    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+        self._glacier_base.schematics_mut()
     }
 }
 
@@ -30479,20 +39486,35 @@ impl super::entity::EntityBusDataTrait for SoldierWeaponAsset {
     fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
         self._glacier_base.event_connections()
     }
+    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+        self._glacier_base.event_connections_mut()
+    }
 }
 
 impl super::core::DataBusDataTrait for SoldierWeaponAsset {
     fn flags(&self) -> &u16 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.flags_mut()
+    }
     fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
         self._glacier_base.property_connections()
+    }
+    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+        self._glacier_base.property_connections_mut()
     }
     fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
         self._glacier_base.link_connections()
     }
+    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+        self._glacier_base.link_connections_mut()
+    }
     fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
         self._glacier_base.interface()
+    }
+    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+        self._glacier_base.interface_mut()
     }
 }
 
@@ -30500,12 +39522,12 @@ impl super::core::AssetTrait for SoldierWeaponAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -30530,6 +39552,15 @@ impl TypeObject for SoldierWeaponAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -30562,11 +39593,17 @@ impl super::game_shared::CharacterBlueprintTrait for SoldierAsset {
     fn time_delta_type(&self) -> &super::entity::TimeDeltaType {
         self._glacier_base.time_delta_type()
     }
+    fn time_delta_type_mut(&mut self) -> &mut super::entity::TimeDeltaType {
+        self._glacier_base.time_delta_type_mut()
+    }
 }
 
 impl super::entity::ObjectBlueprintTrait for SoldierAsset {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
         self._glacier_base.object()
+    }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+        self._glacier_base.object_mut()
     }
 }
 
@@ -30574,8 +39611,14 @@ impl super::entity::BlueprintTrait for SoldierAsset {
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.objects()
     }
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.objects_mut()
+    }
     fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
         self._glacier_base.schematics()
+    }
+    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+        self._glacier_base.schematics_mut()
     }
 }
 
@@ -30583,20 +39626,35 @@ impl super::entity::EntityBusDataTrait for SoldierAsset {
     fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
         self._glacier_base.event_connections()
     }
+    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+        self._glacier_base.event_connections_mut()
+    }
 }
 
 impl super::core::DataBusDataTrait for SoldierAsset {
     fn flags(&self) -> &u16 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.flags_mut()
+    }
     fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
         self._glacier_base.property_connections()
+    }
+    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+        self._glacier_base.property_connections_mut()
     }
     fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
         self._glacier_base.link_connections()
     }
+    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+        self._glacier_base.link_connections_mut()
+    }
     fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
         self._glacier_base.interface()
+    }
+    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+        self._glacier_base.interface_mut()
     }
 }
 
@@ -30604,12 +39662,12 @@ impl super::core::AssetTrait for SoldierAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -30634,6 +39692,15 @@ impl TypeObject for SoldierAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -30663,14 +39730,23 @@ impl super::entity::ObjectBlueprintTrait for SoldierWeaponBlueprint {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
         self._glacier_base.object()
     }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+        self._glacier_base.object_mut()
+    }
 }
 
 impl super::entity::BlueprintTrait for SoldierWeaponBlueprint {
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.objects()
     }
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.objects_mut()
+    }
     fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
         self._glacier_base.schematics()
+    }
+    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+        self._glacier_base.schematics_mut()
     }
 }
 
@@ -30678,20 +39754,35 @@ impl super::entity::EntityBusDataTrait for SoldierWeaponBlueprint {
     fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
         self._glacier_base.event_connections()
     }
+    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+        self._glacier_base.event_connections_mut()
+    }
 }
 
 impl super::core::DataBusDataTrait for SoldierWeaponBlueprint {
     fn flags(&self) -> &u16 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.flags_mut()
+    }
     fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
         self._glacier_base.property_connections()
+    }
+    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+        self._glacier_base.property_connections_mut()
     }
     fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
         self._glacier_base.link_connections()
     }
+    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+        self._glacier_base.link_connections_mut()
+    }
     fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
         self._glacier_base.interface()
+    }
+    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+        self._glacier_base.interface_mut()
     }
 }
 
@@ -30699,12 +39790,12 @@ impl super::core::AssetTrait for SoldierWeaponBlueprint {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierWeaponBlueprint {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERWEAPONBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -30729,6 +39820,15 @@ impl TypeObject for SoldierWeaponBlueprint {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -30758,11 +39858,17 @@ impl super::game_shared::CharacterBlueprintTrait for SoldierBlueprint {
     fn time_delta_type(&self) -> &super::entity::TimeDeltaType {
         self._glacier_base.time_delta_type()
     }
+    fn time_delta_type_mut(&mut self) -> &mut super::entity::TimeDeltaType {
+        self._glacier_base.time_delta_type_mut()
+    }
 }
 
 impl super::entity::ObjectBlueprintTrait for SoldierBlueprint {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
         self._glacier_base.object()
+    }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+        self._glacier_base.object_mut()
     }
 }
 
@@ -30770,8 +39876,14 @@ impl super::entity::BlueprintTrait for SoldierBlueprint {
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.objects()
     }
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.objects_mut()
+    }
     fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
         self._glacier_base.schematics()
+    }
+    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+        self._glacier_base.schematics_mut()
     }
 }
 
@@ -30779,20 +39891,35 @@ impl super::entity::EntityBusDataTrait for SoldierBlueprint {
     fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
         self._glacier_base.event_connections()
     }
+    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+        self._glacier_base.event_connections_mut()
+    }
 }
 
 impl super::core::DataBusDataTrait for SoldierBlueprint {
     fn flags(&self) -> &u16 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.flags_mut()
+    }
     fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
         self._glacier_base.property_connections()
+    }
+    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+        self._glacier_base.property_connections_mut()
     }
     fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
         self._glacier_base.link_connections()
     }
+    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+        self._glacier_base.link_connections_mut()
+    }
     fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
         self._glacier_base.interface()
+    }
+    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+        self._glacier_base.interface_mut()
     }
 }
 
@@ -30800,12 +39927,12 @@ impl super::core::AssetTrait for SoldierBlueprint {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SoldierBlueprint {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOLDIERBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -30830,6 +39957,15 @@ impl TypeObject for SoldierBlueprint {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -30874,103 +40010,199 @@ pub struct SoldierHealthModuleBinding {
 
 pub trait SoldierHealthModuleBindingTrait: TypeObject {
     fn head_shot(&self) -> &super::ant::AntRef;
+    fn head_shot_mut(&mut self) -> &mut super::ant::AntRef;
     fn left_arm_hit(&self) -> &super::ant::AntRef;
+    fn left_arm_hit_mut(&mut self) -> &mut super::ant::AntRef;
     fn right_arm_hit(&self) -> &super::ant::AntRef;
+    fn right_arm_hit_mut(&mut self) -> &mut super::ant::AntRef;
     fn left_leg_hit(&self) -> &super::ant::AntRef;
+    fn left_leg_hit_mut(&mut self) -> &mut super::ant::AntRef;
     fn right_leg_hit(&self) -> &super::ant::AntRef;
+    fn right_leg_hit_mut(&mut self) -> &mut super::ant::AntRef;
     fn on_ground(&self) -> &super::ant::AntRef;
+    fn on_ground_mut(&mut self) -> &mut super::ant::AntRef;
     fn death_animation_triggered(&self) -> &super::ant::AntRef;
+    fn death_animation_triggered_mut(&mut self) -> &mut super::ant::AntRef;
     fn random_animation_index(&self) -> &super::ant::AntRef;
+    fn random_animation_index_mut(&mut self) -> &mut super::ant::AntRef;
     fn sprinting(&self) -> &super::ant::AntRef;
+    fn sprinting_mut(&mut self) -> &mut super::ant::AntRef;
     fn hit_left(&self) -> &super::ant::AntRef;
+    fn hit_left_mut(&mut self) -> &mut super::ant::AntRef;
     fn hit_right(&self) -> &super::ant::AntRef;
+    fn hit_right_mut(&mut self) -> &mut super::ant::AntRef;
     fn hit_front(&self) -> &super::ant::AntRef;
+    fn hit_front_mut(&mut self) -> &mut super::ant::AntRef;
     fn hit_back(&self) -> &super::ant::AntRef;
+    fn hit_back_mut(&mut self) -> &mut super::ant::AntRef;
     fn death_hit_direction(&self) -> &super::ant::AntRef;
+    fn death_hit_direction_mut(&mut self) -> &mut super::ant::AntRef;
     fn explosion(&self) -> &super::ant::AntRef;
+    fn explosion_mut(&mut self) -> &mut super::ant::AntRef;
     fn dead(&self) -> &super::ant::AntRef;
+    fn dead_mut(&mut self) -> &mut super::ant::AntRef;
     fn revived(&self) -> &super::ant::AntRef;
+    fn revived_mut(&mut self) -> &mut super::ant::AntRef;
     fn random_value(&self) -> &super::ant::AntRef;
+    fn random_value_mut(&mut self) -> &mut super::ant::AntRef;
     fn pose(&self) -> &super::ant::AntRef;
+    fn pose_mut(&mut self) -> &mut super::ant::AntRef;
     fn right_speed(&self) -> &super::ant::AntRef;
+    fn right_speed_mut(&mut self) -> &mut super::ant::AntRef;
     fn forward_speed(&self) -> &super::ant::AntRef;
+    fn forward_speed_mut(&mut self) -> &mut super::ant::AntRef;
     fn critically_hit(&self) -> &super::ant::AntRef;
+    fn critically_hit_mut(&mut self) -> &mut super::ant::AntRef;
     fn interactive_man_down(&self) -> &super::ant::AntRef;
+    fn interactive_man_down_mut(&mut self) -> &mut super::ant::AntRef;
     fn health(&self) -> &super::ant::AntRef;
+    fn health_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl SoldierHealthModuleBindingTrait for SoldierHealthModuleBinding {
     fn head_shot(&self) -> &super::ant::AntRef {
         &self.head_shot
     }
+    fn head_shot_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.head_shot
+    }
     fn left_arm_hit(&self) -> &super::ant::AntRef {
         &self.left_arm_hit
+    }
+    fn left_arm_hit_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.left_arm_hit
     }
     fn right_arm_hit(&self) -> &super::ant::AntRef {
         &self.right_arm_hit
     }
+    fn right_arm_hit_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.right_arm_hit
+    }
     fn left_leg_hit(&self) -> &super::ant::AntRef {
         &self.left_leg_hit
+    }
+    fn left_leg_hit_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.left_leg_hit
     }
     fn right_leg_hit(&self) -> &super::ant::AntRef {
         &self.right_leg_hit
     }
+    fn right_leg_hit_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.right_leg_hit
+    }
     fn on_ground(&self) -> &super::ant::AntRef {
         &self.on_ground
+    }
+    fn on_ground_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.on_ground
     }
     fn death_animation_triggered(&self) -> &super::ant::AntRef {
         &self.death_animation_triggered
     }
+    fn death_animation_triggered_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.death_animation_triggered
+    }
     fn random_animation_index(&self) -> &super::ant::AntRef {
         &self.random_animation_index
+    }
+    fn random_animation_index_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.random_animation_index
     }
     fn sprinting(&self) -> &super::ant::AntRef {
         &self.sprinting
     }
+    fn sprinting_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.sprinting
+    }
     fn hit_left(&self) -> &super::ant::AntRef {
         &self.hit_left
+    }
+    fn hit_left_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.hit_left
     }
     fn hit_right(&self) -> &super::ant::AntRef {
         &self.hit_right
     }
+    fn hit_right_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.hit_right
+    }
     fn hit_front(&self) -> &super::ant::AntRef {
         &self.hit_front
+    }
+    fn hit_front_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.hit_front
     }
     fn hit_back(&self) -> &super::ant::AntRef {
         &self.hit_back
     }
+    fn hit_back_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.hit_back
+    }
     fn death_hit_direction(&self) -> &super::ant::AntRef {
         &self.death_hit_direction
+    }
+    fn death_hit_direction_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.death_hit_direction
     }
     fn explosion(&self) -> &super::ant::AntRef {
         &self.explosion
     }
+    fn explosion_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.explosion
+    }
     fn dead(&self) -> &super::ant::AntRef {
         &self.dead
+    }
+    fn dead_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.dead
     }
     fn revived(&self) -> &super::ant::AntRef {
         &self.revived
     }
+    fn revived_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.revived
+    }
     fn random_value(&self) -> &super::ant::AntRef {
         &self.random_value
+    }
+    fn random_value_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.random_value
     }
     fn pose(&self) -> &super::ant::AntRef {
         &self.pose
     }
+    fn pose_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.pose
+    }
     fn right_speed(&self) -> &super::ant::AntRef {
         &self.right_speed
+    }
+    fn right_speed_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.right_speed
     }
     fn forward_speed(&self) -> &super::ant::AntRef {
         &self.forward_speed
     }
+    fn forward_speed_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.forward_speed
+    }
     fn critically_hit(&self) -> &super::ant::AntRef {
         &self.critically_hit
+    }
+    fn critically_hit_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.critically_hit
     }
     fn interactive_man_down(&self) -> &super::ant::AntRef {
         &self.interactive_man_down
     }
+    fn interactive_man_down_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.interactive_man_down
+    }
     fn health(&self) -> &super::ant::AntRef {
         &self.health
+    }
+    fn health_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.health
     }
 }
 
@@ -31140,6 +40372,15 @@ impl TypeObject for SoldierHealthModuleBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -31181,6 +40422,15 @@ impl TypeObject for AIDeathReactionAnimationType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -31241,167 +40491,327 @@ pub struct AnimatedWeaponBinding {
 
 pub trait AnimatedWeaponBindingTrait: TypeObject {
     fn deploy(&self) -> &super::ant::AntRef;
+    fn deploy_mut(&mut self) -> &mut super::ant::AntRef;
     fn alt_deploy(&self) -> &super::ant::AntRef;
+    fn alt_deploy_mut(&mut self) -> &mut super::ant::AntRef;
     fn undeploy(&self) -> &super::ant::AntRef;
+    fn undeploy_mut(&mut self) -> &mut super::ant::AntRef;
     fn quick_switch(&self) -> &super::ant::AntRef;
+    fn quick_switch_mut(&mut self) -> &mut super::ant::AntRef;
     fn reload(&self) -> &super::ant::AntRef;
+    fn reload_mut(&mut self) -> &mut super::ant::AntRef;
     fn reload_stage(&self) -> &super::ant::AntRef;
+    fn reload_stage_mut(&mut self) -> &mut super::ant::AntRef;
     fn reload_shotgun(&self) -> &super::ant::AntRef;
+    fn reload_shotgun_mut(&mut self) -> &mut super::ant::AntRef;
     fn fire(&self) -> &super::ant::AntRef;
+    fn fire_mut(&mut self) -> &mut super::ant::AntRef;
     fn fire_single(&self) -> &super::ant::AntRef;
+    fn fire_single_mut(&mut self) -> &mut super::ant::AntRef;
     fn fire_hold_and_release(&self) -> &super::ant::AntRef;
+    fn fire_hold_and_release_mut(&mut self) -> &mut super::ant::AntRef;
     fn fire_simple(&self) -> &super::ant::AntRef;
+    fn fire_simple_mut(&mut self) -> &mut super::ant::AntRef;
     fn first_shot_spawned(&self) -> &super::ant::AntRef;
+    fn first_shot_spawned_mut(&mut self) -> &mut super::ant::AntRef;
     fn bolt_action(&self) -> &super::ant::AntRef;
+    fn bolt_action_mut(&mut self) -> &mut super::ant::AntRef;
     fn pump_action(&self) -> &super::ant::AntRef;
+    fn pump_action_mut(&mut self) -> &mut super::ant::AntRef;
     fn melee_attack(&self) -> &super::ant::AntRef;
+    fn melee_attack_mut(&mut self) -> &mut super::ant::AntRef;
     fn quick_throw(&self) -> &super::ant::AntRef;
+    fn quick_throw_mut(&mut self) -> &mut super::ant::AntRef;
     fn quick_throw_type(&self) -> &super::ant::AntRef;
+    fn quick_throw_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn aim_body(&self) -> &super::ant::AntRef;
+    fn aim_body_mut(&mut self) -> &mut super::ant::AntRef;
     fn lower_gun(&self) -> &super::ant::AntRef;
+    fn lower_gun_mut(&mut self) -> &mut super::ant::AntRef;
     fn breath_control(&self) -> &super::ant::AntRef;
+    fn breath_control_mut(&mut self) -> &mut super::ant::AntRef;
     fn zoom(&self) -> &super::ant::AntRef;
+    fn zoom_mut(&mut self) -> &mut super::ant::AntRef;
     fn canted_zoom(&self) -> &super::ant::AntRef;
+    fn canted_zoom_mut(&mut self) -> &mut super::ant::AntRef;
     fn magnifier_sight_toggle(&self) -> &super::ant::AntRef;
+    fn magnifier_sight_toggle_mut(&mut self) -> &mut super::ant::AntRef;
     fn zoom_parameter(&self) -> &super::ant::AntRef;
+    fn zoom_parameter_mut(&mut self) -> &mut super::ant::AntRef;
     fn dispersion(&self) -> &super::ant::AntRef;
+    fn dispersion_mut(&mut self) -> &mut super::ant::AntRef;
     fn zoom_out_speed(&self) -> &super::ant::AntRef;
+    fn zoom_out_speed_mut(&mut self) -> &mut super::ant::AntRef;
     fn zoom_in_speed(&self) -> &super::ant::AntRef;
+    fn zoom_in_speed_mut(&mut self) -> &mut super::ant::AntRef;
     fn fire_mode_changed(&self) -> &super::ant::AntRef;
+    fn fire_mode_changed_mut(&mut self) -> &mut super::ant::AntRef;
     fn gun_down(&self) -> &super::ant::AntRef;
+    fn gun_down_mut(&mut self) -> &mut super::ant::AntRef;
     fn allow_switching_to_weapon_in_water(&self) -> &super::ant::AntRef;
+    fn allow_switching_to_weapon_in_water_mut(&mut self) -> &mut super::ant::AntRef;
     fn number_of_bullets_left_in_gun(&self) -> &super::ant::AntRef;
+    fn number_of_bullets_left_in_gun_mut(&mut self) -> &mut super::ant::AntRef;
     fn bullets_left_in_gun(&self) -> &super::ant::AntRef;
+    fn bullets_left_in_gun_mut(&mut self) -> &mut super::ant::AntRef;
     fn abort_vehicle_deploy(&self) -> &super::ant::AntRef;
+    fn abort_vehicle_deploy_mut(&mut self) -> &mut super::ant::AntRef;
     fn weapon_action_e_s_i_g(&self) -> &super::ant::AntRef;
+    fn weapon_action_e_s_i_g_mut(&mut self) -> &mut super::ant::AntRef;
     fn is_sprinting(&self) -> &super::ant::AntRef;
+    fn is_sprinting_mut(&mut self) -> &mut super::ant::AntRef;
     fn kickback_magnitude_factor(&self) -> &super::ant::AntRef;
+    fn kickback_magnitude_factor_mut(&mut self) -> &mut super::ant::AntRef;
     fn kickback_speed_factor(&self) -> &super::ant::AntRef;
+    fn kickback_speed_factor_mut(&mut self) -> &mut super::ant::AntRef;
     fn offset_x(&self) -> &super::ant::AntRef;
+    fn offset_x_mut(&mut self) -> &mut super::ant::AntRef;
     fn offset_y(&self) -> &super::ant::AntRef;
+    fn offset_y_mut(&mut self) -> &mut super::ant::AntRef;
     fn offset_z(&self) -> &super::ant::AntRef;
+    fn offset_z_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl AnimatedWeaponBindingTrait for AnimatedWeaponBinding {
     fn deploy(&self) -> &super::ant::AntRef {
         &self.deploy
     }
+    fn deploy_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.deploy
+    }
     fn alt_deploy(&self) -> &super::ant::AntRef {
         &self.alt_deploy
+    }
+    fn alt_deploy_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.alt_deploy
     }
     fn undeploy(&self) -> &super::ant::AntRef {
         &self.undeploy
     }
+    fn undeploy_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.undeploy
+    }
     fn quick_switch(&self) -> &super::ant::AntRef {
         &self.quick_switch
+    }
+    fn quick_switch_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.quick_switch
     }
     fn reload(&self) -> &super::ant::AntRef {
         &self.reload
     }
+    fn reload_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.reload
+    }
     fn reload_stage(&self) -> &super::ant::AntRef {
         &self.reload_stage
+    }
+    fn reload_stage_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.reload_stage
     }
     fn reload_shotgun(&self) -> &super::ant::AntRef {
         &self.reload_shotgun
     }
+    fn reload_shotgun_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.reload_shotgun
+    }
     fn fire(&self) -> &super::ant::AntRef {
         &self.fire
+    }
+    fn fire_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.fire
     }
     fn fire_single(&self) -> &super::ant::AntRef {
         &self.fire_single
     }
+    fn fire_single_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.fire_single
+    }
     fn fire_hold_and_release(&self) -> &super::ant::AntRef {
         &self.fire_hold_and_release
+    }
+    fn fire_hold_and_release_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.fire_hold_and_release
     }
     fn fire_simple(&self) -> &super::ant::AntRef {
         &self.fire_simple
     }
+    fn fire_simple_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.fire_simple
+    }
     fn first_shot_spawned(&self) -> &super::ant::AntRef {
         &self.first_shot_spawned
+    }
+    fn first_shot_spawned_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.first_shot_spawned
     }
     fn bolt_action(&self) -> &super::ant::AntRef {
         &self.bolt_action
     }
+    fn bolt_action_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.bolt_action
+    }
     fn pump_action(&self) -> &super::ant::AntRef {
         &self.pump_action
+    }
+    fn pump_action_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.pump_action
     }
     fn melee_attack(&self) -> &super::ant::AntRef {
         &self.melee_attack
     }
+    fn melee_attack_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.melee_attack
+    }
     fn quick_throw(&self) -> &super::ant::AntRef {
         &self.quick_throw
+    }
+    fn quick_throw_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.quick_throw
     }
     fn quick_throw_type(&self) -> &super::ant::AntRef {
         &self.quick_throw_type
     }
+    fn quick_throw_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.quick_throw_type
+    }
     fn aim_body(&self) -> &super::ant::AntRef {
         &self.aim_body
+    }
+    fn aim_body_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.aim_body
     }
     fn lower_gun(&self) -> &super::ant::AntRef {
         &self.lower_gun
     }
+    fn lower_gun_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.lower_gun
+    }
     fn breath_control(&self) -> &super::ant::AntRef {
         &self.breath_control
+    }
+    fn breath_control_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.breath_control
     }
     fn zoom(&self) -> &super::ant::AntRef {
         &self.zoom
     }
+    fn zoom_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.zoom
+    }
     fn canted_zoom(&self) -> &super::ant::AntRef {
         &self.canted_zoom
+    }
+    fn canted_zoom_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.canted_zoom
     }
     fn magnifier_sight_toggle(&self) -> &super::ant::AntRef {
         &self.magnifier_sight_toggle
     }
+    fn magnifier_sight_toggle_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.magnifier_sight_toggle
+    }
     fn zoom_parameter(&self) -> &super::ant::AntRef {
         &self.zoom_parameter
+    }
+    fn zoom_parameter_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.zoom_parameter
     }
     fn dispersion(&self) -> &super::ant::AntRef {
         &self.dispersion
     }
+    fn dispersion_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.dispersion
+    }
     fn zoom_out_speed(&self) -> &super::ant::AntRef {
         &self.zoom_out_speed
+    }
+    fn zoom_out_speed_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.zoom_out_speed
     }
     fn zoom_in_speed(&self) -> &super::ant::AntRef {
         &self.zoom_in_speed
     }
+    fn zoom_in_speed_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.zoom_in_speed
+    }
     fn fire_mode_changed(&self) -> &super::ant::AntRef {
         &self.fire_mode_changed
+    }
+    fn fire_mode_changed_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.fire_mode_changed
     }
     fn gun_down(&self) -> &super::ant::AntRef {
         &self.gun_down
     }
+    fn gun_down_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.gun_down
+    }
     fn allow_switching_to_weapon_in_water(&self) -> &super::ant::AntRef {
         &self.allow_switching_to_weapon_in_water
+    }
+    fn allow_switching_to_weapon_in_water_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.allow_switching_to_weapon_in_water
     }
     fn number_of_bullets_left_in_gun(&self) -> &super::ant::AntRef {
         &self.number_of_bullets_left_in_gun
     }
+    fn number_of_bullets_left_in_gun_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.number_of_bullets_left_in_gun
+    }
     fn bullets_left_in_gun(&self) -> &super::ant::AntRef {
         &self.bullets_left_in_gun
+    }
+    fn bullets_left_in_gun_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.bullets_left_in_gun
     }
     fn abort_vehicle_deploy(&self) -> &super::ant::AntRef {
         &self.abort_vehicle_deploy
     }
+    fn abort_vehicle_deploy_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.abort_vehicle_deploy
+    }
     fn weapon_action_e_s_i_g(&self) -> &super::ant::AntRef {
         &self.weapon_action_e_s_i_g
+    }
+    fn weapon_action_e_s_i_g_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.weapon_action_e_s_i_g
     }
     fn is_sprinting(&self) -> &super::ant::AntRef {
         &self.is_sprinting
     }
+    fn is_sprinting_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.is_sprinting
+    }
     fn kickback_magnitude_factor(&self) -> &super::ant::AntRef {
         &self.kickback_magnitude_factor
+    }
+    fn kickback_magnitude_factor_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.kickback_magnitude_factor
     }
     fn kickback_speed_factor(&self) -> &super::ant::AntRef {
         &self.kickback_speed_factor
     }
+    fn kickback_speed_factor_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.kickback_speed_factor
+    }
     fn offset_x(&self) -> &super::ant::AntRef {
         &self.offset_x
+    }
+    fn offset_x_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.offset_x
     }
     fn offset_y(&self) -> &super::ant::AntRef {
         &self.offset_y
     }
+    fn offset_y_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.offset_y
+    }
     fn offset_z(&self) -> &super::ant::AntRef {
         &self.offset_z
+    }
+    fn offset_z_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.offset_z
     }
 }
 
@@ -31667,6 +41077,15 @@ impl TypeObject for AnimatedWeaponBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -31704,79 +41123,151 @@ pub struct AnimatedStaticWeaponBinding {
 
 pub trait AnimatedStaticWeaponBindingTrait: TypeObject {
     fn weapon_chooser_signal(&self) -> &super::ant::AntRef;
+    fn weapon_chooser_signal_mut(&mut self) -> &mut super::ant::AntRef;
     fn weapon_class_signal(&self) -> &super::ant::AntRef;
+    fn weapon_class_signal_mut(&mut self) -> &mut super::ant::AntRef;
     fn anim_type(&self) -> &super::ant::AntRef;
+    fn anim_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn always_aim_head(&self) -> &super::ant::AntRef;
+    fn always_aim_head_mut(&mut self) -> &mut super::ant::AntRef;
     fn one_handed(&self) -> &super::ant::AntRef;
+    fn one_handed_mut(&mut self) -> &mut super::ant::AntRef;
     fn one_handed_aiming(&self) -> &super::ant::AntRef;
+    fn one_handed_aiming_mut(&mut self) -> &mut super::ant::AntRef;
     fn aiming_enabled(&self) -> &super::ant::AntRef;
+    fn aiming_enabled_mut(&mut self) -> &mut super::ant::AntRef;
     fn un_deploy_speed(&self) -> &super::ant::AntRef;
+    fn un_deploy_speed_mut(&mut self) -> &mut super::ant::AntRef;
     fn deploy_speed(&self) -> &super::ant::AntRef;
+    fn deploy_speed_mut(&mut self) -> &mut super::ant::AntRef;
     fn zoom_scale_factor(&self) -> &super::ant::AntRef;
+    fn zoom_scale_factor_mut(&mut self) -> &mut super::ant::AntRef;
     fn rfl_type(&self) -> &super::ant::AntRef;
+    fn rfl_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn pstl_type(&self) -> &super::ant::AntRef;
+    fn pstl_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn hgr_type(&self) -> &super::ant::AntRef;
+    fn hgr_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn a_t_type(&self) -> &super::ant::AntRef;
+    fn a_t_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn shg_type(&self) -> &super::ant::AntRef;
+    fn shg_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn l_m_g_type(&self) -> &super::ant::AntRef;
+    fn l_m_g_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn bag_type(&self) -> &super::ant::AntRef;
+    fn bag_type_mut(&mut self) -> &mut super::ant::AntRef;
     fn snp_type(&self) -> &super::ant::AntRef;
+    fn snp_type_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl AnimatedStaticWeaponBindingTrait for AnimatedStaticWeaponBinding {
     fn weapon_chooser_signal(&self) -> &super::ant::AntRef {
         &self.weapon_chooser_signal
     }
+    fn weapon_chooser_signal_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.weapon_chooser_signal
+    }
     fn weapon_class_signal(&self) -> &super::ant::AntRef {
         &self.weapon_class_signal
+    }
+    fn weapon_class_signal_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.weapon_class_signal
     }
     fn anim_type(&self) -> &super::ant::AntRef {
         &self.anim_type
     }
+    fn anim_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.anim_type
+    }
     fn always_aim_head(&self) -> &super::ant::AntRef {
         &self.always_aim_head
+    }
+    fn always_aim_head_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.always_aim_head
     }
     fn one_handed(&self) -> &super::ant::AntRef {
         &self.one_handed
     }
+    fn one_handed_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.one_handed
+    }
     fn one_handed_aiming(&self) -> &super::ant::AntRef {
         &self.one_handed_aiming
+    }
+    fn one_handed_aiming_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.one_handed_aiming
     }
     fn aiming_enabled(&self) -> &super::ant::AntRef {
         &self.aiming_enabled
     }
+    fn aiming_enabled_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.aiming_enabled
+    }
     fn un_deploy_speed(&self) -> &super::ant::AntRef {
         &self.un_deploy_speed
+    }
+    fn un_deploy_speed_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.un_deploy_speed
     }
     fn deploy_speed(&self) -> &super::ant::AntRef {
         &self.deploy_speed
     }
+    fn deploy_speed_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.deploy_speed
+    }
     fn zoom_scale_factor(&self) -> &super::ant::AntRef {
         &self.zoom_scale_factor
+    }
+    fn zoom_scale_factor_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.zoom_scale_factor
     }
     fn rfl_type(&self) -> &super::ant::AntRef {
         &self.rfl_type
     }
+    fn rfl_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.rfl_type
+    }
     fn pstl_type(&self) -> &super::ant::AntRef {
         &self.pstl_type
+    }
+    fn pstl_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.pstl_type
     }
     fn hgr_type(&self) -> &super::ant::AntRef {
         &self.hgr_type
     }
+    fn hgr_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.hgr_type
+    }
     fn a_t_type(&self) -> &super::ant::AntRef {
         &self.a_t_type
+    }
+    fn a_t_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.a_t_type
     }
     fn shg_type(&self) -> &super::ant::AntRef {
         &self.shg_type
     }
+    fn shg_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.shg_type
+    }
     fn l_m_g_type(&self) -> &super::ant::AntRef {
         &self.l_m_g_type
+    }
+    fn l_m_g_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.l_m_g_type
     }
     fn bag_type(&self) -> &super::ant::AntRef {
         &self.bag_type
     }
+    fn bag_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.bag_type
+    }
     fn snp_type(&self) -> &super::ant::AntRef {
         &self.snp_type
+    }
+    fn snp_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.snp_type
     }
 }
 
@@ -31910,6 +41401,15 @@ impl TypeObject for AnimatedStaticWeaponBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -31932,19 +41432,31 @@ pub struct Animated3pOnlyWeaponBinding {
 
 pub trait Animated3pOnlyWeaponBindingTrait: TypeObject {
     fn deploy3_p(&self) -> &super::ant::AntRef;
+    fn deploy3_p_mut(&mut self) -> &mut super::ant::AntRef;
     fn hide_weapon3p(&self) -> &super::ant::AntRef;
+    fn hide_weapon3p_mut(&mut self) -> &mut super::ant::AntRef;
     fn weapon_assembled3p(&self) -> &super::ant::AntRef;
+    fn weapon_assembled3p_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl Animated3pOnlyWeaponBindingTrait for Animated3pOnlyWeaponBinding {
     fn deploy3_p(&self) -> &super::ant::AntRef {
         &self.deploy3_p
     }
+    fn deploy3_p_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.deploy3_p
+    }
     fn hide_weapon3p(&self) -> &super::ant::AntRef {
         &self.hide_weapon3p
     }
+    fn hide_weapon3p_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.hide_weapon3p
+    }
     fn weapon_assembled3p(&self) -> &super::ant::AntRef {
         &self.weapon_assembled3p
+    }
+    fn weapon_assembled3p_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.weapon_assembled3p
     }
 }
 
@@ -31988,6 +41500,15 @@ impl TypeObject for Animated3pOnlyWeaponBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -32010,19 +41531,31 @@ pub struct Animated1pOnlyWeaponBinding {
 
 pub trait Animated1pOnlyWeaponBindingTrait: TypeObject {
     fn undeploy_finished(&self) -> &super::ant::AntRef;
+    fn undeploy_finished_mut(&mut self) -> &mut super::ant::AntRef;
     fn deploy1_p(&self) -> &super::ant::AntRef;
+    fn deploy1_p_mut(&mut self) -> &mut super::ant::AntRef;
     fn hide_weapon1p(&self) -> &super::ant::AntRef;
+    fn hide_weapon1p_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl Animated1pOnlyWeaponBindingTrait for Animated1pOnlyWeaponBinding {
     fn undeploy_finished(&self) -> &super::ant::AntRef {
         &self.undeploy_finished
     }
+    fn undeploy_finished_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.undeploy_finished
+    }
     fn deploy1_p(&self) -> &super::ant::AntRef {
         &self.deploy1_p
     }
+    fn deploy1_p_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.deploy1_p
+    }
     fn hide_weapon1p(&self) -> &super::ant::AntRef {
         &self.hide_weapon1p
+    }
+    fn hide_weapon1p_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.hide_weapon1p
     }
 }
 
@@ -32066,6 +41599,15 @@ impl TypeObject for Animated1pOnlyWeaponBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -32088,15 +41630,23 @@ pub struct AimingSimulationEntityData {
 
 pub trait AimingSimulationEntityDataTrait: super::entity::EntityDataTrait {
     fn aiming_controllers(&self) -> &Vec<Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>>;
+    fn aiming_controllers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>>;
     fn current_index(&self) -> &i32;
+    fn current_index_mut(&mut self) -> &mut i32;
 }
 
 impl AimingSimulationEntityDataTrait for AimingSimulationEntityData {
     fn aiming_controllers(&self) -> &Vec<Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>> {
         &self.aiming_controllers
     }
+    fn aiming_controllers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>> {
+        &mut self.aiming_controllers
+    }
     fn current_index(&self) -> &i32 {
         &self.current_index
+    }
+    fn current_index_mut(&mut self) -> &mut i32 {
+        &mut self.current_index
     }
 }
 
@@ -32110,15 +41660,15 @@ impl super::core::DataBusPeerTrait for AimingSimulationEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AimingSimulationEntityData {
 }
 
 impl super::core::DataContainerTrait for AimingSimulationEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AIMINGSIMULATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -32156,6 +41706,15 @@ impl TypeObject for AimingSimulationEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -32179,19 +41738,31 @@ pub struct AimingScaleDataProviderEntityData {
 
 pub trait AimingScaleDataProviderEntityDataTrait: super::entity::EntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn scale_priority(&self) -> &i32;
+    fn scale_priority_mut(&mut self) -> &mut i32;
     fn aiming_scale(&self) -> &AimingScaleData;
+    fn aiming_scale_mut(&mut self) -> &mut AimingScaleData;
 }
 
 impl AimingScaleDataProviderEntityDataTrait for AimingScaleDataProviderEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn scale_priority(&self) -> &i32 {
         &self.scale_priority
     }
+    fn scale_priority_mut(&mut self) -> &mut i32 {
+        &mut self.scale_priority
+    }
     fn aiming_scale(&self) -> &AimingScaleData {
         &self.aiming_scale
+    }
+    fn aiming_scale_mut(&mut self) -> &mut AimingScaleData {
+        &mut self.aiming_scale
     }
 }
 
@@ -32205,15 +41776,15 @@ impl super::core::DataBusPeerTrait for AimingScaleDataProviderEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AimingScaleDataProviderEntityData {
 }
 
 impl super::core::DataContainerTrait for AimingScaleDataProviderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AIMINGSCALEDATAPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -32257,6 +41828,15 @@ impl TypeObject for AimingScaleDataProviderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -32278,15 +41858,23 @@ pub struct AimingScaleData {
 
 pub trait AimingScaleDataTrait: TypeObject {
     fn yaw_scale(&self) -> &f32;
+    fn yaw_scale_mut(&mut self) -> &mut f32;
     fn pitch_scale(&self) -> &f32;
+    fn pitch_scale_mut(&mut self) -> &mut f32;
 }
 
 impl AimingScaleDataTrait for AimingScaleData {
     fn yaw_scale(&self) -> &f32 {
         &self.yaw_scale
     }
+    fn yaw_scale_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_scale
+    }
     fn pitch_scale(&self) -> &f32 {
         &self.pitch_scale
+    }
+    fn pitch_scale_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_scale
     }
 }
 
@@ -32324,6 +41912,15 @@ impl TypeObject for AimingScaleData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -32347,19 +41944,31 @@ pub struct AimingAngularSpeedConstraintDataProviderEntityData {
 
 pub trait AimingAngularSpeedConstraintDataProviderEntityDataTrait: super::entity::EntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn constraint_priority(&self) -> &i32;
+    fn constraint_priority_mut(&mut self) -> &mut i32;
     fn aiming_angular_speed_constraints(&self) -> &AimingAngularSpeedConstraintData;
+    fn aiming_angular_speed_constraints_mut(&mut self) -> &mut AimingAngularSpeedConstraintData;
 }
 
 impl AimingAngularSpeedConstraintDataProviderEntityDataTrait for AimingAngularSpeedConstraintDataProviderEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn constraint_priority(&self) -> &i32 {
         &self.constraint_priority
     }
+    fn constraint_priority_mut(&mut self) -> &mut i32 {
+        &mut self.constraint_priority
+    }
     fn aiming_angular_speed_constraints(&self) -> &AimingAngularSpeedConstraintData {
         &self.aiming_angular_speed_constraints
+    }
+    fn aiming_angular_speed_constraints_mut(&mut self) -> &mut AimingAngularSpeedConstraintData {
+        &mut self.aiming_angular_speed_constraints
     }
 }
 
@@ -32373,15 +41982,15 @@ impl super::core::DataBusPeerTrait for AimingAngularSpeedConstraintDataProviderE
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AimingAngularSpeedConstraintDataProviderEntityData {
 }
 
 impl super::core::DataContainerTrait for AimingAngularSpeedConstraintDataProviderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AIMINGANGULARSPEEDCONSTRAINTDATAPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -32425,6 +42034,15 @@ impl TypeObject for AimingAngularSpeedConstraintDataProviderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -32446,15 +42064,23 @@ pub struct AimingAngularSpeedConstraintData {
 
 pub trait AimingAngularSpeedConstraintDataTrait: TypeObject {
     fn yaw_speed(&self) -> &f32;
+    fn yaw_speed_mut(&mut self) -> &mut f32;
     fn pitch_speed(&self) -> &f32;
+    fn pitch_speed_mut(&mut self) -> &mut f32;
 }
 
 impl AimingAngularSpeedConstraintDataTrait for AimingAngularSpeedConstraintData {
     fn yaw_speed(&self) -> &f32 {
         &self.yaw_speed
     }
+    fn yaw_speed_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_speed
+    }
     fn pitch_speed(&self) -> &f32 {
         &self.pitch_speed
+    }
+    fn pitch_speed_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_speed
     }
 }
 
@@ -32492,6 +42118,15 @@ impl TypeObject for AimingAngularSpeedConstraintData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -32513,11 +42148,15 @@ pub struct ReplicatedAimEntityData {
 
 pub trait ReplicatedAimEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl ReplicatedAimEntityDataTrait for ReplicatedAimEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
 }
 
@@ -32531,15 +42170,15 @@ impl super::core::DataBusPeerTrait for ReplicatedAimEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ReplicatedAimEntityData {
 }
 
 impl super::core::DataContainerTrait for ReplicatedAimEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static REPLICATEDAIMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -32571,6 +42210,15 @@ impl TypeObject for ReplicatedAimEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -32592,11 +42240,15 @@ pub struct SchematicsAimEntityData {
 
 pub trait SchematicsAimEntityDataTrait: AimEntityBaseDataTrait {
     fn hit_position(&self) -> &super::core::Vec3;
+    fn hit_position_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl SchematicsAimEntityDataTrait for SchematicsAimEntityData {
     fn hit_position(&self) -> &super::core::Vec3 {
         &self.hit_position
+    }
+    fn hit_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.hit_position
     }
 }
 
@@ -32613,15 +42265,15 @@ impl super::core::DataBusPeerTrait for SchematicsAimEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SchematicsAimEntityData {
 }
 
 impl super::core::DataContainerTrait for SchematicsAimEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCHEMATICSAIMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -32652,6 +42304,15 @@ impl TypeObject for SchematicsAimEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -32688,67 +42349,127 @@ pub struct AimEntityData {
 
 pub trait AimEntityDataTrait: AimEntityBaseDataTrait {
     fn excluded(&self) -> &bool;
+    fn excluded_mut(&mut self) -> &mut bool;
     fn default_aiming_controller(&self) -> &Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>;
+    fn default_aiming_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>>;
     fn yaw_input(&self) -> &i32;
+    fn yaw_input_mut(&mut self) -> &mut i32;
     fn pitch_input(&self) -> &i32;
+    fn pitch_input_mut(&mut self) -> &mut i32;
     fn throttle_input(&self) -> &i32;
+    fn throttle_input_mut(&mut self) -> &mut i32;
     fn strafe_input(&self) -> &i32;
+    fn strafe_input_mut(&mut self) -> &mut i32;
     fn time_to_delay_after_collision(&self) -> &f32;
+    fn time_to_delay_after_collision_mut(&mut self) -> &mut f32;
     fn collision_blend_out(&self) -> &f32;
+    fn collision_blend_out_mut(&mut self) -> &mut f32;
     fn allow_blend_out(&self) -> &bool;
+    fn allow_blend_out_mut(&mut self) -> &mut bool;
     fn override_aim(&self) -> &bool;
+    fn override_aim_mut(&mut self) -> &mut bool;
     fn aim_override_transform(&self) -> &super::core::LinearTransform;
+    fn aim_override_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn aim_override_mode_blend(&self) -> &bool;
+    fn aim_override_mode_blend_mut(&mut self) -> &mut bool;
     fn aim_at_last_hit_position(&self) -> &bool;
+    fn aim_at_last_hit_position_mut(&mut self) -> &mut bool;
     fn follow_offset(&self) -> &super::core::Vec3;
+    fn follow_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn suppression_value(&self) -> &f32;
+    fn suppression_value_mut(&mut self) -> &mut f32;
 }
 
 impl AimEntityDataTrait for AimEntityData {
     fn excluded(&self) -> &bool {
         &self.excluded
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        &mut self.excluded
+    }
     fn default_aiming_controller(&self) -> &Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>> {
         &self.default_aiming_controller
+    }
+    fn default_aiming_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SoldierAimingSimulationDataTrait>>> {
+        &mut self.default_aiming_controller
     }
     fn yaw_input(&self) -> &i32 {
         &self.yaw_input
     }
+    fn yaw_input_mut(&mut self) -> &mut i32 {
+        &mut self.yaw_input
+    }
     fn pitch_input(&self) -> &i32 {
         &self.pitch_input
+    }
+    fn pitch_input_mut(&mut self) -> &mut i32 {
+        &mut self.pitch_input
     }
     fn throttle_input(&self) -> &i32 {
         &self.throttle_input
     }
+    fn throttle_input_mut(&mut self) -> &mut i32 {
+        &mut self.throttle_input
+    }
     fn strafe_input(&self) -> &i32 {
         &self.strafe_input
+    }
+    fn strafe_input_mut(&mut self) -> &mut i32 {
+        &mut self.strafe_input
     }
     fn time_to_delay_after_collision(&self) -> &f32 {
         &self.time_to_delay_after_collision
     }
+    fn time_to_delay_after_collision_mut(&mut self) -> &mut f32 {
+        &mut self.time_to_delay_after_collision
+    }
     fn collision_blend_out(&self) -> &f32 {
         &self.collision_blend_out
+    }
+    fn collision_blend_out_mut(&mut self) -> &mut f32 {
+        &mut self.collision_blend_out
     }
     fn allow_blend_out(&self) -> &bool {
         &self.allow_blend_out
     }
+    fn allow_blend_out_mut(&mut self) -> &mut bool {
+        &mut self.allow_blend_out
+    }
     fn override_aim(&self) -> &bool {
         &self.override_aim
+    }
+    fn override_aim_mut(&mut self) -> &mut bool {
+        &mut self.override_aim
     }
     fn aim_override_transform(&self) -> &super::core::LinearTransform {
         &self.aim_override_transform
     }
+    fn aim_override_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.aim_override_transform
+    }
     fn aim_override_mode_blend(&self) -> &bool {
         &self.aim_override_mode_blend
+    }
+    fn aim_override_mode_blend_mut(&mut self) -> &mut bool {
+        &mut self.aim_override_mode_blend
     }
     fn aim_at_last_hit_position(&self) -> &bool {
         &self.aim_at_last_hit_position
     }
+    fn aim_at_last_hit_position_mut(&mut self) -> &mut bool {
+        &mut self.aim_at_last_hit_position
+    }
     fn follow_offset(&self) -> &super::core::Vec3 {
         &self.follow_offset
     }
+    fn follow_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.follow_offset
+    }
     fn suppression_value(&self) -> &f32 {
         &self.suppression_value
+    }
+    fn suppression_value_mut(&mut self) -> &mut f32 {
+        &mut self.suppression_value
     }
 }
 
@@ -32765,15 +42486,15 @@ impl super::core::DataBusPeerTrait for AimEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AimEntityData {
 }
 
 impl super::core::DataContainerTrait for AimEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AIMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -32889,6 +42610,15 @@ impl TypeObject for AimEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -32923,15 +42653,15 @@ impl super::core::DataBusPeerTrait for AimEntityBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AimEntityBaseData {
 }
 
 impl super::core::DataContainerTrait for AimEntityBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AIMENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -32956,6 +42686,15 @@ impl TypeObject for AimEntityBaseData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

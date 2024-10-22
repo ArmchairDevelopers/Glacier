@@ -104,6 +104,15 @@ impl TypeObject for ClientSyncedTransformEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -156,6 +165,15 @@ impl TypeObject for ServerSyncedTransformEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -210,6 +228,15 @@ impl TypeObject for ClientSyncedIntEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -262,6 +289,15 @@ impl TypeObject for ServerSyncedIntEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -316,6 +352,15 @@ impl TypeObject for ClientSyncedFloatEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -368,6 +413,15 @@ impl TypeObject for ServerSyncedFloatEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -422,6 +476,15 @@ impl TypeObject for ClientSyncedBoolEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -475,6 +538,15 @@ impl TypeObject for ServerSyncedBoolEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -525,6 +597,15 @@ impl TypeObject for EngineConnectionPeer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -571,6 +652,15 @@ impl TypeObject for EngineConnection {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -616,6 +706,15 @@ impl TypeObject for SpikeInternalMessagePartMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -650,6 +749,15 @@ impl TypeObject for SpikeInternalMessageWrapperMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -670,58 +778,99 @@ pub struct NetworkPerfOverlaySettings {
 
 pub trait NetworkPerfOverlaySettingsTrait: super::core::DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn graph_pos(&self) -> &super::core::Vec2;
+    fn graph_pos_mut(&mut self) -> &mut super::core::Vec2;
     fn update_frequency(&self) -> &f32;
+    fn update_frequency_mut(&mut self) -> &mut f32;
     fn high_latency(&self) -> &f32;
+    fn high_latency_mut(&mut self) -> &mut f32;
     fn critical_latency(&self) -> &f32;
+    fn critical_latency_mut(&mut self) -> &mut f32;
     fn high_latency_variation(&self) -> &f32;
+    fn high_latency_variation_mut(&mut self) -> &mut f32;
     fn critical_latency_variation(&self) -> &f32;
+    fn critical_latency_variation_mut(&mut self) -> &mut f32;
     fn high_packet_loss_ratio(&self) -> &f32;
+    fn high_packet_loss_ratio_mut(&mut self) -> &mut f32;
     fn critical_packet_loss_ratio(&self) -> &f32;
+    fn critical_packet_loss_ratio_mut(&mut self) -> &mut f32;
     fn server_fps_low_threshold_perc(&self) -> &f32;
+    fn server_fps_low_threshold_perc_mut(&mut self) -> &mut f32;
     fn server_fps_low_threshold_crit_perc(&self) -> &f32;
+    fn server_fps_low_threshold_crit_perc_mut(&mut self) -> &mut f32;
 }
 
 impl NetworkPerfOverlaySettingsTrait for NetworkPerfOverlaySettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn graph_pos(&self) -> &super::core::Vec2 {
         &self.graph_pos
+    }
+    fn graph_pos_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.graph_pos
     }
     fn update_frequency(&self) -> &f32 {
         &self.update_frequency
     }
+    fn update_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.update_frequency
+    }
     fn high_latency(&self) -> &f32 {
         &self.high_latency
+    }
+    fn high_latency_mut(&mut self) -> &mut f32 {
+        &mut self.high_latency
     }
     fn critical_latency(&self) -> &f32 {
         &self.critical_latency
     }
+    fn critical_latency_mut(&mut self) -> &mut f32 {
+        &mut self.critical_latency
+    }
     fn high_latency_variation(&self) -> &f32 {
         &self.high_latency_variation
+    }
+    fn high_latency_variation_mut(&mut self) -> &mut f32 {
+        &mut self.high_latency_variation
     }
     fn critical_latency_variation(&self) -> &f32 {
         &self.critical_latency_variation
     }
+    fn critical_latency_variation_mut(&mut self) -> &mut f32 {
+        &mut self.critical_latency_variation
+    }
     fn high_packet_loss_ratio(&self) -> &f32 {
         &self.high_packet_loss_ratio
+    }
+    fn high_packet_loss_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.high_packet_loss_ratio
     }
     fn critical_packet_loss_ratio(&self) -> &f32 {
         &self.critical_packet_loss_ratio
     }
+    fn critical_packet_loss_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.critical_packet_loss_ratio
+    }
     fn server_fps_low_threshold_perc(&self) -> &f32 {
         &self.server_fps_low_threshold_perc
+    }
+    fn server_fps_low_threshold_perc_mut(&mut self) -> &mut f32 {
+        &mut self.server_fps_low_threshold_perc
     }
     fn server_fps_low_threshold_crit_perc(&self) -> &f32 {
         &self.server_fps_low_threshold_crit_perc
     }
+    fn server_fps_low_threshold_crit_perc_mut(&mut self) -> &mut f32 {
+        &mut self.server_fps_low_threshold_crit_perc
+    }
 }
 
 impl super::core::DataContainerTrait for NetworkPerfOverlaySettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NETWORKPERFOVERLAYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -813,6 +962,15 @@ impl TypeObject for NetworkPerfOverlaySettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -844,58 +1002,99 @@ pub struct InterpolationManagerSettings {
 
 pub trait InterpolationManagerSettingsTrait: super::core::DataContainerTrait {
     fn time_nudge_calculator(&self) -> &i32;
+    fn time_nudge_calculator_mut(&mut self) -> &mut i32;
     fn time_nudge_p_i_d_const_k_pos(&self) -> &f32;
+    fn time_nudge_p_i_d_const_k_pos_mut(&mut self) -> &mut f32;
     fn time_nudge_p_i_d_const_k_neg(&self) -> &f32;
+    fn time_nudge_p_i_d_const_k_neg_mut(&mut self) -> &mut f32;
     fn time_nudge_p_i_d_const_t_i_pos(&self) -> &f32;
+    fn time_nudge_p_i_d_const_t_i_pos_mut(&mut self) -> &mut f32;
     fn time_nudge_p_i_d_const_t_i_neg(&self) -> &f32;
+    fn time_nudge_p_i_d_const_t_i_neg_mut(&mut self) -> &mut f32;
     fn time_nudge_p_i_d_const_t_d_pos(&self) -> &f32;
+    fn time_nudge_p_i_d_const_t_d_pos_mut(&mut self) -> &mut f32;
     fn time_nudge_p_i_d_const_t_d_neg(&self) -> &f32;
+    fn time_nudge_p_i_d_const_t_d_neg_mut(&mut self) -> &mut f32;
     fn time_nudge_p_i_d_latency_tol(&self) -> &f32;
+    fn time_nudge_p_i_d_latency_tol_mut(&mut self) -> &mut f32;
     fn time_nudge_p_i_d_packet_delta_time_tol(&self) -> &f32;
+    fn time_nudge_p_i_d_packet_delta_time_tol_mut(&mut self) -> &mut f32;
     fn time_nudge_p_i_d_max_change_per_sec(&self) -> &f32;
+    fn time_nudge_p_i_d_max_change_per_sec_mut(&mut self) -> &mut f32;
     fn average_packet_sample_count(&self) -> &i32;
+    fn average_packet_sample_count_mut(&mut self) -> &mut i32;
 }
 
 impl InterpolationManagerSettingsTrait for InterpolationManagerSettings {
     fn time_nudge_calculator(&self) -> &i32 {
         &self.time_nudge_calculator
     }
+    fn time_nudge_calculator_mut(&mut self) -> &mut i32 {
+        &mut self.time_nudge_calculator
+    }
     fn time_nudge_p_i_d_const_k_pos(&self) -> &f32 {
         &self.time_nudge_p_i_d_const_k_pos
+    }
+    fn time_nudge_p_i_d_const_k_pos_mut(&mut self) -> &mut f32 {
+        &mut self.time_nudge_p_i_d_const_k_pos
     }
     fn time_nudge_p_i_d_const_k_neg(&self) -> &f32 {
         &self.time_nudge_p_i_d_const_k_neg
     }
+    fn time_nudge_p_i_d_const_k_neg_mut(&mut self) -> &mut f32 {
+        &mut self.time_nudge_p_i_d_const_k_neg
+    }
     fn time_nudge_p_i_d_const_t_i_pos(&self) -> &f32 {
         &self.time_nudge_p_i_d_const_t_i_pos
+    }
+    fn time_nudge_p_i_d_const_t_i_pos_mut(&mut self) -> &mut f32 {
+        &mut self.time_nudge_p_i_d_const_t_i_pos
     }
     fn time_nudge_p_i_d_const_t_i_neg(&self) -> &f32 {
         &self.time_nudge_p_i_d_const_t_i_neg
     }
+    fn time_nudge_p_i_d_const_t_i_neg_mut(&mut self) -> &mut f32 {
+        &mut self.time_nudge_p_i_d_const_t_i_neg
+    }
     fn time_nudge_p_i_d_const_t_d_pos(&self) -> &f32 {
         &self.time_nudge_p_i_d_const_t_d_pos
+    }
+    fn time_nudge_p_i_d_const_t_d_pos_mut(&mut self) -> &mut f32 {
+        &mut self.time_nudge_p_i_d_const_t_d_pos
     }
     fn time_nudge_p_i_d_const_t_d_neg(&self) -> &f32 {
         &self.time_nudge_p_i_d_const_t_d_neg
     }
+    fn time_nudge_p_i_d_const_t_d_neg_mut(&mut self) -> &mut f32 {
+        &mut self.time_nudge_p_i_d_const_t_d_neg
+    }
     fn time_nudge_p_i_d_latency_tol(&self) -> &f32 {
         &self.time_nudge_p_i_d_latency_tol
+    }
+    fn time_nudge_p_i_d_latency_tol_mut(&mut self) -> &mut f32 {
+        &mut self.time_nudge_p_i_d_latency_tol
     }
     fn time_nudge_p_i_d_packet_delta_time_tol(&self) -> &f32 {
         &self.time_nudge_p_i_d_packet_delta_time_tol
     }
+    fn time_nudge_p_i_d_packet_delta_time_tol_mut(&mut self) -> &mut f32 {
+        &mut self.time_nudge_p_i_d_packet_delta_time_tol
+    }
     fn time_nudge_p_i_d_max_change_per_sec(&self) -> &f32 {
         &self.time_nudge_p_i_d_max_change_per_sec
+    }
+    fn time_nudge_p_i_d_max_change_per_sec_mut(&mut self) -> &mut f32 {
+        &mut self.time_nudge_p_i_d_max_change_per_sec
     }
     fn average_packet_sample_count(&self) -> &i32 {
         &self.average_packet_sample_count
     }
+    fn average_packet_sample_count_mut(&mut self) -> &mut i32 {
+        &mut self.average_packet_sample_count
+    }
 }
 
 impl super::core::DataContainerTrait for InterpolationManagerSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INTERPOLATIONMANAGERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -987,6 +1186,15 @@ impl TypeObject for InterpolationManagerSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1020,63 +1228,119 @@ pub struct InternetSimulationState {
 
 pub trait InternetSimulationStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn reorder_ratio(&self) -> &f32;
+    fn reorder_ratio_mut(&mut self) -> &mut f32;
     fn latency_min(&self) -> &f32;
+    fn latency_min_mut(&mut self) -> &mut f32;
     fn latency_max(&self) -> &f32;
+    fn latency_max_mut(&mut self) -> &mut f32;
     fn duplicate_ratio(&self) -> &f32;
+    fn duplicate_ratio_mut(&mut self) -> &mut f32;
     fn drop_ratio(&self) -> &f32;
+    fn drop_ratio_mut(&mut self) -> &mut f32;
     fn corrupt_ratio(&self) -> &f32;
+    fn corrupt_ratio_mut(&mut self) -> &mut f32;
     fn size_ratio(&self) -> &f32;
+    fn size_ratio_mut(&mut self) -> &mut f32;
     fn spike_duration_min(&self) -> &f32;
+    fn spike_duration_min_mut(&mut self) -> &mut f32;
     fn spike_duration_max(&self) -> &f32;
+    fn spike_duration_max_mut(&mut self) -> &mut f32;
     fn spike_cooldown_min(&self) -> &f32;
+    fn spike_cooldown_min_mut(&mut self) -> &mut f32;
     fn spike_cooldown_max(&self) -> &f32;
+    fn spike_cooldown_max_mut(&mut self) -> &mut f32;
     fn bandwidth_max(&self) -> &f32;
+    fn bandwidth_max_mut(&mut self) -> &mut f32;
     fn bandwidth_delay_max(&self) -> &f32;
+    fn bandwidth_delay_max_mut(&mut self) -> &mut f32;
 }
 
 impl InternetSimulationStateTrait for InternetSimulationState {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn reorder_ratio(&self) -> &f32 {
         &self.reorder_ratio
+    }
+    fn reorder_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.reorder_ratio
     }
     fn latency_min(&self) -> &f32 {
         &self.latency_min
     }
+    fn latency_min_mut(&mut self) -> &mut f32 {
+        &mut self.latency_min
+    }
     fn latency_max(&self) -> &f32 {
         &self.latency_max
+    }
+    fn latency_max_mut(&mut self) -> &mut f32 {
+        &mut self.latency_max
     }
     fn duplicate_ratio(&self) -> &f32 {
         &self.duplicate_ratio
     }
+    fn duplicate_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.duplicate_ratio
+    }
     fn drop_ratio(&self) -> &f32 {
         &self.drop_ratio
+    }
+    fn drop_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.drop_ratio
     }
     fn corrupt_ratio(&self) -> &f32 {
         &self.corrupt_ratio
     }
+    fn corrupt_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.corrupt_ratio
+    }
     fn size_ratio(&self) -> &f32 {
         &self.size_ratio
+    }
+    fn size_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.size_ratio
     }
     fn spike_duration_min(&self) -> &f32 {
         &self.spike_duration_min
     }
+    fn spike_duration_min_mut(&mut self) -> &mut f32 {
+        &mut self.spike_duration_min
+    }
     fn spike_duration_max(&self) -> &f32 {
         &self.spike_duration_max
+    }
+    fn spike_duration_max_mut(&mut self) -> &mut f32 {
+        &mut self.spike_duration_max
     }
     fn spike_cooldown_min(&self) -> &f32 {
         &self.spike_cooldown_min
     }
+    fn spike_cooldown_min_mut(&mut self) -> &mut f32 {
+        &mut self.spike_cooldown_min
+    }
     fn spike_cooldown_max(&self) -> &f32 {
         &self.spike_cooldown_max
+    }
+    fn spike_cooldown_max_mut(&mut self) -> &mut f32 {
+        &mut self.spike_cooldown_max
     }
     fn bandwidth_max(&self) -> &f32 {
         &self.bandwidth_max
     }
+    fn bandwidth_max_mut(&mut self) -> &mut f32 {
+        &mut self.bandwidth_max
+    }
     fn bandwidth_delay_max(&self) -> &f32 {
         &self.bandwidth_delay_max
+    }
+    fn bandwidth_delay_max_mut(&mut self) -> &mut f32 {
+        &mut self.bandwidth_delay_max
     }
 }
 
@@ -1186,6 +1450,15 @@ impl TypeObject for InternetSimulationState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1208,15 +1481,23 @@ pub struct NetworkCoreSettings {
 
 pub trait NetworkCoreSettingsTrait: super::core::SystemSettingsTrait {
     fn dedicated_server_max_send_job_count(&self) -> &u32;
+    fn dedicated_server_max_send_job_count_mut(&mut self) -> &mut u32;
     fn server_max_send_job_count(&self) -> &u32;
+    fn server_max_send_job_count_mut(&mut self) -> &mut u32;
 }
 
 impl NetworkCoreSettingsTrait for NetworkCoreSettings {
     fn dedicated_server_max_send_job_count(&self) -> &u32 {
         &self.dedicated_server_max_send_job_count
     }
+    fn dedicated_server_max_send_job_count_mut(&mut self) -> &mut u32 {
+        &mut self.dedicated_server_max_send_job_count
+    }
     fn server_max_send_job_count(&self) -> &u32 {
         &self.server_max_send_job_count
+    }
+    fn server_max_send_job_count_mut(&mut self) -> &mut u32 {
+        &mut self.server_max_send_job_count
     }
 }
 
@@ -1224,12 +1505,12 @@ impl super::core::SystemSettingsTrait for NetworkCoreSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for NetworkCoreSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NETWORKCORESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1266,6 +1547,15 @@ impl TypeObject for NetworkCoreSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1312,6 +1602,15 @@ impl TypeObject for CoreDemoStatusMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1334,66 +1633,115 @@ pub struct NetObjectSystemSettings {
 
 pub trait NetObjectSystemSettingsTrait: super::core::DataContainerTrait {
     fn max_net_object_count(&self) -> &u32;
+    fn max_net_object_count_mut(&mut self) -> &mut u32;
     fn max_static_net_object_count(&self) -> &u32;
+    fn max_static_net_object_count_mut(&mut self) -> &mut u32;
     fn max_client_connection_count(&self) -> &u32;
+    fn max_client_connection_count_mut(&mut self) -> &mut u32;
     fn max_server_connection_count(&self) -> &u32;
+    fn max_server_connection_count_mut(&mut self) -> &mut u32;
     fn in_proc_replication_enabled(&self) -> &bool;
+    fn in_proc_replication_enabled_mut(&mut self) -> &mut bool;
     fn in_proc_buffer_size(&self) -> &u32;
+    fn in_proc_buffer_size_mut(&mut self) -> &mut u32;
     fn game_view_in_proc_buffer_size(&self) -> &u32;
+    fn game_view_in_proc_buffer_size_mut(&mut self) -> &mut u32;
     fn max_remote_authority_net_object_count(&self) -> &u32;
+    fn max_remote_authority_net_object_count_mut(&mut self) -> &mut u32;
     fn default_dynamic_priority_method(&self) -> &i32;
+    fn default_dynamic_priority_method_mut(&mut self) -> &mut i32;
     fn priority_settings(&self) -> &NetObjectPrioritySettings;
+    fn priority_settings_mut(&mut self) -> &mut NetObjectPrioritySettings;
     fn default_filter_method(&self) -> &i32;
+    fn default_filter_method_mut(&mut self) -> &mut i32;
     fn delta_compression_settings(&self) -> &DeltaCompressionSettings;
+    fn delta_compression_settings_mut(&mut self) -> &mut DeltaCompressionSettings;
     fn debug(&self) -> &NetObjectSystemDebugSettings;
+    fn debug_mut(&mut self) -> &mut NetObjectSystemDebugSettings;
 }
 
 impl NetObjectSystemSettingsTrait for NetObjectSystemSettings {
     fn max_net_object_count(&self) -> &u32 {
         &self.max_net_object_count
     }
+    fn max_net_object_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_net_object_count
+    }
     fn max_static_net_object_count(&self) -> &u32 {
         &self.max_static_net_object_count
+    }
+    fn max_static_net_object_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_static_net_object_count
     }
     fn max_client_connection_count(&self) -> &u32 {
         &self.max_client_connection_count
     }
+    fn max_client_connection_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_client_connection_count
+    }
     fn max_server_connection_count(&self) -> &u32 {
         &self.max_server_connection_count
+    }
+    fn max_server_connection_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_server_connection_count
     }
     fn in_proc_replication_enabled(&self) -> &bool {
         &self.in_proc_replication_enabled
     }
+    fn in_proc_replication_enabled_mut(&mut self) -> &mut bool {
+        &mut self.in_proc_replication_enabled
+    }
     fn in_proc_buffer_size(&self) -> &u32 {
         &self.in_proc_buffer_size
+    }
+    fn in_proc_buffer_size_mut(&mut self) -> &mut u32 {
+        &mut self.in_proc_buffer_size
     }
     fn game_view_in_proc_buffer_size(&self) -> &u32 {
         &self.game_view_in_proc_buffer_size
     }
+    fn game_view_in_proc_buffer_size_mut(&mut self) -> &mut u32 {
+        &mut self.game_view_in_proc_buffer_size
+    }
     fn max_remote_authority_net_object_count(&self) -> &u32 {
         &self.max_remote_authority_net_object_count
+    }
+    fn max_remote_authority_net_object_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_remote_authority_net_object_count
     }
     fn default_dynamic_priority_method(&self) -> &i32 {
         &self.default_dynamic_priority_method
     }
+    fn default_dynamic_priority_method_mut(&mut self) -> &mut i32 {
+        &mut self.default_dynamic_priority_method
+    }
     fn priority_settings(&self) -> &NetObjectPrioritySettings {
         &self.priority_settings
+    }
+    fn priority_settings_mut(&mut self) -> &mut NetObjectPrioritySettings {
+        &mut self.priority_settings
     }
     fn default_filter_method(&self) -> &i32 {
         &self.default_filter_method
     }
+    fn default_filter_method_mut(&mut self) -> &mut i32 {
+        &mut self.default_filter_method
+    }
     fn delta_compression_settings(&self) -> &DeltaCompressionSettings {
         &self.delta_compression_settings
+    }
+    fn delta_compression_settings_mut(&mut self) -> &mut DeltaCompressionSettings {
+        &mut self.delta_compression_settings
     }
     fn debug(&self) -> &NetObjectSystemDebugSettings {
         &self.debug
     }
+    fn debug_mut(&mut self) -> &mut NetObjectSystemDebugSettings {
+        &mut self.debug
+    }
 }
 
 impl super::core::DataContainerTrait for NetObjectSystemSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NETOBJECTSYSTEMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1497,6 +1845,15 @@ impl TypeObject for NetObjectSystemSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1531,67 +1888,127 @@ pub struct NetObjectSystemDebugSettings {
 
 pub trait NetObjectSystemDebugSettingsTrait: TypeObject {
     fn enable_replication_warnings(&self) -> &bool;
+    fn enable_replication_warnings_mut(&mut self) -> &mut bool;
     fn enable_incoming_replication_status_report(&self) -> &bool;
+    fn enable_incoming_replication_status_report_mut(&mut self) -> &mut bool;
     fn incoming_replication_status_report_max_delta(&self) -> &f32;
+    fn incoming_replication_status_report_max_delta_mut(&mut self) -> &mut f32;
     fn incoming_replication_status_report_filter(&self) -> &String;
+    fn incoming_replication_status_report_filter_mut(&mut self) -> &mut String;
     fn incoming_replication_status_report_include_spatial(&self) -> &bool;
+    fn incoming_replication_status_report_include_spatial_mut(&mut self) -> &mut bool;
     fn incoming_replication_status_report_include_static(&self) -> &bool;
+    fn incoming_replication_status_report_include_static_mut(&mut self) -> &mut bool;
     fn incoming_replication_status_report_include_non_spatial(&self) -> &bool;
+    fn incoming_replication_status_report_include_non_spatial_mut(&mut self) -> &mut bool;
     fn incoming_replication_status_report_draw_name(&self) -> &bool;
+    fn incoming_replication_status_report_draw_name_mut(&mut self) -> &mut bool;
     fn output_object_protocols(&self) -> &bool;
+    fn output_object_protocols_mut(&mut self) -> &mut bool;
     fn initial_grace_time_in_frames(&self) -> &u32;
+    fn initial_grace_time_in_frames_mut(&mut self) -> &mut u32;
     fn report_replication_warnings_after_frames(&self) -> &u32;
+    fn report_replication_warnings_after_frames_mut(&mut self) -> &mut u32;
     fn warn_on_missing_init_dependency(&self) -> &bool;
+    fn warn_on_missing_init_dependency_mut(&mut self) -> &mut bool;
     fn warn_on_too_large_net_object(&self) -> &bool;
+    fn warn_on_too_large_net_object_mut(&mut self) -> &mut bool;
     fn warn_on_no_state_can_be_sent(&self) -> &bool;
+    fn warn_on_no_state_can_be_sent_mut(&mut self) -> &mut bool;
     fn warn_on_waiting_for_creation_ack(&self) -> &bool;
+    fn warn_on_waiting_for_creation_ack_mut(&mut self) -> &mut bool;
 }
 
 impl NetObjectSystemDebugSettingsTrait for NetObjectSystemDebugSettings {
     fn enable_replication_warnings(&self) -> &bool {
         &self.enable_replication_warnings
     }
+    fn enable_replication_warnings_mut(&mut self) -> &mut bool {
+        &mut self.enable_replication_warnings
+    }
     fn enable_incoming_replication_status_report(&self) -> &bool {
         &self.enable_incoming_replication_status_report
+    }
+    fn enable_incoming_replication_status_report_mut(&mut self) -> &mut bool {
+        &mut self.enable_incoming_replication_status_report
     }
     fn incoming_replication_status_report_max_delta(&self) -> &f32 {
         &self.incoming_replication_status_report_max_delta
     }
+    fn incoming_replication_status_report_max_delta_mut(&mut self) -> &mut f32 {
+        &mut self.incoming_replication_status_report_max_delta
+    }
     fn incoming_replication_status_report_filter(&self) -> &String {
         &self.incoming_replication_status_report_filter
+    }
+    fn incoming_replication_status_report_filter_mut(&mut self) -> &mut String {
+        &mut self.incoming_replication_status_report_filter
     }
     fn incoming_replication_status_report_include_spatial(&self) -> &bool {
         &self.incoming_replication_status_report_include_spatial
     }
+    fn incoming_replication_status_report_include_spatial_mut(&mut self) -> &mut bool {
+        &mut self.incoming_replication_status_report_include_spatial
+    }
     fn incoming_replication_status_report_include_static(&self) -> &bool {
         &self.incoming_replication_status_report_include_static
+    }
+    fn incoming_replication_status_report_include_static_mut(&mut self) -> &mut bool {
+        &mut self.incoming_replication_status_report_include_static
     }
     fn incoming_replication_status_report_include_non_spatial(&self) -> &bool {
         &self.incoming_replication_status_report_include_non_spatial
     }
+    fn incoming_replication_status_report_include_non_spatial_mut(&mut self) -> &mut bool {
+        &mut self.incoming_replication_status_report_include_non_spatial
+    }
     fn incoming_replication_status_report_draw_name(&self) -> &bool {
         &self.incoming_replication_status_report_draw_name
+    }
+    fn incoming_replication_status_report_draw_name_mut(&mut self) -> &mut bool {
+        &mut self.incoming_replication_status_report_draw_name
     }
     fn output_object_protocols(&self) -> &bool {
         &self.output_object_protocols
     }
+    fn output_object_protocols_mut(&mut self) -> &mut bool {
+        &mut self.output_object_protocols
+    }
     fn initial_grace_time_in_frames(&self) -> &u32 {
         &self.initial_grace_time_in_frames
+    }
+    fn initial_grace_time_in_frames_mut(&mut self) -> &mut u32 {
+        &mut self.initial_grace_time_in_frames
     }
     fn report_replication_warnings_after_frames(&self) -> &u32 {
         &self.report_replication_warnings_after_frames
     }
+    fn report_replication_warnings_after_frames_mut(&mut self) -> &mut u32 {
+        &mut self.report_replication_warnings_after_frames
+    }
     fn warn_on_missing_init_dependency(&self) -> &bool {
         &self.warn_on_missing_init_dependency
+    }
+    fn warn_on_missing_init_dependency_mut(&mut self) -> &mut bool {
+        &mut self.warn_on_missing_init_dependency
     }
     fn warn_on_too_large_net_object(&self) -> &bool {
         &self.warn_on_too_large_net_object
     }
+    fn warn_on_too_large_net_object_mut(&mut self) -> &mut bool {
+        &mut self.warn_on_too_large_net_object
+    }
     fn warn_on_no_state_can_be_sent(&self) -> &bool {
         &self.warn_on_no_state_can_be_sent
     }
+    fn warn_on_no_state_can_be_sent_mut(&mut self) -> &mut bool {
+        &mut self.warn_on_no_state_can_be_sent
+    }
     fn warn_on_waiting_for_creation_ack(&self) -> &bool {
         &self.warn_on_waiting_for_creation_ack
+    }
+    fn warn_on_waiting_for_creation_ack_mut(&mut self) -> &mut bool {
+        &mut self.warn_on_waiting_for_creation_ack
     }
 }
 
@@ -1707,6 +2124,15 @@ impl TypeObject for NetObjectSystemDebugSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1729,19 +2155,31 @@ pub struct DeltaCompressionSettings {
 
 pub trait DeltaCompressionSettingsTrait: TypeObject {
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn share_baselines_across_connections(&self) -> &bool;
+    fn share_baselines_across_connections_mut(&mut self) -> &mut bool;
     fn baseline_reuse_count(&self) -> &u32;
+    fn baseline_reuse_count_mut(&mut self) -> &mut u32;
 }
 
 impl DeltaCompressionSettingsTrait for DeltaCompressionSettings {
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
     }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
+    }
     fn share_baselines_across_connections(&self) -> &bool {
         &self.share_baselines_across_connections
     }
+    fn share_baselines_across_connections_mut(&mut self) -> &mut bool {
+        &mut self.share_baselines_across_connections
+    }
     fn baseline_reuse_count(&self) -> &u32 {
         &self.baseline_reuse_count
+    }
+    fn baseline_reuse_count_mut(&mut self) -> &mut u32 {
+        &mut self.baseline_reuse_count
     }
 }
 
@@ -1784,6 +2222,15 @@ impl TypeObject for DeltaCompressionSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1828,6 +2275,15 @@ impl TypeObject for NetObjectDependencyType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1856,43 +2312,79 @@ pub struct NetObjectPrioritySettings {
 
 pub trait NetObjectPrioritySettingsTrait: TypeObject {
     fn min_frequency_factor(&self) -> &f32;
+    fn min_frequency_factor_mut(&mut self) -> &mut f32;
     fn max_frequency_factor(&self) -> &f32;
+    fn max_frequency_factor_mut(&mut self) -> &mut f32;
     fn min_frequency_factor_radius(&self) -> &f32;
+    fn min_frequency_factor_radius_mut(&mut self) -> &mut f32;
     fn max_frequency_factor_radius(&self) -> &f32;
+    fn max_frequency_factor_radius_mut(&mut self) -> &mut f32;
     fn max_frequency_factor_cone_radius(&self) -> &f32;
+    fn max_frequency_factor_cone_radius_mut(&mut self) -> &mut f32;
     fn min_cone_frequency_factor(&self) -> &f32;
+    fn min_cone_frequency_factor_mut(&mut self) -> &mut f32;
     fn camera_fov_bias_degrees(&self) -> &f32;
+    fn camera_fov_bias_degrees_mut(&mut self) -> &mut f32;
     fn max_camera_fov_degrees(&self) -> &f32;
+    fn max_camera_fov_degrees_mut(&mut self) -> &mut f32;
     fn min_camera_fov_degrees(&self) -> &f32;
+    fn min_camera_fov_degrees_mut(&mut self) -> &mut f32;
 }
 
 impl NetObjectPrioritySettingsTrait for NetObjectPrioritySettings {
     fn min_frequency_factor(&self) -> &f32 {
         &self.min_frequency_factor
     }
+    fn min_frequency_factor_mut(&mut self) -> &mut f32 {
+        &mut self.min_frequency_factor
+    }
     fn max_frequency_factor(&self) -> &f32 {
         &self.max_frequency_factor
+    }
+    fn max_frequency_factor_mut(&mut self) -> &mut f32 {
+        &mut self.max_frequency_factor
     }
     fn min_frequency_factor_radius(&self) -> &f32 {
         &self.min_frequency_factor_radius
     }
+    fn min_frequency_factor_radius_mut(&mut self) -> &mut f32 {
+        &mut self.min_frequency_factor_radius
+    }
     fn max_frequency_factor_radius(&self) -> &f32 {
         &self.max_frequency_factor_radius
+    }
+    fn max_frequency_factor_radius_mut(&mut self) -> &mut f32 {
+        &mut self.max_frequency_factor_radius
     }
     fn max_frequency_factor_cone_radius(&self) -> &f32 {
         &self.max_frequency_factor_cone_radius
     }
+    fn max_frequency_factor_cone_radius_mut(&mut self) -> &mut f32 {
+        &mut self.max_frequency_factor_cone_radius
+    }
     fn min_cone_frequency_factor(&self) -> &f32 {
         &self.min_cone_frequency_factor
+    }
+    fn min_cone_frequency_factor_mut(&mut self) -> &mut f32 {
+        &mut self.min_cone_frequency_factor
     }
     fn camera_fov_bias_degrees(&self) -> &f32 {
         &self.camera_fov_bias_degrees
     }
+    fn camera_fov_bias_degrees_mut(&mut self) -> &mut f32 {
+        &mut self.camera_fov_bias_degrees
+    }
     fn max_camera_fov_degrees(&self) -> &f32 {
         &self.max_camera_fov_degrees
     }
+    fn max_camera_fov_degrees_mut(&mut self) -> &mut f32 {
+        &mut self.max_camera_fov_degrees
+    }
     fn min_camera_fov_degrees(&self) -> &f32 {
         &self.min_camera_fov_degrees
+    }
+    fn min_camera_fov_degrees_mut(&mut self) -> &mut f32 {
+        &mut self.min_camera_fov_degrees
     }
 }
 
@@ -1972,6 +2464,15 @@ impl TypeObject for NetObjectPrioritySettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2011,6 +2512,15 @@ impl TypeObject for NetObjectSendStatus {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2049,6 +2559,15 @@ impl TypeObject for NetworkChannelId {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2070,11 +2589,15 @@ pub struct SyncedTransformEntityData {
 
 pub trait SyncedTransformEntityDataTrait: super::entity::EntityDataTrait {
     fn interpolate(&self) -> &bool;
+    fn interpolate_mut(&mut self) -> &mut bool;
 }
 
 impl SyncedTransformEntityDataTrait for SyncedTransformEntityData {
     fn interpolate(&self) -> &bool {
         &self.interpolate
+    }
+    fn interpolate_mut(&mut self) -> &mut bool {
+        &mut self.interpolate
     }
 }
 
@@ -2088,15 +2611,15 @@ impl super::core::DataBusPeerTrait for SyncedTransformEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SyncedTransformEntityData {
 }
 
 impl super::core::DataContainerTrait for SyncedTransformEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SYNCEDTRANSFORMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2127,6 +2650,15 @@ impl TypeObject for SyncedTransformEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2162,15 +2694,15 @@ impl super::core::DataBusPeerTrait for SyncedIntEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SyncedIntEntityData {
 }
 
 impl super::core::DataContainerTrait for SyncedIntEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SYNCEDINTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2195,6 +2727,15 @@ impl TypeObject for SyncedIntEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2230,15 +2771,15 @@ impl super::core::DataBusPeerTrait for SyncedFloatEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SyncedFloatEntityData {
 }
 
 impl super::core::DataContainerTrait for SyncedFloatEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SYNCEDFLOATENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2263,6 +2804,15 @@ impl TypeObject for SyncedFloatEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2298,15 +2848,15 @@ impl super::core::DataBusPeerTrait for SyncedBoolEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SyncedBoolEntityData {
 }
 
 impl super::core::DataContainerTrait for SyncedBoolEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SYNCEDBOOLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2331,6 +2881,15 @@ impl TypeObject for SyncedBoolEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -129,6 +129,15 @@ impl TypeObject for ServerCreatureFollowWaypointsEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -185,6 +194,15 @@ impl TypeObject for ServerCreatureFollowWaypointSegmentEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -238,6 +256,15 @@ impl TypeObject for ServerCreatureCollisionGroupEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -283,6 +310,15 @@ impl TypeObject for IMovementProvider {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -330,6 +366,15 @@ impl TypeObject for ISteeringProvider {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -344,17 +389,17 @@ pub static ISTEERINGPROVIDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 
 #[derive(Clone, Debug, Default)]
-pub struct CreatureWaypoint_PlayAnimation {
+pub struct CreatureWaypointPlayAnimation {
     pub _glacier_base: CreatureWaypoint,
 }
 
-pub trait CreatureWaypoint_PlayAnimationTrait: CreatureWaypointTrait {
+pub trait CreatureWaypointPlayAnimationTrait: CreatureWaypointTrait {
 }
 
-impl CreatureWaypoint_PlayAnimationTrait for CreatureWaypoint_PlayAnimation {
+impl CreatureWaypointPlayAnimationTrait for CreatureWaypointPlayAnimation {
 }
 
-impl CreatureWaypointTrait for CreatureWaypoint_PlayAnimation {
+impl CreatureWaypointTrait for CreatureWaypointPlayAnimation {
 }
 
 pub static CREATUREWAYPOINT_PLAYANIMATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -364,7 +409,7 @@ pub static CREATUREWAYPOINT_PLAYANIMATION_TYPE_INFO: &'static TypeInfo = &TypeIn
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREWAYPOINT_TYPE_INFO),
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<CreatureWaypoint_PlayAnimation as Default>::default())),
+            create: || Arc::new(Mutex::new(<CreatureWaypointPlayAnimation as Default>::default())),
         },
         fields: &[
         ],
@@ -373,12 +418,21 @@ pub static CREATUREWAYPOINT_PLAYANIMATION_TYPE_INFO: &'static TypeInfo = &TypeIn
     alignment: 0,
 };
 
-impl TypeObject for CreatureWaypoint_PlayAnimation {
+impl TypeObject for CreatureWaypointPlayAnimation {
     fn type_info(&self) -> &'static TypeInfo {
         CREATUREWAYPOINT_PLAYANIMATION_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -394,17 +448,17 @@ pub static CREATUREWAYPOINT_PLAYANIMATION_ARRAY_TYPE_INFO: &'static TypeInfo = &
 
 
 #[derive(Clone, Debug, Default)]
-pub struct CreatureWaypoint_Pause {
+pub struct CreatureWaypointPause {
     pub _glacier_base: CreatureWaypoint,
 }
 
-pub trait CreatureWaypoint_PauseTrait: CreatureWaypointTrait {
+pub trait CreatureWaypointPauseTrait: CreatureWaypointTrait {
 }
 
-impl CreatureWaypoint_PauseTrait for CreatureWaypoint_Pause {
+impl CreatureWaypointPauseTrait for CreatureWaypointPause {
 }
 
-impl CreatureWaypointTrait for CreatureWaypoint_Pause {
+impl CreatureWaypointTrait for CreatureWaypointPause {
 }
 
 pub static CREATUREWAYPOINT_PAUSE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -414,7 +468,7 @@ pub static CREATUREWAYPOINT_PAUSE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREWAYPOINT_TYPE_INFO),
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<CreatureWaypoint_Pause as Default>::default())),
+            create: || Arc::new(Mutex::new(<CreatureWaypointPause as Default>::default())),
         },
         fields: &[
         ],
@@ -423,12 +477,21 @@ pub static CREATUREWAYPOINT_PAUSE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     alignment: 0,
 };
 
-impl TypeObject for CreatureWaypoint_Pause {
+impl TypeObject for CreatureWaypointPause {
     fn type_info(&self) -> &'static TypeInfo {
         CREATUREWAYPOINT_PAUSE_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -476,6 +539,15 @@ impl TypeObject for CreatureWaypoint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -490,17 +562,17 @@ pub static CREATUREWAYPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 
 #[derive(Clone, Debug, Default)]
-pub struct CL_ProceduralMotion {
+pub struct CLProceduralMotion {
     pub _glacier_base: IMovementProvider,
 }
 
-pub trait CL_ProceduralMotionTrait: IMovementProviderTrait {
+pub trait CLProceduralMotionTrait: IMovementProviderTrait {
 }
 
-impl CL_ProceduralMotionTrait for CL_ProceduralMotion {
+impl CLProceduralMotionTrait for CLProceduralMotion {
 }
 
-impl IMovementProviderTrait for CL_ProceduralMotion {
+impl IMovementProviderTrait for CLProceduralMotion {
 }
 
 pub static CL_PROCEDURALMOTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -510,7 +582,7 @@ pub static CL_PROCEDURALMOTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMOVEMENTPROVIDER_TYPE_INFO),
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<CL_ProceduralMotion as Default>::default())),
+            create: || Arc::new(Mutex::new(<CLProceduralMotion as Default>::default())),
         },
         fields: &[
         ],
@@ -519,12 +591,21 @@ pub static CL_PROCEDURALMOTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     alignment: 0,
 };
 
-impl TypeObject for CL_ProceduralMotion {
+impl TypeObject for CLProceduralMotion {
     fn type_info(&self) -> &'static TypeInfo {
         CL_PROCEDURALMOTION_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -540,17 +621,17 @@ pub static CL_PROCEDURALMOTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 
 #[derive(Clone, Debug, Default)]
-pub struct CL_CurveSteering {
+pub struct CLCurveSteering {
     pub _glacier_base: ISteeringProvider,
 }
 
-pub trait CL_CurveSteeringTrait: ISteeringProviderTrait {
+pub trait CLCurveSteeringTrait: ISteeringProviderTrait {
 }
 
-impl CL_CurveSteeringTrait for CL_CurveSteering {
+impl CLCurveSteeringTrait for CLCurveSteering {
 }
 
-impl ISteeringProviderTrait for CL_CurveSteering {
+impl ISteeringProviderTrait for CLCurveSteering {
 }
 
 pub static CL_CURVESTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -560,7 +641,7 @@ pub static CL_CURVESTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ISTEERINGPROVIDER_TYPE_INFO),
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<CL_CurveSteering as Default>::default())),
+            create: || Arc::new(Mutex::new(<CLCurveSteering as Default>::default())),
         },
         fields: &[
         ],
@@ -569,12 +650,21 @@ pub static CL_CURVESTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     alignment: 0,
 };
 
-impl TypeObject for CL_CurveSteering {
+impl TypeObject for CLCurveSteering {
     fn type_info(&self) -> &'static TypeInfo {
         CL_CURVESTEERING_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -591,16 +681,16 @@ pub static CL_CURVESTEERING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 #[derive(Clone, Debug, Default)]
 pub struct CLColAvoidingSteering {
-    pub _glacier_base: CL_CurveSteering,
+    pub _glacier_base: CLCurveSteering,
 }
 
-pub trait CLColAvoidingSteeringTrait: CL_CurveSteeringTrait {
+pub trait CLColAvoidingSteeringTrait: CLCurveSteeringTrait {
 }
 
 impl CLColAvoidingSteeringTrait for CLColAvoidingSteering {
 }
 
-impl CL_CurveSteeringTrait for CLColAvoidingSteering {
+impl CLCurveSteeringTrait for CLColAvoidingSteering {
 }
 
 impl ISteeringProviderTrait for CLColAvoidingSteering {
@@ -628,6 +718,15 @@ impl TypeObject for CLColAvoidingSteering {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -674,6 +773,15 @@ impl TypeObject for IAssessor {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -728,6 +836,15 @@ impl TypeObject for CLClientState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -777,6 +894,15 @@ impl TypeObject for CLState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -830,6 +956,15 @@ impl TypeObject for CLConduitState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -893,6 +1028,15 @@ impl TypeObject for ClientCreatureSpawnEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -955,6 +1099,15 @@ impl TypeObject for ServerCreatureSpawnEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1010,6 +1163,15 @@ impl TypeObject for CreatureLocoEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1067,6 +1229,15 @@ impl TypeObject for CreatureFollowWaypointUnspawnEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1119,6 +1290,15 @@ impl TypeObject for CreatureFollowBaseEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1176,6 +1356,15 @@ impl TypeObject for ServerCreatureFollowWaypointProviderEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1231,6 +1420,15 @@ impl TypeObject for ClientCreatureFollowWaypointProviderEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1288,6 +1486,15 @@ impl TypeObject for CreatureFollowWaypointClosestChooserEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1343,6 +1550,15 @@ impl TypeObject for CreatureFollowWaypointOccupancyChooserEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1400,6 +1616,15 @@ impl TypeObject for CreatureFollowWaypointBoolChooserEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1452,6 +1677,15 @@ impl TypeObject for CreatureConfigurationProviderEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1506,6 +1740,15 @@ impl TypeObject for CreatureBaseWaypointProviderEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1558,6 +1801,15 @@ impl TypeObject for CLInfluenceFilterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1612,6 +1864,15 @@ impl TypeObject for CLInfluenceCompareEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1664,6 +1925,15 @@ impl TypeObject for CLApplyInfluenceEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1724,6 +1994,15 @@ impl TypeObject for ClientCreatureLocoMotorEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1783,6 +2062,15 @@ impl TypeObject for ClientCreatureFollowWaypointsEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1839,6 +2127,15 @@ impl TypeObject for ClientCreatureFollowWaypointSegmentEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1892,6 +2189,15 @@ impl TypeObject for ClientCreatureCollisionGroupEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1920,32 +2226,62 @@ impl super::dice_commons_shared::BlueprintSpawnReferenceObjectDataTrait for Crea
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn initial_auto_spawn(&self) -> &bool {
         self._glacier_base.initial_auto_spawn()
+    }
+    fn initial_auto_spawn_mut(&mut self) -> &mut bool {
+        self._glacier_base.initial_auto_spawn_mut()
     }
     fn auto_spawn(&self) -> &bool {
         self._glacier_base.auto_spawn()
     }
+    fn auto_spawn_mut(&mut self) -> &mut bool {
+        self._glacier_base.auto_spawn_mut()
+    }
     fn queue_spawn_event(&self) -> &bool {
         self._glacier_base.queue_spawn_event()
+    }
+    fn queue_spawn_event_mut(&mut self) -> &mut bool {
+        self._glacier_base.queue_spawn_event_mut()
     }
     fn use_as_spawn_point(&self) -> &bool {
         self._glacier_base.use_as_spawn_point()
     }
+    fn use_as_spawn_point_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_as_spawn_point_mut()
+    }
     fn spawns_occupy_locations(&self) -> &bool {
         self._glacier_base.spawns_occupy_locations()
+    }
+    fn spawns_occupy_locations_mut(&mut self) -> &mut bool {
+        self._glacier_base.spawns_occupy_locations_mut()
     }
     fn initial_spawn_delay(&self) -> &f32 {
         self._glacier_base.initial_spawn_delay()
     }
+    fn initial_spawn_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.initial_spawn_delay_mut()
+    }
     fn spawn_delay(&self) -> &f32 {
         self._glacier_base.spawn_delay()
+    }
+    fn spawn_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spawn_delay_mut()
     }
     fn max_count(&self) -> &i32 {
         self._glacier_base.max_count()
     }
+    fn max_count_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_count_mut()
+    }
     fn max_count_simultaneously(&self) -> &i32 {
         self._glacier_base.max_count_simultaneously()
+    }
+    fn max_count_simultaneously_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_count_simultaneously_mut()
     }
 }
 
@@ -1953,32 +2289,62 @@ impl super::entity::ReferenceObjectDataTrait for CreatureSpawnEntityData {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -1989,15 +2355,15 @@ impl super::core::DataBusPeerTrait for CreatureSpawnEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureSpawnEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureSpawnEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATURESPAWNENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2022,6 +2388,15 @@ impl TypeObject for CreatureSpawnEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2081,6 +2456,15 @@ impl TypeObject for ServerCreatureLocoMotorEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

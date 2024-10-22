@@ -48,79 +48,151 @@ pub struct LinearMediaSettings {
 
 pub trait LinearMediaSettingsTrait: super::core::SystemSettingsTrait {
     fn inline_message_process_count_max(&self) -> &i32;
+    fn inline_message_process_count_max_mut(&mut self) -> &mut i32;
     fn per_job_message_process_count_max(&self) -> &i32;
+    fn per_job_message_process_count_max_mut(&mut self) -> &mut i32;
     fn inline_message_process_time_max_n_s(&self) -> &i64;
+    fn inline_message_process_time_max_n_s_mut(&mut self) -> &mut i64;
     fn per_job_message_process_time_max_n_s(&self) -> &i64;
+    fn per_job_message_process_time_max_n_s_mut(&mut self) -> &mut i64;
     fn turbo_loader_chunk_poll_frequency_n_s(&self) -> &i64;
+    fn turbo_loader_chunk_poll_frequency_n_s_mut(&mut self) -> &mut i64;
     fn queue_memory_reap_frequency_n_s(&self) -> &i64;
+    fn queue_memory_reap_frequency_n_s_mut(&mut self) -> &mut i64;
     fn memory_rebalance_frequency_n_s(&self) -> &i64;
+    fn memory_rebalance_frequency_n_s_mut(&mut self) -> &mut i64;
     fn memory_rebalance_time_max_n_s(&self) -> &i64;
+    fn memory_rebalance_time_max_n_s_mut(&mut self) -> &mut i64;
     fn memory_rebalance_max_item_count(&self) -> &i32;
+    fn memory_rebalance_max_item_count_mut(&mut self) -> &mut i32;
     fn message_process_spin_count(&self) -> &i32;
+    fn message_process_spin_count_mut(&mut self) -> &mut i32;
     fn queue_priority(&self) -> &u8;
+    fn queue_priority_mut(&mut self) -> &mut u8;
     fn queue_affinity(&self) -> &u32;
+    fn queue_affinity_mut(&mut self) -> &mut u32;
     fn process_priority(&self) -> &u8;
+    fn process_priority_mut(&mut self) -> &mut u8;
     fn process_affinity(&self) -> &u32;
+    fn process_affinity_mut(&mut self) -> &mut u32;
     fn max_concurrent_dispatch_jobs(&self) -> &u32;
+    fn max_concurrent_dispatch_jobs_mut(&mut self) -> &mut u32;
     fn cpu_pool_size(&self) -> &u64;
+    fn cpu_pool_size_mut(&mut self) -> &mut u64;
     fn gpu_pool_size(&self) -> &u64;
+    fn gpu_pool_size_mut(&mut self) -> &mut u64;
     fn track_heaps_s(&self) -> &bool;
+    fn track_heaps_s_mut(&mut self) -> &mut bool;
 }
 
 impl LinearMediaSettingsTrait for LinearMediaSettings {
     fn inline_message_process_count_max(&self) -> &i32 {
         &self.inline_message_process_count_max
     }
+    fn inline_message_process_count_max_mut(&mut self) -> &mut i32 {
+        &mut self.inline_message_process_count_max
+    }
     fn per_job_message_process_count_max(&self) -> &i32 {
         &self.per_job_message_process_count_max
+    }
+    fn per_job_message_process_count_max_mut(&mut self) -> &mut i32 {
+        &mut self.per_job_message_process_count_max
     }
     fn inline_message_process_time_max_n_s(&self) -> &i64 {
         &self.inline_message_process_time_max_n_s
     }
+    fn inline_message_process_time_max_n_s_mut(&mut self) -> &mut i64 {
+        &mut self.inline_message_process_time_max_n_s
+    }
     fn per_job_message_process_time_max_n_s(&self) -> &i64 {
         &self.per_job_message_process_time_max_n_s
+    }
+    fn per_job_message_process_time_max_n_s_mut(&mut self) -> &mut i64 {
+        &mut self.per_job_message_process_time_max_n_s
     }
     fn turbo_loader_chunk_poll_frequency_n_s(&self) -> &i64 {
         &self.turbo_loader_chunk_poll_frequency_n_s
     }
+    fn turbo_loader_chunk_poll_frequency_n_s_mut(&mut self) -> &mut i64 {
+        &mut self.turbo_loader_chunk_poll_frequency_n_s
+    }
     fn queue_memory_reap_frequency_n_s(&self) -> &i64 {
         &self.queue_memory_reap_frequency_n_s
+    }
+    fn queue_memory_reap_frequency_n_s_mut(&mut self) -> &mut i64 {
+        &mut self.queue_memory_reap_frequency_n_s
     }
     fn memory_rebalance_frequency_n_s(&self) -> &i64 {
         &self.memory_rebalance_frequency_n_s
     }
+    fn memory_rebalance_frequency_n_s_mut(&mut self) -> &mut i64 {
+        &mut self.memory_rebalance_frequency_n_s
+    }
     fn memory_rebalance_time_max_n_s(&self) -> &i64 {
         &self.memory_rebalance_time_max_n_s
+    }
+    fn memory_rebalance_time_max_n_s_mut(&mut self) -> &mut i64 {
+        &mut self.memory_rebalance_time_max_n_s
     }
     fn memory_rebalance_max_item_count(&self) -> &i32 {
         &self.memory_rebalance_max_item_count
     }
+    fn memory_rebalance_max_item_count_mut(&mut self) -> &mut i32 {
+        &mut self.memory_rebalance_max_item_count
+    }
     fn message_process_spin_count(&self) -> &i32 {
         &self.message_process_spin_count
+    }
+    fn message_process_spin_count_mut(&mut self) -> &mut i32 {
+        &mut self.message_process_spin_count
     }
     fn queue_priority(&self) -> &u8 {
         &self.queue_priority
     }
+    fn queue_priority_mut(&mut self) -> &mut u8 {
+        &mut self.queue_priority
+    }
     fn queue_affinity(&self) -> &u32 {
         &self.queue_affinity
+    }
+    fn queue_affinity_mut(&mut self) -> &mut u32 {
+        &mut self.queue_affinity
     }
     fn process_priority(&self) -> &u8 {
         &self.process_priority
     }
+    fn process_priority_mut(&mut self) -> &mut u8 {
+        &mut self.process_priority
+    }
     fn process_affinity(&self) -> &u32 {
         &self.process_affinity
+    }
+    fn process_affinity_mut(&mut self) -> &mut u32 {
+        &mut self.process_affinity
     }
     fn max_concurrent_dispatch_jobs(&self) -> &u32 {
         &self.max_concurrent_dispatch_jobs
     }
+    fn max_concurrent_dispatch_jobs_mut(&mut self) -> &mut u32 {
+        &mut self.max_concurrent_dispatch_jobs
+    }
     fn cpu_pool_size(&self) -> &u64 {
         &self.cpu_pool_size
+    }
+    fn cpu_pool_size_mut(&mut self) -> &mut u64 {
+        &mut self.cpu_pool_size
     }
     fn gpu_pool_size(&self) -> &u64 {
         &self.gpu_pool_size
     }
+    fn gpu_pool_size_mut(&mut self) -> &mut u64 {
+        &mut self.gpu_pool_size
+    }
     fn track_heaps_s(&self) -> &bool {
         &self.track_heaps_s
+    }
+    fn track_heaps_s_mut(&mut self) -> &mut bool {
+        &mut self.track_heaps_s
     }
 }
 
@@ -128,12 +200,12 @@ impl super::core::SystemSettingsTrait for LinearMediaSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LinearMediaSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINEARMEDIASETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -267,6 +339,15 @@ impl TypeObject for LinearMediaSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -288,11 +369,15 @@ pub struct LinearMediaAssetDesc {
 
 pub trait LinearMediaAssetDescTrait: super::core::AssetTrait {
     fn resources(&self) -> &Vec<LinearMediaRuntimeResource>;
+    fn resources_mut(&mut self) -> &mut Vec<LinearMediaRuntimeResource>;
 }
 
 impl LinearMediaAssetDescTrait for LinearMediaAssetDesc {
     fn resources(&self) -> &Vec<LinearMediaRuntimeResource> {
         &self.resources
+    }
+    fn resources_mut(&mut self) -> &mut Vec<LinearMediaRuntimeResource> {
+        &mut self.resources
     }
 }
 
@@ -300,12 +385,12 @@ impl super::core::AssetTrait for LinearMediaAssetDesc {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LinearMediaAssetDesc {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINEARMEDIAASSETDESC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -337,6 +422,15 @@ impl TypeObject for LinearMediaAssetDesc {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -357,11 +451,15 @@ pub struct LinearMediaRuntimeResource {
 
 pub trait LinearMediaRuntimeResourceTrait: TypeObject {
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl LinearMediaRuntimeResourceTrait for LinearMediaRuntimeResource {
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.resource
+    }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.resource
     }
 }
 
@@ -392,6 +490,15 @@ impl TypeObject for LinearMediaRuntimeResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -430,6 +537,15 @@ impl TypeObject for LinearMediaPipelineAssetDescAttributeSamplingRate {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -477,6 +593,15 @@ impl TypeObject for LinearMediaChannelRuntime {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -522,6 +647,15 @@ impl TypeObject for LinearMediaAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

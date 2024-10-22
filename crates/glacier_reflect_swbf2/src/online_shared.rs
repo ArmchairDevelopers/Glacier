@@ -210,207 +210,407 @@ pub struct OnlineSettings {
 
 pub trait OnlineSettingsTrait: super::core::SystemSettingsTrait {
     fn assert_on_presence_request_failures(&self) -> &bool;
+    fn assert_on_presence_request_failures_mut(&mut self) -> &mut bool;
     fn client_is_presence_enabled(&self) -> &bool;
+    fn client_is_presence_enabled_mut(&mut self) -> &mut bool;
     fn server_is_presence_enabled(&self) -> &bool;
+    fn server_is_presence_enabled_mut(&mut self) -> &mut bool;
     fn environment(&self) -> &OnlineEnvironment;
+    fn environment_mut(&mut self) -> &mut OnlineEnvironment;
     fn is_secure(&self) -> &bool;
+    fn is_secure_mut(&mut self) -> &mut bool;
     fn enable_qo_s(&self) -> &bool;
+    fn enable_qo_s_mut(&mut self) -> &mut bool;
     fn wait_for_qo_s(&self) -> &bool;
+    fn wait_for_qo_s_mut(&mut self) -> &mut bool;
     fn provider(&self) -> &Option<Arc<Mutex<dyn OnlineProviderAssetTrait>>>;
+    fn provider_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineProviderAssetTrait>>>;
     fn platforms(&self) -> &Vec<OnlinePlatformConfiguration>;
+    fn platforms_mut(&mut self) -> &mut Vec<OnlinePlatformConfiguration>;
     fn service_name_override(&self) -> &String;
+    fn service_name_override_mut(&mut self) -> &mut String;
     fn log_level(&self) -> &LogLevelType;
+    fn log_level_mut(&mut self) -> &mut LogLevelType;
     fn blaze_log_level(&self) -> &i32;
+    fn blaze_log_level_mut(&mut self) -> &mut i32;
     fn dirty_sock_log_level(&self) -> &i32;
+    fn dirty_sock_log_level_mut(&mut self) -> &mut i32;
     fn rich_presence_data(&self) -> &Option<Arc<Mutex<dyn OnlineRichPresenceDataTrait>>>;
+    fn rich_presence_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineRichPresenceDataTrait>>>;
     fn region(&self) -> &String;
+    fn region_mut(&mut self) -> &mut String;
     fn country(&self) -> &String;
+    fn country_mut(&mut self) -> &mut String;
     fn ping_site(&self) -> &String;
+    fn ping_site_mut(&mut self) -> &mut String;
     fn matchmaking_token(&self) -> &String;
+    fn matchmaking_token_mut(&mut self) -> &mut String;
     fn server_is_reconfigurable(&self) -> &bool;
+    fn server_is_reconfigurable_mut(&mut self) -> &mut bool;
     fn support_host_migration(&self) -> &bool;
+    fn support_host_migration_mut(&mut self) -> &mut bool;
     fn negative_user_cache_refresh_period(&self) -> &u32;
+    fn negative_user_cache_refresh_period_mut(&mut self) -> &mut u32;
     fn server_login_email(&self) -> &String;
+    fn server_login_email_mut(&mut self) -> &mut String;
     fn server_login_password(&self) -> &String;
+    fn server_login_password_mut(&mut self) -> &mut String;
     fn server_login_persona_name(&self) -> &String;
+    fn server_login_persona_name_mut(&mut self) -> &mut String;
     fn server_login_project_tag(&self) -> &String;
+    fn server_login_project_tag_mut(&mut self) -> &mut String;
     fn blaze_server_connection_timeout(&self) -> &i32;
+    fn blaze_server_connection_timeout_mut(&mut self) -> &mut i32;
     fn blaze_server_timeout(&self) -> &i32;
+    fn blaze_server_timeout_mut(&mut self) -> &mut i32;
     fn blaze_server_tunnel_socket_recv_buf_size(&self) -> &u32;
+    fn blaze_server_tunnel_socket_recv_buf_size_mut(&mut self) -> &mut u32;
     fn blaze_server_tunnel_socket_send_buf_size(&self) -> &u32;
+    fn blaze_server_tunnel_socket_send_buf_size_mut(&mut self) -> &mut u32;
     fn blaze_outgoing_buffer_size(&self) -> &u32;
+    fn blaze_outgoing_buffer_size_mut(&mut self) -> &mut u32;
     fn blaze_client_connection_timeout(&self) -> &i32;
+    fn blaze_client_connection_timeout_mut(&mut self) -> &mut i32;
     fn blaze_client_timeout(&self) -> &i32;
+    fn blaze_client_timeout_mut(&mut self) -> &mut i32;
     fn blaze_client_tunnel_socket_recv_buf_size(&self) -> &u32;
+    fn blaze_client_tunnel_socket_recv_buf_size_mut(&mut self) -> &mut u32;
     fn blaze_client_tunnel_socket_send_buf_size(&self) -> &u32;
+    fn blaze_client_tunnel_socket_send_buf_size_mut(&mut self) -> &mut u32;
     fn server_allow_any_reputation(&self) -> &bool;
+    fn server_allow_any_reputation_mut(&mut self) -> &mut bool;
     fn peer_port(&self) -> &i32;
+    fn peer_port_mut(&mut self) -> &mut i32;
     fn enable_gamegroup_invites(&self) -> &bool;
+    fn enable_gamegroup_invites_mut(&mut self) -> &mut bool;
     fn dirty_sock_server_packet_queue_capacity(&self) -> &i32;
+    fn dirty_sock_server_packet_queue_capacity_mut(&mut self) -> &mut i32;
     fn dirty_sock_max_connection_count(&self) -> &u32;
+    fn dirty_sock_max_connection_count_mut(&mut self) -> &mut u32;
     fn blaze_cached_user_refresh_interval(&self) -> &u32;
+    fn blaze_cached_user_refresh_interval_mut(&mut self) -> &mut u32;
     fn trusted_login_path(&self) -> &String;
+    fn trusted_login_path_mut(&mut self) -> &mut String;
     fn trusted_login_cert_filename(&self) -> &String;
+    fn trusted_login_cert_filename_mut(&mut self) -> &mut String;
     fn trusted_login_key_filename(&self) -> &String;
+    fn trusted_login_key_filename_mut(&mut self) -> &mut String;
     fn enable_nucleus_lt_override(&self) -> &bool;
+    fn enable_nucleus_lt_override_mut(&mut self) -> &mut bool;
     fn min_player_capacity(&self) -> &u32;
+    fn min_player_capacity_mut(&mut self) -> &mut u32;
     fn should_control_dirty_sock(&self) -> &bool;
+    fn should_control_dirty_sock_mut(&mut self) -> &mut bool;
     fn debug_message_callstack_type_list(&self) -> &String;
+    fn debug_message_callstack_type_list_mut(&mut self) -> &mut String;
     fn override_create_game_template(&self) -> &bool;
+    fn override_create_game_template_mut(&mut self) -> &mut bool;
     fn override_create_game_template_name(&self) -> &String;
+    fn override_create_game_template_name_mut(&mut self) -> &mut String;
     fn resettable_pool(&self) -> &String;
+    fn resettable_pool_mut(&mut self) -> &mut String;
 }
 
 impl OnlineSettingsTrait for OnlineSettings {
     fn assert_on_presence_request_failures(&self) -> &bool {
         &self.assert_on_presence_request_failures
     }
+    fn assert_on_presence_request_failures_mut(&mut self) -> &mut bool {
+        &mut self.assert_on_presence_request_failures
+    }
     fn client_is_presence_enabled(&self) -> &bool {
         &self.client_is_presence_enabled
+    }
+    fn client_is_presence_enabled_mut(&mut self) -> &mut bool {
+        &mut self.client_is_presence_enabled
     }
     fn server_is_presence_enabled(&self) -> &bool {
         &self.server_is_presence_enabled
     }
+    fn server_is_presence_enabled_mut(&mut self) -> &mut bool {
+        &mut self.server_is_presence_enabled
+    }
     fn environment(&self) -> &OnlineEnvironment {
         &self.environment
+    }
+    fn environment_mut(&mut self) -> &mut OnlineEnvironment {
+        &mut self.environment
     }
     fn is_secure(&self) -> &bool {
         &self.is_secure
     }
+    fn is_secure_mut(&mut self) -> &mut bool {
+        &mut self.is_secure
+    }
     fn enable_qo_s(&self) -> &bool {
         &self.enable_qo_s
+    }
+    fn enable_qo_s_mut(&mut self) -> &mut bool {
+        &mut self.enable_qo_s
     }
     fn wait_for_qo_s(&self) -> &bool {
         &self.wait_for_qo_s
     }
+    fn wait_for_qo_s_mut(&mut self) -> &mut bool {
+        &mut self.wait_for_qo_s
+    }
     fn provider(&self) -> &Option<Arc<Mutex<dyn OnlineProviderAssetTrait>>> {
         &self.provider
+    }
+    fn provider_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineProviderAssetTrait>>> {
+        &mut self.provider
     }
     fn platforms(&self) -> &Vec<OnlinePlatformConfiguration> {
         &self.platforms
     }
+    fn platforms_mut(&mut self) -> &mut Vec<OnlinePlatformConfiguration> {
+        &mut self.platforms
+    }
     fn service_name_override(&self) -> &String {
         &self.service_name_override
+    }
+    fn service_name_override_mut(&mut self) -> &mut String {
+        &mut self.service_name_override
     }
     fn log_level(&self) -> &LogLevelType {
         &self.log_level
     }
+    fn log_level_mut(&mut self) -> &mut LogLevelType {
+        &mut self.log_level
+    }
     fn blaze_log_level(&self) -> &i32 {
         &self.blaze_log_level
+    }
+    fn blaze_log_level_mut(&mut self) -> &mut i32 {
+        &mut self.blaze_log_level
     }
     fn dirty_sock_log_level(&self) -> &i32 {
         &self.dirty_sock_log_level
     }
+    fn dirty_sock_log_level_mut(&mut self) -> &mut i32 {
+        &mut self.dirty_sock_log_level
+    }
     fn rich_presence_data(&self) -> &Option<Arc<Mutex<dyn OnlineRichPresenceDataTrait>>> {
         &self.rich_presence_data
+    }
+    fn rich_presence_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineRichPresenceDataTrait>>> {
+        &mut self.rich_presence_data
     }
     fn region(&self) -> &String {
         &self.region
     }
+    fn region_mut(&mut self) -> &mut String {
+        &mut self.region
+    }
     fn country(&self) -> &String {
         &self.country
+    }
+    fn country_mut(&mut self) -> &mut String {
+        &mut self.country
     }
     fn ping_site(&self) -> &String {
         &self.ping_site
     }
+    fn ping_site_mut(&mut self) -> &mut String {
+        &mut self.ping_site
+    }
     fn matchmaking_token(&self) -> &String {
         &self.matchmaking_token
+    }
+    fn matchmaking_token_mut(&mut self) -> &mut String {
+        &mut self.matchmaking_token
     }
     fn server_is_reconfigurable(&self) -> &bool {
         &self.server_is_reconfigurable
     }
+    fn server_is_reconfigurable_mut(&mut self) -> &mut bool {
+        &mut self.server_is_reconfigurable
+    }
     fn support_host_migration(&self) -> &bool {
         &self.support_host_migration
+    }
+    fn support_host_migration_mut(&mut self) -> &mut bool {
+        &mut self.support_host_migration
     }
     fn negative_user_cache_refresh_period(&self) -> &u32 {
         &self.negative_user_cache_refresh_period
     }
+    fn negative_user_cache_refresh_period_mut(&mut self) -> &mut u32 {
+        &mut self.negative_user_cache_refresh_period
+    }
     fn server_login_email(&self) -> &String {
         &self.server_login_email
+    }
+    fn server_login_email_mut(&mut self) -> &mut String {
+        &mut self.server_login_email
     }
     fn server_login_password(&self) -> &String {
         &self.server_login_password
     }
+    fn server_login_password_mut(&mut self) -> &mut String {
+        &mut self.server_login_password
+    }
     fn server_login_persona_name(&self) -> &String {
         &self.server_login_persona_name
+    }
+    fn server_login_persona_name_mut(&mut self) -> &mut String {
+        &mut self.server_login_persona_name
     }
     fn server_login_project_tag(&self) -> &String {
         &self.server_login_project_tag
     }
+    fn server_login_project_tag_mut(&mut self) -> &mut String {
+        &mut self.server_login_project_tag
+    }
     fn blaze_server_connection_timeout(&self) -> &i32 {
         &self.blaze_server_connection_timeout
+    }
+    fn blaze_server_connection_timeout_mut(&mut self) -> &mut i32 {
+        &mut self.blaze_server_connection_timeout
     }
     fn blaze_server_timeout(&self) -> &i32 {
         &self.blaze_server_timeout
     }
+    fn blaze_server_timeout_mut(&mut self) -> &mut i32 {
+        &mut self.blaze_server_timeout
+    }
     fn blaze_server_tunnel_socket_recv_buf_size(&self) -> &u32 {
         &self.blaze_server_tunnel_socket_recv_buf_size
+    }
+    fn blaze_server_tunnel_socket_recv_buf_size_mut(&mut self) -> &mut u32 {
+        &mut self.blaze_server_tunnel_socket_recv_buf_size
     }
     fn blaze_server_tunnel_socket_send_buf_size(&self) -> &u32 {
         &self.blaze_server_tunnel_socket_send_buf_size
     }
+    fn blaze_server_tunnel_socket_send_buf_size_mut(&mut self) -> &mut u32 {
+        &mut self.blaze_server_tunnel_socket_send_buf_size
+    }
     fn blaze_outgoing_buffer_size(&self) -> &u32 {
         &self.blaze_outgoing_buffer_size
+    }
+    fn blaze_outgoing_buffer_size_mut(&mut self) -> &mut u32 {
+        &mut self.blaze_outgoing_buffer_size
     }
     fn blaze_client_connection_timeout(&self) -> &i32 {
         &self.blaze_client_connection_timeout
     }
+    fn blaze_client_connection_timeout_mut(&mut self) -> &mut i32 {
+        &mut self.blaze_client_connection_timeout
+    }
     fn blaze_client_timeout(&self) -> &i32 {
         &self.blaze_client_timeout
+    }
+    fn blaze_client_timeout_mut(&mut self) -> &mut i32 {
+        &mut self.blaze_client_timeout
     }
     fn blaze_client_tunnel_socket_recv_buf_size(&self) -> &u32 {
         &self.blaze_client_tunnel_socket_recv_buf_size
     }
+    fn blaze_client_tunnel_socket_recv_buf_size_mut(&mut self) -> &mut u32 {
+        &mut self.blaze_client_tunnel_socket_recv_buf_size
+    }
     fn blaze_client_tunnel_socket_send_buf_size(&self) -> &u32 {
         &self.blaze_client_tunnel_socket_send_buf_size
+    }
+    fn blaze_client_tunnel_socket_send_buf_size_mut(&mut self) -> &mut u32 {
+        &mut self.blaze_client_tunnel_socket_send_buf_size
     }
     fn server_allow_any_reputation(&self) -> &bool {
         &self.server_allow_any_reputation
     }
+    fn server_allow_any_reputation_mut(&mut self) -> &mut bool {
+        &mut self.server_allow_any_reputation
+    }
     fn peer_port(&self) -> &i32 {
         &self.peer_port
+    }
+    fn peer_port_mut(&mut self) -> &mut i32 {
+        &mut self.peer_port
     }
     fn enable_gamegroup_invites(&self) -> &bool {
         &self.enable_gamegroup_invites
     }
+    fn enable_gamegroup_invites_mut(&mut self) -> &mut bool {
+        &mut self.enable_gamegroup_invites
+    }
     fn dirty_sock_server_packet_queue_capacity(&self) -> &i32 {
         &self.dirty_sock_server_packet_queue_capacity
+    }
+    fn dirty_sock_server_packet_queue_capacity_mut(&mut self) -> &mut i32 {
+        &mut self.dirty_sock_server_packet_queue_capacity
     }
     fn dirty_sock_max_connection_count(&self) -> &u32 {
         &self.dirty_sock_max_connection_count
     }
+    fn dirty_sock_max_connection_count_mut(&mut self) -> &mut u32 {
+        &mut self.dirty_sock_max_connection_count
+    }
     fn blaze_cached_user_refresh_interval(&self) -> &u32 {
         &self.blaze_cached_user_refresh_interval
+    }
+    fn blaze_cached_user_refresh_interval_mut(&mut self) -> &mut u32 {
+        &mut self.blaze_cached_user_refresh_interval
     }
     fn trusted_login_path(&self) -> &String {
         &self.trusted_login_path
     }
+    fn trusted_login_path_mut(&mut self) -> &mut String {
+        &mut self.trusted_login_path
+    }
     fn trusted_login_cert_filename(&self) -> &String {
         &self.trusted_login_cert_filename
+    }
+    fn trusted_login_cert_filename_mut(&mut self) -> &mut String {
+        &mut self.trusted_login_cert_filename
     }
     fn trusted_login_key_filename(&self) -> &String {
         &self.trusted_login_key_filename
     }
+    fn trusted_login_key_filename_mut(&mut self) -> &mut String {
+        &mut self.trusted_login_key_filename
+    }
     fn enable_nucleus_lt_override(&self) -> &bool {
         &self.enable_nucleus_lt_override
+    }
+    fn enable_nucleus_lt_override_mut(&mut self) -> &mut bool {
+        &mut self.enable_nucleus_lt_override
     }
     fn min_player_capacity(&self) -> &u32 {
         &self.min_player_capacity
     }
+    fn min_player_capacity_mut(&mut self) -> &mut u32 {
+        &mut self.min_player_capacity
+    }
     fn should_control_dirty_sock(&self) -> &bool {
         &self.should_control_dirty_sock
+    }
+    fn should_control_dirty_sock_mut(&mut self) -> &mut bool {
+        &mut self.should_control_dirty_sock
     }
     fn debug_message_callstack_type_list(&self) -> &String {
         &self.debug_message_callstack_type_list
     }
+    fn debug_message_callstack_type_list_mut(&mut self) -> &mut String {
+        &mut self.debug_message_callstack_type_list
+    }
     fn override_create_game_template(&self) -> &bool {
         &self.override_create_game_template
+    }
+    fn override_create_game_template_mut(&mut self) -> &mut bool {
+        &mut self.override_create_game_template
     }
     fn override_create_game_template_name(&self) -> &String {
         &self.override_create_game_template_name
     }
+    fn override_create_game_template_name_mut(&mut self) -> &mut String {
+        &mut self.override_create_game_template_name
+    }
     fn resettable_pool(&self) -> &String {
         &self.resettable_pool
+    }
+    fn resettable_pool_mut(&mut self) -> &mut String {
+        &mut self.resettable_pool
     }
 }
 
@@ -418,12 +618,12 @@ impl super::core::SystemSettingsTrait for OnlineSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for OnlineSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ONLINESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -749,6 +949,15 @@ impl TypeObject for OnlineSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -792,6 +1001,15 @@ impl TypeObject for LogLevelType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -813,11 +1031,15 @@ pub struct OnlineServicesAsset {
 
 pub trait OnlineServicesAssetTrait: super::core::AssetTrait {
     fn online_services(&self) -> &Vec<Option<Arc<Mutex<dyn PresenceServiceDataTrait>>>>;
+    fn online_services_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PresenceServiceDataTrait>>>>;
 }
 
 impl OnlineServicesAssetTrait for OnlineServicesAsset {
     fn online_services(&self) -> &Vec<Option<Arc<Mutex<dyn PresenceServiceDataTrait>>>> {
         &self.online_services
+    }
+    fn online_services_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PresenceServiceDataTrait>>>> {
+        &mut self.online_services
     }
 }
 
@@ -825,12 +1047,12 @@ impl super::core::AssetTrait for OnlineServicesAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for OnlineServicesAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ONLINESERVICESASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -861,6 +1083,15 @@ impl TypeObject for OnlineServicesAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -893,12 +1124,12 @@ impl super::core::AssetTrait for PresenceProfanityFilterServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceProfanityFilterServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEPROFANITYFILTERSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -923,6 +1154,15 @@ impl TypeObject for PresenceProfanityFilterServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -955,12 +1195,12 @@ impl super::core::AssetTrait for PresenceUserProfileServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceUserProfileServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEUSERPROFILESERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -985,6 +1225,15 @@ impl TypeObject for PresenceUserProfileServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1017,12 +1266,12 @@ impl super::core::AssetTrait for PresenceInviteServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceInviteServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEINVITESERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1047,6 +1296,15 @@ impl TypeObject for PresenceInviteServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1079,12 +1337,12 @@ impl super::core::AssetTrait for PresencePrivilegeServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresencePrivilegeServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEPRIVILEGESERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1109,6 +1367,15 @@ impl TypeObject for PresencePrivilegeServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1141,12 +1408,12 @@ impl super::core::AssetTrait for PresenceUserIdServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceUserIdServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEUSERIDSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1171,6 +1438,15 @@ impl TypeObject for PresenceUserIdServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1203,12 +1479,12 @@ impl super::core::AssetTrait for PresenceFriendsServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceFriendsServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEFRIENDSSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1233,6 +1509,15 @@ impl TypeObject for PresenceFriendsServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1265,12 +1550,12 @@ impl super::core::AssetTrait for PresenceBlobServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceBlobServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEBLOBSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1296,6 +1581,15 @@ impl TypeObject for PresenceBlobServiceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1317,11 +1611,15 @@ pub struct PresenceBlazeUserInfoServiceData {
 
 pub trait PresenceBlazeUserInfoServiceDataTrait: PresenceServiceDataTrait {
     fn game_browser_config_name(&self) -> &String;
+    fn game_browser_config_name_mut(&mut self) -> &mut String;
 }
 
 impl PresenceBlazeUserInfoServiceDataTrait for PresenceBlazeUserInfoServiceData {
     fn game_browser_config_name(&self) -> &String {
         &self.game_browser_config_name
+    }
+    fn game_browser_config_name_mut(&mut self) -> &mut String {
+        &mut self.game_browser_config_name
     }
 }
 
@@ -1332,12 +1630,12 @@ impl super::core::AssetTrait for PresenceBlazeUserInfoServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceBlazeUserInfoServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEBLAZEUSERINFOSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1368,6 +1666,15 @@ impl TypeObject for PresenceBlazeUserInfoServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1400,12 +1707,12 @@ impl super::core::AssetTrait for PresenceAuthenticationServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceAuthenticationServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEAUTHENTICATIONSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1430,6 +1737,15 @@ impl TypeObject for PresenceAuthenticationServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1462,12 +1778,12 @@ impl super::core::AssetTrait for PresenceConnectionServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceConnectionServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCECONNECTIONSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1492,6 +1808,15 @@ impl TypeObject for PresenceConnectionServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1521,12 +1846,12 @@ impl super::core::AssetTrait for PresenceServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCESERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1552,6 +1877,15 @@ impl TypeObject for PresenceServiceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1573,11 +1907,15 @@ pub struct OnlineProviderAsset {
 
 pub trait OnlineProviderAssetTrait: super::core::AssetTrait {
     fn configurations(&self) -> &Vec<OnlineProviderConfiguration>;
+    fn configurations_mut(&mut self) -> &mut Vec<OnlineProviderConfiguration>;
 }
 
 impl OnlineProviderAssetTrait for OnlineProviderAsset {
     fn configurations(&self) -> &Vec<OnlineProviderConfiguration> {
         &self.configurations
+    }
+    fn configurations_mut(&mut self) -> &mut Vec<OnlineProviderConfiguration> {
+        &mut self.configurations
     }
 }
 
@@ -1585,12 +1923,12 @@ impl super::core::AssetTrait for OnlineProviderAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for OnlineProviderAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ONLINEPROVIDERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1622,6 +1960,15 @@ impl TypeObject for OnlineProviderAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1648,35 +1995,63 @@ pub struct OnlineProviderConfiguration {
 
 pub trait OnlineProviderConfigurationTrait: TypeObject {
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn is_server(&self) -> &bool;
+    fn is_server_mut(&mut self) -> &mut bool;
     fn service_name(&self) -> &String;
+    fn service_name_mut(&mut self) -> &mut String;
     fn client(&self) -> &String;
+    fn client_mut(&mut self) -> &mut String;
     fn s_k_u(&self) -> &String;
+    fn s_k_u_mut(&mut self) -> &mut String;
     fn version(&self) -> &String;
+    fn version_mut(&mut self) -> &mut String;
     fn server_socket_packet_size(&self) -> &u32;
+    fn server_socket_packet_size_mut(&mut self) -> &mut u32;
 }
 
 impl OnlineProviderConfigurationTrait for OnlineProviderConfiguration {
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
+    }
     fn is_server(&self) -> &bool {
         &self.is_server
+    }
+    fn is_server_mut(&mut self) -> &mut bool {
+        &mut self.is_server
     }
     fn service_name(&self) -> &String {
         &self.service_name
     }
+    fn service_name_mut(&mut self) -> &mut String {
+        &mut self.service_name
+    }
     fn client(&self) -> &String {
         &self.client
+    }
+    fn client_mut(&mut self) -> &mut String {
+        &mut self.client
     }
     fn s_k_u(&self) -> &String {
         &self.s_k_u
     }
+    fn s_k_u_mut(&mut self) -> &mut String {
+        &mut self.s_k_u
+    }
     fn version(&self) -> &String {
         &self.version
     }
+    fn version_mut(&mut self) -> &mut String {
+        &mut self.version
+    }
     fn server_socket_packet_size(&self) -> &u32 {
         &self.server_socket_packet_size
+    }
+    fn server_socket_packet_size_mut(&mut self) -> &mut u32 {
+        &mut self.server_socket_packet_size
     }
 }
 
@@ -1744,6 +2119,15 @@ impl TypeObject for OnlineProviderConfiguration {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1771,39 +2155,71 @@ pub struct OnlinePlatformConfiguration {
 
 pub trait OnlinePlatformConfigurationTrait: TypeObject {
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn is_fallback(&self) -> &bool;
+    fn is_fallback_mut(&mut self) -> &mut bool;
     fn platform_data(&self) -> &Option<Arc<Mutex<dyn OnlinePlatformDataTrait>>>;
+    fn platform_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlinePlatformDataTrait>>>;
     fn services(&self) -> &Option<Arc<Mutex<dyn OnlineServicesAssetTrait>>>;
+    fn services_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineServicesAssetTrait>>>;
     fn server_services(&self) -> &Option<Arc<Mutex<dyn OnlineServicesAssetTrait>>>;
+    fn server_services_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineServicesAssetTrait>>>;
     fn client_backends(&self) -> &Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>>;
+    fn client_backends_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>>;
     fn server_backends(&self) -> &Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>>;
+    fn server_backends_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>>;
     fn server_game_backends(&self) -> &Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>>;
+    fn server_game_backends_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>>;
 }
 
 impl OnlinePlatformConfigurationTrait for OnlinePlatformConfiguration {
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
+    }
     fn is_fallback(&self) -> &bool {
         &self.is_fallback
+    }
+    fn is_fallback_mut(&mut self) -> &mut bool {
+        &mut self.is_fallback
     }
     fn platform_data(&self) -> &Option<Arc<Mutex<dyn OnlinePlatformDataTrait>>> {
         &self.platform_data
     }
+    fn platform_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlinePlatformDataTrait>>> {
+        &mut self.platform_data
+    }
     fn services(&self) -> &Option<Arc<Mutex<dyn OnlineServicesAssetTrait>>> {
         &self.services
+    }
+    fn services_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineServicesAssetTrait>>> {
+        &mut self.services
     }
     fn server_services(&self) -> &Option<Arc<Mutex<dyn OnlineServicesAssetTrait>>> {
         &self.server_services
     }
+    fn server_services_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineServicesAssetTrait>>> {
+        &mut self.server_services
+    }
     fn client_backends(&self) -> &Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>> {
         &self.client_backends
+    }
+    fn client_backends_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>> {
+        &mut self.client_backends
     }
     fn server_backends(&self) -> &Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>> {
         &self.server_backends
     }
+    fn server_backends_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>> {
+        &mut self.server_backends
+    }
     fn server_game_backends(&self) -> &Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>> {
         &self.server_game_backends
+    }
+    fn server_game_backends_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PresenceBackendDataTrait>>>> {
+        &mut self.server_game_backends
     }
 }
 
@@ -1877,6 +2293,15 @@ impl TypeObject for OnlinePlatformConfiguration {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1899,15 +2324,23 @@ pub struct Ps4OnlineData {
 
 pub trait Ps4OnlineDataTrait: OnlinePlatformDataTrait {
     fn default_title_data(&self) -> &Ps4OnlineTitleData;
+    fn default_title_data_mut(&mut self) -> &mut Ps4OnlineTitleData;
     fn title_data(&self) -> &Vec<Ps4OnlineTitleData>;
+    fn title_data_mut(&mut self) -> &mut Vec<Ps4OnlineTitleData>;
 }
 
 impl Ps4OnlineDataTrait for Ps4OnlineData {
     fn default_title_data(&self) -> &Ps4OnlineTitleData {
         &self.default_title_data
     }
+    fn default_title_data_mut(&mut self) -> &mut Ps4OnlineTitleData {
+        &mut self.default_title_data
+    }
     fn title_data(&self) -> &Vec<Ps4OnlineTitleData> {
         &self.title_data
+    }
+    fn title_data_mut(&mut self) -> &mut Vec<Ps4OnlineTitleData> {
+        &mut self.title_data
     }
 }
 
@@ -1918,12 +2351,12 @@ impl super::core::AssetTrait for Ps4OnlineData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for Ps4OnlineData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PS4ONLINEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1961,6 +2394,15 @@ impl TypeObject for Ps4OnlineData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1982,15 +2424,23 @@ pub struct Ps4OnlineTitleData {
 
 pub trait Ps4OnlineTitleDataTrait: TypeObject {
     fn title_id(&self) -> &String;
+    fn title_id_mut(&mut self) -> &mut String;
     fn title_secret(&self) -> &String;
+    fn title_secret_mut(&mut self) -> &mut String;
 }
 
 impl Ps4OnlineTitleDataTrait for Ps4OnlineTitleData {
     fn title_id(&self) -> &String {
         &self.title_id
     }
+    fn title_id_mut(&mut self) -> &mut String {
+        &mut self.title_id
+    }
     fn title_secret(&self) -> &String {
         &self.title_secret
+    }
+    fn title_secret_mut(&mut self) -> &mut String {
+        &mut self.title_secret
     }
 }
 
@@ -2028,6 +2478,15 @@ impl TypeObject for Ps4OnlineTitleData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2056,12 +2515,12 @@ impl super::core::AssetTrait for OnlinePlatformData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for OnlinePlatformData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ONLINEPLATFORMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2087,6 +2546,15 @@ impl TypeObject for OnlinePlatformData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2109,15 +2577,23 @@ pub struct OnlineRichPresenceData {
 
 pub trait OnlineRichPresenceDataTrait: super::core::AssetTrait {
     fn rich_presence_strings(&self) -> &Vec<Option<Arc<Mutex<dyn OnlineRichPresenceStringTrait>>>>;
+    fn rich_presence_strings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn OnlineRichPresenceStringTrait>>>>;
     fn contexts(&self) -> &Vec<Option<Arc<Mutex<dyn OnlineRichPresenceContextTrait>>>>;
+    fn contexts_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn OnlineRichPresenceContextTrait>>>>;
 }
 
 impl OnlineRichPresenceDataTrait for OnlineRichPresenceData {
     fn rich_presence_strings(&self) -> &Vec<Option<Arc<Mutex<dyn OnlineRichPresenceStringTrait>>>> {
         &self.rich_presence_strings
     }
+    fn rich_presence_strings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn OnlineRichPresenceStringTrait>>>> {
+        &mut self.rich_presence_strings
+    }
     fn contexts(&self) -> &Vec<Option<Arc<Mutex<dyn OnlineRichPresenceContextTrait>>>> {
         &self.contexts
+    }
+    fn contexts_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn OnlineRichPresenceContextTrait>>>> {
+        &mut self.contexts
     }
 }
 
@@ -2125,12 +2601,12 @@ impl super::core::AssetTrait for OnlineRichPresenceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for OnlineRichPresenceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ONLINERICHPRESENCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2168,6 +2644,15 @@ impl TypeObject for OnlineRichPresenceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2190,22 +2675,27 @@ pub struct OnlineRichPresenceContextValuePair {
 
 pub trait OnlineRichPresenceContextValuePairTrait: super::core::DataContainerTrait {
     fn context(&self) -> &Option<Arc<Mutex<dyn OnlineRichPresenceContextTrait>>>;
+    fn context_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineRichPresenceContextTrait>>>;
     fn value(&self) -> &Option<Arc<Mutex<dyn OnlineRichPresenceContextValueTrait>>>;
+    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineRichPresenceContextValueTrait>>>;
 }
 
 impl OnlineRichPresenceContextValuePairTrait for OnlineRichPresenceContextValuePair {
     fn context(&self) -> &Option<Arc<Mutex<dyn OnlineRichPresenceContextTrait>>> {
         &self.context
     }
+    fn context_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineRichPresenceContextTrait>>> {
+        &mut self.context
+    }
     fn value(&self) -> &Option<Arc<Mutex<dyn OnlineRichPresenceContextValueTrait>>> {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OnlineRichPresenceContextValueTrait>>> {
+        &mut self.value
     }
 }
 
 impl super::core::DataContainerTrait for OnlineRichPresenceContextValuePair {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ONLINERICHPRESENCECONTEXTVALUEPAIR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2243,6 +2733,15 @@ impl TypeObject for OnlineRichPresenceContextValuePair {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2266,26 +2765,35 @@ pub struct OnlineRichPresenceString {
 
 pub trait OnlineRichPresenceStringTrait: super::core::DataContainerTrait {
     fn sid(&self) -> &String;
+    fn sid_mut(&mut self) -> &mut String;
     fn xdp_name(&self) -> &String;
+    fn xdp_name_mut(&mut self) -> &mut String;
     fn index(&self) -> &u8;
+    fn index_mut(&mut self) -> &mut u8;
 }
 
 impl OnlineRichPresenceStringTrait for OnlineRichPresenceString {
     fn sid(&self) -> &String {
         &self.sid
     }
+    fn sid_mut(&mut self) -> &mut String {
+        &mut self.sid
+    }
     fn xdp_name(&self) -> &String {
         &self.xdp_name
+    }
+    fn xdp_name_mut(&mut self) -> &mut String {
+        &mut self.xdp_name
     }
     fn index(&self) -> &u8 {
         &self.index
     }
+    fn index_mut(&mut self) -> &mut u8 {
+        &mut self.index
+    }
 }
 
 impl super::core::DataContainerTrait for OnlineRichPresenceString {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ONLINERICHPRESENCESTRING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2329,6 +2837,15 @@ impl TypeObject for OnlineRichPresenceString {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2353,30 +2870,43 @@ pub struct OnlineRichPresenceContext {
 
 pub trait OnlineRichPresenceContextTrait: super::core::DataContainerTrait {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn xdp_name(&self) -> &String;
+    fn xdp_name_mut(&mut self) -> &mut String;
     fn values(&self) -> &Vec<Option<Arc<Mutex<dyn OnlineRichPresenceContextValueTrait>>>>;
+    fn values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn OnlineRichPresenceContextValueTrait>>>>;
     fn index(&self) -> &u8;
+    fn index_mut(&mut self) -> &mut u8;
 }
 
 impl OnlineRichPresenceContextTrait for OnlineRichPresenceContext {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn xdp_name(&self) -> &String {
         &self.xdp_name
+    }
+    fn xdp_name_mut(&mut self) -> &mut String {
+        &mut self.xdp_name
     }
     fn values(&self) -> &Vec<Option<Arc<Mutex<dyn OnlineRichPresenceContextValueTrait>>>> {
         &self.values
     }
+    fn values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn OnlineRichPresenceContextValueTrait>>>> {
+        &mut self.values
+    }
     fn index(&self) -> &u8 {
         &self.index
+    }
+    fn index_mut(&mut self) -> &mut u8 {
+        &mut self.index
     }
 }
 
 impl super::core::DataContainerTrait for OnlineRichPresenceContext {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ONLINERICHPRESENCECONTEXT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2426,6 +2956,15 @@ impl TypeObject for OnlineRichPresenceContext {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2450,30 +2989,43 @@ pub struct OnlineRichPresenceContextValue {
 
 pub trait OnlineRichPresenceContextValueTrait: super::core::DataContainerTrait {
     fn sid(&self) -> &String;
+    fn sid_mut(&mut self) -> &mut String;
     fn key(&self) -> &String;
+    fn key_mut(&mut self) -> &mut String;
     fn xdp_name(&self) -> &String;
+    fn xdp_name_mut(&mut self) -> &mut String;
     fn index(&self) -> &u8;
+    fn index_mut(&mut self) -> &mut u8;
 }
 
 impl OnlineRichPresenceContextValueTrait for OnlineRichPresenceContextValue {
     fn sid(&self) -> &String {
         &self.sid
     }
+    fn sid_mut(&mut self) -> &mut String {
+        &mut self.sid
+    }
     fn key(&self) -> &String {
         &self.key
+    }
+    fn key_mut(&mut self) -> &mut String {
+        &mut self.key
     }
     fn xdp_name(&self) -> &String {
         &self.xdp_name
     }
+    fn xdp_name_mut(&mut self) -> &mut String {
+        &mut self.xdp_name
+    }
     fn index(&self) -> &u8 {
         &self.index
+    }
+    fn index_mut(&mut self) -> &mut u8 {
+        &mut self.index
     }
 }
 
 impl super::core::DataContainerTrait for OnlineRichPresenceContextValue {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ONLINERICHPRESENCECONTEXTVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2523,6 +3075,15 @@ impl TypeObject for OnlineRichPresenceContextValue {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2543,11 +3104,15 @@ pub struct OnlineEnvironmentConsoleUrl {
 
 pub trait OnlineEnvironmentConsoleUrlTrait: TypeObject {
     fn urls(&self) -> &Vec<OnlineEnvironmentConsoleUrlData>;
+    fn urls_mut(&mut self) -> &mut Vec<OnlineEnvironmentConsoleUrlData>;
 }
 
 impl OnlineEnvironmentConsoleUrlTrait for OnlineEnvironmentConsoleUrl {
     fn urls(&self) -> &Vec<OnlineEnvironmentConsoleUrlData> {
         &self.urls
+    }
+    fn urls_mut(&mut self) -> &mut Vec<OnlineEnvironmentConsoleUrlData> {
+        &mut self.urls
     }
 }
 
@@ -2579,6 +3144,15 @@ impl TypeObject for OnlineEnvironmentConsoleUrl {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2600,15 +3174,23 @@ pub struct OnlineEnvironmentConsoleUrlData {
 
 pub trait OnlineEnvironmentConsoleUrlDataTrait: TypeObject {
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn url(&self) -> &OnlineEnvironmentUrl;
+    fn url_mut(&mut self) -> &mut OnlineEnvironmentUrl;
 }
 
 impl OnlineEnvironmentConsoleUrlDataTrait for OnlineEnvironmentConsoleUrlData {
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
+    }
     fn url(&self) -> &OnlineEnvironmentUrl {
         &self.url
+    }
+    fn url_mut(&mut self) -> &mut OnlineEnvironmentUrl {
+        &mut self.url
     }
 }
 
@@ -2646,6 +3228,15 @@ impl TypeObject for OnlineEnvironmentConsoleUrlData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2666,11 +3257,15 @@ pub struct OnlineEnvironmentUrl {
 
 pub trait OnlineEnvironmentUrlTrait: TypeObject {
     fn urls(&self) -> &Vec<OnlineEnvironmentUrlData>;
+    fn urls_mut(&mut self) -> &mut Vec<OnlineEnvironmentUrlData>;
 }
 
 impl OnlineEnvironmentUrlTrait for OnlineEnvironmentUrl {
     fn urls(&self) -> &Vec<OnlineEnvironmentUrlData> {
         &self.urls
+    }
+    fn urls_mut(&mut self) -> &mut Vec<OnlineEnvironmentUrlData> {
+        &mut self.urls
     }
 }
 
@@ -2702,6 +3297,15 @@ impl TypeObject for OnlineEnvironmentUrl {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2723,15 +3327,23 @@ pub struct OnlineEnvironmentUrlData {
 
 pub trait OnlineEnvironmentUrlDataTrait: TypeObject {
     fn url(&self) -> &String;
+    fn url_mut(&mut self) -> &mut String;
     fn environment(&self) -> &OnlineEnvironment;
+    fn environment_mut(&mut self) -> &mut OnlineEnvironment;
 }
 
 impl OnlineEnvironmentUrlDataTrait for OnlineEnvironmentUrlData {
     fn url(&self) -> &String {
         &self.url
     }
+    fn url_mut(&mut self) -> &mut String {
+        &mut self.url
+    }
     fn environment(&self) -> &OnlineEnvironment {
         &self.environment
+    }
+    fn environment_mut(&mut self) -> &mut OnlineEnvironment {
+        &mut self.environment
     }
 }
 
@@ -2768,6 +3380,15 @@ impl TypeObject for OnlineEnvironmentUrlData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2810,6 +3431,15 @@ impl TypeObject for OnlineEnvironment {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2832,15 +3462,23 @@ pub struct OriginPresenceBackendData {
 
 pub trait OriginPresenceBackendDataTrait: PresenceBackendDataTrait {
     fn commerce_categories(&self) -> &Vec<String>;
+    fn commerce_categories_mut(&mut self) -> &mut Vec<String>;
     fn invite_timeout(&self) -> &u32;
+    fn invite_timeout_mut(&mut self) -> &mut u32;
 }
 
 impl OriginPresenceBackendDataTrait for OriginPresenceBackendData {
     fn commerce_categories(&self) -> &Vec<String> {
         &self.commerce_categories
     }
+    fn commerce_categories_mut(&mut self) -> &mut Vec<String> {
+        &mut self.commerce_categories
+    }
     fn invite_timeout(&self) -> &u32 {
         &self.invite_timeout
+    }
+    fn invite_timeout_mut(&mut self) -> &mut u32 {
+        &mut self.invite_timeout
     }
 }
 
@@ -2848,18 +3486,21 @@ impl PresenceBackendDataTrait for OriginPresenceBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for OriginPresenceBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for OriginPresenceBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ORIGINPRESENCEBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2897,6 +3538,15 @@ impl TypeObject for OriginPresenceBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2925,18 +3575,21 @@ impl PresenceBackendDataTrait for BlazeInProcServerBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for BlazeInProcServerBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for BlazeInProcServerBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BLAZEINPROCSERVERBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2962,6 +3615,15 @@ impl TypeObject for BlazeInProcServerBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2984,15 +3646,23 @@ pub struct BlazeServerBackendData {
 
 pub trait BlazeServerBackendDataTrait: PresenceBackendDataTrait {
     fn config_url(&self) -> &OnlineEnvironmentConsoleUrl;
+    fn config_url_mut(&mut self) -> &mut OnlineEnvironmentConsoleUrl;
     fn create_game_template_name(&self) -> &String;
+    fn create_game_template_name_mut(&mut self) -> &mut String;
 }
 
 impl BlazeServerBackendDataTrait for BlazeServerBackendData {
     fn config_url(&self) -> &OnlineEnvironmentConsoleUrl {
         &self.config_url
     }
+    fn config_url_mut(&mut self) -> &mut OnlineEnvironmentConsoleUrl {
+        &mut self.config_url
+    }
     fn create_game_template_name(&self) -> &String {
         &self.create_game_template_name
+    }
+    fn create_game_template_name_mut(&mut self) -> &mut String {
+        &mut self.create_game_template_name
     }
 }
 
@@ -3000,18 +3670,21 @@ impl PresenceBackendDataTrait for BlazeServerBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for BlazeServerBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for BlazeServerBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BLAZESERVERBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3049,6 +3722,15 @@ impl TypeObject for BlazeServerBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3077,18 +3759,21 @@ impl PresenceBackendDataTrait for LanServerBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for LanServerBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LanServerBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LANSERVERBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3113,6 +3798,15 @@ impl TypeObject for LanServerBackendData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3142,18 +3836,21 @@ impl PresenceBackendDataTrait for LocalServerBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for LocalServerBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LocalServerBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALSERVERBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3179,6 +3876,15 @@ impl TypeObject for LocalServerBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3202,19 +3908,31 @@ pub struct DurangoPresenceBackendData {
 
 pub trait DurangoPresenceBackendDataTrait: PresenceBackendDataTrait {
     fn title_id(&self) -> &u32;
+    fn title_id_mut(&mut self) -> &mut u32;
     fn service_config_id(&self) -> &String;
+    fn service_config_id_mut(&mut self) -> &mut String;
     fn multiplayer_privilege_needed(&self) -> &bool;
+    fn multiplayer_privilege_needed_mut(&mut self) -> &mut bool;
 }
 
 impl DurangoPresenceBackendDataTrait for DurangoPresenceBackendData {
     fn title_id(&self) -> &u32 {
         &self.title_id
     }
+    fn title_id_mut(&mut self) -> &mut u32 {
+        &mut self.title_id
+    }
     fn service_config_id(&self) -> &String {
         &self.service_config_id
     }
+    fn service_config_id_mut(&mut self) -> &mut String {
+        &mut self.service_config_id
+    }
     fn multiplayer_privilege_needed(&self) -> &bool {
         &self.multiplayer_privilege_needed
+    }
+    fn multiplayer_privilege_needed_mut(&mut self) -> &mut bool {
+        &mut self.multiplayer_privilege_needed
     }
 }
 
@@ -3222,18 +3940,21 @@ impl PresenceBackendDataTrait for DurangoPresenceBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for DurangoPresenceBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DurangoPresenceBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DURANGOPRESENCEBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3277,6 +3998,15 @@ impl TypeObject for DurangoPresenceBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3301,23 +4031,39 @@ pub struct Ps4PresenceBackendData {
 
 pub trait Ps4PresenceBackendDataTrait: PresenceBackendDataTrait {
     fn age_settings(&self) -> &Ps4AgeSettings;
+    fn age_settings_mut(&mut self) -> &mut Ps4AgeSettings;
     fn multiplayer_privilege_needed(&self) -> &bool;
+    fn multiplayer_privilege_needed_mut(&mut self) -> &mut bool;
     fn send_invite_without_first_party_dialog(&self) -> &bool;
+    fn send_invite_without_first_party_dialog_mut(&mut self) -> &mut bool;
     fn send_invite_without_custom_message(&self) -> &bool;
+    fn send_invite_without_custom_message_mut(&mut self) -> &mut bool;
 }
 
 impl Ps4PresenceBackendDataTrait for Ps4PresenceBackendData {
     fn age_settings(&self) -> &Ps4AgeSettings {
         &self.age_settings
     }
+    fn age_settings_mut(&mut self) -> &mut Ps4AgeSettings {
+        &mut self.age_settings
+    }
     fn multiplayer_privilege_needed(&self) -> &bool {
         &self.multiplayer_privilege_needed
+    }
+    fn multiplayer_privilege_needed_mut(&mut self) -> &mut bool {
+        &mut self.multiplayer_privilege_needed
     }
     fn send_invite_without_first_party_dialog(&self) -> &bool {
         &self.send_invite_without_first_party_dialog
     }
+    fn send_invite_without_first_party_dialog_mut(&mut self) -> &mut bool {
+        &mut self.send_invite_without_first_party_dialog
+    }
     fn send_invite_without_custom_message(&self) -> &bool {
         &self.send_invite_without_custom_message
+    }
+    fn send_invite_without_custom_message_mut(&mut self) -> &mut bool {
+        &mut self.send_invite_without_custom_message
     }
 }
 
@@ -3325,18 +4071,21 @@ impl PresenceBackendDataTrait for Ps4PresenceBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for Ps4PresenceBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for Ps4PresenceBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PS4PRESENCEBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3386,6 +4135,15 @@ impl TypeObject for Ps4PresenceBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3407,15 +4165,23 @@ pub struct Ps4AgeSettings {
 
 pub trait Ps4AgeSettingsTrait: TypeObject {
     fn default_age_requirement(&self) -> &i32;
+    fn default_age_requirement_mut(&mut self) -> &mut i32;
     fn age_overrides(&self) -> &Vec<Ps4CountryAgeOverrides>;
+    fn age_overrides_mut(&mut self) -> &mut Vec<Ps4CountryAgeOverrides>;
 }
 
 impl Ps4AgeSettingsTrait for Ps4AgeSettings {
     fn default_age_requirement(&self) -> &i32 {
         &self.default_age_requirement
     }
+    fn default_age_requirement_mut(&mut self) -> &mut i32 {
+        &mut self.default_age_requirement
+    }
     fn age_overrides(&self) -> &Vec<Ps4CountryAgeOverrides> {
         &self.age_overrides
+    }
+    fn age_overrides_mut(&mut self) -> &mut Vec<Ps4CountryAgeOverrides> {
+        &mut self.age_overrides
     }
 }
 
@@ -3453,6 +4219,15 @@ impl TypeObject for Ps4AgeSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3474,15 +4249,23 @@ pub struct Ps4CountryAgeOverrides {
 
 pub trait Ps4CountryAgeOverridesTrait: TypeObject {
     fn country_code(&self) -> &String;
+    fn country_code_mut(&mut self) -> &mut String;
     fn age_requirement(&self) -> &i32;
+    fn age_requirement_mut(&mut self) -> &mut i32;
 }
 
 impl Ps4CountryAgeOverridesTrait for Ps4CountryAgeOverrides {
     fn country_code(&self) -> &String {
         &self.country_code
     }
+    fn country_code_mut(&mut self) -> &mut String {
+        &mut self.country_code
+    }
     fn age_requirement(&self) -> &i32 {
         &self.age_requirement
+    }
+    fn age_requirement_mut(&mut self) -> &mut i32 {
+        &mut self.age_requirement
     }
 }
 
@@ -3520,6 +4303,15 @@ impl TypeObject for Ps4CountryAgeOverrides {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3541,11 +4333,15 @@ pub struct NucleusPresenceBackendData {
 
 pub trait NucleusPresenceBackendDataTrait: PresenceBackendDataTrait {
     fn platforms(&self) -> &Vec<super::nucleus::NucleusPlatformConfiguration>;
+    fn platforms_mut(&mut self) -> &mut Vec<super::nucleus::NucleusPlatformConfiguration>;
 }
 
 impl NucleusPresenceBackendDataTrait for NucleusPresenceBackendData {
     fn platforms(&self) -> &Vec<super::nucleus::NucleusPlatformConfiguration> {
         &self.platforms
+    }
+    fn platforms_mut(&mut self) -> &mut Vec<super::nucleus::NucleusPlatformConfiguration> {
+        &mut self.platforms
     }
 }
 
@@ -3553,18 +4349,21 @@ impl PresenceBackendDataTrait for NucleusPresenceBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for NucleusPresenceBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for NucleusPresenceBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NUCLEUSPRESENCEBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3596,6 +4395,15 @@ impl TypeObject for NucleusPresenceBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3624,18 +4432,21 @@ impl PresenceBackendDataTrait for LanPresenceBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for LanPresenceBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LanPresenceBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LANPRESENCEBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3660,6 +4471,15 @@ impl TypeObject for LanPresenceBackendData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3689,18 +4509,21 @@ impl PresenceBackendDataTrait for DirtySockPresenceBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for DirtySockPresenceBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DirtySockPresenceBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DIRTYSOCKPRESENCEBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3726,6 +4549,15 @@ impl TypeObject for DirtySockPresenceBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3749,19 +4581,31 @@ pub struct BlazePresenceBackendData {
 
 pub trait BlazePresenceBackendDataTrait: PresenceBackendDataTrait {
     fn use_demangler_service(&self) -> &bool;
+    fn use_demangler_service_mut(&mut self) -> &mut bool;
     fn use_dirty_sock_voip(&self) -> &bool;
+    fn use_dirty_sock_voip_mut(&mut self) -> &mut bool;
     fn fetch_licenses_on_login(&self) -> &bool;
+    fn fetch_licenses_on_login_mut(&mut self) -> &mut bool;
 }
 
 impl BlazePresenceBackendDataTrait for BlazePresenceBackendData {
     fn use_demangler_service(&self) -> &bool {
         &self.use_demangler_service
     }
+    fn use_demangler_service_mut(&mut self) -> &mut bool {
+        &mut self.use_demangler_service
+    }
     fn use_dirty_sock_voip(&self) -> &bool {
         &self.use_dirty_sock_voip
     }
+    fn use_dirty_sock_voip_mut(&mut self) -> &mut bool {
+        &mut self.use_dirty_sock_voip
+    }
     fn fetch_licenses_on_login(&self) -> &bool {
         &self.fetch_licenses_on_login
+    }
+    fn fetch_licenses_on_login_mut(&mut self) -> &mut bool {
+        &mut self.fetch_licenses_on_login
     }
 }
 
@@ -3769,18 +4613,21 @@ impl PresenceBackendDataTrait for BlazePresenceBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for BlazePresenceBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for BlazePresenceBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BLAZEPRESENCEBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3824,6 +4671,15 @@ impl TypeObject for BlazePresenceBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3845,15 +4701,23 @@ pub struct PlatformFetchLicense {
 
 pub trait PlatformFetchLicenseTrait: TypeObject {
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn fetch_licenses_on_login(&self) -> &bool;
+    fn fetch_licenses_on_login_mut(&mut self) -> &mut bool;
 }
 
 impl PlatformFetchLicenseTrait for PlatformFetchLicense {
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
+    }
     fn fetch_licenses_on_login(&self) -> &bool {
         &self.fetch_licenses_on_login
+    }
+    fn fetch_licenses_on_login_mut(&mut self) -> &mut bool {
+        &mut self.fetch_licenses_on_login
     }
 }
 
@@ -3891,6 +4755,15 @@ impl TypeObject for PlatformFetchLicense {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3912,11 +4785,15 @@ pub struct PresenceBackendData {
 
 pub trait PresenceBackendDataTrait: super::core::AssetTrait {
     fn backend_type(&self) -> &i32;
+    fn backend_type_mut(&mut self) -> &mut i32;
 }
 
 impl PresenceBackendDataTrait for PresenceBackendData {
     fn backend_type(&self) -> &i32 {
         &self.backend_type
+    }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        &mut self.backend_type
     }
 }
 
@@ -3924,12 +4801,12 @@ impl super::core::AssetTrait for PresenceBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3960,6 +4837,15 @@ impl TypeObject for PresenceBackendData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4000,6 +4886,15 @@ impl TypeObject for PresenceMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4024,27 +4919,47 @@ pub struct NetworkInviteToken {
 
 pub trait NetworkInviteTokenTrait: TypeObject {
     fn invite_platform(&self) -> &super::core::GamePlatform;
+    fn invite_platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn invite_type(&self) -> &InviteType;
+    fn invite_type_mut(&mut self) -> &mut InviteType;
     fn join_method(&self) -> &InviteJoinMethod;
+    fn join_method_mut(&mut self) -> &mut InviteJoinMethod;
     fn game_id(&self) -> &u64;
+    fn game_id_mut(&mut self) -> &mut u64;
     fn player(&self) -> &NetworkInviteTokenPlayer;
+    fn player_mut(&mut self) -> &mut NetworkInviteTokenPlayer;
 }
 
 impl NetworkInviteTokenTrait for NetworkInviteToken {
     fn invite_platform(&self) -> &super::core::GamePlatform {
         &self.invite_platform
     }
+    fn invite_platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.invite_platform
+    }
     fn invite_type(&self) -> &InviteType {
         &self.invite_type
+    }
+    fn invite_type_mut(&mut self) -> &mut InviteType {
+        &mut self.invite_type
     }
     fn join_method(&self) -> &InviteJoinMethod {
         &self.join_method
     }
+    fn join_method_mut(&mut self) -> &mut InviteJoinMethod {
+        &mut self.join_method
+    }
     fn game_id(&self) -> &u64 {
         &self.game_id
     }
+    fn game_id_mut(&mut self) -> &mut u64 {
+        &mut self.game_id
+    }
     fn player(&self) -> &NetworkInviteTokenPlayer {
         &self.player
+    }
+    fn player_mut(&mut self) -> &mut NetworkInviteTokenPlayer {
+        &mut self.player
     }
 }
 
@@ -4100,6 +5015,15 @@ impl TypeObject for NetworkInviteToken {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4121,15 +5045,23 @@ pub struct NetworkInviteTokenPlayer {
 
 pub trait NetworkInviteTokenPlayerTrait: TypeObject {
     fn id_type(&self) -> &InviteIdType;
+    fn id_type_mut(&mut self) -> &mut InviteIdType;
     fn id_number(&self) -> &u64;
+    fn id_number_mut(&mut self) -> &mut u64;
 }
 
 impl NetworkInviteTokenPlayerTrait for NetworkInviteTokenPlayer {
     fn id_type(&self) -> &InviteIdType {
         &self.id_type
     }
+    fn id_type_mut(&mut self) -> &mut InviteIdType {
+        &mut self.id_type
+    }
     fn id_number(&self) -> &u64 {
         &self.id_number
+    }
+    fn id_number_mut(&mut self) -> &mut u64 {
+        &mut self.id_number
     }
 }
 
@@ -4167,6 +5099,15 @@ impl TypeObject for NetworkInviteTokenPlayer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4203,6 +5144,15 @@ impl TypeObject for InviteIdStringConstants {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4247,6 +5197,15 @@ impl TypeObject for InviteIdType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4287,6 +5246,15 @@ impl TypeObject for InviteJoinMethod {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4326,6 +5294,15 @@ impl TypeObject for InviteType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4373,6 +5350,15 @@ impl TypeObject for OnlinePrivilege {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4418,6 +5404,15 @@ impl TypeObject for PresencePlayTogetherRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4451,6 +5446,15 @@ impl TypeObject for PresenceGamegroupUpdatedMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4486,6 +5490,15 @@ impl TypeObject for PresenceLoginLicenseRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4519,6 +5532,15 @@ impl TypeObject for PresenceLoginLicenseMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4554,6 +5576,15 @@ impl TypeObject for PresenceBlazeAutoAccountLoginMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4587,6 +5618,15 @@ impl TypeObject for PresenceJoinRemoteGameMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4622,6 +5662,15 @@ impl TypeObject for PresenceCommitPlayerToGameMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4655,6 +5704,15 @@ impl TypeObject for PresenceUserProfileRequestMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4690,6 +5748,15 @@ impl TypeObject for PresenceUserProfileMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4723,6 +5790,15 @@ impl TypeObject for PresenceUserIdRequestMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4758,6 +5834,15 @@ impl TypeObject for PresenceUserIdMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4791,6 +5876,15 @@ impl TypeObject for PresencePSPlusRequestMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4826,6 +5920,15 @@ impl TypeObject for PresenceProfanityFilterResponseMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4859,6 +5962,15 @@ impl TypeObject for PresenceProfanityFilterRequestMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4894,6 +6006,15 @@ impl TypeObject for PresencePrivilegeRequestResultMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4927,6 +6048,15 @@ impl TypeObject for PresencePrivilegeRequestMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4962,6 +6092,15 @@ impl TypeObject for PresenceOriginUserNameRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4995,6 +6134,15 @@ impl TypeObject for PresenceOriginUserNameMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5030,6 +6178,15 @@ impl TypeObject for PresenceLivePartyMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5063,6 +6220,15 @@ impl TypeObject for PresenceInviteRequestMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5098,6 +6264,15 @@ impl TypeObject for PresenceInviteMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5131,6 +6306,15 @@ impl TypeObject for PresenceFriendsListManagerSettingsMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5166,6 +6350,15 @@ impl TypeObject for PresenceFriendRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5199,6 +6392,15 @@ impl TypeObject for PresenceFriendMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5234,6 +6436,15 @@ impl TypeObject for PresenceConnectionRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5267,6 +6478,15 @@ impl TypeObject for PresenceConnectionMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5302,6 +6522,15 @@ impl TypeObject for PresenceBlockListRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5335,6 +6564,15 @@ impl TypeObject for PresenceBlockListMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5370,6 +6608,15 @@ impl TypeObject for PresenceBlobRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5403,6 +6650,15 @@ impl TypeObject for PresenceBlobMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5438,6 +6694,15 @@ impl TypeObject for PresenceBlazeUserRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5471,6 +6736,15 @@ impl TypeObject for PresenceBlazeUserMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5506,6 +6780,15 @@ impl TypeObject for PresenceAuthenticationRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5539,6 +6822,15 @@ impl TypeObject for PresenceAuthenticationMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5574,6 +6866,15 @@ impl TypeObject for PresenceAccountRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5607,6 +6908,15 @@ impl TypeObject for PresenceAccountMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

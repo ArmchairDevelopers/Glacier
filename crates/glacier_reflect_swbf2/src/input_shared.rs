@@ -130,151 +130,295 @@ pub struct InputSettings {
 
 pub trait InputSettingsTrait: super::core::SystemSettingsTrait {
     fn input_configuration_asset(&self) -> &Option<Arc<Mutex<dyn InputConfigurationAssetTrait>>>;
+    fn input_configuration_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConfigurationAssetTrait>>>;
     fn input_enable(&self) -> &bool;
+    fn input_enable_mut(&mut self) -> &mut bool;
     fn use_raw_gamepad_input(&self) -> &bool;
+    fn use_raw_gamepad_input_mut(&mut self) -> &mut bool;
     fn vr_device_type(&self) -> &u32;
+    fn vr_device_type_mut(&mut self) -> &mut u32;
     fn invert_pitch(&self) -> &bool;
+    fn invert_pitch_mut(&mut self) -> &mut bool;
     fn invert_pad_pc_right_stick(&self) -> &bool;
+    fn invert_pad_pc_right_stick_mut(&mut self) -> &mut bool;
     fn invert_yaw(&self) -> &bool;
+    fn invert_yaw_mut(&mut self) -> &mut bool;
     fn console_input_emulation(&self) -> &bool;
+    fn console_input_emulation_mut(&mut self) -> &mut bool;
     fn pads_rumble_enabled(&self) -> &Vec<bool>;
+    fn pads_rumble_enabled_mut(&mut self) -> &mut Vec<bool>;
     fn pads_index(&self) -> &Vec<u32>;
+    fn pads_index_mut(&mut self) -> &mut Vec<u32>;
     fn xenon_gamepad_dead_zone_center(&self) -> &f32;
+    fn xenon_gamepad_dead_zone_center_mut(&mut self) -> &mut f32;
     fn xenon_gamepad_dead_zone_axis(&self) -> &f32;
+    fn xenon_gamepad_dead_zone_axis_mut(&mut self) -> &mut f32;
     fn xenon_gamepad_dead_zone_offset_axis(&self) -> &f32;
+    fn xenon_gamepad_dead_zone_offset_axis_mut(&mut self) -> &mut f32;
     fn p_s3_gamepad_dead_zone_center(&self) -> &f32;
+    fn p_s3_gamepad_dead_zone_center_mut(&mut self) -> &mut f32;
     fn p_s3_gamepad_dead_zone_axis(&self) -> &f32;
+    fn p_s3_gamepad_dead_zone_axis_mut(&mut self) -> &mut f32;
     fn p_s3_gamepad_dead_zone_offset_axis(&self) -> &f32;
+    fn p_s3_gamepad_dead_zone_offset_axis_mut(&mut self) -> &mut f32;
     fn p_c_gamepad_dead_zone_center(&self) -> &f32;
+    fn p_c_gamepad_dead_zone_center_mut(&mut self) -> &mut f32;
     fn p_c_gamepad_dead_zone_axis(&self) -> &f32;
+    fn p_c_gamepad_dead_zone_axis_mut(&mut self) -> &mut f32;
     fn p_c_gamepad_dead_zone_offset_axis(&self) -> &f32;
+    fn p_c_gamepad_dead_zone_offset_axis_mut(&mut self) -> &mut f32;
     fn gen4a_gamepad_dead_zone_center(&self) -> &f32;
+    fn gen4a_gamepad_dead_zone_center_mut(&mut self) -> &mut f32;
     fn gen4a_gamepad_dead_zone_axis(&self) -> &f32;
+    fn gen4a_gamepad_dead_zone_axis_mut(&mut self) -> &mut f32;
     fn gen4a_gamepad_dead_zone_offset_axis(&self) -> &f32;
+    fn gen4a_gamepad_dead_zone_offset_axis_mut(&mut self) -> &mut f32;
     fn gen4b_gamepad_dead_zone_center(&self) -> &f32;
+    fn gen4b_gamepad_dead_zone_center_mut(&mut self) -> &mut f32;
     fn gen4b_gamepad_dead_zone_axis(&self) -> &f32;
+    fn gen4b_gamepad_dead_zone_axis_mut(&mut self) -> &mut f32;
     fn gen4b_gamepad_dead_zone_offset_axis(&self) -> &f32;
+    fn gen4b_gamepad_dead_zone_offset_axis_mut(&mut self) -> &mut f32;
     fn use_mouse_and_keyboard_system(&self) -> &bool;
+    fn use_mouse_and_keyboard_system_mut(&mut self) -> &mut bool;
     fn use_global_game_pad_input(&self) -> &bool;
+    fn use_global_game_pad_input_mut(&mut self) -> &mut bool;
     fn use_pc_game_pad_input(&self) -> &bool;
+    fn use_pc_game_pad_input_mut(&mut self) -> &mut bool;
     fn gamepad_guid(&self) -> &String;
+    fn gamepad_guid_mut(&mut self) -> &mut String;
     fn mouse_sensitivity_min(&self) -> &f32;
+    fn mouse_sensitivity_min_mut(&mut self) -> &mut f32;
     fn mouse_sensitivity_slider_range(&self) -> &f32;
+    fn mouse_sensitivity_slider_range_mut(&mut self) -> &mut f32;
     fn mouse_sensitivity_factor(&self) -> &f32;
+    fn mouse_sensitivity_factor_mut(&mut self) -> &mut f32;
     fn mouse_sensitivity_power(&self) -> &f32;
+    fn mouse_sensitivity_power_mut(&mut self) -> &mut f32;
     fn invert_free_camera(&self) -> &bool;
+    fn invert_free_camera_mut(&mut self) -> &mut bool;
     fn thread_enable(&self) -> &bool;
+    fn thread_enable_mut(&mut self) -> &mut bool;
     fn thread_poll_frequency(&self) -> &u32;
+    fn thread_poll_frequency_mut(&mut self) -> &mut u32;
 }
 
 impl InputSettingsTrait for InputSettings {
     fn input_configuration_asset(&self) -> &Option<Arc<Mutex<dyn InputConfigurationAssetTrait>>> {
         &self.input_configuration_asset
     }
+    fn input_configuration_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConfigurationAssetTrait>>> {
+        &mut self.input_configuration_asset
+    }
     fn input_enable(&self) -> &bool {
         &self.input_enable
+    }
+    fn input_enable_mut(&mut self) -> &mut bool {
+        &mut self.input_enable
     }
     fn use_raw_gamepad_input(&self) -> &bool {
         &self.use_raw_gamepad_input
     }
+    fn use_raw_gamepad_input_mut(&mut self) -> &mut bool {
+        &mut self.use_raw_gamepad_input
+    }
     fn vr_device_type(&self) -> &u32 {
         &self.vr_device_type
+    }
+    fn vr_device_type_mut(&mut self) -> &mut u32 {
+        &mut self.vr_device_type
     }
     fn invert_pitch(&self) -> &bool {
         &self.invert_pitch
     }
+    fn invert_pitch_mut(&mut self) -> &mut bool {
+        &mut self.invert_pitch
+    }
     fn invert_pad_pc_right_stick(&self) -> &bool {
         &self.invert_pad_pc_right_stick
+    }
+    fn invert_pad_pc_right_stick_mut(&mut self) -> &mut bool {
+        &mut self.invert_pad_pc_right_stick
     }
     fn invert_yaw(&self) -> &bool {
         &self.invert_yaw
     }
+    fn invert_yaw_mut(&mut self) -> &mut bool {
+        &mut self.invert_yaw
+    }
     fn console_input_emulation(&self) -> &bool {
         &self.console_input_emulation
+    }
+    fn console_input_emulation_mut(&mut self) -> &mut bool {
+        &mut self.console_input_emulation
     }
     fn pads_rumble_enabled(&self) -> &Vec<bool> {
         &self.pads_rumble_enabled
     }
+    fn pads_rumble_enabled_mut(&mut self) -> &mut Vec<bool> {
+        &mut self.pads_rumble_enabled
+    }
     fn pads_index(&self) -> &Vec<u32> {
         &self.pads_index
+    }
+    fn pads_index_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.pads_index
     }
     fn xenon_gamepad_dead_zone_center(&self) -> &f32 {
         &self.xenon_gamepad_dead_zone_center
     }
+    fn xenon_gamepad_dead_zone_center_mut(&mut self) -> &mut f32 {
+        &mut self.xenon_gamepad_dead_zone_center
+    }
     fn xenon_gamepad_dead_zone_axis(&self) -> &f32 {
         &self.xenon_gamepad_dead_zone_axis
+    }
+    fn xenon_gamepad_dead_zone_axis_mut(&mut self) -> &mut f32 {
+        &mut self.xenon_gamepad_dead_zone_axis
     }
     fn xenon_gamepad_dead_zone_offset_axis(&self) -> &f32 {
         &self.xenon_gamepad_dead_zone_offset_axis
     }
+    fn xenon_gamepad_dead_zone_offset_axis_mut(&mut self) -> &mut f32 {
+        &mut self.xenon_gamepad_dead_zone_offset_axis
+    }
     fn p_s3_gamepad_dead_zone_center(&self) -> &f32 {
         &self.p_s3_gamepad_dead_zone_center
+    }
+    fn p_s3_gamepad_dead_zone_center_mut(&mut self) -> &mut f32 {
+        &mut self.p_s3_gamepad_dead_zone_center
     }
     fn p_s3_gamepad_dead_zone_axis(&self) -> &f32 {
         &self.p_s3_gamepad_dead_zone_axis
     }
+    fn p_s3_gamepad_dead_zone_axis_mut(&mut self) -> &mut f32 {
+        &mut self.p_s3_gamepad_dead_zone_axis
+    }
     fn p_s3_gamepad_dead_zone_offset_axis(&self) -> &f32 {
         &self.p_s3_gamepad_dead_zone_offset_axis
+    }
+    fn p_s3_gamepad_dead_zone_offset_axis_mut(&mut self) -> &mut f32 {
+        &mut self.p_s3_gamepad_dead_zone_offset_axis
     }
     fn p_c_gamepad_dead_zone_center(&self) -> &f32 {
         &self.p_c_gamepad_dead_zone_center
     }
+    fn p_c_gamepad_dead_zone_center_mut(&mut self) -> &mut f32 {
+        &mut self.p_c_gamepad_dead_zone_center
+    }
     fn p_c_gamepad_dead_zone_axis(&self) -> &f32 {
         &self.p_c_gamepad_dead_zone_axis
+    }
+    fn p_c_gamepad_dead_zone_axis_mut(&mut self) -> &mut f32 {
+        &mut self.p_c_gamepad_dead_zone_axis
     }
     fn p_c_gamepad_dead_zone_offset_axis(&self) -> &f32 {
         &self.p_c_gamepad_dead_zone_offset_axis
     }
+    fn p_c_gamepad_dead_zone_offset_axis_mut(&mut self) -> &mut f32 {
+        &mut self.p_c_gamepad_dead_zone_offset_axis
+    }
     fn gen4a_gamepad_dead_zone_center(&self) -> &f32 {
         &self.gen4a_gamepad_dead_zone_center
+    }
+    fn gen4a_gamepad_dead_zone_center_mut(&mut self) -> &mut f32 {
+        &mut self.gen4a_gamepad_dead_zone_center
     }
     fn gen4a_gamepad_dead_zone_axis(&self) -> &f32 {
         &self.gen4a_gamepad_dead_zone_axis
     }
+    fn gen4a_gamepad_dead_zone_axis_mut(&mut self) -> &mut f32 {
+        &mut self.gen4a_gamepad_dead_zone_axis
+    }
     fn gen4a_gamepad_dead_zone_offset_axis(&self) -> &f32 {
         &self.gen4a_gamepad_dead_zone_offset_axis
+    }
+    fn gen4a_gamepad_dead_zone_offset_axis_mut(&mut self) -> &mut f32 {
+        &mut self.gen4a_gamepad_dead_zone_offset_axis
     }
     fn gen4b_gamepad_dead_zone_center(&self) -> &f32 {
         &self.gen4b_gamepad_dead_zone_center
     }
+    fn gen4b_gamepad_dead_zone_center_mut(&mut self) -> &mut f32 {
+        &mut self.gen4b_gamepad_dead_zone_center
+    }
     fn gen4b_gamepad_dead_zone_axis(&self) -> &f32 {
         &self.gen4b_gamepad_dead_zone_axis
+    }
+    fn gen4b_gamepad_dead_zone_axis_mut(&mut self) -> &mut f32 {
+        &mut self.gen4b_gamepad_dead_zone_axis
     }
     fn gen4b_gamepad_dead_zone_offset_axis(&self) -> &f32 {
         &self.gen4b_gamepad_dead_zone_offset_axis
     }
+    fn gen4b_gamepad_dead_zone_offset_axis_mut(&mut self) -> &mut f32 {
+        &mut self.gen4b_gamepad_dead_zone_offset_axis
+    }
     fn use_mouse_and_keyboard_system(&self) -> &bool {
         &self.use_mouse_and_keyboard_system
+    }
+    fn use_mouse_and_keyboard_system_mut(&mut self) -> &mut bool {
+        &mut self.use_mouse_and_keyboard_system
     }
     fn use_global_game_pad_input(&self) -> &bool {
         &self.use_global_game_pad_input
     }
+    fn use_global_game_pad_input_mut(&mut self) -> &mut bool {
+        &mut self.use_global_game_pad_input
+    }
     fn use_pc_game_pad_input(&self) -> &bool {
         &self.use_pc_game_pad_input
+    }
+    fn use_pc_game_pad_input_mut(&mut self) -> &mut bool {
+        &mut self.use_pc_game_pad_input
     }
     fn gamepad_guid(&self) -> &String {
         &self.gamepad_guid
     }
+    fn gamepad_guid_mut(&mut self) -> &mut String {
+        &mut self.gamepad_guid
+    }
     fn mouse_sensitivity_min(&self) -> &f32 {
         &self.mouse_sensitivity_min
+    }
+    fn mouse_sensitivity_min_mut(&mut self) -> &mut f32 {
+        &mut self.mouse_sensitivity_min
     }
     fn mouse_sensitivity_slider_range(&self) -> &f32 {
         &self.mouse_sensitivity_slider_range
     }
+    fn mouse_sensitivity_slider_range_mut(&mut self) -> &mut f32 {
+        &mut self.mouse_sensitivity_slider_range
+    }
     fn mouse_sensitivity_factor(&self) -> &f32 {
         &self.mouse_sensitivity_factor
+    }
+    fn mouse_sensitivity_factor_mut(&mut self) -> &mut f32 {
+        &mut self.mouse_sensitivity_factor
     }
     fn mouse_sensitivity_power(&self) -> &f32 {
         &self.mouse_sensitivity_power
     }
+    fn mouse_sensitivity_power_mut(&mut self) -> &mut f32 {
+        &mut self.mouse_sensitivity_power
+    }
     fn invert_free_camera(&self) -> &bool {
         &self.invert_free_camera
+    }
+    fn invert_free_camera_mut(&mut self) -> &mut bool {
+        &mut self.invert_free_camera
     }
     fn thread_enable(&self) -> &bool {
         &self.thread_enable
     }
+    fn thread_enable_mut(&mut self) -> &mut bool {
+        &mut self.thread_enable
+    }
     fn thread_poll_frequency(&self) -> &u32 {
         &self.thread_poll_frequency
+    }
+    fn thread_poll_frequency_mut(&mut self) -> &mut u32 {
+        &mut self.thread_poll_frequency
     }
 }
 
@@ -282,12 +426,12 @@ impl super::core::SystemSettingsTrait for InputSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for InputSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -529,6 +673,15 @@ impl TypeObject for InputSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -574,6 +727,15 @@ impl TypeObject for ClientInputRemotePadChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -607,6 +769,15 @@ impl TypeObject for ClientInputSettingsRefreshMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -642,6 +813,15 @@ impl TypeObject for ClientInputUnchangedInputMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -675,6 +855,15 @@ impl TypeObject for InputMessagesResetJoystickSimValuesMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -710,6 +899,15 @@ impl TypeObject for InputMessagesKeyboardLayoutChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -744,6 +942,15 @@ impl TypeObject for InputMessagesSingleInputEventMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -758,27 +965,47 @@ pub struct InputGraph {
 
 pub trait InputGraphTrait: super::expression::ExpressionFunctionTypeInfoAssetTrait {
     fn input_action_maps(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
+    fn input_action_maps_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
     fn combined_input_concept_to_entry_input_action_mappings(&self) -> &Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>>;
+    fn combined_input_concept_to_entry_input_action_mappings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>>;
     fn concept_ports(&self) -> &Vec<InputConceptNodePorts>;
+    fn concept_ports_mut(&mut self) -> &mut Vec<InputConceptNodePorts>;
     fn action_ports(&self) -> &Vec<EntryInputActionNodePorts>;
+    fn action_ports_mut(&mut self) -> &mut Vec<EntryInputActionNodePorts>;
     fn player_id_port(&self) -> &u32;
+    fn player_id_port_mut(&mut self) -> &mut u32;
 }
 
 impl InputGraphTrait for InputGraph {
     fn input_action_maps(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
         &self.input_action_maps
     }
+    fn input_action_maps_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
+        &mut self.input_action_maps
+    }
     fn combined_input_concept_to_entry_input_action_mappings(&self) -> &Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>> {
         &self.combined_input_concept_to_entry_input_action_mappings
+    }
+    fn combined_input_concept_to_entry_input_action_mappings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>> {
+        &mut self.combined_input_concept_to_entry_input_action_mappings
     }
     fn concept_ports(&self) -> &Vec<InputConceptNodePorts> {
         &self.concept_ports
     }
+    fn concept_ports_mut(&mut self) -> &mut Vec<InputConceptNodePorts> {
+        &mut self.concept_ports
+    }
     fn action_ports(&self) -> &Vec<EntryInputActionNodePorts> {
         &self.action_ports
     }
+    fn action_ports_mut(&mut self) -> &mut Vec<EntryInputActionNodePorts> {
+        &mut self.action_ports
+    }
     fn player_id_port(&self) -> &u32 {
         &self.player_id_port
+    }
+    fn player_id_port_mut(&mut self) -> &mut u32 {
+        &mut self.player_id_port
     }
 }
 
@@ -786,14 +1013,23 @@ impl super::expression::ExpressionFunctionTypeInfoAssetTrait for InputGraph {
     fn graph_data(&self) -> &Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>> {
         self._glacier_base.graph_data()
     }
+    fn graph_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>> {
+        self._glacier_base.graph_data_mut()
+    }
 }
 
 impl super::core::FunctionTypeInfoAssetTrait for InputGraph {
     fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoParameterDataContainerTrait>>>> {
         self._glacier_base.parameters()
     }
+    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoParameterDataContainerTrait>>>> {
+        self._glacier_base.parameters_mut()
+    }
     fn owner(&self) -> &Option<Arc<Mutex<dyn super::core::ClassInfoAssetTrait>>> {
         self._glacier_base.owner()
+    }
+    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::ClassInfoAssetTrait>>> {
+        self._glacier_base.owner_mut()
     }
 }
 
@@ -801,17 +1037,32 @@ impl super::core::TypeInfoAssetTrait for InputGraph {
     fn module_name(&self) -> &String {
         self._glacier_base.module_name()
     }
+    fn module_name_mut(&mut self) -> &mut String {
+        self._glacier_base.module_name_mut()
+    }
     fn type_name(&self) -> &String {
         self._glacier_base.type_name()
+    }
+    fn type_name_mut(&mut self) -> &mut String {
+        self._glacier_base.type_name_mut()
     }
     fn is_meta(&self) -> &bool {
         self._glacier_base.is_meta()
     }
+    fn is_meta_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_meta_mut()
+    }
     fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
         self._glacier_base.attributes()
     }
+    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
+        self._glacier_base.attributes_mut()
+    }
     fn is_native(&self) -> &bool {
         self._glacier_base.is_native()
+    }
+    fn is_native_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_native_mut()
     }
 }
 
@@ -819,12 +1070,12 @@ impl super::core::AssetTrait for InputGraph {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for InputGraph {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTGRAPH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -880,6 +1131,15 @@ impl TypeObject for InputGraph {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -902,19 +1162,31 @@ pub struct EntryInputActionNodePorts {
 
 pub trait EntryInputActionNodePortsTrait: TypeObject {
     fn action(&self) -> &i32;
+    fn action_mut(&mut self) -> &mut i32;
     fn level_port(&self) -> &u32;
+    fn level_port_mut(&mut self) -> &mut u32;
     fn is_down_port(&self) -> &u32;
+    fn is_down_port_mut(&mut self) -> &mut u32;
 }
 
 impl EntryInputActionNodePortsTrait for EntryInputActionNodePorts {
     fn action(&self) -> &i32 {
         &self.action
     }
+    fn action_mut(&mut self) -> &mut i32 {
+        &mut self.action
+    }
     fn level_port(&self) -> &u32 {
         &self.level_port
     }
+    fn level_port_mut(&mut self) -> &mut u32 {
+        &mut self.level_port
+    }
     fn is_down_port(&self) -> &u32 {
         &self.is_down_port
+    }
+    fn is_down_port_mut(&mut self) -> &mut u32 {
+        &mut self.is_down_port
     }
 }
 
@@ -958,6 +1230,15 @@ impl TypeObject for EntryInputActionNodePorts {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -982,27 +1263,47 @@ pub struct InputConceptNodePorts {
 
 pub trait InputConceptNodePortsTrait: TypeObject {
     fn identifier(&self) -> &i32;
+    fn identifier_mut(&mut self) -> &mut i32;
     fn level_port(&self) -> &u32;
+    fn level_port_mut(&mut self) -> &mut u32;
     fn went_down_port(&self) -> &u32;
+    fn went_down_port_mut(&mut self) -> &mut u32;
     fn is_down_port(&self) -> &u32;
+    fn is_down_port_mut(&mut self) -> &mut u32;
     fn went_up_port(&self) -> &u32;
+    fn went_up_port_mut(&mut self) -> &mut u32;
 }
 
 impl InputConceptNodePortsTrait for InputConceptNodePorts {
     fn identifier(&self) -> &i32 {
         &self.identifier
     }
+    fn identifier_mut(&mut self) -> &mut i32 {
+        &mut self.identifier
+    }
     fn level_port(&self) -> &u32 {
         &self.level_port
+    }
+    fn level_port_mut(&mut self) -> &mut u32 {
+        &mut self.level_port
     }
     fn went_down_port(&self) -> &u32 {
         &self.went_down_port
     }
+    fn went_down_port_mut(&mut self) -> &mut u32 {
+        &mut self.went_down_port
+    }
     fn is_down_port(&self) -> &u32 {
         &self.is_down_port
     }
+    fn is_down_port_mut(&mut self) -> &mut u32 {
+        &mut self.is_down_port
+    }
     fn went_up_port(&self) -> &u32 {
         &self.went_up_port
+    }
+    fn went_up_port_mut(&mut self) -> &mut u32 {
+        &mut self.went_up_port
     }
 }
 
@@ -1058,6 +1359,15 @@ impl TypeObject for InputConceptNodePorts {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1079,18 +1389,19 @@ pub struct InputConceptToEntryInputActionMappings {
 
 pub trait InputConceptToEntryInputActionMappingsTrait: super::core::DataContainerTrait {
     fn mappings(&self) -> &Vec<InputConceptToEntryInputActionMappingStruct>;
+    fn mappings_mut(&mut self) -> &mut Vec<InputConceptToEntryInputActionMappingStruct>;
 }
 
 impl InputConceptToEntryInputActionMappingsTrait for InputConceptToEntryInputActionMappings {
     fn mappings(&self) -> &Vec<InputConceptToEntryInputActionMappingStruct> {
         &self.mappings
     }
+    fn mappings_mut(&mut self) -> &mut Vec<InputConceptToEntryInputActionMappingStruct> {
+        &mut self.mappings
+    }
 }
 
 impl super::core::DataContainerTrait for InputConceptToEntryInputActionMappings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTCONCEPTTOENTRYINPUTACTIONMAPPINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1122,6 +1433,15 @@ impl TypeObject for InputConceptToEntryInputActionMappings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1143,15 +1463,23 @@ pub struct InputConceptToEntryInputActionMappingStruct {
 
 pub trait InputConceptToEntryInputActionMappingStructTrait: TypeObject {
     fn concept_identifier(&self) -> &i32;
+    fn concept_identifier_mut(&mut self) -> &mut i32;
     fn action_identifier(&self) -> &i32;
+    fn action_identifier_mut(&mut self) -> &mut i32;
 }
 
 impl InputConceptToEntryInputActionMappingStructTrait for InputConceptToEntryInputActionMappingStruct {
     fn concept_identifier(&self) -> &i32 {
         &self.concept_identifier
     }
+    fn concept_identifier_mut(&mut self) -> &mut i32 {
+        &mut self.concept_identifier
+    }
     fn action_identifier(&self) -> &i32 {
         &self.action_identifier
+    }
+    fn action_identifier_mut(&mut self) -> &mut i32 {
+        &mut self.action_identifier
     }
 }
 
@@ -1188,6 +1516,15 @@ impl TypeObject for InputConceptToEntryInputActionMappingStruct {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1371,6 +1708,15 @@ impl TypeObject for InputDeviceKeys {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1410,6 +1756,15 @@ impl TypeObject for CursorStyle {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1455,6 +1810,15 @@ impl TypeObject for InputDeviceMouseButtons {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1505,6 +1869,15 @@ impl TypeObject for InputDeviceMotionControllerButtons {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1580,6 +1953,15 @@ impl TypeObject for InputDeviceWheelButtons {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1682,6 +2064,15 @@ impl TypeObject for InputDevicePadButtons {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1743,6 +2134,15 @@ impl TypeObject for InputDeviceAxes {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1772,43 +2172,79 @@ pub struct InputConfigurationAsset {
 
 pub trait InputConfigurationAssetTrait: super::core::AssetTrait {
     fn default_input_graph(&self) -> &Option<Arc<Mutex<dyn InputGraphTrait>>>;
+    fn default_input_graph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputGraphTrait>>>;
     fn default_input_action_maps(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
+    fn default_input_action_maps_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
     fn default_input_concept_to_entry_input_mappings(&self) -> &Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>>;
+    fn default_input_concept_to_entry_input_mappings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>>;
     fn entry_input_action_bindings(&self) -> &Option<Arc<Mutex<dyn EntryInputActionBindingsDataTrait>>>;
+    fn entry_input_action_bindings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntryInputActionBindingsDataTrait>>>;
     fn user_configurable_action_maps(&self) -> &Vec<EditableActionMap>;
+    fn user_configurable_action_maps_mut(&mut self) -> &mut Vec<EditableActionMap>;
     fn default_exclusive_input_concepts(&self) -> &Vec<i32>;
+    fn default_exclusive_input_concepts_mut(&mut self) -> &mut Vec<i32>;
     fn reverse_input_concept_exclusion(&self) -> &bool;
+    fn reverse_input_concept_exclusion_mut(&mut self) -> &mut bool;
     fn input_curves_enabled(&self) -> &bool;
+    fn input_curves_enabled_mut(&mut self) -> &mut bool;
     fn input_settings(&self) -> &Vec<Option<Arc<Mutex<dyn BaseInputSettingsTrait>>>>;
+    fn input_settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn BaseInputSettingsTrait>>>>;
 }
 
 impl InputConfigurationAssetTrait for InputConfigurationAsset {
     fn default_input_graph(&self) -> &Option<Arc<Mutex<dyn InputGraphTrait>>> {
         &self.default_input_graph
     }
+    fn default_input_graph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputGraphTrait>>> {
+        &mut self.default_input_graph
+    }
     fn default_input_action_maps(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
         &self.default_input_action_maps
+    }
+    fn default_input_action_maps_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
+        &mut self.default_input_action_maps
     }
     fn default_input_concept_to_entry_input_mappings(&self) -> &Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>> {
         &self.default_input_concept_to_entry_input_mappings
     }
+    fn default_input_concept_to_entry_input_mappings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>> {
+        &mut self.default_input_concept_to_entry_input_mappings
+    }
     fn entry_input_action_bindings(&self) -> &Option<Arc<Mutex<dyn EntryInputActionBindingsDataTrait>>> {
         &self.entry_input_action_bindings
+    }
+    fn entry_input_action_bindings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntryInputActionBindingsDataTrait>>> {
+        &mut self.entry_input_action_bindings
     }
     fn user_configurable_action_maps(&self) -> &Vec<EditableActionMap> {
         &self.user_configurable_action_maps
     }
+    fn user_configurable_action_maps_mut(&mut self) -> &mut Vec<EditableActionMap> {
+        &mut self.user_configurable_action_maps
+    }
     fn default_exclusive_input_concepts(&self) -> &Vec<i32> {
         &self.default_exclusive_input_concepts
+    }
+    fn default_exclusive_input_concepts_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.default_exclusive_input_concepts
     }
     fn reverse_input_concept_exclusion(&self) -> &bool {
         &self.reverse_input_concept_exclusion
     }
+    fn reverse_input_concept_exclusion_mut(&mut self) -> &mut bool {
+        &mut self.reverse_input_concept_exclusion
+    }
     fn input_curves_enabled(&self) -> &bool {
         &self.input_curves_enabled
     }
+    fn input_curves_enabled_mut(&mut self) -> &mut bool {
+        &mut self.input_curves_enabled
+    }
     fn input_settings(&self) -> &Vec<Option<Arc<Mutex<dyn BaseInputSettingsTrait>>>> {
         &self.input_settings
+    }
+    fn input_settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn BaseInputSettingsTrait>>>> {
+        &mut self.input_settings
     }
 }
 
@@ -1816,12 +2252,12 @@ impl super::core::AssetTrait for InputConfigurationAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for InputConfigurationAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTCONFIGURATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1901,6 +2337,15 @@ impl TypeObject for InputConfigurationAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1922,15 +2367,23 @@ pub struct EditableActionMap {
 
 pub trait EditableActionMapTrait: TypeObject {
     fn id(&self) -> &String;
+    fn id_mut(&mut self) -> &mut String;
     fn action_map(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
+    fn action_map_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
 }
 
 impl EditableActionMapTrait for EditableActionMap {
     fn id(&self) -> &String {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut String {
+        &mut self.id
+    }
     fn action_map(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
         &self.action_map
+    }
+    fn action_map_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
+        &mut self.action_map
     }
 }
 
@@ -1968,6 +2421,15 @@ impl TypeObject for EditableActionMap {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1992,23 +2454,39 @@ pub struct InputActionMapsData {
 
 pub trait InputActionMapsDataTrait: super::core::AssetTrait {
     fn action_map_settings_scheme(&self) -> &i32;
+    fn action_map_settings_scheme_mut(&mut self) -> &mut i32;
     fn default_input_action_map(&self) -> &InputActionMapSlot;
+    fn default_input_action_map_mut(&mut self) -> &mut InputActionMapSlot;
     fn input_action_maps(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionMapDataTrait>>>>;
+    fn input_action_maps_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionMapDataTrait>>>>;
     fn identifier(&self) -> &u32;
+    fn identifier_mut(&mut self) -> &mut u32;
 }
 
 impl InputActionMapsDataTrait for InputActionMapsData {
     fn action_map_settings_scheme(&self) -> &i32 {
         &self.action_map_settings_scheme
     }
+    fn action_map_settings_scheme_mut(&mut self) -> &mut i32 {
+        &mut self.action_map_settings_scheme
+    }
     fn default_input_action_map(&self) -> &InputActionMapSlot {
         &self.default_input_action_map
+    }
+    fn default_input_action_map_mut(&mut self) -> &mut InputActionMapSlot {
+        &mut self.default_input_action_map
     }
     fn input_action_maps(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionMapDataTrait>>>> {
         &self.input_action_maps
     }
+    fn input_action_maps_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionMapDataTrait>>>> {
+        &mut self.input_action_maps
+    }
     fn identifier(&self) -> &u32 {
         &self.identifier
+    }
+    fn identifier_mut(&mut self) -> &mut u32 {
+        &mut self.identifier
     }
 }
 
@@ -2016,12 +2494,12 @@ impl super::core::AssetTrait for InputActionMapsData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for InputActionMapsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTACTIONMAPSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2071,6 +2549,15 @@ impl TypeObject for InputActionMapsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2095,30 +2582,43 @@ pub struct InputActionMapData {
 
 pub trait InputActionMapDataTrait: super::core::DataContainerTrait {
     fn actions(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionsDataTrait>>>>;
+    fn actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionsDataTrait>>>>;
     fn platform_specific(&self) -> &InputActionMapPlatform;
+    fn platform_specific_mut(&mut self) -> &mut InputActionMapPlatform;
     fn slot(&self) -> &InputActionMapSlot;
+    fn slot_mut(&mut self) -> &mut InputActionMapSlot;
     fn copy_key_bindings_from(&self) -> &String;
+    fn copy_key_bindings_from_mut(&mut self) -> &mut String;
 }
 
 impl InputActionMapDataTrait for InputActionMapData {
     fn actions(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionsDataTrait>>>> {
         &self.actions
     }
+    fn actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionsDataTrait>>>> {
+        &mut self.actions
+    }
     fn platform_specific(&self) -> &InputActionMapPlatform {
         &self.platform_specific
+    }
+    fn platform_specific_mut(&mut self) -> &mut InputActionMapPlatform {
+        &mut self.platform_specific
     }
     fn slot(&self) -> &InputActionMapSlot {
         &self.slot
     }
+    fn slot_mut(&mut self) -> &mut InputActionMapSlot {
+        &mut self.slot
+    }
     fn copy_key_bindings_from(&self) -> &String {
         &self.copy_key_bindings_from
+    }
+    fn copy_key_bindings_from_mut(&mut self) -> &mut String {
+        &mut self.copy_key_bindings_from
     }
 }
 
 impl super::core::DataContainerTrait for InputActionMapData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTACTIONMAPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2168,6 +2668,15 @@ impl TypeObject for InputActionMapData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2193,34 +2702,51 @@ pub struct InputActionsData {
 
 pub trait InputActionsDataTrait: super::core::DataContainerTrait {
     fn name_sid(&self) -> &String;
+    fn name_sid_mut(&mut self) -> &mut String;
     fn concept_identifier(&self) -> &i32;
+    fn concept_identifier_mut(&mut self) -> &mut i32;
     fn copy_key_binding_from(&self) -> &i32;
+    fn copy_key_binding_from_mut(&mut self) -> &mut i32;
     fn hide_in_key_bindings(&self) -> &bool;
+    fn hide_in_key_bindings_mut(&mut self) -> &mut bool;
     fn input_actions(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionDataTrait>>>>;
+    fn input_actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionDataTrait>>>>;
 }
 
 impl InputActionsDataTrait for InputActionsData {
     fn name_sid(&self) -> &String {
         &self.name_sid
     }
+    fn name_sid_mut(&mut self) -> &mut String {
+        &mut self.name_sid
+    }
     fn concept_identifier(&self) -> &i32 {
         &self.concept_identifier
+    }
+    fn concept_identifier_mut(&mut self) -> &mut i32 {
+        &mut self.concept_identifier
     }
     fn copy_key_binding_from(&self) -> &i32 {
         &self.copy_key_binding_from
     }
+    fn copy_key_binding_from_mut(&mut self) -> &mut i32 {
+        &mut self.copy_key_binding_from
+    }
     fn hide_in_key_bindings(&self) -> &bool {
         &self.hide_in_key_bindings
+    }
+    fn hide_in_key_bindings_mut(&mut self) -> &mut bool {
+        &mut self.hide_in_key_bindings
     }
     fn input_actions(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionDataTrait>>>> {
         &self.input_actions
     }
+    fn input_actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionDataTrait>>>> {
+        &mut self.input_actions
+    }
 }
 
 impl super::core::DataContainerTrait for InputActionsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTACTIONSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2276,6 +2802,15 @@ impl TypeObject for InputActionsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2297,11 +2832,15 @@ pub struct MessageInputActionData {
 
 pub trait MessageInputActionDataTrait: InputActionDataTrait {
     fn command(&self) -> &i32;
+    fn command_mut(&mut self) -> &mut i32;
 }
 
 impl MessageInputActionDataTrait for MessageInputActionData {
     fn command(&self) -> &i32 {
         &self.command
+    }
+    fn command_mut(&mut self) -> &mut i32 {
+        &mut self.command
     }
 }
 
@@ -2309,15 +2848,18 @@ impl InputActionDataTrait for MessageInputActionData {
     fn is_analog(&self) -> &bool {
         self._glacier_base.is_analog()
     }
+    fn is_analog_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_analog_mut()
+    }
     fn negate_value(&self) -> &bool {
         self._glacier_base.negate_value()
+    }
+    fn negate_value_mut(&mut self) -> &mut bool {
+        self._glacier_base.negate_value_mut()
     }
 }
 
 impl super::core::DataContainerTrait for MessageInputActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MESSAGEINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2349,6 +2891,15 @@ impl TypeObject for MessageInputActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2373,23 +2924,39 @@ pub struct MouseInputActionData {
 
 pub trait MouseInputActionDataTrait: AxesInputActionDataTrait {
     fn button(&self) -> &InputDeviceMouseButtons;
+    fn button_mut(&mut self) -> &mut InputDeviceMouseButtons;
     fn simulate_joystick_axis(&self) -> &bool;
+    fn simulate_joystick_axis_mut(&mut self) -> &mut bool;
     fn remember_excess_input(&self) -> &bool;
+    fn remember_excess_input_mut(&mut self) -> &mut bool;
     fn scale_scroll_wheel_axis_input(&self) -> &bool;
+    fn scale_scroll_wheel_axis_input_mut(&mut self) -> &mut bool;
 }
 
 impl MouseInputActionDataTrait for MouseInputActionData {
     fn button(&self) -> &InputDeviceMouseButtons {
         &self.button
     }
+    fn button_mut(&mut self) -> &mut InputDeviceMouseButtons {
+        &mut self.button
+    }
     fn simulate_joystick_axis(&self) -> &bool {
         &self.simulate_joystick_axis
+    }
+    fn simulate_joystick_axis_mut(&mut self) -> &mut bool {
+        &mut self.simulate_joystick_axis
     }
     fn remember_excess_input(&self) -> &bool {
         &self.remember_excess_input
     }
+    fn remember_excess_input_mut(&mut self) -> &mut bool {
+        &mut self.remember_excess_input
+    }
     fn scale_scroll_wheel_axis_input(&self) -> &bool {
         &self.scale_scroll_wheel_axis_input
+    }
+    fn scale_scroll_wheel_axis_input_mut(&mut self) -> &mut bool {
+        &mut self.scale_scroll_wheel_axis_input
     }
 }
 
@@ -2397,8 +2964,14 @@ impl AxesInputActionDataTrait for MouseInputActionData {
     fn axis(&self) -> &InputDeviceAxes {
         self._glacier_base.axis()
     }
+    fn axis_mut(&mut self) -> &mut InputDeviceAxes {
+        self._glacier_base.axis_mut()
+    }
     fn normalize_input(&self) -> &bool {
         self._glacier_base.normalize_input()
+    }
+    fn normalize_input_mut(&mut self) -> &mut bool {
+        self._glacier_base.normalize_input_mut()
     }
 }
 
@@ -2406,15 +2979,18 @@ impl InputActionDataTrait for MouseInputActionData {
     fn is_analog(&self) -> &bool {
         self._glacier_base.is_analog()
     }
+    fn is_analog_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_analog_mut()
+    }
     fn negate_value(&self) -> &bool {
         self._glacier_base.negate_value()
+    }
+    fn negate_value_mut(&mut self) -> &mut bool {
+        self._glacier_base.negate_value_mut()
     }
 }
 
 impl super::core::DataContainerTrait for MouseInputActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOUSEINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2464,6 +3040,15 @@ impl TypeObject for MouseInputActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2485,11 +3070,15 @@ pub struct KeyboardInputActionData {
 
 pub trait KeyboardInputActionDataTrait: InputActionDataTrait {
     fn key(&self) -> &InputDeviceKeys;
+    fn key_mut(&mut self) -> &mut InputDeviceKeys;
 }
 
 impl KeyboardInputActionDataTrait for KeyboardInputActionData {
     fn key(&self) -> &InputDeviceKeys {
         &self.key
+    }
+    fn key_mut(&mut self) -> &mut InputDeviceKeys {
+        &mut self.key
     }
 }
 
@@ -2497,15 +3086,18 @@ impl InputActionDataTrait for KeyboardInputActionData {
     fn is_analog(&self) -> &bool {
         self._glacier_base.is_analog()
     }
+    fn is_analog_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_analog_mut()
+    }
     fn negate_value(&self) -> &bool {
         self._glacier_base.negate_value()
+    }
+    fn negate_value_mut(&mut self) -> &mut bool {
+        self._glacier_base.negate_value_mut()
     }
 }
 
 impl super::core::DataContainerTrait for KeyboardInputActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static KEYBOARDINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2537,6 +3129,15 @@ impl TypeObject for KeyboardInputActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2558,11 +3159,15 @@ pub struct WheelInputActionData {
 
 pub trait WheelInputActionDataTrait: AxesInputActionDataTrait {
     fn button(&self) -> &InputDeviceWheelButtons;
+    fn button_mut(&mut self) -> &mut InputDeviceWheelButtons;
 }
 
 impl WheelInputActionDataTrait for WheelInputActionData {
     fn button(&self) -> &InputDeviceWheelButtons {
         &self.button
+    }
+    fn button_mut(&mut self) -> &mut InputDeviceWheelButtons {
+        &mut self.button
     }
 }
 
@@ -2570,8 +3175,14 @@ impl AxesInputActionDataTrait for WheelInputActionData {
     fn axis(&self) -> &InputDeviceAxes {
         self._glacier_base.axis()
     }
+    fn axis_mut(&mut self) -> &mut InputDeviceAxes {
+        self._glacier_base.axis_mut()
+    }
     fn normalize_input(&self) -> &bool {
         self._glacier_base.normalize_input()
+    }
+    fn normalize_input_mut(&mut self) -> &mut bool {
+        self._glacier_base.normalize_input_mut()
     }
 }
 
@@ -2579,15 +3190,18 @@ impl InputActionDataTrait for WheelInputActionData {
     fn is_analog(&self) -> &bool {
         self._glacier_base.is_analog()
     }
+    fn is_analog_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_analog_mut()
+    }
     fn negate_value(&self) -> &bool {
         self._glacier_base.negate_value()
+    }
+    fn negate_value_mut(&mut self) -> &mut bool {
+        self._glacier_base.negate_value_mut()
     }
 }
 
 impl super::core::DataContainerTrait for WheelInputActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WHEELINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2619,6 +3233,15 @@ impl TypeObject for WheelInputActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2647,8 +3270,14 @@ impl AxesInputActionDataTrait for VrInputActionData {
     fn axis(&self) -> &InputDeviceAxes {
         self._glacier_base.axis()
     }
+    fn axis_mut(&mut self) -> &mut InputDeviceAxes {
+        self._glacier_base.axis_mut()
+    }
     fn normalize_input(&self) -> &bool {
         self._glacier_base.normalize_input()
+    }
+    fn normalize_input_mut(&mut self) -> &mut bool {
+        self._glacier_base.normalize_input_mut()
     }
 }
 
@@ -2656,15 +3285,18 @@ impl InputActionDataTrait for VrInputActionData {
     fn is_analog(&self) -> &bool {
         self._glacier_base.is_analog()
     }
+    fn is_analog_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_analog_mut()
+    }
     fn negate_value(&self) -> &bool {
         self._glacier_base.negate_value()
+    }
+    fn negate_value_mut(&mut self) -> &mut bool {
+        self._glacier_base.negate_value_mut()
     }
 }
 
 impl super::core::DataContainerTrait for VrInputActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VRINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2690,6 +3322,15 @@ impl TypeObject for VrInputActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2711,11 +3352,15 @@ pub struct MotionControllerInputActionData {
 
 pub trait MotionControllerInputActionDataTrait: AxesInputActionDataTrait {
     fn button(&self) -> &InputDeviceMotionControllerButtons;
+    fn button_mut(&mut self) -> &mut InputDeviceMotionControllerButtons;
 }
 
 impl MotionControllerInputActionDataTrait for MotionControllerInputActionData {
     fn button(&self) -> &InputDeviceMotionControllerButtons {
         &self.button
+    }
+    fn button_mut(&mut self) -> &mut InputDeviceMotionControllerButtons {
+        &mut self.button
     }
 }
 
@@ -2723,8 +3368,14 @@ impl AxesInputActionDataTrait for MotionControllerInputActionData {
     fn axis(&self) -> &InputDeviceAxes {
         self._glacier_base.axis()
     }
+    fn axis_mut(&mut self) -> &mut InputDeviceAxes {
+        self._glacier_base.axis_mut()
+    }
     fn normalize_input(&self) -> &bool {
         self._glacier_base.normalize_input()
+    }
+    fn normalize_input_mut(&mut self) -> &mut bool {
+        self._glacier_base.normalize_input_mut()
     }
 }
 
@@ -2732,15 +3383,18 @@ impl InputActionDataTrait for MotionControllerInputActionData {
     fn is_analog(&self) -> &bool {
         self._glacier_base.is_analog()
     }
+    fn is_analog_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_analog_mut()
+    }
     fn negate_value(&self) -> &bool {
         self._glacier_base.negate_value()
+    }
+    fn negate_value_mut(&mut self) -> &mut bool {
+        self._glacier_base.negate_value_mut()
     }
 }
 
 impl super::core::DataContainerTrait for MotionControllerInputActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOTIONCONTROLLERINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2772,6 +3426,15 @@ impl TypeObject for MotionControllerInputActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2794,15 +3457,23 @@ pub struct JoystickInputActionData {
 
 pub trait JoystickInputActionDataTrait: AxesInputActionDataTrait {
     fn use_square_input(&self) -> &bool;
+    fn use_square_input_mut(&mut self) -> &mut bool;
     fn button(&self) -> &InputDevicePadButtons;
+    fn button_mut(&mut self) -> &mut InputDevicePadButtons;
 }
 
 impl JoystickInputActionDataTrait for JoystickInputActionData {
     fn use_square_input(&self) -> &bool {
         &self.use_square_input
     }
+    fn use_square_input_mut(&mut self) -> &mut bool {
+        &mut self.use_square_input
+    }
     fn button(&self) -> &InputDevicePadButtons {
         &self.button
+    }
+    fn button_mut(&mut self) -> &mut InputDevicePadButtons {
+        &mut self.button
     }
 }
 
@@ -2810,8 +3481,14 @@ impl AxesInputActionDataTrait for JoystickInputActionData {
     fn axis(&self) -> &InputDeviceAxes {
         self._glacier_base.axis()
     }
+    fn axis_mut(&mut self) -> &mut InputDeviceAxes {
+        self._glacier_base.axis_mut()
+    }
     fn normalize_input(&self) -> &bool {
         self._glacier_base.normalize_input()
+    }
+    fn normalize_input_mut(&mut self) -> &mut bool {
+        self._glacier_base.normalize_input_mut()
     }
 }
 
@@ -2819,15 +3496,18 @@ impl InputActionDataTrait for JoystickInputActionData {
     fn is_analog(&self) -> &bool {
         self._glacier_base.is_analog()
     }
+    fn is_analog_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_analog_mut()
+    }
     fn negate_value(&self) -> &bool {
         self._glacier_base.negate_value()
+    }
+    fn negate_value_mut(&mut self) -> &mut bool {
+        self._glacier_base.negate_value_mut()
     }
 }
 
 impl super::core::DataContainerTrait for JoystickInputActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static JOYSTICKINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2865,6 +3545,15 @@ impl TypeObject for JoystickInputActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2891,31 +3580,55 @@ pub struct PadInputActionData {
 
 pub trait PadInputActionDataTrait: AxesInputActionDataTrait {
     fn use_square_input(&self) -> &bool;
+    fn use_square_input_mut(&mut self) -> &mut bool;
     fn ignore_suppression(&self) -> &bool;
+    fn ignore_suppression_mut(&mut self) -> &mut bool;
     fn button(&self) -> &InputDevicePadButtons;
+    fn button_mut(&mut self) -> &mut InputDevicePadButtons;
     fn p_s3_alternative_button(&self) -> &InputDevicePadButtons;
+    fn p_s3_alternative_button_mut(&mut self) -> &mut InputDevicePadButtons;
     fn p_s_vita_button(&self) -> &InputDevicePadButtons;
+    fn p_s_vita_button_mut(&mut self) -> &mut InputDevicePadButtons;
     fn p_s_vita_alternative_button(&self) -> &InputDevicePadButtons;
+    fn p_s_vita_alternative_button_mut(&mut self) -> &mut InputDevicePadButtons;
 }
 
 impl PadInputActionDataTrait for PadInputActionData {
     fn use_square_input(&self) -> &bool {
         &self.use_square_input
     }
+    fn use_square_input_mut(&mut self) -> &mut bool {
+        &mut self.use_square_input
+    }
     fn ignore_suppression(&self) -> &bool {
         &self.ignore_suppression
+    }
+    fn ignore_suppression_mut(&mut self) -> &mut bool {
+        &mut self.ignore_suppression
     }
     fn button(&self) -> &InputDevicePadButtons {
         &self.button
     }
+    fn button_mut(&mut self) -> &mut InputDevicePadButtons {
+        &mut self.button
+    }
     fn p_s3_alternative_button(&self) -> &InputDevicePadButtons {
         &self.p_s3_alternative_button
+    }
+    fn p_s3_alternative_button_mut(&mut self) -> &mut InputDevicePadButtons {
+        &mut self.p_s3_alternative_button
     }
     fn p_s_vita_button(&self) -> &InputDevicePadButtons {
         &self.p_s_vita_button
     }
+    fn p_s_vita_button_mut(&mut self) -> &mut InputDevicePadButtons {
+        &mut self.p_s_vita_button
+    }
     fn p_s_vita_alternative_button(&self) -> &InputDevicePadButtons {
         &self.p_s_vita_alternative_button
+    }
+    fn p_s_vita_alternative_button_mut(&mut self) -> &mut InputDevicePadButtons {
+        &mut self.p_s_vita_alternative_button
     }
 }
 
@@ -2923,8 +3636,14 @@ impl AxesInputActionDataTrait for PadInputActionData {
     fn axis(&self) -> &InputDeviceAxes {
         self._glacier_base.axis()
     }
+    fn axis_mut(&mut self) -> &mut InputDeviceAxes {
+        self._glacier_base.axis_mut()
+    }
     fn normalize_input(&self) -> &bool {
         self._glacier_base.normalize_input()
+    }
+    fn normalize_input_mut(&mut self) -> &mut bool {
+        self._glacier_base.normalize_input_mut()
     }
 }
 
@@ -2932,15 +3651,18 @@ impl InputActionDataTrait for PadInputActionData {
     fn is_analog(&self) -> &bool {
         self._glacier_base.is_analog()
     }
+    fn is_analog_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_analog_mut()
+    }
     fn negate_value(&self) -> &bool {
         self._glacier_base.negate_value()
+    }
+    fn negate_value_mut(&mut self) -> &mut bool {
+        self._glacier_base.negate_value_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PadInputActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PADINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3002,6 +3724,15 @@ impl TypeObject for PadInputActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3024,15 +3755,23 @@ pub struct AxesInputActionData {
 
 pub trait AxesInputActionDataTrait: InputActionDataTrait {
     fn axis(&self) -> &InputDeviceAxes;
+    fn axis_mut(&mut self) -> &mut InputDeviceAxes;
     fn normalize_input(&self) -> &bool;
+    fn normalize_input_mut(&mut self) -> &mut bool;
 }
 
 impl AxesInputActionDataTrait for AxesInputActionData {
     fn axis(&self) -> &InputDeviceAxes {
         &self.axis
     }
+    fn axis_mut(&mut self) -> &mut InputDeviceAxes {
+        &mut self.axis
+    }
     fn normalize_input(&self) -> &bool {
         &self.normalize_input
+    }
+    fn normalize_input_mut(&mut self) -> &mut bool {
+        &mut self.normalize_input
     }
 }
 
@@ -3040,15 +3779,18 @@ impl InputActionDataTrait for AxesInputActionData {
     fn is_analog(&self) -> &bool {
         self._glacier_base.is_analog()
     }
+    fn is_analog_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_analog_mut()
+    }
     fn negate_value(&self) -> &bool {
         self._glacier_base.negate_value()
+    }
+    fn negate_value_mut(&mut self) -> &mut bool {
+        self._glacier_base.negate_value_mut()
     }
 }
 
 impl super::core::DataContainerTrait for AxesInputActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AXESINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3086,6 +3828,15 @@ impl TypeObject for AxesInputActionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3108,22 +3859,27 @@ pub struct InputActionData {
 
 pub trait InputActionDataTrait: super::core::DataContainerTrait {
     fn is_analog(&self) -> &bool;
+    fn is_analog_mut(&mut self) -> &mut bool;
     fn negate_value(&self) -> &bool;
+    fn negate_value_mut(&mut self) -> &mut bool;
 }
 
 impl InputActionDataTrait for InputActionData {
     fn is_analog(&self) -> &bool {
         &self.is_analog
     }
+    fn is_analog_mut(&mut self) -> &mut bool {
+        &mut self.is_analog
+    }
     fn negate_value(&self) -> &bool {
         &self.negate_value
+    }
+    fn negate_value_mut(&mut self) -> &mut bool {
+        &mut self.negate_value
     }
 }
 
 impl super::core::DataContainerTrait for InputActionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3160,6 +3916,15 @@ impl TypeObject for InputActionData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3239,6 +4004,15 @@ impl TypeObject for InputActionMapSlot {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3280,6 +4054,15 @@ impl TypeObject for InputActionMapPlatform {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3309,43 +4092,79 @@ pub struct EntryInputActionBindingsData {
 
 pub trait EntryInputActionBindingsDataTrait: super::core::AssetTrait {
     fn bound_actions(&self) -> &Vec<i32>;
+    fn bound_actions_mut(&mut self) -> &mut Vec<i32>;
     fn entry_input_action_index_pairs(&self) -> &Vec<EntryInputActionIndexPair>;
+    fn entry_input_action_index_pairs_mut(&mut self) -> &mut Vec<EntryInputActionIndexPair>;
     fn num_networked_analog_inputs(&self) -> &u32;
+    fn num_networked_analog_inputs_mut(&mut self) -> &mut u32;
     fn num_analog_inputs(&self) -> &u32;
+    fn num_analog_inputs_mut(&mut self) -> &mut u32;
     fn first_digital(&self) -> &u32;
+    fn first_digital_mut(&mut self) -> &mut u32;
     fn num_networked_digital_inputs(&self) -> &u32;
+    fn num_networked_digital_inputs_mut(&mut self) -> &mut u32;
     fn num_digital_inputs(&self) -> &u32;
+    fn num_digital_inputs_mut(&mut self) -> &mut u32;
     fn num_inputs(&self) -> &u32;
+    fn num_inputs_mut(&mut self) -> &mut u32;
     fn signed_analog_inputs(&self) -> &u64;
+    fn signed_analog_inputs_mut(&mut self) -> &mut u64;
 }
 
 impl EntryInputActionBindingsDataTrait for EntryInputActionBindingsData {
     fn bound_actions(&self) -> &Vec<i32> {
         &self.bound_actions
     }
+    fn bound_actions_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.bound_actions
+    }
     fn entry_input_action_index_pairs(&self) -> &Vec<EntryInputActionIndexPair> {
         &self.entry_input_action_index_pairs
+    }
+    fn entry_input_action_index_pairs_mut(&mut self) -> &mut Vec<EntryInputActionIndexPair> {
+        &mut self.entry_input_action_index_pairs
     }
     fn num_networked_analog_inputs(&self) -> &u32 {
         &self.num_networked_analog_inputs
     }
+    fn num_networked_analog_inputs_mut(&mut self) -> &mut u32 {
+        &mut self.num_networked_analog_inputs
+    }
     fn num_analog_inputs(&self) -> &u32 {
         &self.num_analog_inputs
+    }
+    fn num_analog_inputs_mut(&mut self) -> &mut u32 {
+        &mut self.num_analog_inputs
     }
     fn first_digital(&self) -> &u32 {
         &self.first_digital
     }
+    fn first_digital_mut(&mut self) -> &mut u32 {
+        &mut self.first_digital
+    }
     fn num_networked_digital_inputs(&self) -> &u32 {
         &self.num_networked_digital_inputs
+    }
+    fn num_networked_digital_inputs_mut(&mut self) -> &mut u32 {
+        &mut self.num_networked_digital_inputs
     }
     fn num_digital_inputs(&self) -> &u32 {
         &self.num_digital_inputs
     }
+    fn num_digital_inputs_mut(&mut self) -> &mut u32 {
+        &mut self.num_digital_inputs
+    }
     fn num_inputs(&self) -> &u32 {
         &self.num_inputs
     }
+    fn num_inputs_mut(&mut self) -> &mut u32 {
+        &mut self.num_inputs
+    }
     fn signed_analog_inputs(&self) -> &u64 {
         &self.signed_analog_inputs
+    }
+    fn signed_analog_inputs_mut(&mut self) -> &mut u64 {
+        &mut self.signed_analog_inputs
     }
 }
 
@@ -3353,12 +4172,12 @@ impl super::core::AssetTrait for EntryInputActionBindingsData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EntryInputActionBindingsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTRYINPUTACTIONBINDINGSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3438,6 +4257,15 @@ impl TypeObject for EntryInputActionBindingsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3461,23 +4289,39 @@ pub struct EntryInputActionBinding {
 
 pub trait EntryInputActionBindingTrait: TypeObject {
     fn action(&self) -> &i32;
+    fn action_mut(&mut self) -> &mut i32;
     fn alias(&self) -> &i32;
+    fn alias_mut(&mut self) -> &mut i32;
     fn action_type(&self) -> &EntryInputActionType;
+    fn action_type_mut(&mut self) -> &mut EntryInputActionType;
     fn networked(&self) -> &bool;
+    fn networked_mut(&mut self) -> &mut bool;
 }
 
 impl EntryInputActionBindingTrait for EntryInputActionBinding {
     fn action(&self) -> &i32 {
         &self.action
     }
+    fn action_mut(&mut self) -> &mut i32 {
+        &mut self.action
+    }
     fn alias(&self) -> &i32 {
         &self.alias
+    }
+    fn alias_mut(&mut self) -> &mut i32 {
+        &mut self.alias
     }
     fn action_type(&self) -> &EntryInputActionType {
         &self.action_type
     }
+    fn action_type_mut(&mut self) -> &mut EntryInputActionType {
+        &mut self.action_type
+    }
     fn networked(&self) -> &bool {
         &self.networked
+    }
+    fn networked_mut(&mut self) -> &mut bool {
+        &mut self.networked
     }
 }
 
@@ -3527,6 +4371,15 @@ impl TypeObject for EntryInputActionBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3566,6 +4419,15 @@ impl TypeObject for EntryInputActionType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3587,15 +4449,23 @@ pub struct EntryInputActionIndexPair {
 
 pub trait EntryInputActionIndexPairTrait: TypeObject {
     fn key(&self) -> &i32;
+    fn key_mut(&mut self) -> &mut i32;
     fn value(&self) -> &u32;
+    fn value_mut(&mut self) -> &mut u32;
 }
 
 impl EntryInputActionIndexPairTrait for EntryInputActionIndexPair {
     fn key(&self) -> &i32 {
         &self.key
     }
+    fn key_mut(&mut self) -> &mut i32 {
+        &mut self.key
+    }
     fn value(&self) -> &u32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut u32 {
+        &mut self.value
     }
 }
 
@@ -3633,6 +4503,15 @@ impl TypeObject for EntryInputActionIndexPair {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3658,9 +4537,6 @@ impl BaseInputSettingsTrait for BaseInputSettings {
 }
 
 impl super::core::DataContainerTrait for BaseInputSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BASEINPUTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3685,6 +4561,15 @@ impl TypeObject for BaseInputSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

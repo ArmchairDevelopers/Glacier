@@ -67,6 +67,15 @@ impl TypeObject for LuaRunnerSharedVarsEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -120,6 +129,15 @@ impl TypeObject for LuaRunnerScriptEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -166,6 +184,15 @@ impl TypeObject for CompiledLuaResource {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -188,15 +215,23 @@ pub struct LuaRunnerSharedVarsEntityData {
 
 pub trait LuaRunnerSharedVarsEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn add_to_debug_display(&self) -> &bool;
+    fn add_to_debug_display_mut(&mut self) -> &mut bool;
 }
 
 impl LuaRunnerSharedVarsEntityDataTrait for LuaRunnerSharedVarsEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn add_to_debug_display(&self) -> &bool {
         &self.add_to_debug_display
+    }
+    fn add_to_debug_display_mut(&mut self) -> &mut bool {
+        &mut self.add_to_debug_display
     }
 }
 
@@ -210,15 +245,15 @@ impl super::core::DataBusPeerTrait for LuaRunnerSharedVarsEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LuaRunnerSharedVarsEntityData {
 }
 
 impl super::core::DataContainerTrait for LuaRunnerSharedVarsEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LUARUNNERSHAREDVARSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -255,6 +290,15 @@ impl TypeObject for LuaRunnerSharedVarsEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -305,123 +349,239 @@ pub struct LuaRunnerScriptEntityData {
 
 pub trait LuaRunnerScriptEntityDataTrait: super::entity::EntityDataTrait {
     fn script(&self) -> &String;
+    fn script_mut(&mut self) -> &mut String;
     fn input_events(&self) -> &Vec<String>;
+    fn input_events_mut(&mut self) -> &mut Vec<String>;
     fn output_events(&self) -> &Vec<String>;
+    fn output_events_mut(&mut self) -> &mut Vec<String>;
     fn input_float_properties(&self) -> &Vec<String>;
+    fn input_float_properties_mut(&mut self) -> &mut Vec<String>;
     fn output_float_properties(&self) -> &Vec<String>;
+    fn output_float_properties_mut(&mut self) -> &mut Vec<String>;
     fn input_int_properties(&self) -> &Vec<String>;
+    fn input_int_properties_mut(&mut self) -> &mut Vec<String>;
     fn output_int_properties(&self) -> &Vec<String>;
+    fn output_int_properties_mut(&mut self) -> &mut Vec<String>;
     fn input_bool_properties(&self) -> &Vec<String>;
+    fn input_bool_properties_mut(&mut self) -> &mut Vec<String>;
     fn output_bool_properties(&self) -> &Vec<String>;
+    fn output_bool_properties_mut(&mut self) -> &mut Vec<String>;
     fn input_string_properties(&self) -> &Vec<String>;
+    fn input_string_properties_mut(&mut self) -> &mut Vec<String>;
     fn output_string_properties(&self) -> &Vec<String>;
+    fn output_string_properties_mut(&mut self) -> &mut Vec<String>;
     fn input_transform_properties(&self) -> &Vec<String>;
+    fn input_transform_properties_mut(&mut self) -> &mut Vec<String>;
     fn output_transform_properties(&self) -> &Vec<String>;
+    fn output_transform_properties_mut(&mut self) -> &mut Vec<String>;
     fn input_vec2_properties(&self) -> &Vec<String>;
+    fn input_vec2_properties_mut(&mut self) -> &mut Vec<String>;
     fn output_vec2_properties(&self) -> &Vec<String>;
+    fn output_vec2_properties_mut(&mut self) -> &mut Vec<String>;
     fn input_vec3_properties(&self) -> &Vec<String>;
+    fn input_vec3_properties_mut(&mut self) -> &mut Vec<String>;
     fn output_vec3_properties(&self) -> &Vec<String>;
+    fn output_vec3_properties_mut(&mut self) -> &mut Vec<String>;
     fn input_vec4_properties(&self) -> &Vec<String>;
+    fn input_vec4_properties_mut(&mut self) -> &mut Vec<String>;
     fn output_vec4_properties(&self) -> &Vec<String>;
+    fn output_vec4_properties_mut(&mut self) -> &mut Vec<String>;
     fn input_custom_properties(&self) -> &Vec<CustomProperty>;
+    fn input_custom_properties_mut(&mut self) -> &mut Vec<CustomProperty>;
     fn output_custom_properties(&self) -> &Vec<CustomProperty>;
+    fn output_custom_properties_mut(&mut self) -> &mut Vec<CustomProperty>;
     fn auto_start_executing_per_frame(&self) -> &bool;
+    fn auto_start_executing_per_frame_mut(&mut self) -> &mut bool;
     fn auto_start_for_initialization(&self) -> &bool;
+    fn auto_start_for_initialization_mut(&mut self) -> &mut bool;
     fn run_on_property_change(&self) -> &bool;
+    fn run_on_property_change_mut(&mut self) -> &mut bool;
     fn execute_on_property_change(&self) -> &ExecuteOnPropertyChangeType;
+    fn execute_on_property_change_mut(&mut self) -> &mut ExecuteOnPropertyChangeType;
     fn priority_for_executing_per_frame(&self) -> &i32;
+    fn priority_for_executing_per_frame_mut(&mut self) -> &mut i32;
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn add_to_debug_display(&self) -> &bool;
+    fn add_to_debug_display_mut(&mut self) -> &mut bool;
     fn compiled_lua(&self) -> &Option<Arc<Mutex<dyn LuaRunnerCompiledLuaTrait>>>;
+    fn compiled_lua_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LuaRunnerCompiledLuaTrait>>>;
 }
 
 impl LuaRunnerScriptEntityDataTrait for LuaRunnerScriptEntityData {
     fn script(&self) -> &String {
         &self.script
     }
+    fn script_mut(&mut self) -> &mut String {
+        &mut self.script
+    }
     fn input_events(&self) -> &Vec<String> {
         &self.input_events
+    }
+    fn input_events_mut(&mut self) -> &mut Vec<String> {
+        &mut self.input_events
     }
     fn output_events(&self) -> &Vec<String> {
         &self.output_events
     }
+    fn output_events_mut(&mut self) -> &mut Vec<String> {
+        &mut self.output_events
+    }
     fn input_float_properties(&self) -> &Vec<String> {
         &self.input_float_properties
+    }
+    fn input_float_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.input_float_properties
     }
     fn output_float_properties(&self) -> &Vec<String> {
         &self.output_float_properties
     }
+    fn output_float_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.output_float_properties
+    }
     fn input_int_properties(&self) -> &Vec<String> {
         &self.input_int_properties
+    }
+    fn input_int_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.input_int_properties
     }
     fn output_int_properties(&self) -> &Vec<String> {
         &self.output_int_properties
     }
+    fn output_int_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.output_int_properties
+    }
     fn input_bool_properties(&self) -> &Vec<String> {
         &self.input_bool_properties
+    }
+    fn input_bool_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.input_bool_properties
     }
     fn output_bool_properties(&self) -> &Vec<String> {
         &self.output_bool_properties
     }
+    fn output_bool_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.output_bool_properties
+    }
     fn input_string_properties(&self) -> &Vec<String> {
         &self.input_string_properties
+    }
+    fn input_string_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.input_string_properties
     }
     fn output_string_properties(&self) -> &Vec<String> {
         &self.output_string_properties
     }
+    fn output_string_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.output_string_properties
+    }
     fn input_transform_properties(&self) -> &Vec<String> {
         &self.input_transform_properties
+    }
+    fn input_transform_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.input_transform_properties
     }
     fn output_transform_properties(&self) -> &Vec<String> {
         &self.output_transform_properties
     }
+    fn output_transform_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.output_transform_properties
+    }
     fn input_vec2_properties(&self) -> &Vec<String> {
         &self.input_vec2_properties
+    }
+    fn input_vec2_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.input_vec2_properties
     }
     fn output_vec2_properties(&self) -> &Vec<String> {
         &self.output_vec2_properties
     }
+    fn output_vec2_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.output_vec2_properties
+    }
     fn input_vec3_properties(&self) -> &Vec<String> {
         &self.input_vec3_properties
+    }
+    fn input_vec3_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.input_vec3_properties
     }
     fn output_vec3_properties(&self) -> &Vec<String> {
         &self.output_vec3_properties
     }
+    fn output_vec3_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.output_vec3_properties
+    }
     fn input_vec4_properties(&self) -> &Vec<String> {
         &self.input_vec4_properties
+    }
+    fn input_vec4_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.input_vec4_properties
     }
     fn output_vec4_properties(&self) -> &Vec<String> {
         &self.output_vec4_properties
     }
+    fn output_vec4_properties_mut(&mut self) -> &mut Vec<String> {
+        &mut self.output_vec4_properties
+    }
     fn input_custom_properties(&self) -> &Vec<CustomProperty> {
         &self.input_custom_properties
+    }
+    fn input_custom_properties_mut(&mut self) -> &mut Vec<CustomProperty> {
+        &mut self.input_custom_properties
     }
     fn output_custom_properties(&self) -> &Vec<CustomProperty> {
         &self.output_custom_properties
     }
+    fn output_custom_properties_mut(&mut self) -> &mut Vec<CustomProperty> {
+        &mut self.output_custom_properties
+    }
     fn auto_start_executing_per_frame(&self) -> &bool {
         &self.auto_start_executing_per_frame
+    }
+    fn auto_start_executing_per_frame_mut(&mut self) -> &mut bool {
+        &mut self.auto_start_executing_per_frame
     }
     fn auto_start_for_initialization(&self) -> &bool {
         &self.auto_start_for_initialization
     }
+    fn auto_start_for_initialization_mut(&mut self) -> &mut bool {
+        &mut self.auto_start_for_initialization
+    }
     fn run_on_property_change(&self) -> &bool {
         &self.run_on_property_change
+    }
+    fn run_on_property_change_mut(&mut self) -> &mut bool {
+        &mut self.run_on_property_change
     }
     fn execute_on_property_change(&self) -> &ExecuteOnPropertyChangeType {
         &self.execute_on_property_change
     }
+    fn execute_on_property_change_mut(&mut self) -> &mut ExecuteOnPropertyChangeType {
+        &mut self.execute_on_property_change
+    }
     fn priority_for_executing_per_frame(&self) -> &i32 {
         &self.priority_for_executing_per_frame
+    }
+    fn priority_for_executing_per_frame_mut(&mut self) -> &mut i32 {
+        &mut self.priority_for_executing_per_frame
     }
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn add_to_debug_display(&self) -> &bool {
         &self.add_to_debug_display
     }
+    fn add_to_debug_display_mut(&mut self) -> &mut bool {
+        &mut self.add_to_debug_display
+    }
     fn compiled_lua(&self) -> &Option<Arc<Mutex<dyn LuaRunnerCompiledLuaTrait>>> {
         &self.compiled_lua
+    }
+    fn compiled_lua_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LuaRunnerCompiledLuaTrait>>> {
+        &mut self.compiled_lua
     }
 }
 
@@ -435,15 +595,15 @@ impl super::core::DataBusPeerTrait for LuaRunnerScriptEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LuaRunnerScriptEntityData {
 }
 
 impl super::core::DataContainerTrait for LuaRunnerScriptEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LUARUNNERSCRIPTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -643,6 +803,15 @@ impl TypeObject for LuaRunnerScriptEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -664,15 +833,23 @@ pub struct CustomProperty {
 
 pub trait CustomPropertyTrait: TypeObject {
     fn type_name(&self) -> &String;
+    fn type_name_mut(&mut self) -> &mut String;
     fn property_name(&self) -> &String;
+    fn property_name_mut(&mut self) -> &mut String;
 }
 
 impl CustomPropertyTrait for CustomProperty {
     fn type_name(&self) -> &String {
         &self.type_name
     }
+    fn type_name_mut(&mut self) -> &mut String {
+        &mut self.type_name
+    }
     fn property_name(&self) -> &String {
         &self.property_name
+    }
+    fn property_name_mut(&mut self) -> &mut String {
+        &mut self.property_name
     }
 }
 
@@ -709,6 +886,15 @@ impl TypeObject for CustomProperty {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -749,6 +935,15 @@ impl TypeObject for ExecuteOnPropertyChangeType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -770,11 +965,15 @@ pub struct LuaRunnerCompiledLua {
 
 pub trait LuaRunnerCompiledLuaTrait: super::core::AssetTrait {
     fn compiled_lua_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn compiled_lua_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl LuaRunnerCompiledLuaTrait for LuaRunnerCompiledLua {
     fn compiled_lua_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.compiled_lua_resource
+    }
+    fn compiled_lua_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.compiled_lua_resource
     }
 }
 
@@ -782,12 +981,12 @@ impl super::core::AssetTrait for LuaRunnerCompiledLua {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LuaRunnerCompiledLua {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LUARUNNERCOMPILEDLUA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -818,6 +1017,15 @@ impl TypeObject for LuaRunnerCompiledLua {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

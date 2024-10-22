@@ -181,6 +181,15 @@ impl TypeObject for ServerAdministrationRestartRequiredMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -214,6 +223,15 @@ impl TypeObject for ServerPeerLoadLevelMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -249,6 +267,15 @@ impl TypeObject for ServerPeerInitializedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -282,6 +309,15 @@ impl TypeObject for ServerLevelLoadNextLevelMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -317,6 +353,15 @@ impl TypeObject for ServerLevelLoadNextRoundMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -350,6 +395,15 @@ impl TypeObject for ServerSubLevelOnStreamedInMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -385,6 +439,15 @@ impl TypeObject for ServerLevelCompletedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -418,6 +481,15 @@ impl TypeObject for ServerLevelStartedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -453,6 +525,15 @@ impl TypeObject for ServerLevelSpawnEntitiesEndMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -486,6 +567,15 @@ impl TypeObject for ServerLevelSpawnEntitiesBeginMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -521,6 +611,15 @@ impl TypeObject for ServerSoundVoiceOverFinishedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -554,6 +653,15 @@ impl TypeObject for ServerInputDeactivateInputRestrictionMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -589,6 +697,15 @@ impl TypeObject for ServerInputReactivateInputRestrictionMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -622,6 +739,15 @@ impl TypeObject for ServerComponentEntryComponentProcessedInputMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -657,6 +783,15 @@ impl TypeObject for ServerComponentEntryOnPlayerExitsMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -690,6 +825,15 @@ impl TypeObject for ServerComponentEntryOnPlayerEntersMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -725,6 +869,15 @@ impl TypeObject for ServerComponentEntryOnUnspawnMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -758,6 +911,15 @@ impl TypeObject for ServerControllableUnspawnDoneMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -793,6 +955,15 @@ impl TypeObject for ServerControllableSpawnDoneMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -826,6 +997,15 @@ impl TypeObject for ServerConnectionExitMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -861,6 +1041,15 @@ impl TypeObject for ServerConnectionInitMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -894,6 +1083,15 @@ impl TypeObject for ServerClientConnectionRemovedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -929,6 +1127,15 @@ impl TypeObject for ServerClientConnectionConnectedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -962,6 +1169,15 @@ impl TypeObject for ServerAdminBanPlayerMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -997,6 +1213,15 @@ impl TypeObject for ServerAdminSetServerNameMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1030,6 +1255,15 @@ impl TypeObject for ServerScriptTickMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1065,6 +1299,15 @@ impl TypeObject for ServerStopMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1098,6 +1341,15 @@ impl TypeObject for ServerLoadLevelMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1133,6 +1385,15 @@ impl TypeObject for ServerLevelUnloadedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1166,6 +1427,15 @@ impl TypeObject for ServerUnloadLevelMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1201,6 +1471,15 @@ impl TypeObject for ServerLevelLoadedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1234,6 +1513,15 @@ impl TypeObject for ServerStoppedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1269,6 +1557,15 @@ impl TypeObject for ServerApplyConfigurationMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1302,6 +1599,15 @@ impl TypeObject for ServerResetConfigurationMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1337,6 +1643,15 @@ impl TypeObject for ServerStartedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1370,6 +1685,15 @@ impl TypeObject for ServerLoadGameMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1405,6 +1729,15 @@ impl TypeObject for SaveGameWrittenToMediaMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1438,6 +1771,15 @@ impl TypeObject for SaveGameGeneratedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1473,6 +1815,15 @@ impl TypeObject for StatDisableMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1507,6 +1858,15 @@ impl TypeObject for StatEnableMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1521,9 +1881,6 @@ impl SoundSettingsTrait for SoundSettings {
 }
 
 impl super::core::DataContainerTrait for SoundSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOUNDSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1548,6 +1905,15 @@ impl TypeObject for SoundSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1619,207 +1985,407 @@ pub struct ClientSettings {
 
 pub trait ClientSettingsTrait: super::core::SystemSettingsTrait {
     fn is_spectator(&self) -> &bool;
+    fn is_spectator_mut(&mut self) -> &mut bool;
     fn allow_video_recording(&self) -> &bool;
+    fn allow_video_recording_mut(&mut self) -> &mut bool;
     fn debris_cluster_enabled(&self) -> &bool;
+    fn debris_cluster_enabled_mut(&mut self) -> &mut bool;
     fn vegetation_enabled(&self) -> &bool;
+    fn vegetation_enabled_mut(&mut self) -> &mut bool;
     fn force_enabled(&self) -> &bool;
+    fn force_enabled_mut(&mut self) -> &mut bool;
     fn world_render_enabled(&self) -> &bool;
+    fn world_render_enabled_mut(&mut self) -> &mut bool;
     fn terrain_enabled(&self) -> &bool;
+    fn terrain_enabled_mut(&mut self) -> &mut bool;
     fn water_physics_enabled(&self) -> &bool;
+    fn water_physics_enabled_mut(&mut self) -> &mut bool;
     fn overgrowth_enabled(&self) -> &bool;
+    fn overgrowth_enabled_mut(&mut self) -> &mut bool;
     fn effects_enabled(&self) -> &bool;
+    fn effects_enabled_mut(&mut self) -> &mut bool;
     fn auto_increment_pad_index(&self) -> &bool;
+    fn auto_increment_pad_index_mut(&mut self) -> &mut bool;
     fn lip_sync_enabled(&self) -> &bool;
+    fn lip_sync_enabled_mut(&mut self) -> &mut bool;
     fn pause_game_on_start_up(&self) -> &bool;
+    fn pause_game_on_start_up_mut(&mut self) -> &mut bool;
     fn skip_fast_level_load(&self) -> &bool;
+    fn skip_fast_level_load_mut(&mut self) -> &mut bool;
     fn screenshot_to_file(&self) -> &bool;
+    fn screenshot_to_file_mut(&mut self) -> &mut bool;
     fn screenshot_filename(&self) -> &String;
+    fn screenshot_filename_mut(&mut self) -> &mut String;
     fn screenshot_suffix(&self) -> &String;
+    fn screenshot_suffix_mut(&mut self) -> &mut String;
     fn load_menu(&self) -> &bool;
+    fn load_menu_mut(&mut self) -> &mut bool;
     fn debug_menu_on_l_thumb(&self) -> &bool;
+    fn debug_menu_on_l_thumb_mut(&mut self) -> &mut bool;
     fn screenshot_comparisons_enable(&self) -> &bool;
+    fn screenshot_comparisons_enable_mut(&mut self) -> &mut bool;
     fn render_tags(&self) -> &bool;
+    fn render_tags_mut(&mut self) -> &mut bool;
     fn team(&self) -> &u32;
+    fn team_mut(&mut self) -> &mut u32;
     fn spawn_point_index(&self) -> &i32;
+    fn spawn_point_index_mut(&mut self) -> &mut i32;
     fn server_ip(&self) -> &String;
+    fn server_ip_mut(&mut self) -> &mut String;
     fn secondary_server_ip(&self) -> &String;
+    fn secondary_server_ip_mut(&mut self) -> &mut String;
     fn scheme0_flip_y(&self) -> &bool;
+    fn scheme0_flip_y_mut(&mut self) -> &mut bool;
     fn scheme1_flip_y(&self) -> &bool;
+    fn scheme1_flip_y_mut(&mut self) -> &mut bool;
     fn scheme2_flip_y(&self) -> &bool;
+    fn scheme2_flip_y_mut(&mut self) -> &mut bool;
     fn aim_scale(&self) -> &f32;
+    fn aim_scale_mut(&mut self) -> &mut f32;
     fn havok_visual_debugger(&self) -> &bool;
+    fn havok_visual_debugger_mut(&mut self) -> &mut bool;
     fn havok_capture_to_file(&self) -> &bool;
+    fn havok_capture_to_file_mut(&mut self) -> &mut bool;
     fn show_build_id(&self) -> &bool;
+    fn show_build_id_mut(&mut self) -> &mut bool;
     fn extract_persistence_information(&self) -> &bool;
+    fn extract_persistence_information_mut(&mut self) -> &mut bool;
     fn enable_rest_tool(&self) -> &bool;
+    fn enable_rest_tool_mut(&mut self) -> &mut bool;
     fn local_vehicle_simulation_enabled(&self) -> &bool;
+    fn local_vehicle_simulation_enabled_mut(&mut self) -> &mut bool;
     fn auto_unspawn_dynamic_objects(&self) -> &bool;
+    fn auto_unspawn_dynamic_objects_mut(&mut self) -> &mut bool;
     fn incoming_frequency(&self) -> &f32;
+    fn incoming_frequency_mut(&mut self) -> &mut f32;
     fn outgoing_frequency(&self) -> &f32;
+    fn outgoing_frequency_mut(&mut self) -> &mut f32;
     fn incoming_rate(&self) -> &u32;
+    fn incoming_rate_mut(&mut self) -> &mut u32;
     fn outgoing_rate(&self) -> &u32;
+    fn outgoing_rate_mut(&mut self) -> &mut u32;
     fn loading_timeout(&self) -> &f32;
+    fn loading_timeout_mut(&mut self) -> &mut f32;
     fn loaded_timeout(&self) -> &f32;
+    fn loaded_timeout_mut(&mut self) -> &mut f32;
     fn ingame_timeout(&self) -> &f32;
+    fn ingame_timeout_mut(&mut self) -> &mut f32;
     fn quit_game_on_server_disconnect(&self) -> &bool;
+    fn quit_game_on_server_disconnect_mut(&mut self) -> &mut bool;
     fn lua_option_set_enable(&self) -> &bool;
+    fn lua_option_set_enable_mut(&mut self) -> &mut bool;
     fn cpu_quality(&self) -> &f32;
+    fn cpu_quality_mut(&mut self) -> &mut f32;
     fn instance_path(&self) -> &String;
+    fn instance_path_mut(&mut self) -> &mut String;
     fn audio_system_guid(&self) -> &glacier_util::guid::Guid;
+    fn audio_system_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn frame_history_time_warn_scale(&self) -> &f32;
+    fn frame_history_time_warn_scale_mut(&mut self) -> &mut f32;
     fn fast_exit(&self) -> &bool;
+    fn fast_exit_mut(&mut self) -> &mut bool;
 }
 
 impl ClientSettingsTrait for ClientSettings {
     fn is_spectator(&self) -> &bool {
         &self.is_spectator
     }
+    fn is_spectator_mut(&mut self) -> &mut bool {
+        &mut self.is_spectator
+    }
     fn allow_video_recording(&self) -> &bool {
         &self.allow_video_recording
+    }
+    fn allow_video_recording_mut(&mut self) -> &mut bool {
+        &mut self.allow_video_recording
     }
     fn debris_cluster_enabled(&self) -> &bool {
         &self.debris_cluster_enabled
     }
+    fn debris_cluster_enabled_mut(&mut self) -> &mut bool {
+        &mut self.debris_cluster_enabled
+    }
     fn vegetation_enabled(&self) -> &bool {
         &self.vegetation_enabled
+    }
+    fn vegetation_enabled_mut(&mut self) -> &mut bool {
+        &mut self.vegetation_enabled
     }
     fn force_enabled(&self) -> &bool {
         &self.force_enabled
     }
+    fn force_enabled_mut(&mut self) -> &mut bool {
+        &mut self.force_enabled
+    }
     fn world_render_enabled(&self) -> &bool {
         &self.world_render_enabled
+    }
+    fn world_render_enabled_mut(&mut self) -> &mut bool {
+        &mut self.world_render_enabled
     }
     fn terrain_enabled(&self) -> &bool {
         &self.terrain_enabled
     }
+    fn terrain_enabled_mut(&mut self) -> &mut bool {
+        &mut self.terrain_enabled
+    }
     fn water_physics_enabled(&self) -> &bool {
         &self.water_physics_enabled
+    }
+    fn water_physics_enabled_mut(&mut self) -> &mut bool {
+        &mut self.water_physics_enabled
     }
     fn overgrowth_enabled(&self) -> &bool {
         &self.overgrowth_enabled
     }
+    fn overgrowth_enabled_mut(&mut self) -> &mut bool {
+        &mut self.overgrowth_enabled
+    }
     fn effects_enabled(&self) -> &bool {
         &self.effects_enabled
+    }
+    fn effects_enabled_mut(&mut self) -> &mut bool {
+        &mut self.effects_enabled
     }
     fn auto_increment_pad_index(&self) -> &bool {
         &self.auto_increment_pad_index
     }
+    fn auto_increment_pad_index_mut(&mut self) -> &mut bool {
+        &mut self.auto_increment_pad_index
+    }
     fn lip_sync_enabled(&self) -> &bool {
         &self.lip_sync_enabled
+    }
+    fn lip_sync_enabled_mut(&mut self) -> &mut bool {
+        &mut self.lip_sync_enabled
     }
     fn pause_game_on_start_up(&self) -> &bool {
         &self.pause_game_on_start_up
     }
+    fn pause_game_on_start_up_mut(&mut self) -> &mut bool {
+        &mut self.pause_game_on_start_up
+    }
     fn skip_fast_level_load(&self) -> &bool {
         &self.skip_fast_level_load
+    }
+    fn skip_fast_level_load_mut(&mut self) -> &mut bool {
+        &mut self.skip_fast_level_load
     }
     fn screenshot_to_file(&self) -> &bool {
         &self.screenshot_to_file
     }
+    fn screenshot_to_file_mut(&mut self) -> &mut bool {
+        &mut self.screenshot_to_file
+    }
     fn screenshot_filename(&self) -> &String {
         &self.screenshot_filename
+    }
+    fn screenshot_filename_mut(&mut self) -> &mut String {
+        &mut self.screenshot_filename
     }
     fn screenshot_suffix(&self) -> &String {
         &self.screenshot_suffix
     }
+    fn screenshot_suffix_mut(&mut self) -> &mut String {
+        &mut self.screenshot_suffix
+    }
     fn load_menu(&self) -> &bool {
         &self.load_menu
+    }
+    fn load_menu_mut(&mut self) -> &mut bool {
+        &mut self.load_menu
     }
     fn debug_menu_on_l_thumb(&self) -> &bool {
         &self.debug_menu_on_l_thumb
     }
+    fn debug_menu_on_l_thumb_mut(&mut self) -> &mut bool {
+        &mut self.debug_menu_on_l_thumb
+    }
     fn screenshot_comparisons_enable(&self) -> &bool {
         &self.screenshot_comparisons_enable
+    }
+    fn screenshot_comparisons_enable_mut(&mut self) -> &mut bool {
+        &mut self.screenshot_comparisons_enable
     }
     fn render_tags(&self) -> &bool {
         &self.render_tags
     }
+    fn render_tags_mut(&mut self) -> &mut bool {
+        &mut self.render_tags
+    }
     fn team(&self) -> &u32 {
         &self.team
+    }
+    fn team_mut(&mut self) -> &mut u32 {
+        &mut self.team
     }
     fn spawn_point_index(&self) -> &i32 {
         &self.spawn_point_index
     }
+    fn spawn_point_index_mut(&mut self) -> &mut i32 {
+        &mut self.spawn_point_index
+    }
     fn server_ip(&self) -> &String {
         &self.server_ip
+    }
+    fn server_ip_mut(&mut self) -> &mut String {
+        &mut self.server_ip
     }
     fn secondary_server_ip(&self) -> &String {
         &self.secondary_server_ip
     }
+    fn secondary_server_ip_mut(&mut self) -> &mut String {
+        &mut self.secondary_server_ip
+    }
     fn scheme0_flip_y(&self) -> &bool {
         &self.scheme0_flip_y
+    }
+    fn scheme0_flip_y_mut(&mut self) -> &mut bool {
+        &mut self.scheme0_flip_y
     }
     fn scheme1_flip_y(&self) -> &bool {
         &self.scheme1_flip_y
     }
+    fn scheme1_flip_y_mut(&mut self) -> &mut bool {
+        &mut self.scheme1_flip_y
+    }
     fn scheme2_flip_y(&self) -> &bool {
         &self.scheme2_flip_y
+    }
+    fn scheme2_flip_y_mut(&mut self) -> &mut bool {
+        &mut self.scheme2_flip_y
     }
     fn aim_scale(&self) -> &f32 {
         &self.aim_scale
     }
+    fn aim_scale_mut(&mut self) -> &mut f32 {
+        &mut self.aim_scale
+    }
     fn havok_visual_debugger(&self) -> &bool {
         &self.havok_visual_debugger
+    }
+    fn havok_visual_debugger_mut(&mut self) -> &mut bool {
+        &mut self.havok_visual_debugger
     }
     fn havok_capture_to_file(&self) -> &bool {
         &self.havok_capture_to_file
     }
+    fn havok_capture_to_file_mut(&mut self) -> &mut bool {
+        &mut self.havok_capture_to_file
+    }
     fn show_build_id(&self) -> &bool {
         &self.show_build_id
+    }
+    fn show_build_id_mut(&mut self) -> &mut bool {
+        &mut self.show_build_id
     }
     fn extract_persistence_information(&self) -> &bool {
         &self.extract_persistence_information
     }
+    fn extract_persistence_information_mut(&mut self) -> &mut bool {
+        &mut self.extract_persistence_information
+    }
     fn enable_rest_tool(&self) -> &bool {
         &self.enable_rest_tool
+    }
+    fn enable_rest_tool_mut(&mut self) -> &mut bool {
+        &mut self.enable_rest_tool
     }
     fn local_vehicle_simulation_enabled(&self) -> &bool {
         &self.local_vehicle_simulation_enabled
     }
+    fn local_vehicle_simulation_enabled_mut(&mut self) -> &mut bool {
+        &mut self.local_vehicle_simulation_enabled
+    }
     fn auto_unspawn_dynamic_objects(&self) -> &bool {
         &self.auto_unspawn_dynamic_objects
+    }
+    fn auto_unspawn_dynamic_objects_mut(&mut self) -> &mut bool {
+        &mut self.auto_unspawn_dynamic_objects
     }
     fn incoming_frequency(&self) -> &f32 {
         &self.incoming_frequency
     }
+    fn incoming_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.incoming_frequency
+    }
     fn outgoing_frequency(&self) -> &f32 {
         &self.outgoing_frequency
+    }
+    fn outgoing_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.outgoing_frequency
     }
     fn incoming_rate(&self) -> &u32 {
         &self.incoming_rate
     }
+    fn incoming_rate_mut(&mut self) -> &mut u32 {
+        &mut self.incoming_rate
+    }
     fn outgoing_rate(&self) -> &u32 {
         &self.outgoing_rate
+    }
+    fn outgoing_rate_mut(&mut self) -> &mut u32 {
+        &mut self.outgoing_rate
     }
     fn loading_timeout(&self) -> &f32 {
         &self.loading_timeout
     }
+    fn loading_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.loading_timeout
+    }
     fn loaded_timeout(&self) -> &f32 {
         &self.loaded_timeout
+    }
+    fn loaded_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.loaded_timeout
     }
     fn ingame_timeout(&self) -> &f32 {
         &self.ingame_timeout
     }
+    fn ingame_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.ingame_timeout
+    }
     fn quit_game_on_server_disconnect(&self) -> &bool {
         &self.quit_game_on_server_disconnect
+    }
+    fn quit_game_on_server_disconnect_mut(&mut self) -> &mut bool {
+        &mut self.quit_game_on_server_disconnect
     }
     fn lua_option_set_enable(&self) -> &bool {
         &self.lua_option_set_enable
     }
+    fn lua_option_set_enable_mut(&mut self) -> &mut bool {
+        &mut self.lua_option_set_enable
+    }
     fn cpu_quality(&self) -> &f32 {
         &self.cpu_quality
+    }
+    fn cpu_quality_mut(&mut self) -> &mut f32 {
+        &mut self.cpu_quality
     }
     fn instance_path(&self) -> &String {
         &self.instance_path
     }
+    fn instance_path_mut(&mut self) -> &mut String {
+        &mut self.instance_path
+    }
     fn audio_system_guid(&self) -> &glacier_util::guid::Guid {
         &self.audio_system_guid
+    }
+    fn audio_system_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.audio_system_guid
     }
     fn frame_history_time_warn_scale(&self) -> &f32 {
         &self.frame_history_time_warn_scale
     }
+    fn frame_history_time_warn_scale_mut(&mut self) -> &mut f32 {
+        &mut self.frame_history_time_warn_scale
+    }
     fn fast_exit(&self) -> &bool {
         &self.fast_exit
+    }
+    fn fast_exit_mut(&mut self) -> &mut bool {
+        &mut self.fast_exit
     }
 }
 
@@ -1827,12 +2393,12 @@ impl super::core::SystemSettingsTrait for ClientSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ClientSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLIENTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2158,6 +2724,15 @@ impl TypeObject for ClientSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2203,6 +2778,15 @@ impl TypeObject for ClientSpawnSpawnedOrUnSpawnedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2236,6 +2820,15 @@ impl TypeObject for ClientLevelFinalizedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2271,6 +2864,15 @@ impl TypeObject for ClientLevelSpawnDebugEntitiesMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2304,6 +2906,15 @@ impl TypeObject for ClientControllableUnspawnDoneMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2339,6 +2950,15 @@ impl TypeObject for ClientControllableSpawnDoneMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2372,6 +2992,15 @@ impl TypeObject for ClientConnectionUnloadLevelMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2407,6 +3036,15 @@ impl TypeObject for ClientConnectionLinkLevelMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2441,6 +3079,15 @@ impl TypeObject for ClientConnectionLoadLevelMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2474,6 +3121,15 @@ impl TypeObject for ClientConnectionInitializedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2516,6 +3172,15 @@ impl TypeObject for ClientPlaceHolderEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2585,6 +3250,15 @@ impl TypeObject for ClientPhysicsEntityWithPoseProvider {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2650,6 +3324,15 @@ impl TypeObject for ClientPhysicsEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2712,6 +3395,15 @@ impl TypeObject for ClientGameComponentEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2768,6 +3460,15 @@ impl TypeObject for ClientGameComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2813,6 +3514,15 @@ impl TypeObject for ClientControllableEntityCreatedEntityInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2882,6 +3592,15 @@ impl TypeObject for ClientControllableEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2940,6 +3659,15 @@ impl TypeObject for ClientEntryComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3000,6 +3728,15 @@ impl TypeObject for ClientControllableHealthComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3046,6 +3783,15 @@ impl TypeObject for ClientPlayerExtent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3091,6 +3837,15 @@ impl TypeObject for OnlineManager {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3144,6 +3899,15 @@ impl TypeObject for ClientConnection {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3201,6 +3965,15 @@ impl TypeObject for ClientSpawnEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3253,6 +4026,15 @@ impl TypeObject for ClientPlayerEvent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3310,6 +4092,15 @@ impl TypeObject for ClientDestructionComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3355,6 +4146,15 @@ impl TypeObject for ClientPlayerUpdateCameraComponentMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3388,6 +4188,15 @@ impl TypeObject for ClientPlayerSwitchTeamMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3423,6 +4232,15 @@ impl TypeObject for ClientPlayerRequestCameraChangeMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3456,6 +4274,15 @@ impl TypeObject for ClientPlayerLocalSetMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3491,6 +4318,15 @@ impl TypeObject for ClientPlayerExitEntryMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3524,6 +4360,15 @@ impl TypeObject for ClientPlayerEnterEntryMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3559,6 +4404,15 @@ impl TypeObject for ClientPlayerDeletedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3592,6 +4446,15 @@ impl TypeObject for ClientPlayerConnectMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3627,6 +4490,15 @@ impl TypeObject for ClientPlayerChangedPlayerViewMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3660,6 +4532,15 @@ impl TypeObject for ClientSetServerPasswordMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3695,6 +4576,15 @@ impl TypeObject for ClientWantFullscreenMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3728,6 +4618,15 @@ impl TypeObject for ClientLeftRemoteServerMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3763,6 +4662,15 @@ impl TypeObject for ClientDisconnectedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3796,6 +4704,15 @@ impl TypeObject for ClientConnectedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3831,6 +4748,15 @@ impl TypeObject for ClientAbortCutsceneMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3864,6 +4790,15 @@ impl TypeObject for ClientLevelLoadedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3899,6 +4834,15 @@ impl TypeObject for ClientLevelLoadProgressMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3932,6 +4876,15 @@ impl TypeObject for ClientLevelDescriptionLoadedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3967,6 +4920,15 @@ impl TypeObject for ClientLevelUnloadedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4000,6 +4962,15 @@ impl TypeObject for ClientLevelUnloadStartedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4035,6 +5006,15 @@ impl TypeObject for ClientQuittingFinishedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4068,6 +5048,15 @@ impl TypeObject for ClientQuittingStartedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4103,6 +5092,15 @@ impl TypeObject for ClientStartupFinishedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4136,6 +5134,15 @@ impl TypeObject for ClientLoadLevelMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4171,6 +5178,15 @@ impl TypeObject for ClientLoadLevelRequestedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4204,6 +5220,15 @@ impl TypeObject for ClientEnteredIngameMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4239,6 +5264,15 @@ impl TypeObject for ClientEnterHudIngameMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4272,6 +5306,15 @@ impl TypeObject for ClientExitGameMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4307,6 +5350,15 @@ impl TypeObject for ClientHostMigrationMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4340,6 +5392,15 @@ impl TypeObject for ClientExitToMenuMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4375,6 +5436,15 @@ impl TypeObject for ClientReturnToMenuMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4408,6 +5478,15 @@ impl TypeObject for ClientStartMultiplayerMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4443,6 +5522,15 @@ impl TypeObject for ClientContinueSingleplayerMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4476,6 +5564,15 @@ impl TypeObject for ClientStartedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4511,6 +5608,15 @@ impl TypeObject for ClientJoinServerJobMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4544,6 +5650,15 @@ impl TypeObject for ClientPeerNetworkRemovedMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4579,6 +5694,15 @@ impl TypeObject for ClientJoinMultiplayerMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4613,6 +5737,15 @@ impl TypeObject for ClientRestartSingleplayerMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4646,6 +5779,15 @@ impl TypeObject for ClientStartSingleplayerMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4691,6 +5833,15 @@ impl TypeObject for ServerDestructionComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4747,6 +5898,15 @@ impl TypeObject for ServerGameComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4807,6 +5967,15 @@ impl TypeObject for ShaderParameterComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4866,6 +6035,15 @@ impl TypeObject for ClientPartComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4922,6 +6100,15 @@ impl TypeObject for ClientPart {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4977,6 +6164,15 @@ impl TypeObject for ClientGameHealthComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5037,6 +6233,15 @@ impl TypeObject for ClientBoneComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5086,6 +6291,15 @@ impl TypeObject for ClientSubView {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

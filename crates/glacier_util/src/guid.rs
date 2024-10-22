@@ -1,5 +1,7 @@
 use std::fmt::{self, Debug, Formatter};
 
+use bytes::BytesMut;
+
 // UUID v3
 #[derive(Default, Clone, Copy, PartialEq)]
 pub struct Guid {
@@ -15,6 +17,49 @@ impl Guid {
             data1,
             data2,
             data3,
+            data4,
+        }
+    }
+
+    pub fn from_slice(data: &[u8]) -> Self {
+        Self {
+            data1: u32::from_le_bytes([data[0], data[1], data[2], data[3]]),
+            data2: u16::from_le_bytes([data[4], data[5]]),
+            data3: u16::from_le_bytes([data[6], data[7]]),
+            data4: [
+                data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15],
+            ],
+        }
+    }
+
+    pub fn from_u128(data: u128) -> Self {
+        Self {
+            data1: (data >> 96) as u32,
+            data2: ((data >> 80) & 0xFFFF) as u16,
+            data3: ((data >> 64) & 0xFFFF) as u16,
+            data4: [
+                ((data >> 56) & 0xFF) as u8,
+                ((data >> 48) & 0xFF) as u8,
+                ((data >> 40) & 0xFF) as u8,
+                ((data >> 32) & 0xFF) as u8,
+                ((data >> 24) & 0xFF) as u8,
+                ((data >> 16) & 0xFF) as u8,
+                ((data >> 8) & 0xFF) as u8,
+                (data & 0xFF) as u8,
+            ],
+        }
+    }
+
+    pub fn random() -> Self {
+        let mut data4 = [0; 8];
+        for i in 0..8 {
+            data4[i] = rand::random();
+        }
+
+        Self {
+            data1: rand::random(),
+            data2: rand::random(),
+            data3: rand::random(),
             data4,
         }
     }
@@ -64,5 +109,15 @@ impl Guid {
 impl Debug for Guid {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         write!(f, "{}", self.to_string())
+    }
+}
+
+pub trait BytesGuidExt {
+    fn get_guid(&mut self) -> Guid;
+}
+
+impl BytesGuidExt for BytesMut {
+    fn get_guid(&mut self) -> Guid {
+        Guid::from_slice(&self.split_to(16))
     }
 }

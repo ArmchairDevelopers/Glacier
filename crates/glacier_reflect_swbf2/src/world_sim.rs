@@ -439,122 +439,227 @@ pub struct ForceManagerSettings {
 
 pub trait ForceManagerSettingsTrait: super::core::DataContainerTrait {
     fn vector_field_norm_value(&self) -> &f32;
+    fn vector_field_norm_value_mut(&mut self) -> &mut f32;
     fn vector_field_cell_size(&self) -> &f32;
+    fn vector_field_cell_size_mut(&mut self) -> &mut f32;
     fn vector_field_planar_height_position(&self) -> &f32;
+    fn vector_field_planar_height_position_mut(&mut self) -> &mut f32;
     fn wind_enable(&self) -> &bool;
+    fn wind_enable_mut(&mut self) -> &mut bool;
     fn forces_enable(&self) -> &bool;
+    fn forces_enable_mut(&mut self) -> &mut bool;
     fn draw_stats(&self) -> &bool;
+    fn draw_stats_mut(&mut self) -> &mut bool;
     fn draw_wind_graph(&self) -> &bool;
+    fn draw_wind_graph_mut(&mut self) -> &mut bool;
     fn draw_bounding_volumes(&self) -> &bool;
+    fn draw_bounding_volumes_mut(&mut self) -> &mut bool;
     fn draw_selection_bounding_volumes(&self) -> &bool;
+    fn draw_selection_bounding_volumes_mut(&mut self) -> &mut bool;
     fn draw_selection_vector_field(&self) -> &bool;
+    fn draw_selection_vector_field_mut(&mut self) -> &mut bool;
     fn draw_selection_force_vector_field(&self) -> &bool;
+    fn draw_selection_force_vector_field_mut(&mut self) -> &mut bool;
     fn draw_planar_vector_field(&self) -> &bool;
+    fn draw_planar_vector_field_mut(&mut self) -> &mut bool;
     fn draw_external_vector_field(&self) -> &bool;
+    fn draw_external_vector_field_mut(&mut self) -> &mut bool;
     fn vector_field_enable_wind(&self) -> &bool;
+    fn vector_field_enable_wind_mut(&mut self) -> &mut bool;
     fn vector_field_enable_sphere(&self) -> &bool;
+    fn vector_field_enable_sphere_mut(&mut self) -> &mut bool;
     fn vector_field_enable_cone(&self) -> &bool;
+    fn vector_field_enable_cone_mut(&mut self) -> &mut bool;
     fn vector_field_enable_baked(&self) -> &bool;
+    fn vector_field_enable_baked_mut(&mut self) -> &mut bool;
     fn vector_field_camera_centered(&self) -> &bool;
+    fn vector_field_camera_centered_mut(&mut self) -> &mut bool;
     fn vector_field_size_x(&self) -> &f32;
+    fn vector_field_size_x_mut(&mut self) -> &mut f32;
     fn vector_field_size_y(&self) -> &f32;
+    fn vector_field_size_y_mut(&mut self) -> &mut f32;
     fn vector_field_size_z(&self) -> &f32;
+    fn vector_field_size_z_mut(&mut self) -> &mut f32;
     fn vector_field_center_x(&self) -> &f32;
+    fn vector_field_center_x_mut(&mut self) -> &mut f32;
     fn vector_field_center_y(&self) -> &f32;
+    fn vector_field_center_y_mut(&mut self) -> &mut f32;
     fn vector_field_center_z(&self) -> &f32;
+    fn vector_field_center_z_mut(&mut self) -> &mut f32;
     fn vector_field_point_size(&self) -> &f32;
+    fn vector_field_point_size_mut(&mut self) -> &mut f32;
     fn vector_field_arrow(&self) -> &bool;
+    fn vector_field_arrow_mut(&mut self) -> &mut bool;
     fn vector_field_lock_selection(&self) -> &bool;
+    fn vector_field_lock_selection_mut(&mut self) -> &mut bool;
 }
 
 impl ForceManagerSettingsTrait for ForceManagerSettings {
     fn vector_field_norm_value(&self) -> &f32 {
         &self.vector_field_norm_value
     }
+    fn vector_field_norm_value_mut(&mut self) -> &mut f32 {
+        &mut self.vector_field_norm_value
+    }
     fn vector_field_cell_size(&self) -> &f32 {
         &self.vector_field_cell_size
+    }
+    fn vector_field_cell_size_mut(&mut self) -> &mut f32 {
+        &mut self.vector_field_cell_size
     }
     fn vector_field_planar_height_position(&self) -> &f32 {
         &self.vector_field_planar_height_position
     }
+    fn vector_field_planar_height_position_mut(&mut self) -> &mut f32 {
+        &mut self.vector_field_planar_height_position
+    }
     fn wind_enable(&self) -> &bool {
         &self.wind_enable
+    }
+    fn wind_enable_mut(&mut self) -> &mut bool {
+        &mut self.wind_enable
     }
     fn forces_enable(&self) -> &bool {
         &self.forces_enable
     }
+    fn forces_enable_mut(&mut self) -> &mut bool {
+        &mut self.forces_enable
+    }
     fn draw_stats(&self) -> &bool {
         &self.draw_stats
+    }
+    fn draw_stats_mut(&mut self) -> &mut bool {
+        &mut self.draw_stats
     }
     fn draw_wind_graph(&self) -> &bool {
         &self.draw_wind_graph
     }
+    fn draw_wind_graph_mut(&mut self) -> &mut bool {
+        &mut self.draw_wind_graph
+    }
     fn draw_bounding_volumes(&self) -> &bool {
         &self.draw_bounding_volumes
+    }
+    fn draw_bounding_volumes_mut(&mut self) -> &mut bool {
+        &mut self.draw_bounding_volumes
     }
     fn draw_selection_bounding_volumes(&self) -> &bool {
         &self.draw_selection_bounding_volumes
     }
+    fn draw_selection_bounding_volumes_mut(&mut self) -> &mut bool {
+        &mut self.draw_selection_bounding_volumes
+    }
     fn draw_selection_vector_field(&self) -> &bool {
         &self.draw_selection_vector_field
+    }
+    fn draw_selection_vector_field_mut(&mut self) -> &mut bool {
+        &mut self.draw_selection_vector_field
     }
     fn draw_selection_force_vector_field(&self) -> &bool {
         &self.draw_selection_force_vector_field
     }
+    fn draw_selection_force_vector_field_mut(&mut self) -> &mut bool {
+        &mut self.draw_selection_force_vector_field
+    }
     fn draw_planar_vector_field(&self) -> &bool {
         &self.draw_planar_vector_field
+    }
+    fn draw_planar_vector_field_mut(&mut self) -> &mut bool {
+        &mut self.draw_planar_vector_field
     }
     fn draw_external_vector_field(&self) -> &bool {
         &self.draw_external_vector_field
     }
+    fn draw_external_vector_field_mut(&mut self) -> &mut bool {
+        &mut self.draw_external_vector_field
+    }
     fn vector_field_enable_wind(&self) -> &bool {
         &self.vector_field_enable_wind
+    }
+    fn vector_field_enable_wind_mut(&mut self) -> &mut bool {
+        &mut self.vector_field_enable_wind
     }
     fn vector_field_enable_sphere(&self) -> &bool {
         &self.vector_field_enable_sphere
     }
+    fn vector_field_enable_sphere_mut(&mut self) -> &mut bool {
+        &mut self.vector_field_enable_sphere
+    }
     fn vector_field_enable_cone(&self) -> &bool {
         &self.vector_field_enable_cone
+    }
+    fn vector_field_enable_cone_mut(&mut self) -> &mut bool {
+        &mut self.vector_field_enable_cone
     }
     fn vector_field_enable_baked(&self) -> &bool {
         &self.vector_field_enable_baked
     }
+    fn vector_field_enable_baked_mut(&mut self) -> &mut bool {
+        &mut self.vector_field_enable_baked
+    }
     fn vector_field_camera_centered(&self) -> &bool {
         &self.vector_field_camera_centered
+    }
+    fn vector_field_camera_centered_mut(&mut self) -> &mut bool {
+        &mut self.vector_field_camera_centered
     }
     fn vector_field_size_x(&self) -> &f32 {
         &self.vector_field_size_x
     }
+    fn vector_field_size_x_mut(&mut self) -> &mut f32 {
+        &mut self.vector_field_size_x
+    }
     fn vector_field_size_y(&self) -> &f32 {
         &self.vector_field_size_y
+    }
+    fn vector_field_size_y_mut(&mut self) -> &mut f32 {
+        &mut self.vector_field_size_y
     }
     fn vector_field_size_z(&self) -> &f32 {
         &self.vector_field_size_z
     }
+    fn vector_field_size_z_mut(&mut self) -> &mut f32 {
+        &mut self.vector_field_size_z
+    }
     fn vector_field_center_x(&self) -> &f32 {
         &self.vector_field_center_x
+    }
+    fn vector_field_center_x_mut(&mut self) -> &mut f32 {
+        &mut self.vector_field_center_x
     }
     fn vector_field_center_y(&self) -> &f32 {
         &self.vector_field_center_y
     }
+    fn vector_field_center_y_mut(&mut self) -> &mut f32 {
+        &mut self.vector_field_center_y
+    }
     fn vector_field_center_z(&self) -> &f32 {
         &self.vector_field_center_z
+    }
+    fn vector_field_center_z_mut(&mut self) -> &mut f32 {
+        &mut self.vector_field_center_z
     }
     fn vector_field_point_size(&self) -> &f32 {
         &self.vector_field_point_size
     }
+    fn vector_field_point_size_mut(&mut self) -> &mut f32 {
+        &mut self.vector_field_point_size
+    }
     fn vector_field_arrow(&self) -> &bool {
         &self.vector_field_arrow
+    }
+    fn vector_field_arrow_mut(&mut self) -> &mut bool {
+        &mut self.vector_field_arrow
     }
     fn vector_field_lock_selection(&self) -> &bool {
         &self.vector_field_lock_selection
     }
+    fn vector_field_lock_selection_mut(&mut self) -> &mut bool {
+        &mut self.vector_field_lock_selection
+    }
 }
 
 impl super::core::DataContainerTrait for ForceManagerSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FORCEMANAGERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -742,6 +847,15 @@ impl TypeObject for ForceManagerSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -770,39 +884,71 @@ pub struct LocalWindForceBaked3DAs2x2DTexEntityData {
 
 pub trait LocalWindForceBaked3DAs2x2DTexEntityDataTrait: LocalWindForceEntityBaseDataTrait {
     fn size_x(&self) -> &f32;
+    fn size_x_mut(&mut self) -> &mut f32;
     fn size_y(&self) -> &f32;
+    fn size_y_mut(&mut self) -> &mut f32;
     fn size_z(&self) -> &f32;
+    fn size_z_mut(&mut self) -> &mut f32;
     fn attenuation(&self) -> &f32;
+    fn attenuation_mut(&mut self) -> &mut f32;
     fn volume_slice_z_x(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn volume_slice_z_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn volume_slice_z_x_scale(&self) -> &super::core::Vec3;
+    fn volume_slice_z_x_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn volume_slice_z_y(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn volume_slice_z_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn volume_slice_z_y_scale(&self) -> &super::core::Vec3;
+    fn volume_slice_z_y_scale_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl LocalWindForceBaked3DAs2x2DTexEntityDataTrait for LocalWindForceBaked3DAs2x2DTexEntityData {
     fn size_x(&self) -> &f32 {
         &self.size_x
     }
+    fn size_x_mut(&mut self) -> &mut f32 {
+        &mut self.size_x
+    }
     fn size_y(&self) -> &f32 {
         &self.size_y
+    }
+    fn size_y_mut(&mut self) -> &mut f32 {
+        &mut self.size_y
     }
     fn size_z(&self) -> &f32 {
         &self.size_z
     }
+    fn size_z_mut(&mut self) -> &mut f32 {
+        &mut self.size_z
+    }
     fn attenuation(&self) -> &f32 {
         &self.attenuation
+    }
+    fn attenuation_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation
     }
     fn volume_slice_z_x(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.volume_slice_z_x
     }
+    fn volume_slice_z_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.volume_slice_z_x
+    }
     fn volume_slice_z_x_scale(&self) -> &super::core::Vec3 {
         &self.volume_slice_z_x_scale
+    }
+    fn volume_slice_z_x_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.volume_slice_z_x_scale
     }
     fn volume_slice_z_y(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.volume_slice_z_y
     }
+    fn volume_slice_z_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.volume_slice_z_y
+    }
     fn volume_slice_z_y_scale(&self) -> &super::core::Vec3 {
         &self.volume_slice_z_y_scale
+    }
+    fn volume_slice_z_y_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.volume_slice_z_y_scale
     }
 }
 
@@ -810,29 +956,53 @@ impl LocalWindForceEntityBaseDataTrait for LocalWindForceBaked3DAs2x2DTexEntityD
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
         self._glacier_base.force_group()
     }
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
+        self._glacier_base.force_group_mut()
+    }
     fn strength(&self) -> &f32 {
         self._glacier_base.strength()
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        self._glacier_base.strength_mut()
     }
     fn variation(&self) -> &f32 {
         self._glacier_base.variation()
     }
+    fn variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_mut()
+    }
     fn variation_rate(&self) -> &f32 {
         self._glacier_base.variation_rate()
+    }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_rate_mut()
     }
     fn micro_variation(&self) -> &f32 {
         self._glacier_base.micro_variation()
     }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.micro_variation_mut()
+    }
     fn hardness(&self) -> &f32 {
         self._glacier_base.hardness()
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        self._glacier_base.hardness_mut()
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         self._glacier_base.force_as_instant_velocity()
+    }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.force_as_instant_velocity_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for LocalWindForceBaked3DAs2x2DTexEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -846,15 +1016,15 @@ impl super::core::DataBusPeerTrait for LocalWindForceBaked3DAs2x2DTexEntityData 
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalWindForceBaked3DAs2x2DTexEntityData {
 }
 
 impl super::core::DataContainerTrait for LocalWindForceBaked3DAs2x2DTexEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALWINDFORCEBAKED3DAS2X2DTEXENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -928,6 +1098,15 @@ impl TypeObject for LocalWindForceBaked3DAs2x2DTexEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -952,23 +1131,39 @@ pub struct LocalWindForceConeEntityData {
 
 pub trait LocalWindForceConeEntityDataTrait: LocalWindForceEntityBaseDataTrait {
     fn inner_radius(&self) -> &f32;
+    fn inner_radius_mut(&mut self) -> &mut f32;
     fn outer_radius(&self) -> &f32;
+    fn outer_radius_mut(&mut self) -> &mut f32;
     fn cone_inner_angle(&self) -> &f32;
+    fn cone_inner_angle_mut(&mut self) -> &mut f32;
     fn cone_outer_angle(&self) -> &f32;
+    fn cone_outer_angle_mut(&mut self) -> &mut f32;
 }
 
 impl LocalWindForceConeEntityDataTrait for LocalWindForceConeEntityData {
     fn inner_radius(&self) -> &f32 {
         &self.inner_radius
     }
+    fn inner_radius_mut(&mut self) -> &mut f32 {
+        &mut self.inner_radius
+    }
     fn outer_radius(&self) -> &f32 {
         &self.outer_radius
+    }
+    fn outer_radius_mut(&mut self) -> &mut f32 {
+        &mut self.outer_radius
     }
     fn cone_inner_angle(&self) -> &f32 {
         &self.cone_inner_angle
     }
+    fn cone_inner_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cone_inner_angle
+    }
     fn cone_outer_angle(&self) -> &f32 {
         &self.cone_outer_angle
+    }
+    fn cone_outer_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cone_outer_angle
     }
 }
 
@@ -976,29 +1171,53 @@ impl LocalWindForceEntityBaseDataTrait for LocalWindForceConeEntityData {
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
         self._glacier_base.force_group()
     }
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
+        self._glacier_base.force_group_mut()
+    }
     fn strength(&self) -> &f32 {
         self._glacier_base.strength()
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        self._glacier_base.strength_mut()
     }
     fn variation(&self) -> &f32 {
         self._glacier_base.variation()
     }
+    fn variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_mut()
+    }
     fn variation_rate(&self) -> &f32 {
         self._glacier_base.variation_rate()
+    }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_rate_mut()
     }
     fn micro_variation(&self) -> &f32 {
         self._glacier_base.micro_variation()
     }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.micro_variation_mut()
+    }
     fn hardness(&self) -> &f32 {
         self._glacier_base.hardness()
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        self._glacier_base.hardness_mut()
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         self._glacier_base.force_as_instant_velocity()
+    }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.force_as_instant_velocity_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for LocalWindForceConeEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -1012,15 +1231,15 @@ impl super::core::DataBusPeerTrait for LocalWindForceConeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalWindForceConeEntityData {
 }
 
 impl super::core::DataContainerTrait for LocalWindForceConeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALWINDFORCECONEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1070,6 +1289,15 @@ impl TypeObject for LocalWindForceConeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1091,11 +1319,15 @@ pub struct LocalWindForceSphereEntityData {
 
 pub trait LocalWindForceSphereEntityDataTrait: LocalWindForceEntityBaseDataTrait {
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
 }
 
 impl LocalWindForceSphereEntityDataTrait for LocalWindForceSphereEntityData {
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
 }
 
@@ -1103,29 +1335,53 @@ impl LocalWindForceEntityBaseDataTrait for LocalWindForceSphereEntityData {
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
         self._glacier_base.force_group()
     }
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
+        self._glacier_base.force_group_mut()
+    }
     fn strength(&self) -> &f32 {
         self._glacier_base.strength()
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        self._glacier_base.strength_mut()
     }
     fn variation(&self) -> &f32 {
         self._glacier_base.variation()
     }
+    fn variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_mut()
+    }
     fn variation_rate(&self) -> &f32 {
         self._glacier_base.variation_rate()
+    }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_rate_mut()
     }
     fn micro_variation(&self) -> &f32 {
         self._glacier_base.micro_variation()
     }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.micro_variation_mut()
+    }
     fn hardness(&self) -> &f32 {
         self._glacier_base.hardness()
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        self._glacier_base.hardness_mut()
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         self._glacier_base.force_as_instant_velocity()
+    }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.force_as_instant_velocity_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for LocalWindForceSphereEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -1139,15 +1395,15 @@ impl super::core::DataBusPeerTrait for LocalWindForceSphereEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalWindForceSphereEntityData {
 }
 
 impl super::core::DataContainerTrait for LocalWindForceSphereEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALWINDFORCESPHEREENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1179,6 +1435,15 @@ impl TypeObject for LocalWindForceSphereEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1200,17 +1465,24 @@ pub struct LocalWindForceSamplerEntityData {
 
 pub trait LocalWindForceSamplerEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
 }
 
 impl LocalWindForceSamplerEntityDataTrait for LocalWindForceSamplerEntityData {
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for LocalWindForceSamplerEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -1224,15 +1496,15 @@ impl super::core::DataBusPeerTrait for LocalWindForceSamplerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalWindForceSamplerEntityData {
 }
 
 impl super::core::DataContainerTrait for LocalWindForceSamplerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALWINDFORCESAMPLERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1264,6 +1536,15 @@ impl TypeObject for LocalWindForceSamplerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1291,41 +1572,72 @@ pub struct LocalWindForceEntityBaseData {
 
 pub trait LocalWindForceEntityBaseDataTrait: super::entity::SpatialEntityDataTrait {
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>>;
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>>;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn variation(&self) -> &f32;
+    fn variation_mut(&mut self) -> &mut f32;
     fn variation_rate(&self) -> &f32;
+    fn variation_rate_mut(&mut self) -> &mut f32;
     fn micro_variation(&self) -> &f32;
+    fn micro_variation_mut(&mut self) -> &mut f32;
     fn hardness(&self) -> &f32;
+    fn hardness_mut(&mut self) -> &mut f32;
     fn force_as_instant_velocity(&self) -> &f32;
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32;
 }
 
 impl LocalWindForceEntityBaseDataTrait for LocalWindForceEntityBaseData {
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
         &self.force_group
     }
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
+        &mut self.force_group
+    }
     fn strength(&self) -> &f32 {
         &self.strength
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
     }
     fn variation(&self) -> &f32 {
         &self.variation
     }
+    fn variation_mut(&mut self) -> &mut f32 {
+        &mut self.variation
+    }
     fn variation_rate(&self) -> &f32 {
         &self.variation_rate
+    }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        &mut self.variation_rate
     }
     fn micro_variation(&self) -> &f32 {
         &self.micro_variation
     }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        &mut self.micro_variation
+    }
     fn hardness(&self) -> &f32 {
         &self.hardness
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        &mut self.hardness
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         &self.force_as_instant_velocity
+    }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.force_as_instant_velocity
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for LocalWindForceEntityBaseData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -1339,15 +1651,15 @@ impl super::core::DataBusPeerTrait for LocalWindForceEntityBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalWindForceEntityBaseData {
 }
 
 impl super::core::DataContainerTrait for LocalWindForceEntityBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALWINDFORCEENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1415,6 +1727,15 @@ impl TypeObject for LocalWindForceEntityBaseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1440,31 +1761,55 @@ pub struct LocalWindForceDynamicState {
 
 pub trait LocalWindForceDynamicStateTrait: TypeObject {
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn variation(&self) -> &f32;
+    fn variation_mut(&mut self) -> &mut f32;
     fn variation_rate(&self) -> &f32;
+    fn variation_rate_mut(&mut self) -> &mut f32;
     fn micro_variation(&self) -> &f32;
+    fn micro_variation_mut(&mut self) -> &mut f32;
     fn hardness(&self) -> &f32;
+    fn hardness_mut(&mut self) -> &mut f32;
     fn force_as_instant_velocity(&self) -> &f32;
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32;
 }
 
 impl LocalWindForceDynamicStateTrait for LocalWindForceDynamicState {
     fn strength(&self) -> &f32 {
         &self.strength
     }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
+    }
     fn variation(&self) -> &f32 {
         &self.variation
+    }
+    fn variation_mut(&mut self) -> &mut f32 {
+        &mut self.variation
     }
     fn variation_rate(&self) -> &f32 {
         &self.variation_rate
     }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        &mut self.variation_rate
+    }
     fn micro_variation(&self) -> &f32 {
         &self.micro_variation
+    }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        &mut self.micro_variation
     }
     fn hardness(&self) -> &f32 {
         &self.hardness
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        &mut self.hardness
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         &self.force_as_instant_velocity
+    }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.force_as_instant_velocity
     }
 }
 
@@ -1526,6 +1871,15 @@ impl TypeObject for LocalWindForceDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1546,11 +1900,15 @@ pub struct LocalWindForceStaticState {
 
 pub trait LocalWindForceStaticStateTrait: TypeObject {
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>>;
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>>;
 }
 
 impl LocalWindForceStaticStateTrait for LocalWindForceStaticState {
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
         &self.force_group
+    }
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
+        &mut self.force_group
     }
 }
 
@@ -1582,6 +1940,15 @@ impl TypeObject for LocalWindForceStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1607,27 +1974,47 @@ pub struct ForceGroupAsset {
 
 pub trait ForceGroupAssetTrait: super::core::AssetTrait {
     fn mesh_scattering(&self) -> &bool;
+    fn mesh_scattering_mut(&mut self) -> &mut bool;
     fn vegetation(&self) -> &bool;
+    fn vegetation_mut(&mut self) -> &mut bool;
     fn effects(&self) -> &bool;
+    fn effects_mut(&mut self) -> &mut bool;
     fn cloth(&self) -> &bool;
+    fn cloth_mut(&mut self) -> &mut bool;
     fn physics(&self) -> &bool;
+    fn physics_mut(&mut self) -> &mut bool;
 }
 
 impl ForceGroupAssetTrait for ForceGroupAsset {
     fn mesh_scattering(&self) -> &bool {
         &self.mesh_scattering
     }
+    fn mesh_scattering_mut(&mut self) -> &mut bool {
+        &mut self.mesh_scattering
+    }
     fn vegetation(&self) -> &bool {
         &self.vegetation
+    }
+    fn vegetation_mut(&mut self) -> &mut bool {
+        &mut self.vegetation
     }
     fn effects(&self) -> &bool {
         &self.effects
     }
+    fn effects_mut(&mut self) -> &mut bool {
+        &mut self.effects
+    }
     fn cloth(&self) -> &bool {
         &self.cloth
     }
+    fn cloth_mut(&mut self) -> &mut bool {
+        &mut self.cloth
+    }
     fn physics(&self) -> &bool {
         &self.physics
+    }
+    fn physics_mut(&mut self) -> &mut bool {
+        &mut self.physics
     }
 }
 
@@ -1635,12 +2022,12 @@ impl super::core::AssetTrait for ForceGroupAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ForceGroupAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FORCEGROUPASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1696,6 +2083,15 @@ impl TypeObject for ForceGroupAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1724,39 +2120,71 @@ pub struct LocalWindForceBaked3DAs2x2DTexComponentData {
 
 pub trait LocalWindForceBaked3DAs2x2DTexComponentDataTrait: LocalWindForceComponentBaseDataTrait {
     fn size_x(&self) -> &f32;
+    fn size_x_mut(&mut self) -> &mut f32;
     fn size_y(&self) -> &f32;
+    fn size_y_mut(&mut self) -> &mut f32;
     fn size_z(&self) -> &f32;
+    fn size_z_mut(&mut self) -> &mut f32;
     fn attenuation(&self) -> &f32;
+    fn attenuation_mut(&mut self) -> &mut f32;
     fn volume_slice_z_x(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn volume_slice_z_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn volume_slice_z_x_scale(&self) -> &super::core::Vec3;
+    fn volume_slice_z_x_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn volume_slice_z_y(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn volume_slice_z_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn volume_slice_z_y_scale(&self) -> &super::core::Vec3;
+    fn volume_slice_z_y_scale_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl LocalWindForceBaked3DAs2x2DTexComponentDataTrait for LocalWindForceBaked3DAs2x2DTexComponentData {
     fn size_x(&self) -> &f32 {
         &self.size_x
     }
+    fn size_x_mut(&mut self) -> &mut f32 {
+        &mut self.size_x
+    }
     fn size_y(&self) -> &f32 {
         &self.size_y
+    }
+    fn size_y_mut(&mut self) -> &mut f32 {
+        &mut self.size_y
     }
     fn size_z(&self) -> &f32 {
         &self.size_z
     }
+    fn size_z_mut(&mut self) -> &mut f32 {
+        &mut self.size_z
+    }
     fn attenuation(&self) -> &f32 {
         &self.attenuation
+    }
+    fn attenuation_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation
     }
     fn volume_slice_z_x(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.volume_slice_z_x
     }
+    fn volume_slice_z_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.volume_slice_z_x
+    }
     fn volume_slice_z_x_scale(&self) -> &super::core::Vec3 {
         &self.volume_slice_z_x_scale
+    }
+    fn volume_slice_z_x_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.volume_slice_z_x_scale
     }
     fn volume_slice_z_y(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.volume_slice_z_y
     }
+    fn volume_slice_z_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.volume_slice_z_y
+    }
     fn volume_slice_z_y_scale(&self) -> &super::core::Vec3 {
         &self.volume_slice_z_y_scale
+    }
+    fn volume_slice_z_y_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.volume_slice_z_y_scale
     }
 }
 
@@ -1764,23 +2192,44 @@ impl LocalWindForceComponentBaseDataTrait for LocalWindForceBaked3DAs2x2DTexComp
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
         self._glacier_base.force_group()
     }
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
+        self._glacier_base.force_group_mut()
+    }
     fn strength(&self) -> &f32 {
         self._glacier_base.strength()
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        self._glacier_base.strength_mut()
     }
     fn variation(&self) -> &f32 {
         self._glacier_base.variation()
     }
+    fn variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_mut()
+    }
     fn variation_rate(&self) -> &f32 {
         self._glacier_base.variation_rate()
+    }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_rate_mut()
     }
     fn micro_variation(&self) -> &f32 {
         self._glacier_base.micro_variation()
     }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.micro_variation_mut()
+    }
     fn hardness(&self) -> &f32 {
         self._glacier_base.hardness()
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        self._glacier_base.hardness_mut()
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         self._glacier_base.force_as_instant_velocity()
+    }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.force_as_instant_velocity_mut()
     }
 }
 
@@ -1791,17 +2240,32 @@ impl super::entity::ComponentDataTrait for LocalWindForceBaked3DAs2x2DTexCompone
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -1812,15 +2276,15 @@ impl super::core::DataBusPeerTrait for LocalWindForceBaked3DAs2x2DTexComponentDa
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalWindForceBaked3DAs2x2DTexComponentData {
 }
 
 impl super::core::DataContainerTrait for LocalWindForceBaked3DAs2x2DTexComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALWINDFORCEBAKED3DAS2X2DTEXCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1894,6 +2358,15 @@ impl TypeObject for LocalWindForceBaked3DAs2x2DTexComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1918,23 +2391,39 @@ pub struct LocalWindForceConeComponentData {
 
 pub trait LocalWindForceConeComponentDataTrait: LocalWindForceComponentBaseDataTrait {
     fn inner_radius(&self) -> &f32;
+    fn inner_radius_mut(&mut self) -> &mut f32;
     fn outer_radius(&self) -> &f32;
+    fn outer_radius_mut(&mut self) -> &mut f32;
     fn cone_inner_angle(&self) -> &f32;
+    fn cone_inner_angle_mut(&mut self) -> &mut f32;
     fn cone_outer_angle(&self) -> &f32;
+    fn cone_outer_angle_mut(&mut self) -> &mut f32;
 }
 
 impl LocalWindForceConeComponentDataTrait for LocalWindForceConeComponentData {
     fn inner_radius(&self) -> &f32 {
         &self.inner_radius
     }
+    fn inner_radius_mut(&mut self) -> &mut f32 {
+        &mut self.inner_radius
+    }
     fn outer_radius(&self) -> &f32 {
         &self.outer_radius
+    }
+    fn outer_radius_mut(&mut self) -> &mut f32 {
+        &mut self.outer_radius
     }
     fn cone_inner_angle(&self) -> &f32 {
         &self.cone_inner_angle
     }
+    fn cone_inner_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cone_inner_angle
+    }
     fn cone_outer_angle(&self) -> &f32 {
         &self.cone_outer_angle
+    }
+    fn cone_outer_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cone_outer_angle
     }
 }
 
@@ -1942,23 +2431,44 @@ impl LocalWindForceComponentBaseDataTrait for LocalWindForceConeComponentData {
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
         self._glacier_base.force_group()
     }
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
+        self._glacier_base.force_group_mut()
+    }
     fn strength(&self) -> &f32 {
         self._glacier_base.strength()
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        self._glacier_base.strength_mut()
     }
     fn variation(&self) -> &f32 {
         self._glacier_base.variation()
     }
+    fn variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_mut()
+    }
     fn variation_rate(&self) -> &f32 {
         self._glacier_base.variation_rate()
+    }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_rate_mut()
     }
     fn micro_variation(&self) -> &f32 {
         self._glacier_base.micro_variation()
     }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.micro_variation_mut()
+    }
     fn hardness(&self) -> &f32 {
         self._glacier_base.hardness()
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        self._glacier_base.hardness_mut()
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         self._glacier_base.force_as_instant_velocity()
+    }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.force_as_instant_velocity_mut()
     }
 }
 
@@ -1969,17 +2479,32 @@ impl super::entity::ComponentDataTrait for LocalWindForceConeComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -1990,15 +2515,15 @@ impl super::core::DataBusPeerTrait for LocalWindForceConeComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalWindForceConeComponentData {
 }
 
 impl super::core::DataContainerTrait for LocalWindForceConeComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALWINDFORCECONECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2048,6 +2573,15 @@ impl TypeObject for LocalWindForceConeComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2069,11 +2603,15 @@ pub struct LocalWindForceSphereComponentData {
 
 pub trait LocalWindForceSphereComponentDataTrait: LocalWindForceComponentBaseDataTrait {
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
 }
 
 impl LocalWindForceSphereComponentDataTrait for LocalWindForceSphereComponentData {
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
 }
 
@@ -2081,23 +2619,44 @@ impl LocalWindForceComponentBaseDataTrait for LocalWindForceSphereComponentData 
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
         self._glacier_base.force_group()
     }
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
+        self._glacier_base.force_group_mut()
+    }
     fn strength(&self) -> &f32 {
         self._glacier_base.strength()
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        self._glacier_base.strength_mut()
     }
     fn variation(&self) -> &f32 {
         self._glacier_base.variation()
     }
+    fn variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_mut()
+    }
     fn variation_rate(&self) -> &f32 {
         self._glacier_base.variation_rate()
+    }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        self._glacier_base.variation_rate_mut()
     }
     fn micro_variation(&self) -> &f32 {
         self._glacier_base.micro_variation()
     }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        self._glacier_base.micro_variation_mut()
+    }
     fn hardness(&self) -> &f32 {
         self._glacier_base.hardness()
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        self._glacier_base.hardness_mut()
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         self._glacier_base.force_as_instant_velocity()
+    }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.force_as_instant_velocity_mut()
     }
 }
 
@@ -2108,17 +2667,32 @@ impl super::entity::ComponentDataTrait for LocalWindForceSphereComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -2129,15 +2703,15 @@ impl super::core::DataBusPeerTrait for LocalWindForceSphereComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalWindForceSphereComponentData {
 }
 
 impl super::core::DataContainerTrait for LocalWindForceSphereComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALWINDFORCESPHERECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2169,6 +2743,15 @@ impl TypeObject for LocalWindForceSphereComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2196,35 +2779,63 @@ pub struct LocalWindForceComponentBaseData {
 
 pub trait LocalWindForceComponentBaseDataTrait: super::entity::GameComponentDataTrait {
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>>;
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>>;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn variation(&self) -> &f32;
+    fn variation_mut(&mut self) -> &mut f32;
     fn variation_rate(&self) -> &f32;
+    fn variation_rate_mut(&mut self) -> &mut f32;
     fn micro_variation(&self) -> &f32;
+    fn micro_variation_mut(&mut self) -> &mut f32;
     fn hardness(&self) -> &f32;
+    fn hardness_mut(&mut self) -> &mut f32;
     fn force_as_instant_velocity(&self) -> &f32;
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32;
 }
 
 impl LocalWindForceComponentBaseDataTrait for LocalWindForceComponentBaseData {
     fn force_group(&self) -> &Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
         &self.force_group
     }
+    fn force_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ForceGroupAssetTrait>>> {
+        &mut self.force_group
+    }
     fn strength(&self) -> &f32 {
         &self.strength
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
     }
     fn variation(&self) -> &f32 {
         &self.variation
     }
+    fn variation_mut(&mut self) -> &mut f32 {
+        &mut self.variation
+    }
     fn variation_rate(&self) -> &f32 {
         &self.variation_rate
+    }
+    fn variation_rate_mut(&mut self) -> &mut f32 {
+        &mut self.variation_rate
     }
     fn micro_variation(&self) -> &f32 {
         &self.micro_variation
     }
+    fn micro_variation_mut(&mut self) -> &mut f32 {
+        &mut self.micro_variation
+    }
     fn hardness(&self) -> &f32 {
         &self.hardness
     }
+    fn hardness_mut(&mut self) -> &mut f32 {
+        &mut self.hardness
+    }
     fn force_as_instant_velocity(&self) -> &f32 {
         &self.force_as_instant_velocity
+    }
+    fn force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.force_as_instant_velocity
     }
 }
 
@@ -2235,17 +2846,32 @@ impl super::entity::ComponentDataTrait for LocalWindForceComponentBaseData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -2256,15 +2882,15 @@ impl super::core::DataBusPeerTrait for LocalWindForceComponentBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalWindForceComponentBaseData {
 }
 
 impl super::core::DataContainerTrait for LocalWindForceComponentBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALWINDFORCECOMPONENTBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2332,6 +2958,15 @@ impl TypeObject for LocalWindForceComponentBaseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2360,11 +2995,20 @@ impl VisualEnvironmentReferenceObjectDataTrait for LogicVisualEnvironmentReferen
     fn priority(&self) -> &i32 {
         self._glacier_base.priority()
     }
+    fn priority_mut(&mut self) -> &mut i32 {
+        self._glacier_base.priority_mut()
+    }
     fn override_visibility(&self) -> &bool {
         self._glacier_base.override_visibility()
     }
+    fn override_visibility_mut(&mut self) -> &mut bool {
+        self._glacier_base.override_visibility_mut()
+    }
     fn owned_by_lighting_context_pad(&self) -> &bool {
         self._glacier_base.owned_by_lighting_context_pad()
+    }
+    fn owned_by_lighting_context_pad_mut(&mut self) -> &mut bool {
+        self._glacier_base.owned_by_lighting_context_pad_mut()
     }
 }
 
@@ -2372,8 +3016,14 @@ impl super::entity::LogicReferenceObjectDataTrait for LogicVisualEnvironmentRefe
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
     fn sub_realm(&self) -> &super::entity::SubRealm {
         self._glacier_base.sub_realm()
+    }
+    fn sub_realm_mut(&mut self) -> &mut super::entity::SubRealm {
+        self._glacier_base.sub_realm_mut()
     }
 }
 
@@ -2381,32 +3031,62 @@ impl super::entity::ReferenceObjectDataTrait for LogicVisualEnvironmentReference
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -2417,15 +3097,15 @@ impl super::core::DataBusPeerTrait for LogicVisualEnvironmentReferenceObjectData
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LogicVisualEnvironmentReferenceObjectData {
 }
 
 impl super::core::DataContainerTrait for LogicVisualEnvironmentReferenceObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOGICVISUALENVIRONMENTREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2451,6 +3131,15 @@ impl TypeObject for LogicVisualEnvironmentReferenceObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2474,19 +3163,31 @@ pub struct VisualEnvironmentReferenceObjectData {
 
 pub trait VisualEnvironmentReferenceObjectDataTrait: super::entity::LogicReferenceObjectDataTrait {
     fn priority(&self) -> &i32;
+    fn priority_mut(&mut self) -> &mut i32;
     fn override_visibility(&self) -> &bool;
+    fn override_visibility_mut(&mut self) -> &mut bool;
     fn owned_by_lighting_context_pad(&self) -> &bool;
+    fn owned_by_lighting_context_pad_mut(&mut self) -> &mut bool;
 }
 
 impl VisualEnvironmentReferenceObjectDataTrait for VisualEnvironmentReferenceObjectData {
     fn priority(&self) -> &i32 {
         &self.priority
     }
+    fn priority_mut(&mut self) -> &mut i32 {
+        &mut self.priority
+    }
     fn override_visibility(&self) -> &bool {
         &self.override_visibility
     }
+    fn override_visibility_mut(&mut self) -> &mut bool {
+        &mut self.override_visibility
+    }
     fn owned_by_lighting_context_pad(&self) -> &bool {
         &self.owned_by_lighting_context_pad
+    }
+    fn owned_by_lighting_context_pad_mut(&mut self) -> &mut bool {
+        &mut self.owned_by_lighting_context_pad
     }
 }
 
@@ -2494,8 +3195,14 @@ impl super::entity::LogicReferenceObjectDataTrait for VisualEnvironmentReference
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
     fn sub_realm(&self) -> &super::entity::SubRealm {
         self._glacier_base.sub_realm()
+    }
+    fn sub_realm_mut(&mut self) -> &mut super::entity::SubRealm {
+        self._glacier_base.sub_realm_mut()
     }
 }
 
@@ -2503,32 +3210,62 @@ impl super::entity::ReferenceObjectDataTrait for VisualEnvironmentReferenceObjec
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -2539,15 +3276,15 @@ impl super::core::DataBusPeerTrait for VisualEnvironmentReferenceObjectData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VisualEnvironmentReferenceObjectData {
 }
 
 impl super::core::DataContainerTrait for VisualEnvironmentReferenceObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VISUALENVIRONMENTREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2591,6 +3328,15 @@ impl TypeObject for VisualEnvironmentReferenceObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2613,15 +3359,23 @@ pub struct LogicVisualEnvironmentEntityData {
 
 pub trait LogicVisualEnvironmentEntityDataTrait: super::entity::EntityDataTrait {
     fn visual_environment(&self) -> &Option<Arc<Mutex<dyn VisualEnvironmentBlueprintTrait>>>;
+    fn visual_environment_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VisualEnvironmentBlueprintTrait>>>;
     fn visibility(&self) -> &f32;
+    fn visibility_mut(&mut self) -> &mut f32;
 }
 
 impl LogicVisualEnvironmentEntityDataTrait for LogicVisualEnvironmentEntityData {
     fn visual_environment(&self) -> &Option<Arc<Mutex<dyn VisualEnvironmentBlueprintTrait>>> {
         &self.visual_environment
     }
+    fn visual_environment_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VisualEnvironmentBlueprintTrait>>> {
+        &mut self.visual_environment
+    }
     fn visibility(&self) -> &f32 {
         &self.visibility
+    }
+    fn visibility_mut(&mut self) -> &mut f32 {
+        &mut self.visibility
     }
 }
 
@@ -2635,15 +3389,15 @@ impl super::core::DataBusPeerTrait for LogicVisualEnvironmentEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LogicVisualEnvironmentEntityData {
 }
 
 impl super::core::DataContainerTrait for LogicVisualEnvironmentEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOGICVISUALENVIRONMENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2681,6 +3435,15 @@ impl TypeObject for LogicVisualEnvironmentEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2702,11 +3465,15 @@ pub struct VisualEnvironmentBlueprint {
 
 pub trait VisualEnvironmentBlueprintTrait: super::entity::ObjectBlueprintTrait {
     fn time_delta_type(&self) -> &super::entity::TimeDeltaType;
+    fn time_delta_type_mut(&mut self) -> &mut super::entity::TimeDeltaType;
 }
 
 impl VisualEnvironmentBlueprintTrait for VisualEnvironmentBlueprint {
     fn time_delta_type(&self) -> &super::entity::TimeDeltaType {
         &self.time_delta_type
+    }
+    fn time_delta_type_mut(&mut self) -> &mut super::entity::TimeDeltaType {
+        &mut self.time_delta_type
     }
 }
 
@@ -2714,14 +3481,23 @@ impl super::entity::ObjectBlueprintTrait for VisualEnvironmentBlueprint {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
         self._glacier_base.object()
     }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+        self._glacier_base.object_mut()
+    }
 }
 
 impl super::entity::BlueprintTrait for VisualEnvironmentBlueprint {
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.objects()
     }
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.objects_mut()
+    }
     fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
         self._glacier_base.schematics()
+    }
+    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+        self._glacier_base.schematics_mut()
     }
 }
 
@@ -2729,20 +3505,35 @@ impl super::entity::EntityBusDataTrait for VisualEnvironmentBlueprint {
     fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
         self._glacier_base.event_connections()
     }
+    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+        self._glacier_base.event_connections_mut()
+    }
 }
 
 impl super::core::DataBusDataTrait for VisualEnvironmentBlueprint {
     fn flags(&self) -> &u16 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.flags_mut()
+    }
     fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
         self._glacier_base.property_connections()
+    }
+    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+        self._glacier_base.property_connections_mut()
     }
     fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
         self._glacier_base.link_connections()
     }
+    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+        self._glacier_base.link_connections_mut()
+    }
     fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
         self._glacier_base.interface()
+    }
+    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+        self._glacier_base.interface_mut()
     }
 }
 
@@ -2750,12 +3541,12 @@ impl super::core::AssetTrait for VisualEnvironmentBlueprint {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for VisualEnvironmentBlueprint {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VISUALENVIRONMENTBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2787,6 +3578,15 @@ impl TypeObject for VisualEnvironmentBlueprint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2813,31 +3613,55 @@ pub struct VisualEnvironmentEntityData {
 
 pub trait VisualEnvironmentEntityDataTrait: super::entity::GameComponentEntityDataTrait {
     fn visibility(&self) -> &f32;
+    fn visibility_mut(&mut self) -> &mut f32;
     fn priority(&self) -> &i32;
+    fn priority_mut(&mut self) -> &mut i32;
     fn local_player_view_id(&self) -> &super::render_base::LocalPlayerViewId;
+    fn local_player_view_id_mut(&mut self) -> &mut super::render_base::LocalPlayerViewId;
     fn explicit_priority_enable(&self) -> &bool;
+    fn explicit_priority_enable_mut(&mut self) -> &mut bool;
     fn blend_mode(&self) -> &VisualEnvironmentBlendMode;
+    fn blend_mode_mut(&mut self) -> &mut VisualEnvironmentBlendMode;
     fn view_id(&self) -> &super::render_base::LocalPlayerViewId;
+    fn view_id_mut(&mut self) -> &mut super::render_base::LocalPlayerViewId;
 }
 
 impl VisualEnvironmentEntityDataTrait for VisualEnvironmentEntityData {
     fn visibility(&self) -> &f32 {
         &self.visibility
     }
+    fn visibility_mut(&mut self) -> &mut f32 {
+        &mut self.visibility
+    }
     fn priority(&self) -> &i32 {
         &self.priority
+    }
+    fn priority_mut(&mut self) -> &mut i32 {
+        &mut self.priority
     }
     fn local_player_view_id(&self) -> &super::render_base::LocalPlayerViewId {
         &self.local_player_view_id
     }
+    fn local_player_view_id_mut(&mut self) -> &mut super::render_base::LocalPlayerViewId {
+        &mut self.local_player_view_id
+    }
     fn explicit_priority_enable(&self) -> &bool {
         &self.explicit_priority_enable
+    }
+    fn explicit_priority_enable_mut(&mut self) -> &mut bool {
+        &mut self.explicit_priority_enable
     }
     fn blend_mode(&self) -> &VisualEnvironmentBlendMode {
         &self.blend_mode
     }
+    fn blend_mode_mut(&mut self) -> &mut VisualEnvironmentBlendMode {
+        &mut self.blend_mode
+    }
     fn view_id(&self) -> &super::render_base::LocalPlayerViewId {
         &self.view_id
+    }
+    fn view_id_mut(&mut self) -> &mut super::render_base::LocalPlayerViewId {
+        &mut self.view_id
     }
 }
 
@@ -2845,32 +3669,56 @@ impl super::entity::GameComponentEntityDataTrait for VisualEnvironmentEntityData
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for VisualEnvironmentEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for VisualEnvironmentEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -2884,15 +3732,15 @@ impl super::core::DataBusPeerTrait for VisualEnvironmentEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VisualEnvironmentEntityData {
 }
 
 impl super::core::DataContainerTrait for VisualEnvironmentEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VISUALENVIRONMENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2954,6 +3802,15 @@ impl TypeObject for VisualEnvironmentEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2991,6 +3848,15 @@ impl TypeObject for VisualEnvironmentPriorityOffset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3031,6 +3897,15 @@ impl TypeObject for VisualEnvironmentBlendMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3056,27 +3931,47 @@ pub struct SonarParamsComponentData {
 
 pub trait SonarParamsComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn color2(&self) -> &super::core::Vec3;
+    fn color2_mut(&mut self) -> &mut super::core::Vec3;
     fn color3(&self) -> &super::core::Vec3;
+    fn color3_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl SonarParamsComponentDataTrait for SonarParamsComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
+    }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
     }
     fn color2(&self) -> &super::core::Vec3 {
         &self.color2
     }
+    fn color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color2
+    }
     fn color3(&self) -> &super::core::Vec3 {
         &self.color3
     }
+    fn color3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color3
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -3084,23 +3979,41 @@ impl VisualEnvironmentComponentDataTrait for SonarParamsComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for SonarParamsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -3111,15 +4024,15 @@ impl super::core::DataBusPeerTrait for SonarParamsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SonarParamsComponentData {
 }
 
 impl super::core::DataContainerTrait for SonarParamsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SONARPARAMSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3174,6 +4087,15 @@ impl TypeObject for SonarParamsComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3252,235 +4174,463 @@ pub struct HologramParamsComponentData {
 
 pub trait HologramParamsComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn render_mode(&self) -> &super::world_base::HologramRenderMode;
+    fn render_mode_mut(&mut self) -> &mut super::world_base::HologramRenderMode;
     fn key_illuminance(&self) -> &super::core::Vec3;
+    fn key_illuminance_mut(&mut self) -> &mut super::core::Vec3;
     fn key_light_dir(&self) -> &super::core::Vec3;
+    fn key_light_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn resolution_scale(&self) -> &f32;
+    fn resolution_scale_mut(&mut self) -> &mut f32;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn color2(&self) -> &super::core::Vec3;
+    fn color2_mut(&mut self) -> &mut super::core::Vec3;
     fn color3(&self) -> &super::core::Vec3;
+    fn color3_mut(&mut self) -> &mut super::core::Vec3;
     fn color4(&self) -> &super::core::Vec3;
+    fn color4_mut(&mut self) -> &mut super::core::Vec3;
     fn color5(&self) -> &super::core::Vec3;
+    fn color5_mut(&mut self) -> &mut super::core::Vec3;
     fn float1(&self) -> &f32;
+    fn float1_mut(&mut self) -> &mut f32;
     fn float2(&self) -> &f32;
+    fn float2_mut(&mut self) -> &mut f32;
     fn float3(&self) -> &f32;
+    fn float3_mut(&mut self) -> &mut f32;
     fn float4(&self) -> &f32;
+    fn float4_mut(&mut self) -> &mut f32;
     fn float5(&self) -> &f32;
+    fn float5_mut(&mut self) -> &mut f32;
     fn float6(&self) -> &f32;
+    fn float6_mut(&mut self) -> &mut f32;
     fn float7(&self) -> &f32;
+    fn float7_mut(&mut self) -> &mut f32;
     fn float8(&self) -> &f32;
+    fn float8_mut(&mut self) -> &mut f32;
     fn float9(&self) -> &f32;
+    fn float9_mut(&mut self) -> &mut f32;
     fn brightness2(&self) -> &f32;
+    fn brightness2_mut(&mut self) -> &mut f32;
     fn brightness3(&self) -> &f32;
+    fn brightness3_mut(&mut self) -> &mut f32;
     fn brightness4(&self) -> &f32;
+    fn brightness4_mut(&mut self) -> &mut f32;
     fn brightness5(&self) -> &f32;
+    fn brightness5_mut(&mut self) -> &mut f32;
     fn streaks_enabled(&self) -> &bool;
+    fn streaks_enabled_mut(&mut self) -> &mut bool;
     fn time_offset(&self) -> &f32;
+    fn time_offset_mut(&mut self) -> &mut f32;
     fn opacity1(&self) -> &f32;
+    fn opacity1_mut(&mut self) -> &mut f32;
     fn distortion_scale1(&self) -> &f32;
+    fn distortion_scale1_mut(&mut self) -> &mut f32;
     fn source_pos1(&self) -> &super::core::Vec3;
+    fn source_pos1_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pos1(&self) -> &super::core::Vec3;
+    fn target_pos1_mut(&mut self) -> &mut super::core::Vec3;
     fn source_radius1(&self) -> &f32;
+    fn source_radius1_mut(&mut self) -> &mut f32;
     fn target_radius1(&self) -> &f32;
+    fn target_radius1_mut(&mut self) -> &mut f32;
     fn opacity2(&self) -> &f32;
+    fn opacity2_mut(&mut self) -> &mut f32;
     fn distortion_scale2(&self) -> &f32;
+    fn distortion_scale2_mut(&mut self) -> &mut f32;
     fn source_pos2(&self) -> &super::core::Vec3;
+    fn source_pos2_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pos2(&self) -> &super::core::Vec3;
+    fn target_pos2_mut(&mut self) -> &mut super::core::Vec3;
     fn source_radius2(&self) -> &f32;
+    fn source_radius2_mut(&mut self) -> &mut f32;
     fn target_radius2(&self) -> &f32;
+    fn target_radius2_mut(&mut self) -> &mut f32;
     fn opacity3(&self) -> &f32;
+    fn opacity3_mut(&mut self) -> &mut f32;
     fn distortion_scale3(&self) -> &f32;
+    fn distortion_scale3_mut(&mut self) -> &mut f32;
     fn source_pos3(&self) -> &super::core::Vec3;
+    fn source_pos3_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pos3(&self) -> &super::core::Vec3;
+    fn target_pos3_mut(&mut self) -> &mut super::core::Vec3;
     fn source_radius3(&self) -> &f32;
+    fn source_radius3_mut(&mut self) -> &mut f32;
     fn target_radius3(&self) -> &f32;
+    fn target_radius3_mut(&mut self) -> &mut f32;
     fn opacity4(&self) -> &f32;
+    fn opacity4_mut(&mut self) -> &mut f32;
     fn distortion_scale4(&self) -> &f32;
+    fn distortion_scale4_mut(&mut self) -> &mut f32;
     fn source_pos4(&self) -> &super::core::Vec3;
+    fn source_pos4_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pos4(&self) -> &super::core::Vec3;
+    fn target_pos4_mut(&mut self) -> &mut super::core::Vec3;
     fn source_radius4(&self) -> &f32;
+    fn source_radius4_mut(&mut self) -> &mut f32;
     fn target_radius4(&self) -> &f32;
+    fn target_radius4_mut(&mut self) -> &mut f32;
     fn opacity5(&self) -> &f32;
+    fn opacity5_mut(&mut self) -> &mut f32;
     fn distortion_scale5(&self) -> &f32;
+    fn distortion_scale5_mut(&mut self) -> &mut f32;
     fn source_pos5(&self) -> &super::core::Vec3;
+    fn source_pos5_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pos5(&self) -> &super::core::Vec3;
+    fn target_pos5_mut(&mut self) -> &mut super::core::Vec3;
     fn source_radius5(&self) -> &f32;
+    fn source_radius5_mut(&mut self) -> &mut f32;
     fn target_radius5(&self) -> &f32;
+    fn target_radius5_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u32;
+    fn field_flag_override1_mut(&mut self) -> &mut u32;
 }
 
 impl HologramParamsComponentDataTrait for HologramParamsComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn render_mode(&self) -> &super::world_base::HologramRenderMode {
         &self.render_mode
+    }
+    fn render_mode_mut(&mut self) -> &mut super::world_base::HologramRenderMode {
+        &mut self.render_mode
     }
     fn key_illuminance(&self) -> &super::core::Vec3 {
         &self.key_illuminance
     }
+    fn key_illuminance_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.key_illuminance
+    }
     fn key_light_dir(&self) -> &super::core::Vec3 {
         &self.key_light_dir
+    }
+    fn key_light_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.key_light_dir
     }
     fn resolution_scale(&self) -> &f32 {
         &self.resolution_scale
     }
+    fn resolution_scale_mut(&mut self) -> &mut f32 {
+        &mut self.resolution_scale
+    }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
+    }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
     }
     fn color2(&self) -> &super::core::Vec3 {
         &self.color2
     }
+    fn color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color2
+    }
     fn color3(&self) -> &super::core::Vec3 {
         &self.color3
+    }
+    fn color3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color3
     }
     fn color4(&self) -> &super::core::Vec3 {
         &self.color4
     }
+    fn color4_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color4
+    }
     fn color5(&self) -> &super::core::Vec3 {
         &self.color5
+    }
+    fn color5_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color5
     }
     fn float1(&self) -> &f32 {
         &self.float1
     }
+    fn float1_mut(&mut self) -> &mut f32 {
+        &mut self.float1
+    }
     fn float2(&self) -> &f32 {
         &self.float2
+    }
+    fn float2_mut(&mut self) -> &mut f32 {
+        &mut self.float2
     }
     fn float3(&self) -> &f32 {
         &self.float3
     }
+    fn float3_mut(&mut self) -> &mut f32 {
+        &mut self.float3
+    }
     fn float4(&self) -> &f32 {
         &self.float4
+    }
+    fn float4_mut(&mut self) -> &mut f32 {
+        &mut self.float4
     }
     fn float5(&self) -> &f32 {
         &self.float5
     }
+    fn float5_mut(&mut self) -> &mut f32 {
+        &mut self.float5
+    }
     fn float6(&self) -> &f32 {
         &self.float6
+    }
+    fn float6_mut(&mut self) -> &mut f32 {
+        &mut self.float6
     }
     fn float7(&self) -> &f32 {
         &self.float7
     }
+    fn float7_mut(&mut self) -> &mut f32 {
+        &mut self.float7
+    }
     fn float8(&self) -> &f32 {
         &self.float8
+    }
+    fn float8_mut(&mut self) -> &mut f32 {
+        &mut self.float8
     }
     fn float9(&self) -> &f32 {
         &self.float9
     }
+    fn float9_mut(&mut self) -> &mut f32 {
+        &mut self.float9
+    }
     fn brightness2(&self) -> &f32 {
         &self.brightness2
+    }
+    fn brightness2_mut(&mut self) -> &mut f32 {
+        &mut self.brightness2
     }
     fn brightness3(&self) -> &f32 {
         &self.brightness3
     }
+    fn brightness3_mut(&mut self) -> &mut f32 {
+        &mut self.brightness3
+    }
     fn brightness4(&self) -> &f32 {
         &self.brightness4
+    }
+    fn brightness4_mut(&mut self) -> &mut f32 {
+        &mut self.brightness4
     }
     fn brightness5(&self) -> &f32 {
         &self.brightness5
     }
+    fn brightness5_mut(&mut self) -> &mut f32 {
+        &mut self.brightness5
+    }
     fn streaks_enabled(&self) -> &bool {
         &self.streaks_enabled
+    }
+    fn streaks_enabled_mut(&mut self) -> &mut bool {
+        &mut self.streaks_enabled
     }
     fn time_offset(&self) -> &f32 {
         &self.time_offset
     }
+    fn time_offset_mut(&mut self) -> &mut f32 {
+        &mut self.time_offset
+    }
     fn opacity1(&self) -> &f32 {
         &self.opacity1
+    }
+    fn opacity1_mut(&mut self) -> &mut f32 {
+        &mut self.opacity1
     }
     fn distortion_scale1(&self) -> &f32 {
         &self.distortion_scale1
     }
+    fn distortion_scale1_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_scale1
+    }
     fn source_pos1(&self) -> &super::core::Vec3 {
         &self.source_pos1
+    }
+    fn source_pos1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pos1
     }
     fn target_pos1(&self) -> &super::core::Vec3 {
         &self.target_pos1
     }
+    fn target_pos1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pos1
+    }
     fn source_radius1(&self) -> &f32 {
         &self.source_radius1
+    }
+    fn source_radius1_mut(&mut self) -> &mut f32 {
+        &mut self.source_radius1
     }
     fn target_radius1(&self) -> &f32 {
         &self.target_radius1
     }
+    fn target_radius1_mut(&mut self) -> &mut f32 {
+        &mut self.target_radius1
+    }
     fn opacity2(&self) -> &f32 {
         &self.opacity2
+    }
+    fn opacity2_mut(&mut self) -> &mut f32 {
+        &mut self.opacity2
     }
     fn distortion_scale2(&self) -> &f32 {
         &self.distortion_scale2
     }
+    fn distortion_scale2_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_scale2
+    }
     fn source_pos2(&self) -> &super::core::Vec3 {
         &self.source_pos2
+    }
+    fn source_pos2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pos2
     }
     fn target_pos2(&self) -> &super::core::Vec3 {
         &self.target_pos2
     }
+    fn target_pos2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pos2
+    }
     fn source_radius2(&self) -> &f32 {
         &self.source_radius2
+    }
+    fn source_radius2_mut(&mut self) -> &mut f32 {
+        &mut self.source_radius2
     }
     fn target_radius2(&self) -> &f32 {
         &self.target_radius2
     }
+    fn target_radius2_mut(&mut self) -> &mut f32 {
+        &mut self.target_radius2
+    }
     fn opacity3(&self) -> &f32 {
         &self.opacity3
+    }
+    fn opacity3_mut(&mut self) -> &mut f32 {
+        &mut self.opacity3
     }
     fn distortion_scale3(&self) -> &f32 {
         &self.distortion_scale3
     }
+    fn distortion_scale3_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_scale3
+    }
     fn source_pos3(&self) -> &super::core::Vec3 {
         &self.source_pos3
+    }
+    fn source_pos3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pos3
     }
     fn target_pos3(&self) -> &super::core::Vec3 {
         &self.target_pos3
     }
+    fn target_pos3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pos3
+    }
     fn source_radius3(&self) -> &f32 {
         &self.source_radius3
+    }
+    fn source_radius3_mut(&mut self) -> &mut f32 {
+        &mut self.source_radius3
     }
     fn target_radius3(&self) -> &f32 {
         &self.target_radius3
     }
+    fn target_radius3_mut(&mut self) -> &mut f32 {
+        &mut self.target_radius3
+    }
     fn opacity4(&self) -> &f32 {
         &self.opacity4
+    }
+    fn opacity4_mut(&mut self) -> &mut f32 {
+        &mut self.opacity4
     }
     fn distortion_scale4(&self) -> &f32 {
         &self.distortion_scale4
     }
+    fn distortion_scale4_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_scale4
+    }
     fn source_pos4(&self) -> &super::core::Vec3 {
         &self.source_pos4
+    }
+    fn source_pos4_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pos4
     }
     fn target_pos4(&self) -> &super::core::Vec3 {
         &self.target_pos4
     }
+    fn target_pos4_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pos4
+    }
     fn source_radius4(&self) -> &f32 {
         &self.source_radius4
+    }
+    fn source_radius4_mut(&mut self) -> &mut f32 {
+        &mut self.source_radius4
     }
     fn target_radius4(&self) -> &f32 {
         &self.target_radius4
     }
+    fn target_radius4_mut(&mut self) -> &mut f32 {
+        &mut self.target_radius4
+    }
     fn opacity5(&self) -> &f32 {
         &self.opacity5
+    }
+    fn opacity5_mut(&mut self) -> &mut f32 {
+        &mut self.opacity5
     }
     fn distortion_scale5(&self) -> &f32 {
         &self.distortion_scale5
     }
+    fn distortion_scale5_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_scale5
+    }
     fn source_pos5(&self) -> &super::core::Vec3 {
         &self.source_pos5
+    }
+    fn source_pos5_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pos5
     }
     fn target_pos5(&self) -> &super::core::Vec3 {
         &self.target_pos5
     }
+    fn target_pos5_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pos5
+    }
     fn source_radius5(&self) -> &f32 {
         &self.source_radius5
+    }
+    fn source_radius5_mut(&mut self) -> &mut f32 {
+        &mut self.source_radius5
     }
     fn target_radius5(&self) -> &f32 {
         &self.target_radius5
     }
+    fn target_radius5_mut(&mut self) -> &mut f32 {
+        &mut self.target_radius5
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_override1(&self) -> &u32 {
         &self.field_flag_override1
+    }
+    fn field_flag_override1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override1
     }
 }
 
@@ -3488,23 +4638,41 @@ impl VisualEnvironmentComponentDataTrait for HologramParamsComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for HologramParamsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -3515,15 +4683,15 @@ impl super::core::DataBusPeerTrait for HologramParamsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for HologramParamsComponentData {
 }
 
 impl super::core::DataContainerTrait for HologramParamsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HOLOGRAMPARAMSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3891,6 +5059,15 @@ impl TypeObject for HologramParamsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3932,91 +5109,175 @@ pub struct ThreatAlertHighlightParamsComponentData {
 
 pub trait ThreatAlertHighlightParamsComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn color2(&self) -> &super::core::Vec3;
+    fn color2_mut(&mut self) -> &mut super::core::Vec3;
     fn color3(&self) -> &super::core::Vec3;
+    fn color3_mut(&mut self) -> &mut super::core::Vec3;
     fn color4(&self) -> &super::core::Vec3;
+    fn color4_mut(&mut self) -> &mut super::core::Vec3;
     fn color5(&self) -> &super::core::Vec3;
+    fn color5_mut(&mut self) -> &mut super::core::Vec3;
     fn use_outline(&self) -> &bool;
+    fn use_outline_mut(&mut self) -> &mut bool;
     fn outline_opacity(&self) -> &f32;
+    fn outline_opacity_mut(&mut self) -> &mut f32;
     fn use_scan_lines(&self) -> &bool;
+    fn use_scan_lines_mut(&mut self) -> &mut bool;
     fn scan_line_offset(&self) -> &i32;
+    fn scan_line_offset_mut(&mut self) -> &mut i32;
     fn scan_line_opacity(&self) -> &f32;
+    fn scan_line_opacity_mut(&mut self) -> &mut f32;
     fn scan_line_thickness(&self) -> &i32;
+    fn scan_line_thickness_mut(&mut self) -> &mut i32;
     fn scan_line_spacing(&self) -> &i32;
+    fn scan_line_spacing_mut(&mut self) -> &mut i32;
     fn use_horizontal_scan_lines(&self) -> &bool;
+    fn use_horizontal_scan_lines_mut(&mut self) -> &mut bool;
     fn use_alt_lines(&self) -> &bool;
+    fn use_alt_lines_mut(&mut self) -> &mut bool;
     fn alt_line_offset(&self) -> &i32;
+    fn alt_line_offset_mut(&mut self) -> &mut i32;
     fn alt_line_opacity(&self) -> &f32;
+    fn alt_line_opacity_mut(&mut self) -> &mut f32;
     fn alt_line_thickness(&self) -> &i32;
+    fn alt_line_thickness_mut(&mut self) -> &mut i32;
     fn alt_line_spacing(&self) -> &i32;
+    fn alt_line_spacing_mut(&mut self) -> &mut i32;
     fn use_horizontal_alt_lines(&self) -> &bool;
+    fn use_horizontal_alt_lines_mut(&mut self) -> &mut bool;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
 }
 
 impl ThreatAlertHighlightParamsComponentDataTrait for ThreatAlertHighlightParamsComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
+    }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
     }
     fn color2(&self) -> &super::core::Vec3 {
         &self.color2
     }
+    fn color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color2
+    }
     fn color3(&self) -> &super::core::Vec3 {
         &self.color3
+    }
+    fn color3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color3
     }
     fn color4(&self) -> &super::core::Vec3 {
         &self.color4
     }
+    fn color4_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color4
+    }
     fn color5(&self) -> &super::core::Vec3 {
         &self.color5
+    }
+    fn color5_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color5
     }
     fn use_outline(&self) -> &bool {
         &self.use_outline
     }
+    fn use_outline_mut(&mut self) -> &mut bool {
+        &mut self.use_outline
+    }
     fn outline_opacity(&self) -> &f32 {
         &self.outline_opacity
+    }
+    fn outline_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.outline_opacity
     }
     fn use_scan_lines(&self) -> &bool {
         &self.use_scan_lines
     }
+    fn use_scan_lines_mut(&mut self) -> &mut bool {
+        &mut self.use_scan_lines
+    }
     fn scan_line_offset(&self) -> &i32 {
         &self.scan_line_offset
+    }
+    fn scan_line_offset_mut(&mut self) -> &mut i32 {
+        &mut self.scan_line_offset
     }
     fn scan_line_opacity(&self) -> &f32 {
         &self.scan_line_opacity
     }
+    fn scan_line_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.scan_line_opacity
+    }
     fn scan_line_thickness(&self) -> &i32 {
         &self.scan_line_thickness
+    }
+    fn scan_line_thickness_mut(&mut self) -> &mut i32 {
+        &mut self.scan_line_thickness
     }
     fn scan_line_spacing(&self) -> &i32 {
         &self.scan_line_spacing
     }
+    fn scan_line_spacing_mut(&mut self) -> &mut i32 {
+        &mut self.scan_line_spacing
+    }
     fn use_horizontal_scan_lines(&self) -> &bool {
         &self.use_horizontal_scan_lines
+    }
+    fn use_horizontal_scan_lines_mut(&mut self) -> &mut bool {
+        &mut self.use_horizontal_scan_lines
     }
     fn use_alt_lines(&self) -> &bool {
         &self.use_alt_lines
     }
+    fn use_alt_lines_mut(&mut self) -> &mut bool {
+        &mut self.use_alt_lines
+    }
     fn alt_line_offset(&self) -> &i32 {
         &self.alt_line_offset
+    }
+    fn alt_line_offset_mut(&mut self) -> &mut i32 {
+        &mut self.alt_line_offset
     }
     fn alt_line_opacity(&self) -> &f32 {
         &self.alt_line_opacity
     }
+    fn alt_line_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.alt_line_opacity
+    }
     fn alt_line_thickness(&self) -> &i32 {
         &self.alt_line_thickness
+    }
+    fn alt_line_thickness_mut(&mut self) -> &mut i32 {
+        &mut self.alt_line_thickness
     }
     fn alt_line_spacing(&self) -> &i32 {
         &self.alt_line_spacing
     }
+    fn alt_line_spacing_mut(&mut self) -> &mut i32 {
+        &mut self.alt_line_spacing
+    }
     fn use_horizontal_alt_lines(&self) -> &bool {
         &self.use_horizontal_alt_lines
     }
+    fn use_horizontal_alt_lines_mut(&mut self) -> &mut bool {
+        &mut self.use_horizontal_alt_lines
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -4024,23 +5285,41 @@ impl VisualEnvironmentComponentDataTrait for ThreatAlertHighlightParamsComponent
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for ThreatAlertHighlightParamsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -4051,15 +5330,15 @@ impl super::core::DataBusPeerTrait for ThreatAlertHighlightParamsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ThreatAlertHighlightParamsComponentData {
 }
 
 impl super::core::DataContainerTrait for ThreatAlertHighlightParamsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static THREATALERTHIGHLIGHTPARAMSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4211,6 +5490,15 @@ impl TypeObject for ThreatAlertHighlightParamsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4242,51 +5530,95 @@ pub struct ObjectHighlightParamsComponentData {
 
 pub trait ObjectHighlightParamsComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn brightness(&self) -> &f32;
+    fn brightness_mut(&mut self) -> &mut f32;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn color1_alpha(&self) -> &f32;
+    fn color1_alpha_mut(&mut self) -> &mut f32;
     fn color2(&self) -> &super::core::Vec3;
+    fn color2_mut(&mut self) -> &mut super::core::Vec3;
     fn color2_alpha(&self) -> &f32;
+    fn color2_alpha_mut(&mut self) -> &mut f32;
     fn color3(&self) -> &super::core::Vec3;
+    fn color3_mut(&mut self) -> &mut super::core::Vec3;
     fn color3_alpha(&self) -> &f32;
+    fn color3_alpha_mut(&mut self) -> &mut f32;
     fn color4(&self) -> &super::core::Vec3;
+    fn color4_mut(&mut self) -> &mut super::core::Vec3;
     fn color4_alpha(&self) -> &f32;
+    fn color4_alpha_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl ObjectHighlightParamsComponentDataTrait for ObjectHighlightParamsComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn brightness(&self) -> &f32 {
         &self.brightness
+    }
+    fn brightness_mut(&mut self) -> &mut f32 {
+        &mut self.brightness
     }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
     }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
+    }
     fn color1_alpha(&self) -> &f32 {
         &self.color1_alpha
+    }
+    fn color1_alpha_mut(&mut self) -> &mut f32 {
+        &mut self.color1_alpha
     }
     fn color2(&self) -> &super::core::Vec3 {
         &self.color2
     }
+    fn color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color2
+    }
     fn color2_alpha(&self) -> &f32 {
         &self.color2_alpha
+    }
+    fn color2_alpha_mut(&mut self) -> &mut f32 {
+        &mut self.color2_alpha
     }
     fn color3(&self) -> &super::core::Vec3 {
         &self.color3
     }
+    fn color3_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color3
+    }
     fn color3_alpha(&self) -> &f32 {
         &self.color3_alpha
+    }
+    fn color3_alpha_mut(&mut self) -> &mut f32 {
+        &mut self.color3_alpha
     }
     fn color4(&self) -> &super::core::Vec3 {
         &self.color4
     }
+    fn color4_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color4
+    }
     fn color4_alpha(&self) -> &f32 {
         &self.color4_alpha
     }
+    fn color4_alpha_mut(&mut self) -> &mut f32 {
+        &mut self.color4_alpha
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -4294,23 +5626,41 @@ impl VisualEnvironmentComponentDataTrait for ObjectHighlightParamsComponentData 
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for ObjectHighlightParamsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -4321,15 +5671,15 @@ impl super::core::DataBusPeerTrait for ObjectHighlightParamsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ObjectHighlightParamsComponentData {
 }
 
 impl super::core::DataContainerTrait for ObjectHighlightParamsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OBJECTHIGHLIGHTPARAMSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4421,6 +5771,15 @@ impl TypeObject for ObjectHighlightParamsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4479,159 +5838,311 @@ pub struct FilmicEffectsComponentData {
 
 pub trait FilmicEffectsComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn enable_chromatic_abberation(&self) -> &bool;
+    fn enable_chromatic_abberation_mut(&mut self) -> &mut bool;
     fn chromatic_abberation_scale(&self) -> &f32;
+    fn chromatic_abberation_scale_mut(&mut self) -> &mut f32;
     fn chromatic_abberation_aspect_ratio(&self) -> &f32;
+    fn chromatic_abberation_aspect_ratio_mut(&mut self) -> &mut f32;
     fn enable_vignetting(&self) -> &bool;
+    fn enable_vignetting_mut(&mut self) -> &mut bool;
     fn vignetting_falloff(&self) -> &f32;
+    fn vignetting_falloff_mut(&mut self) -> &mut f32;
     fn vignetting_luminance_percent(&self) -> &f32;
+    fn vignetting_luminance_percent_mut(&mut self) -> &mut f32;
     fn enable_lens_distortion(&self) -> &bool;
+    fn enable_lens_distortion_mut(&mut self) -> &mut bool;
     fn lens_distortion_gain(&self) -> &f32;
+    fn lens_distortion_gain_mut(&mut self) -> &mut f32;
     fn lens_distortion_cubic_gain(&self) -> &f32;
+    fn lens_distortion_cubic_gain_mut(&mut self) -> &mut f32;
     fn lens_distortion_stretch(&self) -> &f32;
+    fn lens_distortion_stretch_mut(&mut self) -> &mut f32;
     fn enable_frame_flash(&self) -> &bool;
+    fn enable_frame_flash_mut(&mut self) -> &mut bool;
     fn frame_flash_gain(&self) -> &f32;
+    fn frame_flash_gain_mut(&mut self) -> &mut f32;
     fn enable_depth_flash(&self) -> &bool;
+    fn enable_depth_flash_mut(&mut self) -> &mut bool;
     fn depth_flash_atmos_color(&self) -> &super::core::Vec3;
+    fn depth_flash_atmos_color_mut(&mut self) -> &mut super::core::Vec3;
     fn depth_flash_half_distance(&self) -> &f32;
+    fn depth_flash_half_distance_mut(&mut self) -> &mut f32;
     fn enable_distance_blur(&self) -> &bool;
+    fn enable_distance_blur_mut(&mut self) -> &mut bool;
     fn distance_blur_gain(&self) -> &f32;
+    fn distance_blur_gain_mut(&mut self) -> &mut f32;
     fn distance_blur_half_distance(&self) -> &f32;
+    fn distance_blur_half_distance_mut(&mut self) -> &mut f32;
     fn enable_edge_blur(&self) -> &bool;
+    fn enable_edge_blur_mut(&mut self) -> &mut bool;
     fn edge_blur_gain(&self) -> &f32;
+    fn edge_blur_gain_mut(&mut self) -> &mut f32;
     fn edge_blur_depth_target_scale(&self) -> &f32;
+    fn edge_blur_depth_target_scale_mut(&mut self) -> &mut f32;
     fn edge_blur_fade_near_depth(&self) -> &f32;
+    fn edge_blur_fade_near_depth_mut(&mut self) -> &mut f32;
     fn edge_blur_fade_far_depth(&self) -> &f32;
+    fn edge_blur_fade_far_depth_mut(&mut self) -> &mut f32;
     fn edge_blur_matte_dilate_size(&self) -> &f32;
+    fn edge_blur_matte_dilate_size_mut(&mut self) -> &mut f32;
     fn edge_blur_matte_blur_kernel_size(&self) -> &f32;
+    fn edge_blur_matte_blur_kernel_size_mut(&mut self) -> &mut f32;
     fn enable_heat_ripple(&self) -> &bool;
+    fn enable_heat_ripple_mut(&mut self) -> &mut bool;
     fn heat_ripple_gain(&self) -> &f32;
+    fn heat_ripple_gain_mut(&mut self) -> &mut f32;
     fn heat_ripple_horizontal_speed(&self) -> &f32;
+    fn heat_ripple_horizontal_speed_mut(&mut self) -> &mut f32;
     fn heat_ripple_vertical_speed(&self) -> &f32;
+    fn heat_ripple_vertical_speed_mut(&mut self) -> &mut f32;
     fn heat_ripple_noise_scale(&self) -> &f32;
+    fn heat_ripple_noise_scale_mut(&mut self) -> &mut f32;
     fn heat_ripple_near_distance(&self) -> &f32;
+    fn heat_ripple_near_distance_mut(&mut self) -> &mut f32;
     fn heat_ripple_far_distance(&self) -> &f32;
+    fn heat_ripple_far_distance_mut(&mut self) -> &mut f32;
     fn heat_ripple_near_gain(&self) -> &f32;
+    fn heat_ripple_near_gain_mut(&mut self) -> &mut f32;
     fn heat_ripple_far_gain(&self) -> &f32;
+    fn heat_ripple_far_gain_mut(&mut self) -> &mut f32;
     fn heat_ripple_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn heat_ripple_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u8;
+    fn field_flag_override1_mut(&mut self) -> &mut u8;
 }
 
 impl FilmicEffectsComponentDataTrait for FilmicEffectsComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn enable_chromatic_abberation(&self) -> &bool {
         &self.enable_chromatic_abberation
+    }
+    fn enable_chromatic_abberation_mut(&mut self) -> &mut bool {
+        &mut self.enable_chromatic_abberation
     }
     fn chromatic_abberation_scale(&self) -> &f32 {
         &self.chromatic_abberation_scale
     }
+    fn chromatic_abberation_scale_mut(&mut self) -> &mut f32 {
+        &mut self.chromatic_abberation_scale
+    }
     fn chromatic_abberation_aspect_ratio(&self) -> &f32 {
         &self.chromatic_abberation_aspect_ratio
+    }
+    fn chromatic_abberation_aspect_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.chromatic_abberation_aspect_ratio
     }
     fn enable_vignetting(&self) -> &bool {
         &self.enable_vignetting
     }
+    fn enable_vignetting_mut(&mut self) -> &mut bool {
+        &mut self.enable_vignetting
+    }
     fn vignetting_falloff(&self) -> &f32 {
         &self.vignetting_falloff
+    }
+    fn vignetting_falloff_mut(&mut self) -> &mut f32 {
+        &mut self.vignetting_falloff
     }
     fn vignetting_luminance_percent(&self) -> &f32 {
         &self.vignetting_luminance_percent
     }
+    fn vignetting_luminance_percent_mut(&mut self) -> &mut f32 {
+        &mut self.vignetting_luminance_percent
+    }
     fn enable_lens_distortion(&self) -> &bool {
         &self.enable_lens_distortion
+    }
+    fn enable_lens_distortion_mut(&mut self) -> &mut bool {
+        &mut self.enable_lens_distortion
     }
     fn lens_distortion_gain(&self) -> &f32 {
         &self.lens_distortion_gain
     }
+    fn lens_distortion_gain_mut(&mut self) -> &mut f32 {
+        &mut self.lens_distortion_gain
+    }
     fn lens_distortion_cubic_gain(&self) -> &f32 {
         &self.lens_distortion_cubic_gain
+    }
+    fn lens_distortion_cubic_gain_mut(&mut self) -> &mut f32 {
+        &mut self.lens_distortion_cubic_gain
     }
     fn lens_distortion_stretch(&self) -> &f32 {
         &self.lens_distortion_stretch
     }
+    fn lens_distortion_stretch_mut(&mut self) -> &mut f32 {
+        &mut self.lens_distortion_stretch
+    }
     fn enable_frame_flash(&self) -> &bool {
         &self.enable_frame_flash
+    }
+    fn enable_frame_flash_mut(&mut self) -> &mut bool {
+        &mut self.enable_frame_flash
     }
     fn frame_flash_gain(&self) -> &f32 {
         &self.frame_flash_gain
     }
+    fn frame_flash_gain_mut(&mut self) -> &mut f32 {
+        &mut self.frame_flash_gain
+    }
     fn enable_depth_flash(&self) -> &bool {
         &self.enable_depth_flash
+    }
+    fn enable_depth_flash_mut(&mut self) -> &mut bool {
+        &mut self.enable_depth_flash
     }
     fn depth_flash_atmos_color(&self) -> &super::core::Vec3 {
         &self.depth_flash_atmos_color
     }
+    fn depth_flash_atmos_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.depth_flash_atmos_color
+    }
     fn depth_flash_half_distance(&self) -> &f32 {
         &self.depth_flash_half_distance
+    }
+    fn depth_flash_half_distance_mut(&mut self) -> &mut f32 {
+        &mut self.depth_flash_half_distance
     }
     fn enable_distance_blur(&self) -> &bool {
         &self.enable_distance_blur
     }
+    fn enable_distance_blur_mut(&mut self) -> &mut bool {
+        &mut self.enable_distance_blur
+    }
     fn distance_blur_gain(&self) -> &f32 {
         &self.distance_blur_gain
+    }
+    fn distance_blur_gain_mut(&mut self) -> &mut f32 {
+        &mut self.distance_blur_gain
     }
     fn distance_blur_half_distance(&self) -> &f32 {
         &self.distance_blur_half_distance
     }
+    fn distance_blur_half_distance_mut(&mut self) -> &mut f32 {
+        &mut self.distance_blur_half_distance
+    }
     fn enable_edge_blur(&self) -> &bool {
         &self.enable_edge_blur
+    }
+    fn enable_edge_blur_mut(&mut self) -> &mut bool {
+        &mut self.enable_edge_blur
     }
     fn edge_blur_gain(&self) -> &f32 {
         &self.edge_blur_gain
     }
+    fn edge_blur_gain_mut(&mut self) -> &mut f32 {
+        &mut self.edge_blur_gain
+    }
     fn edge_blur_depth_target_scale(&self) -> &f32 {
         &self.edge_blur_depth_target_scale
+    }
+    fn edge_blur_depth_target_scale_mut(&mut self) -> &mut f32 {
+        &mut self.edge_blur_depth_target_scale
     }
     fn edge_blur_fade_near_depth(&self) -> &f32 {
         &self.edge_blur_fade_near_depth
     }
+    fn edge_blur_fade_near_depth_mut(&mut self) -> &mut f32 {
+        &mut self.edge_blur_fade_near_depth
+    }
     fn edge_blur_fade_far_depth(&self) -> &f32 {
         &self.edge_blur_fade_far_depth
+    }
+    fn edge_blur_fade_far_depth_mut(&mut self) -> &mut f32 {
+        &mut self.edge_blur_fade_far_depth
     }
     fn edge_blur_matte_dilate_size(&self) -> &f32 {
         &self.edge_blur_matte_dilate_size
     }
+    fn edge_blur_matte_dilate_size_mut(&mut self) -> &mut f32 {
+        &mut self.edge_blur_matte_dilate_size
+    }
     fn edge_blur_matte_blur_kernel_size(&self) -> &f32 {
         &self.edge_blur_matte_blur_kernel_size
+    }
+    fn edge_blur_matte_blur_kernel_size_mut(&mut self) -> &mut f32 {
+        &mut self.edge_blur_matte_blur_kernel_size
     }
     fn enable_heat_ripple(&self) -> &bool {
         &self.enable_heat_ripple
     }
+    fn enable_heat_ripple_mut(&mut self) -> &mut bool {
+        &mut self.enable_heat_ripple
+    }
     fn heat_ripple_gain(&self) -> &f32 {
         &self.heat_ripple_gain
+    }
+    fn heat_ripple_gain_mut(&mut self) -> &mut f32 {
+        &mut self.heat_ripple_gain
     }
     fn heat_ripple_horizontal_speed(&self) -> &f32 {
         &self.heat_ripple_horizontal_speed
     }
+    fn heat_ripple_horizontal_speed_mut(&mut self) -> &mut f32 {
+        &mut self.heat_ripple_horizontal_speed
+    }
     fn heat_ripple_vertical_speed(&self) -> &f32 {
         &self.heat_ripple_vertical_speed
+    }
+    fn heat_ripple_vertical_speed_mut(&mut self) -> &mut f32 {
+        &mut self.heat_ripple_vertical_speed
     }
     fn heat_ripple_noise_scale(&self) -> &f32 {
         &self.heat_ripple_noise_scale
     }
+    fn heat_ripple_noise_scale_mut(&mut self) -> &mut f32 {
+        &mut self.heat_ripple_noise_scale
+    }
     fn heat_ripple_near_distance(&self) -> &f32 {
         &self.heat_ripple_near_distance
+    }
+    fn heat_ripple_near_distance_mut(&mut self) -> &mut f32 {
+        &mut self.heat_ripple_near_distance
     }
     fn heat_ripple_far_distance(&self) -> &f32 {
         &self.heat_ripple_far_distance
     }
+    fn heat_ripple_far_distance_mut(&mut self) -> &mut f32 {
+        &mut self.heat_ripple_far_distance
+    }
     fn heat_ripple_near_gain(&self) -> &f32 {
         &self.heat_ripple_near_gain
+    }
+    fn heat_ripple_near_gain_mut(&mut self) -> &mut f32 {
+        &mut self.heat_ripple_near_gain
     }
     fn heat_ripple_far_gain(&self) -> &f32 {
         &self.heat_ripple_far_gain
     }
+    fn heat_ripple_far_gain_mut(&mut self) -> &mut f32 {
+        &mut self.heat_ripple_far_gain
+    }
     fn heat_ripple_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.heat_ripple_texture
+    }
+    fn heat_ripple_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.heat_ripple_texture
     }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_override1(&self) -> &u8 {
         &self.field_flag_override1
+    }
+    fn field_flag_override1_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override1
     }
 }
 
@@ -4639,23 +6150,41 @@ impl VisualEnvironmentComponentDataTrait for FilmicEffectsComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for FilmicEffectsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -4666,15 +6195,15 @@ impl super::core::DataBusPeerTrait for FilmicEffectsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FilmicEffectsComponentData {
 }
 
 impl super::core::DataContainerTrait for FilmicEffectsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FILMICEFFECTSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4928,6 +6457,15 @@ impl TypeObject for FilmicEffectsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4952,23 +6490,39 @@ pub struct DebugComponentData {
 
 pub trait DebugComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn fullscreen(&self) -> &bool;
+    fn fullscreen_mut(&mut self) -> &mut bool;
     fn debug_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn debug_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl DebugComponentDataTrait for DebugComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn fullscreen(&self) -> &bool {
         &self.fullscreen
+    }
+    fn fullscreen_mut(&mut self) -> &mut bool {
+        &mut self.fullscreen
     }
     fn debug_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.debug_texture
     }
+    fn debug_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.debug_texture
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -4976,23 +6530,41 @@ impl VisualEnvironmentComponentDataTrait for DebugComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for DebugComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -5003,15 +6575,15 @@ impl super::core::DataBusPeerTrait for DebugComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DebugComponentData {
 }
 
 impl super::core::DataContainerTrait for DebugComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEBUGCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5061,6 +6633,15 @@ impl TypeObject for DebugComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5091,47 +6672,87 @@ pub struct LensScopeComponentData {
 
 pub trait LensScopeComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn blur_scale(&self) -> &f32;
+    fn blur_scale_mut(&mut self) -> &mut f32;
     fn blur_center(&self) -> &super::core::Vec2;
+    fn blur_center_mut(&mut self) -> &mut super::core::Vec2;
     fn chromatic_aberration_color1(&self) -> &super::core::Vec3;
+    fn chromatic_aberration_color1_mut(&mut self) -> &mut super::core::Vec3;
     fn chromatic_aberration_color2(&self) -> &super::core::Vec3;
+    fn chromatic_aberration_color2_mut(&mut self) -> &mut super::core::Vec3;
     fn chromatic_aberration_strengths(&self) -> &super::core::Vec2;
+    fn chromatic_aberration_strengths_mut(&mut self) -> &mut super::core::Vec2;
     fn chromatic_aberration_displacement1(&self) -> &super::core::Vec2;
+    fn chromatic_aberration_displacement1_mut(&mut self) -> &mut super::core::Vec2;
     fn chromatic_aberration_displacement2(&self) -> &super::core::Vec2;
+    fn chromatic_aberration_displacement2_mut(&mut self) -> &mut super::core::Vec2;
     fn radial_blend_distance_coefficients(&self) -> &super::core::Vec2;
+    fn radial_blend_distance_coefficients_mut(&mut self) -> &mut super::core::Vec2;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl LensScopeComponentDataTrait for LensScopeComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn blur_scale(&self) -> &f32 {
         &self.blur_scale
+    }
+    fn blur_scale_mut(&mut self) -> &mut f32 {
+        &mut self.blur_scale
     }
     fn blur_center(&self) -> &super::core::Vec2 {
         &self.blur_center
     }
+    fn blur_center_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.blur_center
+    }
     fn chromatic_aberration_color1(&self) -> &super::core::Vec3 {
         &self.chromatic_aberration_color1
+    }
+    fn chromatic_aberration_color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.chromatic_aberration_color1
     }
     fn chromatic_aberration_color2(&self) -> &super::core::Vec3 {
         &self.chromatic_aberration_color2
     }
+    fn chromatic_aberration_color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.chromatic_aberration_color2
+    }
     fn chromatic_aberration_strengths(&self) -> &super::core::Vec2 {
         &self.chromatic_aberration_strengths
+    }
+    fn chromatic_aberration_strengths_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.chromatic_aberration_strengths
     }
     fn chromatic_aberration_displacement1(&self) -> &super::core::Vec2 {
         &self.chromatic_aberration_displacement1
     }
+    fn chromatic_aberration_displacement1_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.chromatic_aberration_displacement1
+    }
     fn chromatic_aberration_displacement2(&self) -> &super::core::Vec2 {
         &self.chromatic_aberration_displacement2
+    }
+    fn chromatic_aberration_displacement2_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.chromatic_aberration_displacement2
     }
     fn radial_blend_distance_coefficients(&self) -> &super::core::Vec2 {
         &self.radial_blend_distance_coefficients
     }
+    fn radial_blend_distance_coefficients_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.radial_blend_distance_coefficients
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -5139,23 +6760,41 @@ impl VisualEnvironmentComponentDataTrait for LensScopeComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for LensScopeComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -5166,15 +6805,15 @@ impl super::core::DataBusPeerTrait for LensScopeComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LensScopeComponentData {
 }
 
 impl super::core::DataContainerTrait for LensScopeComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LENSSCOPECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5260,6 +6899,15 @@ impl TypeObject for LensScopeComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5293,59 +6941,111 @@ pub struct FilmGrainComponentData {
 
 pub trait FilmGrainComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn texture_scale(&self) -> &super::core::Vec2;
+    fn texture_scale_mut(&mut self) -> &mut super::core::Vec2;
     fn color_scale(&self) -> &super::core::Vec3;
+    fn color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn linear_filtering_enable(&self) -> &bool;
+    fn linear_filtering_enable_mut(&mut self) -> &mut bool;
     fn random_enable(&self) -> &bool;
+    fn random_enable_mut(&mut self) -> &mut bool;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn grain_grey_fraction(&self) -> &f32;
+    fn grain_grey_fraction_mut(&mut self) -> &mut f32;
     fn grain_luminance_control_enable(&self) -> &bool;
+    fn grain_luminance_control_enable_mut(&mut self) -> &mut bool;
     fn grain_shadow_threshold(&self) -> &f32;
+    fn grain_shadow_threshold_mut(&mut self) -> &mut f32;
     fn grain_highlight_threshold(&self) -> &f32;
+    fn grain_highlight_threshold_mut(&mut self) -> &mut f32;
     fn grain_shadow_intensity(&self) -> &f32;
+    fn grain_shadow_intensity_mut(&mut self) -> &mut f32;
     fn grain_highlight_intensity(&self) -> &f32;
+    fn grain_highlight_intensity_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl FilmGrainComponentDataTrait for FilmGrainComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn texture_scale(&self) -> &super::core::Vec2 {
         &self.texture_scale
+    }
+    fn texture_scale_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.texture_scale
     }
     fn color_scale(&self) -> &super::core::Vec3 {
         &self.color_scale
     }
+    fn color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color_scale
+    }
     fn linear_filtering_enable(&self) -> &bool {
         &self.linear_filtering_enable
+    }
+    fn linear_filtering_enable_mut(&mut self) -> &mut bool {
+        &mut self.linear_filtering_enable
     }
     fn random_enable(&self) -> &bool {
         &self.random_enable
     }
+    fn random_enable_mut(&mut self) -> &mut bool {
+        &mut self.random_enable
+    }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
+    }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
     }
     fn grain_grey_fraction(&self) -> &f32 {
         &self.grain_grey_fraction
     }
+    fn grain_grey_fraction_mut(&mut self) -> &mut f32 {
+        &mut self.grain_grey_fraction
+    }
     fn grain_luminance_control_enable(&self) -> &bool {
         &self.grain_luminance_control_enable
+    }
+    fn grain_luminance_control_enable_mut(&mut self) -> &mut bool {
+        &mut self.grain_luminance_control_enable
     }
     fn grain_shadow_threshold(&self) -> &f32 {
         &self.grain_shadow_threshold
     }
+    fn grain_shadow_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.grain_shadow_threshold
+    }
     fn grain_highlight_threshold(&self) -> &f32 {
         &self.grain_highlight_threshold
+    }
+    fn grain_highlight_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.grain_highlight_threshold
     }
     fn grain_shadow_intensity(&self) -> &f32 {
         &self.grain_shadow_intensity
     }
+    fn grain_shadow_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.grain_shadow_intensity
+    }
     fn grain_highlight_intensity(&self) -> &f32 {
         &self.grain_highlight_intensity
     }
+    fn grain_highlight_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.grain_highlight_intensity
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -5353,23 +7053,41 @@ impl VisualEnvironmentComponentDataTrait for FilmGrainComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for FilmGrainComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -5380,15 +7098,15 @@ impl super::core::DataBusPeerTrait for FilmGrainComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FilmGrainComponentData {
 }
 
 impl super::core::DataContainerTrait for FilmGrainComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FILMGRAINCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5492,6 +7210,15 @@ impl TypeObject for FilmGrainComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5518,31 +7245,55 @@ pub struct VignetteComponentData {
 
 pub trait VignetteComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn scale(&self) -> &super::core::Vec2;
+    fn scale_mut(&mut self) -> &mut super::core::Vec2;
     fn exponent(&self) -> &f32;
+    fn exponent_mut(&mut self) -> &mut f32;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn opacity(&self) -> &f32;
+    fn opacity_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl VignetteComponentDataTrait for VignetteComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn scale(&self) -> &super::core::Vec2 {
         &self.scale
+    }
+    fn scale_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.scale
     }
     fn exponent(&self) -> &f32 {
         &self.exponent
     }
+    fn exponent_mut(&mut self) -> &mut f32 {
+        &mut self.exponent
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
     fn opacity(&self) -> &f32 {
         &self.opacity
     }
+    fn opacity_mut(&mut self) -> &mut f32 {
+        &mut self.opacity
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -5550,23 +7301,41 @@ impl VisualEnvironmentComponentDataTrait for VignetteComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for VignetteComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -5577,15 +7346,15 @@ impl super::core::DataBusPeerTrait for VignetteComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VignetteComponentData {
 }
 
 impl super::core::DataContainerTrait for VignetteComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VIGNETTECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5646,6 +7415,15 @@ impl TypeObject for VignetteComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5740,299 +7518,591 @@ pub struct DofComponentData {
 
 pub trait DofComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn physical_camera_tweak_enable(&self) -> &bool;
+    fn physical_camera_tweak_enable_mut(&mut self) -> &mut bool;
     fn pbc_background_blur_add(&self) -> &f32;
+    fn pbc_background_blur_add_mut(&mut self) -> &mut f32;
     fn pbc_foreground_blur_add(&self) -> &f32;
+    fn pbc_foreground_blur_add_mut(&mut self) -> &mut f32;
     fn pbc_focus_range_add(&self) -> &f32;
+    fn pbc_focus_range_add_mut(&mut self) -> &mut f32;
     fn dof_source(&self) -> &super::render_base::DofSource;
+    fn dof_source_mut(&mut self) -> &mut super::render_base::DofSource;
     fn debug_draw_focus_plane(&self) -> &bool;
+    fn debug_draw_focus_plane_mut(&mut self) -> &mut bool;
     fn focus_dof_max_blur(&self) -> &f32;
+    fn focus_dof_max_blur_mut(&mut self) -> &mut f32;
     fn blur_factor(&self) -> &f32;
+    fn blur_factor_mut(&mut self) -> &mut f32;
     fn blur_add(&self) -> &f32;
+    fn blur_add_mut(&mut self) -> &mut f32;
     fn focus_distance(&self) -> &f32;
+    fn focus_distance_mut(&mut self) -> &mut f32;
     fn radial_blur_enable_common_dof(&self) -> &bool;
+    fn radial_blur_enable_common_dof_mut(&mut self) -> &mut bool;
     fn radial_blur_amount_common_dof(&self) -> &f32;
+    fn radial_blur_amount_common_dof_mut(&mut self) -> &mut f32;
     fn radial_blur_start_radius_common_dof(&self) -> &f32;
+    fn radial_blur_start_radius_common_dof_mut(&mut self) -> &mut f32;
     fn radial_blur_transition_width_common_dof(&self) -> &f32;
+    fn radial_blur_transition_width_common_dof_mut(&mut self) -> &mut f32;
     fn radial_blur_tilt_common_dof(&self) -> &f32;
+    fn radial_blur_tilt_common_dof_mut(&mut self) -> &mut f32;
     fn radial_blur_horizontal_scale_common_dof(&self) -> &f32;
+    fn radial_blur_horizontal_scale_common_dof_mut(&mut self) -> &mut f32;
     fn radial_blur_aspect_ratio_blend(&self) -> &f32;
+    fn radial_blur_aspect_ratio_blend_mut(&mut self) -> &mut f32;
     fn radial_blur_position_common_dof(&self) -> &super::core::Vec2;
+    fn radial_blur_position_common_dof_mut(&mut self) -> &mut super::core::Vec2;
     fn simple_dof_blur_filter(&self) -> &super::render_base::BlurFilter;
+    fn simple_dof_blur_filter_mut(&mut self) -> &mut super::render_base::BlurFilter;
     fn simple_dof_standard_deviation(&self) -> &f32;
+    fn simple_dof_standard_deviation_mut(&mut self) -> &mut f32;
     fn sprite_dof_bokeh_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn sprite_dof_bokeh_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn focus_dof_near_start(&self) -> &f32;
+    fn focus_dof_near_start_mut(&mut self) -> &mut f32;
     fn focus_dof_near_end(&self) -> &f32;
+    fn focus_dof_near_end_mut(&mut self) -> &mut f32;
     fn focus_dof_far_start(&self) -> &f32;
+    fn focus_dof_far_start_mut(&mut self) -> &mut f32;
     fn focus_dof_far_end(&self) -> &f32;
+    fn focus_dof_far_end_mut(&mut self) -> &mut f32;
     fn pbr_focus_length_dof(&self) -> &f32;
+    fn pbr_focus_length_dof_mut(&mut self) -> &mut f32;
     fn pbr_film_width_dof(&self) -> &f32;
+    fn pbr_film_width_dof_mut(&mut self) -> &mut f32;
     fn pbr_f_stop_dof(&self) -> &f32;
+    fn pbr_f_stop_dof_mut(&mut self) -> &mut f32;
     fn optical_vignetting_enable(&self) -> &bool;
+    fn optical_vignetting_enable_mut(&mut self) -> &mut bool;
     fn optical_vignetting_amount(&self) -> &f32;
+    fn optical_vignetting_amount_mut(&mut self) -> &mut f32;
     fn optical_vignetting_aspect_ratio(&self) -> &f32;
+    fn optical_vignetting_aspect_ratio_mut(&mut self) -> &mut f32;
     fn optical_vignetting_anamorphic_squeeze(&self) -> &f32;
+    fn optical_vignetting_anamorphic_squeeze_mut(&mut self) -> &mut f32;
     fn optical_vignetting_size_compensation(&self) -> &f32;
+    fn optical_vignetting_size_compensation_mut(&mut self) -> &mut f32;
     fn optical_vignetting_operation(&self) -> &super::render_base::VignettingOperation;
+    fn optical_vignetting_operation_mut(&mut self) -> &mut super::render_base::VignettingOperation;
     fn r_g_b_bokeh_texture_enable(&self) -> &bool;
+    fn r_g_b_bokeh_texture_enable_mut(&mut self) -> &mut bool;
     fn bokeh_chromatic_aberration_enable(&self) -> &bool;
+    fn bokeh_chromatic_aberration_enable_mut(&mut self) -> &mut bool;
     fn bokeh_chromatic_aberration_scale(&self) -> &f32;
+    fn bokeh_chromatic_aberration_scale_mut(&mut self) -> &mut f32;
     fn bokeh_chromatic_aberration_radius(&self) -> &f32;
+    fn bokeh_chromatic_aberration_radius_mut(&mut self) -> &mut f32;
     fn bokeh_chromatic_aberration_width(&self) -> &f32;
+    fn bokeh_chromatic_aberration_width_mut(&mut self) -> &mut f32;
     fn bokeh_chromatic_aberration_radius_threshold(&self) -> &f32;
+    fn bokeh_chromatic_aberration_radius_threshold_mut(&mut self) -> &mut f32;
     fn bokeh_chromatic_aberration_radius_threshold_width(&self) -> &f32;
+    fn bokeh_chromatic_aberration_radius_threshold_width_mut(&mut self) -> &mut f32;
     fn bokeh_chromatic_aberration_energy_threshold(&self) -> &f32;
+    fn bokeh_chromatic_aberration_energy_threshold_mut(&mut self) -> &mut f32;
     fn bokeh_chromatic_aberration_fg_color(&self) -> &super::core::Vec3;
+    fn bokeh_chromatic_aberration_fg_color_mut(&mut self) -> &mut super::core::Vec3;
     fn bokeh_chromatic_aberration_bg_color(&self) -> &super::core::Vec3;
+    fn bokeh_chromatic_aberration_bg_color_mut(&mut self) -> &mut super::core::Vec3;
     fn ironsights_dof_active(&self) -> &bool;
+    fn ironsights_dof_active_mut(&mut self) -> &mut bool;
     fn ironsights_dof_extra_blur(&self) -> &bool;
+    fn ironsights_dof_extra_blur_mut(&mut self) -> &mut bool;
     fn hip_to_ironsights_fade(&self) -> &f32;
+    fn hip_to_ironsights_fade_mut(&mut self) -> &mut f32;
     fn ironsights_dof_start_fade(&self) -> &f32;
+    fn ironsights_dof_start_fade_mut(&mut self) -> &mut f32;
     fn ironsights_focal_distance(&self) -> &f32;
+    fn ironsights_focal_distance_mut(&mut self) -> &mut f32;
     fn ironsights_dof_circle_blur(&self) -> &bool;
+    fn ironsights_dof_circle_blur_mut(&mut self) -> &mut bool;
     fn ironsights_dof_circle_distance(&self) -> &f32;
+    fn ironsights_dof_circle_distance_mut(&mut self) -> &mut f32;
     fn ironsights_dof_circle_fade_distance(&self) -> &f32;
+    fn ironsights_dof_circle_fade_distance_mut(&mut self) -> &mut f32;
     fn masked_blur_enabled(&self) -> &bool;
+    fn masked_blur_enabled_mut(&mut self) -> &mut bool;
     fn masked_blur_amount(&self) -> &f32;
+    fn masked_blur_amount_mut(&mut self) -> &mut f32;
     fn masked_blur_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn masked_blur_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn circular_dof_anti_band_artifact(&self) -> &bool;
+    fn circular_dof_anti_band_artifact_mut(&mut self) -> &mut bool;
     fn use_camera_settings(&self) -> &bool;
+    fn use_camera_settings_mut(&mut self) -> &mut bool;
     fn simple_dof_max_blur(&self) -> &f32;
+    fn simple_dof_max_blur_mut(&mut self) -> &mut f32;
     fn simple_dof_near_start(&self) -> &f32;
+    fn simple_dof_near_start_mut(&mut self) -> &mut f32;
     fn simple_dof_near_end(&self) -> &f32;
+    fn simple_dof_near_end_mut(&mut self) -> &mut f32;
     fn simple_dof_far_start(&self) -> &f32;
+    fn simple_dof_far_start_mut(&mut self) -> &mut f32;
     fn simple_dof_far_end(&self) -> &f32;
+    fn simple_dof_far_end_mut(&mut self) -> &mut f32;
     fn sprite_dof_near_start(&self) -> &f32;
+    fn sprite_dof_near_start_mut(&mut self) -> &mut f32;
     fn sprite_dof_near_end(&self) -> &f32;
+    fn sprite_dof_near_end_mut(&mut self) -> &mut f32;
     fn sprite_dof_far_start(&self) -> &f32;
+    fn sprite_dof_far_start_mut(&mut self) -> &mut f32;
     fn sprite_dof_far_end(&self) -> &f32;
+    fn sprite_dof_far_end_mut(&mut self) -> &mut f32;
     fn sprite_dof_max_blur(&self) -> &f32;
+    fn sprite_dof_max_blur_mut(&mut self) -> &mut f32;
     fn anisotropy(&self) -> &f32;
+    fn anisotropy_mut(&mut self) -> &mut f32;
     fn full_screen_blur_add_common_dof(&self) -> &f32;
+    fn full_screen_blur_add_common_dof_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u32;
+    fn field_flag_override1_mut(&mut self) -> &mut u32;
     fn field_flag_override2(&self) -> &u8;
+    fn field_flag_override2_mut(&mut self) -> &mut u8;
 }
 
 impl DofComponentDataTrait for DofComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn physical_camera_tweak_enable(&self) -> &bool {
         &self.physical_camera_tweak_enable
+    }
+    fn physical_camera_tweak_enable_mut(&mut self) -> &mut bool {
+        &mut self.physical_camera_tweak_enable
     }
     fn pbc_background_blur_add(&self) -> &f32 {
         &self.pbc_background_blur_add
     }
+    fn pbc_background_blur_add_mut(&mut self) -> &mut f32 {
+        &mut self.pbc_background_blur_add
+    }
     fn pbc_foreground_blur_add(&self) -> &f32 {
         &self.pbc_foreground_blur_add
+    }
+    fn pbc_foreground_blur_add_mut(&mut self) -> &mut f32 {
+        &mut self.pbc_foreground_blur_add
     }
     fn pbc_focus_range_add(&self) -> &f32 {
         &self.pbc_focus_range_add
     }
+    fn pbc_focus_range_add_mut(&mut self) -> &mut f32 {
+        &mut self.pbc_focus_range_add
+    }
     fn dof_source(&self) -> &super::render_base::DofSource {
         &self.dof_source
+    }
+    fn dof_source_mut(&mut self) -> &mut super::render_base::DofSource {
+        &mut self.dof_source
     }
     fn debug_draw_focus_plane(&self) -> &bool {
         &self.debug_draw_focus_plane
     }
+    fn debug_draw_focus_plane_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_focus_plane
+    }
     fn focus_dof_max_blur(&self) -> &f32 {
         &self.focus_dof_max_blur
+    }
+    fn focus_dof_max_blur_mut(&mut self) -> &mut f32 {
+        &mut self.focus_dof_max_blur
     }
     fn blur_factor(&self) -> &f32 {
         &self.blur_factor
     }
+    fn blur_factor_mut(&mut self) -> &mut f32 {
+        &mut self.blur_factor
+    }
     fn blur_add(&self) -> &f32 {
         &self.blur_add
+    }
+    fn blur_add_mut(&mut self) -> &mut f32 {
+        &mut self.blur_add
     }
     fn focus_distance(&self) -> &f32 {
         &self.focus_distance
     }
+    fn focus_distance_mut(&mut self) -> &mut f32 {
+        &mut self.focus_distance
+    }
     fn radial_blur_enable_common_dof(&self) -> &bool {
         &self.radial_blur_enable_common_dof
+    }
+    fn radial_blur_enable_common_dof_mut(&mut self) -> &mut bool {
+        &mut self.radial_blur_enable_common_dof
     }
     fn radial_blur_amount_common_dof(&self) -> &f32 {
         &self.radial_blur_amount_common_dof
     }
+    fn radial_blur_amount_common_dof_mut(&mut self) -> &mut f32 {
+        &mut self.radial_blur_amount_common_dof
+    }
     fn radial_blur_start_radius_common_dof(&self) -> &f32 {
         &self.radial_blur_start_radius_common_dof
+    }
+    fn radial_blur_start_radius_common_dof_mut(&mut self) -> &mut f32 {
+        &mut self.radial_blur_start_radius_common_dof
     }
     fn radial_blur_transition_width_common_dof(&self) -> &f32 {
         &self.radial_blur_transition_width_common_dof
     }
+    fn radial_blur_transition_width_common_dof_mut(&mut self) -> &mut f32 {
+        &mut self.radial_blur_transition_width_common_dof
+    }
     fn radial_blur_tilt_common_dof(&self) -> &f32 {
         &self.radial_blur_tilt_common_dof
+    }
+    fn radial_blur_tilt_common_dof_mut(&mut self) -> &mut f32 {
+        &mut self.radial_blur_tilt_common_dof
     }
     fn radial_blur_horizontal_scale_common_dof(&self) -> &f32 {
         &self.radial_blur_horizontal_scale_common_dof
     }
+    fn radial_blur_horizontal_scale_common_dof_mut(&mut self) -> &mut f32 {
+        &mut self.radial_blur_horizontal_scale_common_dof
+    }
     fn radial_blur_aspect_ratio_blend(&self) -> &f32 {
         &self.radial_blur_aspect_ratio_blend
+    }
+    fn radial_blur_aspect_ratio_blend_mut(&mut self) -> &mut f32 {
+        &mut self.radial_blur_aspect_ratio_blend
     }
     fn radial_blur_position_common_dof(&self) -> &super::core::Vec2 {
         &self.radial_blur_position_common_dof
     }
+    fn radial_blur_position_common_dof_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.radial_blur_position_common_dof
+    }
     fn simple_dof_blur_filter(&self) -> &super::render_base::BlurFilter {
         &self.simple_dof_blur_filter
+    }
+    fn simple_dof_blur_filter_mut(&mut self) -> &mut super::render_base::BlurFilter {
+        &mut self.simple_dof_blur_filter
     }
     fn simple_dof_standard_deviation(&self) -> &f32 {
         &self.simple_dof_standard_deviation
     }
+    fn simple_dof_standard_deviation_mut(&mut self) -> &mut f32 {
+        &mut self.simple_dof_standard_deviation
+    }
     fn sprite_dof_bokeh_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.sprite_dof_bokeh_texture
+    }
+    fn sprite_dof_bokeh_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.sprite_dof_bokeh_texture
     }
     fn focus_dof_near_start(&self) -> &f32 {
         &self.focus_dof_near_start
     }
+    fn focus_dof_near_start_mut(&mut self) -> &mut f32 {
+        &mut self.focus_dof_near_start
+    }
     fn focus_dof_near_end(&self) -> &f32 {
         &self.focus_dof_near_end
+    }
+    fn focus_dof_near_end_mut(&mut self) -> &mut f32 {
+        &mut self.focus_dof_near_end
     }
     fn focus_dof_far_start(&self) -> &f32 {
         &self.focus_dof_far_start
     }
+    fn focus_dof_far_start_mut(&mut self) -> &mut f32 {
+        &mut self.focus_dof_far_start
+    }
     fn focus_dof_far_end(&self) -> &f32 {
         &self.focus_dof_far_end
+    }
+    fn focus_dof_far_end_mut(&mut self) -> &mut f32 {
+        &mut self.focus_dof_far_end
     }
     fn pbr_focus_length_dof(&self) -> &f32 {
         &self.pbr_focus_length_dof
     }
+    fn pbr_focus_length_dof_mut(&mut self) -> &mut f32 {
+        &mut self.pbr_focus_length_dof
+    }
     fn pbr_film_width_dof(&self) -> &f32 {
         &self.pbr_film_width_dof
+    }
+    fn pbr_film_width_dof_mut(&mut self) -> &mut f32 {
+        &mut self.pbr_film_width_dof
     }
     fn pbr_f_stop_dof(&self) -> &f32 {
         &self.pbr_f_stop_dof
     }
+    fn pbr_f_stop_dof_mut(&mut self) -> &mut f32 {
+        &mut self.pbr_f_stop_dof
+    }
     fn optical_vignetting_enable(&self) -> &bool {
         &self.optical_vignetting_enable
+    }
+    fn optical_vignetting_enable_mut(&mut self) -> &mut bool {
+        &mut self.optical_vignetting_enable
     }
     fn optical_vignetting_amount(&self) -> &f32 {
         &self.optical_vignetting_amount
     }
+    fn optical_vignetting_amount_mut(&mut self) -> &mut f32 {
+        &mut self.optical_vignetting_amount
+    }
     fn optical_vignetting_aspect_ratio(&self) -> &f32 {
         &self.optical_vignetting_aspect_ratio
+    }
+    fn optical_vignetting_aspect_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.optical_vignetting_aspect_ratio
     }
     fn optical_vignetting_anamorphic_squeeze(&self) -> &f32 {
         &self.optical_vignetting_anamorphic_squeeze
     }
+    fn optical_vignetting_anamorphic_squeeze_mut(&mut self) -> &mut f32 {
+        &mut self.optical_vignetting_anamorphic_squeeze
+    }
     fn optical_vignetting_size_compensation(&self) -> &f32 {
         &self.optical_vignetting_size_compensation
+    }
+    fn optical_vignetting_size_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.optical_vignetting_size_compensation
     }
     fn optical_vignetting_operation(&self) -> &super::render_base::VignettingOperation {
         &self.optical_vignetting_operation
     }
+    fn optical_vignetting_operation_mut(&mut self) -> &mut super::render_base::VignettingOperation {
+        &mut self.optical_vignetting_operation
+    }
     fn r_g_b_bokeh_texture_enable(&self) -> &bool {
         &self.r_g_b_bokeh_texture_enable
+    }
+    fn r_g_b_bokeh_texture_enable_mut(&mut self) -> &mut bool {
+        &mut self.r_g_b_bokeh_texture_enable
     }
     fn bokeh_chromatic_aberration_enable(&self) -> &bool {
         &self.bokeh_chromatic_aberration_enable
     }
+    fn bokeh_chromatic_aberration_enable_mut(&mut self) -> &mut bool {
+        &mut self.bokeh_chromatic_aberration_enable
+    }
     fn bokeh_chromatic_aberration_scale(&self) -> &f32 {
         &self.bokeh_chromatic_aberration_scale
+    }
+    fn bokeh_chromatic_aberration_scale_mut(&mut self) -> &mut f32 {
+        &mut self.bokeh_chromatic_aberration_scale
     }
     fn bokeh_chromatic_aberration_radius(&self) -> &f32 {
         &self.bokeh_chromatic_aberration_radius
     }
+    fn bokeh_chromatic_aberration_radius_mut(&mut self) -> &mut f32 {
+        &mut self.bokeh_chromatic_aberration_radius
+    }
     fn bokeh_chromatic_aberration_width(&self) -> &f32 {
         &self.bokeh_chromatic_aberration_width
+    }
+    fn bokeh_chromatic_aberration_width_mut(&mut self) -> &mut f32 {
+        &mut self.bokeh_chromatic_aberration_width
     }
     fn bokeh_chromatic_aberration_radius_threshold(&self) -> &f32 {
         &self.bokeh_chromatic_aberration_radius_threshold
     }
+    fn bokeh_chromatic_aberration_radius_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.bokeh_chromatic_aberration_radius_threshold
+    }
     fn bokeh_chromatic_aberration_radius_threshold_width(&self) -> &f32 {
         &self.bokeh_chromatic_aberration_radius_threshold_width
+    }
+    fn bokeh_chromatic_aberration_radius_threshold_width_mut(&mut self) -> &mut f32 {
+        &mut self.bokeh_chromatic_aberration_radius_threshold_width
     }
     fn bokeh_chromatic_aberration_energy_threshold(&self) -> &f32 {
         &self.bokeh_chromatic_aberration_energy_threshold
     }
+    fn bokeh_chromatic_aberration_energy_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.bokeh_chromatic_aberration_energy_threshold
+    }
     fn bokeh_chromatic_aberration_fg_color(&self) -> &super::core::Vec3 {
         &self.bokeh_chromatic_aberration_fg_color
+    }
+    fn bokeh_chromatic_aberration_fg_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.bokeh_chromatic_aberration_fg_color
     }
     fn bokeh_chromatic_aberration_bg_color(&self) -> &super::core::Vec3 {
         &self.bokeh_chromatic_aberration_bg_color
     }
+    fn bokeh_chromatic_aberration_bg_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.bokeh_chromatic_aberration_bg_color
+    }
     fn ironsights_dof_active(&self) -> &bool {
         &self.ironsights_dof_active
+    }
+    fn ironsights_dof_active_mut(&mut self) -> &mut bool {
+        &mut self.ironsights_dof_active
     }
     fn ironsights_dof_extra_blur(&self) -> &bool {
         &self.ironsights_dof_extra_blur
     }
+    fn ironsights_dof_extra_blur_mut(&mut self) -> &mut bool {
+        &mut self.ironsights_dof_extra_blur
+    }
     fn hip_to_ironsights_fade(&self) -> &f32 {
         &self.hip_to_ironsights_fade
+    }
+    fn hip_to_ironsights_fade_mut(&mut self) -> &mut f32 {
+        &mut self.hip_to_ironsights_fade
     }
     fn ironsights_dof_start_fade(&self) -> &f32 {
         &self.ironsights_dof_start_fade
     }
+    fn ironsights_dof_start_fade_mut(&mut self) -> &mut f32 {
+        &mut self.ironsights_dof_start_fade
+    }
     fn ironsights_focal_distance(&self) -> &f32 {
         &self.ironsights_focal_distance
+    }
+    fn ironsights_focal_distance_mut(&mut self) -> &mut f32 {
+        &mut self.ironsights_focal_distance
     }
     fn ironsights_dof_circle_blur(&self) -> &bool {
         &self.ironsights_dof_circle_blur
     }
+    fn ironsights_dof_circle_blur_mut(&mut self) -> &mut bool {
+        &mut self.ironsights_dof_circle_blur
+    }
     fn ironsights_dof_circle_distance(&self) -> &f32 {
         &self.ironsights_dof_circle_distance
+    }
+    fn ironsights_dof_circle_distance_mut(&mut self) -> &mut f32 {
+        &mut self.ironsights_dof_circle_distance
     }
     fn ironsights_dof_circle_fade_distance(&self) -> &f32 {
         &self.ironsights_dof_circle_fade_distance
     }
+    fn ironsights_dof_circle_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.ironsights_dof_circle_fade_distance
+    }
     fn masked_blur_enabled(&self) -> &bool {
         &self.masked_blur_enabled
+    }
+    fn masked_blur_enabled_mut(&mut self) -> &mut bool {
+        &mut self.masked_blur_enabled
     }
     fn masked_blur_amount(&self) -> &f32 {
         &self.masked_blur_amount
     }
+    fn masked_blur_amount_mut(&mut self) -> &mut f32 {
+        &mut self.masked_blur_amount
+    }
     fn masked_blur_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.masked_blur_texture
+    }
+    fn masked_blur_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.masked_blur_texture
     }
     fn circular_dof_anti_band_artifact(&self) -> &bool {
         &self.circular_dof_anti_band_artifact
     }
+    fn circular_dof_anti_band_artifact_mut(&mut self) -> &mut bool {
+        &mut self.circular_dof_anti_band_artifact
+    }
     fn use_camera_settings(&self) -> &bool {
         &self.use_camera_settings
+    }
+    fn use_camera_settings_mut(&mut self) -> &mut bool {
+        &mut self.use_camera_settings
     }
     fn simple_dof_max_blur(&self) -> &f32 {
         &self.simple_dof_max_blur
     }
+    fn simple_dof_max_blur_mut(&mut self) -> &mut f32 {
+        &mut self.simple_dof_max_blur
+    }
     fn simple_dof_near_start(&self) -> &f32 {
         &self.simple_dof_near_start
+    }
+    fn simple_dof_near_start_mut(&mut self) -> &mut f32 {
+        &mut self.simple_dof_near_start
     }
     fn simple_dof_near_end(&self) -> &f32 {
         &self.simple_dof_near_end
     }
+    fn simple_dof_near_end_mut(&mut self) -> &mut f32 {
+        &mut self.simple_dof_near_end
+    }
     fn simple_dof_far_start(&self) -> &f32 {
         &self.simple_dof_far_start
+    }
+    fn simple_dof_far_start_mut(&mut self) -> &mut f32 {
+        &mut self.simple_dof_far_start
     }
     fn simple_dof_far_end(&self) -> &f32 {
         &self.simple_dof_far_end
     }
+    fn simple_dof_far_end_mut(&mut self) -> &mut f32 {
+        &mut self.simple_dof_far_end
+    }
     fn sprite_dof_near_start(&self) -> &f32 {
         &self.sprite_dof_near_start
+    }
+    fn sprite_dof_near_start_mut(&mut self) -> &mut f32 {
+        &mut self.sprite_dof_near_start
     }
     fn sprite_dof_near_end(&self) -> &f32 {
         &self.sprite_dof_near_end
     }
+    fn sprite_dof_near_end_mut(&mut self) -> &mut f32 {
+        &mut self.sprite_dof_near_end
+    }
     fn sprite_dof_far_start(&self) -> &f32 {
         &self.sprite_dof_far_start
+    }
+    fn sprite_dof_far_start_mut(&mut self) -> &mut f32 {
+        &mut self.sprite_dof_far_start
     }
     fn sprite_dof_far_end(&self) -> &f32 {
         &self.sprite_dof_far_end
     }
+    fn sprite_dof_far_end_mut(&mut self) -> &mut f32 {
+        &mut self.sprite_dof_far_end
+    }
     fn sprite_dof_max_blur(&self) -> &f32 {
         &self.sprite_dof_max_blur
+    }
+    fn sprite_dof_max_blur_mut(&mut self) -> &mut f32 {
+        &mut self.sprite_dof_max_blur
     }
     fn anisotropy(&self) -> &f32 {
         &self.anisotropy
     }
+    fn anisotropy_mut(&mut self) -> &mut f32 {
+        &mut self.anisotropy
+    }
     fn full_screen_blur_add_common_dof(&self) -> &f32 {
         &self.full_screen_blur_add_common_dof
+    }
+    fn full_screen_blur_add_common_dof_mut(&mut self) -> &mut f32 {
+        &mut self.full_screen_blur_add_common_dof
     }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_override1(&self) -> &u32 {
         &self.field_flag_override1
     }
+    fn field_flag_override1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override1
+    }
     fn field_flag_override2(&self) -> &u8 {
         &self.field_flag_override2
+    }
+    fn field_flag_override2_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override2
     }
 }
 
@@ -6040,23 +8110,41 @@ impl VisualEnvironmentComponentDataTrait for DofComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for DofComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -6067,15 +8155,15 @@ impl super::core::DataBusPeerTrait for DofComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DofComponentData {
 }
 
 impl super::core::DataContainerTrait for DofComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DOFCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6539,6 +8627,15 @@ impl TypeObject for DofComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6569,47 +8666,87 @@ pub struct ColorCorrectionComponentData {
 
 pub trait ColorCorrectionComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn brightness(&self) -> &super::core::Vec3;
+    fn brightness_mut(&mut self) -> &mut super::core::Vec3;
     fn contrast(&self) -> &super::core::Vec3;
+    fn contrast_mut(&mut self) -> &mut super::core::Vec3;
     fn saturation(&self) -> &super::core::Vec3;
+    fn saturation_mut(&mut self) -> &mut super::core::Vec3;
     fn hue(&self) -> &f32;
+    fn hue_mut(&mut self) -> &mut f32;
     fn color_grading_enable(&self) -> &bool;
+    fn color_grading_enable_mut(&mut self) -> &mut bool;
     fn color_grading_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn color_grading_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn color_grading_max_hdr_value(&self) -> &f32;
+    fn color_grading_max_hdr_value_mut(&mut self) -> &mut f32;
     fn hdr_color_grading_lut(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn hdr_color_grading_lut_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl ColorCorrectionComponentDataTrait for ColorCorrectionComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn brightness(&self) -> &super::core::Vec3 {
         &self.brightness
+    }
+    fn brightness_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.brightness
     }
     fn contrast(&self) -> &super::core::Vec3 {
         &self.contrast
     }
+    fn contrast_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.contrast
+    }
     fn saturation(&self) -> &super::core::Vec3 {
         &self.saturation
+    }
+    fn saturation_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.saturation
     }
     fn hue(&self) -> &f32 {
         &self.hue
     }
+    fn hue_mut(&mut self) -> &mut f32 {
+        &mut self.hue
+    }
     fn color_grading_enable(&self) -> &bool {
         &self.color_grading_enable
+    }
+    fn color_grading_enable_mut(&mut self) -> &mut bool {
+        &mut self.color_grading_enable
     }
     fn color_grading_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.color_grading_texture
     }
+    fn color_grading_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.color_grading_texture
+    }
     fn color_grading_max_hdr_value(&self) -> &f32 {
         &self.color_grading_max_hdr_value
+    }
+    fn color_grading_max_hdr_value_mut(&mut self) -> &mut f32 {
+        &mut self.color_grading_max_hdr_value
     }
     fn hdr_color_grading_lut(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.hdr_color_grading_lut
     }
+    fn hdr_color_grading_lut_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.hdr_color_grading_lut
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -6617,23 +8754,41 @@ impl VisualEnvironmentComponentDataTrait for ColorCorrectionComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for ColorCorrectionComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -6644,15 +8799,15 @@ impl super::core::DataBusPeerTrait for ColorCorrectionComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ColorCorrectionComponentData {
 }
 
 impl super::core::DataContainerTrait for ColorCorrectionComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COLORCORRECTIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6738,6 +8893,15 @@ impl TypeObject for ColorCorrectionComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6807,203 +8971,399 @@ pub struct TonemapComponentData {
 
 pub trait TonemapComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn e_v(&self) -> &f32;
+    fn e_v_mut(&mut self) -> &mut f32;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn auto_exposure_darkest_exclude(&self) -> &f32;
+    fn auto_exposure_darkest_exclude_mut(&mut self) -> &mut f32;
     fn auto_exposure_brightest_exclude(&self) -> &f32;
+    fn auto_exposure_brightest_exclude_mut(&mut self) -> &mut f32;
     fn dark_adaptation_time(&self) -> &f32;
+    fn dark_adaptation_time_mut(&mut self) -> &mut f32;
     fn light_adaptation_time(&self) -> &f32;
+    fn light_adaptation_time_mut(&mut self) -> &mut f32;
     fn automatic_exposure(&self) -> &bool;
+    fn automatic_exposure_mut(&mut self) -> &mut bool;
     fn auto_exposure_method(&self) -> &super::render_base::AutoExposureMethod;
+    fn auto_exposure_method_mut(&mut self) -> &mut super::render_base::AutoExposureMethod;
     fn auto_exposure_higher_threshold(&self) -> &f32;
+    fn auto_exposure_higher_threshold_mut(&mut self) -> &mut f32;
     fn auto_exposure_lower_threshold(&self) -> &f32;
+    fn auto_exposure_lower_threshold_mut(&mut self) -> &mut f32;
     fn clamp_e_v(&self) -> &bool;
+    fn clamp_e_v_mut(&mut self) -> &mut bool;
     fn min_e_v(&self) -> &f32;
+    fn min_e_v_mut(&mut self) -> &mut f32;
     fn max_e_v(&self) -> &f32;
+    fn max_e_v_mut(&mut self) -> &mut f32;
     fn spot_meter_scale(&self) -> &f32;
+    fn spot_meter_scale_mut(&mut self) -> &mut f32;
     fn spot_meter_offset_x(&self) -> &f32;
+    fn spot_meter_offset_x_mut(&mut self) -> &mut f32;
     fn spot_meter_offset_y(&self) -> &f32;
+    fn spot_meter_offset_y_mut(&mut self) -> &mut f32;
     fn tonemap_method(&self) -> &super::render_base::TonemapMethod;
+    fn tonemap_method_mut(&mut self) -> &mut super::render_base::TonemapMethod;
     fn bloom_direction(&self) -> &super::render_base::BloomDirection;
+    fn bloom_direction_mut(&mut self) -> &mut super::render_base::BloomDirection;
     fn directional_bloom_clamp(&self) -> &f32;
+    fn directional_bloom_clamp_mut(&mut self) -> &mut f32;
     fn bloom_scale(&self) -> &super::core::Vec3;
+    fn bloom_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn bloom_soft_clip(&self) -> &f32;
+    fn bloom_soft_clip_mut(&mut self) -> &mut f32;
     fn bloom_method(&self) -> &super::render_base::BloomMethod;
+    fn bloom_method_mut(&mut self) -> &mut super::render_base::BloomMethod;
     fn gaussian_sharpness(&self) -> &f32;
+    fn gaussian_sharpness_mut(&mut self) -> &mut f32;
     fn gaussian1_color(&self) -> &super::core::Vec3;
+    fn gaussian1_color_mut(&mut self) -> &mut super::core::Vec3;
     fn gaussian1_weight(&self) -> &f32;
+    fn gaussian1_weight_mut(&mut self) -> &mut f32;
     fn gaussian2_color(&self) -> &super::core::Vec3;
+    fn gaussian2_color_mut(&mut self) -> &mut super::core::Vec3;
     fn gaussian2_weight(&self) -> &f32;
+    fn gaussian2_weight_mut(&mut self) -> &mut f32;
     fn gaussian3_color(&self) -> &super::core::Vec3;
+    fn gaussian3_color_mut(&mut self) -> &mut super::core::Vec3;
     fn gaussian3_weight(&self) -> &f32;
+    fn gaussian3_weight_mut(&mut self) -> &mut f32;
     fn gaussian4_color(&self) -> &super::core::Vec3;
+    fn gaussian4_color_mut(&mut self) -> &mut super::core::Vec3;
     fn gaussian4_weight(&self) -> &f32;
+    fn gaussian4_weight_mut(&mut self) -> &mut f32;
     fn gaussian5_color(&self) -> &super::core::Vec3;
+    fn gaussian5_color_mut(&mut self) -> &mut super::core::Vec3;
     fn gaussian5_weight(&self) -> &f32;
+    fn gaussian5_weight_mut(&mut self) -> &mut f32;
     fn f_f_t_threshold(&self) -> &f32;
+    fn f_f_t_threshold_mut(&mut self) -> &mut f32;
     fn f_f_t_cutoff(&self) -> &f32;
+    fn f_f_t_cutoff_mut(&mut self) -> &mut f32;
     fn f_f_t_kernel_scale(&self) -> &f32;
+    fn f_f_t_kernel_scale_mut(&mut self) -> &mut f32;
     fn f_f_t_kernel_rotation(&self) -> &f32;
+    fn f_f_t_kernel_rotation_mut(&mut self) -> &mut f32;
     fn f_f_t_spike_scale_limit_enable(&self) -> &bool;
+    fn f_f_t_spike_scale_limit_enable_mut(&mut self) -> &mut bool;
     fn f_f_t_spike_scale_limit(&self) -> &f32;
+    fn f_f_t_spike_scale_limit_mut(&mut self) -> &mut f32;
     fn f_f_t_kernel_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn f_f_t_kernel_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn chromostereopsis_enable(&self) -> &bool;
+    fn chromostereopsis_enable_mut(&mut self) -> &mut bool;
     fn chromostereopsis_scale(&self) -> &f32;
+    fn chromostereopsis_scale_mut(&mut self) -> &mut f32;
     fn chromostereopsis_offset(&self) -> &f32;
+    fn chromostereopsis_offset_mut(&mut self) -> &mut f32;
     fn lens_dirt_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn lens_dirt_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn lens_dirt_bias(&self) -> &super::core::Vec3;
+    fn lens_dirt_bias_mut(&mut self) -> &mut super::core::Vec3;
     fn lens_dirt_factor(&self) -> &super::core::Vec3;
+    fn lens_dirt_factor_mut(&mut self) -> &mut super::core::Vec3;
     fn lens_dirt_exponent(&self) -> &super::core::Vec3;
+    fn lens_dirt_exponent_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u16;
+    fn field_flag_override1_mut(&mut self) -> &mut u16;
 }
 
 impl TonemapComponentDataTrait for TonemapComponentData {
     fn e_v(&self) -> &f32 {
         &self.e_v
     }
+    fn e_v_mut(&mut self) -> &mut f32 {
+        &mut self.e_v
+    }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
+    }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
     }
     fn auto_exposure_darkest_exclude(&self) -> &f32 {
         &self.auto_exposure_darkest_exclude
     }
+    fn auto_exposure_darkest_exclude_mut(&mut self) -> &mut f32 {
+        &mut self.auto_exposure_darkest_exclude
+    }
     fn auto_exposure_brightest_exclude(&self) -> &f32 {
         &self.auto_exposure_brightest_exclude
+    }
+    fn auto_exposure_brightest_exclude_mut(&mut self) -> &mut f32 {
+        &mut self.auto_exposure_brightest_exclude
     }
     fn dark_adaptation_time(&self) -> &f32 {
         &self.dark_adaptation_time
     }
+    fn dark_adaptation_time_mut(&mut self) -> &mut f32 {
+        &mut self.dark_adaptation_time
+    }
     fn light_adaptation_time(&self) -> &f32 {
         &self.light_adaptation_time
+    }
+    fn light_adaptation_time_mut(&mut self) -> &mut f32 {
+        &mut self.light_adaptation_time
     }
     fn automatic_exposure(&self) -> &bool {
         &self.automatic_exposure
     }
+    fn automatic_exposure_mut(&mut self) -> &mut bool {
+        &mut self.automatic_exposure
+    }
     fn auto_exposure_method(&self) -> &super::render_base::AutoExposureMethod {
         &self.auto_exposure_method
+    }
+    fn auto_exposure_method_mut(&mut self) -> &mut super::render_base::AutoExposureMethod {
+        &mut self.auto_exposure_method
     }
     fn auto_exposure_higher_threshold(&self) -> &f32 {
         &self.auto_exposure_higher_threshold
     }
+    fn auto_exposure_higher_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.auto_exposure_higher_threshold
+    }
     fn auto_exposure_lower_threshold(&self) -> &f32 {
         &self.auto_exposure_lower_threshold
+    }
+    fn auto_exposure_lower_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.auto_exposure_lower_threshold
     }
     fn clamp_e_v(&self) -> &bool {
         &self.clamp_e_v
     }
+    fn clamp_e_v_mut(&mut self) -> &mut bool {
+        &mut self.clamp_e_v
+    }
     fn min_e_v(&self) -> &f32 {
         &self.min_e_v
+    }
+    fn min_e_v_mut(&mut self) -> &mut f32 {
+        &mut self.min_e_v
     }
     fn max_e_v(&self) -> &f32 {
         &self.max_e_v
     }
+    fn max_e_v_mut(&mut self) -> &mut f32 {
+        &mut self.max_e_v
+    }
     fn spot_meter_scale(&self) -> &f32 {
         &self.spot_meter_scale
+    }
+    fn spot_meter_scale_mut(&mut self) -> &mut f32 {
+        &mut self.spot_meter_scale
     }
     fn spot_meter_offset_x(&self) -> &f32 {
         &self.spot_meter_offset_x
     }
+    fn spot_meter_offset_x_mut(&mut self) -> &mut f32 {
+        &mut self.spot_meter_offset_x
+    }
     fn spot_meter_offset_y(&self) -> &f32 {
         &self.spot_meter_offset_y
+    }
+    fn spot_meter_offset_y_mut(&mut self) -> &mut f32 {
+        &mut self.spot_meter_offset_y
     }
     fn tonemap_method(&self) -> &super::render_base::TonemapMethod {
         &self.tonemap_method
     }
+    fn tonemap_method_mut(&mut self) -> &mut super::render_base::TonemapMethod {
+        &mut self.tonemap_method
+    }
     fn bloom_direction(&self) -> &super::render_base::BloomDirection {
         &self.bloom_direction
+    }
+    fn bloom_direction_mut(&mut self) -> &mut super::render_base::BloomDirection {
+        &mut self.bloom_direction
     }
     fn directional_bloom_clamp(&self) -> &f32 {
         &self.directional_bloom_clamp
     }
+    fn directional_bloom_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.directional_bloom_clamp
+    }
     fn bloom_scale(&self) -> &super::core::Vec3 {
         &self.bloom_scale
+    }
+    fn bloom_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.bloom_scale
     }
     fn bloom_soft_clip(&self) -> &f32 {
         &self.bloom_soft_clip
     }
+    fn bloom_soft_clip_mut(&mut self) -> &mut f32 {
+        &mut self.bloom_soft_clip
+    }
     fn bloom_method(&self) -> &super::render_base::BloomMethod {
         &self.bloom_method
+    }
+    fn bloom_method_mut(&mut self) -> &mut super::render_base::BloomMethod {
+        &mut self.bloom_method
     }
     fn gaussian_sharpness(&self) -> &f32 {
         &self.gaussian_sharpness
     }
+    fn gaussian_sharpness_mut(&mut self) -> &mut f32 {
+        &mut self.gaussian_sharpness
+    }
     fn gaussian1_color(&self) -> &super::core::Vec3 {
         &self.gaussian1_color
+    }
+    fn gaussian1_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.gaussian1_color
     }
     fn gaussian1_weight(&self) -> &f32 {
         &self.gaussian1_weight
     }
+    fn gaussian1_weight_mut(&mut self) -> &mut f32 {
+        &mut self.gaussian1_weight
+    }
     fn gaussian2_color(&self) -> &super::core::Vec3 {
         &self.gaussian2_color
+    }
+    fn gaussian2_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.gaussian2_color
     }
     fn gaussian2_weight(&self) -> &f32 {
         &self.gaussian2_weight
     }
+    fn gaussian2_weight_mut(&mut self) -> &mut f32 {
+        &mut self.gaussian2_weight
+    }
     fn gaussian3_color(&self) -> &super::core::Vec3 {
         &self.gaussian3_color
+    }
+    fn gaussian3_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.gaussian3_color
     }
     fn gaussian3_weight(&self) -> &f32 {
         &self.gaussian3_weight
     }
+    fn gaussian3_weight_mut(&mut self) -> &mut f32 {
+        &mut self.gaussian3_weight
+    }
     fn gaussian4_color(&self) -> &super::core::Vec3 {
         &self.gaussian4_color
+    }
+    fn gaussian4_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.gaussian4_color
     }
     fn gaussian4_weight(&self) -> &f32 {
         &self.gaussian4_weight
     }
+    fn gaussian4_weight_mut(&mut self) -> &mut f32 {
+        &mut self.gaussian4_weight
+    }
     fn gaussian5_color(&self) -> &super::core::Vec3 {
         &self.gaussian5_color
+    }
+    fn gaussian5_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.gaussian5_color
     }
     fn gaussian5_weight(&self) -> &f32 {
         &self.gaussian5_weight
     }
+    fn gaussian5_weight_mut(&mut self) -> &mut f32 {
+        &mut self.gaussian5_weight
+    }
     fn f_f_t_threshold(&self) -> &f32 {
         &self.f_f_t_threshold
+    }
+    fn f_f_t_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.f_f_t_threshold
     }
     fn f_f_t_cutoff(&self) -> &f32 {
         &self.f_f_t_cutoff
     }
+    fn f_f_t_cutoff_mut(&mut self) -> &mut f32 {
+        &mut self.f_f_t_cutoff
+    }
     fn f_f_t_kernel_scale(&self) -> &f32 {
         &self.f_f_t_kernel_scale
+    }
+    fn f_f_t_kernel_scale_mut(&mut self) -> &mut f32 {
+        &mut self.f_f_t_kernel_scale
     }
     fn f_f_t_kernel_rotation(&self) -> &f32 {
         &self.f_f_t_kernel_rotation
     }
+    fn f_f_t_kernel_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.f_f_t_kernel_rotation
+    }
     fn f_f_t_spike_scale_limit_enable(&self) -> &bool {
         &self.f_f_t_spike_scale_limit_enable
+    }
+    fn f_f_t_spike_scale_limit_enable_mut(&mut self) -> &mut bool {
+        &mut self.f_f_t_spike_scale_limit_enable
     }
     fn f_f_t_spike_scale_limit(&self) -> &f32 {
         &self.f_f_t_spike_scale_limit
     }
+    fn f_f_t_spike_scale_limit_mut(&mut self) -> &mut f32 {
+        &mut self.f_f_t_spike_scale_limit
+    }
     fn f_f_t_kernel_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.f_f_t_kernel_texture
+    }
+    fn f_f_t_kernel_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.f_f_t_kernel_texture
     }
     fn chromostereopsis_enable(&self) -> &bool {
         &self.chromostereopsis_enable
     }
+    fn chromostereopsis_enable_mut(&mut self) -> &mut bool {
+        &mut self.chromostereopsis_enable
+    }
     fn chromostereopsis_scale(&self) -> &f32 {
         &self.chromostereopsis_scale
+    }
+    fn chromostereopsis_scale_mut(&mut self) -> &mut f32 {
+        &mut self.chromostereopsis_scale
     }
     fn chromostereopsis_offset(&self) -> &f32 {
         &self.chromostereopsis_offset
     }
+    fn chromostereopsis_offset_mut(&mut self) -> &mut f32 {
+        &mut self.chromostereopsis_offset
+    }
     fn lens_dirt_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.lens_dirt_texture
+    }
+    fn lens_dirt_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.lens_dirt_texture
     }
     fn lens_dirt_bias(&self) -> &super::core::Vec3 {
         &self.lens_dirt_bias
     }
+    fn lens_dirt_bias_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.lens_dirt_bias
+    }
     fn lens_dirt_factor(&self) -> &super::core::Vec3 {
         &self.lens_dirt_factor
+    }
+    fn lens_dirt_factor_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.lens_dirt_factor
     }
     fn lens_dirt_exponent(&self) -> &super::core::Vec3 {
         &self.lens_dirt_exponent
     }
+    fn lens_dirt_exponent_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.lens_dirt_exponent
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_override1(&self) -> &u16 {
         &self.field_flag_override1
+    }
+    fn field_flag_override1_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override1
     }
 }
 
@@ -7011,23 +9371,41 @@ impl VisualEnvironmentComponentDataTrait for TonemapComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for TonemapComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -7038,15 +9416,15 @@ impl super::core::DataBusPeerTrait for TonemapComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TonemapComponentData {
 }
 
 impl super::core::DataContainerTrait for TonemapComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TONEMAPCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7366,6 +9744,15 @@ impl TypeObject for TonemapComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7406,87 +9793,167 @@ pub struct SkyCelestialMultiComponentData {
 
 pub trait SkyCelestialMultiComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn enabled_on_quality_levels(&self) -> &super::core::QualityScalableBool;
+    fn enabled_on_quality_levels_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn draw_order(&self) -> &u32;
+    fn draw_order_mut(&mut self) -> &mut u32;
     fn planar_reflection(&self) -> &super::core::QualityScalableBool;
+    fn planar_reflection_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn render_in_sky_env_map(&self) -> &bool;
+    fn render_in_sky_env_map_mut(&mut self) -> &mut bool;
     fn write_alpha(&self) -> &bool;
+    fn write_alpha_mut(&mut self) -> &mut bool;
     fn quad_count(&self) -> &super::core::QualityScalableInt;
+    fn quad_count_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn u_v_start(&self) -> &super::core::Vec2;
+    fn u_v_start_mut(&mut self) -> &mut super::core::Vec2;
     fn u_v_end(&self) -> &super::core::Vec2;
+    fn u_v_end_mut(&mut self) -> &mut super::core::Vec2;
     fn u_v_grid(&self) -> &super::core::Vec2;
+    fn u_v_grid_mut(&mut self) -> &mut super::core::Vec2;
     fn tint(&self) -> &super::core::Vec3;
+    fn tint_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_envmap_tint_scale(&self) -> &f32;
+    fn sky_envmap_tint_scale_mut(&mut self) -> &mut f32;
     fn random_seed(&self) -> &i32;
+    fn random_seed_mut(&mut self) -> &mut i32;
     fn min_scale(&self) -> &f32;
+    fn min_scale_mut(&mut self) -> &mut f32;
     fn max_scale(&self) -> &f32;
+    fn max_scale_mut(&mut self) -> &mut f32;
     fn scale_multiplier(&self) -> &f32;
+    fn scale_multiplier_mut(&mut self) -> &mut f32;
     fn zenith_stop(&self) -> &f32;
+    fn zenith_stop_mut(&mut self) -> &mut f32;
     fn nadir_stop(&self) -> &f32;
+    fn nadir_stop_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
 }
 
 impl SkyCelestialMultiComponentDataTrait for SkyCelestialMultiComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn enabled_on_quality_levels(&self) -> &super::core::QualityScalableBool {
         &self.enabled_on_quality_levels
+    }
+    fn enabled_on_quality_levels_mut(&mut self) -> &mut super::core::QualityScalableBool {
+        &mut self.enabled_on_quality_levels
     }
     fn draw_order(&self) -> &u32 {
         &self.draw_order
     }
+    fn draw_order_mut(&mut self) -> &mut u32 {
+        &mut self.draw_order
+    }
     fn planar_reflection(&self) -> &super::core::QualityScalableBool {
         &self.planar_reflection
+    }
+    fn planar_reflection_mut(&mut self) -> &mut super::core::QualityScalableBool {
+        &mut self.planar_reflection
     }
     fn render_in_sky_env_map(&self) -> &bool {
         &self.render_in_sky_env_map
     }
+    fn render_in_sky_env_map_mut(&mut self) -> &mut bool {
+        &mut self.render_in_sky_env_map
+    }
     fn write_alpha(&self) -> &bool {
         &self.write_alpha
+    }
+    fn write_alpha_mut(&mut self) -> &mut bool {
+        &mut self.write_alpha
     }
     fn quad_count(&self) -> &super::core::QualityScalableInt {
         &self.quad_count
     }
+    fn quad_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.quad_count
+    }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
+    }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
     }
     fn u_v_start(&self) -> &super::core::Vec2 {
         &self.u_v_start
     }
+    fn u_v_start_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.u_v_start
+    }
     fn u_v_end(&self) -> &super::core::Vec2 {
         &self.u_v_end
+    }
+    fn u_v_end_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.u_v_end
     }
     fn u_v_grid(&self) -> &super::core::Vec2 {
         &self.u_v_grid
     }
+    fn u_v_grid_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.u_v_grid
+    }
     fn tint(&self) -> &super::core::Vec3 {
         &self.tint
+    }
+    fn tint_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.tint
     }
     fn sky_envmap_tint_scale(&self) -> &f32 {
         &self.sky_envmap_tint_scale
     }
+    fn sky_envmap_tint_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap_tint_scale
+    }
     fn random_seed(&self) -> &i32 {
         &self.random_seed
+    }
+    fn random_seed_mut(&mut self) -> &mut i32 {
+        &mut self.random_seed
     }
     fn min_scale(&self) -> &f32 {
         &self.min_scale
     }
+    fn min_scale_mut(&mut self) -> &mut f32 {
+        &mut self.min_scale
+    }
     fn max_scale(&self) -> &f32 {
         &self.max_scale
+    }
+    fn max_scale_mut(&mut self) -> &mut f32 {
+        &mut self.max_scale
     }
     fn scale_multiplier(&self) -> &f32 {
         &self.scale_multiplier
     }
+    fn scale_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.scale_multiplier
+    }
     fn zenith_stop(&self) -> &f32 {
         &self.zenith_stop
+    }
+    fn zenith_stop_mut(&mut self) -> &mut f32 {
+        &mut self.zenith_stop
     }
     fn nadir_stop(&self) -> &f32 {
         &self.nadir_stop
     }
+    fn nadir_stop_mut(&mut self) -> &mut f32 {
+        &mut self.nadir_stop
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -7494,23 +9961,41 @@ impl VisualEnvironmentComponentDataTrait for SkyCelestialMultiComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for SkyCelestialMultiComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -7521,15 +10006,15 @@ impl super::core::DataBusPeerTrait for SkyCelestialMultiComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SkyCelestialMultiComponentData {
 }
 
 impl super::core::DataContainerTrait for SkyCelestialMultiComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SKYCELESTIALMULTICOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7675,6 +10160,15 @@ impl TypeObject for SkyCelestialMultiComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7711,71 +10205,135 @@ pub struct SkyCelestialSingleComponentData {
 
 pub trait SkyCelestialSingleComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn enabled_on_quality_levels(&self) -> &super::core::QualityScalableBool;
+    fn enabled_on_quality_levels_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn draw_order(&self) -> &u32;
+    fn draw_order_mut(&mut self) -> &mut u32;
     fn planar_reflection(&self) -> &super::core::QualityScalableBool;
+    fn planar_reflection_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn render_in_sky_env_map(&self) -> &bool;
+    fn render_in_sky_env_map_mut(&mut self) -> &mut bool;
     fn write_alpha(&self) -> &bool;
+    fn write_alpha_mut(&mut self) -> &mut bool;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn u_v_start(&self) -> &super::core::Vec2;
+    fn u_v_start_mut(&mut self) -> &mut super::core::Vec2;
     fn u_v_end(&self) -> &super::core::Vec2;
+    fn u_v_end_mut(&mut self) -> &mut super::core::Vec2;
     fn tint(&self) -> &super::core::Vec3;
+    fn tint_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_envmap_tint_scale(&self) -> &f32;
+    fn sky_envmap_tint_scale_mut(&mut self) -> &mut f32;
     fn longitude(&self) -> &f32;
+    fn longitude_mut(&mut self) -> &mut f32;
     fn latitude(&self) -> &f32;
+    fn latitude_mut(&mut self) -> &mut f32;
     fn rotation(&self) -> &f32;
+    fn rotation_mut(&mut self) -> &mut f32;
     fn scale(&self) -> &super::core::Vec2;
+    fn scale_mut(&mut self) -> &mut super::core::Vec2;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl SkyCelestialSingleComponentDataTrait for SkyCelestialSingleComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn enabled_on_quality_levels(&self) -> &super::core::QualityScalableBool {
         &self.enabled_on_quality_levels
+    }
+    fn enabled_on_quality_levels_mut(&mut self) -> &mut super::core::QualityScalableBool {
+        &mut self.enabled_on_quality_levels
     }
     fn draw_order(&self) -> &u32 {
         &self.draw_order
     }
+    fn draw_order_mut(&mut self) -> &mut u32 {
+        &mut self.draw_order
+    }
     fn planar_reflection(&self) -> &super::core::QualityScalableBool {
         &self.planar_reflection
+    }
+    fn planar_reflection_mut(&mut self) -> &mut super::core::QualityScalableBool {
+        &mut self.planar_reflection
     }
     fn render_in_sky_env_map(&self) -> &bool {
         &self.render_in_sky_env_map
     }
+    fn render_in_sky_env_map_mut(&mut self) -> &mut bool {
+        &mut self.render_in_sky_env_map
+    }
     fn write_alpha(&self) -> &bool {
         &self.write_alpha
+    }
+    fn write_alpha_mut(&mut self) -> &mut bool {
+        &mut self.write_alpha
     }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
     }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
+    }
     fn u_v_start(&self) -> &super::core::Vec2 {
         &self.u_v_start
+    }
+    fn u_v_start_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.u_v_start
     }
     fn u_v_end(&self) -> &super::core::Vec2 {
         &self.u_v_end
     }
+    fn u_v_end_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.u_v_end
+    }
     fn tint(&self) -> &super::core::Vec3 {
         &self.tint
+    }
+    fn tint_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.tint
     }
     fn sky_envmap_tint_scale(&self) -> &f32 {
         &self.sky_envmap_tint_scale
     }
+    fn sky_envmap_tint_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap_tint_scale
+    }
     fn longitude(&self) -> &f32 {
         &self.longitude
+    }
+    fn longitude_mut(&mut self) -> &mut f32 {
+        &mut self.longitude
     }
     fn latitude(&self) -> &f32 {
         &self.latitude
     }
+    fn latitude_mut(&mut self) -> &mut f32 {
+        &mut self.latitude
+    }
     fn rotation(&self) -> &f32 {
         &self.rotation
+    }
+    fn rotation_mut(&mut self) -> &mut f32 {
+        &mut self.rotation
     }
     fn scale(&self) -> &super::core::Vec2 {
         &self.scale
     }
+    fn scale_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.scale
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -7783,23 +10341,41 @@ impl VisualEnvironmentComponentDataTrait for SkyCelestialSingleComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for SkyCelestialSingleComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -7810,15 +10386,15 @@ impl super::core::DataBusPeerTrait for SkyCelestialSingleComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SkyCelestialSingleComponentData {
 }
 
 impl super::core::DataContainerTrait for SkyCelestialSingleComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SKYCELESTIALSINGLECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7940,6 +10516,15 @@ impl TypeObject for SkyCelestialSingleComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7964,23 +10549,39 @@ pub struct SkyCelestialRotationComponentData {
 
 pub trait SkyCelestialRotationComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn rotation(&self) -> &f32;
+    fn rotation_mut(&mut self) -> &mut f32;
     fn rotation_axis(&self) -> &super::core::Vec3;
+    fn rotation_axis_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl SkyCelestialRotationComponentDataTrait for SkyCelestialRotationComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn rotation(&self) -> &f32 {
         &self.rotation
+    }
+    fn rotation_mut(&mut self) -> &mut f32 {
+        &mut self.rotation
     }
     fn rotation_axis(&self) -> &super::core::Vec3 {
         &self.rotation_axis
     }
+    fn rotation_axis_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.rotation_axis
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -7988,23 +10589,41 @@ impl VisualEnvironmentComponentDataTrait for SkyCelestialRotationComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for SkyCelestialRotationComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -8015,15 +10634,15 @@ impl super::core::DataBusPeerTrait for SkyCelestialRotationComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SkyCelestialRotationComponentData {
 }
 
 impl super::core::DataContainerTrait for SkyCelestialRotationComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SKYCELESTIALROTATIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8073,6 +10692,15 @@ impl TypeObject for SkyCelestialRotationComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8096,19 +10724,31 @@ pub struct EmitterParamGlobalComponentData {
 
 pub trait EmitterParamGlobalComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
     fn value(&self) -> &super::core::Vec4;
+    fn value_mut(&mut self) -> &mut super::core::Vec4;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl EmitterParamGlobalComponentDataTrait for EmitterParamGlobalComponentData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         &self.parameter
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        &mut self.parameter
+    }
     fn value(&self) -> &super::core::Vec4 {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.value
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -8116,23 +10756,41 @@ impl VisualEnvironmentComponentDataTrait for EmitterParamGlobalComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for EmitterParamGlobalComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -8143,15 +10801,15 @@ impl super::core::DataBusPeerTrait for EmitterParamGlobalComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EmitterParamGlobalComponentData {
 }
 
 impl super::core::DataContainerTrait for EmitterParamGlobalComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERPARAMGLOBALCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8195,6 +10853,15 @@ impl TypeObject for EmitterParamGlobalComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8218,19 +10885,31 @@ pub struct EmitterParamComponentData {
 
 pub trait EmitterParamComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn parameter(&self) -> &super::world_base::EmitterParamOverride;
+    fn parameter_mut(&mut self) -> &mut super::world_base::EmitterParamOverride;
     fn value(&self) -> &f32;
+    fn value_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl EmitterParamComponentDataTrait for EmitterParamComponentData {
     fn parameter(&self) -> &super::world_base::EmitterParamOverride {
         &self.parameter
     }
+    fn parameter_mut(&mut self) -> &mut super::world_base::EmitterParamOverride {
+        &mut self.parameter
+    }
     fn value(&self) -> &f32 {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut f32 {
+        &mut self.value
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -8238,23 +10917,41 @@ impl VisualEnvironmentComponentDataTrait for EmitterParamComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for EmitterParamComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -8265,15 +10962,15 @@ impl super::core::DataBusPeerTrait for EmitterParamComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EmitterParamComponentData {
 }
 
 impl super::core::DataContainerTrait for EmitterParamComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERPARAMCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8317,6 +11014,15 @@ impl TypeObject for EmitterParamComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8340,19 +11046,31 @@ pub struct RaytraceReflectionComponentData {
 
 pub trait RaytraceReflectionComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn min_smoothness(&self) -> &f32;
+    fn min_smoothness_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl RaytraceReflectionComponentDataTrait for RaytraceReflectionComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn min_smoothness(&self) -> &f32 {
         &self.min_smoothness
     }
+    fn min_smoothness_mut(&mut self) -> &mut f32 {
+        &mut self.min_smoothness
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -8360,23 +11078,41 @@ impl VisualEnvironmentComponentDataTrait for RaytraceReflectionComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for RaytraceReflectionComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -8387,15 +11123,15 @@ impl super::core::DataBusPeerTrait for RaytraceReflectionComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RaytraceReflectionComponentData {
 }
 
 impl super::core::DataContainerTrait for RaytraceReflectionComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RAYTRACEREFLECTIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8438,6 +11174,15 @@ impl TypeObject for RaytraceReflectionComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8491,135 +11236,263 @@ pub struct ScreenSpaceRaytraceComponentData {
 
 pub trait ScreenSpaceRaytraceComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn raytrace_enable(&self) -> &bool;
+    fn raytrace_enable_mut(&mut self) -> &mut bool;
     fn camera_fade_start(&self) -> &f32;
+    fn camera_fade_start_mut(&mut self) -> &mut f32;
     fn camera_fade_length(&self) -> &f32;
+    fn camera_fade_length_mut(&mut self) -> &mut f32;
     fn radial_fade_start(&self) -> &f32;
+    fn radial_fade_start_mut(&mut self) -> &mut f32;
     fn radial_fade_length(&self) -> &f32;
+    fn radial_fade_length_mut(&mut self) -> &mut f32;
     fn distance_fade_start(&self) -> &f32;
+    fn distance_fade_start_mut(&mut self) -> &mut f32;
     fn distance_fade_length(&self) -> &f32;
+    fn distance_fade_length_mut(&mut self) -> &mut f32;
     fn screen_fade_start(&self) -> &f32;
+    fn screen_fade_start_mut(&mut self) -> &mut f32;
     fn screen_fade_length(&self) -> &f32;
+    fn screen_fade_length_mut(&mut self) -> &mut f32;
     fn border_fade_start(&self) -> &f32;
+    fn border_fade_start_mut(&mut self) -> &mut f32;
     fn border_fade_length(&self) -> &f32;
+    fn border_fade_length_mut(&mut self) -> &mut f32;
     fn mirror_fade_start(&self) -> &f32;
+    fn mirror_fade_start_mut(&mut self) -> &mut f32;
     fn mirror_fade_length(&self) -> &f32;
+    fn mirror_fade_length_mut(&mut self) -> &mut f32;
     fn thickness_fade_start(&self) -> &f32;
+    fn thickness_fade_start_mut(&mut self) -> &mut f32;
     fn thickness_fade_length(&self) -> &f32;
+    fn thickness_fade_length_mut(&mut self) -> &mut f32;
     fn roughness_fade_start(&self) -> &f32;
+    fn roughness_fade_start_mut(&mut self) -> &mut f32;
     fn roughness_fade_length(&self) -> &f32;
+    fn roughness_fade_length_mut(&mut self) -> &mut f32;
     fn normal_fade_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn normal_fade_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn min_samples(&self) -> &u32;
+    fn min_samples_mut(&mut self) -> &mut u32;
     fn max_samples(&self) -> &u32;
+    fn max_samples_mut(&mut self) -> &mut u32;
     fn temporal_samples(&self) -> &u32;
+    fn temporal_samples_mut(&mut self) -> &mut u32;
     fn temporal_period(&self) -> &u32;
+    fn temporal_period_mut(&mut self) -> &mut u32;
     fn min_roughness(&self) -> &f32;
+    fn min_roughness_mut(&mut self) -> &mut f32;
     fn max_roughness(&self) -> &f32;
+    fn max_roughness_mut(&mut self) -> &mut f32;
     fn resolve_samples(&self) -> &u32;
+    fn resolve_samples_mut(&mut self) -> &mut u32;
     fn noise_threshold(&self) -> &f32;
+    fn noise_threshold_mut(&mut self) -> &mut f32;
     fn clamp_threshold(&self) -> &f32;
+    fn clamp_threshold_mut(&mut self) -> &mut f32;
     fn importance_sampling_bias(&self) -> &f32;
+    fn importance_sampling_bias_mut(&mut self) -> &mut f32;
     fn filter_bias(&self) -> &f32;
+    fn filter_bias_mut(&mut self) -> &mut f32;
     fn filter_angular_bias(&self) -> &f32;
+    fn filter_angular_bias_mut(&mut self) -> &mut f32;
     fn temporal_filter_responsiveness(&self) -> &f32;
+    fn temporal_filter_responsiveness_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
 }
 
 impl ScreenSpaceRaytraceComponentDataTrait for ScreenSpaceRaytraceComponentData {
     fn raytrace_enable(&self) -> &bool {
         &self.raytrace_enable
     }
+    fn raytrace_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_enable
+    }
     fn camera_fade_start(&self) -> &f32 {
         &self.camera_fade_start
+    }
+    fn camera_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.camera_fade_start
     }
     fn camera_fade_length(&self) -> &f32 {
         &self.camera_fade_length
     }
+    fn camera_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.camera_fade_length
+    }
     fn radial_fade_start(&self) -> &f32 {
         &self.radial_fade_start
+    }
+    fn radial_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.radial_fade_start
     }
     fn radial_fade_length(&self) -> &f32 {
         &self.radial_fade_length
     }
+    fn radial_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.radial_fade_length
+    }
     fn distance_fade_start(&self) -> &f32 {
         &self.distance_fade_start
+    }
+    fn distance_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.distance_fade_start
     }
     fn distance_fade_length(&self) -> &f32 {
         &self.distance_fade_length
     }
+    fn distance_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.distance_fade_length
+    }
     fn screen_fade_start(&self) -> &f32 {
         &self.screen_fade_start
+    }
+    fn screen_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.screen_fade_start
     }
     fn screen_fade_length(&self) -> &f32 {
         &self.screen_fade_length
     }
+    fn screen_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.screen_fade_length
+    }
     fn border_fade_start(&self) -> &f32 {
         &self.border_fade_start
+    }
+    fn border_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.border_fade_start
     }
     fn border_fade_length(&self) -> &f32 {
         &self.border_fade_length
     }
+    fn border_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.border_fade_length
+    }
     fn mirror_fade_start(&self) -> &f32 {
         &self.mirror_fade_start
+    }
+    fn mirror_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.mirror_fade_start
     }
     fn mirror_fade_length(&self) -> &f32 {
         &self.mirror_fade_length
     }
+    fn mirror_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.mirror_fade_length
+    }
     fn thickness_fade_start(&self) -> &f32 {
         &self.thickness_fade_start
+    }
+    fn thickness_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.thickness_fade_start
     }
     fn thickness_fade_length(&self) -> &f32 {
         &self.thickness_fade_length
     }
+    fn thickness_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.thickness_fade_length
+    }
     fn roughness_fade_start(&self) -> &f32 {
         &self.roughness_fade_start
+    }
+    fn roughness_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.roughness_fade_start
     }
     fn roughness_fade_length(&self) -> &f32 {
         &self.roughness_fade_length
     }
+    fn roughness_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.roughness_fade_length
+    }
     fn normal_fade_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.normal_fade_texture
+    }
+    fn normal_fade_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.normal_fade_texture
     }
     fn min_samples(&self) -> &u32 {
         &self.min_samples
     }
+    fn min_samples_mut(&mut self) -> &mut u32 {
+        &mut self.min_samples
+    }
     fn max_samples(&self) -> &u32 {
         &self.max_samples
+    }
+    fn max_samples_mut(&mut self) -> &mut u32 {
+        &mut self.max_samples
     }
     fn temporal_samples(&self) -> &u32 {
         &self.temporal_samples
     }
+    fn temporal_samples_mut(&mut self) -> &mut u32 {
+        &mut self.temporal_samples
+    }
     fn temporal_period(&self) -> &u32 {
         &self.temporal_period
+    }
+    fn temporal_period_mut(&mut self) -> &mut u32 {
+        &mut self.temporal_period
     }
     fn min_roughness(&self) -> &f32 {
         &self.min_roughness
     }
+    fn min_roughness_mut(&mut self) -> &mut f32 {
+        &mut self.min_roughness
+    }
     fn max_roughness(&self) -> &f32 {
         &self.max_roughness
+    }
+    fn max_roughness_mut(&mut self) -> &mut f32 {
+        &mut self.max_roughness
     }
     fn resolve_samples(&self) -> &u32 {
         &self.resolve_samples
     }
+    fn resolve_samples_mut(&mut self) -> &mut u32 {
+        &mut self.resolve_samples
+    }
     fn noise_threshold(&self) -> &f32 {
         &self.noise_threshold
+    }
+    fn noise_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.noise_threshold
     }
     fn clamp_threshold(&self) -> &f32 {
         &self.clamp_threshold
     }
+    fn clamp_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.clamp_threshold
+    }
     fn importance_sampling_bias(&self) -> &f32 {
         &self.importance_sampling_bias
+    }
+    fn importance_sampling_bias_mut(&mut self) -> &mut f32 {
+        &mut self.importance_sampling_bias
     }
     fn filter_bias(&self) -> &f32 {
         &self.filter_bias
     }
+    fn filter_bias_mut(&mut self) -> &mut f32 {
+        &mut self.filter_bias
+    }
     fn filter_angular_bias(&self) -> &f32 {
         &self.filter_angular_bias
+    }
+    fn filter_angular_bias_mut(&mut self) -> &mut f32 {
+        &mut self.filter_angular_bias
     }
     fn temporal_filter_responsiveness(&self) -> &f32 {
         &self.temporal_filter_responsiveness
     }
+    fn temporal_filter_responsiveness_mut(&mut self) -> &mut f32 {
+        &mut self.temporal_filter_responsiveness
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -8627,23 +11500,41 @@ impl VisualEnvironmentComponentDataTrait for ScreenSpaceRaytraceComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for ScreenSpaceRaytraceComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -8654,15 +11545,15 @@ impl super::core::DataBusPeerTrait for ScreenSpaceRaytraceComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ScreenSpaceRaytraceComponentData {
 }
 
 impl super::core::DataContainerTrait for ScreenSpaceRaytraceComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCREENSPACERAYTRACECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8880,6 +11771,15 @@ impl TypeObject for ScreenSpaceRaytraceComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8910,47 +11810,87 @@ pub struct MotionBlurComponentData {
 
 pub trait MotionBlurComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn motion_blur_enable(&self) -> &bool;
+    fn motion_blur_enable_mut(&mut self) -> &mut bool;
     fn motion_blur_scale(&self) -> &f32;
+    fn motion_blur_scale_mut(&mut self) -> &mut f32;
     fn motion_blur_centered(&self) -> &bool;
+    fn motion_blur_centered_mut(&mut self) -> &mut bool;
     fn depth_check_max_distance(&self) -> &f32;
+    fn depth_check_max_distance_mut(&mut self) -> &mut f32;
     fn radial_blur_enable(&self) -> &bool;
+    fn radial_blur_enable_mut(&mut self) -> &mut bool;
     fn radial_blur_center(&self) -> &super::core::Vec2;
+    fn radial_blur_center_mut(&mut self) -> &mut super::core::Vec2;
     fn radial_blur_offset(&self) -> &f32;
+    fn radial_blur_offset_mut(&mut self) -> &mut f32;
     fn circular_offset_factor(&self) -> &f32;
+    fn circular_offset_factor_mut(&mut self) -> &mut f32;
     fn radial_blur_scale(&self) -> &f32;
+    fn radial_blur_scale_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl MotionBlurComponentDataTrait for MotionBlurComponentData {
     fn motion_blur_enable(&self) -> &bool {
         &self.motion_blur_enable
     }
+    fn motion_blur_enable_mut(&mut self) -> &mut bool {
+        &mut self.motion_blur_enable
+    }
     fn motion_blur_scale(&self) -> &f32 {
         &self.motion_blur_scale
+    }
+    fn motion_blur_scale_mut(&mut self) -> &mut f32 {
+        &mut self.motion_blur_scale
     }
     fn motion_blur_centered(&self) -> &bool {
         &self.motion_blur_centered
     }
+    fn motion_blur_centered_mut(&mut self) -> &mut bool {
+        &mut self.motion_blur_centered
+    }
     fn depth_check_max_distance(&self) -> &f32 {
         &self.depth_check_max_distance
+    }
+    fn depth_check_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.depth_check_max_distance
     }
     fn radial_blur_enable(&self) -> &bool {
         &self.radial_blur_enable
     }
+    fn radial_blur_enable_mut(&mut self) -> &mut bool {
+        &mut self.radial_blur_enable
+    }
     fn radial_blur_center(&self) -> &super::core::Vec2 {
         &self.radial_blur_center
+    }
+    fn radial_blur_center_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.radial_blur_center
     }
     fn radial_blur_offset(&self) -> &f32 {
         &self.radial_blur_offset
     }
+    fn radial_blur_offset_mut(&mut self) -> &mut f32 {
+        &mut self.radial_blur_offset
+    }
     fn circular_offset_factor(&self) -> &f32 {
         &self.circular_offset_factor
+    }
+    fn circular_offset_factor_mut(&mut self) -> &mut f32 {
+        &mut self.circular_offset_factor
     }
     fn radial_blur_scale(&self) -> &f32 {
         &self.radial_blur_scale
     }
+    fn radial_blur_scale_mut(&mut self) -> &mut f32 {
+        &mut self.radial_blur_scale
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -8958,23 +11898,41 @@ impl VisualEnvironmentComponentDataTrait for MotionBlurComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for MotionBlurComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -8985,15 +11943,15 @@ impl super::core::DataBusPeerTrait for MotionBlurComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MotionBlurComponentData {
 }
 
 impl super::core::DataContainerTrait for MotionBlurComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOTIONBLURCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9079,6 +12037,15 @@ impl TypeObject for MotionBlurComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9112,59 +12079,111 @@ pub struct CharacterLightingComponentData {
 
 pub trait CharacterLightingComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn character_light_enable(&self) -> &bool;
+    fn character_light_enable_mut(&mut self) -> &mut bool;
     fn first_person_enable(&self) -> &bool;
+    fn first_person_enable_mut(&mut self) -> &mut bool;
     fn lock_to_camera_direction(&self) -> &bool;
+    fn lock_to_camera_direction_mut(&mut self) -> &mut bool;
     fn camera_up_rotation(&self) -> &f32;
+    fn camera_up_rotation_mut(&mut self) -> &mut f32;
     fn character_lighting_mode(&self) -> &super::world_base::CharacterLightingMode;
+    fn character_lighting_mode_mut(&mut self) -> &mut super::world_base::CharacterLightingMode;
     fn blend_factor(&self) -> &f32;
+    fn blend_factor_mut(&mut self) -> &mut f32;
     fn top_light(&self) -> &super::core::Vec3;
+    fn top_light_mut(&mut self) -> &mut super::core::Vec3;
     fn bottom_light(&self) -> &super::core::Vec3;
+    fn bottom_light_mut(&mut self) -> &mut super::core::Vec3;
     fn top_light_dir_x(&self) -> &f32;
+    fn top_light_dir_x_mut(&mut self) -> &mut f32;
     fn top_light_dir_y(&self) -> &f32;
+    fn top_light_dir_y_mut(&mut self) -> &mut f32;
     fn start_fade_distance(&self) -> &f32;
+    fn start_fade_distance_mut(&mut self) -> &mut f32;
     fn end_fade_distance(&self) -> &f32;
+    fn end_fade_distance_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl CharacterLightingComponentDataTrait for CharacterLightingComponentData {
     fn character_light_enable(&self) -> &bool {
         &self.character_light_enable
     }
+    fn character_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.character_light_enable
+    }
     fn first_person_enable(&self) -> &bool {
         &self.first_person_enable
+    }
+    fn first_person_enable_mut(&mut self) -> &mut bool {
+        &mut self.first_person_enable
     }
     fn lock_to_camera_direction(&self) -> &bool {
         &self.lock_to_camera_direction
     }
+    fn lock_to_camera_direction_mut(&mut self) -> &mut bool {
+        &mut self.lock_to_camera_direction
+    }
     fn camera_up_rotation(&self) -> &f32 {
         &self.camera_up_rotation
+    }
+    fn camera_up_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.camera_up_rotation
     }
     fn character_lighting_mode(&self) -> &super::world_base::CharacterLightingMode {
         &self.character_lighting_mode
     }
+    fn character_lighting_mode_mut(&mut self) -> &mut super::world_base::CharacterLightingMode {
+        &mut self.character_lighting_mode
+    }
     fn blend_factor(&self) -> &f32 {
         &self.blend_factor
+    }
+    fn blend_factor_mut(&mut self) -> &mut f32 {
+        &mut self.blend_factor
     }
     fn top_light(&self) -> &super::core::Vec3 {
         &self.top_light
     }
+    fn top_light_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.top_light
+    }
     fn bottom_light(&self) -> &super::core::Vec3 {
         &self.bottom_light
+    }
+    fn bottom_light_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.bottom_light
     }
     fn top_light_dir_x(&self) -> &f32 {
         &self.top_light_dir_x
     }
+    fn top_light_dir_x_mut(&mut self) -> &mut f32 {
+        &mut self.top_light_dir_x
+    }
     fn top_light_dir_y(&self) -> &f32 {
         &self.top_light_dir_y
+    }
+    fn top_light_dir_y_mut(&mut self) -> &mut f32 {
+        &mut self.top_light_dir_y
     }
     fn start_fade_distance(&self) -> &f32 {
         &self.start_fade_distance
     }
+    fn start_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.start_fade_distance
+    }
     fn end_fade_distance(&self) -> &f32 {
         &self.end_fade_distance
     }
+    fn end_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.end_fade_distance
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -9172,23 +12191,41 @@ impl VisualEnvironmentComponentDataTrait for CharacterLightingComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for CharacterLightingComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -9199,15 +12236,15 @@ impl super::core::DataBusPeerTrait for CharacterLightingComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CharacterLightingComponentData {
 }
 
 impl super::core::DataContainerTrait for CharacterLightingComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERLIGHTINGCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9311,6 +12348,15 @@ impl TypeObject for CharacterLightingComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9346,67 +12392,127 @@ pub struct DamageEffectComponentData {
 
 pub trait DamageEffectComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn frame_width(&self) -> &f32;
+    fn frame_width_mut(&mut self) -> &mut f32;
     fn outer_frame_opacity(&self) -> &f32;
+    fn outer_frame_opacity_mut(&mut self) -> &mut f32;
     fn inner_frame_opacity(&self) -> &f32;
+    fn inner_frame_opacity_mut(&mut self) -> &mut f32;
     fn fallof_time(&self) -> &f32;
+    fn fallof_time_mut(&mut self) -> &mut f32;
     fn min_damage_percentage_threshold(&self) -> &f32;
+    fn min_damage_percentage_threshold_mut(&mut self) -> &mut f32;
     fn max_opacity_damage_percentage(&self) -> &f32;
+    fn max_opacity_damage_percentage_mut(&mut self) -> &mut f32;
     fn start_critical_effect_health_threshold(&self) -> &f32;
+    fn start_critical_effect_health_threshold_mut(&mut self) -> &mut f32;
     fn end_critical_effect_health_threshold(&self) -> &f32;
+    fn end_critical_effect_health_threshold_mut(&mut self) -> &mut f32;
     fn debug_damage(&self) -> &bool;
+    fn debug_damage_mut(&mut self) -> &mut bool;
     fn top_damage(&self) -> &super::core::Vec4;
+    fn top_damage_mut(&mut self) -> &mut super::core::Vec4;
     fn left_damage(&self) -> &super::core::Vec4;
+    fn left_damage_mut(&mut self) -> &mut super::core::Vec4;
     fn bottom_damage(&self) -> &super::core::Vec4;
+    fn bottom_damage_mut(&mut self) -> &mut super::core::Vec4;
     fn right_damage(&self) -> &super::core::Vec4;
+    fn right_damage_mut(&mut self) -> &mut super::core::Vec4;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl DamageEffectComponentDataTrait for DamageEffectComponentData {
     fn shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader
     }
+    fn shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader
+    }
     fn frame_width(&self) -> &f32 {
         &self.frame_width
+    }
+    fn frame_width_mut(&mut self) -> &mut f32 {
+        &mut self.frame_width
     }
     fn outer_frame_opacity(&self) -> &f32 {
         &self.outer_frame_opacity
     }
+    fn outer_frame_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.outer_frame_opacity
+    }
     fn inner_frame_opacity(&self) -> &f32 {
         &self.inner_frame_opacity
+    }
+    fn inner_frame_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.inner_frame_opacity
     }
     fn fallof_time(&self) -> &f32 {
         &self.fallof_time
     }
+    fn fallof_time_mut(&mut self) -> &mut f32 {
+        &mut self.fallof_time
+    }
     fn min_damage_percentage_threshold(&self) -> &f32 {
         &self.min_damage_percentage_threshold
+    }
+    fn min_damage_percentage_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.min_damage_percentage_threshold
     }
     fn max_opacity_damage_percentage(&self) -> &f32 {
         &self.max_opacity_damage_percentage
     }
+    fn max_opacity_damage_percentage_mut(&mut self) -> &mut f32 {
+        &mut self.max_opacity_damage_percentage
+    }
     fn start_critical_effect_health_threshold(&self) -> &f32 {
         &self.start_critical_effect_health_threshold
+    }
+    fn start_critical_effect_health_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.start_critical_effect_health_threshold
     }
     fn end_critical_effect_health_threshold(&self) -> &f32 {
         &self.end_critical_effect_health_threshold
     }
+    fn end_critical_effect_health_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.end_critical_effect_health_threshold
+    }
     fn debug_damage(&self) -> &bool {
         &self.debug_damage
+    }
+    fn debug_damage_mut(&mut self) -> &mut bool {
+        &mut self.debug_damage
     }
     fn top_damage(&self) -> &super::core::Vec4 {
         &self.top_damage
     }
+    fn top_damage_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.top_damage
+    }
     fn left_damage(&self) -> &super::core::Vec4 {
         &self.left_damage
+    }
+    fn left_damage_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.left_damage
     }
     fn bottom_damage(&self) -> &super::core::Vec4 {
         &self.bottom_damage
     }
+    fn bottom_damage_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.bottom_damage
+    }
     fn right_damage(&self) -> &super::core::Vec4 {
         &self.right_damage
     }
+    fn right_damage_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.right_damage
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -9414,23 +12520,41 @@ impl VisualEnvironmentComponentDataTrait for DamageEffectComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for DamageEffectComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -9441,15 +12565,15 @@ impl super::core::DataBusPeerTrait for DamageEffectComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DamageEffectComponentData {
 }
 
 impl super::core::DataContainerTrait for DamageEffectComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DAMAGEEFFECTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9565,6 +12689,15 @@ impl TypeObject for DamageEffectComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9593,39 +12726,71 @@ pub struct ScreenEffectComponentData {
 
 pub trait ScreenEffectComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn frame_type(&self) -> &super::world_base::ScreenEffectFrameType;
+    fn frame_type_mut(&mut self) -> &mut super::world_base::ScreenEffectFrameType;
     fn shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
     fn frame_width(&self) -> &f32;
+    fn frame_width_mut(&mut self) -> &mut f32;
     fn outer_frame_opacity(&self) -> &f32;
+    fn outer_frame_opacity_mut(&mut self) -> &mut f32;
     fn inner_frame_opacity(&self) -> &f32;
+    fn inner_frame_opacity_mut(&mut self) -> &mut f32;
     fn angle(&self) -> &f32;
+    fn angle_mut(&mut self) -> &mut f32;
     fn screen_effect_params(&self) -> &super::core::Vec4;
+    fn screen_effect_params_mut(&mut self) -> &mut super::core::Vec4;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl ScreenEffectComponentDataTrait for ScreenEffectComponentData {
     fn frame_type(&self) -> &super::world_base::ScreenEffectFrameType {
         &self.frame_type
     }
+    fn frame_type_mut(&mut self) -> &mut super::world_base::ScreenEffectFrameType {
+        &mut self.frame_type
+    }
     fn shader(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
         &self.shader
+    }
+    fn shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+        &mut self.shader
     }
     fn frame_width(&self) -> &f32 {
         &self.frame_width
     }
+    fn frame_width_mut(&mut self) -> &mut f32 {
+        &mut self.frame_width
+    }
     fn outer_frame_opacity(&self) -> &f32 {
         &self.outer_frame_opacity
+    }
+    fn outer_frame_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.outer_frame_opacity
     }
     fn inner_frame_opacity(&self) -> &f32 {
         &self.inner_frame_opacity
     }
+    fn inner_frame_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.inner_frame_opacity
+    }
     fn angle(&self) -> &f32 {
         &self.angle
+    }
+    fn angle_mut(&mut self) -> &mut f32 {
+        &mut self.angle
     }
     fn screen_effect_params(&self) -> &super::core::Vec4 {
         &self.screen_effect_params
     }
+    fn screen_effect_params_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.screen_effect_params
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -9633,23 +12798,41 @@ impl VisualEnvironmentComponentDataTrait for ScreenEffectComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for ScreenEffectComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -9660,15 +12843,15 @@ impl super::core::DataBusPeerTrait for ScreenEffectComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ScreenEffectComponentData {
 }
 
 impl super::core::DataContainerTrait for ScreenEffectComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCREENEFFECTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9742,6 +12925,15 @@ impl TypeObject for ScreenEffectComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9774,55 +12966,103 @@ pub struct ShadowsComponentData {
 
 pub trait ShadowsComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn def_sun_shadowmap_view_distance(&self) -> &f32;
+    fn def_sun_shadowmap_view_distance_mut(&mut self) -> &mut f32;
     fn sun_shadowmap_view_distance(&self) -> &super::core::QualityScalableFloat;
+    fn sun_shadowmap_view_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn sun_shadowmap_extrusion_length(&self) -> &f32;
+    fn sun_shadowmap_extrusion_length_mut(&mut self) -> &mut f32;
     fn sun_shadowmap_slice_scheme_weight(&self) -> &f32;
+    fn sun_shadowmap_slice_scheme_weight_mut(&mut self) -> &mut f32;
     fn sun_shadowmap_first_slice_scale(&self) -> &f32;
+    fn sun_shadowmap_first_slice_scale_mut(&mut self) -> &mut f32;
     fn sun_shadowmap_first_slice_extrusion_length(&self) -> &f32;
+    fn sun_shadowmap_first_slice_extrusion_length_mut(&mut self) -> &mut f32;
     fn smooth_transition_to_distant_shadows(&self) -> &bool;
+    fn smooth_transition_to_distant_shadows_mut(&mut self) -> &mut bool;
     fn sun_shadowmap_slice_count_offset(&self) -> &super::core::QualityScalableInt;
+    fn sun_shadowmap_slice_count_offset_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn sun_shadowmap_slice_count_min(&self) -> &super::core::QualityScalableInt;
+    fn sun_shadowmap_slice_count_min_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn sun_shadowmap_slice_count_max(&self) -> &super::core::QualityScalableInt;
+    fn sun_shadowmap_slice_count_max_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn sun_shadowmap_slice_resolution_scale(&self) -> &super::core::QualityScalableFloat;
+    fn sun_shadowmap_slice_resolution_scale_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl ShadowsComponentDataTrait for ShadowsComponentData {
     fn def_sun_shadowmap_view_distance(&self) -> &f32 {
         &self.def_sun_shadowmap_view_distance
     }
+    fn def_sun_shadowmap_view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.def_sun_shadowmap_view_distance
+    }
     fn sun_shadowmap_view_distance(&self) -> &super::core::QualityScalableFloat {
         &self.sun_shadowmap_view_distance
+    }
+    fn sun_shadowmap_view_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.sun_shadowmap_view_distance
     }
     fn sun_shadowmap_extrusion_length(&self) -> &f32 {
         &self.sun_shadowmap_extrusion_length
     }
+    fn sun_shadowmap_extrusion_length_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadowmap_extrusion_length
+    }
     fn sun_shadowmap_slice_scheme_weight(&self) -> &f32 {
         &self.sun_shadowmap_slice_scheme_weight
+    }
+    fn sun_shadowmap_slice_scheme_weight_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadowmap_slice_scheme_weight
     }
     fn sun_shadowmap_first_slice_scale(&self) -> &f32 {
         &self.sun_shadowmap_first_slice_scale
     }
+    fn sun_shadowmap_first_slice_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadowmap_first_slice_scale
+    }
     fn sun_shadowmap_first_slice_extrusion_length(&self) -> &f32 {
         &self.sun_shadowmap_first_slice_extrusion_length
+    }
+    fn sun_shadowmap_first_slice_extrusion_length_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadowmap_first_slice_extrusion_length
     }
     fn smooth_transition_to_distant_shadows(&self) -> &bool {
         &self.smooth_transition_to_distant_shadows
     }
+    fn smooth_transition_to_distant_shadows_mut(&mut self) -> &mut bool {
+        &mut self.smooth_transition_to_distant_shadows
+    }
     fn sun_shadowmap_slice_count_offset(&self) -> &super::core::QualityScalableInt {
         &self.sun_shadowmap_slice_count_offset
+    }
+    fn sun_shadowmap_slice_count_offset_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.sun_shadowmap_slice_count_offset
     }
     fn sun_shadowmap_slice_count_min(&self) -> &super::core::QualityScalableInt {
         &self.sun_shadowmap_slice_count_min
     }
+    fn sun_shadowmap_slice_count_min_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.sun_shadowmap_slice_count_min
+    }
     fn sun_shadowmap_slice_count_max(&self) -> &super::core::QualityScalableInt {
         &self.sun_shadowmap_slice_count_max
+    }
+    fn sun_shadowmap_slice_count_max_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.sun_shadowmap_slice_count_max
     }
     fn sun_shadowmap_slice_resolution_scale(&self) -> &super::core::QualityScalableFloat {
         &self.sun_shadowmap_slice_resolution_scale
     }
+    fn sun_shadowmap_slice_resolution_scale_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.sun_shadowmap_slice_resolution_scale
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -9830,23 +13070,41 @@ impl VisualEnvironmentComponentDataTrait for ShadowsComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for ShadowsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -9857,15 +13115,15 @@ impl super::core::DataBusPeerTrait for ShadowsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ShadowsComponentData {
 }
 
 impl super::core::DataContainerTrait for ShadowsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADOWSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9963,6 +13221,15 @@ impl TypeObject for ShadowsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9988,27 +13255,47 @@ pub struct MeshSettingsComponentData {
 
 pub trait MeshSettingsComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn lod_scale(&self) -> &f32;
+    fn lod_scale_mut(&mut self) -> &mut f32;
     fn force_lod(&self) -> &i32;
+    fn force_lod_mut(&mut self) -> &mut i32;
     fn cull_screen_area_scale(&self) -> &f32;
+    fn cull_screen_area_scale_mut(&mut self) -> &mut f32;
     fn shadow_distance_scale(&self) -> &f32;
+    fn shadow_distance_scale_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl MeshSettingsComponentDataTrait for MeshSettingsComponentData {
     fn lod_scale(&self) -> &f32 {
         &self.lod_scale
     }
+    fn lod_scale_mut(&mut self) -> &mut f32 {
+        &mut self.lod_scale
+    }
     fn force_lod(&self) -> &i32 {
         &self.force_lod
+    }
+    fn force_lod_mut(&mut self) -> &mut i32 {
+        &mut self.force_lod
     }
     fn cull_screen_area_scale(&self) -> &f32 {
         &self.cull_screen_area_scale
     }
+    fn cull_screen_area_scale_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area_scale
+    }
     fn shadow_distance_scale(&self) -> &f32 {
         &self.shadow_distance_scale
     }
+    fn shadow_distance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_distance_scale
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -10016,23 +13303,41 @@ impl VisualEnvironmentComponentDataTrait for MeshSettingsComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for MeshSettingsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -10043,15 +13348,15 @@ impl super::core::DataBusPeerTrait for MeshSettingsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MeshSettingsComponentData {
 }
 
 impl super::core::DataContainerTrait for MeshSettingsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MESHSETTINGSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10107,6 +13412,15 @@ impl TypeObject for MeshSettingsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10131,23 +13445,39 @@ pub struct CameraParamsComponentData {
 
 pub trait CameraParamsComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn view_distance(&self) -> &f32;
+    fn view_distance_mut(&mut self) -> &mut f32;
     fn near_plane(&self) -> &f32;
+    fn near_plane_mut(&mut self) -> &mut f32;
     fn vegetation_max_wiggle_distance(&self) -> &f32;
+    fn vegetation_max_wiggle_distance_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl CameraParamsComponentDataTrait for CameraParamsComponentData {
     fn view_distance(&self) -> &f32 {
         &self.view_distance
     }
+    fn view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.view_distance
+    }
     fn near_plane(&self) -> &f32 {
         &self.near_plane
+    }
+    fn near_plane_mut(&mut self) -> &mut f32 {
+        &mut self.near_plane
     }
     fn vegetation_max_wiggle_distance(&self) -> &f32 {
         &self.vegetation_max_wiggle_distance
     }
+    fn vegetation_max_wiggle_distance_mut(&mut self) -> &mut f32 {
+        &mut self.vegetation_max_wiggle_distance
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -10155,23 +13485,41 @@ impl VisualEnvironmentComponentDataTrait for CameraParamsComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for CameraParamsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -10182,15 +13530,15 @@ impl super::core::DataBusPeerTrait for CameraParamsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CameraParamsComponentData {
 }
 
 impl super::core::DataContainerTrait for CameraParamsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CAMERAPARAMSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10240,6 +13588,15 @@ impl TypeObject for CameraParamsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10263,19 +13620,31 @@ pub struct ShaderColorParamsComponentData {
 
 pub trait ShaderColorParamsComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn vec4_value(&self) -> &super::core::Vec4;
+    fn vec4_value_mut(&mut self) -> &mut super::core::Vec4;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl ShaderColorParamsComponentDataTrait for ShaderColorParamsComponentData {
     fn vec4_value(&self) -> &super::core::Vec4 {
         &self.vec4_value
     }
+    fn vec4_value_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.vec4_value
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
     }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -10283,23 +13652,41 @@ impl VisualEnvironmentComponentDataTrait for ShaderColorParamsComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for ShaderColorParamsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -10310,15 +13697,15 @@ impl super::core::DataBusPeerTrait for ShaderColorParamsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ShaderColorParamsComponentData {
 }
 
 impl super::core::DataContainerTrait for ShaderColorParamsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADERCOLORPARAMSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10362,6 +13749,15 @@ impl TypeObject for ShaderColorParamsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10390,39 +13786,71 @@ pub struct ShaderParamsComponentData {
 
 pub trait ShaderParamsComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn vec4_value(&self) -> &super::core::Vec4;
+    fn vec4_value_mut(&mut self) -> &mut super::core::Vec4;
     fn bool_value(&self) -> &bool;
+    fn bool_value_mut(&mut self) -> &mut bool;
     fn texture_value(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn value_type(&self) -> &super::render_base::ExternalValueConstantType;
+    fn value_type_mut(&mut self) -> &mut super::render_base::ExternalValueConstantType;
     fn conditional_value(&self) -> &u32;
+    fn conditional_value_mut(&mut self) -> &mut u32;
     fn conditional_name(&self) -> &String;
+    fn conditional_name_mut(&mut self) -> &mut String;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl ShaderParamsComponentDataTrait for ShaderParamsComponentData {
     fn vec4_value(&self) -> &super::core::Vec4 {
         &self.vec4_value
     }
+    fn vec4_value_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.vec4_value
+    }
     fn bool_value(&self) -> &bool {
         &self.bool_value
+    }
+    fn bool_value_mut(&mut self) -> &mut bool {
+        &mut self.bool_value
     }
     fn texture_value(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture_value
     }
+    fn texture_value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture_value
+    }
     fn value_type(&self) -> &super::render_base::ExternalValueConstantType {
         &self.value_type
+    }
+    fn value_type_mut(&mut self) -> &mut super::render_base::ExternalValueConstantType {
+        &mut self.value_type
     }
     fn conditional_value(&self) -> &u32 {
         &self.conditional_value
     }
+    fn conditional_value_mut(&mut self) -> &mut u32 {
+        &mut self.conditional_value
+    }
     fn conditional_name(&self) -> &String {
         &self.conditional_name
+    }
+    fn conditional_name_mut(&mut self) -> &mut String {
+        &mut self.conditional_name
     }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
     }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -10430,23 +13858,41 @@ impl VisualEnvironmentComponentDataTrait for ShaderParamsComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for ShaderParamsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -10457,15 +13903,15 @@ impl super::core::DataBusPeerTrait for ShaderParamsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ShaderParamsComponentData {
 }
 
 impl super::core::DataContainerTrait for ShaderParamsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADERPARAMSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10539,6 +13985,15 @@ impl TypeObject for ShaderParamsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10579,87 +14034,167 @@ pub struct EnlightenComponentData {
 
 pub trait EnlightenComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn bounce_scale(&self) -> &f32;
+    fn bounce_scale_mut(&mut self) -> &mut f32;
     fn sun_scale(&self) -> &f32;
+    fn sun_scale_mut(&mut self) -> &mut f32;
     fn sun_direct_lightmap_enable(&self) -> &bool;
+    fn sun_direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn terrain_color(&self) -> &super::core::Vec3;
+    fn terrain_color_mut(&mut self) -> &mut super::core::Vec3;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn cull_radius(&self) -> &f32;
+    fn cull_radius_mut(&mut self) -> &mut f32;
     fn sky_box_enable(&self) -> &bool;
+    fn sky_box_enable_mut(&mut self) -> &mut bool;
     fn sky_box_cut_bottom(&self) -> &bool;
+    fn sky_box_cut_bottom_mut(&mut self) -> &mut bool;
     fn sky_box_blend_mode(&self) -> &super::world_base::SkyBoxBlendMode;
+    fn sky_box_blend_mode_mut(&mut self) -> &mut super::world_base::SkyBoxBlendMode;
     fn sky_box_blend(&self) -> &f32;
+    fn sky_box_blend_mut(&mut self) -> &mut f32;
     fn sky_box_sky_color(&self) -> &super::core::Vec3;
+    fn sky_box_sky_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_ground_color(&self) -> &super::core::Vec3;
+    fn sky_box_ground_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_sun_light_color(&self) -> &super::core::Vec3;
+    fn sky_box_sun_light_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_sun_light_color_size(&self) -> &f32;
+    fn sky_box_sun_light_color_size_mut(&mut self) -> &mut f32;
     fn sky_box_back_light_color(&self) -> &super::core::Vec3;
+    fn sky_box_back_light_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_back_light_color_size(&self) -> &f32;
+    fn sky_box_back_light_color_size_mut(&mut self) -> &mut f32;
     fn sky_box_back_light_rotation_x(&self) -> &f32;
+    fn sky_box_back_light_rotation_x_mut(&mut self) -> &mut f32;
     fn sky_box_back_light_rotation_y(&self) -> &f32;
+    fn sky_box_back_light_rotation_y_mut(&mut self) -> &mut f32;
     fn opaque_alpha_test_simple_scale(&self) -> &super::core::Vec3;
+    fn opaque_alpha_test_simple_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
 }
 
 impl EnlightenComponentDataTrait for EnlightenComponentData {
     fn bounce_scale(&self) -> &f32 {
         &self.bounce_scale
     }
+    fn bounce_scale_mut(&mut self) -> &mut f32 {
+        &mut self.bounce_scale
+    }
     fn sun_scale(&self) -> &f32 {
         &self.sun_scale
+    }
+    fn sun_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_scale
     }
     fn sun_direct_lightmap_enable(&self) -> &bool {
         &self.sun_direct_lightmap_enable
     }
+    fn sun_direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.sun_direct_lightmap_enable
+    }
     fn terrain_color(&self) -> &super::core::Vec3 {
         &self.terrain_color
+    }
+    fn terrain_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.terrain_color
     }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
     }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
+    }
     fn cull_radius(&self) -> &f32 {
         &self.cull_radius
+    }
+    fn cull_radius_mut(&mut self) -> &mut f32 {
+        &mut self.cull_radius
     }
     fn sky_box_enable(&self) -> &bool {
         &self.sky_box_enable
     }
+    fn sky_box_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_box_enable
+    }
     fn sky_box_cut_bottom(&self) -> &bool {
         &self.sky_box_cut_bottom
+    }
+    fn sky_box_cut_bottom_mut(&mut self) -> &mut bool {
+        &mut self.sky_box_cut_bottom
     }
     fn sky_box_blend_mode(&self) -> &super::world_base::SkyBoxBlendMode {
         &self.sky_box_blend_mode
     }
+    fn sky_box_blend_mode_mut(&mut self) -> &mut super::world_base::SkyBoxBlendMode {
+        &mut self.sky_box_blend_mode
+    }
     fn sky_box_blend(&self) -> &f32 {
         &self.sky_box_blend
+    }
+    fn sky_box_blend_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_blend
     }
     fn sky_box_sky_color(&self) -> &super::core::Vec3 {
         &self.sky_box_sky_color
     }
+    fn sky_box_sky_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_sky_color
+    }
     fn sky_box_ground_color(&self) -> &super::core::Vec3 {
         &self.sky_box_ground_color
+    }
+    fn sky_box_ground_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_ground_color
     }
     fn sky_box_sun_light_color(&self) -> &super::core::Vec3 {
         &self.sky_box_sun_light_color
     }
+    fn sky_box_sun_light_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_sun_light_color
+    }
     fn sky_box_sun_light_color_size(&self) -> &f32 {
         &self.sky_box_sun_light_color_size
+    }
+    fn sky_box_sun_light_color_size_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_sun_light_color_size
     }
     fn sky_box_back_light_color(&self) -> &super::core::Vec3 {
         &self.sky_box_back_light_color
     }
+    fn sky_box_back_light_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_back_light_color
+    }
     fn sky_box_back_light_color_size(&self) -> &f32 {
         &self.sky_box_back_light_color_size
+    }
+    fn sky_box_back_light_color_size_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_back_light_color_size
     }
     fn sky_box_back_light_rotation_x(&self) -> &f32 {
         &self.sky_box_back_light_rotation_x
     }
+    fn sky_box_back_light_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_back_light_rotation_x
+    }
     fn sky_box_back_light_rotation_y(&self) -> &f32 {
         &self.sky_box_back_light_rotation_y
+    }
+    fn sky_box_back_light_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_back_light_rotation_y
     }
     fn opaque_alpha_test_simple_scale(&self) -> &super::core::Vec3 {
         &self.opaque_alpha_test_simple_scale
     }
+    fn opaque_alpha_test_simple_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.opaque_alpha_test_simple_scale
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -10667,23 +14202,41 @@ impl VisualEnvironmentComponentDataTrait for EnlightenComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for EnlightenComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -10694,15 +14247,15 @@ impl super::core::DataBusPeerTrait for EnlightenComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EnlightenComponentData {
 }
 
 impl super::core::DataContainerTrait for EnlightenComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENLIGHTENCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10848,6 +14401,15 @@ impl TypeObject for EnlightenComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10881,59 +14443,111 @@ pub struct SubSurfaceScatteringComponentData {
 
 pub trait SubSurfaceScatteringComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn simple_sss_color(&self) -> &super::core::Vec3;
+    fn simple_sss_color_mut(&mut self) -> &mut super::core::Vec3;
     fn simple_sss_rolloff_key_light(&self) -> &f32;
+    fn simple_sss_rolloff_key_light_mut(&mut self) -> &mut f32;
     fn simple_sss_rolloff_local_light(&self) -> &f32;
+    fn simple_sss_rolloff_local_light_mut(&mut self) -> &mut f32;
     fn local_light_translucency_enable(&self) -> &bool;
+    fn local_light_translucency_enable_mut(&mut self) -> &mut bool;
     fn profile0(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile0_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile1(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile1_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile2(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile2_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile3(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile3_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile4(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile4_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile5(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile5_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile6(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile6_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn profile_o_a_t_s(&self) -> &super::render_base::SubSurfaceProfile;
+    fn profile_o_a_t_s_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl SubSurfaceScatteringComponentDataTrait for SubSurfaceScatteringComponentData {
     fn simple_sss_color(&self) -> &super::core::Vec3 {
         &self.simple_sss_color
     }
+    fn simple_sss_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.simple_sss_color
+    }
     fn simple_sss_rolloff_key_light(&self) -> &f32 {
         &self.simple_sss_rolloff_key_light
+    }
+    fn simple_sss_rolloff_key_light_mut(&mut self) -> &mut f32 {
+        &mut self.simple_sss_rolloff_key_light
     }
     fn simple_sss_rolloff_local_light(&self) -> &f32 {
         &self.simple_sss_rolloff_local_light
     }
+    fn simple_sss_rolloff_local_light_mut(&mut self) -> &mut f32 {
+        &mut self.simple_sss_rolloff_local_light
+    }
     fn local_light_translucency_enable(&self) -> &bool {
         &self.local_light_translucency_enable
+    }
+    fn local_light_translucency_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_light_translucency_enable
     }
     fn profile0(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile0
     }
+    fn profile0_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile0
+    }
     fn profile1(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile1
+    }
+    fn profile1_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile1
     }
     fn profile2(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile2
     }
+    fn profile2_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile2
+    }
     fn profile3(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile3
+    }
+    fn profile3_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile3
     }
     fn profile4(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile4
     }
+    fn profile4_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile4
+    }
     fn profile5(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile5
+    }
+    fn profile5_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile5
     }
     fn profile6(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile6
     }
+    fn profile6_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile6
+    }
     fn profile_o_a_t_s(&self) -> &super::render_base::SubSurfaceProfile {
         &self.profile_o_a_t_s
     }
+    fn profile_o_a_t_s_mut(&mut self) -> &mut super::render_base::SubSurfaceProfile {
+        &mut self.profile_o_a_t_s
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -10941,23 +14555,41 @@ impl VisualEnvironmentComponentDataTrait for SubSurfaceScatteringComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for SubSurfaceScatteringComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -10968,15 +14600,15 @@ impl super::core::DataBusPeerTrait for SubSurfaceScatteringComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SubSurfaceScatteringComponentData {
 }
 
 impl super::core::DataContainerTrait for SubSurfaceScatteringComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SUBSURFACESCATTERINGCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11080,6 +14712,15 @@ impl TypeObject for SubSurfaceScatteringComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11130,127 +14771,247 @@ pub struct DynamicAOComponentData {
 
 pub trait DynamicAOComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn affect_outdoor_light(&self) -> &bool;
+    fn affect_outdoor_light_mut(&mut self) -> &mut bool;
     fn affect_local_light(&self) -> &bool;
+    fn affect_local_light_mut(&mut self) -> &mut bool;
     fn dynamic_a_o_factor(&self) -> &f32;
+    fn dynamic_a_o_factor_mut(&mut self) -> &mut f32;
     fn ssao_fade(&self) -> &f32;
+    fn ssao_fade_mut(&mut self) -> &mut f32;
     fn ssao_radius(&self) -> &f32;
+    fn ssao_radius_mut(&mut self) -> &mut f32;
     fn ssao_max_distance_inner(&self) -> &f32;
+    fn ssao_max_distance_inner_mut(&mut self) -> &mut f32;
     fn ssao_max_distance_outer(&self) -> &f32;
+    fn ssao_max_distance_outer_mut(&mut self) -> &mut f32;
     fn hbao_radius(&self) -> &f32;
+    fn hbao_radius_mut(&mut self) -> &mut f32;
     fn hbao_angle_bias(&self) -> &f32;
+    fn hbao_angle_bias_mut(&mut self) -> &mut f32;
     fn hbao_attenuation(&self) -> &f32;
+    fn hbao_attenuation_mut(&mut self) -> &mut f32;
     fn hbao_contrast(&self) -> &f32;
+    fn hbao_contrast_mut(&mut self) -> &mut f32;
     fn hbao_max_footprint_radius(&self) -> &f32;
+    fn hbao_max_footprint_radius_mut(&mut self) -> &mut f32;
     fn hbao_power_exponent(&self) -> &f32;
+    fn hbao_power_exponent_mut(&mut self) -> &mut f32;
     fn hbao_blur_radius(&self) -> &f32;
+    fn hbao_blur_radius_mut(&mut self) -> &mut f32;
     fn hbao_blur_sharpness(&self) -> &f32;
+    fn hbao_blur_sharpness_mut(&mut self) -> &mut f32;
     fn temporal_filter_enable(&self) -> &bool;
+    fn temporal_filter_enable_mut(&mut self) -> &mut bool;
     fn aao_dynamic_weight(&self) -> &bool;
+    fn aao_dynamic_weight_mut(&mut self) -> &mut bool;
     fn aao_bias(&self) -> &f32;
+    fn aao_bias_mut(&mut self) -> &mut f32;
     fn aao_intensity(&self) -> &f32;
+    fn aao_intensity_mut(&mut self) -> &mut f32;
     fn aao_contrast(&self) -> &f32;
+    fn aao_contrast_mut(&mut self) -> &mut f32;
     fn aao_range_reduction(&self) -> &f32;
+    fn aao_range_reduction_mut(&mut self) -> &mut f32;
     fn aao_screen_radius(&self) -> &f32;
+    fn aao_screen_radius_mut(&mut self) -> &mut f32;
     fn aao_near_occlusion_max(&self) -> &f32;
+    fn aao_near_occlusion_max_mut(&mut self) -> &mut f32;
     fn aao_near_falloff_threshold(&self) -> &f32;
+    fn aao_near_falloff_threshold_mut(&mut self) -> &mut f32;
     fn aao_clip_distance(&self) -> &f32;
+    fn aao_clip_distance_mut(&mut self) -> &mut f32;
     fn aao_clip_fade_distance(&self) -> &f32;
+    fn aao_clip_fade_distance_mut(&mut self) -> &mut f32;
     fn aao_blur_depth_threshold(&self) -> &f32;
+    fn aao_blur_depth_threshold_mut(&mut self) -> &mut f32;
     fn aao_blur_const_falloff(&self) -> &f32;
+    fn aao_blur_const_falloff_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
 }
 
 impl DynamicAOComponentDataTrait for DynamicAOComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn affect_outdoor_light(&self) -> &bool {
         &self.affect_outdoor_light
+    }
+    fn affect_outdoor_light_mut(&mut self) -> &mut bool {
+        &mut self.affect_outdoor_light
     }
     fn affect_local_light(&self) -> &bool {
         &self.affect_local_light
     }
+    fn affect_local_light_mut(&mut self) -> &mut bool {
+        &mut self.affect_local_light
+    }
     fn dynamic_a_o_factor(&self) -> &f32 {
         &self.dynamic_a_o_factor
+    }
+    fn dynamic_a_o_factor_mut(&mut self) -> &mut f32 {
+        &mut self.dynamic_a_o_factor
     }
     fn ssao_fade(&self) -> &f32 {
         &self.ssao_fade
     }
+    fn ssao_fade_mut(&mut self) -> &mut f32 {
+        &mut self.ssao_fade
+    }
     fn ssao_radius(&self) -> &f32 {
         &self.ssao_radius
+    }
+    fn ssao_radius_mut(&mut self) -> &mut f32 {
+        &mut self.ssao_radius
     }
     fn ssao_max_distance_inner(&self) -> &f32 {
         &self.ssao_max_distance_inner
     }
+    fn ssao_max_distance_inner_mut(&mut self) -> &mut f32 {
+        &mut self.ssao_max_distance_inner
+    }
     fn ssao_max_distance_outer(&self) -> &f32 {
         &self.ssao_max_distance_outer
+    }
+    fn ssao_max_distance_outer_mut(&mut self) -> &mut f32 {
+        &mut self.ssao_max_distance_outer
     }
     fn hbao_radius(&self) -> &f32 {
         &self.hbao_radius
     }
+    fn hbao_radius_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_radius
+    }
     fn hbao_angle_bias(&self) -> &f32 {
         &self.hbao_angle_bias
+    }
+    fn hbao_angle_bias_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_angle_bias
     }
     fn hbao_attenuation(&self) -> &f32 {
         &self.hbao_attenuation
     }
+    fn hbao_attenuation_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_attenuation
+    }
     fn hbao_contrast(&self) -> &f32 {
         &self.hbao_contrast
+    }
+    fn hbao_contrast_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_contrast
     }
     fn hbao_max_footprint_radius(&self) -> &f32 {
         &self.hbao_max_footprint_radius
     }
+    fn hbao_max_footprint_radius_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_max_footprint_radius
+    }
     fn hbao_power_exponent(&self) -> &f32 {
         &self.hbao_power_exponent
+    }
+    fn hbao_power_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_power_exponent
     }
     fn hbao_blur_radius(&self) -> &f32 {
         &self.hbao_blur_radius
     }
+    fn hbao_blur_radius_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_blur_radius
+    }
     fn hbao_blur_sharpness(&self) -> &f32 {
         &self.hbao_blur_sharpness
+    }
+    fn hbao_blur_sharpness_mut(&mut self) -> &mut f32 {
+        &mut self.hbao_blur_sharpness
     }
     fn temporal_filter_enable(&self) -> &bool {
         &self.temporal_filter_enable
     }
+    fn temporal_filter_enable_mut(&mut self) -> &mut bool {
+        &mut self.temporal_filter_enable
+    }
     fn aao_dynamic_weight(&self) -> &bool {
         &self.aao_dynamic_weight
+    }
+    fn aao_dynamic_weight_mut(&mut self) -> &mut bool {
+        &mut self.aao_dynamic_weight
     }
     fn aao_bias(&self) -> &f32 {
         &self.aao_bias
     }
+    fn aao_bias_mut(&mut self) -> &mut f32 {
+        &mut self.aao_bias
+    }
     fn aao_intensity(&self) -> &f32 {
         &self.aao_intensity
+    }
+    fn aao_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.aao_intensity
     }
     fn aao_contrast(&self) -> &f32 {
         &self.aao_contrast
     }
+    fn aao_contrast_mut(&mut self) -> &mut f32 {
+        &mut self.aao_contrast
+    }
     fn aao_range_reduction(&self) -> &f32 {
         &self.aao_range_reduction
+    }
+    fn aao_range_reduction_mut(&mut self) -> &mut f32 {
+        &mut self.aao_range_reduction
     }
     fn aao_screen_radius(&self) -> &f32 {
         &self.aao_screen_radius
     }
+    fn aao_screen_radius_mut(&mut self) -> &mut f32 {
+        &mut self.aao_screen_radius
+    }
     fn aao_near_occlusion_max(&self) -> &f32 {
         &self.aao_near_occlusion_max
+    }
+    fn aao_near_occlusion_max_mut(&mut self) -> &mut f32 {
+        &mut self.aao_near_occlusion_max
     }
     fn aao_near_falloff_threshold(&self) -> &f32 {
         &self.aao_near_falloff_threshold
     }
+    fn aao_near_falloff_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.aao_near_falloff_threshold
+    }
     fn aao_clip_distance(&self) -> &f32 {
         &self.aao_clip_distance
+    }
+    fn aao_clip_distance_mut(&mut self) -> &mut f32 {
+        &mut self.aao_clip_distance
     }
     fn aao_clip_fade_distance(&self) -> &f32 {
         &self.aao_clip_fade_distance
     }
+    fn aao_clip_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.aao_clip_fade_distance
+    }
     fn aao_blur_depth_threshold(&self) -> &f32 {
         &self.aao_blur_depth_threshold
+    }
+    fn aao_blur_depth_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.aao_blur_depth_threshold
     }
     fn aao_blur_const_falloff(&self) -> &f32 {
         &self.aao_blur_const_falloff
     }
+    fn aao_blur_const_falloff_mut(&mut self) -> &mut f32 {
+        &mut self.aao_blur_const_falloff
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -11258,23 +15019,41 @@ impl VisualEnvironmentComponentDataTrait for DynamicAOComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for DynamicAOComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -11285,15 +15064,15 @@ impl super::core::DataBusPeerTrait for DynamicAOComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DynamicAOComponentData {
 }
 
 impl super::core::DataContainerTrait for DynamicAOComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DYNAMICAOCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11499,6 +15278,15 @@ impl TypeObject for DynamicAOComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11522,19 +15310,31 @@ pub struct AntiAliasComponentData {
 
 pub trait AntiAliasComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn disocclusion_rejection_factor(&self) -> &f32;
+    fn disocclusion_rejection_factor_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl AntiAliasComponentDataTrait for AntiAliasComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn disocclusion_rejection_factor(&self) -> &f32 {
         &self.disocclusion_rejection_factor
     }
+    fn disocclusion_rejection_factor_mut(&mut self) -> &mut f32 {
+        &mut self.disocclusion_rejection_factor
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -11542,23 +15342,41 @@ impl VisualEnvironmentComponentDataTrait for AntiAliasComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for AntiAliasComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -11569,15 +15387,15 @@ impl super::core::DataBusPeerTrait for AntiAliasComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AntiAliasComponentData {
 }
 
 impl super::core::DataContainerTrait for AntiAliasComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTIALIASCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11621,6 +15439,15 @@ impl TypeObject for AntiAliasComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11655,63 +15482,119 @@ pub struct LensReflectionComponentData {
 
 pub trait LensReflectionComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn inner_color(&self) -> &super::core::Vec3;
+    fn inner_color_mut(&mut self) -> &mut super::core::Vec3;
     fn outer_color(&self) -> &super::core::Vec3;
+    fn outer_color_mut(&mut self) -> &mut super::core::Vec3;
     fn mix_start(&self) -> &f32;
+    fn mix_start_mut(&mut self) -> &mut f32;
     fn mix_stop(&self) -> &f32;
+    fn mix_stop_mut(&mut self) -> &mut f32;
     fn input_exponent(&self) -> &f32;
+    fn input_exponent_mut(&mut self) -> &mut f32;
     fn luminance_threshold(&self) -> &f32;
+    fn luminance_threshold_mut(&mut self) -> &mut f32;
     fn input_scale(&self) -> &f32;
+    fn input_scale_mut(&mut self) -> &mut f32;
     fn max_opacity(&self) -> &f32;
+    fn max_opacity_mut(&mut self) -> &mut f32;
     fn transpose_reflection(&self) -> &bool;
+    fn transpose_reflection_mut(&mut self) -> &mut bool;
     fn scale(&self) -> &f32;
+    fn scale_mut(&mut self) -> &mut f32;
     fn distortion_factor(&self) -> &f32;
+    fn distortion_factor_mut(&mut self) -> &mut f32;
     fn vertical_stretch(&self) -> &f32;
+    fn vertical_stretch_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl LensReflectionComponentDataTrait for LensReflectionComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn inner_color(&self) -> &super::core::Vec3 {
         &self.inner_color
+    }
+    fn inner_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.inner_color
     }
     fn outer_color(&self) -> &super::core::Vec3 {
         &self.outer_color
     }
+    fn outer_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.outer_color
+    }
     fn mix_start(&self) -> &f32 {
         &self.mix_start
+    }
+    fn mix_start_mut(&mut self) -> &mut f32 {
+        &mut self.mix_start
     }
     fn mix_stop(&self) -> &f32 {
         &self.mix_stop
     }
+    fn mix_stop_mut(&mut self) -> &mut f32 {
+        &mut self.mix_stop
+    }
     fn input_exponent(&self) -> &f32 {
         &self.input_exponent
+    }
+    fn input_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.input_exponent
     }
     fn luminance_threshold(&self) -> &f32 {
         &self.luminance_threshold
     }
+    fn luminance_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.luminance_threshold
+    }
     fn input_scale(&self) -> &f32 {
         &self.input_scale
+    }
+    fn input_scale_mut(&mut self) -> &mut f32 {
+        &mut self.input_scale
     }
     fn max_opacity(&self) -> &f32 {
         &self.max_opacity
     }
+    fn max_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.max_opacity
+    }
     fn transpose_reflection(&self) -> &bool {
         &self.transpose_reflection
+    }
+    fn transpose_reflection_mut(&mut self) -> &mut bool {
+        &mut self.transpose_reflection
     }
     fn scale(&self) -> &f32 {
         &self.scale
     }
+    fn scale_mut(&mut self) -> &mut f32 {
+        &mut self.scale
+    }
     fn distortion_factor(&self) -> &f32 {
         &self.distortion_factor
+    }
+    fn distortion_factor_mut(&mut self) -> &mut f32 {
+        &mut self.distortion_factor
     }
     fn vertical_stretch(&self) -> &f32 {
         &self.vertical_stretch
     }
+    fn vertical_stretch_mut(&mut self) -> &mut f32 {
+        &mut self.vertical_stretch
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -11719,23 +15602,41 @@ impl VisualEnvironmentComponentDataTrait for LensReflectionComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for LensReflectionComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -11746,15 +15647,15 @@ impl super::core::DataBusPeerTrait for LensReflectionComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LensReflectionComponentData {
 }
 
 impl super::core::DataContainerTrait for LensReflectionComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LENSREFLECTIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11864,6 +15765,15 @@ impl TypeObject for LensReflectionComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11955,291 +15865,575 @@ pub struct SunFlareComponentData {
 
 pub trait SunFlareComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn debug_draw_occluder(&self) -> &bool;
+    fn debug_draw_occluder_mut(&mut self) -> &mut bool;
     fn occluder_size(&self) -> &f32;
+    fn occluder_size_mut(&mut self) -> &mut f32;
     fn screen_clip(&self) -> &bool;
+    fn screen_clip_mut(&mut self) -> &mut bool;
     fn render_mode(&self) -> &super::world_base::LensFlareRenderMode;
+    fn render_mode_mut(&mut self) -> &mut super::world_base::LensFlareRenderMode;
     fn use_sun_position(&self) -> &bool;
+    fn use_sun_position_mut(&mut self) -> &mut bool;
     fn rotation_x(&self) -> &f32;
+    fn rotation_x_mut(&mut self) -> &mut f32;
     fn rotation_y(&self) -> &f32;
+    fn rotation_y_mut(&mut self) -> &mut f32;
     fn element1_enable(&self) -> &bool;
+    fn element1_enable_mut(&mut self) -> &mut bool;
     fn element1_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn element1_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn element1_ray_distance(&self) -> &f32;
+    fn element1_ray_distance_mut(&mut self) -> &mut f32;
     fn element1_size(&self) -> &super::core::Vec2;
+    fn element1_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element1_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element1_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element1_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element1_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element1_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_rotation_local(&self) -> &f32;
+    fn element1_rotation_local_mut(&mut self) -> &mut f32;
     fn element1_rotation_aligned_to_ray(&self) -> &bool;
+    fn element1_rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn element1_rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn element1_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element1_rotation_dist_multiplier(&self) -> &f32;
+    fn element1_rotation_dist_multiplier_mut(&mut self) -> &mut f32;
     fn element2_enable(&self) -> &bool;
+    fn element2_enable_mut(&mut self) -> &mut bool;
     fn element2_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn element2_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn element2_ray_distance(&self) -> &f32;
+    fn element2_ray_distance_mut(&mut self) -> &mut f32;
     fn element2_size(&self) -> &super::core::Vec2;
+    fn element2_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element2_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element2_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element2_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element2_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element2_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_rotation_local(&self) -> &f32;
+    fn element2_rotation_local_mut(&mut self) -> &mut f32;
     fn element2_rotation_aligned_to_ray(&self) -> &bool;
+    fn element2_rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn element2_rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn element2_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element2_rotation_dist_multiplier(&self) -> &f32;
+    fn element2_rotation_dist_multiplier_mut(&mut self) -> &mut f32;
     fn element3_enable(&self) -> &bool;
+    fn element3_enable_mut(&mut self) -> &mut bool;
     fn element3_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn element3_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn element3_ray_distance(&self) -> &f32;
+    fn element3_ray_distance_mut(&mut self) -> &mut f32;
     fn element3_size(&self) -> &super::core::Vec2;
+    fn element3_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element3_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element3_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element3_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element3_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element3_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_rotation_local(&self) -> &f32;
+    fn element3_rotation_local_mut(&mut self) -> &mut f32;
     fn element3_rotation_aligned_to_ray(&self) -> &bool;
+    fn element3_rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn element3_rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn element3_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element3_rotation_dist_multiplier(&self) -> &f32;
+    fn element3_rotation_dist_multiplier_mut(&mut self) -> &mut f32;
     fn element4_enable(&self) -> &bool;
+    fn element4_enable_mut(&mut self) -> &mut bool;
     fn element4_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn element4_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn element4_ray_distance(&self) -> &f32;
+    fn element4_ray_distance_mut(&mut self) -> &mut f32;
     fn element4_size(&self) -> &super::core::Vec2;
+    fn element4_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element4_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element4_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element4_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element4_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element4_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_rotation_local(&self) -> &f32;
+    fn element4_rotation_local_mut(&mut self) -> &mut f32;
     fn element4_rotation_aligned_to_ray(&self) -> &bool;
+    fn element4_rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn element4_rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn element4_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element4_rotation_dist_multiplier(&self) -> &f32;
+    fn element4_rotation_dist_multiplier_mut(&mut self) -> &mut f32;
     fn element5_enable(&self) -> &bool;
+    fn element5_enable_mut(&mut self) -> &mut bool;
     fn element5_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn element5_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn element5_ray_distance(&self) -> &f32;
+    fn element5_ray_distance_mut(&mut self) -> &mut f32;
     fn element5_size(&self) -> &super::core::Vec2;
+    fn element5_size_mut(&mut self) -> &mut super::core::Vec2;
     fn element5_size_occluder_curve(&self) -> &super::core::Vec4;
+    fn element5_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_size_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element5_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_alpha_occluder_curve(&self) -> &super::core::Vec4;
+    fn element5_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_alpha_screen_pos_curve(&self) -> &super::core::Vec4;
+    fn element5_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_rotation_local(&self) -> &f32;
+    fn element5_rotation_local_mut(&mut self) -> &mut f32;
     fn element5_rotation_aligned_to_ray(&self) -> &bool;
+    fn element5_rotation_aligned_to_ray_mut(&mut self) -> &mut bool;
     fn element5_rotation_dist_curve(&self) -> &super::core::Vec4;
+    fn element5_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn element5_rotation_dist_multiplier(&self) -> &f32;
+    fn element5_rotation_dist_multiplier_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u32;
+    fn field_flag_override1_mut(&mut self) -> &mut u32;
     fn field_flag_override2(&self) -> &u8;
+    fn field_flag_override2_mut(&mut self) -> &mut u8;
 }
 
 impl SunFlareComponentDataTrait for SunFlareComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn debug_draw_occluder(&self) -> &bool {
         &self.debug_draw_occluder
+    }
+    fn debug_draw_occluder_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_occluder
     }
     fn occluder_size(&self) -> &f32 {
         &self.occluder_size
     }
+    fn occluder_size_mut(&mut self) -> &mut f32 {
+        &mut self.occluder_size
+    }
     fn screen_clip(&self) -> &bool {
         &self.screen_clip
+    }
+    fn screen_clip_mut(&mut self) -> &mut bool {
+        &mut self.screen_clip
     }
     fn render_mode(&self) -> &super::world_base::LensFlareRenderMode {
         &self.render_mode
     }
+    fn render_mode_mut(&mut self) -> &mut super::world_base::LensFlareRenderMode {
+        &mut self.render_mode
+    }
     fn use_sun_position(&self) -> &bool {
         &self.use_sun_position
+    }
+    fn use_sun_position_mut(&mut self) -> &mut bool {
+        &mut self.use_sun_position
     }
     fn rotation_x(&self) -> &f32 {
         &self.rotation_x
     }
+    fn rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_x
+    }
     fn rotation_y(&self) -> &f32 {
         &self.rotation_y
+    }
+    fn rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_y
     }
     fn element1_enable(&self) -> &bool {
         &self.element1_enable
     }
+    fn element1_enable_mut(&mut self) -> &mut bool {
+        &mut self.element1_enable
+    }
     fn element1_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.element1_shader
+    }
+    fn element1_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.element1_shader
     }
     fn element1_ray_distance(&self) -> &f32 {
         &self.element1_ray_distance
     }
+    fn element1_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element1_ray_distance
+    }
     fn element1_size(&self) -> &super::core::Vec2 {
         &self.element1_size
+    }
+    fn element1_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element1_size
     }
     fn element1_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element1_size_occluder_curve
     }
+    fn element1_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_size_occluder_curve
+    }
     fn element1_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element1_size_screen_pos_curve
+    }
+    fn element1_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_size_screen_pos_curve
     }
     fn element1_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element1_alpha_occluder_curve
     }
+    fn element1_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_alpha_occluder_curve
+    }
     fn element1_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element1_alpha_screen_pos_curve
+    }
+    fn element1_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_alpha_screen_pos_curve
     }
     fn element1_rotation_local(&self) -> &f32 {
         &self.element1_rotation_local
     }
+    fn element1_rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.element1_rotation_local
+    }
     fn element1_rotation_aligned_to_ray(&self) -> &bool {
         &self.element1_rotation_aligned_to_ray
+    }
+    fn element1_rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.element1_rotation_aligned_to_ray
     }
     fn element1_rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.element1_rotation_dist_curve
     }
+    fn element1_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element1_rotation_dist_curve
+    }
     fn element1_rotation_dist_multiplier(&self) -> &f32 {
         &self.element1_rotation_dist_multiplier
+    }
+    fn element1_rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.element1_rotation_dist_multiplier
     }
     fn element2_enable(&self) -> &bool {
         &self.element2_enable
     }
+    fn element2_enable_mut(&mut self) -> &mut bool {
+        &mut self.element2_enable
+    }
     fn element2_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.element2_shader
+    }
+    fn element2_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.element2_shader
     }
     fn element2_ray_distance(&self) -> &f32 {
         &self.element2_ray_distance
     }
+    fn element2_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element2_ray_distance
+    }
     fn element2_size(&self) -> &super::core::Vec2 {
         &self.element2_size
+    }
+    fn element2_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element2_size
     }
     fn element2_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element2_size_occluder_curve
     }
+    fn element2_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_size_occluder_curve
+    }
     fn element2_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element2_size_screen_pos_curve
+    }
+    fn element2_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_size_screen_pos_curve
     }
     fn element2_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element2_alpha_occluder_curve
     }
+    fn element2_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_alpha_occluder_curve
+    }
     fn element2_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element2_alpha_screen_pos_curve
+    }
+    fn element2_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_alpha_screen_pos_curve
     }
     fn element2_rotation_local(&self) -> &f32 {
         &self.element2_rotation_local
     }
+    fn element2_rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.element2_rotation_local
+    }
     fn element2_rotation_aligned_to_ray(&self) -> &bool {
         &self.element2_rotation_aligned_to_ray
+    }
+    fn element2_rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.element2_rotation_aligned_to_ray
     }
     fn element2_rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.element2_rotation_dist_curve
     }
+    fn element2_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element2_rotation_dist_curve
+    }
     fn element2_rotation_dist_multiplier(&self) -> &f32 {
         &self.element2_rotation_dist_multiplier
+    }
+    fn element2_rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.element2_rotation_dist_multiplier
     }
     fn element3_enable(&self) -> &bool {
         &self.element3_enable
     }
+    fn element3_enable_mut(&mut self) -> &mut bool {
+        &mut self.element3_enable
+    }
     fn element3_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.element3_shader
+    }
+    fn element3_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.element3_shader
     }
     fn element3_ray_distance(&self) -> &f32 {
         &self.element3_ray_distance
     }
+    fn element3_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element3_ray_distance
+    }
     fn element3_size(&self) -> &super::core::Vec2 {
         &self.element3_size
+    }
+    fn element3_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element3_size
     }
     fn element3_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element3_size_occluder_curve
     }
+    fn element3_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_size_occluder_curve
+    }
     fn element3_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element3_size_screen_pos_curve
+    }
+    fn element3_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_size_screen_pos_curve
     }
     fn element3_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element3_alpha_occluder_curve
     }
+    fn element3_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_alpha_occluder_curve
+    }
     fn element3_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element3_alpha_screen_pos_curve
+    }
+    fn element3_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_alpha_screen_pos_curve
     }
     fn element3_rotation_local(&self) -> &f32 {
         &self.element3_rotation_local
     }
+    fn element3_rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.element3_rotation_local
+    }
     fn element3_rotation_aligned_to_ray(&self) -> &bool {
         &self.element3_rotation_aligned_to_ray
+    }
+    fn element3_rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.element3_rotation_aligned_to_ray
     }
     fn element3_rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.element3_rotation_dist_curve
     }
+    fn element3_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element3_rotation_dist_curve
+    }
     fn element3_rotation_dist_multiplier(&self) -> &f32 {
         &self.element3_rotation_dist_multiplier
+    }
+    fn element3_rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.element3_rotation_dist_multiplier
     }
     fn element4_enable(&self) -> &bool {
         &self.element4_enable
     }
+    fn element4_enable_mut(&mut self) -> &mut bool {
+        &mut self.element4_enable
+    }
     fn element4_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.element4_shader
+    }
+    fn element4_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.element4_shader
     }
     fn element4_ray_distance(&self) -> &f32 {
         &self.element4_ray_distance
     }
+    fn element4_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element4_ray_distance
+    }
     fn element4_size(&self) -> &super::core::Vec2 {
         &self.element4_size
+    }
+    fn element4_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element4_size
     }
     fn element4_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element4_size_occluder_curve
     }
+    fn element4_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_size_occluder_curve
+    }
     fn element4_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element4_size_screen_pos_curve
+    }
+    fn element4_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_size_screen_pos_curve
     }
     fn element4_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element4_alpha_occluder_curve
     }
+    fn element4_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_alpha_occluder_curve
+    }
     fn element4_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element4_alpha_screen_pos_curve
+    }
+    fn element4_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_alpha_screen_pos_curve
     }
     fn element4_rotation_local(&self) -> &f32 {
         &self.element4_rotation_local
     }
+    fn element4_rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.element4_rotation_local
+    }
     fn element4_rotation_aligned_to_ray(&self) -> &bool {
         &self.element4_rotation_aligned_to_ray
+    }
+    fn element4_rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.element4_rotation_aligned_to_ray
     }
     fn element4_rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.element4_rotation_dist_curve
     }
+    fn element4_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element4_rotation_dist_curve
+    }
     fn element4_rotation_dist_multiplier(&self) -> &f32 {
         &self.element4_rotation_dist_multiplier
+    }
+    fn element4_rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.element4_rotation_dist_multiplier
     }
     fn element5_enable(&self) -> &bool {
         &self.element5_enable
     }
+    fn element5_enable_mut(&mut self) -> &mut bool {
+        &mut self.element5_enable
+    }
     fn element5_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.element5_shader
+    }
+    fn element5_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.element5_shader
     }
     fn element5_ray_distance(&self) -> &f32 {
         &self.element5_ray_distance
     }
+    fn element5_ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.element5_ray_distance
+    }
     fn element5_size(&self) -> &super::core::Vec2 {
         &self.element5_size
+    }
+    fn element5_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.element5_size
     }
     fn element5_size_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element5_size_occluder_curve
     }
+    fn element5_size_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_size_occluder_curve
+    }
     fn element5_size_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element5_size_screen_pos_curve
+    }
+    fn element5_size_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_size_screen_pos_curve
     }
     fn element5_alpha_occluder_curve(&self) -> &super::core::Vec4 {
         &self.element5_alpha_occluder_curve
     }
+    fn element5_alpha_occluder_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_alpha_occluder_curve
+    }
     fn element5_alpha_screen_pos_curve(&self) -> &super::core::Vec4 {
         &self.element5_alpha_screen_pos_curve
+    }
+    fn element5_alpha_screen_pos_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_alpha_screen_pos_curve
     }
     fn element5_rotation_local(&self) -> &f32 {
         &self.element5_rotation_local
     }
+    fn element5_rotation_local_mut(&mut self) -> &mut f32 {
+        &mut self.element5_rotation_local
+    }
     fn element5_rotation_aligned_to_ray(&self) -> &bool {
         &self.element5_rotation_aligned_to_ray
+    }
+    fn element5_rotation_aligned_to_ray_mut(&mut self) -> &mut bool {
+        &mut self.element5_rotation_aligned_to_ray
     }
     fn element5_rotation_dist_curve(&self) -> &super::core::Vec4 {
         &self.element5_rotation_dist_curve
     }
+    fn element5_rotation_dist_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.element5_rotation_dist_curve
+    }
     fn element5_rotation_dist_multiplier(&self) -> &f32 {
         &self.element5_rotation_dist_multiplier
+    }
+    fn element5_rotation_dist_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.element5_rotation_dist_multiplier
     }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_override1(&self) -> &u32 {
         &self.field_flag_override1
     }
+    fn field_flag_override1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override1
+    }
     fn field_flag_override2(&self) -> &u8 {
         &self.field_flag_override2
+    }
+    fn field_flag_override2_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override2
     }
 }
 
@@ -12247,23 +16441,41 @@ impl VisualEnvironmentComponentDataTrait for SunFlareComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for SunFlareComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -12274,15 +16486,15 @@ impl super::core::DataBusPeerTrait for SunFlareComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SunFlareComponentData {
 }
 
 impl super::core::DataContainerTrait for SunFlareComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SUNFLARECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12734,6 +16946,15 @@ impl TypeObject for SunFlareComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12786,135 +17007,263 @@ pub struct CloudComponentData {
 
 pub trait CloudComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn base_to_top_multiplier(&self) -> &f32;
+    fn base_to_top_multiplier_mut(&mut self) -> &mut f32;
     fn edge_detail_multiplier(&self) -> &f32;
+    fn edge_detail_multiplier_mut(&mut self) -> &mut f32;
     fn cloud_density_multiplier(&self) -> &f32;
+    fn cloud_density_multiplier_mut(&mut self) -> &mut f32;
     fn absorption(&self) -> &super::core::Vec3;
+    fn absorption_mut(&mut self) -> &mut super::core::Vec3;
     fn scattering(&self) -> &super::core::Vec3;
+    fn scattering_mut(&mut self) -> &mut super::core::Vec3;
     fn phase_g0(&self) -> &f32;
+    fn phase_g0_mut(&mut self) -> &mut f32;
     fn phase_g1(&self) -> &f32;
+    fn phase_g1_mut(&mut self) -> &mut f32;
     fn phase_blend(&self) -> &f32;
+    fn phase_blend_mut(&mut self) -> &mut f32;
     fn ambient_multiplicator(&self) -> &f32;
+    fn ambient_multiplicator_mut(&mut self) -> &mut f32;
     fn ambient_desaturate(&self) -> &f32;
+    fn ambient_desaturate_mut(&mut self) -> &mut f32;
     fn aerial_perspective_scale(&self) -> &f32;
+    fn aerial_perspective_scale_mut(&mut self) -> &mut f32;
     fn enable_shadow(&self) -> &bool;
+    fn enable_shadow_mut(&mut self) -> &mut bool;
     fn scattering_order(&self) -> &i32;
+    fn scattering_order_mut(&mut self) -> &mut i32;
     fn scattering_factor(&self) -> &f32;
+    fn scattering_factor_mut(&mut self) -> &mut f32;
     fn extinction_factor(&self) -> &f32;
+    fn extinction_factor_mut(&mut self) -> &mut f32;
     fn phase_factor(&self) -> &f32;
+    fn phase_factor_mut(&mut self) -> &mut f32;
     fn shape_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn shape_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn shape_texture_scale(&self) -> &f32;
+    fn shape_texture_scale_mut(&mut self) -> &mut f32;
     fn shape_texture_contrast(&self) -> &f32;
+    fn shape_texture_contrast_mut(&mut self) -> &mut f32;
     fn detail_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn detail_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn detail_texture_scale(&self) -> &f32;
+    fn detail_texture_scale_mut(&mut self) -> &mut f32;
     fn weather_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn weather_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn weather_texture_scale(&self) -> &f32;
+    fn weather_texture_scale_mut(&mut self) -> &mut f32;
     fn cloud_type_density_gradient_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_type_density_gradient_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn planet_radius(&self) -> &f32;
+    fn planet_radius_mut(&mut self) -> &mut f32;
     fn cut_off_distance(&self) -> &f32;
+    fn cut_off_distance_mut(&mut self) -> &mut f32;
     fn cloud_layer_start_height(&self) -> &f32;
+    fn cloud_layer_start_height_mut(&mut self) -> &mut f32;
     fn cloud_layer_thickness(&self) -> &f32;
+    fn cloud_layer_thickness_mut(&mut self) -> &mut f32;
     fn wind_scale(&self) -> &f32;
+    fn wind_scale_mut(&mut self) -> &mut f32;
     fn offset(&self) -> &super::core::Vec2;
+    fn offset_mut(&mut self) -> &mut super::core::Vec2;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
 }
 
 impl CloudComponentDataTrait for CloudComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn base_to_top_multiplier(&self) -> &f32 {
         &self.base_to_top_multiplier
+    }
+    fn base_to_top_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.base_to_top_multiplier
     }
     fn edge_detail_multiplier(&self) -> &f32 {
         &self.edge_detail_multiplier
     }
+    fn edge_detail_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.edge_detail_multiplier
+    }
     fn cloud_density_multiplier(&self) -> &f32 {
         &self.cloud_density_multiplier
+    }
+    fn cloud_density_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_density_multiplier
     }
     fn absorption(&self) -> &super::core::Vec3 {
         &self.absorption
     }
+    fn absorption_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.absorption
+    }
     fn scattering(&self) -> &super::core::Vec3 {
         &self.scattering
+    }
+    fn scattering_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.scattering
     }
     fn phase_g0(&self) -> &f32 {
         &self.phase_g0
     }
+    fn phase_g0_mut(&mut self) -> &mut f32 {
+        &mut self.phase_g0
+    }
     fn phase_g1(&self) -> &f32 {
         &self.phase_g1
+    }
+    fn phase_g1_mut(&mut self) -> &mut f32 {
+        &mut self.phase_g1
     }
     fn phase_blend(&self) -> &f32 {
         &self.phase_blend
     }
+    fn phase_blend_mut(&mut self) -> &mut f32 {
+        &mut self.phase_blend
+    }
     fn ambient_multiplicator(&self) -> &f32 {
         &self.ambient_multiplicator
+    }
+    fn ambient_multiplicator_mut(&mut self) -> &mut f32 {
+        &mut self.ambient_multiplicator
     }
     fn ambient_desaturate(&self) -> &f32 {
         &self.ambient_desaturate
     }
+    fn ambient_desaturate_mut(&mut self) -> &mut f32 {
+        &mut self.ambient_desaturate
+    }
     fn aerial_perspective_scale(&self) -> &f32 {
         &self.aerial_perspective_scale
+    }
+    fn aerial_perspective_scale_mut(&mut self) -> &mut f32 {
+        &mut self.aerial_perspective_scale
     }
     fn enable_shadow(&self) -> &bool {
         &self.enable_shadow
     }
+    fn enable_shadow_mut(&mut self) -> &mut bool {
+        &mut self.enable_shadow
+    }
     fn scattering_order(&self) -> &i32 {
         &self.scattering_order
+    }
+    fn scattering_order_mut(&mut self) -> &mut i32 {
+        &mut self.scattering_order
     }
     fn scattering_factor(&self) -> &f32 {
         &self.scattering_factor
     }
+    fn scattering_factor_mut(&mut self) -> &mut f32 {
+        &mut self.scattering_factor
+    }
     fn extinction_factor(&self) -> &f32 {
         &self.extinction_factor
+    }
+    fn extinction_factor_mut(&mut self) -> &mut f32 {
+        &mut self.extinction_factor
     }
     fn phase_factor(&self) -> &f32 {
         &self.phase_factor
     }
+    fn phase_factor_mut(&mut self) -> &mut f32 {
+        &mut self.phase_factor
+    }
     fn shape_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.shape_texture
+    }
+    fn shape_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.shape_texture
     }
     fn shape_texture_scale(&self) -> &f32 {
         &self.shape_texture_scale
     }
+    fn shape_texture_scale_mut(&mut self) -> &mut f32 {
+        &mut self.shape_texture_scale
+    }
     fn shape_texture_contrast(&self) -> &f32 {
         &self.shape_texture_contrast
+    }
+    fn shape_texture_contrast_mut(&mut self) -> &mut f32 {
+        &mut self.shape_texture_contrast
     }
     fn detail_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.detail_texture
     }
+    fn detail_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.detail_texture
+    }
     fn detail_texture_scale(&self) -> &f32 {
         &self.detail_texture_scale
+    }
+    fn detail_texture_scale_mut(&mut self) -> &mut f32 {
+        &mut self.detail_texture_scale
     }
     fn weather_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.weather_texture
     }
+    fn weather_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.weather_texture
+    }
     fn weather_texture_scale(&self) -> &f32 {
         &self.weather_texture_scale
+    }
+    fn weather_texture_scale_mut(&mut self) -> &mut f32 {
+        &mut self.weather_texture_scale
     }
     fn cloud_type_density_gradient_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_type_density_gradient_texture
     }
+    fn cloud_type_density_gradient_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_type_density_gradient_texture
+    }
     fn planet_radius(&self) -> &f32 {
         &self.planet_radius
+    }
+    fn planet_radius_mut(&mut self) -> &mut f32 {
+        &mut self.planet_radius
     }
     fn cut_off_distance(&self) -> &f32 {
         &self.cut_off_distance
     }
+    fn cut_off_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cut_off_distance
+    }
     fn cloud_layer_start_height(&self) -> &f32 {
         &self.cloud_layer_start_height
+    }
+    fn cloud_layer_start_height_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer_start_height
     }
     fn cloud_layer_thickness(&self) -> &f32 {
         &self.cloud_layer_thickness
     }
+    fn cloud_layer_thickness_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer_thickness
+    }
     fn wind_scale(&self) -> &f32 {
         &self.wind_scale
+    }
+    fn wind_scale_mut(&mut self) -> &mut f32 {
+        &mut self.wind_scale
     }
     fn offset(&self) -> &super::core::Vec2 {
         &self.offset
     }
+    fn offset_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.offset
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -12922,23 +17271,41 @@ impl VisualEnvironmentComponentDataTrait for CloudComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for CloudComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -12949,15 +17316,15 @@ impl super::core::DataBusPeerTrait for CloudComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CloudComponentData {
 }
 
 impl super::core::DataContainerTrait for CloudComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLOUDCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13175,6 +17542,15 @@ impl TypeObject for CloudComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13203,39 +17579,71 @@ pub struct WindComponentData {
 
 pub trait WindComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn wind_direction(&self) -> &f32;
+    fn wind_direction_mut(&mut self) -> &mut f32;
     fn wind_strength(&self) -> &f32;
+    fn wind_strength_mut(&mut self) -> &mut f32;
     fn wind_variation_multiplier(&self) -> &f32;
+    fn wind_variation_multiplier_mut(&mut self) -> &mut f32;
     fn wind_variation_rate_multiplier(&self) -> &f32;
+    fn wind_variation_rate_multiplier_mut(&mut self) -> &mut f32;
     fn wind_micro_variation_multiplier(&self) -> &f32;
+    fn wind_micro_variation_multiplier_mut(&mut self) -> &mut f32;
     fn turbulence_multiplier(&self) -> &f32;
+    fn turbulence_multiplier_mut(&mut self) -> &mut f32;
     fn turbulence_scale(&self) -> &f32;
+    fn turbulence_scale_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl WindComponentDataTrait for WindComponentData {
     fn wind_direction(&self) -> &f32 {
         &self.wind_direction
     }
+    fn wind_direction_mut(&mut self) -> &mut f32 {
+        &mut self.wind_direction
+    }
     fn wind_strength(&self) -> &f32 {
         &self.wind_strength
+    }
+    fn wind_strength_mut(&mut self) -> &mut f32 {
+        &mut self.wind_strength
     }
     fn wind_variation_multiplier(&self) -> &f32 {
         &self.wind_variation_multiplier
     }
+    fn wind_variation_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.wind_variation_multiplier
+    }
     fn wind_variation_rate_multiplier(&self) -> &f32 {
         &self.wind_variation_rate_multiplier
+    }
+    fn wind_variation_rate_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.wind_variation_rate_multiplier
     }
     fn wind_micro_variation_multiplier(&self) -> &f32 {
         &self.wind_micro_variation_multiplier
     }
+    fn wind_micro_variation_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.wind_micro_variation_multiplier
+    }
     fn turbulence_multiplier(&self) -> &f32 {
         &self.turbulence_multiplier
+    }
+    fn turbulence_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.turbulence_multiplier
     }
     fn turbulence_scale(&self) -> &f32 {
         &self.turbulence_scale
     }
+    fn turbulence_scale_mut(&mut self) -> &mut f32 {
+        &mut self.turbulence_scale
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -13243,23 +17651,41 @@ impl VisualEnvironmentComponentDataTrait for WindComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for WindComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -13270,15 +17696,15 @@ impl super::core::DataBusPeerTrait for WindComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WindComponentData {
 }
 
 impl super::core::DataContainerTrait for WindComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WINDCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13352,6 +17778,15 @@ impl TypeObject for WindComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13378,31 +17813,55 @@ pub struct DynamicEnvmapComponentData {
 
 pub trait DynamicEnvmapComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn terrain_reflections_enable(&self) -> &bool;
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool;
     fn key_color_envmap(&self) -> &super::core::Vec3;
+    fn key_color_envmap_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_color_envmap(&self) -> &super::core::Vec3;
+    fn sky_color_envmap_mut(&mut self) -> &mut super::core::Vec3;
     fn ground_color_envmap(&self) -> &super::core::Vec3;
+    fn ground_color_envmap_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl DynamicEnvmapComponentDataTrait for DynamicEnvmapComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn terrain_reflections_enable(&self) -> &bool {
         &self.terrain_reflections_enable
+    }
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool {
+        &mut self.terrain_reflections_enable
     }
     fn key_color_envmap(&self) -> &super::core::Vec3 {
         &self.key_color_envmap
     }
+    fn key_color_envmap_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.key_color_envmap
+    }
     fn sky_color_envmap(&self) -> &super::core::Vec3 {
         &self.sky_color_envmap
+    }
+    fn sky_color_envmap_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_color_envmap
     }
     fn ground_color_envmap(&self) -> &super::core::Vec3 {
         &self.ground_color_envmap
     }
+    fn ground_color_envmap_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ground_color_envmap
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -13410,23 +17869,41 @@ impl VisualEnvironmentComponentDataTrait for DynamicEnvmapComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for DynamicEnvmapComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -13437,15 +17914,15 @@ impl super::core::DataBusPeerTrait for DynamicEnvmapComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DynamicEnvmapComponentData {
 }
 
 impl super::core::DataContainerTrait for DynamicEnvmapComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DYNAMICENVMAPCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13507,6 +17984,15 @@ impl TypeObject for DynamicEnvmapComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13542,67 +18028,127 @@ pub struct PlanarReflectionComponentData {
 
 pub trait PlanarReflectionComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn terrain_reflections_enable(&self) -> &bool;
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool;
     fn sky_render_enable(&self) -> &bool;
+    fn sky_render_enable_mut(&mut self) -> &mut bool;
     fn ground_height(&self) -> &f32;
+    fn ground_height_mut(&mut self) -> &mut f32;
     fn view_distance(&self) -> &f32;
+    fn view_distance_mut(&mut self) -> &mut f32;
     fn vertical_blur_filter(&self) -> &super::render_base::BlurFilter;
+    fn vertical_blur_filter_mut(&mut self) -> &mut super::render_base::BlurFilter;
     fn vertical_deviation(&self) -> &f32;
+    fn vertical_deviation_mut(&mut self) -> &mut f32;
     fn horizontal_blur_filter(&self) -> &super::render_base::BlurFilter;
+    fn horizontal_blur_filter_mut(&mut self) -> &mut super::render_base::BlurFilter;
     fn horizontal_deviation(&self) -> &f32;
+    fn horizontal_deviation_mut(&mut self) -> &mut f32;
     fn clipping_offset(&self) -> &f32;
+    fn clipping_offset_mut(&mut self) -> &mut f32;
     fn overide_outdoor_light_colors(&self) -> &bool;
+    fn overide_outdoor_light_colors_mut(&mut self) -> &mut bool;
     fn key_color_reflection(&self) -> &super::core::Vec3;
+    fn key_color_reflection_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_color_reflection(&self) -> &super::core::Vec3;
+    fn sky_color_reflection_mut(&mut self) -> &mut super::core::Vec3;
     fn ground_color_reflection(&self) -> &super::core::Vec3;
+    fn ground_color_reflection_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_override0(&self) -> &u16;
+    fn field_flag_override0_mut(&mut self) -> &mut u16;
 }
 
 impl PlanarReflectionComponentDataTrait for PlanarReflectionComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn terrain_reflections_enable(&self) -> &bool {
         &self.terrain_reflections_enable
+    }
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool {
+        &mut self.terrain_reflections_enable
     }
     fn sky_render_enable(&self) -> &bool {
         &self.sky_render_enable
     }
+    fn sky_render_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_render_enable
+    }
     fn ground_height(&self) -> &f32 {
         &self.ground_height
+    }
+    fn ground_height_mut(&mut self) -> &mut f32 {
+        &mut self.ground_height
     }
     fn view_distance(&self) -> &f32 {
         &self.view_distance
     }
+    fn view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.view_distance
+    }
     fn vertical_blur_filter(&self) -> &super::render_base::BlurFilter {
         &self.vertical_blur_filter
+    }
+    fn vertical_blur_filter_mut(&mut self) -> &mut super::render_base::BlurFilter {
+        &mut self.vertical_blur_filter
     }
     fn vertical_deviation(&self) -> &f32 {
         &self.vertical_deviation
     }
+    fn vertical_deviation_mut(&mut self) -> &mut f32 {
+        &mut self.vertical_deviation
+    }
     fn horizontal_blur_filter(&self) -> &super::render_base::BlurFilter {
         &self.horizontal_blur_filter
+    }
+    fn horizontal_blur_filter_mut(&mut self) -> &mut super::render_base::BlurFilter {
+        &mut self.horizontal_blur_filter
     }
     fn horizontal_deviation(&self) -> &f32 {
         &self.horizontal_deviation
     }
+    fn horizontal_deviation_mut(&mut self) -> &mut f32 {
+        &mut self.horizontal_deviation
+    }
     fn clipping_offset(&self) -> &f32 {
         &self.clipping_offset
+    }
+    fn clipping_offset_mut(&mut self) -> &mut f32 {
+        &mut self.clipping_offset
     }
     fn overide_outdoor_light_colors(&self) -> &bool {
         &self.overide_outdoor_light_colors
     }
+    fn overide_outdoor_light_colors_mut(&mut self) -> &mut bool {
+        &mut self.overide_outdoor_light_colors
+    }
     fn key_color_reflection(&self) -> &super::core::Vec3 {
         &self.key_color_reflection
+    }
+    fn key_color_reflection_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.key_color_reflection
     }
     fn sky_color_reflection(&self) -> &super::core::Vec3 {
         &self.sky_color_reflection
     }
+    fn sky_color_reflection_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_color_reflection
+    }
     fn ground_color_reflection(&self) -> &super::core::Vec3 {
         &self.ground_color_reflection
     }
+    fn ground_color_reflection_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ground_color_reflection
+    }
     fn field_flag_override0(&self) -> &u16 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -13610,23 +18156,41 @@ impl VisualEnvironmentComponentDataTrait for PlanarReflectionComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for PlanarReflectionComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -13637,15 +18201,15 @@ impl super::core::DataBusPeerTrait for PlanarReflectionComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PlanarReflectionComponentData {
 }
 
 impl super::core::DataContainerTrait for PlanarReflectionComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PLANARREFLECTIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13760,6 +18324,15 @@ impl TypeObject for PlanarReflectionComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -13896,467 +18469,927 @@ pub struct SkyComponentData {
 
 pub trait SkyComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn draw_sky_geo(&self) -> &bool;
+    fn draw_sky_geo_mut(&mut self) -> &mut bool;
     fn sky_type(&self) -> &super::world_base::SkyType;
+    fn sky_type_mut(&mut self) -> &mut super::world_base::SkyType;
     fn luminance_scale(&self) -> &f32;
+    fn luminance_scale_mut(&mut self) -> &mut f32;
     fn sky_gradient_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn sky_gradient_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn alpha_output(&self) -> &super::world_base::AlphaOutputMode;
+    fn alpha_output_mut(&mut self) -> &mut super::world_base::AlphaOutputMode;
     fn use_sky_visibility_as_a_o(&self) -> &bool;
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool;
     fn hdri_rotation(&self) -> &f32;
+    fn hdri_rotation_mut(&mut self) -> &mut f32;
     fn hdri_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn hdri_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn sun_size(&self) -> &f32;
+    fn sun_size_mut(&mut self) -> &mut f32;
     fn sun_scale(&self) -> &f32;
+    fn sun_scale_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_min_x(&self) -> &f32;
+    fn panoramic_u_v_min_x_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_max_x(&self) -> &f32;
+    fn panoramic_u_v_max_x_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_min_y(&self) -> &f32;
+    fn panoramic_u_v_min_y_mut(&mut self) -> &mut f32;
     fn panoramic_u_v_max_y(&self) -> &f32;
+    fn panoramic_u_v_max_y_mut(&mut self) -> &mut f32;
     fn panoramic_tile_factor(&self) -> &f32;
+    fn panoramic_tile_factor_mut(&mut self) -> &mut f32;
     fn panoramic_rotation(&self) -> &f32;
+    fn panoramic_rotation_mut(&mut self) -> &mut f32;
     fn panoramic_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn panoramic_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn panoramic_alpha_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn panoramic_alpha_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn sky_gradient_follows_panoramic_u_vs(&self) -> &bool;
+    fn sky_gradient_follows_panoramic_u_vs_mut(&mut self) -> &mut bool;
     fn flow_enable(&self) -> &bool;
+    fn flow_enable_mut(&mut self) -> &mut bool;
     fn flow_period(&self) -> &f32;
+    fn flow_period_mut(&mut self) -> &mut f32;
     fn flow_distance(&self) -> &f32;
+    fn flow_distance_mut(&mut self) -> &mut f32;
     fn flow_direction(&self) -> &f32;
+    fn flow_direction_mut(&mut self) -> &mut f32;
     fn flow_height_mask_scale(&self) -> &f32;
+    fn flow_height_mask_scale_mut(&mut self) -> &mut f32;
     fn flow_height_mask_bias(&self) -> &f32;
+    fn flow_height_mask_bias_mut(&mut self) -> &mut f32;
     fn flow_mask_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn flow_mask_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_layer_sun_color(&self) -> &super::core::Vec3;
+    fn cloud_layer_sun_color_mut(&mut self) -> &mut super::core::Vec3;
     fn cloud_layer_mask_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_layer_mask_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_layer1_altitude(&self) -> &f32;
+    fn cloud_layer1_altitude_mut(&mut self) -> &mut f32;
     fn cloud_layer1_tile_factor(&self) -> &f32;
+    fn cloud_layer1_tile_factor_mut(&mut self) -> &mut f32;
     fn cloud_layer1_rotation(&self) -> &f32;
+    fn cloud_layer1_rotation_mut(&mut self) -> &mut f32;
     fn cloud_layer1_speed(&self) -> &f32;
+    fn cloud_layer1_speed_mut(&mut self) -> &mut f32;
     fn cloud_layer1_sun_light_intensity(&self) -> &f32;
+    fn cloud_layer1_sun_light_intensity_mut(&mut self) -> &mut f32;
     fn cloud_layer1_sun_light_power(&self) -> &f32;
+    fn cloud_layer1_sun_light_power_mut(&mut self) -> &mut f32;
     fn cloud_layer1_ambient_light_intensity(&self) -> &f32;
+    fn cloud_layer1_ambient_light_intensity_mut(&mut self) -> &mut f32;
     fn cloud_layer1_color(&self) -> &super::core::Vec3;
+    fn cloud_layer1_color_mut(&mut self) -> &mut super::core::Vec3;
     fn cloud_layer1_alpha_mul(&self) -> &f32;
+    fn cloud_layer1_alpha_mul_mut(&mut self) -> &mut f32;
     fn cloud_layer1_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_layer1_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_layer1_absorption(&self) -> &f32;
+    fn cloud_layer1_absorption_mut(&mut self) -> &mut f32;
     fn cloud_layer1_scattering(&self) -> &f32;
+    fn cloud_layer1_scattering_mut(&mut self) -> &mut f32;
     fn cloud_layer1_phase(&self) -> &f32;
+    fn cloud_layer1_phase_mut(&mut self) -> &mut f32;
     fn cloud_layer1_thickness(&self) -> &f32;
+    fn cloud_layer1_thickness_mut(&mut self) -> &mut f32;
     fn cloud_layer2_altitude(&self) -> &f32;
+    fn cloud_layer2_altitude_mut(&mut self) -> &mut f32;
     fn cloud_layer2_tile_factor(&self) -> &f32;
+    fn cloud_layer2_tile_factor_mut(&mut self) -> &mut f32;
     fn cloud_layer2_rotation(&self) -> &f32;
+    fn cloud_layer2_rotation_mut(&mut self) -> &mut f32;
     fn cloud_layer2_speed(&self) -> &f32;
+    fn cloud_layer2_speed_mut(&mut self) -> &mut f32;
     fn cloud_layer2_sun_light_intensity(&self) -> &f32;
+    fn cloud_layer2_sun_light_intensity_mut(&mut self) -> &mut f32;
     fn cloud_layer2_sun_light_power(&self) -> &f32;
+    fn cloud_layer2_sun_light_power_mut(&mut self) -> &mut f32;
     fn cloud_layer2_ambient_light_intensity(&self) -> &f32;
+    fn cloud_layer2_ambient_light_intensity_mut(&mut self) -> &mut f32;
     fn cloud_layer2_color(&self) -> &super::core::Vec3;
+    fn cloud_layer2_color_mut(&mut self) -> &mut super::core::Vec3;
     fn cloud_layer2_alpha_mul(&self) -> &f32;
+    fn cloud_layer2_alpha_mul_mut(&mut self) -> &mut f32;
     fn cloud_layer2_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_layer2_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_layer2_absorption(&self) -> &f32;
+    fn cloud_layer2_absorption_mut(&mut self) -> &mut f32;
     fn cloud_layer2_scattering(&self) -> &f32;
+    fn cloud_layer2_scattering_mut(&mut self) -> &mut f32;
     fn cloud_layer2_phase(&self) -> &f32;
+    fn cloud_layer2_phase_mut(&mut self) -> &mut f32;
     fn cloud_layer2_thickness(&self) -> &f32;
+    fn cloud_layer2_thickness_mut(&mut self) -> &mut f32;
     fn static_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn static_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn static_envmap_scale(&self) -> &f32;
+    fn static_envmap_scale_mut(&mut self) -> &mut f32;
     fn sky_envmap8_bit_tex_scale(&self) -> &f32;
+    fn sky_envmap8_bit_tex_scale_mut(&mut self) -> &mut f32;
     fn custom_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn custom_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn custom_envmap_scale(&self) -> &f32;
+    fn custom_envmap_scale_mut(&mut self) -> &mut f32;
     fn custom_envmap_ambient(&self) -> &f32;
+    fn custom_envmap_ambient_mut(&mut self) -> &mut f32;
     fn sky_visibility_exponent(&self) -> &f32;
+    fn sky_visibility_exponent_mut(&mut self) -> &mut f32;
     fn interior_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn interior_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn interior_envmap_exp(&self) -> &super::core::Vec4;
+    fn interior_envmap_exp_mut(&mut self) -> &mut super::core::Vec4;
     fn interior_envmap_scale(&self) -> &super::core::Vec4;
+    fn interior_envmap_scale_mut(&mut self) -> &mut super::core::Vec4;
     fn interior_envmap_bias(&self) -> &super::core::Vec4;
+    fn interior_envmap_bias_mut(&mut self) -> &mut super::core::Vec4;
     fn interior_envmap_sky_visibility_fade_start(&self) -> &f32;
+    fn interior_envmap_sky_visibility_fade_start_mut(&mut self) -> &mut f32;
     fn interior_envmap_sky_visibility_fade_length(&self) -> &f32;
+    fn interior_envmap_sky_visibility_fade_length_mut(&mut self) -> &mut f32;
     fn earth_radius(&self) -> &f32;
+    fn earth_radius_mut(&mut self) -> &mut f32;
     fn atmosphere_radius(&self) -> &f32;
+    fn atmosphere_radius_mut(&mut self) -> &mut f32;
     fn mie_scattering_coefficient(&self) -> &f32;
+    fn mie_scattering_coefficient_mut(&mut self) -> &mut f32;
     fn mie_g(&self) -> &f32;
+    fn mie_g_mut(&mut self) -> &mut f32;
     fn mie_extinction_coefficient_relation(&self) -> &f32;
+    fn mie_extinction_coefficient_relation_mut(&mut self) -> &mut f32;
     fn scale_height_mie(&self) -> &f32;
+    fn scale_height_mie_mut(&mut self) -> &mut f32;
     fn rayleigh_scattering_coefficient(&self) -> &super::core::Vec3;
+    fn rayleigh_scattering_coefficient_mut(&mut self) -> &mut super::core::Vec3;
     fn rayleigh_scattering_coefficient_scale(&self) -> &f32;
+    fn rayleigh_scattering_coefficient_scale_mut(&mut self) -> &mut f32;
     fn rayleigh_extinction_coefficient_relation(&self) -> &f32;
+    fn rayleigh_extinction_coefficient_relation_mut(&mut self) -> &mut f32;
     fn scale_height_rayleigh(&self) -> &f32;
+    fn scale_height_rayleigh_mut(&mut self) -> &mut f32;
     fn use_ozone(&self) -> &bool;
+    fn use_ozone_mut(&mut self) -> &mut bool;
     fn ozone_percentage(&self) -> &f32;
+    fn ozone_percentage_mut(&mut self) -> &mut f32;
     fn use_aerial_perspective(&self) -> &bool;
+    fn use_aerial_perspective_mut(&mut self) -> &mut bool;
     fn aerial_perspective_scale(&self) -> &f32;
+    fn aerial_perspective_scale_mut(&mut self) -> &mut f32;
     fn aerial_perspective_intensity(&self) -> &f32;
+    fn aerial_perspective_intensity_mut(&mut self) -> &mut f32;
     fn aerial_perspective_dithering(&self) -> &f32;
+    fn aerial_perspective_dithering_mut(&mut self) -> &mut f32;
     fn light1_color(&self) -> &super::core::Vec3;
+    fn light1_color_mut(&mut self) -> &mut super::core::Vec3;
     fn light1_intensity(&self) -> &f32;
+    fn light1_intensity_mut(&mut self) -> &mut f32;
     fn light1_follow_outdoor_light(&self) -> &bool;
+    fn light1_follow_outdoor_light_mut(&mut self) -> &mut bool;
     fn light1_takes_color_from_outdoor_light(&self) -> &bool;
+    fn light1_takes_color_from_outdoor_light_mut(&mut self) -> &mut bool;
     fn light1_rot_x(&self) -> &f32;
+    fn light1_rot_x_mut(&mut self) -> &mut f32;
     fn light1_rot_y(&self) -> &f32;
+    fn light1_rot_y_mut(&mut self) -> &mut f32;
     fn light2_color(&self) -> &super::core::Vec3;
+    fn light2_color_mut(&mut self) -> &mut super::core::Vec3;
     fn light2_intensity(&self) -> &f32;
+    fn light2_intensity_mut(&mut self) -> &mut f32;
     fn use_light_source2(&self) -> &bool;
+    fn use_light_source2_mut(&mut self) -> &mut bool;
     fn light2_rot_x(&self) -> &f32;
+    fn light2_rot_x_mut(&mut self) -> &mut f32;
     fn light2_rot_y(&self) -> &f32;
+    fn light2_rot_y_mut(&mut self) -> &mut f32;
     fn use_noise(&self) -> &bool;
+    fn use_noise_mut(&mut self) -> &mut bool;
     fn fog_start_distance(&self) -> &f32;
+    fn fog_start_distance_mut(&mut self) -> &mut f32;
     fn rayleigh_polarization(&self) -> &super::core::Vec3;
+    fn rayleigh_polarization_mut(&mut self) -> &mut super::core::Vec3;
     fn mie_polarization(&self) -> &super::core::Vec3;
+    fn mie_polarization_mut(&mut self) -> &mut super::core::Vec3;
     fn outdoor_light_scale(&self) -> &super::core::Vec3;
+    fn outdoor_light_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn draw_sun_disc(&self) -> &bool;
+    fn draw_sun_disc_mut(&mut self) -> &mut bool;
     fn forward_scattering_depth_visibility(&self) -> &super::core::Vec4;
+    fn forward_scattering_depth_visibility_mut(&mut self) -> &mut super::core::Vec4;
     fn forward_scattering_start_depth(&self) -> &f32;
+    fn forward_scattering_start_depth_mut(&mut self) -> &mut f32;
     fn forward_scattering_end_depth(&self) -> &f32;
+    fn forward_scattering_end_depth_mut(&mut self) -> &mut f32;
     fn forward_scattering_takes_color_from_outdoor_light(&self) -> &f32;
+    fn forward_scattering_takes_color_from_outdoor_light_mut(&mut self) -> &mut f32;
     fn forward_scattering_outdoor_light_tint(&self) -> &super::core::Vec3;
+    fn forward_scattering_outdoor_light_tint_mut(&mut self) -> &mut super::core::Vec3;
     fn height_fog_color_add(&self) -> &super::core::Vec3;
+    fn height_fog_color_add_mut(&mut self) -> &mut super::core::Vec3;
     fn height_fog_color_mult(&self) -> &super::core::Vec3;
+    fn height_fog_color_mult_mut(&mut self) -> &mut super::core::Vec3;
     fn min_height_fog_transmittance(&self) -> &f32;
+    fn min_height_fog_transmittance_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u32;
+    fn field_flag_override1_mut(&mut self) -> &mut u32;
     fn field_flag_override2(&self) -> &u32;
+    fn field_flag_override2_mut(&mut self) -> &mut u32;
     fn field_flag_override3(&self) -> &u32;
+    fn field_flag_override3_mut(&mut self) -> &mut u32;
 }
 
 impl SkyComponentDataTrait for SkyComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn draw_sky_geo(&self) -> &bool {
         &self.draw_sky_geo
+    }
+    fn draw_sky_geo_mut(&mut self) -> &mut bool {
+        &mut self.draw_sky_geo
     }
     fn sky_type(&self) -> &super::world_base::SkyType {
         &self.sky_type
     }
+    fn sky_type_mut(&mut self) -> &mut super::world_base::SkyType {
+        &mut self.sky_type
+    }
     fn luminance_scale(&self) -> &f32 {
         &self.luminance_scale
+    }
+    fn luminance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.luminance_scale
     }
     fn sky_gradient_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.sky_gradient_texture
     }
+    fn sky_gradient_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.sky_gradient_texture
+    }
     fn alpha_output(&self) -> &super::world_base::AlphaOutputMode {
         &self.alpha_output
+    }
+    fn alpha_output_mut(&mut self) -> &mut super::world_base::AlphaOutputMode {
+        &mut self.alpha_output
     }
     fn use_sky_visibility_as_a_o(&self) -> &bool {
         &self.use_sky_visibility_as_a_o
     }
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_a_o
+    }
     fn hdri_rotation(&self) -> &f32 {
         &self.hdri_rotation
+    }
+    fn hdri_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.hdri_rotation
     }
     fn hdri_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.hdri_texture
     }
+    fn hdri_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.hdri_texture
+    }
     fn sun_size(&self) -> &f32 {
         &self.sun_size
+    }
+    fn sun_size_mut(&mut self) -> &mut f32 {
+        &mut self.sun_size
     }
     fn sun_scale(&self) -> &f32 {
         &self.sun_scale
     }
+    fn sun_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_scale
+    }
     fn panoramic_u_v_min_x(&self) -> &f32 {
         &self.panoramic_u_v_min_x
+    }
+    fn panoramic_u_v_min_x_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_min_x
     }
     fn panoramic_u_v_max_x(&self) -> &f32 {
         &self.panoramic_u_v_max_x
     }
+    fn panoramic_u_v_max_x_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_max_x
+    }
     fn panoramic_u_v_min_y(&self) -> &f32 {
         &self.panoramic_u_v_min_y
+    }
+    fn panoramic_u_v_min_y_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_min_y
     }
     fn panoramic_u_v_max_y(&self) -> &f32 {
         &self.panoramic_u_v_max_y
     }
+    fn panoramic_u_v_max_y_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_u_v_max_y
+    }
     fn panoramic_tile_factor(&self) -> &f32 {
         &self.panoramic_tile_factor
+    }
+    fn panoramic_tile_factor_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_tile_factor
     }
     fn panoramic_rotation(&self) -> &f32 {
         &self.panoramic_rotation
     }
+    fn panoramic_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.panoramic_rotation
+    }
     fn panoramic_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.panoramic_texture
+    }
+    fn panoramic_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.panoramic_texture
     }
     fn panoramic_alpha_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.panoramic_alpha_texture
     }
+    fn panoramic_alpha_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.panoramic_alpha_texture
+    }
     fn sky_gradient_follows_panoramic_u_vs(&self) -> &bool {
         &self.sky_gradient_follows_panoramic_u_vs
+    }
+    fn sky_gradient_follows_panoramic_u_vs_mut(&mut self) -> &mut bool {
+        &mut self.sky_gradient_follows_panoramic_u_vs
     }
     fn flow_enable(&self) -> &bool {
         &self.flow_enable
     }
+    fn flow_enable_mut(&mut self) -> &mut bool {
+        &mut self.flow_enable
+    }
     fn flow_period(&self) -> &f32 {
         &self.flow_period
+    }
+    fn flow_period_mut(&mut self) -> &mut f32 {
+        &mut self.flow_period
     }
     fn flow_distance(&self) -> &f32 {
         &self.flow_distance
     }
+    fn flow_distance_mut(&mut self) -> &mut f32 {
+        &mut self.flow_distance
+    }
     fn flow_direction(&self) -> &f32 {
         &self.flow_direction
+    }
+    fn flow_direction_mut(&mut self) -> &mut f32 {
+        &mut self.flow_direction
     }
     fn flow_height_mask_scale(&self) -> &f32 {
         &self.flow_height_mask_scale
     }
+    fn flow_height_mask_scale_mut(&mut self) -> &mut f32 {
+        &mut self.flow_height_mask_scale
+    }
     fn flow_height_mask_bias(&self) -> &f32 {
         &self.flow_height_mask_bias
+    }
+    fn flow_height_mask_bias_mut(&mut self) -> &mut f32 {
+        &mut self.flow_height_mask_bias
     }
     fn flow_mask_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.flow_mask_texture
     }
+    fn flow_mask_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.flow_mask_texture
+    }
     fn cloud_layer_sun_color(&self) -> &super::core::Vec3 {
         &self.cloud_layer_sun_color
+    }
+    fn cloud_layer_sun_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.cloud_layer_sun_color
     }
     fn cloud_layer_mask_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_layer_mask_texture
     }
+    fn cloud_layer_mask_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_layer_mask_texture
+    }
     fn cloud_layer1_altitude(&self) -> &f32 {
         &self.cloud_layer1_altitude
+    }
+    fn cloud_layer1_altitude_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_altitude
     }
     fn cloud_layer1_tile_factor(&self) -> &f32 {
         &self.cloud_layer1_tile_factor
     }
+    fn cloud_layer1_tile_factor_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_tile_factor
+    }
     fn cloud_layer1_rotation(&self) -> &f32 {
         &self.cloud_layer1_rotation
+    }
+    fn cloud_layer1_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_rotation
     }
     fn cloud_layer1_speed(&self) -> &f32 {
         &self.cloud_layer1_speed
     }
+    fn cloud_layer1_speed_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_speed
+    }
     fn cloud_layer1_sun_light_intensity(&self) -> &f32 {
         &self.cloud_layer1_sun_light_intensity
+    }
+    fn cloud_layer1_sun_light_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_sun_light_intensity
     }
     fn cloud_layer1_sun_light_power(&self) -> &f32 {
         &self.cloud_layer1_sun_light_power
     }
+    fn cloud_layer1_sun_light_power_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_sun_light_power
+    }
     fn cloud_layer1_ambient_light_intensity(&self) -> &f32 {
         &self.cloud_layer1_ambient_light_intensity
+    }
+    fn cloud_layer1_ambient_light_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_ambient_light_intensity
     }
     fn cloud_layer1_color(&self) -> &super::core::Vec3 {
         &self.cloud_layer1_color
     }
+    fn cloud_layer1_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.cloud_layer1_color
+    }
     fn cloud_layer1_alpha_mul(&self) -> &f32 {
         &self.cloud_layer1_alpha_mul
+    }
+    fn cloud_layer1_alpha_mul_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_alpha_mul
     }
     fn cloud_layer1_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_layer1_texture
     }
+    fn cloud_layer1_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_layer1_texture
+    }
     fn cloud_layer1_absorption(&self) -> &f32 {
         &self.cloud_layer1_absorption
+    }
+    fn cloud_layer1_absorption_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_absorption
     }
     fn cloud_layer1_scattering(&self) -> &f32 {
         &self.cloud_layer1_scattering
     }
+    fn cloud_layer1_scattering_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_scattering
+    }
     fn cloud_layer1_phase(&self) -> &f32 {
         &self.cloud_layer1_phase
+    }
+    fn cloud_layer1_phase_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_phase
     }
     fn cloud_layer1_thickness(&self) -> &f32 {
         &self.cloud_layer1_thickness
     }
+    fn cloud_layer1_thickness_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer1_thickness
+    }
     fn cloud_layer2_altitude(&self) -> &f32 {
         &self.cloud_layer2_altitude
+    }
+    fn cloud_layer2_altitude_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_altitude
     }
     fn cloud_layer2_tile_factor(&self) -> &f32 {
         &self.cloud_layer2_tile_factor
     }
+    fn cloud_layer2_tile_factor_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_tile_factor
+    }
     fn cloud_layer2_rotation(&self) -> &f32 {
         &self.cloud_layer2_rotation
+    }
+    fn cloud_layer2_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_rotation
     }
     fn cloud_layer2_speed(&self) -> &f32 {
         &self.cloud_layer2_speed
     }
+    fn cloud_layer2_speed_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_speed
+    }
     fn cloud_layer2_sun_light_intensity(&self) -> &f32 {
         &self.cloud_layer2_sun_light_intensity
+    }
+    fn cloud_layer2_sun_light_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_sun_light_intensity
     }
     fn cloud_layer2_sun_light_power(&self) -> &f32 {
         &self.cloud_layer2_sun_light_power
     }
+    fn cloud_layer2_sun_light_power_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_sun_light_power
+    }
     fn cloud_layer2_ambient_light_intensity(&self) -> &f32 {
         &self.cloud_layer2_ambient_light_intensity
+    }
+    fn cloud_layer2_ambient_light_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_ambient_light_intensity
     }
     fn cloud_layer2_color(&self) -> &super::core::Vec3 {
         &self.cloud_layer2_color
     }
+    fn cloud_layer2_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.cloud_layer2_color
+    }
     fn cloud_layer2_alpha_mul(&self) -> &f32 {
         &self.cloud_layer2_alpha_mul
+    }
+    fn cloud_layer2_alpha_mul_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_alpha_mul
     }
     fn cloud_layer2_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_layer2_texture
     }
+    fn cloud_layer2_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_layer2_texture
+    }
     fn cloud_layer2_absorption(&self) -> &f32 {
         &self.cloud_layer2_absorption
+    }
+    fn cloud_layer2_absorption_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_absorption
     }
     fn cloud_layer2_scattering(&self) -> &f32 {
         &self.cloud_layer2_scattering
     }
+    fn cloud_layer2_scattering_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_scattering
+    }
     fn cloud_layer2_phase(&self) -> &f32 {
         &self.cloud_layer2_phase
+    }
+    fn cloud_layer2_phase_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_phase
     }
     fn cloud_layer2_thickness(&self) -> &f32 {
         &self.cloud_layer2_thickness
     }
+    fn cloud_layer2_thickness_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_layer2_thickness
+    }
     fn static_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.static_envmap_texture
+    }
+    fn static_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.static_envmap_texture
     }
     fn static_envmap_scale(&self) -> &f32 {
         &self.static_envmap_scale
     }
+    fn static_envmap_scale_mut(&mut self) -> &mut f32 {
+        &mut self.static_envmap_scale
+    }
     fn sky_envmap8_bit_tex_scale(&self) -> &f32 {
         &self.sky_envmap8_bit_tex_scale
+    }
+    fn sky_envmap8_bit_tex_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap8_bit_tex_scale
     }
     fn custom_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.custom_envmap_texture
     }
+    fn custom_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.custom_envmap_texture
+    }
     fn custom_envmap_scale(&self) -> &f32 {
         &self.custom_envmap_scale
+    }
+    fn custom_envmap_scale_mut(&mut self) -> &mut f32 {
+        &mut self.custom_envmap_scale
     }
     fn custom_envmap_ambient(&self) -> &f32 {
         &self.custom_envmap_ambient
     }
+    fn custom_envmap_ambient_mut(&mut self) -> &mut f32 {
+        &mut self.custom_envmap_ambient
+    }
     fn sky_visibility_exponent(&self) -> &f32 {
         &self.sky_visibility_exponent
+    }
+    fn sky_visibility_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.sky_visibility_exponent
     }
     fn interior_envmap_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.interior_envmap_texture
     }
+    fn interior_envmap_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.interior_envmap_texture
+    }
     fn interior_envmap_exp(&self) -> &super::core::Vec4 {
         &self.interior_envmap_exp
+    }
+    fn interior_envmap_exp_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.interior_envmap_exp
     }
     fn interior_envmap_scale(&self) -> &super::core::Vec4 {
         &self.interior_envmap_scale
     }
+    fn interior_envmap_scale_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.interior_envmap_scale
+    }
     fn interior_envmap_bias(&self) -> &super::core::Vec4 {
         &self.interior_envmap_bias
+    }
+    fn interior_envmap_bias_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.interior_envmap_bias
     }
     fn interior_envmap_sky_visibility_fade_start(&self) -> &f32 {
         &self.interior_envmap_sky_visibility_fade_start
     }
+    fn interior_envmap_sky_visibility_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.interior_envmap_sky_visibility_fade_start
+    }
     fn interior_envmap_sky_visibility_fade_length(&self) -> &f32 {
         &self.interior_envmap_sky_visibility_fade_length
+    }
+    fn interior_envmap_sky_visibility_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.interior_envmap_sky_visibility_fade_length
     }
     fn earth_radius(&self) -> &f32 {
         &self.earth_radius
     }
+    fn earth_radius_mut(&mut self) -> &mut f32 {
+        &mut self.earth_radius
+    }
     fn atmosphere_radius(&self) -> &f32 {
         &self.atmosphere_radius
+    }
+    fn atmosphere_radius_mut(&mut self) -> &mut f32 {
+        &mut self.atmosphere_radius
     }
     fn mie_scattering_coefficient(&self) -> &f32 {
         &self.mie_scattering_coefficient
     }
+    fn mie_scattering_coefficient_mut(&mut self) -> &mut f32 {
+        &mut self.mie_scattering_coefficient
+    }
     fn mie_g(&self) -> &f32 {
         &self.mie_g
+    }
+    fn mie_g_mut(&mut self) -> &mut f32 {
+        &mut self.mie_g
     }
     fn mie_extinction_coefficient_relation(&self) -> &f32 {
         &self.mie_extinction_coefficient_relation
     }
+    fn mie_extinction_coefficient_relation_mut(&mut self) -> &mut f32 {
+        &mut self.mie_extinction_coefficient_relation
+    }
     fn scale_height_mie(&self) -> &f32 {
         &self.scale_height_mie
+    }
+    fn scale_height_mie_mut(&mut self) -> &mut f32 {
+        &mut self.scale_height_mie
     }
     fn rayleigh_scattering_coefficient(&self) -> &super::core::Vec3 {
         &self.rayleigh_scattering_coefficient
     }
+    fn rayleigh_scattering_coefficient_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.rayleigh_scattering_coefficient
+    }
     fn rayleigh_scattering_coefficient_scale(&self) -> &f32 {
         &self.rayleigh_scattering_coefficient_scale
+    }
+    fn rayleigh_scattering_coefficient_scale_mut(&mut self) -> &mut f32 {
+        &mut self.rayleigh_scattering_coefficient_scale
     }
     fn rayleigh_extinction_coefficient_relation(&self) -> &f32 {
         &self.rayleigh_extinction_coefficient_relation
     }
+    fn rayleigh_extinction_coefficient_relation_mut(&mut self) -> &mut f32 {
+        &mut self.rayleigh_extinction_coefficient_relation
+    }
     fn scale_height_rayleigh(&self) -> &f32 {
         &self.scale_height_rayleigh
+    }
+    fn scale_height_rayleigh_mut(&mut self) -> &mut f32 {
+        &mut self.scale_height_rayleigh
     }
     fn use_ozone(&self) -> &bool {
         &self.use_ozone
     }
+    fn use_ozone_mut(&mut self) -> &mut bool {
+        &mut self.use_ozone
+    }
     fn ozone_percentage(&self) -> &f32 {
         &self.ozone_percentage
+    }
+    fn ozone_percentage_mut(&mut self) -> &mut f32 {
+        &mut self.ozone_percentage
     }
     fn use_aerial_perspective(&self) -> &bool {
         &self.use_aerial_perspective
     }
+    fn use_aerial_perspective_mut(&mut self) -> &mut bool {
+        &mut self.use_aerial_perspective
+    }
     fn aerial_perspective_scale(&self) -> &f32 {
         &self.aerial_perspective_scale
+    }
+    fn aerial_perspective_scale_mut(&mut self) -> &mut f32 {
+        &mut self.aerial_perspective_scale
     }
     fn aerial_perspective_intensity(&self) -> &f32 {
         &self.aerial_perspective_intensity
     }
+    fn aerial_perspective_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.aerial_perspective_intensity
+    }
     fn aerial_perspective_dithering(&self) -> &f32 {
         &self.aerial_perspective_dithering
+    }
+    fn aerial_perspective_dithering_mut(&mut self) -> &mut f32 {
+        &mut self.aerial_perspective_dithering
     }
     fn light1_color(&self) -> &super::core::Vec3 {
         &self.light1_color
     }
+    fn light1_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.light1_color
+    }
     fn light1_intensity(&self) -> &f32 {
         &self.light1_intensity
+    }
+    fn light1_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.light1_intensity
     }
     fn light1_follow_outdoor_light(&self) -> &bool {
         &self.light1_follow_outdoor_light
     }
+    fn light1_follow_outdoor_light_mut(&mut self) -> &mut bool {
+        &mut self.light1_follow_outdoor_light
+    }
     fn light1_takes_color_from_outdoor_light(&self) -> &bool {
         &self.light1_takes_color_from_outdoor_light
+    }
+    fn light1_takes_color_from_outdoor_light_mut(&mut self) -> &mut bool {
+        &mut self.light1_takes_color_from_outdoor_light
     }
     fn light1_rot_x(&self) -> &f32 {
         &self.light1_rot_x
     }
+    fn light1_rot_x_mut(&mut self) -> &mut f32 {
+        &mut self.light1_rot_x
+    }
     fn light1_rot_y(&self) -> &f32 {
         &self.light1_rot_y
+    }
+    fn light1_rot_y_mut(&mut self) -> &mut f32 {
+        &mut self.light1_rot_y
     }
     fn light2_color(&self) -> &super::core::Vec3 {
         &self.light2_color
     }
+    fn light2_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.light2_color
+    }
     fn light2_intensity(&self) -> &f32 {
         &self.light2_intensity
+    }
+    fn light2_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.light2_intensity
     }
     fn use_light_source2(&self) -> &bool {
         &self.use_light_source2
     }
+    fn use_light_source2_mut(&mut self) -> &mut bool {
+        &mut self.use_light_source2
+    }
     fn light2_rot_x(&self) -> &f32 {
         &self.light2_rot_x
+    }
+    fn light2_rot_x_mut(&mut self) -> &mut f32 {
+        &mut self.light2_rot_x
     }
     fn light2_rot_y(&self) -> &f32 {
         &self.light2_rot_y
     }
+    fn light2_rot_y_mut(&mut self) -> &mut f32 {
+        &mut self.light2_rot_y
+    }
     fn use_noise(&self) -> &bool {
         &self.use_noise
+    }
+    fn use_noise_mut(&mut self) -> &mut bool {
+        &mut self.use_noise
     }
     fn fog_start_distance(&self) -> &f32 {
         &self.fog_start_distance
     }
+    fn fog_start_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fog_start_distance
+    }
     fn rayleigh_polarization(&self) -> &super::core::Vec3 {
         &self.rayleigh_polarization
+    }
+    fn rayleigh_polarization_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.rayleigh_polarization
     }
     fn mie_polarization(&self) -> &super::core::Vec3 {
         &self.mie_polarization
     }
+    fn mie_polarization_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.mie_polarization
+    }
     fn outdoor_light_scale(&self) -> &super::core::Vec3 {
         &self.outdoor_light_scale
+    }
+    fn outdoor_light_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.outdoor_light_scale
     }
     fn draw_sun_disc(&self) -> &bool {
         &self.draw_sun_disc
     }
+    fn draw_sun_disc_mut(&mut self) -> &mut bool {
+        &mut self.draw_sun_disc
+    }
     fn forward_scattering_depth_visibility(&self) -> &super::core::Vec4 {
         &self.forward_scattering_depth_visibility
+    }
+    fn forward_scattering_depth_visibility_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.forward_scattering_depth_visibility
     }
     fn forward_scattering_start_depth(&self) -> &f32 {
         &self.forward_scattering_start_depth
     }
+    fn forward_scattering_start_depth_mut(&mut self) -> &mut f32 {
+        &mut self.forward_scattering_start_depth
+    }
     fn forward_scattering_end_depth(&self) -> &f32 {
         &self.forward_scattering_end_depth
+    }
+    fn forward_scattering_end_depth_mut(&mut self) -> &mut f32 {
+        &mut self.forward_scattering_end_depth
     }
     fn forward_scattering_takes_color_from_outdoor_light(&self) -> &f32 {
         &self.forward_scattering_takes_color_from_outdoor_light
     }
+    fn forward_scattering_takes_color_from_outdoor_light_mut(&mut self) -> &mut f32 {
+        &mut self.forward_scattering_takes_color_from_outdoor_light
+    }
     fn forward_scattering_outdoor_light_tint(&self) -> &super::core::Vec3 {
         &self.forward_scattering_outdoor_light_tint
+    }
+    fn forward_scattering_outdoor_light_tint_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.forward_scattering_outdoor_light_tint
     }
     fn height_fog_color_add(&self) -> &super::core::Vec3 {
         &self.height_fog_color_add
     }
+    fn height_fog_color_add_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.height_fog_color_add
+    }
     fn height_fog_color_mult(&self) -> &super::core::Vec3 {
         &self.height_fog_color_mult
+    }
+    fn height_fog_color_mult_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.height_fog_color_mult
     }
     fn min_height_fog_transmittance(&self) -> &f32 {
         &self.min_height_fog_transmittance
     }
+    fn min_height_fog_transmittance_mut(&mut self) -> &mut f32 {
+        &mut self.min_height_fog_transmittance
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
     }
     fn field_flag_override1(&self) -> &u32 {
         &self.field_flag_override1
     }
+    fn field_flag_override1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override1
+    }
     fn field_flag_override2(&self) -> &u32 {
         &self.field_flag_override2
     }
+    fn field_flag_override2_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override2
+    }
     fn field_flag_override3(&self) -> &u32 {
         &self.field_flag_override3
+    }
+    fn field_flag_override3_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override3
     }
 }
 
@@ -14364,23 +19397,41 @@ impl VisualEnvironmentComponentDataTrait for SkyComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for SkyComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -14391,15 +19442,15 @@ impl super::core::DataBusPeerTrait for SkyComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SkyComponentData {
 }
 
 impl super::core::DataContainerTrait for SkyComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SKYCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15115,6 +20166,15 @@ impl TypeObject for SkyComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15176,171 +20236,335 @@ pub struct FogComponentData {
 
 pub trait FogComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn fog_distance_multiplier(&self) -> &f32;
+    fn fog_distance_multiplier_mut(&mut self) -> &mut f32;
     fn fog_gradient_enable(&self) -> &bool;
+    fn fog_gradient_enable_mut(&mut self) -> &mut bool;
     fn start(&self) -> &f32;
+    fn start_mut(&mut self) -> &mut f32;
     fn end(&self) -> &f32;
+    fn end_mut(&mut self) -> &mut f32;
     fn curve(&self) -> &super::core::Vec4;
+    fn curve_mut(&mut self) -> &mut super::core::Vec4;
     fn fog_gradient_height_fade_enable(&self) -> &bool;
+    fn fog_gradient_height_fade_enable_mut(&mut self) -> &mut bool;
     fn fade_start(&self) -> &f32;
+    fn fade_start_mut(&mut self) -> &mut f32;
     fn fade_end(&self) -> &f32;
+    fn fade_end_mut(&mut self) -> &mut f32;
     fn fog_color_enable(&self) -> &bool;
+    fn fog_color_enable_mut(&mut self) -> &mut bool;
     fn fog_color(&self) -> &super::core::Vec3;
+    fn fog_color_mut(&mut self) -> &mut super::core::Vec3;
     fn fog_color_start(&self) -> &f32;
+    fn fog_color_start_mut(&mut self) -> &mut f32;
     fn fog_color_end(&self) -> &f32;
+    fn fog_color_end_mut(&mut self) -> &mut f32;
     fn fog_color_curve(&self) -> &super::core::Vec4;
+    fn fog_color_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn transparency_fade_start(&self) -> &f32;
+    fn transparency_fade_start_mut(&mut self) -> &mut f32;
     fn transparency_fade_end(&self) -> &f32;
+    fn transparency_fade_end_mut(&mut self) -> &mut f32;
     fn transparency_fade_clamp(&self) -> &f32;
+    fn transparency_fade_clamp_mut(&mut self) -> &mut f32;
     fn transparency_fade_curve(&self) -> &super::core::Vec4;
+    fn transparency_fade_curve_mut(&mut self) -> &mut super::core::Vec4;
     fn forward_light_scattering_enabled(&self) -> &bool;
+    fn forward_light_scattering_enabled_mut(&mut self) -> &mut bool;
     fn forward_light_scattering_use_sun_position(&self) -> &bool;
+    fn forward_light_scattering_use_sun_position_mut(&mut self) -> &mut bool;
     fn forward_light_scattering_rotation_x(&self) -> &f32;
+    fn forward_light_scattering_rotation_x_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_rotation_y(&self) -> &f32;
+    fn forward_light_scattering_rotation_y_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_phase_g(&self) -> &f32;
+    fn forward_light_scattering_phase_g_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_strength(&self) -> &f32;
+    fn forward_light_scattering_strength_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_color(&self) -> &super::core::Vec3;
+    fn forward_light_scattering_color_mut(&mut self) -> &mut super::core::Vec3;
     fn forward_light_scattering_presence(&self) -> &f32;
+    fn forward_light_scattering_presence_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_max_blur_length(&self) -> &f32;
+    fn forward_light_scattering_max_blur_length_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_extinction(&self) -> &f32;
+    fn forward_light_scattering_extinction_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_smoothness(&self) -> &f32;
+    fn forward_light_scattering_smoothness_mut(&mut self) -> &mut f32;
     fn forward_light_scattering_attenuation_type(&self) -> &super::world_base::ForwardLightScatteringAttenuation;
+    fn forward_light_scattering_attenuation_type_mut(&mut self) -> &mut super::world_base::ForwardLightScatteringAttenuation;
     fn height_fog_enable(&self) -> &bool;
+    fn height_fog_enable_mut(&mut self) -> &mut bool;
     fn height_fog_follow_camera(&self) -> &f32;
+    fn height_fog_follow_camera_mut(&mut self) -> &mut f32;
     fn height_fog_altitude(&self) -> &f32;
+    fn height_fog_altitude_mut(&mut self) -> &mut f32;
     fn height_fog_depth(&self) -> &f32;
+    fn height_fog_depth_mut(&mut self) -> &mut f32;
     fn height_fog_visibility_range(&self) -> &f32;
+    fn height_fog_visibility_range_mut(&mut self) -> &mut f32;
     fn participating_media_enable(&self) -> &bool;
+    fn participating_media_enable_mut(&mut self) -> &mut bool;
     fn depth_fog_participating_media(&self) -> &super::world_base::ParticipatingMedia;
+    fn depth_fog_participating_media_mut(&mut self) -> &mut super::world_base::ParticipatingMedia;
     fn height_fog_participating_media(&self) -> &super::world_base::ParticipatingMedia;
+    fn height_fog_participating_media_mut(&mut self) -> &mut super::world_base::ParticipatingMedia;
     fn fog_volume_strength(&self) -> &f32;
+    fn fog_volume_strength_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u8;
+    fn field_flag_override1_mut(&mut self) -> &mut u8;
 }
 
 impl FogComponentDataTrait for FogComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn fog_distance_multiplier(&self) -> &f32 {
         &self.fog_distance_multiplier
+    }
+    fn fog_distance_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.fog_distance_multiplier
     }
     fn fog_gradient_enable(&self) -> &bool {
         &self.fog_gradient_enable
     }
+    fn fog_gradient_enable_mut(&mut self) -> &mut bool {
+        &mut self.fog_gradient_enable
+    }
     fn start(&self) -> &f32 {
         &self.start
+    }
+    fn start_mut(&mut self) -> &mut f32 {
+        &mut self.start
     }
     fn end(&self) -> &f32 {
         &self.end
     }
+    fn end_mut(&mut self) -> &mut f32 {
+        &mut self.end
+    }
     fn curve(&self) -> &super::core::Vec4 {
         &self.curve
+    }
+    fn curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.curve
     }
     fn fog_gradient_height_fade_enable(&self) -> &bool {
         &self.fog_gradient_height_fade_enable
     }
+    fn fog_gradient_height_fade_enable_mut(&mut self) -> &mut bool {
+        &mut self.fog_gradient_height_fade_enable
+    }
     fn fade_start(&self) -> &f32 {
         &self.fade_start
+    }
+    fn fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.fade_start
     }
     fn fade_end(&self) -> &f32 {
         &self.fade_end
     }
+    fn fade_end_mut(&mut self) -> &mut f32 {
+        &mut self.fade_end
+    }
     fn fog_color_enable(&self) -> &bool {
         &self.fog_color_enable
+    }
+    fn fog_color_enable_mut(&mut self) -> &mut bool {
+        &mut self.fog_color_enable
     }
     fn fog_color(&self) -> &super::core::Vec3 {
         &self.fog_color
     }
+    fn fog_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.fog_color
+    }
     fn fog_color_start(&self) -> &f32 {
         &self.fog_color_start
+    }
+    fn fog_color_start_mut(&mut self) -> &mut f32 {
+        &mut self.fog_color_start
     }
     fn fog_color_end(&self) -> &f32 {
         &self.fog_color_end
     }
+    fn fog_color_end_mut(&mut self) -> &mut f32 {
+        &mut self.fog_color_end
+    }
     fn fog_color_curve(&self) -> &super::core::Vec4 {
         &self.fog_color_curve
+    }
+    fn fog_color_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.fog_color_curve
     }
     fn transparency_fade_start(&self) -> &f32 {
         &self.transparency_fade_start
     }
+    fn transparency_fade_start_mut(&mut self) -> &mut f32 {
+        &mut self.transparency_fade_start
+    }
     fn transparency_fade_end(&self) -> &f32 {
         &self.transparency_fade_end
+    }
+    fn transparency_fade_end_mut(&mut self) -> &mut f32 {
+        &mut self.transparency_fade_end
     }
     fn transparency_fade_clamp(&self) -> &f32 {
         &self.transparency_fade_clamp
     }
+    fn transparency_fade_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.transparency_fade_clamp
+    }
     fn transparency_fade_curve(&self) -> &super::core::Vec4 {
         &self.transparency_fade_curve
+    }
+    fn transparency_fade_curve_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.transparency_fade_curve
     }
     fn forward_light_scattering_enabled(&self) -> &bool {
         &self.forward_light_scattering_enabled
     }
+    fn forward_light_scattering_enabled_mut(&mut self) -> &mut bool {
+        &mut self.forward_light_scattering_enabled
+    }
     fn forward_light_scattering_use_sun_position(&self) -> &bool {
         &self.forward_light_scattering_use_sun_position
+    }
+    fn forward_light_scattering_use_sun_position_mut(&mut self) -> &mut bool {
+        &mut self.forward_light_scattering_use_sun_position
     }
     fn forward_light_scattering_rotation_x(&self) -> &f32 {
         &self.forward_light_scattering_rotation_x
     }
+    fn forward_light_scattering_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_rotation_x
+    }
     fn forward_light_scattering_rotation_y(&self) -> &f32 {
         &self.forward_light_scattering_rotation_y
+    }
+    fn forward_light_scattering_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_rotation_y
     }
     fn forward_light_scattering_phase_g(&self) -> &f32 {
         &self.forward_light_scattering_phase_g
     }
+    fn forward_light_scattering_phase_g_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_phase_g
+    }
     fn forward_light_scattering_strength(&self) -> &f32 {
         &self.forward_light_scattering_strength
+    }
+    fn forward_light_scattering_strength_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_strength
     }
     fn forward_light_scattering_color(&self) -> &super::core::Vec3 {
         &self.forward_light_scattering_color
     }
+    fn forward_light_scattering_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.forward_light_scattering_color
+    }
     fn forward_light_scattering_presence(&self) -> &f32 {
         &self.forward_light_scattering_presence
+    }
+    fn forward_light_scattering_presence_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_presence
     }
     fn forward_light_scattering_max_blur_length(&self) -> &f32 {
         &self.forward_light_scattering_max_blur_length
     }
+    fn forward_light_scattering_max_blur_length_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_max_blur_length
+    }
     fn forward_light_scattering_extinction(&self) -> &f32 {
         &self.forward_light_scattering_extinction
+    }
+    fn forward_light_scattering_extinction_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_extinction
     }
     fn forward_light_scattering_smoothness(&self) -> &f32 {
         &self.forward_light_scattering_smoothness
     }
+    fn forward_light_scattering_smoothness_mut(&mut self) -> &mut f32 {
+        &mut self.forward_light_scattering_smoothness
+    }
     fn forward_light_scattering_attenuation_type(&self) -> &super::world_base::ForwardLightScatteringAttenuation {
         &self.forward_light_scattering_attenuation_type
+    }
+    fn forward_light_scattering_attenuation_type_mut(&mut self) -> &mut super::world_base::ForwardLightScatteringAttenuation {
+        &mut self.forward_light_scattering_attenuation_type
     }
     fn height_fog_enable(&self) -> &bool {
         &self.height_fog_enable
     }
+    fn height_fog_enable_mut(&mut self) -> &mut bool {
+        &mut self.height_fog_enable
+    }
     fn height_fog_follow_camera(&self) -> &f32 {
         &self.height_fog_follow_camera
+    }
+    fn height_fog_follow_camera_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_follow_camera
     }
     fn height_fog_altitude(&self) -> &f32 {
         &self.height_fog_altitude
     }
+    fn height_fog_altitude_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_altitude
+    }
     fn height_fog_depth(&self) -> &f32 {
         &self.height_fog_depth
+    }
+    fn height_fog_depth_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_depth
     }
     fn height_fog_visibility_range(&self) -> &f32 {
         &self.height_fog_visibility_range
     }
+    fn height_fog_visibility_range_mut(&mut self) -> &mut f32 {
+        &mut self.height_fog_visibility_range
+    }
     fn participating_media_enable(&self) -> &bool {
         &self.participating_media_enable
+    }
+    fn participating_media_enable_mut(&mut self) -> &mut bool {
+        &mut self.participating_media_enable
     }
     fn depth_fog_participating_media(&self) -> &super::world_base::ParticipatingMedia {
         &self.depth_fog_participating_media
     }
+    fn depth_fog_participating_media_mut(&mut self) -> &mut super::world_base::ParticipatingMedia {
+        &mut self.depth_fog_participating_media
+    }
     fn height_fog_participating_media(&self) -> &super::world_base::ParticipatingMedia {
         &self.height_fog_participating_media
+    }
+    fn height_fog_participating_media_mut(&mut self) -> &mut super::world_base::ParticipatingMedia {
+        &mut self.height_fog_participating_media
     }
     fn fog_volume_strength(&self) -> &f32 {
         &self.fog_volume_strength
     }
+    fn fog_volume_strength_mut(&mut self) -> &mut f32 {
+        &mut self.fog_volume_strength
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_override1(&self) -> &u8 {
         &self.field_flag_override1
+    }
+    fn field_flag_override1_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override1
     }
 }
 
@@ -15348,23 +20572,41 @@ impl VisualEnvironmentComponentDataTrait for FogComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for FogComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -15375,15 +20617,15 @@ impl super::core::DataBusPeerTrait for FogComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FogComponentData {
 }
 
 impl super::core::DataContainerTrait for FogComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FOGCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15655,6 +20897,15 @@ impl TypeObject for FogComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15736,251 +20987,495 @@ pub struct OutdoorLightComponentData {
 
 pub trait OutdoorLightComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn sun_rotation_x(&self) -> &f32;
+    fn sun_rotation_x_mut(&mut self) -> &mut f32;
     fn sun_rotation_y(&self) -> &f32;
+    fn sun_rotation_y_mut(&mut self) -> &mut f32;
     fn shadow_sun_rotation_enable(&self) -> &bool;
+    fn shadow_sun_rotation_enable_mut(&mut self) -> &mut bool;
     fn shadow_sun_rotation_x(&self) -> &f32;
+    fn shadow_sun_rotation_x_mut(&mut self) -> &mut f32;
     fn shadow_sun_rotation_y(&self) -> &f32;
+    fn shadow_sun_rotation_y_mut(&mut self) -> &mut f32;
     fn sun_color(&self) -> &super::core::Vec3;
+    fn sun_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sun_intensity(&self) -> &f32;
+    fn sun_intensity_mut(&mut self) -> &mut f32;
     fn final_sun_luminance(&self) -> &super::core::Vec3;
+    fn final_sun_luminance_mut(&mut self) -> &mut super::core::Vec3;
     fn final_sun_illuminance(&self) -> &super::core::Vec3;
+    fn final_sun_illuminance_mut(&mut self) -> &mut super::core::Vec3;
     fn outer_space_sun_luminance(&self) -> &super::core::Vec3;
+    fn outer_space_sun_luminance_mut(&mut self) -> &mut super::core::Vec3;
     fn outer_space_sun_illuminance1(&self) -> &super::core::Vec3;
+    fn outer_space_sun_illuminance1_mut(&mut self) -> &mut super::core::Vec3;
     fn outer_space_sun_illuminance2(&self) -> &super::core::Vec3;
+    fn outer_space_sun_illuminance2_mut(&mut self) -> &mut super::core::Vec3;
     fn sun_angular_radius(&self) -> &f32;
+    fn sun_angular_radius_mut(&mut self) -> &mut f32;
     fn sky_color(&self) -> &super::core::Vec3;
+    fn sky_color_mut(&mut self) -> &mut super::core::Vec3;
     fn ground_color(&self) -> &super::core::Vec3;
+    fn ground_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_light_angle_factor(&self) -> &f32;
+    fn sky_light_angle_factor_mut(&mut self) -> &mut f32;
     fn sun_specular_scale(&self) -> &f32;
+    fn sun_specular_scale_mut(&mut self) -> &mut f32;
     fn sky_envmap_shadow_scale(&self) -> &f32;
+    fn sky_envmap_shadow_scale_mut(&mut self) -> &mut f32;
     fn cascade_shadow_enable(&self) -> &bool;
+    fn cascade_shadow_enable_mut(&mut self) -> &mut bool;
     fn sun_shadow_height_scale(&self) -> &f32;
+    fn sun_shadow_height_scale_mut(&mut self) -> &mut f32;
     fn sun_shadow_filter_type(&self) -> &super::world_base::ShadowFilteringType;
+    fn sun_shadow_filter_type_mut(&mut self) -> &mut super::world_base::ShadowFilteringType;
     fn sun_shadow_forward_quality(&self) -> &super::render_base::ShaderShadowmapQuality;
+    fn sun_shadow_forward_quality_mut(&mut self) -> &mut super::render_base::ShaderShadowmapQuality;
     fn sun_pcss_filter_adaptive(&self) -> &bool;
+    fn sun_pcss_filter_adaptive_mut(&mut self) -> &mut bool;
     fn sun_pcss_initial_sample_count(&self) -> &i32;
+    fn sun_pcss_initial_sample_count_mut(&mut self) -> &mut i32;
     fn sun_pcss_maximum_sample_count(&self) -> &i32;
+    fn sun_pcss_maximum_sample_count_mut(&mut self) -> &mut i32;
     fn sun_pcss_filter_error_threshold_pct(&self) -> &f32;
+    fn sun_pcss_filter_error_threshold_pct_mut(&mut self) -> &mut f32;
     fn sun_penumbra_size(&self) -> &f32;
+    fn sun_penumbra_size_mut(&mut self) -> &mut f32;
     fn sun_pcss_shadow_filter_scale(&self) -> &f32;
+    fn sun_pcss_shadow_filter_scale_mut(&mut self) -> &mut f32;
     fn cloud_shadow_enable(&self) -> &bool;
+    fn cloud_shadow_enable_mut(&mut self) -> &mut bool;
     fn cloud_shadow_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn cloud_shadow_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cloud_shadow_speed(&self) -> &super::core::Vec2;
+    fn cloud_shadow_speed_mut(&mut self) -> &mut super::core::Vec2;
     fn cloud_shadow_size(&self) -> &f32;
+    fn cloud_shadow_size_mut(&mut self) -> &mut f32;
     fn cloud_shadow_coverage(&self) -> &f32;
+    fn cloud_shadow_coverage_mut(&mut self) -> &mut f32;
     fn cloud_shadow_exponent(&self) -> &f32;
+    fn cloud_shadow_exponent_mut(&mut self) -> &mut f32;
     fn cloud_shadow_is_top_down(&self) -> &bool;
+    fn cloud_shadow_is_top_down_mut(&mut self) -> &mut bool;
     fn cloud_shadow_start_fade(&self) -> &f32;
+    fn cloud_shadow_start_fade_mut(&mut self) -> &mut f32;
     fn cloud_shadows_fade_distance(&self) -> &f32;
+    fn cloud_shadows_fade_distance_mut(&mut self) -> &mut f32;
     fn cloud_shadow_height_fade_enable(&self) -> &bool;
+    fn cloud_shadow_height_fade_enable_mut(&mut self) -> &mut bool;
     fn cloud_shadow_start_height_fade(&self) -> &f32;
+    fn cloud_shadow_start_height_fade_mut(&mut self) -> &mut f32;
     fn cloud_shadows_height_fade_distance(&self) -> &f32;
+    fn cloud_shadows_height_fade_distance_mut(&mut self) -> &mut f32;
     fn cloud_x_z_translation(&self) -> &super::core::Vec2;
+    fn cloud_x_z_translation_mut(&mut self) -> &mut super::core::Vec2;
     fn cloud_shadow_addressing_mode(&self) -> &super::render_base::TextureAddress;
+    fn cloud_shadow_addressing_mode_mut(&mut self) -> &mut super::render_base::TextureAddress;
     fn cloud_radiosity_enable(&self) -> &bool;
+    fn cloud_radiosity_enable_mut(&mut self) -> &mut bool;
     fn secondary_cloud_shadow_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn secondary_cloud_shadow_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn secondary_cloud_shadow_speed(&self) -> &super::core::Vec2;
+    fn secondary_cloud_shadow_speed_mut(&mut self) -> &mut super::core::Vec2;
     fn secondary_cloud_shadow_size(&self) -> &f32;
+    fn secondary_cloud_shadow_size_mut(&mut self) -> &mut f32;
     fn secondary_cloud_shadow_coverage(&self) -> &f32;
+    fn secondary_cloud_shadow_coverage_mut(&mut self) -> &mut f32;
     fn secondary_cloud_shadow_exponent(&self) -> &f32;
+    fn secondary_cloud_shadow_exponent_mut(&mut self) -> &mut f32;
     fn secondary_cloud_shadow_is_top_down(&self) -> &bool;
+    fn secondary_cloud_shadow_is_top_down_mut(&mut self) -> &mut bool;
     fn secondary_cloud_x_z_translation(&self) -> &super::core::Vec2;
+    fn secondary_cloud_x_z_translation_mut(&mut self) -> &mut super::core::Vec2;
     fn secondary_cloud_shadow_addressing_mode(&self) -> &super::render_base::TextureAddress;
+    fn secondary_cloud_shadow_addressing_mode_mut(&mut self) -> &mut super::render_base::TextureAddress;
     fn cast_terrain_shadows_enable(&self) -> &bool;
+    fn cast_terrain_shadows_enable_mut(&mut self) -> &mut bool;
     fn translucency_ambient(&self) -> &f32;
+    fn translucency_ambient_mut(&mut self) -> &mut f32;
     fn translucency_scale(&self) -> &f32;
+    fn translucency_scale_mut(&mut self) -> &mut f32;
     fn translucency_power(&self) -> &f32;
+    fn translucency_power_mut(&mut self) -> &mut f32;
     fn translucency_distortion(&self) -> &f32;
+    fn translucency_distortion_mut(&mut self) -> &mut f32;
     fn particle_sun_shadow_factor(&self) -> &f32;
+    fn particle_sun_shadow_factor_mut(&mut self) -> &mut f32;
     fn particle_sun_shadow_smoothing(&self) -> &f32;
+    fn particle_sun_shadow_smoothing_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u32;
+    fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u32;
+    fn field_flag_override1_mut(&mut self) -> &mut u32;
 }
 
 impl OutdoorLightComponentDataTrait for OutdoorLightComponentData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn sun_rotation_x(&self) -> &f32 {
         &self.sun_rotation_x
+    }
+    fn sun_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.sun_rotation_x
     }
     fn sun_rotation_y(&self) -> &f32 {
         &self.sun_rotation_y
     }
+    fn sun_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.sun_rotation_y
+    }
     fn shadow_sun_rotation_enable(&self) -> &bool {
         &self.shadow_sun_rotation_enable
+    }
+    fn shadow_sun_rotation_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_sun_rotation_enable
     }
     fn shadow_sun_rotation_x(&self) -> &f32 {
         &self.shadow_sun_rotation_x
     }
+    fn shadow_sun_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_sun_rotation_x
+    }
     fn shadow_sun_rotation_y(&self) -> &f32 {
         &self.shadow_sun_rotation_y
+    }
+    fn shadow_sun_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_sun_rotation_y
     }
     fn sun_color(&self) -> &super::core::Vec3 {
         &self.sun_color
     }
+    fn sun_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sun_color
+    }
     fn sun_intensity(&self) -> &f32 {
         &self.sun_intensity
+    }
+    fn sun_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.sun_intensity
     }
     fn final_sun_luminance(&self) -> &super::core::Vec3 {
         &self.final_sun_luminance
     }
+    fn final_sun_luminance_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.final_sun_luminance
+    }
     fn final_sun_illuminance(&self) -> &super::core::Vec3 {
         &self.final_sun_illuminance
+    }
+    fn final_sun_illuminance_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.final_sun_illuminance
     }
     fn outer_space_sun_luminance(&self) -> &super::core::Vec3 {
         &self.outer_space_sun_luminance
     }
+    fn outer_space_sun_luminance_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.outer_space_sun_luminance
+    }
     fn outer_space_sun_illuminance1(&self) -> &super::core::Vec3 {
         &self.outer_space_sun_illuminance1
+    }
+    fn outer_space_sun_illuminance1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.outer_space_sun_illuminance1
     }
     fn outer_space_sun_illuminance2(&self) -> &super::core::Vec3 {
         &self.outer_space_sun_illuminance2
     }
+    fn outer_space_sun_illuminance2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.outer_space_sun_illuminance2
+    }
     fn sun_angular_radius(&self) -> &f32 {
         &self.sun_angular_radius
+    }
+    fn sun_angular_radius_mut(&mut self) -> &mut f32 {
+        &mut self.sun_angular_radius
     }
     fn sky_color(&self) -> &super::core::Vec3 {
         &self.sky_color
     }
+    fn sky_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_color
+    }
     fn ground_color(&self) -> &super::core::Vec3 {
         &self.ground_color
+    }
+    fn ground_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ground_color
     }
     fn sky_light_angle_factor(&self) -> &f32 {
         &self.sky_light_angle_factor
     }
+    fn sky_light_angle_factor_mut(&mut self) -> &mut f32 {
+        &mut self.sky_light_angle_factor
+    }
     fn sun_specular_scale(&self) -> &f32 {
         &self.sun_specular_scale
+    }
+    fn sun_specular_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_specular_scale
     }
     fn sky_envmap_shadow_scale(&self) -> &f32 {
         &self.sky_envmap_shadow_scale
     }
+    fn sky_envmap_shadow_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap_shadow_scale
+    }
     fn cascade_shadow_enable(&self) -> &bool {
         &self.cascade_shadow_enable
+    }
+    fn cascade_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.cascade_shadow_enable
     }
     fn sun_shadow_height_scale(&self) -> &f32 {
         &self.sun_shadow_height_scale
     }
+    fn sun_shadow_height_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_shadow_height_scale
+    }
     fn sun_shadow_filter_type(&self) -> &super::world_base::ShadowFilteringType {
         &self.sun_shadow_filter_type
+    }
+    fn sun_shadow_filter_type_mut(&mut self) -> &mut super::world_base::ShadowFilteringType {
+        &mut self.sun_shadow_filter_type
     }
     fn sun_shadow_forward_quality(&self) -> &super::render_base::ShaderShadowmapQuality {
         &self.sun_shadow_forward_quality
     }
+    fn sun_shadow_forward_quality_mut(&mut self) -> &mut super::render_base::ShaderShadowmapQuality {
+        &mut self.sun_shadow_forward_quality
+    }
     fn sun_pcss_filter_adaptive(&self) -> &bool {
         &self.sun_pcss_filter_adaptive
+    }
+    fn sun_pcss_filter_adaptive_mut(&mut self) -> &mut bool {
+        &mut self.sun_pcss_filter_adaptive
     }
     fn sun_pcss_initial_sample_count(&self) -> &i32 {
         &self.sun_pcss_initial_sample_count
     }
+    fn sun_pcss_initial_sample_count_mut(&mut self) -> &mut i32 {
+        &mut self.sun_pcss_initial_sample_count
+    }
     fn sun_pcss_maximum_sample_count(&self) -> &i32 {
         &self.sun_pcss_maximum_sample_count
+    }
+    fn sun_pcss_maximum_sample_count_mut(&mut self) -> &mut i32 {
+        &mut self.sun_pcss_maximum_sample_count
     }
     fn sun_pcss_filter_error_threshold_pct(&self) -> &f32 {
         &self.sun_pcss_filter_error_threshold_pct
     }
+    fn sun_pcss_filter_error_threshold_pct_mut(&mut self) -> &mut f32 {
+        &mut self.sun_pcss_filter_error_threshold_pct
+    }
     fn sun_penumbra_size(&self) -> &f32 {
         &self.sun_penumbra_size
+    }
+    fn sun_penumbra_size_mut(&mut self) -> &mut f32 {
+        &mut self.sun_penumbra_size
     }
     fn sun_pcss_shadow_filter_scale(&self) -> &f32 {
         &self.sun_pcss_shadow_filter_scale
     }
+    fn sun_pcss_shadow_filter_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_pcss_shadow_filter_scale
+    }
     fn cloud_shadow_enable(&self) -> &bool {
         &self.cloud_shadow_enable
+    }
+    fn cloud_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.cloud_shadow_enable
     }
     fn cloud_shadow_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.cloud_shadow_texture
     }
+    fn cloud_shadow_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.cloud_shadow_texture
+    }
     fn cloud_shadow_speed(&self) -> &super::core::Vec2 {
         &self.cloud_shadow_speed
+    }
+    fn cloud_shadow_speed_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.cloud_shadow_speed
     }
     fn cloud_shadow_size(&self) -> &f32 {
         &self.cloud_shadow_size
     }
+    fn cloud_shadow_size_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_size
+    }
     fn cloud_shadow_coverage(&self) -> &f32 {
         &self.cloud_shadow_coverage
+    }
+    fn cloud_shadow_coverage_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_coverage
     }
     fn cloud_shadow_exponent(&self) -> &f32 {
         &self.cloud_shadow_exponent
     }
+    fn cloud_shadow_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_exponent
+    }
     fn cloud_shadow_is_top_down(&self) -> &bool {
         &self.cloud_shadow_is_top_down
+    }
+    fn cloud_shadow_is_top_down_mut(&mut self) -> &mut bool {
+        &mut self.cloud_shadow_is_top_down
     }
     fn cloud_shadow_start_fade(&self) -> &f32 {
         &self.cloud_shadow_start_fade
     }
+    fn cloud_shadow_start_fade_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_start_fade
+    }
     fn cloud_shadows_fade_distance(&self) -> &f32 {
         &self.cloud_shadows_fade_distance
+    }
+    fn cloud_shadows_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadows_fade_distance
     }
     fn cloud_shadow_height_fade_enable(&self) -> &bool {
         &self.cloud_shadow_height_fade_enable
     }
+    fn cloud_shadow_height_fade_enable_mut(&mut self) -> &mut bool {
+        &mut self.cloud_shadow_height_fade_enable
+    }
     fn cloud_shadow_start_height_fade(&self) -> &f32 {
         &self.cloud_shadow_start_height_fade
+    }
+    fn cloud_shadow_start_height_fade_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadow_start_height_fade
     }
     fn cloud_shadows_height_fade_distance(&self) -> &f32 {
         &self.cloud_shadows_height_fade_distance
     }
+    fn cloud_shadows_height_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cloud_shadows_height_fade_distance
+    }
     fn cloud_x_z_translation(&self) -> &super::core::Vec2 {
         &self.cloud_x_z_translation
+    }
+    fn cloud_x_z_translation_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.cloud_x_z_translation
     }
     fn cloud_shadow_addressing_mode(&self) -> &super::render_base::TextureAddress {
         &self.cloud_shadow_addressing_mode
     }
+    fn cloud_shadow_addressing_mode_mut(&mut self) -> &mut super::render_base::TextureAddress {
+        &mut self.cloud_shadow_addressing_mode
+    }
     fn cloud_radiosity_enable(&self) -> &bool {
         &self.cloud_radiosity_enable
+    }
+    fn cloud_radiosity_enable_mut(&mut self) -> &mut bool {
+        &mut self.cloud_radiosity_enable
     }
     fn secondary_cloud_shadow_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.secondary_cloud_shadow_texture
     }
+    fn secondary_cloud_shadow_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.secondary_cloud_shadow_texture
+    }
     fn secondary_cloud_shadow_speed(&self) -> &super::core::Vec2 {
         &self.secondary_cloud_shadow_speed
+    }
+    fn secondary_cloud_shadow_speed_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.secondary_cloud_shadow_speed
     }
     fn secondary_cloud_shadow_size(&self) -> &f32 {
         &self.secondary_cloud_shadow_size
     }
+    fn secondary_cloud_shadow_size_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_cloud_shadow_size
+    }
     fn secondary_cloud_shadow_coverage(&self) -> &f32 {
         &self.secondary_cloud_shadow_coverage
+    }
+    fn secondary_cloud_shadow_coverage_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_cloud_shadow_coverage
     }
     fn secondary_cloud_shadow_exponent(&self) -> &f32 {
         &self.secondary_cloud_shadow_exponent
     }
+    fn secondary_cloud_shadow_exponent_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_cloud_shadow_exponent
+    }
     fn secondary_cloud_shadow_is_top_down(&self) -> &bool {
         &self.secondary_cloud_shadow_is_top_down
+    }
+    fn secondary_cloud_shadow_is_top_down_mut(&mut self) -> &mut bool {
+        &mut self.secondary_cloud_shadow_is_top_down
     }
     fn secondary_cloud_x_z_translation(&self) -> &super::core::Vec2 {
         &self.secondary_cloud_x_z_translation
     }
+    fn secondary_cloud_x_z_translation_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.secondary_cloud_x_z_translation
+    }
     fn secondary_cloud_shadow_addressing_mode(&self) -> &super::render_base::TextureAddress {
         &self.secondary_cloud_shadow_addressing_mode
+    }
+    fn secondary_cloud_shadow_addressing_mode_mut(&mut self) -> &mut super::render_base::TextureAddress {
+        &mut self.secondary_cloud_shadow_addressing_mode
     }
     fn cast_terrain_shadows_enable(&self) -> &bool {
         &self.cast_terrain_shadows_enable
     }
+    fn cast_terrain_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_terrain_shadows_enable
+    }
     fn translucency_ambient(&self) -> &f32 {
         &self.translucency_ambient
+    }
+    fn translucency_ambient_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_ambient
     }
     fn translucency_scale(&self) -> &f32 {
         &self.translucency_scale
     }
+    fn translucency_scale_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_scale
+    }
     fn translucency_power(&self) -> &f32 {
         &self.translucency_power
+    }
+    fn translucency_power_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_power
     }
     fn translucency_distortion(&self) -> &f32 {
         &self.translucency_distortion
     }
+    fn translucency_distortion_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_distortion
+    }
     fn particle_sun_shadow_factor(&self) -> &f32 {
         &self.particle_sun_shadow_factor
+    }
+    fn particle_sun_shadow_factor_mut(&mut self) -> &mut f32 {
+        &mut self.particle_sun_shadow_factor
     }
     fn particle_sun_shadow_smoothing(&self) -> &f32 {
         &self.particle_sun_shadow_smoothing
     }
+    fn particle_sun_shadow_smoothing_mut(&mut self) -> &mut f32 {
+        &mut self.particle_sun_shadow_smoothing
+    }
     fn field_flag_override0(&self) -> &u32 {
         &self.field_flag_override0
     }
+    fn field_flag_override0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override0
+    }
     fn field_flag_override1(&self) -> &u32 {
         &self.field_flag_override1
+    }
+    fn field_flag_override1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_override1
     }
 }
 
@@ -15988,23 +21483,41 @@ impl VisualEnvironmentComponentDataTrait for OutdoorLightComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for OutdoorLightComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -16015,15 +21528,15 @@ impl super::core::DataBusPeerTrait for OutdoorLightComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for OutdoorLightComponentData {
 }
 
 impl super::core::DataContainerTrait for OutdoorLightComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OUTDOORLIGHTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16415,6 +21928,15 @@ impl TypeObject for OutdoorLightComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16441,31 +21963,55 @@ pub struct IndirectSpecularComponentData {
 
 pub trait IndirectSpecularComponentDataTrait: VisualEnvironmentComponentDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn reflectance_scale(&self) -> &f32;
+    fn reflectance_scale_mut(&mut self) -> &mut f32;
     fn probes_intensity(&self) -> &f32;
+    fn probes_intensity_mut(&mut self) -> &mut f32;
     fn probes_reflectance_scale(&self) -> &f32;
+    fn probes_reflectance_scale_mut(&mut self) -> &mut f32;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl IndirectSpecularComponentDataTrait for IndirectSpecularComponentData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn reflectance_scale(&self) -> &f32 {
         &self.reflectance_scale
     }
+    fn reflectance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.reflectance_scale
+    }
     fn probes_intensity(&self) -> &f32 {
         &self.probes_intensity
+    }
+    fn probes_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.probes_intensity
     }
     fn probes_reflectance_scale(&self) -> &f32 {
         &self.probes_reflectance_scale
     }
+    fn probes_reflectance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.probes_reflectance_scale
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -16473,23 +22019,41 @@ impl VisualEnvironmentComponentDataTrait for IndirectSpecularComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         self._glacier_base.property_overrides()
     }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.property_overrides_mut()
+    }
 }
 
 impl super::entity::ComponentDataTrait for IndirectSpecularComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -16500,15 +22064,15 @@ impl super::core::DataBusPeerTrait for IndirectSpecularComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for IndirectSpecularComponentData {
 }
 
 impl super::core::DataContainerTrait for IndirectSpecularComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INDIRECTSPECULARCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16570,6 +22134,15 @@ impl TypeObject for IndirectSpecularComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16591,11 +22164,15 @@ pub struct VisualEnvironmentComponentData {
 
 pub trait VisualEnvironmentComponentDataTrait: super::entity::ComponentDataTrait {
     fn property_overrides(&self) -> &Vec<String>;
+    fn property_overrides_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl VisualEnvironmentComponentDataTrait for VisualEnvironmentComponentData {
     fn property_overrides(&self) -> &Vec<String> {
         &self.property_overrides
+    }
+    fn property_overrides_mut(&mut self) -> &mut Vec<String> {
+        &mut self.property_overrides
     }
 }
 
@@ -16603,17 +22180,32 @@ impl super::entity::ComponentDataTrait for VisualEnvironmentComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -16624,15 +22216,15 @@ impl super::core::DataBusPeerTrait for VisualEnvironmentComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VisualEnvironmentComponentData {
 }
 
 impl super::core::DataContainerTrait for VisualEnvironmentComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VISUALENVIRONMENTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16664,6 +22256,15 @@ impl TypeObject for VisualEnvironmentComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16685,15 +22286,23 @@ pub struct CustomStringParam {
 
 pub trait CustomStringParamTrait: TypeObject {
     fn param_name(&self) -> &String;
+    fn param_name_mut(&mut self) -> &mut String;
     fn param_value(&self) -> &String;
+    fn param_value_mut(&mut self) -> &mut String;
 }
 
 impl CustomStringParamTrait for CustomStringParam {
     fn param_name(&self) -> &String {
         &self.param_name
     }
+    fn param_name_mut(&mut self) -> &mut String {
+        &mut self.param_name
+    }
     fn param_value(&self) -> &String {
         &self.param_value
+    }
+    fn param_value_mut(&mut self) -> &mut String {
+        &mut self.param_value
     }
 }
 
@@ -16730,6 +22339,15 @@ impl TypeObject for CustomStringParam {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16769,6 +22387,15 @@ impl TypeObject for FileFrameNamingEnum {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16807,6 +22434,15 @@ impl TypeObject for LayerModeEnum {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -16848,6 +22484,15 @@ impl TypeObject for ImageTypeEnum {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16870,15 +22515,23 @@ pub struct RenderFramesTrackData {
 
 pub trait RenderFramesTrackDataTrait: super::timeline::TimelineTrackDataTrait {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn RenderFramesKeyframeTrait>>>>;
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn RenderFramesKeyframeTrait>>>>;
     fn quick_render_name(&self) -> &String;
+    fn quick_render_name_mut(&mut self) -> &mut String;
 }
 
 impl RenderFramesTrackDataTrait for RenderFramesTrackData {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn RenderFramesKeyframeTrait>>>> {
         &self.keyframes
     }
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn RenderFramesKeyframeTrait>>>> {
+        &mut self.keyframes
+    }
     fn quick_render_name(&self) -> &String {
         &self.quick_render_name
+    }
+    fn quick_render_name_mut(&mut self) -> &mut String {
+        &mut self.quick_render_name
     }
 }
 
@@ -16886,20 +22539,38 @@ impl super::timeline::TimelineTrackDataTrait for RenderFramesTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -16910,15 +22581,15 @@ impl super::core::DataBusPeerTrait for RenderFramesTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RenderFramesTrackData {
 }
 
 impl super::core::DataContainerTrait for RenderFramesTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RENDERFRAMESTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16956,6 +22627,15 @@ impl TypeObject for RenderFramesTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16980,30 +22660,43 @@ pub struct RenderFramesKeyframe {
 
 pub trait RenderFramesKeyframeTrait: super::core::DataContainerTrait {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn render_file_name(&self) -> &String;
+    fn render_file_name_mut(&mut self) -> &mut String;
     fn render_folder_name(&self) -> &String;
+    fn render_folder_name_mut(&mut self) -> &mut String;
 }
 
 impl RenderFramesKeyframeTrait for RenderFramesKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
     fn render_file_name(&self) -> &String {
         &self.render_file_name
     }
+    fn render_file_name_mut(&mut self) -> &mut String {
+        &mut self.render_file_name
+    }
     fn render_folder_name(&self) -> &String {
         &self.render_folder_name
+    }
+    fn render_folder_name_mut(&mut self) -> &mut String {
+        &mut self.render_folder_name
     }
 }
 
 impl super::core::DataContainerTrait for RenderFramesKeyframe {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RENDERFRAMESKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17053,6 +22746,15 @@ impl TypeObject for RenderFramesKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17085,61 +22787,112 @@ pub struct SimpleVolumetricsEntityData {
 
 pub trait SimpleVolumetricsEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn fade_out_end_radius(&self) -> &f32;
+    fn fade_out_end_radius_mut(&mut self) -> &mut f32;
     fn fade_out_start_radius(&self) -> &f32;
+    fn fade_out_start_radius_mut(&mut self) -> &mut f32;
     fn far_fade_start_distance(&self) -> &f32;
+    fn far_fade_start_distance_mut(&mut self) -> &mut f32;
     fn far_fade_end_distance(&self) -> &f32;
+    fn far_fade_end_distance_mut(&mut self) -> &mut f32;
     fn use_clipping_plane(&self) -> &bool;
+    fn use_clipping_plane_mut(&mut self) -> &mut bool;
     fn clipping_plane_offset(&self) -> &f32;
+    fn clipping_plane_offset_mut(&mut self) -> &mut f32;
     fn draw_pass(&self) -> &super::world_base::SimpleVolumetricsDrawPass;
+    fn draw_pass_mut(&mut self) -> &mut super::world_base::SimpleVolumetricsDrawPass;
     fn scale_to_exposure(&self) -> &bool;
+    fn scale_to_exposure_mut(&mut self) -> &mut bool;
     fn exponent(&self) -> &f32;
+    fn exponent_mut(&mut self) -> &mut f32;
     fn emission(&self) -> &super::core::Vec3;
+    fn emission_mut(&mut self) -> &mut super::core::Vec3;
     fn emission_scale(&self) -> &f32;
+    fn emission_scale_mut(&mut self) -> &mut f32;
 }
 
 impl SimpleVolumetricsEntityDataTrait for SimpleVolumetricsEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn fade_out_end_radius(&self) -> &f32 {
         &self.fade_out_end_radius
+    }
+    fn fade_out_end_radius_mut(&mut self) -> &mut f32 {
+        &mut self.fade_out_end_radius
     }
     fn fade_out_start_radius(&self) -> &f32 {
         &self.fade_out_start_radius
     }
+    fn fade_out_start_radius_mut(&mut self) -> &mut f32 {
+        &mut self.fade_out_start_radius
+    }
     fn far_fade_start_distance(&self) -> &f32 {
         &self.far_fade_start_distance
+    }
+    fn far_fade_start_distance_mut(&mut self) -> &mut f32 {
+        &mut self.far_fade_start_distance
     }
     fn far_fade_end_distance(&self) -> &f32 {
         &self.far_fade_end_distance
     }
+    fn far_fade_end_distance_mut(&mut self) -> &mut f32 {
+        &mut self.far_fade_end_distance
+    }
     fn use_clipping_plane(&self) -> &bool {
         &self.use_clipping_plane
+    }
+    fn use_clipping_plane_mut(&mut self) -> &mut bool {
+        &mut self.use_clipping_plane
     }
     fn clipping_plane_offset(&self) -> &f32 {
         &self.clipping_plane_offset
     }
+    fn clipping_plane_offset_mut(&mut self) -> &mut f32 {
+        &mut self.clipping_plane_offset
+    }
     fn draw_pass(&self) -> &super::world_base::SimpleVolumetricsDrawPass {
         &self.draw_pass
+    }
+    fn draw_pass_mut(&mut self) -> &mut super::world_base::SimpleVolumetricsDrawPass {
+        &mut self.draw_pass
     }
     fn scale_to_exposure(&self) -> &bool {
         &self.scale_to_exposure
     }
+    fn scale_to_exposure_mut(&mut self) -> &mut bool {
+        &mut self.scale_to_exposure
+    }
     fn exponent(&self) -> &f32 {
         &self.exponent
+    }
+    fn exponent_mut(&mut self) -> &mut f32 {
+        &mut self.exponent
     }
     fn emission(&self) -> &super::core::Vec3 {
         &self.emission
     }
+    fn emission_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.emission
+    }
     fn emission_scale(&self) -> &f32 {
         &self.emission_scale
+    }
+    fn emission_scale_mut(&mut self) -> &mut f32 {
+        &mut self.emission_scale
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for SimpleVolumetricsEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -17153,15 +22906,15 @@ impl super::core::DataBusPeerTrait for SimpleVolumetricsEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SimpleVolumetricsEntityData {
 }
 
 impl super::core::DataContainerTrait for SimpleVolumetricsEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SIMPLEVOLUMETRICSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17259,6 +23012,15 @@ impl TypeObject for SimpleVolumetricsEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17297,79 +23059,151 @@ pub struct ScreenshotCaptureEntityData {
 
 pub trait ScreenshotCaptureEntityDataTrait: super::entity::EntityDataTrait {
     fn file_name(&self) -> &String;
+    fn file_name_mut(&mut self) -> &mut String;
     fn sub_folder(&self) -> &String;
+    fn sub_folder_mut(&mut self) -> &mut String;
     fn format(&self) -> &super::render_base::ScreenshotFormat;
+    fn format_mut(&mut self) -> &mut super::render_base::ScreenshotFormat;
     fn layer_mode(&self) -> &super::render_base::ScreenshotLayerMode;
+    fn layer_mode_mut(&mut self) -> &mut super::render_base::ScreenshotLayerMode;
     fn resolution_multiplier(&self) -> &i32;
+    fn resolution_multiplier_mut(&mut self) -> &mut i32;
     fn antialias_multiplier(&self) -> &i32;
+    fn antialias_multiplier_mut(&mut self) -> &mut i32;
     fn enable_alpha(&self) -> &bool;
+    fn enable_alpha_mut(&mut self) -> &mut bool;
     fn surround_capture(&self) -> &bool;
+    fn surround_capture_mut(&mut self) -> &mut bool;
     fn force_auto_render(&self) -> &bool;
+    fn force_auto_render_mut(&mut self) -> &mut bool;
     fn use_native_file_system(&self) -> &bool;
+    fn use_native_file_system_mut(&mut self) -> &mut bool;
     fn starting_x_pos(&self) -> &i32;
+    fn starting_x_pos_mut(&mut self) -> &mut i32;
     fn starting_y_pos(&self) -> &i32;
+    fn starting_y_pos_mut(&mut self) -> &mut i32;
     fn width(&self) -> &i32;
+    fn width_mut(&mut self) -> &mut i32;
     fn height(&self) -> &i32;
+    fn height_mut(&mut self) -> &mut i32;
     fn delay_frames(&self) -> &i32;
+    fn delay_frames_mut(&mut self) -> &mut i32;
     fn upload_to_juice(&self) -> &bool;
+    fn upload_to_juice_mut(&mut self) -> &mut bool;
     fn upload_to_ensemble_whiteboard(&self) -> &bool;
+    fn upload_to_ensemble_whiteboard_mut(&mut self) -> &mut bool;
     fn overwrite(&self) -> &bool;
+    fn overwrite_mut(&mut self) -> &mut bool;
 }
 
 impl ScreenshotCaptureEntityDataTrait for ScreenshotCaptureEntityData {
     fn file_name(&self) -> &String {
         &self.file_name
     }
+    fn file_name_mut(&mut self) -> &mut String {
+        &mut self.file_name
+    }
     fn sub_folder(&self) -> &String {
         &self.sub_folder
+    }
+    fn sub_folder_mut(&mut self) -> &mut String {
+        &mut self.sub_folder
     }
     fn format(&self) -> &super::render_base::ScreenshotFormat {
         &self.format
     }
+    fn format_mut(&mut self) -> &mut super::render_base::ScreenshotFormat {
+        &mut self.format
+    }
     fn layer_mode(&self) -> &super::render_base::ScreenshotLayerMode {
         &self.layer_mode
+    }
+    fn layer_mode_mut(&mut self) -> &mut super::render_base::ScreenshotLayerMode {
+        &mut self.layer_mode
     }
     fn resolution_multiplier(&self) -> &i32 {
         &self.resolution_multiplier
     }
+    fn resolution_multiplier_mut(&mut self) -> &mut i32 {
+        &mut self.resolution_multiplier
+    }
     fn antialias_multiplier(&self) -> &i32 {
         &self.antialias_multiplier
+    }
+    fn antialias_multiplier_mut(&mut self) -> &mut i32 {
+        &mut self.antialias_multiplier
     }
     fn enable_alpha(&self) -> &bool {
         &self.enable_alpha
     }
+    fn enable_alpha_mut(&mut self) -> &mut bool {
+        &mut self.enable_alpha
+    }
     fn surround_capture(&self) -> &bool {
         &self.surround_capture
+    }
+    fn surround_capture_mut(&mut self) -> &mut bool {
+        &mut self.surround_capture
     }
     fn force_auto_render(&self) -> &bool {
         &self.force_auto_render
     }
+    fn force_auto_render_mut(&mut self) -> &mut bool {
+        &mut self.force_auto_render
+    }
     fn use_native_file_system(&self) -> &bool {
         &self.use_native_file_system
+    }
+    fn use_native_file_system_mut(&mut self) -> &mut bool {
+        &mut self.use_native_file_system
     }
     fn starting_x_pos(&self) -> &i32 {
         &self.starting_x_pos
     }
+    fn starting_x_pos_mut(&mut self) -> &mut i32 {
+        &mut self.starting_x_pos
+    }
     fn starting_y_pos(&self) -> &i32 {
         &self.starting_y_pos
+    }
+    fn starting_y_pos_mut(&mut self) -> &mut i32 {
+        &mut self.starting_y_pos
     }
     fn width(&self) -> &i32 {
         &self.width
     }
+    fn width_mut(&mut self) -> &mut i32 {
+        &mut self.width
+    }
     fn height(&self) -> &i32 {
         &self.height
+    }
+    fn height_mut(&mut self) -> &mut i32 {
+        &mut self.height
     }
     fn delay_frames(&self) -> &i32 {
         &self.delay_frames
     }
+    fn delay_frames_mut(&mut self) -> &mut i32 {
+        &mut self.delay_frames
+    }
     fn upload_to_juice(&self) -> &bool {
         &self.upload_to_juice
+    }
+    fn upload_to_juice_mut(&mut self) -> &mut bool {
+        &mut self.upload_to_juice
     }
     fn upload_to_ensemble_whiteboard(&self) -> &bool {
         &self.upload_to_ensemble_whiteboard
     }
+    fn upload_to_ensemble_whiteboard_mut(&mut self) -> &mut bool {
+        &mut self.upload_to_ensemble_whiteboard
+    }
     fn overwrite(&self) -> &bool {
         &self.overwrite
+    }
+    fn overwrite_mut(&mut self) -> &mut bool {
+        &mut self.overwrite
     }
 }
 
@@ -17383,15 +23217,15 @@ impl super::core::DataBusPeerTrait for ScreenshotCaptureEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ScreenshotCaptureEntityData {
 }
 
 impl super::core::DataContainerTrait for ScreenshotCaptureEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCREENSHOTCAPTUREENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17525,6 +23359,15 @@ impl TypeObject for ScreenshotCaptureEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17549,29 +23392,48 @@ pub struct OccluderVolumeEntityData {
 
 pub trait OccluderVolumeEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn occluder_high_priority(&self) -> &bool;
+    fn occluder_high_priority_mut(&mut self) -> &mut bool;
     fn occluder_is_conservative(&self) -> &bool;
+    fn occluder_is_conservative_mut(&mut self) -> &mut bool;
     fn coverage_value(&self) -> &f32;
+    fn coverage_value_mut(&mut self) -> &mut f32;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
 }
 
 impl OccluderVolumeEntityDataTrait for OccluderVolumeEntityData {
     fn occluder_high_priority(&self) -> &bool {
         &self.occluder_high_priority
     }
+    fn occluder_high_priority_mut(&mut self) -> &mut bool {
+        &mut self.occluder_high_priority
+    }
     fn occluder_is_conservative(&self) -> &bool {
         &self.occluder_is_conservative
+    }
+    fn occluder_is_conservative_mut(&mut self) -> &mut bool {
+        &mut self.occluder_is_conservative
     }
     fn coverage_value(&self) -> &f32 {
         &self.coverage_value
     }
+    fn coverage_value_mut(&mut self) -> &mut f32 {
+        &mut self.coverage_value
+    }
     fn visible(&self) -> &bool {
         &self.visible
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for OccluderVolumeEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -17585,15 +23447,15 @@ impl super::core::DataBusPeerTrait for OccluderVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for OccluderVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for OccluderVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OCCLUDERVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17643,6 +23505,15 @@ impl TypeObject for OccluderVolumeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17668,33 +23539,56 @@ pub struct OccluderPlaneEntityData {
 
 pub trait OccluderPlaneEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn occluder_high_priority(&self) -> &bool;
+    fn occluder_high_priority_mut(&mut self) -> &mut bool;
     fn occluder_is_conservative(&self) -> &bool;
+    fn occluder_is_conservative_mut(&mut self) -> &mut bool;
     fn doubled_sided(&self) -> &bool;
+    fn doubled_sided_mut(&mut self) -> &mut bool;
     fn coverage_value(&self) -> &f32;
+    fn coverage_value_mut(&mut self) -> &mut f32;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
 }
 
 impl OccluderPlaneEntityDataTrait for OccluderPlaneEntityData {
     fn occluder_high_priority(&self) -> &bool {
         &self.occluder_high_priority
     }
+    fn occluder_high_priority_mut(&mut self) -> &mut bool {
+        &mut self.occluder_high_priority
+    }
     fn occluder_is_conservative(&self) -> &bool {
         &self.occluder_is_conservative
+    }
+    fn occluder_is_conservative_mut(&mut self) -> &mut bool {
+        &mut self.occluder_is_conservative
     }
     fn doubled_sided(&self) -> &bool {
         &self.doubled_sided
     }
+    fn doubled_sided_mut(&mut self) -> &mut bool {
+        &mut self.doubled_sided
+    }
     fn coverage_value(&self) -> &f32 {
         &self.coverage_value
     }
+    fn coverage_value_mut(&mut self) -> &mut f32 {
+        &mut self.coverage_value
+    }
     fn visible(&self) -> &bool {
         &self.visible
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for OccluderPlaneEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -17708,15 +23602,15 @@ impl super::core::DataBusPeerTrait for OccluderPlaneEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for OccluderPlaneEntityData {
 }
 
 impl super::core::DataContainerTrait for OccluderPlaneEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OCCLUDERPLANEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17772,6 +23666,15 @@ impl TypeObject for OccluderPlaneEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17794,21 +23697,32 @@ pub struct OccluderMeshEntityData {
 
 pub trait OccluderMeshEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
 }
 
 impl OccluderMeshEntityDataTrait for OccluderMeshEntityData {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         &self.mesh
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &mut self.mesh
+    }
     fn visible(&self) -> &bool {
         &self.visible
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for OccluderMeshEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -17822,15 +23736,15 @@ impl super::core::DataBusPeerTrait for OccluderMeshEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for OccluderMeshEntityData {
 }
 
 impl super::core::DataContainerTrait for OccluderMeshEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OCCLUDERMESHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17868,6 +23782,15 @@ impl TypeObject for OccluderMeshEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17891,25 +23814,40 @@ pub struct VisibleAreaEntityData {
 
 pub trait VisibleAreaEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn hide_treshold(&self) -> &u32;
+    fn hide_treshold_mut(&mut self) -> &mut u32;
     fn visual_cull_screen_area(&self) -> &f32;
+    fn visual_cull_screen_area_mut(&mut self) -> &mut f32;
 }
 
 impl VisibleAreaEntityDataTrait for VisibleAreaEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn hide_treshold(&self) -> &u32 {
         &self.hide_treshold
     }
+    fn hide_treshold_mut(&mut self) -> &mut u32 {
+        &mut self.hide_treshold
+    }
     fn visual_cull_screen_area(&self) -> &f32 {
         &self.visual_cull_screen_area
+    }
+    fn visual_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.visual_cull_screen_area
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for VisibleAreaEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -17923,15 +23861,15 @@ impl super::core::DataBusPeerTrait for VisibleAreaEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VisibleAreaEntityData {
 }
 
 impl super::core::DataContainerTrait for VisibleAreaEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VISIBLEAREAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17975,6 +23913,15 @@ impl TypeObject for VisibleAreaEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17996,17 +23943,24 @@ pub struct PlanarReflectionLocatorEntityData {
 
 pub trait PlanarReflectionLocatorEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
 }
 
 impl PlanarReflectionLocatorEntityDataTrait for PlanarReflectionLocatorEntityData {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for PlanarReflectionLocatorEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -18020,15 +23974,15 @@ impl super::core::DataBusPeerTrait for PlanarReflectionLocatorEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PlanarReflectionLocatorEntityData {
 }
 
 impl super::core::DataContainerTrait for PlanarReflectionLocatorEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PLANARREFLECTIONLOCATORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18060,6 +24014,15 @@ impl TypeObject for PlanarReflectionLocatorEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18086,37 +24049,64 @@ pub struct LightProbeVolumeData {
 
 pub trait LightProbeVolumeDataTrait: super::entity::SpatialEntityDataTrait {
     fn xres(&self) -> &u32;
+    fn xres_mut(&mut self) -> &mut u32;
     fn yres(&self) -> &u32;
+    fn yres_mut(&mut self) -> &mut u32;
     fn zres(&self) -> &u32;
+    fn zres_mut(&mut self) -> &mut u32;
     fn blend_distance(&self) -> &f32;
+    fn blend_distance_mut(&mut self) -> &mut f32;
     fn priority(&self) -> &u32;
+    fn priority_mut(&mut self) -> &mut u32;
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
 }
 
 impl LightProbeVolumeDataTrait for LightProbeVolumeData {
     fn xres(&self) -> &u32 {
         &self.xres
     }
+    fn xres_mut(&mut self) -> &mut u32 {
+        &mut self.xres
+    }
     fn yres(&self) -> &u32 {
         &self.yres
+    }
+    fn yres_mut(&mut self) -> &mut u32 {
+        &mut self.yres
     }
     fn zres(&self) -> &u32 {
         &self.zres
     }
+    fn zres_mut(&mut self) -> &mut u32 {
+        &mut self.zres
+    }
     fn blend_distance(&self) -> &f32 {
         &self.blend_distance
+    }
+    fn blend_distance_mut(&mut self) -> &mut f32 {
+        &mut self.blend_distance
     }
     fn priority(&self) -> &u32 {
         &self.priority
     }
+    fn priority_mut(&mut self) -> &mut u32 {
+        &mut self.priority
+    }
     fn enable(&self) -> &bool {
         &self.enable
+    }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for LightProbeVolumeData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -18130,15 +24120,15 @@ impl super::core::DataBusPeerTrait for LightProbeVolumeData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LightProbeVolumeData {
 }
 
 impl super::core::DataContainerTrait for LightProbeVolumeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LIGHTPROBEVOLUMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18200,6 +24190,15 @@ impl TypeObject for LightProbeVolumeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18227,35 +24226,63 @@ pub struct StaticEnlightenEntityData {
 
 pub trait StaticEnlightenEntityDataTrait: EnlightenEntityDataTrait {
     fn priority(&self) -> &i32;
+    fn priority_mut(&mut self) -> &mut i32;
     fn enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::StaticEnlightenBaseAssetTrait>>>;
+    fn enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::StaticEnlightenBaseAssetTrait>>>;
     fn dynamic_enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>>;
+    fn dynamic_enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>>;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn flux_auto_bake(&self) -> &bool;
+    fn flux_auto_bake_mut(&mut self) -> &mut bool;
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn mixed(&self) -> &bool;
+    fn mixed_mut(&mut self) -> &mut bool;
 }
 
 impl StaticEnlightenEntityDataTrait for StaticEnlightenEntityData {
     fn priority(&self) -> &i32 {
         &self.priority
     }
+    fn priority_mut(&mut self) -> &mut i32 {
+        &mut self.priority
+    }
     fn enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::StaticEnlightenBaseAssetTrait>>> {
         &self.enlighten_data
+    }
+    fn enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::StaticEnlightenBaseAssetTrait>>> {
+        &mut self.enlighten_data
     }
     fn dynamic_enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>> {
         &self.dynamic_enlighten_data
     }
+    fn dynamic_enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>> {
+        &mut self.dynamic_enlighten_data
+    }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
+    }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
     }
     fn flux_auto_bake(&self) -> &bool {
         &self.flux_auto_bake
     }
+    fn flux_auto_bake_mut(&mut self) -> &mut bool {
+        &mut self.flux_auto_bake
+    }
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn mixed(&self) -> &bool {
         &self.mixed
+    }
+    fn mixed_mut(&mut self) -> &mut bool {
+        &mut self.mixed
     }
 }
 
@@ -18272,15 +24299,15 @@ impl super::core::DataBusPeerTrait for StaticEnlightenEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StaticEnlightenEntityData {
 }
 
 impl super::core::DataContainerTrait for StaticEnlightenEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STATICENLIGHTENENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18348,6 +24375,15 @@ impl TypeObject for StaticEnlightenEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18373,27 +24409,47 @@ pub struct DynamicEnlightenEntityData {
 
 pub trait DynamicEnlightenEntityDataTrait: EnlightenEntityDataTrait {
     fn priority(&self) -> &i32;
+    fn priority_mut(&mut self) -> &mut i32;
     fn enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>>;
+    fn enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>>;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn database_version(&self) -> &i32;
+    fn database_version_mut(&mut self) -> &mut i32;
 }
 
 impl DynamicEnlightenEntityDataTrait for DynamicEnlightenEntityData {
     fn priority(&self) -> &i32 {
         &self.priority
     }
+    fn priority_mut(&mut self) -> &mut i32 {
+        &mut self.priority
+    }
     fn enlighten_data(&self) -> &Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>> {
         &self.enlighten_data
+    }
+    fn enlighten_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::EnlightenBaseAssetTrait>>> {
+        &mut self.enlighten_data
     }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
     }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
+    }
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn database_version(&self) -> &i32 {
         &self.database_version
+    }
+    fn database_version_mut(&mut self) -> &mut i32 {
+        &mut self.database_version
     }
 }
 
@@ -18410,15 +24466,15 @@ impl super::core::DataBusPeerTrait for DynamicEnlightenEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DynamicEnlightenEntityData {
 }
 
 impl super::core::DataContainerTrait for DynamicEnlightenEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DYNAMICENLIGHTENENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18474,6 +24530,15 @@ impl TypeObject for DynamicEnlightenEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18508,15 +24573,15 @@ impl super::core::DataBusPeerTrait for EnlightenEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EnlightenEntityData {
 }
 
 impl super::core::DataContainerTrait for EnlightenEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENLIGHTENENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18542,6 +24607,15 @@ impl TypeObject for EnlightenEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18564,21 +24638,32 @@ pub struct RadiosityModifierEntityData {
 
 pub trait RadiosityModifierEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn bounce_scale(&self) -> &f32;
+    fn bounce_scale_mut(&mut self) -> &mut f32;
     fn sun_scale(&self) -> &f32;
+    fn sun_scale_mut(&mut self) -> &mut f32;
 }
 
 impl RadiosityModifierEntityDataTrait for RadiosityModifierEntityData {
     fn bounce_scale(&self) -> &f32 {
         &self.bounce_scale
     }
+    fn bounce_scale_mut(&mut self) -> &mut f32 {
+        &mut self.bounce_scale
+    }
     fn sun_scale(&self) -> &f32 {
         &self.sun_scale
+    }
+    fn sun_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_scale
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for RadiosityModifierEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -18592,15 +24677,15 @@ impl super::core::DataBusPeerTrait for RadiosityModifierEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RadiosityModifierEntityData {
 }
 
 impl super::core::DataContainerTrait for RadiosityModifierEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RADIOSITYMODIFIERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18638,6 +24723,15 @@ impl TypeObject for RadiosityModifierEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18667,43 +24761,79 @@ pub struct RadiosityMaterialOpacityTriggerEntityData {
 
 pub trait RadiosityMaterialOpacityTriggerEntityDataTrait: super::entity::EntityDataTrait {
     fn material_src_color(&self) -> &super::core::Vec3;
+    fn material_src_color_mut(&mut self) -> &mut super::core::Vec3;
     fn material_src_opacity(&self) -> &f32;
+    fn material_src_opacity_mut(&mut self) -> &mut f32;
     fn opacity_on_transparency(&self) -> &f32;
+    fn opacity_on_transparency_mut(&mut self) -> &mut f32;
     fn opacity_on_color_multiplier(&self) -> &f32;
+    fn opacity_on_color_multiplier_mut(&mut self) -> &mut f32;
     fn opacity_off_transparency(&self) -> &f32;
+    fn opacity_off_transparency_mut(&mut self) -> &mut f32;
     fn opacity_off_color_multiplier(&self) -> &f32;
+    fn opacity_off_color_multiplier_mut(&mut self) -> &mut f32;
     fn material_guid(&self) -> &glacier_util::guid::Guid;
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn opacity(&self) -> &f32;
+    fn opacity_mut(&mut self) -> &mut f32;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl RadiosityMaterialOpacityTriggerEntityDataTrait for RadiosityMaterialOpacityTriggerEntityData {
     fn material_src_color(&self) -> &super::core::Vec3 {
         &self.material_src_color
     }
+    fn material_src_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.material_src_color
+    }
     fn material_src_opacity(&self) -> &f32 {
         &self.material_src_opacity
+    }
+    fn material_src_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.material_src_opacity
     }
     fn opacity_on_transparency(&self) -> &f32 {
         &self.opacity_on_transparency
     }
+    fn opacity_on_transparency_mut(&mut self) -> &mut f32 {
+        &mut self.opacity_on_transparency
+    }
     fn opacity_on_color_multiplier(&self) -> &f32 {
         &self.opacity_on_color_multiplier
+    }
+    fn opacity_on_color_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.opacity_on_color_multiplier
     }
     fn opacity_off_transparency(&self) -> &f32 {
         &self.opacity_off_transparency
     }
+    fn opacity_off_transparency_mut(&mut self) -> &mut f32 {
+        &mut self.opacity_off_transparency
+    }
     fn opacity_off_color_multiplier(&self) -> &f32 {
         &self.opacity_off_color_multiplier
+    }
+    fn opacity_off_color_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.opacity_off_color_multiplier
     }
     fn material_guid(&self) -> &glacier_util::guid::Guid {
         &self.material_guid
     }
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.material_guid
+    }
     fn opacity(&self) -> &f32 {
         &self.opacity
     }
+    fn opacity_mut(&mut self) -> &mut f32 {
+        &mut self.opacity
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
 }
 
@@ -18717,15 +24847,15 @@ impl super::core::DataBusPeerTrait for RadiosityMaterialOpacityTriggerEntityData
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RadiosityMaterialOpacityTriggerEntityData {
 }
 
 impl super::core::DataContainerTrait for RadiosityMaterialOpacityTriggerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RADIOSITYMATERIALOPACITYTRIGGERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18805,6 +24935,15 @@ impl TypeObject for RadiosityMaterialOpacityTriggerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18832,35 +24971,63 @@ pub struct RadiosityMaterialInstanceEntityData {
 
 pub trait RadiosityMaterialInstanceEntityDataTrait: super::entity::EntityDataTrait {
     fn material_guid(&self) -> &glacier_util::guid::Guid;
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn material_update_mask(&self) -> &u8;
+    fn material_update_mask_mut(&mut self) -> &mut u8;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn emissive_intensity(&self) -> &f32;
+    fn emissive_intensity_mut(&mut self) -> &mut f32;
     fn opacity(&self) -> &f32;
+    fn opacity_mut(&mut self) -> &mut f32;
     fn backface_type(&self) -> &super::render_base::RadiosityBackfaceType;
+    fn backface_type_mut(&mut self) -> &mut super::render_base::RadiosityBackfaceType;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl RadiosityMaterialInstanceEntityDataTrait for RadiosityMaterialInstanceEntityData {
     fn material_guid(&self) -> &glacier_util::guid::Guid {
         &self.material_guid
     }
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.material_guid
+    }
     fn material_update_mask(&self) -> &u8 {
         &self.material_update_mask
+    }
+    fn material_update_mask_mut(&mut self) -> &mut u8 {
+        &mut self.material_update_mask
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn emissive_intensity(&self) -> &f32 {
         &self.emissive_intensity
+    }
+    fn emissive_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.emissive_intensity
     }
     fn opacity(&self) -> &f32 {
         &self.opacity
     }
+    fn opacity_mut(&mut self) -> &mut f32 {
+        &mut self.opacity
+    }
     fn backface_type(&self) -> &super::render_base::RadiosityBackfaceType {
         &self.backface_type
     }
+    fn backface_type_mut(&mut self) -> &mut super::render_base::RadiosityBackfaceType {
+        &mut self.backface_type
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -18874,15 +25041,15 @@ impl super::core::DataBusPeerTrait for RadiosityMaterialInstanceEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RadiosityMaterialInstanceEntityData {
 }
 
 impl super::core::DataContainerTrait for RadiosityMaterialInstanceEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RADIOSITYMATERIALINSTANCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18950,6 +25117,15 @@ impl TypeObject for RadiosityMaterialInstanceEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18977,35 +25153,63 @@ pub struct RadiosityMaterialEntityData {
 
 pub trait RadiosityMaterialEntityDataTrait: super::entity::EntityDataTrait {
     fn material_guid(&self) -> &glacier_util::guid::Guid;
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn material_update_mask(&self) -> &u8;
+    fn material_update_mask_mut(&mut self) -> &mut u8;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn emissive_intensity(&self) -> &f32;
+    fn emissive_intensity_mut(&mut self) -> &mut f32;
     fn opacity(&self) -> &f32;
+    fn opacity_mut(&mut self) -> &mut f32;
     fn backface_type(&self) -> &super::render_base::RadiosityBackfaceType;
+    fn backface_type_mut(&mut self) -> &mut super::render_base::RadiosityBackfaceType;
     fn field_flag_override0(&self) -> &u8;
+    fn field_flag_override0_mut(&mut self) -> &mut u8;
 }
 
 impl RadiosityMaterialEntityDataTrait for RadiosityMaterialEntityData {
     fn material_guid(&self) -> &glacier_util::guid::Guid {
         &self.material_guid
     }
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.material_guid
+    }
     fn material_update_mask(&self) -> &u8 {
         &self.material_update_mask
+    }
+    fn material_update_mask_mut(&mut self) -> &mut u8 {
+        &mut self.material_update_mask
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn emissive_intensity(&self) -> &f32 {
         &self.emissive_intensity
+    }
+    fn emissive_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.emissive_intensity
     }
     fn opacity(&self) -> &f32 {
         &self.opacity
     }
+    fn opacity_mut(&mut self) -> &mut f32 {
+        &mut self.opacity
+    }
     fn backface_type(&self) -> &super::render_base::RadiosityBackfaceType {
         &self.backface_type
     }
+    fn backface_type_mut(&mut self) -> &mut super::render_base::RadiosityBackfaceType {
+        &mut self.backface_type
+    }
     fn field_flag_override0(&self) -> &u8 {
         &self.field_flag_override0
+    }
+    fn field_flag_override0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_override0
     }
 }
 
@@ -19019,15 +25223,15 @@ impl super::core::DataBusPeerTrait for RadiosityMaterialEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RadiosityMaterialEntityData {
 }
 
 impl super::core::DataContainerTrait for RadiosityMaterialEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RADIOSITYMATERIALENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19095,6 +25299,15 @@ impl TypeObject for RadiosityMaterialEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19116,17 +25329,24 @@ pub struct GroundHeightEntityData {
 
 pub trait GroundHeightEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn data(&self) -> &super::world_base::GroundHeightData;
+    fn data_mut(&mut self) -> &mut super::world_base::GroundHeightData;
 }
 
 impl GroundHeightEntityDataTrait for GroundHeightEntityData {
     fn data(&self) -> &super::world_base::GroundHeightData {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut super::world_base::GroundHeightData {
+        &mut self.data
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for GroundHeightEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -19140,15 +25360,15 @@ impl super::core::DataBusPeerTrait for GroundHeightEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for GroundHeightEntityData {
 }
 
 impl super::core::DataContainerTrait for GroundHeightEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GROUNDHEIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19180,6 +25400,15 @@ impl TypeObject for GroundHeightEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19204,29 +25433,48 @@ pub struct RenderVolumeEntityData {
 
 pub trait RenderVolumeEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn user_masks(&self) -> &super::core::Vec4;
+    fn user_masks_mut(&mut self) -> &mut super::core::Vec4;
     fn transform_type(&self) -> &super::world_base::RenderVolumeTransformType;
+    fn transform_type_mut(&mut self) -> &mut super::world_base::RenderVolumeTransformType;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
 }
 
 impl RenderVolumeEntityDataTrait for RenderVolumeEntityData {
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.shader
     }
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.shader
+    }
     fn user_masks(&self) -> &super::core::Vec4 {
         &self.user_masks
+    }
+    fn user_masks_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.user_masks
     }
     fn transform_type(&self) -> &super::world_base::RenderVolumeTransformType {
         &self.transform_type
     }
+    fn transform_type_mut(&mut self) -> &mut super::world_base::RenderVolumeTransformType {
+        &mut self.transform_type
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for RenderVolumeEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -19240,15 +25488,15 @@ impl super::core::DataBusPeerTrait for RenderVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RenderVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for RenderVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RENDERVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19298,6 +25546,15 @@ impl TypeObject for RenderVolumeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19321,25 +25578,40 @@ pub struct MeshProxyEntityData {
 
 pub trait MeshProxyEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
     fn base_pose_transforms(&self) -> &super::core::SparseTransformArray;
+    fn base_pose_transforms_mut(&mut self) -> &mut super::core::SparseTransformArray;
     fn static_instances(&self) -> &super::entity::StaticInstancingData;
+    fn static_instances_mut(&mut self) -> &mut super::entity::StaticInstancingData;
 }
 
 impl MeshProxyEntityDataTrait for MeshProxyEntityData {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         &self.mesh
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &mut self.mesh
+    }
     fn base_pose_transforms(&self) -> &super::core::SparseTransformArray {
         &self.base_pose_transforms
     }
+    fn base_pose_transforms_mut(&mut self) -> &mut super::core::SparseTransformArray {
+        &mut self.base_pose_transforms
+    }
     fn static_instances(&self) -> &super::entity::StaticInstancingData {
         &self.static_instances
+    }
+    fn static_instances_mut(&mut self) -> &mut super::entity::StaticInstancingData {
+        &mut self.static_instances
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for MeshProxyEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -19353,15 +25625,15 @@ impl super::core::DataBusPeerTrait for MeshProxyEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MeshProxyEntityData {
 }
 
 impl super::core::DataContainerTrait for MeshProxyEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MESHPROXYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19405,6 +25677,15 @@ impl TypeObject for MeshProxyEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19432,35 +25713,63 @@ pub struct ParticipatingMediaMaterialEntityData {
 
 pub trait ParticipatingMediaMaterialEntityDataTrait: super::entity::EntityDataTrait {
     fn specification_mode(&self) -> &super::world_base::ParticipatingMediaSpecificationMode;
+    fn specification_mode_mut(&mut self) -> &mut super::world_base::ParticipatingMediaSpecificationMode;
     fn absorption(&self) -> &f32;
+    fn absorption_mut(&mut self) -> &mut f32;
     fn scattering(&self) -> &super::core::Vec3;
+    fn scattering_mut(&mut self) -> &mut super::core::Vec3;
     fn exctinction(&self) -> &f32;
+    fn exctinction_mut(&mut self) -> &mut f32;
     fn albedo(&self) -> &super::core::Vec3;
+    fn albedo_mut(&mut self) -> &mut super::core::Vec3;
     fn emissive(&self) -> &super::core::Vec3;
+    fn emissive_mut(&mut self) -> &mut super::core::Vec3;
     fn phase(&self) -> &f32;
+    fn phase_mut(&mut self) -> &mut f32;
 }
 
 impl ParticipatingMediaMaterialEntityDataTrait for ParticipatingMediaMaterialEntityData {
     fn specification_mode(&self) -> &super::world_base::ParticipatingMediaSpecificationMode {
         &self.specification_mode
     }
+    fn specification_mode_mut(&mut self) -> &mut super::world_base::ParticipatingMediaSpecificationMode {
+        &mut self.specification_mode
+    }
     fn absorption(&self) -> &f32 {
         &self.absorption
+    }
+    fn absorption_mut(&mut self) -> &mut f32 {
+        &mut self.absorption
     }
     fn scattering(&self) -> &super::core::Vec3 {
         &self.scattering
     }
+    fn scattering_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.scattering
+    }
     fn exctinction(&self) -> &f32 {
         &self.exctinction
+    }
+    fn exctinction_mut(&mut self) -> &mut f32 {
+        &mut self.exctinction
     }
     fn albedo(&self) -> &super::core::Vec3 {
         &self.albedo
     }
+    fn albedo_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.albedo
+    }
     fn emissive(&self) -> &super::core::Vec3 {
         &self.emissive
     }
+    fn emissive_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.emissive
+    }
     fn phase(&self) -> &f32 {
         &self.phase
+    }
+    fn phase_mut(&mut self) -> &mut f32 {
+        &mut self.phase
     }
 }
 
@@ -19474,15 +25783,15 @@ impl super::core::DataBusPeerTrait for ParticipatingMediaMaterialEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ParticipatingMediaMaterialEntityData {
 }
 
 impl super::core::DataContainerTrait for ParticipatingMediaMaterialEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PARTICIPATINGMEDIAMATERIALENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19550,6 +25859,15 @@ impl TypeObject for ParticipatingMediaMaterialEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19575,27 +25893,47 @@ pub struct LocalFogVolumeEntityData {
 
 pub trait LocalFogVolumeEntityDataTrait: LocalVolumetricEntityDataTrait {
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn participating_media(&self) -> &super::world_base::ParticipatingMedia;
+    fn participating_media_mut(&mut self) -> &mut super::world_base::ParticipatingMedia;
     fn ambient_lighting_scale(&self) -> &f32;
+    fn ambient_lighting_scale_mut(&mut self) -> &mut f32;
     fn density_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn density_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
 }
 
 impl LocalFogVolumeEntityDataTrait for LocalFogVolumeEntityData {
     fn object_layers(&self) -> &u16 {
         &self.object_layers
     }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
     fn participating_media(&self) -> &super::world_base::ParticipatingMedia {
         &self.participating_media
     }
+    fn participating_media_mut(&mut self) -> &mut super::world_base::ParticipatingMedia {
+        &mut self.participating_media
+    }
     fn ambient_lighting_scale(&self) -> &f32 {
         &self.ambient_lighting_scale
     }
+    fn ambient_lighting_scale_mut(&mut self) -> &mut f32 {
+        &mut self.ambient_lighting_scale
+    }
     fn density_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.density_texture
+    }
+    fn density_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.density_texture
     }
 }
 
@@ -19605,6 +25943,9 @@ impl LocalVolumetricEntityDataTrait for LocalFogVolumeEntityData {
 impl super::entity::SpatialEntityDataTrait for LocalFogVolumeEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -19618,15 +25959,15 @@ impl super::core::DataBusPeerTrait for LocalFogVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalFogVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for LocalFogVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALFOGVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19682,6 +26023,15 @@ impl TypeObject for LocalFogVolumeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19710,6 +26060,9 @@ impl super::entity::SpatialEntityDataTrait for LocalVolumetricEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for LocalVolumetricEntityData {
@@ -19722,15 +26075,15 @@ impl super::core::DataBusPeerTrait for LocalVolumetricEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalVolumetricEntityData {
 }
 
 impl super::core::DataContainerTrait for LocalVolumetricEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALVOLUMETRICENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19755,6 +26108,15 @@ impl TypeObject for LocalVolumetricEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -19790,15 +26152,15 @@ impl super::core::DataBusPeerTrait for ReflectionVolumeSynchronizerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ReflectionVolumeSynchronizerEntityData {
 }
 
 impl super::core::DataContainerTrait for ReflectionVolumeSynchronizerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static REFLECTIONVOLUMESYNCHRONIZERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19823,6 +26185,15 @@ impl TypeObject for ReflectionVolumeSynchronizerEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -19854,53 +26225,96 @@ pub struct LocalPlanarReflectionEntityData {
 
 pub trait LocalPlanarReflectionEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn far_plane(&self) -> &f32;
+    fn far_plane_mut(&mut self) -> &mut f32;
     fn clipping_offset(&self) -> &f32;
+    fn clipping_offset_mut(&mut self) -> &mut f32;
     fn clipping_enable(&self) -> &bool;
+    fn clipping_enable_mut(&mut self) -> &mut bool;
     fn distance_tolerance(&self) -> &f32;
+    fn distance_tolerance_mut(&mut self) -> &mut f32;
     fn distance_falloff(&self) -> &f32;
+    fn distance_falloff_mut(&mut self) -> &mut f32;
     fn normal_tolerance(&self) -> &f32;
+    fn normal_tolerance_mut(&mut self) -> &mut f32;
     fn normal_falloff(&self) -> &f32;
+    fn normal_falloff_mut(&mut self) -> &mut f32;
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn terrain_reflections_enable(&self) -> &bool;
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool;
     fn sky_reflection_enable(&self) -> &bool;
+    fn sky_reflection_enable_mut(&mut self) -> &mut bool;
 }
 
 impl LocalPlanarReflectionEntityDataTrait for LocalPlanarReflectionEntityData {
     fn far_plane(&self) -> &f32 {
         &self.far_plane
     }
+    fn far_plane_mut(&mut self) -> &mut f32 {
+        &mut self.far_plane
+    }
     fn clipping_offset(&self) -> &f32 {
         &self.clipping_offset
+    }
+    fn clipping_offset_mut(&mut self) -> &mut f32 {
+        &mut self.clipping_offset
     }
     fn clipping_enable(&self) -> &bool {
         &self.clipping_enable
     }
+    fn clipping_enable_mut(&mut self) -> &mut bool {
+        &mut self.clipping_enable
+    }
     fn distance_tolerance(&self) -> &f32 {
         &self.distance_tolerance
+    }
+    fn distance_tolerance_mut(&mut self) -> &mut f32 {
+        &mut self.distance_tolerance
     }
     fn distance_falloff(&self) -> &f32 {
         &self.distance_falloff
     }
+    fn distance_falloff_mut(&mut self) -> &mut f32 {
+        &mut self.distance_falloff
+    }
     fn normal_tolerance(&self) -> &f32 {
         &self.normal_tolerance
+    }
+    fn normal_tolerance_mut(&mut self) -> &mut f32 {
+        &mut self.normal_tolerance
     }
     fn normal_falloff(&self) -> &f32 {
         &self.normal_falloff
     }
+    fn normal_falloff_mut(&mut self) -> &mut f32 {
+        &mut self.normal_falloff
+    }
     fn enable(&self) -> &bool {
         &self.enable
+    }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
     }
     fn terrain_reflections_enable(&self) -> &bool {
         &self.terrain_reflections_enable
     }
+    fn terrain_reflections_enable_mut(&mut self) -> &mut bool {
+        &mut self.terrain_reflections_enable
+    }
     fn sky_reflection_enable(&self) -> &bool {
         &self.sky_reflection_enable
+    }
+    fn sky_reflection_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_reflection_enable
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for LocalPlanarReflectionEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -19914,15 +26328,15 @@ impl super::core::DataBusPeerTrait for LocalPlanarReflectionEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalPlanarReflectionEntityData {
 }
 
 impl super::core::DataContainerTrait for LocalPlanarReflectionEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALPLANARREFLECTIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20008,6 +26422,15 @@ impl TypeObject for LocalPlanarReflectionEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20049,91 +26472,175 @@ pub struct PbrDistantReflectionVolumeEntityData {
 
 pub trait PbrDistantReflectionVolumeEntityDataTrait: PbrGenericBoxReflectionVolumeEntityDataTrait {
     fn location_type(&self) -> &super::render_base::DistantIBLLocationType;
+    fn location_type_mut(&mut self) -> &mut super::render_base::DistantIBLLocationType;
     fn local_offset(&self) -> &super::core::Vec3;
+    fn local_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn mode(&self) -> &super::render_base::LocalIBLMode;
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode;
     fn capture_distance(&self) -> &f32;
+    fn capture_distance_mut(&mut self) -> &mut f32;
     fn capture_fade_distance(&self) -> &f32;
+    fn capture_fade_distance_mut(&mut self) -> &mut f32;
     fn influence_expand_distance(&self) -> &f32;
+    fn influence_expand_distance_mut(&mut self) -> &mut f32;
     fn influence_fade_distance(&self) -> &f32;
+    fn influence_fade_distance_mut(&mut self) -> &mut f32;
     fn update_when_moving(&self) -> &bool;
+    fn update_when_moving_mut(&mut self) -> &mut bool;
     fn capture_sky(&self) -> &bool;
+    fn capture_sky_mut(&mut self) -> &mut bool;
     fn capture_sky_mask(&self) -> &bool;
+    fn capture_sky_mask_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_a_o(&self) -> &bool;
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_mask(&self) -> &bool;
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool;
     fn sharpen_sky_visibility(&self) -> &f32;
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32;
     fn bias_sky_visibility(&self) -> &f32;
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32;
     fn use_proxy_reprojection(&self) -> &bool;
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool;
     fn capture_fog(&self) -> &bool;
+    fn capture_fog_mut(&mut self) -> &mut bool;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn do_not_update_baked_texture(&self) -> &bool;
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool;
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn is_visible(&self) -> &bool;
+    fn is_visible_mut(&mut self) -> &mut bool;
 }
 
 impl PbrDistantReflectionVolumeEntityDataTrait for PbrDistantReflectionVolumeEntityData {
     fn location_type(&self) -> &super::render_base::DistantIBLLocationType {
         &self.location_type
     }
+    fn location_type_mut(&mut self) -> &mut super::render_base::DistantIBLLocationType {
+        &mut self.location_type
+    }
     fn local_offset(&self) -> &super::core::Vec3 {
         &self.local_offset
+    }
+    fn local_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.local_offset
     }
     fn mode(&self) -> &super::render_base::LocalIBLMode {
         &self.mode
     }
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode {
+        &mut self.mode
+    }
     fn capture_distance(&self) -> &f32 {
         &self.capture_distance
+    }
+    fn capture_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_distance
     }
     fn capture_fade_distance(&self) -> &f32 {
         &self.capture_fade_distance
     }
+    fn capture_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_fade_distance
+    }
     fn influence_expand_distance(&self) -> &f32 {
         &self.influence_expand_distance
+    }
+    fn influence_expand_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_expand_distance
     }
     fn influence_fade_distance(&self) -> &f32 {
         &self.influence_fade_distance
     }
+    fn influence_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_fade_distance
+    }
     fn update_when_moving(&self) -> &bool {
         &self.update_when_moving
+    }
+    fn update_when_moving_mut(&mut self) -> &mut bool {
+        &mut self.update_when_moving
     }
     fn capture_sky(&self) -> &bool {
         &self.capture_sky
     }
+    fn capture_sky_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky
+    }
     fn capture_sky_mask(&self) -> &bool {
         &self.capture_sky_mask
+    }
+    fn capture_sky_mask_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky_mask
     }
     fn use_sky_visibility_as_a_o(&self) -> &bool {
         &self.use_sky_visibility_as_a_o
     }
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_a_o
+    }
     fn use_sky_visibility_as_mask(&self) -> &bool {
         &self.use_sky_visibility_as_mask
+    }
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_mask
     }
     fn sharpen_sky_visibility(&self) -> &f32 {
         &self.sharpen_sky_visibility
     }
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.sharpen_sky_visibility
+    }
     fn bias_sky_visibility(&self) -> &f32 {
         &self.bias_sky_visibility
+    }
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.bias_sky_visibility
     }
     fn use_proxy_reprojection(&self) -> &bool {
         &self.use_proxy_reprojection
     }
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool {
+        &mut self.use_proxy_reprojection
+    }
     fn capture_fog(&self) -> &bool {
         &self.capture_fog
+    }
+    fn capture_fog_mut(&mut self) -> &mut bool {
+        &mut self.capture_fog
     }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
     }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
+    }
     fn do_not_update_baked_texture(&self) -> &bool {
         &self.do_not_update_baked_texture
+    }
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool {
+        &mut self.do_not_update_baked_texture
     }
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.baked_texture
     }
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.baked_texture
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn is_visible(&self) -> &bool {
         &self.is_visible
+    }
+    fn is_visible_mut(&mut self) -> &mut bool {
+        &mut self.is_visible
     }
 }
 
@@ -20150,6 +26657,9 @@ impl super::entity::SpatialEntityDataTrait for PbrDistantReflectionVolumeEntityD
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for PbrDistantReflectionVolumeEntityData {
@@ -20162,15 +26672,15 @@ impl super::core::DataBusPeerTrait for PbrDistantReflectionVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PbrDistantReflectionVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for PbrDistantReflectionVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PBRDISTANTREFLECTIONVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20322,6 +26832,15 @@ impl TypeObject for PbrDistantReflectionVolumeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20369,115 +26888,223 @@ pub struct PbrBoxReflectionVolumeEntityData {
 
 pub trait PbrBoxReflectionVolumeEntityDataTrait: PbrGenericBoxReflectionVolumeEntityDataTrait {
     fn influence_fade_normal(&self) -> &super::core::Vec3;
+    fn influence_fade_normal_mut(&mut self) -> &mut super::core::Vec3;
     fn side_fade_pos_x(&self) -> &f32;
+    fn side_fade_pos_x_mut(&mut self) -> &mut f32;
     fn side_fade_neg_x(&self) -> &f32;
+    fn side_fade_neg_x_mut(&mut self) -> &mut f32;
     fn side_fade_pos_y(&self) -> &f32;
+    fn side_fade_pos_y_mut(&mut self) -> &mut f32;
     fn side_fade_neg_y(&self) -> &f32;
+    fn side_fade_neg_y_mut(&mut self) -> &mut f32;
     fn side_fade_pos_z(&self) -> &f32;
+    fn side_fade_pos_z_mut(&mut self) -> &mut f32;
     fn side_fade_neg_z(&self) -> &f32;
+    fn side_fade_neg_z_mut(&mut self) -> &mut f32;
     fn local_offset(&self) -> &super::core::Vec3;
+    fn local_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn mode(&self) -> &super::render_base::LocalIBLMode;
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode;
     fn capture_distance(&self) -> &f32;
+    fn capture_distance_mut(&mut self) -> &mut f32;
     fn capture_fade_distance(&self) -> &f32;
+    fn capture_fade_distance_mut(&mut self) -> &mut f32;
     fn influence_expand_distance(&self) -> &f32;
+    fn influence_expand_distance_mut(&mut self) -> &mut f32;
     fn influence_fade_distance(&self) -> &f32;
+    fn influence_fade_distance_mut(&mut self) -> &mut f32;
     fn update_when_moving(&self) -> &bool;
+    fn update_when_moving_mut(&mut self) -> &mut bool;
     fn capture_sky(&self) -> &bool;
+    fn capture_sky_mut(&mut self) -> &mut bool;
     fn capture_sky_mask(&self) -> &bool;
+    fn capture_sky_mask_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_a_o(&self) -> &bool;
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_mask(&self) -> &bool;
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool;
     fn sharpen_sky_visibility(&self) -> &f32;
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32;
     fn bias_sky_visibility(&self) -> &f32;
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32;
     fn use_proxy_reprojection(&self) -> &bool;
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool;
     fn capture_fog(&self) -> &bool;
+    fn capture_fog_mut(&mut self) -> &mut bool;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn do_not_update_baked_texture(&self) -> &bool;
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool;
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn is_visible(&self) -> &bool;
+    fn is_visible_mut(&mut self) -> &mut bool;
 }
 
 impl PbrBoxReflectionVolumeEntityDataTrait for PbrBoxReflectionVolumeEntityData {
     fn influence_fade_normal(&self) -> &super::core::Vec3 {
         &self.influence_fade_normal
     }
+    fn influence_fade_normal_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.influence_fade_normal
+    }
     fn side_fade_pos_x(&self) -> &f32 {
         &self.side_fade_pos_x
+    }
+    fn side_fade_pos_x_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_pos_x
     }
     fn side_fade_neg_x(&self) -> &f32 {
         &self.side_fade_neg_x
     }
+    fn side_fade_neg_x_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_neg_x
+    }
     fn side_fade_pos_y(&self) -> &f32 {
         &self.side_fade_pos_y
+    }
+    fn side_fade_pos_y_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_pos_y
     }
     fn side_fade_neg_y(&self) -> &f32 {
         &self.side_fade_neg_y
     }
+    fn side_fade_neg_y_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_neg_y
+    }
     fn side_fade_pos_z(&self) -> &f32 {
         &self.side_fade_pos_z
+    }
+    fn side_fade_pos_z_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_pos_z
     }
     fn side_fade_neg_z(&self) -> &f32 {
         &self.side_fade_neg_z
     }
+    fn side_fade_neg_z_mut(&mut self) -> &mut f32 {
+        &mut self.side_fade_neg_z
+    }
     fn local_offset(&self) -> &super::core::Vec3 {
         &self.local_offset
+    }
+    fn local_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.local_offset
     }
     fn mode(&self) -> &super::render_base::LocalIBLMode {
         &self.mode
     }
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode {
+        &mut self.mode
+    }
     fn capture_distance(&self) -> &f32 {
         &self.capture_distance
+    }
+    fn capture_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_distance
     }
     fn capture_fade_distance(&self) -> &f32 {
         &self.capture_fade_distance
     }
+    fn capture_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_fade_distance
+    }
     fn influence_expand_distance(&self) -> &f32 {
         &self.influence_expand_distance
+    }
+    fn influence_expand_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_expand_distance
     }
     fn influence_fade_distance(&self) -> &f32 {
         &self.influence_fade_distance
     }
+    fn influence_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_fade_distance
+    }
     fn update_when_moving(&self) -> &bool {
         &self.update_when_moving
+    }
+    fn update_when_moving_mut(&mut self) -> &mut bool {
+        &mut self.update_when_moving
     }
     fn capture_sky(&self) -> &bool {
         &self.capture_sky
     }
+    fn capture_sky_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky
+    }
     fn capture_sky_mask(&self) -> &bool {
         &self.capture_sky_mask
+    }
+    fn capture_sky_mask_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky_mask
     }
     fn use_sky_visibility_as_a_o(&self) -> &bool {
         &self.use_sky_visibility_as_a_o
     }
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_a_o
+    }
     fn use_sky_visibility_as_mask(&self) -> &bool {
         &self.use_sky_visibility_as_mask
+    }
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_mask
     }
     fn sharpen_sky_visibility(&self) -> &f32 {
         &self.sharpen_sky_visibility
     }
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.sharpen_sky_visibility
+    }
     fn bias_sky_visibility(&self) -> &f32 {
         &self.bias_sky_visibility
+    }
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.bias_sky_visibility
     }
     fn use_proxy_reprojection(&self) -> &bool {
         &self.use_proxy_reprojection
     }
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool {
+        &mut self.use_proxy_reprojection
+    }
     fn capture_fog(&self) -> &bool {
         &self.capture_fog
+    }
+    fn capture_fog_mut(&mut self) -> &mut bool {
+        &mut self.capture_fog
     }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
     }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
+    }
     fn do_not_update_baked_texture(&self) -> &bool {
         &self.do_not_update_baked_texture
+    }
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool {
+        &mut self.do_not_update_baked_texture
     }
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.baked_texture
     }
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.baked_texture
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn is_visible(&self) -> &bool {
         &self.is_visible
+    }
+    fn is_visible_mut(&mut self) -> &mut bool {
+        &mut self.is_visible
     }
 }
 
@@ -20494,6 +27121,9 @@ impl super::entity::SpatialEntityDataTrait for PbrBoxReflectionVolumeEntityData 
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for PbrBoxReflectionVolumeEntityData {
@@ -20506,15 +27136,15 @@ impl super::core::DataBusPeerTrait for PbrBoxReflectionVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PbrBoxReflectionVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for PbrBoxReflectionVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PBRBOXREFLECTIONVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20702,6 +27332,15 @@ impl TypeObject for PbrBoxReflectionVolumeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20736,6 +27375,9 @@ impl super::entity::SpatialEntityDataTrait for PbrGenericBoxReflectionVolumeEnti
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for PbrGenericBoxReflectionVolumeEntityData {
@@ -20748,15 +27390,15 @@ impl super::core::DataBusPeerTrait for PbrGenericBoxReflectionVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PbrGenericBoxReflectionVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for PbrGenericBoxReflectionVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PBRGENERICBOXREFLECTIONVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20781,6 +27423,15 @@ impl TypeObject for PbrGenericBoxReflectionVolumeEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -20822,87 +27473,167 @@ pub struct PbrSphereReflectionVolumeEntityData {
 
 pub trait PbrSphereReflectionVolumeEntityDataTrait: PbrReflectionVolumeEntityDataTrait {
     fn influence_fade_normal(&self) -> &f32;
+    fn influence_fade_normal_mut(&mut self) -> &mut f32;
     fn mode(&self) -> &super::render_base::LocalIBLMode;
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode;
     fn capture_distance(&self) -> &f32;
+    fn capture_distance_mut(&mut self) -> &mut f32;
     fn capture_fade_distance(&self) -> &f32;
+    fn capture_fade_distance_mut(&mut self) -> &mut f32;
     fn influence_expand_distance(&self) -> &f32;
+    fn influence_expand_distance_mut(&mut self) -> &mut f32;
     fn influence_fade_distance(&self) -> &f32;
+    fn influence_fade_distance_mut(&mut self) -> &mut f32;
     fn update_when_moving(&self) -> &bool;
+    fn update_when_moving_mut(&mut self) -> &mut bool;
     fn capture_sky(&self) -> &bool;
+    fn capture_sky_mut(&mut self) -> &mut bool;
     fn capture_sky_mask(&self) -> &bool;
+    fn capture_sky_mask_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_a_o(&self) -> &bool;
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool;
     fn use_sky_visibility_as_mask(&self) -> &bool;
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool;
     fn sharpen_sky_visibility(&self) -> &f32;
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32;
     fn bias_sky_visibility(&self) -> &f32;
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32;
     fn use_proxy_reprojection(&self) -> &bool;
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool;
     fn capture_fog(&self) -> &bool;
+    fn capture_fog_mut(&mut self) -> &mut bool;
     fn object_layers(&self) -> &u16;
+    fn object_layers_mut(&mut self) -> &mut u16;
     fn do_not_update_baked_texture(&self) -> &bool;
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool;
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn is_visible(&self) -> &bool;
+    fn is_visible_mut(&mut self) -> &mut bool;
 }
 
 impl PbrSphereReflectionVolumeEntityDataTrait for PbrSphereReflectionVolumeEntityData {
     fn influence_fade_normal(&self) -> &f32 {
         &self.influence_fade_normal
     }
+    fn influence_fade_normal_mut(&mut self) -> &mut f32 {
+        &mut self.influence_fade_normal
+    }
     fn mode(&self) -> &super::render_base::LocalIBLMode {
         &self.mode
+    }
+    fn mode_mut(&mut self) -> &mut super::render_base::LocalIBLMode {
+        &mut self.mode
     }
     fn capture_distance(&self) -> &f32 {
         &self.capture_distance
     }
+    fn capture_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_distance
+    }
     fn capture_fade_distance(&self) -> &f32 {
         &self.capture_fade_distance
+    }
+    fn capture_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.capture_fade_distance
     }
     fn influence_expand_distance(&self) -> &f32 {
         &self.influence_expand_distance
     }
+    fn influence_expand_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_expand_distance
+    }
     fn influence_fade_distance(&self) -> &f32 {
         &self.influence_fade_distance
+    }
+    fn influence_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.influence_fade_distance
     }
     fn update_when_moving(&self) -> &bool {
         &self.update_when_moving
     }
+    fn update_when_moving_mut(&mut self) -> &mut bool {
+        &mut self.update_when_moving
+    }
     fn capture_sky(&self) -> &bool {
         &self.capture_sky
+    }
+    fn capture_sky_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky
     }
     fn capture_sky_mask(&self) -> &bool {
         &self.capture_sky_mask
     }
+    fn capture_sky_mask_mut(&mut self) -> &mut bool {
+        &mut self.capture_sky_mask
+    }
     fn use_sky_visibility_as_a_o(&self) -> &bool {
         &self.use_sky_visibility_as_a_o
+    }
+    fn use_sky_visibility_as_a_o_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_a_o
     }
     fn use_sky_visibility_as_mask(&self) -> &bool {
         &self.use_sky_visibility_as_mask
     }
+    fn use_sky_visibility_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_sky_visibility_as_mask
+    }
     fn sharpen_sky_visibility(&self) -> &f32 {
         &self.sharpen_sky_visibility
+    }
+    fn sharpen_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.sharpen_sky_visibility
     }
     fn bias_sky_visibility(&self) -> &f32 {
         &self.bias_sky_visibility
     }
+    fn bias_sky_visibility_mut(&mut self) -> &mut f32 {
+        &mut self.bias_sky_visibility
+    }
     fn use_proxy_reprojection(&self) -> &bool {
         &self.use_proxy_reprojection
+    }
+    fn use_proxy_reprojection_mut(&mut self) -> &mut bool {
+        &mut self.use_proxy_reprojection
     }
     fn capture_fog(&self) -> &bool {
         &self.capture_fog
     }
+    fn capture_fog_mut(&mut self) -> &mut bool {
+        &mut self.capture_fog
+    }
     fn object_layers(&self) -> &u16 {
         &self.object_layers
+    }
+    fn object_layers_mut(&mut self) -> &mut u16 {
+        &mut self.object_layers
     }
     fn do_not_update_baked_texture(&self) -> &bool {
         &self.do_not_update_baked_texture
     }
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool {
+        &mut self.do_not_update_baked_texture
+    }
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.baked_texture
+    }
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.baked_texture
     }
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn is_visible(&self) -> &bool {
         &self.is_visible
+    }
+    fn is_visible_mut(&mut self) -> &mut bool {
+        &mut self.is_visible
     }
 }
 
@@ -20916,6 +27647,9 @@ impl super::entity::SpatialEntityDataTrait for PbrSphereReflectionVolumeEntityDa
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for PbrSphereReflectionVolumeEntityData {
@@ -20928,15 +27662,15 @@ impl super::core::DataBusPeerTrait for PbrSphereReflectionVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PbrSphereReflectionVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for PbrSphereReflectionVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PBRSPHEREREFLECTIONVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21082,6 +27816,15 @@ impl TypeObject for PbrSphereReflectionVolumeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -21113,6 +27856,9 @@ impl super::entity::SpatialEntityDataTrait for PbrReflectionVolumeEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for PbrReflectionVolumeEntityData {
@@ -21125,15 +27871,15 @@ impl super::core::DataBusPeerTrait for PbrReflectionVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PbrReflectionVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for PbrReflectionVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PBRREFLECTIONVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21158,6 +27904,15 @@ impl TypeObject for PbrReflectionVolumeEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -21221,175 +27976,343 @@ pub struct PbrRectangularLightEntityData {
 
 pub trait PbrRectangularLightEntityDataTrait: PbrAnalyticLightEntityDataTrait {
     fn shape(&self) -> &super::render_base::RectangularLightShape;
+    fn shape_mut(&mut self) -> &mut super::render_base::RectangularLightShape;
     fn outer_angle(&self) -> &f32;
+    fn outer_angle_mut(&mut self) -> &mut f32;
     fn aspect(&self) -> &f32;
+    fn aspect_mut(&mut self) -> &mut f32;
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn height(&self) -> &f32;
+    fn height_mut(&mut self) -> &mut f32;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn shadow_max_angle(&self) -> &f32;
+    fn shadow_max_angle_mut(&mut self) -> &mut f32;
     fn shadow_fade_out_range(&self) -> &f32;
+    fn shadow_fade_out_range_mut(&mut self) -> &mut f32;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn attenuation_radius(&self) -> &f32;
+    fn attenuation_radius_mut(&mut self) -> &mut f32;
     fn emissive_shape_enable(&self) -> &bool;
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn light_unit(&self) -> &super::render_base::LightUnitType;
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType;
     fn affect_diffuse(&self) -> &bool;
+    fn affect_diffuse_mut(&mut self) -> &mut bool;
     fn affect_specular(&self) -> &bool;
+    fn affect_specular_mut(&mut self) -> &mut bool;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_near_radius(&self) -> &f32;
+    fn shadow_near_radius_mut(&mut self) -> &mut f32;
     fn shadow_far_radius(&self) -> &f32;
+    fn shadow_far_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn affect_radiosity(&self) -> &bool;
+    fn affect_radiosity_mut(&mut self) -> &mut bool;
     fn radiosity_color_scale(&self) -> &super::core::Vec3;
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
     fn cull_screen_area(&self) -> &f32;
+    fn cull_screen_area_mut(&mut self) -> &mut f32;
     fn fade_screen_area(&self) -> &f32;
+    fn fade_screen_area_mut(&mut self) -> &mut f32;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn fade_distance(&self) -> &f32;
+    fn fade_distance_mut(&mut self) -> &mut f32;
     fn shadow_cull_screen_area(&self) -> &f32;
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_fade_screen_area(&self) -> &f32;
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_cull_distance(&self) -> &f32;
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32;
     fn shadow_fade_distance(&self) -> &f32;
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
 }
 
 impl PbrRectangularLightEntityDataTrait for PbrRectangularLightEntityData {
     fn shape(&self) -> &super::render_base::RectangularLightShape {
         &self.shape
     }
+    fn shape_mut(&mut self) -> &mut super::render_base::RectangularLightShape {
+        &mut self.shape
+    }
     fn outer_angle(&self) -> &f32 {
         &self.outer_angle
+    }
+    fn outer_angle_mut(&mut self) -> &mut f32 {
+        &mut self.outer_angle
     }
     fn aspect(&self) -> &f32 {
         &self.aspect
     }
+    fn aspect_mut(&mut self) -> &mut f32 {
+        &mut self.aspect
+    }
     fn width(&self) -> &f32 {
         &self.width
+    }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
     }
     fn height(&self) -> &f32 {
         &self.height
     }
+    fn height_mut(&mut self) -> &mut f32 {
+        &mut self.height
+    }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
+    }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
     }
     fn shadow_max_angle(&self) -> &f32 {
         &self.shadow_max_angle
     }
+    fn shadow_max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_max_angle
+    }
     fn shadow_fade_out_range(&self) -> &f32 {
         &self.shadow_fade_out_range
+    }
+    fn shadow_fade_out_range_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_out_range
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
     }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
+    }
     fn attenuation_radius(&self) -> &f32 {
         &self.attenuation_radius
+    }
+    fn attenuation_radius_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_radius
     }
     fn emissive_shape_enable(&self) -> &bool {
         &self.emissive_shape_enable
     }
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_shape_enable
+    }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
+    }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
     }
     fn light_unit(&self) -> &super::render_base::LightUnitType {
         &self.light_unit
     }
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType {
+        &mut self.light_unit
+    }
     fn affect_diffuse(&self) -> &bool {
         &self.affect_diffuse
+    }
+    fn affect_diffuse_mut(&mut self) -> &mut bool {
+        &mut self.affect_diffuse
     }
     fn affect_specular(&self) -> &bool {
         &self.affect_specular
     }
+    fn affect_specular_mut(&mut self) -> &mut bool {
+        &mut self.affect_specular
+    }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
+    }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
     }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
     }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
+    }
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric
+    }
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric
     }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
     }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
+    }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
+    }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
     }
     fn shadow_near_radius(&self) -> &f32 {
         &self.shadow_near_radius
     }
+    fn shadow_near_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_near_radius
+    }
     fn shadow_far_radius(&self) -> &f32 {
         &self.shadow_far_radius
+    }
+    fn shadow_far_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_far_radius
     }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
     }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
+    }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
+    }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
     }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
     }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
+    }
     fn affect_radiosity(&self) -> &bool {
         &self.affect_radiosity
+    }
+    fn affect_radiosity_mut(&mut self) -> &mut bool {
+        &mut self.affect_radiosity
     }
     fn radiosity_color_scale(&self) -> &super::core::Vec3 {
         &self.radiosity_color_scale
     }
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.radiosity_color_scale
+    }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
+    }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
     }
     fn cull_screen_area(&self) -> &f32 {
         &self.cull_screen_area
     }
+    fn cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area
+    }
     fn fade_screen_area(&self) -> &f32 {
         &self.fade_screen_area
+    }
+    fn fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.fade_screen_area
     }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
     }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
+    }
     fn fade_distance(&self) -> &f32 {
         &self.fade_distance
+    }
+    fn fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_distance
     }
     fn shadow_cull_screen_area(&self) -> &f32 {
         &self.shadow_cull_screen_area
     }
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_screen_area
+    }
     fn shadow_fade_screen_area(&self) -> &f32 {
         &self.shadow_fade_screen_area
+    }
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_screen_area
     }
     fn shadow_cull_distance(&self) -> &f32 {
         &self.shadow_cull_distance
     }
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_distance
+    }
     fn shadow_fade_distance(&self) -> &f32 {
         &self.shadow_fade_distance
+    }
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_distance
     }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
     }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
+    }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
+    }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
     }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
     }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
+    }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
+    }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
     }
 }
 
@@ -21400,11 +28323,17 @@ impl LocalLightEntityDataTrait for PbrRectangularLightEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for PbrRectangularLightEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -21418,15 +28347,15 @@ impl super::core::DataBusPeerTrait for PbrRectangularLightEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PbrRectangularLightEntityData {
 }
 
 impl super::core::DataContainerTrait for PbrRectangularLightEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PBRRECTANGULARLIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -21704,6 +28633,15 @@ impl TypeObject for PbrRectangularLightEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -21762,159 +28700,311 @@ pub struct PbrTubeLightEntityData {
 
 pub trait PbrTubeLightEntityDataTrait: PbrAnalyticLightEntityDataTrait {
     fn tube_radius(&self) -> &f32;
+    fn tube_radius_mut(&mut self) -> &mut f32;
     fn tube_width(&self) -> &f32;
+    fn tube_width_mut(&mut self) -> &mut f32;
     fn only_hempishere(&self) -> &bool;
+    fn only_hempishere_mut(&mut self) -> &mut bool;
     fn is_capsule(&self) -> &bool;
+    fn is_capsule_mut(&mut self) -> &mut bool;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn attenuation_radius(&self) -> &f32;
+    fn attenuation_radius_mut(&mut self) -> &mut f32;
     fn emissive_shape_enable(&self) -> &bool;
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn light_unit(&self) -> &super::render_base::LightUnitType;
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType;
     fn affect_diffuse(&self) -> &bool;
+    fn affect_diffuse_mut(&mut self) -> &mut bool;
     fn affect_specular(&self) -> &bool;
+    fn affect_specular_mut(&mut self) -> &mut bool;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_near_radius(&self) -> &f32;
+    fn shadow_near_radius_mut(&mut self) -> &mut f32;
     fn shadow_far_radius(&self) -> &f32;
+    fn shadow_far_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn affect_radiosity(&self) -> &bool;
+    fn affect_radiosity_mut(&mut self) -> &mut bool;
     fn radiosity_color_scale(&self) -> &super::core::Vec3;
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
     fn cull_screen_area(&self) -> &f32;
+    fn cull_screen_area_mut(&mut self) -> &mut f32;
     fn fade_screen_area(&self) -> &f32;
+    fn fade_screen_area_mut(&mut self) -> &mut f32;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn fade_distance(&self) -> &f32;
+    fn fade_distance_mut(&mut self) -> &mut f32;
     fn shadow_cull_screen_area(&self) -> &f32;
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_fade_screen_area(&self) -> &f32;
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_cull_distance(&self) -> &f32;
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32;
     fn shadow_fade_distance(&self) -> &f32;
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
 }
 
 impl PbrTubeLightEntityDataTrait for PbrTubeLightEntityData {
     fn tube_radius(&self) -> &f32 {
         &self.tube_radius
     }
+    fn tube_radius_mut(&mut self) -> &mut f32 {
+        &mut self.tube_radius
+    }
     fn tube_width(&self) -> &f32 {
         &self.tube_width
+    }
+    fn tube_width_mut(&mut self) -> &mut f32 {
+        &mut self.tube_width
     }
     fn only_hempishere(&self) -> &bool {
         &self.only_hempishere
     }
+    fn only_hempishere_mut(&mut self) -> &mut bool {
+        &mut self.only_hempishere
+    }
     fn is_capsule(&self) -> &bool {
         &self.is_capsule
+    }
+    fn is_capsule_mut(&mut self) -> &mut bool {
+        &mut self.is_capsule
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
     }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
+    }
     fn attenuation_radius(&self) -> &f32 {
         &self.attenuation_radius
+    }
+    fn attenuation_radius_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_radius
     }
     fn emissive_shape_enable(&self) -> &bool {
         &self.emissive_shape_enable
     }
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_shape_enable
+    }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
+    }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
     }
     fn light_unit(&self) -> &super::render_base::LightUnitType {
         &self.light_unit
     }
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType {
+        &mut self.light_unit
+    }
     fn affect_diffuse(&self) -> &bool {
         &self.affect_diffuse
+    }
+    fn affect_diffuse_mut(&mut self) -> &mut bool {
+        &mut self.affect_diffuse
     }
     fn affect_specular(&self) -> &bool {
         &self.affect_specular
     }
+    fn affect_specular_mut(&mut self) -> &mut bool {
+        &mut self.affect_specular
+    }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
+    }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
     }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
     }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
+    }
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric
+    }
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric
     }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
     }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
+    }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
+    }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
     }
     fn shadow_near_radius(&self) -> &f32 {
         &self.shadow_near_radius
     }
+    fn shadow_near_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_near_radius
+    }
     fn shadow_far_radius(&self) -> &f32 {
         &self.shadow_far_radius
+    }
+    fn shadow_far_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_far_radius
     }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
     }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
+    }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
+    }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
     }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
     }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
+    }
     fn affect_radiosity(&self) -> &bool {
         &self.affect_radiosity
+    }
+    fn affect_radiosity_mut(&mut self) -> &mut bool {
+        &mut self.affect_radiosity
     }
     fn radiosity_color_scale(&self) -> &super::core::Vec3 {
         &self.radiosity_color_scale
     }
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.radiosity_color_scale
+    }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
+    }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
     }
     fn cull_screen_area(&self) -> &f32 {
         &self.cull_screen_area
     }
+    fn cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area
+    }
     fn fade_screen_area(&self) -> &f32 {
         &self.fade_screen_area
+    }
+    fn fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.fade_screen_area
     }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
     }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
+    }
     fn fade_distance(&self) -> &f32 {
         &self.fade_distance
+    }
+    fn fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_distance
     }
     fn shadow_cull_screen_area(&self) -> &f32 {
         &self.shadow_cull_screen_area
     }
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_screen_area
+    }
     fn shadow_fade_screen_area(&self) -> &f32 {
         &self.shadow_fade_screen_area
+    }
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_screen_area
     }
     fn shadow_cull_distance(&self) -> &f32 {
         &self.shadow_cull_distance
     }
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_distance
+    }
     fn shadow_fade_distance(&self) -> &f32 {
         &self.shadow_fade_distance
+    }
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_distance
     }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
     }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
+    }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
+    }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
     }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
     }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
+    }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
+    }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
     }
 }
 
@@ -21925,11 +29015,17 @@ impl LocalLightEntityDataTrait for PbrTubeLightEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for PbrTubeLightEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -21943,15 +29039,15 @@ impl super::core::DataBusPeerTrait for PbrTubeLightEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PbrTubeLightEntityData {
 }
 
 impl super::core::DataContainerTrait for PbrTubeLightEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PBRTUBELIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -22205,6 +29301,15 @@ impl TypeObject for PbrTubeLightEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22267,175 +29372,343 @@ pub struct PbrSpotLightEntityData {
 
 pub trait PbrSpotLightEntityDataTrait: PbrAnalyticLightEntityDataTrait {
     fn disc_radius(&self) -> &f32;
+    fn disc_radius_mut(&mut self) -> &mut f32;
     fn inner_angle(&self) -> &f32;
+    fn inner_angle_mut(&mut self) -> &mut f32;
     fn outer_angle(&self) -> &f32;
+    fn outer_angle_mut(&mut self) -> &mut f32;
     fn i_e_s_profile(&self) -> &Option<Arc<Mutex<dyn super::world_base::IesProfileAssetTrait>>>;
+    fn i_e_s_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_base::IesProfileAssetTrait>>>;
     fn use_i_e_s_profile_as_mask(&self) -> &bool;
+    fn use_i_e_s_profile_as_mask_mut(&mut self) -> &mut bool;
     fn i_e_s_multiplier(&self) -> &f32;
+    fn i_e_s_multiplier_mut(&mut self) -> &mut f32;
     fn shadow_max_angle(&self) -> &f32;
+    fn shadow_max_angle_mut(&mut self) -> &mut f32;
     fn shadow_fade_out_range(&self) -> &f32;
+    fn shadow_fade_out_range_mut(&mut self) -> &mut f32;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn attenuation_radius(&self) -> &f32;
+    fn attenuation_radius_mut(&mut self) -> &mut f32;
     fn emissive_shape_enable(&self) -> &bool;
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn light_unit(&self) -> &super::render_base::LightUnitType;
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType;
     fn affect_diffuse(&self) -> &bool;
+    fn affect_diffuse_mut(&mut self) -> &mut bool;
     fn affect_specular(&self) -> &bool;
+    fn affect_specular_mut(&mut self) -> &mut bool;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_near_radius(&self) -> &f32;
+    fn shadow_near_radius_mut(&mut self) -> &mut f32;
     fn shadow_far_radius(&self) -> &f32;
+    fn shadow_far_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn affect_radiosity(&self) -> &bool;
+    fn affect_radiosity_mut(&mut self) -> &mut bool;
     fn radiosity_color_scale(&self) -> &super::core::Vec3;
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
     fn cull_screen_area(&self) -> &f32;
+    fn cull_screen_area_mut(&mut self) -> &mut f32;
     fn fade_screen_area(&self) -> &f32;
+    fn fade_screen_area_mut(&mut self) -> &mut f32;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn fade_distance(&self) -> &f32;
+    fn fade_distance_mut(&mut self) -> &mut f32;
     fn shadow_cull_screen_area(&self) -> &f32;
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_fade_screen_area(&self) -> &f32;
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_cull_distance(&self) -> &f32;
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32;
     fn shadow_fade_distance(&self) -> &f32;
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
 }
 
 impl PbrSpotLightEntityDataTrait for PbrSpotLightEntityData {
     fn disc_radius(&self) -> &f32 {
         &self.disc_radius
     }
+    fn disc_radius_mut(&mut self) -> &mut f32 {
+        &mut self.disc_radius
+    }
     fn inner_angle(&self) -> &f32 {
         &self.inner_angle
+    }
+    fn inner_angle_mut(&mut self) -> &mut f32 {
+        &mut self.inner_angle
     }
     fn outer_angle(&self) -> &f32 {
         &self.outer_angle
     }
+    fn outer_angle_mut(&mut self) -> &mut f32 {
+        &mut self.outer_angle
+    }
     fn i_e_s_profile(&self) -> &Option<Arc<Mutex<dyn super::world_base::IesProfileAssetTrait>>> {
         &self.i_e_s_profile
+    }
+    fn i_e_s_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_base::IesProfileAssetTrait>>> {
+        &mut self.i_e_s_profile
     }
     fn use_i_e_s_profile_as_mask(&self) -> &bool {
         &self.use_i_e_s_profile_as_mask
     }
+    fn use_i_e_s_profile_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_i_e_s_profile_as_mask
+    }
     fn i_e_s_multiplier(&self) -> &f32 {
         &self.i_e_s_multiplier
+    }
+    fn i_e_s_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.i_e_s_multiplier
     }
     fn shadow_max_angle(&self) -> &f32 {
         &self.shadow_max_angle
     }
+    fn shadow_max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_max_angle
+    }
     fn shadow_fade_out_range(&self) -> &f32 {
         &self.shadow_fade_out_range
+    }
+    fn shadow_fade_out_range_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_out_range
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
     }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
+    }
     fn attenuation_radius(&self) -> &f32 {
         &self.attenuation_radius
+    }
+    fn attenuation_radius_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_radius
     }
     fn emissive_shape_enable(&self) -> &bool {
         &self.emissive_shape_enable
     }
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_shape_enable
+    }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
+    }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
     }
     fn light_unit(&self) -> &super::render_base::LightUnitType {
         &self.light_unit
     }
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType {
+        &mut self.light_unit
+    }
     fn affect_diffuse(&self) -> &bool {
         &self.affect_diffuse
+    }
+    fn affect_diffuse_mut(&mut self) -> &mut bool {
+        &mut self.affect_diffuse
     }
     fn affect_specular(&self) -> &bool {
         &self.affect_specular
     }
+    fn affect_specular_mut(&mut self) -> &mut bool {
+        &mut self.affect_specular
+    }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
+    }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
     }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
     }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
+    }
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric
+    }
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric
     }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
     }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
+    }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
+    }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
     }
     fn shadow_near_radius(&self) -> &f32 {
         &self.shadow_near_radius
     }
+    fn shadow_near_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_near_radius
+    }
     fn shadow_far_radius(&self) -> &f32 {
         &self.shadow_far_radius
+    }
+    fn shadow_far_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_far_radius
     }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
     }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
+    }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
+    }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
     }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
     }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
+    }
     fn affect_radiosity(&self) -> &bool {
         &self.affect_radiosity
+    }
+    fn affect_radiosity_mut(&mut self) -> &mut bool {
+        &mut self.affect_radiosity
     }
     fn radiosity_color_scale(&self) -> &super::core::Vec3 {
         &self.radiosity_color_scale
     }
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.radiosity_color_scale
+    }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
+    }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
     }
     fn cull_screen_area(&self) -> &f32 {
         &self.cull_screen_area
     }
+    fn cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area
+    }
     fn fade_screen_area(&self) -> &f32 {
         &self.fade_screen_area
+    }
+    fn fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.fade_screen_area
     }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
     }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
+    }
     fn fade_distance(&self) -> &f32 {
         &self.fade_distance
+    }
+    fn fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_distance
     }
     fn shadow_cull_screen_area(&self) -> &f32 {
         &self.shadow_cull_screen_area
     }
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_screen_area
+    }
     fn shadow_fade_screen_area(&self) -> &f32 {
         &self.shadow_fade_screen_area
+    }
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_screen_area
     }
     fn shadow_cull_distance(&self) -> &f32 {
         &self.shadow_cull_distance
     }
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_distance
+    }
     fn shadow_fade_distance(&self) -> &f32 {
         &self.shadow_fade_distance
+    }
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_distance
     }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
     }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
+    }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
+    }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
     }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
     }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
+    }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
+    }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
     }
 }
 
@@ -22446,11 +29719,17 @@ impl LocalLightEntityDataTrait for PbrSpotLightEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for PbrSpotLightEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -22464,15 +29743,15 @@ impl super::core::DataBusPeerTrait for PbrSpotLightEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PbrSpotLightEntityData {
 }
 
 impl super::core::DataContainerTrait for PbrSpotLightEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PBRSPOTLIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -22750,6 +30029,15 @@ impl TypeObject for PbrSpotLightEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -22809,163 +30097,319 @@ pub struct PbrSphereLightEntityData {
 
 pub trait PbrSphereLightEntityDataTrait: PbrAnalyticLightEntityDataTrait {
     fn sphere_radius(&self) -> &f32;
+    fn sphere_radius_mut(&mut self) -> &mut f32;
     fn only_hempishere(&self) -> &bool;
+    fn only_hempishere_mut(&mut self) -> &mut bool;
     fn i_e_s_profile(&self) -> &Option<Arc<Mutex<dyn super::world_base::IesProfileAssetTrait>>>;
+    fn i_e_s_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_base::IesProfileAssetTrait>>>;
     fn use_i_e_s_profile_as_mask(&self) -> &bool;
+    fn use_i_e_s_profile_as_mask_mut(&mut self) -> &mut bool;
     fn i_e_s_multiplier(&self) -> &f32;
+    fn i_e_s_multiplier_mut(&mut self) -> &mut f32;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn attenuation_radius(&self) -> &f32;
+    fn attenuation_radius_mut(&mut self) -> &mut f32;
     fn emissive_shape_enable(&self) -> &bool;
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn light_unit(&self) -> &super::render_base::LightUnitType;
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType;
     fn affect_diffuse(&self) -> &bool;
+    fn affect_diffuse_mut(&mut self) -> &mut bool;
     fn affect_specular(&self) -> &bool;
+    fn affect_specular_mut(&mut self) -> &mut bool;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_near_radius(&self) -> &f32;
+    fn shadow_near_radius_mut(&mut self) -> &mut f32;
     fn shadow_far_radius(&self) -> &f32;
+    fn shadow_far_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn affect_radiosity(&self) -> &bool;
+    fn affect_radiosity_mut(&mut self) -> &mut bool;
     fn radiosity_color_scale(&self) -> &super::core::Vec3;
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
     fn cull_screen_area(&self) -> &f32;
+    fn cull_screen_area_mut(&mut self) -> &mut f32;
     fn fade_screen_area(&self) -> &f32;
+    fn fade_screen_area_mut(&mut self) -> &mut f32;
     fn cull_distance(&self) -> &f32;
+    fn cull_distance_mut(&mut self) -> &mut f32;
     fn fade_distance(&self) -> &f32;
+    fn fade_distance_mut(&mut self) -> &mut f32;
     fn shadow_cull_screen_area(&self) -> &f32;
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_fade_screen_area(&self) -> &f32;
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32;
     fn shadow_cull_distance(&self) -> &f32;
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32;
     fn shadow_fade_distance(&self) -> &f32;
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
 }
 
 impl PbrSphereLightEntityDataTrait for PbrSphereLightEntityData {
     fn sphere_radius(&self) -> &f32 {
         &self.sphere_radius
     }
+    fn sphere_radius_mut(&mut self) -> &mut f32 {
+        &mut self.sphere_radius
+    }
     fn only_hempishere(&self) -> &bool {
         &self.only_hempishere
+    }
+    fn only_hempishere_mut(&mut self) -> &mut bool {
+        &mut self.only_hempishere
     }
     fn i_e_s_profile(&self) -> &Option<Arc<Mutex<dyn super::world_base::IesProfileAssetTrait>>> {
         &self.i_e_s_profile
     }
+    fn i_e_s_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_base::IesProfileAssetTrait>>> {
+        &mut self.i_e_s_profile
+    }
     fn use_i_e_s_profile_as_mask(&self) -> &bool {
         &self.use_i_e_s_profile_as_mask
+    }
+    fn use_i_e_s_profile_as_mask_mut(&mut self) -> &mut bool {
+        &mut self.use_i_e_s_profile_as_mask
     }
     fn i_e_s_multiplier(&self) -> &f32 {
         &self.i_e_s_multiplier
     }
+    fn i_e_s_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.i_e_s_multiplier
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
     fn intensity(&self) -> &f32 {
         &self.intensity
     }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
+    }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
+    }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
     }
     fn attenuation_radius(&self) -> &f32 {
         &self.attenuation_radius
     }
+    fn attenuation_radius_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_radius
+    }
     fn emissive_shape_enable(&self) -> &bool {
         &self.emissive_shape_enable
+    }
+    fn emissive_shape_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_shape_enable
     }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
     }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
+    }
     fn light_unit(&self) -> &super::render_base::LightUnitType {
         &self.light_unit
+    }
+    fn light_unit_mut(&mut self) -> &mut super::render_base::LightUnitType {
+        &mut self.light_unit
     }
     fn affect_diffuse(&self) -> &bool {
         &self.affect_diffuse
     }
+    fn affect_diffuse_mut(&mut self) -> &mut bool {
+        &mut self.affect_diffuse
+    }
     fn affect_specular(&self) -> &bool {
         &self.affect_specular
+    }
+    fn affect_specular_mut(&mut self) -> &mut bool {
+        &mut self.affect_specular
     }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
     }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
+    }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
+    }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
     }
     fn cast_volumetric(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric
     }
+    fn cast_volumetric_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric
+    }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
+    }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
     }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
     }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
+    }
     fn shadow_near_radius(&self) -> &f32 {
         &self.shadow_near_radius
+    }
+    fn shadow_near_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_near_radius
     }
     fn shadow_far_radius(&self) -> &f32 {
         &self.shadow_far_radius
     }
+    fn shadow_far_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_far_radius
+    }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
+    }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
     }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
     }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
+    }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
+    }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
     }
     fn affect_radiosity(&self) -> &bool {
         &self.affect_radiosity
     }
+    fn affect_radiosity_mut(&mut self) -> &mut bool {
+        &mut self.affect_radiosity
+    }
     fn radiosity_color_scale(&self) -> &super::core::Vec3 {
         &self.radiosity_color_scale
+    }
+    fn radiosity_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.radiosity_color_scale
     }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
     }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
+    }
     fn cull_screen_area(&self) -> &f32 {
         &self.cull_screen_area
+    }
+    fn cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area
     }
     fn fade_screen_area(&self) -> &f32 {
         &self.fade_screen_area
     }
+    fn fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.fade_screen_area
+    }
     fn cull_distance(&self) -> &f32 {
         &self.cull_distance
+    }
+    fn cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_distance
     }
     fn fade_distance(&self) -> &f32 {
         &self.fade_distance
     }
+    fn fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_distance
+    }
     fn shadow_cull_screen_area(&self) -> &f32 {
         &self.shadow_cull_screen_area
+    }
+    fn shadow_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_screen_area
     }
     fn shadow_fade_screen_area(&self) -> &f32 {
         &self.shadow_fade_screen_area
     }
+    fn shadow_fade_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_screen_area
+    }
     fn shadow_cull_distance(&self) -> &f32 {
         &self.shadow_cull_distance
+    }
+    fn shadow_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cull_distance
     }
     fn shadow_fade_distance(&self) -> &f32 {
         &self.shadow_fade_distance
     }
+    fn shadow_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_fade_distance
+    }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
+    }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
     }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
     }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
+    }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
     }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
+    }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
+    }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
     }
 }
 
@@ -22976,11 +30420,17 @@ impl LocalLightEntityDataTrait for PbrSphereLightEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for PbrSphereLightEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -22994,15 +30444,15 @@ impl super::core::DataBusPeerTrait for PbrSphereLightEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PbrSphereLightEntityData {
 }
 
 impl super::core::DataContainerTrait for PbrSphereLightEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PBRSPHERELIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23262,6 +30712,15 @@ impl TypeObject for PbrSphereLightEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23290,11 +30749,17 @@ impl LocalLightEntityDataTrait for PbrAnalyticLightEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for PbrAnalyticLightEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -23308,15 +30773,15 @@ impl super::core::DataBusPeerTrait for PbrAnalyticLightEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PbrAnalyticLightEntityData {
 }
 
 impl super::core::DataContainerTrait for PbrAnalyticLightEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PBRANALYTICLIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23341,6 +30806,15 @@ impl TypeObject for PbrAnalyticLightEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -23397,147 +30871,287 @@ pub struct SpotLightEntityData {
 
 pub trait SpotLightEntityDataTrait: LocalLightEntityDataTrait {
     fn shape(&self) -> &super::world_base::SpotLightShape;
+    fn shape_mut(&mut self) -> &mut super::world_base::SpotLightShape;
     fn cone_inner_angle(&self) -> &f32;
+    fn cone_inner_angle_mut(&mut self) -> &mut f32;
     fn cone_outer_angle(&self) -> &f32;
+    fn cone_outer_angle_mut(&mut self) -> &mut f32;
     fn frustum_fov(&self) -> &f32;
+    fn frustum_fov_mut(&mut self) -> &mut f32;
     fn frustum_aspect(&self) -> &f32;
+    fn frustum_aspect_mut(&mut self) -> &mut f32;
     fn ortho_width(&self) -> &f32;
+    fn ortho_width_mut(&mut self) -> &mut f32;
     fn ortho_height(&self) -> &f32;
+    fn ortho_height_mut(&mut self) -> &mut f32;
     fn near_plane(&self) -> &f32;
+    fn near_plane_mut(&mut self) -> &mut f32;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled;
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn shadow_resolution(&self) -> &super::core::QualityLevel;
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadow_radius(&self) -> &f32;
+    fn shadow_radius_mut(&mut self) -> &mut f32;
     fn shadow_dimmer(&self) -> &f32;
+    fn shadow_dimmer_mut(&mut self) -> &mut f32;
     fn frustum_as_cone(&self) -> &super::core::QualityScalableEnabled;
+    fn frustum_as_cone_mut(&mut self) -> &mut super::core::QualityScalableEnabled;
     fn frustum_as_cone_angle(&self) -> &bool;
+    fn frustum_as_cone_angle_mut(&mut self) -> &mut bool;
     fn frustum_as_cone_intensity_scale(&self) -> &f32;
+    fn frustum_as_cone_intensity_scale_mut(&mut self) -> &mut f32;
     fn cast_shadows_enable(&self) -> &bool;
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_volumetric_shadows_enable(&self) -> &bool;
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool;
     fn cast_shadows_min_level(&self) -> &super::core::QualityLevel;
+    fn cast_shadows_min_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn direct_light_enable(&self) -> &bool;
+    fn direct_light_enable_mut(&mut self) -> &mut bool;
     fn specular_enable(&self) -> &bool;
+    fn specular_enable_mut(&mut self) -> &mut bool;
     fn enlighten_color_mode(&self) -> &super::world_base::EnlightenColorMode;
+    fn enlighten_color_mode_mut(&mut self) -> &mut super::world_base::EnlightenColorMode;
     fn enlighten_enable(&self) -> &bool;
+    fn enlighten_enable_mut(&mut self) -> &mut bool;
     fn enlighten_color_scale(&self) -> &super::core::Vec3;
+    fn enlighten_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
 }
 
 impl SpotLightEntityDataTrait for SpotLightEntityData {
     fn shape(&self) -> &super::world_base::SpotLightShape {
         &self.shape
     }
+    fn shape_mut(&mut self) -> &mut super::world_base::SpotLightShape {
+        &mut self.shape
+    }
     fn cone_inner_angle(&self) -> &f32 {
         &self.cone_inner_angle
+    }
+    fn cone_inner_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cone_inner_angle
     }
     fn cone_outer_angle(&self) -> &f32 {
         &self.cone_outer_angle
     }
+    fn cone_outer_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cone_outer_angle
+    }
     fn frustum_fov(&self) -> &f32 {
         &self.frustum_fov
+    }
+    fn frustum_fov_mut(&mut self) -> &mut f32 {
+        &mut self.frustum_fov
     }
     fn frustum_aspect(&self) -> &f32 {
         &self.frustum_aspect
     }
+    fn frustum_aspect_mut(&mut self) -> &mut f32 {
+        &mut self.frustum_aspect
+    }
     fn ortho_width(&self) -> &f32 {
         &self.ortho_width
+    }
+    fn ortho_width_mut(&mut self) -> &mut f32 {
+        &mut self.ortho_width
     }
     fn ortho_height(&self) -> &f32 {
         &self.ortho_height
     }
+    fn ortho_height_mut(&mut self) -> &mut f32 {
+        &mut self.ortho_height
+    }
     fn near_plane(&self) -> &f32 {
         &self.near_plane
+    }
+    fn near_plane_mut(&mut self) -> &mut f32 {
+        &mut self.near_plane
     }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
     }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
+    }
     fn cast_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_shadows
+    }
+    fn cast_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_shadows
     }
     fn cast_volumetric_shadows(&self) -> &super::core::QualityScalableEnabled {
         &self.cast_volumetric_shadows
     }
+    fn cast_volumetric_shadows_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.cast_volumetric_shadows
+    }
     fn shadow_resolution(&self) -> &super::core::QualityLevel {
         &self.shadow_resolution
+    }
+    fn shadow_resolution_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.shadow_resolution
     }
     fn shadow_radius(&self) -> &f32 {
         &self.shadow_radius
     }
+    fn shadow_radius_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_radius
+    }
     fn shadow_dimmer(&self) -> &f32 {
         &self.shadow_dimmer
+    }
+    fn shadow_dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_dimmer
     }
     fn frustum_as_cone(&self) -> &super::core::QualityScalableEnabled {
         &self.frustum_as_cone
     }
+    fn frustum_as_cone_mut(&mut self) -> &mut super::core::QualityScalableEnabled {
+        &mut self.frustum_as_cone
+    }
     fn frustum_as_cone_angle(&self) -> &bool {
         &self.frustum_as_cone_angle
+    }
+    fn frustum_as_cone_angle_mut(&mut self) -> &mut bool {
+        &mut self.frustum_as_cone_angle
     }
     fn frustum_as_cone_intensity_scale(&self) -> &f32 {
         &self.frustum_as_cone_intensity_scale
     }
+    fn frustum_as_cone_intensity_scale_mut(&mut self) -> &mut f32 {
+        &mut self.frustum_as_cone_intensity_scale
+    }
     fn cast_shadows_enable(&self) -> &bool {
         &self.cast_shadows_enable
+    }
+    fn cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows_enable
     }
     fn cast_volumetric_shadows_enable(&self) -> &bool {
         &self.cast_volumetric_shadows_enable
     }
+    fn cast_volumetric_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_volumetric_shadows_enable
+    }
     fn cast_shadows_min_level(&self) -> &super::core::QualityLevel {
         &self.cast_shadows_min_level
+    }
+    fn cast_shadows_min_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.cast_shadows_min_level
     }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
     }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
     }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
+    }
     fn direct_light_enable(&self) -> &bool {
         &self.direct_light_enable
+    }
+    fn direct_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_light_enable
     }
     fn specular_enable(&self) -> &bool {
         &self.specular_enable
     }
+    fn specular_enable_mut(&mut self) -> &mut bool {
+        &mut self.specular_enable
+    }
     fn enlighten_color_mode(&self) -> &super::world_base::EnlightenColorMode {
         &self.enlighten_color_mode
+    }
+    fn enlighten_color_mode_mut(&mut self) -> &mut super::world_base::EnlightenColorMode {
+        &mut self.enlighten_color_mode
     }
     fn enlighten_enable(&self) -> &bool {
         &self.enlighten_enable
     }
+    fn enlighten_enable_mut(&mut self) -> &mut bool {
+        &mut self.enlighten_enable
+    }
     fn enlighten_color_scale(&self) -> &super::core::Vec3 {
         &self.enlighten_color_scale
+    }
+    fn enlighten_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.enlighten_color_scale
     }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
     }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
+    }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
+    }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
     }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
     }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
+    }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
     }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
+    }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
+    }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
     }
 }
 
@@ -23545,11 +31159,17 @@ impl LocalLightEntityDataTrait for SpotLightEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for SpotLightEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -23563,15 +31183,15 @@ impl super::core::DataBusPeerTrait for SpotLightEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SpotLightEntityData {
 }
 
 impl super::core::DataContainerTrait for SpotLightEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPOTLIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -23807,6 +31427,15 @@ impl TypeObject for SpotLightEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -23847,87 +31476,167 @@ pub struct PointLightEntityData {
 
 pub trait PointLightEntityDataTrait: LocalLightEntityDataTrait {
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn translucency_ambient(&self) -> &f32;
+    fn translucency_ambient_mut(&mut self) -> &mut f32;
     fn translucency_scale(&self) -> &f32;
+    fn translucency_scale_mut(&mut self) -> &mut f32;
     fn translucency_power(&self) -> &f32;
+    fn translucency_power_mut(&mut self) -> &mut f32;
     fn translucency_distortion(&self) -> &f32;
+    fn translucency_distortion_mut(&mut self) -> &mut f32;
     fn direct_lightmap_enable(&self) -> &bool;
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn attenuation_offset(&self) -> &f32;
+    fn attenuation_offset_mut(&mut self) -> &mut f32;
     fn direct_light_enable(&self) -> &bool;
+    fn direct_light_enable_mut(&mut self) -> &mut bool;
     fn specular_enable(&self) -> &bool;
+    fn specular_enable_mut(&mut self) -> &mut bool;
     fn enlighten_color_mode(&self) -> &super::world_base::EnlightenColorMode;
+    fn enlighten_color_mode_mut(&mut self) -> &mut super::world_base::EnlightenColorMode;
     fn enlighten_enable(&self) -> &bool;
+    fn enlighten_enable_mut(&mut self) -> &mut bool;
     fn enlighten_color_scale(&self) -> &super::core::Vec3;
+    fn enlighten_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn particle_color_scale(&self) -> &super::core::Vec3;
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn exposure_compensation(&self) -> &f32;
+    fn exposure_compensation_mut(&mut self) -> &mut f32;
     fn shadow_cache_enable(&self) -> &bool;
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn shadow_cache_update_priority(&self) -> &f32;
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32;
     fn shadow_cache_update_counter(&self) -> &u32;
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32;
 }
 
 impl PointLightEntityDataTrait for PointLightEntityData {
     fn width(&self) -> &f32 {
         &self.width
     }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
+    }
     fn translucency_ambient(&self) -> &f32 {
         &self.translucency_ambient
+    }
+    fn translucency_ambient_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_ambient
     }
     fn translucency_scale(&self) -> &f32 {
         &self.translucency_scale
     }
+    fn translucency_scale_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_scale
+    }
     fn translucency_power(&self) -> &f32 {
         &self.translucency_power
+    }
+    fn translucency_power_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_power
     }
     fn translucency_distortion(&self) -> &f32 {
         &self.translucency_distortion
     }
+    fn translucency_distortion_mut(&mut self) -> &mut f32 {
+        &mut self.translucency_distortion
+    }
     fn direct_lightmap_enable(&self) -> &bool {
         &self.direct_lightmap_enable
+    }
+    fn direct_lightmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_lightmap_enable
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn intensity(&self) -> &f32 {
         &self.intensity
     }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
+    }
     fn attenuation_offset(&self) -> &f32 {
         &self.attenuation_offset
+    }
+    fn attenuation_offset_mut(&mut self) -> &mut f32 {
+        &mut self.attenuation_offset
     }
     fn direct_light_enable(&self) -> &bool {
         &self.direct_light_enable
     }
+    fn direct_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.direct_light_enable
+    }
     fn specular_enable(&self) -> &bool {
         &self.specular_enable
+    }
+    fn specular_enable_mut(&mut self) -> &mut bool {
+        &mut self.specular_enable
     }
     fn enlighten_color_mode(&self) -> &super::world_base::EnlightenColorMode {
         &self.enlighten_color_mode
     }
+    fn enlighten_color_mode_mut(&mut self) -> &mut super::world_base::EnlightenColorMode {
+        &mut self.enlighten_color_mode
+    }
     fn enlighten_enable(&self) -> &bool {
         &self.enlighten_enable
+    }
+    fn enlighten_enable_mut(&mut self) -> &mut bool {
+        &mut self.enlighten_enable
     }
     fn enlighten_color_scale(&self) -> &super::core::Vec3 {
         &self.enlighten_color_scale
     }
+    fn enlighten_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.enlighten_color_scale
+    }
     fn particle_color_scale(&self) -> &super::core::Vec3 {
         &self.particle_color_scale
+    }
+    fn particle_color_scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.particle_color_scale
     }
     fn exposure_compensation(&self) -> &f32 {
         &self.exposure_compensation
     }
+    fn exposure_compensation_mut(&mut self) -> &mut f32 {
+        &mut self.exposure_compensation
+    }
     fn shadow_cache_enable(&self) -> &bool {
         &self.shadow_cache_enable
+    }
+    fn shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_cache_enable
     }
     fn shadow_cache_update_priority(&self) -> &f32 {
         &self.shadow_cache_update_priority
     }
+    fn shadow_cache_update_priority_mut(&mut self) -> &mut f32 {
+        &mut self.shadow_cache_update_priority
+    }
     fn shadow_cache_update_counter(&self) -> &u32 {
         &self.shadow_cache_update_counter
+    }
+    fn shadow_cache_update_counter_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_cache_update_counter
     }
 }
 
@@ -23935,11 +31644,17 @@ impl LocalLightEntityDataTrait for PointLightEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for PointLightEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -23953,15 +31668,15 @@ impl super::core::DataBusPeerTrait for PointLightEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PointLightEntityData {
 }
 
 impl super::core::DataContainerTrait for PointLightEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POINTLIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24107,6 +31822,15 @@ impl TypeObject for PointLightEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24128,17 +31852,24 @@ pub struct LocalLightEntityData {
 
 pub trait LocalLightEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
 }
 
 impl LocalLightEntityDataTrait for LocalLightEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for LocalLightEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -24152,15 +31883,15 @@ impl super::core::DataBusPeerTrait for LocalLightEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalLightEntityData {
 }
 
 impl super::core::DataContainerTrait for LocalLightEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALLIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24192,6 +31923,15 @@ impl TypeObject for LocalLightEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24220,38 +31960,71 @@ impl super::entity::SpatialReferenceObjectDataTrait for LensFlareReferenceObject
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
 }
 
 impl super::entity::ReferenceObjectDataTrait for LensFlareReferenceObjectData {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -24262,15 +32035,15 @@ impl super::core::DataBusPeerTrait for LensFlareReferenceObjectData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LensFlareReferenceObjectData {
 }
 
 impl super::core::DataContainerTrait for LensFlareReferenceObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LENSFLAREREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24296,6 +32069,15 @@ impl TypeObject for LensFlareReferenceObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24317,11 +32099,15 @@ pub struct LensFlareBlueprint {
 
 pub trait LensFlareBlueprintTrait: super::entity::ObjectBlueprintTrait {
     fn time_delta_type(&self) -> &super::entity::TimeDeltaType;
+    fn time_delta_type_mut(&mut self) -> &mut super::entity::TimeDeltaType;
 }
 
 impl LensFlareBlueprintTrait for LensFlareBlueprint {
     fn time_delta_type(&self) -> &super::entity::TimeDeltaType {
         &self.time_delta_type
+    }
+    fn time_delta_type_mut(&mut self) -> &mut super::entity::TimeDeltaType {
+        &mut self.time_delta_type
     }
 }
 
@@ -24329,14 +32115,23 @@ impl super::entity::ObjectBlueprintTrait for LensFlareBlueprint {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
         self._glacier_base.object()
     }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+        self._glacier_base.object_mut()
+    }
 }
 
 impl super::entity::BlueprintTrait for LensFlareBlueprint {
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.objects()
     }
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.objects_mut()
+    }
     fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
         self._glacier_base.schematics()
+    }
+    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+        self._glacier_base.schematics_mut()
     }
 }
 
@@ -24344,20 +32139,35 @@ impl super::entity::EntityBusDataTrait for LensFlareBlueprint {
     fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
         self._glacier_base.event_connections()
     }
+    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+        self._glacier_base.event_connections_mut()
+    }
 }
 
 impl super::core::DataBusDataTrait for LensFlareBlueprint {
     fn flags(&self) -> &u16 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.flags_mut()
+    }
     fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
         self._glacier_base.property_connections()
+    }
+    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+        self._glacier_base.property_connections_mut()
     }
     fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
         self._glacier_base.link_connections()
     }
+    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+        self._glacier_base.link_connections_mut()
+    }
     fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
         self._glacier_base.interface()
+    }
+    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+        self._glacier_base.interface_mut()
     }
 }
 
@@ -24365,12 +32175,12 @@ impl super::core::AssetTrait for LensFlareBlueprint {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LensFlareBlueprint {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LENSFLAREBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24402,6 +32212,15 @@ impl TypeObject for LensFlareBlueprint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24432,53 +32251,96 @@ pub struct LensFlareEntityData {
 
 pub trait LensFlareEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn debug_draw_occluder(&self) -> &bool;
+    fn debug_draw_occluder_mut(&mut self) -> &mut bool;
     fn half_res(&self) -> &bool;
+    fn half_res_mut(&mut self) -> &mut bool;
     fn occluder_size(&self) -> &f32;
+    fn occluder_size_mut(&mut self) -> &mut f32;
     fn render_mode(&self) -> &super::world_base::LensFlareRenderMode;
+    fn render_mode_mut(&mut self) -> &mut super::world_base::LensFlareRenderMode;
     fn screen_clip(&self) -> &bool;
+    fn screen_clip_mut(&mut self) -> &mut bool;
     fn depth_bias(&self) -> &f32;
+    fn depth_bias_mut(&mut self) -> &mut f32;
     fn elements(&self) -> &Vec<super::world_base::LensFlareElement>;
+    fn elements_mut(&mut self) -> &mut Vec<super::world_base::LensFlareElement>;
     fn flare_direction_mode(&self) -> &super::world_base::FlareDirectionMode;
+    fn flare_direction_mode_mut(&mut self) -> &mut super::world_base::FlareDirectionMode;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
     fn dimmer(&self) -> &f32;
+    fn dimmer_mut(&mut self) -> &mut f32;
 }
 
 impl LensFlareEntityDataTrait for LensFlareEntityData {
     fn debug_draw_occluder(&self) -> &bool {
         &self.debug_draw_occluder
     }
+    fn debug_draw_occluder_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_occluder
+    }
     fn half_res(&self) -> &bool {
         &self.half_res
+    }
+    fn half_res_mut(&mut self) -> &mut bool {
+        &mut self.half_res
     }
     fn occluder_size(&self) -> &f32 {
         &self.occluder_size
     }
+    fn occluder_size_mut(&mut self) -> &mut f32 {
+        &mut self.occluder_size
+    }
     fn render_mode(&self) -> &super::world_base::LensFlareRenderMode {
         &self.render_mode
+    }
+    fn render_mode_mut(&mut self) -> &mut super::world_base::LensFlareRenderMode {
+        &mut self.render_mode
     }
     fn screen_clip(&self) -> &bool {
         &self.screen_clip
     }
+    fn screen_clip_mut(&mut self) -> &mut bool {
+        &mut self.screen_clip
+    }
     fn depth_bias(&self) -> &f32 {
         &self.depth_bias
+    }
+    fn depth_bias_mut(&mut self) -> &mut f32 {
+        &mut self.depth_bias
     }
     fn elements(&self) -> &Vec<super::world_base::LensFlareElement> {
         &self.elements
     }
+    fn elements_mut(&mut self) -> &mut Vec<super::world_base::LensFlareElement> {
+        &mut self.elements
+    }
     fn flare_direction_mode(&self) -> &super::world_base::FlareDirectionMode {
         &self.flare_direction_mode
+    }
+    fn flare_direction_mode_mut(&mut self) -> &mut super::world_base::FlareDirectionMode {
+        &mut self.flare_direction_mode
     }
     fn visible(&self) -> &bool {
         &self.visible
     }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
+    }
     fn dimmer(&self) -> &f32 {
         &self.dimmer
+    }
+    fn dimmer_mut(&mut self) -> &mut f32 {
+        &mut self.dimmer
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for LensFlareEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -24492,15 +32354,15 @@ impl super::core::DataBusPeerTrait for LensFlareEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LensFlareEntityData {
 }
 
 impl super::core::DataContainerTrait for LensFlareEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LENSFLAREENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24586,6 +32448,15 @@ impl TypeObject for LensFlareEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24611,33 +32482,56 @@ pub struct FogExclusionVolumeEntityData {
 
 pub trait FogExclusionVolumeEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn fog_exclusion_volume_shape(&self) -> &super::world_base::FogExclusionVolumeShape;
+    fn fog_exclusion_volume_shape_mut(&mut self) -> &mut super::world_base::FogExclusionVolumeShape;
     fn fog_volume_strength(&self) -> &f32;
+    fn fog_volume_strength_mut(&mut self) -> &mut f32;
     fn fade_out_start(&self) -> &f32;
+    fn fade_out_start_mut(&mut self) -> &mut f32;
     fn fade_out_end(&self) -> &f32;
+    fn fade_out_end_mut(&mut self) -> &mut f32;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
 }
 
 impl FogExclusionVolumeEntityDataTrait for FogExclusionVolumeEntityData {
     fn fog_exclusion_volume_shape(&self) -> &super::world_base::FogExclusionVolumeShape {
         &self.fog_exclusion_volume_shape
     }
+    fn fog_exclusion_volume_shape_mut(&mut self) -> &mut super::world_base::FogExclusionVolumeShape {
+        &mut self.fog_exclusion_volume_shape
+    }
     fn fog_volume_strength(&self) -> &f32 {
         &self.fog_volume_strength
+    }
+    fn fog_volume_strength_mut(&mut self) -> &mut f32 {
+        &mut self.fog_volume_strength
     }
     fn fade_out_start(&self) -> &f32 {
         &self.fade_out_start
     }
+    fn fade_out_start_mut(&mut self) -> &mut f32 {
+        &mut self.fade_out_start
+    }
     fn fade_out_end(&self) -> &f32 {
         &self.fade_out_end
     }
+    fn fade_out_end_mut(&mut self) -> &mut f32 {
+        &mut self.fade_out_end
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for FogExclusionVolumeEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -24651,15 +32545,15 @@ impl super::core::DataBusPeerTrait for FogExclusionVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FogExclusionVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for FogExclusionVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FOGEXCLUSIONVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24715,6 +32609,15 @@ impl TypeObject for FogExclusionVolumeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24744,43 +32647,79 @@ pub struct DistantShadowCacheVolumeEntityData {
 
 pub trait DistantShadowCacheVolumeEntityDataTrait: BakeableTextureEntityDataTrait {
     fn mode(&self) -> &super::render_base::ShadowCacheMode;
+    fn mode_mut(&mut self) -> &mut super::render_base::ShadowCacheMode;
     fn resolution(&self) -> &u32;
+    fn resolution_mut(&mut self) -> &mut u32;
     fn doublebuffer(&self) -> &bool;
+    fn doublebuffer_mut(&mut self) -> &mut bool;
     fn depth_bias(&self) -> &super::render_base::ShadowCacheDepthBias;
+    fn depth_bias_mut(&mut self) -> &mut super::render_base::ShadowCacheDepthBias;
     fn dynamic_prod_priority(&self) -> &u32;
+    fn dynamic_prod_priority_mut(&mut self) -> &mut u32;
     fn tiles_per_side(&self) -> &u32;
+    fn tiles_per_side_mut(&mut self) -> &mut u32;
     fn do_not_update_baked_texture(&self) -> &bool;
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool;
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
 }
 
 impl DistantShadowCacheVolumeEntityDataTrait for DistantShadowCacheVolumeEntityData {
     fn mode(&self) -> &super::render_base::ShadowCacheMode {
         &self.mode
     }
+    fn mode_mut(&mut self) -> &mut super::render_base::ShadowCacheMode {
+        &mut self.mode
+    }
     fn resolution(&self) -> &u32 {
         &self.resolution
+    }
+    fn resolution_mut(&mut self) -> &mut u32 {
+        &mut self.resolution
     }
     fn doublebuffer(&self) -> &bool {
         &self.doublebuffer
     }
+    fn doublebuffer_mut(&mut self) -> &mut bool {
+        &mut self.doublebuffer
+    }
     fn depth_bias(&self) -> &super::render_base::ShadowCacheDepthBias {
         &self.depth_bias
+    }
+    fn depth_bias_mut(&mut self) -> &mut super::render_base::ShadowCacheDepthBias {
+        &mut self.depth_bias
     }
     fn dynamic_prod_priority(&self) -> &u32 {
         &self.dynamic_prod_priority
     }
+    fn dynamic_prod_priority_mut(&mut self) -> &mut u32 {
+        &mut self.dynamic_prod_priority
+    }
     fn tiles_per_side(&self) -> &u32 {
         &self.tiles_per_side
+    }
+    fn tiles_per_side_mut(&mut self) -> &mut u32 {
+        &mut self.tiles_per_side
     }
     fn do_not_update_baked_texture(&self) -> &bool {
         &self.do_not_update_baked_texture
     }
+    fn do_not_update_baked_texture_mut(&mut self) -> &mut bool {
+        &mut self.do_not_update_baked_texture
+    }
     fn baked_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.baked_texture
     }
+    fn baked_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.baked_texture
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
 }
 
@@ -24790,6 +32729,9 @@ impl BakeableTextureEntityDataTrait for DistantShadowCacheVolumeEntityData {
 impl super::entity::SpatialEntityDataTrait for DistantShadowCacheVolumeEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -24803,15 +32745,15 @@ impl super::core::DataBusPeerTrait for DistantShadowCacheVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DistantShadowCacheVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for DistantShadowCacheVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DISTANTSHADOWCACHEVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -24891,6 +32833,15 @@ impl TypeObject for DistantShadowCacheVolumeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -24943,6 +32894,15 @@ impl TypeObject for SimpleVolumetricsEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -24997,6 +32957,15 @@ impl TypeObject for ScreenshotCaptureEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25049,6 +33018,15 @@ impl TypeObject for RenderVolumeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -25103,6 +33081,15 @@ impl TypeObject for RadiosityModifierEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25155,6 +33142,15 @@ impl TypeObject for RadiosityMaterialOpacityTriggerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -25209,6 +33205,15 @@ impl TypeObject for RadiosityMaterialInstanceEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25261,6 +33266,15 @@ impl TypeObject for RadiosityMaterialEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -25315,6 +33329,15 @@ impl TypeObject for PlanarReflectionLocatorEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25367,6 +33390,15 @@ impl TypeObject for OccluderVolumeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -25421,6 +33453,15 @@ impl TypeObject for OccluderPlaneEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25473,6 +33514,15 @@ impl TypeObject for OccluderMeshEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -25530,6 +33580,15 @@ impl TypeObject for MeshProxyEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25582,6 +33641,15 @@ impl TypeObject for ParticipatingMediaMaterialEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -25636,6 +33704,15 @@ impl TypeObject for LocalFogVolumeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25688,6 +33765,15 @@ impl TypeObject for LocalPlanarReflectionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -25742,6 +33828,15 @@ impl TypeObject for ReflectionVolumeSynchronizerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25794,6 +33889,15 @@ impl TypeObject for DistantIBLEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -25848,6 +33952,15 @@ impl TypeObject for LocalBoxIBLEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -25900,6 +34013,15 @@ impl TypeObject for LocalSphereIBLEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -25957,6 +34079,15 @@ impl TypeObject for PbrRectangularLightEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26012,6 +34143,15 @@ impl TypeObject for PbrTubeLightEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -26069,6 +34209,15 @@ impl TypeObject for PbrSpotLightEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26124,6 +34273,15 @@ impl TypeObject for PbrSphereLightEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -26181,6 +34339,15 @@ impl TypeObject for OldSpotLightEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26237,6 +34404,15 @@ impl TypeObject for OldPointLightEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26289,6 +34465,15 @@ impl TypeObject for LocalLightEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -26343,6 +34528,15 @@ impl TypeObject for LensFlareEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26395,6 +34589,15 @@ impl TypeObject for GroundHeightEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -26449,6 +34652,15 @@ impl TypeObject for FogExclusionVolumeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26501,6 +34713,15 @@ impl TypeObject for DynamicEnlightenEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -26555,6 +34776,15 @@ impl TypeObject for DistantShadowCacheVolumeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26583,6 +34813,9 @@ impl super::entity::SpatialEntityDataTrait for BakeableTextureEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::entity::EntityDataTrait for BakeableTextureEntityData {
@@ -26595,15 +34828,15 @@ impl super::core::DataBusPeerTrait for BakeableTextureEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for BakeableTextureEntityData {
 }
 
 impl super::core::DataContainerTrait for BakeableTextureEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BAKEABLETEXTUREENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -26628,6 +34861,15 @@ impl TypeObject for BakeableTextureEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -26688,6 +34930,15 @@ impl TypeObject for WindForceSphereEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26743,6 +34994,15 @@ impl TypeObject for WindForceSphereComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -26800,6 +35060,15 @@ impl TypeObject for WindForceSamplerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26855,6 +35124,15 @@ impl TypeObject for WindForceEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -26915,6 +35193,15 @@ impl TypeObject for WindForceConeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -26971,6 +35258,15 @@ impl TypeObject for WindForceConeComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27023,6 +35319,15 @@ impl TypeObject for WindForceComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -27083,6 +35388,15 @@ impl TypeObject for WindForceBaked3DAs2x2DTexEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27138,6 +35452,15 @@ impl TypeObject for WindForceBaked3DAs2x2DTexComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -27198,6 +35521,15 @@ impl TypeObject for VisualEnvironmentEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27250,6 +35582,15 @@ impl TypeObject for RaytraceReflectionComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -27304,6 +35645,15 @@ impl TypeObject for SonarParamsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27356,6 +35706,15 @@ impl TypeObject for HologramParamsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -27410,6 +35769,15 @@ impl TypeObject for ThreatAlertHighlightParamsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27462,6 +35830,15 @@ impl TypeObject for ObjectHighlightParamsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -27516,6 +35893,15 @@ impl TypeObject for AntiAliasComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27568,6 +35954,15 @@ impl TypeObject for ScreenSpaceRaytraceComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -27622,6 +36017,15 @@ impl TypeObject for DebugComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27674,6 +36078,15 @@ impl TypeObject for LensReflectionComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -27728,6 +36141,15 @@ impl TypeObject for SkyCelestialRotationComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27780,6 +36202,15 @@ impl TypeObject for SkyCelestialMultiComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -27834,6 +36265,15 @@ impl TypeObject for SkyCelestialSingleComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27886,6 +36326,15 @@ impl TypeObject for EmitterParamGlobalComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -27940,6 +36389,15 @@ impl TypeObject for EmitterParamComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -27992,6 +36450,15 @@ impl TypeObject for ShaderParamsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28046,6 +36513,15 @@ impl TypeObject for MotionBlurComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28098,6 +36574,15 @@ impl TypeObject for SubSurfaceScatteringComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28152,6 +36637,15 @@ impl TypeObject for CharacterLightingComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28204,6 +36698,15 @@ impl TypeObject for DynamicEnvmapComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28258,6 +36761,15 @@ impl TypeObject for PlanarReflectionComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28310,6 +36822,15 @@ impl TypeObject for DamageEffectComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28364,6 +36885,15 @@ impl TypeObject for ScreenEffectComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28416,6 +36946,15 @@ impl TypeObject for ShadowsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28470,6 +37009,15 @@ impl TypeObject for MeshSettingsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28522,6 +37070,15 @@ impl TypeObject for CameraParamsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28576,6 +37133,15 @@ impl TypeObject for LensScopeComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28628,6 +37194,15 @@ impl TypeObject for FilmGrainComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28682,6 +37257,15 @@ impl TypeObject for VignetteComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28734,6 +37318,15 @@ impl TypeObject for DofComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28788,6 +37381,15 @@ impl TypeObject for FilmicEffectsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28840,6 +37442,15 @@ impl TypeObject for DynamicAOComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -28894,6 +37505,15 @@ impl TypeObject for SunFlareComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -28946,6 +37566,15 @@ impl TypeObject for CloudComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -29000,6 +37629,15 @@ impl TypeObject for WindComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29052,6 +37690,15 @@ impl TypeObject for FogComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -29106,6 +37753,15 @@ impl TypeObject for ColorCorrectionComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29158,6 +37814,15 @@ impl TypeObject for TonemapComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -29212,6 +37877,15 @@ impl TypeObject for EnlightenComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29264,6 +37938,15 @@ impl TypeObject for OutdoorLightComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -29318,6 +38001,15 @@ impl TypeObject for IndirectSpecularComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29371,6 +38063,15 @@ impl TypeObject for SkyComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29420,6 +38121,15 @@ impl TypeObject for RenderFramesTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -29474,6 +38184,15 @@ impl TypeObject for ServerVisibleAreaEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29527,6 +38246,15 @@ impl TypeObject for ClientVisibleAreaEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -29579,6 +38307,15 @@ impl TypeObject for StaticEnlightenEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

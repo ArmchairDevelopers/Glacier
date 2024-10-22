@@ -260,6 +260,15 @@ impl TypeObject for ClientWeaponStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -312,6 +321,15 @@ impl TypeObject for ClientPlayerLookAtEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -378,6 +396,15 @@ impl TypeObject for ClientTripwireEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -430,6 +457,15 @@ impl TypeObject for ClientTriggerMoveEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -490,6 +526,15 @@ impl TypeObject for ClientSoldierBreathControlComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -549,6 +594,15 @@ impl TypeObject for ClientSoldierBodyComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -604,6 +658,15 @@ impl TypeObject for ClientPickupPhysicsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -664,6 +727,15 @@ impl TypeObject for ClientPhantomComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -722,6 +794,15 @@ impl TypeObject for ClientMovementComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -782,6 +863,15 @@ impl TypeObject for ClientHitReactionComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -840,6 +930,15 @@ impl TypeObject for ClientFaceposerComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -900,6 +999,15 @@ impl TypeObject for ClientBoneCollisionComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -958,6 +1066,15 @@ impl TypeObject for ClientBlockAimAssistComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1018,6 +1135,15 @@ impl TypeObject for ClientEntryAimAssistTargetOptionsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1076,6 +1202,15 @@ impl TypeObject for ClientAimAssistNodeSnapPointComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1136,6 +1271,15 @@ impl TypeObject for ClientAimAssistNodeComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1185,6 +1329,15 @@ impl TypeObject for SoldierCamera {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1239,6 +1392,15 @@ impl TypeObject for ClientWeaponLagEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1291,6 +1453,15 @@ impl TypeObject for ClientCoverPeekEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1351,6 +1522,15 @@ impl TypeObject for ClientOcclutionQueryComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1404,6 +1584,15 @@ impl TypeObject for ClientVoiceOverObjectReaderWatcherEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1456,6 +1645,15 @@ impl TypeObject for ClientVoiceOverObjectReaderEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1515,6 +1713,15 @@ impl TypeObject for ServerSoldierWeaponsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1577,6 +1784,15 @@ impl TypeObject for ServerSoldierPhysicsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1643,6 +1859,15 @@ impl TypeObject for ServerSoldierHealthComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1705,6 +1930,15 @@ impl TypeObject for ServerSoldierCustomizationComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1763,6 +1997,15 @@ impl TypeObject for ServerSoldierCameraComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1823,6 +2066,15 @@ impl TypeObject for ServerSoldierBodyComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1878,6 +2130,15 @@ impl TypeObject for ServerPickupPhysicsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1938,6 +2199,15 @@ impl TypeObject for ServerMovementComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1996,6 +2266,15 @@ impl TypeObject for ServerHitReactionComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2056,6 +2335,15 @@ impl TypeObject for ServerBoneCollisionComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2109,6 +2397,15 @@ impl TypeObject for ClientAimingScaleDataProviderEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2161,6 +2458,15 @@ impl TypeObject for ClientAimingAngularSpeedConstraintDataProviderEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2218,6 +2524,15 @@ impl TypeObject for ClientZeroingWeapon {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2271,6 +2586,15 @@ impl TypeObject for ClientSoldierWeaponSocketEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2316,6 +2640,15 @@ impl TypeObject for ClientSoldierWeaponSpawnInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2382,6 +2715,15 @@ impl TypeObject for ClientSoldierWeapon {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2440,6 +2782,15 @@ impl TypeObject for ClientAnimationTurretRotationComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2515,6 +2866,15 @@ impl TypeObject for ClientProxyGrenadeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2588,6 +2948,15 @@ impl TypeObject for ClientProxyExplosionPackEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2663,6 +3032,15 @@ impl TypeObject for ClientGrenadeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2737,6 +3115,15 @@ impl TypeObject for ClientExplosionPackEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2796,6 +3183,15 @@ impl TypeObject for ClientExplosionPackPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2851,6 +3247,15 @@ impl TypeObject for DummyExplosionPackPhysicsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2917,6 +3322,15 @@ impl TypeObject for ClientSoldierEntryComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2975,6 +3389,15 @@ impl TypeObject for ClientWeaponZeroingComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3035,6 +3458,15 @@ impl TypeObject for ClientSoldierWeaponsPreviewComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3093,6 +3525,15 @@ impl TypeObject for ClientSoldierWeaponsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3155,6 +3596,15 @@ impl TypeObject for ClientSoldierPhysicsComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3221,6 +3671,15 @@ impl TypeObject for ClientSoldierHealthComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3279,6 +3738,15 @@ impl TypeObject for ClientSoldierFootplantEffectComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3342,6 +3810,15 @@ impl TypeObject for ClientSoldierCustomizationComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3404,6 +3881,15 @@ impl TypeObject for ClientSoldierCameraComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3453,6 +3939,15 @@ impl TypeObject for ClientSoldierCameraCallback {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3528,6 +4023,15 @@ impl TypeObject for ClientSoldierEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3584,6 +4088,15 @@ impl TypeObject for ClientSchematicsAimEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3636,6 +4149,15 @@ impl TypeObject for ClientReplicatedAimEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3702,6 +4224,15 @@ impl TypeObject for ClientPickupEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3758,6 +4289,15 @@ impl TypeObject for ClientBlockAimAssistEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3811,6 +4351,15 @@ impl TypeObject for ClientAimingSimulationDataProviderEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3863,6 +4412,15 @@ impl TypeObject for ClientAimEntityBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3920,6 +4478,15 @@ impl TypeObject for ClientAimEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3972,6 +4539,15 @@ impl TypeObject for ServerCustomizeSoldierEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4037,6 +4613,15 @@ impl TypeObject for ServerTripwireEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4112,6 +4697,15 @@ impl TypeObject for ServerSoldierEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4164,6 +4758,15 @@ impl TypeObject for ServerReplicatedAimEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4230,6 +4833,15 @@ impl TypeObject for ServerPickupEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4286,6 +4898,15 @@ impl TypeObject for ServerZeroingWeapon {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4331,6 +4952,15 @@ impl TypeObject for ServerSoldierWeaponSpawnInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4397,6 +5027,15 @@ impl TypeObject for ServerSoldierWeapon {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4455,6 +5094,15 @@ impl TypeObject for ServerAnimationTurretRotationComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4530,6 +5178,15 @@ impl TypeObject for ServerGrenadeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4604,6 +5261,15 @@ impl TypeObject for ServerExplosionPackEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4662,6 +5328,15 @@ impl TypeObject for ServerMissileHealthComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4722,6 +5397,15 @@ impl TypeObject for ServerExplosionPackPhysicsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4780,6 +5464,15 @@ impl TypeObject for ServerExplosionPackHealthComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4849,6 +5542,15 @@ impl TypeObject for ServerSoldierEntryComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4908,6 +5610,15 @@ impl TypeObject for ServerWeaponZeroingComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4953,6 +5664,15 @@ impl TypeObject for ServerSoldierInteractionEntityInRangeChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4986,6 +5706,15 @@ impl TypeObject for ServerSoldierSoldierVsSoldierCollisionMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5021,6 +5750,15 @@ impl TypeObject for ServerSoldierPickedUpSupplySphereMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5054,6 +5792,15 @@ impl TypeObject for ServerSoldierOnUnspawnMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5089,6 +5836,15 @@ impl TypeObject for ServerSoldierThrowDistractionMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5122,6 +5878,15 @@ impl TypeObject for ServerSoldierSelfHealMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5157,6 +5922,15 @@ impl TypeObject for ServerSoldierManDownMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5190,6 +5964,15 @@ impl TypeObject for ServerSoldierOnInitMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5225,6 +6008,15 @@ impl TypeObject for ServerSoldierChangingWeaponMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5258,6 +6050,15 @@ impl TypeObject for ServerSoldierFiringMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5293,6 +6094,15 @@ impl TypeObject for ServerSoldierDamagedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5326,6 +6136,15 @@ impl TypeObject for ServerProjectileMissileDestroyedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5361,6 +6180,15 @@ impl TypeObject for ServerProjectileMissileDamagedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5394,6 +6222,15 @@ impl TypeObject for ClientSoldierInteractionEntityInRangeChangedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5429,6 +6266,15 @@ impl TypeObject for ClientSoldierChangeCoverStateMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5463,6 +6309,15 @@ impl TypeObject for AimingHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5492,47 +6347,87 @@ pub struct AimingRenderReturnedValues {
 
 pub trait AimingRenderReturnedValuesTrait: TypeObject {
     fn aimer_position(&self) -> &super::core::Vec3;
+    fn aimer_position_mut(&mut self) -> &mut super::core::Vec3;
     fn last_hit_position(&self) -> &super::core::Vec3;
+    fn last_hit_position_mut(&mut self) -> &mut super::core::Vec3;
     fn recoil_compensation(&self) -> &super::core::Vec2;
+    fn recoil_compensation_mut(&mut self) -> &mut super::core::Vec2;
     fn last_apply_angles_from_sim_tick(&self) -> &u32;
+    fn last_apply_angles_from_sim_tick_mut(&mut self) -> &mut u32;
     fn yaw(&self) -> &f32;
+    fn yaw_mut(&mut self) -> &mut f32;
     fn pitch(&self) -> &f32;
+    fn pitch_mut(&mut self) -> &mut f32;
     fn input_magnitude(&self) -> &f32;
+    fn input_magnitude_mut(&mut self) -> &mut f32;
     fn snap_zoom_break_away(&self) -> &bool;
+    fn snap_zoom_break_away_mut(&mut self) -> &mut bool;
     fn use_aim_assist(&self) -> &bool;
+    fn use_aim_assist_mut(&mut self) -> &mut bool;
     fn allow_blend_out(&self) -> &bool;
+    fn allow_blend_out_mut(&mut self) -> &mut bool;
 }
 
 impl AimingRenderReturnedValuesTrait for AimingRenderReturnedValues {
     fn aimer_position(&self) -> &super::core::Vec3 {
         &self.aimer_position
     }
+    fn aimer_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.aimer_position
+    }
     fn last_hit_position(&self) -> &super::core::Vec3 {
         &self.last_hit_position
+    }
+    fn last_hit_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.last_hit_position
     }
     fn recoil_compensation(&self) -> &super::core::Vec2 {
         &self.recoil_compensation
     }
+    fn recoil_compensation_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.recoil_compensation
+    }
     fn last_apply_angles_from_sim_tick(&self) -> &u32 {
         &self.last_apply_angles_from_sim_tick
+    }
+    fn last_apply_angles_from_sim_tick_mut(&mut self) -> &mut u32 {
+        &mut self.last_apply_angles_from_sim_tick
     }
     fn yaw(&self) -> &f32 {
         &self.yaw
     }
+    fn yaw_mut(&mut self) -> &mut f32 {
+        &mut self.yaw
+    }
     fn pitch(&self) -> &f32 {
         &self.pitch
+    }
+    fn pitch_mut(&mut self) -> &mut f32 {
+        &mut self.pitch
     }
     fn input_magnitude(&self) -> &f32 {
         &self.input_magnitude
     }
+    fn input_magnitude_mut(&mut self) -> &mut f32 {
+        &mut self.input_magnitude
+    }
     fn snap_zoom_break_away(&self) -> &bool {
         &self.snap_zoom_break_away
+    }
+    fn snap_zoom_break_away_mut(&mut self) -> &mut bool {
+        &mut self.snap_zoom_break_away
     }
     fn use_aim_assist(&self) -> &bool {
         &self.use_aim_assist
     }
+    fn use_aim_assist_mut(&mut self) -> &mut bool {
+        &mut self.use_aim_assist
+    }
     fn allow_blend_out(&self) -> &bool {
         &self.allow_blend_out
+    }
+    fn allow_blend_out_mut(&mut self) -> &mut bool {
+        &mut self.allow_blend_out
     }
 }
 
@@ -5618,6 +6513,15 @@ impl TypeObject for AimingRenderReturnedValues {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5667,127 +6571,247 @@ pub struct AimingRenderUpdateContext {
 
 pub trait AimingRenderUpdateContextTrait: TypeObject {
     fn aimer_position(&self) -> &super::core::Vec3;
+    fn aimer_position_mut(&mut self) -> &mut super::core::Vec3;
     fn aimer_safe_position(&self) -> &super::core::Vec3;
+    fn aimer_safe_position_mut(&mut self) -> &mut super::core::Vec3;
     fn last_aim_direction(&self) -> &super::core::Vec3;
+    fn last_aim_direction_mut(&mut self) -> &mut super::core::Vec3;
     fn last_hit_position(&self) -> &super::core::Vec3;
+    fn last_hit_position_mut(&mut self) -> &mut super::core::Vec3;
     fn aiming_input(&self) -> &super::core::Vec2;
+    fn aiming_input_mut(&mut self) -> &mut super::core::Vec2;
     fn input_direction(&self) -> &super::core::Vec2;
+    fn input_direction_mut(&mut self) -> &mut super::core::Vec2;
     fn input_acceleration_velocity(&self) -> &super::core::Vec2;
+    fn input_acceleration_velocity_mut(&mut self) -> &mut super::core::Vec2;
     fn recoil_offset(&self) -> &super::core::Vec2;
+    fn recoil_offset_mut(&mut self) -> &mut super::core::Vec2;
     fn last_tick(&self) -> &u32;
+    fn last_tick_mut(&mut self) -> &mut u32;
     fn last_apply_angles_from_sim_tick(&self) -> &u32;
+    fn last_apply_angles_from_sim_tick_mut(&mut self) -> &mut u32;
     fn yaw(&self) -> &f32;
+    fn yaw_mut(&mut self) -> &mut f32;
     fn pitch(&self) -> &f32;
+    fn pitch_mut(&mut self) -> &mut f32;
     fn input_magnitude(&self) -> &f32;
+    fn input_magnitude_mut(&mut self) -> &mut f32;
     fn soft_zone_lambda_yaw_attract(&self) -> &f32;
+    fn soft_zone_lambda_yaw_attract_mut(&mut self) -> &mut f32;
     fn soft_zone_lambda_pitch_attract(&self) -> &f32;
+    fn soft_zone_lambda_pitch_attract_mut(&mut self) -> &mut f32;
     fn soft_zone_lambda_slowdown(&self) -> &f32;
+    fn soft_zone_lambda_slowdown_mut(&mut self) -> &mut f32;
     fn target_distance(&self) -> &f32;
+    fn target_distance_mut(&mut self) -> &mut f32;
     fn yaw_change_attract(&self) -> &f32;
+    fn yaw_change_attract_mut(&mut self) -> &mut f32;
     fn pitch_change_attract(&self) -> &f32;
+    fn pitch_change_attract_mut(&mut self) -> &mut f32;
     fn time_since_yaw_input(&self) -> &f32;
+    fn time_since_yaw_input_mut(&mut self) -> &mut f32;
     fn time_since_pitch_input(&self) -> &f32;
+    fn time_since_pitch_input_mut(&mut self) -> &mut f32;
     fn acceleration(&self) -> &f32;
+    fn acceleration_mut(&mut self) -> &mut f32;
     fn acceleration_timer(&self) -> &f32;
+    fn acceleration_timer_mut(&mut self) -> &mut f32;
     fn aimer_arm_length(&self) -> &f32;
+    fn aimer_arm_length_mut(&mut self) -> &mut f32;
     fn time_to_delay_after_collision(&self) -> &f32;
+    fn time_to_delay_after_collision_mut(&mut self) -> &mut f32;
     fn snap_zoom_break_away(&self) -> &bool;
+    fn snap_zoom_break_away_mut(&mut self) -> &mut bool;
     fn is_mouse_aiming(&self) -> &bool;
+    fn is_mouse_aiming_mut(&mut self) -> &mut bool;
     fn use_aim_assist(&self) -> &bool;
+    fn use_aim_assist_mut(&mut self) -> &mut bool;
     fn use_input_polynomials(&self) -> &bool;
+    fn use_input_polynomials_mut(&mut self) -> &mut bool;
     fn allow_blend_out(&self) -> &bool;
+    fn allow_blend_out_mut(&mut self) -> &mut bool;
 }
 
 impl AimingRenderUpdateContextTrait for AimingRenderUpdateContext {
     fn aimer_position(&self) -> &super::core::Vec3 {
         &self.aimer_position
     }
+    fn aimer_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.aimer_position
+    }
     fn aimer_safe_position(&self) -> &super::core::Vec3 {
         &self.aimer_safe_position
+    }
+    fn aimer_safe_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.aimer_safe_position
     }
     fn last_aim_direction(&self) -> &super::core::Vec3 {
         &self.last_aim_direction
     }
+    fn last_aim_direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.last_aim_direction
+    }
     fn last_hit_position(&self) -> &super::core::Vec3 {
         &self.last_hit_position
+    }
+    fn last_hit_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.last_hit_position
     }
     fn aiming_input(&self) -> &super::core::Vec2 {
         &self.aiming_input
     }
+    fn aiming_input_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.aiming_input
+    }
     fn input_direction(&self) -> &super::core::Vec2 {
         &self.input_direction
+    }
+    fn input_direction_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.input_direction
     }
     fn input_acceleration_velocity(&self) -> &super::core::Vec2 {
         &self.input_acceleration_velocity
     }
+    fn input_acceleration_velocity_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.input_acceleration_velocity
+    }
     fn recoil_offset(&self) -> &super::core::Vec2 {
         &self.recoil_offset
+    }
+    fn recoil_offset_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.recoil_offset
     }
     fn last_tick(&self) -> &u32 {
         &self.last_tick
     }
+    fn last_tick_mut(&mut self) -> &mut u32 {
+        &mut self.last_tick
+    }
     fn last_apply_angles_from_sim_tick(&self) -> &u32 {
         &self.last_apply_angles_from_sim_tick
+    }
+    fn last_apply_angles_from_sim_tick_mut(&mut self) -> &mut u32 {
+        &mut self.last_apply_angles_from_sim_tick
     }
     fn yaw(&self) -> &f32 {
         &self.yaw
     }
+    fn yaw_mut(&mut self) -> &mut f32 {
+        &mut self.yaw
+    }
     fn pitch(&self) -> &f32 {
         &self.pitch
+    }
+    fn pitch_mut(&mut self) -> &mut f32 {
+        &mut self.pitch
     }
     fn input_magnitude(&self) -> &f32 {
         &self.input_magnitude
     }
+    fn input_magnitude_mut(&mut self) -> &mut f32 {
+        &mut self.input_magnitude
+    }
     fn soft_zone_lambda_yaw_attract(&self) -> &f32 {
         &self.soft_zone_lambda_yaw_attract
+    }
+    fn soft_zone_lambda_yaw_attract_mut(&mut self) -> &mut f32 {
+        &mut self.soft_zone_lambda_yaw_attract
     }
     fn soft_zone_lambda_pitch_attract(&self) -> &f32 {
         &self.soft_zone_lambda_pitch_attract
     }
+    fn soft_zone_lambda_pitch_attract_mut(&mut self) -> &mut f32 {
+        &mut self.soft_zone_lambda_pitch_attract
+    }
     fn soft_zone_lambda_slowdown(&self) -> &f32 {
         &self.soft_zone_lambda_slowdown
+    }
+    fn soft_zone_lambda_slowdown_mut(&mut self) -> &mut f32 {
+        &mut self.soft_zone_lambda_slowdown
     }
     fn target_distance(&self) -> &f32 {
         &self.target_distance
     }
+    fn target_distance_mut(&mut self) -> &mut f32 {
+        &mut self.target_distance
+    }
     fn yaw_change_attract(&self) -> &f32 {
         &self.yaw_change_attract
+    }
+    fn yaw_change_attract_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_change_attract
     }
     fn pitch_change_attract(&self) -> &f32 {
         &self.pitch_change_attract
     }
+    fn pitch_change_attract_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_change_attract
+    }
     fn time_since_yaw_input(&self) -> &f32 {
         &self.time_since_yaw_input
+    }
+    fn time_since_yaw_input_mut(&mut self) -> &mut f32 {
+        &mut self.time_since_yaw_input
     }
     fn time_since_pitch_input(&self) -> &f32 {
         &self.time_since_pitch_input
     }
+    fn time_since_pitch_input_mut(&mut self) -> &mut f32 {
+        &mut self.time_since_pitch_input
+    }
     fn acceleration(&self) -> &f32 {
         &self.acceleration
+    }
+    fn acceleration_mut(&mut self) -> &mut f32 {
+        &mut self.acceleration
     }
     fn acceleration_timer(&self) -> &f32 {
         &self.acceleration_timer
     }
+    fn acceleration_timer_mut(&mut self) -> &mut f32 {
+        &mut self.acceleration_timer
+    }
     fn aimer_arm_length(&self) -> &f32 {
         &self.aimer_arm_length
+    }
+    fn aimer_arm_length_mut(&mut self) -> &mut f32 {
+        &mut self.aimer_arm_length
     }
     fn time_to_delay_after_collision(&self) -> &f32 {
         &self.time_to_delay_after_collision
     }
+    fn time_to_delay_after_collision_mut(&mut self) -> &mut f32 {
+        &mut self.time_to_delay_after_collision
+    }
     fn snap_zoom_break_away(&self) -> &bool {
         &self.snap_zoom_break_away
+    }
+    fn snap_zoom_break_away_mut(&mut self) -> &mut bool {
+        &mut self.snap_zoom_break_away
     }
     fn is_mouse_aiming(&self) -> &bool {
         &self.is_mouse_aiming
     }
+    fn is_mouse_aiming_mut(&mut self) -> &mut bool {
+        &mut self.is_mouse_aiming
+    }
     fn use_aim_assist(&self) -> &bool {
         &self.use_aim_assist
+    }
+    fn use_aim_assist_mut(&mut self) -> &mut bool {
+        &mut self.use_aim_assist
     }
     fn use_input_polynomials(&self) -> &bool {
         &self.use_input_polynomials
     }
+    fn use_input_polynomials_mut(&mut self) -> &mut bool {
+        &mut self.use_input_polynomials
+    }
     fn allow_blend_out(&self) -> &bool {
         &self.allow_blend_out
+    }
+    fn allow_blend_out_mut(&mut self) -> &mut bool {
+        &mut self.allow_blend_out
     }
 }
 
@@ -5993,6 +7017,15 @@ impl TypeObject for AimingRenderUpdateContext {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6031,83 +7064,159 @@ pub struct AimingSimUpdateContext {
 
 pub trait AimingSimUpdateContextTrait: TypeObject {
     fn difficulty_data(&self) -> &Option<Arc<Mutex<dyn super::game_shared::DifficultyDataTrait>>>;
+    fn difficulty_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::DifficultyDataTrait>>>;
     fn aiming_range(&self) -> &f32;
+    fn aiming_range_mut(&mut self) -> &mut f32;
     fn attract_pitch_strength(&self) -> &f32;
+    fn attract_pitch_strength_mut(&mut self) -> &mut f32;
     fn attract_soft_zone(&self) -> &f32;
+    fn attract_soft_zone_mut(&mut self) -> &mut f32;
     fn attract_yaw_strength(&self) -> &f32;
+    fn attract_yaw_strength_mut(&mut self) -> &mut f32;
     fn snap_zoom_post_time_no_input(&self) -> &f32;
+    fn snap_zoom_post_time_no_input_mut(&mut self) -> &mut f32;
     fn snap_zoom_post_time(&self) -> &f32;
+    fn snap_zoom_post_time_mut(&mut self) -> &mut f32;
     fn snap_zoom_since_last_timer(&self) -> &f32;
+    fn snap_zoom_since_last_timer_mut(&mut self) -> &mut f32;
     fn zoom_transition_timer(&self) -> &f32;
+    fn zoom_transition_timer_mut(&mut self) -> &mut f32;
     fn local_player_id(&self) -> &super::core::LocalPlayerId;
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId;
     fn attract_zooming_post_player_aiming(&self) -> &bool;
+    fn attract_zooming_post_player_aiming_mut(&mut self) -> &mut bool;
     fn force_aim_snap_deactivate(&self) -> &bool;
+    fn force_aim_snap_deactivate_mut(&mut self) -> &mut bool;
     fn force_pick_best_target(&self) -> &bool;
+    fn force_pick_best_target_mut(&mut self) -> &mut bool;
     fn has_been_sprinting(&self) -> &bool;
+    fn has_been_sprinting_mut(&mut self) -> &mut bool;
     fn is_sprinting(&self) -> &bool;
+    fn is_sprinting_mut(&mut self) -> &mut bool;
     fn use_aim_helpers_rotation(&self) -> &bool;
+    fn use_aim_helpers_rotation_mut(&mut self) -> &mut bool;
     fn use_aim_helpers_slowdown(&self) -> &bool;
+    fn use_aim_helpers_slowdown_mut(&mut self) -> &mut bool;
     fn snap_zoom_post_time_dynamic_point(&self) -> &bool;
+    fn snap_zoom_post_time_dynamic_point_mut(&mut self) -> &mut bool;
     fn snap_zoom_target_changed(&self) -> &bool;
+    fn snap_zoom_target_changed_mut(&mut self) -> &mut bool;
 }
 
 impl AimingSimUpdateContextTrait for AimingSimUpdateContext {
     fn difficulty_data(&self) -> &Option<Arc<Mutex<dyn super::game_shared::DifficultyDataTrait>>> {
         &self.difficulty_data
     }
+    fn difficulty_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::DifficultyDataTrait>>> {
+        &mut self.difficulty_data
+    }
     fn aiming_range(&self) -> &f32 {
         &self.aiming_range
+    }
+    fn aiming_range_mut(&mut self) -> &mut f32 {
+        &mut self.aiming_range
     }
     fn attract_pitch_strength(&self) -> &f32 {
         &self.attract_pitch_strength
     }
+    fn attract_pitch_strength_mut(&mut self) -> &mut f32 {
+        &mut self.attract_pitch_strength
+    }
     fn attract_soft_zone(&self) -> &f32 {
         &self.attract_soft_zone
+    }
+    fn attract_soft_zone_mut(&mut self) -> &mut f32 {
+        &mut self.attract_soft_zone
     }
     fn attract_yaw_strength(&self) -> &f32 {
         &self.attract_yaw_strength
     }
+    fn attract_yaw_strength_mut(&mut self) -> &mut f32 {
+        &mut self.attract_yaw_strength
+    }
     fn snap_zoom_post_time_no_input(&self) -> &f32 {
         &self.snap_zoom_post_time_no_input
+    }
+    fn snap_zoom_post_time_no_input_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_post_time_no_input
     }
     fn snap_zoom_post_time(&self) -> &f32 {
         &self.snap_zoom_post_time
     }
+    fn snap_zoom_post_time_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_post_time
+    }
     fn snap_zoom_since_last_timer(&self) -> &f32 {
         &self.snap_zoom_since_last_timer
+    }
+    fn snap_zoom_since_last_timer_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_since_last_timer
     }
     fn zoom_transition_timer(&self) -> &f32 {
         &self.zoom_transition_timer
     }
+    fn zoom_transition_timer_mut(&mut self) -> &mut f32 {
+        &mut self.zoom_transition_timer
+    }
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         &self.local_player_id
+    }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        &mut self.local_player_id
     }
     fn attract_zooming_post_player_aiming(&self) -> &bool {
         &self.attract_zooming_post_player_aiming
     }
+    fn attract_zooming_post_player_aiming_mut(&mut self) -> &mut bool {
+        &mut self.attract_zooming_post_player_aiming
+    }
     fn force_aim_snap_deactivate(&self) -> &bool {
         &self.force_aim_snap_deactivate
+    }
+    fn force_aim_snap_deactivate_mut(&mut self) -> &mut bool {
+        &mut self.force_aim_snap_deactivate
     }
     fn force_pick_best_target(&self) -> &bool {
         &self.force_pick_best_target
     }
+    fn force_pick_best_target_mut(&mut self) -> &mut bool {
+        &mut self.force_pick_best_target
+    }
     fn has_been_sprinting(&self) -> &bool {
         &self.has_been_sprinting
+    }
+    fn has_been_sprinting_mut(&mut self) -> &mut bool {
+        &mut self.has_been_sprinting
     }
     fn is_sprinting(&self) -> &bool {
         &self.is_sprinting
     }
+    fn is_sprinting_mut(&mut self) -> &mut bool {
+        &mut self.is_sprinting
+    }
     fn use_aim_helpers_rotation(&self) -> &bool {
         &self.use_aim_helpers_rotation
+    }
+    fn use_aim_helpers_rotation_mut(&mut self) -> &mut bool {
+        &mut self.use_aim_helpers_rotation
     }
     fn use_aim_helpers_slowdown(&self) -> &bool {
         &self.use_aim_helpers_slowdown
     }
+    fn use_aim_helpers_slowdown_mut(&mut self) -> &mut bool {
+        &mut self.use_aim_helpers_slowdown
+    }
     fn snap_zoom_post_time_dynamic_point(&self) -> &bool {
         &self.snap_zoom_post_time_dynamic_point
     }
+    fn snap_zoom_post_time_dynamic_point_mut(&mut self) -> &mut bool {
+        &mut self.snap_zoom_post_time_dynamic_point
+    }
     fn snap_zoom_target_changed(&self) -> &bool {
         &self.snap_zoom_target_changed
+    }
+    fn snap_zoom_target_changed_mut(&mut self) -> &mut bool {
+        &mut self.snap_zoom_target_changed
     }
 }
 
@@ -6247,6 +7356,15 @@ impl TypeObject for AimingSimUpdateContext {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6323,235 +7441,463 @@ pub struct AimingSimDynamicState {
 
 pub trait AimingSimDynamicStateTrait: TypeObject {
     fn aiming_environment_target(&self) -> &AimingEnvironmentTarget;
+    fn aiming_environment_target_mut(&mut self) -> &mut AimingEnvironmentTarget;
     fn aiming_constraints(&self) -> &AimingConstraints;
+    fn aiming_constraints_mut(&mut self) -> &mut AimingConstraints;
     fn collision_excluded_bodies(&self) -> &super::physics::PhysicsRenderWorldHandle;
+    fn collision_excluded_bodies_mut(&mut self) -> &mut super::physics::PhysicsRenderWorldHandle;
     fn character_entity_space_component_transform(&self) -> &super::core::LinearTransform;
+    fn character_entity_space_component_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn lock_aim_transform(&self) -> &super::core::LinearTransform;
+    fn lock_aim_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn aimer_root_position(&self) -> &super::core::Vec3;
+    fn aimer_root_position_mut(&mut self) -> &mut super::core::Vec3;
     fn desired_aimer_local_position(&self) -> &super::core::Vec3;
+    fn desired_aimer_local_position_mut(&mut self) -> &mut super::core::Vec3;
     fn desired_aimer_safe_position(&self) -> &super::core::Vec3;
+    fn desired_aimer_safe_position_mut(&mut self) -> &mut super::core::Vec3;
     fn static_aimer_safe_position(&self) -> &super::core::Vec3;
+    fn static_aimer_safe_position_mut(&mut self) -> &mut super::core::Vec3;
     fn force_aim_snap_target_position(&self) -> &super::core::Vec3;
+    fn force_aim_snap_target_position_mut(&mut self) -> &mut super::core::Vec3;
     fn reticle_speed(&self) -> &super::core::Vec3;
+    fn reticle_speed_mut(&mut self) -> &mut super::core::Vec3;
     fn surface_angular_velocity(&self) -> &super::core::Vec3;
+    fn surface_angular_velocity_mut(&mut self) -> &mut super::core::Vec3;
     fn sim_aiming_input(&self) -> &super::core::Vec2;
+    fn sim_aiming_input_mut(&mut self) -> &mut super::core::Vec2;
     fn aim_scale(&self) -> &super::core::Vec2;
+    fn aim_scale_mut(&mut self) -> &mut super::core::Vec2;
     fn attract_distance_fall_off(&self) -> &super::core::Vec2;
+    fn attract_distance_fall_off_mut(&mut self) -> &mut super::core::Vec2;
     fn max_angular_velocity(&self) -> &super::core::Vec2;
+    fn max_angular_velocity_mut(&mut self) -> &mut super::core::Vec2;
     fn movement_input(&self) -> &super::core::Vec2;
+    fn movement_input_mut(&mut self) -> &mut super::core::Vec2;
     fn recoil(&self) -> &super::core::Vec2;
+    fn recoil_mut(&mut self) -> &mut super::core::Vec2;
     fn aim_sway_offset(&self) -> &super::core::Vec2;
+    fn aim_sway_offset_mut(&mut self) -> &mut super::core::Vec2;
     fn solider_aiming_simulation_data(&self) -> &Option<Arc<Mutex<dyn super::soldier_shared::SoldierAimingSimulationDataTrait>>>;
+    fn solider_aiming_simulation_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::soldier_shared::SoldierAimingSimulationDataTrait>>>;
     fn zoom_level(&self) -> &u32;
+    fn zoom_level_mut(&mut self) -> &mut u32;
     fn tick(&self) -> &u32;
+    fn tick_mut(&mut self) -> &mut u32;
     fn apply_angles_from_sim_tick(&self) -> &u32;
+    fn apply_angles_from_sim_tick_mut(&mut self) -> &mut u32;
     fn ignore_constraints_tick(&self) -> &u32;
+    fn ignore_constraints_tick_mut(&mut self) -> &mut u32;
     fn attract_user_input_multiplier(&self) -> &f32;
+    fn attract_user_input_multiplier_mut(&mut self) -> &mut f32;
     fn attract_zooming_post_timer(&self) -> &f32;
+    fn attract_zooming_post_timer_mut(&mut self) -> &mut f32;
     fn attract_zooming_post_time(&self) -> &f32;
+    fn attract_zooming_post_time_mut(&mut self) -> &mut f32;
     fn last_hit_position_distance(&self) -> &f32;
+    fn last_hit_position_distance_mut(&mut self) -> &mut f32;
     fn look_speed_multiplier(&self) -> &f32;
+    fn look_speed_multiplier_mut(&mut self) -> &mut f32;
     fn minimum_pitch(&self) -> &f32;
+    fn minimum_pitch_mut(&mut self) -> &mut f32;
     fn maximum_pitch(&self) -> &f32;
+    fn maximum_pitch_mut(&mut self) -> &mut f32;
     fn reticle_field_of_view(&self) -> &f32;
+    fn reticle_field_of_view_mut(&mut self) -> &mut f32;
     fn sim_pitch_to_apply(&self) -> &f32;
+    fn sim_pitch_to_apply_mut(&mut self) -> &mut f32;
     fn sim_yaw_to_apply(&self) -> &f32;
+    fn sim_yaw_to_apply_mut(&mut self) -> &mut f32;
     fn snap_zoom_break_away_timer(&self) -> &f32;
+    fn snap_zoom_break_away_timer_mut(&mut self) -> &mut f32;
     fn snap_zoom_timer(&self) -> &f32;
+    fn snap_zoom_timer_mut(&mut self) -> &mut f32;
     fn snap_zoom_time(&self) -> &f32;
+    fn snap_zoom_time_mut(&mut self) -> &mut f32;
     fn world_space_lock_efficiency_pitch(&self) -> &f32;
+    fn world_space_lock_efficiency_pitch_mut(&mut self) -> &mut f32;
     fn world_space_lock_efficiency_yaw(&self) -> &f32;
+    fn world_space_lock_efficiency_yaw_mut(&mut self) -> &mut f32;
     fn aimer_collision_blend_out(&self) -> &f32;
+    fn aimer_collision_blend_out_mut(&mut self) -> &mut f32;
     fn time_to_delay_after_collision(&self) -> &f32;
+    fn time_to_delay_after_collision_mut(&mut self) -> &mut f32;
     fn override_mode(&self) -> &AimOverrideMode;
+    fn override_mode_mut(&mut self) -> &mut AimOverrideMode;
     fn aim_at_last_hit_position(&self) -> &bool;
+    fn aim_at_last_hit_position_mut(&mut self) -> &mut bool;
     fn force_aim_snap(&self) -> &bool;
+    fn force_aim_snap_mut(&mut self) -> &mut bool;
     fn has_aiming_constraints(&self) -> &bool;
+    fn has_aiming_constraints_mut(&mut self) -> &mut bool;
     fn has_angular_velocity_constraints(&self) -> &bool;
+    fn has_angular_velocity_constraints_mut(&mut self) -> &mut bool;
     fn has_character_entity_space_component(&self) -> &bool;
+    fn has_character_entity_space_component_mut(&mut self) -> &mut bool;
     fn is_alive(&self) -> &bool;
+    fn is_alive_mut(&mut self) -> &mut bool;
     fn is_dead(&self) -> &bool;
+    fn is_dead_mut(&mut self) -> &mut bool;
     fn is_fps_aiming_disabled(&self) -> &bool;
+    fn is_fps_aiming_disabled_mut(&mut self) -> &mut bool;
     fn is_snap_zoomed(&self) -> &bool;
+    fn is_snap_zoomed_mut(&mut self) -> &mut bool;
     fn snap_zoom_allowed(&self) -> &bool;
+    fn snap_zoom_allowed_mut(&mut self) -> &mut bool;
     fn zoom_has_changed(&self) -> &bool;
+    fn zoom_has_changed_mut(&mut self) -> &mut bool;
     fn zoom_in_aiming_help_active(&self) -> &bool;
+    fn zoom_in_aiming_help_active_mut(&mut self) -> &mut bool;
     fn aim_assist_option_enabled(&self) -> &bool;
+    fn aim_assist_option_enabled_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
     fn field_flag_changed1(&self) -> &u32;
+    fn field_flag_changed1_mut(&mut self) -> &mut u32;
 }
 
 impl AimingSimDynamicStateTrait for AimingSimDynamicState {
     fn aiming_environment_target(&self) -> &AimingEnvironmentTarget {
         &self.aiming_environment_target
     }
+    fn aiming_environment_target_mut(&mut self) -> &mut AimingEnvironmentTarget {
+        &mut self.aiming_environment_target
+    }
     fn aiming_constraints(&self) -> &AimingConstraints {
         &self.aiming_constraints
+    }
+    fn aiming_constraints_mut(&mut self) -> &mut AimingConstraints {
+        &mut self.aiming_constraints
     }
     fn collision_excluded_bodies(&self) -> &super::physics::PhysicsRenderWorldHandle {
         &self.collision_excluded_bodies
     }
+    fn collision_excluded_bodies_mut(&mut self) -> &mut super::physics::PhysicsRenderWorldHandle {
+        &mut self.collision_excluded_bodies
+    }
     fn character_entity_space_component_transform(&self) -> &super::core::LinearTransform {
         &self.character_entity_space_component_transform
+    }
+    fn character_entity_space_component_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.character_entity_space_component_transform
     }
     fn lock_aim_transform(&self) -> &super::core::LinearTransform {
         &self.lock_aim_transform
     }
+    fn lock_aim_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.lock_aim_transform
+    }
     fn aimer_root_position(&self) -> &super::core::Vec3 {
         &self.aimer_root_position
+    }
+    fn aimer_root_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.aimer_root_position
     }
     fn desired_aimer_local_position(&self) -> &super::core::Vec3 {
         &self.desired_aimer_local_position
     }
+    fn desired_aimer_local_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.desired_aimer_local_position
+    }
     fn desired_aimer_safe_position(&self) -> &super::core::Vec3 {
         &self.desired_aimer_safe_position
+    }
+    fn desired_aimer_safe_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.desired_aimer_safe_position
     }
     fn static_aimer_safe_position(&self) -> &super::core::Vec3 {
         &self.static_aimer_safe_position
     }
+    fn static_aimer_safe_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.static_aimer_safe_position
+    }
     fn force_aim_snap_target_position(&self) -> &super::core::Vec3 {
         &self.force_aim_snap_target_position
+    }
+    fn force_aim_snap_target_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.force_aim_snap_target_position
     }
     fn reticle_speed(&self) -> &super::core::Vec3 {
         &self.reticle_speed
     }
+    fn reticle_speed_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.reticle_speed
+    }
     fn surface_angular_velocity(&self) -> &super::core::Vec3 {
         &self.surface_angular_velocity
+    }
+    fn surface_angular_velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.surface_angular_velocity
     }
     fn sim_aiming_input(&self) -> &super::core::Vec2 {
         &self.sim_aiming_input
     }
+    fn sim_aiming_input_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.sim_aiming_input
+    }
     fn aim_scale(&self) -> &super::core::Vec2 {
         &self.aim_scale
+    }
+    fn aim_scale_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.aim_scale
     }
     fn attract_distance_fall_off(&self) -> &super::core::Vec2 {
         &self.attract_distance_fall_off
     }
+    fn attract_distance_fall_off_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.attract_distance_fall_off
+    }
     fn max_angular_velocity(&self) -> &super::core::Vec2 {
         &self.max_angular_velocity
+    }
+    fn max_angular_velocity_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.max_angular_velocity
     }
     fn movement_input(&self) -> &super::core::Vec2 {
         &self.movement_input
     }
+    fn movement_input_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.movement_input
+    }
     fn recoil(&self) -> &super::core::Vec2 {
         &self.recoil
+    }
+    fn recoil_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.recoil
     }
     fn aim_sway_offset(&self) -> &super::core::Vec2 {
         &self.aim_sway_offset
     }
+    fn aim_sway_offset_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.aim_sway_offset
+    }
     fn solider_aiming_simulation_data(&self) -> &Option<Arc<Mutex<dyn super::soldier_shared::SoldierAimingSimulationDataTrait>>> {
         &self.solider_aiming_simulation_data
+    }
+    fn solider_aiming_simulation_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::soldier_shared::SoldierAimingSimulationDataTrait>>> {
+        &mut self.solider_aiming_simulation_data
     }
     fn zoom_level(&self) -> &u32 {
         &self.zoom_level
     }
+    fn zoom_level_mut(&mut self) -> &mut u32 {
+        &mut self.zoom_level
+    }
     fn tick(&self) -> &u32 {
         &self.tick
+    }
+    fn tick_mut(&mut self) -> &mut u32 {
+        &mut self.tick
     }
     fn apply_angles_from_sim_tick(&self) -> &u32 {
         &self.apply_angles_from_sim_tick
     }
+    fn apply_angles_from_sim_tick_mut(&mut self) -> &mut u32 {
+        &mut self.apply_angles_from_sim_tick
+    }
     fn ignore_constraints_tick(&self) -> &u32 {
         &self.ignore_constraints_tick
+    }
+    fn ignore_constraints_tick_mut(&mut self) -> &mut u32 {
+        &mut self.ignore_constraints_tick
     }
     fn attract_user_input_multiplier(&self) -> &f32 {
         &self.attract_user_input_multiplier
     }
+    fn attract_user_input_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.attract_user_input_multiplier
+    }
     fn attract_zooming_post_timer(&self) -> &f32 {
         &self.attract_zooming_post_timer
+    }
+    fn attract_zooming_post_timer_mut(&mut self) -> &mut f32 {
+        &mut self.attract_zooming_post_timer
     }
     fn attract_zooming_post_time(&self) -> &f32 {
         &self.attract_zooming_post_time
     }
+    fn attract_zooming_post_time_mut(&mut self) -> &mut f32 {
+        &mut self.attract_zooming_post_time
+    }
     fn last_hit_position_distance(&self) -> &f32 {
         &self.last_hit_position_distance
+    }
+    fn last_hit_position_distance_mut(&mut self) -> &mut f32 {
+        &mut self.last_hit_position_distance
     }
     fn look_speed_multiplier(&self) -> &f32 {
         &self.look_speed_multiplier
     }
+    fn look_speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.look_speed_multiplier
+    }
     fn minimum_pitch(&self) -> &f32 {
         &self.minimum_pitch
+    }
+    fn minimum_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.minimum_pitch
     }
     fn maximum_pitch(&self) -> &f32 {
         &self.maximum_pitch
     }
+    fn maximum_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.maximum_pitch
+    }
     fn reticle_field_of_view(&self) -> &f32 {
         &self.reticle_field_of_view
+    }
+    fn reticle_field_of_view_mut(&mut self) -> &mut f32 {
+        &mut self.reticle_field_of_view
     }
     fn sim_pitch_to_apply(&self) -> &f32 {
         &self.sim_pitch_to_apply
     }
+    fn sim_pitch_to_apply_mut(&mut self) -> &mut f32 {
+        &mut self.sim_pitch_to_apply
+    }
     fn sim_yaw_to_apply(&self) -> &f32 {
         &self.sim_yaw_to_apply
+    }
+    fn sim_yaw_to_apply_mut(&mut self) -> &mut f32 {
+        &mut self.sim_yaw_to_apply
     }
     fn snap_zoom_break_away_timer(&self) -> &f32 {
         &self.snap_zoom_break_away_timer
     }
+    fn snap_zoom_break_away_timer_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_break_away_timer
+    }
     fn snap_zoom_timer(&self) -> &f32 {
         &self.snap_zoom_timer
+    }
+    fn snap_zoom_timer_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_timer
     }
     fn snap_zoom_time(&self) -> &f32 {
         &self.snap_zoom_time
     }
+    fn snap_zoom_time_mut(&mut self) -> &mut f32 {
+        &mut self.snap_zoom_time
+    }
     fn world_space_lock_efficiency_pitch(&self) -> &f32 {
         &self.world_space_lock_efficiency_pitch
+    }
+    fn world_space_lock_efficiency_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.world_space_lock_efficiency_pitch
     }
     fn world_space_lock_efficiency_yaw(&self) -> &f32 {
         &self.world_space_lock_efficiency_yaw
     }
+    fn world_space_lock_efficiency_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.world_space_lock_efficiency_yaw
+    }
     fn aimer_collision_blend_out(&self) -> &f32 {
         &self.aimer_collision_blend_out
+    }
+    fn aimer_collision_blend_out_mut(&mut self) -> &mut f32 {
+        &mut self.aimer_collision_blend_out
     }
     fn time_to_delay_after_collision(&self) -> &f32 {
         &self.time_to_delay_after_collision
     }
+    fn time_to_delay_after_collision_mut(&mut self) -> &mut f32 {
+        &mut self.time_to_delay_after_collision
+    }
     fn override_mode(&self) -> &AimOverrideMode {
         &self.override_mode
+    }
+    fn override_mode_mut(&mut self) -> &mut AimOverrideMode {
+        &mut self.override_mode
     }
     fn aim_at_last_hit_position(&self) -> &bool {
         &self.aim_at_last_hit_position
     }
+    fn aim_at_last_hit_position_mut(&mut self) -> &mut bool {
+        &mut self.aim_at_last_hit_position
+    }
     fn force_aim_snap(&self) -> &bool {
         &self.force_aim_snap
+    }
+    fn force_aim_snap_mut(&mut self) -> &mut bool {
+        &mut self.force_aim_snap
     }
     fn has_aiming_constraints(&self) -> &bool {
         &self.has_aiming_constraints
     }
+    fn has_aiming_constraints_mut(&mut self) -> &mut bool {
+        &mut self.has_aiming_constraints
+    }
     fn has_angular_velocity_constraints(&self) -> &bool {
         &self.has_angular_velocity_constraints
+    }
+    fn has_angular_velocity_constraints_mut(&mut self) -> &mut bool {
+        &mut self.has_angular_velocity_constraints
     }
     fn has_character_entity_space_component(&self) -> &bool {
         &self.has_character_entity_space_component
     }
+    fn has_character_entity_space_component_mut(&mut self) -> &mut bool {
+        &mut self.has_character_entity_space_component
+    }
     fn is_alive(&self) -> &bool {
         &self.is_alive
+    }
+    fn is_alive_mut(&mut self) -> &mut bool {
+        &mut self.is_alive
     }
     fn is_dead(&self) -> &bool {
         &self.is_dead
     }
+    fn is_dead_mut(&mut self) -> &mut bool {
+        &mut self.is_dead
+    }
     fn is_fps_aiming_disabled(&self) -> &bool {
         &self.is_fps_aiming_disabled
+    }
+    fn is_fps_aiming_disabled_mut(&mut self) -> &mut bool {
+        &mut self.is_fps_aiming_disabled
     }
     fn is_snap_zoomed(&self) -> &bool {
         &self.is_snap_zoomed
     }
+    fn is_snap_zoomed_mut(&mut self) -> &mut bool {
+        &mut self.is_snap_zoomed
+    }
     fn snap_zoom_allowed(&self) -> &bool {
         &self.snap_zoom_allowed
+    }
+    fn snap_zoom_allowed_mut(&mut self) -> &mut bool {
+        &mut self.snap_zoom_allowed
     }
     fn zoom_has_changed(&self) -> &bool {
         &self.zoom_has_changed
     }
+    fn zoom_has_changed_mut(&mut self) -> &mut bool {
+        &mut self.zoom_has_changed
+    }
     fn zoom_in_aiming_help_active(&self) -> &bool {
         &self.zoom_in_aiming_help_active
+    }
+    fn zoom_in_aiming_help_active_mut(&mut self) -> &mut bool {
+        &mut self.zoom_in_aiming_help_active
     }
     fn aim_assist_option_enabled(&self) -> &bool {
         &self.aim_assist_option_enabled
     }
+    fn aim_assist_option_enabled_mut(&mut self) -> &mut bool {
+        &mut self.aim_assist_option_enabled
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
     }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
+    }
     fn field_flag_changed1(&self) -> &u32 {
         &self.field_flag_changed1
+    }
+    fn field_flag_changed1_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed1
     }
 }
 
@@ -6919,6 +8265,15 @@ impl TypeObject for AimingSimDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6942,23 +8297,39 @@ pub struct AimingSimStaticState {
 
 pub trait AimingSimStaticStateTrait: TypeObject {
     fn local_player_id(&self) -> &super::core::LocalPlayerId;
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId;
     fn yaw_input_action(&self) -> &i32;
+    fn yaw_input_action_mut(&mut self) -> &mut i32;
     fn pitch_input_action(&self) -> &i32;
+    fn pitch_input_action_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl AimingSimStaticStateTrait for AimingSimStaticState {
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         &self.local_player_id
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        &mut self.local_player_id
+    }
     fn yaw_input_action(&self) -> &i32 {
         &self.yaw_input_action
+    }
+    fn yaw_input_action_mut(&mut self) -> &mut i32 {
+        &mut self.yaw_input_action
     }
     fn pitch_input_action(&self) -> &i32 {
         &self.pitch_input_action
     }
+    fn pitch_input_action_mut(&mut self) -> &mut i32 {
+        &mut self.pitch_input_action
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7008,6 +8379,15 @@ impl TypeObject for AimingSimStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7033,31 +8413,55 @@ pub struct AimingConstraints {
 
 pub trait AimingConstraintsTrait: TypeObject {
     fn min_yaw(&self) -> &f32;
+    fn min_yaw_mut(&mut self) -> &mut f32;
     fn max_yaw(&self) -> &f32;
+    fn max_yaw_mut(&mut self) -> &mut f32;
     fn min_pitch(&self) -> &f32;
+    fn min_pitch_mut(&mut self) -> &mut f32;
     fn max_pitch(&self) -> &f32;
+    fn max_pitch_mut(&mut self) -> &mut f32;
     fn pitch_offset(&self) -> &f32;
+    fn pitch_offset_mut(&mut self) -> &mut f32;
     fn yaw_offset(&self) -> &f32;
+    fn yaw_offset_mut(&mut self) -> &mut f32;
 }
 
 impl AimingConstraintsTrait for AimingConstraints {
     fn min_yaw(&self) -> &f32 {
         &self.min_yaw
     }
+    fn min_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.min_yaw
+    }
     fn max_yaw(&self) -> &f32 {
         &self.max_yaw
+    }
+    fn max_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.max_yaw
     }
     fn min_pitch(&self) -> &f32 {
         &self.min_pitch
     }
+    fn min_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.min_pitch
+    }
     fn max_pitch(&self) -> &f32 {
         &self.max_pitch
+    }
+    fn max_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.max_pitch
     }
     fn pitch_offset(&self) -> &f32 {
         &self.pitch_offset
     }
+    fn pitch_offset_mut(&mut self) -> &mut f32 {
+        &mut self.pitch_offset
+    }
     fn yaw_offset(&self) -> &f32 {
         &self.yaw_offset
+    }
+    fn yaw_offset_mut(&mut self) -> &mut f32 {
+        &mut self.yaw_offset
     }
 }
 
@@ -7119,6 +8523,15 @@ impl TypeObject for AimingConstraints {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7146,39 +8559,71 @@ pub struct AimingEnvironmentTarget {
 
 pub trait AimingEnvironmentTargetTrait: TypeObject {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn snap_position(&self) -> &super::core::Vec3;
+    fn snap_position_mut(&mut self) -> &mut super::core::Vec3;
     fn velocity(&self) -> &super::core::Vec3;
+    fn velocity_mut(&mut self) -> &mut super::core::Vec3;
     fn id(&self) -> &u64;
+    fn id_mut(&mut self) -> &mut u64;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn snap_radius(&self) -> &f32;
+    fn snap_radius_mut(&mut self) -> &mut f32;
     fn is_sticky(&self) -> &bool;
+    fn is_sticky_mut(&mut self) -> &mut bool;
     fn is_snap(&self) -> &bool;
+    fn is_snap_mut(&mut self) -> &mut bool;
 }
 
 impl AimingEnvironmentTargetTrait for AimingEnvironmentTarget {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
+    }
     fn snap_position(&self) -> &super::core::Vec3 {
         &self.snap_position
+    }
+    fn snap_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.snap_position
     }
     fn velocity(&self) -> &super::core::Vec3 {
         &self.velocity
     }
+    fn velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.velocity
+    }
     fn id(&self) -> &u64 {
         &self.id
+    }
+    fn id_mut(&mut self) -> &mut u64 {
+        &mut self.id
     }
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn snap_radius(&self) -> &f32 {
         &self.snap_radius
+    }
+    fn snap_radius_mut(&mut self) -> &mut f32 {
+        &mut self.snap_radius
     }
     fn is_sticky(&self) -> &bool {
         &self.is_sticky
     }
+    fn is_sticky_mut(&mut self) -> &mut bool {
+        &mut self.is_sticky
+    }
     fn is_snap(&self) -> &bool {
         &self.is_snap
+    }
+    fn is_snap_mut(&mut self) -> &mut bool {
+        &mut self.is_snap
     }
 }
 
@@ -7252,6 +8697,15 @@ impl TypeObject for AimingEnvironmentTarget {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7291,6 +8745,15 @@ impl TypeObject for AimOverrideMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7318,39 +8781,71 @@ pub struct SoldierThirdPersonCameraRenderState {
 
 pub trait SoldierThirdPersonCameraRenderStateTrait: TypeObject {
     fn aimer_position(&self) -> &super::core::Vec3;
+    fn aimer_position_mut(&mut self) -> &mut super::core::Vec3;
     fn hit_position(&self) -> &super::core::Vec3;
+    fn hit_position_mut(&mut self) -> &mut super::core::Vec3;
     fn yaw(&self) -> &f32;
+    fn yaw_mut(&mut self) -> &mut f32;
     fn pitch(&self) -> &f32;
+    fn pitch_mut(&mut self) -> &mut f32;
     fn arm_length(&self) -> &f32;
+    fn arm_length_mut(&mut self) -> &mut f32;
     fn previous_arm_length(&self) -> &f32;
+    fn previous_arm_length_mut(&mut self) -> &mut f32;
     fn previous_collided_arm_length(&self) -> &f32;
+    fn previous_collided_arm_length_mut(&mut self) -> &mut f32;
     fn is_colliding(&self) -> &bool;
+    fn is_colliding_mut(&mut self) -> &mut bool;
 }
 
 impl SoldierThirdPersonCameraRenderStateTrait for SoldierThirdPersonCameraRenderState {
     fn aimer_position(&self) -> &super::core::Vec3 {
         &self.aimer_position
     }
+    fn aimer_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.aimer_position
+    }
     fn hit_position(&self) -> &super::core::Vec3 {
         &self.hit_position
+    }
+    fn hit_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.hit_position
     }
     fn yaw(&self) -> &f32 {
         &self.yaw
     }
+    fn yaw_mut(&mut self) -> &mut f32 {
+        &mut self.yaw
+    }
     fn pitch(&self) -> &f32 {
         &self.pitch
+    }
+    fn pitch_mut(&mut self) -> &mut f32 {
+        &mut self.pitch
     }
     fn arm_length(&self) -> &f32 {
         &self.arm_length
     }
+    fn arm_length_mut(&mut self) -> &mut f32 {
+        &mut self.arm_length
+    }
     fn previous_arm_length(&self) -> &f32 {
         &self.previous_arm_length
+    }
+    fn previous_arm_length_mut(&mut self) -> &mut f32 {
+        &mut self.previous_arm_length
     }
     fn previous_collided_arm_length(&self) -> &f32 {
         &self.previous_collided_arm_length
     }
+    fn previous_collided_arm_length_mut(&mut self) -> &mut f32 {
+        &mut self.previous_collided_arm_length
+    }
     fn is_colliding(&self) -> &bool {
         &self.is_colliding
+    }
+    fn is_colliding_mut(&mut self) -> &mut bool {
+        &mut self.is_colliding
     }
 }
 
@@ -7424,6 +8919,15 @@ impl TypeObject for SoldierThirdPersonCameraRenderState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7468,107 +8972,207 @@ pub struct SoldierThirdPersonCameraSimState {
 
 pub trait SoldierThirdPersonCameraSimStateTrait: TypeObject {
     fn local_transform(&self) -> &super::core::LinearTransform;
+    fn local_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn free_transform(&self) -> &super::core::LinearTransform;
+    fn free_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn procedural_transform(&self) -> &super::core::LinearTransform;
+    fn procedural_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn shake_transform(&self) -> &super::core::LinearTransform;
+    fn shake_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn roll_transform(&self) -> &super::core::LinearTransform;
+    fn roll_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn sim_aimer_position(&self) -> &super::core::Vec3;
+    fn sim_aimer_position_mut(&mut self) -> &mut super::core::Vec3;
     fn sim_hit_position(&self) -> &super::core::Vec3;
+    fn sim_hit_position_mut(&mut self) -> &mut super::core::Vec3;
     fn aiming(&self) -> &AimingHandle;
+    fn aiming_mut(&mut self) -> &mut AimingHandle;
     fn sim_yaw(&self) -> &f32;
+    fn sim_yaw_mut(&mut self) -> &mut f32;
     fn sim_pitch(&self) -> &f32;
+    fn sim_pitch_mut(&mut self) -> &mut f32;
     fn max_pitch(&self) -> &f32;
+    fn max_pitch_mut(&mut self) -> &mut f32;
     fn arm_length(&self) -> &f32;
+    fn arm_length_mut(&mut self) -> &mut f32;
     fn min_reduce_pitch(&self) -> &f32;
+    fn min_reduce_pitch_mut(&mut self) -> &mut f32;
     fn max_reduce_pitch(&self) -> &f32;
+    fn max_reduce_pitch_mut(&mut self) -> &mut f32;
     fn max_reduced_length(&self) -> &f32;
+    fn max_reduced_length_mut(&mut self) -> &mut f32;
     fn collision_width_padding(&self) -> &f32;
+    fn collision_width_padding_mut(&mut self) -> &mut f32;
     fn collision_blend_in(&self) -> &f32;
+    fn collision_blend_in_mut(&mut self) -> &mut f32;
     fn collision_blend_out(&self) -> &f32;
+    fn collision_blend_out_mut(&mut self) -> &mut f32;
     fn free_transform_blend_value(&self) -> &f32;
+    fn free_transform_blend_value_mut(&mut self) -> &mut f32;
     fn near_plane(&self) -> &f32;
+    fn near_plane_mut(&mut self) -> &mut f32;
     fn far_plane(&self) -> &f32;
+    fn far_plane_mut(&mut self) -> &mut f32;
     fn fov(&self) -> &f32;
+    fn fov_mut(&mut self) -> &mut f32;
     fn aspect_ratio(&self) -> &f32;
+    fn aspect_ratio_mut(&mut self) -> &mut f32;
     fn reduce_arm_length_looking_up(&self) -> &bool;
+    fn reduce_arm_length_looking_up_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl SoldierThirdPersonCameraSimStateTrait for SoldierThirdPersonCameraSimState {
     fn local_transform(&self) -> &super::core::LinearTransform {
         &self.local_transform
     }
+    fn local_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.local_transform
+    }
     fn free_transform(&self) -> &super::core::LinearTransform {
         &self.free_transform
+    }
+    fn free_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.free_transform
     }
     fn procedural_transform(&self) -> &super::core::LinearTransform {
         &self.procedural_transform
     }
+    fn procedural_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.procedural_transform
+    }
     fn shake_transform(&self) -> &super::core::LinearTransform {
         &self.shake_transform
+    }
+    fn shake_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.shake_transform
     }
     fn roll_transform(&self) -> &super::core::LinearTransform {
         &self.roll_transform
     }
+    fn roll_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.roll_transform
+    }
     fn sim_aimer_position(&self) -> &super::core::Vec3 {
         &self.sim_aimer_position
+    }
+    fn sim_aimer_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sim_aimer_position
     }
     fn sim_hit_position(&self) -> &super::core::Vec3 {
         &self.sim_hit_position
     }
+    fn sim_hit_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sim_hit_position
+    }
     fn aiming(&self) -> &AimingHandle {
         &self.aiming
+    }
+    fn aiming_mut(&mut self) -> &mut AimingHandle {
+        &mut self.aiming
     }
     fn sim_yaw(&self) -> &f32 {
         &self.sim_yaw
     }
+    fn sim_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.sim_yaw
+    }
     fn sim_pitch(&self) -> &f32 {
         &self.sim_pitch
+    }
+    fn sim_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.sim_pitch
     }
     fn max_pitch(&self) -> &f32 {
         &self.max_pitch
     }
+    fn max_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.max_pitch
+    }
     fn arm_length(&self) -> &f32 {
         &self.arm_length
+    }
+    fn arm_length_mut(&mut self) -> &mut f32 {
+        &mut self.arm_length
     }
     fn min_reduce_pitch(&self) -> &f32 {
         &self.min_reduce_pitch
     }
+    fn min_reduce_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.min_reduce_pitch
+    }
     fn max_reduce_pitch(&self) -> &f32 {
         &self.max_reduce_pitch
+    }
+    fn max_reduce_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.max_reduce_pitch
     }
     fn max_reduced_length(&self) -> &f32 {
         &self.max_reduced_length
     }
+    fn max_reduced_length_mut(&mut self) -> &mut f32 {
+        &mut self.max_reduced_length
+    }
     fn collision_width_padding(&self) -> &f32 {
         &self.collision_width_padding
+    }
+    fn collision_width_padding_mut(&mut self) -> &mut f32 {
+        &mut self.collision_width_padding
     }
     fn collision_blend_in(&self) -> &f32 {
         &self.collision_blend_in
     }
+    fn collision_blend_in_mut(&mut self) -> &mut f32 {
+        &mut self.collision_blend_in
+    }
     fn collision_blend_out(&self) -> &f32 {
         &self.collision_blend_out
+    }
+    fn collision_blend_out_mut(&mut self) -> &mut f32 {
+        &mut self.collision_blend_out
     }
     fn free_transform_blend_value(&self) -> &f32 {
         &self.free_transform_blend_value
     }
+    fn free_transform_blend_value_mut(&mut self) -> &mut f32 {
+        &mut self.free_transform_blend_value
+    }
     fn near_plane(&self) -> &f32 {
         &self.near_plane
+    }
+    fn near_plane_mut(&mut self) -> &mut f32 {
+        &mut self.near_plane
     }
     fn far_plane(&self) -> &f32 {
         &self.far_plane
     }
+    fn far_plane_mut(&mut self) -> &mut f32 {
+        &mut self.far_plane
+    }
     fn fov(&self) -> &f32 {
         &self.fov
+    }
+    fn fov_mut(&mut self) -> &mut f32 {
+        &mut self.fov
     }
     fn aspect_ratio(&self) -> &f32 {
         &self.aspect_ratio
     }
+    fn aspect_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.aspect_ratio
+    }
     fn reduce_arm_length_looking_up(&self) -> &bool {
         &self.reduce_arm_length_looking_up
     }
+    fn reduce_arm_length_looking_up_mut(&mut self) -> &mut bool {
+        &mut self.reduce_arm_length_looking_up
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7744,6 +9348,15 @@ impl TypeObject for SoldierThirdPersonCameraSimState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7765,15 +9378,23 @@ pub struct SoldierFirstPersonCameraRenderState {
 
 pub trait SoldierFirstPersonCameraRenderStateTrait: TypeObject {
     fn yaw(&self) -> &f32;
+    fn yaw_mut(&mut self) -> &mut f32;
     fn pitch(&self) -> &f32;
+    fn pitch_mut(&mut self) -> &mut f32;
 }
 
 impl SoldierFirstPersonCameraRenderStateTrait for SoldierFirstPersonCameraRenderState {
     fn yaw(&self) -> &f32 {
         &self.yaw
     }
+    fn yaw_mut(&mut self) -> &mut f32 {
+        &mut self.yaw
+    }
     fn pitch(&self) -> &f32 {
         &self.pitch
+    }
+    fn pitch_mut(&mut self) -> &mut f32 {
+        &mut self.pitch
     }
 }
 
@@ -7810,6 +9431,15 @@ impl TypeObject for SoldierFirstPersonCameraRenderState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -7855,107 +9485,207 @@ pub struct SoldierFirstPersonCameraSimState {
 
 pub trait SoldierFirstPersonCameraSimStateTrait: TypeObject {
     fn camera_bone_local_transform(&self) -> &super::core::LinearTransform;
+    fn camera_bone_local_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn camera_bone_transform_relative_to_trajectory(&self) -> &super::core::LinearTransform;
+    fn camera_bone_transform_relative_to_trajectory_mut(&mut self) -> &mut super::core::LinearTransform;
     fn roll_transform(&self) -> &super::core::LinearTransform;
+    fn roll_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn entity_space_local_transform(&self) -> &super::core::LinearTransform;
+    fn entity_space_local_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn procedural_transform(&self) -> &super::core::LinearTransform;
+    fn procedural_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn shake_transform(&self) -> &super::core::LinearTransform;
+    fn shake_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn spine_x_relative_to_camera(&self) -> &super::core::LinearTransform;
+    fn spine_x_relative_to_camera_mut(&mut self) -> &mut super::core::LinearTransform;
     fn weapon_sway_transform(&self) -> &super::core::LinearTransform;
+    fn weapon_sway_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn soldier_world_position(&self) -> &super::core::Vec3;
+    fn soldier_world_position_mut(&mut self) -> &mut super::core::Vec3;
     fn local_eye_position(&self) -> &super::core::Vec3;
+    fn local_eye_position_mut(&mut self) -> &mut super::core::Vec3;
     fn aiming(&self) -> &AimingHandle;
+    fn aiming_mut(&mut self) -> &mut AimingHandle;
     fn soldier_transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn soldier_transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn spine_x_bone_index(&self) -> &u32;
+    fn spine_x_bone_index_mut(&mut self) -> &mut u32;
     fn trajectory_bone_index(&self) -> &u32;
+    fn trajectory_bone_index_mut(&mut self) -> &mut u32;
     fn sim_yaw(&self) -> &f32;
+    fn sim_yaw_mut(&mut self) -> &mut f32;
     fn sim_pitch(&self) -> &f32;
+    fn sim_pitch_mut(&mut self) -> &mut f32;
     fn spine_x_factor(&self) -> &f32;
+    fn spine_x_factor_mut(&mut self) -> &mut f32;
     fn animated_camera_factor(&self) -> &f32;
+    fn animated_camera_factor_mut(&mut self) -> &mut f32;
     fn animated_camera_start_pitch(&self) -> &f32;
+    fn animated_camera_start_pitch_mut(&mut self) -> &mut f32;
     fn prevent_ground_clipping_distance(&self) -> &f32;
+    fn prevent_ground_clipping_distance_mut(&mut self) -> &mut f32;
     fn has_valid_animation_transforms(&self) -> &bool;
+    fn has_valid_animation_transforms_mut(&mut self) -> &mut bool;
     fn use_local_eye_position1p(&self) -> &bool;
+    fn use_local_eye_position1p_mut(&mut self) -> &mut bool;
     fn is_animated_camera(&self) -> &bool;
+    fn is_animated_camera_mut(&mut self) -> &mut bool;
     fn has_entity_space(&self) -> &bool;
+    fn has_entity_space_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl SoldierFirstPersonCameraSimStateTrait for SoldierFirstPersonCameraSimState {
     fn camera_bone_local_transform(&self) -> &super::core::LinearTransform {
         &self.camera_bone_local_transform
     }
+    fn camera_bone_local_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.camera_bone_local_transform
+    }
     fn camera_bone_transform_relative_to_trajectory(&self) -> &super::core::LinearTransform {
         &self.camera_bone_transform_relative_to_trajectory
+    }
+    fn camera_bone_transform_relative_to_trajectory_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.camera_bone_transform_relative_to_trajectory
     }
     fn roll_transform(&self) -> &super::core::LinearTransform {
         &self.roll_transform
     }
+    fn roll_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.roll_transform
+    }
     fn entity_space_local_transform(&self) -> &super::core::LinearTransform {
         &self.entity_space_local_transform
+    }
+    fn entity_space_local_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.entity_space_local_transform
     }
     fn procedural_transform(&self) -> &super::core::LinearTransform {
         &self.procedural_transform
     }
+    fn procedural_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.procedural_transform
+    }
     fn shake_transform(&self) -> &super::core::LinearTransform {
         &self.shake_transform
+    }
+    fn shake_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.shake_transform
     }
     fn spine_x_relative_to_camera(&self) -> &super::core::LinearTransform {
         &self.spine_x_relative_to_camera
     }
+    fn spine_x_relative_to_camera_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.spine_x_relative_to_camera
+    }
     fn weapon_sway_transform(&self) -> &super::core::LinearTransform {
         &self.weapon_sway_transform
+    }
+    fn weapon_sway_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.weapon_sway_transform
     }
     fn soldier_world_position(&self) -> &super::core::Vec3 {
         &self.soldier_world_position
     }
+    fn soldier_world_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.soldier_world_position
+    }
     fn local_eye_position(&self) -> &super::core::Vec3 {
         &self.local_eye_position
+    }
+    fn local_eye_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.local_eye_position
     }
     fn aiming(&self) -> &AimingHandle {
         &self.aiming
     }
+    fn aiming_mut(&mut self) -> &mut AimingHandle {
+        &mut self.aiming
+    }
     fn soldier_transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.soldier_transform_space
+    }
+    fn soldier_transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.soldier_transform_space
     }
     fn spine_x_bone_index(&self) -> &u32 {
         &self.spine_x_bone_index
     }
+    fn spine_x_bone_index_mut(&mut self) -> &mut u32 {
+        &mut self.spine_x_bone_index
+    }
     fn trajectory_bone_index(&self) -> &u32 {
         &self.trajectory_bone_index
+    }
+    fn trajectory_bone_index_mut(&mut self) -> &mut u32 {
+        &mut self.trajectory_bone_index
     }
     fn sim_yaw(&self) -> &f32 {
         &self.sim_yaw
     }
+    fn sim_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.sim_yaw
+    }
     fn sim_pitch(&self) -> &f32 {
         &self.sim_pitch
+    }
+    fn sim_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.sim_pitch
     }
     fn spine_x_factor(&self) -> &f32 {
         &self.spine_x_factor
     }
+    fn spine_x_factor_mut(&mut self) -> &mut f32 {
+        &mut self.spine_x_factor
+    }
     fn animated_camera_factor(&self) -> &f32 {
         &self.animated_camera_factor
+    }
+    fn animated_camera_factor_mut(&mut self) -> &mut f32 {
+        &mut self.animated_camera_factor
     }
     fn animated_camera_start_pitch(&self) -> &f32 {
         &self.animated_camera_start_pitch
     }
+    fn animated_camera_start_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.animated_camera_start_pitch
+    }
     fn prevent_ground_clipping_distance(&self) -> &f32 {
         &self.prevent_ground_clipping_distance
+    }
+    fn prevent_ground_clipping_distance_mut(&mut self) -> &mut f32 {
+        &mut self.prevent_ground_clipping_distance
     }
     fn has_valid_animation_transforms(&self) -> &bool {
         &self.has_valid_animation_transforms
     }
+    fn has_valid_animation_transforms_mut(&mut self) -> &mut bool {
+        &mut self.has_valid_animation_transforms
+    }
     fn use_local_eye_position1p(&self) -> &bool {
         &self.use_local_eye_position1p
+    }
+    fn use_local_eye_position1p_mut(&mut self) -> &mut bool {
+        &mut self.use_local_eye_position1p
     }
     fn is_animated_camera(&self) -> &bool {
         &self.is_animated_camera
     }
+    fn is_animated_camera_mut(&mut self) -> &mut bool {
+        &mut self.is_animated_camera
+    }
     fn has_entity_space(&self) -> &bool {
         &self.has_entity_space
     }
+    fn has_entity_space_mut(&mut self) -> &mut bool {
+        &mut self.has_entity_space
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -8131,6 +9861,15 @@ impl TypeObject for SoldierFirstPersonCameraSimState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8183,6 +9922,15 @@ impl TypeObject for SoldierServerPlayerExtent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8243,6 +9991,15 @@ impl TypeObject for ServerLookAtTriggerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8299,6 +10056,15 @@ impl TypeObject for ServerCharacterStateTriggerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8352,6 +10118,15 @@ impl TypeObject for ServerWeaponStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8404,6 +10179,15 @@ impl TypeObject for ServerStateEventGateEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -100,6 +100,15 @@ impl TypeObject for ZoneStreamerZoneDestroyMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -133,6 +142,15 @@ impl TypeObject for ZoneStreamerZoneInitMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -168,6 +186,15 @@ impl TypeObject for ZoneStreamerZoneChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -201,6 +228,15 @@ impl TypeObject for ZoneStreamerShutdownMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -236,6 +272,15 @@ impl TypeObject for ZoneStreamerAnnounceMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -247,15 +292,23 @@ pub struct ZoneStreamerNotificationEntityData {
 
 pub trait ZoneStreamerNotificationEntityDataTrait: super::entity::EntityDataTrait {
     fn control_entity(&self) -> &glacier_util::guid::Guid;
+    fn control_entity_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn bundle_name(&self) -> &String;
+    fn bundle_name_mut(&mut self) -> &mut String;
 }
 
 impl ZoneStreamerNotificationEntityDataTrait for ZoneStreamerNotificationEntityData {
     fn control_entity(&self) -> &glacier_util::guid::Guid {
         &self.control_entity
     }
+    fn control_entity_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.control_entity
+    }
     fn bundle_name(&self) -> &String {
         &self.bundle_name
+    }
+    fn bundle_name_mut(&mut self) -> &mut String {
+        &mut self.bundle_name
     }
 }
 
@@ -269,15 +322,15 @@ impl super::core::DataBusPeerTrait for ZoneStreamerNotificationEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ZoneStreamerNotificationEntityData {
 }
 
 impl super::core::DataContainerTrait for ZoneStreamerNotificationEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZONESTREAMERNOTIFICATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -315,6 +368,15 @@ impl TypeObject for ZoneStreamerNotificationEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -336,15 +398,23 @@ pub struct VistaZoneInfo {
 
 pub trait VistaZoneInfoTrait: TypeObject {
     fn neighbours(&self) -> &Vec<i16>;
+    fn neighbours_mut(&mut self) -> &mut Vec<i16>;
     fn objects(&self) -> &Vec<VistaZoneMeshInfo>;
+    fn objects_mut(&mut self) -> &mut Vec<VistaZoneMeshInfo>;
 }
 
 impl VistaZoneInfoTrait for VistaZoneInfo {
     fn neighbours(&self) -> &Vec<i16> {
         &self.neighbours
     }
+    fn neighbours_mut(&mut self) -> &mut Vec<i16> {
+        &mut self.neighbours
+    }
     fn objects(&self) -> &Vec<VistaZoneMeshInfo> {
         &self.objects
+    }
+    fn objects_mut(&mut self) -> &mut Vec<VistaZoneMeshInfo> {
+        &mut self.objects
     }
 }
 
@@ -382,6 +452,15 @@ impl TypeObject for VistaZoneInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -403,15 +482,23 @@ pub struct VistaZoneMeshInfo {
 
 pub trait VistaZoneMeshInfoTrait: TypeObject {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl VistaZoneMeshInfoTrait for VistaZoneMeshInfo {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         &self.object
     }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        &mut self.object
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
 }
 
@@ -449,6 +536,15 @@ impl TypeObject for VistaZoneMeshInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -471,15 +567,23 @@ pub struct ZoneStreamerVistaEntityData {
 
 pub trait ZoneStreamerVistaEntityDataTrait: super::entity::EntityDataTrait {
     fn zone_infos(&self) -> &Vec<VistaZoneInfo>;
+    fn zone_infos_mut(&mut self) -> &mut Vec<VistaZoneInfo>;
     fn control_entity(&self) -> &glacier_util::guid::Guid;
+    fn control_entity_mut(&mut self) -> &mut glacier_util::guid::Guid;
 }
 
 impl ZoneStreamerVistaEntityDataTrait for ZoneStreamerVistaEntityData {
     fn zone_infos(&self) -> &Vec<VistaZoneInfo> {
         &self.zone_infos
     }
+    fn zone_infos_mut(&mut self) -> &mut Vec<VistaZoneInfo> {
+        &mut self.zone_infos
+    }
     fn control_entity(&self) -> &glacier_util::guid::Guid {
         &self.control_entity
+    }
+    fn control_entity_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.control_entity
     }
 }
 
@@ -493,15 +597,15 @@ impl super::core::DataBusPeerTrait for ZoneStreamerVistaEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ZoneStreamerVistaEntityData {
 }
 
 impl super::core::DataContainerTrait for ZoneStreamerVistaEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZONESTREAMERVISTAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -539,6 +643,15 @@ impl TypeObject for ZoneStreamerVistaEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -567,50 +680,98 @@ impl super::entity::SubWorldReferenceObjectDataTrait for ZoneStreamerSubWorldRod
     fn bundle_name(&self) -> &String {
         self._glacier_base.bundle_name()
     }
+    fn bundle_name_mut(&mut self) -> &mut String {
+        self._glacier_base.bundle_name_mut()
+    }
     fn preloaded_bundle_names(&self) -> &Vec<String> {
         self._glacier_base.preloaded_bundle_names()
+    }
+    fn preloaded_bundle_names_mut(&mut self) -> &mut Vec<String> {
+        self._glacier_base.preloaded_bundle_names_mut()
     }
     fn bundle_heap(&self) -> &super::entity::BundleHeapInfo {
         self._glacier_base.bundle_heap()
     }
+    fn bundle_heap_mut(&mut self) -> &mut super::entity::BundleHeapInfo {
+        self._glacier_base.bundle_heap_mut()
+    }
     fn inclusion_settings(&self) -> &Option<Arc<Mutex<dyn super::entity::SubWorldInclusionSettingsTrait>>> {
         self._glacier_base.inclusion_settings()
+    }
+    fn inclusion_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SubWorldInclusionSettingsTrait>>> {
+        self._glacier_base.inclusion_settings_mut()
     }
     fn auto_load(&self) -> &bool {
         self._glacier_base.auto_load()
     }
+    fn auto_load_mut(&mut self) -> &mut bool {
+        self._glacier_base.auto_load_mut()
+    }
     fn is_detached_sub_level(&self) -> &bool {
         self._glacier_base.is_detached_sub_level()
+    }
+    fn is_detached_sub_level_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_detached_sub_level_mut()
     }
     fn is_win32_sub_level(&self) -> &bool {
         self._glacier_base.is_win32_sub_level()
     }
+    fn is_win32_sub_level_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_win32_sub_level_mut()
+    }
     fn is_gen4a_sub_level(&self) -> &bool {
         self._glacier_base.is_gen4a_sub_level()
+    }
+    fn is_gen4a_sub_level_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_gen4a_sub_level_mut()
     }
     fn is_gen4b_sub_level(&self) -> &bool {
         self._glacier_base.is_gen4b_sub_level()
     }
+    fn is_gen4b_sub_level_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_gen4b_sub_level_mut()
+    }
     fn is_i_o_s_sub_level(&self) -> &bool {
         self._glacier_base.is_i_o_s_sub_level()
+    }
+    fn is_i_o_s_sub_level_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_i_o_s_sub_level_mut()
     }
     fn is_android_sub_level(&self) -> &bool {
         self._glacier_base.is_android_sub_level()
     }
+    fn is_android_sub_level_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_android_sub_level_mut()
+    }
     fn is_o_s_x_sub_level(&self) -> &bool {
         self._glacier_base.is_o_s_x_sub_level()
+    }
+    fn is_o_s_x_sub_level_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_o_s_x_sub_level_mut()
     }
     fn is_linux_sub_level(&self) -> &bool {
         self._glacier_base.is_linux_sub_level()
     }
+    fn is_linux_sub_level_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_linux_sub_level_mut()
+    }
     fn on_level_load_fire_on_stream_in(&self) -> &bool {
         self._glacier_base.on_level_load_fire_on_stream_in()
+    }
+    fn on_level_load_fire_on_stream_in_mut(&mut self) -> &mut bool {
+        self._glacier_base.on_level_load_fire_on_stream_in_mut()
     }
     fn use_peer_filtering(&self) -> &bool {
         self._glacier_base.use_peer_filtering()
     }
+    fn use_peer_filtering_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_peer_filtering_mut()
+    }
     fn parents(&self) -> &Vec<super::entity::SharedBundleReference> {
         self._glacier_base.parents()
+    }
+    fn parents_mut(&mut self) -> &mut Vec<super::entity::SharedBundleReference> {
+        self._glacier_base.parents_mut()
     }
 }
 
@@ -618,32 +779,62 @@ impl super::entity::ReferenceObjectDataTrait for ZoneStreamerSubWorldRod {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -654,15 +845,15 @@ impl super::core::DataBusPeerTrait for ZoneStreamerSubWorldRod {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ZoneStreamerSubWorldRod {
 }
 
 impl super::core::DataContainerTrait for ZoneStreamerSubWorldRod {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZONESTREAMERSUBWORLDROD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -688,6 +879,15 @@ impl TypeObject for ZoneStreamerSubWorldRod {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -711,25 +911,40 @@ pub struct ZoneStreamerEntityData {
 
 pub trait ZoneStreamerEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn client_side_only(&self) -> &bool;
+    fn client_side_only_mut(&mut self) -> &mut bool;
     fn enable_default_focus(&self) -> &bool;
+    fn enable_default_focus_mut(&mut self) -> &mut bool;
     fn info(&self) -> &ZoneStreamerInfo;
+    fn info_mut(&mut self) -> &mut ZoneStreamerInfo;
 }
 
 impl ZoneStreamerEntityDataTrait for ZoneStreamerEntityData {
     fn client_side_only(&self) -> &bool {
         &self.client_side_only
     }
+    fn client_side_only_mut(&mut self) -> &mut bool {
+        &mut self.client_side_only
+    }
     fn enable_default_focus(&self) -> &bool {
         &self.enable_default_focus
     }
+    fn enable_default_focus_mut(&mut self) -> &mut bool {
+        &mut self.enable_default_focus
+    }
     fn info(&self) -> &ZoneStreamerInfo {
         &self.info
+    }
+    fn info_mut(&mut self) -> &mut ZoneStreamerInfo {
+        &mut self.info
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for ZoneStreamerEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -743,15 +958,15 @@ impl super::core::DataBusPeerTrait for ZoneStreamerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ZoneStreamerEntityData {
 }
 
 impl super::core::DataContainerTrait for ZoneStreamerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZONESTREAMERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -795,6 +1010,15 @@ impl TypeObject for ZoneStreamerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -819,27 +1043,47 @@ pub struct ZoneStreamerInfo {
 
 pub trait ZoneStreamerInfoTrait: TypeObject {
     fn grid_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn grid_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn sub_level_path(&self) -> &String;
+    fn sub_level_path_mut(&mut self) -> &mut String;
     fn zone_infos(&self) -> &Vec<ZoneStreamerZoneInfo>;
+    fn zone_infos_mut(&mut self) -> &mut Vec<ZoneStreamerZoneInfo>;
     fn bundle_parents(&self) -> &Vec<i16>;
+    fn bundle_parents_mut(&mut self) -> &mut Vec<i16>;
     fn bundle_names(&self) -> &Vec<String>;
+    fn bundle_names_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl ZoneStreamerInfoTrait for ZoneStreamerInfo {
     fn grid_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.grid_resource
     }
+    fn grid_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.grid_resource
+    }
     fn sub_level_path(&self) -> &String {
         &self.sub_level_path
+    }
+    fn sub_level_path_mut(&mut self) -> &mut String {
+        &mut self.sub_level_path
     }
     fn zone_infos(&self) -> &Vec<ZoneStreamerZoneInfo> {
         &self.zone_infos
     }
+    fn zone_infos_mut(&mut self) -> &mut Vec<ZoneStreamerZoneInfo> {
+        &mut self.zone_infos
+    }
     fn bundle_parents(&self) -> &Vec<i16> {
         &self.bundle_parents
     }
+    fn bundle_parents_mut(&mut self) -> &mut Vec<i16> {
+        &mut self.bundle_parents
+    }
     fn bundle_names(&self) -> &Vec<String> {
         &self.bundle_names
+    }
+    fn bundle_names_mut(&mut self) -> &mut Vec<String> {
+        &mut self.bundle_names
     }
 }
 
@@ -895,6 +1139,15 @@ impl TypeObject for ZoneStreamerInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -915,11 +1168,15 @@ pub struct ZoneStreamerZoneInfo {
 
 pub trait ZoneStreamerZoneInfoTrait: TypeObject {
     fn neighbours(&self) -> &Vec<i16>;
+    fn neighbours_mut(&mut self) -> &mut Vec<i16>;
 }
 
 impl ZoneStreamerZoneInfoTrait for ZoneStreamerZoneInfo {
     fn neighbours(&self) -> &Vec<i16> {
         &self.neighbours
+    }
+    fn neighbours_mut(&mut self) -> &mut Vec<i16> {
+        &mut self.neighbours
     }
 }
 
@@ -950,6 +1207,15 @@ impl TypeObject for ZoneStreamerZoneInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -992,6 +1258,15 @@ impl TypeObject for ZoneStreamerRasterNodeUsage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1031,90 +1306,163 @@ pub struct ZoneStreamerSettings {
 
 pub trait ZoneStreamerSettingsTrait: super::core::DataContainerTrait {
     fn test_zone_heights(&self) -> &bool;
+    fn test_zone_heights_mut(&mut self) -> &mut bool;
     fn pin_visited_zones(&self) -> &bool;
+    fn pin_visited_zones_mut(&mut self) -> &mut bool;
     fn pause_all(&self) -> &bool;
+    fn pause_all_mut(&mut self) -> &mut bool;
     fn draw_stats(&self) -> &bool;
+    fn draw_stats_mut(&mut self) -> &mut bool;
     fn draw3d_debug(&self) -> &bool;
+    fn draw3d_debug_mut(&mut self) -> &mut bool;
     fn draw3d_name_scale(&self) -> &f32;
+    fn draw3d_name_scale_mut(&mut self) -> &mut f32;
     fn draw2d_debug(&self) -> &bool;
+    fn draw2d_debug_mut(&mut self) -> &mut bool;
     fn draw2d_scale(&self) -> &f32;
+    fn draw2d_scale_mut(&mut self) -> &mut f32;
     fn draw2d_zones(&self) -> &bool;
+    fn draw2d_zones_mut(&mut self) -> &mut bool;
     fn draw2d_rotate(&self) -> &bool;
+    fn draw2d_rotate_mut(&mut self) -> &mut bool;
     fn draw2d_zone_states(&self) -> &bool;
+    fn draw2d_zone_states_mut(&mut self) -> &mut bool;
     fn draw2d_centroids(&self) -> &bool;
+    fn draw2d_centroids_mut(&mut self) -> &mut bool;
     fn draw2d_point_size(&self) -> &f32;
+    fn draw2d_point_size_mut(&mut self) -> &mut f32;
     fn draw2d_bg_alpha(&self) -> &f32;
+    fn draw2d_bg_alpha_mut(&mut self) -> &mut f32;
     fn draw2d_names(&self) -> &bool;
+    fn draw2d_names_mut(&mut self) -> &mut bool;
     fn draw_terrain_tiles(&self) -> &bool;
+    fn draw_terrain_tiles_mut(&mut self) -> &mut bool;
     fn draw_terrain_tile_loaded_only(&self) -> &bool;
+    fn draw_terrain_tile_loaded_only_mut(&mut self) -> &mut bool;
     fn draw_terrain_tile_to_draw(&self) -> &i32;
+    fn draw_terrain_tile_to_draw_mut(&mut self) -> &mut i32;
     fn selected_streamer(&self) -> &String;
+    fn selected_streamer_mut(&mut self) -> &mut String;
 }
 
 impl ZoneStreamerSettingsTrait for ZoneStreamerSettings {
     fn test_zone_heights(&self) -> &bool {
         &self.test_zone_heights
     }
+    fn test_zone_heights_mut(&mut self) -> &mut bool {
+        &mut self.test_zone_heights
+    }
     fn pin_visited_zones(&self) -> &bool {
         &self.pin_visited_zones
+    }
+    fn pin_visited_zones_mut(&mut self) -> &mut bool {
+        &mut self.pin_visited_zones
     }
     fn pause_all(&self) -> &bool {
         &self.pause_all
     }
+    fn pause_all_mut(&mut self) -> &mut bool {
+        &mut self.pause_all
+    }
     fn draw_stats(&self) -> &bool {
         &self.draw_stats
+    }
+    fn draw_stats_mut(&mut self) -> &mut bool {
+        &mut self.draw_stats
     }
     fn draw3d_debug(&self) -> &bool {
         &self.draw3d_debug
     }
+    fn draw3d_debug_mut(&mut self) -> &mut bool {
+        &mut self.draw3d_debug
+    }
     fn draw3d_name_scale(&self) -> &f32 {
         &self.draw3d_name_scale
+    }
+    fn draw3d_name_scale_mut(&mut self) -> &mut f32 {
+        &mut self.draw3d_name_scale
     }
     fn draw2d_debug(&self) -> &bool {
         &self.draw2d_debug
     }
+    fn draw2d_debug_mut(&mut self) -> &mut bool {
+        &mut self.draw2d_debug
+    }
     fn draw2d_scale(&self) -> &f32 {
         &self.draw2d_scale
+    }
+    fn draw2d_scale_mut(&mut self) -> &mut f32 {
+        &mut self.draw2d_scale
     }
     fn draw2d_zones(&self) -> &bool {
         &self.draw2d_zones
     }
+    fn draw2d_zones_mut(&mut self) -> &mut bool {
+        &mut self.draw2d_zones
+    }
     fn draw2d_rotate(&self) -> &bool {
         &self.draw2d_rotate
+    }
+    fn draw2d_rotate_mut(&mut self) -> &mut bool {
+        &mut self.draw2d_rotate
     }
     fn draw2d_zone_states(&self) -> &bool {
         &self.draw2d_zone_states
     }
+    fn draw2d_zone_states_mut(&mut self) -> &mut bool {
+        &mut self.draw2d_zone_states
+    }
     fn draw2d_centroids(&self) -> &bool {
         &self.draw2d_centroids
+    }
+    fn draw2d_centroids_mut(&mut self) -> &mut bool {
+        &mut self.draw2d_centroids
     }
     fn draw2d_point_size(&self) -> &f32 {
         &self.draw2d_point_size
     }
+    fn draw2d_point_size_mut(&mut self) -> &mut f32 {
+        &mut self.draw2d_point_size
+    }
     fn draw2d_bg_alpha(&self) -> &f32 {
         &self.draw2d_bg_alpha
+    }
+    fn draw2d_bg_alpha_mut(&mut self) -> &mut f32 {
+        &mut self.draw2d_bg_alpha
     }
     fn draw2d_names(&self) -> &bool {
         &self.draw2d_names
     }
+    fn draw2d_names_mut(&mut self) -> &mut bool {
+        &mut self.draw2d_names
+    }
     fn draw_terrain_tiles(&self) -> &bool {
         &self.draw_terrain_tiles
+    }
+    fn draw_terrain_tiles_mut(&mut self) -> &mut bool {
+        &mut self.draw_terrain_tiles
     }
     fn draw_terrain_tile_loaded_only(&self) -> &bool {
         &self.draw_terrain_tile_loaded_only
     }
+    fn draw_terrain_tile_loaded_only_mut(&mut self) -> &mut bool {
+        &mut self.draw_terrain_tile_loaded_only
+    }
     fn draw_terrain_tile_to_draw(&self) -> &i32 {
         &self.draw_terrain_tile_to_draw
+    }
+    fn draw_terrain_tile_to_draw_mut(&mut self) -> &mut i32 {
+        &mut self.draw_terrain_tile_to_draw
     }
     fn selected_streamer(&self) -> &String {
         &self.selected_streamer
     }
+    fn selected_streamer_mut(&mut self) -> &mut String {
+        &mut self.selected_streamer
+    }
 }
 
 impl super::core::DataContainerTrait for ZoneStreamerSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZONESTREAMERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1254,6 +1602,15 @@ impl TypeObject for ZoneStreamerSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1276,21 +1633,32 @@ pub struct ZoneStreamerFocusEntityData {
 
 pub trait ZoneStreamerFocusEntityDataTrait: ZoneStreamerLogicEntityDataTrait {
     fn focus_point(&self) -> &super::core::LinearTransform;
+    fn focus_point_mut(&mut self) -> &mut super::core::LinearTransform;
     fn auto_enabled(&self) -> &bool;
+    fn auto_enabled_mut(&mut self) -> &mut bool;
 }
 
 impl ZoneStreamerFocusEntityDataTrait for ZoneStreamerFocusEntityData {
     fn focus_point(&self) -> &super::core::LinearTransform {
         &self.focus_point
     }
+    fn focus_point_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.focus_point
+    }
     fn auto_enabled(&self) -> &bool {
         &self.auto_enabled
+    }
+    fn auto_enabled_mut(&mut self) -> &mut bool {
+        &mut self.auto_enabled
     }
 }
 
 impl ZoneStreamerLogicEntityDataTrait for ZoneStreamerFocusEntityData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
 }
 
@@ -1304,15 +1672,15 @@ impl super::core::DataBusPeerTrait for ZoneStreamerFocusEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ZoneStreamerFocusEntityData {
 }
 
 impl super::core::DataContainerTrait for ZoneStreamerFocusEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZONESTREAMERFOCUSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1350,6 +1718,15 @@ impl TypeObject for ZoneStreamerFocusEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1371,17 +1748,24 @@ pub struct ZoneStreamerZoneProxyEntityData {
 
 pub trait ZoneStreamerZoneProxyEntityDataTrait: ZoneStreamerLogicEntityDataTrait {
     fn zone_and_region_names(&self) -> &Vec<String>;
+    fn zone_and_region_names_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl ZoneStreamerZoneProxyEntityDataTrait for ZoneStreamerZoneProxyEntityData {
     fn zone_and_region_names(&self) -> &Vec<String> {
         &self.zone_and_region_names
     }
+    fn zone_and_region_names_mut(&mut self) -> &mut Vec<String> {
+        &mut self.zone_and_region_names
+    }
 }
 
 impl ZoneStreamerLogicEntityDataTrait for ZoneStreamerZoneProxyEntityData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
 }
 
@@ -1395,15 +1779,15 @@ impl super::core::DataBusPeerTrait for ZoneStreamerZoneProxyEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ZoneStreamerZoneProxyEntityData {
 }
 
 impl super::core::DataContainerTrait for ZoneStreamerZoneProxyEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZONESTREAMERZONEPROXYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1435,6 +1819,15 @@ impl TypeObject for ZoneStreamerZoneProxyEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1456,17 +1849,24 @@ pub struct ZoneStreamerTransitionEntityData {
 
 pub trait ZoneStreamerTransitionEntityDataTrait: ZoneStreamerLogicEntityDataTrait {
     fn auto_begin(&self) -> &bool;
+    fn auto_begin_mut(&mut self) -> &mut bool;
 }
 
 impl ZoneStreamerTransitionEntityDataTrait for ZoneStreamerTransitionEntityData {
     fn auto_begin(&self) -> &bool {
         &self.auto_begin
     }
+    fn auto_begin_mut(&mut self) -> &mut bool {
+        &mut self.auto_begin
+    }
 }
 
 impl ZoneStreamerLogicEntityDataTrait for ZoneStreamerTransitionEntityData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
 }
 
@@ -1480,15 +1880,15 @@ impl super::core::DataBusPeerTrait for ZoneStreamerTransitionEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ZoneStreamerTransitionEntityData {
 }
 
 impl super::core::DataContainerTrait for ZoneStreamerTransitionEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZONESTREAMERTRANSITIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1520,6 +1920,15 @@ impl TypeObject for ZoneStreamerTransitionEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1541,17 +1950,24 @@ pub struct ZoneStreamerControlEntityData {
 
 pub trait ZoneStreamerControlEntityDataTrait: ZoneStreamerLogicEntityDataTrait {
     fn start_paused(&self) -> &bool;
+    fn start_paused_mut(&mut self) -> &mut bool;
 }
 
 impl ZoneStreamerControlEntityDataTrait for ZoneStreamerControlEntityData {
     fn start_paused(&self) -> &bool {
         &self.start_paused
     }
+    fn start_paused_mut(&mut self) -> &mut bool {
+        &mut self.start_paused
+    }
 }
 
 impl ZoneStreamerLogicEntityDataTrait for ZoneStreamerControlEntityData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
     }
 }
 
@@ -1565,15 +1981,15 @@ impl super::core::DataBusPeerTrait for ZoneStreamerControlEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ZoneStreamerControlEntityData {
 }
 
 impl super::core::DataContainerTrait for ZoneStreamerControlEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZONESTREAMERCONTROLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1605,6 +2021,15 @@ impl TypeObject for ZoneStreamerControlEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1626,11 +2051,15 @@ pub struct ZoneStreamerLogicEntityData {
 
 pub trait ZoneStreamerLogicEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl ZoneStreamerLogicEntityDataTrait for ZoneStreamerLogicEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
 }
 
@@ -1644,15 +2073,15 @@ impl super::core::DataBusPeerTrait for ZoneStreamerLogicEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ZoneStreamerLogicEntityData {
 }
 
 impl super::core::DataContainerTrait for ZoneStreamerLogicEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ZONESTREAMERLOGICENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1683,6 +2112,15 @@ impl TypeObject for ZoneStreamerLogicEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1740,6 +2178,15 @@ impl TypeObject for ZoneStreamerZoneProxyEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1792,6 +2239,15 @@ impl TypeObject for ZoneStreamerVistaEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1849,6 +2305,15 @@ impl TypeObject for ZoneStreamerTransitionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1901,6 +2366,15 @@ impl TypeObject for ZoneStreamerNotificationEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1955,6 +2429,15 @@ impl TypeObject for ZoneStreamerLogicEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2000,6 +2483,15 @@ impl TypeObject for ZoneStreamerGrid {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2053,6 +2545,15 @@ impl TypeObject for ZoneStreamerEntityBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2110,6 +2611,15 @@ impl TypeObject for ZoneStreamerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2165,6 +2675,15 @@ impl TypeObject for ZoneStreamerControlEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2222,6 +2741,15 @@ impl TypeObject for RealmProxy {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2277,6 +2805,15 @@ impl TypeObject for ZoneStreamerFocusEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -102,6 +102,15 @@ impl TypeObject for AutoPlayerActionObjectiveEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -155,6 +164,15 @@ impl TypeObject for AutoPlayerListenerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -193,79 +211,151 @@ pub struct AutoPlayerObjectiveEntityData {
 
 pub trait AutoPlayerObjectiveEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn players(&self) -> &super::dice_shooter_shared::QueryEntityResult;
+    fn players_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult;
     fn jesus_mode(&self) -> &bool;
+    fn jesus_mode_mut(&mut self) -> &mut bool;
     fn unlimited_ammo(&self) -> &bool;
+    fn unlimited_ammo_mut(&mut self) -> &mut bool;
     fn allow_teleport(&self) -> &bool;
+    fn allow_teleport_mut(&mut self) -> &mut bool;
     fn use_objective_teleport(&self) -> &bool;
+    fn use_objective_teleport_mut(&mut self) -> &mut bool;
     fn use_stuck_escape_procedure(&self) -> &bool;
+    fn use_stuck_escape_procedure_mut(&mut self) -> &mut bool;
     fn use_navmesh(&self) -> &bool;
+    fn use_navmesh_mut(&mut self) -> &mut bool;
     fn allow_objective_move_outside_combat_area(&self) -> &bool;
+    fn allow_objective_move_outside_combat_area_mut(&mut self) -> &mut bool;
     fn allow_secondary_objectives(&self) -> &bool;
+    fn allow_secondary_objectives_mut(&mut self) -> &mut bool;
     fn disable_zoom_when_aiming(&self) -> &bool;
+    fn disable_zoom_when_aiming_mut(&mut self) -> &mut bool;
     fn move_mode(&self) -> &AutoPlayerMoveMode;
+    fn move_mode_mut(&mut self) -> &mut AutoPlayerMoveMode;
     fn move_mode_override_int(&self) -> &i32;
+    fn move_mode_override_int_mut(&mut self) -> &mut i32;
     fn debug_name(&self) -> &String;
+    fn debug_name_mut(&mut self) -> &mut String;
     fn time_threshold(&self) -> &i32;
+    fn time_threshold_mut(&mut self) -> &mut i32;
     fn clamp_vertical_nav_pos_search_meters(&self) -> &f32;
+    fn clamp_vertical_nav_pos_search_meters_mut(&mut self) -> &mut f32;
     fn restricted_area_sphere_centre(&self) -> &super::core::Vec3;
+    fn restricted_area_sphere_centre_mut(&mut self) -> &mut super::core::Vec3;
     fn restricted_area_sphere_radius(&self) -> &f32;
+    fn restricted_area_sphere_radius_mut(&mut self) -> &mut f32;
 }
 
 impl AutoPlayerObjectiveEntityDataTrait for AutoPlayerObjectiveEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn players(&self) -> &super::dice_shooter_shared::QueryEntityResult {
         &self.players
+    }
+    fn players_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult {
+        &mut self.players
     }
     fn jesus_mode(&self) -> &bool {
         &self.jesus_mode
     }
+    fn jesus_mode_mut(&mut self) -> &mut bool {
+        &mut self.jesus_mode
+    }
     fn unlimited_ammo(&self) -> &bool {
         &self.unlimited_ammo
+    }
+    fn unlimited_ammo_mut(&mut self) -> &mut bool {
+        &mut self.unlimited_ammo
     }
     fn allow_teleport(&self) -> &bool {
         &self.allow_teleport
     }
+    fn allow_teleport_mut(&mut self) -> &mut bool {
+        &mut self.allow_teleport
+    }
     fn use_objective_teleport(&self) -> &bool {
         &self.use_objective_teleport
+    }
+    fn use_objective_teleport_mut(&mut self) -> &mut bool {
+        &mut self.use_objective_teleport
     }
     fn use_stuck_escape_procedure(&self) -> &bool {
         &self.use_stuck_escape_procedure
     }
+    fn use_stuck_escape_procedure_mut(&mut self) -> &mut bool {
+        &mut self.use_stuck_escape_procedure
+    }
     fn use_navmesh(&self) -> &bool {
         &self.use_navmesh
+    }
+    fn use_navmesh_mut(&mut self) -> &mut bool {
+        &mut self.use_navmesh
     }
     fn allow_objective_move_outside_combat_area(&self) -> &bool {
         &self.allow_objective_move_outside_combat_area
     }
+    fn allow_objective_move_outside_combat_area_mut(&mut self) -> &mut bool {
+        &mut self.allow_objective_move_outside_combat_area
+    }
     fn allow_secondary_objectives(&self) -> &bool {
         &self.allow_secondary_objectives
+    }
+    fn allow_secondary_objectives_mut(&mut self) -> &mut bool {
+        &mut self.allow_secondary_objectives
     }
     fn disable_zoom_when_aiming(&self) -> &bool {
         &self.disable_zoom_when_aiming
     }
+    fn disable_zoom_when_aiming_mut(&mut self) -> &mut bool {
+        &mut self.disable_zoom_when_aiming
+    }
     fn move_mode(&self) -> &AutoPlayerMoveMode {
         &self.move_mode
+    }
+    fn move_mode_mut(&mut self) -> &mut AutoPlayerMoveMode {
+        &mut self.move_mode
     }
     fn move_mode_override_int(&self) -> &i32 {
         &self.move_mode_override_int
     }
+    fn move_mode_override_int_mut(&mut self) -> &mut i32 {
+        &mut self.move_mode_override_int
+    }
     fn debug_name(&self) -> &String {
         &self.debug_name
+    }
+    fn debug_name_mut(&mut self) -> &mut String {
+        &mut self.debug_name
     }
     fn time_threshold(&self) -> &i32 {
         &self.time_threshold
     }
+    fn time_threshold_mut(&mut self) -> &mut i32 {
+        &mut self.time_threshold
+    }
     fn clamp_vertical_nav_pos_search_meters(&self) -> &f32 {
         &self.clamp_vertical_nav_pos_search_meters
+    }
+    fn clamp_vertical_nav_pos_search_meters_mut(&mut self) -> &mut f32 {
+        &mut self.clamp_vertical_nav_pos_search_meters
     }
     fn restricted_area_sphere_centre(&self) -> &super::core::Vec3 {
         &self.restricted_area_sphere_centre
     }
+    fn restricted_area_sphere_centre_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.restricted_area_sphere_centre
+    }
     fn restricted_area_sphere_radius(&self) -> &f32 {
         &self.restricted_area_sphere_radius
+    }
+    fn restricted_area_sphere_radius_mut(&mut self) -> &mut f32 {
+        &mut self.restricted_area_sphere_radius
     }
 }
 
@@ -279,15 +369,15 @@ impl super::core::DataBusPeerTrait for AutoPlayerObjectiveEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AutoPlayerObjectiveEntityData {
 }
 
 impl super::core::DataContainerTrait for AutoPlayerObjectiveEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYEROBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -421,6 +511,15 @@ impl TypeObject for AutoPlayerObjectiveEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -460,6 +559,15 @@ impl TypeObject for AutoPlayerMoveMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -484,23 +592,39 @@ pub struct AutoPlayerMoveObjectiveEntityData {
 
 pub trait AutoPlayerMoveObjectiveEntityDataTrait: AutoPlayerObjectiveEntityDataTrait {
     fn target_position(&self) -> &super::core::Vec3;
+    fn target_position_mut(&mut self) -> &mut super::core::Vec3;
     fn move_area_radius(&self) -> &f32;
+    fn move_area_radius_mut(&mut self) -> &mut f32;
     fn is_target_reached_as_soon_as_entering_target_area(&self) -> &bool;
+    fn is_target_reached_as_soon_as_entering_target_area_mut(&mut self) -> &mut bool;
     fn use_random_path_spread(&self) -> &bool;
+    fn use_random_path_spread_mut(&mut self) -> &mut bool;
 }
 
 impl AutoPlayerMoveObjectiveEntityDataTrait for AutoPlayerMoveObjectiveEntityData {
     fn target_position(&self) -> &super::core::Vec3 {
         &self.target_position
     }
+    fn target_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_position
+    }
     fn move_area_radius(&self) -> &f32 {
         &self.move_area_radius
+    }
+    fn move_area_radius_mut(&mut self) -> &mut f32 {
+        &mut self.move_area_radius
     }
     fn is_target_reached_as_soon_as_entering_target_area(&self) -> &bool {
         &self.is_target_reached_as_soon_as_entering_target_area
     }
+    fn is_target_reached_as_soon_as_entering_target_area_mut(&mut self) -> &mut bool {
+        &mut self.is_target_reached_as_soon_as_entering_target_area
+    }
     fn use_random_path_spread(&self) -> &bool {
         &self.use_random_path_spread
+    }
+    fn use_random_path_spread_mut(&mut self) -> &mut bool {
+        &mut self.use_random_path_spread
     }
 }
 
@@ -508,56 +632,110 @@ impl AutoPlayerObjectiveEntityDataTrait for AutoPlayerMoveObjectiveEntityData {
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn players(&self) -> &super::dice_shooter_shared::QueryEntityResult {
         self._glacier_base.players()
+    }
+    fn players_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult {
+        self._glacier_base.players_mut()
     }
     fn jesus_mode(&self) -> &bool {
         self._glacier_base.jesus_mode()
     }
+    fn jesus_mode_mut(&mut self) -> &mut bool {
+        self._glacier_base.jesus_mode_mut()
+    }
     fn unlimited_ammo(&self) -> &bool {
         self._glacier_base.unlimited_ammo()
+    }
+    fn unlimited_ammo_mut(&mut self) -> &mut bool {
+        self._glacier_base.unlimited_ammo_mut()
     }
     fn allow_teleport(&self) -> &bool {
         self._glacier_base.allow_teleport()
     }
+    fn allow_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_teleport_mut()
+    }
     fn use_objective_teleport(&self) -> &bool {
         self._glacier_base.use_objective_teleport()
+    }
+    fn use_objective_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_objective_teleport_mut()
     }
     fn use_stuck_escape_procedure(&self) -> &bool {
         self._glacier_base.use_stuck_escape_procedure()
     }
+    fn use_stuck_escape_procedure_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_stuck_escape_procedure_mut()
+    }
     fn use_navmesh(&self) -> &bool {
         self._glacier_base.use_navmesh()
+    }
+    fn use_navmesh_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_navmesh_mut()
     }
     fn allow_objective_move_outside_combat_area(&self) -> &bool {
         self._glacier_base.allow_objective_move_outside_combat_area()
     }
+    fn allow_objective_move_outside_combat_area_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_objective_move_outside_combat_area_mut()
+    }
     fn allow_secondary_objectives(&self) -> &bool {
         self._glacier_base.allow_secondary_objectives()
+    }
+    fn allow_secondary_objectives_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_secondary_objectives_mut()
     }
     fn disable_zoom_when_aiming(&self) -> &bool {
         self._glacier_base.disable_zoom_when_aiming()
     }
+    fn disable_zoom_when_aiming_mut(&mut self) -> &mut bool {
+        self._glacier_base.disable_zoom_when_aiming_mut()
+    }
     fn move_mode(&self) -> &AutoPlayerMoveMode {
         self._glacier_base.move_mode()
+    }
+    fn move_mode_mut(&mut self) -> &mut AutoPlayerMoveMode {
+        self._glacier_base.move_mode_mut()
     }
     fn move_mode_override_int(&self) -> &i32 {
         self._glacier_base.move_mode_override_int()
     }
+    fn move_mode_override_int_mut(&mut self) -> &mut i32 {
+        self._glacier_base.move_mode_override_int_mut()
+    }
     fn debug_name(&self) -> &String {
         self._glacier_base.debug_name()
+    }
+    fn debug_name_mut(&mut self) -> &mut String {
+        self._glacier_base.debug_name_mut()
     }
     fn time_threshold(&self) -> &i32 {
         self._glacier_base.time_threshold()
     }
+    fn time_threshold_mut(&mut self) -> &mut i32 {
+        self._glacier_base.time_threshold_mut()
+    }
     fn clamp_vertical_nav_pos_search_meters(&self) -> &f32 {
         self._glacier_base.clamp_vertical_nav_pos_search_meters()
+    }
+    fn clamp_vertical_nav_pos_search_meters_mut(&mut self) -> &mut f32 {
+        self._glacier_base.clamp_vertical_nav_pos_search_meters_mut()
     }
     fn restricted_area_sphere_centre(&self) -> &super::core::Vec3 {
         self._glacier_base.restricted_area_sphere_centre()
     }
+    fn restricted_area_sphere_centre_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.restricted_area_sphere_centre_mut()
+    }
     fn restricted_area_sphere_radius(&self) -> &f32 {
         self._glacier_base.restricted_area_sphere_radius()
+    }
+    fn restricted_area_sphere_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.restricted_area_sphere_radius_mut()
     }
 }
 
@@ -571,15 +749,15 @@ impl super::core::DataBusPeerTrait for AutoPlayerMoveObjectiveEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AutoPlayerMoveObjectiveEntityData {
 }
 
 impl super::core::DataContainerTrait for AutoPlayerMoveObjectiveEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYERMOVEOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -629,6 +807,15 @@ impl TypeObject for AutoPlayerMoveObjectiveEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -657,39 +844,71 @@ pub struct AutoPlayerInteractObjectiveEntityData {
 
 pub trait AutoPlayerInteractObjectiveEntityDataTrait: AutoPlayerObjectiveEntityDataTrait {
     fn interaction_entity_position(&self) -> &super::core::Vec3;
+    fn interaction_entity_position_mut(&mut self) -> &mut super::core::Vec3;
     fn interaction_position(&self) -> &super::core::Vec3;
+    fn interaction_position_mut(&mut self) -> &mut super::core::Vec3;
     fn interact_input_action(&self) -> &i32;
+    fn interact_input_action_mut(&mut self) -> &mut i32;
     fn find_interact_target_position(&self) -> &bool;
+    fn find_interact_target_position_mut(&mut self) -> &mut bool;
     fn interaction_start_radius(&self) -> &f32;
+    fn interaction_start_radius_mut(&mut self) -> &mut f32;
     fn hold_to_interact_time(&self) -> &f32;
+    fn hold_to_interact_time_mut(&mut self) -> &mut f32;
     fn primary_interaction_search_radius(&self) -> &f32;
+    fn primary_interaction_search_radius_mut(&mut self) -> &mut f32;
     fn use_random_path_spread(&self) -> &bool;
+    fn use_random_path_spread_mut(&mut self) -> &mut bool;
 }
 
 impl AutoPlayerInteractObjectiveEntityDataTrait for AutoPlayerInteractObjectiveEntityData {
     fn interaction_entity_position(&self) -> &super::core::Vec3 {
         &self.interaction_entity_position
     }
+    fn interaction_entity_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.interaction_entity_position
+    }
     fn interaction_position(&self) -> &super::core::Vec3 {
         &self.interaction_position
+    }
+    fn interaction_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.interaction_position
     }
     fn interact_input_action(&self) -> &i32 {
         &self.interact_input_action
     }
+    fn interact_input_action_mut(&mut self) -> &mut i32 {
+        &mut self.interact_input_action
+    }
     fn find_interact_target_position(&self) -> &bool {
         &self.find_interact_target_position
+    }
+    fn find_interact_target_position_mut(&mut self) -> &mut bool {
+        &mut self.find_interact_target_position
     }
     fn interaction_start_radius(&self) -> &f32 {
         &self.interaction_start_radius
     }
+    fn interaction_start_radius_mut(&mut self) -> &mut f32 {
+        &mut self.interaction_start_radius
+    }
     fn hold_to_interact_time(&self) -> &f32 {
         &self.hold_to_interact_time
+    }
+    fn hold_to_interact_time_mut(&mut self) -> &mut f32 {
+        &mut self.hold_to_interact_time
     }
     fn primary_interaction_search_radius(&self) -> &f32 {
         &self.primary_interaction_search_radius
     }
+    fn primary_interaction_search_radius_mut(&mut self) -> &mut f32 {
+        &mut self.primary_interaction_search_radius
+    }
     fn use_random_path_spread(&self) -> &bool {
         &self.use_random_path_spread
+    }
+    fn use_random_path_spread_mut(&mut self) -> &mut bool {
+        &mut self.use_random_path_spread
     }
 }
 
@@ -697,56 +916,110 @@ impl AutoPlayerObjectiveEntityDataTrait for AutoPlayerInteractObjectiveEntityDat
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn players(&self) -> &super::dice_shooter_shared::QueryEntityResult {
         self._glacier_base.players()
+    }
+    fn players_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult {
+        self._glacier_base.players_mut()
     }
     fn jesus_mode(&self) -> &bool {
         self._glacier_base.jesus_mode()
     }
+    fn jesus_mode_mut(&mut self) -> &mut bool {
+        self._glacier_base.jesus_mode_mut()
+    }
     fn unlimited_ammo(&self) -> &bool {
         self._glacier_base.unlimited_ammo()
+    }
+    fn unlimited_ammo_mut(&mut self) -> &mut bool {
+        self._glacier_base.unlimited_ammo_mut()
     }
     fn allow_teleport(&self) -> &bool {
         self._glacier_base.allow_teleport()
     }
+    fn allow_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_teleport_mut()
+    }
     fn use_objective_teleport(&self) -> &bool {
         self._glacier_base.use_objective_teleport()
+    }
+    fn use_objective_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_objective_teleport_mut()
     }
     fn use_stuck_escape_procedure(&self) -> &bool {
         self._glacier_base.use_stuck_escape_procedure()
     }
+    fn use_stuck_escape_procedure_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_stuck_escape_procedure_mut()
+    }
     fn use_navmesh(&self) -> &bool {
         self._glacier_base.use_navmesh()
+    }
+    fn use_navmesh_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_navmesh_mut()
     }
     fn allow_objective_move_outside_combat_area(&self) -> &bool {
         self._glacier_base.allow_objective_move_outside_combat_area()
     }
+    fn allow_objective_move_outside_combat_area_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_objective_move_outside_combat_area_mut()
+    }
     fn allow_secondary_objectives(&self) -> &bool {
         self._glacier_base.allow_secondary_objectives()
+    }
+    fn allow_secondary_objectives_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_secondary_objectives_mut()
     }
     fn disable_zoom_when_aiming(&self) -> &bool {
         self._glacier_base.disable_zoom_when_aiming()
     }
+    fn disable_zoom_when_aiming_mut(&mut self) -> &mut bool {
+        self._glacier_base.disable_zoom_when_aiming_mut()
+    }
     fn move_mode(&self) -> &AutoPlayerMoveMode {
         self._glacier_base.move_mode()
+    }
+    fn move_mode_mut(&mut self) -> &mut AutoPlayerMoveMode {
+        self._glacier_base.move_mode_mut()
     }
     fn move_mode_override_int(&self) -> &i32 {
         self._glacier_base.move_mode_override_int()
     }
+    fn move_mode_override_int_mut(&mut self) -> &mut i32 {
+        self._glacier_base.move_mode_override_int_mut()
+    }
     fn debug_name(&self) -> &String {
         self._glacier_base.debug_name()
+    }
+    fn debug_name_mut(&mut self) -> &mut String {
+        self._glacier_base.debug_name_mut()
     }
     fn time_threshold(&self) -> &i32 {
         self._glacier_base.time_threshold()
     }
+    fn time_threshold_mut(&mut self) -> &mut i32 {
+        self._glacier_base.time_threshold_mut()
+    }
     fn clamp_vertical_nav_pos_search_meters(&self) -> &f32 {
         self._glacier_base.clamp_vertical_nav_pos_search_meters()
+    }
+    fn clamp_vertical_nav_pos_search_meters_mut(&mut self) -> &mut f32 {
+        self._glacier_base.clamp_vertical_nav_pos_search_meters_mut()
     }
     fn restricted_area_sphere_centre(&self) -> &super::core::Vec3 {
         self._glacier_base.restricted_area_sphere_centre()
     }
+    fn restricted_area_sphere_centre_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.restricted_area_sphere_centre_mut()
+    }
     fn restricted_area_sphere_radius(&self) -> &f32 {
         self._glacier_base.restricted_area_sphere_radius()
+    }
+    fn restricted_area_sphere_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.restricted_area_sphere_radius_mut()
     }
 }
 
@@ -760,15 +1033,15 @@ impl super::core::DataBusPeerTrait for AutoPlayerInteractObjectiveEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AutoPlayerInteractObjectiveEntityData {
 }
 
 impl super::core::DataContainerTrait for AutoPlayerInteractObjectiveEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYERINTERACTOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -842,6 +1115,15 @@ impl TypeObject for AutoPlayerInteractObjectiveEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -869,35 +1151,63 @@ pub struct AutoPlayerFollowObjectiveEntityData {
 
 pub trait AutoPlayerFollowObjectiveEntityDataTrait: AutoPlayerObjectiveEntityDataTrait {
     fn follow_target_player(&self) -> &super::dice_shooter_shared::QueryEntityResult;
+    fn follow_target_player_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult;
     fn follow_position_radius(&self) -> &f32;
+    fn follow_position_radius_mut(&mut self) -> &mut f32;
     fn use_bread_crumbs_path_following(&self) -> &bool;
+    fn use_bread_crumbs_path_following_mut(&mut self) -> &mut bool;
     fn follow_timeout_seconds(&self) -> &f32;
+    fn follow_timeout_seconds_mut(&mut self) -> &mut f32;
     fn follow_until_position(&self) -> &super::core::Vec3;
+    fn follow_until_position_mut(&mut self) -> &mut super::core::Vec3;
     fn follow_until_position_tolerance_meters(&self) -> &f32;
+    fn follow_until_position_tolerance_meters_mut(&mut self) -> &mut f32;
     fn actively_patrol_follow_player_position(&self) -> &bool;
+    fn actively_patrol_follow_player_position_mut(&mut self) -> &mut bool;
 }
 
 impl AutoPlayerFollowObjectiveEntityDataTrait for AutoPlayerFollowObjectiveEntityData {
     fn follow_target_player(&self) -> &super::dice_shooter_shared::QueryEntityResult {
         &self.follow_target_player
     }
+    fn follow_target_player_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult {
+        &mut self.follow_target_player
+    }
     fn follow_position_radius(&self) -> &f32 {
         &self.follow_position_radius
+    }
+    fn follow_position_radius_mut(&mut self) -> &mut f32 {
+        &mut self.follow_position_radius
     }
     fn use_bread_crumbs_path_following(&self) -> &bool {
         &self.use_bread_crumbs_path_following
     }
+    fn use_bread_crumbs_path_following_mut(&mut self) -> &mut bool {
+        &mut self.use_bread_crumbs_path_following
+    }
     fn follow_timeout_seconds(&self) -> &f32 {
         &self.follow_timeout_seconds
+    }
+    fn follow_timeout_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.follow_timeout_seconds
     }
     fn follow_until_position(&self) -> &super::core::Vec3 {
         &self.follow_until_position
     }
+    fn follow_until_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.follow_until_position
+    }
     fn follow_until_position_tolerance_meters(&self) -> &f32 {
         &self.follow_until_position_tolerance_meters
     }
+    fn follow_until_position_tolerance_meters_mut(&mut self) -> &mut f32 {
+        &mut self.follow_until_position_tolerance_meters
+    }
     fn actively_patrol_follow_player_position(&self) -> &bool {
         &self.actively_patrol_follow_player_position
+    }
+    fn actively_patrol_follow_player_position_mut(&mut self) -> &mut bool {
+        &mut self.actively_patrol_follow_player_position
     }
 }
 
@@ -905,56 +1215,110 @@ impl AutoPlayerObjectiveEntityDataTrait for AutoPlayerFollowObjectiveEntityData 
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn players(&self) -> &super::dice_shooter_shared::QueryEntityResult {
         self._glacier_base.players()
+    }
+    fn players_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult {
+        self._glacier_base.players_mut()
     }
     fn jesus_mode(&self) -> &bool {
         self._glacier_base.jesus_mode()
     }
+    fn jesus_mode_mut(&mut self) -> &mut bool {
+        self._glacier_base.jesus_mode_mut()
+    }
     fn unlimited_ammo(&self) -> &bool {
         self._glacier_base.unlimited_ammo()
+    }
+    fn unlimited_ammo_mut(&mut self) -> &mut bool {
+        self._glacier_base.unlimited_ammo_mut()
     }
     fn allow_teleport(&self) -> &bool {
         self._glacier_base.allow_teleport()
     }
+    fn allow_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_teleport_mut()
+    }
     fn use_objective_teleport(&self) -> &bool {
         self._glacier_base.use_objective_teleport()
+    }
+    fn use_objective_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_objective_teleport_mut()
     }
     fn use_stuck_escape_procedure(&self) -> &bool {
         self._glacier_base.use_stuck_escape_procedure()
     }
+    fn use_stuck_escape_procedure_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_stuck_escape_procedure_mut()
+    }
     fn use_navmesh(&self) -> &bool {
         self._glacier_base.use_navmesh()
+    }
+    fn use_navmesh_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_navmesh_mut()
     }
     fn allow_objective_move_outside_combat_area(&self) -> &bool {
         self._glacier_base.allow_objective_move_outside_combat_area()
     }
+    fn allow_objective_move_outside_combat_area_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_objective_move_outside_combat_area_mut()
+    }
     fn allow_secondary_objectives(&self) -> &bool {
         self._glacier_base.allow_secondary_objectives()
+    }
+    fn allow_secondary_objectives_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_secondary_objectives_mut()
     }
     fn disable_zoom_when_aiming(&self) -> &bool {
         self._glacier_base.disable_zoom_when_aiming()
     }
+    fn disable_zoom_when_aiming_mut(&mut self) -> &mut bool {
+        self._glacier_base.disable_zoom_when_aiming_mut()
+    }
     fn move_mode(&self) -> &AutoPlayerMoveMode {
         self._glacier_base.move_mode()
+    }
+    fn move_mode_mut(&mut self) -> &mut AutoPlayerMoveMode {
+        self._glacier_base.move_mode_mut()
     }
     fn move_mode_override_int(&self) -> &i32 {
         self._glacier_base.move_mode_override_int()
     }
+    fn move_mode_override_int_mut(&mut self) -> &mut i32 {
+        self._glacier_base.move_mode_override_int_mut()
+    }
     fn debug_name(&self) -> &String {
         self._glacier_base.debug_name()
+    }
+    fn debug_name_mut(&mut self) -> &mut String {
+        self._glacier_base.debug_name_mut()
     }
     fn time_threshold(&self) -> &i32 {
         self._glacier_base.time_threshold()
     }
+    fn time_threshold_mut(&mut self) -> &mut i32 {
+        self._glacier_base.time_threshold_mut()
+    }
     fn clamp_vertical_nav_pos_search_meters(&self) -> &f32 {
         self._glacier_base.clamp_vertical_nav_pos_search_meters()
+    }
+    fn clamp_vertical_nav_pos_search_meters_mut(&mut self) -> &mut f32 {
+        self._glacier_base.clamp_vertical_nav_pos_search_meters_mut()
     }
     fn restricted_area_sphere_centre(&self) -> &super::core::Vec3 {
         self._glacier_base.restricted_area_sphere_centre()
     }
+    fn restricted_area_sphere_centre_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.restricted_area_sphere_centre_mut()
+    }
     fn restricted_area_sphere_radius(&self) -> &f32 {
         self._glacier_base.restricted_area_sphere_radius()
+    }
+    fn restricted_area_sphere_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.restricted_area_sphere_radius_mut()
     }
 }
 
@@ -968,15 +1332,15 @@ impl super::core::DataBusPeerTrait for AutoPlayerFollowObjectiveEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AutoPlayerFollowObjectiveEntityData {
 }
 
 impl super::core::DataContainerTrait for AutoPlayerFollowObjectiveEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYERFOLLOWOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1044,6 +1408,15 @@ impl TypeObject for AutoPlayerFollowObjectiveEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1069,27 +1442,47 @@ pub struct AutoPlayerDefendObjectiveEntityData {
 
 pub trait AutoPlayerDefendObjectiveEntityDataTrait: AutoPlayerObjectiveEntityDataTrait {
     fn target_position(&self) -> &super::core::Vec3;
+    fn target_position_mut(&mut self) -> &mut super::core::Vec3;
     fn defend_area_radius(&self) -> &f32;
+    fn defend_area_radius_mut(&mut self) -> &mut f32;
     fn use_random_path_spread(&self) -> &bool;
+    fn use_random_path_spread_mut(&mut self) -> &mut bool;
     fn defend_current_position(&self) -> &bool;
+    fn defend_current_position_mut(&mut self) -> &mut bool;
     fn is_target_reached_as_soon_as_entering_target_area(&self) -> &bool;
+    fn is_target_reached_as_soon_as_entering_target_area_mut(&mut self) -> &mut bool;
 }
 
 impl AutoPlayerDefendObjectiveEntityDataTrait for AutoPlayerDefendObjectiveEntityData {
     fn target_position(&self) -> &super::core::Vec3 {
         &self.target_position
     }
+    fn target_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_position
+    }
     fn defend_area_radius(&self) -> &f32 {
         &self.defend_area_radius
+    }
+    fn defend_area_radius_mut(&mut self) -> &mut f32 {
+        &mut self.defend_area_radius
     }
     fn use_random_path_spread(&self) -> &bool {
         &self.use_random_path_spread
     }
+    fn use_random_path_spread_mut(&mut self) -> &mut bool {
+        &mut self.use_random_path_spread
+    }
     fn defend_current_position(&self) -> &bool {
         &self.defend_current_position
     }
+    fn defend_current_position_mut(&mut self) -> &mut bool {
+        &mut self.defend_current_position
+    }
     fn is_target_reached_as_soon_as_entering_target_area(&self) -> &bool {
         &self.is_target_reached_as_soon_as_entering_target_area
+    }
+    fn is_target_reached_as_soon_as_entering_target_area_mut(&mut self) -> &mut bool {
+        &mut self.is_target_reached_as_soon_as_entering_target_area
     }
 }
 
@@ -1097,56 +1490,110 @@ impl AutoPlayerObjectiveEntityDataTrait for AutoPlayerDefendObjectiveEntityData 
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn players(&self) -> &super::dice_shooter_shared::QueryEntityResult {
         self._glacier_base.players()
+    }
+    fn players_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult {
+        self._glacier_base.players_mut()
     }
     fn jesus_mode(&self) -> &bool {
         self._glacier_base.jesus_mode()
     }
+    fn jesus_mode_mut(&mut self) -> &mut bool {
+        self._glacier_base.jesus_mode_mut()
+    }
     fn unlimited_ammo(&self) -> &bool {
         self._glacier_base.unlimited_ammo()
+    }
+    fn unlimited_ammo_mut(&mut self) -> &mut bool {
+        self._glacier_base.unlimited_ammo_mut()
     }
     fn allow_teleport(&self) -> &bool {
         self._glacier_base.allow_teleport()
     }
+    fn allow_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_teleport_mut()
+    }
     fn use_objective_teleport(&self) -> &bool {
         self._glacier_base.use_objective_teleport()
+    }
+    fn use_objective_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_objective_teleport_mut()
     }
     fn use_stuck_escape_procedure(&self) -> &bool {
         self._glacier_base.use_stuck_escape_procedure()
     }
+    fn use_stuck_escape_procedure_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_stuck_escape_procedure_mut()
+    }
     fn use_navmesh(&self) -> &bool {
         self._glacier_base.use_navmesh()
+    }
+    fn use_navmesh_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_navmesh_mut()
     }
     fn allow_objective_move_outside_combat_area(&self) -> &bool {
         self._glacier_base.allow_objective_move_outside_combat_area()
     }
+    fn allow_objective_move_outside_combat_area_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_objective_move_outside_combat_area_mut()
+    }
     fn allow_secondary_objectives(&self) -> &bool {
         self._glacier_base.allow_secondary_objectives()
+    }
+    fn allow_secondary_objectives_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_secondary_objectives_mut()
     }
     fn disable_zoom_when_aiming(&self) -> &bool {
         self._glacier_base.disable_zoom_when_aiming()
     }
+    fn disable_zoom_when_aiming_mut(&mut self) -> &mut bool {
+        self._glacier_base.disable_zoom_when_aiming_mut()
+    }
     fn move_mode(&self) -> &AutoPlayerMoveMode {
         self._glacier_base.move_mode()
+    }
+    fn move_mode_mut(&mut self) -> &mut AutoPlayerMoveMode {
+        self._glacier_base.move_mode_mut()
     }
     fn move_mode_override_int(&self) -> &i32 {
         self._glacier_base.move_mode_override_int()
     }
+    fn move_mode_override_int_mut(&mut self) -> &mut i32 {
+        self._glacier_base.move_mode_override_int_mut()
+    }
     fn debug_name(&self) -> &String {
         self._glacier_base.debug_name()
+    }
+    fn debug_name_mut(&mut self) -> &mut String {
+        self._glacier_base.debug_name_mut()
     }
     fn time_threshold(&self) -> &i32 {
         self._glacier_base.time_threshold()
     }
+    fn time_threshold_mut(&mut self) -> &mut i32 {
+        self._glacier_base.time_threshold_mut()
+    }
     fn clamp_vertical_nav_pos_search_meters(&self) -> &f32 {
         self._glacier_base.clamp_vertical_nav_pos_search_meters()
+    }
+    fn clamp_vertical_nav_pos_search_meters_mut(&mut self) -> &mut f32 {
+        self._glacier_base.clamp_vertical_nav_pos_search_meters_mut()
     }
     fn restricted_area_sphere_centre(&self) -> &super::core::Vec3 {
         self._glacier_base.restricted_area_sphere_centre()
     }
+    fn restricted_area_sphere_centre_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.restricted_area_sphere_centre_mut()
+    }
     fn restricted_area_sphere_radius(&self) -> &f32 {
         self._glacier_base.restricted_area_sphere_radius()
+    }
+    fn restricted_area_sphere_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.restricted_area_sphere_radius_mut()
     }
 }
 
@@ -1160,15 +1607,15 @@ impl super::core::DataBusPeerTrait for AutoPlayerDefendObjectiveEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AutoPlayerDefendObjectiveEntityData {
 }
 
 impl super::core::DataContainerTrait for AutoPlayerDefendObjectiveEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYERDEFENDOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1224,6 +1671,15 @@ impl TypeObject for AutoPlayerDefendObjectiveEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1247,19 +1703,31 @@ pub struct AutoPlayerAttackObjectiveEntityData {
 
 pub trait AutoPlayerAttackObjectiveEntityDataTrait: AutoPlayerObjectiveEntityDataTrait {
     fn targets(&self) -> &super::dice_shooter_shared::QueryEntityResult;
+    fn targets_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult;
     fn weapon(&self) -> &i32;
+    fn weapon_mut(&mut self) -> &mut i32;
     fn use_random_path_spread(&self) -> &bool;
+    fn use_random_path_spread_mut(&mut self) -> &mut bool;
 }
 
 impl AutoPlayerAttackObjectiveEntityDataTrait for AutoPlayerAttackObjectiveEntityData {
     fn targets(&self) -> &super::dice_shooter_shared::QueryEntityResult {
         &self.targets
     }
+    fn targets_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult {
+        &mut self.targets
+    }
     fn weapon(&self) -> &i32 {
         &self.weapon
     }
+    fn weapon_mut(&mut self) -> &mut i32 {
+        &mut self.weapon
+    }
     fn use_random_path_spread(&self) -> &bool {
         &self.use_random_path_spread
+    }
+    fn use_random_path_spread_mut(&mut self) -> &mut bool {
+        &mut self.use_random_path_spread
     }
 }
 
@@ -1267,56 +1735,110 @@ impl AutoPlayerObjectiveEntityDataTrait for AutoPlayerAttackObjectiveEntityData 
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn players(&self) -> &super::dice_shooter_shared::QueryEntityResult {
         self._glacier_base.players()
+    }
+    fn players_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult {
+        self._glacier_base.players_mut()
     }
     fn jesus_mode(&self) -> &bool {
         self._glacier_base.jesus_mode()
     }
+    fn jesus_mode_mut(&mut self) -> &mut bool {
+        self._glacier_base.jesus_mode_mut()
+    }
     fn unlimited_ammo(&self) -> &bool {
         self._glacier_base.unlimited_ammo()
+    }
+    fn unlimited_ammo_mut(&mut self) -> &mut bool {
+        self._glacier_base.unlimited_ammo_mut()
     }
     fn allow_teleport(&self) -> &bool {
         self._glacier_base.allow_teleport()
     }
+    fn allow_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_teleport_mut()
+    }
     fn use_objective_teleport(&self) -> &bool {
         self._glacier_base.use_objective_teleport()
+    }
+    fn use_objective_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_objective_teleport_mut()
     }
     fn use_stuck_escape_procedure(&self) -> &bool {
         self._glacier_base.use_stuck_escape_procedure()
     }
+    fn use_stuck_escape_procedure_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_stuck_escape_procedure_mut()
+    }
     fn use_navmesh(&self) -> &bool {
         self._glacier_base.use_navmesh()
+    }
+    fn use_navmesh_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_navmesh_mut()
     }
     fn allow_objective_move_outside_combat_area(&self) -> &bool {
         self._glacier_base.allow_objective_move_outside_combat_area()
     }
+    fn allow_objective_move_outside_combat_area_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_objective_move_outside_combat_area_mut()
+    }
     fn allow_secondary_objectives(&self) -> &bool {
         self._glacier_base.allow_secondary_objectives()
+    }
+    fn allow_secondary_objectives_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_secondary_objectives_mut()
     }
     fn disable_zoom_when_aiming(&self) -> &bool {
         self._glacier_base.disable_zoom_when_aiming()
     }
+    fn disable_zoom_when_aiming_mut(&mut self) -> &mut bool {
+        self._glacier_base.disable_zoom_when_aiming_mut()
+    }
     fn move_mode(&self) -> &AutoPlayerMoveMode {
         self._glacier_base.move_mode()
+    }
+    fn move_mode_mut(&mut self) -> &mut AutoPlayerMoveMode {
+        self._glacier_base.move_mode_mut()
     }
     fn move_mode_override_int(&self) -> &i32 {
         self._glacier_base.move_mode_override_int()
     }
+    fn move_mode_override_int_mut(&mut self) -> &mut i32 {
+        self._glacier_base.move_mode_override_int_mut()
+    }
     fn debug_name(&self) -> &String {
         self._glacier_base.debug_name()
+    }
+    fn debug_name_mut(&mut self) -> &mut String {
+        self._glacier_base.debug_name_mut()
     }
     fn time_threshold(&self) -> &i32 {
         self._glacier_base.time_threshold()
     }
+    fn time_threshold_mut(&mut self) -> &mut i32 {
+        self._glacier_base.time_threshold_mut()
+    }
     fn clamp_vertical_nav_pos_search_meters(&self) -> &f32 {
         self._glacier_base.clamp_vertical_nav_pos_search_meters()
+    }
+    fn clamp_vertical_nav_pos_search_meters_mut(&mut self) -> &mut f32 {
+        self._glacier_base.clamp_vertical_nav_pos_search_meters_mut()
     }
     fn restricted_area_sphere_centre(&self) -> &super::core::Vec3 {
         self._glacier_base.restricted_area_sphere_centre()
     }
+    fn restricted_area_sphere_centre_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.restricted_area_sphere_centre_mut()
+    }
     fn restricted_area_sphere_radius(&self) -> &f32 {
         self._glacier_base.restricted_area_sphere_radius()
+    }
+    fn restricted_area_sphere_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.restricted_area_sphere_radius_mut()
     }
 }
 
@@ -1330,15 +1852,15 @@ impl super::core::DataBusPeerTrait for AutoPlayerAttackObjectiveEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AutoPlayerAttackObjectiveEntityData {
 }
 
 impl super::core::DataContainerTrait for AutoPlayerAttackObjectiveEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYERATTACKOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1382,6 +1904,15 @@ impl TypeObject for AutoPlayerAttackObjectiveEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1410,39 +1941,71 @@ pub struct AutoPlayerActionObjectiveEntityData {
 
 pub trait AutoPlayerActionObjectiveEntityDataTrait: AutoPlayerObjectiveEntityDataTrait {
     fn action_target_position(&self) -> &super::core::Vec3;
+    fn action_target_position_mut(&mut self) -> &mut super::core::Vec3;
     fn action_position(&self) -> &super::core::Vec3;
+    fn action_position_mut(&mut self) -> &mut super::core::Vec3;
     fn action_start_radius(&self) -> &f32;
+    fn action_start_radius_mut(&mut self) -> &mut f32;
     fn select_item_input(&self) -> &i32;
+    fn select_item_input_mut(&mut self) -> &mut i32;
     fn action_input(&self) -> &i32;
+    fn action_input_mut(&mut self) -> &mut i32;
     fn action_time(&self) -> &f32;
+    fn action_time_mut(&mut self) -> &mut f32;
     fn is_a_spamming_button_action(&self) -> &bool;
+    fn is_a_spamming_button_action_mut(&mut self) -> &mut bool;
     fn use_random_path_spread(&self) -> &bool;
+    fn use_random_path_spread_mut(&mut self) -> &mut bool;
 }
 
 impl AutoPlayerActionObjectiveEntityDataTrait for AutoPlayerActionObjectiveEntityData {
     fn action_target_position(&self) -> &super::core::Vec3 {
         &self.action_target_position
     }
+    fn action_target_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.action_target_position
+    }
     fn action_position(&self) -> &super::core::Vec3 {
         &self.action_position
+    }
+    fn action_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.action_position
     }
     fn action_start_radius(&self) -> &f32 {
         &self.action_start_radius
     }
+    fn action_start_radius_mut(&mut self) -> &mut f32 {
+        &mut self.action_start_radius
+    }
     fn select_item_input(&self) -> &i32 {
         &self.select_item_input
+    }
+    fn select_item_input_mut(&mut self) -> &mut i32 {
+        &mut self.select_item_input
     }
     fn action_input(&self) -> &i32 {
         &self.action_input
     }
+    fn action_input_mut(&mut self) -> &mut i32 {
+        &mut self.action_input
+    }
     fn action_time(&self) -> &f32 {
         &self.action_time
+    }
+    fn action_time_mut(&mut self) -> &mut f32 {
+        &mut self.action_time
     }
     fn is_a_spamming_button_action(&self) -> &bool {
         &self.is_a_spamming_button_action
     }
+    fn is_a_spamming_button_action_mut(&mut self) -> &mut bool {
+        &mut self.is_a_spamming_button_action
+    }
     fn use_random_path_spread(&self) -> &bool {
         &self.use_random_path_spread
+    }
+    fn use_random_path_spread_mut(&mut self) -> &mut bool {
+        &mut self.use_random_path_spread
     }
 }
 
@@ -1450,56 +2013,110 @@ impl AutoPlayerObjectiveEntityDataTrait for AutoPlayerActionObjectiveEntityData 
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn players(&self) -> &super::dice_shooter_shared::QueryEntityResult {
         self._glacier_base.players()
+    }
+    fn players_mut(&mut self) -> &mut super::dice_shooter_shared::QueryEntityResult {
+        self._glacier_base.players_mut()
     }
     fn jesus_mode(&self) -> &bool {
         self._glacier_base.jesus_mode()
     }
+    fn jesus_mode_mut(&mut self) -> &mut bool {
+        self._glacier_base.jesus_mode_mut()
+    }
     fn unlimited_ammo(&self) -> &bool {
         self._glacier_base.unlimited_ammo()
+    }
+    fn unlimited_ammo_mut(&mut self) -> &mut bool {
+        self._glacier_base.unlimited_ammo_mut()
     }
     fn allow_teleport(&self) -> &bool {
         self._glacier_base.allow_teleport()
     }
+    fn allow_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_teleport_mut()
+    }
     fn use_objective_teleport(&self) -> &bool {
         self._glacier_base.use_objective_teleport()
+    }
+    fn use_objective_teleport_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_objective_teleport_mut()
     }
     fn use_stuck_escape_procedure(&self) -> &bool {
         self._glacier_base.use_stuck_escape_procedure()
     }
+    fn use_stuck_escape_procedure_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_stuck_escape_procedure_mut()
+    }
     fn use_navmesh(&self) -> &bool {
         self._glacier_base.use_navmesh()
+    }
+    fn use_navmesh_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_navmesh_mut()
     }
     fn allow_objective_move_outside_combat_area(&self) -> &bool {
         self._glacier_base.allow_objective_move_outside_combat_area()
     }
+    fn allow_objective_move_outside_combat_area_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_objective_move_outside_combat_area_mut()
+    }
     fn allow_secondary_objectives(&self) -> &bool {
         self._glacier_base.allow_secondary_objectives()
+    }
+    fn allow_secondary_objectives_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_secondary_objectives_mut()
     }
     fn disable_zoom_when_aiming(&self) -> &bool {
         self._glacier_base.disable_zoom_when_aiming()
     }
+    fn disable_zoom_when_aiming_mut(&mut self) -> &mut bool {
+        self._glacier_base.disable_zoom_when_aiming_mut()
+    }
     fn move_mode(&self) -> &AutoPlayerMoveMode {
         self._glacier_base.move_mode()
+    }
+    fn move_mode_mut(&mut self) -> &mut AutoPlayerMoveMode {
+        self._glacier_base.move_mode_mut()
     }
     fn move_mode_override_int(&self) -> &i32 {
         self._glacier_base.move_mode_override_int()
     }
+    fn move_mode_override_int_mut(&mut self) -> &mut i32 {
+        self._glacier_base.move_mode_override_int_mut()
+    }
     fn debug_name(&self) -> &String {
         self._glacier_base.debug_name()
+    }
+    fn debug_name_mut(&mut self) -> &mut String {
+        self._glacier_base.debug_name_mut()
     }
     fn time_threshold(&self) -> &i32 {
         self._glacier_base.time_threshold()
     }
+    fn time_threshold_mut(&mut self) -> &mut i32 {
+        self._glacier_base.time_threshold_mut()
+    }
     fn clamp_vertical_nav_pos_search_meters(&self) -> &f32 {
         self._glacier_base.clamp_vertical_nav_pos_search_meters()
+    }
+    fn clamp_vertical_nav_pos_search_meters_mut(&mut self) -> &mut f32 {
+        self._glacier_base.clamp_vertical_nav_pos_search_meters_mut()
     }
     fn restricted_area_sphere_centre(&self) -> &super::core::Vec3 {
         self._glacier_base.restricted_area_sphere_centre()
     }
+    fn restricted_area_sphere_centre_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.restricted_area_sphere_centre_mut()
+    }
     fn restricted_area_sphere_radius(&self) -> &f32 {
         self._glacier_base.restricted_area_sphere_radius()
+    }
+    fn restricted_area_sphere_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.restricted_area_sphere_radius_mut()
     }
 }
 
@@ -1513,15 +2130,15 @@ impl super::core::DataBusPeerTrait for AutoPlayerActionObjectiveEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AutoPlayerActionObjectiveEntityData {
 }
 
 impl super::core::DataContainerTrait for AutoPlayerActionObjectiveEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYERACTIONOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1595,6 +2212,15 @@ impl TypeObject for AutoPlayerActionObjectiveEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1616,11 +2242,15 @@ pub struct AutoPlayerSettingsEntityData {
 
 pub trait AutoPlayerSettingsEntityDataTrait: super::entity::EntityDataTrait {
     fn choice(&self) -> &AutoPlayerSettingsChoice;
+    fn choice_mut(&mut self) -> &mut AutoPlayerSettingsChoice;
 }
 
 impl AutoPlayerSettingsEntityDataTrait for AutoPlayerSettingsEntityData {
     fn choice(&self) -> &AutoPlayerSettingsChoice {
         &self.choice
+    }
+    fn choice_mut(&mut self) -> &mut AutoPlayerSettingsChoice {
+        &mut self.choice
     }
 }
 
@@ -1634,15 +2264,15 @@ impl super::core::DataBusPeerTrait for AutoPlayerSettingsEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AutoPlayerSettingsEntityData {
 }
 
 impl super::core::DataContainerTrait for AutoPlayerSettingsEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYERSETTINGSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1674,6 +2304,15 @@ impl TypeObject for AutoPlayerSettingsEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1695,15 +2334,23 @@ pub struct AutoPlayerSettingsChoice {
 
 pub trait AutoPlayerSettingsChoiceTrait: TypeObject {
     fn kind(&self) -> &AutoPlayerSettingsKind;
+    fn kind_mut(&mut self) -> &mut AutoPlayerSettingsKind;
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
 }
 
 impl AutoPlayerSettingsChoiceTrait for AutoPlayerSettingsChoice {
     fn kind(&self) -> &AutoPlayerSettingsKind {
         &self.kind
     }
+    fn kind_mut(&mut self) -> &mut AutoPlayerSettingsKind {
+        &mut self.kind
+    }
     fn name(&self) -> &String {
         &self.name
+    }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
     }
 }
 
@@ -1740,6 +2387,15 @@ impl TypeObject for AutoPlayerSettingsChoice {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1782,6 +2438,15 @@ impl TypeObject for AutoPlayerSettingsKind {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1807,27 +2472,47 @@ pub struct AutoPlayerManagerEntityData {
 
 pub trait AutoPlayerManagerEntityDataTrait: super::entity::EntityDataTrait {
     fn player_count(&self) -> &i32;
+    fn player_count_mut(&mut self) -> &mut i32;
     fn fill_gameplay_bots_team1(&self) -> &i32;
+    fn fill_gameplay_bots_team1_mut(&mut self) -> &mut i32;
     fn fill_gameplay_bots_team2(&self) -> &i32;
+    fn fill_gameplay_bots_team2_mut(&mut self) -> &mut i32;
     fn reset_force_fills(&self) -> &bool;
+    fn reset_force_fills_mut(&mut self) -> &mut bool;
     fn orphan_time_seconds(&self) -> &f32;
+    fn orphan_time_seconds_mut(&mut self) -> &mut f32;
 }
 
 impl AutoPlayerManagerEntityDataTrait for AutoPlayerManagerEntityData {
     fn player_count(&self) -> &i32 {
         &self.player_count
     }
+    fn player_count_mut(&mut self) -> &mut i32 {
+        &mut self.player_count
+    }
     fn fill_gameplay_bots_team1(&self) -> &i32 {
         &self.fill_gameplay_bots_team1
+    }
+    fn fill_gameplay_bots_team1_mut(&mut self) -> &mut i32 {
+        &mut self.fill_gameplay_bots_team1
     }
     fn fill_gameplay_bots_team2(&self) -> &i32 {
         &self.fill_gameplay_bots_team2
     }
+    fn fill_gameplay_bots_team2_mut(&mut self) -> &mut i32 {
+        &mut self.fill_gameplay_bots_team2
+    }
     fn reset_force_fills(&self) -> &bool {
         &self.reset_force_fills
     }
+    fn reset_force_fills_mut(&mut self) -> &mut bool {
+        &mut self.reset_force_fills
+    }
     fn orphan_time_seconds(&self) -> &f32 {
         &self.orphan_time_seconds
+    }
+    fn orphan_time_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.orphan_time_seconds
     }
 }
 
@@ -1841,15 +2526,15 @@ impl super::core::DataBusPeerTrait for AutoPlayerManagerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AutoPlayerManagerEntityData {
 }
 
 impl super::core::DataContainerTrait for AutoPlayerManagerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYERMANAGERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1905,6 +2590,15 @@ impl TypeObject for AutoPlayerManagerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1927,15 +2621,23 @@ pub struct AutoPlayerEntityData {
 
 pub trait AutoPlayerEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn auto_start(&self) -> &bool;
+    fn auto_start_mut(&mut self) -> &mut bool;
 }
 
 impl AutoPlayerEntityDataTrait for AutoPlayerEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn auto_start(&self) -> &bool {
         &self.auto_start
+    }
+    fn auto_start_mut(&mut self) -> &mut bool {
+        &mut self.auto_start
     }
 }
 
@@ -1949,15 +2651,15 @@ impl super::core::DataBusPeerTrait for AutoPlayerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AutoPlayerEntityData {
 }
 
 impl super::core::DataContainerTrait for AutoPlayerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1994,6 +2696,15 @@ impl TypeObject for AutoPlayerEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2280,1067 +2991,2127 @@ pub struct AutoPlayerSettings {
 
 pub trait AutoPlayerSettingsTrait: super::core::SystemSettingsTrait {
     fn a_f_k_takeover(&self) -> &f32;
+    fn a_f_k_takeover_mut(&mut self) -> &mut f32;
     fn client_enabled(&self) -> &bool;
+    fn client_enabled_mut(&mut self) -> &mut bool;
     fn allow_client_take_over(&self) -> &bool;
+    fn allow_client_take_over_mut(&mut self) -> &mut bool;
     fn force_server_control(&self) -> &bool;
+    fn force_server_control_mut(&mut self) -> &mut bool;
     fn force_server_objective_control(&self) -> &bool;
+    fn force_server_objective_control_mut(&mut self) -> &mut bool;
     fn force_client_objective_control(&self) -> &bool;
+    fn force_client_objective_control_mut(&mut self) -> &mut bool;
     fn force_client_navigation(&self) -> &bool;
+    fn force_client_navigation_mut(&mut self) -> &mut bool;
     fn debug_draw_enabled(&self) -> &bool;
+    fn debug_draw_enabled_mut(&mut self) -> &mut bool;
     fn debug_draw_waypoints(&self) -> &bool;
+    fn debug_draw_waypoints_mut(&mut self) -> &mut bool;
     fn debug_draw_client_details(&self) -> &bool;
+    fn debug_draw_client_details_mut(&mut self) -> &mut bool;
     fn debug_draw_combat_details(&self) -> &bool;
+    fn debug_draw_combat_details_mut(&mut self) -> &mut bool;
     fn player_count(&self) -> &i32;
+    fn player_count_mut(&mut self) -> &mut i32;
     fn forced_server_auto_player_count(&self) -> &i32;
+    fn forced_server_auto_player_count_mut(&mut self) -> &mut i32;
     fn allow_add_auto_fill_players(&self) -> &bool;
+    fn allow_add_auto_fill_players_mut(&mut self) -> &mut bool;
     fn allow_remove_auto_fill_players(&self) -> &bool;
+    fn allow_remove_auto_fill_players_mut(&mut self) -> &mut bool;
     fn force_apply_gameplay_bots_count(&self) -> &bool;
+    fn force_apply_gameplay_bots_count_mut(&mut self) -> &mut bool;
     fn force_fill_gameplay_bots_team1(&self) -> &i32;
+    fn force_fill_gameplay_bots_team1_mut(&mut self) -> &mut i32;
     fn force_fill_gameplay_bots_team2(&self) -> &i32;
+    fn force_fill_gameplay_bots_team2_mut(&mut self) -> &mut i32;
     fn respawn_delay(&self) -> &f32;
+    fn respawn_delay_mut(&mut self) -> &mut f32;
     fn initial_respawn_delay(&self) -> &f32;
+    fn initial_respawn_delay_mut(&mut self) -> &mut f32;
     fn client_join_delay(&self) -> &f32;
+    fn client_join_delay_mut(&mut self) -> &mut f32;
     fn round_timeout(&self) -> &i32;
+    fn round_timeout_mut(&mut self) -> &mut i32;
     fn squad_members(&self) -> &i32;
+    fn squad_members_mut(&mut self) -> &mut i32;
     fn allow_gameplay_bots_to_join_player_squads(&self) -> &bool;
+    fn allow_gameplay_bots_to_join_player_squads_mut(&mut self) -> &mut bool;
     fn allow_gameplay_bots_to_form_own_squads(&self) -> &bool;
+    fn allow_gameplay_bots_to_form_own_squads_mut(&mut self) -> &mut bool;
     fn allow_vehicle_spawn(&self) -> &bool;
+    fn allow_vehicle_spawn_mut(&mut self) -> &mut bool;
     fn force_disable_vehicle_spawn(&self) -> &bool;
+    fn force_disable_vehicle_spawn_mut(&mut self) -> &mut bool;
     fn allow_client_vehicle_spawn(&self) -> &bool;
+    fn allow_client_vehicle_spawn_mut(&mut self) -> &mut bool;
     fn allow_first_client_initial_vehicle_spawn(&self) -> &bool;
+    fn allow_first_client_initial_vehicle_spawn_mut(&mut self) -> &mut bool;
     fn control_connectionless_players(&self) -> &bool;
+    fn control_connectionless_players_mut(&mut self) -> &mut bool;
     fn allow_respawn(&self) -> &bool;
+    fn allow_respawn_mut(&mut self) -> &mut bool;
     fn pickup_items_secondary_objective_attempt_interval_seconds(&self) -> &i32;
+    fn pickup_items_secondary_objective_attempt_interval_seconds_mut(&mut self) -> &mut i32;
     fn use_telemetry_based_planner(&self) -> &bool;
+    fn use_telemetry_based_planner_mut(&mut self) -> &mut bool;
     fn debug_telemetry_based_planner(&self) -> &bool;
+    fn debug_telemetry_based_planner_mut(&mut self) -> &mut bool;
     fn planner_terrain_vertical_cutoff(&self) -> &f32;
+    fn planner_terrain_vertical_cutoff_mut(&mut self) -> &mut f32;
     fn planner_connection_cutoff(&self) -> &f32;
+    fn planner_connection_cutoff_mut(&mut self) -> &mut f32;
     fn planner_max_nodes_search_radius(&self) -> &f32;
+    fn planner_max_nodes_search_radius_mut(&mut self) -> &mut f32;
     fn planner_link_end_arrival_range(&self) -> &f32;
+    fn planner_link_end_arrival_range_mut(&mut self) -> &mut f32;
     fn use_fade_override(&self) -> &bool;
+    fn use_fade_override_mut(&mut self) -> &mut bool;
     fn input_scale_yaw(&self) -> &f32;
+    fn input_scale_yaw_mut(&mut self) -> &mut f32;
     fn input_scale_pitch(&self) -> &f32;
+    fn input_scale_pitch_mut(&mut self) -> &mut f32;
     fn input_scale_client(&self) -> &f32;
+    fn input_scale_client_mut(&mut self) -> &mut f32;
     fn input_force_mouse(&self) -> &bool;
+    fn input_force_mouse_mut(&mut self) -> &mut bool;
     fn use_input_override_yaw_pitch(&self) -> &bool;
+    fn use_input_override_yaw_pitch_mut(&mut self) -> &mut bool;
     fn input_override_yaw(&self) -> &f32;
+    fn input_override_yaw_mut(&mut self) -> &mut f32;
     fn input_override_pitch(&self) -> &f32;
+    fn input_override_pitch_mut(&mut self) -> &mut f32;
     fn use_seek_and_destroy(&self) -> &bool;
+    fn use_seek_and_destroy_mut(&mut self) -> &mut bool;
     fn allow_teleport(&self) -> &bool;
+    fn allow_teleport_mut(&mut self) -> &mut bool;
     fn force_allow_all_teleports(&self) -> &bool;
+    fn force_allow_all_teleports_mut(&mut self) -> &mut bool;
     fn debug_draw_teleports(&self) -> &bool;
+    fn debug_draw_teleports_mut(&mut self) -> &mut bool;
     fn update_a_i(&self) -> &bool;
+    fn update_a_i_mut(&mut self) -> &mut bool;
     fn debug_draw_client_only(&self) -> &bool;
+    fn debug_draw_client_only_mut(&mut self) -> &mut bool;
     fn debug_draw_client_realm_only(&self) -> &bool;
+    fn debug_draw_client_realm_only_mut(&mut self) -> &mut bool;
     fn aim_acceleration(&self) -> &f32;
+    fn aim_acceleration_mut(&mut self) -> &mut f32;
     fn aim_lap_time(&self) -> &f32;
+    fn aim_lap_time_mut(&mut self) -> &mut f32;
     fn allow_move_outside_combat_area(&self) -> &bool;
+    fn allow_move_outside_combat_area_mut(&mut self) -> &mut bool;
     fn allow_spawn_outside_combat_area(&self) -> &bool;
+    fn allow_spawn_outside_combat_area_mut(&mut self) -> &mut bool;
     fn allow_vehicle_spawn_outside_combat_area(&self) -> &bool;
+    fn allow_vehicle_spawn_outside_combat_area_mut(&mut self) -> &mut bool;
     fn allow_vehicle_spawn_only(&self) -> &bool;
+    fn allow_vehicle_spawn_only_mut(&mut self) -> &mut bool;
     fn debug_draw_pretty_path(&self) -> &bool;
+    fn debug_draw_pretty_path_mut(&mut self) -> &mut bool;
     fn debug_draw_use_waypoints_alpha(&self) -> &bool;
+    fn debug_draw_use_waypoints_alpha_mut(&mut self) -> &mut bool;
     fn debug_draw_invalid_move_intention(&self) -> &bool;
+    fn debug_draw_invalid_move_intention_mut(&mut self) -> &mut bool;
     fn debug_spam(&self) -> &bool;
+    fn debug_spam_mut(&mut self) -> &mut bool;
     fn lof_timeout_s(&self) -> &f32;
+    fn lof_timeout_s_mut(&mut self) -> &mut f32;
     fn lof_reaction_time_s(&self) -> &f32;
+    fn lof_reaction_time_s_mut(&mut self) -> &mut f32;
     fn server_players_ignore_client_players(&self) -> &bool;
+    fn server_players_ignore_client_players_mut(&mut self) -> &mut bool;
     fn ignore_human_players(&self) -> &bool;
+    fn ignore_human_players_mut(&mut self) -> &mut bool;
     fn force_kit(&self) -> &i32;
+    fn force_kit_mut(&mut self) -> &mut i32;
     fn opportunistic_interact(&self) -> &bool;
+    fn opportunistic_interact_mut(&mut self) -> &mut bool;
     fn squad_spawn_probability(&self) -> &f32;
+    fn squad_spawn_probability_mut(&mut self) -> &mut f32;
     fn kit_change_probability(&self) -> &f32;
+    fn kit_change_probability_mut(&mut self) -> &mut f32;
     fn use_default_unlocks_probability(&self) -> &f32;
+    fn use_default_unlocks_probability_mut(&mut self) -> &mut f32;
     fn allow_medic_revive(&self) -> &bool;
+    fn allow_medic_revive_mut(&mut self) -> &mut bool;
     fn allow_pickup_items(&self) -> &bool;
+    fn allow_pickup_items_mut(&mut self) -> &mut bool;
     fn debug_draw_objectives(&self) -> &bool;
+    fn debug_draw_objectives_mut(&mut self) -> &mut bool;
     fn debug_draw_objective_always(&self) -> &bool;
+    fn debug_draw_objective_always_mut(&mut self) -> &mut bool;
     fn wallhack(&self) -> &bool;
+    fn wallhack_mut(&mut self) -> &mut bool;
     fn weapon_swap_interval_s(&self) -> &f32;
+    fn weapon_swap_interval_s_mut(&mut self) -> &mut f32;
     fn weapon_swap_primary_probability(&self) -> &f32;
+    fn weapon_swap_primary_probability_mut(&mut self) -> &mut f32;
     fn vehicle_bail_time(&self) -> &i32;
+    fn vehicle_bail_time_mut(&mut self) -> &mut i32;
     fn jump_if_stuck_time_seconds(&self) -> &f32;
+    fn jump_if_stuck_time_seconds_mut(&mut self) -> &mut f32;
     fn jump_cooldown_seconds(&self) -> &f32;
+    fn jump_cooldown_seconds_mut(&mut self) -> &mut f32;
     fn patrol_position_cooldown_seconds(&self) -> &f32;
+    fn patrol_position_cooldown_seconds_mut(&mut self) -> &mut f32;
     fn combat_use_grenades(&self) -> &bool;
+    fn combat_use_grenades_mut(&mut self) -> &mut bool;
     fn combat_use_prone(&self) -> &bool;
+    fn combat_use_prone_mut(&mut self) -> &mut bool;
     fn combat_use_melee(&self) -> &bool;
+    fn combat_use_melee_mut(&mut self) -> &mut bool;
     fn use_crouch(&self) -> &bool;
+    fn use_crouch_mut(&mut self) -> &mut bool;
     fn forced_fire_time_max_s(&self) -> &f32;
+    fn forced_fire_time_max_s_mut(&mut self) -> &mut f32;
     fn forced_fire_time_min_s(&self) -> &f32;
+    fn forced_fire_time_min_s_mut(&mut self) -> &mut f32;
     fn allow_primary_weapon_forced_fire(&self) -> &bool;
+    fn allow_primary_weapon_forced_fire_mut(&mut self) -> &mut bool;
     fn allow_vehicle_forced_fire(&self) -> &bool;
+    fn allow_vehicle_forced_fire_mut(&mut self) -> &mut bool;
     fn forced_fire_vehicle_time_scale(&self) -> &f32;
+    fn forced_fire_vehicle_time_scale_mut(&mut self) -> &mut f32;
     fn exit_vehicle_when_stuck_timeout(&self) -> &f32;
+    fn exit_vehicle_when_stuck_timeout_mut(&mut self) -> &mut f32;
     fn min_distance_for_vehicle_u_turn(&self) -> &f32;
+    fn min_distance_for_vehicle_u_turn_mut(&mut self) -> &mut f32;
     fn min_airplane_bail_out_time(&self) -> &i32;
+    fn min_airplane_bail_out_time_mut(&mut self) -> &mut i32;
     fn max_airplane_bail_out_time(&self) -> &i32;
+    fn max_airplane_bail_out_time_mut(&mut self) -> &mut i32;
     fn login_rate(&self) -> &f32;
+    fn login_rate_mut(&mut self) -> &mut f32;
     fn spawn_rate(&self) -> &f32;
+    fn spawn_rate_mut(&mut self) -> &mut f32;
     fn max_spawns_per_update(&self) -> &i32;
+    fn max_spawns_per_update_mut(&mut self) -> &mut i32;
     fn variance(&self) -> &f32;
+    fn variance_mut(&mut self) -> &mut f32;
     fn airplane_exit_input(&self) -> &i32;
+    fn airplane_exit_input_mut(&mut self) -> &mut i32;
     fn secondary_objective_generation_min_seconds(&self) -> &f32;
+    fn secondary_objective_generation_min_seconds_mut(&mut self) -> &mut f32;
     fn secondary_objective_generation_max_seconds(&self) -> &f32;
+    fn secondary_objective_generation_max_seconds_mut(&mut self) -> &mut f32;
     fn allow_enter_vehicle(&self) -> &bool;
+    fn allow_enter_vehicle_mut(&mut self) -> &mut bool;
     fn enter_vehicle_cooldown_seconds(&self) -> &f32;
+    fn enter_vehicle_cooldown_seconds_mut(&mut self) -> &mut f32;
     fn enter_vehicle_probability(&self) -> &f32;
+    fn enter_vehicle_probability_mut(&mut self) -> &mut f32;
     fn enter_vehicle_search_radius(&self) -> &f32;
+    fn enter_vehicle_search_radius_mut(&mut self) -> &mut f32;
     fn print_client_input(&self) -> &bool;
+    fn print_client_input_mut(&mut self) -> &mut bool;
     fn allow_primary_objective(&self) -> &bool;
+    fn allow_primary_objective_mut(&mut self) -> &mut bool;
     fn allow_secondary_objectives_while_passive(&self) -> &bool;
+    fn allow_secondary_objectives_while_passive_mut(&mut self) -> &mut bool;
     fn allow_secondary_objectives_while_defensive(&self) -> &bool;
+    fn allow_secondary_objectives_while_defensive_mut(&mut self) -> &mut bool;
     fn allow_pathfinding(&self) -> &bool;
+    fn allow_pathfinding_mut(&mut self) -> &mut bool;
     fn secondary_objective_timeout_seconds(&self) -> &f32;
+    fn secondary_objective_timeout_seconds_mut(&mut self) -> &mut f32;
     fn force_passive_mode(&self) -> &bool;
+    fn force_passive_mode_mut(&mut self) -> &mut bool;
     fn force_primary_objective_defensive_mode(&self) -> &bool;
+    fn force_primary_objective_defensive_mode_mut(&mut self) -> &mut bool;
     fn force_primary_objective_aggressive_mode(&self) -> &bool;
+    fn force_primary_objective_aggressive_mode_mut(&mut self) -> &mut bool;
     fn force_secondary_objective_defensive_mode(&self) -> &bool;
+    fn force_secondary_objective_defensive_mode_mut(&mut self) -> &mut bool;
     fn force_secondary_objective_aggressive_mode(&self) -> &bool;
+    fn force_secondary_objective_aggressive_mode_mut(&mut self) -> &mut bool;
     fn client_jesus_mode(&self) -> &bool;
+    fn client_jesus_mode_mut(&mut self) -> &mut bool;
     fn allow_fortifications(&self) -> &bool;
+    fn allow_fortifications_mut(&mut self) -> &mut bool;
     fn fortification_probability(&self) -> &f32;
+    fn fortification_probability_mut(&mut self) -> &mut f32;
     fn fortification_search_radius(&self) -> &f32;
+    fn fortification_search_radius_mut(&mut self) -> &mut f32;
     fn repath_cooldown_seconds(&self) -> &f32;
+    fn repath_cooldown_seconds_mut(&mut self) -> &mut f32;
     fn un_stuck_vehicle_actions_trigger_time_seconds(&self) -> &f32;
+    fn un_stuck_vehicle_actions_trigger_time_seconds_mut(&mut self) -> &mut f32;
     fn unstuck_minimal_move_distance(&self) -> &f32;
+    fn unstuck_minimal_move_distance_mut(&mut self) -> &mut f32;
     fn unstuck_minimal_move_suicide_timeout(&self) -> &f32;
+    fn unstuck_minimal_move_suicide_timeout_mut(&mut self) -> &mut f32;
     fn fallen_below_suicide_timeout(&self) -> &f32;
+    fn fallen_below_suicide_timeout_mut(&mut self) -> &mut f32;
     fn navigation_position_tolerance_meters(&self) -> &f32;
+    fn navigation_position_tolerance_meters_mut(&mut self) -> &mut f32;
     fn use_name_generator(&self) -> &bool;
+    fn use_name_generator_mut(&mut self) -> &mut bool;
     fn allow_stuck_escape_procedure(&self) -> &bool;
+    fn allow_stuck_escape_procedure_mut(&mut self) -> &mut bool;
     fn exit_stuck_escape_procedure_on_visual_check(&self) -> &bool;
+    fn exit_stuck_escape_procedure_on_visual_check_mut(&mut self) -> &mut bool;
     fn stuck_escape_procedure_sensor_length(&self) -> &f32;
+    fn stuck_escape_procedure_sensor_length_mut(&mut self) -> &mut f32;
     fn stuck_escape_procedure_p_i_fraction(&self) -> &f32;
+    fn stuck_escape_procedure_p_i_fraction_mut(&mut self) -> &mut f32;
     fn stuck_escape_procedure_escape_distance(&self) -> &f32;
+    fn stuck_escape_procedure_escape_distance_mut(&mut self) -> &mut f32;
     fn stuck_escape_procedure_activation_seconds(&self) -> &f32;
+    fn stuck_escape_procedure_activation_seconds_mut(&mut self) -> &mut f32;
     fn stuck_escape_procedure_update_interval(&self) -> &f32;
+    fn stuck_escape_procedure_update_interval_mut(&mut self) -> &mut f32;
     fn stuck_escape_procedure_timeout_seconds(&self) -> &f32;
+    fn stuck_escape_procedure_timeout_seconds_mut(&mut self) -> &mut f32;
     fn debug_draw_unstuck(&self) -> &bool;
+    fn debug_draw_unstuck_mut(&mut self) -> &mut bool;
     fn un_stuck_actions_trigger_time_seconds(&self) -> &f32;
+    fn un_stuck_actions_trigger_time_seconds_mut(&mut self) -> &mut f32;
     fn un_stuck_actions_trigger_cooldown(&self) -> &f32;
+    fn un_stuck_actions_trigger_cooldown_mut(&mut self) -> &mut f32;
     fn stuck_escape_procedure_retries(&self) -> &i32;
+    fn stuck_escape_procedure_retries_mut(&mut self) -> &mut i32;
     fn primary_interaction_search_radius(&self) -> &f32;
+    fn primary_interaction_search_radius_mut(&mut self) -> &mut f32;
     fn allow_suicide(&self) -> &bool;
+    fn allow_suicide_mut(&mut self) -> &mut bool;
     fn allow_random_behavior(&self) -> &bool;
+    fn allow_random_behavior_mut(&mut self) -> &mut bool;
     fn allow_secondary_interactions(&self) -> &bool;
+    fn allow_secondary_interactions_mut(&mut self) -> &mut bool;
     fn secondary_interactions_probability(&self) -> &f32;
+    fn secondary_interactions_probability_mut(&mut self) -> &mut f32;
     fn secondary_interactions_search_radius(&self) -> &f32;
+    fn secondary_interactions_search_radius_mut(&mut self) -> &mut f32;
     fn secondary_objective_pickup_items_search_radius(&self) -> &f32;
+    fn secondary_objective_pickup_items_search_radius_mut(&mut self) -> &mut f32;
     fn secondary_objective_pickup_items_interact_or_action_radius(&self) -> &f32;
+    fn secondary_objective_pickup_items_interact_or_action_radius_mut(&mut self) -> &mut f32;
     fn secondary_objective_jesus_mode(&self) -> &bool;
+    fn secondary_objective_jesus_mode_mut(&mut self) -> &mut bool;
     fn secondary_revive_search_distance(&self) -> &f32;
+    fn secondary_revive_search_distance_mut(&mut self) -> &mut f32;
     fn debug_draw_navigation_details(&self) -> &bool;
+    fn debug_draw_navigation_details_mut(&mut self) -> &mut bool;
     fn debug_draw_navigation_progress_details(&self) -> &bool;
+    fn debug_draw_navigation_progress_details_mut(&mut self) -> &mut bool;
     fn debug_draw_custom_input(&self) -> &bool;
+    fn debug_draw_custom_input_mut(&mut self) -> &mut bool;
     fn expected_travel_time_distance_scale(&self) -> &f32;
+    fn expected_travel_time_distance_scale_mut(&mut self) -> &mut f32;
     fn expected_travel_time_base(&self) -> &f32;
+    fn expected_travel_time_base_mut(&mut self) -> &mut f32;
     fn interact_area_time(&self) -> &f32;
+    fn interact_area_time_mut(&mut self) -> &mut f32;
     fn debug_highlight_objective_type(&self) -> &i32;
+    fn debug_highlight_objective_type_mut(&mut self) -> &mut i32;
     fn seek_and_destroy_min_radius(&self) -> &f32;
+    fn seek_and_destroy_min_radius_mut(&mut self) -> &mut f32;
     fn seek_and_destroy_max_radius(&self) -> &f32;
+    fn seek_and_destroy_max_radius_mut(&mut self) -> &mut f32;
     fn force_repath_if_too_far_from_waypoint_meters(&self) -> &f32;
+    fn force_repath_if_too_far_from_waypoint_meters_mut(&mut self) -> &mut f32;
     fn waypoint_minimum_progress_meters(&self) -> &f32;
+    fn waypoint_minimum_progress_meters_mut(&mut self) -> &mut f32;
     fn debug_draw_aim_noise(&self) -> &bool;
+    fn debug_draw_aim_noise_mut(&mut self) -> &mut bool;
     fn aim_noise_scale(&self) -> &f32;
+    fn aim_noise_scale_mut(&mut self) -> &mut f32;
     fn target_min_switch_time_s(&self) -> &f32;
+    fn target_min_switch_time_s_mut(&mut self) -> &mut f32;
     fn max_target_engaging_distance_scale(&self) -> &f32;
+    fn max_target_engaging_distance_scale_mut(&mut self) -> &mut f32;
     fn allow_random_path_spread(&self) -> &bool;
+    fn allow_random_path_spread_mut(&mut self) -> &mut bool;
     fn force_use_random_path_spread(&self) -> &bool;
+    fn force_use_random_path_spread_mut(&mut self) -> &mut bool;
     fn random_path_spread_radius(&self) -> &f32;
+    fn random_path_spread_radius_mut(&mut self) -> &mut f32;
     fn random_path_spread_center_distance(&self) -> &f32;
+    fn random_path_spread_center_distance_mut(&mut self) -> &mut f32;
     fn update_target_cooldown(&self) -> &f32;
+    fn update_target_cooldown_mut(&mut self) -> &mut f32;
     fn forced_target_timeout_seconds(&self) -> &f32;
+    fn forced_target_timeout_seconds_mut(&mut self) -> &mut f32;
     fn debug_draw_players_names_and_ids(&self) -> &bool;
+    fn debug_draw_players_names_and_ids_mut(&mut self) -> &mut bool;
     fn verbose_logging(&self) -> &bool;
+    fn verbose_logging_mut(&mut self) -> &mut bool;
     fn action_objective_default_time(&self) -> &f32;
+    fn action_objective_default_time_mut(&mut self) -> &mut f32;
     fn allow_action_gadget(&self) -> &bool;
+    fn allow_action_gadget_mut(&mut self) -> &mut bool;
     fn action_gadget_probability(&self) -> &f32;
+    fn action_gadget_probability_mut(&mut self) -> &mut f32;
     fn action_gadget_interactable_search_radius(&self) -> &f32;
+    fn action_gadget_interactable_search_radius_mut(&mut self) -> &mut f32;
     fn hero_spawn_probability_gameplay(&self) -> &f32;
+    fn hero_spawn_probability_gameplay_mut(&mut self) -> &mut f32;
     fn special_spawn_probability_gameplay(&self) -> &f32;
+    fn special_spawn_probability_gameplay_mut(&mut self) -> &mut f32;
     fn hero_vehicle_spawn_probability_gameplay(&self) -> &f32;
+    fn hero_vehicle_spawn_probability_gameplay_mut(&mut self) -> &mut f32;
     fn vehicle_spawn_probability_gameplay(&self) -> &f32;
+    fn vehicle_spawn_probability_gameplay_mut(&mut self) -> &mut f32;
     fn hero_spawn_probability(&self) -> &f32;
+    fn hero_spawn_probability_mut(&mut self) -> &mut f32;
     fn special_spawn_probability(&self) -> &f32;
+    fn special_spawn_probability_mut(&mut self) -> &mut f32;
     fn hero_vehicle_spawn_probability(&self) -> &f32;
+    fn hero_vehicle_spawn_probability_mut(&mut self) -> &mut f32;
     fn vehicle_spawn_probability(&self) -> &f32;
+    fn vehicle_spawn_probability_mut(&mut self) -> &mut f32;
     fn follow_target_position_check_cooldown(&self) -> &f32;
+    fn follow_target_position_check_cooldown_mut(&mut self) -> &mut f32;
     fn not_alive_assert_time(&self) -> &f32;
+    fn not_alive_assert_time_mut(&mut self) -> &mut f32;
     fn prefer_f_p_s_camera(&self) -> &bool;
+    fn prefer_f_p_s_camera_mut(&mut self) -> &mut bool;
     fn time_on_path_tolerance_seconds(&self) -> &f32;
+    fn time_on_path_tolerance_seconds_mut(&mut self) -> &mut f32;
     fn check_water_depth_for_intermediate_positions(&self) -> &bool;
+    fn check_water_depth_for_intermediate_positions_mut(&mut self) -> &mut bool;
     fn swimming_suicide_timeout(&self) -> &f32;
+    fn swimming_suicide_timeout_mut(&mut self) -> &mut f32;
     fn lof_prediction_time(&self) -> &f32;
+    fn lof_prediction_time_mut(&mut self) -> &mut f32;
     fn debug_draw_combat_raycast_hit_points(&self) -> &bool;
+    fn debug_draw_combat_raycast_hit_points_mut(&mut self) -> &mut bool;
     fn debug_draw_transforms(&self) -> &bool;
+    fn debug_draw_transforms_mut(&mut self) -> &mut bool;
     fn target_tracker_field_of_view_degrees(&self) -> &f32;
+    fn target_tracker_field_of_view_degrees_mut(&mut self) -> &mut f32;
     fn pick_random_vehicle_on_secondary_objective(&self) -> &bool;
+    fn pick_random_vehicle_on_secondary_objective_mut(&mut self) -> &mut bool;
     fn never_exit_vehicle_after_entering(&self) -> &bool;
+    fn never_exit_vehicle_after_entering_mut(&mut self) -> &mut bool;
     fn update_target_per_frame_cap(&self) -> &u32;
+    fn update_target_per_frame_cap_mut(&mut self) -> &mut u32;
     fn replay_telemetry_file(&self) -> &String;
+    fn replay_telemetry_file_mut(&mut self) -> &mut String;
     fn replay_telemetry_file_format(&self) -> &String;
+    fn replay_telemetry_file_format_mut(&mut self) -> &mut String;
     fn replay_telemetry_adjust_time(&self) -> &bool;
+    fn replay_telemetry_adjust_time_mut(&mut self) -> &mut bool;
     fn replay_telemetry_adjust_time_padding(&self) -> &f32;
+    fn replay_telemetry_adjust_time_padding_mut(&mut self) -> &mut f32;
     fn debug_draw_weapon_details(&self) -> &bool;
+    fn debug_draw_weapon_details_mut(&mut self) -> &mut bool;
     fn debug_draw_extensive_client_details(&self) -> &bool;
+    fn debug_draw_extensive_client_details_mut(&mut self) -> &mut bool;
     fn evasive_maneuvers_jump_probability(&self) -> &f32;
+    fn evasive_maneuvers_jump_probability_mut(&mut self) -> &mut f32;
     fn evasive_maneuvers_dodge_roll_probability(&self) -> &f32;
+    fn evasive_maneuvers_dodge_roll_probability_mut(&mut self) -> &mut f32;
     fn evasive_maneuvers_invert_strafe_duration_max(&self) -> &f32;
+    fn evasive_maneuvers_invert_strafe_duration_max_mut(&mut self) -> &mut f32;
     fn evasive_maneuvers_invert_strafe_duration_min(&self) -> &f32;
+    fn evasive_maneuvers_invert_strafe_duration_min_mut(&mut self) -> &mut f32;
     fn leg_head_aim_ratio_override(&self) -> &f32;
+    fn leg_head_aim_ratio_override_mut(&mut self) -> &mut f32;
     fn attacking_ability_left_probability(&self) -> &f32;
+    fn attacking_ability_left_probability_mut(&mut self) -> &mut f32;
     fn attacking_ability_left_duration_seconds(&self) -> &f32;
+    fn attacking_ability_left_duration_seconds_mut(&mut self) -> &mut f32;
     fn attacking_ability_middle_probability(&self) -> &f32;
+    fn attacking_ability_middle_probability_mut(&mut self) -> &mut f32;
     fn attacking_ability_middle_duration_seconds(&self) -> &f32;
+    fn attacking_ability_middle_duration_seconds_mut(&mut self) -> &mut f32;
     fn attacking_ability_right_probability(&self) -> &f32;
+    fn attacking_ability_right_probability_mut(&mut self) -> &mut f32;
     fn attacking_ability_right_duration_seconds(&self) -> &f32;
+    fn attacking_ability_right_duration_seconds_mut(&mut self) -> &mut f32;
     fn evasive_maneuvers_crouch_probability(&self) -> &f32;
+    fn evasive_maneuvers_crouch_probability_mut(&mut self) -> &mut f32;
     fn evasive_maneuvers_crouch_duration(&self) -> &f32;
+    fn evasive_maneuvers_crouch_duration_mut(&mut self) -> &mut f32;
     fn blaster_leg_head_aim_ratio(&self) -> &f32;
+    fn blaster_leg_head_aim_ratio_mut(&mut self) -> &mut f32;
     fn blaster_aim_noise(&self) -> &f32;
+    fn blaster_aim_noise_mut(&mut self) -> &mut f32;
     fn sniper_rifle_leg_head_aim_ratio(&self) -> &f32;
+    fn sniper_rifle_leg_head_aim_ratio_mut(&mut self) -> &mut f32;
     fn sniper_rifle_aim_noise(&self) -> &f32;
+    fn sniper_rifle_aim_noise_mut(&mut self) -> &mut f32;
     fn lmg_leg_head_aim_ratio(&self) -> &f32;
+    fn lmg_leg_head_aim_ratio_mut(&mut self) -> &mut f32;
     fn lmg_aim_noise(&self) -> &f32;
+    fn lmg_aim_noise_mut(&mut self) -> &mut f32;
     fn shotgun_leg_head_aim_ratio(&self) -> &f32;
+    fn shotgun_leg_head_aim_ratio_mut(&mut self) -> &mut f32;
     fn shotgun_aim_noise(&self) -> &f32;
+    fn shotgun_aim_noise_mut(&mut self) -> &mut f32;
     fn launcher_leg_head_aim_ratio(&self) -> &f32;
+    fn launcher_leg_head_aim_ratio_mut(&mut self) -> &mut f32;
     fn launcher_aim_noise(&self) -> &f32;
+    fn launcher_aim_noise_mut(&mut self) -> &mut f32;
     fn use_sword_attacking_abilities_from_meters(&self) -> &f32;
+    fn use_sword_attacking_abilities_from_meters_mut(&mut self) -> &mut f32;
     fn sword_attack_duration_time_min_s(&self) -> &f32;
+    fn sword_attack_duration_time_min_s_mut(&mut self) -> &mut f32;
     fn sword_attack_duration_time_max_s(&self) -> &f32;
+    fn sword_attack_duration_time_max_s_mut(&mut self) -> &mut f32;
     fn pause_sword_attack_duration_time_min_s(&self) -> &f32;
+    fn pause_sword_attack_duration_time_min_s_mut(&mut self) -> &mut f32;
     fn pause_sword_attack_duration_time_max_s(&self) -> &f32;
+    fn pause_sword_attack_duration_time_max_s_mut(&mut self) -> &mut f32;
     fn sword_attack_distance_meters_min(&self) -> &f32;
+    fn sword_attack_distance_meters_min_mut(&mut self) -> &mut f32;
     fn sword_attack_distance_meters_max(&self) -> &f32;
+    fn sword_attack_distance_meters_max_mut(&mut self) -> &mut f32;
     fn debug_draw_input_details(&self) -> &bool;
+    fn debug_draw_input_details_mut(&mut self) -> &mut bool;
     fn debug_window_position_scale_offset_x(&self) -> &f32;
+    fn debug_window_position_scale_offset_x_mut(&mut self) -> &mut f32;
     fn debug_window_position_scale_offset_y(&self) -> &f32;
+    fn debug_window_position_scale_offset_y_mut(&mut self) -> &mut f32;
     fn debug_window_width(&self) -> &i32;
+    fn debug_window_width_mut(&mut self) -> &mut i32;
     fn debug_window_height(&self) -> &i32;
+    fn debug_window_height_mut(&mut self) -> &mut i32;
     fn path_look_ahead_meters(&self) -> &f32;
+    fn path_look_ahead_meters_mut(&mut self) -> &mut f32;
     fn path_look_right_meters(&self) -> &f32;
+    fn path_look_right_meters_mut(&mut self) -> &mut f32;
     fn waypoint_tolerance_meters(&self) -> &f32;
+    fn waypoint_tolerance_meters_mut(&mut self) -> &mut f32;
     fn debug_draw_aim_at_positions(&self) -> &bool;
+    fn debug_draw_aim_at_positions_mut(&mut self) -> &mut bool;
     fn evasive_maneuvers_vehicle_scale(&self) -> &f32;
+    fn evasive_maneuvers_vehicle_scale_mut(&mut self) -> &mut f32;
     fn vehicle_aim_noise_scale(&self) -> &f32;
+    fn vehicle_aim_noise_scale_mut(&mut self) -> &mut f32;
     fn reset_settings_on_level_unload(&self) -> &bool;
+    fn reset_settings_on_level_unload_mut(&mut self) -> &mut bool;
     fn sword_guard_duration_time_min_s(&self) -> &f32;
+    fn sword_guard_duration_time_min_s_mut(&mut self) -> &mut f32;
     fn sword_guard_duration_time_max_s(&self) -> &f32;
+    fn sword_guard_duration_time_max_s_mut(&mut self) -> &mut f32;
     fn aim_noise_scale_team1(&self) -> &f32;
+    fn aim_noise_scale_team1_mut(&mut self) -> &mut f32;
     fn aim_noise_scale_team2(&self) -> &f32;
+    fn aim_noise_scale_team2_mut(&mut self) -> &mut f32;
     fn hero_strafe_probability_per_frame(&self) -> &f32;
+    fn hero_strafe_probability_per_frame_mut(&mut self) -> &mut f32;
     fn emote_probability_after_players_death(&self) -> &f32;
+    fn emote_probability_after_players_death_mut(&mut self) -> &mut f32;
     fn emote_duration(&self) -> &f32;
+    fn emote_duration_mut(&mut self) -> &mut f32;
     fn melee_interval_s(&self) -> &f32;
+    fn melee_interval_s_mut(&mut self) -> &mut f32;
     fn melee_distance_m(&self) -> &f32;
+    fn melee_distance_m_mut(&mut self) -> &mut f32;
     fn allow_evasive_manouvers_o_o_b(&self) -> &bool;
+    fn allow_evasive_manouvers_o_o_b_mut(&mut self) -> &mut bool;
     fn evasive_maneuvers_ground_check_enabled(&self) -> &bool;
+    fn evasive_maneuvers_ground_check_enabled_mut(&mut self) -> &mut bool;
     fn evasive_maneuvers_ground_check_distance_m(&self) -> &f32;
+    fn evasive_maneuvers_ground_check_distance_m_mut(&mut self) -> &mut f32;
     fn evasive_maneuvers_ground_check_height_distance_m(&self) -> &f32;
+    fn evasive_maneuvers_ground_check_height_distance_m_mut(&mut self) -> &mut f32;
     fn evasive_maneuvers_ground_check_height_offset_m(&self) -> &f32;
+    fn evasive_maneuvers_ground_check_height_offset_m_mut(&mut self) -> &mut f32;
     fn evasive_maneuvers_ground_check_cooldown_s(&self) -> &f32;
+    fn evasive_maneuvers_ground_check_cooldown_s_mut(&mut self) -> &mut f32;
     fn evasive_maneuvers_vehicles_enabled(&self) -> &bool;
+    fn evasive_maneuvers_vehicles_enabled_mut(&mut self) -> &mut bool;
     fn vehicle_minimum_forward_throttle(&self) -> &f32;
+    fn vehicle_minimum_forward_throttle_mut(&mut self) -> &mut f32;
     fn vehicle_use_character_throttle(&self) -> &bool;
+    fn vehicle_use_character_throttle_mut(&mut self) -> &mut bool;
 }
 
 impl AutoPlayerSettingsTrait for AutoPlayerSettings {
     fn a_f_k_takeover(&self) -> &f32 {
         &self.a_f_k_takeover
     }
+    fn a_f_k_takeover_mut(&mut self) -> &mut f32 {
+        &mut self.a_f_k_takeover
+    }
     fn client_enabled(&self) -> &bool {
         &self.client_enabled
+    }
+    fn client_enabled_mut(&mut self) -> &mut bool {
+        &mut self.client_enabled
     }
     fn allow_client_take_over(&self) -> &bool {
         &self.allow_client_take_over
     }
+    fn allow_client_take_over_mut(&mut self) -> &mut bool {
+        &mut self.allow_client_take_over
+    }
     fn force_server_control(&self) -> &bool {
         &self.force_server_control
+    }
+    fn force_server_control_mut(&mut self) -> &mut bool {
+        &mut self.force_server_control
     }
     fn force_server_objective_control(&self) -> &bool {
         &self.force_server_objective_control
     }
+    fn force_server_objective_control_mut(&mut self) -> &mut bool {
+        &mut self.force_server_objective_control
+    }
     fn force_client_objective_control(&self) -> &bool {
         &self.force_client_objective_control
+    }
+    fn force_client_objective_control_mut(&mut self) -> &mut bool {
+        &mut self.force_client_objective_control
     }
     fn force_client_navigation(&self) -> &bool {
         &self.force_client_navigation
     }
+    fn force_client_navigation_mut(&mut self) -> &mut bool {
+        &mut self.force_client_navigation
+    }
     fn debug_draw_enabled(&self) -> &bool {
         &self.debug_draw_enabled
+    }
+    fn debug_draw_enabled_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_enabled
     }
     fn debug_draw_waypoints(&self) -> &bool {
         &self.debug_draw_waypoints
     }
+    fn debug_draw_waypoints_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_waypoints
+    }
     fn debug_draw_client_details(&self) -> &bool {
         &self.debug_draw_client_details
+    }
+    fn debug_draw_client_details_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_client_details
     }
     fn debug_draw_combat_details(&self) -> &bool {
         &self.debug_draw_combat_details
     }
+    fn debug_draw_combat_details_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_combat_details
+    }
     fn player_count(&self) -> &i32 {
         &self.player_count
+    }
+    fn player_count_mut(&mut self) -> &mut i32 {
+        &mut self.player_count
     }
     fn forced_server_auto_player_count(&self) -> &i32 {
         &self.forced_server_auto_player_count
     }
+    fn forced_server_auto_player_count_mut(&mut self) -> &mut i32 {
+        &mut self.forced_server_auto_player_count
+    }
     fn allow_add_auto_fill_players(&self) -> &bool {
         &self.allow_add_auto_fill_players
+    }
+    fn allow_add_auto_fill_players_mut(&mut self) -> &mut bool {
+        &mut self.allow_add_auto_fill_players
     }
     fn allow_remove_auto_fill_players(&self) -> &bool {
         &self.allow_remove_auto_fill_players
     }
+    fn allow_remove_auto_fill_players_mut(&mut self) -> &mut bool {
+        &mut self.allow_remove_auto_fill_players
+    }
     fn force_apply_gameplay_bots_count(&self) -> &bool {
         &self.force_apply_gameplay_bots_count
+    }
+    fn force_apply_gameplay_bots_count_mut(&mut self) -> &mut bool {
+        &mut self.force_apply_gameplay_bots_count
     }
     fn force_fill_gameplay_bots_team1(&self) -> &i32 {
         &self.force_fill_gameplay_bots_team1
     }
+    fn force_fill_gameplay_bots_team1_mut(&mut self) -> &mut i32 {
+        &mut self.force_fill_gameplay_bots_team1
+    }
     fn force_fill_gameplay_bots_team2(&self) -> &i32 {
         &self.force_fill_gameplay_bots_team2
+    }
+    fn force_fill_gameplay_bots_team2_mut(&mut self) -> &mut i32 {
+        &mut self.force_fill_gameplay_bots_team2
     }
     fn respawn_delay(&self) -> &f32 {
         &self.respawn_delay
     }
+    fn respawn_delay_mut(&mut self) -> &mut f32 {
+        &mut self.respawn_delay
+    }
     fn initial_respawn_delay(&self) -> &f32 {
         &self.initial_respawn_delay
+    }
+    fn initial_respawn_delay_mut(&mut self) -> &mut f32 {
+        &mut self.initial_respawn_delay
     }
     fn client_join_delay(&self) -> &f32 {
         &self.client_join_delay
     }
+    fn client_join_delay_mut(&mut self) -> &mut f32 {
+        &mut self.client_join_delay
+    }
     fn round_timeout(&self) -> &i32 {
         &self.round_timeout
+    }
+    fn round_timeout_mut(&mut self) -> &mut i32 {
+        &mut self.round_timeout
     }
     fn squad_members(&self) -> &i32 {
         &self.squad_members
     }
+    fn squad_members_mut(&mut self) -> &mut i32 {
+        &mut self.squad_members
+    }
     fn allow_gameplay_bots_to_join_player_squads(&self) -> &bool {
         &self.allow_gameplay_bots_to_join_player_squads
+    }
+    fn allow_gameplay_bots_to_join_player_squads_mut(&mut self) -> &mut bool {
+        &mut self.allow_gameplay_bots_to_join_player_squads
     }
     fn allow_gameplay_bots_to_form_own_squads(&self) -> &bool {
         &self.allow_gameplay_bots_to_form_own_squads
     }
+    fn allow_gameplay_bots_to_form_own_squads_mut(&mut self) -> &mut bool {
+        &mut self.allow_gameplay_bots_to_form_own_squads
+    }
     fn allow_vehicle_spawn(&self) -> &bool {
         &self.allow_vehicle_spawn
+    }
+    fn allow_vehicle_spawn_mut(&mut self) -> &mut bool {
+        &mut self.allow_vehicle_spawn
     }
     fn force_disable_vehicle_spawn(&self) -> &bool {
         &self.force_disable_vehicle_spawn
     }
+    fn force_disable_vehicle_spawn_mut(&mut self) -> &mut bool {
+        &mut self.force_disable_vehicle_spawn
+    }
     fn allow_client_vehicle_spawn(&self) -> &bool {
         &self.allow_client_vehicle_spawn
+    }
+    fn allow_client_vehicle_spawn_mut(&mut self) -> &mut bool {
+        &mut self.allow_client_vehicle_spawn
     }
     fn allow_first_client_initial_vehicle_spawn(&self) -> &bool {
         &self.allow_first_client_initial_vehicle_spawn
     }
+    fn allow_first_client_initial_vehicle_spawn_mut(&mut self) -> &mut bool {
+        &mut self.allow_first_client_initial_vehicle_spawn
+    }
     fn control_connectionless_players(&self) -> &bool {
         &self.control_connectionless_players
+    }
+    fn control_connectionless_players_mut(&mut self) -> &mut bool {
+        &mut self.control_connectionless_players
     }
     fn allow_respawn(&self) -> &bool {
         &self.allow_respawn
     }
+    fn allow_respawn_mut(&mut self) -> &mut bool {
+        &mut self.allow_respawn
+    }
     fn pickup_items_secondary_objective_attempt_interval_seconds(&self) -> &i32 {
         &self.pickup_items_secondary_objective_attempt_interval_seconds
+    }
+    fn pickup_items_secondary_objective_attempt_interval_seconds_mut(&mut self) -> &mut i32 {
+        &mut self.pickup_items_secondary_objective_attempt_interval_seconds
     }
     fn use_telemetry_based_planner(&self) -> &bool {
         &self.use_telemetry_based_planner
     }
+    fn use_telemetry_based_planner_mut(&mut self) -> &mut bool {
+        &mut self.use_telemetry_based_planner
+    }
     fn debug_telemetry_based_planner(&self) -> &bool {
         &self.debug_telemetry_based_planner
+    }
+    fn debug_telemetry_based_planner_mut(&mut self) -> &mut bool {
+        &mut self.debug_telemetry_based_planner
     }
     fn planner_terrain_vertical_cutoff(&self) -> &f32 {
         &self.planner_terrain_vertical_cutoff
     }
+    fn planner_terrain_vertical_cutoff_mut(&mut self) -> &mut f32 {
+        &mut self.planner_terrain_vertical_cutoff
+    }
     fn planner_connection_cutoff(&self) -> &f32 {
         &self.planner_connection_cutoff
+    }
+    fn planner_connection_cutoff_mut(&mut self) -> &mut f32 {
+        &mut self.planner_connection_cutoff
     }
     fn planner_max_nodes_search_radius(&self) -> &f32 {
         &self.planner_max_nodes_search_radius
     }
+    fn planner_max_nodes_search_radius_mut(&mut self) -> &mut f32 {
+        &mut self.planner_max_nodes_search_radius
+    }
     fn planner_link_end_arrival_range(&self) -> &f32 {
         &self.planner_link_end_arrival_range
+    }
+    fn planner_link_end_arrival_range_mut(&mut self) -> &mut f32 {
+        &mut self.planner_link_end_arrival_range
     }
     fn use_fade_override(&self) -> &bool {
         &self.use_fade_override
     }
+    fn use_fade_override_mut(&mut self) -> &mut bool {
+        &mut self.use_fade_override
+    }
     fn input_scale_yaw(&self) -> &f32 {
         &self.input_scale_yaw
+    }
+    fn input_scale_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.input_scale_yaw
     }
     fn input_scale_pitch(&self) -> &f32 {
         &self.input_scale_pitch
     }
+    fn input_scale_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.input_scale_pitch
+    }
     fn input_scale_client(&self) -> &f32 {
         &self.input_scale_client
+    }
+    fn input_scale_client_mut(&mut self) -> &mut f32 {
+        &mut self.input_scale_client
     }
     fn input_force_mouse(&self) -> &bool {
         &self.input_force_mouse
     }
+    fn input_force_mouse_mut(&mut self) -> &mut bool {
+        &mut self.input_force_mouse
+    }
     fn use_input_override_yaw_pitch(&self) -> &bool {
         &self.use_input_override_yaw_pitch
+    }
+    fn use_input_override_yaw_pitch_mut(&mut self) -> &mut bool {
+        &mut self.use_input_override_yaw_pitch
     }
     fn input_override_yaw(&self) -> &f32 {
         &self.input_override_yaw
     }
+    fn input_override_yaw_mut(&mut self) -> &mut f32 {
+        &mut self.input_override_yaw
+    }
     fn input_override_pitch(&self) -> &f32 {
         &self.input_override_pitch
+    }
+    fn input_override_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.input_override_pitch
     }
     fn use_seek_and_destroy(&self) -> &bool {
         &self.use_seek_and_destroy
     }
+    fn use_seek_and_destroy_mut(&mut self) -> &mut bool {
+        &mut self.use_seek_and_destroy
+    }
     fn allow_teleport(&self) -> &bool {
         &self.allow_teleport
+    }
+    fn allow_teleport_mut(&mut self) -> &mut bool {
+        &mut self.allow_teleport
     }
     fn force_allow_all_teleports(&self) -> &bool {
         &self.force_allow_all_teleports
     }
+    fn force_allow_all_teleports_mut(&mut self) -> &mut bool {
+        &mut self.force_allow_all_teleports
+    }
     fn debug_draw_teleports(&self) -> &bool {
         &self.debug_draw_teleports
+    }
+    fn debug_draw_teleports_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_teleports
     }
     fn update_a_i(&self) -> &bool {
         &self.update_a_i
     }
+    fn update_a_i_mut(&mut self) -> &mut bool {
+        &mut self.update_a_i
+    }
     fn debug_draw_client_only(&self) -> &bool {
         &self.debug_draw_client_only
+    }
+    fn debug_draw_client_only_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_client_only
     }
     fn debug_draw_client_realm_only(&self) -> &bool {
         &self.debug_draw_client_realm_only
     }
+    fn debug_draw_client_realm_only_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_client_realm_only
+    }
     fn aim_acceleration(&self) -> &f32 {
         &self.aim_acceleration
+    }
+    fn aim_acceleration_mut(&mut self) -> &mut f32 {
+        &mut self.aim_acceleration
     }
     fn aim_lap_time(&self) -> &f32 {
         &self.aim_lap_time
     }
+    fn aim_lap_time_mut(&mut self) -> &mut f32 {
+        &mut self.aim_lap_time
+    }
     fn allow_move_outside_combat_area(&self) -> &bool {
         &self.allow_move_outside_combat_area
+    }
+    fn allow_move_outside_combat_area_mut(&mut self) -> &mut bool {
+        &mut self.allow_move_outside_combat_area
     }
     fn allow_spawn_outside_combat_area(&self) -> &bool {
         &self.allow_spawn_outside_combat_area
     }
+    fn allow_spawn_outside_combat_area_mut(&mut self) -> &mut bool {
+        &mut self.allow_spawn_outside_combat_area
+    }
     fn allow_vehicle_spawn_outside_combat_area(&self) -> &bool {
         &self.allow_vehicle_spawn_outside_combat_area
+    }
+    fn allow_vehicle_spawn_outside_combat_area_mut(&mut self) -> &mut bool {
+        &mut self.allow_vehicle_spawn_outside_combat_area
     }
     fn allow_vehicle_spawn_only(&self) -> &bool {
         &self.allow_vehicle_spawn_only
     }
+    fn allow_vehicle_spawn_only_mut(&mut self) -> &mut bool {
+        &mut self.allow_vehicle_spawn_only
+    }
     fn debug_draw_pretty_path(&self) -> &bool {
         &self.debug_draw_pretty_path
+    }
+    fn debug_draw_pretty_path_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_pretty_path
     }
     fn debug_draw_use_waypoints_alpha(&self) -> &bool {
         &self.debug_draw_use_waypoints_alpha
     }
+    fn debug_draw_use_waypoints_alpha_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_use_waypoints_alpha
+    }
     fn debug_draw_invalid_move_intention(&self) -> &bool {
         &self.debug_draw_invalid_move_intention
+    }
+    fn debug_draw_invalid_move_intention_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_invalid_move_intention
     }
     fn debug_spam(&self) -> &bool {
         &self.debug_spam
     }
+    fn debug_spam_mut(&mut self) -> &mut bool {
+        &mut self.debug_spam
+    }
     fn lof_timeout_s(&self) -> &f32 {
         &self.lof_timeout_s
+    }
+    fn lof_timeout_s_mut(&mut self) -> &mut f32 {
+        &mut self.lof_timeout_s
     }
     fn lof_reaction_time_s(&self) -> &f32 {
         &self.lof_reaction_time_s
     }
+    fn lof_reaction_time_s_mut(&mut self) -> &mut f32 {
+        &mut self.lof_reaction_time_s
+    }
     fn server_players_ignore_client_players(&self) -> &bool {
         &self.server_players_ignore_client_players
+    }
+    fn server_players_ignore_client_players_mut(&mut self) -> &mut bool {
+        &mut self.server_players_ignore_client_players
     }
     fn ignore_human_players(&self) -> &bool {
         &self.ignore_human_players
     }
+    fn ignore_human_players_mut(&mut self) -> &mut bool {
+        &mut self.ignore_human_players
+    }
     fn force_kit(&self) -> &i32 {
         &self.force_kit
+    }
+    fn force_kit_mut(&mut self) -> &mut i32 {
+        &mut self.force_kit
     }
     fn opportunistic_interact(&self) -> &bool {
         &self.opportunistic_interact
     }
+    fn opportunistic_interact_mut(&mut self) -> &mut bool {
+        &mut self.opportunistic_interact
+    }
     fn squad_spawn_probability(&self) -> &f32 {
         &self.squad_spawn_probability
+    }
+    fn squad_spawn_probability_mut(&mut self) -> &mut f32 {
+        &mut self.squad_spawn_probability
     }
     fn kit_change_probability(&self) -> &f32 {
         &self.kit_change_probability
     }
+    fn kit_change_probability_mut(&mut self) -> &mut f32 {
+        &mut self.kit_change_probability
+    }
     fn use_default_unlocks_probability(&self) -> &f32 {
         &self.use_default_unlocks_probability
+    }
+    fn use_default_unlocks_probability_mut(&mut self) -> &mut f32 {
+        &mut self.use_default_unlocks_probability
     }
     fn allow_medic_revive(&self) -> &bool {
         &self.allow_medic_revive
     }
+    fn allow_medic_revive_mut(&mut self) -> &mut bool {
+        &mut self.allow_medic_revive
+    }
     fn allow_pickup_items(&self) -> &bool {
         &self.allow_pickup_items
+    }
+    fn allow_pickup_items_mut(&mut self) -> &mut bool {
+        &mut self.allow_pickup_items
     }
     fn debug_draw_objectives(&self) -> &bool {
         &self.debug_draw_objectives
     }
+    fn debug_draw_objectives_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_objectives
+    }
     fn debug_draw_objective_always(&self) -> &bool {
         &self.debug_draw_objective_always
+    }
+    fn debug_draw_objective_always_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_objective_always
     }
     fn wallhack(&self) -> &bool {
         &self.wallhack
     }
+    fn wallhack_mut(&mut self) -> &mut bool {
+        &mut self.wallhack
+    }
     fn weapon_swap_interval_s(&self) -> &f32 {
         &self.weapon_swap_interval_s
+    }
+    fn weapon_swap_interval_s_mut(&mut self) -> &mut f32 {
+        &mut self.weapon_swap_interval_s
     }
     fn weapon_swap_primary_probability(&self) -> &f32 {
         &self.weapon_swap_primary_probability
     }
+    fn weapon_swap_primary_probability_mut(&mut self) -> &mut f32 {
+        &mut self.weapon_swap_primary_probability
+    }
     fn vehicle_bail_time(&self) -> &i32 {
         &self.vehicle_bail_time
+    }
+    fn vehicle_bail_time_mut(&mut self) -> &mut i32 {
+        &mut self.vehicle_bail_time
     }
     fn jump_if_stuck_time_seconds(&self) -> &f32 {
         &self.jump_if_stuck_time_seconds
     }
+    fn jump_if_stuck_time_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.jump_if_stuck_time_seconds
+    }
     fn jump_cooldown_seconds(&self) -> &f32 {
         &self.jump_cooldown_seconds
+    }
+    fn jump_cooldown_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.jump_cooldown_seconds
     }
     fn patrol_position_cooldown_seconds(&self) -> &f32 {
         &self.patrol_position_cooldown_seconds
     }
+    fn patrol_position_cooldown_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.patrol_position_cooldown_seconds
+    }
     fn combat_use_grenades(&self) -> &bool {
         &self.combat_use_grenades
+    }
+    fn combat_use_grenades_mut(&mut self) -> &mut bool {
+        &mut self.combat_use_grenades
     }
     fn combat_use_prone(&self) -> &bool {
         &self.combat_use_prone
     }
+    fn combat_use_prone_mut(&mut self) -> &mut bool {
+        &mut self.combat_use_prone
+    }
     fn combat_use_melee(&self) -> &bool {
         &self.combat_use_melee
+    }
+    fn combat_use_melee_mut(&mut self) -> &mut bool {
+        &mut self.combat_use_melee
     }
     fn use_crouch(&self) -> &bool {
         &self.use_crouch
     }
+    fn use_crouch_mut(&mut self) -> &mut bool {
+        &mut self.use_crouch
+    }
     fn forced_fire_time_max_s(&self) -> &f32 {
         &self.forced_fire_time_max_s
+    }
+    fn forced_fire_time_max_s_mut(&mut self) -> &mut f32 {
+        &mut self.forced_fire_time_max_s
     }
     fn forced_fire_time_min_s(&self) -> &f32 {
         &self.forced_fire_time_min_s
     }
+    fn forced_fire_time_min_s_mut(&mut self) -> &mut f32 {
+        &mut self.forced_fire_time_min_s
+    }
     fn allow_primary_weapon_forced_fire(&self) -> &bool {
         &self.allow_primary_weapon_forced_fire
+    }
+    fn allow_primary_weapon_forced_fire_mut(&mut self) -> &mut bool {
+        &mut self.allow_primary_weapon_forced_fire
     }
     fn allow_vehicle_forced_fire(&self) -> &bool {
         &self.allow_vehicle_forced_fire
     }
+    fn allow_vehicle_forced_fire_mut(&mut self) -> &mut bool {
+        &mut self.allow_vehicle_forced_fire
+    }
     fn forced_fire_vehicle_time_scale(&self) -> &f32 {
         &self.forced_fire_vehicle_time_scale
+    }
+    fn forced_fire_vehicle_time_scale_mut(&mut self) -> &mut f32 {
+        &mut self.forced_fire_vehicle_time_scale
     }
     fn exit_vehicle_when_stuck_timeout(&self) -> &f32 {
         &self.exit_vehicle_when_stuck_timeout
     }
+    fn exit_vehicle_when_stuck_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.exit_vehicle_when_stuck_timeout
+    }
     fn min_distance_for_vehicle_u_turn(&self) -> &f32 {
         &self.min_distance_for_vehicle_u_turn
+    }
+    fn min_distance_for_vehicle_u_turn_mut(&mut self) -> &mut f32 {
+        &mut self.min_distance_for_vehicle_u_turn
     }
     fn min_airplane_bail_out_time(&self) -> &i32 {
         &self.min_airplane_bail_out_time
     }
+    fn min_airplane_bail_out_time_mut(&mut self) -> &mut i32 {
+        &mut self.min_airplane_bail_out_time
+    }
     fn max_airplane_bail_out_time(&self) -> &i32 {
         &self.max_airplane_bail_out_time
+    }
+    fn max_airplane_bail_out_time_mut(&mut self) -> &mut i32 {
+        &mut self.max_airplane_bail_out_time
     }
     fn login_rate(&self) -> &f32 {
         &self.login_rate
     }
+    fn login_rate_mut(&mut self) -> &mut f32 {
+        &mut self.login_rate
+    }
     fn spawn_rate(&self) -> &f32 {
         &self.spawn_rate
+    }
+    fn spawn_rate_mut(&mut self) -> &mut f32 {
+        &mut self.spawn_rate
     }
     fn max_spawns_per_update(&self) -> &i32 {
         &self.max_spawns_per_update
     }
+    fn max_spawns_per_update_mut(&mut self) -> &mut i32 {
+        &mut self.max_spawns_per_update
+    }
     fn variance(&self) -> &f32 {
         &self.variance
+    }
+    fn variance_mut(&mut self) -> &mut f32 {
+        &mut self.variance
     }
     fn airplane_exit_input(&self) -> &i32 {
         &self.airplane_exit_input
     }
+    fn airplane_exit_input_mut(&mut self) -> &mut i32 {
+        &mut self.airplane_exit_input
+    }
     fn secondary_objective_generation_min_seconds(&self) -> &f32 {
         &self.secondary_objective_generation_min_seconds
+    }
+    fn secondary_objective_generation_min_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_objective_generation_min_seconds
     }
     fn secondary_objective_generation_max_seconds(&self) -> &f32 {
         &self.secondary_objective_generation_max_seconds
     }
+    fn secondary_objective_generation_max_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_objective_generation_max_seconds
+    }
     fn allow_enter_vehicle(&self) -> &bool {
         &self.allow_enter_vehicle
+    }
+    fn allow_enter_vehicle_mut(&mut self) -> &mut bool {
+        &mut self.allow_enter_vehicle
     }
     fn enter_vehicle_cooldown_seconds(&self) -> &f32 {
         &self.enter_vehicle_cooldown_seconds
     }
+    fn enter_vehicle_cooldown_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.enter_vehicle_cooldown_seconds
+    }
     fn enter_vehicle_probability(&self) -> &f32 {
         &self.enter_vehicle_probability
+    }
+    fn enter_vehicle_probability_mut(&mut self) -> &mut f32 {
+        &mut self.enter_vehicle_probability
     }
     fn enter_vehicle_search_radius(&self) -> &f32 {
         &self.enter_vehicle_search_radius
     }
+    fn enter_vehicle_search_radius_mut(&mut self) -> &mut f32 {
+        &mut self.enter_vehicle_search_radius
+    }
     fn print_client_input(&self) -> &bool {
         &self.print_client_input
+    }
+    fn print_client_input_mut(&mut self) -> &mut bool {
+        &mut self.print_client_input
     }
     fn allow_primary_objective(&self) -> &bool {
         &self.allow_primary_objective
     }
+    fn allow_primary_objective_mut(&mut self) -> &mut bool {
+        &mut self.allow_primary_objective
+    }
     fn allow_secondary_objectives_while_passive(&self) -> &bool {
         &self.allow_secondary_objectives_while_passive
+    }
+    fn allow_secondary_objectives_while_passive_mut(&mut self) -> &mut bool {
+        &mut self.allow_secondary_objectives_while_passive
     }
     fn allow_secondary_objectives_while_defensive(&self) -> &bool {
         &self.allow_secondary_objectives_while_defensive
     }
+    fn allow_secondary_objectives_while_defensive_mut(&mut self) -> &mut bool {
+        &mut self.allow_secondary_objectives_while_defensive
+    }
     fn allow_pathfinding(&self) -> &bool {
         &self.allow_pathfinding
+    }
+    fn allow_pathfinding_mut(&mut self) -> &mut bool {
+        &mut self.allow_pathfinding
     }
     fn secondary_objective_timeout_seconds(&self) -> &f32 {
         &self.secondary_objective_timeout_seconds
     }
+    fn secondary_objective_timeout_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_objective_timeout_seconds
+    }
     fn force_passive_mode(&self) -> &bool {
         &self.force_passive_mode
+    }
+    fn force_passive_mode_mut(&mut self) -> &mut bool {
+        &mut self.force_passive_mode
     }
     fn force_primary_objective_defensive_mode(&self) -> &bool {
         &self.force_primary_objective_defensive_mode
     }
+    fn force_primary_objective_defensive_mode_mut(&mut self) -> &mut bool {
+        &mut self.force_primary_objective_defensive_mode
+    }
     fn force_primary_objective_aggressive_mode(&self) -> &bool {
         &self.force_primary_objective_aggressive_mode
+    }
+    fn force_primary_objective_aggressive_mode_mut(&mut self) -> &mut bool {
+        &mut self.force_primary_objective_aggressive_mode
     }
     fn force_secondary_objective_defensive_mode(&self) -> &bool {
         &self.force_secondary_objective_defensive_mode
     }
+    fn force_secondary_objective_defensive_mode_mut(&mut self) -> &mut bool {
+        &mut self.force_secondary_objective_defensive_mode
+    }
     fn force_secondary_objective_aggressive_mode(&self) -> &bool {
         &self.force_secondary_objective_aggressive_mode
+    }
+    fn force_secondary_objective_aggressive_mode_mut(&mut self) -> &mut bool {
+        &mut self.force_secondary_objective_aggressive_mode
     }
     fn client_jesus_mode(&self) -> &bool {
         &self.client_jesus_mode
     }
+    fn client_jesus_mode_mut(&mut self) -> &mut bool {
+        &mut self.client_jesus_mode
+    }
     fn allow_fortifications(&self) -> &bool {
         &self.allow_fortifications
+    }
+    fn allow_fortifications_mut(&mut self) -> &mut bool {
+        &mut self.allow_fortifications
     }
     fn fortification_probability(&self) -> &f32 {
         &self.fortification_probability
     }
+    fn fortification_probability_mut(&mut self) -> &mut f32 {
+        &mut self.fortification_probability
+    }
     fn fortification_search_radius(&self) -> &f32 {
         &self.fortification_search_radius
+    }
+    fn fortification_search_radius_mut(&mut self) -> &mut f32 {
+        &mut self.fortification_search_radius
     }
     fn repath_cooldown_seconds(&self) -> &f32 {
         &self.repath_cooldown_seconds
     }
+    fn repath_cooldown_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.repath_cooldown_seconds
+    }
     fn un_stuck_vehicle_actions_trigger_time_seconds(&self) -> &f32 {
         &self.un_stuck_vehicle_actions_trigger_time_seconds
+    }
+    fn un_stuck_vehicle_actions_trigger_time_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.un_stuck_vehicle_actions_trigger_time_seconds
     }
     fn unstuck_minimal_move_distance(&self) -> &f32 {
         &self.unstuck_minimal_move_distance
     }
+    fn unstuck_minimal_move_distance_mut(&mut self) -> &mut f32 {
+        &mut self.unstuck_minimal_move_distance
+    }
     fn unstuck_minimal_move_suicide_timeout(&self) -> &f32 {
         &self.unstuck_minimal_move_suicide_timeout
+    }
+    fn unstuck_minimal_move_suicide_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.unstuck_minimal_move_suicide_timeout
     }
     fn fallen_below_suicide_timeout(&self) -> &f32 {
         &self.fallen_below_suicide_timeout
     }
+    fn fallen_below_suicide_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.fallen_below_suicide_timeout
+    }
     fn navigation_position_tolerance_meters(&self) -> &f32 {
         &self.navigation_position_tolerance_meters
+    }
+    fn navigation_position_tolerance_meters_mut(&mut self) -> &mut f32 {
+        &mut self.navigation_position_tolerance_meters
     }
     fn use_name_generator(&self) -> &bool {
         &self.use_name_generator
     }
+    fn use_name_generator_mut(&mut self) -> &mut bool {
+        &mut self.use_name_generator
+    }
     fn allow_stuck_escape_procedure(&self) -> &bool {
         &self.allow_stuck_escape_procedure
+    }
+    fn allow_stuck_escape_procedure_mut(&mut self) -> &mut bool {
+        &mut self.allow_stuck_escape_procedure
     }
     fn exit_stuck_escape_procedure_on_visual_check(&self) -> &bool {
         &self.exit_stuck_escape_procedure_on_visual_check
     }
+    fn exit_stuck_escape_procedure_on_visual_check_mut(&mut self) -> &mut bool {
+        &mut self.exit_stuck_escape_procedure_on_visual_check
+    }
     fn stuck_escape_procedure_sensor_length(&self) -> &f32 {
         &self.stuck_escape_procedure_sensor_length
+    }
+    fn stuck_escape_procedure_sensor_length_mut(&mut self) -> &mut f32 {
+        &mut self.stuck_escape_procedure_sensor_length
     }
     fn stuck_escape_procedure_p_i_fraction(&self) -> &f32 {
         &self.stuck_escape_procedure_p_i_fraction
     }
+    fn stuck_escape_procedure_p_i_fraction_mut(&mut self) -> &mut f32 {
+        &mut self.stuck_escape_procedure_p_i_fraction
+    }
     fn stuck_escape_procedure_escape_distance(&self) -> &f32 {
         &self.stuck_escape_procedure_escape_distance
+    }
+    fn stuck_escape_procedure_escape_distance_mut(&mut self) -> &mut f32 {
+        &mut self.stuck_escape_procedure_escape_distance
     }
     fn stuck_escape_procedure_activation_seconds(&self) -> &f32 {
         &self.stuck_escape_procedure_activation_seconds
     }
+    fn stuck_escape_procedure_activation_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.stuck_escape_procedure_activation_seconds
+    }
     fn stuck_escape_procedure_update_interval(&self) -> &f32 {
         &self.stuck_escape_procedure_update_interval
+    }
+    fn stuck_escape_procedure_update_interval_mut(&mut self) -> &mut f32 {
+        &mut self.stuck_escape_procedure_update_interval
     }
     fn stuck_escape_procedure_timeout_seconds(&self) -> &f32 {
         &self.stuck_escape_procedure_timeout_seconds
     }
+    fn stuck_escape_procedure_timeout_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.stuck_escape_procedure_timeout_seconds
+    }
     fn debug_draw_unstuck(&self) -> &bool {
         &self.debug_draw_unstuck
+    }
+    fn debug_draw_unstuck_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_unstuck
     }
     fn un_stuck_actions_trigger_time_seconds(&self) -> &f32 {
         &self.un_stuck_actions_trigger_time_seconds
     }
+    fn un_stuck_actions_trigger_time_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.un_stuck_actions_trigger_time_seconds
+    }
     fn un_stuck_actions_trigger_cooldown(&self) -> &f32 {
         &self.un_stuck_actions_trigger_cooldown
+    }
+    fn un_stuck_actions_trigger_cooldown_mut(&mut self) -> &mut f32 {
+        &mut self.un_stuck_actions_trigger_cooldown
     }
     fn stuck_escape_procedure_retries(&self) -> &i32 {
         &self.stuck_escape_procedure_retries
     }
+    fn stuck_escape_procedure_retries_mut(&mut self) -> &mut i32 {
+        &mut self.stuck_escape_procedure_retries
+    }
     fn primary_interaction_search_radius(&self) -> &f32 {
         &self.primary_interaction_search_radius
+    }
+    fn primary_interaction_search_radius_mut(&mut self) -> &mut f32 {
+        &mut self.primary_interaction_search_radius
     }
     fn allow_suicide(&self) -> &bool {
         &self.allow_suicide
     }
+    fn allow_suicide_mut(&mut self) -> &mut bool {
+        &mut self.allow_suicide
+    }
     fn allow_random_behavior(&self) -> &bool {
         &self.allow_random_behavior
+    }
+    fn allow_random_behavior_mut(&mut self) -> &mut bool {
+        &mut self.allow_random_behavior
     }
     fn allow_secondary_interactions(&self) -> &bool {
         &self.allow_secondary_interactions
     }
+    fn allow_secondary_interactions_mut(&mut self) -> &mut bool {
+        &mut self.allow_secondary_interactions
+    }
     fn secondary_interactions_probability(&self) -> &f32 {
         &self.secondary_interactions_probability
+    }
+    fn secondary_interactions_probability_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_interactions_probability
     }
     fn secondary_interactions_search_radius(&self) -> &f32 {
         &self.secondary_interactions_search_radius
     }
+    fn secondary_interactions_search_radius_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_interactions_search_radius
+    }
     fn secondary_objective_pickup_items_search_radius(&self) -> &f32 {
         &self.secondary_objective_pickup_items_search_radius
+    }
+    fn secondary_objective_pickup_items_search_radius_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_objective_pickup_items_search_radius
     }
     fn secondary_objective_pickup_items_interact_or_action_radius(&self) -> &f32 {
         &self.secondary_objective_pickup_items_interact_or_action_radius
     }
+    fn secondary_objective_pickup_items_interact_or_action_radius_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_objective_pickup_items_interact_or_action_radius
+    }
     fn secondary_objective_jesus_mode(&self) -> &bool {
         &self.secondary_objective_jesus_mode
+    }
+    fn secondary_objective_jesus_mode_mut(&mut self) -> &mut bool {
+        &mut self.secondary_objective_jesus_mode
     }
     fn secondary_revive_search_distance(&self) -> &f32 {
         &self.secondary_revive_search_distance
     }
+    fn secondary_revive_search_distance_mut(&mut self) -> &mut f32 {
+        &mut self.secondary_revive_search_distance
+    }
     fn debug_draw_navigation_details(&self) -> &bool {
         &self.debug_draw_navigation_details
+    }
+    fn debug_draw_navigation_details_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_navigation_details
     }
     fn debug_draw_navigation_progress_details(&self) -> &bool {
         &self.debug_draw_navigation_progress_details
     }
+    fn debug_draw_navigation_progress_details_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_navigation_progress_details
+    }
     fn debug_draw_custom_input(&self) -> &bool {
         &self.debug_draw_custom_input
+    }
+    fn debug_draw_custom_input_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_custom_input
     }
     fn expected_travel_time_distance_scale(&self) -> &f32 {
         &self.expected_travel_time_distance_scale
     }
+    fn expected_travel_time_distance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.expected_travel_time_distance_scale
+    }
     fn expected_travel_time_base(&self) -> &f32 {
         &self.expected_travel_time_base
+    }
+    fn expected_travel_time_base_mut(&mut self) -> &mut f32 {
+        &mut self.expected_travel_time_base
     }
     fn interact_area_time(&self) -> &f32 {
         &self.interact_area_time
     }
+    fn interact_area_time_mut(&mut self) -> &mut f32 {
+        &mut self.interact_area_time
+    }
     fn debug_highlight_objective_type(&self) -> &i32 {
         &self.debug_highlight_objective_type
+    }
+    fn debug_highlight_objective_type_mut(&mut self) -> &mut i32 {
+        &mut self.debug_highlight_objective_type
     }
     fn seek_and_destroy_min_radius(&self) -> &f32 {
         &self.seek_and_destroy_min_radius
     }
+    fn seek_and_destroy_min_radius_mut(&mut self) -> &mut f32 {
+        &mut self.seek_and_destroy_min_radius
+    }
     fn seek_and_destroy_max_radius(&self) -> &f32 {
         &self.seek_and_destroy_max_radius
+    }
+    fn seek_and_destroy_max_radius_mut(&mut self) -> &mut f32 {
+        &mut self.seek_and_destroy_max_radius
     }
     fn force_repath_if_too_far_from_waypoint_meters(&self) -> &f32 {
         &self.force_repath_if_too_far_from_waypoint_meters
     }
+    fn force_repath_if_too_far_from_waypoint_meters_mut(&mut self) -> &mut f32 {
+        &mut self.force_repath_if_too_far_from_waypoint_meters
+    }
     fn waypoint_minimum_progress_meters(&self) -> &f32 {
         &self.waypoint_minimum_progress_meters
+    }
+    fn waypoint_minimum_progress_meters_mut(&mut self) -> &mut f32 {
+        &mut self.waypoint_minimum_progress_meters
     }
     fn debug_draw_aim_noise(&self) -> &bool {
         &self.debug_draw_aim_noise
     }
+    fn debug_draw_aim_noise_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_aim_noise
+    }
     fn aim_noise_scale(&self) -> &f32 {
         &self.aim_noise_scale
+    }
+    fn aim_noise_scale_mut(&mut self) -> &mut f32 {
+        &mut self.aim_noise_scale
     }
     fn target_min_switch_time_s(&self) -> &f32 {
         &self.target_min_switch_time_s
     }
+    fn target_min_switch_time_s_mut(&mut self) -> &mut f32 {
+        &mut self.target_min_switch_time_s
+    }
     fn max_target_engaging_distance_scale(&self) -> &f32 {
         &self.max_target_engaging_distance_scale
+    }
+    fn max_target_engaging_distance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.max_target_engaging_distance_scale
     }
     fn allow_random_path_spread(&self) -> &bool {
         &self.allow_random_path_spread
     }
+    fn allow_random_path_spread_mut(&mut self) -> &mut bool {
+        &mut self.allow_random_path_spread
+    }
     fn force_use_random_path_spread(&self) -> &bool {
         &self.force_use_random_path_spread
+    }
+    fn force_use_random_path_spread_mut(&mut self) -> &mut bool {
+        &mut self.force_use_random_path_spread
     }
     fn random_path_spread_radius(&self) -> &f32 {
         &self.random_path_spread_radius
     }
+    fn random_path_spread_radius_mut(&mut self) -> &mut f32 {
+        &mut self.random_path_spread_radius
+    }
     fn random_path_spread_center_distance(&self) -> &f32 {
         &self.random_path_spread_center_distance
+    }
+    fn random_path_spread_center_distance_mut(&mut self) -> &mut f32 {
+        &mut self.random_path_spread_center_distance
     }
     fn update_target_cooldown(&self) -> &f32 {
         &self.update_target_cooldown
     }
+    fn update_target_cooldown_mut(&mut self) -> &mut f32 {
+        &mut self.update_target_cooldown
+    }
     fn forced_target_timeout_seconds(&self) -> &f32 {
         &self.forced_target_timeout_seconds
+    }
+    fn forced_target_timeout_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.forced_target_timeout_seconds
     }
     fn debug_draw_players_names_and_ids(&self) -> &bool {
         &self.debug_draw_players_names_and_ids
     }
+    fn debug_draw_players_names_and_ids_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_players_names_and_ids
+    }
     fn verbose_logging(&self) -> &bool {
         &self.verbose_logging
+    }
+    fn verbose_logging_mut(&mut self) -> &mut bool {
+        &mut self.verbose_logging
     }
     fn action_objective_default_time(&self) -> &f32 {
         &self.action_objective_default_time
     }
+    fn action_objective_default_time_mut(&mut self) -> &mut f32 {
+        &mut self.action_objective_default_time
+    }
     fn allow_action_gadget(&self) -> &bool {
         &self.allow_action_gadget
+    }
+    fn allow_action_gadget_mut(&mut self) -> &mut bool {
+        &mut self.allow_action_gadget
     }
     fn action_gadget_probability(&self) -> &f32 {
         &self.action_gadget_probability
     }
+    fn action_gadget_probability_mut(&mut self) -> &mut f32 {
+        &mut self.action_gadget_probability
+    }
     fn action_gadget_interactable_search_radius(&self) -> &f32 {
         &self.action_gadget_interactable_search_radius
+    }
+    fn action_gadget_interactable_search_radius_mut(&mut self) -> &mut f32 {
+        &mut self.action_gadget_interactable_search_radius
     }
     fn hero_spawn_probability_gameplay(&self) -> &f32 {
         &self.hero_spawn_probability_gameplay
     }
+    fn hero_spawn_probability_gameplay_mut(&mut self) -> &mut f32 {
+        &mut self.hero_spawn_probability_gameplay
+    }
     fn special_spawn_probability_gameplay(&self) -> &f32 {
         &self.special_spawn_probability_gameplay
+    }
+    fn special_spawn_probability_gameplay_mut(&mut self) -> &mut f32 {
+        &mut self.special_spawn_probability_gameplay
     }
     fn hero_vehicle_spawn_probability_gameplay(&self) -> &f32 {
         &self.hero_vehicle_spawn_probability_gameplay
     }
+    fn hero_vehicle_spawn_probability_gameplay_mut(&mut self) -> &mut f32 {
+        &mut self.hero_vehicle_spawn_probability_gameplay
+    }
     fn vehicle_spawn_probability_gameplay(&self) -> &f32 {
         &self.vehicle_spawn_probability_gameplay
+    }
+    fn vehicle_spawn_probability_gameplay_mut(&mut self) -> &mut f32 {
+        &mut self.vehicle_spawn_probability_gameplay
     }
     fn hero_spawn_probability(&self) -> &f32 {
         &self.hero_spawn_probability
     }
+    fn hero_spawn_probability_mut(&mut self) -> &mut f32 {
+        &mut self.hero_spawn_probability
+    }
     fn special_spawn_probability(&self) -> &f32 {
         &self.special_spawn_probability
+    }
+    fn special_spawn_probability_mut(&mut self) -> &mut f32 {
+        &mut self.special_spawn_probability
     }
     fn hero_vehicle_spawn_probability(&self) -> &f32 {
         &self.hero_vehicle_spawn_probability
     }
+    fn hero_vehicle_spawn_probability_mut(&mut self) -> &mut f32 {
+        &mut self.hero_vehicle_spawn_probability
+    }
     fn vehicle_spawn_probability(&self) -> &f32 {
         &self.vehicle_spawn_probability
+    }
+    fn vehicle_spawn_probability_mut(&mut self) -> &mut f32 {
+        &mut self.vehicle_spawn_probability
     }
     fn follow_target_position_check_cooldown(&self) -> &f32 {
         &self.follow_target_position_check_cooldown
     }
+    fn follow_target_position_check_cooldown_mut(&mut self) -> &mut f32 {
+        &mut self.follow_target_position_check_cooldown
+    }
     fn not_alive_assert_time(&self) -> &f32 {
         &self.not_alive_assert_time
+    }
+    fn not_alive_assert_time_mut(&mut self) -> &mut f32 {
+        &mut self.not_alive_assert_time
     }
     fn prefer_f_p_s_camera(&self) -> &bool {
         &self.prefer_f_p_s_camera
     }
+    fn prefer_f_p_s_camera_mut(&mut self) -> &mut bool {
+        &mut self.prefer_f_p_s_camera
+    }
     fn time_on_path_tolerance_seconds(&self) -> &f32 {
         &self.time_on_path_tolerance_seconds
+    }
+    fn time_on_path_tolerance_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.time_on_path_tolerance_seconds
     }
     fn check_water_depth_for_intermediate_positions(&self) -> &bool {
         &self.check_water_depth_for_intermediate_positions
     }
+    fn check_water_depth_for_intermediate_positions_mut(&mut self) -> &mut bool {
+        &mut self.check_water_depth_for_intermediate_positions
+    }
     fn swimming_suicide_timeout(&self) -> &f32 {
         &self.swimming_suicide_timeout
+    }
+    fn swimming_suicide_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.swimming_suicide_timeout
     }
     fn lof_prediction_time(&self) -> &f32 {
         &self.lof_prediction_time
     }
+    fn lof_prediction_time_mut(&mut self) -> &mut f32 {
+        &mut self.lof_prediction_time
+    }
     fn debug_draw_combat_raycast_hit_points(&self) -> &bool {
         &self.debug_draw_combat_raycast_hit_points
+    }
+    fn debug_draw_combat_raycast_hit_points_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_combat_raycast_hit_points
     }
     fn debug_draw_transforms(&self) -> &bool {
         &self.debug_draw_transforms
     }
+    fn debug_draw_transforms_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_transforms
+    }
     fn target_tracker_field_of_view_degrees(&self) -> &f32 {
         &self.target_tracker_field_of_view_degrees
+    }
+    fn target_tracker_field_of_view_degrees_mut(&mut self) -> &mut f32 {
+        &mut self.target_tracker_field_of_view_degrees
     }
     fn pick_random_vehicle_on_secondary_objective(&self) -> &bool {
         &self.pick_random_vehicle_on_secondary_objective
     }
+    fn pick_random_vehicle_on_secondary_objective_mut(&mut self) -> &mut bool {
+        &mut self.pick_random_vehicle_on_secondary_objective
+    }
     fn never_exit_vehicle_after_entering(&self) -> &bool {
         &self.never_exit_vehicle_after_entering
+    }
+    fn never_exit_vehicle_after_entering_mut(&mut self) -> &mut bool {
+        &mut self.never_exit_vehicle_after_entering
     }
     fn update_target_per_frame_cap(&self) -> &u32 {
         &self.update_target_per_frame_cap
     }
+    fn update_target_per_frame_cap_mut(&mut self) -> &mut u32 {
+        &mut self.update_target_per_frame_cap
+    }
     fn replay_telemetry_file(&self) -> &String {
         &self.replay_telemetry_file
+    }
+    fn replay_telemetry_file_mut(&mut self) -> &mut String {
+        &mut self.replay_telemetry_file
     }
     fn replay_telemetry_file_format(&self) -> &String {
         &self.replay_telemetry_file_format
     }
+    fn replay_telemetry_file_format_mut(&mut self) -> &mut String {
+        &mut self.replay_telemetry_file_format
+    }
     fn replay_telemetry_adjust_time(&self) -> &bool {
         &self.replay_telemetry_adjust_time
+    }
+    fn replay_telemetry_adjust_time_mut(&mut self) -> &mut bool {
+        &mut self.replay_telemetry_adjust_time
     }
     fn replay_telemetry_adjust_time_padding(&self) -> &f32 {
         &self.replay_telemetry_adjust_time_padding
     }
+    fn replay_telemetry_adjust_time_padding_mut(&mut self) -> &mut f32 {
+        &mut self.replay_telemetry_adjust_time_padding
+    }
     fn debug_draw_weapon_details(&self) -> &bool {
         &self.debug_draw_weapon_details
+    }
+    fn debug_draw_weapon_details_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_weapon_details
     }
     fn debug_draw_extensive_client_details(&self) -> &bool {
         &self.debug_draw_extensive_client_details
     }
+    fn debug_draw_extensive_client_details_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_extensive_client_details
+    }
     fn evasive_maneuvers_jump_probability(&self) -> &f32 {
         &self.evasive_maneuvers_jump_probability
+    }
+    fn evasive_maneuvers_jump_probability_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_jump_probability
     }
     fn evasive_maneuvers_dodge_roll_probability(&self) -> &f32 {
         &self.evasive_maneuvers_dodge_roll_probability
     }
+    fn evasive_maneuvers_dodge_roll_probability_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_dodge_roll_probability
+    }
     fn evasive_maneuvers_invert_strafe_duration_max(&self) -> &f32 {
         &self.evasive_maneuvers_invert_strafe_duration_max
+    }
+    fn evasive_maneuvers_invert_strafe_duration_max_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_invert_strafe_duration_max
     }
     fn evasive_maneuvers_invert_strafe_duration_min(&self) -> &f32 {
         &self.evasive_maneuvers_invert_strafe_duration_min
     }
+    fn evasive_maneuvers_invert_strafe_duration_min_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_invert_strafe_duration_min
+    }
     fn leg_head_aim_ratio_override(&self) -> &f32 {
         &self.leg_head_aim_ratio_override
+    }
+    fn leg_head_aim_ratio_override_mut(&mut self) -> &mut f32 {
+        &mut self.leg_head_aim_ratio_override
     }
     fn attacking_ability_left_probability(&self) -> &f32 {
         &self.attacking_ability_left_probability
     }
+    fn attacking_ability_left_probability_mut(&mut self) -> &mut f32 {
+        &mut self.attacking_ability_left_probability
+    }
     fn attacking_ability_left_duration_seconds(&self) -> &f32 {
         &self.attacking_ability_left_duration_seconds
+    }
+    fn attacking_ability_left_duration_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.attacking_ability_left_duration_seconds
     }
     fn attacking_ability_middle_probability(&self) -> &f32 {
         &self.attacking_ability_middle_probability
     }
+    fn attacking_ability_middle_probability_mut(&mut self) -> &mut f32 {
+        &mut self.attacking_ability_middle_probability
+    }
     fn attacking_ability_middle_duration_seconds(&self) -> &f32 {
         &self.attacking_ability_middle_duration_seconds
+    }
+    fn attacking_ability_middle_duration_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.attacking_ability_middle_duration_seconds
     }
     fn attacking_ability_right_probability(&self) -> &f32 {
         &self.attacking_ability_right_probability
     }
+    fn attacking_ability_right_probability_mut(&mut self) -> &mut f32 {
+        &mut self.attacking_ability_right_probability
+    }
     fn attacking_ability_right_duration_seconds(&self) -> &f32 {
         &self.attacking_ability_right_duration_seconds
+    }
+    fn attacking_ability_right_duration_seconds_mut(&mut self) -> &mut f32 {
+        &mut self.attacking_ability_right_duration_seconds
     }
     fn evasive_maneuvers_crouch_probability(&self) -> &f32 {
         &self.evasive_maneuvers_crouch_probability
     }
+    fn evasive_maneuvers_crouch_probability_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_crouch_probability
+    }
     fn evasive_maneuvers_crouch_duration(&self) -> &f32 {
         &self.evasive_maneuvers_crouch_duration
+    }
+    fn evasive_maneuvers_crouch_duration_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_crouch_duration
     }
     fn blaster_leg_head_aim_ratio(&self) -> &f32 {
         &self.blaster_leg_head_aim_ratio
     }
+    fn blaster_leg_head_aim_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.blaster_leg_head_aim_ratio
+    }
     fn blaster_aim_noise(&self) -> &f32 {
         &self.blaster_aim_noise
+    }
+    fn blaster_aim_noise_mut(&mut self) -> &mut f32 {
+        &mut self.blaster_aim_noise
     }
     fn sniper_rifle_leg_head_aim_ratio(&self) -> &f32 {
         &self.sniper_rifle_leg_head_aim_ratio
     }
+    fn sniper_rifle_leg_head_aim_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.sniper_rifle_leg_head_aim_ratio
+    }
     fn sniper_rifle_aim_noise(&self) -> &f32 {
         &self.sniper_rifle_aim_noise
+    }
+    fn sniper_rifle_aim_noise_mut(&mut self) -> &mut f32 {
+        &mut self.sniper_rifle_aim_noise
     }
     fn lmg_leg_head_aim_ratio(&self) -> &f32 {
         &self.lmg_leg_head_aim_ratio
     }
+    fn lmg_leg_head_aim_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.lmg_leg_head_aim_ratio
+    }
     fn lmg_aim_noise(&self) -> &f32 {
         &self.lmg_aim_noise
+    }
+    fn lmg_aim_noise_mut(&mut self) -> &mut f32 {
+        &mut self.lmg_aim_noise
     }
     fn shotgun_leg_head_aim_ratio(&self) -> &f32 {
         &self.shotgun_leg_head_aim_ratio
     }
+    fn shotgun_leg_head_aim_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.shotgun_leg_head_aim_ratio
+    }
     fn shotgun_aim_noise(&self) -> &f32 {
         &self.shotgun_aim_noise
+    }
+    fn shotgun_aim_noise_mut(&mut self) -> &mut f32 {
+        &mut self.shotgun_aim_noise
     }
     fn launcher_leg_head_aim_ratio(&self) -> &f32 {
         &self.launcher_leg_head_aim_ratio
     }
+    fn launcher_leg_head_aim_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.launcher_leg_head_aim_ratio
+    }
     fn launcher_aim_noise(&self) -> &f32 {
         &self.launcher_aim_noise
+    }
+    fn launcher_aim_noise_mut(&mut self) -> &mut f32 {
+        &mut self.launcher_aim_noise
     }
     fn use_sword_attacking_abilities_from_meters(&self) -> &f32 {
         &self.use_sword_attacking_abilities_from_meters
     }
+    fn use_sword_attacking_abilities_from_meters_mut(&mut self) -> &mut f32 {
+        &mut self.use_sword_attacking_abilities_from_meters
+    }
     fn sword_attack_duration_time_min_s(&self) -> &f32 {
         &self.sword_attack_duration_time_min_s
+    }
+    fn sword_attack_duration_time_min_s_mut(&mut self) -> &mut f32 {
+        &mut self.sword_attack_duration_time_min_s
     }
     fn sword_attack_duration_time_max_s(&self) -> &f32 {
         &self.sword_attack_duration_time_max_s
     }
+    fn sword_attack_duration_time_max_s_mut(&mut self) -> &mut f32 {
+        &mut self.sword_attack_duration_time_max_s
+    }
     fn pause_sword_attack_duration_time_min_s(&self) -> &f32 {
         &self.pause_sword_attack_duration_time_min_s
+    }
+    fn pause_sword_attack_duration_time_min_s_mut(&mut self) -> &mut f32 {
+        &mut self.pause_sword_attack_duration_time_min_s
     }
     fn pause_sword_attack_duration_time_max_s(&self) -> &f32 {
         &self.pause_sword_attack_duration_time_max_s
     }
+    fn pause_sword_attack_duration_time_max_s_mut(&mut self) -> &mut f32 {
+        &mut self.pause_sword_attack_duration_time_max_s
+    }
     fn sword_attack_distance_meters_min(&self) -> &f32 {
         &self.sword_attack_distance_meters_min
+    }
+    fn sword_attack_distance_meters_min_mut(&mut self) -> &mut f32 {
+        &mut self.sword_attack_distance_meters_min
     }
     fn sword_attack_distance_meters_max(&self) -> &f32 {
         &self.sword_attack_distance_meters_max
     }
+    fn sword_attack_distance_meters_max_mut(&mut self) -> &mut f32 {
+        &mut self.sword_attack_distance_meters_max
+    }
     fn debug_draw_input_details(&self) -> &bool {
         &self.debug_draw_input_details
+    }
+    fn debug_draw_input_details_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_input_details
     }
     fn debug_window_position_scale_offset_x(&self) -> &f32 {
         &self.debug_window_position_scale_offset_x
     }
+    fn debug_window_position_scale_offset_x_mut(&mut self) -> &mut f32 {
+        &mut self.debug_window_position_scale_offset_x
+    }
     fn debug_window_position_scale_offset_y(&self) -> &f32 {
         &self.debug_window_position_scale_offset_y
+    }
+    fn debug_window_position_scale_offset_y_mut(&mut self) -> &mut f32 {
+        &mut self.debug_window_position_scale_offset_y
     }
     fn debug_window_width(&self) -> &i32 {
         &self.debug_window_width
     }
+    fn debug_window_width_mut(&mut self) -> &mut i32 {
+        &mut self.debug_window_width
+    }
     fn debug_window_height(&self) -> &i32 {
         &self.debug_window_height
+    }
+    fn debug_window_height_mut(&mut self) -> &mut i32 {
+        &mut self.debug_window_height
     }
     fn path_look_ahead_meters(&self) -> &f32 {
         &self.path_look_ahead_meters
     }
+    fn path_look_ahead_meters_mut(&mut self) -> &mut f32 {
+        &mut self.path_look_ahead_meters
+    }
     fn path_look_right_meters(&self) -> &f32 {
         &self.path_look_right_meters
+    }
+    fn path_look_right_meters_mut(&mut self) -> &mut f32 {
+        &mut self.path_look_right_meters
     }
     fn waypoint_tolerance_meters(&self) -> &f32 {
         &self.waypoint_tolerance_meters
     }
+    fn waypoint_tolerance_meters_mut(&mut self) -> &mut f32 {
+        &mut self.waypoint_tolerance_meters
+    }
     fn debug_draw_aim_at_positions(&self) -> &bool {
         &self.debug_draw_aim_at_positions
+    }
+    fn debug_draw_aim_at_positions_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_aim_at_positions
     }
     fn evasive_maneuvers_vehicle_scale(&self) -> &f32 {
         &self.evasive_maneuvers_vehicle_scale
     }
+    fn evasive_maneuvers_vehicle_scale_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_vehicle_scale
+    }
     fn vehicle_aim_noise_scale(&self) -> &f32 {
         &self.vehicle_aim_noise_scale
+    }
+    fn vehicle_aim_noise_scale_mut(&mut self) -> &mut f32 {
+        &mut self.vehicle_aim_noise_scale
     }
     fn reset_settings_on_level_unload(&self) -> &bool {
         &self.reset_settings_on_level_unload
     }
+    fn reset_settings_on_level_unload_mut(&mut self) -> &mut bool {
+        &mut self.reset_settings_on_level_unload
+    }
     fn sword_guard_duration_time_min_s(&self) -> &f32 {
         &self.sword_guard_duration_time_min_s
+    }
+    fn sword_guard_duration_time_min_s_mut(&mut self) -> &mut f32 {
+        &mut self.sword_guard_duration_time_min_s
     }
     fn sword_guard_duration_time_max_s(&self) -> &f32 {
         &self.sword_guard_duration_time_max_s
     }
+    fn sword_guard_duration_time_max_s_mut(&mut self) -> &mut f32 {
+        &mut self.sword_guard_duration_time_max_s
+    }
     fn aim_noise_scale_team1(&self) -> &f32 {
         &self.aim_noise_scale_team1
+    }
+    fn aim_noise_scale_team1_mut(&mut self) -> &mut f32 {
+        &mut self.aim_noise_scale_team1
     }
     fn aim_noise_scale_team2(&self) -> &f32 {
         &self.aim_noise_scale_team2
     }
+    fn aim_noise_scale_team2_mut(&mut self) -> &mut f32 {
+        &mut self.aim_noise_scale_team2
+    }
     fn hero_strafe_probability_per_frame(&self) -> &f32 {
         &self.hero_strafe_probability_per_frame
+    }
+    fn hero_strafe_probability_per_frame_mut(&mut self) -> &mut f32 {
+        &mut self.hero_strafe_probability_per_frame
     }
     fn emote_probability_after_players_death(&self) -> &f32 {
         &self.emote_probability_after_players_death
     }
+    fn emote_probability_after_players_death_mut(&mut self) -> &mut f32 {
+        &mut self.emote_probability_after_players_death
+    }
     fn emote_duration(&self) -> &f32 {
         &self.emote_duration
+    }
+    fn emote_duration_mut(&mut self) -> &mut f32 {
+        &mut self.emote_duration
     }
     fn melee_interval_s(&self) -> &f32 {
         &self.melee_interval_s
     }
+    fn melee_interval_s_mut(&mut self) -> &mut f32 {
+        &mut self.melee_interval_s
+    }
     fn melee_distance_m(&self) -> &f32 {
         &self.melee_distance_m
+    }
+    fn melee_distance_m_mut(&mut self) -> &mut f32 {
+        &mut self.melee_distance_m
     }
     fn allow_evasive_manouvers_o_o_b(&self) -> &bool {
         &self.allow_evasive_manouvers_o_o_b
     }
+    fn allow_evasive_manouvers_o_o_b_mut(&mut self) -> &mut bool {
+        &mut self.allow_evasive_manouvers_o_o_b
+    }
     fn evasive_maneuvers_ground_check_enabled(&self) -> &bool {
         &self.evasive_maneuvers_ground_check_enabled
+    }
+    fn evasive_maneuvers_ground_check_enabled_mut(&mut self) -> &mut bool {
+        &mut self.evasive_maneuvers_ground_check_enabled
     }
     fn evasive_maneuvers_ground_check_distance_m(&self) -> &f32 {
         &self.evasive_maneuvers_ground_check_distance_m
     }
+    fn evasive_maneuvers_ground_check_distance_m_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_ground_check_distance_m
+    }
     fn evasive_maneuvers_ground_check_height_distance_m(&self) -> &f32 {
         &self.evasive_maneuvers_ground_check_height_distance_m
+    }
+    fn evasive_maneuvers_ground_check_height_distance_m_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_ground_check_height_distance_m
     }
     fn evasive_maneuvers_ground_check_height_offset_m(&self) -> &f32 {
         &self.evasive_maneuvers_ground_check_height_offset_m
     }
+    fn evasive_maneuvers_ground_check_height_offset_m_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_ground_check_height_offset_m
+    }
     fn evasive_maneuvers_ground_check_cooldown_s(&self) -> &f32 {
         &self.evasive_maneuvers_ground_check_cooldown_s
+    }
+    fn evasive_maneuvers_ground_check_cooldown_s_mut(&mut self) -> &mut f32 {
+        &mut self.evasive_maneuvers_ground_check_cooldown_s
     }
     fn evasive_maneuvers_vehicles_enabled(&self) -> &bool {
         &self.evasive_maneuvers_vehicles_enabled
     }
+    fn evasive_maneuvers_vehicles_enabled_mut(&mut self) -> &mut bool {
+        &mut self.evasive_maneuvers_vehicles_enabled
+    }
     fn vehicle_minimum_forward_throttle(&self) -> &f32 {
         &self.vehicle_minimum_forward_throttle
     }
+    fn vehicle_minimum_forward_throttle_mut(&mut self) -> &mut f32 {
+        &mut self.vehicle_minimum_forward_throttle
+    }
     fn vehicle_use_character_throttle(&self) -> &bool {
         &self.vehicle_use_character_throttle
+    }
+    fn vehicle_use_character_throttle_mut(&mut self) -> &mut bool {
+        &mut self.vehicle_use_character_throttle
     }
 }
 
@@ -3348,12 +5119,12 @@ impl super::core::SystemSettingsTrait for AutoPlayerSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AutoPlayerSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUTOPLAYERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4969,6 +6740,15 @@ impl TypeObject for AutoPlayerSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5021,6 +6801,15 @@ impl TypeObject for ServerAutoPlayerSettingsEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5075,6 +6864,15 @@ impl TypeObject for ServerAutoPlayerManagerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5127,6 +6925,15 @@ impl TypeObject for AutoPlayerObjectiveEntityBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5184,6 +6991,15 @@ impl TypeObject for AutoPlayerMoveObjectiveEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5239,6 +7055,15 @@ impl TypeObject for AutoPlayerInteractObjectiveEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5296,6 +7121,15 @@ impl TypeObject for AutoPlayerFollowObjectiveEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5352,6 +7186,15 @@ impl TypeObject for AutoPlayerDefendObjectiveEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5407,6 +7250,15 @@ impl TypeObject for AutoPlayerAttackObjectiveEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

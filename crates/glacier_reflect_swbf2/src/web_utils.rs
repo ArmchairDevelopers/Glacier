@@ -26,30 +26,43 @@ pub struct URLConfigData {
 
 pub trait URLConfigDataTrait: super::core::DataContainerTrait {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn base_url(&self) -> &String;
+    fn base_url_mut(&mut self) -> &mut String;
     fn url(&self) -> &String;
+    fn url_mut(&mut self) -> &mut String;
     fn environment(&self) -> &WebUtilsEnvironment;
+    fn environment_mut(&mut self) -> &mut WebUtilsEnvironment;
 }
 
 impl URLConfigDataTrait for URLConfigData {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn base_url(&self) -> &String {
         &self.base_url
+    }
+    fn base_url_mut(&mut self) -> &mut String {
+        &mut self.base_url
     }
     fn url(&self) -> &String {
         &self.url
     }
+    fn url_mut(&mut self) -> &mut String {
+        &mut self.url
+    }
     fn environment(&self) -> &WebUtilsEnvironment {
         &self.environment
+    }
+    fn environment_mut(&mut self) -> &mut WebUtilsEnvironment {
+        &mut self.environment
     }
 }
 
 impl super::core::DataContainerTrait for URLConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static URLCONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -99,6 +112,15 @@ impl TypeObject for URLConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -141,6 +163,15 @@ impl TypeObject for WebUtilsEnvironment {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

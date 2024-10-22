@@ -50,59 +50,111 @@ pub struct RailRideHeliWaypointData {
 
 pub trait RailRideHeliWaypointDataTrait: super::pathfinding_shared::WaypointDataTrait {
     fn forward_direction(&self) -> &super::core::Vec3;
+    fn forward_direction_mut(&mut self) -> &mut super::core::Vec3;
     fn wind_noise(&self) -> &f32;
+    fn wind_noise_mut(&mut self) -> &mut f32;
     fn limit_wind_to_horizontal(&self) -> &bool;
+    fn limit_wind_to_horizontal_mut(&mut self) -> &mut bool;
     fn speed(&self) -> &f32;
+    fn speed_mut(&mut self) -> &mut f32;
     fn use_velocity_direction(&self) -> &bool;
+    fn use_velocity_direction_mut(&mut self) -> &mut bool;
     fn point_forward(&self) -> &bool;
+    fn point_forward_mut(&mut self) -> &mut bool;
     fn point_to_distance(&self) -> &f32;
+    fn point_to_distance_mut(&mut self) -> &mut f32;
     fn wing_mode(&self) -> &bool;
+    fn wing_mode_mut(&mut self) -> &mut bool;
     fn curvature(&self) -> &f32;
+    fn curvature_mut(&mut self) -> &mut f32;
     fn constraint(&self) -> &f32;
+    fn constraint_mut(&mut self) -> &mut f32;
     fn force_pitch(&self) -> &f32;
+    fn force_pitch_mut(&mut self) -> &mut f32;
     fn banking_scale(&self) -> &f32;
+    fn banking_scale_mut(&mut self) -> &mut f32;
     fn point_to_index(&self) -> &i32;
+    fn point_to_index_mut(&mut self) -> &mut i32;
 }
 
 impl RailRideHeliWaypointDataTrait for RailRideHeliWaypointData {
     fn forward_direction(&self) -> &super::core::Vec3 {
         &self.forward_direction
     }
+    fn forward_direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.forward_direction
+    }
     fn wind_noise(&self) -> &f32 {
         &self.wind_noise
+    }
+    fn wind_noise_mut(&mut self) -> &mut f32 {
+        &mut self.wind_noise
     }
     fn limit_wind_to_horizontal(&self) -> &bool {
         &self.limit_wind_to_horizontal
     }
+    fn limit_wind_to_horizontal_mut(&mut self) -> &mut bool {
+        &mut self.limit_wind_to_horizontal
+    }
     fn speed(&self) -> &f32 {
         &self.speed
+    }
+    fn speed_mut(&mut self) -> &mut f32 {
+        &mut self.speed
     }
     fn use_velocity_direction(&self) -> &bool {
         &self.use_velocity_direction
     }
+    fn use_velocity_direction_mut(&mut self) -> &mut bool {
+        &mut self.use_velocity_direction
+    }
     fn point_forward(&self) -> &bool {
         &self.point_forward
+    }
+    fn point_forward_mut(&mut self) -> &mut bool {
+        &mut self.point_forward
     }
     fn point_to_distance(&self) -> &f32 {
         &self.point_to_distance
     }
+    fn point_to_distance_mut(&mut self) -> &mut f32 {
+        &mut self.point_to_distance
+    }
     fn wing_mode(&self) -> &bool {
         &self.wing_mode
+    }
+    fn wing_mode_mut(&mut self) -> &mut bool {
+        &mut self.wing_mode
     }
     fn curvature(&self) -> &f32 {
         &self.curvature
     }
+    fn curvature_mut(&mut self) -> &mut f32 {
+        &mut self.curvature
+    }
     fn constraint(&self) -> &f32 {
         &self.constraint
+    }
+    fn constraint_mut(&mut self) -> &mut f32 {
+        &mut self.constraint
     }
     fn force_pitch(&self) -> &f32 {
         &self.force_pitch
     }
+    fn force_pitch_mut(&mut self) -> &mut f32 {
+        &mut self.force_pitch
+    }
     fn banking_scale(&self) -> &f32 {
         &self.banking_scale
     }
+    fn banking_scale_mut(&mut self) -> &mut f32 {
+        &mut self.banking_scale
+    }
     fn point_to_index(&self) -> &i32 {
         &self.point_to_index
+    }
+    fn point_to_index_mut(&mut self) -> &mut i32 {
+        &mut self.point_to_index
     }
 }
 
@@ -110,18 +162,24 @@ impl super::pathfinding_shared::WaypointDataTrait for RailRideHeliWaypointData {
     fn use_clients_position(&self) -> &bool {
         self._glacier_base.use_clients_position()
     }
+    fn use_clients_position_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_clients_position_mut()
+    }
     fn schematics_name_hash(&self) -> &i32 {
         self._glacier_base.schematics_name_hash()
+    }
+    fn schematics_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.schematics_name_hash_mut()
     }
     fn waypoint_id(&self) -> &u32 {
         self._glacier_base.waypoint_id()
     }
+    fn waypoint_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.waypoint_id_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RailRideHeliWaypointData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RAILRIDEHELIWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -225,6 +283,15 @@ impl TypeObject for RailRideHeliWaypointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -262,75 +329,143 @@ pub struct RailRideHeliSegmentData {
 
 pub trait RailRideHeliSegmentDataTrait: super::entity::EntityDataTrait {
     fn editor_color(&self) -> &super::core::Vec4;
+    fn editor_color_mut(&mut self) -> &mut super::core::Vec4;
     fn looping(&self) -> &bool;
+    fn looping_mut(&mut self) -> &mut bool;
     fn start_index(&self) -> &i32;
+    fn start_index_mut(&mut self) -> &mut i32;
     fn end_index(&self) -> &i32;
+    fn end_index_mut(&mut self) -> &mut i32;
     fn teleport_on_activate(&self) -> &bool;
+    fn teleport_on_activate_mut(&mut self) -> &mut bool;
     fn force_speed_on_activate(&self) -> &bool;
+    fn force_speed_on_activate_mut(&mut self) -> &mut bool;
     fn force_direction_on_activate(&self) -> &bool;
+    fn force_direction_on_activate_mut(&mut self) -> &mut bool;
     fn teleport_on_loop(&self) -> &bool;
+    fn teleport_on_loop_mut(&mut self) -> &mut bool;
     fn node_index1(&self) -> &i32;
+    fn node_index1_mut(&mut self) -> &mut i32;
     fn node_index2(&self) -> &i32;
+    fn node_index2_mut(&mut self) -> &mut i32;
     fn node_index3(&self) -> &i32;
+    fn node_index3_mut(&mut self) -> &mut i32;
     fn node_on_reached(&self) -> &Vec<i32>;
+    fn node_on_reached_mut(&mut self) -> &mut Vec<i32>;
     fn node_on_reached_event_hashes(&self) -> &Vec<i32>;
+    fn node_on_reached_event_hashes_mut(&mut self) -> &mut Vec<i32>;
     fn node_on_reached_property_hashes(&self) -> &Vec<i32>;
+    fn node_on_reached_property_hashes_mut(&mut self) -> &mut Vec<i32>;
     fn external_time(&self) -> &f32;
+    fn external_time_mut(&mut self) -> &mut f32;
     fn waypoints_speed_scale(&self) -> &f32;
+    fn waypoints_speed_scale_mut(&mut self) -> &mut f32;
     fn update_waypoints_speed_scale_every_frame(&self) -> &bool;
+    fn update_waypoints_speed_scale_every_frame_mut(&mut self) -> &mut bool;
 }
 
 impl RailRideHeliSegmentDataTrait for RailRideHeliSegmentData {
     fn editor_color(&self) -> &super::core::Vec4 {
         &self.editor_color
     }
+    fn editor_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.editor_color
+    }
     fn looping(&self) -> &bool {
         &self.looping
+    }
+    fn looping_mut(&mut self) -> &mut bool {
+        &mut self.looping
     }
     fn start_index(&self) -> &i32 {
         &self.start_index
     }
+    fn start_index_mut(&mut self) -> &mut i32 {
+        &mut self.start_index
+    }
     fn end_index(&self) -> &i32 {
         &self.end_index
+    }
+    fn end_index_mut(&mut self) -> &mut i32 {
+        &mut self.end_index
     }
     fn teleport_on_activate(&self) -> &bool {
         &self.teleport_on_activate
     }
+    fn teleport_on_activate_mut(&mut self) -> &mut bool {
+        &mut self.teleport_on_activate
+    }
     fn force_speed_on_activate(&self) -> &bool {
         &self.force_speed_on_activate
+    }
+    fn force_speed_on_activate_mut(&mut self) -> &mut bool {
+        &mut self.force_speed_on_activate
     }
     fn force_direction_on_activate(&self) -> &bool {
         &self.force_direction_on_activate
     }
+    fn force_direction_on_activate_mut(&mut self) -> &mut bool {
+        &mut self.force_direction_on_activate
+    }
     fn teleport_on_loop(&self) -> &bool {
         &self.teleport_on_loop
+    }
+    fn teleport_on_loop_mut(&mut self) -> &mut bool {
+        &mut self.teleport_on_loop
     }
     fn node_index1(&self) -> &i32 {
         &self.node_index1
     }
+    fn node_index1_mut(&mut self) -> &mut i32 {
+        &mut self.node_index1
+    }
     fn node_index2(&self) -> &i32 {
         &self.node_index2
+    }
+    fn node_index2_mut(&mut self) -> &mut i32 {
+        &mut self.node_index2
     }
     fn node_index3(&self) -> &i32 {
         &self.node_index3
     }
+    fn node_index3_mut(&mut self) -> &mut i32 {
+        &mut self.node_index3
+    }
     fn node_on_reached(&self) -> &Vec<i32> {
         &self.node_on_reached
+    }
+    fn node_on_reached_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.node_on_reached
     }
     fn node_on_reached_event_hashes(&self) -> &Vec<i32> {
         &self.node_on_reached_event_hashes
     }
+    fn node_on_reached_event_hashes_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.node_on_reached_event_hashes
+    }
     fn node_on_reached_property_hashes(&self) -> &Vec<i32> {
         &self.node_on_reached_property_hashes
+    }
+    fn node_on_reached_property_hashes_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.node_on_reached_property_hashes
     }
     fn external_time(&self) -> &f32 {
         &self.external_time
     }
+    fn external_time_mut(&mut self) -> &mut f32 {
+        &mut self.external_time
+    }
     fn waypoints_speed_scale(&self) -> &f32 {
         &self.waypoints_speed_scale
     }
+    fn waypoints_speed_scale_mut(&mut self) -> &mut f32 {
+        &mut self.waypoints_speed_scale
+    }
     fn update_waypoints_speed_scale_every_frame(&self) -> &bool {
         &self.update_waypoints_speed_scale_every_frame
+    }
+    fn update_waypoints_speed_scale_every_frame_mut(&mut self) -> &mut bool {
+        &mut self.update_waypoints_speed_scale_every_frame
     }
 }
 
@@ -344,15 +479,15 @@ impl super::core::DataBusPeerTrait for RailRideHeliSegmentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RailRideHeliSegmentData {
 }
 
 impl super::core::DataContainerTrait for RailRideHeliSegmentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RAILRIDEHELISEGMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -480,6 +615,15 @@ impl TypeObject for RailRideHeliSegmentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -501,11 +645,15 @@ pub struct RailRideNodePointToData {
 
 pub trait RailRideNodePointToDataTrait: super::entity::GameComponentEntityDataTrait {
     fn side(&self) -> &RailRideHeliPointToSide;
+    fn side_mut(&mut self) -> &mut RailRideHeliPointToSide;
 }
 
 impl RailRideNodePointToDataTrait for RailRideNodePointToData {
     fn side(&self) -> &RailRideHeliPointToSide {
         &self.side
+    }
+    fn side_mut(&mut self) -> &mut RailRideHeliPointToSide {
+        &mut self.side
     }
 }
 
@@ -513,32 +661,56 @@ impl super::entity::GameComponentEntityDataTrait for RailRideNodePointToData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for RailRideNodePointToData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for RailRideNodePointToData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -552,15 +724,15 @@ impl super::core::DataBusPeerTrait for RailRideNodePointToData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RailRideNodePointToData {
 }
 
 impl super::core::DataContainerTrait for RailRideNodePointToData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RAILRIDENODEPOINTTODATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -591,6 +763,15 @@ impl TypeObject for RailRideNodePointToData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -630,6 +811,15 @@ impl TypeObject for RailRideHeliPointToSide {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -679,119 +869,231 @@ pub struct RailRideHeliData {
 
 pub trait RailRideHeliDataTrait: super::entity::EntityDataTrait {
     fn control_type(&self) -> &RailRideHeliControlType;
+    fn control_type_mut(&mut self) -> &mut RailRideHeliControlType;
     fn network_control_transform(&self) -> &bool;
+    fn network_control_transform_mut(&mut self) -> &mut bool;
     fn wait_on_client_activation(&self) -> &bool;
+    fn wait_on_client_activation_mut(&mut self) -> &mut bool;
     fn client_activation_blend_time(&self) -> &f32;
+    fn client_activation_blend_time_mut(&mut self) -> &mut f32;
     fn angular_approach_slow(&self) -> &f32;
+    fn angular_approach_slow_mut(&mut self) -> &mut f32;
     fn angular_approach_fast(&self) -> &f32;
+    fn angular_approach_fast_mut(&mut self) -> &mut f32;
     fn tilt_max(&self) -> &f32;
+    fn tilt_max_mut(&mut self) -> &mut f32;
     fn tilt_accel_mult(&self) -> &f32;
+    fn tilt_accel_mult_mut(&mut self) -> &mut f32;
     fn tilt_speed_mult(&self) -> &f32;
+    fn tilt_speed_mult_mut(&mut self) -> &mut f32;
     fn veer_duration_min(&self) -> &f32;
+    fn veer_duration_min_mut(&mut self) -> &mut f32;
     fn veer_duration_max(&self) -> &f32;
+    fn veer_duration_max_mut(&mut self) -> &mut f32;
     fn veer_position_offset_min(&self) -> &f32;
+    fn veer_position_offset_min_mut(&mut self) -> &mut f32;
     fn veer_position_offset_max(&self) -> &f32;
+    fn veer_position_offset_max_mut(&mut self) -> &mut f32;
     fn veer_heading_offset_min(&self) -> &f32;
+    fn veer_heading_offset_min_mut(&mut self) -> &mut f32;
     fn veer_heading_offset_max(&self) -> &f32;
+    fn veer_heading_offset_max_mut(&mut self) -> &mut f32;
     fn simulation_steps_per_frame(&self) -> &i32;
+    fn simulation_steps_per_frame_mut(&mut self) -> &mut i32;
     fn sound_accel_to_throttle_mult(&self) -> &f32;
+    fn sound_accel_to_throttle_mult_mut(&mut self) -> &mut f32;
     fn sound_speed_to_throttle_mult(&self) -> &f32;
+    fn sound_speed_to_throttle_mult_mut(&mut self) -> &mut f32;
     fn speed_multiplier(&self) -> &f32;
+    fn speed_multiplier_mut(&mut self) -> &mut f32;
     fn wing_mode_on_activate(&self) -> &bool;
+    fn wing_mode_on_activate_mut(&mut self) -> &mut bool;
     fn root_transform(&self) -> &super::core::LinearTransform;
+    fn root_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn reference_transform(&self) -> &super::core::LinearTransform;
+    fn reference_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn blend_transform(&self) -> &super::core::LinearTransform;
+    fn blend_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn blend(&self) -> &f32;
+    fn blend_mut(&mut self) -> &mut f32;
     fn point_to_override(&self) -> &super::core::Vec3;
+    fn point_to_override_mut(&mut self) -> &mut super::core::Vec3;
     fn enable_point_to_override(&self) -> &bool;
+    fn enable_point_to_override_mut(&mut self) -> &mut bool;
     fn use_segment_external_time(&self) -> &bool;
+    fn use_segment_external_time_mut(&mut self) -> &mut bool;
     fn braking(&self) -> &bool;
+    fn braking_mut(&mut self) -> &mut bool;
 }
 
 impl RailRideHeliDataTrait for RailRideHeliData {
     fn control_type(&self) -> &RailRideHeliControlType {
         &self.control_type
     }
+    fn control_type_mut(&mut self) -> &mut RailRideHeliControlType {
+        &mut self.control_type
+    }
     fn network_control_transform(&self) -> &bool {
         &self.network_control_transform
+    }
+    fn network_control_transform_mut(&mut self) -> &mut bool {
+        &mut self.network_control_transform
     }
     fn wait_on_client_activation(&self) -> &bool {
         &self.wait_on_client_activation
     }
+    fn wait_on_client_activation_mut(&mut self) -> &mut bool {
+        &mut self.wait_on_client_activation
+    }
     fn client_activation_blend_time(&self) -> &f32 {
         &self.client_activation_blend_time
+    }
+    fn client_activation_blend_time_mut(&mut self) -> &mut f32 {
+        &mut self.client_activation_blend_time
     }
     fn angular_approach_slow(&self) -> &f32 {
         &self.angular_approach_slow
     }
+    fn angular_approach_slow_mut(&mut self) -> &mut f32 {
+        &mut self.angular_approach_slow
+    }
     fn angular_approach_fast(&self) -> &f32 {
         &self.angular_approach_fast
+    }
+    fn angular_approach_fast_mut(&mut self) -> &mut f32 {
+        &mut self.angular_approach_fast
     }
     fn tilt_max(&self) -> &f32 {
         &self.tilt_max
     }
+    fn tilt_max_mut(&mut self) -> &mut f32 {
+        &mut self.tilt_max
+    }
     fn tilt_accel_mult(&self) -> &f32 {
         &self.tilt_accel_mult
+    }
+    fn tilt_accel_mult_mut(&mut self) -> &mut f32 {
+        &mut self.tilt_accel_mult
     }
     fn tilt_speed_mult(&self) -> &f32 {
         &self.tilt_speed_mult
     }
+    fn tilt_speed_mult_mut(&mut self) -> &mut f32 {
+        &mut self.tilt_speed_mult
+    }
     fn veer_duration_min(&self) -> &f32 {
         &self.veer_duration_min
+    }
+    fn veer_duration_min_mut(&mut self) -> &mut f32 {
+        &mut self.veer_duration_min
     }
     fn veer_duration_max(&self) -> &f32 {
         &self.veer_duration_max
     }
+    fn veer_duration_max_mut(&mut self) -> &mut f32 {
+        &mut self.veer_duration_max
+    }
     fn veer_position_offset_min(&self) -> &f32 {
         &self.veer_position_offset_min
+    }
+    fn veer_position_offset_min_mut(&mut self) -> &mut f32 {
+        &mut self.veer_position_offset_min
     }
     fn veer_position_offset_max(&self) -> &f32 {
         &self.veer_position_offset_max
     }
+    fn veer_position_offset_max_mut(&mut self) -> &mut f32 {
+        &mut self.veer_position_offset_max
+    }
     fn veer_heading_offset_min(&self) -> &f32 {
         &self.veer_heading_offset_min
+    }
+    fn veer_heading_offset_min_mut(&mut self) -> &mut f32 {
+        &mut self.veer_heading_offset_min
     }
     fn veer_heading_offset_max(&self) -> &f32 {
         &self.veer_heading_offset_max
     }
+    fn veer_heading_offset_max_mut(&mut self) -> &mut f32 {
+        &mut self.veer_heading_offset_max
+    }
     fn simulation_steps_per_frame(&self) -> &i32 {
         &self.simulation_steps_per_frame
+    }
+    fn simulation_steps_per_frame_mut(&mut self) -> &mut i32 {
+        &mut self.simulation_steps_per_frame
     }
     fn sound_accel_to_throttle_mult(&self) -> &f32 {
         &self.sound_accel_to_throttle_mult
     }
+    fn sound_accel_to_throttle_mult_mut(&mut self) -> &mut f32 {
+        &mut self.sound_accel_to_throttle_mult
+    }
     fn sound_speed_to_throttle_mult(&self) -> &f32 {
         &self.sound_speed_to_throttle_mult
+    }
+    fn sound_speed_to_throttle_mult_mut(&mut self) -> &mut f32 {
+        &mut self.sound_speed_to_throttle_mult
     }
     fn speed_multiplier(&self) -> &f32 {
         &self.speed_multiplier
     }
+    fn speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.speed_multiplier
+    }
     fn wing_mode_on_activate(&self) -> &bool {
         &self.wing_mode_on_activate
+    }
+    fn wing_mode_on_activate_mut(&mut self) -> &mut bool {
+        &mut self.wing_mode_on_activate
     }
     fn root_transform(&self) -> &super::core::LinearTransform {
         &self.root_transform
     }
+    fn root_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.root_transform
+    }
     fn reference_transform(&self) -> &super::core::LinearTransform {
         &self.reference_transform
+    }
+    fn reference_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.reference_transform
     }
     fn blend_transform(&self) -> &super::core::LinearTransform {
         &self.blend_transform
     }
+    fn blend_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.blend_transform
+    }
     fn blend(&self) -> &f32 {
         &self.blend
+    }
+    fn blend_mut(&mut self) -> &mut f32 {
+        &mut self.blend
     }
     fn point_to_override(&self) -> &super::core::Vec3 {
         &self.point_to_override
     }
+    fn point_to_override_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.point_to_override
+    }
     fn enable_point_to_override(&self) -> &bool {
         &self.enable_point_to_override
+    }
+    fn enable_point_to_override_mut(&mut self) -> &mut bool {
+        &mut self.enable_point_to_override
     }
     fn use_segment_external_time(&self) -> &bool {
         &self.use_segment_external_time
     }
+    fn use_segment_external_time_mut(&mut self) -> &mut bool {
+        &mut self.use_segment_external_time
+    }
     fn braking(&self) -> &bool {
         &self.braking
+    }
+    fn braking_mut(&mut self) -> &mut bool {
+        &mut self.braking
     }
 }
 
@@ -805,15 +1107,15 @@ impl super::core::DataBusPeerTrait for RailRideHeliData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RailRideHeliData {
 }
 
 impl super::core::DataContainerTrait for RailRideHeliData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RAILRIDEHELIDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1007,6 +1309,15 @@ impl TypeObject for RailRideHeliData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1044,6 +1355,15 @@ impl TypeObject for RailRideHeliControlType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1090,6 +1410,15 @@ impl TypeObject for RailRideHeliClientActivatedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1131,6 +1460,15 @@ impl TypeObject for ServerRailRideHeliEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1185,6 +1523,15 @@ impl TypeObject for RailRideHeliSegmentEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1237,6 +1584,15 @@ impl TypeObject for ClientRailRideHeliEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

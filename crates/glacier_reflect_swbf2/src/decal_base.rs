@@ -34,20 +34,35 @@ impl super::world_sim::RenderVolumeEntityDataTrait for DecalVolumeEntityData {
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         self._glacier_base.shader()
     }
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        self._glacier_base.shader_mut()
+    }
     fn user_masks(&self) -> &super::core::Vec4 {
         self._glacier_base.user_masks()
+    }
+    fn user_masks_mut(&mut self) -> &mut super::core::Vec4 {
+        self._glacier_base.user_masks_mut()
     }
     fn transform_type(&self) -> &super::world_base::RenderVolumeTransformType {
         self._glacier_base.transform_type()
     }
+    fn transform_type_mut(&mut self) -> &mut super::world_base::RenderVolumeTransformType {
+        self._glacier_base.transform_type_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for DecalVolumeEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -61,15 +76,15 @@ impl super::core::DataBusPeerTrait for DecalVolumeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DecalVolumeEntityData {
 }
 
 impl super::core::DataContainerTrait for DecalVolumeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DECALVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -94,6 +109,15 @@ impl TypeObject for DecalVolumeEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -121,37 +145,64 @@ pub struct DecalEntityData {
 
 pub trait DecalEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn decal_type(&self) -> &super::render_base::DecalType;
+    fn decal_type_mut(&mut self) -> &mut super::render_base::DecalType;
     fn clip_angle(&self) -> &f32;
+    fn clip_angle_mut(&mut self) -> &mut f32;
     fn sorting_priority(&self) -> &u8;
+    fn sorting_priority_mut(&mut self) -> &mut u8;
     fn atlas_tile(&self) -> &super::render_base::DecalAtlasTile;
+    fn atlas_tile_mut(&mut self) -> &mut super::render_base::DecalAtlasTile;
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
 }
 
 impl DecalEntityDataTrait for DecalEntityData {
     fn decal_type(&self) -> &super::render_base::DecalType {
         &self.decal_type
     }
+    fn decal_type_mut(&mut self) -> &mut super::render_base::DecalType {
+        &mut self.decal_type
+    }
     fn clip_angle(&self) -> &f32 {
         &self.clip_angle
+    }
+    fn clip_angle_mut(&mut self) -> &mut f32 {
+        &mut self.clip_angle
     }
     fn sorting_priority(&self) -> &u8 {
         &self.sorting_priority
     }
+    fn sorting_priority_mut(&mut self) -> &mut u8 {
+        &mut self.sorting_priority
+    }
     fn atlas_tile(&self) -> &super::render_base::DecalAtlasTile {
         &self.atlas_tile
+    }
+    fn atlas_tile_mut(&mut self) -> &mut super::render_base::DecalAtlasTile {
+        &mut self.atlas_tile
     }
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.shader
     }
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.shader
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for DecalEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -165,15 +216,15 @@ impl super::core::DataBusPeerTrait for DecalEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DecalEntityData {
 }
 
 impl super::core::DataContainerTrait for DecalEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DECALENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -235,6 +286,15 @@ impl TypeObject for DecalEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -269,63 +329,119 @@ pub struct DecalTemplateAsset {
 
 pub trait DecalTemplateAssetTrait: super::render_base::DecalTemplateBaseAssetTrait {
     fn size(&self) -> &f32;
+    fn size_mut(&mut self) -> &mut f32;
     fn random_size(&self) -> &f32;
+    fn random_size_mut(&mut self) -> &mut f32;
     fn rotation(&self) -> &f32;
+    fn rotation_mut(&mut self) -> &mut f32;
     fn random_rotation(&self) -> &f32;
+    fn random_rotation_mut(&mut self) -> &mut f32;
     fn clip_angle(&self) -> &f32;
+    fn clip_angle_mut(&mut self) -> &mut f32;
     fn proximity_radius_factor(&self) -> &f32;
+    fn proximity_radius_factor_mut(&mut self) -> &mut f32;
     fn normal_offset(&self) -> &f32;
+    fn normal_offset_mut(&mut self) -> &mut f32;
     fn sorting_priority(&self) -> &u8;
+    fn sorting_priority_mut(&mut self) -> &mut u8;
     fn atlas_tile(&self) -> &super::render_base::DecalAtlasTile;
+    fn atlas_tile_mut(&mut self) -> &mut super::render_base::DecalAtlasTile;
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn decal_type(&self) -> &super::render_base::DecalType;
+    fn decal_type_mut(&mut self) -> &mut super::render_base::DecalType;
     fn project_multiple(&self) -> &bool;
+    fn project_multiple_mut(&mut self) -> &mut bool;
     fn mesh_u_v_index(&self) -> &i32;
+    fn mesh_u_v_index_mut(&mut self) -> &mut i32;
     fn ignore_setup_job_distance_culling(&self) -> &bool;
+    fn ignore_setup_job_distance_culling_mut(&mut self) -> &mut bool;
 }
 
 impl DecalTemplateAssetTrait for DecalTemplateAsset {
     fn size(&self) -> &f32 {
         &self.size
     }
+    fn size_mut(&mut self) -> &mut f32 {
+        &mut self.size
+    }
     fn random_size(&self) -> &f32 {
         &self.random_size
+    }
+    fn random_size_mut(&mut self) -> &mut f32 {
+        &mut self.random_size
     }
     fn rotation(&self) -> &f32 {
         &self.rotation
     }
+    fn rotation_mut(&mut self) -> &mut f32 {
+        &mut self.rotation
+    }
     fn random_rotation(&self) -> &f32 {
         &self.random_rotation
+    }
+    fn random_rotation_mut(&mut self) -> &mut f32 {
+        &mut self.random_rotation
     }
     fn clip_angle(&self) -> &f32 {
         &self.clip_angle
     }
+    fn clip_angle_mut(&mut self) -> &mut f32 {
+        &mut self.clip_angle
+    }
     fn proximity_radius_factor(&self) -> &f32 {
         &self.proximity_radius_factor
+    }
+    fn proximity_radius_factor_mut(&mut self) -> &mut f32 {
+        &mut self.proximity_radius_factor
     }
     fn normal_offset(&self) -> &f32 {
         &self.normal_offset
     }
+    fn normal_offset_mut(&mut self) -> &mut f32 {
+        &mut self.normal_offset
+    }
     fn sorting_priority(&self) -> &u8 {
         &self.sorting_priority
+    }
+    fn sorting_priority_mut(&mut self) -> &mut u8 {
+        &mut self.sorting_priority
     }
     fn atlas_tile(&self) -> &super::render_base::DecalAtlasTile {
         &self.atlas_tile
     }
+    fn atlas_tile_mut(&mut self) -> &mut super::render_base::DecalAtlasTile {
+        &mut self.atlas_tile
+    }
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.shader
+    }
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.shader
     }
     fn decal_type(&self) -> &super::render_base::DecalType {
         &self.decal_type
     }
+    fn decal_type_mut(&mut self) -> &mut super::render_base::DecalType {
+        &mut self.decal_type
+    }
     fn project_multiple(&self) -> &bool {
         &self.project_multiple
+    }
+    fn project_multiple_mut(&mut self) -> &mut bool {
+        &mut self.project_multiple
     }
     fn mesh_u_v_index(&self) -> &i32 {
         &self.mesh_u_v_index
     }
+    fn mesh_u_v_index_mut(&mut self) -> &mut i32 {
+        &mut self.mesh_u_v_index
+    }
     fn ignore_setup_job_distance_culling(&self) -> &bool {
         &self.ignore_setup_job_distance_culling
+    }
+    fn ignore_setup_job_distance_culling_mut(&mut self) -> &mut bool {
+        &mut self.ignore_setup_job_distance_culling
     }
 }
 
@@ -336,12 +452,12 @@ impl super::core::AssetTrait for DecalTemplateAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DecalTemplateAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DECALTEMPLATEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -451,6 +567,15 @@ impl TypeObject for DecalTemplateAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -495,103 +620,199 @@ pub struct DecalSettings {
 
 pub trait DecalSettingsTrait: super::core::SystemSettingsTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn draw_enable(&self) -> &bool;
+    fn draw_enable_mut(&mut self) -> &mut bool;
     fn ring_buffer_size_in_verts(&self) -> &u32;
+    fn ring_buffer_size_in_verts_mut(&mut self) -> &mut u32;
     fn ring_buffer_recreate_size_in_verts(&self) -> &u32;
+    fn ring_buffer_recreate_size_in_verts_mut(&mut self) -> &mut u32;
     fn projected_decals_triangles_per_job(&self) -> &u32;
+    fn projected_decals_triangles_per_job_mut(&mut self) -> &mut u32;
     fn decal_recreate_distance_in_meters(&self) -> &f32;
+    fn decal_recreate_distance_in_meters_mut(&mut self) -> &mut f32;
     fn debug_draw_entity_handles(&self) -> &bool;
+    fn debug_draw_entity_handles_mut(&mut self) -> &mut bool;
     fn cull_enable(&self) -> &bool;
+    fn cull_enable_mut(&mut self) -> &mut bool;
     fn distance_cull_enable(&self) -> &bool;
+    fn distance_cull_enable_mut(&mut self) -> &mut bool;
     fn frustum_cull_enable(&self) -> &bool;
+    fn frustum_cull_enable_mut(&mut self) -> &mut bool;
     fn occlusion_cull_enable(&self) -> &bool;
+    fn occlusion_cull_enable_mut(&mut self) -> &mut bool;
     fn distance_cull_falloff(&self) -> &f32;
+    fn distance_cull_falloff_mut(&mut self) -> &mut f32;
     fn min_occlusion_test_distance(&self) -> &f32;
+    fn min_occlusion_test_distance_mut(&mut self) -> &mut f32;
     fn min_occlusion_screen_area(&self) -> &f32;
+    fn min_occlusion_screen_area_mut(&mut self) -> &mut f32;
     fn debug_occlusion_cull_enable(&self) -> &bool;
+    fn debug_occlusion_cull_enable_mut(&mut self) -> &mut bool;
     fn debug_batches(&self) -> &bool;
+    fn debug_batches_mut(&mut self) -> &mut bool;
     fn debug_per_entity_batches(&self) -> &i32;
+    fn debug_per_entity_batches_mut(&mut self) -> &mut i32;
     fn wireframe_enable(&self) -> &bool;
+    fn wireframe_enable_mut(&mut self) -> &mut bool;
     fn debug_ringbuffer(&self) -> &i32;
+    fn debug_ringbuffer_mut(&mut self) -> &mut i32;
     fn displacement_bias(&self) -> &f32;
+    fn displacement_bias_mut(&mut self) -> &mut f32;
     fn displacement_scale(&self) -> &f32;
+    fn displacement_scale_mut(&mut self) -> &mut f32;
     fn max_decal_object_prims(&self) -> &u32;
+    fn max_decal_object_prims_mut(&mut self) -> &mut u32;
     fn max_total_decal_object_prims(&self) -> &u32;
+    fn max_total_decal_object_prims_mut(&mut self) -> &mut u32;
     fn decal_max_distance(&self) -> &f32;
+    fn decal_max_distance_mut(&mut self) -> &mut f32;
 }
 
 impl DecalSettingsTrait for DecalSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn draw_enable(&self) -> &bool {
         &self.draw_enable
+    }
+    fn draw_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_enable
     }
     fn ring_buffer_size_in_verts(&self) -> &u32 {
         &self.ring_buffer_size_in_verts
     }
+    fn ring_buffer_size_in_verts_mut(&mut self) -> &mut u32 {
+        &mut self.ring_buffer_size_in_verts
+    }
     fn ring_buffer_recreate_size_in_verts(&self) -> &u32 {
         &self.ring_buffer_recreate_size_in_verts
+    }
+    fn ring_buffer_recreate_size_in_verts_mut(&mut self) -> &mut u32 {
+        &mut self.ring_buffer_recreate_size_in_verts
     }
     fn projected_decals_triangles_per_job(&self) -> &u32 {
         &self.projected_decals_triangles_per_job
     }
+    fn projected_decals_triangles_per_job_mut(&mut self) -> &mut u32 {
+        &mut self.projected_decals_triangles_per_job
+    }
     fn decal_recreate_distance_in_meters(&self) -> &f32 {
         &self.decal_recreate_distance_in_meters
+    }
+    fn decal_recreate_distance_in_meters_mut(&mut self) -> &mut f32 {
+        &mut self.decal_recreate_distance_in_meters
     }
     fn debug_draw_entity_handles(&self) -> &bool {
         &self.debug_draw_entity_handles
     }
+    fn debug_draw_entity_handles_mut(&mut self) -> &mut bool {
+        &mut self.debug_draw_entity_handles
+    }
     fn cull_enable(&self) -> &bool {
         &self.cull_enable
+    }
+    fn cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.cull_enable
     }
     fn distance_cull_enable(&self) -> &bool {
         &self.distance_cull_enable
     }
+    fn distance_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.distance_cull_enable
+    }
     fn frustum_cull_enable(&self) -> &bool {
         &self.frustum_cull_enable
+    }
+    fn frustum_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.frustum_cull_enable
     }
     fn occlusion_cull_enable(&self) -> &bool {
         &self.occlusion_cull_enable
     }
+    fn occlusion_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.occlusion_cull_enable
+    }
     fn distance_cull_falloff(&self) -> &f32 {
         &self.distance_cull_falloff
+    }
+    fn distance_cull_falloff_mut(&mut self) -> &mut f32 {
+        &mut self.distance_cull_falloff
     }
     fn min_occlusion_test_distance(&self) -> &f32 {
         &self.min_occlusion_test_distance
     }
+    fn min_occlusion_test_distance_mut(&mut self) -> &mut f32 {
+        &mut self.min_occlusion_test_distance
+    }
     fn min_occlusion_screen_area(&self) -> &f32 {
         &self.min_occlusion_screen_area
+    }
+    fn min_occlusion_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.min_occlusion_screen_area
     }
     fn debug_occlusion_cull_enable(&self) -> &bool {
         &self.debug_occlusion_cull_enable
     }
+    fn debug_occlusion_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.debug_occlusion_cull_enable
+    }
     fn debug_batches(&self) -> &bool {
         &self.debug_batches
+    }
+    fn debug_batches_mut(&mut self) -> &mut bool {
+        &mut self.debug_batches
     }
     fn debug_per_entity_batches(&self) -> &i32 {
         &self.debug_per_entity_batches
     }
+    fn debug_per_entity_batches_mut(&mut self) -> &mut i32 {
+        &mut self.debug_per_entity_batches
+    }
     fn wireframe_enable(&self) -> &bool {
         &self.wireframe_enable
+    }
+    fn wireframe_enable_mut(&mut self) -> &mut bool {
+        &mut self.wireframe_enable
     }
     fn debug_ringbuffer(&self) -> &i32 {
         &self.debug_ringbuffer
     }
+    fn debug_ringbuffer_mut(&mut self) -> &mut i32 {
+        &mut self.debug_ringbuffer
+    }
     fn displacement_bias(&self) -> &f32 {
         &self.displacement_bias
+    }
+    fn displacement_bias_mut(&mut self) -> &mut f32 {
+        &mut self.displacement_bias
     }
     fn displacement_scale(&self) -> &f32 {
         &self.displacement_scale
     }
+    fn displacement_scale_mut(&mut self) -> &mut f32 {
+        &mut self.displacement_scale
+    }
     fn max_decal_object_prims(&self) -> &u32 {
         &self.max_decal_object_prims
+    }
+    fn max_decal_object_prims_mut(&mut self) -> &mut u32 {
+        &mut self.max_decal_object_prims
     }
     fn max_total_decal_object_prims(&self) -> &u32 {
         &self.max_total_decal_object_prims
     }
+    fn max_total_decal_object_prims_mut(&mut self) -> &mut u32 {
+        &mut self.max_total_decal_object_prims
+    }
     fn decal_max_distance(&self) -> &f32 {
         &self.decal_max_distance
+    }
+    fn decal_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.decal_max_distance
     }
 }
 
@@ -599,12 +820,12 @@ impl super::core::SystemSettingsTrait for DecalSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DecalSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DECALSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -773,6 +994,15 @@ impl TypeObject for DecalSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

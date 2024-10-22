@@ -23,19 +23,31 @@ pub struct SvgImage {
 
 pub trait SvgImageTrait: super::core::AssetTrait {
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn height(&self) -> &f32;
+    fn height_mut(&mut self) -> &mut f32;
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl SvgImageTrait for SvgImage {
     fn width(&self) -> &f32 {
         &self.width
     }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
+    }
     fn height(&self) -> &f32 {
         &self.height
     }
+    fn height_mut(&mut self) -> &mut f32 {
+        &mut self.height
+    }
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.resource
+    }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.resource
     }
 }
 
@@ -43,12 +55,12 @@ impl super::core::AssetTrait for SvgImage {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SvgImage {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SVGIMAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -91,6 +103,15 @@ impl TypeObject for SvgImage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -41,11 +41,15 @@ pub struct PA2AttitudeEntityData {
 
 pub trait PA2AttitudeEntityDataTrait: super::entity::EntityDataTrait {
     fn attitude(&self) -> &Option<Arc<Mutex<dyn PA2AttitudeAssetTrait>>>;
+    fn attitude_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PA2AttitudeAssetTrait>>>;
 }
 
 impl PA2AttitudeEntityDataTrait for PA2AttitudeEntityData {
     fn attitude(&self) -> &Option<Arc<Mutex<dyn PA2AttitudeAssetTrait>>> {
         &self.attitude
+    }
+    fn attitude_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PA2AttitudeAssetTrait>>> {
+        &mut self.attitude
     }
 }
 
@@ -59,15 +63,15 @@ impl super::core::DataBusPeerTrait for PA2AttitudeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PA2AttitudeEntityData {
 }
 
 impl super::core::DataContainerTrait for PA2AttitudeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PA2ATTITUDEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -99,6 +103,15 @@ impl TypeObject for PA2AttitudeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -121,15 +134,23 @@ pub struct PA2AttitudeAsset {
 
 pub trait PA2AttitudeAssetTrait: super::core::DataContainerPolicyAssetTrait {
     fn active_game_state(&self) -> &super::ant::AntRef;
+    fn active_game_state_mut(&mut self) -> &mut super::ant::AntRef;
     fn primary_target_min_duration(&self) -> &f32;
+    fn primary_target_min_duration_mut(&mut self) -> &mut f32;
 }
 
 impl PA2AttitudeAssetTrait for PA2AttitudeAsset {
     fn active_game_state(&self) -> &super::ant::AntRef {
         &self.active_game_state
     }
+    fn active_game_state_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.active_game_state
+    }
     fn primary_target_min_duration(&self) -> &f32 {
         &self.primary_target_min_duration
+    }
+    fn primary_target_min_duration_mut(&mut self) -> &mut f32 {
+        &mut self.primary_target_min_duration
     }
 }
 
@@ -140,12 +161,12 @@ impl super::core::AssetTrait for PA2AttitudeAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PA2AttitudeAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PA2ATTITUDEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -183,6 +204,15 @@ impl TypeObject for PA2AttitudeAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -208,27 +238,47 @@ pub struct PA2BehaviorEntityData {
 
 pub trait PA2BehaviorEntityDataTrait: super::entity::EntityDataTrait {
     fn targeting_bone(&self) -> &super::entity::GameplayBones;
+    fn targeting_bone_mut(&mut self) -> &mut super::entity::GameplayBones;
     fn primary_targeting_mode(&self) -> &PA2TargetingMode;
+    fn primary_targeting_mode_mut(&mut self) -> &mut PA2TargetingMode;
     fn glance_targeting_mode(&self) -> &PA2TargetingMode;
+    fn glance_targeting_mode_mut(&mut self) -> &mut PA2TargetingMode;
     fn override_primary_target_enabled(&self) -> &bool;
+    fn override_primary_target_enabled_mut(&mut self) -> &mut bool;
     fn override_primary_target_position(&self) -> &super::core::Vec3;
+    fn override_primary_target_position_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl PA2BehaviorEntityDataTrait for PA2BehaviorEntityData {
     fn targeting_bone(&self) -> &super::entity::GameplayBones {
         &self.targeting_bone
     }
+    fn targeting_bone_mut(&mut self) -> &mut super::entity::GameplayBones {
+        &mut self.targeting_bone
+    }
     fn primary_targeting_mode(&self) -> &PA2TargetingMode {
         &self.primary_targeting_mode
+    }
+    fn primary_targeting_mode_mut(&mut self) -> &mut PA2TargetingMode {
+        &mut self.primary_targeting_mode
     }
     fn glance_targeting_mode(&self) -> &PA2TargetingMode {
         &self.glance_targeting_mode
     }
+    fn glance_targeting_mode_mut(&mut self) -> &mut PA2TargetingMode {
+        &mut self.glance_targeting_mode
+    }
     fn override_primary_target_enabled(&self) -> &bool {
         &self.override_primary_target_enabled
     }
+    fn override_primary_target_enabled_mut(&mut self) -> &mut bool {
+        &mut self.override_primary_target_enabled
+    }
     fn override_primary_target_position(&self) -> &super::core::Vec3 {
         &self.override_primary_target_position
+    }
+    fn override_primary_target_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.override_primary_target_position
     }
 }
 
@@ -242,15 +292,15 @@ impl super::core::DataBusPeerTrait for PA2BehaviorEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PA2BehaviorEntityData {
 }
 
 impl super::core::DataContainerTrait for PA2BehaviorEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PA2BEHAVIORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -306,6 +356,15 @@ impl TypeObject for PA2BehaviorEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -331,27 +390,47 @@ pub struct PA2TargetEntityData {
 
 pub trait PA2TargetEntityDataTrait: super::entity::EntityDataTrait {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn targeting_mode(&self) -> &PA2TargetingMode;
+    fn targeting_mode_mut(&mut self) -> &mut PA2TargetingMode;
     fn target_type(&self) -> &PA2TargetType;
+    fn target_type_mut(&mut self) -> &mut PA2TargetType;
 }
 
 impl PA2TargetEntityDataTrait for PA2TargetEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn targeting_mode(&self) -> &PA2TargetingMode {
         &self.targeting_mode
     }
+    fn targeting_mode_mut(&mut self) -> &mut PA2TargetingMode {
+        &mut self.targeting_mode
+    }
     fn target_type(&self) -> &PA2TargetType {
         &self.target_type
+    }
+    fn target_type_mut(&mut self) -> &mut PA2TargetType {
+        &mut self.target_type
     }
 }
 
@@ -365,15 +444,15 @@ impl super::core::DataBusPeerTrait for PA2TargetEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PA2TargetEntityData {
 }
 
 impl super::core::DataContainerTrait for PA2TargetEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PA2TARGETENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -429,6 +508,15 @@ impl TypeObject for PA2TargetEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -469,6 +557,15 @@ impl TypeObject for PA2TargetingMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -508,6 +605,15 @@ impl TypeObject for PA2TargetType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -545,6 +651,15 @@ impl TypeObject for TargetFlags {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -591,6 +706,15 @@ impl TypeObject for PA2TargetState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -645,6 +769,15 @@ impl TypeObject for ClientPA2TargetEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -698,6 +831,15 @@ impl TypeObject for ClientPA2BehaviorEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -750,6 +892,15 @@ impl TypeObject for ClientPA2AttitudeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -29,19 +29,31 @@ pub struct LiveContentUpdateSettings {
 
 pub trait LiveContentUpdateSettingsTrait: super::core::SystemSettingsTrait {
     fn auto_start(&self) -> &bool;
+    fn auto_start_mut(&mut self) -> &mut bool;
     fn timeout_initial(&self) -> &i32;
+    fn timeout_initial_mut(&mut self) -> &mut i32;
     fn timeout_recheck(&self) -> &i32;
+    fn timeout_recheck_mut(&mut self) -> &mut i32;
 }
 
 impl LiveContentUpdateSettingsTrait for LiveContentUpdateSettings {
     fn auto_start(&self) -> &bool {
         &self.auto_start
     }
+    fn auto_start_mut(&mut self) -> &mut bool {
+        &mut self.auto_start
+    }
     fn timeout_initial(&self) -> &i32 {
         &self.timeout_initial
     }
+    fn timeout_initial_mut(&mut self) -> &mut i32 {
+        &mut self.timeout_initial
+    }
     fn timeout_recheck(&self) -> &i32 {
         &self.timeout_recheck
+    }
+    fn timeout_recheck_mut(&mut self) -> &mut i32 {
+        &mut self.timeout_recheck
     }
 }
 
@@ -49,12 +61,12 @@ impl super::core::SystemSettingsTrait for LiveContentUpdateSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LiveContentUpdateSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LIVECONTENTUPDATESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -97,6 +109,15 @@ impl TypeObject for LiveContentUpdateSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -143,6 +164,15 @@ impl TypeObject for LCUServiceMessageProgressMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -177,6 +207,15 @@ impl TypeObject for LCUServiceMessageStateChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -188,15 +227,23 @@ pub struct LCUEntityData {
 
 pub trait LCUEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn automatic(&self) -> &bool;
+    fn automatic_mut(&mut self) -> &mut bool;
 }
 
 impl LCUEntityDataTrait for LCUEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn automatic(&self) -> &bool {
         &self.automatic
+    }
+    fn automatic_mut(&mut self) -> &mut bool {
+        &mut self.automatic
     }
 }
 
@@ -210,15 +257,15 @@ impl super::core::DataBusPeerTrait for LCUEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LCUEntityData {
 }
 
 impl super::core::DataContainerTrait for LCUEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LCUENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -255,6 +302,15 @@ impl TypeObject for LCUEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -308,6 +364,15 @@ impl TypeObject for ClientLCUEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

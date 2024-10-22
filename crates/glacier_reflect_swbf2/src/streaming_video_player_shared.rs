@@ -23,19 +23,31 @@ pub struct StreamingVideoPlayerEntityData {
 
 pub trait StreamingVideoPlayerEntityDataTrait: super::entity::EntityDataTrait {
     fn video_u_r_l(&self) -> &String;
+    fn video_u_r_l_mut(&mut self) -> &mut String;
     fn texture_width(&self) -> &i32;
+    fn texture_width_mut(&mut self) -> &mut i32;
     fn texture_height(&self) -> &i32;
+    fn texture_height_mut(&mut self) -> &mut i32;
 }
 
 impl StreamingVideoPlayerEntityDataTrait for StreamingVideoPlayerEntityData {
     fn video_u_r_l(&self) -> &String {
         &self.video_u_r_l
     }
+    fn video_u_r_l_mut(&mut self) -> &mut String {
+        &mut self.video_u_r_l
+    }
     fn texture_width(&self) -> &i32 {
         &self.texture_width
     }
+    fn texture_width_mut(&mut self) -> &mut i32 {
+        &mut self.texture_width
+    }
     fn texture_height(&self) -> &i32 {
         &self.texture_height
+    }
+    fn texture_height_mut(&mut self) -> &mut i32 {
+        &mut self.texture_height
     }
 }
 
@@ -49,15 +61,15 @@ impl super::core::DataBusPeerTrait for StreamingVideoPlayerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StreamingVideoPlayerEntityData {
 }
 
 impl super::core::DataContainerTrait for StreamingVideoPlayerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STREAMINGVIDEOPLAYERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -100,6 +112,15 @@ impl TypeObject for StreamingVideoPlayerEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

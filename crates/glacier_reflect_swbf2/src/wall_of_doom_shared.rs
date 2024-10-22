@@ -29,27 +29,47 @@ pub struct WallOfDoomMeshEntityData {
 
 pub trait WallOfDoomMeshEntityDataTrait: super::game_shared::StaticModelEntityDataTrait {
     fn show_curvature(&self) -> &bool;
+    fn show_curvature_mut(&mut self) -> &mut bool;
     fn vertex_perturbation_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
+    fn vertex_perturbation_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
     fn perturbation_max_scale(&self) -> &f32;
+    fn perturbation_max_scale_mut(&mut self) -> &mut f32;
     fn perturbation_max_scale_height(&self) -> &f32;
+    fn perturbation_max_scale_height_mut(&mut self) -> &mut f32;
     fn perturbation_min_height(&self) -> &f32;
+    fn perturbation_min_height_mut(&mut self) -> &mut f32;
 }
 
 impl WallOfDoomMeshEntityDataTrait for WallOfDoomMeshEntityData {
     fn show_curvature(&self) -> &bool {
         &self.show_curvature
     }
+    fn show_curvature_mut(&mut self) -> &mut bool {
+        &mut self.show_curvature
+    }
     fn vertex_perturbation_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
         &self.vertex_perturbation_texture
+    }
+    fn vertex_perturbation_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+        &mut self.vertex_perturbation_texture
     }
     fn perturbation_max_scale(&self) -> &f32 {
         &self.perturbation_max_scale
     }
+    fn perturbation_max_scale_mut(&mut self) -> &mut f32 {
+        &mut self.perturbation_max_scale
+    }
     fn perturbation_max_scale_height(&self) -> &f32 {
         &self.perturbation_max_scale_height
     }
+    fn perturbation_max_scale_height_mut(&mut self) -> &mut f32 {
+        &mut self.perturbation_max_scale_height
+    }
     fn perturbation_min_height(&self) -> &f32 {
         &self.perturbation_min_height
+    }
+    fn perturbation_min_height_mut(&mut self) -> &mut f32 {
+        &mut self.perturbation_min_height
     }
 }
 
@@ -57,38 +77,74 @@ impl super::game_shared::StaticModelEntityDataTrait for WallOfDoomMeshEntityData
     fn part_links(&self) -> &Vec<Option<Arc<Mutex<dyn super::gameplay_sim::PartLinkDataTrait>>>> {
         self._glacier_base.part_links()
     }
+    fn part_links_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::gameplay_sim::PartLinkDataTrait>>>> {
+        self._glacier_base.part_links_mut()
+    }
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         self._glacier_base.mesh()
+    }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        self._glacier_base.mesh_mut()
     }
     fn base_pose_transforms(&self) -> &super::core::SparseTransformArray {
         self._glacier_base.base_pose_transforms()
     }
+    fn base_pose_transforms_mut(&mut self) -> &mut super::core::SparseTransformArray {
+        self._glacier_base.base_pose_transforms_mut()
+    }
     fn exclude_from_nearby_object_destruction(&self) -> &bool {
         self._glacier_base.exclude_from_nearby_object_destruction()
+    }
+    fn exclude_from_nearby_object_destruction_mut(&mut self) -> &mut bool {
+        self._glacier_base.exclude_from_nearby_object_destruction_mut()
     }
     fn physics_part_infos(&self) -> &Vec<super::game_shared::PhysicsPartInfo> {
         self._glacier_base.physics_part_infos()
     }
+    fn physics_part_infos_mut(&mut self) -> &mut Vec<super::game_shared::PhysicsPartInfo> {
+        self._glacier_base.physics_part_infos_mut()
+    }
     fn network_info(&self) -> &super::game_shared::StaticModelNetworkInfo {
         self._glacier_base.network_info()
+    }
+    fn network_info_mut(&mut self) -> &mut super::game_shared::StaticModelNetworkInfo {
+        self._glacier_base.network_info_mut()
     }
     fn animate_physics(&self) -> &bool {
         self._glacier_base.animate_physics()
     }
+    fn animate_physics_mut(&mut self) -> &mut bool {
+        self._glacier_base.animate_physics_mut()
+    }
     fn terrain_shader_nodes_enable(&self) -> &bool {
         self._glacier_base.terrain_shader_nodes_enable()
+    }
+    fn terrain_shader_nodes_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.terrain_shader_nodes_enable_mut()
     }
     fn explosion_packs_attachable(&self) -> &bool {
         self._glacier_base.explosion_packs_attachable()
     }
+    fn explosion_packs_attachable_mut(&mut self) -> &mut bool {
+        self._glacier_base.explosion_packs_attachable_mut()
+    }
     fn light_map_weight(&self) -> &f32 {
         self._glacier_base.light_map_weight()
+    }
+    fn light_map_weight_mut(&mut self) -> &mut f32 {
+        self._glacier_base.light_map_weight_mut()
     }
     fn visible(&self) -> &bool {
         self._glacier_base.visible()
     }
+    fn visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.visible_mut()
+    }
     fn overlay_enabled(&self) -> &bool {
         self._glacier_base.overlay_enabled()
+    }
+    fn overlay_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.overlay_enabled_mut()
     }
 }
 
@@ -99,32 +155,56 @@ impl super::entity::GameComponentEntityDataTrait for WallOfDoomMeshEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for WallOfDoomMeshEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for WallOfDoomMeshEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -138,15 +218,15 @@ impl super::core::DataBusPeerTrait for WallOfDoomMeshEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WallOfDoomMeshEntityData {
 }
 
 impl super::core::DataContainerTrait for WallOfDoomMeshEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WALLOFDOOMMESHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -202,6 +282,15 @@ impl TypeObject for WallOfDoomMeshEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -235,59 +324,111 @@ pub struct WallOfDoomEntityData {
 
 pub trait WallOfDoomEntityDataTrait: super::entity::EntityDataTrait {
     fn wall_of_doom_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn wall_of_doom_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
     fn wall_of_doom_blend_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn wall_of_doom_blend_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
     fn mesh_segment_length(&self) -> &f32;
+    fn mesh_segment_length_mut(&mut self) -> &mut f32;
     fn mesh_segment_height(&self) -> &f32;
+    fn mesh_segment_height_mut(&mut self) -> &mut f32;
     fn mesh_blending_segment_length(&self) -> &f32;
+    fn mesh_blending_segment_length_mut(&mut self) -> &mut f32;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn center(&self) -> &super::core::Vec3;
+    fn center_mut(&mut self) -> &mut super::core::Vec3;
     fn min_max_pairs(&self) -> &Vec<f32>;
+    fn min_max_pairs_mut(&mut self) -> &mut Vec<f32>;
     fn meta_data(&self) -> &WallOfDoomHeightmapMetaData;
+    fn meta_data_mut(&mut self) -> &mut WallOfDoomHeightmapMetaData;
     fn height_map(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
+    fn height_map_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
     fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
     fn wall_visible(&self) -> &bool;
+    fn wall_visible_mut(&mut self) -> &mut bool;
     fn v_f_x_visible(&self) -> &bool;
+    fn v_f_x_visible_mut(&mut self) -> &mut bool;
 }
 
 impl WallOfDoomEntityDataTrait for WallOfDoomEntityData {
     fn wall_of_doom_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         &self.wall_of_doom_blueprint
     }
+    fn wall_of_doom_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        &mut self.wall_of_doom_blueprint
+    }
     fn wall_of_doom_blend_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
         &self.wall_of_doom_blend_blueprint
+    }
+    fn wall_of_doom_blend_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+        &mut self.wall_of_doom_blend_blueprint
     }
     fn mesh_segment_length(&self) -> &f32 {
         &self.mesh_segment_length
     }
+    fn mesh_segment_length_mut(&mut self) -> &mut f32 {
+        &mut self.mesh_segment_length
+    }
     fn mesh_segment_height(&self) -> &f32 {
         &self.mesh_segment_height
+    }
+    fn mesh_segment_height_mut(&mut self) -> &mut f32 {
+        &mut self.mesh_segment_height
     }
     fn mesh_blending_segment_length(&self) -> &f32 {
         &self.mesh_blending_segment_length
     }
+    fn mesh_blending_segment_length_mut(&mut self) -> &mut f32 {
+        &mut self.mesh_blending_segment_length
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn center(&self) -> &super::core::Vec3 {
         &self.center
     }
+    fn center_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.center
+    }
     fn min_max_pairs(&self) -> &Vec<f32> {
         &self.min_max_pairs
+    }
+    fn min_max_pairs_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.min_max_pairs
     }
     fn meta_data(&self) -> &WallOfDoomHeightmapMetaData {
         &self.meta_data
     }
+    fn meta_data_mut(&mut self) -> &mut WallOfDoomHeightmapMetaData {
+        &mut self.meta_data
+    }
     fn height_map(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
         &self.height_map
+    }
+    fn height_map_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+        &mut self.height_map
     }
     fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
         &self.effect_parameters
     }
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+        &mut self.effect_parameters
+    }
     fn wall_visible(&self) -> &bool {
         &self.wall_visible
     }
+    fn wall_visible_mut(&mut self) -> &mut bool {
+        &mut self.wall_visible
+    }
     fn v_f_x_visible(&self) -> &bool {
         &self.v_f_x_visible
+    }
+    fn v_f_x_visible_mut(&mut self) -> &mut bool {
+        &mut self.v_f_x_visible
     }
 }
 
@@ -301,15 +442,15 @@ impl super::core::DataBusPeerTrait for WallOfDoomEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WallOfDoomEntityData {
 }
 
 impl super::core::DataContainerTrait for WallOfDoomEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WALLOFDOOMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -413,6 +554,15 @@ impl TypeObject for WallOfDoomEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -443,51 +593,95 @@ pub struct WallOfDoomHeightmapMetaData {
 
 pub trait WallOfDoomHeightmapMetaDataTrait: TypeObject {
     fn height_map_width(&self) -> &i32;
+    fn height_map_width_mut(&mut self) -> &mut i32;
     fn height_map_height(&self) -> &i32;
+    fn height_map_height_mut(&mut self) -> &mut i32;
     fn world_extents_min_x(&self) -> &f32;
+    fn world_extents_min_x_mut(&mut self) -> &mut f32;
     fn world_extents_min_y(&self) -> &f32;
+    fn world_extents_min_y_mut(&mut self) -> &mut f32;
     fn world_extents_min_z(&self) -> &f32;
+    fn world_extents_min_z_mut(&mut self) -> &mut f32;
     fn world_extents_max_x(&self) -> &f32;
+    fn world_extents_max_x_mut(&mut self) -> &mut f32;
     fn world_extents_max_y(&self) -> &f32;
+    fn world_extents_max_y_mut(&mut self) -> &mut f32;
     fn world_extents_max_z(&self) -> &f32;
+    fn world_extents_max_z_mut(&mut self) -> &mut f32;
     fn min_max_texture_ratio(&self) -> &i32;
+    fn min_max_texture_ratio_mut(&mut self) -> &mut i32;
     fn min_max_data_width(&self) -> &i32;
+    fn min_max_data_width_mut(&mut self) -> &mut i32;
     fn min_max_data_height(&self) -> &i32;
+    fn min_max_data_height_mut(&mut self) -> &mut i32;
 }
 
 impl WallOfDoomHeightmapMetaDataTrait for WallOfDoomHeightmapMetaData {
     fn height_map_width(&self) -> &i32 {
         &self.height_map_width
     }
+    fn height_map_width_mut(&mut self) -> &mut i32 {
+        &mut self.height_map_width
+    }
     fn height_map_height(&self) -> &i32 {
         &self.height_map_height
+    }
+    fn height_map_height_mut(&mut self) -> &mut i32 {
+        &mut self.height_map_height
     }
     fn world_extents_min_x(&self) -> &f32 {
         &self.world_extents_min_x
     }
+    fn world_extents_min_x_mut(&mut self) -> &mut f32 {
+        &mut self.world_extents_min_x
+    }
     fn world_extents_min_y(&self) -> &f32 {
         &self.world_extents_min_y
+    }
+    fn world_extents_min_y_mut(&mut self) -> &mut f32 {
+        &mut self.world_extents_min_y
     }
     fn world_extents_min_z(&self) -> &f32 {
         &self.world_extents_min_z
     }
+    fn world_extents_min_z_mut(&mut self) -> &mut f32 {
+        &mut self.world_extents_min_z
+    }
     fn world_extents_max_x(&self) -> &f32 {
         &self.world_extents_max_x
+    }
+    fn world_extents_max_x_mut(&mut self) -> &mut f32 {
+        &mut self.world_extents_max_x
     }
     fn world_extents_max_y(&self) -> &f32 {
         &self.world_extents_max_y
     }
+    fn world_extents_max_y_mut(&mut self) -> &mut f32 {
+        &mut self.world_extents_max_y
+    }
     fn world_extents_max_z(&self) -> &f32 {
         &self.world_extents_max_z
+    }
+    fn world_extents_max_z_mut(&mut self) -> &mut f32 {
+        &mut self.world_extents_max_z
     }
     fn min_max_texture_ratio(&self) -> &i32 {
         &self.min_max_texture_ratio
     }
+    fn min_max_texture_ratio_mut(&mut self) -> &mut i32 {
+        &mut self.min_max_texture_ratio
+    }
     fn min_max_data_width(&self) -> &i32 {
         &self.min_max_data_width
     }
+    fn min_max_data_width_mut(&mut self) -> &mut i32 {
+        &mut self.min_max_data_width
+    }
     fn min_max_data_height(&self) -> &i32 {
         &self.min_max_data_height
+    }
+    fn min_max_data_height_mut(&mut self) -> &mut i32 {
+        &mut self.min_max_data_height
     }
 }
 
@@ -578,6 +772,15 @@ impl TypeObject for WallOfDoomHeightmapMetaData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

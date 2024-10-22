@@ -164,11 +164,15 @@ pub struct CreatureWaypointNetState {
 
 pub trait CreatureWaypointNetStateTrait: TypeObject {
     fn g_u_i_d(&self) -> &super::a_i_tools::AIWaypointGUID;
+    fn g_u_i_d_mut(&mut self) -> &mut super::a_i_tools::AIWaypointGUID;
 }
 
 impl CreatureWaypointNetStateTrait for CreatureWaypointNetState {
     fn g_u_i_d(&self) -> &super::a_i_tools::AIWaypointGUID {
         &self.g_u_i_d
+    }
+    fn g_u_i_d_mut(&mut self) -> &mut super::a_i_tools::AIWaypointGUID {
+        &mut self.g_u_i_d
     }
 }
 
@@ -200,6 +204,15 @@ impl TypeObject for CreatureWaypointNetState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -221,15 +234,23 @@ pub struct AIWaypointExtraAlignInfo {
 
 pub trait AIWaypointExtraAlignInfoTrait: TypeObject {
     fn align_pos(&self) -> &super::core::Vec3;
+    fn align_pos_mut(&mut self) -> &mut super::core::Vec3;
     fn align_facing(&self) -> &f32;
+    fn align_facing_mut(&mut self) -> &mut f32;
 }
 
 impl AIWaypointExtraAlignInfoTrait for AIWaypointExtraAlignInfo {
     fn align_pos(&self) -> &super::core::Vec3 {
         &self.align_pos
     }
+    fn align_pos_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.align_pos
+    }
     fn align_facing(&self) -> &f32 {
         &self.align_facing
+    }
+    fn align_facing_mut(&mut self) -> &mut f32 {
+        &mut self.align_facing
     }
 }
 
@@ -267,6 +288,15 @@ impl TypeObject for AIWaypointExtraAlignInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -291,27 +321,47 @@ pub struct AIWaypointExtraCreatureLoco {
 
 pub trait AIWaypointExtraCreatureLocoTrait: TypeObject {
     fn desired_facing(&self) -> &f32;
+    fn desired_facing_mut(&mut self) -> &mut f32;
     fn speed_level(&self) -> &i32;
+    fn speed_level_mut(&mut self) -> &mut i32;
     fn stop(&self) -> &bool;
+    fn stop_mut(&mut self) -> &mut bool;
     fn backwards(&self) -> &bool;
+    fn backwards_mut(&mut self) -> &mut bool;
     fn force_height(&self) -> &bool;
+    fn force_height_mut(&mut self) -> &mut bool;
 }
 
 impl AIWaypointExtraCreatureLocoTrait for AIWaypointExtraCreatureLoco {
     fn desired_facing(&self) -> &f32 {
         &self.desired_facing
     }
+    fn desired_facing_mut(&mut self) -> &mut f32 {
+        &mut self.desired_facing
+    }
     fn speed_level(&self) -> &i32 {
         &self.speed_level
+    }
+    fn speed_level_mut(&mut self) -> &mut i32 {
+        &mut self.speed_level
     }
     fn stop(&self) -> &bool {
         &self.stop
     }
+    fn stop_mut(&mut self) -> &mut bool {
+        &mut self.stop
+    }
     fn backwards(&self) -> &bool {
         &self.backwards
     }
+    fn backwards_mut(&mut self) -> &mut bool {
+        &mut self.backwards
+    }
     fn force_height(&self) -> &bool {
         &self.force_height
+    }
+    fn force_height_mut(&mut self) -> &mut bool {
+        &mut self.force_height
     }
 }
 
@@ -367,6 +417,15 @@ impl TypeObject for AIWaypointExtraCreatureLoco {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -393,31 +452,55 @@ pub struct CreaturePlayAnimationWaypointData {
 
 pub trait CreaturePlayAnimationWaypointDataTrait: CreatureMoveWaypointDataTrait {
     fn play_animation(&self) -> &Option<Arc<Mutex<dyn super::game_shared::PlayAnimationDataTrait>>>;
+    fn play_animation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::PlayAnimationDataTrait>>>;
     fn stop_at_waypoint(&self) -> &bool;
+    fn stop_at_waypoint_mut(&mut self) -> &mut bool;
     fn align_joint(&self) -> &String;
+    fn align_joint_mut(&mut self) -> &mut String;
     fn align_transform(&self) -> &super::core::LinearTransform;
+    fn align_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enter_position(&self) -> &super::core::Vec3;
+    fn enter_position_mut(&mut self) -> &mut super::core::Vec3;
     fn exit_position(&self) -> &super::core::Vec3;
+    fn exit_position_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl CreaturePlayAnimationWaypointDataTrait for CreaturePlayAnimationWaypointData {
     fn play_animation(&self) -> &Option<Arc<Mutex<dyn super::game_shared::PlayAnimationDataTrait>>> {
         &self.play_animation
     }
+    fn play_animation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::PlayAnimationDataTrait>>> {
+        &mut self.play_animation
+    }
     fn stop_at_waypoint(&self) -> &bool {
         &self.stop_at_waypoint
+    }
+    fn stop_at_waypoint_mut(&mut self) -> &mut bool {
+        &mut self.stop_at_waypoint
     }
     fn align_joint(&self) -> &String {
         &self.align_joint
     }
+    fn align_joint_mut(&mut self) -> &mut String {
+        &mut self.align_joint
+    }
     fn align_transform(&self) -> &super::core::LinearTransform {
         &self.align_transform
+    }
+    fn align_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.align_transform
     }
     fn enter_position(&self) -> &super::core::Vec3 {
         &self.enter_position
     }
+    fn enter_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.enter_position
+    }
     fn exit_position(&self) -> &super::core::Vec3 {
         &self.exit_position
+    }
+    fn exit_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.exit_position
     }
 }
 
@@ -425,20 +508,38 @@ impl CreatureMoveWaypointDataTrait for CreaturePlayAnimationWaypointData {
     fn override_creature_angle(&self) -> &bool {
         self._glacier_base.override_creature_angle()
     }
+    fn override_creature_angle_mut(&mut self) -> &mut bool {
+        self._glacier_base.override_creature_angle_mut()
+    }
     fn world_angle(&self) -> &f32 {
         self._glacier_base.world_angle()
+    }
+    fn world_angle_mut(&mut self) -> &mut f32 {
+        self._glacier_base.world_angle_mut()
     }
     fn radius(&self) -> &f32 {
         self._glacier_base.radius()
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.radius_mut()
+    }
     fn speed_level(&self) -> &CreatureSpeedLevel {
         self._glacier_base.speed_level()
+    }
+    fn speed_level_mut(&mut self) -> &mut CreatureSpeedLevel {
+        self._glacier_base.speed_level_mut()
     }
     fn move_backward(&self) -> &bool {
         self._glacier_base.move_backward()
     }
+    fn move_backward_mut(&mut self) -> &mut bool {
+        self._glacier_base.move_backward_mut()
+    }
     fn explicit_height(&self) -> &bool {
         self._glacier_base.explicit_height()
+    }
+    fn explicit_height_mut(&mut self) -> &mut bool {
+        self._glacier_base.explicit_height_mut()
     }
 }
 
@@ -446,18 +547,24 @@ impl super::pathfinding_shared::WaypointDataTrait for CreaturePlayAnimationWaypo
     fn use_clients_position(&self) -> &bool {
         self._glacier_base.use_clients_position()
     }
+    fn use_clients_position_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_clients_position_mut()
+    }
     fn schematics_name_hash(&self) -> &i32 {
         self._glacier_base.schematics_name_hash()
+    }
+    fn schematics_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.schematics_name_hash_mut()
     }
     fn waypoint_id(&self) -> &u32 {
         self._glacier_base.waypoint_id()
     }
+    fn waypoint_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.waypoint_id_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CreaturePlayAnimationWaypointData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREPLAYANIMATIONWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -519,6 +626,15 @@ impl TypeObject for CreaturePlayAnimationWaypointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -541,15 +657,23 @@ pub struct CreaturePauseWaypointData {
 
 pub trait CreaturePauseWaypointDataTrait: CreatureMoveWaypointDataTrait {
     fn pause_settings_for_slow_speed(&self) -> &CreaturePauseData;
+    fn pause_settings_for_slow_speed_mut(&mut self) -> &mut CreaturePauseData;
     fn pause_settings_for_fast_speed(&self) -> &CreaturePauseData;
+    fn pause_settings_for_fast_speed_mut(&mut self) -> &mut CreaturePauseData;
 }
 
 impl CreaturePauseWaypointDataTrait for CreaturePauseWaypointData {
     fn pause_settings_for_slow_speed(&self) -> &CreaturePauseData {
         &self.pause_settings_for_slow_speed
     }
+    fn pause_settings_for_slow_speed_mut(&mut self) -> &mut CreaturePauseData {
+        &mut self.pause_settings_for_slow_speed
+    }
     fn pause_settings_for_fast_speed(&self) -> &CreaturePauseData {
         &self.pause_settings_for_fast_speed
+    }
+    fn pause_settings_for_fast_speed_mut(&mut self) -> &mut CreaturePauseData {
+        &mut self.pause_settings_for_fast_speed
     }
 }
 
@@ -557,20 +681,38 @@ impl CreatureMoveWaypointDataTrait for CreaturePauseWaypointData {
     fn override_creature_angle(&self) -> &bool {
         self._glacier_base.override_creature_angle()
     }
+    fn override_creature_angle_mut(&mut self) -> &mut bool {
+        self._glacier_base.override_creature_angle_mut()
+    }
     fn world_angle(&self) -> &f32 {
         self._glacier_base.world_angle()
+    }
+    fn world_angle_mut(&mut self) -> &mut f32 {
+        self._glacier_base.world_angle_mut()
     }
     fn radius(&self) -> &f32 {
         self._glacier_base.radius()
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.radius_mut()
+    }
     fn speed_level(&self) -> &CreatureSpeedLevel {
         self._glacier_base.speed_level()
+    }
+    fn speed_level_mut(&mut self) -> &mut CreatureSpeedLevel {
+        self._glacier_base.speed_level_mut()
     }
     fn move_backward(&self) -> &bool {
         self._glacier_base.move_backward()
     }
+    fn move_backward_mut(&mut self) -> &mut bool {
+        self._glacier_base.move_backward_mut()
+    }
     fn explicit_height(&self) -> &bool {
         self._glacier_base.explicit_height()
+    }
+    fn explicit_height_mut(&mut self) -> &mut bool {
+        self._glacier_base.explicit_height_mut()
     }
 }
 
@@ -578,18 +720,24 @@ impl super::pathfinding_shared::WaypointDataTrait for CreaturePauseWaypointData 
     fn use_clients_position(&self) -> &bool {
         self._glacier_base.use_clients_position()
     }
+    fn use_clients_position_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_clients_position_mut()
+    }
     fn schematics_name_hash(&self) -> &i32 {
         self._glacier_base.schematics_name_hash()
+    }
+    fn schematics_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.schematics_name_hash_mut()
     }
     fn waypoint_id(&self) -> &u32 {
         self._glacier_base.waypoint_id()
     }
+    fn waypoint_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.waypoint_id_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CreaturePauseWaypointData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREPAUSEWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -627,6 +775,15 @@ impl TypeObject for CreaturePauseWaypointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -649,19 +806,31 @@ pub struct CreaturePauseData {
 
 pub trait CreaturePauseDataTrait: TypeObject {
     fn probability(&self) -> &f32;
+    fn probability_mut(&mut self) -> &mut f32;
     fn minimum_duration(&self) -> &f32;
+    fn minimum_duration_mut(&mut self) -> &mut f32;
     fn maximum_duration(&self) -> &f32;
+    fn maximum_duration_mut(&mut self) -> &mut f32;
 }
 
 impl CreaturePauseDataTrait for CreaturePauseData {
     fn probability(&self) -> &f32 {
         &self.probability
     }
+    fn probability_mut(&mut self) -> &mut f32 {
+        &mut self.probability
+    }
     fn minimum_duration(&self) -> &f32 {
         &self.minimum_duration
     }
+    fn minimum_duration_mut(&mut self) -> &mut f32 {
+        &mut self.minimum_duration
+    }
     fn maximum_duration(&self) -> &f32 {
         &self.maximum_duration
+    }
+    fn maximum_duration_mut(&mut self) -> &mut f32 {
+        &mut self.maximum_duration
     }
 }
 
@@ -705,6 +874,15 @@ impl TypeObject for CreaturePauseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -731,31 +909,55 @@ pub struct CreatureMoveWaypointData {
 
 pub trait CreatureMoveWaypointDataTrait: super::pathfinding_shared::WaypointDataTrait {
     fn override_creature_angle(&self) -> &bool;
+    fn override_creature_angle_mut(&mut self) -> &mut bool;
     fn world_angle(&self) -> &f32;
+    fn world_angle_mut(&mut self) -> &mut f32;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn speed_level(&self) -> &CreatureSpeedLevel;
+    fn speed_level_mut(&mut self) -> &mut CreatureSpeedLevel;
     fn move_backward(&self) -> &bool;
+    fn move_backward_mut(&mut self) -> &mut bool;
     fn explicit_height(&self) -> &bool;
+    fn explicit_height_mut(&mut self) -> &mut bool;
 }
 
 impl CreatureMoveWaypointDataTrait for CreatureMoveWaypointData {
     fn override_creature_angle(&self) -> &bool {
         &self.override_creature_angle
     }
+    fn override_creature_angle_mut(&mut self) -> &mut bool {
+        &mut self.override_creature_angle
+    }
     fn world_angle(&self) -> &f32 {
         &self.world_angle
+    }
+    fn world_angle_mut(&mut self) -> &mut f32 {
+        &mut self.world_angle
     }
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn speed_level(&self) -> &CreatureSpeedLevel {
         &self.speed_level
+    }
+    fn speed_level_mut(&mut self) -> &mut CreatureSpeedLevel {
+        &mut self.speed_level
     }
     fn move_backward(&self) -> &bool {
         &self.move_backward
     }
+    fn move_backward_mut(&mut self) -> &mut bool {
+        &mut self.move_backward
+    }
     fn explicit_height(&self) -> &bool {
         &self.explicit_height
+    }
+    fn explicit_height_mut(&mut self) -> &mut bool {
+        &mut self.explicit_height
     }
 }
 
@@ -763,18 +965,24 @@ impl super::pathfinding_shared::WaypointDataTrait for CreatureMoveWaypointData {
     fn use_clients_position(&self) -> &bool {
         self._glacier_base.use_clients_position()
     }
+    fn use_clients_position_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_clients_position_mut()
+    }
     fn schematics_name_hash(&self) -> &i32 {
         self._glacier_base.schematics_name_hash()
+    }
+    fn schematics_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.schematics_name_hash_mut()
     }
     fn waypoint_id(&self) -> &u32 {
         self._glacier_base.waypoint_id()
     }
+    fn waypoint_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.waypoint_id_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CreatureMoveWaypointData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREMOVEWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -836,6 +1044,15 @@ impl TypeObject for CreatureMoveWaypointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -875,6 +1092,15 @@ impl TypeObject for CreatureSpeedLevel {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -903,23 +1129,41 @@ impl super::pathfinding_shared::WaypointsShapeDataTrait for CreatureWaypointsSha
     fn waypoints(&self) -> &Vec<Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>>> {
         self._glacier_base.waypoints()
     }
+    fn waypoints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>>> {
+        self._glacier_base.waypoints_mut()
+    }
 }
 
 impl super::entity::VectorShapeDataTrait for CreatureWaypointsShapeData {
     fn points(&self) -> &Vec<super::core::Vec3> {
         self._glacier_base.points()
     }
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        self._glacier_base.points_mut()
+    }
     fn tension(&self) -> &f32 {
         self._glacier_base.tension()
+    }
+    fn tension_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tension_mut()
     }
     fn is_closed(&self) -> &bool {
         self._glacier_base.is_closed()
     }
+    fn is_closed_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_closed_mut()
+    }
     fn allow_roll(&self) -> &bool {
         self._glacier_base.allow_roll()
     }
+    fn allow_roll_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_roll_mut()
+    }
     fn allow_yaw_pitch(&self) -> &bool {
         self._glacier_base.allow_yaw_pitch()
+    }
+    fn allow_yaw_pitch_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_yaw_pitch_mut()
     }
 }
 
@@ -936,15 +1180,15 @@ impl super::core::DataBusPeerTrait for CreatureWaypointsShapeData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureWaypointsShapeData {
 }
 
 impl super::core::DataContainerTrait for CreatureWaypointsShapeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREWAYPOINTSSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -970,6 +1214,15 @@ impl TypeObject for CreatureWaypointsShapeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -991,11 +1244,15 @@ pub struct CreatureLocoSettings {
 
 pub trait CreatureLocoSettingsTrait: super::core::DataContainerPolicyAssetTrait {
     fn state_settingss(&self) -> &Vec<Option<Arc<Mutex<dyn LocomotionStateSettingsTrait>>>>;
+    fn state_settingss_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LocomotionStateSettingsTrait>>>>;
 }
 
 impl CreatureLocoSettingsTrait for CreatureLocoSettings {
     fn state_settingss(&self) -> &Vec<Option<Arc<Mutex<dyn LocomotionStateSettingsTrait>>>> {
         &self.state_settingss
+    }
+    fn state_settingss_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LocomotionStateSettingsTrait>>>> {
+        &mut self.state_settingss
     }
 }
 
@@ -1006,12 +1263,12 @@ impl super::core::AssetTrait for CreatureLocoSettings {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CreatureLocoSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATURELOCOSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1043,6 +1300,15 @@ impl TypeObject for CreatureLocoSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1065,15 +1331,23 @@ pub struct PushSettings {
 
 pub trait PushSettingsTrait: LocomotionStateSettingsTrait {
     fn can_be_pushed_by(&self) -> &PushSettingsFilter;
+    fn can_be_pushed_by_mut(&mut self) -> &mut PushSettingsFilter;
     fn is_pushed_by_player(&self) -> &bool;
+    fn is_pushed_by_player_mut(&mut self) -> &mut bool;
 }
 
 impl PushSettingsTrait for PushSettings {
     fn can_be_pushed_by(&self) -> &PushSettingsFilter {
         &self.can_be_pushed_by
     }
+    fn can_be_pushed_by_mut(&mut self) -> &mut PushSettingsFilter {
+        &mut self.can_be_pushed_by
+    }
     fn is_pushed_by_player(&self) -> &bool {
         &self.is_pushed_by_player
+    }
+    fn is_pushed_by_player_mut(&mut self) -> &mut bool {
+        &mut self.is_pushed_by_player
     }
 }
 
@@ -1081,9 +1355,6 @@ impl LocomotionStateSettingsTrait for PushSettings {
 }
 
 impl super::core::DataContainerTrait for PushSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PUSHSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1120,6 +1391,15 @@ impl TypeObject for PushSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1161,6 +1441,15 @@ impl TypeObject for PushSettingsFilter {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1183,15 +1472,23 @@ pub struct SizeSettings {
 
 pub trait SizeSettingsTrait: LocomotionStateSettingsTrait {
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
 }
 
 impl SizeSettingsTrait for SizeSettings {
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
 }
 
@@ -1199,9 +1496,6 @@ impl LocomotionStateSettingsTrait for SizeSettings {
 }
 
 impl super::core::DataContainerTrait for SizeSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SIZESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1239,6 +1533,15 @@ impl TypeObject for SizeSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1260,11 +1563,15 @@ pub struct WorldEventActionsSettings {
 
 pub trait WorldEventActionsSettingsTrait: LocomotionStateSettingsTrait {
     fn event_actions(&self) -> &Vec<Option<Arc<Mutex<dyn WorldEventActionventParametersTrait>>>>;
+    fn event_actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn WorldEventActionventParametersTrait>>>>;
 }
 
 impl WorldEventActionsSettingsTrait for WorldEventActionsSettings {
     fn event_actions(&self) -> &Vec<Option<Arc<Mutex<dyn WorldEventActionventParametersTrait>>>> {
         &self.event_actions
+    }
+    fn event_actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn WorldEventActionventParametersTrait>>>> {
+        &mut self.event_actions
     }
 }
 
@@ -1272,9 +1579,6 @@ impl LocomotionStateSettingsTrait for WorldEventActionsSettings {
 }
 
 impl super::core::DataContainerTrait for WorldEventActionsSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WORLDEVENTACTIONSSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1305,6 +1609,15 @@ impl TypeObject for WorldEventActionsSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1339,66 +1652,115 @@ pub struct WorldEventActionventParameters {
 
 pub trait WorldEventActionventParametersTrait: super::core::DataContainerTrait {
     fn event_type(&self) -> &CreatureLocoExternalInfluenceType;
+    fn event_type_mut(&mut self) -> &mut CreatureLocoExternalInfluenceType;
     fn consideration_range(&self) -> &f32;
+    fn consideration_range_mut(&mut self) -> &mut f32;
     fn minimum_number(&self) -> &i32;
+    fn minimum_number_mut(&mut self) -> &mut i32;
     fn time_window(&self) -> &f32;
+    fn time_window_mut(&mut self) -> &mut f32;
     fn probability_of_action(&self) -> &f32;
+    fn probability_of_action_mut(&mut self) -> &mut f32;
     fn alignment_rate(&self) -> &f32;
+    fn alignment_rate_mut(&mut self) -> &mut f32;
     fn minimum_impact_radius(&self) -> &f32;
+    fn minimum_impact_radius_mut(&mut self) -> &mut f32;
     fn fake_physiscs(&self) -> &bool;
+    fn fake_physiscs_mut(&mut self) -> &mut bool;
     fn fake_mass(&self) -> &f32;
+    fn fake_mass_mut(&mut self) -> &mut f32;
     fn stop_delay(&self) -> &f32;
+    fn stop_delay_mut(&mut self) -> &mut f32;
     fn cooldown_time(&self) -> &f32;
+    fn cooldown_time_mut(&mut self) -> &mut f32;
     fn action_type(&self) -> &CreatureLocoExternalInfluenceReactionType;
+    fn action_type_mut(&mut self) -> &mut CreatureLocoExternalInfluenceReactionType;
     fn action_alignment(&self) -> &CreatureLocoExternalInfluenceReactionAlignment;
+    fn action_alignment_mut(&mut self) -> &mut CreatureLocoExternalInfluenceReactionAlignment;
 }
 
 impl WorldEventActionventParametersTrait for WorldEventActionventParameters {
     fn event_type(&self) -> &CreatureLocoExternalInfluenceType {
         &self.event_type
     }
+    fn event_type_mut(&mut self) -> &mut CreatureLocoExternalInfluenceType {
+        &mut self.event_type
+    }
     fn consideration_range(&self) -> &f32 {
         &self.consideration_range
+    }
+    fn consideration_range_mut(&mut self) -> &mut f32 {
+        &mut self.consideration_range
     }
     fn minimum_number(&self) -> &i32 {
         &self.minimum_number
     }
+    fn minimum_number_mut(&mut self) -> &mut i32 {
+        &mut self.minimum_number
+    }
     fn time_window(&self) -> &f32 {
         &self.time_window
+    }
+    fn time_window_mut(&mut self) -> &mut f32 {
+        &mut self.time_window
     }
     fn probability_of_action(&self) -> &f32 {
         &self.probability_of_action
     }
+    fn probability_of_action_mut(&mut self) -> &mut f32 {
+        &mut self.probability_of_action
+    }
     fn alignment_rate(&self) -> &f32 {
         &self.alignment_rate
+    }
+    fn alignment_rate_mut(&mut self) -> &mut f32 {
+        &mut self.alignment_rate
     }
     fn minimum_impact_radius(&self) -> &f32 {
         &self.minimum_impact_radius
     }
+    fn minimum_impact_radius_mut(&mut self) -> &mut f32 {
+        &mut self.minimum_impact_radius
+    }
     fn fake_physiscs(&self) -> &bool {
         &self.fake_physiscs
+    }
+    fn fake_physiscs_mut(&mut self) -> &mut bool {
+        &mut self.fake_physiscs
     }
     fn fake_mass(&self) -> &f32 {
         &self.fake_mass
     }
+    fn fake_mass_mut(&mut self) -> &mut f32 {
+        &mut self.fake_mass
+    }
     fn stop_delay(&self) -> &f32 {
         &self.stop_delay
+    }
+    fn stop_delay_mut(&mut self) -> &mut f32 {
+        &mut self.stop_delay
     }
     fn cooldown_time(&self) -> &f32 {
         &self.cooldown_time
     }
+    fn cooldown_time_mut(&mut self) -> &mut f32 {
+        &mut self.cooldown_time
+    }
     fn action_type(&self) -> &CreatureLocoExternalInfluenceReactionType {
         &self.action_type
+    }
+    fn action_type_mut(&mut self) -> &mut CreatureLocoExternalInfluenceReactionType {
+        &mut self.action_type
     }
     fn action_alignment(&self) -> &CreatureLocoExternalInfluenceReactionAlignment {
         &self.action_alignment
     }
+    fn action_alignment_mut(&mut self) -> &mut CreatureLocoExternalInfluenceReactionAlignment {
+        &mut self.action_alignment
+    }
 }
 
 impl super::core::DataContainerTrait for WorldEventActionventParameters {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WORLDEVENTACTIONVENTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1502,6 +1864,15 @@ impl TypeObject for WorldEventActionventParameters {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1541,6 +1912,15 @@ impl TypeObject for CreatureLocoExternalInfluenceReactionAlignment {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1578,6 +1958,15 @@ impl TypeObject for CreatureLocoExternalInfluenceReactionType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1627,6 +2016,15 @@ impl TypeObject for CreatureLocoExternalInfluenceType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1656,43 +2054,79 @@ pub struct ProceduralMovementStateSettings {
 
 pub trait ProceduralMovementStateSettingsTrait: LocomotionStateSettingsTrait {
     fn slow_speed(&self) -> &LocoStateSpeedRange;
+    fn slow_speed_mut(&mut self) -> &mut LocoStateSpeedRange;
     fn medium_speed(&self) -> &LocoStateSpeedRange;
+    fn medium_speed_mut(&mut self) -> &mut LocoStateSpeedRange;
     fn fast_speed(&self) -> &LocoStateSpeedRange;
+    fn fast_speed_mut(&mut self) -> &mut LocoStateSpeedRange;
     fn acceleration(&self) -> &f32;
+    fn acceleration_mut(&mut self) -> &mut f32;
     fn deceleration(&self) -> &f32;
+    fn deceleration_mut(&mut self) -> &mut f32;
     fn forward_speed_rate(&self) -> &f32;
+    fn forward_speed_rate_mut(&mut self) -> &mut f32;
     fn lateral_speed_rate(&self) -> &f32;
+    fn lateral_speed_rate_mut(&mut self) -> &mut f32;
     fn reverse_speed_rate(&self) -> &f32;
+    fn reverse_speed_rate_mut(&mut self) -> &mut f32;
     fn height_change_on_centerpoint(&self) -> &bool;
+    fn height_change_on_centerpoint_mut(&mut self) -> &mut bool;
 }
 
 impl ProceduralMovementStateSettingsTrait for ProceduralMovementStateSettings {
     fn slow_speed(&self) -> &LocoStateSpeedRange {
         &self.slow_speed
     }
+    fn slow_speed_mut(&mut self) -> &mut LocoStateSpeedRange {
+        &mut self.slow_speed
+    }
     fn medium_speed(&self) -> &LocoStateSpeedRange {
         &self.medium_speed
+    }
+    fn medium_speed_mut(&mut self) -> &mut LocoStateSpeedRange {
+        &mut self.medium_speed
     }
     fn fast_speed(&self) -> &LocoStateSpeedRange {
         &self.fast_speed
     }
+    fn fast_speed_mut(&mut self) -> &mut LocoStateSpeedRange {
+        &mut self.fast_speed
+    }
     fn acceleration(&self) -> &f32 {
         &self.acceleration
+    }
+    fn acceleration_mut(&mut self) -> &mut f32 {
+        &mut self.acceleration
     }
     fn deceleration(&self) -> &f32 {
         &self.deceleration
     }
+    fn deceleration_mut(&mut self) -> &mut f32 {
+        &mut self.deceleration
+    }
     fn forward_speed_rate(&self) -> &f32 {
         &self.forward_speed_rate
+    }
+    fn forward_speed_rate_mut(&mut self) -> &mut f32 {
+        &mut self.forward_speed_rate
     }
     fn lateral_speed_rate(&self) -> &f32 {
         &self.lateral_speed_rate
     }
+    fn lateral_speed_rate_mut(&mut self) -> &mut f32 {
+        &mut self.lateral_speed_rate
+    }
     fn reverse_speed_rate(&self) -> &f32 {
         &self.reverse_speed_rate
     }
+    fn reverse_speed_rate_mut(&mut self) -> &mut f32 {
+        &mut self.reverse_speed_rate
+    }
     fn height_change_on_centerpoint(&self) -> &bool {
         &self.height_change_on_centerpoint
+    }
+    fn height_change_on_centerpoint_mut(&mut self) -> &mut bool {
+        &mut self.height_change_on_centerpoint
     }
 }
 
@@ -1700,9 +2134,6 @@ impl LocomotionStateSettingsTrait for ProceduralMovementStateSettings {
 }
 
 impl super::core::DataContainerTrait for ProceduralMovementStateSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROCEDURALMOVEMENTSTATESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1782,6 +2213,15 @@ impl TypeObject for ProceduralMovementStateSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1803,15 +2243,23 @@ pub struct LocoStateSpeedRange {
 
 pub trait LocoStateSpeedRangeTrait: TypeObject {
     fn max_speed(&self) -> &f32;
+    fn max_speed_mut(&mut self) -> &mut f32;
     fn min_speed(&self) -> &f32;
+    fn min_speed_mut(&mut self) -> &mut f32;
 }
 
 impl LocoStateSpeedRangeTrait for LocoStateSpeedRange {
     fn max_speed(&self) -> &f32 {
         &self.max_speed
     }
+    fn max_speed_mut(&mut self) -> &mut f32 {
+        &mut self.max_speed
+    }
     fn min_speed(&self) -> &f32 {
         &self.min_speed
+    }
+    fn min_speed_mut(&mut self) -> &mut f32 {
+        &mut self.min_speed
     }
 }
 
@@ -1849,6 +2297,15 @@ impl TypeObject for LocoStateSpeedRange {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1870,11 +2327,15 @@ pub struct AvoidanceSteeringSettings {
 
 pub trait AvoidanceSteeringSettingsTrait: LocomotionStateSettingsTrait {
     fn settings_data(&self) -> &AvoidanceData;
+    fn settings_data_mut(&mut self) -> &mut AvoidanceData;
 }
 
 impl AvoidanceSteeringSettingsTrait for AvoidanceSteeringSettings {
     fn settings_data(&self) -> &AvoidanceData {
         &self.settings_data
+    }
+    fn settings_data_mut(&mut self) -> &mut AvoidanceData {
+        &mut self.settings_data
     }
 }
 
@@ -1882,9 +2343,6 @@ impl LocomotionStateSettingsTrait for AvoidanceSteeringSettings {
 }
 
 impl super::core::DataContainerTrait for AvoidanceSteeringSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AVOIDANCESTEERINGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1916,6 +2374,15 @@ impl TypeObject for AvoidanceSteeringSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1943,39 +2410,71 @@ pub struct AvoidanceData {
 
 pub trait AvoidanceDataTrait: TypeObject {
     fn time_to_consider(&self) -> &f32;
+    fn time_to_consider_mut(&mut self) -> &mut f32;
     fn obstical_width(&self) -> &f32;
+    fn obstical_width_mut(&mut self) -> &mut f32;
     fn avoids_weapons_fire(&self) -> &bool;
+    fn avoids_weapons_fire_mut(&mut self) -> &mut bool;
     fn behaviour_towards_players(&self) -> &AIAvoidancePlayerBehaviour;
+    fn behaviour_towards_players_mut(&mut self) -> &mut AIAvoidancePlayerBehaviour;
     fn avoidance_cone_width(&self) -> &f32;
+    fn avoidance_cone_width_mut(&mut self) -> &mut f32;
     fn max_repulsion_weight(&self) -> &f32;
+    fn max_repulsion_weight_mut(&mut self) -> &mut f32;
     fn repulsion_gain_rate(&self) -> &f32;
+    fn repulsion_gain_rate_mut(&mut self) -> &mut f32;
     fn repulsion_decay_rate(&self) -> &f32;
+    fn repulsion_decay_rate_mut(&mut self) -> &mut f32;
 }
 
 impl AvoidanceDataTrait for AvoidanceData {
     fn time_to_consider(&self) -> &f32 {
         &self.time_to_consider
     }
+    fn time_to_consider_mut(&mut self) -> &mut f32 {
+        &mut self.time_to_consider
+    }
     fn obstical_width(&self) -> &f32 {
         &self.obstical_width
+    }
+    fn obstical_width_mut(&mut self) -> &mut f32 {
+        &mut self.obstical_width
     }
     fn avoids_weapons_fire(&self) -> &bool {
         &self.avoids_weapons_fire
     }
+    fn avoids_weapons_fire_mut(&mut self) -> &mut bool {
+        &mut self.avoids_weapons_fire
+    }
     fn behaviour_towards_players(&self) -> &AIAvoidancePlayerBehaviour {
         &self.behaviour_towards_players
+    }
+    fn behaviour_towards_players_mut(&mut self) -> &mut AIAvoidancePlayerBehaviour {
+        &mut self.behaviour_towards_players
     }
     fn avoidance_cone_width(&self) -> &f32 {
         &self.avoidance_cone_width
     }
+    fn avoidance_cone_width_mut(&mut self) -> &mut f32 {
+        &mut self.avoidance_cone_width
+    }
     fn max_repulsion_weight(&self) -> &f32 {
         &self.max_repulsion_weight
+    }
+    fn max_repulsion_weight_mut(&mut self) -> &mut f32 {
+        &mut self.max_repulsion_weight
     }
     fn repulsion_gain_rate(&self) -> &f32 {
         &self.repulsion_gain_rate
     }
+    fn repulsion_gain_rate_mut(&mut self) -> &mut f32 {
+        &mut self.repulsion_gain_rate
+    }
     fn repulsion_decay_rate(&self) -> &f32 {
         &self.repulsion_decay_rate
+    }
+    fn repulsion_decay_rate_mut(&mut self) -> &mut f32 {
+        &mut self.repulsion_decay_rate
     }
 }
 
@@ -2049,6 +2548,15 @@ impl TypeObject for AvoidanceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2088,6 +2596,15 @@ impl TypeObject for AIAvoidancePlayerBehaviour {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2110,15 +2627,23 @@ pub struct CurveSteeringSettings {
 
 pub trait CurveSteeringSettingsTrait: LocomotionStateSettingsTrait {
     fn base_settings_data(&self) -> &BasicSteeringSettingsData;
+    fn base_settings_data_mut(&mut self) -> &mut BasicSteeringSettingsData;
     fn settings_data(&self) -> &CurveSteeringSettingsData;
+    fn settings_data_mut(&mut self) -> &mut CurveSteeringSettingsData;
 }
 
 impl CurveSteeringSettingsTrait for CurveSteeringSettings {
     fn base_settings_data(&self) -> &BasicSteeringSettingsData {
         &self.base_settings_data
     }
+    fn base_settings_data_mut(&mut self) -> &mut BasicSteeringSettingsData {
+        &mut self.base_settings_data
+    }
     fn settings_data(&self) -> &CurveSteeringSettingsData {
         &self.settings_data
+    }
+    fn settings_data_mut(&mut self) -> &mut CurveSteeringSettingsData {
+        &mut self.settings_data
     }
 }
 
@@ -2126,9 +2651,6 @@ impl LocomotionStateSettingsTrait for CurveSteeringSettings {
 }
 
 impl super::core::DataContainerTrait for CurveSteeringSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CURVESTEERINGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2166,6 +2688,15 @@ impl TypeObject for CurveSteeringSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2186,11 +2717,15 @@ pub struct CurveSteeringSettingsData {
 
 pub trait CurveSteeringSettingsDataTrait: TypeObject {
     fn foo(&self) -> &bool;
+    fn foo_mut(&mut self) -> &mut bool;
 }
 
 impl CurveSteeringSettingsDataTrait for CurveSteeringSettingsData {
     fn foo(&self) -> &bool {
         &self.foo
+    }
+    fn foo_mut(&mut self) -> &mut bool {
+        &mut self.foo
     }
 }
 
@@ -2222,6 +2757,15 @@ impl TypeObject for CurveSteeringSettingsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2244,19 +2788,31 @@ pub struct BasicSteeringSettingsData {
 
 pub trait BasicSteeringSettingsDataTrait: TypeObject {
     fn response_time(&self) -> &f32;
+    fn response_time_mut(&mut self) -> &mut f32;
     fn maximum_angle_deflection(&self) -> &f32;
+    fn maximum_angle_deflection_mut(&mut self) -> &mut f32;
     fn error_distance(&self) -> &f32;
+    fn error_distance_mut(&mut self) -> &mut f32;
 }
 
 impl BasicSteeringSettingsDataTrait for BasicSteeringSettingsData {
     fn response_time(&self) -> &f32 {
         &self.response_time
     }
+    fn response_time_mut(&mut self) -> &mut f32 {
+        &mut self.response_time
+    }
     fn maximum_angle_deflection(&self) -> &f32 {
         &self.maximum_angle_deflection
     }
+    fn maximum_angle_deflection_mut(&mut self) -> &mut f32 {
+        &mut self.maximum_angle_deflection
+    }
     fn error_distance(&self) -> &f32 {
         &self.error_distance
+    }
+    fn error_distance_mut(&mut self) -> &mut f32 {
+        &mut self.error_distance
     }
 }
 
@@ -2300,6 +2856,15 @@ impl TypeObject for BasicSteeringSettingsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2328,9 +2893,6 @@ impl LocomotionStateSettingsTrait for CommonClientSettings {
 }
 
 impl super::core::DataContainerTrait for CommonClientSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COMMONCLIENTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2355,6 +2917,15 @@ impl TypeObject for CommonClientSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2384,9 +2955,6 @@ impl LocomotionStateSettingsTrait for PlayAnimSettings {
 }
 
 impl super::core::DataContainerTrait for PlayAnimSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PLAYANIMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2411,6 +2979,15 @@ impl TypeObject for PlayAnimSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2440,9 +3017,6 @@ impl LocomotionStateSettingsTrait for TurnSettings {
 }
 
 impl super::core::DataContainerTrait for TurnSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TURNSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2468,6 +3042,15 @@ impl TypeObject for TurnSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2489,11 +3072,15 @@ pub struct StopSettings {
 
 pub trait StopSettingsTrait: LocomotionStateSettingsTrait {
     fn base_deceleration_rate(&self) -> &f32;
+    fn base_deceleration_rate_mut(&mut self) -> &mut f32;
 }
 
 impl StopSettingsTrait for StopSettings {
     fn base_deceleration_rate(&self) -> &f32 {
         &self.base_deceleration_rate
+    }
+    fn base_deceleration_rate_mut(&mut self) -> &mut f32 {
+        &mut self.base_deceleration_rate
     }
 }
 
@@ -2501,9 +3088,6 @@ impl LocomotionStateSettingsTrait for StopSettings {
 }
 
 impl super::core::DataContainerTrait for StopSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STOPSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2535,6 +3119,15 @@ impl TypeObject for StopSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2556,11 +3149,15 @@ pub struct StartSettings {
 
 pub trait StartSettingsTrait: LocomotionStateSettingsTrait {
     fn base_acceleration_rate(&self) -> &f32;
+    fn base_acceleration_rate_mut(&mut self) -> &mut f32;
 }
 
 impl StartSettingsTrait for StartSettings {
     fn base_acceleration_rate(&self) -> &f32 {
         &self.base_acceleration_rate
+    }
+    fn base_acceleration_rate_mut(&mut self) -> &mut f32 {
+        &mut self.base_acceleration_rate
     }
 }
 
@@ -2568,9 +3165,6 @@ impl LocomotionStateSettingsTrait for StartSettings {
 }
 
 impl super::core::DataContainerTrait for StartSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STARTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2602,6 +3196,15 @@ impl TypeObject for StartSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2630,9 +3233,6 @@ impl LocomotionStateSettingsTrait for MoveCycleSettings {
 }
 
 impl super::core::DataContainerTrait for MoveCycleSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVECYCLESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2657,6 +3257,15 @@ impl TypeObject for MoveCycleSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2686,9 +3295,6 @@ impl LocomotionStateSettingsTrait for IdleSettings {
 }
 
 impl super::core::DataContainerTrait for IdleSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static IDLESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2713,6 +3319,15 @@ impl TypeObject for IdleSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2739,9 +3354,6 @@ impl LocomotionStateSettingsTrait for LocomotionStateSettings {
 }
 
 impl super::core::DataContainerTrait for LocomotionStateSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCOMOTIONSTATESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2767,6 +3379,15 @@ impl TypeObject for LocomotionStateSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2788,11 +3409,15 @@ pub struct CreatureLocoServerAuthEntityData {
 
 pub trait CreatureLocoServerAuthEntityDataTrait: CreatureLocoEntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl CreatureLocoServerAuthEntityDataTrait for CreatureLocoServerAuthEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
 }
 
@@ -2800,8 +3425,14 @@ impl CreatureLocoEntityDataTrait for CreatureLocoServerAuthEntityData {
     fn pin_to_ground(&self) -> &bool {
         self._glacier_base.pin_to_ground()
     }
+    fn pin_to_ground_mut(&mut self) -> &mut bool {
+        self._glacier_base.pin_to_ground_mut()
+    }
     fn enable_updates(&self) -> &bool {
         self._glacier_base.enable_updates()
+    }
+    fn enable_updates_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_updates_mut()
     }
 }
 
@@ -2818,15 +3449,15 @@ impl super::core::DataBusPeerTrait for CreatureLocoServerAuthEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureLocoServerAuthEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureLocoServerAuthEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATURELOCOSERVERAUTHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2858,6 +3489,15 @@ impl TypeObject for CreatureLocoServerAuthEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2880,15 +3520,23 @@ pub struct CreatureLocoEntityData {
 
 pub trait CreatureLocoEntityDataTrait: super::a_i_tools::LocoEntityDataTrait {
     fn pin_to_ground(&self) -> &bool;
+    fn pin_to_ground_mut(&mut self) -> &mut bool;
     fn enable_updates(&self) -> &bool;
+    fn enable_updates_mut(&mut self) -> &mut bool;
 }
 
 impl CreatureLocoEntityDataTrait for CreatureLocoEntityData {
     fn pin_to_ground(&self) -> &bool {
         &self.pin_to_ground
     }
+    fn pin_to_ground_mut(&mut self) -> &mut bool {
+        &mut self.pin_to_ground
+    }
     fn enable_updates(&self) -> &bool {
         &self.enable_updates
+    }
+    fn enable_updates_mut(&mut self) -> &mut bool {
+        &mut self.enable_updates
     }
 }
 
@@ -2905,15 +3553,15 @@ impl super::core::DataBusPeerTrait for CreatureLocoEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureLocoEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureLocoEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATURELOCOENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2951,6 +3599,15 @@ impl TypeObject for CreatureLocoEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2985,15 +3642,15 @@ impl super::core::DataBusPeerTrait for CreatureBaseWaypointProviderEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureBaseWaypointProviderEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureBaseWaypointProviderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREBASEWAYPOINTPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3019,6 +3676,15 @@ impl TypeObject for CreatureBaseWaypointProviderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3041,15 +3707,23 @@ pub struct CreatureConfigurationProviderEntityData {
 
 pub trait CreatureConfigurationProviderEntityDataTrait: super::entity::EntityDataTrait {
     fn default_settings(&self) -> &Option<Arc<Mutex<dyn CreatureLocoSettingsTrait>>>;
+    fn default_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CreatureLocoSettingsTrait>>>;
     fn ant_bindings(&self) -> &Option<Arc<Mutex<dyn CreatureLocoBindingsTrait>>>;
+    fn ant_bindings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CreatureLocoBindingsTrait>>>;
 }
 
 impl CreatureConfigurationProviderEntityDataTrait for CreatureConfigurationProviderEntityData {
     fn default_settings(&self) -> &Option<Arc<Mutex<dyn CreatureLocoSettingsTrait>>> {
         &self.default_settings
     }
+    fn default_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CreatureLocoSettingsTrait>>> {
+        &mut self.default_settings
+    }
     fn ant_bindings(&self) -> &Option<Arc<Mutex<dyn CreatureLocoBindingsTrait>>> {
         &self.ant_bindings
+    }
+    fn ant_bindings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CreatureLocoBindingsTrait>>> {
+        &mut self.ant_bindings
     }
 }
 
@@ -3063,15 +3737,15 @@ impl super::core::DataBusPeerTrait for CreatureConfigurationProviderEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureConfigurationProviderEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureConfigurationProviderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATURECONFIGURATIONPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3109,6 +3783,15 @@ impl TypeObject for CreatureConfigurationProviderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3130,11 +3813,15 @@ pub struct CreatureLocoBindings {
 
 pub trait CreatureLocoBindingsTrait: super::core::DataContainerPolicyAssetTrait {
     fn state_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn LocomotionParamBlockTrait>>>>;
+    fn state_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LocomotionParamBlockTrait>>>>;
 }
 
 impl CreatureLocoBindingsTrait for CreatureLocoBindings {
     fn state_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn LocomotionParamBlockTrait>>>> {
         &self.state_parameters
+    }
+    fn state_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LocomotionParamBlockTrait>>>> {
+        &mut self.state_parameters
     }
 }
 
@@ -3145,12 +3832,12 @@ impl super::core::AssetTrait for CreatureLocoBindings {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CreatureLocoBindings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATURELOCOBINDINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3182,6 +3869,15 @@ impl TypeObject for CreatureLocoBindings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3203,11 +3899,15 @@ pub struct EventReactionParamData {
 
 pub trait EventReactionParamDataTrait: LocomotionParamBlockTrait {
     fn reaction_binding(&self) -> &CreatureReactionBinding;
+    fn reaction_binding_mut(&mut self) -> &mut CreatureReactionBinding;
 }
 
 impl EventReactionParamDataTrait for EventReactionParamData {
     fn reaction_binding(&self) -> &CreatureReactionBinding {
         &self.reaction_binding
+    }
+    fn reaction_binding_mut(&mut self) -> &mut CreatureReactionBinding {
+        &mut self.reaction_binding
     }
 }
 
@@ -3215,9 +3915,6 @@ impl LocomotionParamBlockTrait for EventReactionParamData {
 }
 
 impl super::core::DataContainerTrait for EventReactionParamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EVENTREACTIONPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3249,6 +3946,15 @@ impl TypeObject for EventReactionParamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3271,19 +3977,31 @@ pub struct CreatureReactionBinding {
 
 pub trait CreatureReactionBindingTrait: TypeObject {
     fn reaction_trigger(&self) -> &super::ant::AntRef;
+    fn reaction_trigger_mut(&mut self) -> &mut super::ant::AntRef;
     fn reaction_from_stop(&self) -> &super::ant::AntRef;
+    fn reaction_from_stop_mut(&mut self) -> &mut super::ant::AntRef;
     fn reaction_event_type(&self) -> &super::ant::AntRef;
+    fn reaction_event_type_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl CreatureReactionBindingTrait for CreatureReactionBinding {
     fn reaction_trigger(&self) -> &super::ant::AntRef {
         &self.reaction_trigger
     }
+    fn reaction_trigger_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.reaction_trigger
+    }
     fn reaction_from_stop(&self) -> &super::ant::AntRef {
         &self.reaction_from_stop
     }
+    fn reaction_from_stop_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.reaction_from_stop
+    }
     fn reaction_event_type(&self) -> &super::ant::AntRef {
         &self.reaction_event_type
+    }
+    fn reaction_event_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.reaction_event_type
     }
 }
 
@@ -3327,6 +4045,15 @@ impl TypeObject for CreatureReactionBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3355,9 +4082,6 @@ impl LocomotionParamBlockTrait for ProceduralMotionParamData {
 }
 
 impl super::core::DataContainerTrait for ProceduralMotionParamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROCEDURALMOTIONPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3383,6 +4107,15 @@ impl TypeObject for ProceduralMotionParamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3405,15 +4138,23 @@ pub struct CommonClientBindingsParamData {
 
 pub trait CommonClientBindingsParamDataTrait: LocomotionParamBlockTrait {
     fn common_binding(&self) -> &CreatureCommonBinding;
+    fn common_binding_mut(&mut self) -> &mut CreatureCommonBinding;
     fn misc_binding(&self) -> &CreatureMiscBinding;
+    fn misc_binding_mut(&mut self) -> &mut CreatureMiscBinding;
 }
 
 impl CommonClientBindingsParamDataTrait for CommonClientBindingsParamData {
     fn common_binding(&self) -> &CreatureCommonBinding {
         &self.common_binding
     }
+    fn common_binding_mut(&mut self) -> &mut CreatureCommonBinding {
+        &mut self.common_binding
+    }
     fn misc_binding(&self) -> &CreatureMiscBinding {
         &self.misc_binding
+    }
+    fn misc_binding_mut(&mut self) -> &mut CreatureMiscBinding {
+        &mut self.misc_binding
     }
 }
 
@@ -3421,9 +4162,6 @@ impl LocomotionParamBlockTrait for CommonClientBindingsParamData {
 }
 
 impl super::core::DataContainerTrait for CommonClientBindingsParamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COMMONCLIENTBINDINGSPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3461,6 +4199,15 @@ impl TypeObject for CommonClientBindingsParamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3482,11 +4229,15 @@ pub struct PlayAnimParamData {
 
 pub trait PlayAnimParamDataTrait: LocomotionParamBlockTrait {
     fn play_animation_binding(&self) -> &CreaturePlayAnimationBinding;
+    fn play_animation_binding_mut(&mut self) -> &mut CreaturePlayAnimationBinding;
 }
 
 impl PlayAnimParamDataTrait for PlayAnimParamData {
     fn play_animation_binding(&self) -> &CreaturePlayAnimationBinding {
         &self.play_animation_binding
+    }
+    fn play_animation_binding_mut(&mut self) -> &mut CreaturePlayAnimationBinding {
+        &mut self.play_animation_binding
     }
 }
 
@@ -3494,9 +4245,6 @@ impl LocomotionParamBlockTrait for PlayAnimParamData {
 }
 
 impl super::core::DataContainerTrait for PlayAnimParamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PLAYANIMPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3528,6 +4276,15 @@ impl TypeObject for PlayAnimParamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3550,15 +4307,23 @@ pub struct TurnParamData {
 
 pub trait TurnParamDataTrait: LocomotionParamBlockTrait {
     fn turn_binding(&self) -> &CreatureTurnBinding;
+    fn turn_binding_mut(&mut self) -> &mut CreatureTurnBinding;
     fn turn_context_database(&self) -> &super::ant::AntRef;
+    fn turn_context_database_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl TurnParamDataTrait for TurnParamData {
     fn turn_binding(&self) -> &CreatureTurnBinding {
         &self.turn_binding
     }
+    fn turn_binding_mut(&mut self) -> &mut CreatureTurnBinding {
+        &mut self.turn_binding
+    }
     fn turn_context_database(&self) -> &super::ant::AntRef {
         &self.turn_context_database
+    }
+    fn turn_context_database_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.turn_context_database
     }
 }
 
@@ -3566,9 +4331,6 @@ impl LocomotionParamBlockTrait for TurnParamData {
 }
 
 impl super::core::DataContainerTrait for TurnParamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TURNPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3606,6 +4368,15 @@ impl TypeObject for TurnParamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3628,15 +4399,23 @@ pub struct StopParamData {
 
 pub trait StopParamDataTrait: LocomotionParamBlockTrait {
     fn stop_binding(&self) -> &CreatureStopBinding;
+    fn stop_binding_mut(&mut self) -> &mut CreatureStopBinding;
     fn stop_context_database(&self) -> &super::ant::AntRef;
+    fn stop_context_database_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl StopParamDataTrait for StopParamData {
     fn stop_binding(&self) -> &CreatureStopBinding {
         &self.stop_binding
     }
+    fn stop_binding_mut(&mut self) -> &mut CreatureStopBinding {
+        &mut self.stop_binding
+    }
     fn stop_context_database(&self) -> &super::ant::AntRef {
         &self.stop_context_database
+    }
+    fn stop_context_database_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.stop_context_database
     }
 }
 
@@ -3644,9 +4423,6 @@ impl LocomotionParamBlockTrait for StopParamData {
 }
 
 impl super::core::DataContainerTrait for StopParamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STOPPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3684,6 +4460,15 @@ impl TypeObject for StopParamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3706,15 +4491,23 @@ pub struct StartParamData {
 
 pub trait StartParamDataTrait: LocomotionParamBlockTrait {
     fn start_binding(&self) -> &CreatureStartBinding;
+    fn start_binding_mut(&mut self) -> &mut CreatureStartBinding;
     fn start_context_database(&self) -> &super::ant::AntRef;
+    fn start_context_database_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl StartParamDataTrait for StartParamData {
     fn start_binding(&self) -> &CreatureStartBinding {
         &self.start_binding
     }
+    fn start_binding_mut(&mut self) -> &mut CreatureStartBinding {
+        &mut self.start_binding
+    }
     fn start_context_database(&self) -> &super::ant::AntRef {
         &self.start_context_database
+    }
+    fn start_context_database_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.start_context_database
     }
 }
 
@@ -3722,9 +4515,6 @@ impl LocomotionParamBlockTrait for StartParamData {
 }
 
 impl super::core::DataContainerTrait for StartParamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STARTPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3762,6 +4552,15 @@ impl TypeObject for StartParamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3785,19 +4584,31 @@ pub struct MoveCycleParamData {
 
 pub trait MoveCycleParamDataTrait: LocomotionParamBlockTrait {
     fn loco_binding(&self) -> &CreatureLocoBinding;
+    fn loco_binding_mut(&mut self) -> &mut CreatureLocoBinding;
     fn loco_context_database(&self) -> &super::ant::AntRef;
+    fn loco_context_database_mut(&mut self) -> &mut super::ant::AntRef;
     fn accel_context_database(&self) -> &super::ant::AntRef;
+    fn accel_context_database_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl MoveCycleParamDataTrait for MoveCycleParamData {
     fn loco_binding(&self) -> &CreatureLocoBinding {
         &self.loco_binding
     }
+    fn loco_binding_mut(&mut self) -> &mut CreatureLocoBinding {
+        &mut self.loco_binding
+    }
     fn loco_context_database(&self) -> &super::ant::AntRef {
         &self.loco_context_database
     }
+    fn loco_context_database_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.loco_context_database
+    }
     fn accel_context_database(&self) -> &super::ant::AntRef {
         &self.accel_context_database
+    }
+    fn accel_context_database_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.accel_context_database
     }
 }
 
@@ -3805,9 +4616,6 @@ impl LocomotionParamBlockTrait for MoveCycleParamData {
 }
 
 impl super::core::DataContainerTrait for MoveCycleParamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVECYCLEPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3851,6 +4659,15 @@ impl TypeObject for MoveCycleParamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3872,11 +4689,15 @@ pub struct IdleParamData {
 
 pub trait IdleParamDataTrait: LocomotionParamBlockTrait {
     fn idle_binding(&self) -> &CreatureIdleBinding;
+    fn idle_binding_mut(&mut self) -> &mut CreatureIdleBinding;
 }
 
 impl IdleParamDataTrait for IdleParamData {
     fn idle_binding(&self) -> &CreatureIdleBinding {
         &self.idle_binding
+    }
+    fn idle_binding_mut(&mut self) -> &mut CreatureIdleBinding {
+        &mut self.idle_binding
     }
 }
 
@@ -3884,9 +4705,6 @@ impl LocomotionParamBlockTrait for IdleParamData {
 }
 
 impl super::core::DataContainerTrait for IdleParamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static IDLEPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3918,6 +4736,15 @@ impl TypeObject for IdleParamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3941,23 +4768,39 @@ pub struct CreaturePlayAnimationBinding {
 
 pub trait CreaturePlayAnimationBindingTrait: TypeObject {
     fn branch_in_phase(&self) -> &super::ant::AntRef;
+    fn branch_in_phase_mut(&mut self) -> &mut super::ant::AntRef;
     fn align_translation(&self) -> &super::ant::AntRef;
+    fn align_translation_mut(&mut self) -> &mut super::ant::AntRef;
     fn align_facing_rotation(&self) -> &super::ant::AntRef;
+    fn align_facing_rotation_mut(&mut self) -> &mut super::ant::AntRef;
     fn ant_in_play_animation(&self) -> &super::ant::AntRef;
+    fn ant_in_play_animation_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl CreaturePlayAnimationBindingTrait for CreaturePlayAnimationBinding {
     fn branch_in_phase(&self) -> &super::ant::AntRef {
         &self.branch_in_phase
     }
+    fn branch_in_phase_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.branch_in_phase
+    }
     fn align_translation(&self) -> &super::ant::AntRef {
         &self.align_translation
+    }
+    fn align_translation_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.align_translation
     }
     fn align_facing_rotation(&self) -> &super::ant::AntRef {
         &self.align_facing_rotation
     }
+    fn align_facing_rotation_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.align_facing_rotation
+    }
     fn ant_in_play_animation(&self) -> &super::ant::AntRef {
         &self.ant_in_play_animation
+    }
+    fn ant_in_play_animation_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.ant_in_play_animation
     }
 }
 
@@ -4007,6 +4850,15 @@ impl TypeObject for CreaturePlayAnimationBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4029,19 +4881,31 @@ pub struct CreatureTurnBinding {
 
 pub trait CreatureTurnBindingTrait: TypeObject {
     fn turn_angle(&self) -> &super::ant::AntRef;
+    fn turn_angle_mut(&mut self) -> &mut super::ant::AntRef;
     fn turn_phase(&self) -> &super::ant::AntRef;
+    fn turn_phase_mut(&mut self) -> &mut super::ant::AntRef;
     fn turn_trigger(&self) -> &super::ant::AntRef;
+    fn turn_trigger_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl CreatureTurnBindingTrait for CreatureTurnBinding {
     fn turn_angle(&self) -> &super::ant::AntRef {
         &self.turn_angle
     }
+    fn turn_angle_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.turn_angle
+    }
     fn turn_phase(&self) -> &super::ant::AntRef {
         &self.turn_phase
     }
+    fn turn_phase_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.turn_phase
+    }
     fn turn_trigger(&self) -> &super::ant::AntRef {
         &self.turn_trigger
+    }
+    fn turn_trigger_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.turn_trigger
     }
 }
 
@@ -4085,6 +4949,15 @@ impl TypeObject for CreatureTurnBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4108,23 +4981,39 @@ pub struct CreatureStopBinding {
 
 pub trait CreatureStopBindingTrait: TypeObject {
     fn stop_angle(&self) -> &super::ant::AntRef;
+    fn stop_angle_mut(&mut self) -> &mut super::ant::AntRef;
     fn stop_relative_facing_angle(&self) -> &super::ant::AntRef;
+    fn stop_relative_facing_angle_mut(&mut self) -> &mut super::ant::AntRef;
     fn stop_phase(&self) -> &super::ant::AntRef;
+    fn stop_phase_mut(&mut self) -> &mut super::ant::AntRef;
     fn stop_trigger(&self) -> &super::ant::AntRef;
+    fn stop_trigger_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl CreatureStopBindingTrait for CreatureStopBinding {
     fn stop_angle(&self) -> &super::ant::AntRef {
         &self.stop_angle
     }
+    fn stop_angle_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.stop_angle
+    }
     fn stop_relative_facing_angle(&self) -> &super::ant::AntRef {
         &self.stop_relative_facing_angle
+    }
+    fn stop_relative_facing_angle_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.stop_relative_facing_angle
     }
     fn stop_phase(&self) -> &super::ant::AntRef {
         &self.stop_phase
     }
+    fn stop_phase_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.stop_phase
+    }
     fn stop_trigger(&self) -> &super::ant::AntRef {
         &self.stop_trigger
+    }
+    fn stop_trigger_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.stop_trigger
     }
 }
 
@@ -4174,6 +5063,15 @@ impl TypeObject for CreatureStopBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4196,19 +5094,31 @@ pub struct CreatureStartBinding {
 
 pub trait CreatureStartBindingTrait: TypeObject {
     fn start_facing_offset(&self) -> &super::ant::AntRef;
+    fn start_facing_offset_mut(&mut self) -> &mut super::ant::AntRef;
     fn start_motion_delta(&self) -> &super::ant::AntRef;
+    fn start_motion_delta_mut(&mut self) -> &mut super::ant::AntRef;
     fn start_trigger(&self) -> &super::ant::AntRef;
+    fn start_trigger_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl CreatureStartBindingTrait for CreatureStartBinding {
     fn start_facing_offset(&self) -> &super::ant::AntRef {
         &self.start_facing_offset
     }
+    fn start_facing_offset_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.start_facing_offset
+    }
     fn start_motion_delta(&self) -> &super::ant::AntRef {
         &self.start_motion_delta
     }
+    fn start_motion_delta_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.start_motion_delta
+    }
     fn start_trigger(&self) -> &super::ant::AntRef {
         &self.start_trigger
+    }
+    fn start_trigger_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.start_trigger
     }
 }
 
@@ -4252,6 +5162,15 @@ impl TypeObject for CreatureStartBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4281,47 +5200,87 @@ pub struct CreatureMiscBinding {
 
 pub trait CreatureMiscBindingTrait: TypeObject {
     fn current_speed(&self) -> &super::ant::AntRef;
+    fn current_speed_mut(&mut self) -> &mut super::ant::AntRef;
     fn loco_speed_multiplier(&self) -> &super::ant::AntRef;
+    fn loco_speed_multiplier_mut(&mut self) -> &mut super::ant::AntRef;
     fn g_force(&self) -> &super::ant::AntRef;
+    fn g_force_mut(&mut self) -> &mut super::ant::AntRef;
     fn relative_pitch(&self) -> &super::ant::AntRef;
+    fn relative_pitch_mut(&mut self) -> &mut super::ant::AntRef;
     fn path_steering(&self) -> &super::ant::AntRef;
+    fn path_steering_mut(&mut self) -> &mut super::ant::AntRef;
     fn relative_steering(&self) -> &super::ant::AntRef;
+    fn relative_steering_mut(&mut self) -> &mut super::ant::AntRef;
     fn raw_delat_traj(&self) -> &super::ant::AntRef;
+    fn raw_delat_traj_mut(&mut self) -> &mut super::ant::AntRef;
     fn speed_mode(&self) -> &super::ant::AntRef;
+    fn speed_mode_mut(&mut self) -> &mut super::ant::AntRef;
     fn awareness_x_target(&self) -> &super::ant::AntRef;
+    fn awareness_x_target_mut(&mut self) -> &mut super::ant::AntRef;
     fn awareness_y_target(&self) -> &super::ant::AntRef;
+    fn awareness_y_target_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl CreatureMiscBindingTrait for CreatureMiscBinding {
     fn current_speed(&self) -> &super::ant::AntRef {
         &self.current_speed
     }
+    fn current_speed_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.current_speed
+    }
     fn loco_speed_multiplier(&self) -> &super::ant::AntRef {
         &self.loco_speed_multiplier
+    }
+    fn loco_speed_multiplier_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.loco_speed_multiplier
     }
     fn g_force(&self) -> &super::ant::AntRef {
         &self.g_force
     }
+    fn g_force_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.g_force
+    }
     fn relative_pitch(&self) -> &super::ant::AntRef {
         &self.relative_pitch
+    }
+    fn relative_pitch_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.relative_pitch
     }
     fn path_steering(&self) -> &super::ant::AntRef {
         &self.path_steering
     }
+    fn path_steering_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.path_steering
+    }
     fn relative_steering(&self) -> &super::ant::AntRef {
         &self.relative_steering
+    }
+    fn relative_steering_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.relative_steering
     }
     fn raw_delat_traj(&self) -> &super::ant::AntRef {
         &self.raw_delat_traj
     }
+    fn raw_delat_traj_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.raw_delat_traj
+    }
     fn speed_mode(&self) -> &super::ant::AntRef {
         &self.speed_mode
+    }
+    fn speed_mode_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.speed_mode
     }
     fn awareness_x_target(&self) -> &super::ant::AntRef {
         &self.awareness_x_target
     }
+    fn awareness_x_target_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.awareness_x_target
+    }
     fn awareness_y_target(&self) -> &super::ant::AntRef {
         &self.awareness_y_target
+    }
+    fn awareness_y_target_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.awareness_y_target
     }
 }
 
@@ -4407,6 +5366,15 @@ impl TypeObject for CreatureMiscBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4432,31 +5400,55 @@ pub struct CreatureLocoBinding {
 
 pub trait CreatureLocoBindingTrait: TypeObject {
     fn transition_speed_mode(&self) -> &super::ant::AntRef;
+    fn transition_speed_mode_mut(&mut self) -> &mut super::ant::AntRef;
     fn trigger_speed_transition(&self) -> &super::ant::AntRef;
+    fn trigger_speed_transition_mut(&mut self) -> &mut super::ant::AntRef;
     fn accel_decel_phase(&self) -> &super::ant::AntRef;
+    fn accel_decel_phase_mut(&mut self) -> &mut super::ant::AntRef;
     fn loco_turn_phase(&self) -> &super::ant::AntRef;
+    fn loco_turn_phase_mut(&mut self) -> &mut super::ant::AntRef;
     fn loco_end_phase(&self) -> &super::ant::AntRef;
+    fn loco_end_phase_mut(&mut self) -> &mut super::ant::AntRef;
     fn loco_trigger(&self) -> &super::ant::AntRef;
+    fn loco_trigger_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl CreatureLocoBindingTrait for CreatureLocoBinding {
     fn transition_speed_mode(&self) -> &super::ant::AntRef {
         &self.transition_speed_mode
     }
+    fn transition_speed_mode_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.transition_speed_mode
+    }
     fn trigger_speed_transition(&self) -> &super::ant::AntRef {
         &self.trigger_speed_transition
+    }
+    fn trigger_speed_transition_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.trigger_speed_transition
     }
     fn accel_decel_phase(&self) -> &super::ant::AntRef {
         &self.accel_decel_phase
     }
+    fn accel_decel_phase_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.accel_decel_phase
+    }
     fn loco_turn_phase(&self) -> &super::ant::AntRef {
         &self.loco_turn_phase
+    }
+    fn loco_turn_phase_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.loco_turn_phase
     }
     fn loco_end_phase(&self) -> &super::ant::AntRef {
         &self.loco_end_phase
     }
+    fn loco_end_phase_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.loco_end_phase
+    }
     fn loco_trigger(&self) -> &super::ant::AntRef {
         &self.loco_trigger
+    }
+    fn loco_trigger_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.loco_trigger
     }
 }
 
@@ -4518,6 +5510,15 @@ impl TypeObject for CreatureLocoBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4539,15 +5540,23 @@ pub struct CreatureIdleBinding {
 
 pub trait CreatureIdleBindingTrait: TypeObject {
     fn idle_turn_angle(&self) -> &super::ant::AntRef;
+    fn idle_turn_angle_mut(&mut self) -> &mut super::ant::AntRef;
     fn idle_turn_trigger(&self) -> &super::ant::AntRef;
+    fn idle_turn_trigger_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl CreatureIdleBindingTrait for CreatureIdleBinding {
     fn idle_turn_angle(&self) -> &super::ant::AntRef {
         &self.idle_turn_angle
     }
+    fn idle_turn_angle_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.idle_turn_angle
+    }
     fn idle_turn_trigger(&self) -> &super::ant::AntRef {
         &self.idle_turn_trigger
+    }
+    fn idle_turn_trigger_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.idle_turn_trigger
     }
 }
 
@@ -4585,6 +5594,15 @@ impl TypeObject for CreatureIdleBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4607,19 +5625,31 @@ pub struct CreatureCommonBinding {
 
 pub trait CreatureCommonBindingTrait: TypeObject {
     fn warp_angle(&self) -> &super::ant::AntRef;
+    fn warp_angle_mut(&mut self) -> &mut super::ant::AntRef;
     fn breakout_early(&self) -> &super::ant::AntRef;
+    fn breakout_early_mut(&mut self) -> &mut super::ant::AntRef;
     fn early_out_branch_types(&self) -> &Vec<EarlyOutType>;
+    fn early_out_branch_types_mut(&mut self) -> &mut Vec<EarlyOutType>;
 }
 
 impl CreatureCommonBindingTrait for CreatureCommonBinding {
     fn warp_angle(&self) -> &super::ant::AntRef {
         &self.warp_angle
     }
+    fn warp_angle_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.warp_angle
+    }
     fn breakout_early(&self) -> &super::ant::AntRef {
         &self.breakout_early
     }
+    fn breakout_early_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.breakout_early
+    }
     fn early_out_branch_types(&self) -> &Vec<EarlyOutType> {
         &self.early_out_branch_types
+    }
+    fn early_out_branch_types_mut(&mut self) -> &mut Vec<EarlyOutType> {
+        &mut self.early_out_branch_types
     }
 }
 
@@ -4663,6 +5693,15 @@ impl TypeObject for CreatureCommonBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4683,11 +5722,15 @@ pub struct EarlyOutType {
 
 pub trait EarlyOutTypeTrait: TypeObject {
     fn early_out_branch_type(&self) -> &super::ant::AntRef;
+    fn early_out_branch_type_mut(&mut self) -> &mut super::ant::AntRef;
 }
 
 impl EarlyOutTypeTrait for EarlyOutType {
     fn early_out_branch_type(&self) -> &super::ant::AntRef {
         &self.early_out_branch_type
+    }
+    fn early_out_branch_type_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.early_out_branch_type
     }
 }
 
@@ -4719,6 +5762,15 @@ impl TypeObject for EarlyOutType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4744,9 +5796,6 @@ impl LocomotionParamBlockTrait for LocomotionParamBlock {
 }
 
 impl super::core::DataContainerTrait for LocomotionParamBlock {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCOMOTIONPARAMBLOCK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4772,6 +5821,15 @@ impl TypeObject for LocomotionParamBlock {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4793,11 +5851,15 @@ pub struct CreatureFollowWaypointUnspawnEntityData {
 
 pub trait CreatureFollowWaypointUnspawnEntityDataTrait: CreatureFollowBaseDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl CreatureFollowWaypointUnspawnEntityDataTrait for CreatureFollowWaypointUnspawnEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
 }
 
@@ -4814,15 +5876,15 @@ impl super::core::DataBusPeerTrait for CreatureFollowWaypointUnspawnEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureFollowWaypointUnspawnEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureFollowWaypointUnspawnEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREFOLLOWWAYPOINTUNSPAWNENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4854,6 +5916,15 @@ impl TypeObject for CreatureFollowWaypointUnspawnEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4871,20 +5942,28 @@ pub static CREATUREFOLLOWWAYPOINTUNSPAWNENTITYDATA_ARRAY_TYPE_INFO: &'static Typ
 pub struct CreatureFollowWaypointClosestChooserEntityData {
     pub _glacier_base: CreatureFollowBaseData,
     pub realm: super::core::Realm,
-    pub behaviour_type: CL_WaypointListChooser_ClosestToType,
+    pub behaviour_type: CLWaypointListChooserClosestToType,
 }
 
 pub trait CreatureFollowWaypointClosestChooserEntityDataTrait: CreatureFollowBaseDataTrait {
     fn realm(&self) -> &super::core::Realm;
-    fn behaviour_type(&self) -> &CL_WaypointListChooser_ClosestToType;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
+    fn behaviour_type(&self) -> &CLWaypointListChooserClosestToType;
+    fn behaviour_type_mut(&mut self) -> &mut CLWaypointListChooserClosestToType;
 }
 
 impl CreatureFollowWaypointClosestChooserEntityDataTrait for CreatureFollowWaypointClosestChooserEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
-    fn behaviour_type(&self) -> &CL_WaypointListChooser_ClosestToType {
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
+    fn behaviour_type(&self) -> &CLWaypointListChooserClosestToType {
         &self.behaviour_type
+    }
+    fn behaviour_type_mut(&mut self) -> &mut CLWaypointListChooserClosestToType {
+        &mut self.behaviour_type
     }
 }
 
@@ -4901,15 +5980,15 @@ impl super::core::DataBusPeerTrait for CreatureFollowWaypointClosestChooserEntit
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureFollowWaypointClosestChooserEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureFollowWaypointClosestChooserEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4947,6 +6026,15 @@ impl TypeObject for CreatureFollowWaypointClosestChooserEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4963,7 +6051,7 @@ pub static CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITYDATA_ARRAY_TYPE_INFO: &'sta
 #[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
 #[repr(i64)]
 #[allow(non_camel_case_types)]
-pub enum CL_WaypointListChooser_ClosestToType {
+pub enum CLWaypointListChooserClosestToType {
     #[default]
     Closest_To_Current_Character = 0,
     Closest_To_Nearest_PLayer = 1,
@@ -4979,12 +6067,21 @@ pub static CL_WAYPOINTLISTCHOOSER_CLOSESTTOTYPE_TYPE_INFO: &'static TypeInfo = &
     alignment: 1,
 };
 
-impl TypeObject for CL_WaypointListChooser_ClosestToType {
+impl TypeObject for CLWaypointListChooserClosestToType {
     fn type_info(&self) -> &'static TypeInfo {
         CL_WAYPOINTLISTCHOOSER_CLOSESTTOTYPE_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5009,19 +6106,31 @@ pub struct CreatureFollowWaypointOccupancyChooserEntityData {
 
 pub trait CreatureFollowWaypointOccupancyChooserEntityDataTrait: CreatureFollowBaseDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn enable_available(&self) -> &bool;
+    fn enable_available_mut(&mut self) -> &mut bool;
     fn occupancy_limit(&self) -> &i32;
+    fn occupancy_limit_mut(&mut self) -> &mut i32;
 }
 
 impl CreatureFollowWaypointOccupancyChooserEntityDataTrait for CreatureFollowWaypointOccupancyChooserEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn enable_available(&self) -> &bool {
         &self.enable_available
     }
+    fn enable_available_mut(&mut self) -> &mut bool {
+        &mut self.enable_available
+    }
     fn occupancy_limit(&self) -> &i32 {
         &self.occupancy_limit
+    }
+    fn occupancy_limit_mut(&mut self) -> &mut i32 {
+        &mut self.occupancy_limit
     }
 }
 
@@ -5038,15 +6147,15 @@ impl super::core::DataBusPeerTrait for CreatureFollowWaypointOccupancyChooserEnt
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureFollowWaypointOccupancyChooserEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureFollowWaypointOccupancyChooserEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5090,6 +6199,15 @@ impl TypeObject for CreatureFollowWaypointOccupancyChooserEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5114,23 +6232,39 @@ pub struct CreatureFollowWaypointBoolChooserEntityData {
 
 pub trait CreatureFollowWaypointBoolChooserEntityDataTrait: CreatureFollowBaseDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn chance_of_true(&self) -> &f32;
+    fn chance_of_true_mut(&mut self) -> &mut f32;
     fn enable_random_choice(&self) -> &bool;
+    fn enable_random_choice_mut(&mut self) -> &mut bool;
     fn selection_condition(&self) -> &bool;
+    fn selection_condition_mut(&mut self) -> &mut bool;
 }
 
 impl CreatureFollowWaypointBoolChooserEntityDataTrait for CreatureFollowWaypointBoolChooserEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn chance_of_true(&self) -> &f32 {
         &self.chance_of_true
+    }
+    fn chance_of_true_mut(&mut self) -> &mut f32 {
+        &mut self.chance_of_true
     }
     fn enable_random_choice(&self) -> &bool {
         &self.enable_random_choice
     }
+    fn enable_random_choice_mut(&mut self) -> &mut bool {
+        &mut self.enable_random_choice
+    }
     fn selection_condition(&self) -> &bool {
         &self.selection_condition
+    }
+    fn selection_condition_mut(&mut self) -> &mut bool {
+        &mut self.selection_condition
     }
 }
 
@@ -5147,15 +6281,15 @@ impl super::core::DataBusPeerTrait for CreatureFollowWaypointBoolChooserEntityDa
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureFollowWaypointBoolChooserEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureFollowWaypointBoolChooserEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5205,6 +6339,15 @@ impl TypeObject for CreatureFollowWaypointBoolChooserEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5233,23 +6376,44 @@ impl CreatureFollowWaypointSegmentEntityDataTrait for CreatureFollowWaypointsEnt
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn type_of_route(&self) -> &super::pathfinding_shared::RouteType {
         self._glacier_base.type_of_route()
     }
-    fn start_point(&self) -> &CL_WaypointList_StartType {
+    fn type_of_route_mut(&mut self) -> &mut super::pathfinding_shared::RouteType {
+        self._glacier_base.type_of_route_mut()
+    }
+    fn start_point(&self) -> &CLWaypointListStartType {
         self._glacier_base.start_point()
+    }
+    fn start_point_mut(&mut self) -> &mut CLWaypointListStartType {
+        self._glacier_base.start_point_mut()
     }
     fn is_reversable(&self) -> &bool {
         self._glacier_base.is_reversable()
     }
+    fn is_reversable_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_reversable_mut()
+    }
     fn max_repititions(&self) -> &u32 {
         self._glacier_base.max_repititions()
+    }
+    fn max_repititions_mut(&mut self) -> &mut u32 {
+        self._glacier_base.max_repititions_mut()
     }
     fn speed_override(&self) -> &CreatureSpeedLevel {
         self._glacier_base.speed_override()
     }
+    fn speed_override_mut(&mut self) -> &mut CreatureSpeedLevel {
+        self._glacier_base.speed_override_mut()
+    }
     fn force_explicit_height(&self) -> &bool {
         self._glacier_base.force_explicit_height()
+    }
+    fn force_explicit_height_mut(&mut self) -> &mut bool {
+        self._glacier_base.force_explicit_height_mut()
     }
 }
 
@@ -5266,15 +6430,15 @@ impl super::core::DataBusPeerTrait for CreatureFollowWaypointsEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureFollowWaypointsEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureFollowWaypointsEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREFOLLOWWAYPOINTSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5300,6 +6464,15 @@ impl TypeObject for CreatureFollowWaypointsEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5318,7 +6491,7 @@ pub struct CreatureFollowWaypointSegmentEntityData {
     pub _glacier_base: CreatureFollowBaseData,
     pub realm: super::core::Realm,
     pub type_of_route: super::pathfinding_shared::RouteType,
-    pub start_point: CL_WaypointList_StartType,
+    pub start_point: CLWaypointListStartType,
     pub is_reversable: bool,
     pub max_repititions: u32,
     pub speed_override: CreatureSpeedLevel,
@@ -5327,35 +6500,63 @@ pub struct CreatureFollowWaypointSegmentEntityData {
 
 pub trait CreatureFollowWaypointSegmentEntityDataTrait: CreatureFollowBaseDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn type_of_route(&self) -> &super::pathfinding_shared::RouteType;
-    fn start_point(&self) -> &CL_WaypointList_StartType;
+    fn type_of_route_mut(&mut self) -> &mut super::pathfinding_shared::RouteType;
+    fn start_point(&self) -> &CLWaypointListStartType;
+    fn start_point_mut(&mut self) -> &mut CLWaypointListStartType;
     fn is_reversable(&self) -> &bool;
+    fn is_reversable_mut(&mut self) -> &mut bool;
     fn max_repititions(&self) -> &u32;
+    fn max_repititions_mut(&mut self) -> &mut u32;
     fn speed_override(&self) -> &CreatureSpeedLevel;
+    fn speed_override_mut(&mut self) -> &mut CreatureSpeedLevel;
     fn force_explicit_height(&self) -> &bool;
+    fn force_explicit_height_mut(&mut self) -> &mut bool;
 }
 
 impl CreatureFollowWaypointSegmentEntityDataTrait for CreatureFollowWaypointSegmentEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn type_of_route(&self) -> &super::pathfinding_shared::RouteType {
         &self.type_of_route
     }
-    fn start_point(&self) -> &CL_WaypointList_StartType {
+    fn type_of_route_mut(&mut self) -> &mut super::pathfinding_shared::RouteType {
+        &mut self.type_of_route
+    }
+    fn start_point(&self) -> &CLWaypointListStartType {
         &self.start_point
+    }
+    fn start_point_mut(&mut self) -> &mut CLWaypointListStartType {
+        &mut self.start_point
     }
     fn is_reversable(&self) -> &bool {
         &self.is_reversable
     }
+    fn is_reversable_mut(&mut self) -> &mut bool {
+        &mut self.is_reversable
+    }
     fn max_repititions(&self) -> &u32 {
         &self.max_repititions
+    }
+    fn max_repititions_mut(&mut self) -> &mut u32 {
+        &mut self.max_repititions
     }
     fn speed_override(&self) -> &CreatureSpeedLevel {
         &self.speed_override
     }
+    fn speed_override_mut(&mut self) -> &mut CreatureSpeedLevel {
+        &mut self.speed_override
+    }
     fn force_explicit_height(&self) -> &bool {
         &self.force_explicit_height
+    }
+    fn force_explicit_height_mut(&mut self) -> &mut bool {
+        &mut self.force_explicit_height
     }
 }
 
@@ -5372,15 +6573,15 @@ impl super::core::DataBusPeerTrait for CreatureFollowWaypointSegmentEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureFollowWaypointSegmentEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureFollowWaypointSegmentEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREFOLLOWWAYPOINTSEGMENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5448,6 +6649,15 @@ impl TypeObject for CreatureFollowWaypointSegmentEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5482,15 +6692,15 @@ impl super::core::DataBusPeerTrait for CreatureFollowBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureFollowBaseData {
 }
 
 impl super::core::DataContainerTrait for CreatureFollowBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREFOLLOWBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5515,6 +6725,15 @@ impl TypeObject for CreatureFollowBaseData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5553,15 +6772,15 @@ impl super::core::DataBusPeerTrait for CreatureFollowWaypointProviderEntityData 
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureFollowWaypointProviderEntityData {
 }
 
 impl super::core::DataContainerTrait for CreatureFollowWaypointProviderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATUREFOLLOWWAYPOINTPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5587,6 +6806,15 @@ impl TypeObject for CreatureFollowWaypointProviderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5603,7 +6831,7 @@ pub static CREATUREFOLLOWWAYPOINTPROVIDERENTITYDATA_ARRAY_TYPE_INFO: &'static Ty
 #[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
 #[repr(i64)]
 #[allow(non_camel_case_types)]
-pub enum CL_WaypointList_StartType {
+pub enum CLWaypointListStartType {
     #[default]
     First_Point = 0,
     Nearest_Point = 1,
@@ -5619,12 +6847,21 @@ pub static CL_WAYPOINTLIST_STARTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     alignment: 1,
 };
 
-impl TypeObject for CL_WaypointList_StartType {
+impl TypeObject for CLWaypointListStartType {
     fn type_info(&self) -> &'static TypeInfo {
         CL_WAYPOINTLIST_STARTTYPE_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5649,19 +6886,31 @@ pub struct CreatureCollisionGroupData {
 
 pub trait CreatureCollisionGroupDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn avoidance_threshold(&self) -> &f32;
+    fn avoidance_threshold_mut(&mut self) -> &mut f32;
     fn average_group_size(&self) -> &i32;
+    fn average_group_size_mut(&mut self) -> &mut i32;
 }
 
 impl CreatureCollisionGroupDataTrait for CreatureCollisionGroupData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn avoidance_threshold(&self) -> &f32 {
         &self.avoidance_threshold
     }
+    fn avoidance_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.avoidance_threshold
+    }
     fn average_group_size(&self) -> &i32 {
         &self.average_group_size
+    }
+    fn average_group_size_mut(&mut self) -> &mut i32 {
+        &mut self.average_group_size
     }
 }
 
@@ -5675,15 +6924,15 @@ impl super::core::DataBusPeerTrait for CreatureCollisionGroupData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CreatureCollisionGroupData {
 }
 
 impl super::core::DataContainerTrait for CreatureCollisionGroupData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CREATURECOLLISIONGROUPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5727,6 +6976,15 @@ impl TypeObject for CreatureCollisionGroupData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5749,15 +7007,23 @@ pub struct CLInfluenceFilterEntityData {
 
 pub trait CLInfluenceFilterEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn influence_type(&self) -> &CreatureLocoExternalInfluenceType;
+    fn influence_type_mut(&mut self) -> &mut CreatureLocoExternalInfluenceType;
 }
 
 impl CLInfluenceFilterEntityDataTrait for CLInfluenceFilterEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn influence_type(&self) -> &CreatureLocoExternalInfluenceType {
         &self.influence_type
+    }
+    fn influence_type_mut(&mut self) -> &mut CreatureLocoExternalInfluenceType {
+        &mut self.influence_type
     }
 }
 
@@ -5771,15 +7037,15 @@ impl super::core::DataBusPeerTrait for CLInfluenceFilterEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CLInfluenceFilterEntityData {
 }
 
 impl super::core::DataContainerTrait for CLInfluenceFilterEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLINFLUENCEFILTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5817,6 +7083,15 @@ impl TypeObject for CLInfluenceFilterEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5840,19 +7115,31 @@ pub struct CLInfluenceCompareEntityData {
 
 pub trait CLInfluenceCompareEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn influence_a(&self) -> &CreatureLocoExternalInfluenceType;
+    fn influence_a_mut(&mut self) -> &mut CreatureLocoExternalInfluenceType;
     fn influence_b(&self) -> &CreatureLocoExternalInfluenceType;
+    fn influence_b_mut(&mut self) -> &mut CreatureLocoExternalInfluenceType;
 }
 
 impl CLInfluenceCompareEntityDataTrait for CLInfluenceCompareEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn influence_a(&self) -> &CreatureLocoExternalInfluenceType {
         &self.influence_a
     }
+    fn influence_a_mut(&mut self) -> &mut CreatureLocoExternalInfluenceType {
+        &mut self.influence_a
+    }
     fn influence_b(&self) -> &CreatureLocoExternalInfluenceType {
         &self.influence_b
+    }
+    fn influence_b_mut(&mut self) -> &mut CreatureLocoExternalInfluenceType {
+        &mut self.influence_b
     }
 }
 
@@ -5866,15 +7153,15 @@ impl super::core::DataBusPeerTrait for CLInfluenceCompareEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CLInfluenceCompareEntityData {
 }
 
 impl super::core::DataContainerTrait for CLInfluenceCompareEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLINFLUENCECOMPAREENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5918,6 +7205,15 @@ impl TypeObject for CLInfluenceCompareEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5945,35 +7241,63 @@ pub struct CLApplyInfluenceEntityData {
 
 pub trait CLApplyInfluenceEntityDataTrait: super::entity::EntityDataTrait {
     fn influence_type(&self) -> &CreatureLocoExternalInfluenceType;
+    fn influence_type_mut(&mut self) -> &mut CreatureLocoExternalInfluenceType;
     fn location(&self) -> &super::core::Vec3;
+    fn location_mut(&mut self) -> &mut super::core::Vec3;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn direction(&self) -> &super::core::Vec3;
+    fn direction_mut(&mut self) -> &mut super::core::Vec3;
     fn cone_angle(&self) -> &f32;
+    fn cone_angle_mut(&mut self) -> &mut f32;
     fn is_omnidirectional(&self) -> &bool;
+    fn is_omnidirectional_mut(&mut self) -> &mut bool;
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl CLApplyInfluenceEntityDataTrait for CLApplyInfluenceEntityData {
     fn influence_type(&self) -> &CreatureLocoExternalInfluenceType {
         &self.influence_type
     }
+    fn influence_type_mut(&mut self) -> &mut CreatureLocoExternalInfluenceType {
+        &mut self.influence_type
+    }
     fn location(&self) -> &super::core::Vec3 {
         &self.location
+    }
+    fn location_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.location
     }
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn direction(&self) -> &super::core::Vec3 {
         &self.direction
+    }
+    fn direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.direction
     }
     fn cone_angle(&self) -> &f32 {
         &self.cone_angle
     }
+    fn cone_angle_mut(&mut self) -> &mut f32 {
+        &mut self.cone_angle
+    }
     fn is_omnidirectional(&self) -> &bool {
         &self.is_omnidirectional
     }
+    fn is_omnidirectional_mut(&mut self) -> &mut bool {
+        &mut self.is_omnidirectional
+    }
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
 }
 
@@ -5987,15 +7311,15 @@ impl super::core::DataBusPeerTrait for CLApplyInfluenceEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CLApplyInfluenceEntityData {
 }
 
 impl super::core::DataContainerTrait for CLApplyInfluenceEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLAPPLYINFLUENCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6062,6 +7386,15 @@ impl TypeObject for CLApplyInfluenceEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -296,23 +296,39 @@ pub struct TelemetrySDKPinTransportData {
 
 pub trait TelemetrySDKPinTransportDataTrait: TelemetryTransportDataTrait {
     fn end_point_config(&self) -> &TelemetrySDKPinEndPointConfig;
+    fn end_point_config_mut(&mut self) -> &mut TelemetrySDKPinEndPointConfig;
     fn log_level(&self) -> &i32;
+    fn log_level_mut(&mut self) -> &mut i32;
     fn session_header_config(&self) -> &TelemetrySDKPinSessionHeaderConfig;
+    fn session_header_config_mut(&mut self) -> &mut TelemetrySDKPinSessionHeaderConfig;
     fn event_header_config(&self) -> &TelemetrySDKPinEventHeaderConfig;
+    fn event_header_config_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderConfig;
 }
 
 impl TelemetrySDKPinTransportDataTrait for TelemetrySDKPinTransportData {
     fn end_point_config(&self) -> &TelemetrySDKPinEndPointConfig {
         &self.end_point_config
     }
+    fn end_point_config_mut(&mut self) -> &mut TelemetrySDKPinEndPointConfig {
+        &mut self.end_point_config
+    }
     fn log_level(&self) -> &i32 {
         &self.log_level
+    }
+    fn log_level_mut(&mut self) -> &mut i32 {
+        &mut self.log_level
     }
     fn session_header_config(&self) -> &TelemetrySDKPinSessionHeaderConfig {
         &self.session_header_config
     }
+    fn session_header_config_mut(&mut self) -> &mut TelemetrySDKPinSessionHeaderConfig {
+        &mut self.session_header_config
+    }
     fn event_header_config(&self) -> &TelemetrySDKPinEventHeaderConfig {
         &self.event_header_config
+    }
+    fn event_header_config_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderConfig {
+        &mut self.event_header_config
     }
 }
 
@@ -320,18 +336,21 @@ impl TelemetryTransportDataTrait for TelemetrySDKPinTransportData {
     fn transport_id(&self) -> &u32 {
         self._glacier_base.transport_id()
     }
+    fn transport_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.transport_id_mut()
+    }
 }
 
 impl super::core::AssetTrait for TelemetrySDKPinTransportData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TelemetrySDKPinTransportData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINTRANSPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -381,6 +400,15 @@ impl TypeObject for TelemetrySDKPinTransportData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -422,95 +450,183 @@ pub struct TelemetrySDKPinEventHeaderConfig {
 
 pub trait TelemetrySDKPinEventHeaderConfigTrait: TypeObject {
     fn other_player_ids(&self) -> &String;
+    fn other_player_ids_mut(&mut self) -> &mut String;
     fn date_of_birth(&self) -> &String;
+    fn date_of_birth_mut(&mut self) -> &mut String;
     fn experiment_id(&self) -> &String;
+    fn experiment_id_mut(&mut self) -> &mut String;
     fn player_id_type(&self) -> &String;
+    fn player_id_type_mut(&mut self) -> &mut String;
     fn player_id(&self) -> &String;
+    fn player_id_mut(&mut self) -> &mut String;
     fn title_id_type(&self) -> &String;
+    fn title_id_type_mut(&mut self) -> &mut String;
     fn title_id(&self) -> &String;
+    fn title_id_mut(&mut self) -> &mut String;
     fn release_type(&self) -> &String;
+    fn release_type_mut(&mut self) -> &mut String;
     fn platform(&self) -> &String;
+    fn platform_mut(&mut self) -> &mut String;
     fn mac_address(&self) -> &String;
+    fn mac_address_mut(&mut self) -> &mut String;
     fn device_id_map(&self) -> &String;
+    fn device_id_map_mut(&mut self) -> &mut String;
     fn game_mode(&self) -> &String;
+    fn game_mode_mut(&mut self) -> &mut String;
     fn game_type(&self) -> &String;
+    fn game_type_mut(&mut self) -> &mut String;
     fn mode_type(&self) -> &String;
+    fn mode_type_mut(&mut self) -> &mut String;
     fn map(&self) -> &String;
+    fn map_mut(&mut self) -> &mut String;
     fn level(&self) -> &String;
+    fn level_mut(&mut self) -> &mut String;
     fn level_name(&self) -> &String;
+    fn level_name_mut(&mut self) -> &mut String;
     fn is_sess(&self) -> &String;
+    fn is_sess_mut(&mut self) -> &mut String;
     fn is_player(&self) -> &String;
+    fn is_player_mut(&mut self) -> &mut String;
     fn is_mlu(&self) -> &String;
+    fn is_mlu_mut(&mut self) -> &mut String;
     fn subs(&self) -> &String;
+    fn subs_mut(&mut self) -> &mut String;
     fn custom_event_headers(&self) -> &String;
+    fn custom_event_headers_mut(&mut self) -> &mut String;
 }
 
 impl TelemetrySDKPinEventHeaderConfigTrait for TelemetrySDKPinEventHeaderConfig {
     fn other_player_ids(&self) -> &String {
         &self.other_player_ids
     }
+    fn other_player_ids_mut(&mut self) -> &mut String {
+        &mut self.other_player_ids
+    }
     fn date_of_birth(&self) -> &String {
         &self.date_of_birth
+    }
+    fn date_of_birth_mut(&mut self) -> &mut String {
+        &mut self.date_of_birth
     }
     fn experiment_id(&self) -> &String {
         &self.experiment_id
     }
+    fn experiment_id_mut(&mut self) -> &mut String {
+        &mut self.experiment_id
+    }
     fn player_id_type(&self) -> &String {
         &self.player_id_type
+    }
+    fn player_id_type_mut(&mut self) -> &mut String {
+        &mut self.player_id_type
     }
     fn player_id(&self) -> &String {
         &self.player_id
     }
+    fn player_id_mut(&mut self) -> &mut String {
+        &mut self.player_id
+    }
     fn title_id_type(&self) -> &String {
         &self.title_id_type
+    }
+    fn title_id_type_mut(&mut self) -> &mut String {
+        &mut self.title_id_type
     }
     fn title_id(&self) -> &String {
         &self.title_id
     }
+    fn title_id_mut(&mut self) -> &mut String {
+        &mut self.title_id
+    }
     fn release_type(&self) -> &String {
         &self.release_type
+    }
+    fn release_type_mut(&mut self) -> &mut String {
+        &mut self.release_type
     }
     fn platform(&self) -> &String {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut String {
+        &mut self.platform
+    }
     fn mac_address(&self) -> &String {
         &self.mac_address
+    }
+    fn mac_address_mut(&mut self) -> &mut String {
+        &mut self.mac_address
     }
     fn device_id_map(&self) -> &String {
         &self.device_id_map
     }
+    fn device_id_map_mut(&mut self) -> &mut String {
+        &mut self.device_id_map
+    }
     fn game_mode(&self) -> &String {
         &self.game_mode
+    }
+    fn game_mode_mut(&mut self) -> &mut String {
+        &mut self.game_mode
     }
     fn game_type(&self) -> &String {
         &self.game_type
     }
+    fn game_type_mut(&mut self) -> &mut String {
+        &mut self.game_type
+    }
     fn mode_type(&self) -> &String {
         &self.mode_type
+    }
+    fn mode_type_mut(&mut self) -> &mut String {
+        &mut self.mode_type
     }
     fn map(&self) -> &String {
         &self.map
     }
+    fn map_mut(&mut self) -> &mut String {
+        &mut self.map
+    }
     fn level(&self) -> &String {
         &self.level
+    }
+    fn level_mut(&mut self) -> &mut String {
+        &mut self.level
     }
     fn level_name(&self) -> &String {
         &self.level_name
     }
+    fn level_name_mut(&mut self) -> &mut String {
+        &mut self.level_name
+    }
     fn is_sess(&self) -> &String {
         &self.is_sess
+    }
+    fn is_sess_mut(&mut self) -> &mut String {
+        &mut self.is_sess
     }
     fn is_player(&self) -> &String {
         &self.is_player
     }
+    fn is_player_mut(&mut self) -> &mut String {
+        &mut self.is_player
+    }
     fn is_mlu(&self) -> &String {
         &self.is_mlu
+    }
+    fn is_mlu_mut(&mut self) -> &mut String {
+        &mut self.is_mlu
     }
     fn subs(&self) -> &String {
         &self.subs
     }
+    fn subs_mut(&mut self) -> &mut String {
+        &mut self.subs
+    }
     fn custom_event_headers(&self) -> &String {
         &self.custom_event_headers
+    }
+    fn custom_event_headers_mut(&mut self) -> &mut String {
+        &mut self.custom_event_headers
     }
 }
 
@@ -668,6 +784,15 @@ impl TypeObject for TelemetrySDKPinEventHeaderConfig {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -701,63 +826,119 @@ pub struct TelemetrySDKPinSessionHeaderConfig {
 
 pub trait TelemetrySDKPinSessionHeaderConfigTrait: TypeObject {
     fn event_type(&self) -> &String;
+    fn event_type_mut(&mut self) -> &mut String;
     fn build_version(&self) -> &String;
+    fn build_version_mut(&mut self) -> &mut String;
     fn locale(&self) -> &String;
+    fn locale_mut(&mut self) -> &mut String;
     fn custom_session_headers(&self) -> &String;
+    fn custom_session_headers_mut(&mut self) -> &mut String;
     fn is_mlu(&self) -> &String;
+    fn is_mlu_mut(&mut self) -> &mut String;
     fn subs(&self) -> &String;
+    fn subs_mut(&mut self) -> &mut String;
     fn player_id_type(&self) -> &String;
+    fn player_id_type_mut(&mut self) -> &mut String;
     fn player_id(&self) -> &String;
+    fn player_id_mut(&mut self) -> &mut String;
     fn title_id_type(&self) -> &String;
+    fn title_id_type_mut(&mut self) -> &mut String;
     fn title_id(&self) -> &String;
+    fn title_id_mut(&mut self) -> &mut String;
     fn release_type(&self) -> &String;
+    fn release_type_mut(&mut self) -> &mut String;
     fn platform(&self) -> &String;
+    fn platform_mut(&mut self) -> &mut String;
     fn mac_address(&self) -> &String;
+    fn mac_address_mut(&mut self) -> &mut String;
     fn device_id_map(&self) -> &String;
+    fn device_id_map_mut(&mut self) -> &mut String;
 }
 
 impl TelemetrySDKPinSessionHeaderConfigTrait for TelemetrySDKPinSessionHeaderConfig {
     fn event_type(&self) -> &String {
         &self.event_type
     }
+    fn event_type_mut(&mut self) -> &mut String {
+        &mut self.event_type
+    }
     fn build_version(&self) -> &String {
         &self.build_version
+    }
+    fn build_version_mut(&mut self) -> &mut String {
+        &mut self.build_version
     }
     fn locale(&self) -> &String {
         &self.locale
     }
+    fn locale_mut(&mut self) -> &mut String {
+        &mut self.locale
+    }
     fn custom_session_headers(&self) -> &String {
         &self.custom_session_headers
+    }
+    fn custom_session_headers_mut(&mut self) -> &mut String {
+        &mut self.custom_session_headers
     }
     fn is_mlu(&self) -> &String {
         &self.is_mlu
     }
+    fn is_mlu_mut(&mut self) -> &mut String {
+        &mut self.is_mlu
+    }
     fn subs(&self) -> &String {
         &self.subs
+    }
+    fn subs_mut(&mut self) -> &mut String {
+        &mut self.subs
     }
     fn player_id_type(&self) -> &String {
         &self.player_id_type
     }
+    fn player_id_type_mut(&mut self) -> &mut String {
+        &mut self.player_id_type
+    }
     fn player_id(&self) -> &String {
         &self.player_id
+    }
+    fn player_id_mut(&mut self) -> &mut String {
+        &mut self.player_id
     }
     fn title_id_type(&self) -> &String {
         &self.title_id_type
     }
+    fn title_id_type_mut(&mut self) -> &mut String {
+        &mut self.title_id_type
+    }
     fn title_id(&self) -> &String {
         &self.title_id
+    }
+    fn title_id_mut(&mut self) -> &mut String {
+        &mut self.title_id
     }
     fn release_type(&self) -> &String {
         &self.release_type
     }
+    fn release_type_mut(&mut self) -> &mut String {
+        &mut self.release_type
+    }
     fn platform(&self) -> &String {
         &self.platform
+    }
+    fn platform_mut(&mut self) -> &mut String {
+        &mut self.platform
     }
     fn mac_address(&self) -> &String {
         &self.mac_address
     }
+    fn mac_address_mut(&mut self) -> &mut String {
+        &mut self.mac_address
+    }
     fn device_id_map(&self) -> &String {
         &self.device_id_map
+    }
+    fn device_id_map_mut(&mut self) -> &mut String {
+        &mut self.device_id_map
     }
 }
 
@@ -867,6 +1048,15 @@ impl TypeObject for TelemetrySDKPinSessionHeaderConfig {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -889,19 +1079,31 @@ pub struct TelemetrySDKPinEndPointConfig {
 
 pub trait TelemetrySDKPinEndPointConfigTrait: TypeObject {
     fn server_address(&self) -> &String;
+    fn server_address_mut(&mut self) -> &mut String;
     fn server_port(&self) -> &i32;
+    fn server_port_mut(&mut self) -> &mut i32;
     fn environment(&self) -> &String;
+    fn environment_mut(&mut self) -> &mut String;
 }
 
 impl TelemetrySDKPinEndPointConfigTrait for TelemetrySDKPinEndPointConfig {
     fn server_address(&self) -> &String {
         &self.server_address
     }
+    fn server_address_mut(&mut self) -> &mut String {
+        &mut self.server_address
+    }
     fn server_port(&self) -> &i32 {
         &self.server_port
     }
+    fn server_port_mut(&mut self) -> &mut i32 {
+        &mut self.server_port
+    }
     fn environment(&self) -> &String {
         &self.environment
+    }
+    fn environment_mut(&mut self) -> &mut String {
+        &mut self.environment
     }
 }
 
@@ -945,6 +1147,15 @@ impl TypeObject for TelemetrySDKPinEndPointConfig {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -969,23 +1180,39 @@ pub struct TelemetryCSVTransportData {
 
 pub trait TelemetryCSVTransportDataTrait: TelemetryTransportDataTrait {
     fn file_name(&self) -> &String;
+    fn file_name_mut(&mut self) -> &mut String;
     fn time_stamped(&self) -> &bool;
+    fn time_stamped_mut(&mut self) -> &mut bool;
     fn writes_per_flush(&self) -> &u32;
+    fn writes_per_flush_mut(&mut self) -> &mut u32;
     fn overwrite_file(&self) -> &bool;
+    fn overwrite_file_mut(&mut self) -> &mut bool;
 }
 
 impl TelemetryCSVTransportDataTrait for TelemetryCSVTransportData {
     fn file_name(&self) -> &String {
         &self.file_name
     }
+    fn file_name_mut(&mut self) -> &mut String {
+        &mut self.file_name
+    }
     fn time_stamped(&self) -> &bool {
         &self.time_stamped
+    }
+    fn time_stamped_mut(&mut self) -> &mut bool {
+        &mut self.time_stamped
     }
     fn writes_per_flush(&self) -> &u32 {
         &self.writes_per_flush
     }
+    fn writes_per_flush_mut(&mut self) -> &mut u32 {
+        &mut self.writes_per_flush
+    }
     fn overwrite_file(&self) -> &bool {
         &self.overwrite_file
+    }
+    fn overwrite_file_mut(&mut self) -> &mut bool {
+        &mut self.overwrite_file
     }
 }
 
@@ -993,18 +1220,21 @@ impl TelemetryTransportDataTrait for TelemetryCSVTransportData {
     fn transport_id(&self) -> &u32 {
         self._glacier_base.transport_id()
     }
+    fn transport_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.transport_id_mut()
+    }
 }
 
 impl super::core::AssetTrait for TelemetryCSVTransportData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TelemetryCSVTransportData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYCSVTRANSPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1054,6 +1284,15 @@ impl TypeObject for TelemetryCSVTransportData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1075,11 +1314,15 @@ pub struct TelemetryTTYTransportData {
 
 pub trait TelemetryTTYTransportDataTrait: TelemetryTransportDataTrait {
     fn max_buffer(&self) -> &u32;
+    fn max_buffer_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetryTTYTransportDataTrait for TelemetryTTYTransportData {
     fn max_buffer(&self) -> &u32 {
         &self.max_buffer
+    }
+    fn max_buffer_mut(&mut self) -> &mut u32 {
+        &mut self.max_buffer
     }
 }
 
@@ -1087,18 +1330,21 @@ impl TelemetryTransportDataTrait for TelemetryTTYTransportData {
     fn transport_id(&self) -> &u32 {
         self._glacier_base.transport_id()
     }
+    fn transport_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.transport_id_mut()
+    }
 }
 
 impl super::core::AssetTrait for TelemetryTTYTransportData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TelemetryTTYTransportData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYTTYTRANSPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1130,6 +1376,15 @@ impl TypeObject for TelemetryTTYTransportData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1154,23 +1409,39 @@ pub struct TelemetrySDK3TransportData {
 
 pub trait TelemetrySDK3TransportDataTrait: TelemetryTransportDataTrait {
     fn is_production(&self) -> &bool;
+    fn is_production_mut(&mut self) -> &mut bool;
     fn project_id(&self) -> &u32;
+    fn project_id_mut(&mut self) -> &mut u32;
     fn version_name(&self) -> &String;
+    fn version_name_mut(&mut self) -> &mut String;
     fn log_level(&self) -> &i32;
+    fn log_level_mut(&mut self) -> &mut i32;
 }
 
 impl TelemetrySDK3TransportDataTrait for TelemetrySDK3TransportData {
     fn is_production(&self) -> &bool {
         &self.is_production
     }
+    fn is_production_mut(&mut self) -> &mut bool {
+        &mut self.is_production
+    }
     fn project_id(&self) -> &u32 {
         &self.project_id
+    }
+    fn project_id_mut(&mut self) -> &mut u32 {
+        &mut self.project_id
     }
     fn version_name(&self) -> &String {
         &self.version_name
     }
+    fn version_name_mut(&mut self) -> &mut String {
+        &mut self.version_name
+    }
     fn log_level(&self) -> &i32 {
         &self.log_level
+    }
+    fn log_level_mut(&mut self) -> &mut i32 {
+        &mut self.log_level
     }
 }
 
@@ -1178,18 +1449,21 @@ impl TelemetryTransportDataTrait for TelemetrySDK3TransportData {
     fn transport_id(&self) -> &u32 {
         self._glacier_base.transport_id()
     }
+    fn transport_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.transport_id_mut()
+    }
 }
 
 impl super::core::AssetTrait for TelemetrySDK3TransportData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TelemetrySDK3TransportData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDK3TRANSPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1239,6 +1513,15 @@ impl TypeObject for TelemetrySDK3TransportData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1260,11 +1543,15 @@ pub struct TelemetryTransportData {
 
 pub trait TelemetryTransportDataTrait: super::core::AssetTrait {
     fn transport_id(&self) -> &u32;
+    fn transport_id_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetryTransportDataTrait for TelemetryTransportData {
     fn transport_id(&self) -> &u32 {
         &self.transport_id
+    }
+    fn transport_id_mut(&mut self) -> &mut u32 {
+        &mut self.transport_id
     }
 }
 
@@ -1272,12 +1559,12 @@ impl super::core::AssetTrait for TelemetryTransportData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TelemetryTransportData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYTRANSPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1309,6 +1596,15 @@ impl TypeObject for TelemetryTransportData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1331,15 +1627,23 @@ pub struct TransactionalStreamData {
 
 pub trait TransactionalStreamDataTrait: StreamDataTrait {
     fn format(&self) -> &Option<Arc<Mutex<dyn FixedTransactionalStreamFormatTrait>>>;
+    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedTransactionalStreamFormatTrait>>>;
     fn auto_commit(&self) -> &bool;
+    fn auto_commit_mut(&mut self) -> &mut bool;
 }
 
 impl TransactionalStreamDataTrait for TransactionalStreamData {
     fn format(&self) -> &Option<Arc<Mutex<dyn FixedTransactionalStreamFormatTrait>>> {
         &self.format
     }
+    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedTransactionalStreamFormatTrait>>> {
+        &mut self.format
+    }
     fn auto_commit(&self) -> &bool {
         &self.auto_commit
+    }
+    fn auto_commit_mut(&mut self) -> &mut bool {
+        &mut self.auto_commit
     }
 }
 
@@ -1347,11 +1651,20 @@ impl StreamDataTrait for TransactionalStreamData {
     fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
         self._glacier_base.transports()
     }
+    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+        self._glacier_base.transports_mut()
+    }
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
     fn stream_id(&self) -> &u32 {
         self._glacier_base.stream_id()
+    }
+    fn stream_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.stream_id_mut()
     }
 }
 
@@ -1359,12 +1672,12 @@ impl super::core::AssetTrait for TransactionalStreamData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TransactionalStreamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TRANSACTIONALSTREAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1402,6 +1715,15 @@ impl TypeObject for TransactionalStreamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1423,11 +1745,15 @@ pub struct VarEventStreamData {
 
 pub trait VarEventStreamDataTrait: EventStreamDataTrait {
     fn format(&self) -> &Option<Arc<Mutex<dyn VariableEventStreamFormatTrait>>>;
+    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VariableEventStreamFormatTrait>>>;
 }
 
 impl VarEventStreamDataTrait for VarEventStreamData {
     fn format(&self) -> &Option<Arc<Mutex<dyn VariableEventStreamFormatTrait>>> {
         &self.format
+    }
+    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VariableEventStreamFormatTrait>>> {
+        &mut self.format
     }
 }
 
@@ -1438,11 +1764,20 @@ impl StreamDataTrait for VarEventStreamData {
     fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
         self._glacier_base.transports()
     }
+    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+        self._glacier_base.transports_mut()
+    }
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
     fn stream_id(&self) -> &u32 {
         self._glacier_base.stream_id()
+    }
+    fn stream_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.stream_id_mut()
     }
 }
 
@@ -1450,12 +1785,12 @@ impl super::core::AssetTrait for VarEventStreamData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for VarEventStreamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VAREVENTSTREAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1487,6 +1822,15 @@ impl TypeObject for VarEventStreamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1508,11 +1852,15 @@ pub struct FixedEventStreamData {
 
 pub trait FixedEventStreamDataTrait: EventStreamDataTrait {
     fn format(&self) -> &Option<Arc<Mutex<dyn FixedEventStreamFormatTrait>>>;
+    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedEventStreamFormatTrait>>>;
 }
 
 impl FixedEventStreamDataTrait for FixedEventStreamData {
     fn format(&self) -> &Option<Arc<Mutex<dyn FixedEventStreamFormatTrait>>> {
         &self.format
+    }
+    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedEventStreamFormatTrait>>> {
+        &mut self.format
     }
 }
 
@@ -1523,11 +1871,20 @@ impl StreamDataTrait for FixedEventStreamData {
     fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
         self._glacier_base.transports()
     }
+    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+        self._glacier_base.transports_mut()
+    }
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
     fn stream_id(&self) -> &u32 {
         self._glacier_base.stream_id()
+    }
+    fn stream_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.stream_id_mut()
     }
 }
 
@@ -1535,12 +1892,12 @@ impl super::core::AssetTrait for FixedEventStreamData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FixedEventStreamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FIXEDEVENTSTREAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1572,6 +1929,15 @@ impl TypeObject for FixedEventStreamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1600,11 +1966,20 @@ impl StreamDataTrait for EventStreamData {
     fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
         self._glacier_base.transports()
     }
+    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+        self._glacier_base.transports_mut()
+    }
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
     fn stream_id(&self) -> &u32 {
         self._glacier_base.stream_id()
+    }
+    fn stream_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.stream_id_mut()
     }
 }
 
@@ -1612,12 +1987,12 @@ impl super::core::AssetTrait for EventStreamData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EventStreamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EVENTSTREAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1643,6 +2018,15 @@ impl TypeObject for EventStreamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1666,19 +2050,31 @@ pub struct StreamData {
 
 pub trait StreamDataTrait: super::core::AssetTrait {
     fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
+    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn stream_id(&self) -> &u32;
+    fn stream_id_mut(&mut self) -> &mut u32;
 }
 
 impl StreamDataTrait for StreamData {
     fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
         &self.transports
     }
+    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+        &mut self.transports
+    }
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
+    }
     fn stream_id(&self) -> &u32 {
         &self.stream_id
+    }
+    fn stream_id_mut(&mut self) -> &mut u32 {
+        &mut self.stream_id
     }
 }
 
@@ -1686,12 +2082,12 @@ impl super::core::AssetTrait for StreamData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for StreamData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STREAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1735,6 +2131,15 @@ impl TypeObject for StreamData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1756,11 +2161,15 @@ pub struct FixedTransactionalStreamFormat {
 
 pub trait FixedTransactionalStreamFormatTrait: TransactionalTelemetryStreamFormatTrait {
     fn reference_row(&self) -> &Option<Arc<Mutex<dyn TelemetryTransactionDataTrait>>>;
+    fn reference_row_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryTransactionDataTrait>>>;
 }
 
 impl FixedTransactionalStreamFormatTrait for FixedTransactionalStreamFormat {
     fn reference_row(&self) -> &Option<Arc<Mutex<dyn TelemetryTransactionDataTrait>>> {
         &self.reference_row
+    }
+    fn reference_row_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryTransactionDataTrait>>> {
+        &mut self.reference_row
     }
 }
 
@@ -1768,8 +2177,14 @@ impl TransactionalTelemetryStreamFormatTrait for FixedTransactionalStreamFormat 
     fn transaction_mode(&self) -> &TelemetryTransactionMode {
         self._glacier_base.transaction_mode()
     }
+    fn transaction_mode_mut(&mut self) -> &mut TelemetryTransactionMode {
+        self._glacier_base.transaction_mode_mut()
+    }
     fn autocommit(&self) -> &bool {
         self._glacier_base.autocommit()
+    }
+    fn autocommit_mut(&mut self) -> &mut bool {
+        self._glacier_base.autocommit_mut()
     }
 }
 
@@ -1780,12 +2195,12 @@ impl super::core::AssetTrait for FixedTransactionalStreamFormat {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FixedTransactionalStreamFormat {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FIXEDTRANSACTIONALSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1817,6 +2232,15 @@ impl TypeObject for FixedTransactionalStreamFormat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1839,15 +2263,23 @@ pub struct TransactionalTelemetryStreamFormat {
 
 pub trait TransactionalTelemetryStreamFormatTrait: TelemetryStreamFormatTrait {
     fn transaction_mode(&self) -> &TelemetryTransactionMode;
+    fn transaction_mode_mut(&mut self) -> &mut TelemetryTransactionMode;
     fn autocommit(&self) -> &bool;
+    fn autocommit_mut(&mut self) -> &mut bool;
 }
 
 impl TransactionalTelemetryStreamFormatTrait for TransactionalTelemetryStreamFormat {
     fn transaction_mode(&self) -> &TelemetryTransactionMode {
         &self.transaction_mode
     }
+    fn transaction_mode_mut(&mut self) -> &mut TelemetryTransactionMode {
+        &mut self.transaction_mode
+    }
     fn autocommit(&self) -> &bool {
         &self.autocommit
+    }
+    fn autocommit_mut(&mut self) -> &mut bool {
+        &mut self.autocommit
     }
 }
 
@@ -1858,12 +2290,12 @@ impl super::core::AssetTrait for TransactionalTelemetryStreamFormat {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TransactionalTelemetryStreamFormat {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TRANSACTIONALTELEMETRYSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1900,6 +2332,15 @@ impl TypeObject for TransactionalTelemetryStreamFormat {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1939,6 +2380,15 @@ impl TypeObject for TelemetryTransactionMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1963,23 +2413,39 @@ pub struct VariableEventStreamFormat {
 
 pub trait VariableEventStreamFormatTrait: EventTelemetryStreamFormatTrait {
     fn r#mod(&self) -> &String;
+    fn r#mod_mut(&mut self) -> &mut String;
     fn grp(&self) -> &String;
+    fn grp_mut(&mut self) -> &mut String;
     fn subgrp(&self) -> &String;
+    fn subgrp_mut(&mut self) -> &mut String;
     fn params(&self) -> &Vec<TelemetryParameterDataProperty>;
+    fn params_mut(&mut self) -> &mut Vec<TelemetryParameterDataProperty>;
 }
 
 impl VariableEventStreamFormatTrait for VariableEventStreamFormat {
     fn r#mod(&self) -> &String {
         &self.r#mod
     }
+    fn r#mod_mut(&mut self) -> &mut String {
+        &mut self.r#mod
+    }
     fn grp(&self) -> &String {
         &self.grp
+    }
+    fn grp_mut(&mut self) -> &mut String {
+        &mut self.grp
     }
     fn subgrp(&self) -> &String {
         &self.subgrp
     }
+    fn subgrp_mut(&mut self) -> &mut String {
+        &mut self.subgrp
+    }
     fn params(&self) -> &Vec<TelemetryParameterDataProperty> {
         &self.params
+    }
+    fn params_mut(&mut self) -> &mut Vec<TelemetryParameterDataProperty> {
+        &mut self.params
     }
 }
 
@@ -1993,12 +2459,12 @@ impl super::core::AssetTrait for VariableEventStreamFormat {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for VariableEventStreamFormat {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VARIABLEEVENTSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2048,6 +2514,15 @@ impl TypeObject for VariableEventStreamFormat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2069,11 +2544,15 @@ pub struct FixedEventStreamFormat {
 
 pub trait FixedEventStreamFormatTrait: EventTelemetryStreamFormatTrait {
     fn reference_event(&self) -> &Option<Arc<Mutex<dyn TelemetryLogEventTrait>>>;
+    fn reference_event_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryLogEventTrait>>>;
 }
 
 impl FixedEventStreamFormatTrait for FixedEventStreamFormat {
     fn reference_event(&self) -> &Option<Arc<Mutex<dyn TelemetryLogEventTrait>>> {
         &self.reference_event
+    }
+    fn reference_event_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryLogEventTrait>>> {
+        &mut self.reference_event
     }
 }
 
@@ -2087,12 +2566,12 @@ impl super::core::AssetTrait for FixedEventStreamFormat {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FixedEventStreamFormat {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FIXEDEVENTSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2123,6 +2602,15 @@ impl TypeObject for FixedEventStreamFormat {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2155,12 +2643,12 @@ impl super::core::AssetTrait for EventTelemetryStreamFormat {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EventTelemetryStreamFormat {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EVENTTELEMETRYSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2185,6 +2673,15 @@ impl TypeObject for EventTelemetryStreamFormat {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2214,12 +2711,12 @@ impl super::core::AssetTrait for TelemetryStreamFormat {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TelemetryStreamFormat {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2245,6 +2742,15 @@ impl TypeObject for TelemetryStreamFormat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2269,23 +2775,39 @@ pub struct TelemetrySettings {
 
 pub trait TelemetrySettingsTrait: super::core::SystemSettingsTrait {
     fn stream_formats(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryStreamFormatTrait>>>>;
+    fn stream_formats_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryStreamFormatTrait>>>>;
     fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
+    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
     fn streams(&self) -> &Vec<Option<Arc<Mutex<dyn StreamDataTrait>>>>;
+    fn streams_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn StreamDataTrait>>>>;
     fn file_location(&self) -> &String;
+    fn file_location_mut(&mut self) -> &mut String;
 }
 
 impl TelemetrySettingsTrait for TelemetrySettings {
     fn stream_formats(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryStreamFormatTrait>>>> {
         &self.stream_formats
     }
+    fn stream_formats_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryStreamFormatTrait>>>> {
+        &mut self.stream_formats
+    }
     fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
         &self.transports
+    }
+    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+        &mut self.transports
     }
     fn streams(&self) -> &Vec<Option<Arc<Mutex<dyn StreamDataTrait>>>> {
         &self.streams
     }
+    fn streams_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn StreamDataTrait>>>> {
+        &mut self.streams
+    }
     fn file_location(&self) -> &String {
         &self.file_location
+    }
+    fn file_location_mut(&mut self) -> &mut String {
+        &mut self.file_location
     }
 }
 
@@ -2293,12 +2815,12 @@ impl super::core::SystemSettingsTrait for TelemetrySettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TelemetrySettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2348,6 +2870,15 @@ impl TypeObject for TelemetrySettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2376,9 +2907,6 @@ impl TelemetryRowDataTrait for TelemetryTransactionData {
 }
 
 impl super::core::DataContainerTrait for TelemetryTransactionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYTRANSACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2404,6 +2932,15 @@ impl TypeObject for TelemetryTransactionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2427,19 +2964,31 @@ pub struct TelemetrySdk3Event {
 
 pub trait TelemetrySdk3EventTrait: TelemetryLogEventTrait {
     fn module_id(&self) -> &u32;
+    fn module_id_mut(&mut self) -> &mut u32;
     fn group_id(&self) -> &u32;
+    fn group_id_mut(&mut self) -> &mut u32;
     fn string_id(&self) -> &u32;
+    fn string_id_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdk3EventTrait for TelemetrySdk3Event {
     fn module_id(&self) -> &u32 {
         &self.module_id
     }
+    fn module_id_mut(&mut self) -> &mut u32 {
+        &mut self.module_id
+    }
     fn group_id(&self) -> &u32 {
         &self.group_id
     }
+    fn group_id_mut(&mut self) -> &mut u32 {
+        &mut self.group_id
+    }
     fn string_id(&self) -> &u32 {
         &self.string_id
+    }
+    fn string_id_mut(&mut self) -> &mut u32 {
+        &mut self.string_id
     }
 }
 
@@ -2450,9 +2999,6 @@ impl TelemetryRowDataTrait for TelemetrySdk3Event {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdk3Event {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDK3EVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2496,6 +3042,15 @@ impl TypeObject for TelemetrySdk3Event {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2524,9 +3079,6 @@ impl TelemetryRowDataTrait for TelemetryLogEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetryLogEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYLOGEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2551,6 +3103,15 @@ impl TypeObject for TelemetryLogEvent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2577,9 +3138,6 @@ impl TelemetryRowDataTrait for TelemetryRowData {
 }
 
 impl super::core::DataContainerTrait for TelemetryRowData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYROWDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2605,6 +3163,15 @@ impl TypeObject for TelemetryRowData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2629,23 +3196,39 @@ pub struct TelemetrySdkPinFriendNetworkEvent {
 
 pub trait TelemetrySdkPinFriendNetworkEventTrait: TelemetrySDKPinEventTrait {
     fn total_friends(&self) -> &u32;
+    fn total_friends_mut(&mut self) -> &mut u32;
     fn friends_online(&self) -> &u32;
+    fn friends_online_mut(&mut self) -> &mut u32;
     fn friends_same_title(&self) -> &u32;
+    fn friends_same_title_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinFriendNetworkEventTrait for TelemetrySdkPinFriendNetworkEvent {
     fn total_friends(&self) -> &u32 {
         &self.total_friends
     }
+    fn total_friends_mut(&mut self) -> &mut u32 {
+        &mut self.total_friends
+    }
     fn friends_online(&self) -> &u32 {
         &self.friends_online
+    }
+    fn friends_online_mut(&mut self) -> &mut u32 {
+        &mut self.friends_online
     }
     fn friends_same_title(&self) -> &u32 {
         &self.friends_same_title
     }
+    fn friends_same_title_mut(&mut self) -> &mut u32 {
+        &mut self.friends_same_title
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2653,11 +3236,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinFriendNetworkEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -2668,9 +3260,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinFriendNetworkEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinFriendNetworkEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINFRIENDNETWORKEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2720,6 +3309,15 @@ impl TypeObject for TelemetrySdkPinFriendNetworkEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2747,35 +3345,63 @@ pub struct TelemetrySdkPinChallengeEvent {
 
 pub trait TelemetrySdkPinChallengeEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn challenge_id(&self) -> &String;
+    fn challenge_id_mut(&mut self) -> &mut String;
     fn recipient_id(&self) -> &String;
+    fn recipient_id_mut(&mut self) -> &mut String;
     fn recipient_type(&self) -> &String;
+    fn recipient_type_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinChallengeEventTrait for TelemetrySdkPinChallengeEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn challenge_id(&self) -> &String {
         &self.challenge_id
+    }
+    fn challenge_id_mut(&mut self) -> &mut String {
+        &mut self.challenge_id
     }
     fn recipient_id(&self) -> &String {
         &self.recipient_id
     }
+    fn recipient_id_mut(&mut self) -> &mut String {
+        &mut self.recipient_id
+    }
     fn recipient_type(&self) -> &String {
         &self.recipient_type
     }
+    fn recipient_type_mut(&mut self) -> &mut String {
+        &mut self.recipient_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2783,11 +3409,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinChallengeEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -2798,9 +3433,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinChallengeEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinChallengeEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINCHALLENGEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2868,6 +3500,15 @@ impl TypeObject for TelemetrySdkPinChallengeEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2904,71 +3545,135 @@ pub struct TelemetrySdkPinSocMessageEvent {
 
 pub trait TelemetrySdkPinSocMessageEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn placement(&self) -> &String;
+    fn placement_mut(&mut self) -> &mut String;
     fn content_type(&self) -> &String;
+    fn content_type_mut(&mut self) -> &mut String;
     fn network(&self) -> &String;
+    fn network_mut(&mut self) -> &mut String;
     fn format(&self) -> &String;
+    fn format_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn message_id(&self) -> &String;
+    fn message_id_mut(&mut self) -> &mut String;
     fn recipient_id(&self) -> &Vec<String>;
+    fn recipient_id_mut(&mut self) -> &mut Vec<String>;
     fn recipient_type(&self) -> &String;
+    fn recipient_type_mut(&mut self) -> &mut String;
     fn items(&self) -> &RawJsonString;
+    fn items_mut(&mut self) -> &mut RawJsonString;
     fn event_id(&self) -> &String;
+    fn event_id_mut(&mut self) -> &mut String;
     fn event_name(&self) -> &String;
+    fn event_name_mut(&mut self) -> &mut String;
     fn event_type(&self) -> &String;
+    fn event_type_mut(&mut self) -> &mut String;
     fn count(&self) -> &i64;
+    fn count_mut(&mut self) -> &mut i64;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinSocMessageEventTrait for TelemetrySdkPinSocMessageEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn placement(&self) -> &String {
         &self.placement
+    }
+    fn placement_mut(&mut self) -> &mut String {
+        &mut self.placement
     }
     fn content_type(&self) -> &String {
         &self.content_type
     }
+    fn content_type_mut(&mut self) -> &mut String {
+        &mut self.content_type
+    }
     fn network(&self) -> &String {
         &self.network
+    }
+    fn network_mut(&mut self) -> &mut String {
+        &mut self.network
     }
     fn format(&self) -> &String {
         &self.format
     }
+    fn format_mut(&mut self) -> &mut String {
+        &mut self.format
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn message_id(&self) -> &String {
         &self.message_id
+    }
+    fn message_id_mut(&mut self) -> &mut String {
+        &mut self.message_id
     }
     fn recipient_id(&self) -> &Vec<String> {
         &self.recipient_id
     }
+    fn recipient_id_mut(&mut self) -> &mut Vec<String> {
+        &mut self.recipient_id
+    }
     fn recipient_type(&self) -> &String {
         &self.recipient_type
+    }
+    fn recipient_type_mut(&mut self) -> &mut String {
+        &mut self.recipient_type
     }
     fn items(&self) -> &RawJsonString {
         &self.items
     }
+    fn items_mut(&mut self) -> &mut RawJsonString {
+        &mut self.items
+    }
     fn event_id(&self) -> &String {
         &self.event_id
+    }
+    fn event_id_mut(&mut self) -> &mut String {
+        &mut self.event_id
     }
     fn event_name(&self) -> &String {
         &self.event_name
     }
+    fn event_name_mut(&mut self) -> &mut String {
+        &mut self.event_name
+    }
     fn event_type(&self) -> &String {
         &self.event_type
+    }
+    fn event_type_mut(&mut self) -> &mut String {
+        &mut self.event_type
     }
     fn count(&self) -> &i64 {
         &self.count
     }
+    fn count_mut(&mut self) -> &mut i64 {
+        &mut self.count
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2976,11 +3681,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinSocMessageEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -2991,9 +3705,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinSocMessageEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinSocMessageEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINSOCMESSAGEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3115,6 +3826,15 @@ impl TypeObject for TelemetrySdkPinSocMessageEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3143,39 +3863,71 @@ pub struct TelemetrySdkPinGroupEvent {
 
 pub trait TelemetrySdkPinGroupEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn _class(&self) -> &String;
+    fn _class_mut(&mut self) -> &mut String;
     fn group_id(&self) -> &String;
+    fn group_id_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn member_id(&self) -> &String;
+    fn member_id_mut(&mut self) -> &mut String;
     fn member_type(&self) -> &String;
+    fn member_type_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinGroupEventTrait for TelemetrySdkPinGroupEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn _class(&self) -> &String {
         &self._class
+    }
+    fn _class_mut(&mut self) -> &mut String {
+        &mut self._class
     }
     fn group_id(&self) -> &String {
         &self.group_id
     }
+    fn group_id_mut(&mut self) -> &mut String {
+        &mut self.group_id
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn member_id(&self) -> &String {
         &self.member_id
+    }
+    fn member_id_mut(&mut self) -> &mut String {
+        &mut self.member_id
     }
     fn member_type(&self) -> &String {
         &self.member_type
     }
+    fn member_type_mut(&mut self) -> &mut String {
+        &mut self.member_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3183,11 +3935,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinGroupEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -3198,9 +3959,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinGroupEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinGroupEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINGROUPEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3274,6 +4032,15 @@ impl TypeObject for TelemetrySdkPinGroupEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3301,35 +4068,63 @@ pub struct TelemetrySdkPinFriendsEvent {
 
 pub trait TelemetrySdkPinFriendsEventTrait: TelemetrySDKPinEventTrait {
     fn frid(&self) -> &String;
+    fn frid_mut(&mut self) -> &mut String;
     fn friend_type(&self) -> &String;
+    fn friend_type_mut(&mut self) -> &mut String;
     fn source(&self) -> &String;
+    fn source_mut(&mut self) -> &mut String;
     fn network(&self) -> &String;
+    fn network_mut(&mut self) -> &mut String;
     fn action(&self) -> &String;
+    fn action_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinFriendsEventTrait for TelemetrySdkPinFriendsEvent {
     fn frid(&self) -> &String {
         &self.frid
     }
+    fn frid_mut(&mut self) -> &mut String {
+        &mut self.frid
+    }
     fn friend_type(&self) -> &String {
         &self.friend_type
+    }
+    fn friend_type_mut(&mut self) -> &mut String {
+        &mut self.friend_type
     }
     fn source(&self) -> &String {
         &self.source
     }
+    fn source_mut(&mut self) -> &mut String {
+        &mut self.source
+    }
     fn network(&self) -> &String {
         &self.network
+    }
+    fn network_mut(&mut self) -> &mut String {
+        &mut self.network
     }
     fn action(&self) -> &String {
         &self.action
     }
+    fn action_mut(&mut self) -> &mut String {
+        &mut self.action
+    }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3337,11 +4132,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinFriendsEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -3352,9 +4156,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinFriendsEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinFriendsEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINFRIENDSEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3422,6 +4223,15 @@ impl TypeObject for TelemetrySdkPinFriendsEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3445,19 +4255,31 @@ pub struct TelemetrySdkPinCustomErrorEvent {
 
 pub trait TelemetrySdkPinCustomErrorEventTrait: TelemetrySDKPinEventTrait {
     fn severity(&self) -> &String;
+    fn severity_mut(&mut self) -> &mut String;
     fn metadata(&self) -> &RawJsonString;
+    fn metadata_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinCustomErrorEventTrait for TelemetrySdkPinCustomErrorEvent {
     fn severity(&self) -> &String {
         &self.severity
     }
+    fn severity_mut(&mut self) -> &mut String {
+        &mut self.severity
+    }
     fn metadata(&self) -> &RawJsonString {
         &self.metadata
     }
+    fn metadata_mut(&mut self) -> &mut RawJsonString {
+        &mut self.metadata
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3465,11 +4287,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinCustomErrorEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -3480,9 +4311,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinCustomErrorEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinCustomErrorEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINCUSTOMERROREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3526,6 +4354,15 @@ impl TypeObject for TelemetrySdkPinCustomErrorEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3561,67 +4398,127 @@ pub struct TelemetrySdkPinConnectionEvent {
 
 pub trait TelemetrySdkPinConnectionEventTrait: TelemetrySDKPinEventTrait {
     fn goid(&self) -> &String;
+    fn goid_mut(&mut self) -> &mut String;
     fn player_ps(&self) -> &String;
+    fn player_ps_mut(&mut self) -> &mut String;
     fn target_ip(&self) -> &String;
+    fn target_ip_mut(&mut self) -> &mut String;
     fn target_ps(&self) -> &String;
+    fn target_ps_mut(&mut self) -> &mut String;
     fn game_ps(&self) -> &String;
+    fn game_ps_mut(&mut self) -> &mut String;
     fn net_topo(&self) -> &String;
+    fn net_topo_mut(&mut self) -> &mut String;
     fn join_method(&self) -> &String;
+    fn join_method_mut(&mut self) -> &mut String;
     fn mode(&self) -> &String;
+    fn mode_mut(&mut self) -> &mut String;
     fn client_type(&self) -> &String;
+    fn client_type_mut(&mut self) -> &mut String;
     fn leave_reason(&self) -> &String;
+    fn leave_reason_mut(&mut self) -> &mut String;
     fn cxn_tech(&self) -> &String;
+    fn cxn_tech_mut(&mut self) -> &mut String;
     fn pkt_loss(&self) -> &f32;
+    fn pkt_loss_mut(&mut self) -> &mut f32;
     fn avg_lat(&self) -> &f32;
+    fn avg_lat_mut(&mut self) -> &mut f32;
     fn max_lat(&self) -> &f32;
+    fn max_lat_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinConnectionEventTrait for TelemetrySdkPinConnectionEvent {
     fn goid(&self) -> &String {
         &self.goid
     }
+    fn goid_mut(&mut self) -> &mut String {
+        &mut self.goid
+    }
     fn player_ps(&self) -> &String {
         &self.player_ps
+    }
+    fn player_ps_mut(&mut self) -> &mut String {
+        &mut self.player_ps
     }
     fn target_ip(&self) -> &String {
         &self.target_ip
     }
+    fn target_ip_mut(&mut self) -> &mut String {
+        &mut self.target_ip
+    }
     fn target_ps(&self) -> &String {
         &self.target_ps
+    }
+    fn target_ps_mut(&mut self) -> &mut String {
+        &mut self.target_ps
     }
     fn game_ps(&self) -> &String {
         &self.game_ps
     }
+    fn game_ps_mut(&mut self) -> &mut String {
+        &mut self.game_ps
+    }
     fn net_topo(&self) -> &String {
         &self.net_topo
+    }
+    fn net_topo_mut(&mut self) -> &mut String {
+        &mut self.net_topo
     }
     fn join_method(&self) -> &String {
         &self.join_method
     }
+    fn join_method_mut(&mut self) -> &mut String {
+        &mut self.join_method
+    }
     fn mode(&self) -> &String {
         &self.mode
+    }
+    fn mode_mut(&mut self) -> &mut String {
+        &mut self.mode
     }
     fn client_type(&self) -> &String {
         &self.client_type
     }
+    fn client_type_mut(&mut self) -> &mut String {
+        &mut self.client_type
+    }
     fn leave_reason(&self) -> &String {
         &self.leave_reason
+    }
+    fn leave_reason_mut(&mut self) -> &mut String {
+        &mut self.leave_reason
     }
     fn cxn_tech(&self) -> &String {
         &self.cxn_tech
     }
+    fn cxn_tech_mut(&mut self) -> &mut String {
+        &mut self.cxn_tech
+    }
     fn pkt_loss(&self) -> &f32 {
         &self.pkt_loss
+    }
+    fn pkt_loss_mut(&mut self) -> &mut f32 {
+        &mut self.pkt_loss
     }
     fn avg_lat(&self) -> &f32 {
         &self.avg_lat
     }
+    fn avg_lat_mut(&mut self) -> &mut f32 {
+        &mut self.avg_lat
+    }
     fn max_lat(&self) -> &f32 {
         &self.max_lat
     }
+    fn max_lat_mut(&mut self) -> &mut f32 {
+        &mut self.max_lat
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3629,11 +4526,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinConnectionEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -3644,9 +4550,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinConnectionEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinConnectionEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINCONNECTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3762,6 +4665,15 @@ impl TypeObject for TelemetrySdkPinConnectionEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3789,35 +4701,63 @@ pub struct TelemetrySdkPinErrorEvent {
 
 pub trait TelemetrySdkPinErrorEventTrait: TelemetrySDKPinEventTrait {
     fn sid(&self) -> &String;
+    fn sid_mut(&mut self) -> &mut String;
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn errid(&self) -> &String;
+    fn errid_mut(&mut self) -> &mut String;
     fn catgid(&self) -> &String;
+    fn catgid_mut(&mut self) -> &mut String;
     fn server_type(&self) -> &String;
+    fn server_type_mut(&mut self) -> &mut String;
     fn server_name(&self) -> &String;
+    fn server_name_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinErrorEventTrait for TelemetrySdkPinErrorEvent {
     fn sid(&self) -> &String {
         &self.sid
     }
+    fn sid_mut(&mut self) -> &mut String {
+        &mut self.sid
+    }
     fn r#type(&self) -> &String {
         &self.r#type
+    }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
     }
     fn errid(&self) -> &String {
         &self.errid
     }
+    fn errid_mut(&mut self) -> &mut String {
+        &mut self.errid
+    }
     fn catgid(&self) -> &String {
         &self.catgid
+    }
+    fn catgid_mut(&mut self) -> &mut String {
+        &mut self.catgid
     }
     fn server_type(&self) -> &String {
         &self.server_type
     }
+    fn server_type_mut(&mut self) -> &mut String {
+        &mut self.server_type
+    }
     fn server_name(&self) -> &String {
         &self.server_name
     }
+    fn server_name_mut(&mut self) -> &mut String {
+        &mut self.server_name
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3825,11 +4765,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinErrorEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -3840,9 +4789,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinErrorEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinErrorEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINERROREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3910,6 +4856,15 @@ impl TypeObject for TelemetrySdkPinErrorEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3954,103 +4909,199 @@ pub struct TelemetrySdkPinMatchInfoEvent {
 
 pub trait TelemetrySdkPinMatchInfoEventTrait: TelemetrySDKPinEventTrait {
     fn mode(&self) -> &String;
+    fn mode_mut(&mut self) -> &mut String;
     fn diff(&self) -> &String;
+    fn diff_mut(&mut self) -> &mut String;
     fn map(&self) -> &String;
+    fn map_mut(&mut self) -> &mut String;
     fn mid(&self) -> &String;
+    fn mid_mut(&mut self) -> &mut String;
     fn goid(&self) -> &String;
+    fn goid_mut(&mut self) -> &mut String;
     fn player_ps(&self) -> &String;
+    fn player_ps_mut(&mut self) -> &mut String;
     fn game_ps(&self) -> &String;
+    fn game_ps_mut(&mut self) -> &mut String;
     fn net_topo(&self) -> &String;
+    fn net_topo_mut(&mut self) -> &mut String;
     fn client_type(&self) -> &String;
+    fn client_type_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn end_reason(&self) -> &String;
+    fn end_reason_mut(&mut self) -> &mut String;
     fn phase(&self) -> &String;
+    fn phase_mut(&mut self) -> &mut String;
     fn ts_screate(&self) -> &String;
+    fn ts_screate_mut(&mut self) -> &mut String;
     fn ts_mstart(&self) -> &String;
+    fn ts_mstart_mut(&mut self) -> &mut String;
     fn ts_mjoin(&self) -> &String;
+    fn ts_mjoin_mut(&mut self) -> &mut String;
     fn ts_mend(&self) -> &String;
+    fn ts_mend_mut(&mut self) -> &mut String;
     fn player_cnt(&self) -> &u32;
+    fn player_cnt_mut(&mut self) -> &mut u32;
     fn max_players(&self) -> &u32;
+    fn max_players_mut(&mut self) -> &mut u32;
     fn num_teams(&self) -> &u32;
+    fn num_teams_mut(&mut self) -> &mut u32;
     fn teams_stats(&self) -> &RawJsonString;
+    fn teams_stats_mut(&mut self) -> &mut RawJsonString;
     fn player_stats(&self) -> &RawJsonString;
+    fn player_stats_mut(&mut self) -> &mut RawJsonString;
     fn match_info(&self) -> &RawJsonString;
+    fn match_info_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdkPinMatchInfoEventTrait for TelemetrySdkPinMatchInfoEvent {
     fn mode(&self) -> &String {
         &self.mode
     }
+    fn mode_mut(&mut self) -> &mut String {
+        &mut self.mode
+    }
     fn diff(&self) -> &String {
         &self.diff
+    }
+    fn diff_mut(&mut self) -> &mut String {
+        &mut self.diff
     }
     fn map(&self) -> &String {
         &self.map
     }
+    fn map_mut(&mut self) -> &mut String {
+        &mut self.map
+    }
     fn mid(&self) -> &String {
         &self.mid
+    }
+    fn mid_mut(&mut self) -> &mut String {
+        &mut self.mid
     }
     fn goid(&self) -> &String {
         &self.goid
     }
+    fn goid_mut(&mut self) -> &mut String {
+        &mut self.goid
+    }
     fn player_ps(&self) -> &String {
         &self.player_ps
+    }
+    fn player_ps_mut(&mut self) -> &mut String {
+        &mut self.player_ps
     }
     fn game_ps(&self) -> &String {
         &self.game_ps
     }
+    fn game_ps_mut(&mut self) -> &mut String {
+        &mut self.game_ps
+    }
     fn net_topo(&self) -> &String {
         &self.net_topo
+    }
+    fn net_topo_mut(&mut self) -> &mut String {
+        &mut self.net_topo
     }
     fn client_type(&self) -> &String {
         &self.client_type
     }
+    fn client_type_mut(&mut self) -> &mut String {
+        &mut self.client_type
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn end_reason(&self) -> &String {
         &self.end_reason
+    }
+    fn end_reason_mut(&mut self) -> &mut String {
+        &mut self.end_reason
     }
     fn phase(&self) -> &String {
         &self.phase
     }
+    fn phase_mut(&mut self) -> &mut String {
+        &mut self.phase
+    }
     fn ts_screate(&self) -> &String {
         &self.ts_screate
+    }
+    fn ts_screate_mut(&mut self) -> &mut String {
+        &mut self.ts_screate
     }
     fn ts_mstart(&self) -> &String {
         &self.ts_mstart
     }
+    fn ts_mstart_mut(&mut self) -> &mut String {
+        &mut self.ts_mstart
+    }
     fn ts_mjoin(&self) -> &String {
         &self.ts_mjoin
+    }
+    fn ts_mjoin_mut(&mut self) -> &mut String {
+        &mut self.ts_mjoin
     }
     fn ts_mend(&self) -> &String {
         &self.ts_mend
     }
+    fn ts_mend_mut(&mut self) -> &mut String {
+        &mut self.ts_mend
+    }
     fn player_cnt(&self) -> &u32 {
         &self.player_cnt
+    }
+    fn player_cnt_mut(&mut self) -> &mut u32 {
+        &mut self.player_cnt
     }
     fn max_players(&self) -> &u32 {
         &self.max_players
     }
+    fn max_players_mut(&mut self) -> &mut u32 {
+        &mut self.max_players
+    }
     fn num_teams(&self) -> &u32 {
         &self.num_teams
+    }
+    fn num_teams_mut(&mut self) -> &mut u32 {
+        &mut self.num_teams
     }
     fn teams_stats(&self) -> &RawJsonString {
         &self.teams_stats
     }
+    fn teams_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.teams_stats
+    }
     fn player_stats(&self) -> &RawJsonString {
         &self.player_stats
+    }
+    fn player_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.player_stats
     }
     fn match_info(&self) -> &RawJsonString {
         &self.match_info
     }
+    fn match_info_mut(&mut self) -> &mut RawJsonString {
+        &mut self.match_info
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4058,11 +5109,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinMatchInfoEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -4073,9 +5133,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinMatchInfoEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinMatchInfoEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINMATCHINFOEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4245,6 +5302,15 @@ impl TypeObject for TelemetrySdkPinMatchInfoEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4291,111 +5357,215 @@ pub struct TelemetrySdkPinMatchJoinEvent {
 
 pub trait TelemetrySdkPinMatchJoinEventTrait: TelemetrySDKPinEventTrait {
     fn mode(&self) -> &String;
+    fn mode_mut(&mut self) -> &mut String;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn map(&self) -> &String;
+    fn map_mut(&mut self) -> &mut String;
     fn mid(&self) -> &String;
+    fn mid_mut(&mut self) -> &mut String;
     fn goid(&self) -> &String;
+    fn goid_mut(&mut self) -> &mut String;
     fn net_topo(&self) -> &String;
+    fn net_topo_mut(&mut self) -> &mut String;
     fn client_type(&self) -> &String;
+    fn client_type_mut(&mut self) -> &mut String;
     fn join_method(&self) -> &String;
+    fn join_method_mut(&mut self) -> &mut String;
     fn cxn_tech(&self) -> &String;
+    fn cxn_tech_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn phase(&self) -> &String;
+    fn phase_mut(&mut self) -> &mut String;
     fn mmdur(&self) -> &i64;
+    fn mmdur_mut(&mut self) -> &mut i64;
     fn max_mmdur(&self) -> &i64;
+    fn max_mmdur_mut(&mut self) -> &mut i64;
     fn fitscore(&self) -> &i32;
+    fn fitscore_mut(&mut self) -> &mut i32;
     fn max_fitscore(&self) -> &i32;
+    fn max_fitscore_mut(&mut self) -> &mut i32;
     fn scenario(&self) -> &String;
+    fn scenario_mut(&mut self) -> &mut String;
     fn scenario_subsession(&self) -> &String;
+    fn scenario_subsession_mut(&mut self) -> &mut String;
     fn scenario_variant(&self) -> &String;
+    fn scenario_variant_mut(&mut self) -> &mut String;
     fn scenario_version(&self) -> &String;
+    fn scenario_version_mut(&mut self) -> &mut String;
     fn scenario_params(&self) -> &RawJsonString;
+    fn scenario_params_mut(&mut self) -> &mut RawJsonString;
     fn friend_id(&self) -> &Vec<String>;
+    fn friend_id_mut(&mut self) -> &mut Vec<String>;
     fn friend_type(&self) -> &String;
+    fn friend_type_mut(&mut self) -> &mut String;
     fn server_id(&self) -> &String;
+    fn server_id_mut(&mut self) -> &mut String;
     fn server_name(&self) -> &String;
+    fn server_name_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdkPinMatchJoinEventTrait for TelemetrySdkPinMatchJoinEvent {
     fn mode(&self) -> &String {
         &self.mode
     }
+    fn mode_mut(&mut self) -> &mut String {
+        &mut self.mode
+    }
     fn instance_id(&self) -> &String {
         &self.instance_id
+    }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
     }
     fn map(&self) -> &String {
         &self.map
     }
+    fn map_mut(&mut self) -> &mut String {
+        &mut self.map
+    }
     fn mid(&self) -> &String {
         &self.mid
+    }
+    fn mid_mut(&mut self) -> &mut String {
+        &mut self.mid
     }
     fn goid(&self) -> &String {
         &self.goid
     }
+    fn goid_mut(&mut self) -> &mut String {
+        &mut self.goid
+    }
     fn net_topo(&self) -> &String {
         &self.net_topo
+    }
+    fn net_topo_mut(&mut self) -> &mut String {
+        &mut self.net_topo
     }
     fn client_type(&self) -> &String {
         &self.client_type
     }
+    fn client_type_mut(&mut self) -> &mut String {
+        &mut self.client_type
+    }
     fn join_method(&self) -> &String {
         &self.join_method
+    }
+    fn join_method_mut(&mut self) -> &mut String {
+        &mut self.join_method
     }
     fn cxn_tech(&self) -> &String {
         &self.cxn_tech
     }
+    fn cxn_tech_mut(&mut self) -> &mut String {
+        &mut self.cxn_tech
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn phase(&self) -> &String {
         &self.phase
+    }
+    fn phase_mut(&mut self) -> &mut String {
+        &mut self.phase
     }
     fn mmdur(&self) -> &i64 {
         &self.mmdur
     }
+    fn mmdur_mut(&mut self) -> &mut i64 {
+        &mut self.mmdur
+    }
     fn max_mmdur(&self) -> &i64 {
         &self.max_mmdur
+    }
+    fn max_mmdur_mut(&mut self) -> &mut i64 {
+        &mut self.max_mmdur
     }
     fn fitscore(&self) -> &i32 {
         &self.fitscore
     }
+    fn fitscore_mut(&mut self) -> &mut i32 {
+        &mut self.fitscore
+    }
     fn max_fitscore(&self) -> &i32 {
         &self.max_fitscore
+    }
+    fn max_fitscore_mut(&mut self) -> &mut i32 {
+        &mut self.max_fitscore
     }
     fn scenario(&self) -> &String {
         &self.scenario
     }
+    fn scenario_mut(&mut self) -> &mut String {
+        &mut self.scenario
+    }
     fn scenario_subsession(&self) -> &String {
         &self.scenario_subsession
+    }
+    fn scenario_subsession_mut(&mut self) -> &mut String {
+        &mut self.scenario_subsession
     }
     fn scenario_variant(&self) -> &String {
         &self.scenario_variant
     }
+    fn scenario_variant_mut(&mut self) -> &mut String {
+        &mut self.scenario_variant
+    }
     fn scenario_version(&self) -> &String {
         &self.scenario_version
+    }
+    fn scenario_version_mut(&mut self) -> &mut String {
+        &mut self.scenario_version
     }
     fn scenario_params(&self) -> &RawJsonString {
         &self.scenario_params
     }
+    fn scenario_params_mut(&mut self) -> &mut RawJsonString {
+        &mut self.scenario_params
+    }
     fn friend_id(&self) -> &Vec<String> {
         &self.friend_id
+    }
+    fn friend_id_mut(&mut self) -> &mut Vec<String> {
+        &mut self.friend_id
     }
     fn friend_type(&self) -> &String {
         &self.friend_type
     }
+    fn friend_type_mut(&mut self) -> &mut String {
+        &mut self.friend_type
+    }
     fn server_id(&self) -> &String {
         &self.server_id
+    }
+    fn server_id_mut(&mut self) -> &mut String {
+        &mut self.server_id
     }
     fn server_name(&self) -> &String {
         &self.server_name
     }
+    fn server_name_mut(&mut self) -> &mut String {
+        &mut self.server_name
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4403,11 +5573,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinMatchJoinEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -4418,9 +5597,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinMatchJoinEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinMatchJoinEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINMATCHJOINEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4602,6 +5778,15 @@ impl TypeObject for TelemetrySdkPinMatchJoinEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4647,6 +5832,15 @@ impl TypeObject for TelemetryPinEventHeaderConfigurationMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4680,6 +5874,15 @@ impl TypeObject for TelemetryPinSessionHeaderConfigurationMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4715,6 +5918,15 @@ impl TypeObject for TelemetryPinEndPointConfigurationMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -4735,51 +5947,95 @@ pub struct TelemetrySdkPinPlayerStatEvent {
 
 pub trait TelemetrySdkPinPlayerStatEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn stat_id(&self) -> &String;
+    fn stat_id_mut(&mut self) -> &mut String;
     fn stat_value(&self) -> &f32;
+    fn stat_value_mut(&mut self) -> &mut f32;
     fn stat_category(&self) -> &String;
+    fn stat_category_mut(&mut self) -> &mut String;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn p_team_id(&self) -> &String;
+    fn p_team_id_mut(&mut self) -> &mut String;
     fn p_veh_id(&self) -> &String;
+    fn p_veh_id_mut(&mut self) -> &mut String;
     fn p_params(&self) -> &RawJsonString;
+    fn p_params_mut(&mut self) -> &mut RawJsonString;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinPlayerStatEventTrait for TelemetrySdkPinPlayerStatEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn stat_id(&self) -> &String {
         &self.stat_id
+    }
+    fn stat_id_mut(&mut self) -> &mut String {
+        &mut self.stat_id
     }
     fn stat_value(&self) -> &f32 {
         &self.stat_value
     }
+    fn stat_value_mut(&mut self) -> &mut f32 {
+        &mut self.stat_value
+    }
     fn stat_category(&self) -> &String {
         &self.stat_category
+    }
+    fn stat_category_mut(&mut self) -> &mut String {
+        &mut self.stat_category
     }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
     }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
+    }
     fn p_class(&self) -> &String {
         &self.p_class
+    }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
     }
     fn p_team_id(&self) -> &String {
         &self.p_team_id
     }
+    fn p_team_id_mut(&mut self) -> &mut String {
+        &mut self.p_team_id
+    }
     fn p_veh_id(&self) -> &String {
         &self.p_veh_id
+    }
+    fn p_veh_id_mut(&mut self) -> &mut String {
+        &mut self.p_veh_id
     }
     fn p_params(&self) -> &RawJsonString {
         &self.p_params
     }
+    fn p_params_mut(&mut self) -> &mut RawJsonString {
+        &mut self.p_params
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
     }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4787,11 +6043,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerStatEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -4802,9 +6067,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerStatEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerStatEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERSTATEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4896,6 +6158,15 @@ impl TypeObject for TelemetrySdkPinPlayerStatEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4930,63 +6201,119 @@ pub struct TelemetrySdkPinNpcPartyEvent {
 
 pub trait TelemetrySdkPinNpcPartyEventTrait: TelemetrySDKPinEventTrait {
     fn cdur(&self) -> &u32;
+    fn cdur_mut(&mut self) -> &mut u32;
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn party_id(&self) -> &String;
+    fn party_id_mut(&mut self) -> &mut String;
     fn npc_id(&self) -> &String;
+    fn npc_id_mut(&mut self) -> &mut String;
     fn npc_char(&self) -> &String;
+    fn npc_char_mut(&mut self) -> &mut String;
     fn npc_class(&self) -> &String;
+    fn npc_class_mut(&mut self) -> &mut String;
     fn affin(&self) -> &i32;
+    fn affin_mut(&mut self) -> &mut i32;
     fn max_affin(&self) -> &i32;
+    fn max_affin_mut(&mut self) -> &mut i32;
     fn min_affin(&self) -> &i32;
+    fn min_affin_mut(&mut self) -> &mut i32;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn members(&self) -> &Vec<String>;
+    fn members_mut(&mut self) -> &mut Vec<String>;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinNpcPartyEventTrait for TelemetrySdkPinNpcPartyEvent {
     fn cdur(&self) -> &u32 {
         &self.cdur
     }
+    fn cdur_mut(&mut self) -> &mut u32 {
+        &mut self.cdur
+    }
     fn gdur(&self) -> &u32 {
         &self.gdur
+    }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
     }
     fn rdur(&self) -> &u32 {
         &self.rdur
     }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
+    }
     fn instance_id(&self) -> &String {
         &self.instance_id
+    }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
     }
     fn party_id(&self) -> &String {
         &self.party_id
     }
+    fn party_id_mut(&mut self) -> &mut String {
+        &mut self.party_id
+    }
     fn npc_id(&self) -> &String {
         &self.npc_id
+    }
+    fn npc_id_mut(&mut self) -> &mut String {
+        &mut self.npc_id
     }
     fn npc_char(&self) -> &String {
         &self.npc_char
     }
+    fn npc_char_mut(&mut self) -> &mut String {
+        &mut self.npc_char
+    }
     fn npc_class(&self) -> &String {
         &self.npc_class
+    }
+    fn npc_class_mut(&mut self) -> &mut String {
+        &mut self.npc_class
     }
     fn affin(&self) -> &i32 {
         &self.affin
     }
+    fn affin_mut(&mut self) -> &mut i32 {
+        &mut self.affin
+    }
     fn max_affin(&self) -> &i32 {
         &self.max_affin
+    }
+    fn max_affin_mut(&mut self) -> &mut i32 {
+        &mut self.max_affin
     }
     fn min_affin(&self) -> &i32 {
         &self.min_affin
     }
+    fn min_affin_mut(&mut self) -> &mut i32 {
+        &mut self.min_affin
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn members(&self) -> &Vec<String> {
         &self.members
     }
+    fn members_mut(&mut self) -> &mut Vec<String> {
+        &mut self.members
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4994,11 +6321,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinNpcPartyEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -5009,9 +6345,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinNpcPartyEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinNpcPartyEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINNPCPARTYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5121,6 +6454,15 @@ impl TypeObject for TelemetrySdkPinNpcPartyEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5152,51 +6494,95 @@ pub struct TelemetrySdkPinNpcInteractionEvent {
 
 pub trait TelemetrySdkPinNpcInteractionEventTrait: TelemetrySDKPinEventTrait {
     fn cdur(&self) -> &u32;
+    fn cdur_mut(&mut self) -> &mut u32;
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn npc_id(&self) -> &String;
+    fn npc_id_mut(&mut self) -> &mut String;
     fn npc_char(&self) -> &String;
+    fn npc_char_mut(&mut self) -> &mut String;
     fn npc_class(&self) -> &String;
+    fn npc_class_mut(&mut self) -> &mut String;
     fn npc_loc(&self) -> &super::core::Vec3;
+    fn npc_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn action(&self) -> &String;
+    fn action_mut(&mut self) -> &mut String;
     fn content(&self) -> &RawJsonString;
+    fn content_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinNpcInteractionEventTrait for TelemetrySdkPinNpcInteractionEvent {
     fn cdur(&self) -> &u32 {
         &self.cdur
     }
+    fn cdur_mut(&mut self) -> &mut u32 {
+        &mut self.cdur
+    }
     fn gdur(&self) -> &u32 {
         &self.gdur
+    }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
     }
     fn rdur(&self) -> &u32 {
         &self.rdur
     }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
+    }
     fn instance_id(&self) -> &String {
         &self.instance_id
+    }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
     }
     fn npc_id(&self) -> &String {
         &self.npc_id
     }
+    fn npc_id_mut(&mut self) -> &mut String {
+        &mut self.npc_id
+    }
     fn npc_char(&self) -> &String {
         &self.npc_char
+    }
+    fn npc_char_mut(&mut self) -> &mut String {
+        &mut self.npc_char
     }
     fn npc_class(&self) -> &String {
         &self.npc_class
     }
+    fn npc_class_mut(&mut self) -> &mut String {
+        &mut self.npc_class
+    }
     fn npc_loc(&self) -> &super::core::Vec3 {
         &self.npc_loc
+    }
+    fn npc_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.npc_loc
     }
     fn action(&self) -> &String {
         &self.action
     }
+    fn action_mut(&mut self) -> &mut String {
+        &mut self.action
+    }
     fn content(&self) -> &RawJsonString {
         &self.content
     }
+    fn content_mut(&mut self) -> &mut RawJsonString {
+        &mut self.content
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -5204,11 +6590,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinNpcInteractionEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -5219,9 +6614,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinNpcInteractionEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinNpcInteractionEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINNPCINTERACTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5313,6 +6705,15 @@ impl TypeObject for TelemetrySdkPinNpcInteractionEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5346,59 +6747,111 @@ pub struct TelemetrySdkPinNpcRelationshipEvent {
 
 pub trait TelemetrySdkPinNpcRelationshipEventTrait: TelemetrySDKPinEventTrait {
     fn cdur(&self) -> &u32;
+    fn cdur_mut(&mut self) -> &mut u32;
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn npc_id(&self) -> &String;
+    fn npc_id_mut(&mut self) -> &mut String;
     fn npc_char(&self) -> &String;
+    fn npc_char_mut(&mut self) -> &mut String;
     fn npc_class(&self) -> &String;
+    fn npc_class_mut(&mut self) -> &mut String;
     fn amount(&self) -> &i32;
+    fn amount_mut(&mut self) -> &mut i32;
     fn affin(&self) -> &i32;
+    fn affin_mut(&mut self) -> &mut i32;
     fn max_affin(&self) -> &i32;
+    fn max_affin_mut(&mut self) -> &mut i32;
     fn min_affin(&self) -> &i32;
+    fn min_affin_mut(&mut self) -> &mut i32;
     fn choice_id(&self) -> &String;
+    fn choice_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinNpcRelationshipEventTrait for TelemetrySdkPinNpcRelationshipEvent {
     fn cdur(&self) -> &u32 {
         &self.cdur
     }
+    fn cdur_mut(&mut self) -> &mut u32 {
+        &mut self.cdur
+    }
     fn gdur(&self) -> &u32 {
         &self.gdur
+    }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
     }
     fn rdur(&self) -> &u32 {
         &self.rdur
     }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
+    }
     fn instance_id(&self) -> &String {
         &self.instance_id
+    }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
     }
     fn npc_id(&self) -> &String {
         &self.npc_id
     }
+    fn npc_id_mut(&mut self) -> &mut String {
+        &mut self.npc_id
+    }
     fn npc_char(&self) -> &String {
         &self.npc_char
+    }
+    fn npc_char_mut(&mut self) -> &mut String {
+        &mut self.npc_char
     }
     fn npc_class(&self) -> &String {
         &self.npc_class
     }
+    fn npc_class_mut(&mut self) -> &mut String {
+        &mut self.npc_class
+    }
     fn amount(&self) -> &i32 {
         &self.amount
+    }
+    fn amount_mut(&mut self) -> &mut i32 {
+        &mut self.amount
     }
     fn affin(&self) -> &i32 {
         &self.affin
     }
+    fn affin_mut(&mut self) -> &mut i32 {
+        &mut self.affin
+    }
     fn max_affin(&self) -> &i32 {
         &self.max_affin
+    }
+    fn max_affin_mut(&mut self) -> &mut i32 {
+        &mut self.max_affin
     }
     fn min_affin(&self) -> &i32 {
         &self.min_affin
     }
+    fn min_affin_mut(&mut self) -> &mut i32 {
+        &mut self.min_affin
+    }
     fn choice_id(&self) -> &String {
         &self.choice_id
     }
+    fn choice_id_mut(&mut self) -> &mut String {
+        &mut self.choice_id
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -5406,11 +6859,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinNpcRelationshipEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -5421,9 +6883,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinNpcRelationshipEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinNpcRelationshipEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINNPCRELATIONSHIPEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5527,6 +6986,15 @@ impl TypeObject for TelemetrySdkPinNpcRelationshipEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5556,43 +7024,79 @@ pub struct TelemetrySdkPinCinematicEvent {
 
 pub trait TelemetrySdkPinCinematicEventTrait: TelemetrySDKPinEventTrait {
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn cdur(&self) -> &u32;
+    fn cdur_mut(&mut self) -> &mut u32;
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn cine_id(&self) -> &String;
+    fn cine_id_mut(&mut self) -> &mut String;
     fn cine_dur(&self) -> &u32;
+    fn cine_dur_mut(&mut self) -> &mut u32;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinCinematicEventTrait for TelemetrySdkPinCinematicEvent {
     fn instance_id(&self) -> &String {
         &self.instance_id
     }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
+    }
     fn cdur(&self) -> &u32 {
         &self.cdur
+    }
+    fn cdur_mut(&mut self) -> &mut u32 {
+        &mut self.cdur
     }
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn cine_id(&self) -> &String {
         &self.cine_id
     }
+    fn cine_id_mut(&mut self) -> &mut String {
+        &mut self.cine_id
+    }
     fn cine_dur(&self) -> &u32 {
         &self.cine_dur
+    }
+    fn cine_dur_mut(&mut self) -> &mut u32 {
+        &mut self.cine_dur
     }
     fn status(&self) -> &String {
         &self.status
     }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
+    }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -5600,11 +7104,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinCinematicEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -5615,9 +7128,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinCinematicEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinCinematicEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINCINEMATICEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5697,6 +7207,15 @@ impl TypeObject for TelemetrySdkPinCinematicEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5727,47 +7246,87 @@ pub struct TelemetrySdkPinPlayerDecisionEvent {
 
 pub trait TelemetrySdkPinPlayerDecisionEventTrait: TelemetrySDKPinEventTrait {
     fn cdur(&self) -> &u32;
+    fn cdur_mut(&mut self) -> &mut u32;
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn choice_id(&self) -> &String;
+    fn choice_id_mut(&mut self) -> &mut String;
     fn choice_type(&self) -> &String;
+    fn choice_type_mut(&mut self) -> &mut String;
     fn response_id(&self) -> &String;
+    fn response_id_mut(&mut self) -> &mut String;
     fn choices(&self) -> &Vec<String>;
+    fn choices_mut(&mut self) -> &mut Vec<String>;
     fn cine_id(&self) -> &String;
+    fn cine_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinPlayerDecisionEventTrait for TelemetrySdkPinPlayerDecisionEvent {
     fn cdur(&self) -> &u32 {
         &self.cdur
     }
+    fn cdur_mut(&mut self) -> &mut u32 {
+        &mut self.cdur
+    }
     fn gdur(&self) -> &u32 {
         &self.gdur
+    }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
     }
     fn rdur(&self) -> &u32 {
         &self.rdur
     }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
+    }
     fn instance_id(&self) -> &String {
         &self.instance_id
+    }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
     }
     fn choice_id(&self) -> &String {
         &self.choice_id
     }
+    fn choice_id_mut(&mut self) -> &mut String {
+        &mut self.choice_id
+    }
     fn choice_type(&self) -> &String {
         &self.choice_type
+    }
+    fn choice_type_mut(&mut self) -> &mut String {
+        &mut self.choice_type
     }
     fn response_id(&self) -> &String {
         &self.response_id
     }
+    fn response_id_mut(&mut self) -> &mut String {
+        &mut self.response_id
+    }
     fn choices(&self) -> &Vec<String> {
         &self.choices
+    }
+    fn choices_mut(&mut self) -> &mut Vec<String> {
+        &mut self.choices
     }
     fn cine_id(&self) -> &String {
         &self.cine_id
     }
+    fn cine_id_mut(&mut self) -> &mut String {
+        &mut self.cine_id
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -5775,11 +7334,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerDecisionEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -5790,9 +7358,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerDecisionEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerDecisionEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERDECISIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5878,6 +7443,15 @@ impl TypeObject for TelemetrySdkPinPlayerDecisionEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5914,71 +7488,135 @@ pub struct TelemetrySdkPinScoreEvent {
 
 pub trait TelemetrySdkPinScoreEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn amount(&self) -> &u32;
+    fn amount_mut(&mut self) -> &mut u32;
     fn team_id(&self) -> &String;
+    fn team_id_mut(&mut self) -> &mut String;
     fn player_dbid(&self) -> &i32;
+    fn player_dbid_mut(&mut self) -> &mut i32;
     fn clock_time(&self) -> &u32;
+    fn clock_time_mut(&mut self) -> &mut u32;
     fn shot_pos(&self) -> &super::core::Vec3;
+    fn shot_pos_mut(&mut self) -> &mut super::core::Vec3;
     fn assist_pos(&self) -> &super::core::Vec3;
+    fn assist_pos_mut(&mut self) -> &mut super::core::Vec3;
     fn score_pos(&self) -> &super::core::Vec3;
+    fn score_pos_mut(&mut self) -> &mut super::core::Vec3;
     fn category(&self) -> &i32;
+    fn category_mut(&mut self) -> &mut i32;
     fn shot_flags(&self) -> &i32;
+    fn shot_flags_mut(&mut self) -> &mut i32;
     fn goal_flags1(&self) -> &i32;
+    fn goal_flags1_mut(&mut self) -> &mut i32;
     fn goal_flags2(&self) -> &i32;
+    fn goal_flags2_mut(&mut self) -> &mut i32;
     fn goal_flags3(&self) -> &i32;
+    fn goal_flags3_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinScoreEventTrait for TelemetrySdkPinScoreEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn amount(&self) -> &u32 {
         &self.amount
+    }
+    fn amount_mut(&mut self) -> &mut u32 {
+        &mut self.amount
     }
     fn team_id(&self) -> &String {
         &self.team_id
     }
+    fn team_id_mut(&mut self) -> &mut String {
+        &mut self.team_id
+    }
     fn player_dbid(&self) -> &i32 {
         &self.player_dbid
+    }
+    fn player_dbid_mut(&mut self) -> &mut i32 {
+        &mut self.player_dbid
     }
     fn clock_time(&self) -> &u32 {
         &self.clock_time
     }
+    fn clock_time_mut(&mut self) -> &mut u32 {
+        &mut self.clock_time
+    }
     fn shot_pos(&self) -> &super::core::Vec3 {
         &self.shot_pos
+    }
+    fn shot_pos_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.shot_pos
     }
     fn assist_pos(&self) -> &super::core::Vec3 {
         &self.assist_pos
     }
+    fn assist_pos_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.assist_pos
+    }
     fn score_pos(&self) -> &super::core::Vec3 {
         &self.score_pos
+    }
+    fn score_pos_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.score_pos
     }
     fn category(&self) -> &i32 {
         &self.category
     }
+    fn category_mut(&mut self) -> &mut i32 {
+        &mut self.category
+    }
     fn shot_flags(&self) -> &i32 {
         &self.shot_flags
+    }
+    fn shot_flags_mut(&mut self) -> &mut i32 {
+        &mut self.shot_flags
     }
     fn goal_flags1(&self) -> &i32 {
         &self.goal_flags1
     }
+    fn goal_flags1_mut(&mut self) -> &mut i32 {
+        &mut self.goal_flags1
+    }
     fn goal_flags2(&self) -> &i32 {
         &self.goal_flags2
+    }
+    fn goal_flags2_mut(&mut self) -> &mut i32 {
+        &mut self.goal_flags2
     }
     fn goal_flags3(&self) -> &i32 {
         &self.goal_flags3
     }
+    fn goal_flags3_mut(&mut self) -> &mut i32 {
+        &mut self.goal_flags3
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -5986,11 +7624,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinScoreEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -6001,9 +7648,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinScoreEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinScoreEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINSCOREEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6125,6 +7769,15 @@ impl TypeObject for TelemetrySdkPinScoreEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6149,23 +7802,39 @@ pub struct TelemetrySdkPinNpcOutResourceEvent {
 
 pub trait TelemetrySdkPinNpcOutResourceEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn resource_type(&self) -> &String;
+    fn resource_type_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinNpcOutResourceEventTrait for TelemetrySdkPinNpcOutResourceEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn resource_type(&self) -> &String {
         &self.resource_type
     }
+    fn resource_type_mut(&mut self) -> &mut String {
+        &mut self.resource_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -6173,11 +7842,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinNpcOutResourceEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -6188,9 +7866,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinNpcOutResourceEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinNpcOutResourceEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINNPCOUTRESOURCEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6240,6 +7915,15 @@ impl TypeObject for TelemetrySdkPinNpcOutResourceEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6274,63 +7958,119 @@ pub struct TelemetrySdkPinNpcInteractEvent {
 
 pub trait TelemetrySdkPinNpcInteractEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn item_id(&self) -> &String;
+    fn item_id_mut(&mut self) -> &mut String;
     fn item_category(&self) -> &String;
+    fn item_category_mut(&mut self) -> &mut String;
     fn item_type(&self) -> &String;
+    fn item_type_mut(&mut self) -> &mut String;
     fn item_loc(&self) -> &super::core::Vec3;
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn action(&self) -> &String;
+    fn action_mut(&mut self) -> &mut String;
     fn p_dir(&self) -> &super::core::Vec3;
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn p_state(&self) -> &String;
+    fn p_state_mut(&mut self) -> &mut String;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn npc_id(&self) -> &String;
+    fn npc_id_mut(&mut self) -> &mut String;
     fn npc_dir(&self) -> &super::core::Vec3;
+    fn npc_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn npc_loc(&self) -> &super::core::Vec3;
+    fn npc_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinNpcInteractEventTrait for TelemetrySdkPinNpcInteractEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn item_id(&self) -> &String {
         &self.item_id
     }
+    fn item_id_mut(&mut self) -> &mut String {
+        &mut self.item_id
+    }
     fn item_category(&self) -> &String {
         &self.item_category
+    }
+    fn item_category_mut(&mut self) -> &mut String {
+        &mut self.item_category
     }
     fn item_type(&self) -> &String {
         &self.item_type
     }
+    fn item_type_mut(&mut self) -> &mut String {
+        &mut self.item_type
+    }
     fn item_loc(&self) -> &super::core::Vec3 {
         &self.item_loc
+    }
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.item_loc
     }
     fn action(&self) -> &String {
         &self.action
     }
+    fn action_mut(&mut self) -> &mut String {
+        &mut self.action
+    }
     fn p_dir(&self) -> &super::core::Vec3 {
         &self.p_dir
+    }
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_dir
     }
     fn p_state(&self) -> &String {
         &self.p_state
     }
+    fn p_state_mut(&mut self) -> &mut String {
+        &mut self.p_state
+    }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
+    }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
     }
     fn npc_id(&self) -> &String {
         &self.npc_id
     }
+    fn npc_id_mut(&mut self) -> &mut String {
+        &mut self.npc_id
+    }
     fn npc_dir(&self) -> &super::core::Vec3 {
         &self.npc_dir
+    }
+    fn npc_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.npc_dir
     }
     fn npc_loc(&self) -> &super::core::Vec3 {
         &self.npc_loc
     }
+    fn npc_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.npc_loc
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -6338,11 +8078,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinNpcInteractEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -6353,9 +8102,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinNpcInteractEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinNpcInteractEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINNPCINTERACTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6465,6 +8211,15 @@ impl TypeObject for TelemetrySdkPinNpcInteractEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6512,115 +8267,223 @@ pub struct TelemetrySdkPinNpcDeathEvent {
 
 pub trait TelemetrySdkPinNpcDeathEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn k_weap(&self) -> &String;
+    fn k_weap_mut(&mut self) -> &mut String;
     fn cause(&self) -> &String;
+    fn cause_mut(&mut self) -> &mut String;
     fn v_id(&self) -> &String;
+    fn v_id_mut(&mut self) -> &mut String;
     fn v_type(&self) -> &String;
+    fn v_type_mut(&mut self) -> &mut String;
     fn v_loc(&self) -> &super::core::Vec3;
+    fn v_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn v_dir(&self) -> &super::core::Vec3;
+    fn v_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn v_state(&self) -> &String;
+    fn v_state_mut(&mut self) -> &mut String;
     fn is_vads(&self) -> &bool;
+    fn is_vads_mut(&mut self) -> &mut bool;
     fn k_id(&self) -> &String;
+    fn k_id_mut(&mut self) -> &mut String;
     fn k_type(&self) -> &String;
+    fn k_type_mut(&mut self) -> &mut String;
     fn k_loc(&self) -> &super::core::Vec3;
+    fn k_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn k_dir(&self) -> &super::core::Vec3;
+    fn k_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn k_state(&self) -> &String;
+    fn k_state_mut(&mut self) -> &mut String;
     fn is_kads(&self) -> &bool;
+    fn is_kads_mut(&mut self) -> &mut bool;
     fn v_weap(&self) -> &String;
+    fn v_weap_mut(&mut self) -> &mut String;
     fn v_buff(&self) -> &Vec<String>;
+    fn v_buff_mut(&mut self) -> &mut Vec<String>;
     fn k_buff(&self) -> &Vec<String>;
+    fn k_buff_mut(&mut self) -> &mut Vec<String>;
     fn k_class(&self) -> &String;
+    fn k_class_mut(&mut self) -> &mut String;
     fn v_class(&self) -> &String;
+    fn v_class_mut(&mut self) -> &mut String;
     fn npc_id(&self) -> &String;
+    fn npc_id_mut(&mut self) -> &mut String;
     fn v_team_id(&self) -> &String;
+    fn v_team_id_mut(&mut self) -> &mut String;
     fn k_lifetime(&self) -> &u32;
+    fn k_lifetime_mut(&mut self) -> &mut u32;
     fn v_lifetime(&self) -> &u32;
+    fn v_lifetime_mut(&mut self) -> &mut u32;
     fn v_play_state(&self) -> &String;
+    fn v_play_state_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdkPinNpcDeathEventTrait for TelemetrySdkPinNpcDeathEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn k_weap(&self) -> &String {
         &self.k_weap
     }
+    fn k_weap_mut(&mut self) -> &mut String {
+        &mut self.k_weap
+    }
     fn cause(&self) -> &String {
         &self.cause
+    }
+    fn cause_mut(&mut self) -> &mut String {
+        &mut self.cause
     }
     fn v_id(&self) -> &String {
         &self.v_id
     }
+    fn v_id_mut(&mut self) -> &mut String {
+        &mut self.v_id
+    }
     fn v_type(&self) -> &String {
         &self.v_type
+    }
+    fn v_type_mut(&mut self) -> &mut String {
+        &mut self.v_type
     }
     fn v_loc(&self) -> &super::core::Vec3 {
         &self.v_loc
     }
+    fn v_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.v_loc
+    }
     fn v_dir(&self) -> &super::core::Vec3 {
         &self.v_dir
+    }
+    fn v_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.v_dir
     }
     fn v_state(&self) -> &String {
         &self.v_state
     }
+    fn v_state_mut(&mut self) -> &mut String {
+        &mut self.v_state
+    }
     fn is_vads(&self) -> &bool {
         &self.is_vads
+    }
+    fn is_vads_mut(&mut self) -> &mut bool {
+        &mut self.is_vads
     }
     fn k_id(&self) -> &String {
         &self.k_id
     }
+    fn k_id_mut(&mut self) -> &mut String {
+        &mut self.k_id
+    }
     fn k_type(&self) -> &String {
         &self.k_type
+    }
+    fn k_type_mut(&mut self) -> &mut String {
+        &mut self.k_type
     }
     fn k_loc(&self) -> &super::core::Vec3 {
         &self.k_loc
     }
+    fn k_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.k_loc
+    }
     fn k_dir(&self) -> &super::core::Vec3 {
         &self.k_dir
+    }
+    fn k_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.k_dir
     }
     fn k_state(&self) -> &String {
         &self.k_state
     }
+    fn k_state_mut(&mut self) -> &mut String {
+        &mut self.k_state
+    }
     fn is_kads(&self) -> &bool {
         &self.is_kads
+    }
+    fn is_kads_mut(&mut self) -> &mut bool {
+        &mut self.is_kads
     }
     fn v_weap(&self) -> &String {
         &self.v_weap
     }
+    fn v_weap_mut(&mut self) -> &mut String {
+        &mut self.v_weap
+    }
     fn v_buff(&self) -> &Vec<String> {
         &self.v_buff
+    }
+    fn v_buff_mut(&mut self) -> &mut Vec<String> {
+        &mut self.v_buff
     }
     fn k_buff(&self) -> &Vec<String> {
         &self.k_buff
     }
+    fn k_buff_mut(&mut self) -> &mut Vec<String> {
+        &mut self.k_buff
+    }
     fn k_class(&self) -> &String {
         &self.k_class
+    }
+    fn k_class_mut(&mut self) -> &mut String {
+        &mut self.k_class
     }
     fn v_class(&self) -> &String {
         &self.v_class
     }
+    fn v_class_mut(&mut self) -> &mut String {
+        &mut self.v_class
+    }
     fn npc_id(&self) -> &String {
         &self.npc_id
+    }
+    fn npc_id_mut(&mut self) -> &mut String {
+        &mut self.npc_id
     }
     fn v_team_id(&self) -> &String {
         &self.v_team_id
     }
+    fn v_team_id_mut(&mut self) -> &mut String {
+        &mut self.v_team_id
+    }
     fn k_lifetime(&self) -> &u32 {
         &self.k_lifetime
+    }
+    fn k_lifetime_mut(&mut self) -> &mut u32 {
+        &mut self.k_lifetime
     }
     fn v_lifetime(&self) -> &u32 {
         &self.v_lifetime
     }
+    fn v_lifetime_mut(&mut self) -> &mut u32 {
+        &mut self.v_lifetime
+    }
     fn v_play_state(&self) -> &String {
         &self.v_play_state
     }
+    fn v_play_state_mut(&mut self) -> &mut String {
+        &mut self.v_play_state
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -6628,11 +8491,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinNpcDeathEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -6643,9 +8515,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinNpcDeathEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinNpcDeathEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINNPCDEATHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6833,6 +8702,15 @@ impl TypeObject for TelemetrySdkPinNpcDeathEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6866,59 +8744,111 @@ pub struct TelemetrySdkPinNpcStateEvent {
 
 pub trait TelemetrySdkPinNpcStateEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn ai_state(&self) -> &bool;
+    fn ai_state_mut(&mut self) -> &mut bool;
     fn npc_id(&self) -> &String;
+    fn npc_id_mut(&mut self) -> &mut String;
     fn npc_loc(&self) -> &super::core::Vec3;
+    fn npc_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn cur_npc_state(&self) -> &String;
+    fn cur_npc_state_mut(&mut self) -> &mut String;
     fn prev_npc_state(&self) -> &String;
+    fn prev_npc_state_mut(&mut self) -> &mut String;
     fn source(&self) -> &String;
+    fn source_mut(&mut self) -> &mut String;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_aim(&self) -> &super::core::Vec3;
+    fn p_aim_mut(&mut self) -> &mut super::core::Vec3;
     fn p_state(&self) -> &String;
+    fn p_state_mut(&mut self) -> &mut String;
     fn is_alarm(&self) -> &bool;
+    fn is_alarm_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinNpcStateEventTrait for TelemetrySdkPinNpcStateEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn ai_state(&self) -> &bool {
         &self.ai_state
     }
+    fn ai_state_mut(&mut self) -> &mut bool {
+        &mut self.ai_state
+    }
     fn npc_id(&self) -> &String {
         &self.npc_id
+    }
+    fn npc_id_mut(&mut self) -> &mut String {
+        &mut self.npc_id
     }
     fn npc_loc(&self) -> &super::core::Vec3 {
         &self.npc_loc
     }
+    fn npc_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.npc_loc
+    }
     fn cur_npc_state(&self) -> &String {
         &self.cur_npc_state
+    }
+    fn cur_npc_state_mut(&mut self) -> &mut String {
+        &mut self.cur_npc_state
     }
     fn prev_npc_state(&self) -> &String {
         &self.prev_npc_state
     }
+    fn prev_npc_state_mut(&mut self) -> &mut String {
+        &mut self.prev_npc_state
+    }
     fn source(&self) -> &String {
         &self.source
+    }
+    fn source_mut(&mut self) -> &mut String {
+        &mut self.source
     }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
     }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
+    }
     fn p_aim(&self) -> &super::core::Vec3 {
         &self.p_aim
+    }
+    fn p_aim_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_aim
     }
     fn p_state(&self) -> &String {
         &self.p_state
     }
+    fn p_state_mut(&mut self) -> &mut String {
+        &mut self.p_state
+    }
     fn is_alarm(&self) -> &bool {
         &self.is_alarm
     }
+    fn is_alarm_mut(&mut self) -> &mut bool {
+        &mut self.is_alarm
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -6926,11 +8856,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinNpcStateEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -6941,9 +8880,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinNpcStateEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinNpcStateEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINNPCSTATEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7047,6 +8983,15 @@ impl TypeObject for TelemetrySdkPinNpcStateEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7081,63 +9026,119 @@ pub struct TelemetrySdkPinGameObjectiveEvent {
 
 pub trait TelemetrySdkPinGameObjectiveEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn diff(&self) -> &String;
+    fn diff_mut(&mut self) -> &mut String;
     fn p_team_id(&self) -> &String;
+    fn p_team_id_mut(&mut self) -> &mut String;
     fn category(&self) -> &String;
+    fn category_mut(&mut self) -> &mut String;
     fn objective_id(&self) -> &String;
+    fn objective_id_mut(&mut self) -> &mut String;
     fn objective_loc(&self) -> &super::core::Vec3;
+    fn objective_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn reqs(&self) -> &Vec<String>;
+    fn reqs_mut(&mut self) -> &mut Vec<String>;
     fn reward(&self) -> &RawJsonString;
+    fn reward_mut(&mut self) -> &mut RawJsonString;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn percent(&self) -> &u32;
+    fn percent_mut(&mut self) -> &mut u32;
     fn players(&self) -> &Vec<String>;
+    fn players_mut(&mut self) -> &mut Vec<String>;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinGameObjectiveEventTrait for TelemetrySdkPinGameObjectiveEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
     }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
+    }
     fn diff(&self) -> &String {
         &self.diff
+    }
+    fn diff_mut(&mut self) -> &mut String {
+        &mut self.diff
     }
     fn p_team_id(&self) -> &String {
         &self.p_team_id
     }
+    fn p_team_id_mut(&mut self) -> &mut String {
+        &mut self.p_team_id
+    }
     fn category(&self) -> &String {
         &self.category
+    }
+    fn category_mut(&mut self) -> &mut String {
+        &mut self.category
     }
     fn objective_id(&self) -> &String {
         &self.objective_id
     }
+    fn objective_id_mut(&mut self) -> &mut String {
+        &mut self.objective_id
+    }
     fn objective_loc(&self) -> &super::core::Vec3 {
         &self.objective_loc
+    }
+    fn objective_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.objective_loc
     }
     fn reqs(&self) -> &Vec<String> {
         &self.reqs
     }
+    fn reqs_mut(&mut self) -> &mut Vec<String> {
+        &mut self.reqs
+    }
     fn reward(&self) -> &RawJsonString {
         &self.reward
+    }
+    fn reward_mut(&mut self) -> &mut RawJsonString {
+        &mut self.reward
     }
     fn status(&self) -> &String {
         &self.status
     }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
+    }
     fn percent(&self) -> &u32 {
         &self.percent
+    }
+    fn percent_mut(&mut self) -> &mut u32 {
+        &mut self.percent
     }
     fn players(&self) -> &Vec<String> {
         &self.players
     }
+    fn players_mut(&mut self) -> &mut Vec<String> {
+        &mut self.players
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7145,11 +9146,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinGameObjectiveEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -7160,9 +9170,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinGameObjectiveEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinGameObjectiveEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINGAMEOBJECTIVEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7272,6 +9279,15 @@ impl TypeObject for TelemetrySdkPinGameObjectiveEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7301,43 +9317,79 @@ pub struct TelemetrySdkPinFpsEvent {
 
 pub trait TelemetrySdkPinFpsEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn fps(&self) -> &f32;
+    fn fps_mut(&mut self) -> &mut f32;
     fn threshold(&self) -> &f32;
+    fn threshold_mut(&mut self) -> &mut f32;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_dir(&self) -> &super::core::Vec3;
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn metadata(&self) -> &RawJsonString;
+    fn metadata_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinFpsEventTrait for TelemetrySdkPinFpsEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn fps(&self) -> &f32 {
         &self.fps
+    }
+    fn fps_mut(&mut self) -> &mut f32 {
+        &mut self.fps
     }
     fn threshold(&self) -> &f32 {
         &self.threshold
     }
+    fn threshold_mut(&mut self) -> &mut f32 {
+        &mut self.threshold
+    }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
+    }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
     }
     fn p_dir(&self) -> &super::core::Vec3 {
         &self.p_dir
     }
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_dir
+    }
     fn metadata(&self) -> &RawJsonString {
         &self.metadata
     }
+    fn metadata_mut(&mut self) -> &mut RawJsonString {
+        &mut self.metadata
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7345,11 +9397,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinFpsEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -7360,9 +9421,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinFpsEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinFpsEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINFPSEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7442,6 +9500,15 @@ impl TypeObject for TelemetrySdkPinFpsEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7466,23 +9533,39 @@ pub struct TelemetrySdkPinGameActionEvent {
 
 pub trait TelemetrySdkPinGameActionEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn action(&self) -> &String;
+    fn action_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinGameActionEventTrait for TelemetrySdkPinGameActionEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn action(&self) -> &String {
         &self.action
     }
+    fn action_mut(&mut self) -> &mut String {
+        &mut self.action
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7490,11 +9573,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinGameActionEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -7505,9 +9597,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinGameActionEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinGameActionEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINGAMEACTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7557,6 +9646,15 @@ impl TypeObject for TelemetrySdkPinGameActionEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7593,71 +9691,135 @@ pub struct TelemetrySdkPinVehicleHealthEvent {
 
 pub trait TelemetrySdkPinVehicleHealthEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn veh_id(&self) -> &String;
+    fn veh_id_mut(&mut self) -> &mut String;
     fn veh_loc(&self) -> &super::core::Vec3;
+    fn veh_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn veh_type(&self) -> &String;
+    fn veh_type_mut(&mut self) -> &mut String;
     fn veh_guid(&self) -> &String;
+    fn veh_guid_mut(&mut self) -> &mut String;
     fn is_heal(&self) -> &bool;
+    fn is_heal_mut(&mut self) -> &mut bool;
     fn source_id(&self) -> &String;
+    fn source_id_mut(&mut self) -> &mut String;
     fn source_type(&self) -> &String;
+    fn source_type_mut(&mut self) -> &mut String;
     fn source_loc(&self) -> &super::core::Vec3;
+    fn source_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn source_item(&self) -> &String;
+    fn source_item_mut(&mut self) -> &mut String;
     fn cause(&self) -> &String;
+    fn cause_mut(&mut self) -> &mut String;
     fn weapon(&self) -> &String;
+    fn weapon_mut(&mut self) -> &mut String;
     fn amount(&self) -> &i32;
+    fn amount_mut(&mut self) -> &mut i32;
     fn health(&self) -> &i32;
+    fn health_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinVehicleHealthEventTrait for TelemetrySdkPinVehicleHealthEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn veh_id(&self) -> &String {
         &self.veh_id
     }
+    fn veh_id_mut(&mut self) -> &mut String {
+        &mut self.veh_id
+    }
     fn veh_loc(&self) -> &super::core::Vec3 {
         &self.veh_loc
+    }
+    fn veh_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.veh_loc
     }
     fn veh_type(&self) -> &String {
         &self.veh_type
     }
+    fn veh_type_mut(&mut self) -> &mut String {
+        &mut self.veh_type
+    }
     fn veh_guid(&self) -> &String {
         &self.veh_guid
+    }
+    fn veh_guid_mut(&mut self) -> &mut String {
+        &mut self.veh_guid
     }
     fn is_heal(&self) -> &bool {
         &self.is_heal
     }
+    fn is_heal_mut(&mut self) -> &mut bool {
+        &mut self.is_heal
+    }
     fn source_id(&self) -> &String {
         &self.source_id
+    }
+    fn source_id_mut(&mut self) -> &mut String {
+        &mut self.source_id
     }
     fn source_type(&self) -> &String {
         &self.source_type
     }
+    fn source_type_mut(&mut self) -> &mut String {
+        &mut self.source_type
+    }
     fn source_loc(&self) -> &super::core::Vec3 {
         &self.source_loc
+    }
+    fn source_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_loc
     }
     fn source_item(&self) -> &String {
         &self.source_item
     }
+    fn source_item_mut(&mut self) -> &mut String {
+        &mut self.source_item
+    }
     fn cause(&self) -> &String {
         &self.cause
+    }
+    fn cause_mut(&mut self) -> &mut String {
+        &mut self.cause
     }
     fn weapon(&self) -> &String {
         &self.weapon
     }
+    fn weapon_mut(&mut self) -> &mut String {
+        &mut self.weapon
+    }
     fn amount(&self) -> &i32 {
         &self.amount
+    }
+    fn amount_mut(&mut self) -> &mut i32 {
+        &mut self.amount
     }
     fn health(&self) -> &i32 {
         &self.health
     }
+    fn health_mut(&mut self) -> &mut i32 {
+        &mut self.health
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7665,11 +9827,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinVehicleHealthEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -7680,9 +9851,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinVehicleHealthEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinVehicleHealthEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINVEHICLEHEALTHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7804,6 +9972,15 @@ impl TypeObject for TelemetrySdkPinVehicleHealthEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7837,59 +10014,111 @@ pub struct TelemetrySdkPinVehicleInteractEvent {
 
 pub trait TelemetrySdkPinVehicleInteractEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn veh_dur(&self) -> &u32;
+    fn veh_dur_mut(&mut self) -> &mut u32;
     fn veh_id(&self) -> &String;
+    fn veh_id_mut(&mut self) -> &mut String;
     fn veh_guid(&self) -> &String;
+    fn veh_guid_mut(&mut self) -> &mut String;
     fn veh_type(&self) -> &String;
+    fn veh_type_mut(&mut self) -> &mut String;
     fn action(&self) -> &String;
+    fn action_mut(&mut self) -> &mut String;
     fn veh_loc(&self) -> &super::core::Vec3;
+    fn veh_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_dir(&self) -> &super::core::Vec3;
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn p_team_id(&self) -> &String;
+    fn p_team_id_mut(&mut self) -> &mut String;
     fn custom(&self) -> &RawJsonString;
+    fn custom_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinVehicleInteractEventTrait for TelemetrySdkPinVehicleInteractEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn veh_dur(&self) -> &u32 {
         &self.veh_dur
     }
+    fn veh_dur_mut(&mut self) -> &mut u32 {
+        &mut self.veh_dur
+    }
     fn veh_id(&self) -> &String {
         &self.veh_id
+    }
+    fn veh_id_mut(&mut self) -> &mut String {
+        &mut self.veh_id
     }
     fn veh_guid(&self) -> &String {
         &self.veh_guid
     }
+    fn veh_guid_mut(&mut self) -> &mut String {
+        &mut self.veh_guid
+    }
     fn veh_type(&self) -> &String {
         &self.veh_type
+    }
+    fn veh_type_mut(&mut self) -> &mut String {
+        &mut self.veh_type
     }
     fn action(&self) -> &String {
         &self.action
     }
+    fn action_mut(&mut self) -> &mut String {
+        &mut self.action
+    }
     fn veh_loc(&self) -> &super::core::Vec3 {
         &self.veh_loc
+    }
+    fn veh_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.veh_loc
     }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
     }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
+    }
     fn p_dir(&self) -> &super::core::Vec3 {
         &self.p_dir
+    }
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_dir
     }
     fn p_team_id(&self) -> &String {
         &self.p_team_id
     }
+    fn p_team_id_mut(&mut self) -> &mut String {
+        &mut self.p_team_id
+    }
     fn custom(&self) -> &RawJsonString {
         &self.custom
     }
+    fn custom_mut(&mut self) -> &mut RawJsonString {
+        &mut self.custom
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -7897,11 +10126,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinVehicleInteractEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -7912,9 +10150,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinVehicleInteractEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinVehicleInteractEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINVEHICLEINTERACTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8018,6 +10253,15 @@ impl TypeObject for TelemetrySdkPinVehicleInteractEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8058,87 +10302,167 @@ pub struct TelemetrySdkPinVehicleDestructionEvent {
 
 pub trait TelemetrySdkPinVehicleDestructionEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn veh_id(&self) -> &String;
+    fn veh_id_mut(&mut self) -> &mut String;
     fn cause(&self) -> &String;
+    fn cause_mut(&mut self) -> &mut String;
     fn veh_loc(&self) -> &super::core::Vec3;
+    fn veh_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn veh_type(&self) -> &String;
+    fn veh_type_mut(&mut self) -> &mut String;
     fn pilot_id(&self) -> &String;
+    fn pilot_id_mut(&mut self) -> &mut String;
     fn pilot_type(&self) -> &String;
+    fn pilot_type_mut(&mut self) -> &mut String;
     fn pilot_loc(&self) -> &super::core::Vec3;
+    fn pilot_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn pilot_dir(&self) -> &super::core::Vec3;
+    fn pilot_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn k_id(&self) -> &String;
+    fn k_id_mut(&mut self) -> &mut String;
     fn k_type(&self) -> &String;
+    fn k_type_mut(&mut self) -> &mut String;
     fn k_loc(&self) -> &super::core::Vec3;
+    fn k_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn k_dir(&self) -> &super::core::Vec3;
+    fn k_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn is_eject(&self) -> &bool;
+    fn is_eject_mut(&mut self) -> &mut bool;
     fn veh_dur(&self) -> &u32;
+    fn veh_dur_mut(&mut self) -> &mut u32;
     fn veh_instance_id(&self) -> &String;
+    fn veh_instance_id_mut(&mut self) -> &mut String;
     fn k_weap(&self) -> &String;
+    fn k_weap_mut(&mut self) -> &mut String;
     fn k_veh_id(&self) -> &String;
+    fn k_veh_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdkPinVehicleDestructionEventTrait for TelemetrySdkPinVehicleDestructionEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn veh_id(&self) -> &String {
         &self.veh_id
     }
+    fn veh_id_mut(&mut self) -> &mut String {
+        &mut self.veh_id
+    }
     fn cause(&self) -> &String {
         &self.cause
+    }
+    fn cause_mut(&mut self) -> &mut String {
+        &mut self.cause
     }
     fn veh_loc(&self) -> &super::core::Vec3 {
         &self.veh_loc
     }
+    fn veh_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.veh_loc
+    }
     fn veh_type(&self) -> &String {
         &self.veh_type
+    }
+    fn veh_type_mut(&mut self) -> &mut String {
+        &mut self.veh_type
     }
     fn pilot_id(&self) -> &String {
         &self.pilot_id
     }
+    fn pilot_id_mut(&mut self) -> &mut String {
+        &mut self.pilot_id
+    }
     fn pilot_type(&self) -> &String {
         &self.pilot_type
+    }
+    fn pilot_type_mut(&mut self) -> &mut String {
+        &mut self.pilot_type
     }
     fn pilot_loc(&self) -> &super::core::Vec3 {
         &self.pilot_loc
     }
+    fn pilot_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.pilot_loc
+    }
     fn pilot_dir(&self) -> &super::core::Vec3 {
         &self.pilot_dir
+    }
+    fn pilot_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.pilot_dir
     }
     fn k_id(&self) -> &String {
         &self.k_id
     }
+    fn k_id_mut(&mut self) -> &mut String {
+        &mut self.k_id
+    }
     fn k_type(&self) -> &String {
         &self.k_type
+    }
+    fn k_type_mut(&mut self) -> &mut String {
+        &mut self.k_type
     }
     fn k_loc(&self) -> &super::core::Vec3 {
         &self.k_loc
     }
+    fn k_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.k_loc
+    }
     fn k_dir(&self) -> &super::core::Vec3 {
         &self.k_dir
+    }
+    fn k_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.k_dir
     }
     fn is_eject(&self) -> &bool {
         &self.is_eject
     }
+    fn is_eject_mut(&mut self) -> &mut bool {
+        &mut self.is_eject
+    }
     fn veh_dur(&self) -> &u32 {
         &self.veh_dur
+    }
+    fn veh_dur_mut(&mut self) -> &mut u32 {
+        &mut self.veh_dur
     }
     fn veh_instance_id(&self) -> &String {
         &self.veh_instance_id
     }
+    fn veh_instance_id_mut(&mut self) -> &mut String {
+        &mut self.veh_instance_id
+    }
     fn k_weap(&self) -> &String {
         &self.k_weap
+    }
+    fn k_weap_mut(&mut self) -> &mut String {
+        &mut self.k_weap
     }
     fn k_veh_id(&self) -> &String {
         &self.k_veh_id
     }
+    fn k_veh_id_mut(&mut self) -> &mut String {
+        &mut self.k_veh_id
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -8146,11 +10470,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinVehicleDestructionEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -8161,9 +10494,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinVehicleDestructionEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinVehicleDestructionEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINVEHICLEDESTRUCTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8309,6 +10639,15 @@ impl TypeObject for TelemetrySdkPinVehicleDestructionEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8339,47 +10678,87 @@ pub struct TelemetrySdkPinVehicleSpawnEvent {
 
 pub trait TelemetrySdkPinVehicleSpawnEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn veh_id(&self) -> &String;
+    fn veh_id_mut(&mut self) -> &mut String;
     fn veh_type(&self) -> &String;
+    fn veh_type_mut(&mut self) -> &mut String;
     fn veh_loc(&self) -> &super::core::Vec3;
+    fn veh_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn veh_lev(&self) -> &i32;
+    fn veh_lev_mut(&mut self) -> &mut i32;
     fn veh_loadout(&self) -> &RawJsonString;
+    fn veh_loadout_mut(&mut self) -> &mut RawJsonString;
     fn veh_instance_id(&self) -> &String;
+    fn veh_instance_id_mut(&mut self) -> &mut String;
     fn team_id(&self) -> &String;
+    fn team_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinVehicleSpawnEventTrait for TelemetrySdkPinVehicleSpawnEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn veh_id(&self) -> &String {
         &self.veh_id
     }
+    fn veh_id_mut(&mut self) -> &mut String {
+        &mut self.veh_id
+    }
     fn veh_type(&self) -> &String {
         &self.veh_type
+    }
+    fn veh_type_mut(&mut self) -> &mut String {
+        &mut self.veh_type
     }
     fn veh_loc(&self) -> &super::core::Vec3 {
         &self.veh_loc
     }
+    fn veh_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.veh_loc
+    }
     fn veh_lev(&self) -> &i32 {
         &self.veh_lev
+    }
+    fn veh_lev_mut(&mut self) -> &mut i32 {
+        &mut self.veh_lev
     }
     fn veh_loadout(&self) -> &RawJsonString {
         &self.veh_loadout
     }
+    fn veh_loadout_mut(&mut self) -> &mut RawJsonString {
+        &mut self.veh_loadout
+    }
     fn veh_instance_id(&self) -> &String {
         &self.veh_instance_id
+    }
+    fn veh_instance_id_mut(&mut self) -> &mut String {
+        &mut self.veh_instance_id
     }
     fn team_id(&self) -> &String {
         &self.team_id
     }
+    fn team_id_mut(&mut self) -> &mut String {
+        &mut self.team_id
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -8387,11 +10766,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinVehicleSpawnEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -8402,9 +10790,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinVehicleSpawnEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinVehicleSpawnEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINVEHICLESPAWNEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8490,6 +10875,15 @@ impl TypeObject for TelemetrySdkPinVehicleSpawnEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8518,39 +10912,71 @@ pub struct TelemetrySdkPinTagEvent {
 
 pub trait TelemetrySdkPinTagEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn tag_type(&self) -> &String;
+    fn tag_type_mut(&mut self) -> &mut String;
     fn tag_id(&self) -> &String;
+    fn tag_id_mut(&mut self) -> &mut String;
     fn tag_loc(&self) -> &super::core::Vec3;
+    fn tag_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn tag_method(&self) -> &String;
+    fn tag_method_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinTagEventTrait for TelemetrySdkPinTagEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn tag_type(&self) -> &String {
         &self.tag_type
     }
+    fn tag_type_mut(&mut self) -> &mut String {
+        &mut self.tag_type
+    }
     fn tag_id(&self) -> &String {
         &self.tag_id
+    }
+    fn tag_id_mut(&mut self) -> &mut String {
+        &mut self.tag_id
     }
     fn tag_loc(&self) -> &super::core::Vec3 {
         &self.tag_loc
     }
+    fn tag_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.tag_loc
+    }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
+    }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
     }
     fn tag_method(&self) -> &String {
         &self.tag_method
     }
+    fn tag_method_mut(&mut self) -> &mut String {
+        &mut self.tag_method
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -8558,11 +10984,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinTagEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -8573,9 +11008,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinTagEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinTagEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINTAGEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8649,6 +11081,15 @@ impl TypeObject for TelemetrySdkPinTagEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8677,39 +11118,71 @@ pub struct TelemetrySdkPinItemUpgradeEvent {
 
 pub trait TelemetrySdkPinItemUpgradeEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn item_id(&self) -> &String;
+    fn item_id_mut(&mut self) -> &mut String;
     fn item_category(&self) -> &String;
+    fn item_category_mut(&mut self) -> &mut String;
     fn item_type(&self) -> &String;
+    fn item_type_mut(&mut self) -> &mut String;
     fn item_name(&self) -> &String;
+    fn item_name_mut(&mut self) -> &mut String;
     fn item_loc(&self) -> &super::core::Vec3;
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinItemUpgradeEventTrait for TelemetrySdkPinItemUpgradeEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn item_id(&self) -> &String {
         &self.item_id
     }
+    fn item_id_mut(&mut self) -> &mut String {
+        &mut self.item_id
+    }
     fn item_category(&self) -> &String {
         &self.item_category
+    }
+    fn item_category_mut(&mut self) -> &mut String {
+        &mut self.item_category
     }
     fn item_type(&self) -> &String {
         &self.item_type
     }
+    fn item_type_mut(&mut self) -> &mut String {
+        &mut self.item_type
+    }
     fn item_name(&self) -> &String {
         &self.item_name
+    }
+    fn item_name_mut(&mut self) -> &mut String {
+        &mut self.item_name
     }
     fn item_loc(&self) -> &super::core::Vec3 {
         &self.item_loc
     }
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.item_loc
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -8717,11 +11190,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinItemUpgradeEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -8732,9 +11214,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinItemUpgradeEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinItemUpgradeEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINITEMUPGRADEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8808,6 +11287,15 @@ impl TypeObject for TelemetrySdkPinItemUpgradeEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8836,39 +11324,71 @@ pub struct TelemetrySdkPinItemUnlockEvent {
 
 pub trait TelemetrySdkPinItemUnlockEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn item_id(&self) -> &String;
+    fn item_id_mut(&mut self) -> &mut String;
     fn item_category(&self) -> &String;
+    fn item_category_mut(&mut self) -> &mut String;
     fn item_type(&self) -> &String;
+    fn item_type_mut(&mut self) -> &mut String;
     fn item_loc(&self) -> &super::core::Vec3;
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn item_name(&self) -> &String;
+    fn item_name_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinItemUnlockEventTrait for TelemetrySdkPinItemUnlockEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn item_id(&self) -> &String {
         &self.item_id
     }
+    fn item_id_mut(&mut self) -> &mut String {
+        &mut self.item_id
+    }
     fn item_category(&self) -> &String {
         &self.item_category
+    }
+    fn item_category_mut(&mut self) -> &mut String {
+        &mut self.item_category
     }
     fn item_type(&self) -> &String {
         &self.item_type
     }
+    fn item_type_mut(&mut self) -> &mut String {
+        &mut self.item_type
+    }
     fn item_loc(&self) -> &super::core::Vec3 {
         &self.item_loc
+    }
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.item_loc
     }
     fn item_name(&self) -> &String {
         &self.item_name
     }
+    fn item_name_mut(&mut self) -> &mut String {
+        &mut self.item_name
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -8876,11 +11396,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinItemUnlockEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -8891,9 +11420,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinItemUnlockEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinItemUnlockEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINITEMUNLOCKEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8967,6 +11493,15 @@ impl TypeObject for TelemetrySdkPinItemUnlockEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8996,43 +11531,79 @@ pub struct TelemetrySdkPinItemPickupEvent {
 
 pub trait TelemetrySdkPinItemPickupEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn item_dur(&self) -> &u32;
+    fn item_dur_mut(&mut self) -> &mut u32;
     fn item_id(&self) -> &String;
+    fn item_id_mut(&mut self) -> &mut String;
     fn item_category(&self) -> &String;
+    fn item_category_mut(&mut self) -> &mut String;
     fn item_type(&self) -> &String;
+    fn item_type_mut(&mut self) -> &mut String;
     fn item_name(&self) -> &String;
+    fn item_name_mut(&mut self) -> &mut String;
     fn item_loc(&self) -> &super::core::Vec3;
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinItemPickupEventTrait for TelemetrySdkPinItemPickupEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn item_dur(&self) -> &u32 {
         &self.item_dur
     }
+    fn item_dur_mut(&mut self) -> &mut u32 {
+        &mut self.item_dur
+    }
     fn item_id(&self) -> &String {
         &self.item_id
+    }
+    fn item_id_mut(&mut self) -> &mut String {
+        &mut self.item_id
     }
     fn item_category(&self) -> &String {
         &self.item_category
     }
+    fn item_category_mut(&mut self) -> &mut String {
+        &mut self.item_category
+    }
     fn item_type(&self) -> &String {
         &self.item_type
+    }
+    fn item_type_mut(&mut self) -> &mut String {
+        &mut self.item_type
     }
     fn item_name(&self) -> &String {
         &self.item_name
     }
+    fn item_name_mut(&mut self) -> &mut String {
+        &mut self.item_name
+    }
     fn item_loc(&self) -> &super::core::Vec3 {
         &self.item_loc
     }
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.item_loc
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -9040,11 +11611,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinItemPickupEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -9055,9 +11635,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinItemPickupEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinItemPickupEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINITEMPICKUPEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9137,6 +11714,15 @@ impl TypeObject for TelemetrySdkPinItemPickupEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9165,39 +11751,71 @@ pub struct TelemetrySdkPinItemSpawnEvent {
 
 pub trait TelemetrySdkPinItemSpawnEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn item_id(&self) -> &String;
+    fn item_id_mut(&mut self) -> &mut String;
     fn item_category(&self) -> &String;
+    fn item_category_mut(&mut self) -> &mut String;
     fn item_type(&self) -> &String;
+    fn item_type_mut(&mut self) -> &mut String;
     fn item_name(&self) -> &String;
+    fn item_name_mut(&mut self) -> &mut String;
     fn item_loc(&self) -> &super::core::Vec3;
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinItemSpawnEventTrait for TelemetrySdkPinItemSpawnEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn item_id(&self) -> &String {
         &self.item_id
     }
+    fn item_id_mut(&mut self) -> &mut String {
+        &mut self.item_id
+    }
     fn item_category(&self) -> &String {
         &self.item_category
+    }
+    fn item_category_mut(&mut self) -> &mut String {
+        &mut self.item_category
     }
     fn item_type(&self) -> &String {
         &self.item_type
     }
+    fn item_type_mut(&mut self) -> &mut String {
+        &mut self.item_type
+    }
     fn item_name(&self) -> &String {
         &self.item_name
+    }
+    fn item_name_mut(&mut self) -> &mut String {
+        &mut self.item_name
     }
     fn item_loc(&self) -> &super::core::Vec3 {
         &self.item_loc
     }
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.item_loc
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -9205,11 +11823,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinItemSpawnEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -9220,9 +11847,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinItemSpawnEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinItemSpawnEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINITEMSPAWNEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9296,6 +11920,15 @@ impl TypeObject for TelemetrySdkPinItemSpawnEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9333,75 +11966,143 @@ pub struct TelemetrySdkPinItemHealthEvent {
 
 pub trait TelemetrySdkPinItemHealthEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn item_id(&self) -> &String;
+    fn item_id_mut(&mut self) -> &mut String;
     fn item_category(&self) -> &String;
+    fn item_category_mut(&mut self) -> &mut String;
     fn item_type(&self) -> &String;
+    fn item_type_mut(&mut self) -> &mut String;
     fn item_loc(&self) -> &super::core::Vec3;
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_id(&self) -> &String;
+    fn p_id_mut(&mut self) -> &mut String;
     fn p_type(&self) -> &String;
+    fn p_type_mut(&mut self) -> &mut String;
     fn is_heal(&self) -> &bool;
+    fn is_heal_mut(&mut self) -> &mut bool;
     fn source_id(&self) -> &String;
+    fn source_id_mut(&mut self) -> &mut String;
     fn source_type(&self) -> &String;
+    fn source_type_mut(&mut self) -> &mut String;
     fn source_loc(&self) -> &super::core::Vec3;
+    fn source_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn weapon(&self) -> &String;
+    fn weapon_mut(&mut self) -> &mut String;
     fn amount(&self) -> &i32;
+    fn amount_mut(&mut self) -> &mut i32;
     fn health(&self) -> &i32;
+    fn health_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinItemHealthEventTrait for TelemetrySdkPinItemHealthEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn item_id(&self) -> &String {
         &self.item_id
     }
+    fn item_id_mut(&mut self) -> &mut String {
+        &mut self.item_id
+    }
     fn item_category(&self) -> &String {
         &self.item_category
+    }
+    fn item_category_mut(&mut self) -> &mut String {
+        &mut self.item_category
     }
     fn item_type(&self) -> &String {
         &self.item_type
     }
+    fn item_type_mut(&mut self) -> &mut String {
+        &mut self.item_type
+    }
     fn item_loc(&self) -> &super::core::Vec3 {
         &self.item_loc
+    }
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.item_loc
     }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
     }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
+    }
     fn p_id(&self) -> &String {
         &self.p_id
+    }
+    fn p_id_mut(&mut self) -> &mut String {
+        &mut self.p_id
     }
     fn p_type(&self) -> &String {
         &self.p_type
     }
+    fn p_type_mut(&mut self) -> &mut String {
+        &mut self.p_type
+    }
     fn is_heal(&self) -> &bool {
         &self.is_heal
+    }
+    fn is_heal_mut(&mut self) -> &mut bool {
+        &mut self.is_heal
     }
     fn source_id(&self) -> &String {
         &self.source_id
     }
+    fn source_id_mut(&mut self) -> &mut String {
+        &mut self.source_id
+    }
     fn source_type(&self) -> &String {
         &self.source_type
+    }
+    fn source_type_mut(&mut self) -> &mut String {
+        &mut self.source_type
     }
     fn source_loc(&self) -> &super::core::Vec3 {
         &self.source_loc
     }
+    fn source_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_loc
+    }
     fn weapon(&self) -> &String {
         &self.weapon
+    }
+    fn weapon_mut(&mut self) -> &mut String {
+        &mut self.weapon
     }
     fn amount(&self) -> &i32 {
         &self.amount
     }
+    fn amount_mut(&mut self) -> &mut i32 {
+        &mut self.amount
+    }
     fn health(&self) -> &i32 {
         &self.health
     }
+    fn health_mut(&mut self) -> &mut i32 {
+        &mut self.health
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -9409,11 +12110,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinItemHealthEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -9424,9 +12134,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinItemHealthEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinItemHealthEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINITEMHEALTHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9554,6 +12261,15 @@ impl TypeObject for TelemetrySdkPinItemHealthEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9578,23 +12294,39 @@ pub struct TelemetrySdkPinPlayerOutResourceEvent {
 
 pub trait TelemetrySdkPinPlayerOutResourceEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn resource_type(&self) -> &String;
+    fn resource_type_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPlayerOutResourceEventTrait for TelemetrySdkPinPlayerOutResourceEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn resource_type(&self) -> &String {
         &self.resource_type
     }
+    fn resource_type_mut(&mut self) -> &mut String {
+        &mut self.resource_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -9602,11 +12334,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerOutResourceEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -9617,9 +12358,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerOutResourceEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerOutResourceEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYEROUTRESOURCEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9669,6 +12407,15 @@ impl TypeObject for TelemetrySdkPinPlayerOutResourceEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9697,39 +12444,71 @@ pub struct TelemetrySdkPinPlayerTeamSwitchEvent {
 
 pub trait TelemetrySdkPinPlayerTeamSwitchEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn prev_team_id(&self) -> &String;
+    fn prev_team_id_mut(&mut self) -> &mut String;
     fn prev_team_score(&self) -> &u32;
+    fn prev_team_score_mut(&mut self) -> &mut u32;
     fn team_id(&self) -> &String;
+    fn team_id_mut(&mut self) -> &mut String;
     fn team_score(&self) -> &u32;
+    fn team_score_mut(&mut self) -> &mut u32;
     fn reason(&self) -> &String;
+    fn reason_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPlayerTeamSwitchEventTrait for TelemetrySdkPinPlayerTeamSwitchEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn prev_team_id(&self) -> &String {
         &self.prev_team_id
     }
+    fn prev_team_id_mut(&mut self) -> &mut String {
+        &mut self.prev_team_id
+    }
     fn prev_team_score(&self) -> &u32 {
         &self.prev_team_score
+    }
+    fn prev_team_score_mut(&mut self) -> &mut u32 {
+        &mut self.prev_team_score
     }
     fn team_id(&self) -> &String {
         &self.team_id
     }
+    fn team_id_mut(&mut self) -> &mut String {
+        &mut self.team_id
+    }
     fn team_score(&self) -> &u32 {
         &self.team_score
+    }
+    fn team_score_mut(&mut self) -> &mut u32 {
+        &mut self.team_score
     }
     fn reason(&self) -> &String {
         &self.reason
     }
+    fn reason_mut(&mut self) -> &mut String {
+        &mut self.reason
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -9737,11 +12516,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerTeamSwitchEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -9752,9 +12540,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerTeamSwitchEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerTeamSwitchEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERTEAMSWITCHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9828,6 +12613,15 @@ impl TypeObject for TelemetrySdkPinPlayerTeamSwitchEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9860,55 +12654,103 @@ pub struct TelemetrySdkPinPlayerInteractEvent {
 
 pub trait TelemetrySdkPinPlayerInteractEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn item_id(&self) -> &String;
+    fn item_id_mut(&mut self) -> &mut String;
     fn item_category(&self) -> &String;
+    fn item_category_mut(&mut self) -> &mut String;
     fn item_type(&self) -> &String;
+    fn item_type_mut(&mut self) -> &mut String;
     fn item_loc(&self) -> &super::core::Vec3;
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn action(&self) -> &String;
+    fn action_mut(&mut self) -> &mut String;
     fn p_dir(&self) -> &super::core::Vec3;
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn p_state(&self) -> &String;
+    fn p_state_mut(&mut self) -> &mut String;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinPlayerInteractEventTrait for TelemetrySdkPinPlayerInteractEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn item_id(&self) -> &String {
         &self.item_id
     }
+    fn item_id_mut(&mut self) -> &mut String {
+        &mut self.item_id
+    }
     fn item_category(&self) -> &String {
         &self.item_category
+    }
+    fn item_category_mut(&mut self) -> &mut String {
+        &mut self.item_category
     }
     fn item_type(&self) -> &String {
         &self.item_type
     }
+    fn item_type_mut(&mut self) -> &mut String {
+        &mut self.item_type
+    }
     fn item_loc(&self) -> &super::core::Vec3 {
         &self.item_loc
+    }
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.item_loc
     }
     fn action(&self) -> &String {
         &self.action
     }
+    fn action_mut(&mut self) -> &mut String {
+        &mut self.action
+    }
     fn p_dir(&self) -> &super::core::Vec3 {
         &self.p_dir
+    }
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_dir
     }
     fn p_state(&self) -> &String {
         &self.p_state
     }
+    fn p_state_mut(&mut self) -> &mut String {
+        &mut self.p_state
+    }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
+    }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
     }
     fn p_class(&self) -> &String {
         &self.p_class
     }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -9916,11 +12758,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerInteractEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -9931,9 +12782,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerInteractEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerInteractEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERINTERACTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10031,6 +12879,15 @@ impl TypeObject for TelemetrySdkPinPlayerInteractEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10064,59 +12921,111 @@ pub struct TelemetrySdkPinPlayerAbilityAffectEvent {
 
 pub trait TelemetrySdkPinPlayerAbilityAffectEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn a_loc(&self) -> &super::core::Vec3;
+    fn a_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn a_type(&self) -> &String;
+    fn a_type_mut(&mut self) -> &mut String;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_state(&self) -> &String;
+    fn p_state_mut(&mut self) -> &mut String;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn p_team_id(&self) -> &String;
+    fn p_team_id_mut(&mut self) -> &mut String;
     fn v_state(&self) -> &String;
+    fn v_state_mut(&mut self) -> &mut String;
     fn v_loc(&self) -> &super::core::Vec3;
+    fn v_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn v_class(&self) -> &String;
+    fn v_class_mut(&mut self) -> &mut String;
     fn v_team_id(&self) -> &String;
+    fn v_team_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinPlayerAbilityAffectEventTrait for TelemetrySdkPinPlayerAbilityAffectEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn a_loc(&self) -> &super::core::Vec3 {
         &self.a_loc
     }
+    fn a_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.a_loc
+    }
     fn a_type(&self) -> &String {
         &self.a_type
+    }
+    fn a_type_mut(&mut self) -> &mut String {
+        &mut self.a_type
     }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
     }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
+    }
     fn p_state(&self) -> &String {
         &self.p_state
+    }
+    fn p_state_mut(&mut self) -> &mut String {
+        &mut self.p_state
     }
     fn p_class(&self) -> &String {
         &self.p_class
     }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
+    }
     fn p_team_id(&self) -> &String {
         &self.p_team_id
+    }
+    fn p_team_id_mut(&mut self) -> &mut String {
+        &mut self.p_team_id
     }
     fn v_state(&self) -> &String {
         &self.v_state
     }
+    fn v_state_mut(&mut self) -> &mut String {
+        &mut self.v_state
+    }
     fn v_loc(&self) -> &super::core::Vec3 {
         &self.v_loc
+    }
+    fn v_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.v_loc
     }
     fn v_class(&self) -> &String {
         &self.v_class
     }
+    fn v_class_mut(&mut self) -> &mut String {
+        &mut self.v_class
+    }
     fn v_team_id(&self) -> &String {
         &self.v_team_id
     }
+    fn v_team_id_mut(&mut self) -> &mut String {
+        &mut self.v_team_id
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -10124,11 +13033,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerAbilityAffectEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -10139,9 +13057,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerAbilityAffectEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerAbilityAffectEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERABILITYAFFECTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10245,6 +13160,15 @@ impl TypeObject for TelemetrySdkPinPlayerAbilityAffectEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10276,51 +13200,95 @@ pub struct TelemetrySdkPinPlayerAbilityEvent {
 
 pub trait TelemetrySdkPinPlayerAbilityEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn ability(&self) -> &String;
+    fn ability_mut(&mut self) -> &mut String;
     fn ability_dur(&self) -> &u32;
+    fn ability_dur_mut(&mut self) -> &mut u32;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_state(&self) -> &String;
+    fn p_state_mut(&mut self) -> &mut String;
     fn ability_data(&self) -> &RawJsonString;
+    fn ability_data_mut(&mut self) -> &mut RawJsonString;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn p_team_id(&self) -> &String;
+    fn p_team_id_mut(&mut self) -> &mut String;
     fn p_veh_id(&self) -> &String;
+    fn p_veh_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinPlayerAbilityEventTrait for TelemetrySdkPinPlayerAbilityEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn ability(&self) -> &String {
         &self.ability
     }
+    fn ability_mut(&mut self) -> &mut String {
+        &mut self.ability
+    }
     fn ability_dur(&self) -> &u32 {
         &self.ability_dur
+    }
+    fn ability_dur_mut(&mut self) -> &mut u32 {
+        &mut self.ability_dur
     }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
     }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
+    }
     fn p_state(&self) -> &String {
         &self.p_state
+    }
+    fn p_state_mut(&mut self) -> &mut String {
+        &mut self.p_state
     }
     fn ability_data(&self) -> &RawJsonString {
         &self.ability_data
     }
+    fn ability_data_mut(&mut self) -> &mut RawJsonString {
+        &mut self.ability_data
+    }
     fn p_class(&self) -> &String {
         &self.p_class
+    }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
     }
     fn p_team_id(&self) -> &String {
         &self.p_team_id
     }
+    fn p_team_id_mut(&mut self) -> &mut String {
+        &mut self.p_team_id
+    }
     fn p_veh_id(&self) -> &String {
         &self.p_veh_id
     }
+    fn p_veh_id_mut(&mut self) -> &mut String {
+        &mut self.p_veh_id
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -10328,11 +13296,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerAbilityEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -10343,9 +13320,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerAbilityEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerAbilityEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERABILITYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10437,6 +13411,15 @@ impl TypeObject for TelemetrySdkPinPlayerAbilityEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10472,67 +13455,127 @@ pub struct TelemetrySdkPinPlayerUseEvent {
 
 pub trait TelemetrySdkPinPlayerUseEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn item_id(&self) -> &String;
+    fn item_id_mut(&mut self) -> &mut String;
     fn item_category(&self) -> &String;
+    fn item_category_mut(&mut self) -> &mut String;
     fn item_type(&self) -> &String;
+    fn item_type_mut(&mut self) -> &mut String;
     fn item_name(&self) -> &String;
+    fn item_name_mut(&mut self) -> &mut String;
     fn item_dur(&self) -> &u32;
+    fn item_dur_mut(&mut self) -> &mut u32;
     fn item_loc(&self) -> &super::core::Vec3;
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_state(&self) -> &String;
+    fn p_state_mut(&mut self) -> &mut String;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn p_team_id(&self) -> &String;
+    fn p_team_id_mut(&mut self) -> &mut String;
     fn veh_id(&self) -> &String;
+    fn veh_id_mut(&mut self) -> &mut String;
     fn action(&self) -> &String;
+    fn action_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinPlayerUseEventTrait for TelemetrySdkPinPlayerUseEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn item_id(&self) -> &String {
         &self.item_id
     }
+    fn item_id_mut(&mut self) -> &mut String {
+        &mut self.item_id
+    }
     fn item_category(&self) -> &String {
         &self.item_category
+    }
+    fn item_category_mut(&mut self) -> &mut String {
+        &mut self.item_category
     }
     fn item_type(&self) -> &String {
         &self.item_type
     }
+    fn item_type_mut(&mut self) -> &mut String {
+        &mut self.item_type
+    }
     fn item_name(&self) -> &String {
         &self.item_name
+    }
+    fn item_name_mut(&mut self) -> &mut String {
+        &mut self.item_name
     }
     fn item_dur(&self) -> &u32 {
         &self.item_dur
     }
+    fn item_dur_mut(&mut self) -> &mut u32 {
+        &mut self.item_dur
+    }
     fn item_loc(&self) -> &super::core::Vec3 {
         &self.item_loc
+    }
+    fn item_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.item_loc
     }
     fn p_state(&self) -> &String {
         &self.p_state
     }
+    fn p_state_mut(&mut self) -> &mut String {
+        &mut self.p_state
+    }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
+    }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
     }
     fn p_class(&self) -> &String {
         &self.p_class
     }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
+    }
     fn p_team_id(&self) -> &String {
         &self.p_team_id
+    }
+    fn p_team_id_mut(&mut self) -> &mut String {
+        &mut self.p_team_id
     }
     fn veh_id(&self) -> &String {
         &self.veh_id
     }
+    fn veh_id_mut(&mut self) -> &mut String {
+        &mut self.veh_id
+    }
     fn action(&self) -> &String {
         &self.action
     }
+    fn action_mut(&mut self) -> &mut String {
+        &mut self.action
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -10540,11 +13583,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerUseEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -10555,9 +13607,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerUseEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerUseEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERUSEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10673,6 +13722,15 @@ impl TypeObject for TelemetrySdkPinPlayerUseEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10702,43 +13760,79 @@ pub struct TelemetrySdkPinPlayerKillAssistEvent {
 
 pub trait TelemetrySdkPinPlayerKillAssistEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn k_id(&self) -> &String;
+    fn k_id_mut(&mut self) -> &mut String;
     fn k_type(&self) -> &String;
+    fn k_type_mut(&mut self) -> &mut String;
     fn v_id(&self) -> &String;
+    fn v_id_mut(&mut self) -> &mut String;
     fn v_type(&self) -> &String;
+    fn v_type_mut(&mut self) -> &mut String;
     fn damage(&self) -> &u32;
+    fn damage_mut(&mut self) -> &mut u32;
     fn percent(&self) -> &u32;
+    fn percent_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPlayerKillAssistEventTrait for TelemetrySdkPinPlayerKillAssistEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn k_id(&self) -> &String {
         &self.k_id
     }
+    fn k_id_mut(&mut self) -> &mut String {
+        &mut self.k_id
+    }
     fn k_type(&self) -> &String {
         &self.k_type
+    }
+    fn k_type_mut(&mut self) -> &mut String {
+        &mut self.k_type
     }
     fn v_id(&self) -> &String {
         &self.v_id
     }
+    fn v_id_mut(&mut self) -> &mut String {
+        &mut self.v_id
+    }
     fn v_type(&self) -> &String {
         &self.v_type
+    }
+    fn v_type_mut(&mut self) -> &mut String {
+        &mut self.v_type
     }
     fn damage(&self) -> &u32 {
         &self.damage
     }
+    fn damage_mut(&mut self) -> &mut u32 {
+        &mut self.damage
+    }
     fn percent(&self) -> &u32 {
         &self.percent
     }
+    fn percent_mut(&mut self) -> &mut u32 {
+        &mut self.percent
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -10746,11 +13840,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerKillAssistEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -10761,9 +13864,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerKillAssistEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerKillAssistEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERKILLASSISTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10843,6 +13943,15 @@ impl TypeObject for TelemetrySdkPinPlayerKillAssistEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10875,55 +13984,103 @@ pub struct TelemetrySdkPinPlayerHealthEvent {
 
 pub trait TelemetrySdkPinPlayerHealthEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn source_id(&self) -> &String;
+    fn source_id_mut(&mut self) -> &mut String;
     fn source_type(&self) -> &String;
+    fn source_type_mut(&mut self) -> &mut String;
     fn source_loc(&self) -> &super::core::Vec3;
+    fn source_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn is_heal(&self) -> &bool;
+    fn is_heal_mut(&mut self) -> &mut bool;
     fn is_revived(&self) -> &bool;
+    fn is_revived_mut(&mut self) -> &mut bool;
     fn amount(&self) -> &i32;
+    fn amount_mut(&mut self) -> &mut i32;
     fn health(&self) -> &i32;
+    fn health_mut(&mut self) -> &mut i32;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn weapon(&self) -> &String;
+    fn weapon_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinPlayerHealthEventTrait for TelemetrySdkPinPlayerHealthEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn source_id(&self) -> &String {
         &self.source_id
     }
+    fn source_id_mut(&mut self) -> &mut String {
+        &mut self.source_id
+    }
     fn source_type(&self) -> &String {
         &self.source_type
+    }
+    fn source_type_mut(&mut self) -> &mut String {
+        &mut self.source_type
     }
     fn source_loc(&self) -> &super::core::Vec3 {
         &self.source_loc
     }
+    fn source_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_loc
+    }
     fn is_heal(&self) -> &bool {
         &self.is_heal
+    }
+    fn is_heal_mut(&mut self) -> &mut bool {
+        &mut self.is_heal
     }
     fn is_revived(&self) -> &bool {
         &self.is_revived
     }
+    fn is_revived_mut(&mut self) -> &mut bool {
+        &mut self.is_revived
+    }
     fn amount(&self) -> &i32 {
         &self.amount
+    }
+    fn amount_mut(&mut self) -> &mut i32 {
+        &mut self.amount
     }
     fn health(&self) -> &i32 {
         &self.health
     }
+    fn health_mut(&mut self) -> &mut i32 {
+        &mut self.health
+    }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
+    }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
     }
     fn weapon(&self) -> &String {
         &self.weapon
     }
+    fn weapon_mut(&mut self) -> &mut String {
+        &mut self.weapon
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -10931,11 +14088,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerHealthEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -10946,9 +14112,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerHealthEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerHealthEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERHEALTHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11046,6 +14209,15 @@ impl TypeObject for TelemetrySdkPinPlayerHealthEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11095,123 +14267,239 @@ pub struct TelemetrySdkPinPlayerDeathEvent {
 
 pub trait TelemetrySdkPinPlayerDeathEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn cause(&self) -> &String;
+    fn cause_mut(&mut self) -> &mut String;
     fn v_loc(&self) -> &super::core::Vec3;
+    fn v_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn v_dir(&self) -> &super::core::Vec3;
+    fn v_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn v_state(&self) -> &String;
+    fn v_state_mut(&mut self) -> &mut String;
     fn is_vads(&self) -> &bool;
+    fn is_vads_mut(&mut self) -> &mut bool;
     fn k_id(&self) -> &String;
+    fn k_id_mut(&mut self) -> &mut String;
     fn k_type(&self) -> &String;
+    fn k_type_mut(&mut self) -> &mut String;
     fn k_class(&self) -> &String;
+    fn k_class_mut(&mut self) -> &mut String;
     fn k_weap(&self) -> &String;
+    fn k_weap_mut(&mut self) -> &mut String;
     fn k_loc(&self) -> &super::core::Vec3;
+    fn k_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn k_dir(&self) -> &super::core::Vec3;
+    fn k_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn k_state(&self) -> &String;
+    fn k_state_mut(&mut self) -> &mut String;
     fn is_kads(&self) -> &bool;
+    fn is_kads_mut(&mut self) -> &mut bool;
     fn v_weap(&self) -> &String;
+    fn v_weap_mut(&mut self) -> &mut String;
     fn v_class(&self) -> &String;
+    fn v_class_mut(&mut self) -> &mut String;
     fn k_lifetime(&self) -> &u32;
+    fn k_lifetime_mut(&mut self) -> &mut u32;
     fn v_lifetime(&self) -> &u32;
+    fn v_lifetime_mut(&mut self) -> &mut u32;
     fn v_buff(&self) -> &Vec<String>;
+    fn v_buff_mut(&mut self) -> &mut Vec<String>;
     fn k_buff(&self) -> &Vec<String>;
+    fn k_buff_mut(&mut self) -> &mut Vec<String>;
     fn v_team_id(&self) -> &String;
+    fn v_team_id_mut(&mut self) -> &mut String;
     fn v_res_points(&self) -> &u32;
+    fn v_res_points_mut(&mut self) -> &mut u32;
     fn game_play_stats(&self) -> &RawJsonString;
+    fn game_play_stats_mut(&mut self) -> &mut RawJsonString;
     fn weapon_stats(&self) -> &RawJsonString;
+    fn weapon_stats_mut(&mut self) -> &mut RawJsonString;
     fn v_score_earned(&self) -> &u32;
+    fn v_score_earned_mut(&mut self) -> &mut u32;
     fn v_veh_id(&self) -> &String;
+    fn v_veh_id_mut(&mut self) -> &mut String;
     fn k_veh_id(&self) -> &String;
+    fn k_veh_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdkPinPlayerDeathEventTrait for TelemetrySdkPinPlayerDeathEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn cause(&self) -> &String {
         &self.cause
     }
+    fn cause_mut(&mut self) -> &mut String {
+        &mut self.cause
+    }
     fn v_loc(&self) -> &super::core::Vec3 {
         &self.v_loc
+    }
+    fn v_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.v_loc
     }
     fn v_dir(&self) -> &super::core::Vec3 {
         &self.v_dir
     }
+    fn v_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.v_dir
+    }
     fn v_state(&self) -> &String {
         &self.v_state
+    }
+    fn v_state_mut(&mut self) -> &mut String {
+        &mut self.v_state
     }
     fn is_vads(&self) -> &bool {
         &self.is_vads
     }
+    fn is_vads_mut(&mut self) -> &mut bool {
+        &mut self.is_vads
+    }
     fn k_id(&self) -> &String {
         &self.k_id
+    }
+    fn k_id_mut(&mut self) -> &mut String {
+        &mut self.k_id
     }
     fn k_type(&self) -> &String {
         &self.k_type
     }
+    fn k_type_mut(&mut self) -> &mut String {
+        &mut self.k_type
+    }
     fn k_class(&self) -> &String {
         &self.k_class
+    }
+    fn k_class_mut(&mut self) -> &mut String {
+        &mut self.k_class
     }
     fn k_weap(&self) -> &String {
         &self.k_weap
     }
+    fn k_weap_mut(&mut self) -> &mut String {
+        &mut self.k_weap
+    }
     fn k_loc(&self) -> &super::core::Vec3 {
         &self.k_loc
+    }
+    fn k_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.k_loc
     }
     fn k_dir(&self) -> &super::core::Vec3 {
         &self.k_dir
     }
+    fn k_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.k_dir
+    }
     fn k_state(&self) -> &String {
         &self.k_state
+    }
+    fn k_state_mut(&mut self) -> &mut String {
+        &mut self.k_state
     }
     fn is_kads(&self) -> &bool {
         &self.is_kads
     }
+    fn is_kads_mut(&mut self) -> &mut bool {
+        &mut self.is_kads
+    }
     fn v_weap(&self) -> &String {
         &self.v_weap
+    }
+    fn v_weap_mut(&mut self) -> &mut String {
+        &mut self.v_weap
     }
     fn v_class(&self) -> &String {
         &self.v_class
     }
+    fn v_class_mut(&mut self) -> &mut String {
+        &mut self.v_class
+    }
     fn k_lifetime(&self) -> &u32 {
         &self.k_lifetime
+    }
+    fn k_lifetime_mut(&mut self) -> &mut u32 {
+        &mut self.k_lifetime
     }
     fn v_lifetime(&self) -> &u32 {
         &self.v_lifetime
     }
+    fn v_lifetime_mut(&mut self) -> &mut u32 {
+        &mut self.v_lifetime
+    }
     fn v_buff(&self) -> &Vec<String> {
         &self.v_buff
+    }
+    fn v_buff_mut(&mut self) -> &mut Vec<String> {
+        &mut self.v_buff
     }
     fn k_buff(&self) -> &Vec<String> {
         &self.k_buff
     }
+    fn k_buff_mut(&mut self) -> &mut Vec<String> {
+        &mut self.k_buff
+    }
     fn v_team_id(&self) -> &String {
         &self.v_team_id
+    }
+    fn v_team_id_mut(&mut self) -> &mut String {
+        &mut self.v_team_id
     }
     fn v_res_points(&self) -> &u32 {
         &self.v_res_points
     }
+    fn v_res_points_mut(&mut self) -> &mut u32 {
+        &mut self.v_res_points
+    }
     fn game_play_stats(&self) -> &RawJsonString {
         &self.game_play_stats
+    }
+    fn game_play_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.game_play_stats
     }
     fn weapon_stats(&self) -> &RawJsonString {
         &self.weapon_stats
     }
+    fn weapon_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.weapon_stats
+    }
     fn v_score_earned(&self) -> &u32 {
         &self.v_score_earned
+    }
+    fn v_score_earned_mut(&mut self) -> &mut u32 {
+        &mut self.v_score_earned
     }
     fn v_veh_id(&self) -> &String {
         &self.v_veh_id
     }
+    fn v_veh_id_mut(&mut self) -> &mut String {
+        &mut self.v_veh_id
+    }
     fn k_veh_id(&self) -> &String {
         &self.k_veh_id
     }
+    fn k_veh_id_mut(&mut self) -> &mut String {
+        &mut self.k_veh_id
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -11219,11 +14507,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerDeathEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -11234,9 +14531,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerDeathEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerDeathEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERDEATHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11436,6 +14730,15 @@ impl TypeObject for TelemetrySdkPinPlayerDeathEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11464,39 +14767,71 @@ pub struct TelemetrySdkPinPlayerEquipEvent {
 
 pub trait TelemetrySdkPinPlayerEquipEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn loadout(&self) -> &RawJsonString;
+    fn loadout_mut(&mut self) -> &mut RawJsonString;
     fn prev_loadout(&self) -> &RawJsonString;
+    fn prev_loadout_mut(&mut self) -> &mut RawJsonString;
     fn pgid(&self) -> &String;
+    fn pgid_mut(&mut self) -> &mut String;
     fn object_id(&self) -> &String;
+    fn object_id_mut(&mut self) -> &mut String;
     fn object_type(&self) -> &String;
+    fn object_type_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPlayerEquipEventTrait for TelemetrySdkPinPlayerEquipEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn loadout(&self) -> &RawJsonString {
         &self.loadout
     }
+    fn loadout_mut(&mut self) -> &mut RawJsonString {
+        &mut self.loadout
+    }
     fn prev_loadout(&self) -> &RawJsonString {
         &self.prev_loadout
+    }
+    fn prev_loadout_mut(&mut self) -> &mut RawJsonString {
+        &mut self.prev_loadout
     }
     fn pgid(&self) -> &String {
         &self.pgid
     }
+    fn pgid_mut(&mut self) -> &mut String {
+        &mut self.pgid
+    }
     fn object_id(&self) -> &String {
         &self.object_id
+    }
+    fn object_id_mut(&mut self) -> &mut String {
+        &mut self.object_id
     }
     fn object_type(&self) -> &String {
         &self.object_type
     }
+    fn object_type_mut(&mut self) -> &mut String {
+        &mut self.object_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -11504,11 +14839,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerEquipEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -11519,9 +14863,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerEquipEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerEquipEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYEREQUIPEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11595,6 +14936,15 @@ impl TypeObject for TelemetrySdkPinPlayerEquipEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11621,31 +14971,55 @@ pub struct TelemetrySdkPinPlayerClassEvent {
 
 pub trait TelemetrySdkPinPlayerClassEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn sub_class(&self) -> &String;
+    fn sub_class_mut(&mut self) -> &mut String;
     fn prev_class(&self) -> &String;
+    fn prev_class_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPlayerClassEventTrait for TelemetrySdkPinPlayerClassEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn p_class(&self) -> &String {
         &self.p_class
     }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
+    }
     fn sub_class(&self) -> &String {
         &self.sub_class
+    }
+    fn sub_class_mut(&mut self) -> &mut String {
+        &mut self.sub_class
     }
     fn prev_class(&self) -> &String {
         &self.prev_class
     }
+    fn prev_class_mut(&mut self) -> &mut String {
+        &mut self.prev_class
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -11653,11 +15027,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerClassEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -11668,9 +15051,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerClassEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerClassEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERCLASSEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11732,6 +15112,15 @@ impl TypeObject for TelemetrySdkPinPlayerClassEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11762,47 +15151,87 @@ pub struct TelemetrySdkPinPlayerStateEvent {
 
 pub trait TelemetrySdkPinPlayerStateEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn p_state(&self) -> &String;
+    fn p_state_mut(&mut self) -> &mut String;
     fn prev_state(&self) -> &String;
+    fn prev_state_mut(&mut self) -> &mut String;
     fn prev_dur(&self) -> &u32;
+    fn prev_dur_mut(&mut self) -> &mut u32;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_dir(&self) -> &super::core::Vec3;
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn team_id(&self) -> &String;
+    fn team_id_mut(&mut self) -> &mut String;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinPlayerStateEventTrait for TelemetrySdkPinPlayerStateEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn p_state(&self) -> &String {
         &self.p_state
     }
+    fn p_state_mut(&mut self) -> &mut String {
+        &mut self.p_state
+    }
     fn prev_state(&self) -> &String {
         &self.prev_state
+    }
+    fn prev_state_mut(&mut self) -> &mut String {
+        &mut self.prev_state
     }
     fn prev_dur(&self) -> &u32 {
         &self.prev_dur
     }
+    fn prev_dur_mut(&mut self) -> &mut u32 {
+        &mut self.prev_dur
+    }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
+    }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
     }
     fn p_dir(&self) -> &super::core::Vec3 {
         &self.p_dir
     }
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_dir
+    }
     fn team_id(&self) -> &String {
         &self.team_id
+    }
+    fn team_id_mut(&mut self) -> &mut String {
+        &mut self.team_id
     }
     fn p_class(&self) -> &String {
         &self.p_class
     }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -11810,11 +15239,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerStateEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -11825,9 +15263,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerStateEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerStateEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERSTATEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11913,6 +15348,15 @@ impl TypeObject for TelemetrySdkPinPlayerStateEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11942,43 +15386,79 @@ pub struct TelemetrySdkPinNpcSpawnEvent {
 
 pub trait TelemetrySdkPinNpcSpawnEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn npc_id(&self) -> &String;
+    fn npc_id_mut(&mut self) -> &mut String;
     fn npc_loc(&self) -> &super::core::Vec3;
+    fn npc_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn npc_class(&self) -> &String;
+    fn npc_class_mut(&mut self) -> &mut String;
     fn npc_dir(&self) -> &super::core::Vec3;
+    fn npc_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn npc_veh_id(&self) -> &String;
+    fn npc_veh_id_mut(&mut self) -> &mut String;
     fn npc_team_id(&self) -> &String;
+    fn npc_team_id_mut(&mut self) -> &mut String;
     fn npc_loadout(&self) -> &RawJsonString;
+    fn npc_loadout_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinNpcSpawnEventTrait for TelemetrySdkPinNpcSpawnEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn npc_id(&self) -> &String {
         &self.npc_id
+    }
+    fn npc_id_mut(&mut self) -> &mut String {
+        &mut self.npc_id
     }
     fn npc_loc(&self) -> &super::core::Vec3 {
         &self.npc_loc
     }
+    fn npc_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.npc_loc
+    }
     fn npc_class(&self) -> &String {
         &self.npc_class
+    }
+    fn npc_class_mut(&mut self) -> &mut String {
+        &mut self.npc_class
     }
     fn npc_dir(&self) -> &super::core::Vec3 {
         &self.npc_dir
     }
+    fn npc_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.npc_dir
+    }
     fn npc_veh_id(&self) -> &String {
         &self.npc_veh_id
+    }
+    fn npc_veh_id_mut(&mut self) -> &mut String {
+        &mut self.npc_veh_id
     }
     fn npc_team_id(&self) -> &String {
         &self.npc_team_id
     }
+    fn npc_team_id_mut(&mut self) -> &mut String {
+        &mut self.npc_team_id
+    }
     fn npc_loadout(&self) -> &RawJsonString {
         &self.npc_loadout
     }
+    fn npc_loadout_mut(&mut self) -> &mut RawJsonString {
+        &mut self.npc_loadout
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -11986,11 +15466,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinNpcSpawnEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -12001,9 +15490,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinNpcSpawnEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinNpcSpawnEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINNPCSPAWNEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12083,6 +15569,15 @@ impl TypeObject for TelemetrySdkPinNpcSpawnEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12118,67 +15613,127 @@ pub struct TelemetrySdkPinPlayerSpawnEvent {
 
 pub trait TelemetrySdkPinPlayerSpawnEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_dir(&self) -> &super::core::Vec3;
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn veh_id(&self) -> &String;
+    fn veh_id_mut(&mut self) -> &mut String;
     fn veh_type(&self) -> &String;
+    fn veh_type_mut(&mut self) -> &mut String;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn team_id(&self) -> &String;
+    fn team_id_mut(&mut self) -> &mut String;
     fn resources(&self) -> &RawJsonString;
+    fn resources_mut(&mut self) -> &mut RawJsonString;
     fn resources_spent(&self) -> &RawJsonString;
+    fn resources_spent_mut(&mut self) -> &mut RawJsonString;
     fn resource_items(&self) -> &RawJsonString;
+    fn resource_items_mut(&mut self) -> &mut RawJsonString;
     fn loadout(&self) -> &RawJsonString;
+    fn loadout_mut(&mut self) -> &mut RawJsonString;
     fn reason(&self) -> &String;
+    fn reason_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinPlayerSpawnEventTrait for TelemetrySdkPinPlayerSpawnEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn gdur(&self) -> &u32 {
         &self.gdur
+    }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
     }
     fn rdur(&self) -> &u32 {
         &self.rdur
     }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
+    }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
+    }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
     }
     fn p_dir(&self) -> &super::core::Vec3 {
         &self.p_dir
     }
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_dir
+    }
     fn veh_id(&self) -> &String {
         &self.veh_id
+    }
+    fn veh_id_mut(&mut self) -> &mut String {
+        &mut self.veh_id
     }
     fn veh_type(&self) -> &String {
         &self.veh_type
     }
+    fn veh_type_mut(&mut self) -> &mut String {
+        &mut self.veh_type
+    }
     fn p_class(&self) -> &String {
         &self.p_class
+    }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
     }
     fn team_id(&self) -> &String {
         &self.team_id
     }
+    fn team_id_mut(&mut self) -> &mut String {
+        &mut self.team_id
+    }
     fn resources(&self) -> &RawJsonString {
         &self.resources
+    }
+    fn resources_mut(&mut self) -> &mut RawJsonString {
+        &mut self.resources
     }
     fn resources_spent(&self) -> &RawJsonString {
         &self.resources_spent
     }
+    fn resources_spent_mut(&mut self) -> &mut RawJsonString {
+        &mut self.resources_spent
+    }
     fn resource_items(&self) -> &RawJsonString {
         &self.resource_items
+    }
+    fn resource_items_mut(&mut self) -> &mut RawJsonString {
+        &mut self.resource_items
     }
     fn loadout(&self) -> &RawJsonString {
         &self.loadout
     }
+    fn loadout_mut(&mut self) -> &mut RawJsonString {
+        &mut self.loadout
+    }
     fn reason(&self) -> &String {
         &self.reason
     }
+    fn reason_mut(&mut self) -> &mut String {
+        &mut self.reason
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -12186,11 +15741,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerSpawnEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -12201,9 +15765,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerSpawnEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerSpawnEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERSPAWNEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12319,6 +15880,15 @@ impl TypeObject for TelemetrySdkPinPlayerSpawnEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12357,79 +15927,151 @@ pub struct TelemetrySdkPinPlayerTickEvent {
 
 pub trait TelemetrySdkPinPlayerTickEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_char(&self) -> &String;
+    fn p_char_mut(&mut self) -> &mut String;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn p_dir(&self) -> &super::core::Vec3;
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn cam_dir(&self) -> &super::core::Vec3;
+    fn cam_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn p_state(&self) -> &String;
+    fn p_state_mut(&mut self) -> &mut String;
     fn veh_id(&self) -> &String;
+    fn veh_id_mut(&mut self) -> &mut String;
     fn veh_type(&self) -> &String;
+    fn veh_type_mut(&mut self) -> &mut String;
     fn veh_state(&self) -> &String;
+    fn veh_state_mut(&mut self) -> &mut String;
     fn item_id(&self) -> &String;
+    fn item_id_mut(&mut self) -> &mut String;
     fn item_category(&self) -> &String;
+    fn item_category_mut(&mut self) -> &mut String;
     fn item_type(&self) -> &String;
+    fn item_type_mut(&mut self) -> &mut String;
     fn item_name(&self) -> &String;
+    fn item_name_mut(&mut self) -> &mut String;
     fn is_ads(&self) -> &bool;
+    fn is_ads_mut(&mut self) -> &mut bool;
     fn p_team_id(&self) -> &String;
+    fn p_team_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdkPinPlayerTickEventTrait for TelemetrySdkPinPlayerTickEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
     }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
+    }
     fn p_char(&self) -> &String {
         &self.p_char
+    }
+    fn p_char_mut(&mut self) -> &mut String {
+        &mut self.p_char
     }
     fn p_class(&self) -> &String {
         &self.p_class
     }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
+    }
     fn p_dir(&self) -> &super::core::Vec3 {
         &self.p_dir
+    }
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_dir
     }
     fn cam_dir(&self) -> &super::core::Vec3 {
         &self.cam_dir
     }
+    fn cam_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.cam_dir
+    }
     fn p_state(&self) -> &String {
         &self.p_state
+    }
+    fn p_state_mut(&mut self) -> &mut String {
+        &mut self.p_state
     }
     fn veh_id(&self) -> &String {
         &self.veh_id
     }
+    fn veh_id_mut(&mut self) -> &mut String {
+        &mut self.veh_id
+    }
     fn veh_type(&self) -> &String {
         &self.veh_type
+    }
+    fn veh_type_mut(&mut self) -> &mut String {
+        &mut self.veh_type
     }
     fn veh_state(&self) -> &String {
         &self.veh_state
     }
+    fn veh_state_mut(&mut self) -> &mut String {
+        &mut self.veh_state
+    }
     fn item_id(&self) -> &String {
         &self.item_id
+    }
+    fn item_id_mut(&mut self) -> &mut String {
+        &mut self.item_id
     }
     fn item_category(&self) -> &String {
         &self.item_category
     }
+    fn item_category_mut(&mut self) -> &mut String {
+        &mut self.item_category
+    }
     fn item_type(&self) -> &String {
         &self.item_type
+    }
+    fn item_type_mut(&mut self) -> &mut String {
+        &mut self.item_type
     }
     fn item_name(&self) -> &String {
         &self.item_name
     }
+    fn item_name_mut(&mut self) -> &mut String {
+        &mut self.item_name
+    }
     fn is_ads(&self) -> &bool {
         &self.is_ads
+    }
+    fn is_ads_mut(&mut self) -> &mut bool {
+        &mut self.is_ads
     }
     fn p_team_id(&self) -> &String {
         &self.p_team_id
     }
+    fn p_team_id_mut(&mut self) -> &mut String {
+        &mut self.p_team_id
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -12437,11 +16079,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerTickEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -12452,9 +16103,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerTickEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerTickEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERTICKEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12588,6 +16236,15 @@ impl TypeObject for TelemetrySdkPinPlayerTickEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12623,67 +16280,127 @@ pub struct TelemetrySdkPinTransctionEvent {
 
 pub trait TelemetrySdkPinTransctionEventTrait: TelemetrySDKPinEventTrait {
     fn code(&self) -> &String;
+    fn code_mut(&mut self) -> &mut String;
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn source(&self) -> &String;
+    fn source_mut(&mut self) -> &mut String;
     fn revenue_model(&self) -> &String;
+    fn revenue_model_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn party1id(&self) -> &RawJsonString;
+    fn party1id_mut(&mut self) -> &mut RawJsonString;
     fn party2id(&self) -> &RawJsonString;
+    fn party2id_mut(&mut self) -> &mut RawJsonString;
     fn asset_out(&self) -> &RawJsonString;
+    fn asset_out_mut(&mut self) -> &mut RawJsonString;
     fn asset_in(&self) -> &RawJsonString;
+    fn asset_in_mut(&mut self) -> &mut RawJsonString;
     fn bal1(&self) -> &RawJsonString;
+    fn bal1_mut(&mut self) -> &mut RawJsonString;
     fn bal2(&self) -> &RawJsonString;
+    fn bal2_mut(&mut self) -> &mut RawJsonString;
     fn _meta(&self) -> &RawJsonString;
+    fn _meta_mut(&mut self) -> &mut RawJsonString;
     fn txid(&self) -> &String;
+    fn txid_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinTransctionEventTrait for TelemetrySdkPinTransctionEvent {
     fn code(&self) -> &String {
         &self.code
     }
+    fn code_mut(&mut self) -> &mut String {
+        &mut self.code
+    }
     fn r#type(&self) -> &String {
         &self.r#type
+    }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
     }
     fn source(&self) -> &String {
         &self.source
     }
+    fn source_mut(&mut self) -> &mut String {
+        &mut self.source
+    }
     fn revenue_model(&self) -> &String {
         &self.revenue_model
+    }
+    fn revenue_model_mut(&mut self) -> &mut String {
+        &mut self.revenue_model
     }
     fn status(&self) -> &String {
         &self.status
     }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
+    }
     fn status_code(&self) -> &String {
         &self.status_code
+    }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
     }
     fn party1id(&self) -> &RawJsonString {
         &self.party1id
     }
+    fn party1id_mut(&mut self) -> &mut RawJsonString {
+        &mut self.party1id
+    }
     fn party2id(&self) -> &RawJsonString {
         &self.party2id
+    }
+    fn party2id_mut(&mut self) -> &mut RawJsonString {
+        &mut self.party2id
     }
     fn asset_out(&self) -> &RawJsonString {
         &self.asset_out
     }
+    fn asset_out_mut(&mut self) -> &mut RawJsonString {
+        &mut self.asset_out
+    }
     fn asset_in(&self) -> &RawJsonString {
         &self.asset_in
+    }
+    fn asset_in_mut(&mut self) -> &mut RawJsonString {
+        &mut self.asset_in
     }
     fn bal1(&self) -> &RawJsonString {
         &self.bal1
     }
+    fn bal1_mut(&mut self) -> &mut RawJsonString {
+        &mut self.bal1
+    }
     fn bal2(&self) -> &RawJsonString {
         &self.bal2
+    }
+    fn bal2_mut(&mut self) -> &mut RawJsonString {
+        &mut self.bal2
     }
     fn _meta(&self) -> &RawJsonString {
         &self._meta
     }
+    fn _meta_mut(&mut self) -> &mut RawJsonString {
+        &mut self._meta
+    }
     fn txid(&self) -> &String {
         &self.txid
     }
+    fn txid_mut(&mut self) -> &mut String {
+        &mut self.txid
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -12691,11 +16408,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinTransctionEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -12706,9 +16432,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinTransctionEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinTransctionEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINTRANSCTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12824,6 +16547,15 @@ impl TypeObject for TelemetrySdkPinTransctionEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12847,19 +16579,31 @@ pub struct TelemetrySdkPinInventoryEvent {
 
 pub trait TelemetrySdkPinInventoryEventTrait: TelemetrySDKPinEventTrait {
     fn playerid(&self) -> &RawJsonString;
+    fn playerid_mut(&mut self) -> &mut RawJsonString;
     fn assets(&self) -> &RawJsonString;
+    fn assets_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinInventoryEventTrait for TelemetrySdkPinInventoryEvent {
     fn playerid(&self) -> &RawJsonString {
         &self.playerid
     }
+    fn playerid_mut(&mut self) -> &mut RawJsonString {
+        &mut self.playerid
+    }
     fn assets(&self) -> &RawJsonString {
         &self.assets
     }
+    fn assets_mut(&mut self) -> &mut RawJsonString {
+        &mut self.assets
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -12867,11 +16611,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinInventoryEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -12882,9 +16635,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinInventoryEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinInventoryEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPININVENTORYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12928,6 +16678,15 @@ impl TypeObject for TelemetrySdkPinInventoryEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12958,47 +16717,87 @@ pub struct TelemetrySdkPinSurveyEvent {
 
 pub trait TelemetrySdkPinSurveyEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn survey_id(&self) -> &String;
+    fn survey_id_mut(&mut self) -> &mut String;
     fn wave_no(&self) -> &i32;
+    fn wave_no_mut(&mut self) -> &mut i32;
     fn lang(&self) -> &String;
+    fn lang_mut(&mut self) -> &mut String;
     fn complete_flag(&self) -> &String;
+    fn complete_flag_mut(&mut self) -> &mut String;
     fn qtime(&self) -> &i64;
+    fn qtime_mut(&mut self) -> &mut i64;
     fn j_s_o_n(&self) -> &RawJsonString;
+    fn j_s_o_n_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinSurveyEventTrait for TelemetrySdkPinSurveyEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn survey_id(&self) -> &String {
         &self.survey_id
+    }
+    fn survey_id_mut(&mut self) -> &mut String {
+        &mut self.survey_id
     }
     fn wave_no(&self) -> &i32 {
         &self.wave_no
     }
+    fn wave_no_mut(&mut self) -> &mut i32 {
+        &mut self.wave_no
+    }
     fn lang(&self) -> &String {
         &self.lang
+    }
+    fn lang_mut(&mut self) -> &mut String {
+        &mut self.lang
     }
     fn complete_flag(&self) -> &String {
         &self.complete_flag
     }
+    fn complete_flag_mut(&mut self) -> &mut String {
+        &mut self.complete_flag
+    }
     fn qtime(&self) -> &i64 {
         &self.qtime
+    }
+    fn qtime_mut(&mut self) -> &mut i64 {
+        &mut self.qtime
     }
     fn j_s_o_n(&self) -> &RawJsonString {
         &self.j_s_o_n
     }
+    fn j_s_o_n_mut(&mut self) -> &mut RawJsonString {
+        &mut self.j_s_o_n
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13006,11 +16805,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinSurveyEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -13021,9 +16829,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinSurveyEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinSurveyEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINSURVEYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13109,6 +16914,15 @@ impl TypeObject for TelemetrySdkPinSurveyEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13132,19 +16946,31 @@ pub struct TelemetrySdkPinHeartBeatEvent {
 
 pub trait TelemetrySdkPinHeartBeatEventTrait: TelemetrySDKPinEventTrait {
     fn sdur(&self) -> &u32;
+    fn sdur_mut(&mut self) -> &mut u32;
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinHeartBeatEventTrait for TelemetrySdkPinHeartBeatEvent {
     fn sdur(&self) -> &u32 {
         &self.sdur
     }
+    fn sdur_mut(&mut self) -> &mut u32 {
+        &mut self.sdur
+    }
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13152,11 +16978,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinHeartBeatEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -13167,9 +17002,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinHeartBeatEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinHeartBeatEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINHEARTBEATEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13213,6 +17045,15 @@ impl TypeObject for TelemetrySdkPinHeartBeatEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13240,35 +17081,63 @@ pub struct TelemetrySdkPinModeExitEvent {
 
 pub trait TelemetrySdkPinModeExitEventTrait: TelemetrySDKPinEventTrait {
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn leave_reason(&self) -> &String;
+    fn leave_reason_mut(&mut self) -> &mut String;
     fn mdur(&self) -> &i64;
+    fn mdur_mut(&mut self) -> &mut i64;
     fn cdur(&self) -> &i64;
+    fn cdur_mut(&mut self) -> &mut i64;
     fn sdur(&self) -> &i64;
+    fn sdur_mut(&mut self) -> &mut i64;
     fn gdur(&self) -> &i64;
+    fn gdur_mut(&mut self) -> &mut i64;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinModeExitEventTrait for TelemetrySdkPinModeExitEvent {
     fn instance_id(&self) -> &String {
         &self.instance_id
     }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
+    }
     fn leave_reason(&self) -> &String {
         &self.leave_reason
+    }
+    fn leave_reason_mut(&mut self) -> &mut String {
+        &mut self.leave_reason
     }
     fn mdur(&self) -> &i64 {
         &self.mdur
     }
+    fn mdur_mut(&mut self) -> &mut i64 {
+        &mut self.mdur
+    }
     fn cdur(&self) -> &i64 {
         &self.cdur
+    }
+    fn cdur_mut(&mut self) -> &mut i64 {
+        &mut self.cdur
     }
     fn sdur(&self) -> &i64 {
         &self.sdur
     }
+    fn sdur_mut(&mut self) -> &mut i64 {
+        &mut self.sdur
+    }
     fn gdur(&self) -> &i64 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut i64 {
+        &mut self.gdur
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13276,11 +17145,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinModeExitEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -13291,9 +17169,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinModeExitEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinModeExitEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINMODEEXITEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13361,6 +17236,15 @@ impl TypeObject for TelemetrySdkPinModeExitEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13386,27 +17270,47 @@ pub struct TelemetrySdkPinModeEnterEvent {
 
 pub trait TelemetrySdkPinModeEnterEventTrait: TelemetrySDKPinEventTrait {
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn is_first(&self) -> &bool;
+    fn is_first_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinModeEnterEventTrait for TelemetrySdkPinModeEnterEvent {
     fn instance_id(&self) -> &String {
         &self.instance_id
     }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn is_first(&self) -> &bool {
         &self.is_first
     }
+    fn is_first_mut(&mut self) -> &mut bool {
+        &mut self.is_first
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13414,11 +17318,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinModeEnterEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -13429,9 +17342,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinModeEnterEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinModeEnterEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINMODEENTEREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13487,6 +17397,15 @@ impl TypeObject for TelemetrySdkPinModeEnterEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13516,43 +17435,79 @@ pub struct TelemetrySdkPinPlaySessionEndEvent {
 
 pub trait TelemetrySdkPinPlaySessionEndEventTrait: TelemetrySDKPinEventTrait {
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn sdur(&self) -> &i64;
+    fn sdur_mut(&mut self) -> &mut i64;
     fn gdur(&self) -> &i64;
+    fn gdur_mut(&mut self) -> &mut i64;
     fn diff(&self) -> &String;
+    fn diff_mut(&mut self) -> &mut String;
     fn goid(&self) -> &String;
+    fn goid_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn end_reason(&self) -> &String;
+    fn end_reason_mut(&mut self) -> &mut String;
     fn player_stats(&self) -> &RawJsonString;
+    fn player_stats_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPlaySessionEndEventTrait for TelemetrySdkPinPlaySessionEndEvent {
     fn instance_id(&self) -> &String {
         &self.instance_id
     }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
+    }
     fn sdur(&self) -> &i64 {
         &self.sdur
+    }
+    fn sdur_mut(&mut self) -> &mut i64 {
+        &mut self.sdur
     }
     fn gdur(&self) -> &i64 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut i64 {
+        &mut self.gdur
+    }
     fn diff(&self) -> &String {
         &self.diff
+    }
+    fn diff_mut(&mut self) -> &mut String {
+        &mut self.diff
     }
     fn goid(&self) -> &String {
         &self.goid
     }
+    fn goid_mut(&mut self) -> &mut String {
+        &mut self.goid
+    }
     fn status_code(&self) -> &String {
         &self.status_code
+    }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
     }
     fn end_reason(&self) -> &String {
         &self.end_reason
     }
+    fn end_reason_mut(&mut self) -> &mut String {
+        &mut self.end_reason
+    }
     fn player_stats(&self) -> &RawJsonString {
         &self.player_stats
     }
+    fn player_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.player_stats
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13560,11 +17515,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlaySessionEndEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -13575,9 +17539,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlaySessionEndEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlaySessionEndEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYSESSIONENDEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13657,6 +17618,15 @@ impl TypeObject for TelemetrySdkPinPlaySessionEndEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13683,31 +17653,55 @@ pub struct TelemetrySdkPinPlaySessionStartEvent {
 
 pub trait TelemetrySdkPinPlaySessionStartEventTrait: TelemetrySDKPinEventTrait {
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn diff(&self) -> &String;
+    fn diff_mut(&mut self) -> &mut String;
     fn goid(&self) -> &String;
+    fn goid_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPlaySessionStartEventTrait for TelemetrySdkPinPlaySessionStartEvent {
     fn instance_id(&self) -> &String {
         &self.instance_id
     }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
+    }
     fn diff(&self) -> &String {
         &self.diff
+    }
+    fn diff_mut(&mut self) -> &mut String {
+        &mut self.diff
     }
     fn goid(&self) -> &String {
         &self.goid
     }
+    fn goid_mut(&mut self) -> &mut String {
+        &mut self.goid
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13715,11 +17709,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlaySessionStartEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -13730,9 +17733,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlaySessionStartEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlaySessionStartEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYSESSIONSTARTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13794,6 +17794,15 @@ impl TypeObject for TelemetrySdkPinPlaySessionStartEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13829,67 +17838,127 @@ pub struct TelemetrySdkPinRoundEndEvent {
 
 pub trait TelemetrySdkPinRoundEndEventTrait: TelemetrySDKPinEventTrait {
     fn round(&self) -> &u32;
+    fn round_mut(&mut self) -> &mut u32;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn gdur(&self) -> &i64;
+    fn gdur_mut(&mut self) -> &mut i64;
     fn rdur(&self) -> &i64;
+    fn rdur_mut(&mut self) -> &mut i64;
     fn diff(&self) -> &String;
+    fn diff_mut(&mut self) -> &mut String;
     fn mid(&self) -> &String;
+    fn mid_mut(&mut self) -> &mut String;
     fn goid(&self) -> &String;
+    fn goid_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn end_reason(&self) -> &String;
+    fn end_reason_mut(&mut self) -> &mut String;
     fn player_cnt(&self) -> &u32;
+    fn player_cnt_mut(&mut self) -> &mut u32;
     fn max_players(&self) -> &u32;
+    fn max_players_mut(&mut self) -> &mut u32;
     fn num_teams(&self) -> &u32;
+    fn num_teams_mut(&mut self) -> &mut u32;
     fn teams_stats(&self) -> &RawJsonString;
+    fn teams_stats_mut(&mut self) -> &mut RawJsonString;
     fn player_stats(&self) -> &RawJsonString;
+    fn player_stats_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinRoundEndEventTrait for TelemetrySdkPinRoundEndEvent {
     fn round(&self) -> &u32 {
         &self.round
     }
+    fn round_mut(&mut self) -> &mut u32 {
+        &mut self.round
+    }
     fn instance_id(&self) -> &String {
         &self.instance_id
+    }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
     }
     fn gdur(&self) -> &i64 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut i64 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &i64 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut i64 {
+        &mut self.rdur
     }
     fn diff(&self) -> &String {
         &self.diff
     }
+    fn diff_mut(&mut self) -> &mut String {
+        &mut self.diff
+    }
     fn mid(&self) -> &String {
         &self.mid
+    }
+    fn mid_mut(&mut self) -> &mut String {
+        &mut self.mid
     }
     fn goid(&self) -> &String {
         &self.goid
     }
+    fn goid_mut(&mut self) -> &mut String {
+        &mut self.goid
+    }
     fn status_code(&self) -> &String {
         &self.status_code
+    }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
     }
     fn end_reason(&self) -> &String {
         &self.end_reason
     }
+    fn end_reason_mut(&mut self) -> &mut String {
+        &mut self.end_reason
+    }
     fn player_cnt(&self) -> &u32 {
         &self.player_cnt
+    }
+    fn player_cnt_mut(&mut self) -> &mut u32 {
+        &mut self.player_cnt
     }
     fn max_players(&self) -> &u32 {
         &self.max_players
     }
+    fn max_players_mut(&mut self) -> &mut u32 {
+        &mut self.max_players
+    }
     fn num_teams(&self) -> &u32 {
         &self.num_teams
+    }
+    fn num_teams_mut(&mut self) -> &mut u32 {
+        &mut self.num_teams
     }
     fn teams_stats(&self) -> &RawJsonString {
         &self.teams_stats
     }
+    fn teams_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.teams_stats
+    }
     fn player_stats(&self) -> &RawJsonString {
         &self.player_stats
     }
+    fn player_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.player_stats
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -13897,11 +17966,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinRoundEndEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -13912,9 +17990,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinRoundEndEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinRoundEndEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINROUNDENDEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14030,6 +18105,15 @@ impl TypeObject for TelemetrySdkPinRoundEndEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14062,55 +18146,103 @@ pub struct TelemetrySdkPinRoundStartEvent {
 
 pub trait TelemetrySdkPinRoundStartEventTrait: TelemetrySDKPinEventTrait {
     fn round(&self) -> &u32;
+    fn round_mut(&mut self) -> &mut u32;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn diff(&self) -> &String;
+    fn diff_mut(&mut self) -> &mut String;
     fn mid(&self) -> &String;
+    fn mid_mut(&mut self) -> &mut String;
     fn goid(&self) -> &String;
+    fn goid_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn player_cnt(&self) -> &u32;
+    fn player_cnt_mut(&mut self) -> &mut u32;
     fn max_players(&self) -> &u32;
+    fn max_players_mut(&mut self) -> &mut u32;
     fn num_teams(&self) -> &u32;
+    fn num_teams_mut(&mut self) -> &mut u32;
     fn team_id(&self) -> &String;
+    fn team_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinRoundStartEventTrait for TelemetrySdkPinRoundStartEvent {
     fn round(&self) -> &u32 {
         &self.round
     }
+    fn round_mut(&mut self) -> &mut u32 {
+        &mut self.round
+    }
     fn instance_id(&self) -> &String {
         &self.instance_id
+    }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
     }
     fn diff(&self) -> &String {
         &self.diff
     }
+    fn diff_mut(&mut self) -> &mut String {
+        &mut self.diff
+    }
     fn mid(&self) -> &String {
         &self.mid
+    }
+    fn mid_mut(&mut self) -> &mut String {
+        &mut self.mid
     }
     fn goid(&self) -> &String {
         &self.goid
     }
+    fn goid_mut(&mut self) -> &mut String {
+        &mut self.goid
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn player_cnt(&self) -> &u32 {
         &self.player_cnt
+    }
+    fn player_cnt_mut(&mut self) -> &mut u32 {
+        &mut self.player_cnt
     }
     fn max_players(&self) -> &u32 {
         &self.max_players
     }
+    fn max_players_mut(&mut self) -> &mut u32 {
+        &mut self.max_players
+    }
     fn num_teams(&self) -> &u32 {
         &self.num_teams
+    }
+    fn num_teams_mut(&mut self) -> &mut u32 {
+        &mut self.num_teams
     }
     fn team_id(&self) -> &String {
         &self.team_id
     }
+    fn team_id_mut(&mut self) -> &mut String {
+        &mut self.team_id
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -14118,11 +18250,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinRoundStartEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -14133,9 +18274,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinRoundStartEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinRoundStartEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINROUNDSTARTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14233,6 +18371,15 @@ impl TypeObject for TelemetrySdkPinRoundStartEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14274,91 +18421,175 @@ pub struct TelemetrySdkPinGameEndEvent {
 
 pub trait TelemetrySdkPinGameEndEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn mode(&self) -> &String;
+    fn mode_mut(&mut self) -> &mut String;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn mid(&self) -> &String;
+    fn mid_mut(&mut self) -> &mut String;
     fn goid(&self) -> &String;
+    fn goid_mut(&mut self) -> &mut String;
     fn end_reason(&self) -> &String;
+    fn end_reason_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn sdur(&self) -> &i64;
+    fn sdur_mut(&mut self) -> &mut i64;
     fn gdur(&self) -> &i64;
+    fn gdur_mut(&mut self) -> &mut i64;
     fn cdur(&self) -> &i64;
+    fn cdur_mut(&mut self) -> &mut i64;
     fn player_stats(&self) -> &RawJsonString;
+    fn player_stats_mut(&mut self) -> &mut RawJsonString;
     fn teams_stats(&self) -> &RawJsonString;
+    fn teams_stats_mut(&mut self) -> &mut RawJsonString;
     fn constraint_status(&self) -> &RawJsonString;
+    fn constraint_status_mut(&mut self) -> &mut RawJsonString;
     fn mission_status(&self) -> &RawJsonString;
+    fn mission_status_mut(&mut self) -> &mut RawJsonString;
     fn items_initialized(&self) -> &RawJsonString;
+    fn items_initialized_mut(&mut self) -> &mut RawJsonString;
     fn achievement(&self) -> &RawJsonString;
+    fn achievement_mut(&mut self) -> &mut RawJsonString;
     fn asset_gained(&self) -> &RawJsonString;
+    fn asset_gained_mut(&mut self) -> &mut RawJsonString;
     fn asset_used(&self) -> &RawJsonString;
+    fn asset_used_mut(&mut self) -> &mut RawJsonString;
     fn asset_balance(&self) -> &RawJsonString;
+    fn asset_balance_mut(&mut self) -> &mut RawJsonString;
     fn weapon_stats(&self) -> &RawJsonString;
+    fn weapon_stats_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdkPinGameEndEventTrait for TelemetrySdkPinGameEndEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn mode(&self) -> &String {
         &self.mode
+    }
+    fn mode_mut(&mut self) -> &mut String {
+        &mut self.mode
     }
     fn instance_id(&self) -> &String {
         &self.instance_id
     }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
+    }
     fn mid(&self) -> &String {
         &self.mid
+    }
+    fn mid_mut(&mut self) -> &mut String {
+        &mut self.mid
     }
     fn goid(&self) -> &String {
         &self.goid
     }
+    fn goid_mut(&mut self) -> &mut String {
+        &mut self.goid
+    }
     fn end_reason(&self) -> &String {
         &self.end_reason
+    }
+    fn end_reason_mut(&mut self) -> &mut String {
+        &mut self.end_reason
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn sdur(&self) -> &i64 {
         &self.sdur
+    }
+    fn sdur_mut(&mut self) -> &mut i64 {
+        &mut self.sdur
     }
     fn gdur(&self) -> &i64 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut i64 {
+        &mut self.gdur
+    }
     fn cdur(&self) -> &i64 {
         &self.cdur
+    }
+    fn cdur_mut(&mut self) -> &mut i64 {
+        &mut self.cdur
     }
     fn player_stats(&self) -> &RawJsonString {
         &self.player_stats
     }
+    fn player_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.player_stats
+    }
     fn teams_stats(&self) -> &RawJsonString {
         &self.teams_stats
+    }
+    fn teams_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.teams_stats
     }
     fn constraint_status(&self) -> &RawJsonString {
         &self.constraint_status
     }
+    fn constraint_status_mut(&mut self) -> &mut RawJsonString {
+        &mut self.constraint_status
+    }
     fn mission_status(&self) -> &RawJsonString {
         &self.mission_status
+    }
+    fn mission_status_mut(&mut self) -> &mut RawJsonString {
+        &mut self.mission_status
     }
     fn items_initialized(&self) -> &RawJsonString {
         &self.items_initialized
     }
+    fn items_initialized_mut(&mut self) -> &mut RawJsonString {
+        &mut self.items_initialized
+    }
     fn achievement(&self) -> &RawJsonString {
         &self.achievement
+    }
+    fn achievement_mut(&mut self) -> &mut RawJsonString {
+        &mut self.achievement
     }
     fn asset_gained(&self) -> &RawJsonString {
         &self.asset_gained
     }
+    fn asset_gained_mut(&mut self) -> &mut RawJsonString {
+        &mut self.asset_gained
+    }
     fn asset_used(&self) -> &RawJsonString {
         &self.asset_used
+    }
+    fn asset_used_mut(&mut self) -> &mut RawJsonString {
+        &mut self.asset_used
     }
     fn asset_balance(&self) -> &RawJsonString {
         &self.asset_balance
     }
+    fn asset_balance_mut(&mut self) -> &mut RawJsonString {
+        &mut self.asset_balance
+    }
     fn weapon_stats(&self) -> &RawJsonString {
         &self.weapon_stats
     }
+    fn weapon_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.weapon_stats
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -14366,11 +18597,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinGameEndEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -14381,9 +18621,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinGameEndEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinGameEndEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINGAMEENDEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14535,6 +18772,15 @@ impl TypeObject for TelemetrySdkPinGameEndEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14583,119 +18829,231 @@ pub struct TelemetrySdkPinGameStartEvent {
 
 pub trait TelemetrySdkPinGameStartEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn mode(&self) -> &String;
+    fn mode_mut(&mut self) -> &mut String;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn ldur(&self) -> &u32;
+    fn ldur_mut(&mut self) -> &mut u32;
     fn diff(&self) -> &String;
+    fn diff_mut(&mut self) -> &mut String;
     fn goid(&self) -> &String;
+    fn goid_mut(&mut self) -> &mut String;
     fn mid(&self) -> &String;
+    fn mid_mut(&mut self) -> &mut String;
     fn rond(&self) -> &String;
+    fn rond_mut(&mut self) -> &mut String;
     fn map(&self) -> &String;
+    fn map_mut(&mut self) -> &mut String;
     fn _char(&self) -> &String;
+    fn _char_mut(&mut self) -> &mut String;
     fn gend(&self) -> &String;
+    fn gend_mut(&mut self) -> &mut String;
     fn _class(&self) -> &String;
+    fn _class_mut(&mut self) -> &mut String;
     fn attempt(&self) -> &u32;
+    fn attempt_mut(&mut self) -> &mut u32;
     fn max_level(&self) -> &u32;
+    fn max_level_mut(&mut self) -> &mut u32;
     fn level_modifier(&self) -> &String;
+    fn level_modifier_mut(&mut self) -> &mut String;
     fn start_status(&self) -> &RawJsonString;
+    fn start_status_mut(&mut self) -> &mut RawJsonString;
     fn level_constraints(&self) -> &RawJsonString;
+    fn level_constraints_mut(&mut self) -> &mut RawJsonString;
     fn missions(&self) -> &RawJsonString;
+    fn missions_mut(&mut self) -> &mut RawJsonString;
     fn other_specs(&self) -> &RawJsonString;
+    fn other_specs_mut(&mut self) -> &mut RawJsonString;
     fn model_config(&self) -> &RawJsonString;
+    fn model_config_mut(&mut self) -> &mut RawJsonString;
     fn knob_owner(&self) -> &RawJsonString;
+    fn knob_owner_mut(&mut self) -> &mut RawJsonString;
     fn lives(&self) -> &i64;
+    fn lives_mut(&mut self) -> &mut i64;
     fn new_life_reqs(&self) -> &RawJsonString;
+    fn new_life_reqs_mut(&mut self) -> &mut RawJsonString;
     fn team_id(&self) -> &String;
+    fn team_id_mut(&mut self) -> &mut String;
     fn asset_bal(&self) -> &RawJsonString;
+    fn asset_bal_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdkPinGameStartEventTrait for TelemetrySdkPinGameStartEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn mode(&self) -> &String {
         &self.mode
+    }
+    fn mode_mut(&mut self) -> &mut String {
+        &mut self.mode
     }
     fn instance_id(&self) -> &String {
         &self.instance_id
     }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn ldur(&self) -> &u32 {
         &self.ldur
+    }
+    fn ldur_mut(&mut self) -> &mut u32 {
+        &mut self.ldur
     }
     fn diff(&self) -> &String {
         &self.diff
     }
+    fn diff_mut(&mut self) -> &mut String {
+        &mut self.diff
+    }
     fn goid(&self) -> &String {
         &self.goid
+    }
+    fn goid_mut(&mut self) -> &mut String {
+        &mut self.goid
     }
     fn mid(&self) -> &String {
         &self.mid
     }
+    fn mid_mut(&mut self) -> &mut String {
+        &mut self.mid
+    }
     fn rond(&self) -> &String {
         &self.rond
+    }
+    fn rond_mut(&mut self) -> &mut String {
+        &mut self.rond
     }
     fn map(&self) -> &String {
         &self.map
     }
+    fn map_mut(&mut self) -> &mut String {
+        &mut self.map
+    }
     fn _char(&self) -> &String {
         &self._char
+    }
+    fn _char_mut(&mut self) -> &mut String {
+        &mut self._char
     }
     fn gend(&self) -> &String {
         &self.gend
     }
+    fn gend_mut(&mut self) -> &mut String {
+        &mut self.gend
+    }
     fn _class(&self) -> &String {
         &self._class
+    }
+    fn _class_mut(&mut self) -> &mut String {
+        &mut self._class
     }
     fn attempt(&self) -> &u32 {
         &self.attempt
     }
+    fn attempt_mut(&mut self) -> &mut u32 {
+        &mut self.attempt
+    }
     fn max_level(&self) -> &u32 {
         &self.max_level
+    }
+    fn max_level_mut(&mut self) -> &mut u32 {
+        &mut self.max_level
     }
     fn level_modifier(&self) -> &String {
         &self.level_modifier
     }
+    fn level_modifier_mut(&mut self) -> &mut String {
+        &mut self.level_modifier
+    }
     fn start_status(&self) -> &RawJsonString {
         &self.start_status
+    }
+    fn start_status_mut(&mut self) -> &mut RawJsonString {
+        &mut self.start_status
     }
     fn level_constraints(&self) -> &RawJsonString {
         &self.level_constraints
     }
+    fn level_constraints_mut(&mut self) -> &mut RawJsonString {
+        &mut self.level_constraints
+    }
     fn missions(&self) -> &RawJsonString {
         &self.missions
+    }
+    fn missions_mut(&mut self) -> &mut RawJsonString {
+        &mut self.missions
     }
     fn other_specs(&self) -> &RawJsonString {
         &self.other_specs
     }
+    fn other_specs_mut(&mut self) -> &mut RawJsonString {
+        &mut self.other_specs
+    }
     fn model_config(&self) -> &RawJsonString {
         &self.model_config
+    }
+    fn model_config_mut(&mut self) -> &mut RawJsonString {
+        &mut self.model_config
     }
     fn knob_owner(&self) -> &RawJsonString {
         &self.knob_owner
     }
+    fn knob_owner_mut(&mut self) -> &mut RawJsonString {
+        &mut self.knob_owner
+    }
     fn lives(&self) -> &i64 {
         &self.lives
+    }
+    fn lives_mut(&mut self) -> &mut i64 {
+        &mut self.lives
     }
     fn new_life_reqs(&self) -> &RawJsonString {
         &self.new_life_reqs
     }
+    fn new_life_reqs_mut(&mut self) -> &mut RawJsonString {
+        &mut self.new_life_reqs
+    }
     fn team_id(&self) -> &String {
         &self.team_id
+    }
+    fn team_id_mut(&mut self) -> &mut String {
+        &mut self.team_id
     }
     fn asset_bal(&self) -> &RawJsonString {
         &self.asset_bal
     }
+    fn asset_bal_mut(&mut self) -> &mut RawJsonString {
+        &mut self.asset_bal
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -14703,11 +19061,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinGameStartEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -14718,9 +19085,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinGameStartEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinGameStartEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINGAMESTARTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14914,6 +19278,15 @@ impl TypeObject for TelemetrySdkPinGameStartEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14938,23 +19311,39 @@ pub struct TelemetrySdkPinLogoutEvent {
 
 pub trait TelemetrySdkPinLogoutEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn end_reason(&self) -> &String;
+    fn end_reason_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinLogoutEventTrait for TelemetrySdkPinLogoutEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn end_reason(&self) -> &String {
         &self.end_reason
+    }
+    fn end_reason_mut(&mut self) -> &mut String {
+        &mut self.end_reason
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -14962,11 +19351,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinLogoutEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -14977,9 +19375,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinLogoutEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinLogoutEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINLOGOUTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15029,6 +19424,15 @@ impl TypeObject for TelemetrySdkPinLogoutEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15053,23 +19457,39 @@ pub struct TelemetrySdkPinLoginEvent {
 
 pub trait TelemetrySdkPinLoginEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinLoginEventTrait for TelemetrySdkPinLoginEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15077,11 +19497,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinLoginEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -15092,9 +19521,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinLoginEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinLoginEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINLOGINEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15144,6 +19570,15 @@ impl TypeObject for TelemetrySdkPinLoginEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15168,23 +19603,39 @@ pub struct TelemetrySdkPinBootEndEvent {
 
 pub trait TelemetrySdkPinBootEndEventTrait: TelemetrySDKPinEventTrait {
     fn end_reason(&self) -> &String;
+    fn end_reason_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn sdur(&self) -> &i64;
+    fn sdur_mut(&mut self) -> &mut i64;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinBootEndEventTrait for TelemetrySdkPinBootEndEvent {
     fn end_reason(&self) -> &String {
         &self.end_reason
     }
+    fn end_reason_mut(&mut self) -> &mut String {
+        &mut self.end_reason
+    }
     fn status_code(&self) -> &String {
         &self.status_code
+    }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
     }
     fn sdur(&self) -> &i64 {
         &self.sdur
     }
+    fn sdur_mut(&mut self) -> &mut i64 {
+        &mut self.sdur
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15192,11 +19643,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinBootEndEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -15207,9 +19667,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinBootEndEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinBootEndEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINBOOTENDEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15259,6 +19716,15 @@ impl TypeObject for TelemetrySdkPinBootEndEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15283,23 +19749,39 @@ pub struct TelemetrySdkPinBootStartEvent {
 
 pub trait TelemetrySdkPinBootStartEventTrait: TelemetrySDKPinEventTrait {
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn source(&self) -> &String;
+    fn source_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinBootStartEventTrait for TelemetrySdkPinBootStartEvent {
     fn status(&self) -> &String {
         &self.status
     }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
+    }
     fn source(&self) -> &String {
         &self.source
+    }
+    fn source_mut(&mut self) -> &mut String {
+        &mut self.source
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15307,11 +19789,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinBootStartEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -15322,9 +19813,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinBootStartEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinBootStartEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINBOOTSTARTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15374,6 +19862,15 @@ impl TypeObject for TelemetrySdkPinBootStartEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15398,23 +19895,39 @@ pub struct TelemetrySdkPinPlayerServiceEvent {
 
 pub trait TelemetrySdkPinPlayerServiceEventTrait: TelemetrySDKPinEventTrait {
     fn service(&self) -> &String;
+    fn service_mut(&mut self) -> &mut String;
     fn action(&self) -> &String;
+    fn action_mut(&mut self) -> &mut String;
     fn metadata(&self) -> &RawJsonString;
+    fn metadata_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPlayerServiceEventTrait for TelemetrySdkPinPlayerServiceEvent {
     fn service(&self) -> &String {
         &self.service
     }
+    fn service_mut(&mut self) -> &mut String {
+        &mut self.service
+    }
     fn action(&self) -> &String {
         &self.action
+    }
+    fn action_mut(&mut self) -> &mut String {
+        &mut self.action
     }
     fn metadata(&self) -> &RawJsonString {
         &self.metadata
     }
+    fn metadata_mut(&mut self) -> &mut RawJsonString {
+        &mut self.metadata
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15422,11 +19935,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerServiceEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -15437,9 +19959,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerServiceEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerServiceEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERSERVICEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15489,6 +20008,15 @@ impl TypeObject for TelemetrySdkPinPlayerServiceEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15511,15 +20039,23 @@ pub struct TelemetrySdkPinPlayerStatsEvent {
 
 pub trait TelemetrySdkPinPlayerStatsEventTrait: TelemetrySDKPinEventTrait {
     fn player_stats(&self) -> &RawJsonString;
+    fn player_stats_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPlayerStatsEventTrait for TelemetrySdkPinPlayerStatsEvent {
     fn player_stats(&self) -> &RawJsonString {
         &self.player_stats
     }
+    fn player_stats_mut(&mut self) -> &mut RawJsonString {
+        &mut self.player_stats
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15527,11 +20063,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerStatsEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -15542,9 +20087,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerStatsEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerStatsEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERSTATSEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15582,6 +20124,15 @@ impl TypeObject for TelemetrySdkPinPlayerStatsEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15610,39 +20161,71 @@ pub struct TelemetrySdkPinCameraStateEvent {
 
 pub trait TelemetrySdkPinCameraStateEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn cam_dur(&self) -> &u32;
+    fn cam_dur_mut(&mut self) -> &mut u32;
     fn prev_cam_state(&self) -> &String;
+    fn prev_cam_state_mut(&mut self) -> &mut String;
     fn cur_cam_state(&self) -> &String;
+    fn cur_cam_state_mut(&mut self) -> &mut String;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_dir(&self) -> &super::core::Vec3;
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn p_state(&self) -> &String;
+    fn p_state_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinCameraStateEventTrait for TelemetrySdkPinCameraStateEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn cam_dur(&self) -> &u32 {
         &self.cam_dur
+    }
+    fn cam_dur_mut(&mut self) -> &mut u32 {
+        &mut self.cam_dur
     }
     fn prev_cam_state(&self) -> &String {
         &self.prev_cam_state
     }
+    fn prev_cam_state_mut(&mut self) -> &mut String {
+        &mut self.prev_cam_state
+    }
     fn cur_cam_state(&self) -> &String {
         &self.cur_cam_state
+    }
+    fn cur_cam_state_mut(&mut self) -> &mut String {
+        &mut self.cur_cam_state
     }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
     }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
+    }
     fn p_dir(&self) -> &super::core::Vec3 {
         &self.p_dir
+    }
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_dir
     }
     fn p_state(&self) -> &String {
         &self.p_state
     }
+    fn p_state_mut(&mut self) -> &mut String {
+        &mut self.p_state
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15650,11 +20233,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinCameraStateEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -15665,9 +20257,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinCameraStateEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinCameraStateEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINCAMERASTATEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15741,6 +20330,15 @@ impl TypeObject for TelemetrySdkPinCameraStateEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15770,43 +20368,79 @@ pub struct TelemetrySdkPinPlayerObEvent {
 
 pub trait TelemetrySdkPinPlayerObEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn p_loc(&self) -> &super::core::Vec3;
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3;
     fn p_dir(&self) -> &super::core::Vec3;
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn p_team_id(&self) -> &String;
+    fn p_team_id_mut(&mut self) -> &mut String;
     fn p_veh_id(&self) -> &String;
+    fn p_veh_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPlayerObEventTrait for TelemetrySdkPinPlayerObEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn p_loc(&self) -> &super::core::Vec3 {
         &self.p_loc
+    }
+    fn p_loc_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_loc
     }
     fn p_dir(&self) -> &super::core::Vec3 {
         &self.p_dir
     }
+    fn p_dir_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.p_dir
+    }
     fn p_class(&self) -> &String {
         &self.p_class
+    }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
     }
     fn p_team_id(&self) -> &String {
         &self.p_team_id
     }
+    fn p_team_id_mut(&mut self) -> &mut String {
+        &mut self.p_team_id
+    }
     fn p_veh_id(&self) -> &String {
         &self.p_veh_id
     }
+    fn p_veh_id_mut(&mut self) -> &mut String {
+        &mut self.p_veh_id
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15814,11 +20448,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerObEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -15829,9 +20472,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerObEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerObEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYEROBEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15911,6 +20551,15 @@ impl TypeObject for TelemetrySdkPinPlayerObEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15938,35 +20587,63 @@ pub struct TelemetrySdkPinUiInteractionEvent {
 
 pub trait TelemetrySdkPinUiInteractionEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn object_id(&self) -> &String;
+    fn object_id_mut(&mut self) -> &mut String;
     fn pgid(&self) -> &String;
+    fn pgid_mut(&mut self) -> &mut String;
     fn sdur(&self) -> &u32;
+    fn sdur_mut(&mut self) -> &mut u32;
     fn object_type(&self) -> &String;
+    fn object_type_mut(&mut self) -> &mut String;
     fn mdur(&self) -> &u32;
+    fn mdur_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinUiInteractionEventTrait for TelemetrySdkPinUiInteractionEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn object_id(&self) -> &String {
         &self.object_id
+    }
+    fn object_id_mut(&mut self) -> &mut String {
+        &mut self.object_id
     }
     fn pgid(&self) -> &String {
         &self.pgid
     }
+    fn pgid_mut(&mut self) -> &mut String {
+        &mut self.pgid
+    }
     fn sdur(&self) -> &u32 {
         &self.sdur
+    }
+    fn sdur_mut(&mut self) -> &mut u32 {
+        &mut self.sdur
     }
     fn object_type(&self) -> &String {
         &self.object_type
     }
+    fn object_type_mut(&mut self) -> &mut String {
+        &mut self.object_type
+    }
     fn mdur(&self) -> &u32 {
         &self.mdur
     }
+    fn mdur_mut(&mut self) -> &mut u32 {
+        &mut self.mdur
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -15974,11 +20651,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinUiInteractionEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -15989,9 +20675,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinUiInteractionEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinUiInteractionEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINUIINTERACTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16059,6 +20742,15 @@ impl TypeObject for TelemetrySdkPinUiInteractionEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16085,31 +20777,55 @@ pub struct TelemetrySdkPinHardwareProfileEvent {
 
 pub trait TelemetrySdkPinHardwareProfileEventTrait: TelemetrySDKPinEventTrait {
     fn cpu(&self) -> &String;
+    fn cpu_mut(&mut self) -> &mut String;
     fn sys_mem(&self) -> &String;
+    fn sys_mem_mut(&mut self) -> &mut String;
     fn gpu(&self) -> &String;
+    fn gpu_mut(&mut self) -> &mut String;
     fn gpu_mem(&self) -> &String;
+    fn gpu_mem_mut(&mut self) -> &mut String;
     fn gpu_id(&self) -> &String;
+    fn gpu_id_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinHardwareProfileEventTrait for TelemetrySdkPinHardwareProfileEvent {
     fn cpu(&self) -> &String {
         &self.cpu
     }
+    fn cpu_mut(&mut self) -> &mut String {
+        &mut self.cpu
+    }
     fn sys_mem(&self) -> &String {
         &self.sys_mem
+    }
+    fn sys_mem_mut(&mut self) -> &mut String {
+        &mut self.sys_mem
     }
     fn gpu(&self) -> &String {
         &self.gpu
     }
+    fn gpu_mut(&mut self) -> &mut String {
+        &mut self.gpu
+    }
     fn gpu_mem(&self) -> &String {
         &self.gpu_mem
+    }
+    fn gpu_mem_mut(&mut self) -> &mut String {
+        &mut self.gpu_mem
     }
     fn gpu_id(&self) -> &String {
         &self.gpu_id
     }
+    fn gpu_id_mut(&mut self) -> &mut String {
+        &mut self.gpu_id
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16117,11 +20833,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinHardwareProfileEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -16132,9 +20857,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinHardwareProfileEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinHardwareProfileEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINHARDWAREPROFILEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16196,6 +20918,15 @@ impl TypeObject for TelemetrySdkPinHardwareProfileEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16235,83 +20966,159 @@ pub struct TelemetrySdkPinPlayerWeapSmryEvent {
 
 pub trait TelemetrySdkPinPlayerWeapSmryEventTrait: TelemetrySDKPinEventTrait {
     fn gdur(&self) -> &u32;
+    fn gdur_mut(&mut self) -> &mut u32;
     fn rdur(&self) -> &u32;
+    fn rdur_mut(&mut self) -> &mut u32;
     fn weap_id(&self) -> &String;
+    fn weap_id_mut(&mut self) -> &mut String;
     fn weap_category(&self) -> &String;
+    fn weap_category_mut(&mut self) -> &mut String;
     fn weap_type(&self) -> &String;
+    fn weap_type_mut(&mut self) -> &mut String;
     fn p_class(&self) -> &String;
+    fn p_class_mut(&mut self) -> &mut String;
     fn p_team_id(&self) -> &String;
+    fn p_team_id_mut(&mut self) -> &mut String;
     fn veh_id(&self) -> &String;
+    fn veh_id_mut(&mut self) -> &mut String;
     fn sht_fired(&self) -> &i32;
+    fn sht_fired_mut(&mut self) -> &mut i32;
     fn equip_dur(&self) -> &i32;
+    fn equip_dur_mut(&mut self) -> &mut i32;
     fn sht_hit_sldr(&self) -> &i32;
+    fn sht_hit_sldr_mut(&mut self) -> &mut i32;
     fn hd_sht_sldr(&self) -> &i32;
+    fn hd_sht_sldr_mut(&mut self) -> &mut i32;
     fn fatl_sht_sldr(&self) -> &i32;
+    fn fatl_sht_sldr_mut(&mut self) -> &mut i32;
     fn dmg_sldr(&self) -> &i32;
+    fn dmg_sldr_mut(&mut self) -> &mut i32;
     fn sht_hit_veh(&self) -> &i32;
+    fn sht_hit_veh_mut(&mut self) -> &mut i32;
     fn veh_dstr(&self) -> &i32;
+    fn veh_dstr_mut(&mut self) -> &mut i32;
     fn dmg_veh(&self) -> &i32;
+    fn dmg_veh_mut(&mut self) -> &mut i32;
     fn weap_mods(&self) -> &RawJsonString;
+    fn weap_mods_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdkPinPlayerWeapSmryEventTrait for TelemetrySdkPinPlayerWeapSmryEvent {
     fn gdur(&self) -> &u32 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut u32 {
+        &mut self.gdur
+    }
     fn rdur(&self) -> &u32 {
         &self.rdur
+    }
+    fn rdur_mut(&mut self) -> &mut u32 {
+        &mut self.rdur
     }
     fn weap_id(&self) -> &String {
         &self.weap_id
     }
+    fn weap_id_mut(&mut self) -> &mut String {
+        &mut self.weap_id
+    }
     fn weap_category(&self) -> &String {
         &self.weap_category
+    }
+    fn weap_category_mut(&mut self) -> &mut String {
+        &mut self.weap_category
     }
     fn weap_type(&self) -> &String {
         &self.weap_type
     }
+    fn weap_type_mut(&mut self) -> &mut String {
+        &mut self.weap_type
+    }
     fn p_class(&self) -> &String {
         &self.p_class
+    }
+    fn p_class_mut(&mut self) -> &mut String {
+        &mut self.p_class
     }
     fn p_team_id(&self) -> &String {
         &self.p_team_id
     }
+    fn p_team_id_mut(&mut self) -> &mut String {
+        &mut self.p_team_id
+    }
     fn veh_id(&self) -> &String {
         &self.veh_id
+    }
+    fn veh_id_mut(&mut self) -> &mut String {
+        &mut self.veh_id
     }
     fn sht_fired(&self) -> &i32 {
         &self.sht_fired
     }
+    fn sht_fired_mut(&mut self) -> &mut i32 {
+        &mut self.sht_fired
+    }
     fn equip_dur(&self) -> &i32 {
         &self.equip_dur
+    }
+    fn equip_dur_mut(&mut self) -> &mut i32 {
+        &mut self.equip_dur
     }
     fn sht_hit_sldr(&self) -> &i32 {
         &self.sht_hit_sldr
     }
+    fn sht_hit_sldr_mut(&mut self) -> &mut i32 {
+        &mut self.sht_hit_sldr
+    }
     fn hd_sht_sldr(&self) -> &i32 {
         &self.hd_sht_sldr
+    }
+    fn hd_sht_sldr_mut(&mut self) -> &mut i32 {
+        &mut self.hd_sht_sldr
     }
     fn fatl_sht_sldr(&self) -> &i32 {
         &self.fatl_sht_sldr
     }
+    fn fatl_sht_sldr_mut(&mut self) -> &mut i32 {
+        &mut self.fatl_sht_sldr
+    }
     fn dmg_sldr(&self) -> &i32 {
         &self.dmg_sldr
+    }
+    fn dmg_sldr_mut(&mut self) -> &mut i32 {
+        &mut self.dmg_sldr
     }
     fn sht_hit_veh(&self) -> &i32 {
         &self.sht_hit_veh
     }
+    fn sht_hit_veh_mut(&mut self) -> &mut i32 {
+        &mut self.sht_hit_veh
+    }
     fn veh_dstr(&self) -> &i32 {
         &self.veh_dstr
+    }
+    fn veh_dstr_mut(&mut self) -> &mut i32 {
+        &mut self.veh_dstr
     }
     fn dmg_veh(&self) -> &i32 {
         &self.dmg_veh
     }
+    fn dmg_veh_mut(&mut self) -> &mut i32 {
+        &mut self.dmg_veh
+    }
     fn weap_mods(&self) -> &RawJsonString {
         &self.weap_mods
     }
+    fn weap_mods_mut(&mut self) -> &mut RawJsonString {
+        &mut self.weap_mods
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16319,11 +21126,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerWeapSmryEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -16334,9 +21150,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerWeapSmryEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerWeapSmryEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERWEAPSMRYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16476,6 +21289,15 @@ impl TypeObject for TelemetrySdkPinPlayerWeapSmryEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16503,35 +21325,63 @@ pub struct TelemetrySdkPinTimerEvent {
 
 pub trait TelemetrySdkPinTimerEventTrait: TelemetrySDKPinEventTrait {
     fn category(&self) -> &String;
+    fn category_mut(&mut self) -> &mut String;
     fn measure(&self) -> &String;
+    fn measure_mut(&mut self) -> &mut String;
     fn dur(&self) -> &i64;
+    fn dur_mut(&mut self) -> &mut i64;
     fn start_time(&self) -> &i64;
+    fn start_time_mut(&mut self) -> &mut i64;
     fn end_time(&self) -> &i64;
+    fn end_time_mut(&mut self) -> &mut i64;
     fn meta_data(&self) -> &RawJsonString;
+    fn meta_data_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinTimerEventTrait for TelemetrySdkPinTimerEvent {
     fn category(&self) -> &String {
         &self.category
     }
+    fn category_mut(&mut self) -> &mut String {
+        &mut self.category
+    }
     fn measure(&self) -> &String {
         &self.measure
+    }
+    fn measure_mut(&mut self) -> &mut String {
+        &mut self.measure
     }
     fn dur(&self) -> &i64 {
         &self.dur
     }
+    fn dur_mut(&mut self) -> &mut i64 {
+        &mut self.dur
+    }
     fn start_time(&self) -> &i64 {
         &self.start_time
+    }
+    fn start_time_mut(&mut self) -> &mut i64 {
+        &mut self.start_time
     }
     fn end_time(&self) -> &i64 {
         &self.end_time
     }
+    fn end_time_mut(&mut self) -> &mut i64 {
+        &mut self.end_time
+    }
     fn meta_data(&self) -> &RawJsonString {
         &self.meta_data
     }
+    fn meta_data_mut(&mut self) -> &mut RawJsonString {
+        &mut self.meta_data
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16539,11 +21389,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinTimerEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -16554,9 +21413,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinTimerEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinTimerEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINTIMEREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16624,6 +21480,15 @@ impl TypeObject for TelemetrySdkPinTimerEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16664,87 +21529,167 @@ pub struct TelemetrySdkPinMessageEvent {
 
 pub trait TelemetrySdkPinMessageEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn service(&self) -> &String;
+    fn service_mut(&mut self) -> &mut String;
     fn content_type(&self) -> &String;
+    fn content_type_mut(&mut self) -> &mut String;
     fn format(&self) -> &String;
+    fn format_mut(&mut self) -> &mut String;
     fn media(&self) -> &String;
+    fn media_mut(&mut self) -> &mut String;
     fn campaign_id(&self) -> &String;
+    fn campaign_id_mut(&mut self) -> &mut String;
     fn client_state(&self) -> &String;
+    fn client_state_mut(&mut self) -> &mut String;
     fn msg_id(&self) -> &String;
+    fn msg_id_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn option(&self) -> &String;
+    fn option_mut(&mut self) -> &mut String;
     fn content(&self) -> &String;
+    fn content_mut(&mut self) -> &mut String;
     fn destination_name(&self) -> &String;
+    fn destination_name_mut(&mut self) -> &mut String;
     fn destination_id(&self) -> &String;
+    fn destination_id_mut(&mut self) -> &mut String;
     fn place(&self) -> &String;
+    fn place_mut(&mut self) -> &mut String;
     fn loc(&self) -> &super::core::Vec2;
+    fn loc_mut(&mut self) -> &mut super::core::Vec2;
     fn size(&self) -> &super::core::Vec2;
+    fn size_mut(&mut self) -> &mut super::core::Vec2;
     fn segment_id(&self) -> &String;
+    fn segment_id_mut(&mut self) -> &mut String;
     fn count(&self) -> &i64;
+    fn count_mut(&mut self) -> &mut i64;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySdkPinMessageEventTrait for TelemetrySdkPinMessageEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn service(&self) -> &String {
         &self.service
+    }
+    fn service_mut(&mut self) -> &mut String {
+        &mut self.service
     }
     fn content_type(&self) -> &String {
         &self.content_type
     }
+    fn content_type_mut(&mut self) -> &mut String {
+        &mut self.content_type
+    }
     fn format(&self) -> &String {
         &self.format
+    }
+    fn format_mut(&mut self) -> &mut String {
+        &mut self.format
     }
     fn media(&self) -> &String {
         &self.media
     }
+    fn media_mut(&mut self) -> &mut String {
+        &mut self.media
+    }
     fn campaign_id(&self) -> &String {
         &self.campaign_id
+    }
+    fn campaign_id_mut(&mut self) -> &mut String {
+        &mut self.campaign_id
     }
     fn client_state(&self) -> &String {
         &self.client_state
     }
+    fn client_state_mut(&mut self) -> &mut String {
+        &mut self.client_state
+    }
     fn msg_id(&self) -> &String {
         &self.msg_id
+    }
+    fn msg_id_mut(&mut self) -> &mut String {
+        &mut self.msg_id
     }
     fn status(&self) -> &String {
         &self.status
     }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
+    }
     fn status_code(&self) -> &String {
         &self.status_code
+    }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
     }
     fn option(&self) -> &String {
         &self.option
     }
+    fn option_mut(&mut self) -> &mut String {
+        &mut self.option
+    }
     fn content(&self) -> &String {
         &self.content
+    }
+    fn content_mut(&mut self) -> &mut String {
+        &mut self.content
     }
     fn destination_name(&self) -> &String {
         &self.destination_name
     }
+    fn destination_name_mut(&mut self) -> &mut String {
+        &mut self.destination_name
+    }
     fn destination_id(&self) -> &String {
         &self.destination_id
+    }
+    fn destination_id_mut(&mut self) -> &mut String {
+        &mut self.destination_id
     }
     fn place(&self) -> &String {
         &self.place
     }
+    fn place_mut(&mut self) -> &mut String {
+        &mut self.place
+    }
     fn loc(&self) -> &super::core::Vec2 {
         &self.loc
+    }
+    fn loc_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.loc
     }
     fn size(&self) -> &super::core::Vec2 {
         &self.size
     }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.size
+    }
     fn segment_id(&self) -> &String {
         &self.segment_id
+    }
+    fn segment_id_mut(&mut self) -> &mut String {
+        &mut self.segment_id
     }
     fn count(&self) -> &i64 {
         &self.count
     }
+    fn count_mut(&mut self) -> &mut i64 {
+        &mut self.count
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16752,11 +21697,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinMessageEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -16767,9 +21721,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinMessageEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinMessageEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINMESSAGEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16915,6 +21866,15 @@ impl TypeObject for TelemetrySdkPinMessageEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16941,31 +21901,55 @@ pub struct TelemetrySdkPinPageViewEvent {
 
 pub trait TelemetrySdkPinPageViewEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn pgid(&self) -> &String;
+    fn pgid_mut(&mut self) -> &mut String;
     fn pgdur(&self) -> &u32;
+    fn pgdur_mut(&mut self) -> &mut u32;
     fn fromid(&self) -> &String;
+    fn fromid_mut(&mut self) -> &mut String;
     fn toid(&self) -> &String;
+    fn toid_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinPageViewEventTrait for TelemetrySdkPinPageViewEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn pgid(&self) -> &String {
         &self.pgid
+    }
+    fn pgid_mut(&mut self) -> &mut String {
+        &mut self.pgid
     }
     fn pgdur(&self) -> &u32 {
         &self.pgdur
     }
+    fn pgdur_mut(&mut self) -> &mut u32 {
+        &mut self.pgdur
+    }
     fn fromid(&self) -> &String {
         &self.fromid
+    }
+    fn fromid_mut(&mut self) -> &mut String {
+        &mut self.fromid
     }
     fn toid(&self) -> &String {
         &self.toid
     }
+    fn toid_mut(&mut self) -> &mut String {
+        &mut self.toid
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -16973,11 +21957,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPageViewEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -16988,9 +21981,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPageViewEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPageViewEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPAGEVIEWEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17052,6 +22042,15 @@ impl TypeObject for TelemetrySdkPinPageViewEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17085,59 +22084,111 @@ pub struct TelemetrySdkPinAchievementEvent {
 
 pub trait TelemetrySdkPinAchievementEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn achv_id(&self) -> &String;
+    fn achv_id_mut(&mut self) -> &mut String;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn reqs(&self) -> &RawJsonString;
+    fn reqs_mut(&mut self) -> &mut RawJsonString;
     fn reward(&self) -> &RawJsonString;
+    fn reward_mut(&mut self) -> &mut RawJsonString;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn percent(&self) -> &u32;
+    fn percent_mut(&mut self) -> &mut u32;
     fn diff(&self) -> &String;
+    fn diff_mut(&mut self) -> &mut String;
     fn gdur(&self) -> &i64;
+    fn gdur_mut(&mut self) -> &mut i64;
     fn sdur(&self) -> &i64;
+    fn sdur_mut(&mut self) -> &mut i64;
     fn cdur(&self) -> &i64;
+    fn cdur_mut(&mut self) -> &mut i64;
     fn tdur(&self) -> &i64;
+    fn tdur_mut(&mut self) -> &mut i64;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinAchievementEventTrait for TelemetrySdkPinAchievementEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn achv_id(&self) -> &String {
         &self.achv_id
+    }
+    fn achv_id_mut(&mut self) -> &mut String {
+        &mut self.achv_id
     }
     fn instance_id(&self) -> &String {
         &self.instance_id
     }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
+    }
     fn reqs(&self) -> &RawJsonString {
         &self.reqs
+    }
+    fn reqs_mut(&mut self) -> &mut RawJsonString {
+        &mut self.reqs
     }
     fn reward(&self) -> &RawJsonString {
         &self.reward
     }
+    fn reward_mut(&mut self) -> &mut RawJsonString {
+        &mut self.reward
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn percent(&self) -> &u32 {
         &self.percent
     }
+    fn percent_mut(&mut self) -> &mut u32 {
+        &mut self.percent
+    }
     fn diff(&self) -> &String {
         &self.diff
+    }
+    fn diff_mut(&mut self) -> &mut String {
+        &mut self.diff
     }
     fn gdur(&self) -> &i64 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut i64 {
+        &mut self.gdur
+    }
     fn sdur(&self) -> &i64 {
         &self.sdur
+    }
+    fn sdur_mut(&mut self) -> &mut i64 {
+        &mut self.sdur
     }
     fn cdur(&self) -> &i64 {
         &self.cdur
     }
+    fn cdur_mut(&mut self) -> &mut i64 {
+        &mut self.cdur
+    }
     fn tdur(&self) -> &i64 {
         &self.tdur
     }
+    fn tdur_mut(&mut self) -> &mut i64 {
+        &mut self.tdur
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -17145,11 +22196,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinAchievementEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -17160,9 +22220,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinAchievementEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinAchievementEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINACHIEVEMENTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17266,6 +22323,15 @@ impl TypeObject for TelemetrySdkPinAchievementEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17297,51 +22363,95 @@ pub struct TelemetrySdkPinMileStoneEvent {
 
 pub trait TelemetrySdkPinMileStoneEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn moment(&self) -> &String;
+    fn moment_mut(&mut self) -> &mut String;
     fn mstid(&self) -> &String;
+    fn mstid_mut(&mut self) -> &mut String;
     fn game_mode(&self) -> &String;
+    fn game_mode_mut(&mut self) -> &mut String;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn diff(&self) -> &String;
+    fn diff_mut(&mut self) -> &mut String;
     fn gdur(&self) -> &i64;
+    fn gdur_mut(&mut self) -> &mut i64;
     fn sdur(&self) -> &i64;
+    fn sdur_mut(&mut self) -> &mut i64;
     fn cdur(&self) -> &i64;
+    fn cdur_mut(&mut self) -> &mut i64;
     fn tdur(&self) -> &i64;
+    fn tdur_mut(&mut self) -> &mut i64;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinMileStoneEventTrait for TelemetrySdkPinMileStoneEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn moment(&self) -> &String {
         &self.moment
+    }
+    fn moment_mut(&mut self) -> &mut String {
+        &mut self.moment
     }
     fn mstid(&self) -> &String {
         &self.mstid
     }
+    fn mstid_mut(&mut self) -> &mut String {
+        &mut self.mstid
+    }
     fn game_mode(&self) -> &String {
         &self.game_mode
+    }
+    fn game_mode_mut(&mut self) -> &mut String {
+        &mut self.game_mode
     }
     fn instance_id(&self) -> &String {
         &self.instance_id
     }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
+    }
     fn diff(&self) -> &String {
         &self.diff
+    }
+    fn diff_mut(&mut self) -> &mut String {
+        &mut self.diff
     }
     fn gdur(&self) -> &i64 {
         &self.gdur
     }
+    fn gdur_mut(&mut self) -> &mut i64 {
+        &mut self.gdur
+    }
     fn sdur(&self) -> &i64 {
         &self.sdur
+    }
+    fn sdur_mut(&mut self) -> &mut i64 {
+        &mut self.sdur
     }
     fn cdur(&self) -> &i64 {
         &self.cdur
     }
+    fn cdur_mut(&mut self) -> &mut i64 {
+        &mut self.cdur
+    }
     fn tdur(&self) -> &i64 {
         &self.tdur
     }
+    fn tdur_mut(&mut self) -> &mut i64 {
+        &mut self.tdur
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -17349,11 +22459,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinMileStoneEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -17364,9 +22483,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinMileStoneEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinMileStoneEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINMILESTONEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17458,6 +22574,15 @@ impl TypeObject for TelemetrySdkPinMileStoneEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17488,47 +22613,87 @@ pub struct TelemetrySdkPinPlayerLevelEvent {
 
 pub trait TelemetrySdkPinPlayerLevelEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn mode(&self) -> &String;
+    fn mode_mut(&mut self) -> &mut String;
     fn instance_id(&self) -> &String;
+    fn instance_id_mut(&mut self) -> &mut String;
     fn level(&self) -> &String;
+    fn level_mut(&mut self) -> &mut String;
     fn level_name(&self) -> &String;
+    fn level_name_mut(&mut self) -> &mut String;
     fn gdur(&self) -> &i64;
+    fn gdur_mut(&mut self) -> &mut i64;
     fn sdur(&self) -> &i64;
+    fn sdur_mut(&mut self) -> &mut i64;
     fn cdur(&self) -> &i64;
+    fn cdur_mut(&mut self) -> &mut i64;
     fn tdur(&self) -> &i64;
+    fn tdur_mut(&mut self) -> &mut i64;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl TelemetrySdkPinPlayerLevelEventTrait for TelemetrySdkPinPlayerLevelEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn mode(&self) -> &String {
         &self.mode
+    }
+    fn mode_mut(&mut self) -> &mut String {
+        &mut self.mode
     }
     fn instance_id(&self) -> &String {
         &self.instance_id
     }
+    fn instance_id_mut(&mut self) -> &mut String {
+        &mut self.instance_id
+    }
     fn level(&self) -> &String {
         &self.level
+    }
+    fn level_mut(&mut self) -> &mut String {
+        &mut self.level
     }
     fn level_name(&self) -> &String {
         &self.level_name
     }
+    fn level_name_mut(&mut self) -> &mut String {
+        &mut self.level_name
+    }
     fn gdur(&self) -> &i64 {
         &self.gdur
+    }
+    fn gdur_mut(&mut self) -> &mut i64 {
+        &mut self.gdur
     }
     fn sdur(&self) -> &i64 {
         &self.sdur
     }
+    fn sdur_mut(&mut self) -> &mut i64 {
+        &mut self.sdur
+    }
     fn cdur(&self) -> &i64 {
         &self.cdur
+    }
+    fn cdur_mut(&mut self) -> &mut i64 {
+        &mut self.cdur
     }
     fn tdur(&self) -> &i64 {
         &self.tdur
     }
+    fn tdur_mut(&mut self) -> &mut i64 {
+        &mut self.tdur
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -17536,11 +22701,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinPlayerLevelEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -17551,9 +22725,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinPlayerLevelEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinPlayerLevelEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINPLAYERLEVELEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17639,6 +22810,15 @@ impl TypeObject for TelemetrySdkPinPlayerLevelEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17666,35 +22846,63 @@ pub struct TelemetrySdkPinFavoriteEvent {
 
 pub trait TelemetrySdkPinFavoriteEventTrait: TelemetrySDKPinEventTrait {
     fn type1(&self) -> &String;
+    fn type1_mut(&mut self) -> &mut String;
     fn type1_id(&self) -> &String;
+    fn type1_id_mut(&mut self) -> &mut String;
     fn type1_name(&self) -> &String;
+    fn type1_name_mut(&mut self) -> &mut String;
     fn type2(&self) -> &String;
+    fn type2_mut(&mut self) -> &mut String;
     fn type2_id(&self) -> &String;
+    fn type2_id_mut(&mut self) -> &mut String;
     fn type2_name(&self) -> &String;
+    fn type2_name_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinFavoriteEventTrait for TelemetrySdkPinFavoriteEvent {
     fn type1(&self) -> &String {
         &self.type1
     }
+    fn type1_mut(&mut self) -> &mut String {
+        &mut self.type1
+    }
     fn type1_id(&self) -> &String {
         &self.type1_id
+    }
+    fn type1_id_mut(&mut self) -> &mut String {
+        &mut self.type1_id
     }
     fn type1_name(&self) -> &String {
         &self.type1_name
     }
+    fn type1_name_mut(&mut self) -> &mut String {
+        &mut self.type1_name
+    }
     fn type2(&self) -> &String {
         &self.type2
+    }
+    fn type2_mut(&mut self) -> &mut String {
+        &mut self.type2
     }
     fn type2_id(&self) -> &String {
         &self.type2_id
     }
+    fn type2_id_mut(&mut self) -> &mut String {
+        &mut self.type2_id
+    }
     fn type2_name(&self) -> &String {
         &self.type2_name
     }
+    fn type2_name_mut(&mut self) -> &mut String {
+        &mut self.type2_name
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -17702,11 +22910,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinFavoriteEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -17717,9 +22934,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinFavoriteEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinFavoriteEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINFAVORITEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17787,6 +23001,15 @@ impl TypeObject for TelemetrySdkPinFavoriteEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17816,43 +23039,79 @@ pub struct TelemetrySdkPinDownloadEvent {
 
 pub trait TelemetrySdkPinDownloadEventTrait: TelemetrySDKPinEventTrait {
     fn item_id(&self) -> &String;
+    fn item_id_mut(&mut self) -> &mut String;
     fn item_type(&self) -> &String;
+    fn item_type_mut(&mut self) -> &mut String;
     fn item_platform(&self) -> &String;
+    fn item_platform_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn dur(&self) -> &i32;
+    fn dur_mut(&mut self) -> &mut i32;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn percent(&self) -> &f32;
+    fn percent_mut(&mut self) -> &mut f32;
     fn download_id(&self) -> &i32;
+    fn download_id_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinDownloadEventTrait for TelemetrySdkPinDownloadEvent {
     fn item_id(&self) -> &String {
         &self.item_id
     }
+    fn item_id_mut(&mut self) -> &mut String {
+        &mut self.item_id
+    }
     fn item_type(&self) -> &String {
         &self.item_type
+    }
+    fn item_type_mut(&mut self) -> &mut String {
+        &mut self.item_type
     }
     fn item_platform(&self) -> &String {
         &self.item_platform
     }
+    fn item_platform_mut(&mut self) -> &mut String {
+        &mut self.item_platform
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn dur(&self) -> &i32 {
         &self.dur
     }
+    fn dur_mut(&mut self) -> &mut i32 {
+        &mut self.dur
+    }
     fn status_code(&self) -> &String {
         &self.status_code
+    }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
     }
     fn percent(&self) -> &f32 {
         &self.percent
     }
+    fn percent_mut(&mut self) -> &mut f32 {
+        &mut self.percent
+    }
     fn download_id(&self) -> &i32 {
         &self.download_id
     }
+    fn download_id_mut(&mut self) -> &mut i32 {
+        &mut self.download_id
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -17860,11 +23119,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinDownloadEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -17875,9 +23143,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinDownloadEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinDownloadEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINDOWNLOADEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17957,6 +23222,15 @@ impl TypeObject for TelemetrySdkPinDownloadEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17982,27 +23256,47 @@ pub struct TelemetrySdkPinSettingsEvent {
 
 pub trait TelemetrySdkPinSettingsEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn settings(&self) -> &RawJsonString;
+    fn settings_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinSettingsEventTrait for TelemetrySdkPinSettingsEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn settings(&self) -> &RawJsonString {
         &self.settings
     }
+    fn settings_mut(&mut self) -> &mut RawJsonString {
+        &mut self.settings
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -18010,11 +23304,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinSettingsEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -18025,9 +23328,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinSettingsEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinSettingsEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINSETTINGSEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18083,6 +23383,15 @@ impl TypeObject for TelemetrySdkPinSettingsEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18108,27 +23417,47 @@ pub struct TelemetrySdkPinRegistrationEvent {
 
 pub trait TelemetrySdkPinRegistrationEventTrait: TelemetrySDKPinEventTrait {
     fn source(&self) -> &String;
+    fn source_mut(&mut self) -> &mut String;
     fn status(&self) -> &String;
+    fn status_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn domain(&self) -> &String;
+    fn domain_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinRegistrationEventTrait for TelemetrySdkPinRegistrationEvent {
     fn source(&self) -> &String {
         &self.source
     }
+    fn source_mut(&mut self) -> &mut String {
+        &mut self.source
+    }
     fn status(&self) -> &String {
         &self.status
+    }
+    fn status_mut(&mut self) -> &mut String {
+        &mut self.status
     }
     fn status_code(&self) -> &String {
         &self.status_code
     }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
+    }
     fn domain(&self) -> &String {
         &self.domain
     }
+    fn domain_mut(&mut self) -> &mut String {
+        &mut self.domain
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -18136,11 +23465,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinRegistrationEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -18151,9 +23489,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinRegistrationEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinRegistrationEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINREGISTRATIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18209,6 +23544,15 @@ impl TypeObject for TelemetrySdkPinRegistrationEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18237,39 +23581,71 @@ pub struct TelemetrySdkPinAccountEvent {
 
 pub trait TelemetrySdkPinAccountEventTrait: TelemetrySDKPinEventTrait {
     fn r#type(&self) -> &String;
+    fn r#type_mut(&mut self) -> &mut String;
     fn status_code(&self) -> &String;
+    fn status_code_mut(&mut self) -> &mut String;
     fn acntid(&self) -> &RawJsonString;
+    fn acntid_mut(&mut self) -> &mut RawJsonString;
     fn source(&self) -> &String;
+    fn source_mut(&mut self) -> &mut String;
     fn reason(&self) -> &String;
+    fn reason_mut(&mut self) -> &mut String;
     fn duration(&self) -> &i64;
+    fn duration_mut(&mut self) -> &mut i64;
     fn metadata(&self) -> &RawJsonString;
+    fn metadata_mut(&mut self) -> &mut RawJsonString;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl TelemetrySdkPinAccountEventTrait for TelemetrySdkPinAccountEvent {
     fn r#type(&self) -> &String {
         &self.r#type
     }
+    fn r#type_mut(&mut self) -> &mut String {
+        &mut self.r#type
+    }
     fn status_code(&self) -> &String {
         &self.status_code
+    }
+    fn status_code_mut(&mut self) -> &mut String {
+        &mut self.status_code
     }
     fn acntid(&self) -> &RawJsonString {
         &self.acntid
     }
+    fn acntid_mut(&mut self) -> &mut RawJsonString {
+        &mut self.acntid
+    }
     fn source(&self) -> &String {
         &self.source
+    }
+    fn source_mut(&mut self) -> &mut String {
+        &mut self.source
     }
     fn reason(&self) -> &String {
         &self.reason
     }
+    fn reason_mut(&mut self) -> &mut String {
+        &mut self.reason
+    }
     fn duration(&self) -> &i64 {
         &self.duration
+    }
+    fn duration_mut(&mut self) -> &mut i64 {
+        &mut self.duration
     }
     fn metadata(&self) -> &RawJsonString {
         &self.metadata
     }
+    fn metadata_mut(&mut self) -> &mut RawJsonString {
+        &mut self.metadata
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -18277,11 +23653,20 @@ impl TelemetrySDKPinEventTrait for TelemetrySdkPinAccountEvent {
     fn pin_event_name(&self) -> &String {
         self._glacier_base.pin_event_name()
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        self._glacier_base.pin_event_name_mut()
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         self._glacier_base.event_header_modifier()
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        self._glacier_base.event_header_modifier_mut()
+    }
     fn track_changes(&self) -> &bool {
         self._glacier_base.track_changes()
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        self._glacier_base.track_changes_mut()
     }
 }
 
@@ -18292,9 +23677,6 @@ impl TelemetryRowDataTrait for TelemetrySdkPinAccountEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySdkPinAccountEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINACCOUNTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18368,6 +23750,15 @@ impl TypeObject for TelemetrySdkPinAccountEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18391,19 +23782,31 @@ pub struct TelemetrySDKPinEvent {
 
 pub trait TelemetrySDKPinEventTrait: TelemetryLogEventTrait {
     fn pin_event_name(&self) -> &String;
+    fn pin_event_name_mut(&mut self) -> &mut String;
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier;
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier;
     fn track_changes(&self) -> &bool;
+    fn track_changes_mut(&mut self) -> &mut bool;
 }
 
 impl TelemetrySDKPinEventTrait for TelemetrySDKPinEvent {
     fn pin_event_name(&self) -> &String {
         &self.pin_event_name
     }
+    fn pin_event_name_mut(&mut self) -> &mut String {
+        &mut self.pin_event_name
+    }
     fn event_header_modifier(&self) -> &TelemetrySDKPinEventHeaderModifier {
         &self.event_header_modifier
     }
+    fn event_header_modifier_mut(&mut self) -> &mut TelemetrySDKPinEventHeaderModifier {
+        &mut self.event_header_modifier
+    }
     fn track_changes(&self) -> &bool {
         &self.track_changes
+    }
+    fn track_changes_mut(&mut self) -> &mut bool {
+        &mut self.track_changes
     }
 }
 
@@ -18414,9 +23817,6 @@ impl TelemetryRowDataTrait for TelemetrySDKPinEvent {
 }
 
 impl super::core::DataContainerTrait for TelemetrySDKPinEvent {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYSDKPINEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18459,6 +23859,15 @@ impl TypeObject for TelemetrySDKPinEvent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -18504,107 +23913,207 @@ pub struct TelemetrySDKPinEventHeaderModifier {
 
 pub trait TelemetrySDKPinEventHeaderModifierTrait: TypeObject {
     fn session_id(&self) -> &i64;
+    fn session_id_mut(&mut self) -> &mut i64;
     fn game_id(&self) -> &i64;
+    fn game_id_mut(&mut self) -> &mut i64;
     fn player_id_type(&self) -> &String;
+    fn player_id_type_mut(&mut self) -> &mut String;
     fn player_id(&self) -> &String;
+    fn player_id_mut(&mut self) -> &mut String;
     fn title_id_type(&self) -> &String;
+    fn title_id_type_mut(&mut self) -> &mut String;
     fn title_id(&self) -> &String;
+    fn title_id_mut(&mut self) -> &mut String;
     fn date_of_birth(&self) -> &String;
+    fn date_of_birth_mut(&mut self) -> &mut String;
     fn current_level(&self) -> &String;
+    fn current_level_mut(&mut self) -> &mut String;
     fn current_level_name(&self) -> &String;
+    fn current_level_name_mut(&mut self) -> &mut String;
     fn release_type(&self) -> &String;
+    fn release_type_mut(&mut self) -> &mut String;
     fn platform(&self) -> &String;
+    fn platform_mut(&mut self) -> &mut String;
     fn player_id_map(&self) -> &String;
+    fn player_id_map_mut(&mut self) -> &mut String;
     fn experiment_id(&self) -> &String;
+    fn experiment_id_mut(&mut self) -> &mut String;
     fn mac_address(&self) -> &String;
+    fn mac_address_mut(&mut self) -> &mut String;
     fn device_id_map(&self) -> &String;
+    fn device_id_map_mut(&mut self) -> &mut String;
     fn custom_event_header(&self) -> &String;
+    fn custom_event_header_mut(&mut self) -> &mut String;
     fn is_session(&self) -> &String;
+    fn is_session_mut(&mut self) -> &mut String;
     fn is_player(&self) -> &String;
+    fn is_player_mut(&mut self) -> &mut String;
     fn is_mlu(&self) -> &String;
+    fn is_mlu_mut(&mut self) -> &mut String;
     fn subs(&self) -> &String;
+    fn subs_mut(&mut self) -> &mut String;
     fn game_mode(&self) -> &String;
+    fn game_mode_mut(&mut self) -> &mut String;
     fn game_type(&self) -> &String;
+    fn game_type_mut(&mut self) -> &mut String;
     fn mode_type(&self) -> &String;
+    fn mode_type_mut(&mut self) -> &mut String;
     fn map(&self) -> &String;
+    fn map_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl TelemetrySDKPinEventHeaderModifierTrait for TelemetrySDKPinEventHeaderModifier {
     fn session_id(&self) -> &i64 {
         &self.session_id
     }
+    fn session_id_mut(&mut self) -> &mut i64 {
+        &mut self.session_id
+    }
     fn game_id(&self) -> &i64 {
         &self.game_id
+    }
+    fn game_id_mut(&mut self) -> &mut i64 {
+        &mut self.game_id
     }
     fn player_id_type(&self) -> &String {
         &self.player_id_type
     }
+    fn player_id_type_mut(&mut self) -> &mut String {
+        &mut self.player_id_type
+    }
     fn player_id(&self) -> &String {
         &self.player_id
+    }
+    fn player_id_mut(&mut self) -> &mut String {
+        &mut self.player_id
     }
     fn title_id_type(&self) -> &String {
         &self.title_id_type
     }
+    fn title_id_type_mut(&mut self) -> &mut String {
+        &mut self.title_id_type
+    }
     fn title_id(&self) -> &String {
         &self.title_id
+    }
+    fn title_id_mut(&mut self) -> &mut String {
+        &mut self.title_id
     }
     fn date_of_birth(&self) -> &String {
         &self.date_of_birth
     }
+    fn date_of_birth_mut(&mut self) -> &mut String {
+        &mut self.date_of_birth
+    }
     fn current_level(&self) -> &String {
         &self.current_level
+    }
+    fn current_level_mut(&mut self) -> &mut String {
+        &mut self.current_level
     }
     fn current_level_name(&self) -> &String {
         &self.current_level_name
     }
+    fn current_level_name_mut(&mut self) -> &mut String {
+        &mut self.current_level_name
+    }
     fn release_type(&self) -> &String {
         &self.release_type
+    }
+    fn release_type_mut(&mut self) -> &mut String {
+        &mut self.release_type
     }
     fn platform(&self) -> &String {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut String {
+        &mut self.platform
+    }
     fn player_id_map(&self) -> &String {
         &self.player_id_map
+    }
+    fn player_id_map_mut(&mut self) -> &mut String {
+        &mut self.player_id_map
     }
     fn experiment_id(&self) -> &String {
         &self.experiment_id
     }
+    fn experiment_id_mut(&mut self) -> &mut String {
+        &mut self.experiment_id
+    }
     fn mac_address(&self) -> &String {
         &self.mac_address
+    }
+    fn mac_address_mut(&mut self) -> &mut String {
+        &mut self.mac_address
     }
     fn device_id_map(&self) -> &String {
         &self.device_id_map
     }
+    fn device_id_map_mut(&mut self) -> &mut String {
+        &mut self.device_id_map
+    }
     fn custom_event_header(&self) -> &String {
         &self.custom_event_header
+    }
+    fn custom_event_header_mut(&mut self) -> &mut String {
+        &mut self.custom_event_header
     }
     fn is_session(&self) -> &String {
         &self.is_session
     }
+    fn is_session_mut(&mut self) -> &mut String {
+        &mut self.is_session
+    }
     fn is_player(&self) -> &String {
         &self.is_player
+    }
+    fn is_player_mut(&mut self) -> &mut String {
+        &mut self.is_player
     }
     fn is_mlu(&self) -> &String {
         &self.is_mlu
     }
+    fn is_mlu_mut(&mut self) -> &mut String {
+        &mut self.is_mlu
+    }
     fn subs(&self) -> &String {
         &self.subs
+    }
+    fn subs_mut(&mut self) -> &mut String {
+        &mut self.subs
     }
     fn game_mode(&self) -> &String {
         &self.game_mode
     }
+    fn game_mode_mut(&mut self) -> &mut String {
+        &mut self.game_mode
+    }
     fn game_type(&self) -> &String {
         &self.game_type
+    }
+    fn game_type_mut(&mut self) -> &mut String {
+        &mut self.game_type
     }
     fn mode_type(&self) -> &String {
         &self.mode_type
     }
+    fn mode_type_mut(&mut self) -> &mut String {
+        &mut self.mode_type
+    }
     fn map(&self) -> &String {
         &self.map
     }
+    fn map_mut(&mut self) -> &mut String {
+        &mut self.map
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -18780,6 +24289,15 @@ impl TypeObject for TelemetrySDKPinEventHeaderModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -18802,15 +24320,23 @@ pub struct TransactionalTelemetryHookEntityData {
 
 pub trait TransactionalTelemetryHookEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn stream(&self) -> &Option<Arc<Mutex<dyn TransactionalStreamDataTrait>>>;
+    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TransactionalStreamDataTrait>>>;
 }
 
 impl TransactionalTelemetryHookEntityDataTrait for TransactionalTelemetryHookEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn stream(&self) -> &Option<Arc<Mutex<dyn TransactionalStreamDataTrait>>> {
         &self.stream
+    }
+    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TransactionalStreamDataTrait>>> {
+        &mut self.stream
     }
 }
 
@@ -18824,15 +24350,15 @@ impl super::core::DataBusPeerTrait for TransactionalTelemetryHookEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TransactionalTelemetryHookEntityData {
 }
 
 impl super::core::DataContainerTrait for TransactionalTelemetryHookEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TRANSACTIONALTELEMETRYHOOKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18870,6 +24396,15 @@ impl TypeObject for TransactionalTelemetryHookEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18895,27 +24430,47 @@ pub struct VarStreamTelemetryHookEntityData {
 
 pub trait VarStreamTelemetryHookEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn r#mod(&self) -> &String;
+    fn r#mod_mut(&mut self) -> &mut String;
     fn grp(&self) -> &String;
+    fn grp_mut(&mut self) -> &mut String;
     fn subgrp(&self) -> &String;
+    fn subgrp_mut(&mut self) -> &mut String;
     fn stream(&self) -> &Option<Arc<Mutex<dyn VarEventStreamDataTrait>>>;
+    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VarEventStreamDataTrait>>>;
 }
 
 impl VarStreamTelemetryHookEntityDataTrait for VarStreamTelemetryHookEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn r#mod(&self) -> &String {
         &self.r#mod
+    }
+    fn r#mod_mut(&mut self) -> &mut String {
+        &mut self.r#mod
     }
     fn grp(&self) -> &String {
         &self.grp
     }
+    fn grp_mut(&mut self) -> &mut String {
+        &mut self.grp
+    }
     fn subgrp(&self) -> &String {
         &self.subgrp
     }
+    fn subgrp_mut(&mut self) -> &mut String {
+        &mut self.subgrp
+    }
     fn stream(&self) -> &Option<Arc<Mutex<dyn VarEventStreamDataTrait>>> {
         &self.stream
+    }
+    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VarEventStreamDataTrait>>> {
+        &mut self.stream
     }
 }
 
@@ -18929,15 +24484,15 @@ impl super::core::DataBusPeerTrait for VarStreamTelemetryHookEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VarStreamTelemetryHookEntityData {
 }
 
 impl super::core::DataContainerTrait for VarStreamTelemetryHookEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VARSTREAMTELEMETRYHOOKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18993,6 +24548,15 @@ impl TypeObject for VarStreamTelemetryHookEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19019,31 +24583,55 @@ pub struct FixedStreamTelemetryHookEntityData {
 
 pub trait FixedStreamTelemetryHookEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn stream(&self) -> &Option<Arc<Mutex<dyn FixedEventStreamDataTrait>>>;
+    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedEventStreamDataTrait>>>;
     fn has_telemetry_sdk3_event_fields(&self) -> &bool;
+    fn has_telemetry_sdk3_event_fields_mut(&mut self) -> &mut bool;
     fn r#mod(&self) -> &String;
+    fn r#mod_mut(&mut self) -> &mut String;
     fn grp(&self) -> &String;
+    fn grp_mut(&mut self) -> &mut String;
     fn subgrp(&self) -> &String;
+    fn subgrp_mut(&mut self) -> &mut String;
 }
 
 impl FixedStreamTelemetryHookEntityDataTrait for FixedStreamTelemetryHookEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn stream(&self) -> &Option<Arc<Mutex<dyn FixedEventStreamDataTrait>>> {
         &self.stream
+    }
+    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedEventStreamDataTrait>>> {
+        &mut self.stream
     }
     fn has_telemetry_sdk3_event_fields(&self) -> &bool {
         &self.has_telemetry_sdk3_event_fields
     }
+    fn has_telemetry_sdk3_event_fields_mut(&mut self) -> &mut bool {
+        &mut self.has_telemetry_sdk3_event_fields
+    }
     fn r#mod(&self) -> &String {
         &self.r#mod
+    }
+    fn r#mod_mut(&mut self) -> &mut String {
+        &mut self.r#mod
     }
     fn grp(&self) -> &String {
         &self.grp
     }
+    fn grp_mut(&mut self) -> &mut String {
+        &mut self.grp
+    }
     fn subgrp(&self) -> &String {
         &self.subgrp
+    }
+    fn subgrp_mut(&mut self) -> &mut String {
+        &mut self.subgrp
     }
 }
 
@@ -19057,15 +24645,15 @@ impl super::core::DataBusPeerTrait for FixedStreamTelemetryHookEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FixedStreamTelemetryHookEntityData {
 }
 
 impl super::core::DataContainerTrait for FixedStreamTelemetryHookEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FIXEDSTREAMTELEMETRYHOOKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19127,6 +24715,15 @@ impl TypeObject for FixedStreamTelemetryHookEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19153,31 +24750,55 @@ pub struct TelemetryHookEntityData {
 
 pub trait TelemetryHookEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn r#mod(&self) -> &String;
+    fn r#mod_mut(&mut self) -> &mut String;
     fn grp(&self) -> &String;
+    fn grp_mut(&mut self) -> &mut String;
     fn subgrp(&self) -> &String;
+    fn subgrp_mut(&mut self) -> &mut String;
     fn params(&self) -> &Vec<TelemetryParameterDataProperty>;
+    fn params_mut(&mut self) -> &mut Vec<TelemetryParameterDataProperty>;
     fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
+    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
 }
 
 impl TelemetryHookEntityDataTrait for TelemetryHookEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn r#mod(&self) -> &String {
         &self.r#mod
+    }
+    fn r#mod_mut(&mut self) -> &mut String {
+        &mut self.r#mod
     }
     fn grp(&self) -> &String {
         &self.grp
     }
+    fn grp_mut(&mut self) -> &mut String {
+        &mut self.grp
+    }
     fn subgrp(&self) -> &String {
         &self.subgrp
+    }
+    fn subgrp_mut(&mut self) -> &mut String {
+        &mut self.subgrp
     }
     fn params(&self) -> &Vec<TelemetryParameterDataProperty> {
         &self.params
     }
+    fn params_mut(&mut self) -> &mut Vec<TelemetryParameterDataProperty> {
+        &mut self.params
+    }
     fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
         &self.transports
+    }
+    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+        &mut self.transports
     }
 }
 
@@ -19191,15 +24812,15 @@ impl super::core::DataBusPeerTrait for TelemetryHookEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TelemetryHookEntityData {
 }
 
 impl super::core::DataContainerTrait for TelemetryHookEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYHOOKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19261,6 +24882,15 @@ impl TypeObject for TelemetryHookEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19284,19 +24914,31 @@ pub struct TelemetryGenericHookEntityData {
 
 pub trait TelemetryGenericHookEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn stream(&self) -> &Option<Arc<Mutex<dyn EventStreamDataTrait>>>;
+    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EventStreamDataTrait>>>;
     fn log_event(&self) -> &Option<Arc<Mutex<dyn TelemetryLogEventTrait>>>;
+    fn log_event_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryLogEventTrait>>>;
 }
 
 impl TelemetryGenericHookEntityDataTrait for TelemetryGenericHookEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn stream(&self) -> &Option<Arc<Mutex<dyn EventStreamDataTrait>>> {
         &self.stream
     }
+    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EventStreamDataTrait>>> {
+        &mut self.stream
+    }
     fn log_event(&self) -> &Option<Arc<Mutex<dyn TelemetryLogEventTrait>>> {
         &self.log_event
+    }
+    fn log_event_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryLogEventTrait>>> {
+        &mut self.log_event
     }
 }
 
@@ -19310,15 +24952,15 @@ impl super::core::DataBusPeerTrait for TelemetryGenericHookEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TelemetryGenericHookEntityData {
 }
 
 impl super::core::DataContainerTrait for TelemetryGenericHookEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TELEMETRYGENERICHOOKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19361,6 +25003,15 @@ impl TypeObject for TelemetryGenericHookEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -19407,6 +25058,15 @@ impl TypeObject for TelemetryClearTelemetryTransactionMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -19440,6 +25100,15 @@ impl TypeObject for TelemetryCommitTelemetryTransactionMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -19475,6 +25144,15 @@ impl TypeObject for TelemetrySendTelemetryTransactionRowMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -19508,6 +25186,15 @@ impl TypeObject for TelemetrySendTelemetryRowMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -19543,6 +25230,15 @@ impl TypeObject for TelemetrySendEventMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -19554,19 +25250,31 @@ pub struct TelemetryHookParameterStringArray {
 
 pub trait TelemetryHookParameterStringArrayTrait: TypeObject {
     fn data(&self) -> &Vec<String>;
+    fn data_mut(&mut self) -> &mut Vec<String>;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterStringArrayTrait for TelemetryHookParameterStringArray {
     fn data(&self) -> &Vec<String> {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut Vec<String> {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -19610,6 +25318,15 @@ impl TypeObject for TelemetryHookParameterStringArray {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19632,19 +25349,31 @@ pub struct TelemetryHookParameterRawJsonString {
 
 pub trait TelemetryHookParameterRawJsonStringTrait: TypeObject {
     fn data(&self) -> &RawJsonString;
+    fn data_mut(&mut self) -> &mut RawJsonString;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterRawJsonStringTrait for TelemetryHookParameterRawJsonString {
     fn data(&self) -> &RawJsonString {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut RawJsonString {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -19688,6 +25417,15 @@ impl TypeObject for TelemetryHookParameterRawJsonString {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19710,19 +25448,31 @@ pub struct TelemetryHookParameterTransform {
 
 pub trait TelemetryHookParameterTransformTrait: TypeObject {
     fn data(&self) -> &super::core::LinearTransform;
+    fn data_mut(&mut self) -> &mut super::core::LinearTransform;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterTransformTrait for TelemetryHookParameterTransform {
     fn data(&self) -> &super::core::LinearTransform {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -19766,6 +25516,15 @@ impl TypeObject for TelemetryHookParameterTransform {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19788,19 +25547,31 @@ pub struct TelemetryHookParameterVec4 {
 
 pub trait TelemetryHookParameterVec4Trait: TypeObject {
     fn data(&self) -> &super::core::Vec4;
+    fn data_mut(&mut self) -> &mut super::core::Vec4;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterVec4Trait for TelemetryHookParameterVec4 {
     fn data(&self) -> &super::core::Vec4 {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -19844,6 +25615,15 @@ impl TypeObject for TelemetryHookParameterVec4 {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19866,19 +25646,31 @@ pub struct TelemetryHookParameterVec3 {
 
 pub trait TelemetryHookParameterVec3Trait: TypeObject {
     fn data(&self) -> &super::core::Vec3;
+    fn data_mut(&mut self) -> &mut super::core::Vec3;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterVec3Trait for TelemetryHookParameterVec3 {
     fn data(&self) -> &super::core::Vec3 {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -19922,6 +25714,15 @@ impl TypeObject for TelemetryHookParameterVec3 {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19944,19 +25745,31 @@ pub struct TelemetryHookParameterVec2 {
 
 pub trait TelemetryHookParameterVec2Trait: TypeObject {
     fn data(&self) -> &super::core::Vec2;
+    fn data_mut(&mut self) -> &mut super::core::Vec2;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterVec2Trait for TelemetryHookParameterVec2 {
     fn data(&self) -> &super::core::Vec2 {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -20000,6 +25813,15 @@ impl TypeObject for TelemetryHookParameterVec2 {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20022,19 +25844,31 @@ pub struct TelemetryHookParameterBool {
 
 pub trait TelemetryHookParameterBoolTrait: TypeObject {
     fn data(&self) -> &bool;
+    fn data_mut(&mut self) -> &mut bool;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterBoolTrait for TelemetryHookParameterBool {
     fn data(&self) -> &bool {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut bool {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -20078,6 +25912,15 @@ impl TypeObject for TelemetryHookParameterBool {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20100,19 +25943,31 @@ pub struct TelemetryHookParameterUint64 {
 
 pub trait TelemetryHookParameterUint64Trait: TypeObject {
     fn data(&self) -> &u64;
+    fn data_mut(&mut self) -> &mut u64;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterUint64Trait for TelemetryHookParameterUint64 {
     fn data(&self) -> &u64 {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut u64 {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -20156,6 +26011,15 @@ impl TypeObject for TelemetryHookParameterUint64 {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20178,19 +26042,31 @@ pub struct TelemetryHookParameterUint {
 
 pub trait TelemetryHookParameterUintTrait: TypeObject {
     fn data(&self) -> &u32;
+    fn data_mut(&mut self) -> &mut u32;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterUintTrait for TelemetryHookParameterUint {
     fn data(&self) -> &u32 {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut u32 {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -20234,6 +26110,15 @@ impl TypeObject for TelemetryHookParameterUint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20256,19 +26141,31 @@ pub struct TelemetryHookParameterString {
 
 pub trait TelemetryHookParameterStringTrait: TypeObject {
     fn data(&self) -> &String;
+    fn data_mut(&mut self) -> &mut String;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterStringTrait for TelemetryHookParameterString {
     fn data(&self) -> &String {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut String {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -20312,6 +26209,15 @@ impl TypeObject for TelemetryHookParameterString {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20334,19 +26240,31 @@ pub struct TelemetryHookParameterFloat {
 
 pub trait TelemetryHookParameterFloatTrait: TypeObject {
     fn data(&self) -> &f32;
+    fn data_mut(&mut self) -> &mut f32;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterFloatTrait for TelemetryHookParameterFloat {
     fn data(&self) -> &f32 {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut f32 {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -20390,6 +26308,15 @@ impl TypeObject for TelemetryHookParameterFloat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20412,19 +26339,31 @@ pub struct TelemetryHookParameterInt {
 
 pub trait TelemetryHookParameterIntTrait: TypeObject {
     fn data(&self) -> &i32;
+    fn data_mut(&mut self) -> &mut i32;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterIntTrait for TelemetryHookParameterInt {
     fn data(&self) -> &i32 {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut i32 {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -20468,6 +26407,15 @@ impl TypeObject for TelemetryHookParameterInt {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20490,19 +26438,31 @@ pub struct TelemetryHookParameterChar {
 
 pub trait TelemetryHookParameterCharTrait: TypeObject {
     fn data(&self) -> &u8;
+    fn data_mut(&mut self) -> &mut u8;
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterCharTrait for TelemetryHookParameterChar {
     fn data(&self) -> &u8 {
         &self.data
     }
+    fn data_mut(&mut self) -> &mut u8 {
+        &mut self.data
+    }
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -20546,6 +26506,15 @@ impl TypeObject for TelemetryHookParameterChar {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20567,15 +26536,23 @@ pub struct TelemetryHookParameter {
 
 pub trait TelemetryHookParameterTrait: TypeObject {
     fn parameter_type(&self) -> &TelemetryParameterType;
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType;
     fn parameter_name(&self) -> &String;
+    fn parameter_name_mut(&mut self) -> &mut String;
 }
 
 impl TelemetryHookParameterTrait for TelemetryHookParameter {
     fn parameter_type(&self) -> &TelemetryParameterType {
         &self.parameter_type
     }
+    fn parameter_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.parameter_type
+    }
     fn parameter_name(&self) -> &String {
         &self.parameter_name
+    }
+    fn parameter_name_mut(&mut self) -> &mut String {
+        &mut self.parameter_name
     }
 }
 
@@ -20613,6 +26590,15 @@ impl TypeObject for TelemetryHookParameter {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20634,15 +26620,23 @@ pub struct TelemetryParameterDataProperty {
 
 pub trait TelemetryParameterDataPropertyTrait: TypeObject {
     fn stat_name(&self) -> &String;
+    fn stat_name_mut(&mut self) -> &mut String;
     fn data_type(&self) -> &TelemetryParameterType;
+    fn data_type_mut(&mut self) -> &mut TelemetryParameterType;
 }
 
 impl TelemetryParameterDataPropertyTrait for TelemetryParameterDataProperty {
     fn stat_name(&self) -> &String {
         &self.stat_name
     }
+    fn stat_name_mut(&mut self) -> &mut String {
+        &mut self.stat_name
+    }
     fn data_type(&self) -> &TelemetryParameterType {
         &self.data_type
+    }
+    fn data_type_mut(&mut self) -> &mut TelemetryParameterType {
+        &mut self.data_type
     }
 }
 
@@ -20680,6 +26674,15 @@ impl TypeObject for TelemetryParameterDataProperty {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20700,11 +26703,15 @@ pub struct RawJsonString {
 
 pub trait RawJsonStringTrait: TypeObject {
     fn raw_json(&self) -> &String;
+    fn raw_json_mut(&mut self) -> &mut String;
 }
 
 impl RawJsonStringTrait for RawJsonString {
     fn raw_json(&self) -> &String {
         &self.raw_json
+    }
+    fn raw_json_mut(&mut self) -> &mut String {
+        &mut self.raw_json
     }
 }
 
@@ -20736,6 +26743,15 @@ impl TypeObject for RawJsonString {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -20757,18 +26773,19 @@ pub struct SpecialTypeData {
 
 pub trait SpecialTypeDataTrait: super::core::DataContainerTrait {
     fn owns_value(&self) -> &bool;
+    fn owns_value_mut(&mut self) -> &mut bool;
 }
 
 impl SpecialTypeDataTrait for SpecialTypeData {
     fn owns_value(&self) -> &bool {
         &self.owns_value
     }
+    fn owns_value_mut(&mut self) -> &mut bool {
+        &mut self.owns_value
+    }
 }
 
 impl super::core::DataContainerTrait for SpecialTypeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPECIALTYPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20799,6 +26816,15 @@ impl TypeObject for SpecialTypeData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -20850,6 +26876,15 @@ impl TypeObject for TelemetryParameterType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

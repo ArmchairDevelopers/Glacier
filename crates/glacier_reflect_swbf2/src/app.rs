@@ -40,18 +40,19 @@ pub struct InputConfiguration {
 
 pub trait InputConfigurationTrait: super::core::DataContainerTrait {
     fn custom_input_sets(&self) -> &Vec<Option<Arc<Mutex<dyn InputSetTrait>>>>;
+    fn custom_input_sets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputSetTrait>>>>;
 }
 
 impl InputConfigurationTrait for InputConfiguration {
     fn custom_input_sets(&self) -> &Vec<Option<Arc<Mutex<dyn InputSetTrait>>>> {
         &self.custom_input_sets
     }
+    fn custom_input_sets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputSetTrait>>>> {
+        &mut self.custom_input_sets
+    }
 }
 
 impl super::core::DataContainerTrait for InputConfiguration {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTCONFIGURATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -83,6 +84,15 @@ impl TypeObject for InputConfiguration {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -105,22 +115,27 @@ pub struct InputSet {
 
 pub trait InputSetTrait: super::core::DataContainerTrait {
     fn configuration_key(&self) -> &String;
+    fn configuration_key_mut(&mut self) -> &mut String;
     fn bindings(&self) -> &Vec<Option<Arc<Mutex<dyn InputBindingTrait>>>>;
+    fn bindings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputBindingTrait>>>>;
 }
 
 impl InputSetTrait for InputSet {
     fn configuration_key(&self) -> &String {
         &self.configuration_key
     }
+    fn configuration_key_mut(&mut self) -> &mut String {
+        &mut self.configuration_key
+    }
     fn bindings(&self) -> &Vec<Option<Arc<Mutex<dyn InputBindingTrait>>>> {
         &self.bindings
+    }
+    fn bindings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputBindingTrait>>>> {
+        &mut self.bindings
     }
 }
 
 impl super::core::DataContainerTrait for InputSet {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -158,6 +173,15 @@ impl TypeObject for InputSet {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -180,22 +204,27 @@ pub struct InputBinding {
 
 pub trait InputBindingTrait: super::core::DataContainerTrait {
     fn input_gesture(&self) -> &String;
+    fn input_gesture_mut(&mut self) -> &mut String;
     fn command_uri(&self) -> &String;
+    fn command_uri_mut(&mut self) -> &mut String;
 }
 
 impl InputBindingTrait for InputBinding {
     fn input_gesture(&self) -> &String {
         &self.input_gesture
     }
+    fn input_gesture_mut(&mut self) -> &mut String {
+        &mut self.input_gesture
+    }
     fn command_uri(&self) -> &String {
         &self.command_uri
+    }
+    fn command_uri_mut(&mut self) -> &mut String {
+        &mut self.command_uri
     }
 }
 
 impl super::core::DataContainerTrait for InputBinding {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -233,6 +262,15 @@ impl TypeObject for InputBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -265,55 +303,103 @@ pub struct WindowSettings {
 
 pub trait WindowSettingsTrait: super::core::SystemSettingsTrait {
     fn pos_x(&self) -> &i32;
+    fn pos_x_mut(&mut self) -> &mut i32;
     fn pos_y(&self) -> &i32;
+    fn pos_y_mut(&mut self) -> &mut i32;
     fn width(&self) -> &u32;
+    fn width_mut(&mut self) -> &mut u32;
     fn height(&self) -> &u32;
+    fn height_mut(&mut self) -> &mut u32;
     fn auto_size(&self) -> &bool;
+    fn auto_size_mut(&mut self) -> &mut bool;
     fn fullscreen_auto_size(&self) -> &bool;
+    fn fullscreen_auto_size_mut(&mut self) -> &mut bool;
     fn enable_escape(&self) -> &bool;
+    fn enable_escape_mut(&mut self) -> &mut bool;
     fn enable_input_on_activate(&self) -> &bool;
+    fn enable_input_on_activate_mut(&mut self) -> &mut bool;
     fn hibernate_on_close(&self) -> &bool;
+    fn hibernate_on_close_mut(&mut self) -> &mut bool;
     fn hidden(&self) -> &bool;
+    fn hidden_mut(&mut self) -> &mut bool;
     fn minimized(&self) -> &bool;
+    fn minimized_mut(&mut self) -> &mut bool;
     fn allow_windows_larger_than_desktop(&self) -> &bool;
+    fn allow_windows_larger_than_desktop_mut(&mut self) -> &mut bool;
 }
 
 impl WindowSettingsTrait for WindowSettings {
     fn pos_x(&self) -> &i32 {
         &self.pos_x
     }
+    fn pos_x_mut(&mut self) -> &mut i32 {
+        &mut self.pos_x
+    }
     fn pos_y(&self) -> &i32 {
         &self.pos_y
+    }
+    fn pos_y_mut(&mut self) -> &mut i32 {
+        &mut self.pos_y
     }
     fn width(&self) -> &u32 {
         &self.width
     }
+    fn width_mut(&mut self) -> &mut u32 {
+        &mut self.width
+    }
     fn height(&self) -> &u32 {
         &self.height
+    }
+    fn height_mut(&mut self) -> &mut u32 {
+        &mut self.height
     }
     fn auto_size(&self) -> &bool {
         &self.auto_size
     }
+    fn auto_size_mut(&mut self) -> &mut bool {
+        &mut self.auto_size
+    }
     fn fullscreen_auto_size(&self) -> &bool {
         &self.fullscreen_auto_size
+    }
+    fn fullscreen_auto_size_mut(&mut self) -> &mut bool {
+        &mut self.fullscreen_auto_size
     }
     fn enable_escape(&self) -> &bool {
         &self.enable_escape
     }
+    fn enable_escape_mut(&mut self) -> &mut bool {
+        &mut self.enable_escape
+    }
     fn enable_input_on_activate(&self) -> &bool {
         &self.enable_input_on_activate
+    }
+    fn enable_input_on_activate_mut(&mut self) -> &mut bool {
+        &mut self.enable_input_on_activate
     }
     fn hibernate_on_close(&self) -> &bool {
         &self.hibernate_on_close
     }
+    fn hibernate_on_close_mut(&mut self) -> &mut bool {
+        &mut self.hibernate_on_close
+    }
     fn hidden(&self) -> &bool {
         &self.hidden
+    }
+    fn hidden_mut(&mut self) -> &mut bool {
+        &mut self.hidden
     }
     fn minimized(&self) -> &bool {
         &self.minimized
     }
+    fn minimized_mut(&mut self) -> &mut bool {
+        &mut self.minimized
+    }
     fn allow_windows_larger_than_desktop(&self) -> &bool {
         &self.allow_windows_larger_than_desktop
+    }
+    fn allow_windows_larger_than_desktop_mut(&mut self) -> &mut bool {
+        &mut self.allow_windows_larger_than_desktop
     }
 }
 
@@ -321,12 +407,12 @@ impl super::core::SystemSettingsTrait for WindowSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for WindowSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WINDOWSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -424,6 +510,15 @@ impl TypeObject for WindowSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -469,6 +564,15 @@ impl TypeObject for ApplicationWindowFullscreenRequestMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -502,6 +606,15 @@ impl TypeObject for ApplicationWindowResizeEndMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -537,6 +650,15 @@ impl TypeObject for ApplicationWindowStyleChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -570,6 +692,15 @@ impl TypeObject for ApplicationWindowClosedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -605,6 +736,15 @@ impl TypeObject for ApplicationWindowCreatedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
@@ -632,6 +772,15 @@ impl TypeObject for WindowFullscreenMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -672,6 +821,15 @@ impl TypeObject for WindowResizeType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -718,6 +876,15 @@ impl TypeObject for Window {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -768,6 +935,15 @@ impl TypeObject for Win32Window {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -3,8 +3,7 @@ use std::any::Any;
 use glacier_util::guid::Guid;
 
 use crate::{
-    member::MemberInfoFlags,
-    type_info::{TypeInfo, TypeInfoData, TypeObject},
+    data_container::DataContainerCore, member::MemberInfoFlags, type_info::{TypeInfo, TypeInfoData, TypeObject}, type_registry::TypeRegistry
 };
 
 macro_rules! declare_builtin_type {
@@ -35,6 +34,18 @@ macro_rules! declare_builtin_type {
 
                 fn as_any(&self) -> &dyn Any {
                     self
+                }
+
+                fn as_any_mut(&mut self) -> &mut dyn Any {
+                    self
+                }
+
+                fn data_container_core(&self) -> Option<&DataContainerCore> {
+                    None
+                }
+
+                fn data_container_core_mut(&mut self) -> Option<&mut DataContainerCore> {
+                    None
                 }
             }
         }
@@ -67,3 +78,12 @@ pub struct SHA1 {}
 declare_builtin_type!(SHA1, SHA1);
 
 declare_builtin_type!(Guid, Guid);
+
+pub(crate) fn register_builtin_types(registry: &mut TypeRegistry) {
+    registry.register_type(BUILTIN_TYPE_RESOURCEREF);
+    registry.register_type(BUILTIN_TYPE_TYPEREF);
+    registry.register_type(BUILTIN_TYPE_FILEREF);
+    registry.register_type(BUILTIN_TYPE_BOXEDVALUEREF);
+    registry.register_type(BUILTIN_TYPE_SHA1);
+    registry.register_type(BUILTIN_TYPE_GUID);
+}

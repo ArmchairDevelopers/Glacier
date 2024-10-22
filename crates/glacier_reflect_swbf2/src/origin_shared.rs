@@ -43,71 +43,135 @@ pub struct OriginSettings {
 
 pub trait OriginSettingsTrait: super::core::SystemSettingsTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn required_for_online(&self) -> &bool;
+    fn required_for_online_mut(&mut self) -> &mut bool;
     fn require_latest_for_online_features(&self) -> &bool;
+    fn require_latest_for_online_features_mut(&mut self) -> &mut bool;
     fn content_id(&self) -> &String;
+    fn content_id_mut(&mut self) -> &mut String;
     fn title(&self) -> &String;
+    fn title_mut(&mut self) -> &mut String;
     fn multiplayer_id(&self) -> &String;
+    fn multiplayer_id_mut(&mut self) -> &mut String;
     fn language(&self) -> &String;
+    fn language_mut(&mut self) -> &mut String;
     fn log(&self) -> &bool;
+    fn log_mut(&mut self) -> &mut bool;
     fn allow_production_environment(&self) -> &bool;
+    fn allow_production_environment_mut(&mut self) -> &mut bool;
     fn achievements_secret(&self) -> &String;
+    fn achievements_secret_mut(&mut self) -> &mut String;
     fn achievements_timeout(&self) -> &i32;
+    fn achievements_timeout_mut(&mut self) -> &mut i32;
     fn entitlements_timeout(&self) -> &i32;
+    fn entitlements_timeout_mut(&mut self) -> &mut i32;
     fn installer_game(&self) -> &String;
+    fn installer_game_mut(&mut self) -> &mut String;
     fn installer_studio(&self) -> &String;
+    fn installer_studio_mut(&mut self) -> &mut String;
     fn disable_in_live_edit_mode(&self) -> &bool;
+    fn disable_in_live_edit_mode_mut(&mut self) -> &mut bool;
     fn auto_restart_origin_s_d_k(&self) -> &bool;
+    fn auto_restart_origin_s_d_k_mut(&mut self) -> &mut bool;
 }
 
 impl OriginSettingsTrait for OriginSettings {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn required_for_online(&self) -> &bool {
         &self.required_for_online
+    }
+    fn required_for_online_mut(&mut self) -> &mut bool {
+        &mut self.required_for_online
     }
     fn require_latest_for_online_features(&self) -> &bool {
         &self.require_latest_for_online_features
     }
+    fn require_latest_for_online_features_mut(&mut self) -> &mut bool {
+        &mut self.require_latest_for_online_features
+    }
     fn content_id(&self) -> &String {
         &self.content_id
+    }
+    fn content_id_mut(&mut self) -> &mut String {
+        &mut self.content_id
     }
     fn title(&self) -> &String {
         &self.title
     }
+    fn title_mut(&mut self) -> &mut String {
+        &mut self.title
+    }
     fn multiplayer_id(&self) -> &String {
         &self.multiplayer_id
+    }
+    fn multiplayer_id_mut(&mut self) -> &mut String {
+        &mut self.multiplayer_id
     }
     fn language(&self) -> &String {
         &self.language
     }
+    fn language_mut(&mut self) -> &mut String {
+        &mut self.language
+    }
     fn log(&self) -> &bool {
         &self.log
+    }
+    fn log_mut(&mut self) -> &mut bool {
+        &mut self.log
     }
     fn allow_production_environment(&self) -> &bool {
         &self.allow_production_environment
     }
+    fn allow_production_environment_mut(&mut self) -> &mut bool {
+        &mut self.allow_production_environment
+    }
     fn achievements_secret(&self) -> &String {
         &self.achievements_secret
+    }
+    fn achievements_secret_mut(&mut self) -> &mut String {
+        &mut self.achievements_secret
     }
     fn achievements_timeout(&self) -> &i32 {
         &self.achievements_timeout
     }
+    fn achievements_timeout_mut(&mut self) -> &mut i32 {
+        &mut self.achievements_timeout
+    }
     fn entitlements_timeout(&self) -> &i32 {
         &self.entitlements_timeout
+    }
+    fn entitlements_timeout_mut(&mut self) -> &mut i32 {
+        &mut self.entitlements_timeout
     }
     fn installer_game(&self) -> &String {
         &self.installer_game
     }
+    fn installer_game_mut(&mut self) -> &mut String {
+        &mut self.installer_game
+    }
     fn installer_studio(&self) -> &String {
         &self.installer_studio
+    }
+    fn installer_studio_mut(&mut self) -> &mut String {
+        &mut self.installer_studio
     }
     fn disable_in_live_edit_mode(&self) -> &bool {
         &self.disable_in_live_edit_mode
     }
+    fn disable_in_live_edit_mode_mut(&mut self) -> &mut bool {
+        &mut self.disable_in_live_edit_mode
+    }
     fn auto_restart_origin_s_d_k(&self) -> &bool {
         &self.auto_restart_origin_s_d_k
+    }
+    fn auto_restart_origin_s_d_k_mut(&mut self) -> &mut bool {
+        &mut self.auto_restart_origin_s_d_k
     }
 }
 
@@ -115,12 +179,12 @@ impl super::core::SystemSettingsTrait for OriginSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for OriginSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ORIGINSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -242,6 +306,15 @@ impl TypeObject for OriginSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -287,6 +360,15 @@ impl TypeObject for OriginCoreNotAvailableMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -320,6 +402,15 @@ impl TypeObject for OriginNotLoadedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -355,6 +446,15 @@ impl TypeObject for OriginOnlineMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -388,6 +488,15 @@ impl TypeObject for OriginResponseMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -423,6 +532,15 @@ impl TypeObject for OriginRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -457,6 +575,15 @@ impl TypeObject for OriginJoinableMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -490,6 +617,15 @@ impl TypeObject for OriginErrorMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

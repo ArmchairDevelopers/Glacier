@@ -22,15 +22,23 @@ pub struct MementoSettings {
 
 pub trait MementoSettingsTrait: super::core::SystemSettingsTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn gzip_compression(&self) -> &bool;
+    fn gzip_compression_mut(&mut self) -> &mut bool;
 }
 
 impl MementoSettingsTrait for MementoSettings {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn gzip_compression(&self) -> &bool {
         &self.gzip_compression
+    }
+    fn gzip_compression_mut(&mut self) -> &mut bool {
+        &mut self.gzip_compression
     }
 }
 
@@ -38,12 +46,12 @@ impl super::core::SystemSettingsTrait for MementoSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MementoSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MEMENTOSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -80,6 +88,15 @@ impl TypeObject for MementoSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

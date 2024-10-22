@@ -81,6 +81,15 @@ impl TypeObject for WaterWaveHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -125,6 +134,15 @@ impl TypeObject for WaterSurfaceHandle {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -171,6 +189,15 @@ impl TypeObject for WaterGlobalHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -216,6 +243,15 @@ impl TypeObject for WaterSimulationHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -238,19 +274,31 @@ pub struct WaterWaveDynamicState {
 
 pub trait WaterWaveDynamicStateTrait: TypeObject {
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn amplitude(&self) -> &f32;
+    fn amplitude_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl WaterWaveDynamicStateTrait for WaterWaveDynamicState {
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn amplitude(&self) -> &f32 {
         &self.amplitude
     }
+    fn amplitude_mut(&mut self) -> &mut f32 {
+        &mut self.amplitude
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -294,6 +342,15 @@ impl TypeObject for WaterWaveDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -315,15 +372,23 @@ pub struct WaterWaveStaticState {
 
 pub trait WaterWaveStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl WaterWaveStaticStateTrait for WaterWaveStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -361,6 +426,15 @@ impl TypeObject for WaterWaveStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -381,11 +455,15 @@ pub struct WaterWaveCreateState {
 
 pub trait WaterWaveCreateStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl WaterWaveCreateStateTrait for WaterWaveCreateState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
 }
 
@@ -417,6 +495,15 @@ impl TypeObject for WaterWaveCreateState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -443,35 +530,63 @@ pub struct WaterSurfaceDynamicState {
 
 pub trait WaterSurfaceDynamicStateTrait: TypeObject {
     fn disturbs(&self) -> &Vec<WaterDisturbParams>;
+    fn disturbs_mut(&mut self) -> &mut Vec<WaterDisturbParams>;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
     fn tile_offset(&self) -> &super::core::Vec3;
+    fn tile_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn wave_amplitude_scale(&self) -> &f32;
+    fn wave_amplitude_scale_mut(&mut self) -> &mut f32;
     fn shore_enable(&self) -> &bool;
+    fn shore_enable_mut(&mut self) -> &mut bool;
     fn shore_depth(&self) -> &f32;
+    fn shore_depth_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl WaterSurfaceDynamicStateTrait for WaterSurfaceDynamicState {
     fn disturbs(&self) -> &Vec<WaterDisturbParams> {
         &self.disturbs
     }
+    fn disturbs_mut(&mut self) -> &mut Vec<WaterDisturbParams> {
+        &mut self.disturbs
+    }
     fn visible(&self) -> &bool {
         &self.visible
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
     }
     fn tile_offset(&self) -> &super::core::Vec3 {
         &self.tile_offset
     }
+    fn tile_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.tile_offset
+    }
     fn wave_amplitude_scale(&self) -> &f32 {
         &self.wave_amplitude_scale
+    }
+    fn wave_amplitude_scale_mut(&mut self) -> &mut f32 {
+        &mut self.wave_amplitude_scale
     }
     fn shore_enable(&self) -> &bool {
         &self.shore_enable
     }
+    fn shore_enable_mut(&mut self) -> &mut bool {
+        &mut self.shore_enable
+    }
     fn shore_depth(&self) -> &f32 {
         &self.shore_depth
     }
+    fn shore_depth_mut(&mut self) -> &mut f32 {
+        &mut self.shore_depth
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -539,6 +654,15 @@ impl TypeObject for WaterSurfaceDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -577,83 +701,159 @@ pub struct WaterSurfaceStaticState {
 
 pub trait WaterSurfaceStaticStateTrait: TypeObject {
     fn coarse_simulation(&self) -> &WaterSimulationHandle;
+    fn coarse_simulation_mut(&mut self) -> &mut WaterSimulationHandle;
     fn detail_simulation(&self) -> &WaterSimulationHandle;
+    fn detail_simulation_mut(&mut self) -> &mut WaterSimulationHandle;
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn effects(&self) -> &Vec<WaterAmbientFoamEffect>;
+    fn effects_mut(&mut self) -> &mut Vec<WaterAmbientFoamEffect>;
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn shader_low_detail(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn shader_low_detail_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn low_detail_distance(&self) -> &super::core::QualityScalableFloat;
+    fn low_detail_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn projector_elevation(&self) -> &f32;
+    fn projector_elevation_mut(&mut self) -> &mut f32;
     fn terrain_virtual_texture_access_enable(&self) -> &bool;
+    fn terrain_virtual_texture_access_enable_mut(&mut self) -> &mut bool;
     fn clip_info(&self) -> &WaterEntityClipInfo;
+    fn clip_info_mut(&mut self) -> &mut WaterEntityClipInfo;
     fn interactive_foam_enable(&self) -> &super::core::QualityScalableBool;
+    fn interactive_foam_enable_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn interactive_foam_splat_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn interactive_foam_splat_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn interactive_foam_half_life(&self) -> &f32;
+    fn interactive_foam_half_life_mut(&mut self) -> &mut f32;
     fn interactive_foam_target_scale(&self) -> &f32;
+    fn interactive_foam_target_scale_mut(&mut self) -> &mut f32;
     fn interactive_foam_splat_interval(&self) -> &f32;
+    fn interactive_foam_splat_interval_mut(&mut self) -> &mut f32;
     fn interactive_waves_enable(&self) -> &super::core::QualityScalableBool;
+    fn interactive_waves_enable_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn interactive_wave_disturbance_scale(&self) -> &f32;
+    fn interactive_wave_disturbance_scale_mut(&mut self) -> &mut f32;
     fn culling_aabbs(&self) -> &Vec<super::core::AxisAlignedBox>;
+    fn culling_aabbs_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox>;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl WaterSurfaceStaticStateTrait for WaterSurfaceStaticState {
     fn coarse_simulation(&self) -> &WaterSimulationHandle {
         &self.coarse_simulation
     }
+    fn coarse_simulation_mut(&mut self) -> &mut WaterSimulationHandle {
+        &mut self.coarse_simulation
+    }
     fn detail_simulation(&self) -> &WaterSimulationHandle {
         &self.detail_simulation
+    }
+    fn detail_simulation_mut(&mut self) -> &mut WaterSimulationHandle {
+        &mut self.detail_simulation
     }
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn effects(&self) -> &Vec<WaterAmbientFoamEffect> {
         &self.effects
+    }
+    fn effects_mut(&mut self) -> &mut Vec<WaterAmbientFoamEffect> {
+        &mut self.effects
     }
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.shader
     }
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.shader
+    }
     fn shader_low_detail(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.shader_low_detail
+    }
+    fn shader_low_detail_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.shader_low_detail
     }
     fn low_detail_distance(&self) -> &super::core::QualityScalableFloat {
         &self.low_detail_distance
     }
+    fn low_detail_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.low_detail_distance
+    }
     fn projector_elevation(&self) -> &f32 {
         &self.projector_elevation
+    }
+    fn projector_elevation_mut(&mut self) -> &mut f32 {
+        &mut self.projector_elevation
     }
     fn terrain_virtual_texture_access_enable(&self) -> &bool {
         &self.terrain_virtual_texture_access_enable
     }
+    fn terrain_virtual_texture_access_enable_mut(&mut self) -> &mut bool {
+        &mut self.terrain_virtual_texture_access_enable
+    }
     fn clip_info(&self) -> &WaterEntityClipInfo {
         &self.clip_info
+    }
+    fn clip_info_mut(&mut self) -> &mut WaterEntityClipInfo {
+        &mut self.clip_info
     }
     fn interactive_foam_enable(&self) -> &super::core::QualityScalableBool {
         &self.interactive_foam_enable
     }
+    fn interactive_foam_enable_mut(&mut self) -> &mut super::core::QualityScalableBool {
+        &mut self.interactive_foam_enable
+    }
     fn interactive_foam_splat_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.interactive_foam_splat_texture
+    }
+    fn interactive_foam_splat_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.interactive_foam_splat_texture
     }
     fn interactive_foam_half_life(&self) -> &f32 {
         &self.interactive_foam_half_life
     }
+    fn interactive_foam_half_life_mut(&mut self) -> &mut f32 {
+        &mut self.interactive_foam_half_life
+    }
     fn interactive_foam_target_scale(&self) -> &f32 {
         &self.interactive_foam_target_scale
+    }
+    fn interactive_foam_target_scale_mut(&mut self) -> &mut f32 {
+        &mut self.interactive_foam_target_scale
     }
     fn interactive_foam_splat_interval(&self) -> &f32 {
         &self.interactive_foam_splat_interval
     }
+    fn interactive_foam_splat_interval_mut(&mut self) -> &mut f32 {
+        &mut self.interactive_foam_splat_interval
+    }
     fn interactive_waves_enable(&self) -> &super::core::QualityScalableBool {
         &self.interactive_waves_enable
+    }
+    fn interactive_waves_enable_mut(&mut self) -> &mut super::core::QualityScalableBool {
+        &mut self.interactive_waves_enable
     }
     fn interactive_wave_disturbance_scale(&self) -> &f32 {
         &self.interactive_wave_disturbance_scale
     }
+    fn interactive_wave_disturbance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.interactive_wave_disturbance_scale
+    }
     fn culling_aabbs(&self) -> &Vec<super::core::AxisAlignedBox> {
         &self.culling_aabbs
     }
+    fn culling_aabbs_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        &mut self.culling_aabbs
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -793,6 +993,15 @@ impl TypeObject for WaterSurfaceStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -816,23 +1025,39 @@ pub struct WaterSimulationDynamicState {
 
 pub trait WaterSimulationDynamicStateTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn enable_foam(&self) -> &bool;
+    fn enable_foam_mut(&mut self) -> &mut bool;
     fn choppiness(&self) -> &f32;
+    fn choppiness_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl WaterSimulationDynamicStateTrait for WaterSimulationDynamicState {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn enable_foam(&self) -> &bool {
         &self.enable_foam
+    }
+    fn enable_foam_mut(&mut self) -> &mut bool {
+        &mut self.enable_foam
     }
     fn choppiness(&self) -> &f32 {
         &self.choppiness
     }
+    fn choppiness_mut(&mut self) -> &mut f32 {
+        &mut self.choppiness
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -882,6 +1107,15 @@ impl TypeObject for WaterSimulationDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -916,67 +1150,127 @@ pub struct WaterSimulationStaticState {
 
 pub trait WaterSimulationStaticStateTrait: TypeObject {
     fn resolution(&self) -> &super::core::PlatformScalableInt;
+    fn resolution_mut(&mut self) -> &mut super::core::PlatformScalableInt;
     fn tile_dimension(&self) -> &f32;
+    fn tile_dimension_mut(&mut self) -> &mut f32;
     fn physics_simulation_enabled(&self) -> &bool;
+    fn physics_simulation_enabled_mut(&mut self) -> &mut bool;
     fn force_simple_plane_collision(&self) -> &bool;
+    fn force_simple_plane_collision_mut(&mut self) -> &mut bool;
     fn wave_amplitude(&self) -> &f32;
+    fn wave_amplitude_mut(&mut self) -> &mut f32;
     fn wind_speed(&self) -> &f32;
+    fn wind_speed_mut(&mut self) -> &mut f32;
     fn wind_angle(&self) -> &f32;
+    fn wind_angle_mut(&mut self) -> &mut f32;
     fn wind_distribution(&self) -> &super::core::SplineCurve;
+    fn wind_distribution_mut(&mut self) -> &mut super::core::SplineCurve;
     fn min_wavelength(&self) -> &f32;
+    fn min_wavelength_mut(&mut self) -> &mut f32;
     fn large_wave_reduction(&self) -> &f32;
+    fn large_wave_reduction_mut(&mut self) -> &mut f32;
     fn foam_half_life(&self) -> &f32;
+    fn foam_half_life_mut(&mut self) -> &mut f32;
     fn foam_threshold(&self) -> &f32;
+    fn foam_threshold_mut(&mut self) -> &mut f32;
     fn foam_max_value(&self) -> &f32;
+    fn foam_max_value_mut(&mut self) -> &mut f32;
     fn ocean_visual_cpu_simulation_enable(&self) -> &bool;
+    fn ocean_visual_cpu_simulation_enable_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl WaterSimulationStaticStateTrait for WaterSimulationStaticState {
     fn resolution(&self) -> &super::core::PlatformScalableInt {
         &self.resolution
     }
+    fn resolution_mut(&mut self) -> &mut super::core::PlatformScalableInt {
+        &mut self.resolution
+    }
     fn tile_dimension(&self) -> &f32 {
         &self.tile_dimension
+    }
+    fn tile_dimension_mut(&mut self) -> &mut f32 {
+        &mut self.tile_dimension
     }
     fn physics_simulation_enabled(&self) -> &bool {
         &self.physics_simulation_enabled
     }
+    fn physics_simulation_enabled_mut(&mut self) -> &mut bool {
+        &mut self.physics_simulation_enabled
+    }
     fn force_simple_plane_collision(&self) -> &bool {
         &self.force_simple_plane_collision
+    }
+    fn force_simple_plane_collision_mut(&mut self) -> &mut bool {
+        &mut self.force_simple_plane_collision
     }
     fn wave_amplitude(&self) -> &f32 {
         &self.wave_amplitude
     }
+    fn wave_amplitude_mut(&mut self) -> &mut f32 {
+        &mut self.wave_amplitude
+    }
     fn wind_speed(&self) -> &f32 {
         &self.wind_speed
+    }
+    fn wind_speed_mut(&mut self) -> &mut f32 {
+        &mut self.wind_speed
     }
     fn wind_angle(&self) -> &f32 {
         &self.wind_angle
     }
+    fn wind_angle_mut(&mut self) -> &mut f32 {
+        &mut self.wind_angle
+    }
     fn wind_distribution(&self) -> &super::core::SplineCurve {
         &self.wind_distribution
+    }
+    fn wind_distribution_mut(&mut self) -> &mut super::core::SplineCurve {
+        &mut self.wind_distribution
     }
     fn min_wavelength(&self) -> &f32 {
         &self.min_wavelength
     }
+    fn min_wavelength_mut(&mut self) -> &mut f32 {
+        &mut self.min_wavelength
+    }
     fn large_wave_reduction(&self) -> &f32 {
         &self.large_wave_reduction
+    }
+    fn large_wave_reduction_mut(&mut self) -> &mut f32 {
+        &mut self.large_wave_reduction
     }
     fn foam_half_life(&self) -> &f32 {
         &self.foam_half_life
     }
+    fn foam_half_life_mut(&mut self) -> &mut f32 {
+        &mut self.foam_half_life
+    }
     fn foam_threshold(&self) -> &f32 {
         &self.foam_threshold
+    }
+    fn foam_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.foam_threshold
     }
     fn foam_max_value(&self) -> &f32 {
         &self.foam_max_value
     }
+    fn foam_max_value_mut(&mut self) -> &mut f32 {
+        &mut self.foam_max_value
+    }
     fn ocean_visual_cpu_simulation_enable(&self) -> &bool {
         &self.ocean_visual_cpu_simulation_enable
     }
+    fn ocean_visual_cpu_simulation_enable_mut(&mut self) -> &mut bool {
+        &mut self.ocean_visual_cpu_simulation_enable
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1092,6 +1386,15 @@ impl TypeObject for WaterSimulationStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1120,43 +1423,79 @@ pub struct WaterGlobalDynamicState {
 
 pub trait WaterGlobalDynamicStateTrait: TypeObject {
     fn ticks(&self) -> &u32;
+    fn ticks_mut(&mut self) -> &mut u32;
     fn delta_ticks(&self) -> &u32;
+    fn delta_ticks_mut(&mut self) -> &mut u32;
     fn tick_frequency(&self) -> &u32;
+    fn tick_frequency_mut(&mut self) -> &mut u32;
     fn current_time(&self) -> &f32;
+    fn current_time_mut(&mut self) -> &mut f32;
     fn water_height_sample_debugger_sample_position(&self) -> &super::core::Vec3;
+    fn water_height_sample_debugger_sample_position_mut(&mut self) -> &mut super::core::Vec3;
     fn water_height_sample_debugger_sample_position_height(&self) -> &f32;
+    fn water_height_sample_debugger_sample_position_height_mut(&mut self) -> &mut f32;
     fn water_height_sample_debugger_enabled(&self) -> &bool;
+    fn water_height_sample_debugger_enabled_mut(&mut self) -> &mut bool;
     fn water_height_sample_debugger_lock_position_enabled(&self) -> &bool;
+    fn water_height_sample_debugger_lock_position_enabled_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl WaterGlobalDynamicStateTrait for WaterGlobalDynamicState {
     fn ticks(&self) -> &u32 {
         &self.ticks
     }
+    fn ticks_mut(&mut self) -> &mut u32 {
+        &mut self.ticks
+    }
     fn delta_ticks(&self) -> &u32 {
         &self.delta_ticks
+    }
+    fn delta_ticks_mut(&mut self) -> &mut u32 {
+        &mut self.delta_ticks
     }
     fn tick_frequency(&self) -> &u32 {
         &self.tick_frequency
     }
+    fn tick_frequency_mut(&mut self) -> &mut u32 {
+        &mut self.tick_frequency
+    }
     fn current_time(&self) -> &f32 {
         &self.current_time
+    }
+    fn current_time_mut(&mut self) -> &mut f32 {
+        &mut self.current_time
     }
     fn water_height_sample_debugger_sample_position(&self) -> &super::core::Vec3 {
         &self.water_height_sample_debugger_sample_position
     }
+    fn water_height_sample_debugger_sample_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.water_height_sample_debugger_sample_position
+    }
     fn water_height_sample_debugger_sample_position_height(&self) -> &f32 {
         &self.water_height_sample_debugger_sample_position_height
+    }
+    fn water_height_sample_debugger_sample_position_height_mut(&mut self) -> &mut f32 {
+        &mut self.water_height_sample_debugger_sample_position_height
     }
     fn water_height_sample_debugger_enabled(&self) -> &bool {
         &self.water_height_sample_debugger_enabled
     }
+    fn water_height_sample_debugger_enabled_mut(&mut self) -> &mut bool {
+        &mut self.water_height_sample_debugger_enabled
+    }
     fn water_height_sample_debugger_lock_position_enabled(&self) -> &bool {
         &self.water_height_sample_debugger_lock_position_enabled
     }
+    fn water_height_sample_debugger_lock_position_enabled_mut(&mut self) -> &mut bool {
+        &mut self.water_height_sample_debugger_lock_position_enabled
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1236,6 +1575,15 @@ impl TypeObject for WaterGlobalDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1281,6 +1629,15 @@ impl TypeObject for WaterGlobalStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1308,39 +1665,71 @@ pub struct WaterAmbientFoamEffect {
 
 pub trait WaterAmbientFoamEffectTrait: TypeObject {
     fn emitters(&self) -> &Vec<Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>>;
+    fn emitters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>>;
     fn threshold(&self) -> &f32;
+    fn threshold_mut(&mut self) -> &mut f32;
     fn randomness(&self) -> &f32;
+    fn randomness_mut(&mut self) -> &mut f32;
     fn cool_down_time(&self) -> &f32;
+    fn cool_down_time_mut(&mut self) -> &mut f32;
     fn near_distance(&self) -> &f32;
+    fn near_distance_mut(&mut self) -> &mut f32;
     fn far_distance(&self) -> &f32;
+    fn far_distance_mut(&mut self) -> &mut f32;
     fn vertical_velocity_scale(&self) -> &f32;
+    fn vertical_velocity_scale_mut(&mut self) -> &mut f32;
     fn horizontal_velocity_scale(&self) -> &f32;
+    fn horizontal_velocity_scale_mut(&mut self) -> &mut f32;
 }
 
 impl WaterAmbientFoamEffectTrait for WaterAmbientFoamEffect {
     fn emitters(&self) -> &Vec<Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>> {
         &self.emitters
     }
+    fn emitters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>> {
+        &mut self.emitters
+    }
     fn threshold(&self) -> &f32 {
         &self.threshold
+    }
+    fn threshold_mut(&mut self) -> &mut f32 {
+        &mut self.threshold
     }
     fn randomness(&self) -> &f32 {
         &self.randomness
     }
+    fn randomness_mut(&mut self) -> &mut f32 {
+        &mut self.randomness
+    }
     fn cool_down_time(&self) -> &f32 {
         &self.cool_down_time
+    }
+    fn cool_down_time_mut(&mut self) -> &mut f32 {
+        &mut self.cool_down_time
     }
     fn near_distance(&self) -> &f32 {
         &self.near_distance
     }
+    fn near_distance_mut(&mut self) -> &mut f32 {
+        &mut self.near_distance
+    }
     fn far_distance(&self) -> &f32 {
         &self.far_distance
+    }
+    fn far_distance_mut(&mut self) -> &mut f32 {
+        &mut self.far_distance
     }
     fn vertical_velocity_scale(&self) -> &f32 {
         &self.vertical_velocity_scale
     }
+    fn vertical_velocity_scale_mut(&mut self) -> &mut f32 {
+        &mut self.vertical_velocity_scale
+    }
     fn horizontal_velocity_scale(&self) -> &f32 {
         &self.horizontal_velocity_scale
+    }
+    fn horizontal_velocity_scale_mut(&mut self) -> &mut f32 {
+        &mut self.horizontal_velocity_scale
     }
 }
 
@@ -1414,6 +1803,15 @@ impl TypeObject for WaterAmbientFoamEffect {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1434,11 +1832,15 @@ pub struct WaterSurfaceCreateState {
 
 pub trait WaterSurfaceCreateStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl WaterSurfaceCreateStateTrait for WaterSurfaceCreateState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
 }
 
@@ -1470,6 +1872,15 @@ impl TypeObject for WaterSurfaceCreateState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1491,15 +1902,23 @@ pub struct WaterDisturbParams {
 
 pub trait WaterDisturbParamsTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn impulse(&self) -> &super::core::Vec3;
+    fn impulse_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl WaterDisturbParamsTrait for WaterDisturbParams {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn impulse(&self) -> &super::core::Vec3 {
         &self.impulse
+    }
+    fn impulse_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.impulse
     }
 }
 
@@ -1537,6 +1956,15 @@ impl TypeObject for WaterDisturbParams {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1561,27 +1989,47 @@ pub struct WaterEntityClipInfo {
 
 pub trait WaterEntityClipInfoTrait: TypeObject {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn clip_face_north(&self) -> &bool;
+    fn clip_face_north_mut(&mut self) -> &mut bool;
     fn clip_face_south(&self) -> &bool;
+    fn clip_face_south_mut(&mut self) -> &mut bool;
     fn clip_face_east(&self) -> &bool;
+    fn clip_face_east_mut(&mut self) -> &mut bool;
     fn clip_face_west(&self) -> &bool;
+    fn clip_face_west_mut(&mut self) -> &mut bool;
 }
 
 impl WaterEntityClipInfoTrait for WaterEntityClipInfo {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn clip_face_north(&self) -> &bool {
         &self.clip_face_north
+    }
+    fn clip_face_north_mut(&mut self) -> &mut bool {
+        &mut self.clip_face_north
     }
     fn clip_face_south(&self) -> &bool {
         &self.clip_face_south
     }
+    fn clip_face_south_mut(&mut self) -> &mut bool {
+        &mut self.clip_face_south
+    }
     fn clip_face_east(&self) -> &bool {
         &self.clip_face_east
     }
+    fn clip_face_east_mut(&mut self) -> &mut bool {
+        &mut self.clip_face_east
+    }
     fn clip_face_west(&self) -> &bool {
         &self.clip_face_west
+    }
+    fn clip_face_west_mut(&mut self) -> &mut bool {
+        &mut self.clip_face_west
     }
 }
 
@@ -1637,6 +2085,15 @@ impl TypeObject for WaterEntityClipInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1664,39 +2121,71 @@ pub struct WaterInteractLevelSettings {
 
 pub trait WaterInteractLevelSettingsTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn r#override(&self) -> &bool;
+    fn r#override_mut(&mut self) -> &mut bool;
     fn max_simulation_count(&self) -> &super::core::PlatformScalableInt;
+    fn max_simulation_count_mut(&mut self) -> &mut super::core::PlatformScalableInt;
     fn max_visible_water_surface_count(&self) -> &super::core::PlatformScalableInt;
+    fn max_visible_water_surface_count_mut(&mut self) -> &mut super::core::PlatformScalableInt;
     fn render_grid_width(&self) -> &super::core::PlatformScalableInt;
+    fn render_grid_width_mut(&mut self) -> &mut super::core::PlatformScalableInt;
     fn render_grid_height(&self) -> &super::core::PlatformScalableInt;
+    fn render_grid_height_mut(&mut self) -> &mut super::core::PlatformScalableInt;
     fn min_ambient_simulation_resolution(&self) -> &super::core::PlatformScalableInt;
+    fn min_ambient_simulation_resolution_mut(&mut self) -> &mut super::core::PlatformScalableInt;
     fn max_ambient_simulation_resolution(&self) -> &super::core::PlatformScalableInt;
+    fn max_ambient_simulation_resolution_mut(&mut self) -> &mut super::core::PlatformScalableInt;
 }
 
 impl WaterInteractLevelSettingsTrait for WaterInteractLevelSettings {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn r#override(&self) -> &bool {
         &self.r#override
+    }
+    fn r#override_mut(&mut self) -> &mut bool {
+        &mut self.r#override
     }
     fn max_simulation_count(&self) -> &super::core::PlatformScalableInt {
         &self.max_simulation_count
     }
+    fn max_simulation_count_mut(&mut self) -> &mut super::core::PlatformScalableInt {
+        &mut self.max_simulation_count
+    }
     fn max_visible_water_surface_count(&self) -> &super::core::PlatformScalableInt {
         &self.max_visible_water_surface_count
+    }
+    fn max_visible_water_surface_count_mut(&mut self) -> &mut super::core::PlatformScalableInt {
+        &mut self.max_visible_water_surface_count
     }
     fn render_grid_width(&self) -> &super::core::PlatformScalableInt {
         &self.render_grid_width
     }
+    fn render_grid_width_mut(&mut self) -> &mut super::core::PlatformScalableInt {
+        &mut self.render_grid_width
+    }
     fn render_grid_height(&self) -> &super::core::PlatformScalableInt {
         &self.render_grid_height
+    }
+    fn render_grid_height_mut(&mut self) -> &mut super::core::PlatformScalableInt {
+        &mut self.render_grid_height
     }
     fn min_ambient_simulation_resolution(&self) -> &super::core::PlatformScalableInt {
         &self.min_ambient_simulation_resolution
     }
+    fn min_ambient_simulation_resolution_mut(&mut self) -> &mut super::core::PlatformScalableInt {
+        &mut self.min_ambient_simulation_resolution
+    }
     fn max_ambient_simulation_resolution(&self) -> &super::core::PlatformScalableInt {
         &self.max_ambient_simulation_resolution
+    }
+    fn max_ambient_simulation_resolution_mut(&mut self) -> &mut super::core::PlatformScalableInt {
+        &mut self.max_ambient_simulation_resolution
     }
 }
 
@@ -1770,6 +2259,15 @@ impl TypeObject for WaterInteractLevelSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1827,155 +2325,303 @@ pub struct WaterInteractSettings {
 
 pub trait WaterInteractSettingsTrait: super::core::SystemSettingsTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn draw_enable(&self) -> &bool;
+    fn draw_enable_mut(&mut self) -> &mut bool;
     fn enable_jobs(&self) -> &bool;
+    fn enable_jobs_mut(&mut self) -> &mut bool;
     fn simulation_job_count(&self) -> &u32;
+    fn simulation_job_count_mut(&mut self) -> &mut u32;
     fn water_quality_level(&self) -> &super::core::QualityLevel;
+    fn water_quality_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn max_simulation_count(&self) -> &u32;
+    fn max_simulation_count_mut(&mut self) -> &mut u32;
     fn max_live_editing_simulation_count(&self) -> &u32;
+    fn max_live_editing_simulation_count_mut(&mut self) -> &mut u32;
     fn enable_simulation(&self) -> &bool;
+    fn enable_simulation_mut(&mut self) -> &mut bool;
     fn enable_disturbs(&self) -> &bool;
+    fn enable_disturbs_mut(&mut self) -> &mut bool;
     fn interactive_grid_count(&self) -> &u32;
+    fn interactive_grid_count_mut(&mut self) -> &mut u32;
     fn interactive_min_grid_size(&self) -> &u32;
+    fn interactive_min_grid_size_mut(&mut self) -> &mut u32;
     fn interact_inject_noise_strength(&self) -> &f32;
+    fn interact_inject_noise_strength_mut(&mut self) -> &mut f32;
     fn interact_max_slope(&self) -> &f32;
+    fn interact_max_slope_mut(&mut self) -> &mut f32;
     fn interact_update_frequency(&self) -> &f32;
+    fn interact_update_frequency_mut(&mut self) -> &mut f32;
     fn min_ambient_simulation_resolution(&self) -> &u32;
+    fn min_ambient_simulation_resolution_mut(&mut self) -> &mut u32;
     fn max_ambient_simulation_resolution(&self) -> &u32;
+    fn max_ambient_simulation_resolution_mut(&mut self) -> &mut u32;
     fn render_grid_width(&self) -> &u32;
+    fn render_grid_width_mut(&mut self) -> &mut u32;
     fn render_grid_height(&self) -> &u32;
+    fn render_grid_height_mut(&mut self) -> &mut u32;
     fn render_fixed_aim_distance(&self) -> &f32;
+    fn render_fixed_aim_distance_mut(&mut self) -> &mut f32;
     fn render_projector_far_plane(&self) -> &f32;
+    fn render_projector_far_plane_mut(&mut self) -> &mut f32;
     fn max_visible_water_surface_count(&self) -> &u32;
+    fn max_visible_water_surface_count_mut(&mut self) -> &mut u32;
     fn max_live_editing_visible_water_surface_count(&self) -> &u32;
+    fn max_live_editing_visible_water_surface_count_mut(&mut self) -> &mut u32;
     fn pc_grid_resolution_multiplier(&self) -> &super::core::QualityScalableFloat;
+    fn pc_grid_resolution_multiplier_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn render_occlusion_cull_enable(&self) -> &bool;
+    fn render_occlusion_cull_enable_mut(&mut self) -> &mut bool;
     fn render_occlusion_cull_job_count(&self) -> &u32;
+    fn render_occlusion_cull_job_count_mut(&mut self) -> &mut u32;
     fn render_occlusion_grid_width(&self) -> &u32;
+    fn render_occlusion_grid_width_mut(&mut self) -> &mut u32;
     fn render_occlusion_grid_height(&self) -> &u32;
+    fn render_occlusion_grid_height_mut(&mut self) -> &mut u32;
     fn render_generate_displacement_mipmaps(&self) -> &bool;
+    fn render_generate_displacement_mipmaps_mut(&mut self) -> &mut bool;
     fn render_generate_gradient_mipmaps(&self) -> &bool;
+    fn render_generate_gradient_mipmaps_mut(&mut self) -> &mut bool;
     fn render_debug_enable(&self) -> &bool;
+    fn render_debug_enable_mut(&mut self) -> &mut bool;
     fn render_debug_freeze_view_enable(&self) -> &bool;
+    fn render_debug_freeze_view_enable_mut(&mut self) -> &mut bool;
     fn render_debug_simulation_enable(&self) -> &bool;
+    fn render_debug_simulation_enable_mut(&mut self) -> &mut bool;
     fn render_debug_textures_enable(&self) -> &bool;
+    fn render_debug_textures_enable_mut(&mut self) -> &mut bool;
     fn draw_update_enable(&self) -> &bool;
+    fn draw_update_enable_mut(&mut self) -> &mut bool;
     fn virtual_heightfield_atlas_size(&self) -> &i32;
+    fn virtual_heightfield_atlas_size_mut(&mut self) -> &mut i32;
     fn virtual_heightfield_indirection_size(&self) -> &i32;
+    fn virtual_heightfield_indirection_size_mut(&mut self) -> &mut i32;
     fn virtual_heightfield_quantization_range(&self) -> &f32;
+    fn virtual_heightfield_quantization_range_mut(&mut self) -> &mut f32;
 }
 
 impl WaterInteractSettingsTrait for WaterInteractSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn draw_enable(&self) -> &bool {
         &self.draw_enable
+    }
+    fn draw_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_enable
     }
     fn enable_jobs(&self) -> &bool {
         &self.enable_jobs
     }
+    fn enable_jobs_mut(&mut self) -> &mut bool {
+        &mut self.enable_jobs
+    }
     fn simulation_job_count(&self) -> &u32 {
         &self.simulation_job_count
+    }
+    fn simulation_job_count_mut(&mut self) -> &mut u32 {
+        &mut self.simulation_job_count
     }
     fn water_quality_level(&self) -> &super::core::QualityLevel {
         &self.water_quality_level
     }
+    fn water_quality_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.water_quality_level
+    }
     fn max_simulation_count(&self) -> &u32 {
         &self.max_simulation_count
+    }
+    fn max_simulation_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_simulation_count
     }
     fn max_live_editing_simulation_count(&self) -> &u32 {
         &self.max_live_editing_simulation_count
     }
+    fn max_live_editing_simulation_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_live_editing_simulation_count
+    }
     fn enable_simulation(&self) -> &bool {
         &self.enable_simulation
+    }
+    fn enable_simulation_mut(&mut self) -> &mut bool {
+        &mut self.enable_simulation
     }
     fn enable_disturbs(&self) -> &bool {
         &self.enable_disturbs
     }
+    fn enable_disturbs_mut(&mut self) -> &mut bool {
+        &mut self.enable_disturbs
+    }
     fn interactive_grid_count(&self) -> &u32 {
         &self.interactive_grid_count
+    }
+    fn interactive_grid_count_mut(&mut self) -> &mut u32 {
+        &mut self.interactive_grid_count
     }
     fn interactive_min_grid_size(&self) -> &u32 {
         &self.interactive_min_grid_size
     }
+    fn interactive_min_grid_size_mut(&mut self) -> &mut u32 {
+        &mut self.interactive_min_grid_size
+    }
     fn interact_inject_noise_strength(&self) -> &f32 {
         &self.interact_inject_noise_strength
+    }
+    fn interact_inject_noise_strength_mut(&mut self) -> &mut f32 {
+        &mut self.interact_inject_noise_strength
     }
     fn interact_max_slope(&self) -> &f32 {
         &self.interact_max_slope
     }
+    fn interact_max_slope_mut(&mut self) -> &mut f32 {
+        &mut self.interact_max_slope
+    }
     fn interact_update_frequency(&self) -> &f32 {
         &self.interact_update_frequency
+    }
+    fn interact_update_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.interact_update_frequency
     }
     fn min_ambient_simulation_resolution(&self) -> &u32 {
         &self.min_ambient_simulation_resolution
     }
+    fn min_ambient_simulation_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.min_ambient_simulation_resolution
+    }
     fn max_ambient_simulation_resolution(&self) -> &u32 {
         &self.max_ambient_simulation_resolution
+    }
+    fn max_ambient_simulation_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.max_ambient_simulation_resolution
     }
     fn render_grid_width(&self) -> &u32 {
         &self.render_grid_width
     }
+    fn render_grid_width_mut(&mut self) -> &mut u32 {
+        &mut self.render_grid_width
+    }
     fn render_grid_height(&self) -> &u32 {
         &self.render_grid_height
+    }
+    fn render_grid_height_mut(&mut self) -> &mut u32 {
+        &mut self.render_grid_height
     }
     fn render_fixed_aim_distance(&self) -> &f32 {
         &self.render_fixed_aim_distance
     }
+    fn render_fixed_aim_distance_mut(&mut self) -> &mut f32 {
+        &mut self.render_fixed_aim_distance
+    }
     fn render_projector_far_plane(&self) -> &f32 {
         &self.render_projector_far_plane
+    }
+    fn render_projector_far_plane_mut(&mut self) -> &mut f32 {
+        &mut self.render_projector_far_plane
     }
     fn max_visible_water_surface_count(&self) -> &u32 {
         &self.max_visible_water_surface_count
     }
+    fn max_visible_water_surface_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_visible_water_surface_count
+    }
     fn max_live_editing_visible_water_surface_count(&self) -> &u32 {
         &self.max_live_editing_visible_water_surface_count
+    }
+    fn max_live_editing_visible_water_surface_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_live_editing_visible_water_surface_count
     }
     fn pc_grid_resolution_multiplier(&self) -> &super::core::QualityScalableFloat {
         &self.pc_grid_resolution_multiplier
     }
+    fn pc_grid_resolution_multiplier_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.pc_grid_resolution_multiplier
+    }
     fn render_occlusion_cull_enable(&self) -> &bool {
         &self.render_occlusion_cull_enable
+    }
+    fn render_occlusion_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.render_occlusion_cull_enable
     }
     fn render_occlusion_cull_job_count(&self) -> &u32 {
         &self.render_occlusion_cull_job_count
     }
+    fn render_occlusion_cull_job_count_mut(&mut self) -> &mut u32 {
+        &mut self.render_occlusion_cull_job_count
+    }
     fn render_occlusion_grid_width(&self) -> &u32 {
         &self.render_occlusion_grid_width
+    }
+    fn render_occlusion_grid_width_mut(&mut self) -> &mut u32 {
+        &mut self.render_occlusion_grid_width
     }
     fn render_occlusion_grid_height(&self) -> &u32 {
         &self.render_occlusion_grid_height
     }
+    fn render_occlusion_grid_height_mut(&mut self) -> &mut u32 {
+        &mut self.render_occlusion_grid_height
+    }
     fn render_generate_displacement_mipmaps(&self) -> &bool {
         &self.render_generate_displacement_mipmaps
+    }
+    fn render_generate_displacement_mipmaps_mut(&mut self) -> &mut bool {
+        &mut self.render_generate_displacement_mipmaps
     }
     fn render_generate_gradient_mipmaps(&self) -> &bool {
         &self.render_generate_gradient_mipmaps
     }
+    fn render_generate_gradient_mipmaps_mut(&mut self) -> &mut bool {
+        &mut self.render_generate_gradient_mipmaps
+    }
     fn render_debug_enable(&self) -> &bool {
         &self.render_debug_enable
+    }
+    fn render_debug_enable_mut(&mut self) -> &mut bool {
+        &mut self.render_debug_enable
     }
     fn render_debug_freeze_view_enable(&self) -> &bool {
         &self.render_debug_freeze_view_enable
     }
+    fn render_debug_freeze_view_enable_mut(&mut self) -> &mut bool {
+        &mut self.render_debug_freeze_view_enable
+    }
     fn render_debug_simulation_enable(&self) -> &bool {
         &self.render_debug_simulation_enable
+    }
+    fn render_debug_simulation_enable_mut(&mut self) -> &mut bool {
+        &mut self.render_debug_simulation_enable
     }
     fn render_debug_textures_enable(&self) -> &bool {
         &self.render_debug_textures_enable
     }
+    fn render_debug_textures_enable_mut(&mut self) -> &mut bool {
+        &mut self.render_debug_textures_enable
+    }
     fn draw_update_enable(&self) -> &bool {
         &self.draw_update_enable
+    }
+    fn draw_update_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_update_enable
     }
     fn virtual_heightfield_atlas_size(&self) -> &i32 {
         &self.virtual_heightfield_atlas_size
     }
+    fn virtual_heightfield_atlas_size_mut(&mut self) -> &mut i32 {
+        &mut self.virtual_heightfield_atlas_size
+    }
     fn virtual_heightfield_indirection_size(&self) -> &i32 {
         &self.virtual_heightfield_indirection_size
     }
+    fn virtual_heightfield_indirection_size_mut(&mut self) -> &mut i32 {
+        &mut self.virtual_heightfield_indirection_size
+    }
     fn virtual_heightfield_quantization_range(&self) -> &f32 {
         &self.virtual_heightfield_quantization_range
+    }
+    fn virtual_heightfield_quantization_range_mut(&mut self) -> &mut f32 {
+        &mut self.virtual_heightfield_quantization_range
     }
 }
 
@@ -1983,12 +2629,12 @@ impl super::core::SystemSettingsTrait for WaterInteractSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for WaterInteractSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WATERINTERACTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2235,6 +2881,15 @@ impl TypeObject for WaterInteractSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

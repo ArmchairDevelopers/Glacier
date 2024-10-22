@@ -42,15 +42,23 @@ pub struct QuickscopeControlEntityData {
 
 pub trait QuickscopeControlEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn label(&self) -> &String;
+    fn label_mut(&mut self) -> &mut String;
 }
 
 impl QuickscopeControlEntityDataTrait for QuickscopeControlEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn label(&self) -> &String {
         &self.label
+    }
+    fn label_mut(&mut self) -> &mut String {
+        &mut self.label
     }
 }
 
@@ -64,15 +72,15 @@ impl super::core::DataBusPeerTrait for QuickscopeControlEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for QuickscopeControlEntityData {
 }
 
 impl super::core::DataContainerTrait for QuickscopeControlEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static QUICKSCOPECONTROLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -110,6 +118,15 @@ impl TypeObject for QuickscopeControlEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -131,11 +148,15 @@ pub struct QuickscopeTest {
 
 pub trait QuickscopeTestTrait: super::core::AssetTrait {
     fn number(&self) -> &i32;
+    fn number_mut(&mut self) -> &mut i32;
 }
 
 impl QuickscopeTestTrait for QuickscopeTest {
     fn number(&self) -> &i32 {
         &self.number
+    }
+    fn number_mut(&mut self) -> &mut i32 {
+        &mut self.number
     }
 }
 
@@ -143,12 +164,12 @@ impl super::core::AssetTrait for QuickscopeTest {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for QuickscopeTest {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static QUICKSCOPETEST_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -180,6 +201,15 @@ impl TypeObject for QuickscopeTest {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -202,15 +232,23 @@ pub struct QuickscopeBudgetsAsset {
 
 pub trait QuickscopeBudgetsAssetTrait: super::core::AssetTrait {
     fn entries(&self) -> &Vec<QuickscopeBudgetEntry>;
+    fn entries_mut(&mut self) -> &mut Vec<QuickscopeBudgetEntry>;
     fn resolution_targets(&self) -> &Vec<QuickscopePlatformValue>;
+    fn resolution_targets_mut(&mut self) -> &mut Vec<QuickscopePlatformValue>;
 }
 
 impl QuickscopeBudgetsAssetTrait for QuickscopeBudgetsAsset {
     fn entries(&self) -> &Vec<QuickscopeBudgetEntry> {
         &self.entries
     }
+    fn entries_mut(&mut self) -> &mut Vec<QuickscopeBudgetEntry> {
+        &mut self.entries
+    }
     fn resolution_targets(&self) -> &Vec<QuickscopePlatformValue> {
         &self.resolution_targets
+    }
+    fn resolution_targets_mut(&mut self) -> &mut Vec<QuickscopePlatformValue> {
+        &mut self.resolution_targets
     }
 }
 
@@ -218,12 +256,12 @@ impl super::core::AssetTrait for QuickscopeBudgetsAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for QuickscopeBudgetsAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static QUICKSCOPEBUDGETSASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -261,6 +299,15 @@ impl TypeObject for QuickscopeBudgetsAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -282,15 +329,23 @@ pub struct QuickscopeBudgetEntry {
 
 pub trait QuickscopeBudgetEntryTrait: TypeObject {
     fn category_name(&self) -> &String;
+    fn category_name_mut(&mut self) -> &mut String;
     fn budgets(&self) -> &Vec<QuickscopePlatformValue>;
+    fn budgets_mut(&mut self) -> &mut Vec<QuickscopePlatformValue>;
 }
 
 impl QuickscopeBudgetEntryTrait for QuickscopeBudgetEntry {
     fn category_name(&self) -> &String {
         &self.category_name
     }
+    fn category_name_mut(&mut self) -> &mut String {
+        &mut self.category_name
+    }
     fn budgets(&self) -> &Vec<QuickscopePlatformValue> {
         &self.budgets
+    }
+    fn budgets_mut(&mut self) -> &mut Vec<QuickscopePlatformValue> {
+        &mut self.budgets
     }
 }
 
@@ -328,6 +383,15 @@ impl TypeObject for QuickscopeBudgetEntry {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -349,15 +413,23 @@ pub struct QuickscopePlatformValue {
 
 pub trait QuickscopePlatformValueTrait: TypeObject {
     fn platform(&self) -> &QuickscopePlatform;
+    fn platform_mut(&mut self) -> &mut QuickscopePlatform;
     fn value(&self) -> &f32;
+    fn value_mut(&mut self) -> &mut f32;
 }
 
 impl QuickscopePlatformValueTrait for QuickscopePlatformValue {
     fn platform(&self) -> &QuickscopePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut QuickscopePlatform {
+        &mut self.platform
+    }
     fn value(&self) -> &f32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut f32 {
+        &mut self.value
     }
 }
 
@@ -394,6 +466,15 @@ impl TypeObject for QuickscopePlatformValue {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -438,6 +519,15 @@ impl TypeObject for QuickscopePlatform {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -459,11 +549,15 @@ pub struct QuickscopeCategoriesAsset {
 
 pub trait QuickscopeCategoriesAssetTrait: super::core::AssetTrait {
     fn categories(&self) -> &Vec<QuickscopeCategory>;
+    fn categories_mut(&mut self) -> &mut Vec<QuickscopeCategory>;
 }
 
 impl QuickscopeCategoriesAssetTrait for QuickscopeCategoriesAsset {
     fn categories(&self) -> &Vec<QuickscopeCategory> {
         &self.categories
+    }
+    fn categories_mut(&mut self) -> &mut Vec<QuickscopeCategory> {
+        &mut self.categories
     }
 }
 
@@ -471,12 +565,12 @@ impl super::core::AssetTrait for QuickscopeCategoriesAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for QuickscopeCategoriesAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static QUICKSCOPECATEGORIESASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -508,6 +602,15 @@ impl TypeObject for QuickscopeCategoriesAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -532,27 +635,47 @@ pub struct QuickscopeCategory {
 
 pub trait QuickscopeCategoryTrait: TypeObject {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn frame(&self) -> &QuickscopeFrameType;
+    fn frame_mut(&mut self) -> &mut QuickscopeFrameType;
     fn processor(&self) -> &QuickscopeProcessorType;
+    fn processor_mut(&mut self) -> &mut QuickscopeProcessorType;
     fn include_scope(&self) -> &Vec<String>;
+    fn include_scope_mut(&mut self) -> &mut Vec<String>;
     fn exclude_scope(&self) -> &Vec<String>;
+    fn exclude_scope_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl QuickscopeCategoryTrait for QuickscopeCategory {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn frame(&self) -> &QuickscopeFrameType {
         &self.frame
+    }
+    fn frame_mut(&mut self) -> &mut QuickscopeFrameType {
+        &mut self.frame
     }
     fn processor(&self) -> &QuickscopeProcessorType {
         &self.processor
     }
+    fn processor_mut(&mut self) -> &mut QuickscopeProcessorType {
+        &mut self.processor
+    }
     fn include_scope(&self) -> &Vec<String> {
         &self.include_scope
     }
+    fn include_scope_mut(&mut self) -> &mut Vec<String> {
+        &mut self.include_scope
+    }
     fn exclude_scope(&self) -> &Vec<String> {
         &self.exclude_scope
+    }
+    fn exclude_scope_mut(&mut self) -> &mut Vec<String> {
+        &mut self.exclude_scope
     }
 }
 
@@ -608,6 +731,15 @@ impl TypeObject for QuickscopeCategory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -630,15 +762,23 @@ pub struct QuickscopeLevelData {
 
 pub trait QuickscopeLevelDataTrait: super::entity::SubWorldDataComponentTrait {
     fn categories(&self) -> &Option<Arc<Mutex<dyn QuickscopeCategoriesAssetTrait>>>;
+    fn categories_mut(&mut self) -> &mut Option<Arc<Mutex<dyn QuickscopeCategoriesAssetTrait>>>;
     fn budgets(&self) -> &Option<Arc<Mutex<dyn QuickscopeBudgetsAssetTrait>>>;
+    fn budgets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn QuickscopeBudgetsAssetTrait>>>;
 }
 
 impl QuickscopeLevelDataTrait for QuickscopeLevelData {
     fn categories(&self) -> &Option<Arc<Mutex<dyn QuickscopeCategoriesAssetTrait>>> {
         &self.categories
     }
+    fn categories_mut(&mut self) -> &mut Option<Arc<Mutex<dyn QuickscopeCategoriesAssetTrait>>> {
+        &mut self.categories
+    }
     fn budgets(&self) -> &Option<Arc<Mutex<dyn QuickscopeBudgetsAssetTrait>>> {
         &self.budgets
+    }
+    fn budgets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn QuickscopeBudgetsAssetTrait>>> {
+        &mut self.budgets
     }
 }
 
@@ -646,9 +786,6 @@ impl super::entity::SubWorldDataComponentTrait for QuickscopeLevelData {
 }
 
 impl super::core::DataContainerTrait for QuickscopeLevelData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static QUICKSCOPELEVELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -685,6 +822,15 @@ impl TypeObject for QuickscopeLevelData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -726,6 +872,15 @@ impl TypeObject for QuickscopeProcessorType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -765,6 +920,15 @@ impl TypeObject for QuickscopeFrameType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

@@ -34,31 +34,55 @@ pub struct NucleusPlatformConfiguration {
 
 pub trait NucleusPlatformConfigurationTrait: TypeObject {
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn client_id(&self) -> &String;
+    fn client_id_mut(&mut self) -> &mut String;
     fn client_secret(&self) -> &String;
+    fn client_secret_mut(&mut self) -> &mut String;
     fn login_scope(&self) -> &String;
+    fn login_scope_mut(&mut self) -> &mut String;
     fn client_redirect_url(&self) -> &String;
+    fn client_redirect_url_mut(&mut self) -> &mut String;
     fn p_s_n_client_id(&self) -> &String;
+    fn p_s_n_client_id_mut(&mut self) -> &mut String;
 }
 
 impl NucleusPlatformConfigurationTrait for NucleusPlatformConfiguration {
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
+    }
     fn client_id(&self) -> &String {
         &self.client_id
+    }
+    fn client_id_mut(&mut self) -> &mut String {
+        &mut self.client_id
     }
     fn client_secret(&self) -> &String {
         &self.client_secret
     }
+    fn client_secret_mut(&mut self) -> &mut String {
+        &mut self.client_secret
+    }
     fn login_scope(&self) -> &String {
         &self.login_scope
+    }
+    fn login_scope_mut(&mut self) -> &mut String {
+        &mut self.login_scope
     }
     fn client_redirect_url(&self) -> &String {
         &self.client_redirect_url
     }
+    fn client_redirect_url_mut(&mut self) -> &mut String {
+        &mut self.client_redirect_url
+    }
     fn p_s_n_client_id(&self) -> &String {
         &self.p_s_n_client_id
+    }
+    fn p_s_n_client_id_mut(&mut self) -> &mut String {
+        &mut self.p_s_n_client_id
     }
 }
 
@@ -120,6 +144,15 @@ impl TypeObject for NucleusPlatformConfiguration {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -165,6 +198,15 @@ impl TypeObject for NucleusCloseBrowserMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -198,6 +240,15 @@ impl TypeObject for NucleusGetLoginStatusMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -233,6 +284,15 @@ impl TypeObject for NucleusResponseLoginUIMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -266,6 +326,15 @@ impl TypeObject for NucleusResponseMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -301,6 +370,15 @@ impl TypeObject for NucleusRequestAuthCodeMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -334,6 +412,15 @@ impl TypeObject for NucleusRequestLogoutMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -369,6 +456,15 @@ impl TypeObject for NucleusRequestLoginMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
@@ -397,6 +493,15 @@ impl TypeObject for NucleusAsyncRequestType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

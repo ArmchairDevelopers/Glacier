@@ -87,6 +87,15 @@ impl TypeObject for PresenceLicenseRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -121,6 +130,15 @@ impl TypeObject for PresenceLicenseMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -130,11 +148,15 @@ pub struct LicenseConfiguration {
 
 pub trait LicenseConfigurationTrait: TypeObject {
     fn licenses(&self) -> &Vec<LicenseInfo>;
+    fn licenses_mut(&mut self) -> &mut Vec<LicenseInfo>;
 }
 
 impl LicenseConfigurationTrait for LicenseConfiguration {
     fn licenses(&self) -> &Vec<LicenseInfo> {
         &self.licenses
+    }
+    fn licenses_mut(&mut self) -> &mut Vec<LicenseInfo> {
+        &mut self.licenses
     }
 }
 
@@ -166,6 +188,15 @@ impl TypeObject for LicenseConfiguration {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -191,31 +222,55 @@ pub struct LicenseInfo {
 
 pub trait LicenseInfoTrait: TypeObject {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn description(&self) -> &String;
+    fn description_mut(&mut self) -> &mut String;
     fn content_entitlements(&self) -> &Vec<String>;
+    fn content_entitlements_mut(&mut self) -> &mut Vec<String>;
     fn nucleus_entitlements(&self) -> &Vec<NucleusEntitlementInfo>;
+    fn nucleus_entitlements_mut(&mut self) -> &mut Vec<NucleusEntitlementInfo>;
     fn first_party_entitlements(&self) -> &Vec<String>;
+    fn first_party_entitlements_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl LicenseInfoTrait for LicenseInfo {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
+    }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
     }
     fn description(&self) -> &String {
         &self.description
     }
+    fn description_mut(&mut self) -> &mut String {
+        &mut self.description
+    }
     fn content_entitlements(&self) -> &Vec<String> {
         &self.content_entitlements
+    }
+    fn content_entitlements_mut(&mut self) -> &mut Vec<String> {
+        &mut self.content_entitlements
     }
     fn nucleus_entitlements(&self) -> &Vec<NucleusEntitlementInfo> {
         &self.nucleus_entitlements
     }
+    fn nucleus_entitlements_mut(&mut self) -> &mut Vec<NucleusEntitlementInfo> {
+        &mut self.nucleus_entitlements
+    }
     fn first_party_entitlements(&self) -> &Vec<String> {
         &self.first_party_entitlements
+    }
+    fn first_party_entitlements_mut(&mut self) -> &mut Vec<String> {
+        &mut self.first_party_entitlements
     }
 }
 
@@ -277,6 +332,15 @@ impl TypeObject for LicenseInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -298,15 +362,23 @@ pub struct NucleusEntitlementInfo {
 
 pub trait NucleusEntitlementInfoTrait: TypeObject {
     fn tag(&self) -> &String;
+    fn tag_mut(&mut self) -> &mut String;
     fn group_name(&self) -> &String;
+    fn group_name_mut(&mut self) -> &mut String;
 }
 
 impl NucleusEntitlementInfoTrait for NucleusEntitlementInfo {
     fn tag(&self) -> &String {
         &self.tag
     }
+    fn tag_mut(&mut self) -> &mut String {
+        &mut self.tag
+    }
     fn group_name(&self) -> &String {
         &self.group_name
+    }
+    fn group_name_mut(&mut self) -> &mut String {
+        &mut self.group_name
     }
 }
 
@@ -344,6 +416,15 @@ impl TypeObject for NucleusEntitlementInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -372,18 +453,21 @@ impl super::online_shared::PresenceBackendDataTrait for EntitlementsServerBacken
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for EntitlementsServerBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EntitlementsServerBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTITLEMENTSSERVERBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -408,6 +492,15 @@ impl TypeObject for EntitlementsServerBackendData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -437,18 +530,21 @@ impl super::online_shared::PresenceBackendDataTrait for EntitlementsBackendData 
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for EntitlementsBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EntitlementsBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTITLEMENTSBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -474,6 +570,15 @@ impl TypeObject for EntitlementsBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -495,11 +600,15 @@ pub struct EntitlementSettings {
 
 pub trait EntitlementSettingsTrait: super::core::SystemSettingsTrait {
     fn settings(&self) -> &Option<Arc<Mutex<dyn EntitlementSettingsAssetTrait>>>;
+    fn settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntitlementSettingsAssetTrait>>>;
 }
 
 impl EntitlementSettingsTrait for EntitlementSettings {
     fn settings(&self) -> &Option<Arc<Mutex<dyn EntitlementSettingsAssetTrait>>> {
         &self.settings
+    }
+    fn settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntitlementSettingsAssetTrait>>> {
+        &mut self.settings
     }
 }
 
@@ -507,12 +616,12 @@ impl super::core::SystemSettingsTrait for EntitlementSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EntitlementSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTITLEMENTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -544,6 +653,15 @@ impl TypeObject for EntitlementSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -568,23 +686,39 @@ pub struct EntitlementSettingsAsset {
 
 pub trait EntitlementSettingsAssetTrait: super::core::AssetTrait {
     fn license_config(&self) -> &LicenseConfiguration;
+    fn license_config_mut(&mut self) -> &mut LicenseConfiguration;
     fn entitlement_config(&self) -> &EntitlementConfigData;
+    fn entitlement_config_mut(&mut self) -> &mut EntitlementConfigData;
     fn entitlement_origin_config(&self) -> &EntitlementOriginConfigData;
+    fn entitlement_origin_config_mut(&mut self) -> &mut EntitlementOriginConfigData;
     fn entitlements_info_list(&self) -> &Vec<EntitlementInfo>;
+    fn entitlements_info_list_mut(&mut self) -> &mut Vec<EntitlementInfo>;
 }
 
 impl EntitlementSettingsAssetTrait for EntitlementSettingsAsset {
     fn license_config(&self) -> &LicenseConfiguration {
         &self.license_config
     }
+    fn license_config_mut(&mut self) -> &mut LicenseConfiguration {
+        &mut self.license_config
+    }
     fn entitlement_config(&self) -> &EntitlementConfigData {
         &self.entitlement_config
+    }
+    fn entitlement_config_mut(&mut self) -> &mut EntitlementConfigData {
+        &mut self.entitlement_config
     }
     fn entitlement_origin_config(&self) -> &EntitlementOriginConfigData {
         &self.entitlement_origin_config
     }
+    fn entitlement_origin_config_mut(&mut self) -> &mut EntitlementOriginConfigData {
+        &mut self.entitlement_origin_config
+    }
     fn entitlements_info_list(&self) -> &Vec<EntitlementInfo> {
         &self.entitlements_info_list
+    }
+    fn entitlements_info_list_mut(&mut self) -> &mut Vec<EntitlementInfo> {
+        &mut self.entitlements_info_list
     }
 }
 
@@ -592,12 +726,12 @@ impl super::core::AssetTrait for EntitlementSettingsAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EntitlementSettingsAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTITLEMENTSETTINGSASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -647,6 +781,15 @@ impl TypeObject for EntitlementSettingsAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -668,15 +811,23 @@ pub struct EntitlementPlatformToProjectId {
 
 pub trait EntitlementPlatformToProjectIdTrait: TypeObject {
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn project_id(&self) -> &String;
+    fn project_id_mut(&mut self) -> &mut String;
 }
 
 impl EntitlementPlatformToProjectIdTrait for EntitlementPlatformToProjectId {
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
+    }
     fn project_id(&self) -> &String {
         &self.project_id
+    }
+    fn project_id_mut(&mut self) -> &mut String {
+        &mut self.project_id
     }
 }
 
@@ -714,6 +865,15 @@ impl TypeObject for EntitlementPlatformToProjectId {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -735,15 +895,23 @@ pub struct EntitlementConfigData {
 
 pub trait EntitlementConfigDataTrait: TypeObject {
     fn groups(&self) -> &Vec<EntitlementGroup>;
+    fn groups_mut(&mut self) -> &mut Vec<EntitlementGroup>;
     fn page_size(&self) -> &u32;
+    fn page_size_mut(&mut self) -> &mut u32;
 }
 
 impl EntitlementConfigDataTrait for EntitlementConfigData {
     fn groups(&self) -> &Vec<EntitlementGroup> {
         &self.groups
     }
+    fn groups_mut(&mut self) -> &mut Vec<EntitlementGroup> {
+        &mut self.groups
+    }
     fn page_size(&self) -> &u32 {
         &self.page_size
+    }
+    fn page_size_mut(&mut self) -> &mut u32 {
+        &mut self.page_size
     }
 }
 
@@ -781,6 +949,15 @@ impl TypeObject for EntitlementConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -802,15 +979,23 @@ pub struct EntitlementOriginConfigData {
 
 pub trait EntitlementOriginConfigDataTrait: TypeObject {
     fn groups(&self) -> &Vec<EntitlementGroup>;
+    fn groups_mut(&mut self) -> &mut Vec<EntitlementGroup>;
     fn tag_name(&self) -> &String;
+    fn tag_name_mut(&mut self) -> &mut String;
 }
 
 impl EntitlementOriginConfigDataTrait for EntitlementOriginConfigData {
     fn groups(&self) -> &Vec<EntitlementGroup> {
         &self.groups
     }
+    fn groups_mut(&mut self) -> &mut Vec<EntitlementGroup> {
+        &mut self.groups
+    }
     fn tag_name(&self) -> &String {
         &self.tag_name
+    }
+    fn tag_name_mut(&mut self) -> &mut String {
+        &mut self.tag_name
     }
 }
 
@@ -848,6 +1033,15 @@ impl TypeObject for EntitlementOriginConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -869,15 +1063,23 @@ pub struct EntitlementGroup {
 
 pub trait EntitlementGroupTrait: TypeObject {
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn group_name(&self) -> &String;
+    fn group_name_mut(&mut self) -> &mut String;
 }
 
 impl EntitlementGroupTrait for EntitlementGroup {
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
+    }
     fn group_name(&self) -> &String {
         &self.group_name
+    }
+    fn group_name_mut(&mut self) -> &mut String {
+        &mut self.group_name
     }
 }
 
@@ -915,6 +1117,15 @@ impl TypeObject for EntitlementGroup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -939,27 +1150,47 @@ pub struct EntitlementInfo {
 
 pub trait EntitlementInfoTrait: TypeObject {
     fn platform(&self) -> &super::core::GamePlatform;
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn entitlement_tag(&self) -> &String;
+    fn entitlement_tag_mut(&mut self) -> &mut String;
     fn group_name(&self) -> &String;
+    fn group_name_mut(&mut self) -> &mut String;
     fn product_id(&self) -> &String;
+    fn product_id_mut(&mut self) -> &mut String;
     fn project_id(&self) -> &String;
+    fn project_id_mut(&mut self) -> &mut String;
 }
 
 impl EntitlementInfoTrait for EntitlementInfo {
     fn platform(&self) -> &super::core::GamePlatform {
         &self.platform
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        &mut self.platform
+    }
     fn entitlement_tag(&self) -> &String {
         &self.entitlement_tag
+    }
+    fn entitlement_tag_mut(&mut self) -> &mut String {
+        &mut self.entitlement_tag
     }
     fn group_name(&self) -> &String {
         &self.group_name
     }
+    fn group_name_mut(&mut self) -> &mut String {
+        &mut self.group_name
+    }
     fn product_id(&self) -> &String {
         &self.product_id
     }
+    fn product_id_mut(&mut self) -> &mut String {
+        &mut self.product_id
+    }
     fn project_id(&self) -> &String {
         &self.project_id
+    }
+    fn project_id_mut(&mut self) -> &mut String {
+        &mut self.project_id
     }
 }
 
@@ -1015,6 +1246,15 @@ impl TypeObject for EntitlementInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1046,12 +1286,12 @@ impl super::core::AssetTrait for PresenceEntitlementsServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceEntitlementsServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEENTITLEMENTSSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1076,6 +1316,15 @@ impl TypeObject for PresenceEntitlementsServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1127,6 +1376,15 @@ impl TypeObject for ServerEntitlementsBackend {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1176,6 +1434,15 @@ impl TypeObject for PresenceGetNucleusEntitlementsRequestParameters {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1227,6 +1494,15 @@ impl TypeObject for PresenceGrantNucleusEntitlementRequestParameters {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1276,6 +1552,15 @@ impl TypeObject for PresenceGetOriginEntitlementsRequestParameters {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1327,6 +1612,15 @@ impl TypeObject for PresenceGetFirstPartyEntitlementsRequestParameters {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1376,6 +1670,15 @@ impl TypeObject for LicenseMappingEvent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1427,6 +1730,15 @@ impl TypeObject for ClientEntitlementsService {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1476,6 +1788,15 @@ impl TypeObject for ClientEntitlementsBackend {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

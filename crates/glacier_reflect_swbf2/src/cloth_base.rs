@@ -71,6 +71,15 @@ impl TypeObject for ClothControlHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -115,6 +124,15 @@ impl TypeObject for SimulationDynamicState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -161,6 +179,15 @@ impl TypeObject for SimulationStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -182,11 +209,15 @@ pub struct ClothWrappingAsset {
 
 pub trait ClothWrappingAssetTrait: super::core::AssetTrait {
     fn cloth_wrapping_asset_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn cloth_wrapping_asset_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl ClothWrappingAssetTrait for ClothWrappingAsset {
     fn cloth_wrapping_asset_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.cloth_wrapping_asset_resource
+    }
+    fn cloth_wrapping_asset_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.cloth_wrapping_asset_resource
     }
 }
 
@@ -194,12 +225,12 @@ impl super::core::AssetTrait for ClothWrappingAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ClothWrappingAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLOTHWRAPPINGASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -230,6 +261,15 @@ impl TypeObject for ClothWrappingAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -271,6 +311,15 @@ impl TypeObject for ClothProcessingMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -292,11 +341,15 @@ pub struct BoxClothCollision {
 
 pub trait BoxClothCollisionTrait: ClothCollisionGeometryTrait {
     fn half_lengths(&self) -> &super::core::Vec3;
+    fn half_lengths_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl BoxClothCollisionTrait for BoxClothCollision {
     fn half_lengths(&self) -> &super::core::Vec3 {
         &self.half_lengths
+    }
+    fn half_lengths_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.half_lengths
     }
 }
 
@@ -304,12 +357,12 @@ impl ClothCollisionGeometryTrait for BoxClothCollision {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for BoxClothCollision {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BOXCLOTHCOLLISION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -341,6 +394,15 @@ impl TypeObject for BoxClothCollision {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -364,19 +426,31 @@ pub struct TaperedCapsuleClothCollision {
 
 pub trait TaperedCapsuleClothCollisionTrait: ClothCollisionGeometryTrait {
     fn radius_a(&self) -> &f32;
+    fn radius_a_mut(&mut self) -> &mut f32;
     fn radius_b(&self) -> &f32;
+    fn radius_b_mut(&mut self) -> &mut f32;
     fn half_length(&self) -> &f32;
+    fn half_length_mut(&mut self) -> &mut f32;
 }
 
 impl TaperedCapsuleClothCollisionTrait for TaperedCapsuleClothCollision {
     fn radius_a(&self) -> &f32 {
         &self.radius_a
     }
+    fn radius_a_mut(&mut self) -> &mut f32 {
+        &mut self.radius_a
+    }
     fn radius_b(&self) -> &f32 {
         &self.radius_b
     }
+    fn radius_b_mut(&mut self) -> &mut f32 {
+        &mut self.radius_b
+    }
     fn half_length(&self) -> &f32 {
         &self.half_length
+    }
+    fn half_length_mut(&mut self) -> &mut f32 {
+        &mut self.half_length
     }
 }
 
@@ -384,12 +458,12 @@ impl ClothCollisionGeometryTrait for TaperedCapsuleClothCollision {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TaperedCapsuleClothCollision {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TAPEREDCAPSULECLOTHCOLLISION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -433,6 +507,15 @@ impl TypeObject for TaperedCapsuleClothCollision {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -455,15 +538,23 @@ pub struct CapsuleClothCollision {
 
 pub trait CapsuleClothCollisionTrait: ClothCollisionGeometryTrait {
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn half_length(&self) -> &f32;
+    fn half_length_mut(&mut self) -> &mut f32;
 }
 
 impl CapsuleClothCollisionTrait for CapsuleClothCollision {
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn half_length(&self) -> &f32 {
         &self.half_length
+    }
+    fn half_length_mut(&mut self) -> &mut f32 {
+        &mut self.half_length
     }
 }
 
@@ -471,12 +562,12 @@ impl ClothCollisionGeometryTrait for CapsuleClothCollision {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CapsuleClothCollision {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CAPSULECLOTHCOLLISION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -514,6 +605,15 @@ impl TypeObject for CapsuleClothCollision {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -535,11 +635,15 @@ pub struct SphereClothCollision {
 
 pub trait SphereClothCollisionTrait: ClothCollisionGeometryTrait {
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
 }
 
 impl SphereClothCollisionTrait for SphereClothCollision {
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
 }
 
@@ -547,12 +651,12 @@ impl ClothCollisionGeometryTrait for SphereClothCollision {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SphereClothCollision {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPHERECLOTHCOLLISION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -584,6 +688,15 @@ impl TypeObject for SphereClothCollision {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -605,18 +718,19 @@ pub struct ClothCollisionGeometry {
 
 pub trait ClothCollisionGeometryTrait: super::core::DataContainerTrait {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl ClothCollisionGeometryTrait for ClothCollisionGeometry {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
 }
 
 impl super::core::DataContainerTrait for ClothCollisionGeometry {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLOTHCOLLISIONGEOMETRY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -648,6 +762,15 @@ impl TypeObject for ClothCollisionGeometry {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -669,11 +792,15 @@ pub struct ClothBaseAsset {
 
 pub trait ClothBaseAssetTrait: super::core::AssetTrait {
     fn cloth_asset_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn cloth_asset_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl ClothBaseAssetTrait for ClothBaseAsset {
     fn cloth_asset_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.cloth_asset_resource
+    }
+    fn cloth_asset_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.cloth_asset_resource
     }
 }
 
@@ -681,12 +808,12 @@ impl super::core::AssetTrait for ClothBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ClothBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLOTHBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -717,6 +844,15 @@ impl TypeObject for ClothBaseAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -752,67 +888,127 @@ pub struct ClothControlDynamicState {
 
 pub trait ClothControlDynamicStateTrait: TypeObject {
     fn user_colliders(&self) -> &Vec<Option<Arc<Mutex<dyn ClothCollisionGeometryTrait>>>>;
+    fn user_colliders_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ClothCollisionGeometryTrait>>>>;
     fn user_collider_joint_ids(&self) -> &Vec<u32>;
+    fn user_collider_joint_ids_mut(&mut self) -> &mut Vec<u32>;
     fn authored_colliders_enabled(&self) -> &bool;
+    fn authored_colliders_enabled_mut(&mut self) -> &mut bool;
     fn root_transform(&self) -> &super::core::LinearTransform;
+    fn root_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn ground_plane_transform(&self) -> &super::core::LinearTransform;
+    fn ground_plane_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn next_processing_mode(&self) -> &ClothProcessingMode;
+    fn next_processing_mode_mut(&mut self) -> &mut ClothProcessingMode;
     fn trigger_re_initialize(&self) -> &bool;
+    fn trigger_re_initialize_mut(&mut self) -> &mut bool;
     fn processing_mode_overridden(&self) -> &bool;
+    fn processing_mode_overridden_mut(&mut self) -> &mut bool;
     fn enable_ground_plane(&self) -> &bool;
+    fn enable_ground_plane_mut(&mut self) -> &mut bool;
     fn use_authored_ground_plane(&self) -> &bool;
+    fn use_authored_ground_plane_mut(&mut self) -> &mut bool;
     fn force_skip_interpolation(&self) -> &bool;
+    fn force_skip_interpolation_mut(&mut self) -> &mut bool;
     fn trigger_retarget(&self) -> &bool;
+    fn trigger_retarget_mut(&mut self) -> &mut bool;
     fn trigger_teleport(&self) -> &bool;
+    fn trigger_teleport_mut(&mut self) -> &mut bool;
     fn root_motion_contribution_enabled(&self) -> &bool;
+    fn root_motion_contribution_enabled_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl ClothControlDynamicStateTrait for ClothControlDynamicState {
     fn user_colliders(&self) -> &Vec<Option<Arc<Mutex<dyn ClothCollisionGeometryTrait>>>> {
         &self.user_colliders
     }
+    fn user_colliders_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ClothCollisionGeometryTrait>>>> {
+        &mut self.user_colliders
+    }
     fn user_collider_joint_ids(&self) -> &Vec<u32> {
         &self.user_collider_joint_ids
+    }
+    fn user_collider_joint_ids_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.user_collider_joint_ids
     }
     fn authored_colliders_enabled(&self) -> &bool {
         &self.authored_colliders_enabled
     }
+    fn authored_colliders_enabled_mut(&mut self) -> &mut bool {
+        &mut self.authored_colliders_enabled
+    }
     fn root_transform(&self) -> &super::core::LinearTransform {
         &self.root_transform
+    }
+    fn root_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.root_transform
     }
     fn ground_plane_transform(&self) -> &super::core::LinearTransform {
         &self.ground_plane_transform
     }
+    fn ground_plane_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.ground_plane_transform
+    }
     fn next_processing_mode(&self) -> &ClothProcessingMode {
         &self.next_processing_mode
+    }
+    fn next_processing_mode_mut(&mut self) -> &mut ClothProcessingMode {
+        &mut self.next_processing_mode
     }
     fn trigger_re_initialize(&self) -> &bool {
         &self.trigger_re_initialize
     }
+    fn trigger_re_initialize_mut(&mut self) -> &mut bool {
+        &mut self.trigger_re_initialize
+    }
     fn processing_mode_overridden(&self) -> &bool {
         &self.processing_mode_overridden
+    }
+    fn processing_mode_overridden_mut(&mut self) -> &mut bool {
+        &mut self.processing_mode_overridden
     }
     fn enable_ground_plane(&self) -> &bool {
         &self.enable_ground_plane
     }
+    fn enable_ground_plane_mut(&mut self) -> &mut bool {
+        &mut self.enable_ground_plane
+    }
     fn use_authored_ground_plane(&self) -> &bool {
         &self.use_authored_ground_plane
+    }
+    fn use_authored_ground_plane_mut(&mut self) -> &mut bool {
+        &mut self.use_authored_ground_plane
     }
     fn force_skip_interpolation(&self) -> &bool {
         &self.force_skip_interpolation
     }
+    fn force_skip_interpolation_mut(&mut self) -> &mut bool {
+        &mut self.force_skip_interpolation
+    }
     fn trigger_retarget(&self) -> &bool {
         &self.trigger_retarget
+    }
+    fn trigger_retarget_mut(&mut self) -> &mut bool {
+        &mut self.trigger_retarget
     }
     fn trigger_teleport(&self) -> &bool {
         &self.trigger_teleport
     }
+    fn trigger_teleport_mut(&mut self) -> &mut bool {
+        &mut self.trigger_teleport
+    }
     fn root_motion_contribution_enabled(&self) -> &bool {
         &self.root_motion_contribution_enabled
     }
+    fn root_motion_contribution_enabled_mut(&mut self) -> &mut bool {
+        &mut self.root_motion_contribution_enabled
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -928,6 +1124,15 @@ impl TypeObject for ClothControlDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -974,6 +1179,15 @@ impl TypeObject for EAClothEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1019,6 +1233,15 @@ impl TypeObject for EAClothAssetData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

@@ -73,6 +73,15 @@ impl TypeObject for EmitterHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -93,11 +102,15 @@ pub struct EmitterCreateState {
 
 pub trait EmitterCreateStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl EmitterCreateStateTrait for EmitterCreateState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
 }
 
@@ -128,6 +141,15 @@ impl TypeObject for EmitterCreateState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -163,67 +185,127 @@ pub struct EmitterDynamicState {
 
 pub trait EmitterDynamicStateTrait: TypeObject {
     fn params(&self) -> &super::effect_base::EffectParams;
+    fn params_mut(&mut self) -> &mut super::effect_base::EffectParams;
     fn effect_transform_space_params(&self) -> &Vec<super::effect_base::EffectTransformSpaceParam>;
+    fn effect_transform_space_params_mut(&mut self) -> &mut Vec<super::effect_base::EffectTransformSpaceParam>;
     fn state(&self) -> &EmitterState;
+    fn state_mut(&mut self) -> &mut EmitterState;
     fn source_pt(&self) -> &super::core::Vec3;
+    fn source_pt_mut(&mut self) -> &mut super::core::Vec3;
     fn target_pt(&self) -> &super::core::Vec3;
+    fn target_pt_mut(&mut self) -> &mut super::core::Vec3;
     fn other_pt(&self) -> &super::core::Vec3;
+    fn other_pt_mut(&mut self) -> &mut super::core::Vec3;
     fn effect_position(&self) -> &super::core::Vec3;
+    fn effect_position_mut(&mut self) -> &mut super::core::Vec3;
     fn light_probe_sample_offset(&self) -> &super::core::Vec3;
+    fn light_probe_sample_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn ctrl_points(&self) -> &Vec<EmitterControlPoint>;
+    fn ctrl_points_mut(&mut self) -> &mut Vec<EmitterControlPoint>;
     fn active_ctrl_point_count(&self) -> &u32;
+    fn active_ctrl_point_count_mut(&mut self) -> &mut u32;
     fn emitter_exposed_inputs(&self) -> &Vec<super::effect_base::EmitterExposedInput>;
+    fn emitter_exposed_inputs_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedInput>;
     fn emitter_graph_overrides(&self) -> &super::effect_base::EmitterGraphOverrides;
+    fn emitter_graph_overrides_mut(&mut self) -> &mut super::effect_base::EmitterGraphOverrides;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle;
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle;
     fn field_flag_changed0(&self) -> &u16;
+    fn field_flag_changed0_mut(&mut self) -> &mut u16;
 }
 
 impl EmitterDynamicStateTrait for EmitterDynamicState {
     fn params(&self) -> &super::effect_base::EffectParams {
         &self.params
     }
+    fn params_mut(&mut self) -> &mut super::effect_base::EffectParams {
+        &mut self.params
+    }
     fn effect_transform_space_params(&self) -> &Vec<super::effect_base::EffectTransformSpaceParam> {
         &self.effect_transform_space_params
+    }
+    fn effect_transform_space_params_mut(&mut self) -> &mut Vec<super::effect_base::EffectTransformSpaceParam> {
+        &mut self.effect_transform_space_params
     }
     fn state(&self) -> &EmitterState {
         &self.state
     }
+    fn state_mut(&mut self) -> &mut EmitterState {
+        &mut self.state
+    }
     fn source_pt(&self) -> &super::core::Vec3 {
         &self.source_pt
+    }
+    fn source_pt_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.source_pt
     }
     fn target_pt(&self) -> &super::core::Vec3 {
         &self.target_pt
     }
+    fn target_pt_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.target_pt
+    }
     fn other_pt(&self) -> &super::core::Vec3 {
         &self.other_pt
+    }
+    fn other_pt_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.other_pt
     }
     fn effect_position(&self) -> &super::core::Vec3 {
         &self.effect_position
     }
+    fn effect_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.effect_position
+    }
     fn light_probe_sample_offset(&self) -> &super::core::Vec3 {
         &self.light_probe_sample_offset
+    }
+    fn light_probe_sample_offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.light_probe_sample_offset
     }
     fn ctrl_points(&self) -> &Vec<EmitterControlPoint> {
         &self.ctrl_points
     }
+    fn ctrl_points_mut(&mut self) -> &mut Vec<EmitterControlPoint> {
+        &mut self.ctrl_points
+    }
     fn active_ctrl_point_count(&self) -> &u32 {
         &self.active_ctrl_point_count
+    }
+    fn active_ctrl_point_count_mut(&mut self) -> &mut u32 {
+        &mut self.active_ctrl_point_count
     }
     fn emitter_exposed_inputs(&self) -> &Vec<super::effect_base::EmitterExposedInput> {
         &self.emitter_exposed_inputs
     }
+    fn emitter_exposed_inputs_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedInput> {
+        &mut self.emitter_exposed_inputs
+    }
     fn emitter_graph_overrides(&self) -> &super::effect_base::EmitterGraphOverrides {
         &self.emitter_graph_overrides
+    }
+    fn emitter_graph_overrides_mut(&mut self) -> &mut super::effect_base::EmitterGraphOverrides {
+        &mut self.emitter_graph_overrides
     }
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.included_cull_id
     }
+    fn included_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.included_cull_id
+    }
     fn excluded_cull_id(&self) -> &super::render_base::CullIdHandle {
         &self.excluded_cull_id
     }
+    fn excluded_cull_id_mut(&mut self) -> &mut super::render_base::CullIdHandle {
+        &mut self.excluded_cull_id
+    }
     fn field_flag_changed0(&self) -> &u16 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u16 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -339,6 +421,15 @@ impl TypeObject for EmitterDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -360,15 +451,23 @@ pub struct EmitterControlPoint {
 
 pub trait EmitterControlPointTrait: TypeObject {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn index(&self) -> &u32;
+    fn index_mut(&mut self) -> &mut u32;
 }
 
 impl EmitterControlPointTrait for EmitterControlPoint {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
+    }
     fn index(&self) -> &u32 {
         &self.index
+    }
+    fn index_mut(&mut self) -> &mut u32 {
+        &mut self.index
     }
 }
 
@@ -405,6 +504,15 @@ impl TypeObject for EmitterControlPoint {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -445,6 +553,15 @@ impl TypeObject for EmitterState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -494,123 +611,239 @@ pub struct EmitterStaticState {
 
 pub trait EmitterStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn emitter_base_asset(&self) -> &Option<Arc<Mutex<dyn EmitterBaseAssetTrait>>>;
+    fn emitter_base_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterBaseAssetTrait>>>;
     fn is_emitter_graph(&self) -> &bool;
+    fn is_emitter_graph_mut(&mut self) -> &mut bool;
     fn emitter_graph_base_asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn emitter_graph_base_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
     fn spawn_probability(&self) -> &super::core::QualityScalableFloat;
+    fn spawn_probability_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn simulation_cull_distance(&self) -> &super::core::QualityScalableFloat;
+    fn simulation_cull_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn kill_when_distance_culled(&self) -> &bool;
+    fn kill_when_distance_culled_mut(&mut self) -> &mut bool;
     fn kill_by_water(&self) -> &bool;
+    fn kill_by_water_mut(&mut self) -> &mut bool;
     fn spawn_outside_view_radius(&self) -> &f32;
+    fn spawn_outside_view_radius_mut(&mut self) -> &mut f32;
     fn nearby_radius(&self) -> &f32;
+    fn nearby_radius_mut(&mut self) -> &mut f32;
     fn max_nearby_instance_count(&self) -> &u32;
+    fn max_nearby_instance_count_mut(&mut self) -> &mut u32;
     fn override_draw_order(&self) -> &bool;
+    fn override_draw_order_mut(&mut self) -> &mut bool;
     fn draw_order_slot(&self) -> &u8;
+    fn draw_order_slot_mut(&mut self) -> &mut u8;
     fn is_first_person(&self) -> &bool;
+    fn is_first_person_mut(&mut self) -> &mut bool;
     fn cast_shadows(&self) -> &bool;
+    fn cast_shadows_mut(&mut self) -> &mut bool;
     fn cast_reflection(&self) -> &bool;
+    fn cast_reflection_mut(&mut self) -> &mut bool;
     fn use_lightprobe_visibility(&self) -> &bool;
+    fn use_lightprobe_visibility_mut(&mut self) -> &mut bool;
     fn inherited_velocity_and_start_delta_time(&self) -> &super::core::FbVec;
+    fn inherited_velocity_and_start_delta_time_mut(&mut self) -> &mut super::core::FbVec;
     fn inherited_velocity_enabled(&self) -> &bool;
+    fn inherited_velocity_enabled_mut(&mut self) -> &mut bool;
     fn light_probe_sample_method(&self) -> &LightProbeSampleMethod;
+    fn light_probe_sample_method_mut(&mut self) -> &mut LightProbeSampleMethod;
     fn light_probe_sample_offset_method(&self) -> &LightProbeSampleOffsetMethod;
+    fn light_probe_sample_offset_method_mut(&mut self) -> &mut LightProbeSampleOffsetMethod;
     fn group_guid(&self) -> &glacier_util::guid::Guid;
+    fn group_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn max_instance_count_in_group(&self) -> &u32;
+    fn max_instance_count_in_group_mut(&mut self) -> &mut u32;
     fn kill_on_max_count(&self) -> &bool;
+    fn kill_on_max_count_mut(&mut self) -> &mut bool;
     fn property_id_lookup_table(&self) -> &Vec<PropertyIdLookup>;
+    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<PropertyIdLookup>;
     fn emitter_exposed_texture_inputs(&self) -> &Vec<super::effect_base::EmitterExposedTextureInput>;
+    fn emitter_exposed_texture_inputs_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedTextureInput>;
     fn effect_time_delta_type(&self) -> &u32;
+    fn effect_time_delta_type_mut(&mut self) -> &mut u32;
     fn internal_duplication_render_view_id(&self) -> &u16;
+    fn internal_duplication_render_view_id_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl EmitterStaticStateTrait for EmitterStaticState {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform_space
     }
+    fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform_space
+    }
     fn emitter_base_asset(&self) -> &Option<Arc<Mutex<dyn EmitterBaseAssetTrait>>> {
         &self.emitter_base_asset
+    }
+    fn emitter_base_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterBaseAssetTrait>>> {
+        &mut self.emitter_base_asset
     }
     fn is_emitter_graph(&self) -> &bool {
         &self.is_emitter_graph
     }
+    fn is_emitter_graph_mut(&mut self) -> &mut bool {
+        &mut self.is_emitter_graph
+    }
     fn emitter_graph_base_asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         &self.emitter_graph_base_asset
+    }
+    fn emitter_graph_base_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        &mut self.emitter_graph_base_asset
     }
     fn spawn_probability(&self) -> &super::core::QualityScalableFloat {
         &self.spawn_probability
     }
+    fn spawn_probability_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.spawn_probability
+    }
     fn simulation_cull_distance(&self) -> &super::core::QualityScalableFloat {
         &self.simulation_cull_distance
+    }
+    fn simulation_cull_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.simulation_cull_distance
     }
     fn kill_when_distance_culled(&self) -> &bool {
         &self.kill_when_distance_culled
     }
+    fn kill_when_distance_culled_mut(&mut self) -> &mut bool {
+        &mut self.kill_when_distance_culled
+    }
     fn kill_by_water(&self) -> &bool {
         &self.kill_by_water
+    }
+    fn kill_by_water_mut(&mut self) -> &mut bool {
+        &mut self.kill_by_water
     }
     fn spawn_outside_view_radius(&self) -> &f32 {
         &self.spawn_outside_view_radius
     }
+    fn spawn_outside_view_radius_mut(&mut self) -> &mut f32 {
+        &mut self.spawn_outside_view_radius
+    }
     fn nearby_radius(&self) -> &f32 {
         &self.nearby_radius
+    }
+    fn nearby_radius_mut(&mut self) -> &mut f32 {
+        &mut self.nearby_radius
     }
     fn max_nearby_instance_count(&self) -> &u32 {
         &self.max_nearby_instance_count
     }
+    fn max_nearby_instance_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_nearby_instance_count
+    }
     fn override_draw_order(&self) -> &bool {
         &self.override_draw_order
+    }
+    fn override_draw_order_mut(&mut self) -> &mut bool {
+        &mut self.override_draw_order
     }
     fn draw_order_slot(&self) -> &u8 {
         &self.draw_order_slot
     }
+    fn draw_order_slot_mut(&mut self) -> &mut u8 {
+        &mut self.draw_order_slot
+    }
     fn is_first_person(&self) -> &bool {
         &self.is_first_person
+    }
+    fn is_first_person_mut(&mut self) -> &mut bool {
+        &mut self.is_first_person
     }
     fn cast_shadows(&self) -> &bool {
         &self.cast_shadows
     }
+    fn cast_shadows_mut(&mut self) -> &mut bool {
+        &mut self.cast_shadows
+    }
     fn cast_reflection(&self) -> &bool {
         &self.cast_reflection
+    }
+    fn cast_reflection_mut(&mut self) -> &mut bool {
+        &mut self.cast_reflection
     }
     fn use_lightprobe_visibility(&self) -> &bool {
         &self.use_lightprobe_visibility
     }
+    fn use_lightprobe_visibility_mut(&mut self) -> &mut bool {
+        &mut self.use_lightprobe_visibility
+    }
     fn inherited_velocity_and_start_delta_time(&self) -> &super::core::FbVec {
         &self.inherited_velocity_and_start_delta_time
+    }
+    fn inherited_velocity_and_start_delta_time_mut(&mut self) -> &mut super::core::FbVec {
+        &mut self.inherited_velocity_and_start_delta_time
     }
     fn inherited_velocity_enabled(&self) -> &bool {
         &self.inherited_velocity_enabled
     }
+    fn inherited_velocity_enabled_mut(&mut self) -> &mut bool {
+        &mut self.inherited_velocity_enabled
+    }
     fn light_probe_sample_method(&self) -> &LightProbeSampleMethod {
         &self.light_probe_sample_method
+    }
+    fn light_probe_sample_method_mut(&mut self) -> &mut LightProbeSampleMethod {
+        &mut self.light_probe_sample_method
     }
     fn light_probe_sample_offset_method(&self) -> &LightProbeSampleOffsetMethod {
         &self.light_probe_sample_offset_method
     }
+    fn light_probe_sample_offset_method_mut(&mut self) -> &mut LightProbeSampleOffsetMethod {
+        &mut self.light_probe_sample_offset_method
+    }
     fn group_guid(&self) -> &glacier_util::guid::Guid {
         &self.group_guid
+    }
+    fn group_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.group_guid
     }
     fn max_instance_count_in_group(&self) -> &u32 {
         &self.max_instance_count_in_group
     }
+    fn max_instance_count_in_group_mut(&mut self) -> &mut u32 {
+        &mut self.max_instance_count_in_group
+    }
     fn kill_on_max_count(&self) -> &bool {
         &self.kill_on_max_count
+    }
+    fn kill_on_max_count_mut(&mut self) -> &mut bool {
+        &mut self.kill_on_max_count
     }
     fn property_id_lookup_table(&self) -> &Vec<PropertyIdLookup> {
         &self.property_id_lookup_table
     }
+    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<PropertyIdLookup> {
+        &mut self.property_id_lookup_table
+    }
     fn emitter_exposed_texture_inputs(&self) -> &Vec<super::effect_base::EmitterExposedTextureInput> {
         &self.emitter_exposed_texture_inputs
+    }
+    fn emitter_exposed_texture_inputs_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedTextureInput> {
+        &mut self.emitter_exposed_texture_inputs
     }
     fn effect_time_delta_type(&self) -> &u32 {
         &self.effect_time_delta_type
     }
+    fn effect_time_delta_type_mut(&mut self) -> &mut u32 {
+        &mut self.effect_time_delta_type
+    }
     fn internal_duplication_render_view_id(&self) -> &u16 {
         &self.internal_duplication_render_view_id
     }
+    fn internal_duplication_render_view_id_mut(&mut self) -> &mut u16 {
+        &mut self.internal_duplication_render_view_id
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -810,6 +1043,15 @@ impl TypeObject for EmitterStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -838,12 +1080,12 @@ impl super::core::AssetTrait for EmitterExclusionVolumesBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EmitterExclusionVolumesBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTEREXCLUSIONVOLUMESBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -869,6 +1111,15 @@ impl TypeObject for EmitterExclusionVolumesBaseAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -890,18 +1141,19 @@ pub struct EmitterTag {
 
 pub trait EmitterTagTrait: super::core::DataContainerTrait {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
 }
 
 impl EmitterTagTrait for EmitterTag {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
 }
 
 impl super::core::DataContainerTrait for EmitterTag {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERTAG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -933,6 +1185,15 @@ impl TypeObject for EmitterTag {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -961,12 +1222,12 @@ impl super::core::AssetTrait for EmitterGraphBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EmitterGraphBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERGRAPHBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -991,6 +1252,15 @@ impl TypeObject for EmitterGraphBaseAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1020,12 +1290,12 @@ impl super::core::AssetTrait for EmitterBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EmitterBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1051,6 +1321,15 @@ impl TypeObject for EmitterBaseAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1073,19 +1352,31 @@ pub struct PropertyIdLookup {
 
 pub trait PropertyIdLookupTrait: TypeObject {
     fn field_property_id(&self) -> &i32;
+    fn field_property_id_mut(&mut self) -> &mut i32;
     fn field_property_hash(&self) -> &i32;
+    fn field_property_hash_mut(&mut self) -> &mut i32;
     fn emitter_exposable_type(&self) -> &EmitterExposableType;
+    fn emitter_exposable_type_mut(&mut self) -> &mut EmitterExposableType;
 }
 
 impl PropertyIdLookupTrait for PropertyIdLookup {
     fn field_property_id(&self) -> &i32 {
         &self.field_property_id
     }
+    fn field_property_id_mut(&mut self) -> &mut i32 {
+        &mut self.field_property_id
+    }
     fn field_property_hash(&self) -> &i32 {
         &self.field_property_hash
     }
+    fn field_property_hash_mut(&mut self) -> &mut i32 {
+        &mut self.field_property_hash
+    }
     fn emitter_exposable_type(&self) -> &EmitterExposableType {
         &self.emitter_exposable_type
+    }
+    fn emitter_exposable_type_mut(&mut self) -> &mut EmitterExposableType {
+        &mut self.emitter_exposable_type
     }
 }
 
@@ -1129,6 +1420,15 @@ impl TypeObject for PropertyIdLookup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1169,6 +1469,15 @@ impl TypeObject for EmitterExposableType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1191,19 +1500,31 @@ pub struct EmitterExclusionVolumeResultData {
 
 pub trait EmitterExclusionVolumeResultDataTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn half_extent(&self) -> &super::core::Vec3;
+    fn half_extent_mut(&mut self) -> &mut super::core::Vec3;
     fn id(&self) -> &u32;
+    fn id_mut(&mut self) -> &mut u32;
 }
 
 impl EmitterExclusionVolumeResultDataTrait for EmitterExclusionVolumeResultData {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn half_extent(&self) -> &super::core::Vec3 {
         &self.half_extent
     }
+    fn half_extent_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.half_extent
+    }
     fn id(&self) -> &u32 {
         &self.id
+    }
+    fn id_mut(&mut self) -> &mut u32 {
+        &mut self.id
     }
 }
 
@@ -1247,6 +1568,15 @@ impl TypeObject for EmitterExclusionVolumeResultData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1284,6 +1614,15 @@ impl TypeObject for LightProbeSampleOffsetMethod {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1324,6 +1663,15 @@ impl TypeObject for LightProbeSampleMethod {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

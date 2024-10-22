@@ -25,11 +25,15 @@ pub struct PresenceMatchmakingServiceData {
 
 pub trait PresenceMatchmakingServiceDataTrait: super::online_shared::PresenceServiceDataTrait {
     fn dummy_bool(&self) -> &bool;
+    fn dummy_bool_mut(&mut self) -> &mut bool;
 }
 
 impl PresenceMatchmakingServiceDataTrait for PresenceMatchmakingServiceData {
     fn dummy_bool(&self) -> &bool {
         &self.dummy_bool
+    }
+    fn dummy_bool_mut(&mut self) -> &mut bool {
+        &mut self.dummy_bool
     }
 }
 
@@ -40,12 +44,12 @@ impl super::core::AssetTrait for PresenceMatchmakingServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceMatchmakingServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEMATCHMAKINGSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -76,6 +80,15 @@ impl TypeObject for PresenceMatchmakingServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -122,6 +135,15 @@ impl TypeObject for PresenceMatchmakerMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -155,6 +177,15 @@ impl TypeObject for PresenceMatchmakingRequestMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -194,6 +225,15 @@ impl TypeObject for ClientMatchmakingService {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -54,21 +54,32 @@ pub struct StaticMorphEntityData {
 
 pub trait StaticMorphEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn targets(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>>;
+    fn targets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>>;
     fn model_pose(&self) -> &super::core::SparseTransformArray;
+    fn model_pose_mut(&mut self) -> &mut super::core::SparseTransformArray;
 }
 
 impl StaticMorphEntityDataTrait for StaticMorphEntityData {
     fn targets(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>> {
         &self.targets
     }
+    fn targets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>> {
+        &mut self.targets
+    }
     fn model_pose(&self) -> &super::core::SparseTransformArray {
         &self.model_pose
+    }
+    fn model_pose_mut(&mut self) -> &mut super::core::SparseTransformArray {
+        &mut self.model_pose
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for StaticMorphEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -82,15 +93,15 @@ impl super::core::DataBusPeerTrait for StaticMorphEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StaticMorphEntityData {
 }
 
 impl super::core::DataContainerTrait for StaticMorphEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STATICMORPHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -127,6 +138,15 @@ impl TypeObject for StaticMorphEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -165,15 +185,15 @@ impl super::core::DataBusPeerTrait for StaticMorphSaveGameStorageEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StaticMorphSaveGameStorageEntityData {
 }
 
 impl super::core::DataContainerTrait for StaticMorphSaveGameStorageEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STATICMORPHSAVEGAMESTORAGEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -198,6 +218,15 @@ impl TypeObject for StaticMorphSaveGameStorageEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -233,15 +262,15 @@ impl super::core::DataBusPeerTrait for StaticMorphStorageEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StaticMorphStorageEntityData {
 }
 
 impl super::core::DataContainerTrait for StaticMorphStorageEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STATICMORPHSTORAGEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -267,6 +296,15 @@ impl TypeObject for StaticMorphStorageEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -289,15 +327,23 @@ pub struct StaticMorphBlendEntityData {
 
 pub trait StaticMorphBlendEntityDataTrait: super::entity::EntityDataTrait {
     fn presets(&self) -> &Vec<super::morph_base::MorphTargetsInterfaceInfo>;
+    fn presets_mut(&mut self) -> &mut Vec<super::morph_base::MorphTargetsInterfaceInfo>;
     fn blends(&self) -> &Vec<super::morph_base::MorphTargetsInterfaceInfo>;
+    fn blends_mut(&mut self) -> &mut Vec<super::morph_base::MorphTargetsInterfaceInfo>;
 }
 
 impl StaticMorphBlendEntityDataTrait for StaticMorphBlendEntityData {
     fn presets(&self) -> &Vec<super::morph_base::MorphTargetsInterfaceInfo> {
         &self.presets
     }
+    fn presets_mut(&mut self) -> &mut Vec<super::morph_base::MorphTargetsInterfaceInfo> {
+        &mut self.presets
+    }
     fn blends(&self) -> &Vec<super::morph_base::MorphTargetsInterfaceInfo> {
         &self.blends
+    }
+    fn blends_mut(&mut self) -> &mut Vec<super::morph_base::MorphTargetsInterfaceInfo> {
+        &mut self.blends
     }
 }
 
@@ -311,15 +357,15 @@ impl super::core::DataBusPeerTrait for StaticMorphBlendEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StaticMorphBlendEntityData {
 }
 
 impl super::core::DataContainerTrait for StaticMorphBlendEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STATICMORPHBLENDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -357,6 +403,15 @@ impl TypeObject for StaticMorphBlendEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -379,15 +434,23 @@ pub struct StoredStaticMorphComponentData {
 
 pub trait StoredStaticMorphComponentDataTrait: StoredStaticMorphBaseComponentDataTrait {
     fn targets_id(&self) -> &glacier_util::guid::Guid;
+    fn targets_id_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn presets(&self) -> &Vec<StoredStaticMorphPreset>;
+    fn presets_mut(&mut self) -> &mut Vec<StoredStaticMorphPreset>;
 }
 
 impl StoredStaticMorphComponentDataTrait for StoredStaticMorphComponentData {
     fn targets_id(&self) -> &glacier_util::guid::Guid {
         &self.targets_id
     }
+    fn targets_id_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.targets_id
+    }
     fn presets(&self) -> &Vec<StoredStaticMorphPreset> {
         &self.presets
+    }
+    fn presets_mut(&mut self) -> &mut Vec<StoredStaticMorphPreset> {
+        &mut self.presets
     }
 }
 
@@ -401,17 +464,32 @@ impl super::entity::ComponentDataTrait for StoredStaticMorphComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -422,15 +500,15 @@ impl super::core::DataBusPeerTrait for StoredStaticMorphComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StoredStaticMorphComponentData {
 }
 
 impl super::core::DataContainerTrait for StoredStaticMorphComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STOREDSTATICMORPHCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -468,6 +546,15 @@ impl TypeObject for StoredStaticMorphComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -489,15 +576,23 @@ pub struct StoredStaticMorphPreset {
 
 pub trait StoredStaticMorphPresetTrait: TypeObject {
     fn preset_id(&self) -> &glacier_util::guid::Guid;
+    fn preset_id_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn preset_mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn preset_mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
 }
 
 impl StoredStaticMorphPresetTrait for StoredStaticMorphPreset {
     fn preset_id(&self) -> &glacier_util::guid::Guid {
         &self.preset_id
     }
+    fn preset_id_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.preset_id
+    }
     fn preset_mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         &self.preset_mesh
+    }
+    fn preset_mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &mut self.preset_mesh
     }
 }
 
@@ -535,6 +630,15 @@ impl TypeObject for StoredStaticMorphPreset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -566,17 +670,32 @@ impl super::entity::ComponentDataTrait for StoredStaticMorphBaseComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -587,15 +706,15 @@ impl super::core::DataBusPeerTrait for StoredStaticMorphBaseComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StoredStaticMorphBaseComponentData {
 }
 
 impl super::core::DataContainerTrait for StoredStaticMorphBaseComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STOREDSTATICMORPHBASECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -621,6 +740,15 @@ impl TypeObject for StoredStaticMorphBaseComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -642,11 +770,15 @@ pub struct StaticMorphGeneratorComponentData {
 
 pub trait StaticMorphGeneratorComponentDataTrait: super::entity::GameComponentDataTrait {
     fn targets(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>>;
+    fn targets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>>;
 }
 
 impl StaticMorphGeneratorComponentDataTrait for StaticMorphGeneratorComponentData {
     fn targets(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>> {
         &self.targets
+    }
+    fn targets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>> {
+        &mut self.targets
     }
 }
 
@@ -657,17 +789,32 @@ impl super::entity::ComponentDataTrait for StaticMorphGeneratorComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -678,15 +825,15 @@ impl super::core::DataBusPeerTrait for StaticMorphGeneratorComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StaticMorphGeneratorComponentData {
 }
 
 impl super::core::DataContainerTrait for StaticMorphGeneratorComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STATICMORPHGENERATORCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -718,6 +865,15 @@ impl TypeObject for StaticMorphGeneratorComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -739,11 +895,15 @@ pub struct StaticMorphComponentData {
 
 pub trait StaticMorphComponentDataTrait: super::entity::GameComponentDataTrait {
     fn morph(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphStaticTrait>>>;
+    fn morph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphStaticTrait>>>;
 }
 
 impl StaticMorphComponentDataTrait for StaticMorphComponentData {
     fn morph(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphStaticTrait>>> {
         &self.morph
+    }
+    fn morph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphStaticTrait>>> {
+        &mut self.morph
     }
 }
 
@@ -754,17 +914,32 @@ impl super::entity::ComponentDataTrait for StaticMorphComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -775,15 +950,15 @@ impl super::core::DataBusPeerTrait for StaticMorphComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StaticMorphComponentData {
 }
 
 impl super::core::DataContainerTrait for StaticMorphComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STATICMORPHCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -814,6 +989,15 @@ impl TypeObject for StaticMorphComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -867,6 +1051,15 @@ impl TypeObject for ServerStaticMorphSaveGameStorageEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -930,6 +1123,15 @@ impl TypeObject for ClientStoredStaticMorphComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -989,6 +1191,15 @@ impl TypeObject for ClientStoredStaticMorphBaseComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1041,6 +1252,15 @@ impl TypeObject for ClientStaticMorphStorageEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1097,6 +1317,15 @@ impl TypeObject for ClientStaticMorphSaveGameStorageEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1157,6 +1386,15 @@ impl TypeObject for ClientStaticMorphGeneratorComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1216,6 +1454,15 @@ impl TypeObject for ClientStaticMorphComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1268,6 +1515,15 @@ impl TypeObject for ClientStaticMorphBlendEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

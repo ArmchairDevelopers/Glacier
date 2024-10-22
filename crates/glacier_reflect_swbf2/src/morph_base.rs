@@ -34,15 +34,23 @@ pub struct MorphStatic {
 
 pub trait MorphStaticTrait: super::core::AssetTrait {
     fn preset_mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn preset_mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl MorphStaticTrait for MorphStatic {
     fn preset_mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         &self.preset_mesh
     }
+    fn preset_mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &mut self.preset_mesh
+    }
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.resource
+    }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.resource
     }
 }
 
@@ -50,12 +58,12 @@ impl super::core::AssetTrait for MorphStatic {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MorphStatic {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MORPHSTATIC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -93,6 +101,15 @@ impl TypeObject for MorphStatic {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -117,23 +134,39 @@ pub struct MorphTargets {
 
 pub trait MorphTargetsTrait: super::core::AssetTrait {
     fn disable_additive_bone_offsets(&self) -> &bool;
+    fn disable_additive_bone_offsets_mut(&mut self) -> &mut bool;
     fn editor_vertical_offset(&self) -> &f32;
+    fn editor_vertical_offset_mut(&mut self) -> &mut f32;
     fn preset_meshes(&self) -> &Vec<Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>>;
+    fn preset_meshes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>>;
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl MorphTargetsTrait for MorphTargets {
     fn disable_additive_bone_offsets(&self) -> &bool {
         &self.disable_additive_bone_offsets
     }
+    fn disable_additive_bone_offsets_mut(&mut self) -> &mut bool {
+        &mut self.disable_additive_bone_offsets
+    }
     fn editor_vertical_offset(&self) -> &f32 {
         &self.editor_vertical_offset
+    }
+    fn editor_vertical_offset_mut(&mut self) -> &mut f32 {
+        &mut self.editor_vertical_offset
     }
     fn preset_meshes(&self) -> &Vec<Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>> {
         &self.preset_meshes
     }
+    fn preset_meshes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>> {
+        &mut self.preset_meshes
+    }
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.resource
+    }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.resource
     }
 }
 
@@ -141,12 +174,12 @@ impl super::core::AssetTrait for MorphTargets {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MorphTargets {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MORPHTARGETS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -196,6 +229,15 @@ impl TypeObject for MorphTargets {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -217,15 +259,23 @@ pub struct MorphTargetsInterfaceInfo {
 
 pub trait MorphTargetsInterfaceInfoTrait: TypeObject {
     fn name_hash(&self) -> &u32;
+    fn name_hash_mut(&mut self) -> &mut u32;
     fn id(&self) -> &glacier_util::guid::Guid;
+    fn id_mut(&mut self) -> &mut glacier_util::guid::Guid;
 }
 
 impl MorphTargetsInterfaceInfoTrait for MorphTargetsInterfaceInfo {
     fn name_hash(&self) -> &u32 {
         &self.name_hash
     }
+    fn name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.name_hash
+    }
     fn id(&self) -> &glacier_util::guid::Guid {
         &self.id
+    }
+    fn id_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.id
     }
 }
 
@@ -263,6 +313,15 @@ impl TypeObject for MorphTargetsInterfaceInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -299,6 +358,15 @@ impl TypeObject for MorphDebugRenderOption {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -339,6 +407,15 @@ impl TypeObject for MorphDebugRenderFlag {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -386,6 +463,15 @@ impl TypeObject for MorphTargetsResource {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -431,6 +517,15 @@ impl TypeObject for MorphResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

@@ -37,27 +37,47 @@ pub struct DeformationComponentData {
 
 pub trait DeformationComponentDataTrait: super::entity::GameComponentDataTrait {
     fn skeleton_asset(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
+    fn skeleton_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
     fn deformation_asset(&self) -> &Option<Arc<Mutex<dyn DeformationAssetTrait>>>;
+    fn deformation_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DeformationAssetTrait>>>;
     fn bone_to_part_mapping(&self) -> &Vec<BoneToPartMapping>;
+    fn bone_to_part_mapping_mut(&mut self) -> &mut Vec<BoneToPartMapping>;
     fn impulse_scale(&self) -> &f32;
+    fn impulse_scale_mut(&mut self) -> &mut f32;
     fn mass(&self) -> &f32;
+    fn mass_mut(&mut self) -> &mut f32;
 }
 
 impl DeformationComponentDataTrait for DeformationComponentData {
     fn skeleton_asset(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
         &self.skeleton_asset
     }
+    fn skeleton_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
+        &mut self.skeleton_asset
+    }
     fn deformation_asset(&self) -> &Option<Arc<Mutex<dyn DeformationAssetTrait>>> {
         &self.deformation_asset
+    }
+    fn deformation_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DeformationAssetTrait>>> {
+        &mut self.deformation_asset
     }
     fn bone_to_part_mapping(&self) -> &Vec<BoneToPartMapping> {
         &self.bone_to_part_mapping
     }
+    fn bone_to_part_mapping_mut(&mut self) -> &mut Vec<BoneToPartMapping> {
+        &mut self.bone_to_part_mapping
+    }
     fn impulse_scale(&self) -> &f32 {
         &self.impulse_scale
     }
+    fn impulse_scale_mut(&mut self) -> &mut f32 {
+        &mut self.impulse_scale
+    }
     fn mass(&self) -> &f32 {
         &self.mass
+    }
+    fn mass_mut(&mut self) -> &mut f32 {
+        &mut self.mass
     }
 }
 
@@ -68,17 +88,32 @@ impl super::entity::ComponentDataTrait for DeformationComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -89,15 +124,15 @@ impl super::core::DataBusPeerTrait for DeformationComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DeformationComponentData {
 }
 
 impl super::core::DataContainerTrait for DeformationComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEFORMATIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -153,6 +188,15 @@ impl TypeObject for DeformationComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -174,15 +218,23 @@ pub struct BoneToPartMapping {
 
 pub trait BoneToPartMappingTrait: TypeObject {
     fn bone_index(&self) -> &u32;
+    fn bone_index_mut(&mut self) -> &mut u32;
     fn part_index(&self) -> &u32;
+    fn part_index_mut(&mut self) -> &mut u32;
 }
 
 impl BoneToPartMappingTrait for BoneToPartMapping {
     fn bone_index(&self) -> &u32 {
         &self.bone_index
     }
+    fn bone_index_mut(&mut self) -> &mut u32 {
+        &mut self.bone_index
+    }
     fn part_index(&self) -> &u32 {
         &self.part_index
+    }
+    fn part_index_mut(&mut self) -> &mut u32 {
+        &mut self.part_index
     }
 }
 
@@ -220,6 +272,15 @@ impl TypeObject for BoneToPartMapping {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -241,11 +302,15 @@ pub struct DeformationAsset {
 
 pub trait DeformationAssetTrait: super::core::AssetTrait {
     fn soft_bodies_simulation_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn soft_bodies_simulation_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl DeformationAssetTrait for DeformationAsset {
     fn soft_bodies_simulation_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.soft_bodies_simulation_resource
+    }
+    fn soft_bodies_simulation_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.soft_bodies_simulation_resource
     }
 }
 
@@ -253,12 +318,12 @@ impl super::core::AssetTrait for DeformationAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DeformationAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEFORMATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -289,6 +354,15 @@ impl TypeObject for DeformationAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -343,6 +417,15 @@ impl TypeObject for ServerDeformationComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -388,6 +471,15 @@ impl TypeObject for DeformationResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -438,6 +530,15 @@ impl TypeObject for DeformationManager {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -491,6 +592,15 @@ impl TypeObject for ClientDeformationComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

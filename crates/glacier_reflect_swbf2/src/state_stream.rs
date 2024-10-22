@@ -52,87 +52,167 @@ pub struct ReplaySettings {
 
 pub trait ReplaySettingsTrait: super::core::SystemSettingsTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn heap_core_size_in_m_b(&self) -> &u32;
+    fn heap_core_size_in_m_b_mut(&mut self) -> &mut u32;
     fn heap_reserve_size_in_m_b(&self) -> &u32;
+    fn heap_reserve_size_in_m_b_mut(&mut self) -> &mut u32;
     fn heap_allow_grow(&self) -> &bool;
+    fn heap_allow_grow_mut(&mut self) -> &mut bool;
     fn clip_max_size_in_k_b(&self) -> &u32;
+    fn clip_max_size_in_k_b_mut(&mut self) -> &mut u32;
     fn clip_s_b_a_size_in_k_b(&self) -> &u32;
+    fn clip_s_b_a_size_in_k_b_mut(&mut self) -> &mut u32;
     fn clip_max_size_compressed_in_k_b(&self) -> &u32;
+    fn clip_max_size_compressed_in_k_b_mut(&mut self) -> &mut u32;
     fn frames_per_clip(&self) -> &u32;
+    fn frames_per_clip_mut(&mut self) -> &mut u32;
     fn prefetch_clips(&self) -> &bool;
+    fn prefetch_clips_mut(&mut self) -> &mut bool;
     fn uncompressed_frame_count(&self) -> &u32;
+    fn uncompressed_frame_count_mut(&mut self) -> &mut u32;
     fn uncompressed_frame_count_read_only(&self) -> &u32;
+    fn uncompressed_frame_count_read_only_mut(&mut self) -> &mut u32;
     fn toc_entries(&self) -> &u32;
+    fn toc_entries_mut(&mut self) -> &mut u32;
     fn toc_pinned_entries_percentage(&self) -> &u32;
+    fn toc_pinned_entries_percentage_mut(&mut self) -> &mut u32;
     fn v_f_s_mount_point(&self) -> &String;
+    fn v_f_s_mount_point_mut(&mut self) -> &mut String;
     fn buffer_size_in_m_b(&self) -> &u32;
+    fn buffer_size_in_m_b_mut(&mut self) -> &mut u32;
     fn cache_page_size_in_k_b(&self) -> &u32;
+    fn cache_page_size_in_k_b_mut(&mut self) -> &mut u32;
     fn cache_size_in_m_b(&self) -> &u32;
+    fn cache_size_in_m_b_mut(&mut self) -> &mut u32;
     fn l_z4_software_compression_block_size_in_k_b(&self) -> &u32;
+    fn l_z4_software_compression_block_size_in_k_b_mut(&mut self) -> &mut u32;
     fn z_lib_hardware_compression_block_size_in_k_b(&self) -> &u32;
+    fn z_lib_hardware_compression_block_size_in_k_b_mut(&mut self) -> &mut u32;
     fn compress_end_clips(&self) -> &bool;
+    fn compress_end_clips_mut(&mut self) -> &mut bool;
 }
 
 impl ReplaySettingsTrait for ReplaySettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn heap_core_size_in_m_b(&self) -> &u32 {
         &self.heap_core_size_in_m_b
+    }
+    fn heap_core_size_in_m_b_mut(&mut self) -> &mut u32 {
+        &mut self.heap_core_size_in_m_b
     }
     fn heap_reserve_size_in_m_b(&self) -> &u32 {
         &self.heap_reserve_size_in_m_b
     }
+    fn heap_reserve_size_in_m_b_mut(&mut self) -> &mut u32 {
+        &mut self.heap_reserve_size_in_m_b
+    }
     fn heap_allow_grow(&self) -> &bool {
         &self.heap_allow_grow
+    }
+    fn heap_allow_grow_mut(&mut self) -> &mut bool {
+        &mut self.heap_allow_grow
     }
     fn clip_max_size_in_k_b(&self) -> &u32 {
         &self.clip_max_size_in_k_b
     }
+    fn clip_max_size_in_k_b_mut(&mut self) -> &mut u32 {
+        &mut self.clip_max_size_in_k_b
+    }
     fn clip_s_b_a_size_in_k_b(&self) -> &u32 {
         &self.clip_s_b_a_size_in_k_b
+    }
+    fn clip_s_b_a_size_in_k_b_mut(&mut self) -> &mut u32 {
+        &mut self.clip_s_b_a_size_in_k_b
     }
     fn clip_max_size_compressed_in_k_b(&self) -> &u32 {
         &self.clip_max_size_compressed_in_k_b
     }
+    fn clip_max_size_compressed_in_k_b_mut(&mut self) -> &mut u32 {
+        &mut self.clip_max_size_compressed_in_k_b
+    }
     fn frames_per_clip(&self) -> &u32 {
         &self.frames_per_clip
+    }
+    fn frames_per_clip_mut(&mut self) -> &mut u32 {
+        &mut self.frames_per_clip
     }
     fn prefetch_clips(&self) -> &bool {
         &self.prefetch_clips
     }
+    fn prefetch_clips_mut(&mut self) -> &mut bool {
+        &mut self.prefetch_clips
+    }
     fn uncompressed_frame_count(&self) -> &u32 {
         &self.uncompressed_frame_count
+    }
+    fn uncompressed_frame_count_mut(&mut self) -> &mut u32 {
+        &mut self.uncompressed_frame_count
     }
     fn uncompressed_frame_count_read_only(&self) -> &u32 {
         &self.uncompressed_frame_count_read_only
     }
+    fn uncompressed_frame_count_read_only_mut(&mut self) -> &mut u32 {
+        &mut self.uncompressed_frame_count_read_only
+    }
     fn toc_entries(&self) -> &u32 {
         &self.toc_entries
+    }
+    fn toc_entries_mut(&mut self) -> &mut u32 {
+        &mut self.toc_entries
     }
     fn toc_pinned_entries_percentage(&self) -> &u32 {
         &self.toc_pinned_entries_percentage
     }
+    fn toc_pinned_entries_percentage_mut(&mut self) -> &mut u32 {
+        &mut self.toc_pinned_entries_percentage
+    }
     fn v_f_s_mount_point(&self) -> &String {
         &self.v_f_s_mount_point
+    }
+    fn v_f_s_mount_point_mut(&mut self) -> &mut String {
+        &mut self.v_f_s_mount_point
     }
     fn buffer_size_in_m_b(&self) -> &u32 {
         &self.buffer_size_in_m_b
     }
+    fn buffer_size_in_m_b_mut(&mut self) -> &mut u32 {
+        &mut self.buffer_size_in_m_b
+    }
     fn cache_page_size_in_k_b(&self) -> &u32 {
         &self.cache_page_size_in_k_b
+    }
+    fn cache_page_size_in_k_b_mut(&mut self) -> &mut u32 {
+        &mut self.cache_page_size_in_k_b
     }
     fn cache_size_in_m_b(&self) -> &u32 {
         &self.cache_size_in_m_b
     }
+    fn cache_size_in_m_b_mut(&mut self) -> &mut u32 {
+        &mut self.cache_size_in_m_b
+    }
     fn l_z4_software_compression_block_size_in_k_b(&self) -> &u32 {
         &self.l_z4_software_compression_block_size_in_k_b
+    }
+    fn l_z4_software_compression_block_size_in_k_b_mut(&mut self) -> &mut u32 {
+        &mut self.l_z4_software_compression_block_size_in_k_b
     }
     fn z_lib_hardware_compression_block_size_in_k_b(&self) -> &u32 {
         &self.z_lib_hardware_compression_block_size_in_k_b
     }
+    fn z_lib_hardware_compression_block_size_in_k_b_mut(&mut self) -> &mut u32 {
+        &mut self.z_lib_hardware_compression_block_size_in_k_b
+    }
     fn compress_end_clips(&self) -> &bool {
         &self.compress_end_clips
+    }
+    fn compress_end_clips_mut(&mut self) -> &mut bool {
+        &mut self.compress_end_clips
     }
 }
 
@@ -140,12 +220,12 @@ impl super::core::SystemSettingsTrait for ReplaySettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ReplaySettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static REPLAYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -291,6 +371,15 @@ impl TypeObject for ReplaySettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -335,6 +424,15 @@ impl TypeObject for EmptyDynamicState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -381,6 +479,15 @@ impl TypeObject for EmptyStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -402,15 +509,23 @@ pub struct BundleDynamicState {
 
 pub trait BundleDynamicStateTrait: TypeObject {
     fn is_loaded(&self) -> &bool;
+    fn is_loaded_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl BundleDynamicStateTrait for BundleDynamicState {
     fn is_loaded(&self) -> &bool {
         &self.is_loaded
     }
+    fn is_loaded_mut(&mut self) -> &mut bool {
+        &mut self.is_loaded
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -448,6 +563,15 @@ impl TypeObject for BundleDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -472,27 +596,47 @@ pub struct BundleStaticState {
 
 pub trait BundleStaticStateTrait: TypeObject {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn compartment(&self) -> &i32;
+    fn compartment_mut(&mut self) -> &mut i32;
     fn compartment_hash(&self) -> &u32;
+    fn compartment_hash_mut(&mut self) -> &mut u32;
     fn bundle_id(&self) -> &i32;
+    fn bundle_id_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl BundleStaticStateTrait for BundleStaticState {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn compartment(&self) -> &i32 {
         &self.compartment
+    }
+    fn compartment_mut(&mut self) -> &mut i32 {
+        &mut self.compartment
     }
     fn compartment_hash(&self) -> &u32 {
         &self.compartment_hash
     }
+    fn compartment_hash_mut(&mut self) -> &mut u32 {
+        &mut self.compartment_hash
+    }
     fn bundle_id(&self) -> &i32 {
         &self.bundle_id
     }
+    fn bundle_id_mut(&mut self) -> &mut i32 {
+        &mut self.bundle_id
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -548,6 +692,15 @@ impl TypeObject for BundleStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -593,6 +746,15 @@ impl TypeObject for TransformSpaceHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -637,6 +799,15 @@ impl TypeObject for SkeletonHandle {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

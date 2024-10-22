@@ -336,6 +336,15 @@ impl TypeObject for MeshEmitterResource {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -382,6 +391,15 @@ impl TypeObject for MeshEmitterMaskResource {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -427,6 +445,15 @@ impl TypeObject for EmitterGraphResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -560,462 +587,907 @@ pub struct EmitterSystemSettings {
 
 pub trait EmitterSystemSettingsTrait: super::core::DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn update_job_enable(&self) -> &bool;
+    fn update_job_enable_mut(&mut self) -> &mut bool;
     fn skip_update_max_count(&self) -> &u32;
+    fn skip_update_max_count_mut(&mut self) -> &mut u32;
     fn force_job_count(&self) -> &i32;
+    fn force_job_count_mut(&mut self) -> &mut i32;
     fn time_scale(&self) -> &f32;
+    fn time_scale_mut(&mut self) -> &mut f32;
     fn global_reset_start_time_interval(&self) -> &f32;
+    fn global_reset_start_time_interval_mut(&mut self) -> &mut f32;
     fn enable_fixed_time_step(&self) -> &bool;
+    fn enable_fixed_time_step_mut(&mut self) -> &mut bool;
     fn enable_fixed_delta(&self) -> &bool;
+    fn enable_fixed_delta_mut(&mut self) -> &mut bool;
     fn enable_jobs(&self) -> &bool;
+    fn enable_jobs_mut(&mut self) -> &mut bool;
     fn collision_ray_cast_enable(&self) -> &bool;
+    fn collision_ray_cast_enable_mut(&mut self) -> &mut bool;
     fn collision_ray_cast_max_count(&self) -> &u32;
+    fn collision_ray_cast_max_count_mut(&mut self) -> &mut u32;
     fn proximity_physics_entities_max_count(&self) -> &u32;
+    fn proximity_physics_entities_max_count_mut(&mut self) -> &mut u32;
     fn draw_debug_ray_cast_collision(&self) -> &bool;
+    fn draw_debug_ray_cast_collision_mut(&mut self) -> &mut bool;
     fn emitter_quality_level(&self) -> &super::core::QualityLevel;
+    fn emitter_quality_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn template_timeout_time(&self) -> &f32;
+    fn template_timeout_time_mut(&mut self) -> &mut f32;
     fn precise_wind_and_force_max_distance(&self) -> &f32;
+    fn precise_wind_and_force_max_distance_mut(&mut self) -> &mut f32;
     fn turbulence_max_distance(&self) -> &f32;
+    fn turbulence_max_distance_mut(&mut self) -> &mut f32;
     fn screen_area_culling_start(&self) -> &f32;
+    fn screen_area_culling_start_mut(&mut self) -> &mut f32;
     fn screen_area_culling_end(&self) -> &f32;
+    fn screen_area_culling_end_mut(&mut self) -> &mut f32;
     fn screen_area_culling_min_total_area(&self) -> &f32;
+    fn screen_area_culling_min_total_area_mut(&mut self) -> &mut f32;
     fn screen_area_culling_max_total_area(&self) -> &f32;
+    fn screen_area_culling_max_total_area_mut(&mut self) -> &mut f32;
     fn screen_area_culling_max_multiplier(&self) -> &f32;
+    fn screen_area_culling_max_multiplier_mut(&mut self) -> &mut f32;
     fn process_job_yield_time(&self) -> &f32;
+    fn process_job_yield_time_mut(&mut self) -> &mut f32;
     fn visible_job_yield_time(&self) -> &f32;
+    fn visible_job_yield_time_mut(&mut self) -> &mut f32;
     fn mesh_emitter_motion_blur_enable(&self) -> &bool;
+    fn mesh_emitter_motion_blur_enable_mut(&mut self) -> &mut bool;
     fn enable_rendering(&self) -> &bool;
+    fn enable_rendering_mut(&mut self) -> &mut bool;
     fn draw_stats(&self) -> &u32;
+    fn draw_stats_mut(&mut self) -> &mut u32;
     fn collect_performance_stats(&self) -> &bool;
+    fn collect_performance_stats_mut(&mut self) -> &mut bool;
     fn collect_performance_stats_time(&self) -> &i32;
+    fn collect_performance_stats_time_mut(&mut self) -> &mut i32;
     fn draw_mem_stats(&self) -> &u32;
+    fn draw_mem_stats_mut(&mut self) -> &mut u32;
     fn draw_stats_sampling_period(&self) -> &f32;
+    fn draw_stats_sampling_period_mut(&mut self) -> &mut f32;
     fn draw_stats_entries_per_page(&self) -> &u32;
+    fn draw_stats_entries_per_page_mut(&mut self) -> &mut u32;
     fn draw_stats_page_index(&self) -> &u32;
+    fn draw_stats_page_index_mut(&mut self) -> &mut u32;
     fn draw_stats_filter(&self) -> &String;
+    fn draw_stats_filter_mut(&mut self) -> &mut String;
     fn hide_inactive_stats(&self) -> &bool;
+    fn hide_inactive_stats_mut(&mut self) -> &mut bool;
     fn save_list_active_emitters(&self) -> &bool;
+    fn save_list_active_emitters_mut(&mut self) -> &mut bool;
     fn draw_emitter_name(&self) -> &bool;
+    fn draw_emitter_name_mut(&mut self) -> &mut bool;
     fn z_buffer_cull_enable(&self) -> &bool;
+    fn z_buffer_cull_enable_mut(&mut self) -> &mut bool;
     fn draw_projected_boxes(&self) -> &bool;
+    fn draw_projected_boxes_mut(&mut self) -> &mut bool;
     fn draw_bounding_boxes(&self) -> &u32;
+    fn draw_bounding_boxes_mut(&mut self) -> &mut u32;
     fn min_screen_area(&self) -> &f32;
+    fn min_screen_area_mut(&mut self) -> &mut f32;
     fn min_screen_area_threshold(&self) -> &f32;
+    fn min_screen_area_threshold_mut(&mut self) -> &mut f32;
     fn force_cull_distance(&self) -> &f32;
+    fn force_cull_distance_mut(&mut self) -> &mut f32;
     fn force_cull_fade_far_distance(&self) -> &f32;
+    fn force_cull_fade_far_distance_mut(&mut self) -> &mut f32;
     fn draw_transforms(&self) -> &bool;
+    fn draw_transforms_mut(&mut self) -> &mut bool;
     fn draw_light_probe_sample_transforms(&self) -> &bool;
+    fn draw_light_probe_sample_transforms_mut(&mut self) -> &mut bool;
     fn draw_debug_base_atlas(&self) -> &bool;
+    fn draw_debug_base_atlas_mut(&mut self) -> &mut bool;
     fn draw_debug_normal_atlas(&self) -> &bool;
+    fn draw_debug_normal_atlas_mut(&mut self) -> &mut bool;
     fn draw_debug_atlas_miplevel(&self) -> &u32;
+    fn draw_debug_atlas_miplevel_mut(&mut self) -> &mut u32;
     fn draw_debug_atlas_texture_index(&self) -> &i32;
+    fn draw_debug_atlas_texture_index_mut(&mut self) -> &mut i32;
     fn draw_debug_atlas_alpha(&self) -> &bool;
+    fn draw_debug_atlas_alpha_mut(&mut self) -> &mut bool;
     fn draw_debug_emitter_exclusion_volumes(&self) -> &i32;
+    fn draw_debug_emitter_exclusion_volumes_mut(&mut self) -> &mut i32;
     fn draw_debug_atlas_page_index(&self) -> &i32;
+    fn draw_debug_atlas_page_index_mut(&mut self) -> &mut i32;
     fn draw_debug_emitter_sun_transmittance_map_group(&self) -> &bool;
+    fn draw_debug_emitter_sun_transmittance_map_group_mut(&mut self) -> &mut bool;
     fn draw_debug_emitter_sun_transmittance_maps_links(&self) -> &bool;
+    fn draw_debug_emitter_sun_transmittance_maps_links_mut(&mut self) -> &mut bool;
     fn force_sun_transmittance_on_all_emitters(&self) -> &bool;
+    fn force_sun_transmittance_on_all_emitters_mut(&mut self) -> &mut bool;
     fn emitter_render_sun_transmittance_views_first(&self) -> &bool;
+    fn emitter_render_sun_transmittance_views_first_mut(&mut self) -> &mut bool;
     fn draw_debug_emitter_vertex_buffer_usage(&self) -> &bool;
+    fn draw_debug_emitter_vertex_buffer_usage_mut(&mut self) -> &mut bool;
     fn emitter_gpu_lighting_enable(&self) -> &bool;
+    fn emitter_gpu_lighting_enable_mut(&mut self) -> &mut bool;
     fn walrus_lighting_enable(&self) -> &bool;
+    fn walrus_lighting_enable_mut(&mut self) -> &mut bool;
     fn emitter_gpu_lighting_pipeline_shaders_enabled(&self) -> &bool;
+    fn emitter_gpu_lighting_pipeline_shaders_enabled_mut(&mut self) -> &mut bool;
     fn system_shaders_path(&self) -> &String;
+    fn system_shaders_path_mut(&mut self) -> &mut String;
     fn system_v_s_f_path(&self) -> &String;
+    fn system_v_s_f_path_mut(&mut self) -> &mut String;
     fn crossfire_driver_profile_available(&self) -> &bool;
+    fn crossfire_driver_profile_available_mut(&mut self) -> &mut bool;
     fn quad_clip_scale_enable(&self) -> &bool;
+    fn quad_clip_scale_enable_mut(&mut self) -> &mut bool;
     fn quad_enable_rendering(&self) -> &bool;
+    fn quad_enable_rendering_mut(&mut self) -> &mut bool;
     fn quad_nice_rendering_enable(&self) -> &bool;
+    fn quad_nice_rendering_enable_mut(&mut self) -> &mut bool;
     fn quad_simple_rendering_enable(&self) -> &bool;
+    fn quad_simple_rendering_enable_mut(&mut self) -> &mut bool;
     fn quad_enable_opaque(&self) -> &bool;
+    fn quad_enable_opaque_mut(&mut self) -> &mut bool;
     fn quad_enable_custom_shader(&self) -> &bool;
+    fn quad_enable_custom_shader_mut(&mut self) -> &mut bool;
     fn quad_color_shader_costs_enable(&self) -> &bool;
+    fn quad_color_shader_costs_enable_mut(&mut self) -> &mut bool;
     fn quad_enable_sorting(&self) -> &bool;
+    fn quad_enable_sorting_mut(&mut self) -> &mut bool;
     fn quad_enable_wireframe(&self) -> &bool;
+    fn quad_enable_wireframe_mut(&mut self) -> &mut bool;
     fn quad_half_res_enable(&self) -> &bool;
+    fn quad_half_res_enable_mut(&mut self) -> &mut bool;
     fn quad_groups_join_all(&self) -> &bool;
+    fn quad_groups_join_all_mut(&mut self) -> &mut bool;
     fn quad_groups_join_none(&self) -> &bool;
+    fn quad_groups_join_none_mut(&mut self) -> &mut bool;
     fn quad_groups_join_nice_and_simple(&self) -> &bool;
+    fn quad_groups_join_nice_and_simple_mut(&mut self) -> &mut bool;
     fn quad_technique(&self) -> &i32;
+    fn quad_technique_mut(&mut self) -> &mut i32;
     fn quad_vertex_shadows_enable(&self) -> &bool;
+    fn quad_vertex_shadows_enable_mut(&mut self) -> &mut bool;
     fn quad_cloud_vertex_shadows_enable(&self) -> &bool;
+    fn quad_cloud_vertex_shadows_enable_mut(&mut self) -> &mut bool;
     fn quad_planar_reflection_enable(&self) -> &bool;
+    fn quad_planar_reflection_enable_mut(&mut self) -> &mut bool;
     fn quad_point_lights_enable(&self) -> &bool;
+    fn quad_point_lights_enable_mut(&mut self) -> &mut bool;
     fn quad_spot_lights_enable(&self) -> &bool;
+    fn quad_spot_lights_enable_mut(&mut self) -> &mut bool;
     fn punctual_light_threshold_squared(&self) -> &f32;
+    fn punctual_light_threshold_squared_mut(&mut self) -> &mut f32;
     fn quad_near_fade_distance(&self) -> &f32;
+    fn quad_near_fade_distance_mut(&mut self) -> &mut f32;
     fn custom_emitter_position_sorting(&self) -> &bool;
+    fn custom_emitter_position_sorting_mut(&mut self) -> &mut bool;
     fn quad_max_count(&self) -> &u32;
+    fn quad_max_count_mut(&mut self) -> &mut u32;
     fn mesh_rendering_enable(&self) -> &bool;
+    fn mesh_rendering_enable_mut(&mut self) -> &mut bool;
     fn mesh_draw_transforms(&self) -> &bool;
+    fn mesh_draw_transforms_mut(&mut self) -> &mut bool;
     fn mesh_draw_bounding_boxes(&self) -> &bool;
+    fn mesh_draw_bounding_boxes_mut(&mut self) -> &mut bool;
     fn mesh_shadow_enable(&self) -> &bool;
+    fn mesh_shadow_enable_mut(&mut self) -> &mut bool;
     fn mesh_planar_reflection_enable(&self) -> &bool;
+    fn mesh_planar_reflection_enable_mut(&mut self) -> &mut bool;
     fn mesh_culling_distance(&self) -> &f32;
+    fn mesh_culling_distance_mut(&mut self) -> &mut f32;
     fn mesh_draw_count_limit(&self) -> &u32;
+    fn mesh_draw_count_limit_mut(&mut self) -> &mut u32;
     fn mesh_streaming_priority_multiplier(&self) -> &f32;
+    fn mesh_streaming_priority_multiplier_mut(&mut self) -> &mut f32;
     fn mesh_draw_cull_stats(&self) -> &bool;
+    fn mesh_draw_cull_stats_mut(&mut self) -> &mut bool;
     fn mesh_max_count(&self) -> &u32;
+    fn mesh_max_count_mut(&mut self) -> &mut u32;
     fn skip_render_if_probe_is_uninitialized(&self) -> &bool;
+    fn skip_render_if_probe_is_uninitialized_mut(&mut self) -> &mut bool;
     fn batch_update_light_probes_enable(&self) -> &bool;
+    fn batch_update_light_probes_enable_mut(&mut self) -> &mut bool;
     fn quad_light_probe_max_update_count(&self) -> &u32;
+    fn quad_light_probe_max_update_count_mut(&mut self) -> &mut u32;
     fn graph_light_probe_max_update_count(&self) -> &u32;
+    fn graph_light_probe_max_update_count_mut(&mut self) -> &mut u32;
     fn mesh_light_probe_max_update_count(&self) -> &u32;
+    fn mesh_light_probe_max_update_count_mut(&mut self) -> &mut u32;
     fn graph_emitter_enabled(&self) -> &bool;
+    fn graph_emitter_enabled_mut(&mut self) -> &mut bool;
     fn graph_emitter_draw_debug_stats(&self) -> &bool;
+    fn graph_emitter_draw_debug_stats_mut(&mut self) -> &mut bool;
     fn graph_emitter_draw_debug_buffers(&self) -> &bool;
+    fn graph_emitter_draw_debug_buffers_mut(&mut self) -> &mut bool;
     fn graph_emitter_draw_debug_view_visible_instances(&self) -> &bool;
+    fn graph_emitter_draw_debug_view_visible_instances_mut(&mut self) -> &mut bool;
     fn graph_emitter_overlapped_compute_enable(&self) -> &bool;
+    fn graph_emitter_overlapped_compute_enable_mut(&mut self) -> &mut bool;
     fn emitter_graph_block_allocator_max_byte_count(&self) -> &u32;
+    fn emitter_graph_block_allocator_max_byte_count_mut(&mut self) -> &mut u32;
     fn emitter_graph_block_allocator_block_max_count(&self) -> &u32;
+    fn emitter_graph_block_allocator_block_max_count_mut(&mut self) -> &mut u32;
     fn emitter_graph_max_defrag_operations_per_frame(&self) -> &u32;
+    fn emitter_graph_max_defrag_operations_per_frame_mut(&mut self) -> &mut u32;
     fn emitter_graph_draw_debug_uber_buffer(&self) -> &bool;
+    fn emitter_graph_draw_debug_uber_buffer_mut(&mut self) -> &mut bool;
     fn emitter_graph_uber_buffer_defrag_enable(&self) -> &bool;
+    fn emitter_graph_uber_buffer_defrag_enable_mut(&mut self) -> &mut bool;
 }
 
 impl EmitterSystemSettingsTrait for EmitterSystemSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn update_job_enable(&self) -> &bool {
         &self.update_job_enable
+    }
+    fn update_job_enable_mut(&mut self) -> &mut bool {
+        &mut self.update_job_enable
     }
     fn skip_update_max_count(&self) -> &u32 {
         &self.skip_update_max_count
     }
+    fn skip_update_max_count_mut(&mut self) -> &mut u32 {
+        &mut self.skip_update_max_count
+    }
     fn force_job_count(&self) -> &i32 {
         &self.force_job_count
+    }
+    fn force_job_count_mut(&mut self) -> &mut i32 {
+        &mut self.force_job_count
     }
     fn time_scale(&self) -> &f32 {
         &self.time_scale
     }
+    fn time_scale_mut(&mut self) -> &mut f32 {
+        &mut self.time_scale
+    }
     fn global_reset_start_time_interval(&self) -> &f32 {
         &self.global_reset_start_time_interval
+    }
+    fn global_reset_start_time_interval_mut(&mut self) -> &mut f32 {
+        &mut self.global_reset_start_time_interval
     }
     fn enable_fixed_time_step(&self) -> &bool {
         &self.enable_fixed_time_step
     }
+    fn enable_fixed_time_step_mut(&mut self) -> &mut bool {
+        &mut self.enable_fixed_time_step
+    }
     fn enable_fixed_delta(&self) -> &bool {
         &self.enable_fixed_delta
+    }
+    fn enable_fixed_delta_mut(&mut self) -> &mut bool {
+        &mut self.enable_fixed_delta
     }
     fn enable_jobs(&self) -> &bool {
         &self.enable_jobs
     }
+    fn enable_jobs_mut(&mut self) -> &mut bool {
+        &mut self.enable_jobs
+    }
     fn collision_ray_cast_enable(&self) -> &bool {
         &self.collision_ray_cast_enable
+    }
+    fn collision_ray_cast_enable_mut(&mut self) -> &mut bool {
+        &mut self.collision_ray_cast_enable
     }
     fn collision_ray_cast_max_count(&self) -> &u32 {
         &self.collision_ray_cast_max_count
     }
+    fn collision_ray_cast_max_count_mut(&mut self) -> &mut u32 {
+        &mut self.collision_ray_cast_max_count
+    }
     fn proximity_physics_entities_max_count(&self) -> &u32 {
         &self.proximity_physics_entities_max_count
+    }
+    fn proximity_physics_entities_max_count_mut(&mut self) -> &mut u32 {
+        &mut self.proximity_physics_entities_max_count
     }
     fn draw_debug_ray_cast_collision(&self) -> &bool {
         &self.draw_debug_ray_cast_collision
     }
+    fn draw_debug_ray_cast_collision_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_ray_cast_collision
+    }
     fn emitter_quality_level(&self) -> &super::core::QualityLevel {
         &self.emitter_quality_level
+    }
+    fn emitter_quality_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.emitter_quality_level
     }
     fn template_timeout_time(&self) -> &f32 {
         &self.template_timeout_time
     }
+    fn template_timeout_time_mut(&mut self) -> &mut f32 {
+        &mut self.template_timeout_time
+    }
     fn precise_wind_and_force_max_distance(&self) -> &f32 {
         &self.precise_wind_and_force_max_distance
+    }
+    fn precise_wind_and_force_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.precise_wind_and_force_max_distance
     }
     fn turbulence_max_distance(&self) -> &f32 {
         &self.turbulence_max_distance
     }
+    fn turbulence_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.turbulence_max_distance
+    }
     fn screen_area_culling_start(&self) -> &f32 {
         &self.screen_area_culling_start
+    }
+    fn screen_area_culling_start_mut(&mut self) -> &mut f32 {
+        &mut self.screen_area_culling_start
     }
     fn screen_area_culling_end(&self) -> &f32 {
         &self.screen_area_culling_end
     }
+    fn screen_area_culling_end_mut(&mut self) -> &mut f32 {
+        &mut self.screen_area_culling_end
+    }
     fn screen_area_culling_min_total_area(&self) -> &f32 {
         &self.screen_area_culling_min_total_area
+    }
+    fn screen_area_culling_min_total_area_mut(&mut self) -> &mut f32 {
+        &mut self.screen_area_culling_min_total_area
     }
     fn screen_area_culling_max_total_area(&self) -> &f32 {
         &self.screen_area_culling_max_total_area
     }
+    fn screen_area_culling_max_total_area_mut(&mut self) -> &mut f32 {
+        &mut self.screen_area_culling_max_total_area
+    }
     fn screen_area_culling_max_multiplier(&self) -> &f32 {
         &self.screen_area_culling_max_multiplier
+    }
+    fn screen_area_culling_max_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.screen_area_culling_max_multiplier
     }
     fn process_job_yield_time(&self) -> &f32 {
         &self.process_job_yield_time
     }
+    fn process_job_yield_time_mut(&mut self) -> &mut f32 {
+        &mut self.process_job_yield_time
+    }
     fn visible_job_yield_time(&self) -> &f32 {
         &self.visible_job_yield_time
+    }
+    fn visible_job_yield_time_mut(&mut self) -> &mut f32 {
+        &mut self.visible_job_yield_time
     }
     fn mesh_emitter_motion_blur_enable(&self) -> &bool {
         &self.mesh_emitter_motion_blur_enable
     }
+    fn mesh_emitter_motion_blur_enable_mut(&mut self) -> &mut bool {
+        &mut self.mesh_emitter_motion_blur_enable
+    }
     fn enable_rendering(&self) -> &bool {
         &self.enable_rendering
+    }
+    fn enable_rendering_mut(&mut self) -> &mut bool {
+        &mut self.enable_rendering
     }
     fn draw_stats(&self) -> &u32 {
         &self.draw_stats
     }
+    fn draw_stats_mut(&mut self) -> &mut u32 {
+        &mut self.draw_stats
+    }
     fn collect_performance_stats(&self) -> &bool {
         &self.collect_performance_stats
+    }
+    fn collect_performance_stats_mut(&mut self) -> &mut bool {
+        &mut self.collect_performance_stats
     }
     fn collect_performance_stats_time(&self) -> &i32 {
         &self.collect_performance_stats_time
     }
+    fn collect_performance_stats_time_mut(&mut self) -> &mut i32 {
+        &mut self.collect_performance_stats_time
+    }
     fn draw_mem_stats(&self) -> &u32 {
         &self.draw_mem_stats
+    }
+    fn draw_mem_stats_mut(&mut self) -> &mut u32 {
+        &mut self.draw_mem_stats
     }
     fn draw_stats_sampling_period(&self) -> &f32 {
         &self.draw_stats_sampling_period
     }
+    fn draw_stats_sampling_period_mut(&mut self) -> &mut f32 {
+        &mut self.draw_stats_sampling_period
+    }
     fn draw_stats_entries_per_page(&self) -> &u32 {
         &self.draw_stats_entries_per_page
+    }
+    fn draw_stats_entries_per_page_mut(&mut self) -> &mut u32 {
+        &mut self.draw_stats_entries_per_page
     }
     fn draw_stats_page_index(&self) -> &u32 {
         &self.draw_stats_page_index
     }
+    fn draw_stats_page_index_mut(&mut self) -> &mut u32 {
+        &mut self.draw_stats_page_index
+    }
     fn draw_stats_filter(&self) -> &String {
         &self.draw_stats_filter
+    }
+    fn draw_stats_filter_mut(&mut self) -> &mut String {
+        &mut self.draw_stats_filter
     }
     fn hide_inactive_stats(&self) -> &bool {
         &self.hide_inactive_stats
     }
+    fn hide_inactive_stats_mut(&mut self) -> &mut bool {
+        &mut self.hide_inactive_stats
+    }
     fn save_list_active_emitters(&self) -> &bool {
         &self.save_list_active_emitters
+    }
+    fn save_list_active_emitters_mut(&mut self) -> &mut bool {
+        &mut self.save_list_active_emitters
     }
     fn draw_emitter_name(&self) -> &bool {
         &self.draw_emitter_name
     }
+    fn draw_emitter_name_mut(&mut self) -> &mut bool {
+        &mut self.draw_emitter_name
+    }
     fn z_buffer_cull_enable(&self) -> &bool {
         &self.z_buffer_cull_enable
+    }
+    fn z_buffer_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.z_buffer_cull_enable
     }
     fn draw_projected_boxes(&self) -> &bool {
         &self.draw_projected_boxes
     }
+    fn draw_projected_boxes_mut(&mut self) -> &mut bool {
+        &mut self.draw_projected_boxes
+    }
     fn draw_bounding_boxes(&self) -> &u32 {
         &self.draw_bounding_boxes
+    }
+    fn draw_bounding_boxes_mut(&mut self) -> &mut u32 {
+        &mut self.draw_bounding_boxes
     }
     fn min_screen_area(&self) -> &f32 {
         &self.min_screen_area
     }
+    fn min_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.min_screen_area
+    }
     fn min_screen_area_threshold(&self) -> &f32 {
         &self.min_screen_area_threshold
+    }
+    fn min_screen_area_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.min_screen_area_threshold
     }
     fn force_cull_distance(&self) -> &f32 {
         &self.force_cull_distance
     }
+    fn force_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.force_cull_distance
+    }
     fn force_cull_fade_far_distance(&self) -> &f32 {
         &self.force_cull_fade_far_distance
+    }
+    fn force_cull_fade_far_distance_mut(&mut self) -> &mut f32 {
+        &mut self.force_cull_fade_far_distance
     }
     fn draw_transforms(&self) -> &bool {
         &self.draw_transforms
     }
+    fn draw_transforms_mut(&mut self) -> &mut bool {
+        &mut self.draw_transforms
+    }
     fn draw_light_probe_sample_transforms(&self) -> &bool {
         &self.draw_light_probe_sample_transforms
+    }
+    fn draw_light_probe_sample_transforms_mut(&mut self) -> &mut bool {
+        &mut self.draw_light_probe_sample_transforms
     }
     fn draw_debug_base_atlas(&self) -> &bool {
         &self.draw_debug_base_atlas
     }
+    fn draw_debug_base_atlas_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_base_atlas
+    }
     fn draw_debug_normal_atlas(&self) -> &bool {
         &self.draw_debug_normal_atlas
+    }
+    fn draw_debug_normal_atlas_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_normal_atlas
     }
     fn draw_debug_atlas_miplevel(&self) -> &u32 {
         &self.draw_debug_atlas_miplevel
     }
+    fn draw_debug_atlas_miplevel_mut(&mut self) -> &mut u32 {
+        &mut self.draw_debug_atlas_miplevel
+    }
     fn draw_debug_atlas_texture_index(&self) -> &i32 {
         &self.draw_debug_atlas_texture_index
+    }
+    fn draw_debug_atlas_texture_index_mut(&mut self) -> &mut i32 {
+        &mut self.draw_debug_atlas_texture_index
     }
     fn draw_debug_atlas_alpha(&self) -> &bool {
         &self.draw_debug_atlas_alpha
     }
+    fn draw_debug_atlas_alpha_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_atlas_alpha
+    }
     fn draw_debug_emitter_exclusion_volumes(&self) -> &i32 {
         &self.draw_debug_emitter_exclusion_volumes
+    }
+    fn draw_debug_emitter_exclusion_volumes_mut(&mut self) -> &mut i32 {
+        &mut self.draw_debug_emitter_exclusion_volumes
     }
     fn draw_debug_atlas_page_index(&self) -> &i32 {
         &self.draw_debug_atlas_page_index
     }
+    fn draw_debug_atlas_page_index_mut(&mut self) -> &mut i32 {
+        &mut self.draw_debug_atlas_page_index
+    }
     fn draw_debug_emitter_sun_transmittance_map_group(&self) -> &bool {
         &self.draw_debug_emitter_sun_transmittance_map_group
+    }
+    fn draw_debug_emitter_sun_transmittance_map_group_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_emitter_sun_transmittance_map_group
     }
     fn draw_debug_emitter_sun_transmittance_maps_links(&self) -> &bool {
         &self.draw_debug_emitter_sun_transmittance_maps_links
     }
+    fn draw_debug_emitter_sun_transmittance_maps_links_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_emitter_sun_transmittance_maps_links
+    }
     fn force_sun_transmittance_on_all_emitters(&self) -> &bool {
         &self.force_sun_transmittance_on_all_emitters
+    }
+    fn force_sun_transmittance_on_all_emitters_mut(&mut self) -> &mut bool {
+        &mut self.force_sun_transmittance_on_all_emitters
     }
     fn emitter_render_sun_transmittance_views_first(&self) -> &bool {
         &self.emitter_render_sun_transmittance_views_first
     }
+    fn emitter_render_sun_transmittance_views_first_mut(&mut self) -> &mut bool {
+        &mut self.emitter_render_sun_transmittance_views_first
+    }
     fn draw_debug_emitter_vertex_buffer_usage(&self) -> &bool {
         &self.draw_debug_emitter_vertex_buffer_usage
+    }
+    fn draw_debug_emitter_vertex_buffer_usage_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_emitter_vertex_buffer_usage
     }
     fn emitter_gpu_lighting_enable(&self) -> &bool {
         &self.emitter_gpu_lighting_enable
     }
+    fn emitter_gpu_lighting_enable_mut(&mut self) -> &mut bool {
+        &mut self.emitter_gpu_lighting_enable
+    }
     fn walrus_lighting_enable(&self) -> &bool {
         &self.walrus_lighting_enable
+    }
+    fn walrus_lighting_enable_mut(&mut self) -> &mut bool {
+        &mut self.walrus_lighting_enable
     }
     fn emitter_gpu_lighting_pipeline_shaders_enabled(&self) -> &bool {
         &self.emitter_gpu_lighting_pipeline_shaders_enabled
     }
+    fn emitter_gpu_lighting_pipeline_shaders_enabled_mut(&mut self) -> &mut bool {
+        &mut self.emitter_gpu_lighting_pipeline_shaders_enabled
+    }
     fn system_shaders_path(&self) -> &String {
         &self.system_shaders_path
+    }
+    fn system_shaders_path_mut(&mut self) -> &mut String {
+        &mut self.system_shaders_path
     }
     fn system_v_s_f_path(&self) -> &String {
         &self.system_v_s_f_path
     }
+    fn system_v_s_f_path_mut(&mut self) -> &mut String {
+        &mut self.system_v_s_f_path
+    }
     fn crossfire_driver_profile_available(&self) -> &bool {
         &self.crossfire_driver_profile_available
+    }
+    fn crossfire_driver_profile_available_mut(&mut self) -> &mut bool {
+        &mut self.crossfire_driver_profile_available
     }
     fn quad_clip_scale_enable(&self) -> &bool {
         &self.quad_clip_scale_enable
     }
+    fn quad_clip_scale_enable_mut(&mut self) -> &mut bool {
+        &mut self.quad_clip_scale_enable
+    }
     fn quad_enable_rendering(&self) -> &bool {
         &self.quad_enable_rendering
+    }
+    fn quad_enable_rendering_mut(&mut self) -> &mut bool {
+        &mut self.quad_enable_rendering
     }
     fn quad_nice_rendering_enable(&self) -> &bool {
         &self.quad_nice_rendering_enable
     }
+    fn quad_nice_rendering_enable_mut(&mut self) -> &mut bool {
+        &mut self.quad_nice_rendering_enable
+    }
     fn quad_simple_rendering_enable(&self) -> &bool {
         &self.quad_simple_rendering_enable
+    }
+    fn quad_simple_rendering_enable_mut(&mut self) -> &mut bool {
+        &mut self.quad_simple_rendering_enable
     }
     fn quad_enable_opaque(&self) -> &bool {
         &self.quad_enable_opaque
     }
+    fn quad_enable_opaque_mut(&mut self) -> &mut bool {
+        &mut self.quad_enable_opaque
+    }
     fn quad_enable_custom_shader(&self) -> &bool {
         &self.quad_enable_custom_shader
+    }
+    fn quad_enable_custom_shader_mut(&mut self) -> &mut bool {
+        &mut self.quad_enable_custom_shader
     }
     fn quad_color_shader_costs_enable(&self) -> &bool {
         &self.quad_color_shader_costs_enable
     }
+    fn quad_color_shader_costs_enable_mut(&mut self) -> &mut bool {
+        &mut self.quad_color_shader_costs_enable
+    }
     fn quad_enable_sorting(&self) -> &bool {
         &self.quad_enable_sorting
+    }
+    fn quad_enable_sorting_mut(&mut self) -> &mut bool {
+        &mut self.quad_enable_sorting
     }
     fn quad_enable_wireframe(&self) -> &bool {
         &self.quad_enable_wireframe
     }
+    fn quad_enable_wireframe_mut(&mut self) -> &mut bool {
+        &mut self.quad_enable_wireframe
+    }
     fn quad_half_res_enable(&self) -> &bool {
         &self.quad_half_res_enable
+    }
+    fn quad_half_res_enable_mut(&mut self) -> &mut bool {
+        &mut self.quad_half_res_enable
     }
     fn quad_groups_join_all(&self) -> &bool {
         &self.quad_groups_join_all
     }
+    fn quad_groups_join_all_mut(&mut self) -> &mut bool {
+        &mut self.quad_groups_join_all
+    }
     fn quad_groups_join_none(&self) -> &bool {
         &self.quad_groups_join_none
+    }
+    fn quad_groups_join_none_mut(&mut self) -> &mut bool {
+        &mut self.quad_groups_join_none
     }
     fn quad_groups_join_nice_and_simple(&self) -> &bool {
         &self.quad_groups_join_nice_and_simple
     }
+    fn quad_groups_join_nice_and_simple_mut(&mut self) -> &mut bool {
+        &mut self.quad_groups_join_nice_and_simple
+    }
     fn quad_technique(&self) -> &i32 {
         &self.quad_technique
+    }
+    fn quad_technique_mut(&mut self) -> &mut i32 {
+        &mut self.quad_technique
     }
     fn quad_vertex_shadows_enable(&self) -> &bool {
         &self.quad_vertex_shadows_enable
     }
+    fn quad_vertex_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.quad_vertex_shadows_enable
+    }
     fn quad_cloud_vertex_shadows_enable(&self) -> &bool {
         &self.quad_cloud_vertex_shadows_enable
+    }
+    fn quad_cloud_vertex_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.quad_cloud_vertex_shadows_enable
     }
     fn quad_planar_reflection_enable(&self) -> &bool {
         &self.quad_planar_reflection_enable
     }
+    fn quad_planar_reflection_enable_mut(&mut self) -> &mut bool {
+        &mut self.quad_planar_reflection_enable
+    }
     fn quad_point_lights_enable(&self) -> &bool {
         &self.quad_point_lights_enable
+    }
+    fn quad_point_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.quad_point_lights_enable
     }
     fn quad_spot_lights_enable(&self) -> &bool {
         &self.quad_spot_lights_enable
     }
+    fn quad_spot_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.quad_spot_lights_enable
+    }
     fn punctual_light_threshold_squared(&self) -> &f32 {
         &self.punctual_light_threshold_squared
+    }
+    fn punctual_light_threshold_squared_mut(&mut self) -> &mut f32 {
+        &mut self.punctual_light_threshold_squared
     }
     fn quad_near_fade_distance(&self) -> &f32 {
         &self.quad_near_fade_distance
     }
+    fn quad_near_fade_distance_mut(&mut self) -> &mut f32 {
+        &mut self.quad_near_fade_distance
+    }
     fn custom_emitter_position_sorting(&self) -> &bool {
         &self.custom_emitter_position_sorting
+    }
+    fn custom_emitter_position_sorting_mut(&mut self) -> &mut bool {
+        &mut self.custom_emitter_position_sorting
     }
     fn quad_max_count(&self) -> &u32 {
         &self.quad_max_count
     }
+    fn quad_max_count_mut(&mut self) -> &mut u32 {
+        &mut self.quad_max_count
+    }
     fn mesh_rendering_enable(&self) -> &bool {
         &self.mesh_rendering_enable
+    }
+    fn mesh_rendering_enable_mut(&mut self) -> &mut bool {
+        &mut self.mesh_rendering_enable
     }
     fn mesh_draw_transforms(&self) -> &bool {
         &self.mesh_draw_transforms
     }
+    fn mesh_draw_transforms_mut(&mut self) -> &mut bool {
+        &mut self.mesh_draw_transforms
+    }
     fn mesh_draw_bounding_boxes(&self) -> &bool {
         &self.mesh_draw_bounding_boxes
+    }
+    fn mesh_draw_bounding_boxes_mut(&mut self) -> &mut bool {
+        &mut self.mesh_draw_bounding_boxes
     }
     fn mesh_shadow_enable(&self) -> &bool {
         &self.mesh_shadow_enable
     }
+    fn mesh_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.mesh_shadow_enable
+    }
     fn mesh_planar_reflection_enable(&self) -> &bool {
         &self.mesh_planar_reflection_enable
+    }
+    fn mesh_planar_reflection_enable_mut(&mut self) -> &mut bool {
+        &mut self.mesh_planar_reflection_enable
     }
     fn mesh_culling_distance(&self) -> &f32 {
         &self.mesh_culling_distance
     }
+    fn mesh_culling_distance_mut(&mut self) -> &mut f32 {
+        &mut self.mesh_culling_distance
+    }
     fn mesh_draw_count_limit(&self) -> &u32 {
         &self.mesh_draw_count_limit
+    }
+    fn mesh_draw_count_limit_mut(&mut self) -> &mut u32 {
+        &mut self.mesh_draw_count_limit
     }
     fn mesh_streaming_priority_multiplier(&self) -> &f32 {
         &self.mesh_streaming_priority_multiplier
     }
+    fn mesh_streaming_priority_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.mesh_streaming_priority_multiplier
+    }
     fn mesh_draw_cull_stats(&self) -> &bool {
         &self.mesh_draw_cull_stats
+    }
+    fn mesh_draw_cull_stats_mut(&mut self) -> &mut bool {
+        &mut self.mesh_draw_cull_stats
     }
     fn mesh_max_count(&self) -> &u32 {
         &self.mesh_max_count
     }
+    fn mesh_max_count_mut(&mut self) -> &mut u32 {
+        &mut self.mesh_max_count
+    }
     fn skip_render_if_probe_is_uninitialized(&self) -> &bool {
         &self.skip_render_if_probe_is_uninitialized
+    }
+    fn skip_render_if_probe_is_uninitialized_mut(&mut self) -> &mut bool {
+        &mut self.skip_render_if_probe_is_uninitialized
     }
     fn batch_update_light_probes_enable(&self) -> &bool {
         &self.batch_update_light_probes_enable
     }
+    fn batch_update_light_probes_enable_mut(&mut self) -> &mut bool {
+        &mut self.batch_update_light_probes_enable
+    }
     fn quad_light_probe_max_update_count(&self) -> &u32 {
         &self.quad_light_probe_max_update_count
+    }
+    fn quad_light_probe_max_update_count_mut(&mut self) -> &mut u32 {
+        &mut self.quad_light_probe_max_update_count
     }
     fn graph_light_probe_max_update_count(&self) -> &u32 {
         &self.graph_light_probe_max_update_count
     }
+    fn graph_light_probe_max_update_count_mut(&mut self) -> &mut u32 {
+        &mut self.graph_light_probe_max_update_count
+    }
     fn mesh_light_probe_max_update_count(&self) -> &u32 {
         &self.mesh_light_probe_max_update_count
+    }
+    fn mesh_light_probe_max_update_count_mut(&mut self) -> &mut u32 {
+        &mut self.mesh_light_probe_max_update_count
     }
     fn graph_emitter_enabled(&self) -> &bool {
         &self.graph_emitter_enabled
     }
+    fn graph_emitter_enabled_mut(&mut self) -> &mut bool {
+        &mut self.graph_emitter_enabled
+    }
     fn graph_emitter_draw_debug_stats(&self) -> &bool {
         &self.graph_emitter_draw_debug_stats
+    }
+    fn graph_emitter_draw_debug_stats_mut(&mut self) -> &mut bool {
+        &mut self.graph_emitter_draw_debug_stats
     }
     fn graph_emitter_draw_debug_buffers(&self) -> &bool {
         &self.graph_emitter_draw_debug_buffers
     }
+    fn graph_emitter_draw_debug_buffers_mut(&mut self) -> &mut bool {
+        &mut self.graph_emitter_draw_debug_buffers
+    }
     fn graph_emitter_draw_debug_view_visible_instances(&self) -> &bool {
         &self.graph_emitter_draw_debug_view_visible_instances
+    }
+    fn graph_emitter_draw_debug_view_visible_instances_mut(&mut self) -> &mut bool {
+        &mut self.graph_emitter_draw_debug_view_visible_instances
     }
     fn graph_emitter_overlapped_compute_enable(&self) -> &bool {
         &self.graph_emitter_overlapped_compute_enable
     }
+    fn graph_emitter_overlapped_compute_enable_mut(&mut self) -> &mut bool {
+        &mut self.graph_emitter_overlapped_compute_enable
+    }
     fn emitter_graph_block_allocator_max_byte_count(&self) -> &u32 {
         &self.emitter_graph_block_allocator_max_byte_count
+    }
+    fn emitter_graph_block_allocator_max_byte_count_mut(&mut self) -> &mut u32 {
+        &mut self.emitter_graph_block_allocator_max_byte_count
     }
     fn emitter_graph_block_allocator_block_max_count(&self) -> &u32 {
         &self.emitter_graph_block_allocator_block_max_count
     }
+    fn emitter_graph_block_allocator_block_max_count_mut(&mut self) -> &mut u32 {
+        &mut self.emitter_graph_block_allocator_block_max_count
+    }
     fn emitter_graph_max_defrag_operations_per_frame(&self) -> &u32 {
         &self.emitter_graph_max_defrag_operations_per_frame
+    }
+    fn emitter_graph_max_defrag_operations_per_frame_mut(&mut self) -> &mut u32 {
+        &mut self.emitter_graph_max_defrag_operations_per_frame
     }
     fn emitter_graph_draw_debug_uber_buffer(&self) -> &bool {
         &self.emitter_graph_draw_debug_uber_buffer
     }
+    fn emitter_graph_draw_debug_uber_buffer_mut(&mut self) -> &mut bool {
+        &mut self.emitter_graph_draw_debug_uber_buffer
+    }
     fn emitter_graph_uber_buffer_defrag_enable(&self) -> &bool {
         &self.emitter_graph_uber_buffer_defrag_enable
+    }
+    fn emitter_graph_uber_buffer_defrag_enable_mut(&mut self) -> &mut bool {
+        &mut self.emitter_graph_uber_buffer_defrag_enable
     }
 }
 
 impl super::core::DataContainerTrait for EmitterSystemSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERSYSTEMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1713,6 +2185,15 @@ impl TypeObject for EmitterSystemSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1734,11 +2215,15 @@ pub struct FlatEmitterDocument {
 
 pub trait FlatEmitterDocumentTrait: EmitterDocumentTrait {
     fn template_data(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
+    fn template_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
 }
 
 impl FlatEmitterDocumentTrait for FlatEmitterDocument {
     fn template_data(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
         &self.template_data
+    }
+    fn template_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+        &mut self.template_data
     }
 }
 
@@ -1755,12 +2240,12 @@ impl super::core::AssetTrait for FlatEmitterDocument {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FlatEmitterDocument {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FLATEMITTERDOCUMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1792,6 +2277,15 @@ impl TypeObject for FlatEmitterDocument {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1816,23 +2310,39 @@ pub struct ScalableEmitterDocument {
 
 pub trait ScalableEmitterDocumentTrait: EmitterDocumentTrait {
     fn template_data_low(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
+    fn template_data_low_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
     fn template_data_medium(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
+    fn template_data_medium_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
     fn template_data_high(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
+    fn template_data_high_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
     fn template_data_ultra(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
+    fn template_data_ultra_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
 }
 
 impl ScalableEmitterDocumentTrait for ScalableEmitterDocument {
     fn template_data_low(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
         &self.template_data_low
     }
+    fn template_data_low_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+        &mut self.template_data_low
+    }
     fn template_data_medium(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
         &self.template_data_medium
+    }
+    fn template_data_medium_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+        &mut self.template_data_medium
     }
     fn template_data_high(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
         &self.template_data_high
     }
+    fn template_data_high_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+        &mut self.template_data_high
+    }
     fn template_data_ultra(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
         &self.template_data_ultra
+    }
+    fn template_data_ultra_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+        &mut self.template_data_ultra
     }
 }
 
@@ -1849,12 +2359,12 @@ impl super::core::AssetTrait for ScalableEmitterDocument {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ScalableEmitterDocument {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCALABLEEMITTERDOCUMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1904,6 +2414,15 @@ impl TypeObject for ScalableEmitterDocument {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1938,12 +2457,12 @@ impl super::core::AssetTrait for EmitterDocument {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EmitterDocument {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERDOCUMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1968,6 +2487,15 @@ impl TypeObject for EmitterDocument {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2081,382 +2609,747 @@ pub struct EmitterTemplateData {
 
 pub trait EmitterTemplateDataTrait: super::core::DataContainerTrait {
     fn root_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>>;
+    fn root_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>>;
     fn max_count(&self) -> &u32;
+    fn max_count_mut(&mut self) -> &mut u32;
     fn lifetime(&self) -> &f32;
+    fn lifetime_mut(&mut self) -> &mut f32;
     fn time_scale(&self) -> &f32;
+    fn time_scale_mut(&mut self) -> &mut f32;
     fn repeat_particle_spawning(&self) -> &bool;
+    fn repeat_particle_spawning_mut(&mut self) -> &mut bool;
     fn lifetime_frame_count(&self) -> &u32;
+    fn lifetime_frame_count_mut(&mut self) -> &mut u32;
     fn follow_spawn_source(&self) -> &bool;
+    fn follow_spawn_source_mut(&mut self) -> &mut bool;
     fn follow_spawn_source_velocity(&self) -> &bool;
+    fn follow_spawn_source_velocity_mut(&mut self) -> &mut bool;
     fn kill_particles_with_emitter(&self) -> &bool;
+    fn kill_particles_with_emitter_mut(&mut self) -> &mut bool;
     fn kill_ribbon_tail_distance(&self) -> &f32;
+    fn kill_ribbon_tail_distance_mut(&mut self) -> &mut f32;
     fn smooth_ribbon_spawn(&self) -> &bool;
+    fn smooth_ribbon_spawn_mut(&mut self) -> &mut bool;
     fn exclusion_volume_cull_enable(&self) -> &bool;
+    fn exclusion_volume_cull_enable_mut(&mut self) -> &mut bool;
     fn emittable_type(&self) -> &EmittableType;
+    fn emittable_type_mut(&mut self) -> &mut EmittableType;
     fn emittable_alignment(&self) -> &EmittableAlignment;
+    fn emittable_alignment_mut(&mut self) -> &mut EmittableAlignment;
     fn world_alignment_direction(&self) -> &super::core::Vec3;
+    fn world_alignment_direction_mut(&mut self) -> &mut super::core::Vec3;
     fn motion_stretch_multiplier(&self) -> &f32;
+    fn motion_stretch_multiplier_mut(&mut self) -> &mut f32;
     fn motion_stretch_view_multiplier(&self) -> &f32;
+    fn motion_stretch_view_multiplier_mut(&mut self) -> &mut f32;
     fn motion_stretch_length_clamp(&self) -> &f32;
+    fn motion_stretch_length_clamp_mut(&mut self) -> &mut f32;
     fn motion_stretch_relative_length_clamp(&self) -> &f32;
+    fn motion_stretch_relative_length_clamp_mut(&mut self) -> &mut f32;
     fn orient_to_position(&self) -> &super::core::Vec3;
+    fn orient_to_position_mut(&mut self) -> &mut super::core::Vec3;
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>>;
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>>;
     fn object_variation_name_hash(&self) -> &u32;
+    fn object_variation_name_hash_mut(&mut self) -> &mut u32;
     fn emissive(&self) -> &bool;
+    fn emissive_mut(&mut self) -> &mut bool;
     fn emissive_exposure_factor(&self) -> &f32;
+    fn emissive_exposure_factor_mut(&mut self) -> &mut f32;
     fn opaque(&self) -> &bool;
+    fn opaque_mut(&mut self) -> &mut bool;
     fn mesh_particles_motion_blur(&self) -> &bool;
+    fn mesh_particles_motion_blur_mut(&mut self) -> &mut bool;
     fn vertex_pixel_lighting_blend_factor(&self) -> &f32;
+    fn vertex_pixel_lighting_blend_factor_mut(&mut self) -> &mut f32;
     fn global_local_normal_blend_factor(&self) -> &f32;
+    fn global_local_normal_blend_factor_mut(&mut self) -> &mut f32;
     fn soft_particles_fade_distance_multiplier(&self) -> &f32;
+    fn soft_particles_fade_distance_multiplier_mut(&mut self) -> &mut f32;
     fn light_wrap_around_factor(&self) -> &f32;
+    fn light_wrap_around_factor_mut(&mut self) -> &mut f32;
     fn bent_normal_factor(&self) -> &f32;
+    fn bent_normal_factor_mut(&mut self) -> &mut f32;
     fn light_multiplier(&self) -> &f32;
+    fn light_multiplier_mut(&mut self) -> &mut f32;
     fn light_multiplier_dynamic(&self) -> &f32;
+    fn light_multiplier_dynamic_mut(&mut self) -> &mut f32;
     fn receive_sun_shadow(&self) -> &bool;
+    fn receive_sun_shadow_mut(&mut self) -> &mut bool;
     fn bending_factor(&self) -> &f32;
+    fn bending_factor_mut(&mut self) -> &mut f32;
     fn micro_variation_smoothing_factor(&self) -> &f32;
+    fn micro_variation_smoothing_factor_mut(&mut self) -> &mut f32;
     fn force_nice_sorting(&self) -> &bool;
+    fn force_nice_sorting_mut(&mut self) -> &mut bool;
     fn local_space(&self) -> &bool;
+    fn local_space_mut(&mut self) -> &mut bool;
     fn allow_scale(&self) -> &bool;
+    fn allow_scale_mut(&mut self) -> &mut bool;
     fn camera_space(&self) -> &bool;
+    fn camera_space_mut(&mut self) -> &mut bool;
     fn transparency_sun_shadow_enable(&self) -> &bool;
+    fn transparency_sun_shadow_enable_mut(&mut self) -> &mut bool;
     fn sun_volumetric_shadow_enable(&self) -> &bool;
+    fn sun_volumetric_shadow_enable_mut(&mut self) -> &mut bool;
     fn sun_volumetric_shadow_absorption_scale(&self) -> &f32;
+    fn sun_volumetric_shadow_absorption_scale_mut(&mut self) -> &mut f32;
     fn sun_volumetric_shadow_absorption_r(&self) -> &f32;
+    fn sun_volumetric_shadow_absorption_r_mut(&mut self) -> &mut f32;
     fn sun_volumetric_shadow_absorption_g(&self) -> &f32;
+    fn sun_volumetric_shadow_absorption_g_mut(&mut self) -> &mut f32;
     fn sun_volumetric_shadow_absorption_b(&self) -> &f32;
+    fn sun_volumetric_shadow_absorption_b_mut(&mut self) -> &mut f32;
     fn sun_volumetric_shadow_phase_g0(&self) -> &f32;
+    fn sun_volumetric_shadow_phase_g0_mut(&mut self) -> &mut f32;
     fn sun_volumetric_shadow_phase_g1(&self) -> &f32;
+    fn sun_volumetric_shadow_phase_g1_mut(&mut self) -> &mut f32;
     fn sun_volumetric_shadow_offset(&self) -> &f32;
+    fn sun_volumetric_shadow_offset_mut(&mut self) -> &mut f32;
     fn enable_pyro_shader(&self) -> &bool;
+    fn enable_pyro_shader_mut(&mut self) -> &mut bool;
     fn gnomon_light_rig_index(&self) -> &i32;
+    fn gnomon_light_rig_index_mut(&mut self) -> &mut i32;
     fn use_right_texture_tile(&self) -> &bool;
+    fn use_right_texture_tile_mut(&mut self) -> &mut bool;
     fn cast_planar_reflection_enable(&self) -> &bool;
+    fn cast_planar_reflection_enable_mut(&mut self) -> &mut bool;
     fn force_full_res(&self) -> &bool;
+    fn force_full_res_mut(&mut self) -> &mut bool;
     fn fog_fade(&self) -> &bool;
+    fn fog_fade_mut(&mut self) -> &mut bool;
     fn camera_bias(&self) -> &f32;
+    fn camera_bias_mut(&mut self) -> &mut f32;
     fn emitter_draw_order(&self) -> &EmitterDrawOrder;
+    fn emitter_draw_order_mut(&mut self) -> &mut EmitterDrawOrder;
     fn flip_u_probability(&self) -> &f32;
+    fn flip_u_probability_mut(&mut self) -> &mut f32;
     fn flip_v_probability(&self) -> &f32;
+    fn flip_v_probability_mut(&mut self) -> &mut f32;
     fn lock_ribbon_direction(&self) -> &bool;
+    fn lock_ribbon_direction_mut(&mut self) -> &mut bool;
     fn particle_culling_factor(&self) -> &f32;
+    fn particle_culling_factor_mut(&mut self) -> &mut f32;
     fn instanced(&self) -> &bool;
+    fn instanced_mut(&mut self) -> &mut bool;
     fn alpha_cull_threshold(&self) -> &f32;
+    fn alpha_cull_threshold_mut(&mut self) -> &mut f32;
     fn min_spawn_distance(&self) -> &f32;
+    fn min_spawn_distance_mut(&mut self) -> &mut f32;
     fn max_spawn_distance(&self) -> &f32;
+    fn max_spawn_distance_mut(&mut self) -> &mut f32;
     fn min_screen_area(&self) -> &f32;
+    fn min_screen_area_mut(&mut self) -> &mut f32;
     fn mesh_culling_distance(&self) -> &f32;
+    fn mesh_culling_distance_mut(&mut self) -> &mut f32;
     fn pause_simulation_when_culled(&self) -> &bool;
+    fn pause_simulation_when_culled_mut(&mut self) -> &mut bool;
     fn skip_update_max_count(&self) -> &i32;
+    fn skip_update_max_count_mut(&mut self) -> &mut i32;
     fn skip_simulation_distance(&self) -> &f32;
+    fn skip_simulation_distance_mut(&mut self) -> &mut f32;
     fn precise_wind_and_force_max_distance(&self) -> &f32;
+    fn precise_wind_and_force_max_distance_mut(&mut self) -> &mut f32;
     fn turbulence_max_distance(&self) -> &f32;
+    fn turbulence_max_distance_mut(&mut self) -> &mut f32;
     fn distance_scale_length(&self) -> &f32;
+    fn distance_scale_length_mut(&mut self) -> &mut f32;
     fn distance_scale_near_value(&self) -> &f32;
+    fn distance_scale_near_value_mut(&mut self) -> &mut f32;
     fn distance_scale_far_value(&self) -> &f32;
+    fn distance_scale_far_value_mut(&mut self) -> &mut f32;
     fn speed_normalization_value(&self) -> &f32;
+    fn speed_normalization_value_mut(&mut self) -> &mut f32;
     fn wind_speed_normalization_value(&self) -> &f32;
+    fn wind_speed_normalization_value_mut(&mut self) -> &mut f32;
     fn travelled_distance_normalization_value(&self) -> &f32;
+    fn travelled_distance_normalization_value_mut(&mut self) -> &mut f32;
     fn accept_global_parameter1(&self) -> &bool;
+    fn accept_global_parameter1_mut(&mut self) -> &mut bool;
     fn accept_global_parameter2(&self) -> &bool;
+    fn accept_global_parameter2_mut(&mut self) -> &mut bool;
     fn accept_global_parameter3(&self) -> &bool;
+    fn accept_global_parameter3_mut(&mut self) -> &mut bool;
     fn per_particle_effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
+    fn per_particle_effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
     fn min_distance_travelled_before_spawn(&self) -> &f32;
+    fn min_distance_travelled_before_spawn_mut(&mut self) -> &mut f32;
     fn cull_fade_near_distance(&self) -> &f32;
+    fn cull_fade_near_distance_mut(&mut self) -> &mut f32;
     fn cull_fade_near_range(&self) -> &f32;
+    fn cull_fade_near_range_mut(&mut self) -> &mut f32;
     fn cull_fade_far_distance(&self) -> &f32;
+    fn cull_fade_far_distance_mut(&mut self) -> &mut f32;
     fn cull_fade_far_range(&self) -> &f32;
+    fn cull_fade_far_range_mut(&mut self) -> &mut f32;
     fn skip_near_camera_fade(&self) -> &bool;
+    fn skip_near_camera_fade_mut(&mut self) -> &mut bool;
     fn emitter_wind_evaluation_enable(&self) -> &bool;
+    fn emitter_wind_evaluation_enable_mut(&mut self) -> &mut bool;
     fn emittable_wind_evaluation_enable(&self) -> &bool;
+    fn emittable_wind_evaluation_enable_mut(&mut self) -> &mut bool;
     fn debug_name(&self) -> &String;
+    fn debug_name_mut(&mut self) -> &mut String;
     fn tweak_inherited_emitter(&self) -> &Option<Arc<Mutex<dyn EmitterDocumentTrait>>>;
+    fn tweak_inherited_emitter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterDocumentTrait>>>;
 }
 
 impl EmitterTemplateDataTrait for EmitterTemplateData {
     fn root_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         &self.root_processor
     }
+    fn root_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        &mut self.root_processor
+    }
     fn max_count(&self) -> &u32 {
         &self.max_count
+    }
+    fn max_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_count
     }
     fn lifetime(&self) -> &f32 {
         &self.lifetime
     }
+    fn lifetime_mut(&mut self) -> &mut f32 {
+        &mut self.lifetime
+    }
     fn time_scale(&self) -> &f32 {
         &self.time_scale
+    }
+    fn time_scale_mut(&mut self) -> &mut f32 {
+        &mut self.time_scale
     }
     fn repeat_particle_spawning(&self) -> &bool {
         &self.repeat_particle_spawning
     }
+    fn repeat_particle_spawning_mut(&mut self) -> &mut bool {
+        &mut self.repeat_particle_spawning
+    }
     fn lifetime_frame_count(&self) -> &u32 {
         &self.lifetime_frame_count
+    }
+    fn lifetime_frame_count_mut(&mut self) -> &mut u32 {
+        &mut self.lifetime_frame_count
     }
     fn follow_spawn_source(&self) -> &bool {
         &self.follow_spawn_source
     }
+    fn follow_spawn_source_mut(&mut self) -> &mut bool {
+        &mut self.follow_spawn_source
+    }
     fn follow_spawn_source_velocity(&self) -> &bool {
         &self.follow_spawn_source_velocity
+    }
+    fn follow_spawn_source_velocity_mut(&mut self) -> &mut bool {
+        &mut self.follow_spawn_source_velocity
     }
     fn kill_particles_with_emitter(&self) -> &bool {
         &self.kill_particles_with_emitter
     }
+    fn kill_particles_with_emitter_mut(&mut self) -> &mut bool {
+        &mut self.kill_particles_with_emitter
+    }
     fn kill_ribbon_tail_distance(&self) -> &f32 {
         &self.kill_ribbon_tail_distance
+    }
+    fn kill_ribbon_tail_distance_mut(&mut self) -> &mut f32 {
+        &mut self.kill_ribbon_tail_distance
     }
     fn smooth_ribbon_spawn(&self) -> &bool {
         &self.smooth_ribbon_spawn
     }
+    fn smooth_ribbon_spawn_mut(&mut self) -> &mut bool {
+        &mut self.smooth_ribbon_spawn
+    }
     fn exclusion_volume_cull_enable(&self) -> &bool {
         &self.exclusion_volume_cull_enable
+    }
+    fn exclusion_volume_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.exclusion_volume_cull_enable
     }
     fn emittable_type(&self) -> &EmittableType {
         &self.emittable_type
     }
+    fn emittable_type_mut(&mut self) -> &mut EmittableType {
+        &mut self.emittable_type
+    }
     fn emittable_alignment(&self) -> &EmittableAlignment {
         &self.emittable_alignment
+    }
+    fn emittable_alignment_mut(&mut self) -> &mut EmittableAlignment {
+        &mut self.emittable_alignment
     }
     fn world_alignment_direction(&self) -> &super::core::Vec3 {
         &self.world_alignment_direction
     }
+    fn world_alignment_direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.world_alignment_direction
+    }
     fn motion_stretch_multiplier(&self) -> &f32 {
         &self.motion_stretch_multiplier
+    }
+    fn motion_stretch_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.motion_stretch_multiplier
     }
     fn motion_stretch_view_multiplier(&self) -> &f32 {
         &self.motion_stretch_view_multiplier
     }
+    fn motion_stretch_view_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.motion_stretch_view_multiplier
+    }
     fn motion_stretch_length_clamp(&self) -> &f32 {
         &self.motion_stretch_length_clamp
+    }
+    fn motion_stretch_length_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.motion_stretch_length_clamp
     }
     fn motion_stretch_relative_length_clamp(&self) -> &f32 {
         &self.motion_stretch_relative_length_clamp
     }
+    fn motion_stretch_relative_length_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.motion_stretch_relative_length_clamp
+    }
     fn orient_to_position(&self) -> &super::core::Vec3 {
         &self.orient_to_position
+    }
+    fn orient_to_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.orient_to_position
     }
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>> {
         &self.mesh
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>> {
+        &mut self.mesh
+    }
     fn object_variation_name_hash(&self) -> &u32 {
         &self.object_variation_name_hash
+    }
+    fn object_variation_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.object_variation_name_hash
     }
     fn emissive(&self) -> &bool {
         &self.emissive
     }
+    fn emissive_mut(&mut self) -> &mut bool {
+        &mut self.emissive
+    }
     fn emissive_exposure_factor(&self) -> &f32 {
         &self.emissive_exposure_factor
+    }
+    fn emissive_exposure_factor_mut(&mut self) -> &mut f32 {
+        &mut self.emissive_exposure_factor
     }
     fn opaque(&self) -> &bool {
         &self.opaque
     }
+    fn opaque_mut(&mut self) -> &mut bool {
+        &mut self.opaque
+    }
     fn mesh_particles_motion_blur(&self) -> &bool {
         &self.mesh_particles_motion_blur
+    }
+    fn mesh_particles_motion_blur_mut(&mut self) -> &mut bool {
+        &mut self.mesh_particles_motion_blur
     }
     fn vertex_pixel_lighting_blend_factor(&self) -> &f32 {
         &self.vertex_pixel_lighting_blend_factor
     }
+    fn vertex_pixel_lighting_blend_factor_mut(&mut self) -> &mut f32 {
+        &mut self.vertex_pixel_lighting_blend_factor
+    }
     fn global_local_normal_blend_factor(&self) -> &f32 {
         &self.global_local_normal_blend_factor
+    }
+    fn global_local_normal_blend_factor_mut(&mut self) -> &mut f32 {
+        &mut self.global_local_normal_blend_factor
     }
     fn soft_particles_fade_distance_multiplier(&self) -> &f32 {
         &self.soft_particles_fade_distance_multiplier
     }
+    fn soft_particles_fade_distance_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.soft_particles_fade_distance_multiplier
+    }
     fn light_wrap_around_factor(&self) -> &f32 {
         &self.light_wrap_around_factor
+    }
+    fn light_wrap_around_factor_mut(&mut self) -> &mut f32 {
+        &mut self.light_wrap_around_factor
     }
     fn bent_normal_factor(&self) -> &f32 {
         &self.bent_normal_factor
     }
+    fn bent_normal_factor_mut(&mut self) -> &mut f32 {
+        &mut self.bent_normal_factor
+    }
     fn light_multiplier(&self) -> &f32 {
         &self.light_multiplier
+    }
+    fn light_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.light_multiplier
     }
     fn light_multiplier_dynamic(&self) -> &f32 {
         &self.light_multiplier_dynamic
     }
+    fn light_multiplier_dynamic_mut(&mut self) -> &mut f32 {
+        &mut self.light_multiplier_dynamic
+    }
     fn receive_sun_shadow(&self) -> &bool {
         &self.receive_sun_shadow
+    }
+    fn receive_sun_shadow_mut(&mut self) -> &mut bool {
+        &mut self.receive_sun_shadow
     }
     fn bending_factor(&self) -> &f32 {
         &self.bending_factor
     }
+    fn bending_factor_mut(&mut self) -> &mut f32 {
+        &mut self.bending_factor
+    }
     fn micro_variation_smoothing_factor(&self) -> &f32 {
         &self.micro_variation_smoothing_factor
+    }
+    fn micro_variation_smoothing_factor_mut(&mut self) -> &mut f32 {
+        &mut self.micro_variation_smoothing_factor
     }
     fn force_nice_sorting(&self) -> &bool {
         &self.force_nice_sorting
     }
+    fn force_nice_sorting_mut(&mut self) -> &mut bool {
+        &mut self.force_nice_sorting
+    }
     fn local_space(&self) -> &bool {
         &self.local_space
+    }
+    fn local_space_mut(&mut self) -> &mut bool {
+        &mut self.local_space
     }
     fn allow_scale(&self) -> &bool {
         &self.allow_scale
     }
+    fn allow_scale_mut(&mut self) -> &mut bool {
+        &mut self.allow_scale
+    }
     fn camera_space(&self) -> &bool {
         &self.camera_space
+    }
+    fn camera_space_mut(&mut self) -> &mut bool {
+        &mut self.camera_space
     }
     fn transparency_sun_shadow_enable(&self) -> &bool {
         &self.transparency_sun_shadow_enable
     }
+    fn transparency_sun_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.transparency_sun_shadow_enable
+    }
     fn sun_volumetric_shadow_enable(&self) -> &bool {
         &self.sun_volumetric_shadow_enable
+    }
+    fn sun_volumetric_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.sun_volumetric_shadow_enable
     }
     fn sun_volumetric_shadow_absorption_scale(&self) -> &f32 {
         &self.sun_volumetric_shadow_absorption_scale
     }
+    fn sun_volumetric_shadow_absorption_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_volumetric_shadow_absorption_scale
+    }
     fn sun_volumetric_shadow_absorption_r(&self) -> &f32 {
         &self.sun_volumetric_shadow_absorption_r
+    }
+    fn sun_volumetric_shadow_absorption_r_mut(&mut self) -> &mut f32 {
+        &mut self.sun_volumetric_shadow_absorption_r
     }
     fn sun_volumetric_shadow_absorption_g(&self) -> &f32 {
         &self.sun_volumetric_shadow_absorption_g
     }
+    fn sun_volumetric_shadow_absorption_g_mut(&mut self) -> &mut f32 {
+        &mut self.sun_volumetric_shadow_absorption_g
+    }
     fn sun_volumetric_shadow_absorption_b(&self) -> &f32 {
         &self.sun_volumetric_shadow_absorption_b
+    }
+    fn sun_volumetric_shadow_absorption_b_mut(&mut self) -> &mut f32 {
+        &mut self.sun_volumetric_shadow_absorption_b
     }
     fn sun_volumetric_shadow_phase_g0(&self) -> &f32 {
         &self.sun_volumetric_shadow_phase_g0
     }
+    fn sun_volumetric_shadow_phase_g0_mut(&mut self) -> &mut f32 {
+        &mut self.sun_volumetric_shadow_phase_g0
+    }
     fn sun_volumetric_shadow_phase_g1(&self) -> &f32 {
         &self.sun_volumetric_shadow_phase_g1
+    }
+    fn sun_volumetric_shadow_phase_g1_mut(&mut self) -> &mut f32 {
+        &mut self.sun_volumetric_shadow_phase_g1
     }
     fn sun_volumetric_shadow_offset(&self) -> &f32 {
         &self.sun_volumetric_shadow_offset
     }
+    fn sun_volumetric_shadow_offset_mut(&mut self) -> &mut f32 {
+        &mut self.sun_volumetric_shadow_offset
+    }
     fn enable_pyro_shader(&self) -> &bool {
         &self.enable_pyro_shader
+    }
+    fn enable_pyro_shader_mut(&mut self) -> &mut bool {
+        &mut self.enable_pyro_shader
     }
     fn gnomon_light_rig_index(&self) -> &i32 {
         &self.gnomon_light_rig_index
     }
+    fn gnomon_light_rig_index_mut(&mut self) -> &mut i32 {
+        &mut self.gnomon_light_rig_index
+    }
     fn use_right_texture_tile(&self) -> &bool {
         &self.use_right_texture_tile
+    }
+    fn use_right_texture_tile_mut(&mut self) -> &mut bool {
+        &mut self.use_right_texture_tile
     }
     fn cast_planar_reflection_enable(&self) -> &bool {
         &self.cast_planar_reflection_enable
     }
+    fn cast_planar_reflection_enable_mut(&mut self) -> &mut bool {
+        &mut self.cast_planar_reflection_enable
+    }
     fn force_full_res(&self) -> &bool {
         &self.force_full_res
+    }
+    fn force_full_res_mut(&mut self) -> &mut bool {
+        &mut self.force_full_res
     }
     fn fog_fade(&self) -> &bool {
         &self.fog_fade
     }
+    fn fog_fade_mut(&mut self) -> &mut bool {
+        &mut self.fog_fade
+    }
     fn camera_bias(&self) -> &f32 {
         &self.camera_bias
+    }
+    fn camera_bias_mut(&mut self) -> &mut f32 {
+        &mut self.camera_bias
     }
     fn emitter_draw_order(&self) -> &EmitterDrawOrder {
         &self.emitter_draw_order
     }
+    fn emitter_draw_order_mut(&mut self) -> &mut EmitterDrawOrder {
+        &mut self.emitter_draw_order
+    }
     fn flip_u_probability(&self) -> &f32 {
         &self.flip_u_probability
+    }
+    fn flip_u_probability_mut(&mut self) -> &mut f32 {
+        &mut self.flip_u_probability
     }
     fn flip_v_probability(&self) -> &f32 {
         &self.flip_v_probability
     }
+    fn flip_v_probability_mut(&mut self) -> &mut f32 {
+        &mut self.flip_v_probability
+    }
     fn lock_ribbon_direction(&self) -> &bool {
         &self.lock_ribbon_direction
+    }
+    fn lock_ribbon_direction_mut(&mut self) -> &mut bool {
+        &mut self.lock_ribbon_direction
     }
     fn particle_culling_factor(&self) -> &f32 {
         &self.particle_culling_factor
     }
+    fn particle_culling_factor_mut(&mut self) -> &mut f32 {
+        &mut self.particle_culling_factor
+    }
     fn instanced(&self) -> &bool {
         &self.instanced
+    }
+    fn instanced_mut(&mut self) -> &mut bool {
+        &mut self.instanced
     }
     fn alpha_cull_threshold(&self) -> &f32 {
         &self.alpha_cull_threshold
     }
+    fn alpha_cull_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.alpha_cull_threshold
+    }
     fn min_spawn_distance(&self) -> &f32 {
         &self.min_spawn_distance
+    }
+    fn min_spawn_distance_mut(&mut self) -> &mut f32 {
+        &mut self.min_spawn_distance
     }
     fn max_spawn_distance(&self) -> &f32 {
         &self.max_spawn_distance
     }
+    fn max_spawn_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_spawn_distance
+    }
     fn min_screen_area(&self) -> &f32 {
         &self.min_screen_area
+    }
+    fn min_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.min_screen_area
     }
     fn mesh_culling_distance(&self) -> &f32 {
         &self.mesh_culling_distance
     }
+    fn mesh_culling_distance_mut(&mut self) -> &mut f32 {
+        &mut self.mesh_culling_distance
+    }
     fn pause_simulation_when_culled(&self) -> &bool {
         &self.pause_simulation_when_culled
+    }
+    fn pause_simulation_when_culled_mut(&mut self) -> &mut bool {
+        &mut self.pause_simulation_when_culled
     }
     fn skip_update_max_count(&self) -> &i32 {
         &self.skip_update_max_count
     }
+    fn skip_update_max_count_mut(&mut self) -> &mut i32 {
+        &mut self.skip_update_max_count
+    }
     fn skip_simulation_distance(&self) -> &f32 {
         &self.skip_simulation_distance
+    }
+    fn skip_simulation_distance_mut(&mut self) -> &mut f32 {
+        &mut self.skip_simulation_distance
     }
     fn precise_wind_and_force_max_distance(&self) -> &f32 {
         &self.precise_wind_and_force_max_distance
     }
+    fn precise_wind_and_force_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.precise_wind_and_force_max_distance
+    }
     fn turbulence_max_distance(&self) -> &f32 {
         &self.turbulence_max_distance
+    }
+    fn turbulence_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.turbulence_max_distance
     }
     fn distance_scale_length(&self) -> &f32 {
         &self.distance_scale_length
     }
+    fn distance_scale_length_mut(&mut self) -> &mut f32 {
+        &mut self.distance_scale_length
+    }
     fn distance_scale_near_value(&self) -> &f32 {
         &self.distance_scale_near_value
+    }
+    fn distance_scale_near_value_mut(&mut self) -> &mut f32 {
+        &mut self.distance_scale_near_value
     }
     fn distance_scale_far_value(&self) -> &f32 {
         &self.distance_scale_far_value
     }
+    fn distance_scale_far_value_mut(&mut self) -> &mut f32 {
+        &mut self.distance_scale_far_value
+    }
     fn speed_normalization_value(&self) -> &f32 {
         &self.speed_normalization_value
+    }
+    fn speed_normalization_value_mut(&mut self) -> &mut f32 {
+        &mut self.speed_normalization_value
     }
     fn wind_speed_normalization_value(&self) -> &f32 {
         &self.wind_speed_normalization_value
     }
+    fn wind_speed_normalization_value_mut(&mut self) -> &mut f32 {
+        &mut self.wind_speed_normalization_value
+    }
     fn travelled_distance_normalization_value(&self) -> &f32 {
         &self.travelled_distance_normalization_value
+    }
+    fn travelled_distance_normalization_value_mut(&mut self) -> &mut f32 {
+        &mut self.travelled_distance_normalization_value
     }
     fn accept_global_parameter1(&self) -> &bool {
         &self.accept_global_parameter1
     }
+    fn accept_global_parameter1_mut(&mut self) -> &mut bool {
+        &mut self.accept_global_parameter1
+    }
     fn accept_global_parameter2(&self) -> &bool {
         &self.accept_global_parameter2
+    }
+    fn accept_global_parameter2_mut(&mut self) -> &mut bool {
+        &mut self.accept_global_parameter2
     }
     fn accept_global_parameter3(&self) -> &bool {
         &self.accept_global_parameter3
     }
+    fn accept_global_parameter3_mut(&mut self) -> &mut bool {
+        &mut self.accept_global_parameter3
+    }
     fn per_particle_effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
         &self.per_particle_effect_parameters
+    }
+    fn per_particle_effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+        &mut self.per_particle_effect_parameters
     }
     fn min_distance_travelled_before_spawn(&self) -> &f32 {
         &self.min_distance_travelled_before_spawn
     }
+    fn min_distance_travelled_before_spawn_mut(&mut self) -> &mut f32 {
+        &mut self.min_distance_travelled_before_spawn
+    }
     fn cull_fade_near_distance(&self) -> &f32 {
         &self.cull_fade_near_distance
+    }
+    fn cull_fade_near_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_fade_near_distance
     }
     fn cull_fade_near_range(&self) -> &f32 {
         &self.cull_fade_near_range
     }
+    fn cull_fade_near_range_mut(&mut self) -> &mut f32 {
+        &mut self.cull_fade_near_range
+    }
     fn cull_fade_far_distance(&self) -> &f32 {
         &self.cull_fade_far_distance
+    }
+    fn cull_fade_far_distance_mut(&mut self) -> &mut f32 {
+        &mut self.cull_fade_far_distance
     }
     fn cull_fade_far_range(&self) -> &f32 {
         &self.cull_fade_far_range
     }
+    fn cull_fade_far_range_mut(&mut self) -> &mut f32 {
+        &mut self.cull_fade_far_range
+    }
     fn skip_near_camera_fade(&self) -> &bool {
         &self.skip_near_camera_fade
+    }
+    fn skip_near_camera_fade_mut(&mut self) -> &mut bool {
+        &mut self.skip_near_camera_fade
     }
     fn emitter_wind_evaluation_enable(&self) -> &bool {
         &self.emitter_wind_evaluation_enable
     }
+    fn emitter_wind_evaluation_enable_mut(&mut self) -> &mut bool {
+        &mut self.emitter_wind_evaluation_enable
+    }
     fn emittable_wind_evaluation_enable(&self) -> &bool {
         &self.emittable_wind_evaluation_enable
+    }
+    fn emittable_wind_evaluation_enable_mut(&mut self) -> &mut bool {
+        &mut self.emittable_wind_evaluation_enable
     }
     fn debug_name(&self) -> &String {
         &self.debug_name
     }
+    fn debug_name_mut(&mut self) -> &mut String {
+        &mut self.debug_name
+    }
     fn tweak_inherited_emitter(&self) -> &Option<Arc<Mutex<dyn EmitterDocumentTrait>>> {
         &self.tweak_inherited_emitter
+    }
+    fn tweak_inherited_emitter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterDocumentTrait>>> {
+        &mut self.tweak_inherited_emitter
     }
 }
 
 impl super::core::DataContainerTrait for EmitterTemplateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERTEMPLATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3034,6 +3927,15 @@ impl TypeObject for EmitterTemplateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3071,6 +3973,15 @@ impl TypeObject for PerParticleParams {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3096,34 +4007,51 @@ pub struct ProcessorData {
 
 pub trait ProcessorDataTrait: super::core::DataContainerTrait {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>>;
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>>;
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>>;
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>>;
     fn evaluator_input(&self) -> &EmittableField;
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField;
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
     fn schematics_enable(&self) -> &bool;
+    fn schematics_enable_mut(&mut self) -> &mut bool;
 }
 
 impl ProcessorDataTrait for ProcessorData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         &self.pre
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        &mut self.pre
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         &self.next_processor
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        &mut self.next_processor
     }
     fn evaluator_input(&self) -> &EmittableField {
         &self.evaluator_input
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        &mut self.evaluator_input
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         &self.evaluator_input_param
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        &mut self.evaluator_input_param
     }
     fn schematics_enable(&self) -> &bool {
         &self.schematics_enable
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        &mut self.schematics_enable
+    }
 }
 
 impl super::core::DataContainerTrait for ProcessorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROCESSORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3179,6 +4107,15 @@ impl TypeObject for ProcessorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3201,22 +4138,27 @@ pub struct EvaluatorData {
 
 pub trait EvaluatorDataTrait: super::core::DataContainerTrait {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
     fn schematics_enable(&self) -> &bool;
+    fn schematics_enable_mut(&mut self) -> &mut bool;
 }
 
 impl EvaluatorDataTrait for EvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         &self.parameter
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        &mut self.parameter
+    }
     fn schematics_enable(&self) -> &bool {
         &self.schematics_enable
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        &mut self.schematics_enable
     }
 }
 
 impl super::core::DataContainerTrait for EvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3253,6 +4195,15 @@ impl TypeObject for EvaluatorData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3293,6 +4244,15 @@ impl TypeObject for ParticleSorting {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3331,6 +4291,15 @@ impl TypeObject for EmitterDrawOrder {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3375,6 +4344,15 @@ impl TypeObject for EmitterSchematicInputParameter {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3475,6 +4453,15 @@ impl TypeObject for ProcessorType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3530,6 +4517,15 @@ impl TypeObject for EvaluatorType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3568,6 +4564,15 @@ impl TypeObject for RandomFrequency {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3615,6 +4620,15 @@ impl TypeObject for EmittableAlignment {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3665,6 +4679,15 @@ impl TypeObject for EmittableType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3727,6 +4750,15 @@ impl TypeObject for EmittableField {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3750,23 +4782,39 @@ pub struct EmitterExclusionVolumeBoundingSphereSoA {
 
 pub trait EmitterExclusionVolumeBoundingSphereSoATrait: TypeObject {
     fn pos_x(&self) -> &super::core::Vec4;
+    fn pos_x_mut(&mut self) -> &mut super::core::Vec4;
     fn pos_y(&self) -> &super::core::Vec4;
+    fn pos_y_mut(&mut self) -> &mut super::core::Vec4;
     fn pos_z(&self) -> &super::core::Vec4;
+    fn pos_z_mut(&mut self) -> &mut super::core::Vec4;
     fn radius_sqr(&self) -> &super::core::Vec4;
+    fn radius_sqr_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl EmitterExclusionVolumeBoundingSphereSoATrait for EmitterExclusionVolumeBoundingSphereSoA {
     fn pos_x(&self) -> &super::core::Vec4 {
         &self.pos_x
     }
+    fn pos_x_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.pos_x
+    }
     fn pos_y(&self) -> &super::core::Vec4 {
         &self.pos_y
+    }
+    fn pos_y_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.pos_y
     }
     fn pos_z(&self) -> &super::core::Vec4 {
         &self.pos_z
     }
+    fn pos_z_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.pos_z
+    }
     fn radius_sqr(&self) -> &super::core::Vec4 {
         &self.radius_sqr
+    }
+    fn radius_sqr_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.radius_sqr
     }
 }
 
@@ -3816,6 +4864,15 @@ impl TypeObject for EmitterExclusionVolumeBoundingSphereSoA {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3840,27 +4897,47 @@ pub struct EmitterExclusionVolume {
 
 pub trait EmitterExclusionVolumeTrait: TypeObject {
     fn left(&self) -> &super::core::Vec4;
+    fn left_mut(&mut self) -> &mut super::core::Vec4;
     fn up(&self) -> &super::core::Vec4;
+    fn up_mut(&mut self) -> &mut super::core::Vec4;
     fn forward(&self) -> &super::core::Vec4;
+    fn forward_mut(&mut self) -> &mut super::core::Vec4;
     fn half_extents(&self) -> &super::core::Vec4;
+    fn half_extents_mut(&mut self) -> &mut super::core::Vec4;
     fn id(&self) -> &u32;
+    fn id_mut(&mut self) -> &mut u32;
 }
 
 impl EmitterExclusionVolumeTrait for EmitterExclusionVolume {
     fn left(&self) -> &super::core::Vec4 {
         &self.left
     }
+    fn left_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.left
+    }
     fn up(&self) -> &super::core::Vec4 {
         &self.up
+    }
+    fn up_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.up
     }
     fn forward(&self) -> &super::core::Vec4 {
         &self.forward
     }
+    fn forward_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.forward
+    }
     fn half_extents(&self) -> &super::core::Vec4 {
         &self.half_extents
     }
+    fn half_extents_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.half_extents
+    }
     fn id(&self) -> &u32 {
         &self.id
+    }
+    fn id_mut(&mut self) -> &mut u32 {
+        &mut self.id
     }
 }
 
@@ -3915,6 +4992,15 @@ impl TypeObject for EmitterExclusionVolume {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3990,223 +5076,439 @@ pub struct EmitterGraph {
 
 pub trait EmitterGraphTrait: super::emitter_base::EmitterGraphBaseAssetTrait {
     fn spawn_mode2(&self) -> &Option<Arc<Mutex<dyn SpawnModeInfoTrait>>>;
+    fn spawn_mode2_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SpawnModeInfoTrait>>>;
     fn use_node_graph(&self) -> &bool;
+    fn use_node_graph_mut(&mut self) -> &mut bool;
     fn graph_data(&self) -> &Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>>;
+    fn graph_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>>;
     fn spawn_mode(&self) -> &EmitterGraphSpawnMode;
+    fn spawn_mode_mut(&mut self) -> &mut EmitterGraphSpawnMode;
     fn spawn_rate(&self) -> &super::core::QualityScalableFloat;
+    fn spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn particle_max_count(&self) -> &super::core::QualityScalableInt;
+    fn particle_max_count_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn particle_life_span(&self) -> &super::core::QualityScalableFloat;
+    fn particle_life_span_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn planar_reflections_enabled(&self) -> &bool;
+    fn planar_reflections_enabled_mut(&mut self) -> &mut bool;
     fn normalize_mesh_start_ids(&self) -> &bool;
+    fn normalize_mesh_start_ids_mut(&mut self) -> &mut bool;
     fn meshes(&self) -> &Vec<EmitterGraphMesh>;
+    fn meshes_mut(&mut self) -> &mut Vec<EmitterGraphMesh>;
     fn object_variation_name_hash(&self) -> &u32;
+    fn object_variation_name_hash_mut(&mut self) -> &mut u32;
     fn requires_per_root_view_duplication(&self) -> &bool;
+    fn requires_per_root_view_duplication_mut(&mut self) -> &mut bool;
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn draw_pass(&self) -> &EmitterGraphDrawPass;
+    fn draw_pass_mut(&mut self) -> &mut EmitterGraphDrawPass;
     fn draw_layer(&self) -> &EmitterGraphDrawLayer;
+    fn draw_layer_mut(&mut self) -> &mut EmitterGraphDrawLayer;
     fn sort_mode(&self) -> &EmitterGraphSortMode;
+    fn sort_mode_mut(&mut self) -> &mut EmitterGraphSortMode;
     fn user_buffers(&self) -> &Vec<EmitterGraphUserBuffer>;
+    fn user_buffers_mut(&mut self) -> &mut Vec<EmitterGraphUserBuffer>;
     fn spawn_shader_override(&self) -> &glacier_reflect::builtin::FileRef;
+    fn spawn_shader_override_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef;
     fn simulate_shader_override(&self) -> &glacier_reflect::builtin::FileRef;
+    fn simulate_shader_override_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef;
     fn texture0(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture0_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn texture1(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture1_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn z_buffer_enable(&self) -> &bool;
+    fn z_buffer_enable_mut(&mut self) -> &mut bool;
     fn emitter_life_span(&self) -> &super::core::QualityScalableFloat;
+    fn emitter_life_span_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn kill_on_stop(&self) -> &bool;
+    fn kill_on_stop_mut(&mut self) -> &mut bool;
     fn emitter_min_spawn_distance(&self) -> &super::core::QualityScalableFloat;
+    fn emitter_min_spawn_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn emitter_max_spawn_distance(&self) -> &super::core::QualityScalableFloat;
+    fn emitter_max_spawn_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn spawn_outside_view_radius(&self) -> &f32;
+    fn spawn_outside_view_radius_mut(&mut self) -> &mut f32;
     fn bounding_box_min(&self) -> &super::core::Vec3;
+    fn bounding_box_min_mut(&mut self) -> &mut super::core::Vec3;
     fn bounding_box_max(&self) -> &super::core::Vec3;
+    fn bounding_box_max_mut(&mut self) -> &mut super::core::Vec3;
     fn culled_behavior(&self) -> &EmitterGraphCulledBehavior;
+    fn culled_behavior_mut(&mut self) -> &mut EmitterGraphCulledBehavior;
     fn skip_update_max_count(&self) -> &i32;
+    fn skip_update_max_count_mut(&mut self) -> &mut i32;
     fn emitter_mesh_culling_distance(&self) -> &f32;
+    fn emitter_mesh_culling_distance_mut(&mut self) -> &mut f32;
     fn min_screen_area(&self) -> &f32;
+    fn min_screen_area_mut(&mut self) -> &mut f32;
     fn gpu_particle_culling_enable(&self) -> &bool;
+    fn gpu_particle_culling_enable_mut(&mut self) -> &mut bool;
     fn gpu_particle_culling_radius(&self) -> &f32;
+    fn gpu_particle_culling_radius_mut(&mut self) -> &mut f32;
     fn gpu_particle_culling_distance(&self) -> &super::core::QualityScalableFloat;
+    fn gpu_particle_culling_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn mesh_vertex_shader_fragment_code_file(&self) -> &glacier_reflect::builtin::FileRef;
+    fn mesh_vertex_shader_fragment_code_file_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef;
     fn effect_params(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
+    fn effect_params_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
     fn emitter_graph_params(&self) -> &Vec<super::effect_base::EmitterExposedInput>;
+    fn emitter_graph_params_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedInput>;
     fn is_using_opaque_lit_root_node(&self) -> &bool;
+    fn is_using_opaque_lit_root_node_mut(&mut self) -> &mut bool;
     fn is_using_lit_root_node(&self) -> &bool;
+    fn is_using_lit_root_node_mut(&mut self) -> &mut bool;
     fn is_using_gpu_lighting(&self) -> &bool;
+    fn is_using_gpu_lighting_mut(&mut self) -> &mut bool;
     fn compiled_spawn_graph_compute_shader(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn compiled_spawn_graph_compute_shader_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn compiled_simulate_graph_compute_shader(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn compiled_simulate_graph_compute_shader_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn vertex_shader_fragment_asset_name(&self) -> &String;
+    fn vertex_shader_fragment_asset_name_mut(&mut self) -> &mut String;
     fn mesh_vertex_shader_fragment_asset_name(&self) -> &String;
+    fn mesh_vertex_shader_fragment_asset_name_mut(&mut self) -> &mut String;
     fn particle_data_byte_stride(&self) -> &u32;
+    fn particle_data_byte_stride_mut(&mut self) -> &mut u32;
     fn particle_data_buffer_layout_hash(&self) -> &u32;
+    fn particle_data_buffer_layout_hash_mut(&mut self) -> &mut u32;
     fn simulate_runtime_textures(&self) -> &Vec<RuntimeTexture>;
+    fn simulate_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture>;
     fn simulate_runtime_samplers(&self) -> &Vec<RuntimeSampler>;
+    fn simulate_runtime_samplers_mut(&mut self) -> &mut Vec<RuntimeSampler>;
     fn spawn_runtime_textures(&self) -> &Vec<RuntimeTexture>;
+    fn spawn_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture>;
     fn spawn_runtime_samplers(&self) -> &Vec<RuntimeSampler>;
+    fn spawn_runtime_samplers_mut(&mut self) -> &mut Vec<RuntimeSampler>;
     fn vertex_shader_runtime_textures(&self) -> &Vec<RuntimeTexture>;
+    fn vertex_shader_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture>;
     fn runtime_particle_data_buffers(&self) -> &Vec<RuntimeParticleDataBuffer>;
+    fn runtime_particle_data_buffers_mut(&mut self) -> &mut Vec<RuntimeParticleDataBuffer>;
 }
 
 impl EmitterGraphTrait for EmitterGraph {
     fn spawn_mode2(&self) -> &Option<Arc<Mutex<dyn SpawnModeInfoTrait>>> {
         &self.spawn_mode2
     }
+    fn spawn_mode2_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SpawnModeInfoTrait>>> {
+        &mut self.spawn_mode2
+    }
     fn use_node_graph(&self) -> &bool {
         &self.use_node_graph
+    }
+    fn use_node_graph_mut(&mut self) -> &mut bool {
+        &mut self.use_node_graph
     }
     fn graph_data(&self) -> &Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>> {
         &self.graph_data
     }
+    fn graph_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>> {
+        &mut self.graph_data
+    }
     fn spawn_mode(&self) -> &EmitterGraphSpawnMode {
         &self.spawn_mode
+    }
+    fn spawn_mode_mut(&mut self) -> &mut EmitterGraphSpawnMode {
+        &mut self.spawn_mode
     }
     fn spawn_rate(&self) -> &super::core::QualityScalableFloat {
         &self.spawn_rate
     }
+    fn spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.spawn_rate
+    }
     fn particle_max_count(&self) -> &super::core::QualityScalableInt {
         &self.particle_max_count
+    }
+    fn particle_max_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.particle_max_count
     }
     fn particle_life_span(&self) -> &super::core::QualityScalableFloat {
         &self.particle_life_span
     }
+    fn particle_life_span_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.particle_life_span
+    }
     fn planar_reflections_enabled(&self) -> &bool {
         &self.planar_reflections_enabled
+    }
+    fn planar_reflections_enabled_mut(&mut self) -> &mut bool {
+        &mut self.planar_reflections_enabled
     }
     fn normalize_mesh_start_ids(&self) -> &bool {
         &self.normalize_mesh_start_ids
     }
+    fn normalize_mesh_start_ids_mut(&mut self) -> &mut bool {
+        &mut self.normalize_mesh_start_ids
+    }
     fn meshes(&self) -> &Vec<EmitterGraphMesh> {
         &self.meshes
+    }
+    fn meshes_mut(&mut self) -> &mut Vec<EmitterGraphMesh> {
+        &mut self.meshes
     }
     fn object_variation_name_hash(&self) -> &u32 {
         &self.object_variation_name_hash
     }
+    fn object_variation_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.object_variation_name_hash
+    }
     fn requires_per_root_view_duplication(&self) -> &bool {
         &self.requires_per_root_view_duplication
+    }
+    fn requires_per_root_view_duplication_mut(&mut self) -> &mut bool {
+        &mut self.requires_per_root_view_duplication
     }
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.shader
     }
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.shader
+    }
     fn draw_pass(&self) -> &EmitterGraphDrawPass {
         &self.draw_pass
+    }
+    fn draw_pass_mut(&mut self) -> &mut EmitterGraphDrawPass {
+        &mut self.draw_pass
     }
     fn draw_layer(&self) -> &EmitterGraphDrawLayer {
         &self.draw_layer
     }
+    fn draw_layer_mut(&mut self) -> &mut EmitterGraphDrawLayer {
+        &mut self.draw_layer
+    }
     fn sort_mode(&self) -> &EmitterGraphSortMode {
         &self.sort_mode
+    }
+    fn sort_mode_mut(&mut self) -> &mut EmitterGraphSortMode {
+        &mut self.sort_mode
     }
     fn user_buffers(&self) -> &Vec<EmitterGraphUserBuffer> {
         &self.user_buffers
     }
+    fn user_buffers_mut(&mut self) -> &mut Vec<EmitterGraphUserBuffer> {
+        &mut self.user_buffers
+    }
     fn spawn_shader_override(&self) -> &glacier_reflect::builtin::FileRef {
         &self.spawn_shader_override
+    }
+    fn spawn_shader_override_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef {
+        &mut self.spawn_shader_override
     }
     fn simulate_shader_override(&self) -> &glacier_reflect::builtin::FileRef {
         &self.simulate_shader_override
     }
+    fn simulate_shader_override_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef {
+        &mut self.simulate_shader_override
+    }
     fn texture0(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture0
+    }
+    fn texture0_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture0
     }
     fn texture1(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture1
     }
+    fn texture1_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture1
+    }
     fn z_buffer_enable(&self) -> &bool {
         &self.z_buffer_enable
+    }
+    fn z_buffer_enable_mut(&mut self) -> &mut bool {
+        &mut self.z_buffer_enable
     }
     fn emitter_life_span(&self) -> &super::core::QualityScalableFloat {
         &self.emitter_life_span
     }
+    fn emitter_life_span_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.emitter_life_span
+    }
     fn kill_on_stop(&self) -> &bool {
         &self.kill_on_stop
+    }
+    fn kill_on_stop_mut(&mut self) -> &mut bool {
+        &mut self.kill_on_stop
     }
     fn emitter_min_spawn_distance(&self) -> &super::core::QualityScalableFloat {
         &self.emitter_min_spawn_distance
     }
+    fn emitter_min_spawn_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.emitter_min_spawn_distance
+    }
     fn emitter_max_spawn_distance(&self) -> &super::core::QualityScalableFloat {
         &self.emitter_max_spawn_distance
+    }
+    fn emitter_max_spawn_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.emitter_max_spawn_distance
     }
     fn spawn_outside_view_radius(&self) -> &f32 {
         &self.spawn_outside_view_radius
     }
+    fn spawn_outside_view_radius_mut(&mut self) -> &mut f32 {
+        &mut self.spawn_outside_view_radius
+    }
     fn bounding_box_min(&self) -> &super::core::Vec3 {
         &self.bounding_box_min
+    }
+    fn bounding_box_min_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.bounding_box_min
     }
     fn bounding_box_max(&self) -> &super::core::Vec3 {
         &self.bounding_box_max
     }
+    fn bounding_box_max_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.bounding_box_max
+    }
     fn culled_behavior(&self) -> &EmitterGraphCulledBehavior {
         &self.culled_behavior
+    }
+    fn culled_behavior_mut(&mut self) -> &mut EmitterGraphCulledBehavior {
+        &mut self.culled_behavior
     }
     fn skip_update_max_count(&self) -> &i32 {
         &self.skip_update_max_count
     }
+    fn skip_update_max_count_mut(&mut self) -> &mut i32 {
+        &mut self.skip_update_max_count
+    }
     fn emitter_mesh_culling_distance(&self) -> &f32 {
         &self.emitter_mesh_culling_distance
+    }
+    fn emitter_mesh_culling_distance_mut(&mut self) -> &mut f32 {
+        &mut self.emitter_mesh_culling_distance
     }
     fn min_screen_area(&self) -> &f32 {
         &self.min_screen_area
     }
+    fn min_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.min_screen_area
+    }
     fn gpu_particle_culling_enable(&self) -> &bool {
         &self.gpu_particle_culling_enable
+    }
+    fn gpu_particle_culling_enable_mut(&mut self) -> &mut bool {
+        &mut self.gpu_particle_culling_enable
     }
     fn gpu_particle_culling_radius(&self) -> &f32 {
         &self.gpu_particle_culling_radius
     }
+    fn gpu_particle_culling_radius_mut(&mut self) -> &mut f32 {
+        &mut self.gpu_particle_culling_radius
+    }
     fn gpu_particle_culling_distance(&self) -> &super::core::QualityScalableFloat {
         &self.gpu_particle_culling_distance
+    }
+    fn gpu_particle_culling_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.gpu_particle_culling_distance
     }
     fn mesh_vertex_shader_fragment_code_file(&self) -> &glacier_reflect::builtin::FileRef {
         &self.mesh_vertex_shader_fragment_code_file
     }
+    fn mesh_vertex_shader_fragment_code_file_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef {
+        &mut self.mesh_vertex_shader_fragment_code_file
+    }
     fn effect_params(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
         &self.effect_params
+    }
+    fn effect_params_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+        &mut self.effect_params
     }
     fn emitter_graph_params(&self) -> &Vec<super::effect_base::EmitterExposedInput> {
         &self.emitter_graph_params
     }
+    fn emitter_graph_params_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedInput> {
+        &mut self.emitter_graph_params
+    }
     fn is_using_opaque_lit_root_node(&self) -> &bool {
         &self.is_using_opaque_lit_root_node
+    }
+    fn is_using_opaque_lit_root_node_mut(&mut self) -> &mut bool {
+        &mut self.is_using_opaque_lit_root_node
     }
     fn is_using_lit_root_node(&self) -> &bool {
         &self.is_using_lit_root_node
     }
+    fn is_using_lit_root_node_mut(&mut self) -> &mut bool {
+        &mut self.is_using_lit_root_node
+    }
     fn is_using_gpu_lighting(&self) -> &bool {
         &self.is_using_gpu_lighting
+    }
+    fn is_using_gpu_lighting_mut(&mut self) -> &mut bool {
+        &mut self.is_using_gpu_lighting
     }
     fn compiled_spawn_graph_compute_shader(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.compiled_spawn_graph_compute_shader
     }
+    fn compiled_spawn_graph_compute_shader_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.compiled_spawn_graph_compute_shader
+    }
     fn compiled_simulate_graph_compute_shader(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.compiled_simulate_graph_compute_shader
+    }
+    fn compiled_simulate_graph_compute_shader_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.compiled_simulate_graph_compute_shader
     }
     fn vertex_shader_fragment_asset_name(&self) -> &String {
         &self.vertex_shader_fragment_asset_name
     }
+    fn vertex_shader_fragment_asset_name_mut(&mut self) -> &mut String {
+        &mut self.vertex_shader_fragment_asset_name
+    }
     fn mesh_vertex_shader_fragment_asset_name(&self) -> &String {
         &self.mesh_vertex_shader_fragment_asset_name
+    }
+    fn mesh_vertex_shader_fragment_asset_name_mut(&mut self) -> &mut String {
+        &mut self.mesh_vertex_shader_fragment_asset_name
     }
     fn particle_data_byte_stride(&self) -> &u32 {
         &self.particle_data_byte_stride
     }
+    fn particle_data_byte_stride_mut(&mut self) -> &mut u32 {
+        &mut self.particle_data_byte_stride
+    }
     fn particle_data_buffer_layout_hash(&self) -> &u32 {
         &self.particle_data_buffer_layout_hash
+    }
+    fn particle_data_buffer_layout_hash_mut(&mut self) -> &mut u32 {
+        &mut self.particle_data_buffer_layout_hash
     }
     fn simulate_runtime_textures(&self) -> &Vec<RuntimeTexture> {
         &self.simulate_runtime_textures
     }
+    fn simulate_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture> {
+        &mut self.simulate_runtime_textures
+    }
     fn simulate_runtime_samplers(&self) -> &Vec<RuntimeSampler> {
         &self.simulate_runtime_samplers
+    }
+    fn simulate_runtime_samplers_mut(&mut self) -> &mut Vec<RuntimeSampler> {
+        &mut self.simulate_runtime_samplers
     }
     fn spawn_runtime_textures(&self) -> &Vec<RuntimeTexture> {
         &self.spawn_runtime_textures
     }
+    fn spawn_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture> {
+        &mut self.spawn_runtime_textures
+    }
     fn spawn_runtime_samplers(&self) -> &Vec<RuntimeSampler> {
         &self.spawn_runtime_samplers
+    }
+    fn spawn_runtime_samplers_mut(&mut self) -> &mut Vec<RuntimeSampler> {
+        &mut self.spawn_runtime_samplers
     }
     fn vertex_shader_runtime_textures(&self) -> &Vec<RuntimeTexture> {
         &self.vertex_shader_runtime_textures
     }
+    fn vertex_shader_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture> {
+        &mut self.vertex_shader_runtime_textures
+    }
     fn runtime_particle_data_buffers(&self) -> &Vec<RuntimeParticleDataBuffer> {
         &self.runtime_particle_data_buffers
+    }
+    fn runtime_particle_data_buffers_mut(&mut self) -> &mut Vec<RuntimeParticleDataBuffer> {
+        &mut self.runtime_particle_data_buffers
     }
 }
 
@@ -4217,12 +5519,12 @@ impl super::core::AssetTrait for EmitterGraph {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EmitterGraph {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERGRAPH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4572,6 +5874,15 @@ impl TypeObject for EmitterGraph {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4594,19 +5905,31 @@ pub struct RuntimeParticleDataBuffer {
 
 pub trait RuntimeParticleDataBufferTrait: TypeObject {
     fn shader_parameter_handle(&self) -> &u32;
+    fn shader_parameter_handle_mut(&mut self) -> &mut u32;
     fn bind_point(&self) -> &u8;
+    fn bind_point_mut(&mut self) -> &mut u8;
     fn buffer_type(&self) -> &EmitterGraphParticleDataType;
+    fn buffer_type_mut(&mut self) -> &mut EmitterGraphParticleDataType;
 }
 
 impl RuntimeParticleDataBufferTrait for RuntimeParticleDataBuffer {
     fn shader_parameter_handle(&self) -> &u32 {
         &self.shader_parameter_handle
     }
+    fn shader_parameter_handle_mut(&mut self) -> &mut u32 {
+        &mut self.shader_parameter_handle
+    }
     fn bind_point(&self) -> &u8 {
         &self.bind_point
     }
+    fn bind_point_mut(&mut self) -> &mut u8 {
+        &mut self.bind_point
+    }
     fn buffer_type(&self) -> &EmitterGraphParticleDataType {
         &self.buffer_type
+    }
+    fn buffer_type_mut(&mut self) -> &mut EmitterGraphParticleDataType {
+        &mut self.buffer_type
     }
 }
 
@@ -4650,6 +5973,15 @@ impl TypeObject for RuntimeParticleDataBuffer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4672,19 +6004,31 @@ pub struct RuntimeSampler {
 
 pub trait RuntimeSamplerTrait: TypeObject {
     fn bind_point(&self) -> &u8;
+    fn bind_point_mut(&mut self) -> &mut u8;
     fn filter(&self) -> &super::render::TextureFilter;
+    fn filter_mut(&mut self) -> &mut super::render::TextureFilter;
     fn address(&self) -> &super::render_base::TextureAddress;
+    fn address_mut(&mut self) -> &mut super::render_base::TextureAddress;
 }
 
 impl RuntimeSamplerTrait for RuntimeSampler {
     fn bind_point(&self) -> &u8 {
         &self.bind_point
     }
+    fn bind_point_mut(&mut self) -> &mut u8 {
+        &mut self.bind_point
+    }
     fn filter(&self) -> &super::render::TextureFilter {
         &self.filter
     }
+    fn filter_mut(&mut self) -> &mut super::render::TextureFilter {
+        &mut self.filter
+    }
     fn address(&self) -> &super::render_base::TextureAddress {
         &self.address
+    }
+    fn address_mut(&mut self) -> &mut super::render_base::TextureAddress {
+        &mut self.address
     }
 }
 
@@ -4728,6 +6072,15 @@ impl TypeObject for RuntimeSampler {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4751,23 +6104,39 @@ pub struct RuntimeTexture {
 
 pub trait RuntimeTextureTrait: TypeObject {
     fn bind_point(&self) -> &u8;
+    fn bind_point_mut(&mut self) -> &mut u8;
     fn shader_parameter_handle(&self) -> &u32;
+    fn shader_parameter_handle_mut(&mut self) -> &mut u32;
     fn texture_type(&self) -> &super::render::TextureType;
+    fn texture_type_mut(&mut self) -> &mut super::render::TextureType;
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
 }
 
 impl RuntimeTextureTrait for RuntimeTexture {
     fn bind_point(&self) -> &u8 {
         &self.bind_point
     }
+    fn bind_point_mut(&mut self) -> &mut u8 {
+        &mut self.bind_point
+    }
     fn shader_parameter_handle(&self) -> &u32 {
         &self.shader_parameter_handle
+    }
+    fn shader_parameter_handle_mut(&mut self) -> &mut u32 {
+        &mut self.shader_parameter_handle
     }
     fn texture_type(&self) -> &super::render::TextureType {
         &self.texture_type
     }
+    fn texture_type_mut(&mut self) -> &mut super::render::TextureType {
+        &mut self.texture_type
+    }
     fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.texture
+    }
+    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.texture
     }
 }
 
@@ -4817,6 +6186,15 @@ impl TypeObject for RuntimeTexture {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4840,23 +6218,39 @@ pub struct EmitterGraphMesh {
 
 pub trait EmitterGraphMeshTrait: TypeObject {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>>;
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>>;
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
     fn object_variation_name_hash(&self) -> &u32;
+    fn object_variation_name_hash_mut(&mut self) -> &mut u32;
     fn start_id(&self) -> &u32;
+    fn start_id_mut(&mut self) -> &mut u32;
 }
 
 impl EmitterGraphMeshTrait for EmitterGraphMesh {
     fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>> {
         &self.mesh
     }
+    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>> {
+        &mut self.mesh
+    }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         &self.object_variation
+    }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        &mut self.object_variation
     }
     fn object_variation_name_hash(&self) -> &u32 {
         &self.object_variation_name_hash
     }
+    fn object_variation_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.object_variation_name_hash
+    }
     fn start_id(&self) -> &u32 {
         &self.start_id
+    }
+    fn start_id_mut(&mut self) -> &mut u32 {
+        &mut self.start_id
     }
 }
 
@@ -4906,6 +6300,15 @@ impl TypeObject for EmitterGraphMesh {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4927,15 +6330,23 @@ pub struct EmitterGraphUserBuffer {
 
 pub trait EmitterGraphUserBufferTrait: TypeObject {
     fn bind_point(&self) -> &u8;
+    fn bind_point_mut(&mut self) -> &mut u8;
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
 }
 
 impl EmitterGraphUserBufferTrait for EmitterGraphUserBuffer {
     fn bind_point(&self) -> &u8 {
         &self.bind_point
     }
+    fn bind_point_mut(&mut self) -> &mut u8 {
+        &mut self.bind_point
+    }
     fn name(&self) -> &String {
         &self.name
+    }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
     }
 }
 
@@ -4972,6 +6383,15 @@ impl TypeObject for EmitterGraphUserBuffer {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5010,6 +6430,15 @@ impl TypeObject for EmitterGraphSpawnMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5052,6 +6481,15 @@ impl TypeObject for EmitterGraphSortMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5090,6 +6528,15 @@ impl TypeObject for EmitterGraphDrawLayer {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5131,6 +6578,15 @@ impl TypeObject for EmitterGraphDrawPass {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5169,6 +6625,15 @@ impl TypeObject for EmitterGraphCulledBehavior {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5210,6 +6675,15 @@ impl TypeObject for EmitterGraphConfig {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5233,19 +6707,31 @@ pub struct RandomSpawnRateModifier {
 
 pub trait RandomSpawnRateModifierTrait: SpawnRateModifierTrait {
     fn frequency(&self) -> &EmitterGraphRandomFrequency;
+    fn frequency_mut(&mut self) -> &mut EmitterGraphRandomFrequency;
     fn min(&self) -> &f32;
+    fn min_mut(&mut self) -> &mut f32;
     fn max(&self) -> &f32;
+    fn max_mut(&mut self) -> &mut f32;
 }
 
 impl RandomSpawnRateModifierTrait for RandomSpawnRateModifier {
     fn frequency(&self) -> &EmitterGraphRandomFrequency {
         &self.frequency
     }
+    fn frequency_mut(&mut self) -> &mut EmitterGraphRandomFrequency {
+        &mut self.frequency
+    }
     fn min(&self) -> &f32 {
         &self.min
     }
+    fn min_mut(&mut self) -> &mut f32 {
+        &mut self.min
+    }
     fn max(&self) -> &f32 {
         &self.max
+    }
+    fn max_mut(&mut self) -> &mut f32 {
+        &mut self.max
     }
 }
 
@@ -5253,9 +6739,6 @@ impl SpawnRateModifierTrait for RandomSpawnRateModifier {
 }
 
 impl super::core::DataContainerTrait for RandomSpawnRateModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RANDOMSPAWNRATEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5299,6 +6782,15 @@ impl TypeObject for RandomSpawnRateModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5337,6 +6829,15 @@ impl TypeObject for EmitterGraphRandomFrequency {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5359,15 +6860,23 @@ pub struct EmitterSpawnRateModifier {
 
 pub trait EmitterSpawnRateModifierTrait: SpawnRateModifierTrait {
     fn emitter_property(&self) -> &EmitterGraphSpawnProperty;
+    fn emitter_property_mut(&mut self) -> &mut EmitterGraphSpawnProperty;
     fn curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
 }
 
 impl EmitterSpawnRateModifierTrait for EmitterSpawnRateModifier {
     fn emitter_property(&self) -> &EmitterGraphSpawnProperty {
         &self.emitter_property
     }
+    fn emitter_property_mut(&mut self) -> &mut EmitterGraphSpawnProperty {
+        &mut self.emitter_property
+    }
     fn curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.curve
+    }
+    fn curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.curve
     }
 }
 
@@ -5375,9 +6884,6 @@ impl SpawnRateModifierTrait for EmitterSpawnRateModifier {
 }
 
 impl super::core::DataContainerTrait for EmitterSpawnRateModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERSPAWNRATEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5415,6 +6921,15 @@ impl TypeObject for EmitterSpawnRateModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5437,15 +6952,23 @@ pub struct EffectParameterSpawnRateModifier {
 
 pub trait EffectParameterSpawnRateModifierTrait: SpawnRateModifierTrait {
     fn effect_parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
+    fn effect_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
     fn curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
 }
 
 impl EffectParameterSpawnRateModifierTrait for EffectParameterSpawnRateModifier {
     fn effect_parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         &self.effect_parameter
     }
+    fn effect_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        &mut self.effect_parameter
+    }
     fn curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.curve
+    }
+    fn curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.curve
     }
 }
 
@@ -5453,9 +6976,6 @@ impl SpawnRateModifierTrait for EffectParameterSpawnRateModifier {
 }
 
 impl super::core::DataContainerTrait for EffectParameterSpawnRateModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EFFECTPARAMETERSPAWNRATEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5493,6 +7013,15 @@ impl TypeObject for EffectParameterSpawnRateModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5518,9 +7047,6 @@ impl SpawnRateModifierTrait for SpawnRateModifier {
 }
 
 impl super::core::DataContainerTrait for SpawnRateModifier {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNRATEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5545,6 +7071,15 @@ impl TypeObject for SpawnRateModifier {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5585,6 +7120,15 @@ impl TypeObject for EmitterGraphSpawnProperty {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5609,23 +7153,39 @@ pub struct SpawnModeContinuous {
 
 pub trait SpawnModeContinuousTrait: SpawnModeInfoTrait {
     fn spawn_rate(&self) -> &super::core::QualityScalableFloat;
+    fn spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn min_spawn_rate(&self) -> &super::core::QualityScalableFloat;
+    fn min_spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn max_spawn_rate(&self) -> &super::core::QualityScalableFloat;
+    fn max_spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn spawn_rate_multipliers(&self) -> &Vec<Option<Arc<Mutex<dyn SpawnRateModifierTrait>>>>;
+    fn spawn_rate_multipliers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SpawnRateModifierTrait>>>>;
 }
 
 impl SpawnModeContinuousTrait for SpawnModeContinuous {
     fn spawn_rate(&self) -> &super::core::QualityScalableFloat {
         &self.spawn_rate
     }
+    fn spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.spawn_rate
+    }
     fn min_spawn_rate(&self) -> &super::core::QualityScalableFloat {
         &self.min_spawn_rate
+    }
+    fn min_spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.min_spawn_rate
     }
     fn max_spawn_rate(&self) -> &super::core::QualityScalableFloat {
         &self.max_spawn_rate
     }
+    fn max_spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.max_spawn_rate
+    }
     fn spawn_rate_multipliers(&self) -> &Vec<Option<Arc<Mutex<dyn SpawnRateModifierTrait>>>> {
         &self.spawn_rate_multipliers
+    }
+    fn spawn_rate_multipliers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SpawnRateModifierTrait>>>> {
+        &mut self.spawn_rate_multipliers
     }
 }
 
@@ -5633,15 +7193,18 @@ impl SpawnModeInfoTrait for SpawnModeContinuous {
     fn particle_max_count(&self) -> &super::core::QualityScalableInt {
         self._glacier_base.particle_max_count()
     }
+    fn particle_max_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        self._glacier_base.particle_max_count_mut()
+    }
     fn spawn_mode_enum(&self) -> &EmitterGraphSpawnMode {
         self._glacier_base.spawn_mode_enum()
+    }
+    fn spawn_mode_enum_mut(&mut self) -> &mut EmitterGraphSpawnMode {
+        self._glacier_base.spawn_mode_enum_mut()
     }
 }
 
 impl super::core::DataContainerTrait for SpawnModeContinuous {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNMODECONTINUOUS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5691,6 +7254,15 @@ impl TypeObject for SpawnModeContinuous {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5719,15 +7291,18 @@ impl SpawnModeInfoTrait for SpawnModeBurst {
     fn particle_max_count(&self) -> &super::core::QualityScalableInt {
         self._glacier_base.particle_max_count()
     }
+    fn particle_max_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        self._glacier_base.particle_max_count_mut()
+    }
     fn spawn_mode_enum(&self) -> &EmitterGraphSpawnMode {
         self._glacier_base.spawn_mode_enum()
+    }
+    fn spawn_mode_enum_mut(&mut self) -> &mut EmitterGraphSpawnMode {
+        self._glacier_base.spawn_mode_enum_mut()
     }
 }
 
 impl super::core::DataContainerTrait for SpawnModeBurst {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNMODEBURST_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5753,6 +7328,15 @@ impl TypeObject for SpawnModeBurst {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5775,22 +7359,27 @@ pub struct SpawnModeInfo {
 
 pub trait SpawnModeInfoTrait: super::core::DataContainerTrait {
     fn particle_max_count(&self) -> &super::core::QualityScalableInt;
+    fn particle_max_count_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn spawn_mode_enum(&self) -> &EmitterGraphSpawnMode;
+    fn spawn_mode_enum_mut(&mut self) -> &mut EmitterGraphSpawnMode;
 }
 
 impl SpawnModeInfoTrait for SpawnModeInfo {
     fn particle_max_count(&self) -> &super::core::QualityScalableInt {
         &self.particle_max_count
     }
+    fn particle_max_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.particle_max_count
+    }
     fn spawn_mode_enum(&self) -> &EmitterGraphSpawnMode {
         &self.spawn_mode_enum
+    }
+    fn spawn_mode_enum_mut(&mut self) -> &mut EmitterGraphSpawnMode {
+        &mut self.spawn_mode_enum
     }
 }
 
 impl super::core::DataContainerTrait for SpawnModeInfo {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNMODEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5828,6 +7417,15 @@ impl TypeObject for SpawnModeInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5851,23 +7449,39 @@ pub struct VertexShaderParam {
 
 pub trait VertexShaderParamTrait: TypeObject {
     fn param_name(&self) -> &String;
+    fn param_name_mut(&mut self) -> &mut String;
     fn value(&self) -> &super::core::Vec4;
+    fn value_mut(&mut self) -> &mut super::core::Vec4;
     fn param_type(&self) -> &super::effect_base::EmitterGraphParamType;
+    fn param_type_mut(&mut self) -> &mut super::effect_base::EmitterGraphParamType;
     fn value_type(&self) -> &super::emitter_base::EmitterExposableType;
+    fn value_type_mut(&mut self) -> &mut super::emitter_base::EmitterExposableType;
 }
 
 impl VertexShaderParamTrait for VertexShaderParam {
     fn param_name(&self) -> &String {
         &self.param_name
     }
+    fn param_name_mut(&mut self) -> &mut String {
+        &mut self.param_name
+    }
     fn value(&self) -> &super::core::Vec4 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.value
     }
     fn param_type(&self) -> &super::effect_base::EmitterGraphParamType {
         &self.param_type
     }
+    fn param_type_mut(&mut self) -> &mut super::effect_base::EmitterGraphParamType {
+        &mut self.param_type
+    }
     fn value_type(&self) -> &super::emitter_base::EmitterExposableType {
         &self.value_type
+    }
+    fn value_type_mut(&mut self) -> &mut super::emitter_base::EmitterExposableType {
+        &mut self.value_type
     }
 }
 
@@ -5917,6 +7531,15 @@ impl TypeObject for VertexShaderParam {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5940,23 +7563,39 @@ pub struct VertexShaderTextureParam {
 
 pub trait VertexShaderTextureParamTrait: TypeObject {
     fn param_name(&self) -> &String;
+    fn param_name_mut(&mut self) -> &mut String;
     fn value(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn address_mode(&self) -> &TextureNodeAddress;
+    fn address_mode_mut(&mut self) -> &mut TextureNodeAddress;
     fn filter_mode(&self) -> &TextureNodeFilter;
+    fn filter_mode_mut(&mut self) -> &mut TextureNodeFilter;
 }
 
 impl VertexShaderTextureParamTrait for VertexShaderTextureParam {
     fn param_name(&self) -> &String {
         &self.param_name
     }
+    fn param_name_mut(&mut self) -> &mut String {
+        &mut self.param_name
+    }
     fn value(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.value
     }
     fn address_mode(&self) -> &TextureNodeAddress {
         &self.address_mode
     }
+    fn address_mode_mut(&mut self) -> &mut TextureNodeAddress {
+        &mut self.address_mode
+    }
     fn filter_mode(&self) -> &TextureNodeFilter {
         &self.filter_mode
+    }
+    fn filter_mode_mut(&mut self) -> &mut TextureNodeFilter {
+        &mut self.filter_mode
     }
 }
 
@@ -6006,6 +7645,15 @@ impl TypeObject for VertexShaderTextureParam {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6051,6 +7699,15 @@ impl TypeObject for EmitterGraphParticleDataType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6088,6 +7745,15 @@ impl TypeObject for TextureNodeFilter {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6127,6 +7793,15 @@ impl TypeObject for TextureNodeAddress {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6150,19 +7825,31 @@ pub struct EmitterExclusionVolumesAsset {
 
 pub trait EmitterExclusionVolumesAssetTrait: super::emitter_base::EmitterExclusionVolumesBaseAssetTrait {
     fn exclusion_volumes_count(&self) -> &u32;
+    fn exclusion_volumes_count_mut(&mut self) -> &mut u32;
     fn exclusion_volumes(&self) -> &Vec<EmitterExclusionVolume>;
+    fn exclusion_volumes_mut(&mut self) -> &mut Vec<EmitterExclusionVolume>;
     fn exclusion_volume_bounding_spheres(&self) -> &Vec<EmitterExclusionVolumeBoundingSphereSoA>;
+    fn exclusion_volume_bounding_spheres_mut(&mut self) -> &mut Vec<EmitterExclusionVolumeBoundingSphereSoA>;
 }
 
 impl EmitterExclusionVolumesAssetTrait for EmitterExclusionVolumesAsset {
     fn exclusion_volumes_count(&self) -> &u32 {
         &self.exclusion_volumes_count
     }
+    fn exclusion_volumes_count_mut(&mut self) -> &mut u32 {
+        &mut self.exclusion_volumes_count
+    }
     fn exclusion_volumes(&self) -> &Vec<EmitterExclusionVolume> {
         &self.exclusion_volumes
     }
+    fn exclusion_volumes_mut(&mut self) -> &mut Vec<EmitterExclusionVolume> {
+        &mut self.exclusion_volumes
+    }
     fn exclusion_volume_bounding_spheres(&self) -> &Vec<EmitterExclusionVolumeBoundingSphereSoA> {
         &self.exclusion_volume_bounding_spheres
+    }
+    fn exclusion_volume_bounding_spheres_mut(&mut self) -> &mut Vec<EmitterExclusionVolumeBoundingSphereSoA> {
+        &mut self.exclusion_volume_bounding_spheres
     }
 }
 
@@ -6173,12 +7860,12 @@ impl super::core::AssetTrait for EmitterExclusionVolumesAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EmitterExclusionVolumesAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTEREXCLUSIONVOLUMESASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6222,6 +7909,15 @@ impl TypeObject for EmitterExclusionVolumesAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6243,11 +7939,15 @@ pub struct MeshEmitterMaskAsset {
 
 pub trait MeshEmitterMaskAssetTrait: super::effect_base::MeshEmitterMaskBaseAssetTrait {
     fn mesh_emitter_mask_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn mesh_emitter_mask_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl MeshEmitterMaskAssetTrait for MeshEmitterMaskAsset {
     fn mesh_emitter_mask_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.mesh_emitter_mask_resource
+    }
+    fn mesh_emitter_mask_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.mesh_emitter_mask_resource
     }
 }
 
@@ -6258,12 +7958,12 @@ impl super::core::AssetTrait for MeshEmitterMaskAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MeshEmitterMaskAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MESHEMITTERMASKASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6295,6 +7995,15 @@ impl TypeObject for MeshEmitterMaskAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6316,11 +8025,15 @@ pub struct MeshEmitterAsset {
 
 pub trait MeshEmitterAssetTrait: super::effect_base::MeshEmitterBaseAssetTrait {
     fn mesh_emitter_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn mesh_emitter_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl MeshEmitterAssetTrait for MeshEmitterAsset {
     fn mesh_emitter_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.mesh_emitter_resource
+    }
+    fn mesh_emitter_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.mesh_emitter_resource
     }
 }
 
@@ -6331,12 +8044,12 @@ impl super::core::AssetTrait for MeshEmitterAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MeshEmitterAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MESHEMITTERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6367,6 +8080,15 @@ impl TypeObject for MeshEmitterAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6399,12 +8121,12 @@ impl super::core::AssetTrait for EmitterAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EmitterAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6430,6 +8152,15 @@ impl TypeObject for EmitterAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6451,11 +8182,15 @@ pub struct UpdateStencilMaskData {
 
 pub trait UpdateStencilMaskDataTrait: ProcessorDataTrait {
     fn mask(&self) -> &EmitterStencilMask;
+    fn mask_mut(&mut self) -> &mut EmitterStencilMask;
 }
 
 impl UpdateStencilMaskDataTrait for UpdateStencilMaskData {
     fn mask(&self) -> &EmitterStencilMask {
         &self.mask
+    }
+    fn mask_mut(&mut self) -> &mut EmitterStencilMask {
+        &mut self.mask
     }
 }
 
@@ -6463,24 +8198,36 @@ impl ProcessorDataTrait for UpdateStencilMaskData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateStencilMaskData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATESTENCILMASKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6511,6 +8258,15 @@ impl TypeObject for UpdateStencilMaskData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6551,6 +8307,15 @@ impl TypeObject for EmitterStencilMask {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6572,11 +8337,15 @@ pub struct UpdateVolumeMaskData {
 
 pub trait UpdateVolumeMaskDataTrait: ProcessorDataTrait {
     fn mask_type(&self) -> &VolumeMaskType;
+    fn mask_type_mut(&mut self) -> &mut VolumeMaskType;
 }
 
 impl UpdateVolumeMaskDataTrait for UpdateVolumeMaskData {
     fn mask_type(&self) -> &VolumeMaskType {
         &self.mask_type
+    }
+    fn mask_type_mut(&mut self) -> &mut VolumeMaskType {
+        &mut self.mask_type
     }
 }
 
@@ -6584,24 +8353,36 @@ impl ProcessorDataTrait for UpdateVolumeMaskData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateVolumeMaskData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEVOLUMEMASKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6632,6 +8413,15 @@ impl TypeObject for UpdateVolumeMaskData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6672,6 +8462,15 @@ impl TypeObject for VolumeMaskType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6694,15 +8493,23 @@ pub struct UpdateVolumetricData {
 
 pub trait UpdateVolumetricDataTrait: ProcessorDataTrait {
     fn absorption(&self) -> &f32;
+    fn absorption_mut(&mut self) -> &mut f32;
     fn high_quality_injection(&self) -> &bool;
+    fn high_quality_injection_mut(&mut self) -> &mut bool;
 }
 
 impl UpdateVolumetricDataTrait for UpdateVolumetricData {
     fn absorption(&self) -> &f32 {
         &self.absorption
     }
+    fn absorption_mut(&mut self) -> &mut f32 {
+        &mut self.absorption
+    }
     fn high_quality_injection(&self) -> &bool {
         &self.high_quality_injection
+    }
+    fn high_quality_injection_mut(&mut self) -> &mut bool {
+        &mut self.high_quality_injection
     }
 }
 
@@ -6710,24 +8517,36 @@ impl ProcessorDataTrait for UpdateVolumetricData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateVolumetricData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEVOLUMETRICDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6765,6 +8584,15 @@ impl TypeObject for UpdateVolumetricData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6786,11 +8614,15 @@ pub struct UpdateMeshEmitterMaskData {
 
 pub trait UpdateMeshEmitterMaskDataTrait: ProcessorDataTrait {
     fn mesh_emitter_mask(&self) -> &Option<Arc<Mutex<dyn MeshEmitterMaskAssetTrait>>>;
+    fn mesh_emitter_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MeshEmitterMaskAssetTrait>>>;
 }
 
 impl UpdateMeshEmitterMaskDataTrait for UpdateMeshEmitterMaskData {
     fn mesh_emitter_mask(&self) -> &Option<Arc<Mutex<dyn MeshEmitterMaskAssetTrait>>> {
         &self.mesh_emitter_mask
+    }
+    fn mesh_emitter_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MeshEmitterMaskAssetTrait>>> {
+        &mut self.mesh_emitter_mask
     }
 }
 
@@ -6798,24 +8630,36 @@ impl ProcessorDataTrait for UpdateMeshEmitterMaskData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateMeshEmitterMaskData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEMESHEMITTERMASKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6847,6 +8691,15 @@ impl TypeObject for UpdateMeshEmitterMaskData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6875,39 +8728,71 @@ pub struct UpdateMeshEmitterSourceData {
 
 pub trait UpdateMeshEmitterSourceDataTrait: ProcessorDataTrait {
     fn mesh_emitter(&self) -> &Option<Arc<Mutex<dyn MeshEmitterAssetTrait>>>;
+    fn mesh_emitter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MeshEmitterAssetTrait>>>;
     fn generate_position(&self) -> &bool;
+    fn generate_position_mut(&mut self) -> &mut bool;
     fn generate_normal(&self) -> &bool;
+    fn generate_normal_mut(&mut self) -> &mut bool;
     fn generate_u_vs(&self) -> &bool;
+    fn generate_u_vs_mut(&mut self) -> &mut bool;
     fn send_mesh_uvs_to_shader_graph(&self) -> &bool;
+    fn send_mesh_uvs_to_shader_graph_mut(&mut self) -> &mut bool;
     fn sequential_emission(&self) -> &bool;
+    fn sequential_emission_mut(&mut self) -> &mut bool;
     fn particles_per_primitive(&self) -> &u32;
+    fn particles_per_primitive_mut(&mut self) -> &mut u32;
     fn random_position(&self) -> &f32;
+    fn random_position_mut(&mut self) -> &mut f32;
 }
 
 impl UpdateMeshEmitterSourceDataTrait for UpdateMeshEmitterSourceData {
     fn mesh_emitter(&self) -> &Option<Arc<Mutex<dyn MeshEmitterAssetTrait>>> {
         &self.mesh_emitter
     }
+    fn mesh_emitter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MeshEmitterAssetTrait>>> {
+        &mut self.mesh_emitter
+    }
     fn generate_position(&self) -> &bool {
         &self.generate_position
+    }
+    fn generate_position_mut(&mut self) -> &mut bool {
+        &mut self.generate_position
     }
     fn generate_normal(&self) -> &bool {
         &self.generate_normal
     }
+    fn generate_normal_mut(&mut self) -> &mut bool {
+        &mut self.generate_normal
+    }
     fn generate_u_vs(&self) -> &bool {
         &self.generate_u_vs
+    }
+    fn generate_u_vs_mut(&mut self) -> &mut bool {
+        &mut self.generate_u_vs
     }
     fn send_mesh_uvs_to_shader_graph(&self) -> &bool {
         &self.send_mesh_uvs_to_shader_graph
     }
+    fn send_mesh_uvs_to_shader_graph_mut(&mut self) -> &mut bool {
+        &mut self.send_mesh_uvs_to_shader_graph
+    }
     fn sequential_emission(&self) -> &bool {
         &self.sequential_emission
+    }
+    fn sequential_emission_mut(&mut self) -> &mut bool {
+        &mut self.sequential_emission
     }
     fn particles_per_primitive(&self) -> &u32 {
         &self.particles_per_primitive
     }
+    fn particles_per_primitive_mut(&mut self) -> &mut u32 {
+        &mut self.particles_per_primitive
+    }
     fn random_position(&self) -> &f32 {
         &self.random_position
+    }
+    fn random_position_mut(&mut self) -> &mut f32 {
+        &mut self.random_position
     }
 }
 
@@ -6915,24 +8800,36 @@ impl ProcessorDataTrait for UpdateMeshEmitterSourceData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateMeshEmitterSourceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEMESHEMITTERSOURCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7006,6 +8903,15 @@ impl TypeObject for UpdateMeshEmitterSourceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7031,27 +8937,47 @@ pub struct UpdateVertexAnimData {
 
 pub trait UpdateVertexAnimDataTrait: ProcessorDataTrait {
     fn shader_fragment(&self) -> &Option<Arc<Mutex<dyn super::render::VertexShaderFragmentAssetTrait>>>;
+    fn shader_fragment_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::VertexShaderFragmentAssetTrait>>>;
     fn per_particle_randomness(&self) -> &f32;
+    fn per_particle_randomness_mut(&mut self) -> &mut f32;
     fn frequency_multiplier(&self) -> &f32;
+    fn frequency_multiplier_mut(&mut self) -> &mut f32;
     fn animation_parameters(&self) -> &super::core::Vec4;
+    fn animation_parameters_mut(&mut self) -> &mut super::core::Vec4;
     fn animation_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn animation_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
 }
 
 impl UpdateVertexAnimDataTrait for UpdateVertexAnimData {
     fn shader_fragment(&self) -> &Option<Arc<Mutex<dyn super::render::VertexShaderFragmentAssetTrait>>> {
         &self.shader_fragment
     }
+    fn shader_fragment_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::VertexShaderFragmentAssetTrait>>> {
+        &mut self.shader_fragment
+    }
     fn per_particle_randomness(&self) -> &f32 {
         &self.per_particle_randomness
+    }
+    fn per_particle_randomness_mut(&mut self) -> &mut f32 {
+        &mut self.per_particle_randomness
     }
     fn frequency_multiplier(&self) -> &f32 {
         &self.frequency_multiplier
     }
+    fn frequency_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.frequency_multiplier
+    }
     fn animation_parameters(&self) -> &super::core::Vec4 {
         &self.animation_parameters
     }
+    fn animation_parameters_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.animation_parameters
+    }
     fn animation_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.animation_texture
+    }
+    fn animation_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.animation_texture
     }
 }
 
@@ -7059,24 +8985,36 @@ impl ProcessorDataTrait for UpdateVertexAnimData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateVertexAnimData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEVERTEXANIMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7132,6 +9070,15 @@ impl TypeObject for UpdateVertexAnimData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7161,43 +9108,79 @@ pub struct UpdateBeamPointData {
 
 pub trait UpdateBeamPointDataTrait: ProcessorDataTrait {
     fn num_points(&self) -> &u32;
+    fn num_points_mut(&mut self) -> &mut u32;
     fn num_ctrl_points(&self) -> &u32;
+    fn num_ctrl_points_mut(&mut self) -> &mut u32;
     fn taper_coefficients(&self) -> &super::core::Vec4;
+    fn taper_coefficients_mut(&mut self) -> &mut super::core::Vec4;
     fn attractor(&self) -> &LocationSelection;
+    fn attractor_mut(&mut self) -> &mut LocationSelection;
     fn attractor_coefficients(&self) -> &super::core::Vec4;
+    fn attractor_coefficients_mut(&mut self) -> &mut super::core::Vec4;
     fn param_override(&self) -> &ParamOverrideSelection;
+    fn param_override_mut(&mut self) -> &mut ParamOverrideSelection;
     fn param_coefficients(&self) -> &super::core::Vec4;
+    fn param_coefficients_mut(&mut self) -> &mut super::core::Vec4;
     fn beam_interpolation(&self) -> &BeamInterpolation;
+    fn beam_interpolation_mut(&mut self) -> &mut BeamInterpolation;
     fn coefficient(&self) -> &f32;
+    fn coefficient_mut(&mut self) -> &mut f32;
 }
 
 impl UpdateBeamPointDataTrait for UpdateBeamPointData {
     fn num_points(&self) -> &u32 {
         &self.num_points
     }
+    fn num_points_mut(&mut self) -> &mut u32 {
+        &mut self.num_points
+    }
     fn num_ctrl_points(&self) -> &u32 {
         &self.num_ctrl_points
+    }
+    fn num_ctrl_points_mut(&mut self) -> &mut u32 {
+        &mut self.num_ctrl_points
     }
     fn taper_coefficients(&self) -> &super::core::Vec4 {
         &self.taper_coefficients
     }
+    fn taper_coefficients_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.taper_coefficients
+    }
     fn attractor(&self) -> &LocationSelection {
         &self.attractor
+    }
+    fn attractor_mut(&mut self) -> &mut LocationSelection {
+        &mut self.attractor
     }
     fn attractor_coefficients(&self) -> &super::core::Vec4 {
         &self.attractor_coefficients
     }
+    fn attractor_coefficients_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.attractor_coefficients
+    }
     fn param_override(&self) -> &ParamOverrideSelection {
         &self.param_override
+    }
+    fn param_override_mut(&mut self) -> &mut ParamOverrideSelection {
+        &mut self.param_override
     }
     fn param_coefficients(&self) -> &super::core::Vec4 {
         &self.param_coefficients
     }
+    fn param_coefficients_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.param_coefficients
+    }
     fn beam_interpolation(&self) -> &BeamInterpolation {
         &self.beam_interpolation
     }
+    fn beam_interpolation_mut(&mut self) -> &mut BeamInterpolation {
+        &mut self.beam_interpolation
+    }
     fn coefficient(&self) -> &f32 {
         &self.coefficient
+    }
+    fn coefficient_mut(&mut self) -> &mut f32 {
+        &mut self.coefficient
     }
 }
 
@@ -7205,24 +9188,36 @@ impl ProcessorDataTrait for UpdateBeamPointData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateBeamPointData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEBEAMPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7302,6 +9297,15 @@ impl TypeObject for UpdateBeamPointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7341,6 +9345,15 @@ impl TypeObject for BeamInterpolation {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7362,11 +9375,15 @@ pub struct UpdateBeamTargetData {
 
 pub trait UpdateBeamTargetDataTrait: ProcessorDataTrait {
     fn target(&self) -> &LocationSelection;
+    fn target_mut(&mut self) -> &mut LocationSelection;
 }
 
 impl UpdateBeamTargetDataTrait for UpdateBeamTargetData {
     fn target(&self) -> &LocationSelection {
         &self.target
+    }
+    fn target_mut(&mut self) -> &mut LocationSelection {
+        &mut self.target
     }
 }
 
@@ -7374,24 +9391,36 @@ impl ProcessorDataTrait for UpdateBeamTargetData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateBeamTargetData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEBEAMTARGETDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7423,6 +9452,15 @@ impl TypeObject for UpdateBeamTargetData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7444,11 +9482,15 @@ pub struct UpdateBeamSourceData {
 
 pub trait UpdateBeamSourceDataTrait: ProcessorDataTrait {
     fn source(&self) -> &LocationSelection;
+    fn source_mut(&mut self) -> &mut LocationSelection;
 }
 
 impl UpdateBeamSourceDataTrait for UpdateBeamSourceData {
     fn source(&self) -> &LocationSelection {
         &self.source
+    }
+    fn source_mut(&mut self) -> &mut LocationSelection {
+        &mut self.source
     }
 }
 
@@ -7456,24 +9498,36 @@ impl ProcessorDataTrait for UpdateBeamSourceData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateBeamSourceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEBEAMSOURCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7504,6 +9558,15 @@ impl TypeObject for UpdateBeamSourceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7545,6 +9608,15 @@ impl TypeObject for ParamOverrideSelection {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -7589,6 +9661,15 @@ impl TypeObject for LocationSelection {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7617,24 +9698,36 @@ impl ProcessorDataTrait for UpdateQuadBendingAngleData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateQuadBendingAngleData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEQUADBENDINGANGLEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7660,6 +9753,15 @@ impl TypeObject for UpdateQuadBendingAngleData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7681,11 +9783,15 @@ pub struct UpdateClipScaleData {
 
 pub trait UpdateClipScaleDataTrait: ProcessorDataTrait {
     fn lookup(&self) -> &Vec<i16>;
+    fn lookup_mut(&mut self) -> &mut Vec<i16>;
 }
 
 impl UpdateClipScaleDataTrait for UpdateClipScaleData {
     fn lookup(&self) -> &Vec<i16> {
         &self.lookup
+    }
+    fn lookup_mut(&mut self) -> &mut Vec<i16> {
+        &mut self.lookup
     }
 }
 
@@ -7693,24 +9799,36 @@ impl ProcessorDataTrait for UpdateClipScaleData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateClipScaleData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATECLIPSCALEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7742,6 +9860,15 @@ impl TypeObject for UpdateClipScaleData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7763,11 +9890,15 @@ pub struct SnapToWaterData {
 
 pub trait SnapToWaterDataTrait: ProcessorDataTrait {
     fn offset(&self) -> &f32;
+    fn offset_mut(&mut self) -> &mut f32;
 }
 
 impl SnapToWaterDataTrait for SnapToWaterData {
     fn offset(&self) -> &f32 {
         &self.offset
+    }
+    fn offset_mut(&mut self) -> &mut f32 {
+        &mut self.offset
     }
 }
 
@@ -7775,24 +9906,36 @@ impl ProcessorDataTrait for SnapToWaterData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SnapToWaterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SNAPTOWATERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7823,6 +9966,15 @@ impl TypeObject for SnapToWaterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7873,123 +10025,239 @@ pub struct UpdateCollisionData {
 
 pub trait UpdateCollisionDataTrait: ProcessorDataTrait {
     fn restitution(&self) -> &f32;
+    fn restitution_mut(&mut self) -> &mut f32;
     fn reflection_bias(&self) -> &f32;
+    fn reflection_bias_mut(&mut self) -> &mut f32;
     fn rest_speed_threshold(&self) -> &f32;
+    fn rest_speed_threshold_mut(&mut self) -> &mut f32;
     fn randomness(&self) -> &f32;
+    fn randomness_mut(&mut self) -> &mut f32;
     fn kill_on_collision(&self) -> &bool;
+    fn kill_on_collision_mut(&mut self) -> &mut bool;
     fn death_effect_orientation(&self) -> &EmitterCollisionEffectOrientation;
+    fn death_effect_orientation_mut(&mut self) -> &mut EmitterCollisionEffectOrientation;
     fn collision_type(&self) -> &EmitterCollisionType;
+    fn collision_type_mut(&mut self) -> &mut EmitterCollisionType;
     fn collision_radius_factor(&self) -> &f32;
+    fn collision_radius_factor_mut(&mut self) -> &mut f32;
     fn method(&self) -> &EmitterCollisionMethod;
+    fn method_mut(&mut self) -> &mut EmitterCollisionMethod;
     fn priority(&self) -> &EmitterCollisionPriority;
+    fn priority_mut(&mut self) -> &mut EmitterCollisionPriority;
     fn snap_on_terrain(&self) -> &bool;
+    fn snap_on_terrain_mut(&mut self) -> &mut bool;
     fn snap_offset_based_on_emitter(&self) -> &f32;
+    fn snap_offset_based_on_emitter_mut(&mut self) -> &mut f32;
     fn snap_relative_offset_factor(&self) -> &f32;
+    fn snap_relative_offset_factor_mut(&mut self) -> &mut f32;
     fn snap_range(&self) -> &f32;
+    fn snap_range_mut(&mut self) -> &mut f32;
     fn snap_velocity(&self) -> &EmitterSnapVelocityType;
+    fn snap_velocity_mut(&mut self) -> &mut EmitterSnapVelocityType;
     fn snap_type(&self) -> &EmitterTerrainSnapType;
+    fn snap_type_mut(&mut self) -> &mut EmitterTerrainSnapType;
     fn repel_factor(&self) -> &f32;
+    fn repel_factor_mut(&mut self) -> &mut f32;
     fn repel_height(&self) -> &f32;
+    fn repel_height_mut(&mut self) -> &mut f32;
     fn material_pair(&self) -> &super::entity::MaterialDecl;
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn throttle(&self) -> &f32;
+    fn throttle_mut(&mut self) -> &mut f32;
     fn throttle_far_distance(&self) -> &f32;
+    fn throttle_far_distance_mut(&mut self) -> &mut f32;
     fn throttle_envelope(&self) -> &super::core::Vec4;
+    fn throttle_envelope_mut(&mut self) -> &mut super::core::Vec4;
     fn check_water(&self) -> &bool;
+    fn check_water_mut(&mut self) -> &mut bool;
     fn check_terrain(&self) -> &bool;
+    fn check_terrain_mut(&mut self) -> &mut bool;
     fn check_ragdoll(&self) -> &bool;
+    fn check_ragdoll_mut(&mut self) -> &mut bool;
     fn check_character(&self) -> &bool;
+    fn check_character_mut(&mut self) -> &mut bool;
     fn check_group(&self) -> &bool;
+    fn check_group_mut(&mut self) -> &mut bool;
     fn check_phantoms(&self) -> &bool;
+    fn check_phantoms_mut(&mut self) -> &mut bool;
     fn check_simple_shape(&self) -> &bool;
+    fn check_simple_shape_mut(&mut self) -> &mut bool;
 }
 
 impl UpdateCollisionDataTrait for UpdateCollisionData {
     fn restitution(&self) -> &f32 {
         &self.restitution
     }
+    fn restitution_mut(&mut self) -> &mut f32 {
+        &mut self.restitution
+    }
     fn reflection_bias(&self) -> &f32 {
         &self.reflection_bias
+    }
+    fn reflection_bias_mut(&mut self) -> &mut f32 {
+        &mut self.reflection_bias
     }
     fn rest_speed_threshold(&self) -> &f32 {
         &self.rest_speed_threshold
     }
+    fn rest_speed_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.rest_speed_threshold
+    }
     fn randomness(&self) -> &f32 {
         &self.randomness
+    }
+    fn randomness_mut(&mut self) -> &mut f32 {
+        &mut self.randomness
     }
     fn kill_on_collision(&self) -> &bool {
         &self.kill_on_collision
     }
+    fn kill_on_collision_mut(&mut self) -> &mut bool {
+        &mut self.kill_on_collision
+    }
     fn death_effect_orientation(&self) -> &EmitterCollisionEffectOrientation {
         &self.death_effect_orientation
+    }
+    fn death_effect_orientation_mut(&mut self) -> &mut EmitterCollisionEffectOrientation {
+        &mut self.death_effect_orientation
     }
     fn collision_type(&self) -> &EmitterCollisionType {
         &self.collision_type
     }
+    fn collision_type_mut(&mut self) -> &mut EmitterCollisionType {
+        &mut self.collision_type
+    }
     fn collision_radius_factor(&self) -> &f32 {
         &self.collision_radius_factor
+    }
+    fn collision_radius_factor_mut(&mut self) -> &mut f32 {
+        &mut self.collision_radius_factor
     }
     fn method(&self) -> &EmitterCollisionMethod {
         &self.method
     }
+    fn method_mut(&mut self) -> &mut EmitterCollisionMethod {
+        &mut self.method
+    }
     fn priority(&self) -> &EmitterCollisionPriority {
         &self.priority
+    }
+    fn priority_mut(&mut self) -> &mut EmitterCollisionPriority {
+        &mut self.priority
     }
     fn snap_on_terrain(&self) -> &bool {
         &self.snap_on_terrain
     }
+    fn snap_on_terrain_mut(&mut self) -> &mut bool {
+        &mut self.snap_on_terrain
+    }
     fn snap_offset_based_on_emitter(&self) -> &f32 {
         &self.snap_offset_based_on_emitter
+    }
+    fn snap_offset_based_on_emitter_mut(&mut self) -> &mut f32 {
+        &mut self.snap_offset_based_on_emitter
     }
     fn snap_relative_offset_factor(&self) -> &f32 {
         &self.snap_relative_offset_factor
     }
+    fn snap_relative_offset_factor_mut(&mut self) -> &mut f32 {
+        &mut self.snap_relative_offset_factor
+    }
     fn snap_range(&self) -> &f32 {
         &self.snap_range
+    }
+    fn snap_range_mut(&mut self) -> &mut f32 {
+        &mut self.snap_range
     }
     fn snap_velocity(&self) -> &EmitterSnapVelocityType {
         &self.snap_velocity
     }
+    fn snap_velocity_mut(&mut self) -> &mut EmitterSnapVelocityType {
+        &mut self.snap_velocity
+    }
     fn snap_type(&self) -> &EmitterTerrainSnapType {
         &self.snap_type
+    }
+    fn snap_type_mut(&mut self) -> &mut EmitterTerrainSnapType {
+        &mut self.snap_type
     }
     fn repel_factor(&self) -> &f32 {
         &self.repel_factor
     }
+    fn repel_factor_mut(&mut self) -> &mut f32 {
+        &mut self.repel_factor
+    }
     fn repel_height(&self) -> &f32 {
         &self.repel_height
+    }
+    fn repel_height_mut(&mut self) -> &mut f32 {
+        &mut self.repel_height
     }
     fn material_pair(&self) -> &super::entity::MaterialDecl {
         &self.material_pair
     }
+    fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.material_pair
+    }
     fn throttle(&self) -> &f32 {
         &self.throttle
+    }
+    fn throttle_mut(&mut self) -> &mut f32 {
+        &mut self.throttle
     }
     fn throttle_far_distance(&self) -> &f32 {
         &self.throttle_far_distance
     }
+    fn throttle_far_distance_mut(&mut self) -> &mut f32 {
+        &mut self.throttle_far_distance
+    }
     fn throttle_envelope(&self) -> &super::core::Vec4 {
         &self.throttle_envelope
+    }
+    fn throttle_envelope_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.throttle_envelope
     }
     fn check_water(&self) -> &bool {
         &self.check_water
     }
+    fn check_water_mut(&mut self) -> &mut bool {
+        &mut self.check_water
+    }
     fn check_terrain(&self) -> &bool {
         &self.check_terrain
+    }
+    fn check_terrain_mut(&mut self) -> &mut bool {
+        &mut self.check_terrain
     }
     fn check_ragdoll(&self) -> &bool {
         &self.check_ragdoll
     }
+    fn check_ragdoll_mut(&mut self) -> &mut bool {
+        &mut self.check_ragdoll
+    }
     fn check_character(&self) -> &bool {
         &self.check_character
+    }
+    fn check_character_mut(&mut self) -> &mut bool {
+        &mut self.check_character
     }
     fn check_group(&self) -> &bool {
         &self.check_group
     }
+    fn check_group_mut(&mut self) -> &mut bool {
+        &mut self.check_group
+    }
     fn check_phantoms(&self) -> &bool {
         &self.check_phantoms
     }
+    fn check_phantoms_mut(&mut self) -> &mut bool {
+        &mut self.check_phantoms
+    }
     fn check_simple_shape(&self) -> &bool {
         &self.check_simple_shape
+    }
+    fn check_simple_shape_mut(&mut self) -> &mut bool {
+        &mut self.check_simple_shape
     }
 }
 
@@ -7997,24 +10265,36 @@ impl ProcessorDataTrait for UpdateCollisionData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateCollisionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATECOLLISIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8214,6 +10494,15 @@ impl TypeObject for UpdateCollisionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8252,6 +10541,15 @@ impl TypeObject for EmitterCollisionEffectOrientation {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -8293,6 +10591,15 @@ impl TypeObject for EmitterCollisionType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8332,6 +10639,15 @@ impl TypeObject for EmitterCollisionPriority {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8370,6 +10686,15 @@ impl TypeObject for EmitterSnapVelocityType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -8411,6 +10736,15 @@ impl TypeObject for EmitterTerrainSnapType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8450,6 +10784,15 @@ impl TypeObject for EmitterCollisionMethod {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8473,19 +10816,31 @@ pub struct UpdateCameraProximityData {
 
 pub trait UpdateCameraProximityDataTrait: ProcessorDataTrait {
     fn size(&self) -> &super::core::Vec3;
+    fn size_mut(&mut self) -> &mut super::core::Vec3;
     fn fade_distance(&self) -> &super::core::Vec3;
+    fn fade_distance_mut(&mut self) -> &mut super::core::Vec3;
     fn forward_offset(&self) -> &f32;
+    fn forward_offset_mut(&mut self) -> &mut f32;
 }
 
 impl UpdateCameraProximityDataTrait for UpdateCameraProximityData {
     fn size(&self) -> &super::core::Vec3 {
         &self.size
     }
+    fn size_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.size
+    }
     fn fade_distance(&self) -> &super::core::Vec3 {
         &self.fade_distance
     }
+    fn fade_distance_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.fade_distance
+    }
     fn forward_offset(&self) -> &f32 {
         &self.forward_offset
+    }
+    fn forward_offset_mut(&mut self) -> &mut f32 {
+        &mut self.forward_offset
     }
 }
 
@@ -8493,24 +10848,36 @@ impl ProcessorDataTrait for UpdateCameraProximityData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateCameraProximityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATECAMERAPROXIMITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8554,6 +10921,15 @@ impl TypeObject for UpdateCameraProximityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8575,11 +10951,15 @@ pub struct UpdateTrapezoidShapeData {
 
 pub trait UpdateTrapezoidShapeDataTrait: ProcessorDataTrait {
     fn scale(&self) -> &f32;
+    fn scale_mut(&mut self) -> &mut f32;
 }
 
 impl UpdateTrapezoidShapeDataTrait for UpdateTrapezoidShapeData {
     fn scale(&self) -> &f32 {
         &self.scale
+    }
+    fn scale_mut(&mut self) -> &mut f32 {
+        &mut self.scale
     }
 }
 
@@ -8587,24 +10967,36 @@ impl ProcessorDataTrait for UpdateTrapezoidShapeData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateTrapezoidShapeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATETRAPEZOIDSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8636,6 +11028,15 @@ impl TypeObject for UpdateTrapezoidShapeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8660,23 +11061,39 @@ pub struct UpdateBackLightData {
 
 pub trait UpdateBackLightDataTrait: ProcessorDataTrait {
     fn vertex_back_light(&self) -> &f32;
+    fn vertex_back_light_mut(&mut self) -> &mut f32;
     fn gnomon_back_light(&self) -> &f32;
+    fn gnomon_back_light_mut(&mut self) -> &mut f32;
     fn pixel_contrast(&self) -> &f32;
+    fn pixel_contrast_mut(&mut self) -> &mut f32;
     fn view_independent_contrast(&self) -> &f32;
+    fn view_independent_contrast_mut(&mut self) -> &mut f32;
 }
 
 impl UpdateBackLightDataTrait for UpdateBackLightData {
     fn vertex_back_light(&self) -> &f32 {
         &self.vertex_back_light
     }
+    fn vertex_back_light_mut(&mut self) -> &mut f32 {
+        &mut self.vertex_back_light
+    }
     fn gnomon_back_light(&self) -> &f32 {
         &self.gnomon_back_light
+    }
+    fn gnomon_back_light_mut(&mut self) -> &mut f32 {
+        &mut self.gnomon_back_light
     }
     fn pixel_contrast(&self) -> &f32 {
         &self.pixel_contrast
     }
+    fn pixel_contrast_mut(&mut self) -> &mut f32 {
+        &mut self.pixel_contrast
+    }
     fn view_independent_contrast(&self) -> &f32 {
         &self.view_independent_contrast
+    }
+    fn view_independent_contrast_mut(&mut self) -> &mut f32 {
+        &mut self.view_independent_contrast
     }
 }
 
@@ -8684,24 +11101,36 @@ impl ProcessorDataTrait for UpdateBackLightData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateBackLightData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEBACKLIGHTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8751,6 +11180,15 @@ impl TypeObject for UpdateBackLightData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8779,24 +11217,36 @@ impl ProcessorDataTrait for UpdateLightWrapAroundData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateLightWrapAroundData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATELIGHTWRAPAROUNDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8822,6 +11272,15 @@ impl TypeObject for UpdateLightWrapAroundData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8843,11 +11302,15 @@ pub struct UpdateTextureColorLerpData {
 
 pub trait UpdateTextureColorLerpDataTrait: ProcessorDataTrait {
     fn texture_color_strength(&self) -> &f32;
+    fn texture_color_strength_mut(&mut self) -> &mut f32;
 }
 
 impl UpdateTextureColorLerpDataTrait for UpdateTextureColorLerpData {
     fn texture_color_strength(&self) -> &f32 {
         &self.texture_color_strength
+    }
+    fn texture_color_strength_mut(&mut self) -> &mut f32 {
+        &mut self.texture_color_strength
     }
 }
 
@@ -8855,24 +11318,36 @@ impl ProcessorDataTrait for UpdateTextureColorLerpData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateTextureColorLerpData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATETEXTURECOLORLERPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8904,6 +11379,15 @@ impl TypeObject for UpdateTextureColorLerpData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8925,11 +11409,15 @@ pub struct UpdateAlphaLevelScaleData {
 
 pub trait UpdateAlphaLevelScaleDataTrait: ProcessorDataTrait {
     fn exponent(&self) -> &f32;
+    fn exponent_mut(&mut self) -> &mut f32;
 }
 
 impl UpdateAlphaLevelScaleDataTrait for UpdateAlphaLevelScaleData {
     fn exponent(&self) -> &f32 {
         &self.exponent
+    }
+    fn exponent_mut(&mut self) -> &mut f32 {
+        &mut self.exponent
     }
 }
 
@@ -8937,24 +11425,36 @@ impl ProcessorDataTrait for UpdateAlphaLevelScaleData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateAlphaLevelScaleData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEALPHALEVELSCALEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8986,6 +11486,15 @@ impl TypeObject for UpdateAlphaLevelScaleData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9007,11 +11516,15 @@ pub struct UpdateAlphaLevelMaxData {
 
 pub trait UpdateAlphaLevelMaxDataTrait: ProcessorDataTrait {
     fn max_level(&self) -> &f32;
+    fn max_level_mut(&mut self) -> &mut f32;
 }
 
 impl UpdateAlphaLevelMaxDataTrait for UpdateAlphaLevelMaxData {
     fn max_level(&self) -> &f32 {
         &self.max_level
+    }
+    fn max_level_mut(&mut self) -> &mut f32 {
+        &mut self.max_level
     }
 }
 
@@ -9019,24 +11532,36 @@ impl ProcessorDataTrait for UpdateAlphaLevelMaxData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateAlphaLevelMaxData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEALPHALEVELMAXDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9068,6 +11593,15 @@ impl TypeObject for UpdateAlphaLevelMaxData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9089,11 +11623,15 @@ pub struct UpdateAlphaLevelMinData {
 
 pub trait UpdateAlphaLevelMinDataTrait: ProcessorDataTrait {
     fn min_level(&self) -> &f32;
+    fn min_level_mut(&mut self) -> &mut f32;
 }
 
 impl UpdateAlphaLevelMinDataTrait for UpdateAlphaLevelMinData {
     fn min_level(&self) -> &f32 {
         &self.min_level
+    }
+    fn min_level_mut(&mut self) -> &mut f32 {
+        &mut self.min_level
     }
 }
 
@@ -9101,24 +11639,36 @@ impl ProcessorDataTrait for UpdateAlphaLevelMinData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateAlphaLevelMinData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEALPHALEVELMINDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9150,6 +11700,15 @@ impl TypeObject for UpdateAlphaLevelMinData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9173,19 +11732,31 @@ pub struct UpdateRibbonTextureData {
 
 pub trait UpdateRibbonTextureDataTrait: ProcessorDataTrait {
     fn texture_particle_count(&self) -> &i32;
+    fn texture_particle_count_mut(&mut self) -> &mut i32;
     fn mirror_texture(&self) -> &bool;
+    fn mirror_texture_mut(&mut self) -> &mut bool;
     fn beam_like_coords(&self) -> &bool;
+    fn beam_like_coords_mut(&mut self) -> &mut bool;
 }
 
 impl UpdateRibbonTextureDataTrait for UpdateRibbonTextureData {
     fn texture_particle_count(&self) -> &i32 {
         &self.texture_particle_count
     }
+    fn texture_particle_count_mut(&mut self) -> &mut i32 {
+        &mut self.texture_particle_count
+    }
     fn mirror_texture(&self) -> &bool {
         &self.mirror_texture
     }
+    fn mirror_texture_mut(&mut self) -> &mut bool {
+        &mut self.mirror_texture
+    }
     fn beam_like_coords(&self) -> &bool {
         &self.beam_like_coords
+    }
+    fn beam_like_coords_mut(&mut self) -> &mut bool {
+        &mut self.beam_like_coords
     }
 }
 
@@ -9193,24 +11764,36 @@ impl ProcessorDataTrait for UpdateRibbonTextureData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateRibbonTextureData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATERIBBONTEXTUREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9254,6 +11837,15 @@ impl TypeObject for UpdateRibbonTextureData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9276,15 +11868,23 @@ pub struct UpdateRibbonFadeData {
 
 pub trait UpdateRibbonFadeDataTrait: ProcessorDataTrait {
     fn fade_in_particle_count(&self) -> &i32;
+    fn fade_in_particle_count_mut(&mut self) -> &mut i32;
     fn fade_out_particle_count(&self) -> &i32;
+    fn fade_out_particle_count_mut(&mut self) -> &mut i32;
 }
 
 impl UpdateRibbonFadeDataTrait for UpdateRibbonFadeData {
     fn fade_in_particle_count(&self) -> &i32 {
         &self.fade_in_particle_count
     }
+    fn fade_in_particle_count_mut(&mut self) -> &mut i32 {
+        &mut self.fade_in_particle_count
+    }
     fn fade_out_particle_count(&self) -> &i32 {
         &self.fade_out_particle_count
+    }
+    fn fade_out_particle_count_mut(&mut self) -> &mut i32 {
+        &mut self.fade_out_particle_count
     }
 }
 
@@ -9292,24 +11892,36 @@ impl ProcessorDataTrait for UpdateRibbonFadeData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateRibbonFadeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATERIBBONFADEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9347,6 +11959,15 @@ impl TypeObject for UpdateRibbonFadeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9375,24 +11996,36 @@ impl ProcessorDataTrait for UpdateTransparencySecondaryData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateTransparencySecondaryData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATETRANSPARENCYSECONDARYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9417,6 +12050,15 @@ impl TypeObject for UpdateTransparencySecondaryData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9446,24 +12088,36 @@ impl ProcessorDataTrait for UpdateTransparencyData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateTransparencyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATETRANSPARENCYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9489,6 +12143,15 @@ impl TypeObject for UpdateTransparencyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9510,11 +12173,15 @@ pub struct UpdateColorSecondaryData {
 
 pub trait UpdateColorSecondaryDataTrait: ProcessorDataTrait {
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl UpdateColorSecondaryDataTrait for UpdateColorSecondaryData {
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
 }
 
@@ -9522,24 +12189,36 @@ impl ProcessorDataTrait for UpdateColorSecondaryData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateColorSecondaryData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATECOLORSECONDARYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9571,6 +12250,15 @@ impl TypeObject for UpdateColorSecondaryData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9592,11 +12280,15 @@ pub struct UpdateColorData {
 
 pub trait UpdateColorDataTrait: ProcessorDataTrait {
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl UpdateColorDataTrait for UpdateColorData {
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
 }
 
@@ -9604,24 +12296,36 @@ impl ProcessorDataTrait for UpdateColorData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateColorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATECOLORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9653,6 +12357,15 @@ impl TypeObject for UpdateColorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9681,24 +12394,36 @@ impl ProcessorDataTrait for UpdateCustomParamsData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateCustomParamsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATECUSTOMPARAMSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9723,6 +12448,15 @@ impl TypeObject for UpdateCustomParamsData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9752,24 +12486,36 @@ impl ProcessorDataTrait for UpdateSizeZData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateSizeZData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATESIZEZDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9794,6 +12540,15 @@ impl TypeObject for UpdateSizeZData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9823,24 +12578,36 @@ impl ProcessorDataTrait for UpdateSizeYData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateSizeYData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATESIZEYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9865,6 +12632,15 @@ impl TypeObject for UpdateSizeYData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9894,24 +12670,36 @@ impl ProcessorDataTrait for UpdateSizeXData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateSizeXData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATESIZEXDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9937,6 +12725,15 @@ impl TypeObject for UpdateSizeXData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9959,15 +12756,23 @@ pub struct UpdateSizeData {
 
 pub trait UpdateSizeDataTrait: ProcessorDataTrait {
     fn pivot(&self) -> &super::core::Vec2;
+    fn pivot_mut(&mut self) -> &mut super::core::Vec2;
     fn multiply_with_size_x_y_z(&self) -> &bool;
+    fn multiply_with_size_x_y_z_mut(&mut self) -> &mut bool;
 }
 
 impl UpdateSizeDataTrait for UpdateSizeData {
     fn pivot(&self) -> &super::core::Vec2 {
         &self.pivot
     }
+    fn pivot_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.pivot
+    }
     fn multiply_with_size_x_y_z(&self) -> &bool {
         &self.multiply_with_size_x_y_z
+    }
+    fn multiply_with_size_x_y_z_mut(&mut self) -> &mut bool {
+        &mut self.multiply_with_size_x_y_z
     }
 }
 
@@ -9975,24 +12780,36 @@ impl ProcessorDataTrait for UpdateSizeData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateSizeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATESIZEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10030,6 +12847,15 @@ impl TypeObject for UpdateSizeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10058,24 +12884,36 @@ impl ProcessorDataTrait for UpdateRotationData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateRotationData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEROTATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10100,6 +12938,15 @@ impl TypeObject for UpdateRotationData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10134,59 +12981,111 @@ pub struct UpdateTextureCoordsData {
 
 pub trait UpdateTextureCoordsDataTrait: ProcessorDataTrait {
     fn base_texture(&self) -> &Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>>;
+    fn base_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>>;
     fn normal_texture(&self) -> &Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>>;
+    fn normal_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>>;
     fn disable_clip_scale_optimization(&self) -> &bool;
+    fn disable_clip_scale_optimization_mut(&mut self) -> &mut bool;
     fn modifier_u(&self) -> &TexCoordModifier;
+    fn modifier_u_mut(&mut self) -> &mut TexCoordModifier;
     fn modifier_v(&self) -> &TexCoordModifier;
+    fn modifier_v_mut(&mut self) -> &mut TexCoordModifier;
     fn scale_u(&self) -> &f32;
+    fn scale_u_mut(&mut self) -> &mut f32;
     fn scale_v(&self) -> &f32;
+    fn scale_v_mut(&mut self) -> &mut f32;
     fn bias_u(&self) -> &f32;
+    fn bias_u_mut(&mut self) -> &mut f32;
     fn bias_v(&self) -> &f32;
+    fn bias_v_mut(&mut self) -> &mut f32;
     fn direct_texture_frame_lookup(&self) -> &bool;
+    fn direct_texture_frame_lookup_mut(&mut self) -> &mut bool;
     fn input_start_min(&self) -> &f32;
+    fn input_start_min_mut(&mut self) -> &mut f32;
     fn input_start_max(&self) -> &f32;
+    fn input_start_max_mut(&mut self) -> &mut f32;
     fn enable_frame_blending(&self) -> &bool;
+    fn enable_frame_blending_mut(&mut self) -> &mut bool;
 }
 
 impl UpdateTextureCoordsDataTrait for UpdateTextureCoordsData {
     fn base_texture(&self) -> &Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>> {
         &self.base_texture
     }
+    fn base_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>> {
+        &mut self.base_texture
+    }
     fn normal_texture(&self) -> &Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>> {
         &self.normal_texture
+    }
+    fn normal_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>> {
+        &mut self.normal_texture
     }
     fn disable_clip_scale_optimization(&self) -> &bool {
         &self.disable_clip_scale_optimization
     }
+    fn disable_clip_scale_optimization_mut(&mut self) -> &mut bool {
+        &mut self.disable_clip_scale_optimization
+    }
     fn modifier_u(&self) -> &TexCoordModifier {
         &self.modifier_u
+    }
+    fn modifier_u_mut(&mut self) -> &mut TexCoordModifier {
+        &mut self.modifier_u
     }
     fn modifier_v(&self) -> &TexCoordModifier {
         &self.modifier_v
     }
+    fn modifier_v_mut(&mut self) -> &mut TexCoordModifier {
+        &mut self.modifier_v
+    }
     fn scale_u(&self) -> &f32 {
         &self.scale_u
+    }
+    fn scale_u_mut(&mut self) -> &mut f32 {
+        &mut self.scale_u
     }
     fn scale_v(&self) -> &f32 {
         &self.scale_v
     }
+    fn scale_v_mut(&mut self) -> &mut f32 {
+        &mut self.scale_v
+    }
     fn bias_u(&self) -> &f32 {
         &self.bias_u
+    }
+    fn bias_u_mut(&mut self) -> &mut f32 {
+        &mut self.bias_u
     }
     fn bias_v(&self) -> &f32 {
         &self.bias_v
     }
+    fn bias_v_mut(&mut self) -> &mut f32 {
+        &mut self.bias_v
+    }
     fn direct_texture_frame_lookup(&self) -> &bool {
         &self.direct_texture_frame_lookup
+    }
+    fn direct_texture_frame_lookup_mut(&mut self) -> &mut bool {
+        &mut self.direct_texture_frame_lookup
     }
     fn input_start_min(&self) -> &f32 {
         &self.input_start_min
     }
+    fn input_start_min_mut(&mut self) -> &mut f32 {
+        &mut self.input_start_min
+    }
     fn input_start_max(&self) -> &f32 {
         &self.input_start_max
     }
+    fn input_start_max_mut(&mut self) -> &mut f32 {
+        &mut self.input_start_max
+    }
     fn enable_frame_blending(&self) -> &bool {
         &self.enable_frame_blending
+    }
+    fn enable_frame_blending_mut(&mut self) -> &mut bool {
+        &mut self.enable_frame_blending
     }
 }
 
@@ -10194,24 +13093,36 @@ impl ProcessorDataTrait for UpdateTextureCoordsData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateTextureCoordsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATETEXTURECOORDSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10315,6 +13226,15 @@ impl TypeObject for UpdateTextureCoordsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10355,6 +13275,15 @@ impl TypeObject for TexCoordModifier {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10381,31 +13310,55 @@ pub struct UpdateMimicOverridesData {
 
 pub trait UpdateMimicOverridesDataTrait: ProcessorDataTrait {
     fn lifetime_scale(&self) -> &f32;
+    fn lifetime_scale_mut(&mut self) -> &mut f32;
     fn unique_random(&self) -> &bool;
+    fn unique_random_mut(&mut self) -> &mut bool;
     fn size_scale(&self) -> &f32;
+    fn size_scale_mut(&mut self) -> &mut f32;
     fn size_y_scale_multiplier(&self) -> &f32;
+    fn size_y_scale_multiplier_mut(&mut self) -> &mut f32;
     fn uniform_scale_original(&self) -> &bool;
+    fn uniform_scale_original_mut(&mut self) -> &mut bool;
     fn override_rotation(&self) -> &bool;
+    fn override_rotation_mut(&mut self) -> &mut bool;
 }
 
 impl UpdateMimicOverridesDataTrait for UpdateMimicOverridesData {
     fn lifetime_scale(&self) -> &f32 {
         &self.lifetime_scale
     }
+    fn lifetime_scale_mut(&mut self) -> &mut f32 {
+        &mut self.lifetime_scale
+    }
     fn unique_random(&self) -> &bool {
         &self.unique_random
+    }
+    fn unique_random_mut(&mut self) -> &mut bool {
+        &mut self.unique_random
     }
     fn size_scale(&self) -> &f32 {
         &self.size_scale
     }
+    fn size_scale_mut(&mut self) -> &mut f32 {
+        &mut self.size_scale
+    }
     fn size_y_scale_multiplier(&self) -> &f32 {
         &self.size_y_scale_multiplier
+    }
+    fn size_y_scale_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.size_y_scale_multiplier
     }
     fn uniform_scale_original(&self) -> &bool {
         &self.uniform_scale_original
     }
+    fn uniform_scale_original_mut(&mut self) -> &mut bool {
+        &mut self.uniform_scale_original
+    }
     fn override_rotation(&self) -> &bool {
         &self.override_rotation
+    }
+    fn override_rotation_mut(&mut self) -> &mut bool {
+        &mut self.override_rotation
     }
 }
 
@@ -10413,24 +13366,36 @@ impl ProcessorDataTrait for UpdateMimicOverridesData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateMimicOverridesData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEMIMICOVERRIDESDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10492,6 +13457,15 @@ impl TypeObject for UpdateMimicOverridesData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10514,15 +13488,23 @@ pub struct MimicEmitterData {
 
 pub trait MimicEmitterDataTrait: ProcessorDataTrait {
     fn emitter_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>>;
+    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>>;
     fn kill_mimics_when_deactivated(&self) -> &bool;
+    fn kill_mimics_when_deactivated_mut(&mut self) -> &mut bool;
 }
 
 impl MimicEmitterDataTrait for MimicEmitterData {
     fn emitter_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>> {
         &self.emitter_assets
     }
+    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>> {
+        &mut self.emitter_assets
+    }
     fn kill_mimics_when_deactivated(&self) -> &bool {
         &self.kill_mimics_when_deactivated
+    }
+    fn kill_mimics_when_deactivated_mut(&mut self) -> &mut bool {
+        &mut self.kill_mimics_when_deactivated
     }
 }
 
@@ -10530,24 +13512,36 @@ impl ProcessorDataTrait for MimicEmitterData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for MimicEmitterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MIMICEMITTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10585,6 +13579,15 @@ impl TypeObject for MimicEmitterData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10607,15 +13610,23 @@ pub struct EmitterData {
 
 pub trait EmitterDataTrait: ProcessorDataTrait {
     fn emitter_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>>;
+    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>>;
     fn emitter_graph_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterGraphTrait>>>>;
+    fn emitter_graph_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterGraphTrait>>>>;
 }
 
 impl EmitterDataTrait for EmitterData {
     fn emitter_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>> {
         &self.emitter_assets
     }
+    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>> {
+        &mut self.emitter_assets
+    }
     fn emitter_graph_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterGraphTrait>>>> {
         &self.emitter_graph_assets
+    }
+    fn emitter_graph_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterGraphTrait>>>> {
+        &mut self.emitter_graph_assets
     }
 }
 
@@ -10623,24 +13634,36 @@ impl ProcessorDataTrait for EmitterData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EmitterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EMITTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10678,6 +13701,15 @@ impl TypeObject for EmitterData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10706,39 +13738,71 @@ pub struct TurbulanceData {
 
 pub trait TurbulanceDataTrait: ProcessorDataTrait {
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn noise_type(&self) -> &TurbulenceNoiseType;
+    fn noise_type_mut(&mut self) -> &mut TurbulenceNoiseType;
     fn period_space(&self) -> &f32;
+    fn period_space_mut(&mut self) -> &mut f32;
     fn turbulence_force_as_instant_velocity(&self) -> &f32;
+    fn turbulence_force_as_instant_velocity_mut(&mut self) -> &mut f32;
     fn octaves(&self) -> &i32;
+    fn octaves_mut(&mut self) -> &mut i32;
     fn octave_persistence(&self) -> &f32;
+    fn octave_persistence_mut(&mut self) -> &mut f32;
     fn per_particle_randomness(&self) -> &f32;
+    fn per_particle_randomness_mut(&mut self) -> &mut f32;
     fn multiplier(&self) -> &super::core::Vec3;
+    fn multiplier_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl TurbulanceDataTrait for TurbulanceData {
     fn intensity(&self) -> &f32 {
         &self.intensity
     }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
+    }
     fn noise_type(&self) -> &TurbulenceNoiseType {
         &self.noise_type
+    }
+    fn noise_type_mut(&mut self) -> &mut TurbulenceNoiseType {
+        &mut self.noise_type
     }
     fn period_space(&self) -> &f32 {
         &self.period_space
     }
+    fn period_space_mut(&mut self) -> &mut f32 {
+        &mut self.period_space
+    }
     fn turbulence_force_as_instant_velocity(&self) -> &f32 {
         &self.turbulence_force_as_instant_velocity
+    }
+    fn turbulence_force_as_instant_velocity_mut(&mut self) -> &mut f32 {
+        &mut self.turbulence_force_as_instant_velocity
     }
     fn octaves(&self) -> &i32 {
         &self.octaves
     }
+    fn octaves_mut(&mut self) -> &mut i32 {
+        &mut self.octaves
+    }
     fn octave_persistence(&self) -> &f32 {
         &self.octave_persistence
+    }
+    fn octave_persistence_mut(&mut self) -> &mut f32 {
+        &mut self.octave_persistence
     }
     fn per_particle_randomness(&self) -> &f32 {
         &self.per_particle_randomness
     }
+    fn per_particle_randomness_mut(&mut self) -> &mut f32 {
+        &mut self.per_particle_randomness
+    }
     fn multiplier(&self) -> &super::core::Vec3 {
         &self.multiplier
+    }
+    fn multiplier_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.multiplier
     }
 }
 
@@ -10746,24 +13810,36 @@ impl ProcessorDataTrait for TurbulanceData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for TurbulanceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TURBULANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10837,6 +13913,15 @@ impl TypeObject for TurbulanceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10877,6 +13962,15 @@ impl TypeObject for TurbulenceNoiseType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10898,11 +13992,15 @@ pub struct AirResistanceData {
 
 pub trait AirResistanceDataTrait: ProcessorDataTrait {
     fn drag_factor(&self) -> &f32;
+    fn drag_factor_mut(&mut self) -> &mut f32;
 }
 
 impl AirResistanceDataTrait for AirResistanceData {
     fn drag_factor(&self) -> &f32 {
         &self.drag_factor
+    }
+    fn drag_factor_mut(&mut self) -> &mut f32 {
+        &mut self.drag_factor
     }
 }
 
@@ -10910,24 +14008,36 @@ impl ProcessorDataTrait for AirResistanceData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AirResistanceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AIRRESISTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10959,6 +14069,15 @@ impl TypeObject for AirResistanceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10981,15 +14100,23 @@ pub struct WorldForcesData {
 
 pub trait WorldForcesDataTrait: ProcessorDataTrait {
     fn forces_multiplier(&self) -> &f32;
+    fn forces_multiplier_mut(&mut self) -> &mut f32;
     fn per_particle_randomness(&self) -> &f32;
+    fn per_particle_randomness_mut(&mut self) -> &mut f32;
 }
 
 impl WorldForcesDataTrait for WorldForcesData {
     fn forces_multiplier(&self) -> &f32 {
         &self.forces_multiplier
     }
+    fn forces_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.forces_multiplier
+    }
     fn per_particle_randomness(&self) -> &f32 {
         &self.per_particle_randomness
+    }
+    fn per_particle_randomness_mut(&mut self) -> &mut f32 {
+        &mut self.per_particle_randomness
     }
 }
 
@@ -10997,24 +14124,36 @@ impl ProcessorDataTrait for WorldForcesData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for WorldForcesData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WORLDFORCESDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11052,6 +14191,15 @@ impl TypeObject for WorldForcesData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11074,15 +14222,23 @@ pub struct WorldWindData {
 
 pub trait WorldWindDataTrait: ProcessorDataTrait {
     fn wind_multiplier(&self) -> &f32;
+    fn wind_multiplier_mut(&mut self) -> &mut f32;
     fn per_particle_randomness(&self) -> &f32;
+    fn per_particle_randomness_mut(&mut self) -> &mut f32;
 }
 
 impl WorldWindDataTrait for WorldWindData {
     fn wind_multiplier(&self) -> &f32 {
         &self.wind_multiplier
     }
+    fn wind_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.wind_multiplier
+    }
     fn per_particle_randomness(&self) -> &f32 {
         &self.per_particle_randomness
+    }
+    fn per_particle_randomness_mut(&mut self) -> &mut f32 {
+        &mut self.per_particle_randomness
     }
 }
 
@@ -11090,24 +14246,36 @@ impl ProcessorDataTrait for WorldWindData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for WorldWindData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WORLDWINDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11145,6 +14313,15 @@ impl TypeObject for WorldWindData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11168,19 +14345,31 @@ pub struct LocalForceData {
 
 pub trait LocalForceDataTrait: ProcessorDataTrait {
     fn local_force(&self) -> &super::core::Vec3;
+    fn local_force_mut(&mut self) -> &mut super::core::Vec3;
     fn emitter_local_space_force(&self) -> &bool;
+    fn emitter_local_space_force_mut(&mut self) -> &mut bool;
     fn per_particle_randomness(&self) -> &f32;
+    fn per_particle_randomness_mut(&mut self) -> &mut f32;
 }
 
 impl LocalForceDataTrait for LocalForceData {
     fn local_force(&self) -> &super::core::Vec3 {
         &self.local_force
     }
+    fn local_force_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.local_force
+    }
     fn emitter_local_space_force(&self) -> &bool {
         &self.emitter_local_space_force
     }
+    fn emitter_local_space_force_mut(&mut self) -> &mut bool {
+        &mut self.emitter_local_space_force
+    }
     fn per_particle_randomness(&self) -> &f32 {
         &self.per_particle_randomness
+    }
+    fn per_particle_randomness_mut(&mut self) -> &mut f32 {
+        &mut self.per_particle_randomness
     }
 }
 
@@ -11188,24 +14377,36 @@ impl ProcessorDataTrait for LocalForceData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LocalForceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALFORCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11249,6 +14450,15 @@ impl TypeObject for LocalForceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11271,15 +14481,23 @@ pub struct GravityData {
 
 pub trait GravityDataTrait: ProcessorDataTrait {
     fn gravity(&self) -> &f32;
+    fn gravity_mut(&mut self) -> &mut f32;
     fn per_particle_randomness(&self) -> &f32;
+    fn per_particle_randomness_mut(&mut self) -> &mut f32;
 }
 
 impl GravityDataTrait for GravityData {
     fn gravity(&self) -> &f32 {
         &self.gravity
     }
+    fn gravity_mut(&mut self) -> &mut f32 {
+        &mut self.gravity
+    }
     fn per_particle_randomness(&self) -> &f32 {
         &self.per_particle_randomness
+    }
+    fn per_particle_randomness_mut(&mut self) -> &mut f32 {
+        &mut self.per_particle_randomness
     }
 }
 
@@ -11287,24 +14505,36 @@ impl ProcessorDataTrait for GravityData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for GravityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GRAVITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11342,6 +14572,15 @@ impl TypeObject for GravityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11369,35 +14608,63 @@ pub struct UpdateAgeData {
 
 pub trait UpdateAgeDataTrait: ProcessorDataTrait {
     fn lifetime(&self) -> &f32;
+    fn lifetime_mut(&mut self) -> &mut f32;
     fn random_lifetime_scale(&self) -> &f32;
+    fn random_lifetime_scale_mut(&mut self) -> &mut f32;
     fn max_factor(&self) -> &f32;
+    fn max_factor_mut(&mut self) -> &mut f32;
     fn death_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn death_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
     fn throttle(&self) -> &f32;
+    fn throttle_mut(&mut self) -> &mut f32;
     fn throttle_far_distance(&self) -> &f32;
+    fn throttle_far_distance_mut(&mut self) -> &mut f32;
     fn throttle_envelope(&self) -> &super::core::Vec4;
+    fn throttle_envelope_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl UpdateAgeDataTrait for UpdateAgeData {
     fn lifetime(&self) -> &f32 {
         &self.lifetime
     }
+    fn lifetime_mut(&mut self) -> &mut f32 {
+        &mut self.lifetime
+    }
     fn random_lifetime_scale(&self) -> &f32 {
         &self.random_lifetime_scale
+    }
+    fn random_lifetime_scale_mut(&mut self) -> &mut f32 {
+        &mut self.random_lifetime_scale
     }
     fn max_factor(&self) -> &f32 {
         &self.max_factor
     }
+    fn max_factor_mut(&mut self) -> &mut f32 {
+        &mut self.max_factor
+    }
     fn death_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
         &self.death_effect
+    }
+    fn death_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+        &mut self.death_effect
     }
     fn throttle(&self) -> &f32 {
         &self.throttle
     }
+    fn throttle_mut(&mut self) -> &mut f32 {
+        &mut self.throttle
+    }
     fn throttle_far_distance(&self) -> &f32 {
         &self.throttle_far_distance
     }
+    fn throttle_far_distance_mut(&mut self) -> &mut f32 {
+        &mut self.throttle_far_distance
+    }
     fn throttle_envelope(&self) -> &super::core::Vec4 {
         &self.throttle_envelope
+    }
+    fn throttle_envelope_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.throttle_envelope
     }
 }
 
@@ -11405,24 +14672,36 @@ impl ProcessorDataTrait for UpdateAgeData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UpdateAgeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UPDATEAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11490,6 +14769,15 @@ impl TypeObject for UpdateAgeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11512,15 +14800,23 @@ pub struct SpawnColorRandomData {
 
 pub trait SpawnColorRandomDataTrait: ProcessorDataTrait {
     fn color0(&self) -> &super::core::Vec3;
+    fn color0_mut(&mut self) -> &mut super::core::Vec3;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl SpawnColorRandomDataTrait for SpawnColorRandomData {
     fn color0(&self) -> &super::core::Vec3 {
         &self.color0
     }
+    fn color0_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color0
+    }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
+    }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
     }
 }
 
@@ -11528,24 +14824,36 @@ impl ProcessorDataTrait for SpawnColorRandomData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnColorRandomData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNCOLORRANDOMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11583,6 +14891,15 @@ impl TypeObject for SpawnColorRandomData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11604,11 +14921,15 @@ pub struct SpawnRotationSpeedData {
 
 pub trait SpawnRotationSpeedDataTrait: ProcessorDataTrait {
     fn rotation_speed(&self) -> &f32;
+    fn rotation_speed_mut(&mut self) -> &mut f32;
 }
 
 impl SpawnRotationSpeedDataTrait for SpawnRotationSpeedData {
     fn rotation_speed(&self) -> &f32 {
         &self.rotation_speed
+    }
+    fn rotation_speed_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_speed
     }
 }
 
@@ -11616,24 +14937,36 @@ impl ProcessorDataTrait for SpawnRotationSpeedData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnRotationSpeedData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNROTATIONSPEEDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11665,6 +14998,15 @@ impl TypeObject for SpawnRotationSpeedData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11693,24 +15035,36 @@ impl ProcessorDataTrait for SpawnOrientationData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnOrientationData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNORIENTATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11736,6 +15090,15 @@ impl TypeObject for SpawnOrientationData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11757,11 +15120,15 @@ pub struct SpawnRotationData {
 
 pub trait SpawnRotationDataTrait: ProcessorDataTrait {
     fn rotation(&self) -> &f32;
+    fn rotation_mut(&mut self) -> &mut f32;
 }
 
 impl SpawnRotationDataTrait for SpawnRotationData {
     fn rotation(&self) -> &f32 {
         &self.rotation
+    }
+    fn rotation_mut(&mut self) -> &mut f32 {
+        &mut self.rotation
     }
 }
 
@@ -11769,24 +15136,36 @@ impl ProcessorDataTrait for SpawnRotationData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnRotationData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNROTATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11818,6 +15197,15 @@ impl TypeObject for SpawnRotationData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11839,11 +15227,15 @@ pub struct SpawnAnimationFrameData {
 
 pub trait SpawnAnimationFrameDataTrait: ProcessorDataTrait {
     fn animation_frame(&self) -> &u32;
+    fn animation_frame_mut(&mut self) -> &mut u32;
 }
 
 impl SpawnAnimationFrameDataTrait for SpawnAnimationFrameData {
     fn animation_frame(&self) -> &u32 {
         &self.animation_frame
+    }
+    fn animation_frame_mut(&mut self) -> &mut u32 {
+        &mut self.animation_frame
     }
 }
 
@@ -11851,24 +15243,36 @@ impl ProcessorDataTrait for SpawnAnimationFrameData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnAnimationFrameData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNANIMATIONFRAMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11900,6 +15304,15 @@ impl TypeObject for SpawnAnimationFrameData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11922,15 +15335,23 @@ pub struct SpawnAnimationData {
 
 pub trait SpawnAnimationDataTrait: ProcessorDataTrait {
     fn animation_speed(&self) -> &f32;
+    fn animation_speed_mut(&mut self) -> &mut f32;
     fn based_on_lifetime(&self) -> &bool;
+    fn based_on_lifetime_mut(&mut self) -> &mut bool;
 }
 
 impl SpawnAnimationDataTrait for SpawnAnimationData {
     fn animation_speed(&self) -> &f32 {
         &self.animation_speed
     }
+    fn animation_speed_mut(&mut self) -> &mut f32 {
+        &mut self.animation_speed
+    }
     fn based_on_lifetime(&self) -> &bool {
         &self.based_on_lifetime
+    }
+    fn based_on_lifetime_mut(&mut self) -> &mut bool {
+        &mut self.based_on_lifetime
     }
 }
 
@@ -11938,24 +15359,36 @@ impl ProcessorDataTrait for SpawnAnimationData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnAnimationData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNANIMATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11993,6 +15426,15 @@ impl TypeObject for SpawnAnimationData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12014,11 +15456,15 @@ pub struct SpawnPositionData {
 
 pub trait SpawnPositionDataTrait: ProcessorDataTrait {
     fn apply_screen_aspect_ratio(&self) -> &bool;
+    fn apply_screen_aspect_ratio_mut(&mut self) -> &mut bool;
 }
 
 impl SpawnPositionDataTrait for SpawnPositionData {
     fn apply_screen_aspect_ratio(&self) -> &bool {
         &self.apply_screen_aspect_ratio
+    }
+    fn apply_screen_aspect_ratio_mut(&mut self) -> &mut bool {
+        &mut self.apply_screen_aspect_ratio
     }
 }
 
@@ -12026,24 +15472,36 @@ impl ProcessorDataTrait for SpawnPositionData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnPositionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNPOSITIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12075,6 +15533,15 @@ impl TypeObject for SpawnPositionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12096,11 +15563,15 @@ pub struct SpawnSizeData {
 
 pub trait SpawnSizeDataTrait: ProcessorDataTrait {
     fn size(&self) -> &f32;
+    fn size_mut(&mut self) -> &mut f32;
 }
 
 impl SpawnSizeDataTrait for SpawnSizeData {
     fn size(&self) -> &f32 {
         &self.size
+    }
+    fn size_mut(&mut self) -> &mut f32 {
+        &mut self.size
     }
 }
 
@@ -12108,24 +15579,36 @@ impl ProcessorDataTrait for SpawnSizeData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnSizeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNSIZEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12157,6 +15640,15 @@ impl TypeObject for SpawnSizeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12178,11 +15670,15 @@ pub struct SpawnSpeedData {
 
 pub trait SpawnSpeedDataTrait: ProcessorDataTrait {
     fn speed(&self) -> &f32;
+    fn speed_mut(&mut self) -> &mut f32;
 }
 
 impl SpawnSpeedDataTrait for SpawnSpeedData {
     fn speed(&self) -> &f32 {
         &self.speed
+    }
+    fn speed_mut(&mut self) -> &mut f32 {
+        &mut self.speed
     }
 }
 
@@ -12190,24 +15686,36 @@ impl ProcessorDataTrait for SpawnSpeedData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnSpeedData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNSPEEDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12239,6 +15747,15 @@ impl TypeObject for SpawnSpeedData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12264,27 +15781,47 @@ pub struct SpawnDirectionData {
 
 pub trait SpawnDirectionDataTrait: ProcessorDataTrait {
     fn inherit_speed_and_direction_from_emitter(&self) -> &bool;
+    fn inherit_speed_and_direction_from_emitter_mut(&mut self) -> &mut bool;
     fn direction_from_emitter_origin(&self) -> &f32;
+    fn direction_from_emitter_origin_mut(&mut self) -> &mut f32;
     fn inherit_speed_amount(&self) -> &f32;
+    fn inherit_speed_amount_mut(&mut self) -> &mut f32;
     fn inherit_speed_smoothing_factor(&self) -> &f32;
+    fn inherit_speed_smoothing_factor_mut(&mut self) -> &mut f32;
     fn inherit_speed_randomness(&self) -> &f32;
+    fn inherit_speed_randomness_mut(&mut self) -> &mut f32;
 }
 
 impl SpawnDirectionDataTrait for SpawnDirectionData {
     fn inherit_speed_and_direction_from_emitter(&self) -> &bool {
         &self.inherit_speed_and_direction_from_emitter
     }
+    fn inherit_speed_and_direction_from_emitter_mut(&mut self) -> &mut bool {
+        &mut self.inherit_speed_and_direction_from_emitter
+    }
     fn direction_from_emitter_origin(&self) -> &f32 {
         &self.direction_from_emitter_origin
+    }
+    fn direction_from_emitter_origin_mut(&mut self) -> &mut f32 {
+        &mut self.direction_from_emitter_origin
     }
     fn inherit_speed_amount(&self) -> &f32 {
         &self.inherit_speed_amount
     }
+    fn inherit_speed_amount_mut(&mut self) -> &mut f32 {
+        &mut self.inherit_speed_amount
+    }
     fn inherit_speed_smoothing_factor(&self) -> &f32 {
         &self.inherit_speed_smoothing_factor
     }
+    fn inherit_speed_smoothing_factor_mut(&mut self) -> &mut f32 {
+        &mut self.inherit_speed_smoothing_factor
+    }
     fn inherit_speed_randomness(&self) -> &f32 {
         &self.inherit_speed_randomness
+    }
+    fn inherit_speed_randomness_mut(&mut self) -> &mut f32 {
+        &mut self.inherit_speed_randomness
     }
 }
 
@@ -12292,24 +15829,36 @@ impl ProcessorDataTrait for SpawnDirectionData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnDirectionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNDIRECTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12365,6 +15914,15 @@ impl TypeObject for SpawnDirectionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12393,24 +15951,36 @@ impl ProcessorDataTrait for SpawnPointCloudData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnPointCloudData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNPOINTCLOUDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12436,6 +16006,15 @@ impl TypeObject for SpawnPointCloudData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12459,19 +16038,31 @@ pub struct PreRollData {
 
 pub trait PreRollDataTrait: ProcessorDataTrait {
     fn pre_roll(&self) -> &f32;
+    fn pre_roll_mut(&mut self) -> &mut f32;
     fn updates_per_second(&self) -> &f32;
+    fn updates_per_second_mut(&mut self) -> &mut f32;
     fn skip_simulate_post_pre_roll(&self) -> &bool;
+    fn skip_simulate_post_pre_roll_mut(&mut self) -> &mut bool;
 }
 
 impl PreRollDataTrait for PreRollData {
     fn pre_roll(&self) -> &f32 {
         &self.pre_roll
     }
+    fn pre_roll_mut(&mut self) -> &mut f32 {
+        &mut self.pre_roll
+    }
     fn updates_per_second(&self) -> &f32 {
         &self.updates_per_second
     }
+    fn updates_per_second_mut(&mut self) -> &mut f32 {
+        &mut self.updates_per_second
+    }
     fn skip_simulate_post_pre_roll(&self) -> &bool {
         &self.skip_simulate_post_pre_roll
+    }
+    fn skip_simulate_post_pre_roll_mut(&mut self) -> &mut bool {
+        &mut self.skip_simulate_post_pre_roll
     }
 }
 
@@ -12479,24 +16070,36 @@ impl ProcessorDataTrait for PreRollData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PreRollData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PREROLLDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12540,6 +16143,15 @@ impl TypeObject for PreRollData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12563,19 +16175,31 @@ pub struct SpawnRibbonRateData {
 
 pub trait SpawnRibbonRateDataTrait: ProcessorDataTrait {
     fn spawn_rate(&self) -> &f32;
+    fn spawn_rate_mut(&mut self) -> &mut f32;
     fn distribute_over_distance(&self) -> &bool;
+    fn distribute_over_distance_mut(&mut self) -> &mut bool;
     fn angle_deviation(&self) -> &f32;
+    fn angle_deviation_mut(&mut self) -> &mut f32;
 }
 
 impl SpawnRibbonRateDataTrait for SpawnRibbonRateData {
     fn spawn_rate(&self) -> &f32 {
         &self.spawn_rate
     }
+    fn spawn_rate_mut(&mut self) -> &mut f32 {
+        &mut self.spawn_rate
+    }
     fn distribute_over_distance(&self) -> &bool {
         &self.distribute_over_distance
     }
+    fn distribute_over_distance_mut(&mut self) -> &mut bool {
+        &mut self.distribute_over_distance
+    }
     fn angle_deviation(&self) -> &f32 {
         &self.angle_deviation
+    }
+    fn angle_deviation_mut(&mut self) -> &mut f32 {
+        &mut self.angle_deviation
     }
 }
 
@@ -12583,24 +16207,36 @@ impl ProcessorDataTrait for SpawnRibbonRateData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnRibbonRateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNRIBBONRATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12644,6 +16280,15 @@ impl TypeObject for SpawnRibbonRateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12667,19 +16312,31 @@ pub struct SpawnRateData {
 
 pub trait SpawnRateDataTrait: ProcessorDataTrait {
     fn spawn_rate(&self) -> &f32;
+    fn spawn_rate_mut(&mut self) -> &mut f32;
     fn distribute_over_time(&self) -> &bool;
+    fn distribute_over_time_mut(&mut self) -> &mut bool;
     fn distribute_over_distance(&self) -> &bool;
+    fn distribute_over_distance_mut(&mut self) -> &mut bool;
 }
 
 impl SpawnRateDataTrait for SpawnRateData {
     fn spawn_rate(&self) -> &f32 {
         &self.spawn_rate
     }
+    fn spawn_rate_mut(&mut self) -> &mut f32 {
+        &mut self.spawn_rate
+    }
     fn distribute_over_time(&self) -> &bool {
         &self.distribute_over_time
     }
+    fn distribute_over_time_mut(&mut self) -> &mut bool {
+        &mut self.distribute_over_time
+    }
     fn distribute_over_distance(&self) -> &bool {
         &self.distribute_over_distance
+    }
+    fn distribute_over_distance_mut(&mut self) -> &mut bool {
+        &mut self.distribute_over_distance
     }
 }
 
@@ -12687,24 +16344,36 @@ impl ProcessorDataTrait for SpawnRateData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SpawnRateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPAWNRATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12748,6 +16417,15 @@ impl TypeObject for SpawnRateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12773,27 +16451,47 @@ pub struct CustomShaderData {
 
 pub trait CustomShaderDataTrait: ProcessorDataTrait {
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn animation_frame_count(&self) -> &f32;
+    fn animation_frame_count_mut(&mut self) -> &mut f32;
     fn animation_frame_column_count(&self) -> &f32;
+    fn animation_frame_column_count_mut(&mut self) -> &mut f32;
     fn emitter_draw_order(&self) -> &EmitterDrawOrder;
+    fn emitter_draw_order_mut(&mut self) -> &mut EmitterDrawOrder;
     fn particle_sorting(&self) -> &ParticleSorting;
+    fn particle_sorting_mut(&mut self) -> &mut ParticleSorting;
 }
 
 impl CustomShaderDataTrait for CustomShaderData {
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.shader
     }
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.shader
+    }
     fn animation_frame_count(&self) -> &f32 {
         &self.animation_frame_count
+    }
+    fn animation_frame_count_mut(&mut self) -> &mut f32 {
+        &mut self.animation_frame_count
     }
     fn animation_frame_column_count(&self) -> &f32 {
         &self.animation_frame_column_count
     }
+    fn animation_frame_column_count_mut(&mut self) -> &mut f32 {
+        &mut self.animation_frame_column_count
+    }
     fn emitter_draw_order(&self) -> &EmitterDrawOrder {
         &self.emitter_draw_order
     }
+    fn emitter_draw_order_mut(&mut self) -> &mut EmitterDrawOrder {
+        &mut self.emitter_draw_order
+    }
     fn particle_sorting(&self) -> &ParticleSorting {
         &self.particle_sorting
+    }
+    fn particle_sorting_mut(&mut self) -> &mut ParticleSorting {
+        &mut self.particle_sorting
     }
 }
 
@@ -12801,24 +16499,36 @@ impl ProcessorDataTrait for CustomShaderData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CustomShaderData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CUSTOMSHADERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12874,6 +16584,15 @@ impl TypeObject for CustomShaderData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12895,11 +16614,15 @@ pub struct BaseEmitterData {
 
 pub trait BaseEmitterDataTrait: ProcessorDataTrait {
     fn emitter_asset(&self) -> &Option<Arc<Mutex<dyn EmitterDocumentTrait>>>;
+    fn emitter_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterDocumentTrait>>>;
 }
 
 impl BaseEmitterDataTrait for BaseEmitterData {
     fn emitter_asset(&self) -> &Option<Arc<Mutex<dyn EmitterDocumentTrait>>> {
         &self.emitter_asset
+    }
+    fn emitter_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterDocumentTrait>>> {
+        &mut self.emitter_asset
     }
 }
 
@@ -12907,24 +16630,36 @@ impl ProcessorDataTrait for BaseEmitterData {
     fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
         self._glacier_base.pre()
     }
+    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+        self._glacier_base.pre_mut()
+    }
     fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
         self._glacier_base.next_processor()
+    }
+    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+        self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
         self._glacier_base.evaluator_input()
     }
+    fn evaluator_input_mut(&mut self) -> &mut EmittableField {
+        self._glacier_base.evaluator_input_mut()
+    }
     fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.evaluator_input_param()
+    }
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
     }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for BaseEmitterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BASEEMITTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12956,6 +16691,15 @@ impl TypeObject for BaseEmitterData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12983,35 +16727,63 @@ pub struct PolynomialXYZWEvaluatorData {
 
 pub trait PolynomialXYZWEvaluatorDataTrait: EvaluatorDataTrait {
     fn x_coefficients(&self) -> &super::core::Vec4;
+    fn x_coefficients_mut(&mut self) -> &mut super::core::Vec4;
     fn y_coefficients(&self) -> &super::core::Vec4;
+    fn y_coefficients_mut(&mut self) -> &mut super::core::Vec4;
     fn z_coefficients(&self) -> &super::core::Vec4;
+    fn z_coefficients_mut(&mut self) -> &mut super::core::Vec4;
     fn w_coefficients(&self) -> &super::core::Vec4;
+    fn w_coefficients_mut(&mut self) -> &mut super::core::Vec4;
     fn scale_value(&self) -> &super::core::Vec4;
+    fn scale_value_mut(&mut self) -> &mut super::core::Vec4;
     fn min_clamp(&self) -> &super::core::Vec4;
+    fn min_clamp_mut(&mut self) -> &mut super::core::Vec4;
     fn max_clamp(&self) -> &super::core::Vec4;
+    fn max_clamp_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl PolynomialXYZWEvaluatorDataTrait for PolynomialXYZWEvaluatorData {
     fn x_coefficients(&self) -> &super::core::Vec4 {
         &self.x_coefficients
     }
+    fn x_coefficients_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.x_coefficients
+    }
     fn y_coefficients(&self) -> &super::core::Vec4 {
         &self.y_coefficients
+    }
+    fn y_coefficients_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.y_coefficients
     }
     fn z_coefficients(&self) -> &super::core::Vec4 {
         &self.z_coefficients
     }
+    fn z_coefficients_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.z_coefficients
+    }
     fn w_coefficients(&self) -> &super::core::Vec4 {
         &self.w_coefficients
+    }
+    fn w_coefficients_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.w_coefficients
     }
     fn scale_value(&self) -> &super::core::Vec4 {
         &self.scale_value
     }
+    fn scale_value_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.scale_value
+    }
     fn min_clamp(&self) -> &super::core::Vec4 {
         &self.min_clamp
     }
+    fn min_clamp_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.min_clamp
+    }
     fn max_clamp(&self) -> &super::core::Vec4 {
         &self.max_clamp
+    }
+    fn max_clamp_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.max_clamp
     }
 }
 
@@ -13019,15 +16791,18 @@ impl EvaluatorDataTrait for PolynomialXYZWEvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PolynomialXYZWEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POLYNOMIALXYZWEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13095,6 +16870,15 @@ impl TypeObject for PolynomialXYZWEvaluatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13116,11 +16900,15 @@ pub struct MultiColorInterpData {
 
 pub trait MultiColorInterpDataTrait: EvaluatorDataTrait {
     fn gradient(&self) -> &MultiColorGradient;
+    fn gradient_mut(&mut self) -> &mut MultiColorGradient;
 }
 
 impl MultiColorInterpDataTrait for MultiColorInterpData {
     fn gradient(&self) -> &MultiColorGradient {
         &self.gradient
+    }
+    fn gradient_mut(&mut self) -> &mut MultiColorGradient {
+        &mut self.gradient
     }
 }
 
@@ -13128,15 +16916,18 @@ impl EvaluatorDataTrait for MultiColorInterpData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for MultiColorInterpData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MULTICOLORINTERPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13168,6 +16959,15 @@ impl TypeObject for MultiColorInterpData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13188,11 +16988,15 @@ pub struct MultiColorGradient {
 
 pub trait MultiColorGradientTrait: TypeObject {
     fn key_points(&self) -> &Vec<MultiColorGradientKeyPoint>;
+    fn key_points_mut(&mut self) -> &mut Vec<MultiColorGradientKeyPoint>;
 }
 
 impl MultiColorGradientTrait for MultiColorGradient {
     fn key_points(&self) -> &Vec<MultiColorGradientKeyPoint> {
         &self.key_points
+    }
+    fn key_points_mut(&mut self) -> &mut Vec<MultiColorGradientKeyPoint> {
+        &mut self.key_points
     }
 }
 
@@ -13224,6 +17028,15 @@ impl TypeObject for MultiColorGradient {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13244,11 +17057,15 @@ pub struct MultiColorGradientKeyPoint {
 
 pub trait MultiColorGradientKeyPointTrait: TypeObject {
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl MultiColorGradientKeyPointTrait for MultiColorGradientKeyPoint {
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
 }
 
@@ -13280,6 +17097,15 @@ impl TypeObject for MultiColorGradientKeyPoint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13303,19 +17129,31 @@ pub struct PolynomialColorInterpData {
 
 pub trait PolynomialColorInterpDataTrait: EvaluatorDataTrait {
     fn color0(&self) -> &super::core::Vec3;
+    fn color0_mut(&mut self) -> &mut super::core::Vec3;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn coefficients(&self) -> &super::core::Vec4;
+    fn coefficients_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl PolynomialColorInterpDataTrait for PolynomialColorInterpData {
     fn color0(&self) -> &super::core::Vec3 {
         &self.color0
     }
+    fn color0_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color0
+    }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
     }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
+    }
     fn coefficients(&self) -> &super::core::Vec4 {
         &self.coefficients
+    }
+    fn coefficients_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.coefficients
     }
 }
 
@@ -13323,15 +17161,18 @@ impl EvaluatorDataTrait for PolynomialColorInterpData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PolynomialColorInterpData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POLYNOMIALCOLORINTERPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13375,6 +17216,15 @@ impl TypeObject for PolynomialColorInterpData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13396,11 +17246,15 @@ pub struct ConstantEvaluatorData {
 
 pub trait ConstantEvaluatorDataTrait: EvaluatorDataTrait {
     fn scale(&self) -> &f32;
+    fn scale_mut(&mut self) -> &mut f32;
 }
 
 impl ConstantEvaluatorDataTrait for ConstantEvaluatorData {
     fn scale(&self) -> &f32 {
         &self.scale
+    }
+    fn scale_mut(&mut self) -> &mut f32 {
+        &mut self.scale
     }
 }
 
@@ -13408,15 +17262,18 @@ impl EvaluatorDataTrait for ConstantEvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for ConstantEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONSTANTEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13448,6 +17305,15 @@ impl TypeObject for ConstantEvaluatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13473,27 +17339,47 @@ pub struct CameraProximityEvaluatorData {
 
 pub trait CameraProximityEvaluatorDataTrait: EvaluatorDataTrait {
     fn size(&self) -> &super::core::Vec3;
+    fn size_mut(&mut self) -> &mut super::core::Vec3;
     fn offset(&self) -> &super::core::Vec3;
+    fn offset_mut(&mut self) -> &mut super::core::Vec3;
     fn forward_offset(&self) -> &f32;
+    fn forward_offset_mut(&mut self) -> &mut f32;
     fn inner_radius(&self) -> &f32;
+    fn inner_radius_mut(&mut self) -> &mut f32;
     fn inner_radius_direction(&self) -> &super::core::Vec3;
+    fn inner_radius_direction_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl CameraProximityEvaluatorDataTrait for CameraProximityEvaluatorData {
     fn size(&self) -> &super::core::Vec3 {
         &self.size
     }
+    fn size_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.size
+    }
     fn offset(&self) -> &super::core::Vec3 {
         &self.offset
+    }
+    fn offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.offset
     }
     fn forward_offset(&self) -> &f32 {
         &self.forward_offset
     }
+    fn forward_offset_mut(&mut self) -> &mut f32 {
+        &mut self.forward_offset
+    }
     fn inner_radius(&self) -> &f32 {
         &self.inner_radius
     }
+    fn inner_radius_mut(&mut self) -> &mut f32 {
+        &mut self.inner_radius
+    }
     fn inner_radius_direction(&self) -> &super::core::Vec3 {
         &self.inner_radius_direction
+    }
+    fn inner_radius_direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.inner_radius_direction
     }
 }
 
@@ -13501,15 +17387,18 @@ impl EvaluatorDataTrait for CameraProximityEvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CameraProximityEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CAMERAPROXIMITYEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13565,6 +17454,15 @@ impl TypeObject for CameraProximityEvaluatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13598,59 +17496,111 @@ pub struct SuperSphereEvaluatorData {
 
 pub trait SuperSphereEvaluatorDataTrait: EvaluatorDataTrait {
     fn scale(&self) -> &super::core::Vec3;
+    fn scale_mut(&mut self) -> &mut super::core::Vec3;
     fn pivot(&self) -> &super::core::Vec3;
+    fn pivot_mut(&mut self) -> &mut super::core::Vec3;
     fn inner_radius(&self) -> &f32;
+    fn inner_radius_mut(&mut self) -> &mut f32;
     fn outer_radius(&self) -> &f32;
+    fn outer_radius_mut(&mut self) -> &mut f32;
     fn start_zenith_angle(&self) -> &f32;
+    fn start_zenith_angle_mut(&mut self) -> &mut f32;
     fn end_zenith_angle(&self) -> &f32;
+    fn end_zenith_angle_mut(&mut self) -> &mut f32;
     fn inner_radius_bound(&self) -> &f32;
+    fn inner_radius_bound_mut(&mut self) -> &mut f32;
     fn start_zenith_angle_bound(&self) -> &f32;
+    fn start_zenith_angle_bound_mut(&mut self) -> &mut f32;
     fn end_zenith_angle_bound(&self) -> &f32;
+    fn end_zenith_angle_bound_mut(&mut self) -> &mut f32;
     fn start_azimuth_angle(&self) -> &f32;
+    fn start_azimuth_angle_mut(&mut self) -> &mut f32;
     fn end_azimuth_angle(&self) -> &f32;
+    fn end_azimuth_angle_mut(&mut self) -> &mut f32;
     fn distribution_along_radius(&self) -> &f32;
+    fn distribution_along_radius_mut(&mut self) -> &mut f32;
     fn orient_along_z(&self) -> &bool;
+    fn orient_along_z_mut(&mut self) -> &mut bool;
 }
 
 impl SuperSphereEvaluatorDataTrait for SuperSphereEvaluatorData {
     fn scale(&self) -> &super::core::Vec3 {
         &self.scale
     }
+    fn scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.scale
+    }
     fn pivot(&self) -> &super::core::Vec3 {
         &self.pivot
+    }
+    fn pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.pivot
     }
     fn inner_radius(&self) -> &f32 {
         &self.inner_radius
     }
+    fn inner_radius_mut(&mut self) -> &mut f32 {
+        &mut self.inner_radius
+    }
     fn outer_radius(&self) -> &f32 {
         &self.outer_radius
+    }
+    fn outer_radius_mut(&mut self) -> &mut f32 {
+        &mut self.outer_radius
     }
     fn start_zenith_angle(&self) -> &f32 {
         &self.start_zenith_angle
     }
+    fn start_zenith_angle_mut(&mut self) -> &mut f32 {
+        &mut self.start_zenith_angle
+    }
     fn end_zenith_angle(&self) -> &f32 {
         &self.end_zenith_angle
+    }
+    fn end_zenith_angle_mut(&mut self) -> &mut f32 {
+        &mut self.end_zenith_angle
     }
     fn inner_radius_bound(&self) -> &f32 {
         &self.inner_radius_bound
     }
+    fn inner_radius_bound_mut(&mut self) -> &mut f32 {
+        &mut self.inner_radius_bound
+    }
     fn start_zenith_angle_bound(&self) -> &f32 {
         &self.start_zenith_angle_bound
+    }
+    fn start_zenith_angle_bound_mut(&mut self) -> &mut f32 {
+        &mut self.start_zenith_angle_bound
     }
     fn end_zenith_angle_bound(&self) -> &f32 {
         &self.end_zenith_angle_bound
     }
+    fn end_zenith_angle_bound_mut(&mut self) -> &mut f32 {
+        &mut self.end_zenith_angle_bound
+    }
     fn start_azimuth_angle(&self) -> &f32 {
         &self.start_azimuth_angle
+    }
+    fn start_azimuth_angle_mut(&mut self) -> &mut f32 {
+        &mut self.start_azimuth_angle
     }
     fn end_azimuth_angle(&self) -> &f32 {
         &self.end_azimuth_angle
     }
+    fn end_azimuth_angle_mut(&mut self) -> &mut f32 {
+        &mut self.end_azimuth_angle
+    }
     fn distribution_along_radius(&self) -> &f32 {
         &self.distribution_along_radius
     }
+    fn distribution_along_radius_mut(&mut self) -> &mut f32 {
+        &mut self.distribution_along_radius
+    }
     fn orient_along_z(&self) -> &bool {
         &self.orient_along_z
+    }
+    fn orient_along_z_mut(&mut self) -> &mut bool {
+        &mut self.orient_along_z
     }
 }
 
@@ -13658,15 +17608,18 @@ impl EvaluatorDataTrait for SuperSphereEvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for SuperSphereEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SUPERSPHEREEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13770,6 +17723,15 @@ impl TypeObject for SuperSphereEvaluatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13793,19 +17755,31 @@ pub struct SphereEvaluatorData {
 
 pub trait SphereEvaluatorDataTrait: EvaluatorDataTrait {
     fn scale(&self) -> &super::core::Vec3;
+    fn scale_mut(&mut self) -> &mut super::core::Vec3;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn pivot(&self) -> &super::core::Vec3;
+    fn pivot_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl SphereEvaluatorDataTrait for SphereEvaluatorData {
     fn scale(&self) -> &super::core::Vec3 {
         &self.scale
     }
+    fn scale_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.scale
+    }
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn pivot(&self) -> &super::core::Vec3 {
         &self.pivot
+    }
+    fn pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.pivot
     }
 }
 
@@ -13813,15 +17787,18 @@ impl EvaluatorDataTrait for SphereEvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for SphereEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPHEREEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13865,6 +17842,15 @@ impl TypeObject for SphereEvaluatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13887,15 +17873,23 @@ pub struct BoxEvaluatorData {
 
 pub trait BoxEvaluatorDataTrait: EvaluatorDataTrait {
     fn dimensions(&self) -> &super::core::Vec3;
+    fn dimensions_mut(&mut self) -> &mut super::core::Vec3;
     fn pivot(&self) -> &super::core::Vec3;
+    fn pivot_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl BoxEvaluatorDataTrait for BoxEvaluatorData {
     fn dimensions(&self) -> &super::core::Vec3 {
         &self.dimensions
     }
+    fn dimensions_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.dimensions
+    }
     fn pivot(&self) -> &super::core::Vec3 {
         &self.pivot
+    }
+    fn pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.pivot
     }
 }
 
@@ -13903,15 +17897,18 @@ impl EvaluatorDataTrait for BoxEvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for BoxEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BOXEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13949,6 +17946,15 @@ impl TypeObject for BoxEvaluatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13979,47 +17985,87 @@ pub struct RandomXYZWEvaluatorData {
 
 pub trait RandomXYZWEvaluatorDataTrait: EvaluatorDataTrait {
     fn random_frequency(&self) -> &RandomFrequency;
+    fn random_frequency_mut(&mut self) -> &mut RandomFrequency;
     fn max_x(&self) -> &f32;
+    fn max_x_mut(&mut self) -> &mut f32;
     fn min_x(&self) -> &f32;
+    fn min_x_mut(&mut self) -> &mut f32;
     fn max_y(&self) -> &f32;
+    fn max_y_mut(&mut self) -> &mut f32;
     fn min_y(&self) -> &f32;
+    fn min_y_mut(&mut self) -> &mut f32;
     fn max_z(&self) -> &f32;
+    fn max_z_mut(&mut self) -> &mut f32;
     fn min_z(&self) -> &f32;
+    fn min_z_mut(&mut self) -> &mut f32;
     fn max_w(&self) -> &f32;
+    fn max_w_mut(&mut self) -> &mut f32;
     fn min_w(&self) -> &f32;
+    fn min_w_mut(&mut self) -> &mut f32;
     fn mirror(&self) -> &bool;
+    fn mirror_mut(&mut self) -> &mut bool;
 }
 
 impl RandomXYZWEvaluatorDataTrait for RandomXYZWEvaluatorData {
     fn random_frequency(&self) -> &RandomFrequency {
         &self.random_frequency
     }
+    fn random_frequency_mut(&mut self) -> &mut RandomFrequency {
+        &mut self.random_frequency
+    }
     fn max_x(&self) -> &f32 {
         &self.max_x
+    }
+    fn max_x_mut(&mut self) -> &mut f32 {
+        &mut self.max_x
     }
     fn min_x(&self) -> &f32 {
         &self.min_x
     }
+    fn min_x_mut(&mut self) -> &mut f32 {
+        &mut self.min_x
+    }
     fn max_y(&self) -> &f32 {
         &self.max_y
+    }
+    fn max_y_mut(&mut self) -> &mut f32 {
+        &mut self.max_y
     }
     fn min_y(&self) -> &f32 {
         &self.min_y
     }
+    fn min_y_mut(&mut self) -> &mut f32 {
+        &mut self.min_y
+    }
     fn max_z(&self) -> &f32 {
         &self.max_z
+    }
+    fn max_z_mut(&mut self) -> &mut f32 {
+        &mut self.max_z
     }
     fn min_z(&self) -> &f32 {
         &self.min_z
     }
+    fn min_z_mut(&mut self) -> &mut f32 {
+        &mut self.min_z
+    }
     fn max_w(&self) -> &f32 {
         &self.max_w
+    }
+    fn max_w_mut(&mut self) -> &mut f32 {
+        &mut self.max_w
     }
     fn min_w(&self) -> &f32 {
         &self.min_w
     }
+    fn min_w_mut(&mut self) -> &mut f32 {
+        &mut self.min_w
+    }
     fn mirror(&self) -> &bool {
         &self.mirror
+    }
+    fn mirror_mut(&mut self) -> &mut bool {
+        &mut self.mirror
     }
 }
 
@@ -14027,15 +18073,18 @@ impl EvaluatorDataTrait for RandomXYZWEvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for RandomXYZWEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RANDOMXYZWEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14121,6 +18170,15 @@ impl TypeObject for RandomXYZWEvaluatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14149,39 +18207,71 @@ pub struct RandomXYZEvaluatorData {
 
 pub trait RandomXYZEvaluatorDataTrait: EvaluatorDataTrait {
     fn random_frequency(&self) -> &RandomFrequency;
+    fn random_frequency_mut(&mut self) -> &mut RandomFrequency;
     fn max_x(&self) -> &f32;
+    fn max_x_mut(&mut self) -> &mut f32;
     fn min_x(&self) -> &f32;
+    fn min_x_mut(&mut self) -> &mut f32;
     fn max_y(&self) -> &f32;
+    fn max_y_mut(&mut self) -> &mut f32;
     fn min_y(&self) -> &f32;
+    fn min_y_mut(&mut self) -> &mut f32;
     fn max_z(&self) -> &f32;
+    fn max_z_mut(&mut self) -> &mut f32;
     fn min_z(&self) -> &f32;
+    fn min_z_mut(&mut self) -> &mut f32;
     fn mirror(&self) -> &bool;
+    fn mirror_mut(&mut self) -> &mut bool;
 }
 
 impl RandomXYZEvaluatorDataTrait for RandomXYZEvaluatorData {
     fn random_frequency(&self) -> &RandomFrequency {
         &self.random_frequency
     }
+    fn random_frequency_mut(&mut self) -> &mut RandomFrequency {
+        &mut self.random_frequency
+    }
     fn max_x(&self) -> &f32 {
         &self.max_x
+    }
+    fn max_x_mut(&mut self) -> &mut f32 {
+        &mut self.max_x
     }
     fn min_x(&self) -> &f32 {
         &self.min_x
     }
+    fn min_x_mut(&mut self) -> &mut f32 {
+        &mut self.min_x
+    }
     fn max_y(&self) -> &f32 {
         &self.max_y
+    }
+    fn max_y_mut(&mut self) -> &mut f32 {
+        &mut self.max_y
     }
     fn min_y(&self) -> &f32 {
         &self.min_y
     }
+    fn min_y_mut(&mut self) -> &mut f32 {
+        &mut self.min_y
+    }
     fn max_z(&self) -> &f32 {
         &self.max_z
+    }
+    fn max_z_mut(&mut self) -> &mut f32 {
+        &mut self.max_z
     }
     fn min_z(&self) -> &f32 {
         &self.min_z
     }
+    fn min_z_mut(&mut self) -> &mut f32 {
+        &mut self.min_z
+    }
     fn mirror(&self) -> &bool {
         &self.mirror
+    }
+    fn mirror_mut(&mut self) -> &mut bool {
+        &mut self.mirror
     }
 }
 
@@ -14189,15 +18279,18 @@ impl EvaluatorDataTrait for RandomXYZEvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for RandomXYZEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RANDOMXYZEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14271,6 +18364,15 @@ impl TypeObject for RandomXYZEvaluatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14295,23 +18397,39 @@ pub struct RandomEvaluatorData {
 
 pub trait RandomEvaluatorDataTrait: EvaluatorDataTrait {
     fn random_frequency(&self) -> &RandomFrequency;
+    fn random_frequency_mut(&mut self) -> &mut RandomFrequency;
     fn max(&self) -> &f32;
+    fn max_mut(&mut self) -> &mut f32;
     fn min(&self) -> &f32;
+    fn min_mut(&mut self) -> &mut f32;
     fn mirror(&self) -> &bool;
+    fn mirror_mut(&mut self) -> &mut bool;
 }
 
 impl RandomEvaluatorDataTrait for RandomEvaluatorData {
     fn random_frequency(&self) -> &RandomFrequency {
         &self.random_frequency
     }
+    fn random_frequency_mut(&mut self) -> &mut RandomFrequency {
+        &mut self.random_frequency
+    }
     fn max(&self) -> &f32 {
         &self.max
+    }
+    fn max_mut(&mut self) -> &mut f32 {
+        &mut self.max
     }
     fn min(&self) -> &f32 {
         &self.min
     }
+    fn min_mut(&mut self) -> &mut f32 {
+        &mut self.min
+    }
     fn mirror(&self) -> &bool {
         &self.mirror
+    }
+    fn mirror_mut(&mut self) -> &mut bool {
+        &mut self.mirror
     }
 }
 
@@ -14319,15 +18437,18 @@ impl EvaluatorDataTrait for RandomEvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for RandomEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RANDOMEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14377,6 +18498,15 @@ impl TypeObject for RandomEvaluatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14400,19 +18530,31 @@ pub struct RotateVectorData {
 
 pub trait RotateVectorDataTrait: EvaluatorDataTrait {
     fn angle(&self) -> &f32;
+    fn angle_mut(&mut self) -> &mut f32;
     fn input_affects_phi(&self) -> &bool;
+    fn input_affects_phi_mut(&mut self) -> &mut bool;
     fn rotate_within_plane(&self) -> &bool;
+    fn rotate_within_plane_mut(&mut self) -> &mut bool;
 }
 
 impl RotateVectorDataTrait for RotateVectorData {
     fn angle(&self) -> &f32 {
         &self.angle
     }
+    fn angle_mut(&mut self) -> &mut f32 {
+        &mut self.angle
+    }
     fn input_affects_phi(&self) -> &bool {
         &self.input_affects_phi
     }
+    fn input_affects_phi_mut(&mut self) -> &mut bool {
+        &mut self.input_affects_phi
+    }
     fn rotate_within_plane(&self) -> &bool {
         &self.rotate_within_plane
+    }
+    fn rotate_within_plane_mut(&mut self) -> &mut bool {
+        &mut self.rotate_within_plane
     }
 }
 
@@ -14420,15 +18562,18 @@ impl EvaluatorDataTrait for RotateVectorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for RotateVectorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ROTATEVECTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14472,6 +18617,15 @@ impl TypeObject for RotateVectorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14498,31 +18652,55 @@ pub struct SampleTextureData {
 
 pub trait SampleTextureDataTrait: EvaluatorDataTrait {
     fn gradient_data(&self) -> &Vec<super::core::Vec4>;
+    fn gradient_data_mut(&mut self) -> &mut Vec<super::core::Vec4>;
     fn color_intensity_max(&self) -> &super::core::Vec3;
+    fn color_intensity_max_mut(&mut self) -> &mut super::core::Vec3;
     fn color_intensity_min(&self) -> &super::core::Vec3;
+    fn color_intensity_min_mut(&mut self) -> &mut super::core::Vec3;
     fn texture_dimensions(&self) -> &super::core::Vec2;
+    fn texture_dimensions_mut(&mut self) -> &mut super::core::Vec2;
     fn texture_origin_u(&self) -> &f32;
+    fn texture_origin_u_mut(&mut self) -> &mut f32;
     fn texture_origin_v(&self) -> &f32;
+    fn texture_origin_v_mut(&mut self) -> &mut f32;
 }
 
 impl SampleTextureDataTrait for SampleTextureData {
     fn gradient_data(&self) -> &Vec<super::core::Vec4> {
         &self.gradient_data
     }
+    fn gradient_data_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+        &mut self.gradient_data
+    }
     fn color_intensity_max(&self) -> &super::core::Vec3 {
         &self.color_intensity_max
+    }
+    fn color_intensity_max_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color_intensity_max
     }
     fn color_intensity_min(&self) -> &super::core::Vec3 {
         &self.color_intensity_min
     }
+    fn color_intensity_min_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color_intensity_min
+    }
     fn texture_dimensions(&self) -> &super::core::Vec2 {
         &self.texture_dimensions
+    }
+    fn texture_dimensions_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.texture_dimensions
     }
     fn texture_origin_u(&self) -> &f32 {
         &self.texture_origin_u
     }
+    fn texture_origin_u_mut(&mut self) -> &mut f32 {
+        &mut self.texture_origin_u
+    }
     fn texture_origin_v(&self) -> &f32 {
         &self.texture_origin_v
+    }
+    fn texture_origin_v_mut(&mut self) -> &mut f32 {
+        &mut self.texture_origin_v
     }
 }
 
@@ -14530,15 +18708,18 @@ impl EvaluatorDataTrait for SampleTextureData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for SampleTextureData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SAMPLETEXTUREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14600,6 +18781,15 @@ impl TypeObject for SampleTextureData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14621,11 +18811,15 @@ pub struct SplineData {
 
 pub trait SplineDataTrait: EvaluatorDataTrait {
     fn spline_curve(&self) -> &super::core::SplineCurve;
+    fn spline_curve_mut(&mut self) -> &mut super::core::SplineCurve;
 }
 
 impl SplineDataTrait for SplineData {
     fn spline_curve(&self) -> &super::core::SplineCurve {
         &self.spline_curve
+    }
+    fn spline_curve_mut(&mut self) -> &mut super::core::SplineCurve {
+        &mut self.spline_curve
     }
 }
 
@@ -14633,15 +18827,18 @@ impl EvaluatorDataTrait for SplineData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for SplineData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPLINEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14673,6 +18870,15 @@ impl TypeObject for SplineData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14698,27 +18904,47 @@ pub struct PolynomialOperatorData {
 
 pub trait PolynomialOperatorDataTrait: EvaluatorDataTrait {
     fn first_operand(&self) -> &PolynomialTempData;
+    fn first_operand_mut(&mut self) -> &mut PolynomialTempData;
     fn second_operand(&self) -> &PolynomialTempData;
+    fn second_operand_mut(&mut self) -> &mut PolynomialTempData;
     fn operation(&self) -> &PolynomialOperation;
+    fn operation_mut(&mut self) -> &mut PolynomialOperation;
     fn min_clamp_result(&self) -> &f32;
+    fn min_clamp_result_mut(&mut self) -> &mut f32;
     fn max_clamp_result(&self) -> &f32;
+    fn max_clamp_result_mut(&mut self) -> &mut f32;
 }
 
 impl PolynomialOperatorDataTrait for PolynomialOperatorData {
     fn first_operand(&self) -> &PolynomialTempData {
         &self.first_operand
     }
+    fn first_operand_mut(&mut self) -> &mut PolynomialTempData {
+        &mut self.first_operand
+    }
     fn second_operand(&self) -> &PolynomialTempData {
         &self.second_operand
+    }
+    fn second_operand_mut(&mut self) -> &mut PolynomialTempData {
+        &mut self.second_operand
     }
     fn operation(&self) -> &PolynomialOperation {
         &self.operation
     }
+    fn operation_mut(&mut self) -> &mut PolynomialOperation {
+        &mut self.operation
+    }
     fn min_clamp_result(&self) -> &f32 {
         &self.min_clamp_result
     }
+    fn min_clamp_result_mut(&mut self) -> &mut f32 {
+        &mut self.min_clamp_result
+    }
     fn max_clamp_result(&self) -> &f32 {
         &self.max_clamp_result
+    }
+    fn max_clamp_result_mut(&mut self) -> &mut f32 {
+        &mut self.max_clamp_result
     }
 }
 
@@ -14726,15 +18952,18 @@ impl EvaluatorDataTrait for PolynomialOperatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PolynomialOperatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POLYNOMIALOPERATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14790,6 +19019,15 @@ impl TypeObject for PolynomialOperatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14829,6 +19067,15 @@ impl TypeObject for PolynomialOperation {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14852,23 +19099,39 @@ pub struct PolynomialTempData {
 
 pub trait PolynomialTempDataTrait: TypeObject {
     fn coefficients(&self) -> &super::core::Vec4;
+    fn coefficients_mut(&mut self) -> &mut super::core::Vec4;
     fn scale_value(&self) -> &f32;
+    fn scale_value_mut(&mut self) -> &mut f32;
     fn min_clamp(&self) -> &f32;
+    fn min_clamp_mut(&mut self) -> &mut f32;
     fn max_clamp(&self) -> &f32;
+    fn max_clamp_mut(&mut self) -> &mut f32;
 }
 
 impl PolynomialTempDataTrait for PolynomialTempData {
     fn coefficients(&self) -> &super::core::Vec4 {
         &self.coefficients
     }
+    fn coefficients_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.coefficients
+    }
     fn scale_value(&self) -> &f32 {
         &self.scale_value
+    }
+    fn scale_value_mut(&mut self) -> &mut f32 {
+        &mut self.scale_value
     }
     fn min_clamp(&self) -> &f32 {
         &self.min_clamp
     }
+    fn min_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.min_clamp
+    }
     fn max_clamp(&self) -> &f32 {
         &self.max_clamp
+    }
+    fn max_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.max_clamp
     }
 }
 
@@ -14918,6 +19181,15 @@ impl TypeObject for PolynomialTempData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14942,23 +19214,39 @@ pub struct PolynomialData {
 
 pub trait PolynomialDataTrait: EvaluatorDataTrait {
     fn coefficients(&self) -> &super::core::Vec4;
+    fn coefficients_mut(&mut self) -> &mut super::core::Vec4;
     fn scale_value(&self) -> &f32;
+    fn scale_value_mut(&mut self) -> &mut f32;
     fn min_clamp(&self) -> &f32;
+    fn min_clamp_mut(&mut self) -> &mut f32;
     fn max_clamp(&self) -> &f32;
+    fn max_clamp_mut(&mut self) -> &mut f32;
 }
 
 impl PolynomialDataTrait for PolynomialData {
     fn coefficients(&self) -> &super::core::Vec4 {
         &self.coefficients
     }
+    fn coefficients_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.coefficients
+    }
     fn scale_value(&self) -> &f32 {
         &self.scale_value
+    }
+    fn scale_value_mut(&mut self) -> &mut f32 {
+        &mut self.scale_value
     }
     fn min_clamp(&self) -> &f32 {
         &self.min_clamp
     }
+    fn min_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.min_clamp
+    }
     fn max_clamp(&self) -> &f32 {
         &self.max_clamp
+    }
+    fn max_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.max_clamp
     }
 }
 
@@ -14966,15 +19254,18 @@ impl EvaluatorDataTrait for PolynomialData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PolynomialData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POLYNOMIALDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15024,6 +19315,15 @@ impl TypeObject for PolynomialData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15045,11 +19345,15 @@ pub struct DefaultEvaluatorData {
 
 pub trait DefaultEvaluatorDataTrait: EvaluatorDataTrait {
     fn values(&self) -> &super::core::Vec4;
+    fn values_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl DefaultEvaluatorDataTrait for DefaultEvaluatorData {
     fn values(&self) -> &super::core::Vec4 {
         &self.values
+    }
+    fn values_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.values
     }
 }
 
@@ -15057,15 +19361,18 @@ impl EvaluatorDataTrait for DefaultEvaluatorData {
     fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
         self._glacier_base.parameter()
     }
+    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+        self._glacier_base.parameter_mut()
+    }
     fn schematics_enable(&self) -> &bool {
         self._glacier_base.schematics_enable()
+    }
+    fn schematics_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.schematics_enable_mut()
     }
 }
 
 impl super::core::DataContainerTrait for DefaultEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEFAULTEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15096,6 +19403,15 @@ impl TypeObject for DefaultEvaluatorData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

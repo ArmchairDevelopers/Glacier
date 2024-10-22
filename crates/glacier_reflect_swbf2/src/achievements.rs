@@ -43,12 +43,12 @@ impl super::core::AssetTrait for PresenceAchievementServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceAchievementServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEACHIEVEMENTSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -73,6 +73,15 @@ impl TypeObject for PresenceAchievementServiceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -119,6 +128,15 @@ impl TypeObject for PresenceAchievementRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -153,6 +171,15 @@ impl TypeObject for PresenceAchievementMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -170,18 +197,21 @@ impl super::online_shared::PresenceBackendDataTrait for Xb1AchievementsBackendDa
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for Xb1AchievementsBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for Xb1AchievementsBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static XB1ACHIEVEMENTSBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -207,6 +237,15 @@ impl TypeObject for Xb1AchievementsBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -228,11 +267,15 @@ pub struct Ps4TrophyBackendData {
 
 pub trait Ps4TrophyBackendDataTrait: super::online_shared::PresenceBackendDataTrait {
     fn enable_trophy_support(&self) -> &bool;
+    fn enable_trophy_support_mut(&mut self) -> &mut bool;
 }
 
 impl Ps4TrophyBackendDataTrait for Ps4TrophyBackendData {
     fn enable_trophy_support(&self) -> &bool {
         &self.enable_trophy_support
+    }
+    fn enable_trophy_support_mut(&mut self) -> &mut bool {
+        &mut self.enable_trophy_support
     }
 }
 
@@ -240,18 +283,21 @@ impl super::online_shared::PresenceBackendDataTrait for Ps4TrophyBackendData {
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for Ps4TrophyBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for Ps4TrophyBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PS4TROPHYBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -282,6 +328,15 @@ impl TypeObject for Ps4TrophyBackendData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -333,6 +388,15 @@ impl TypeObject for ClientAchievementService {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -383,6 +447,15 @@ impl TypeObject for PresenceUpdateAchievementsRequestParameters {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -432,6 +505,15 @@ impl TypeObject for PresenceUnlockAchievementsRequestParameters {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

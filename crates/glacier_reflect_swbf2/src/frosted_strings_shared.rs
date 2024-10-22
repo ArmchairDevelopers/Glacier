@@ -48,6 +48,15 @@ impl TypeObject for LocalizationLanguageChangedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -65,17 +74,32 @@ impl super::u_i::UITextDatabaseTrait for FsUITextDatabase {
     fn language(&self) -> &super::core::LanguageFormat {
         self._glacier_base.language()
     }
+    fn language_mut(&mut self) -> &mut super::core::LanguageFormat {
+        self._glacier_base.language_mut()
+    }
     fn binary_chunk(&self) -> &glacier_util::guid::Guid {
         self._glacier_base.binary_chunk()
+    }
+    fn binary_chunk_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        self._glacier_base.binary_chunk_mut()
     }
     fn binary_chunk_size(&self) -> &u32 {
         self._glacier_base.binary_chunk_size()
     }
+    fn binary_chunk_size_mut(&mut self) -> &mut u32 {
+        self._glacier_base.binary_chunk_size_mut()
+    }
     fn histogram_chunk(&self) -> &glacier_util::guid::Guid {
         self._glacier_base.histogram_chunk()
     }
+    fn histogram_chunk_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        self._glacier_base.histogram_chunk_mut()
+    }
     fn histogram_chunk_size(&self) -> &u32 {
         self._glacier_base.histogram_chunk_size()
+    }
+    fn histogram_chunk_size_mut(&mut self) -> &mut u32 {
+        self._glacier_base.histogram_chunk_size_mut()
     }
 }
 
@@ -83,12 +107,12 @@ impl super::core::AssetTrait for FsUITextDatabase {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FsUITextDatabase {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FSUITEXTDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -113,6 +137,15 @@ impl TypeObject for FsUITextDatabase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -142,18 +175,21 @@ impl super::u_i::LocalizationAssetTrait for FsLocalizationAsset {
     fn localized_texts(&self) -> &Vec<Option<Arc<Mutex<dyn super::u_i::UITextDatabaseTrait>>>> {
         self._glacier_base.localized_texts()
     }
+    fn localized_texts_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::u_i::UITextDatabaseTrait>>>> {
+        self._glacier_base.localized_texts_mut()
+    }
 }
 
 impl super::core::AssetTrait for FsLocalizationAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for FsLocalizationAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FSLOCALIZATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -178,6 +214,15 @@ impl TypeObject for FsLocalizationAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

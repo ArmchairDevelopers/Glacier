@@ -120,6 +120,15 @@ impl TypeObject for MeshComputeBufferResource {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -141,18 +150,19 @@ pub struct MeshWorldSettings {
 
 pub trait MeshWorldSettingsTrait: super::core::DataContainerTrait {
     fn dummy(&self) -> &bool;
+    fn dummy_mut(&mut self) -> &mut bool;
 }
 
 impl MeshWorldSettingsTrait for MeshWorldSettings {
     fn dummy(&self) -> &bool {
         &self.dummy
     }
+    fn dummy_mut(&mut self) -> &mut bool {
+        &mut self.dummy
+    }
 }
 
 impl super::core::DataContainerTrait for MeshWorldSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MESHWORLDSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -184,6 +194,15 @@ impl TypeObject for MeshWorldSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -207,26 +226,35 @@ pub struct DebugOverlaySettings {
 
 pub trait DebugOverlaySettingsTrait: super::core::DataContainerTrait {
     fn mouse_x(&self) -> &f32;
+    fn mouse_x_mut(&mut self) -> &mut f32;
     fn mouse_y(&self) -> &f32;
+    fn mouse_y_mut(&mut self) -> &mut f32;
     fn debug_info_enable(&self) -> &bool;
+    fn debug_info_enable_mut(&mut self) -> &mut bool;
 }
 
 impl DebugOverlaySettingsTrait for DebugOverlaySettings {
     fn mouse_x(&self) -> &f32 {
         &self.mouse_x
     }
+    fn mouse_x_mut(&mut self) -> &mut f32 {
+        &mut self.mouse_x
+    }
     fn mouse_y(&self) -> &f32 {
         &self.mouse_y
+    }
+    fn mouse_y_mut(&mut self) -> &mut f32 {
+        &mut self.mouse_y
     }
     fn debug_info_enable(&self) -> &bool {
         &self.debug_info_enable
     }
+    fn debug_info_enable_mut(&mut self) -> &mut bool {
+        &mut self.debug_info_enable
+    }
 }
 
 impl super::core::DataContainerTrait for DebugOverlaySettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEBUGOVERLAYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -270,6 +298,15 @@ impl TypeObject for DebugOverlaySettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -299,50 +336,83 @@ pub struct OcclusionSettings {
 
 pub trait OcclusionSettingsTrait: super::core::DataContainerTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn coverage_enable(&self) -> &bool;
+    fn coverage_enable_mut(&mut self) -> &mut bool;
     fn draw_split_view(&self) -> &bool;
+    fn draw_split_view_mut(&mut self) -> &mut bool;
     fn draw_binary_buffer(&self) -> &bool;
+    fn draw_binary_buffer_mut(&mut self) -> &mut bool;
     fn draw_coverage_buffer(&self) -> &bool;
+    fn draw_coverage_buffer_mut(&mut self) -> &mut bool;
     fn global_cull_screen_area(&self) -> &f32;
+    fn global_cull_screen_area_mut(&mut self) -> &mut f32;
     fn normal_view_distance(&self) -> &f32;
+    fn normal_view_distance_mut(&mut self) -> &mut f32;
     fn terrain_view_distance(&self) -> &f32;
+    fn terrain_view_distance_mut(&mut self) -> &mut f32;
     fn high_priority_view_distance(&self) -> &f32;
+    fn high_priority_view_distance_mut(&mut self) -> &mut f32;
 }
 
 impl OcclusionSettingsTrait for OcclusionSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn coverage_enable(&self) -> &bool {
         &self.coverage_enable
+    }
+    fn coverage_enable_mut(&mut self) -> &mut bool {
+        &mut self.coverage_enable
     }
     fn draw_split_view(&self) -> &bool {
         &self.draw_split_view
     }
+    fn draw_split_view_mut(&mut self) -> &mut bool {
+        &mut self.draw_split_view
+    }
     fn draw_binary_buffer(&self) -> &bool {
         &self.draw_binary_buffer
+    }
+    fn draw_binary_buffer_mut(&mut self) -> &mut bool {
+        &mut self.draw_binary_buffer
     }
     fn draw_coverage_buffer(&self) -> &bool {
         &self.draw_coverage_buffer
     }
+    fn draw_coverage_buffer_mut(&mut self) -> &mut bool {
+        &mut self.draw_coverage_buffer
+    }
     fn global_cull_screen_area(&self) -> &f32 {
         &self.global_cull_screen_area
+    }
+    fn global_cull_screen_area_mut(&mut self) -> &mut f32 {
+        &mut self.global_cull_screen_area
     }
     fn normal_view_distance(&self) -> &f32 {
         &self.normal_view_distance
     }
+    fn normal_view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.normal_view_distance
+    }
     fn terrain_view_distance(&self) -> &f32 {
         &self.terrain_view_distance
+    }
+    fn terrain_view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.terrain_view_distance
     }
     fn high_priority_view_distance(&self) -> &f32 {
         &self.high_priority_view_distance
     }
+    fn high_priority_view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.high_priority_view_distance
+    }
 }
 
 impl super::core::DataContainerTrait for OcclusionSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OCCLUSIONSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -422,6 +492,15 @@ impl TypeObject for OcclusionSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -450,8 +529,14 @@ impl EdgeModelsDataTrait for EdgeModelLightMapData {
     fn rigid_meshes(&self) -> &Vec<Option<Arc<Mutex<dyn super::render::RigidMeshAssetTrait>>>> {
         self._glacier_base.rigid_meshes()
     }
+    fn rigid_meshes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::render::RigidMeshAssetTrait>>>> {
+        self._glacier_base.rigid_meshes_mut()
+    }
     fn light_map_uvs(&self) -> &Vec<super::core::Vec4> {
         self._glacier_base.light_map_uvs()
+    }
+    fn light_map_uvs_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+        self._glacier_base.light_map_uvs_mut()
     }
 }
 
@@ -459,24 +544,36 @@ impl super::world_base::EdgeModelsBaseDataTrait for EdgeModelLightMapData {
     fn instance_transforms(&self) -> &Vec<super::core::LinearTransform> {
         self._glacier_base.instance_transforms()
     }
+    fn instance_transforms_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+        self._glacier_base.instance_transforms_mut()
+    }
     fn mesh_instance_ranges(&self) -> &Vec<u16> {
         self._glacier_base.mesh_instance_ranges()
+    }
+    fn mesh_instance_ranges_mut(&mut self) -> &mut Vec<u16> {
+        self._glacier_base.mesh_instance_ranges_mut()
     }
     fn connection_instance_lookup_table(&self) -> &Vec<u16> {
         self._glacier_base.connection_instance_lookup_table()
     }
+    fn connection_instance_lookup_table_mut(&mut self) -> &mut Vec<u16> {
+        self._glacier_base.connection_instance_lookup_table_mut()
+    }
     fn connections(&self) -> &Vec<super::world_base::EdgeModelConnectionInfo> {
         self._glacier_base.connections()
+    }
+    fn connections_mut(&mut self) -> &mut Vec<super::world_base::EdgeModelConnectionInfo> {
+        self._glacier_base.connections_mut()
     }
     fn part_connection_ranges(&self) -> &Vec<u16> {
         self._glacier_base.part_connection_ranges()
     }
+    fn part_connection_ranges_mut(&mut self) -> &mut Vec<u16> {
+        self._glacier_base.part_connection_ranges_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EdgeModelLightMapData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EDGEMODELLIGHTMAPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -502,6 +599,15 @@ impl TypeObject for EdgeModelLightMapData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -524,15 +630,23 @@ pub struct EdgeModelsData {
 
 pub trait EdgeModelsDataTrait: super::world_base::EdgeModelsBaseDataTrait {
     fn rigid_meshes(&self) -> &Vec<Option<Arc<Mutex<dyn super::render::RigidMeshAssetTrait>>>>;
+    fn rigid_meshes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::render::RigidMeshAssetTrait>>>>;
     fn light_map_uvs(&self) -> &Vec<super::core::Vec4>;
+    fn light_map_uvs_mut(&mut self) -> &mut Vec<super::core::Vec4>;
 }
 
 impl EdgeModelsDataTrait for EdgeModelsData {
     fn rigid_meshes(&self) -> &Vec<Option<Arc<Mutex<dyn super::render::RigidMeshAssetTrait>>>> {
         &self.rigid_meshes
     }
+    fn rigid_meshes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::render::RigidMeshAssetTrait>>>> {
+        &mut self.rigid_meshes
+    }
     fn light_map_uvs(&self) -> &Vec<super::core::Vec4> {
         &self.light_map_uvs
+    }
+    fn light_map_uvs_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+        &mut self.light_map_uvs
     }
 }
 
@@ -540,24 +654,36 @@ impl super::world_base::EdgeModelsBaseDataTrait for EdgeModelsData {
     fn instance_transforms(&self) -> &Vec<super::core::LinearTransform> {
         self._glacier_base.instance_transforms()
     }
+    fn instance_transforms_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+        self._glacier_base.instance_transforms_mut()
+    }
     fn mesh_instance_ranges(&self) -> &Vec<u16> {
         self._glacier_base.mesh_instance_ranges()
+    }
+    fn mesh_instance_ranges_mut(&mut self) -> &mut Vec<u16> {
+        self._glacier_base.mesh_instance_ranges_mut()
     }
     fn connection_instance_lookup_table(&self) -> &Vec<u16> {
         self._glacier_base.connection_instance_lookup_table()
     }
+    fn connection_instance_lookup_table_mut(&mut self) -> &mut Vec<u16> {
+        self._glacier_base.connection_instance_lookup_table_mut()
+    }
     fn connections(&self) -> &Vec<super::world_base::EdgeModelConnectionInfo> {
         self._glacier_base.connections()
+    }
+    fn connections_mut(&mut self) -> &mut Vec<super::world_base::EdgeModelConnectionInfo> {
+        self._glacier_base.connections_mut()
     }
     fn part_connection_ranges(&self) -> &Vec<u16> {
         self._glacier_base.part_connection_ranges()
     }
+    fn part_connection_ranges_mut(&mut self) -> &mut Vec<u16> {
+        self._glacier_base.part_connection_ranges_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EdgeModelsData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EDGEMODELSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -595,6 +721,15 @@ impl TypeObject for EdgeModelsData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -619,23 +754,39 @@ pub struct DestructionVolumeData {
 
 pub trait DestructionVolumeDataTrait: super::world_base::DestructionVolumeBaseDataTrait {
     fn asset(&self) -> &Option<Arc<Mutex<dyn DestructionVolumeAssetTrait>>>;
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DestructionVolumeAssetTrait>>>;
     fn bounding_box(&self) -> &super::core::AxisAlignedBox;
+    fn bounding_box_mut(&mut self) -> &mut super::core::AxisAlignedBox;
     fn impacts(&self) -> &Vec<super::core::Vec4>;
+    fn impacts_mut(&mut self) -> &mut Vec<super::core::Vec4>;
     fn part_to_impact_indices(&self) -> &Vec<u32>;
+    fn part_to_impact_indices_mut(&mut self) -> &mut Vec<u32>;
 }
 
 impl DestructionVolumeDataTrait for DestructionVolumeData {
     fn asset(&self) -> &Option<Arc<Mutex<dyn DestructionVolumeAssetTrait>>> {
         &self.asset
     }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DestructionVolumeAssetTrait>>> {
+        &mut self.asset
+    }
     fn bounding_box(&self) -> &super::core::AxisAlignedBox {
         &self.bounding_box
+    }
+    fn bounding_box_mut(&mut self) -> &mut super::core::AxisAlignedBox {
+        &mut self.bounding_box
     }
     fn impacts(&self) -> &Vec<super::core::Vec4> {
         &self.impacts
     }
+    fn impacts_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+        &mut self.impacts
+    }
     fn part_to_impact_indices(&self) -> &Vec<u32> {
         &self.part_to_impact_indices
+    }
+    fn part_to_impact_indices_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.part_to_impact_indices
     }
 }
 
@@ -643,9 +794,6 @@ impl super::world_base::DestructionVolumeBaseDataTrait for DestructionVolumeData
 }
 
 impl super::core::DataContainerTrait for DestructionVolumeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONVOLUMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -695,6 +843,15 @@ impl TypeObject for DestructionVolumeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -717,15 +874,23 @@ pub struct DestructionVolumeAsset {
 
 pub trait DestructionVolumeAssetTrait: super::world_base::DestructionVolumeBaseAssetTrait {
     fn diffuse_atlas(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn diffuse_atlas_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn normalmap_atlas(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn normalmap_atlas_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
 }
 
 impl DestructionVolumeAssetTrait for DestructionVolumeAsset {
     fn diffuse_atlas(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.diffuse_atlas
     }
+    fn diffuse_atlas_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.diffuse_atlas
+    }
     fn normalmap_atlas(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.normalmap_atlas
+    }
+    fn normalmap_atlas_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.normalmap_atlas
     }
 }
 
@@ -736,12 +901,12 @@ impl super::core::AssetTrait for DestructionVolumeAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DestructionVolumeAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONVOLUMEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -779,6 +944,15 @@ impl TypeObject for DestructionVolumeAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -809,54 +983,91 @@ pub struct DestructionVolumeSettings {
 
 pub trait DestructionVolumeSettingsTrait: super::core::DataContainerTrait {
     fn pixels_per_meter(&self) -> &f32;
+    fn pixels_per_meter_mut(&mut self) -> &mut f32;
     fn distance_field_multiplier(&self) -> &f32;
+    fn distance_field_multiplier_mut(&mut self) -> &mut f32;
     fn texture_pool_size(&self) -> &i32;
+    fn texture_pool_size_mut(&mut self) -> &mut i32;
     fn texture_pool_headroom_size(&self) -> &i32;
+    fn texture_pool_headroom_size_mut(&mut self) -> &mut i32;
     fn texture_pool_defrag_transfer_limit(&self) -> &i32;
+    fn texture_pool_defrag_transfer_limit_mut(&mut self) -> &mut i32;
     fn jobs_enable(&self) -> &bool;
+    fn jobs_enable_mut(&mut self) -> &mut bool;
     fn force_update_enable(&self) -> &bool;
+    fn force_update_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_volumes(&self) -> &bool;
+    fn draw_debug_volumes_mut(&mut self) -> &mut bool;
     fn draw_debug_impacts(&self) -> &bool;
+    fn draw_debug_impacts_mut(&mut self) -> &mut bool;
     fn draw_debug_texture_pool(&self) -> &bool;
+    fn draw_debug_texture_pool_mut(&mut self) -> &mut bool;
 }
 
 impl DestructionVolumeSettingsTrait for DestructionVolumeSettings {
     fn pixels_per_meter(&self) -> &f32 {
         &self.pixels_per_meter
     }
+    fn pixels_per_meter_mut(&mut self) -> &mut f32 {
+        &mut self.pixels_per_meter
+    }
     fn distance_field_multiplier(&self) -> &f32 {
         &self.distance_field_multiplier
+    }
+    fn distance_field_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.distance_field_multiplier
     }
     fn texture_pool_size(&self) -> &i32 {
         &self.texture_pool_size
     }
+    fn texture_pool_size_mut(&mut self) -> &mut i32 {
+        &mut self.texture_pool_size
+    }
     fn texture_pool_headroom_size(&self) -> &i32 {
         &self.texture_pool_headroom_size
+    }
+    fn texture_pool_headroom_size_mut(&mut self) -> &mut i32 {
+        &mut self.texture_pool_headroom_size
     }
     fn texture_pool_defrag_transfer_limit(&self) -> &i32 {
         &self.texture_pool_defrag_transfer_limit
     }
+    fn texture_pool_defrag_transfer_limit_mut(&mut self) -> &mut i32 {
+        &mut self.texture_pool_defrag_transfer_limit
+    }
     fn jobs_enable(&self) -> &bool {
         &self.jobs_enable
+    }
+    fn jobs_enable_mut(&mut self) -> &mut bool {
+        &mut self.jobs_enable
     }
     fn force_update_enable(&self) -> &bool {
         &self.force_update_enable
     }
+    fn force_update_enable_mut(&mut self) -> &mut bool {
+        &mut self.force_update_enable
+    }
     fn draw_debug_volumes(&self) -> &bool {
         &self.draw_debug_volumes
+    }
+    fn draw_debug_volumes_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_volumes
     }
     fn draw_debug_impacts(&self) -> &bool {
         &self.draw_debug_impacts
     }
+    fn draw_debug_impacts_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_impacts
+    }
     fn draw_debug_texture_pool(&self) -> &bool {
         &self.draw_debug_texture_pool
+    }
+    fn draw_debug_texture_pool_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_texture_pool
     }
 }
 
 impl super::core::DataContainerTrait for DestructionVolumeSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONVOLUMESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -942,6 +1153,15 @@ impl TypeObject for DestructionVolumeSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -987,6 +1207,15 @@ impl TypeObject for IesResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1034,6 +1263,15 @@ impl TypeObject for OccluderMesh {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1059,34 +1297,51 @@ pub struct MeshComputeSettings {
 
 pub trait MeshComputeSettingsTrait: super::core::DataContainerTrait {
     fn transient_buffer_size(&self) -> &u32;
+    fn transient_buffer_size_mut(&mut self) -> &mut u32;
     fn output_buffer_max_vertex_count(&self) -> &u32;
+    fn output_buffer_max_vertex_count_mut(&mut self) -> &mut u32;
     fn dispatch_scheduler(&self) -> &i32;
+    fn dispatch_scheduler_mut(&mut self) -> &mut i32;
     fn draw_enabled(&self) -> &bool;
+    fn draw_enabled_mut(&mut self) -> &mut bool;
     fn draw_debug_enabled(&self) -> &bool;
+    fn draw_debug_enabled_mut(&mut self) -> &mut bool;
 }
 
 impl MeshComputeSettingsTrait for MeshComputeSettings {
     fn transient_buffer_size(&self) -> &u32 {
         &self.transient_buffer_size
     }
+    fn transient_buffer_size_mut(&mut self) -> &mut u32 {
+        &mut self.transient_buffer_size
+    }
     fn output_buffer_max_vertex_count(&self) -> &u32 {
         &self.output_buffer_max_vertex_count
+    }
+    fn output_buffer_max_vertex_count_mut(&mut self) -> &mut u32 {
+        &mut self.output_buffer_max_vertex_count
     }
     fn dispatch_scheduler(&self) -> &i32 {
         &self.dispatch_scheduler
     }
+    fn dispatch_scheduler_mut(&mut self) -> &mut i32 {
+        &mut self.dispatch_scheduler
+    }
     fn draw_enabled(&self) -> &bool {
         &self.draw_enabled
+    }
+    fn draw_enabled_mut(&mut self) -> &mut bool {
+        &mut self.draw_enabled
     }
     fn draw_debug_enabled(&self) -> &bool {
         &self.draw_debug_enabled
     }
+    fn draw_debug_enabled_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_enabled
+    }
 }
 
 impl super::core::DataContainerTrait for MeshComputeSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MESHCOMPUTESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1142,6 +1397,15 @@ impl TypeObject for MeshComputeSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1191,6 +1455,15 @@ impl TypeObject for MeshComputeMeshDefinitionResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1242,6 +1515,15 @@ impl TypeObject for MeshComputeIndexBufferResource {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1291,6 +1573,15 @@ impl TypeObject for MeshComputeFaceAdjacencyResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1342,6 +1633,15 @@ impl TypeObject for MeshComputeDynamicMorphTargetsResource {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1392,6 +1692,15 @@ impl TypeObject for VisibleAreaObject {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1437,6 +1746,15 @@ impl TypeObject for EnlightenProbeSet {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1484,6 +1802,15 @@ impl TypeObject for EnlightenStaticDatabase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1529,6 +1856,15 @@ impl TypeObject for EnlightenShaderDatabaseResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1576,6 +1912,15 @@ impl TypeObject for EnlightenDatabase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1621,6 +1966,15 @@ impl TypeObject for RenderObject {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1675,6 +2029,15 @@ impl TypeObject for ModelWithFallbackRenderObject {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1707,62 +2070,107 @@ pub struct EnlightenState {
 
 pub trait EnlightenStateTrait: super::core::DataContainerTrait {
     fn bounce_scale(&self) -> &f32;
+    fn bounce_scale_mut(&mut self) -> &mut f32;
     fn sun_scale(&self) -> &f32;
+    fn sun_scale_mut(&mut self) -> &mut f32;
     fn output_scale(&self) -> &f32;
+    fn output_scale_mut(&mut self) -> &mut f32;
     fn sky_box_enable(&self) -> &bool;
+    fn sky_box_enable_mut(&mut self) -> &mut bool;
     fn sky_box_sky_color(&self) -> &super::core::Vec3;
+    fn sky_box_sky_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_ground_color(&self) -> &super::core::Vec3;
+    fn sky_box_ground_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_sun_light_color(&self) -> &super::core::Vec3;
+    fn sky_box_sun_light_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_sun_light_color_size(&self) -> &f32;
+    fn sky_box_sun_light_color_size_mut(&mut self) -> &mut f32;
     fn sky_box_back_light_color(&self) -> &super::core::Vec3;
+    fn sky_box_back_light_color_mut(&mut self) -> &mut super::core::Vec3;
     fn sky_box_back_light_color_size(&self) -> &f32;
+    fn sky_box_back_light_color_size_mut(&mut self) -> &mut f32;
     fn sky_box_back_light_rotation_x(&self) -> &f32;
+    fn sky_box_back_light_rotation_x_mut(&mut self) -> &mut f32;
     fn sky_box_back_light_rotation_y(&self) -> &f32;
+    fn sky_box_back_light_rotation_y_mut(&mut self) -> &mut f32;
 }
 
 impl EnlightenStateTrait for EnlightenState {
     fn bounce_scale(&self) -> &f32 {
         &self.bounce_scale
     }
+    fn bounce_scale_mut(&mut self) -> &mut f32 {
+        &mut self.bounce_scale
+    }
     fn sun_scale(&self) -> &f32 {
         &self.sun_scale
+    }
+    fn sun_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sun_scale
     }
     fn output_scale(&self) -> &f32 {
         &self.output_scale
     }
+    fn output_scale_mut(&mut self) -> &mut f32 {
+        &mut self.output_scale
+    }
     fn sky_box_enable(&self) -> &bool {
         &self.sky_box_enable
+    }
+    fn sky_box_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_box_enable
     }
     fn sky_box_sky_color(&self) -> &super::core::Vec3 {
         &self.sky_box_sky_color
     }
+    fn sky_box_sky_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_sky_color
+    }
     fn sky_box_ground_color(&self) -> &super::core::Vec3 {
         &self.sky_box_ground_color
+    }
+    fn sky_box_ground_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_ground_color
     }
     fn sky_box_sun_light_color(&self) -> &super::core::Vec3 {
         &self.sky_box_sun_light_color
     }
+    fn sky_box_sun_light_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_sun_light_color
+    }
     fn sky_box_sun_light_color_size(&self) -> &f32 {
         &self.sky_box_sun_light_color_size
+    }
+    fn sky_box_sun_light_color_size_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_sun_light_color_size
     }
     fn sky_box_back_light_color(&self) -> &super::core::Vec3 {
         &self.sky_box_back_light_color
     }
+    fn sky_box_back_light_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sky_box_back_light_color
+    }
     fn sky_box_back_light_color_size(&self) -> &f32 {
         &self.sky_box_back_light_color_size
+    }
+    fn sky_box_back_light_color_size_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_back_light_color_size
     }
     fn sky_box_back_light_rotation_x(&self) -> &f32 {
         &self.sky_box_back_light_rotation_x
     }
+    fn sky_box_back_light_rotation_x_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_back_light_rotation_x
+    }
     fn sky_box_back_light_rotation_y(&self) -> &f32 {
         &self.sky_box_back_light_rotation_y
+    }
+    fn sky_box_back_light_rotation_y_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_back_light_rotation_y
     }
 }
 
 impl super::core::DataContainerTrait for EnlightenState {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENLIGHTENSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1860,6 +2268,15 @@ impl TypeObject for EnlightenState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1881,11 +2298,15 @@ pub struct EnlightenRuntimeConfig {
 
 pub trait EnlightenRuntimeConfigTrait: super::render_base::EnlightenRuntimeConfigBaseAssetTrait {
     fn job_count(&self) -> &u32;
+    fn job_count_mut(&mut self) -> &mut u32;
 }
 
 impl EnlightenRuntimeConfigTrait for EnlightenRuntimeConfig {
     fn job_count(&self) -> &u32 {
         &self.job_count
+    }
+    fn job_count_mut(&mut self) -> &mut u32 {
+        &mut self.job_count
     }
 }
 
@@ -1896,12 +2317,12 @@ impl super::core::AssetTrait for EnlightenRuntimeConfig {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EnlightenRuntimeConfig {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENLIGHTENRUNTIMECONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1932,6 +2353,15 @@ impl TypeObject for EnlightenRuntimeConfig {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2026,299 +2456,591 @@ pub struct EnlightenRuntimeSettings {
 
 pub trait EnlightenRuntimeSettingsTrait: super::core::SystemSettingsTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn force_dynamic(&self) -> &bool;
+    fn force_dynamic_mut(&mut self) -> &mut bool;
     fn force_update_static_lighting_buffers_enable(&self) -> &bool;
+    fn force_update_static_lighting_buffers_enable_mut(&mut self) -> &mut bool;
     fn save_radiosity_textures_enable(&self) -> &bool;
+    fn save_radiosity_textures_enable_mut(&mut self) -> &mut bool;
     fn save_radiosity_textures_data_asset_guid(&self) -> &glacier_util::guid::Guid;
+    fn save_radiosity_textures_data_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn temporal_coherence_threshold(&self) -> &f32;
+    fn temporal_coherence_threshold_mut(&mut self) -> &mut f32;
     fn max_per_frame_temporal_solve_time(&self) -> &f32;
+    fn max_per_frame_temporal_solve_time_mut(&mut self) -> &mut f32;
     fn distance_priority(&self) -> &f32;
+    fn distance_priority_mut(&mut self) -> &mut f32;
     fn frustum_priority(&self) -> &f32;
+    fn frustum_priority_mut(&mut self) -> &mut f32;
     fn sky_box_scale(&self) -> &f32;
+    fn sky_box_scale_mut(&mut self) -> &mut f32;
     fn max_per_frame_solve_time(&self) -> &f32;
+    fn max_per_frame_solve_time_mut(&mut self) -> &mut f32;
     fn min_system_update_count(&self) -> &u32;
+    fn min_system_update_count_mut(&mut self) -> &mut u32;
     fn max_system_update_count(&self) -> &i32;
+    fn max_system_update_count_mut(&mut self) -> &mut i32;
     fn jobs_enable(&self) -> &bool;
+    fn jobs_enable_mut(&mut self) -> &mut bool;
     fn job_count(&self) -> &u32;
+    fn job_count_mut(&mut self) -> &mut u32;
     fn shadows_enable(&self) -> &bool;
+    fn shadows_enable_mut(&mut self) -> &mut bool;
     fn spot_light_shadows_enable(&self) -> &bool;
+    fn spot_light_shadows_enable_mut(&mut self) -> &mut bool;
     fn sun_light_shadows_enable(&self) -> &bool;
+    fn sun_light_shadows_enable_mut(&mut self) -> &mut bool;
     fn compensate_sun_shadow_height_scale(&self) -> &bool;
+    fn compensate_sun_shadow_height_scale_mut(&mut self) -> &mut bool;
     fn light_maps_enable(&self) -> &bool;
+    fn light_maps_enable_mut(&mut self) -> &mut bool;
     fn light_probe_enable(&self) -> &bool;
+    fn light_probe_enable_mut(&mut self) -> &mut bool;
     fn light_probe_force_update(&self) -> &bool;
+    fn light_probe_force_update_mut(&mut self) -> &mut bool;
     fn light_probe_jobs_enable(&self) -> &bool;
+    fn light_probe_jobs_enable_mut(&mut self) -> &mut bool;
     fn light_probe_max_source_solve_count(&self) -> &u32;
+    fn light_probe_max_source_solve_count_mut(&mut self) -> &mut u32;
     fn light_probe_max_instance_update_count(&self) -> &u32;
+    fn light_probe_max_instance_update_count_mut(&mut self) -> &mut u32;
     fn light_probe_min_instance_update_distance(&self) -> &f32;
+    fn light_probe_min_instance_update_distance_mut(&mut self) -> &mut f32;
     fn light_probe_force_min_instance_update_distance(&self) -> &f32;
+    fn light_probe_force_min_instance_update_distance_mut(&mut self) -> &mut f32;
     fn light_probe_table_cell_size(&self) -> &u32;
+    fn light_probe_table_cell_size_mut(&mut self) -> &mut u32;
     fn light_probe_max_per_frame_time_ms(&self) -> &f32;
+    fn light_probe_max_per_frame_time_ms_mut(&mut self) -> &mut f32;
     fn local_lights_enable(&self) -> &bool;
+    fn local_lights_enable_mut(&mut self) -> &mut bool;
     fn local_light_culling_enable(&self) -> &bool;
+    fn local_light_culling_enable_mut(&mut self) -> &mut bool;
     fn local_light_custum_falloff(&self) -> &bool;
+    fn local_light_custum_falloff_mut(&mut self) -> &mut bool;
     fn local_light_force_radius(&self) -> &f32;
+    fn local_light_force_radius_mut(&mut self) -> &mut f32;
     fn draw_debug_mesh_lod(&self) -> &i32;
+    fn draw_debug_mesh_lod_mut(&mut self) -> &mut i32;
     fn draw_debug_entities(&self) -> &bool;
+    fn draw_debug_entities_mut(&mut self) -> &mut bool;
     fn draw_debug_static_entities(&self) -> &bool;
+    fn draw_debug_static_entities_mut(&mut self) -> &mut bool;
     fn draw_debug_systems_enable(&self) -> &bool;
+    fn draw_debug_systems_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_system_dependencies_enable(&self) -> &i32;
+    fn draw_debug_system_dependencies_enable_mut(&mut self) -> &mut i32;
     fn draw_debug_system_bounding_box_enable(&self) -> &i32;
+    fn draw_debug_system_bounding_box_enable_mut(&mut self) -> &mut i32;
     fn draw_debug_static_light_probes(&self) -> &bool;
+    fn draw_debug_static_light_probes_mut(&mut self) -> &mut bool;
     fn draw_debug_dynamic_light_probes(&self) -> &bool;
+    fn draw_debug_dynamic_light_probes_mut(&mut self) -> &mut bool;
     fn draw_debug_light_probe_grid(&self) -> &bool;
+    fn draw_debug_light_probe_grid_mut(&mut self) -> &mut bool;
     fn draw_debug_light_probe_occlusion(&self) -> &bool;
+    fn draw_debug_light_probe_occlusion_mut(&mut self) -> &mut bool;
     fn draw_debug_light_probe_stats(&self) -> &bool;
+    fn draw_debug_light_probe_stats_mut(&mut self) -> &mut bool;
     fn draw_debug_light_probe_bounding_boxes(&self) -> &bool;
+    fn draw_debug_light_probe_bounding_boxes_mut(&mut self) -> &mut bool;
     fn draw_debug_transparency_light_probes(&self) -> &bool;
+    fn draw_debug_transparency_light_probes_mut(&mut self) -> &mut bool;
     fn draw_debug_light_probe_size(&self) -> &f32;
+    fn draw_debug_light_probe_size_mut(&mut self) -> &mut f32;
     fn draw_debug_light_probe_cull_distance(&self) -> &f32;
+    fn draw_debug_light_probe_cull_distance_mut(&mut self) -> &mut f32;
     fn draw_solve_task_performance_summary(&self) -> &bool;
+    fn draw_solve_task_performance_summary_mut(&mut self) -> &mut bool;
     fn draw_solve_task_performance_details(&self) -> &bool;
+    fn draw_solve_task_performance_details_mut(&mut self) -> &mut bool;
     fn draw_debug_coloring_enable(&self) -> &bool;
+    fn draw_debug_coloring_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_textures(&self) -> &bool;
+    fn draw_debug_textures_mut(&mut self) -> &mut bool;
     fn draw_debug_g_p_u_dusters(&self) -> &bool;
+    fn draw_debug_g_p_u_dusters_mut(&mut self) -> &mut bool;
     fn draw_debug_g_p_u_sun_visibility(&self) -> &bool;
+    fn draw_debug_g_p_u_sun_visibility_mut(&mut self) -> &mut bool;
     fn draw_debug_g_p_u_spot_visibility(&self) -> &bool;
+    fn draw_debug_g_p_u_spot_visibility_mut(&mut self) -> &mut bool;
     fn draw_debug_back_faces(&self) -> &bool;
+    fn draw_debug_back_faces_mut(&mut self) -> &mut bool;
     fn draw_debug_target_meshes(&self) -> &bool;
+    fn draw_debug_target_meshes_mut(&mut self) -> &mut bool;
     fn draw_debug_duster_positions(&self) -> &bool;
+    fn draw_debug_duster_positions_mut(&mut self) -> &mut bool;
     fn draw_debug_clusters(&self) -> &bool;
+    fn draw_debug_clusters_mut(&mut self) -> &mut bool;
     fn draw_debug_trans_sample_positions(&self) -> &bool;
+    fn draw_debug_trans_sample_positions_mut(&mut self) -> &mut bool;
     fn draw_warnings_enable(&self) -> &bool;
+    fn draw_warnings_enable_mut(&mut self) -> &mut bool;
     fn albedo_force_update_enable(&self) -> &bool;
+    fn albedo_force_update_enable_mut(&mut self) -> &mut bool;
     fn albedo_force_color_enable(&self) -> &bool;
+    fn albedo_force_color_enable_mut(&mut self) -> &mut bool;
     fn albedo_default_color(&self) -> &super::core::Vec3;
+    fn albedo_default_color_mut(&mut self) -> &mut super::core::Vec3;
     fn terrain_map_enable(&self) -> &bool;
+    fn terrain_map_enable_mut(&mut self) -> &mut bool;
     fn emissive_enable(&self) -> &bool;
+    fn emissive_enable_mut(&mut self) -> &mut bool;
     fn debug_meshes_enable(&self) -> &bool;
+    fn debug_meshes_enable_mut(&mut self) -> &mut bool;
     fn validation_enable(&self) -> &bool;
+    fn validation_enable_mut(&mut self) -> &mut bool;
     fn update_transparency_with_sun_light_change(&self) -> &bool;
+    fn update_transparency_with_sun_light_change_mut(&mut self) -> &mut bool;
     fn transparency_interpolants(&self) -> &i32;
+    fn transparency_interpolants_mut(&mut self) -> &mut i32;
     fn transparency_update_count(&self) -> &i32;
+    fn transparency_update_count_mut(&mut self) -> &mut i32;
     fn display_dirty_message(&self) -> &bool;
+    fn display_dirty_message_mut(&mut self) -> &mut bool;
     fn frame_amortized_update_enabled(&self) -> &bool;
+    fn frame_amortized_update_enabled_mut(&mut self) -> &mut bool;
 }
 
 impl EnlightenRuntimeSettingsTrait for EnlightenRuntimeSettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn force_dynamic(&self) -> &bool {
         &self.force_dynamic
+    }
+    fn force_dynamic_mut(&mut self) -> &mut bool {
+        &mut self.force_dynamic
     }
     fn force_update_static_lighting_buffers_enable(&self) -> &bool {
         &self.force_update_static_lighting_buffers_enable
     }
+    fn force_update_static_lighting_buffers_enable_mut(&mut self) -> &mut bool {
+        &mut self.force_update_static_lighting_buffers_enable
+    }
     fn save_radiosity_textures_enable(&self) -> &bool {
         &self.save_radiosity_textures_enable
+    }
+    fn save_radiosity_textures_enable_mut(&mut self) -> &mut bool {
+        &mut self.save_radiosity_textures_enable
     }
     fn save_radiosity_textures_data_asset_guid(&self) -> &glacier_util::guid::Guid {
         &self.save_radiosity_textures_data_asset_guid
     }
+    fn save_radiosity_textures_data_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.save_radiosity_textures_data_asset_guid
+    }
     fn temporal_coherence_threshold(&self) -> &f32 {
         &self.temporal_coherence_threshold
+    }
+    fn temporal_coherence_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.temporal_coherence_threshold
     }
     fn max_per_frame_temporal_solve_time(&self) -> &f32 {
         &self.max_per_frame_temporal_solve_time
     }
+    fn max_per_frame_temporal_solve_time_mut(&mut self) -> &mut f32 {
+        &mut self.max_per_frame_temporal_solve_time
+    }
     fn distance_priority(&self) -> &f32 {
         &self.distance_priority
+    }
+    fn distance_priority_mut(&mut self) -> &mut f32 {
+        &mut self.distance_priority
     }
     fn frustum_priority(&self) -> &f32 {
         &self.frustum_priority
     }
+    fn frustum_priority_mut(&mut self) -> &mut f32 {
+        &mut self.frustum_priority
+    }
     fn sky_box_scale(&self) -> &f32 {
         &self.sky_box_scale
+    }
+    fn sky_box_scale_mut(&mut self) -> &mut f32 {
+        &mut self.sky_box_scale
     }
     fn max_per_frame_solve_time(&self) -> &f32 {
         &self.max_per_frame_solve_time
     }
+    fn max_per_frame_solve_time_mut(&mut self) -> &mut f32 {
+        &mut self.max_per_frame_solve_time
+    }
     fn min_system_update_count(&self) -> &u32 {
         &self.min_system_update_count
+    }
+    fn min_system_update_count_mut(&mut self) -> &mut u32 {
+        &mut self.min_system_update_count
     }
     fn max_system_update_count(&self) -> &i32 {
         &self.max_system_update_count
     }
+    fn max_system_update_count_mut(&mut self) -> &mut i32 {
+        &mut self.max_system_update_count
+    }
     fn jobs_enable(&self) -> &bool {
         &self.jobs_enable
+    }
+    fn jobs_enable_mut(&mut self) -> &mut bool {
+        &mut self.jobs_enable
     }
     fn job_count(&self) -> &u32 {
         &self.job_count
     }
+    fn job_count_mut(&mut self) -> &mut u32 {
+        &mut self.job_count
+    }
     fn shadows_enable(&self) -> &bool {
         &self.shadows_enable
+    }
+    fn shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadows_enable
     }
     fn spot_light_shadows_enable(&self) -> &bool {
         &self.spot_light_shadows_enable
     }
+    fn spot_light_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.spot_light_shadows_enable
+    }
     fn sun_light_shadows_enable(&self) -> &bool {
         &self.sun_light_shadows_enable
+    }
+    fn sun_light_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.sun_light_shadows_enable
     }
     fn compensate_sun_shadow_height_scale(&self) -> &bool {
         &self.compensate_sun_shadow_height_scale
     }
+    fn compensate_sun_shadow_height_scale_mut(&mut self) -> &mut bool {
+        &mut self.compensate_sun_shadow_height_scale
+    }
     fn light_maps_enable(&self) -> &bool {
         &self.light_maps_enable
+    }
+    fn light_maps_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_maps_enable
     }
     fn light_probe_enable(&self) -> &bool {
         &self.light_probe_enable
     }
+    fn light_probe_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_probe_enable
+    }
     fn light_probe_force_update(&self) -> &bool {
         &self.light_probe_force_update
+    }
+    fn light_probe_force_update_mut(&mut self) -> &mut bool {
+        &mut self.light_probe_force_update
     }
     fn light_probe_jobs_enable(&self) -> &bool {
         &self.light_probe_jobs_enable
     }
+    fn light_probe_jobs_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_probe_jobs_enable
+    }
     fn light_probe_max_source_solve_count(&self) -> &u32 {
         &self.light_probe_max_source_solve_count
+    }
+    fn light_probe_max_source_solve_count_mut(&mut self) -> &mut u32 {
+        &mut self.light_probe_max_source_solve_count
     }
     fn light_probe_max_instance_update_count(&self) -> &u32 {
         &self.light_probe_max_instance_update_count
     }
+    fn light_probe_max_instance_update_count_mut(&mut self) -> &mut u32 {
+        &mut self.light_probe_max_instance_update_count
+    }
     fn light_probe_min_instance_update_distance(&self) -> &f32 {
         &self.light_probe_min_instance_update_distance
+    }
+    fn light_probe_min_instance_update_distance_mut(&mut self) -> &mut f32 {
+        &mut self.light_probe_min_instance_update_distance
     }
     fn light_probe_force_min_instance_update_distance(&self) -> &f32 {
         &self.light_probe_force_min_instance_update_distance
     }
+    fn light_probe_force_min_instance_update_distance_mut(&mut self) -> &mut f32 {
+        &mut self.light_probe_force_min_instance_update_distance
+    }
     fn light_probe_table_cell_size(&self) -> &u32 {
         &self.light_probe_table_cell_size
+    }
+    fn light_probe_table_cell_size_mut(&mut self) -> &mut u32 {
+        &mut self.light_probe_table_cell_size
     }
     fn light_probe_max_per_frame_time_ms(&self) -> &f32 {
         &self.light_probe_max_per_frame_time_ms
     }
+    fn light_probe_max_per_frame_time_ms_mut(&mut self) -> &mut f32 {
+        &mut self.light_probe_max_per_frame_time_ms
+    }
     fn local_lights_enable(&self) -> &bool {
         &self.local_lights_enable
+    }
+    fn local_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_lights_enable
     }
     fn local_light_culling_enable(&self) -> &bool {
         &self.local_light_culling_enable
     }
+    fn local_light_culling_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_light_culling_enable
+    }
     fn local_light_custum_falloff(&self) -> &bool {
         &self.local_light_custum_falloff
+    }
+    fn local_light_custum_falloff_mut(&mut self) -> &mut bool {
+        &mut self.local_light_custum_falloff
     }
     fn local_light_force_radius(&self) -> &f32 {
         &self.local_light_force_radius
     }
+    fn local_light_force_radius_mut(&mut self) -> &mut f32 {
+        &mut self.local_light_force_radius
+    }
     fn draw_debug_mesh_lod(&self) -> &i32 {
         &self.draw_debug_mesh_lod
+    }
+    fn draw_debug_mesh_lod_mut(&mut self) -> &mut i32 {
+        &mut self.draw_debug_mesh_lod
     }
     fn draw_debug_entities(&self) -> &bool {
         &self.draw_debug_entities
     }
+    fn draw_debug_entities_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_entities
+    }
     fn draw_debug_static_entities(&self) -> &bool {
         &self.draw_debug_static_entities
+    }
+    fn draw_debug_static_entities_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_static_entities
     }
     fn draw_debug_systems_enable(&self) -> &bool {
         &self.draw_debug_systems_enable
     }
+    fn draw_debug_systems_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_systems_enable
+    }
     fn draw_debug_system_dependencies_enable(&self) -> &i32 {
         &self.draw_debug_system_dependencies_enable
+    }
+    fn draw_debug_system_dependencies_enable_mut(&mut self) -> &mut i32 {
+        &mut self.draw_debug_system_dependencies_enable
     }
     fn draw_debug_system_bounding_box_enable(&self) -> &i32 {
         &self.draw_debug_system_bounding_box_enable
     }
+    fn draw_debug_system_bounding_box_enable_mut(&mut self) -> &mut i32 {
+        &mut self.draw_debug_system_bounding_box_enable
+    }
     fn draw_debug_static_light_probes(&self) -> &bool {
         &self.draw_debug_static_light_probes
+    }
+    fn draw_debug_static_light_probes_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_static_light_probes
     }
     fn draw_debug_dynamic_light_probes(&self) -> &bool {
         &self.draw_debug_dynamic_light_probes
     }
+    fn draw_debug_dynamic_light_probes_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_dynamic_light_probes
+    }
     fn draw_debug_light_probe_grid(&self) -> &bool {
         &self.draw_debug_light_probe_grid
+    }
+    fn draw_debug_light_probe_grid_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_probe_grid
     }
     fn draw_debug_light_probe_occlusion(&self) -> &bool {
         &self.draw_debug_light_probe_occlusion
     }
+    fn draw_debug_light_probe_occlusion_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_probe_occlusion
+    }
     fn draw_debug_light_probe_stats(&self) -> &bool {
         &self.draw_debug_light_probe_stats
+    }
+    fn draw_debug_light_probe_stats_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_probe_stats
     }
     fn draw_debug_light_probe_bounding_boxes(&self) -> &bool {
         &self.draw_debug_light_probe_bounding_boxes
     }
+    fn draw_debug_light_probe_bounding_boxes_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_probe_bounding_boxes
+    }
     fn draw_debug_transparency_light_probes(&self) -> &bool {
         &self.draw_debug_transparency_light_probes
+    }
+    fn draw_debug_transparency_light_probes_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_transparency_light_probes
     }
     fn draw_debug_light_probe_size(&self) -> &f32 {
         &self.draw_debug_light_probe_size
     }
+    fn draw_debug_light_probe_size_mut(&mut self) -> &mut f32 {
+        &mut self.draw_debug_light_probe_size
+    }
     fn draw_debug_light_probe_cull_distance(&self) -> &f32 {
         &self.draw_debug_light_probe_cull_distance
+    }
+    fn draw_debug_light_probe_cull_distance_mut(&mut self) -> &mut f32 {
+        &mut self.draw_debug_light_probe_cull_distance
     }
     fn draw_solve_task_performance_summary(&self) -> &bool {
         &self.draw_solve_task_performance_summary
     }
+    fn draw_solve_task_performance_summary_mut(&mut self) -> &mut bool {
+        &mut self.draw_solve_task_performance_summary
+    }
     fn draw_solve_task_performance_details(&self) -> &bool {
         &self.draw_solve_task_performance_details
+    }
+    fn draw_solve_task_performance_details_mut(&mut self) -> &mut bool {
+        &mut self.draw_solve_task_performance_details
     }
     fn draw_debug_coloring_enable(&self) -> &bool {
         &self.draw_debug_coloring_enable
     }
+    fn draw_debug_coloring_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_coloring_enable
+    }
     fn draw_debug_textures(&self) -> &bool {
         &self.draw_debug_textures
+    }
+    fn draw_debug_textures_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_textures
     }
     fn draw_debug_g_p_u_dusters(&self) -> &bool {
         &self.draw_debug_g_p_u_dusters
     }
+    fn draw_debug_g_p_u_dusters_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_g_p_u_dusters
+    }
     fn draw_debug_g_p_u_sun_visibility(&self) -> &bool {
         &self.draw_debug_g_p_u_sun_visibility
+    }
+    fn draw_debug_g_p_u_sun_visibility_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_g_p_u_sun_visibility
     }
     fn draw_debug_g_p_u_spot_visibility(&self) -> &bool {
         &self.draw_debug_g_p_u_spot_visibility
     }
+    fn draw_debug_g_p_u_spot_visibility_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_g_p_u_spot_visibility
+    }
     fn draw_debug_back_faces(&self) -> &bool {
         &self.draw_debug_back_faces
+    }
+    fn draw_debug_back_faces_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_back_faces
     }
     fn draw_debug_target_meshes(&self) -> &bool {
         &self.draw_debug_target_meshes
     }
+    fn draw_debug_target_meshes_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_target_meshes
+    }
     fn draw_debug_duster_positions(&self) -> &bool {
         &self.draw_debug_duster_positions
+    }
+    fn draw_debug_duster_positions_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_duster_positions
     }
     fn draw_debug_clusters(&self) -> &bool {
         &self.draw_debug_clusters
     }
+    fn draw_debug_clusters_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_clusters
+    }
     fn draw_debug_trans_sample_positions(&self) -> &bool {
         &self.draw_debug_trans_sample_positions
+    }
+    fn draw_debug_trans_sample_positions_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_trans_sample_positions
     }
     fn draw_warnings_enable(&self) -> &bool {
         &self.draw_warnings_enable
     }
+    fn draw_warnings_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_warnings_enable
+    }
     fn albedo_force_update_enable(&self) -> &bool {
         &self.albedo_force_update_enable
+    }
+    fn albedo_force_update_enable_mut(&mut self) -> &mut bool {
+        &mut self.albedo_force_update_enable
     }
     fn albedo_force_color_enable(&self) -> &bool {
         &self.albedo_force_color_enable
     }
+    fn albedo_force_color_enable_mut(&mut self) -> &mut bool {
+        &mut self.albedo_force_color_enable
+    }
     fn albedo_default_color(&self) -> &super::core::Vec3 {
         &self.albedo_default_color
+    }
+    fn albedo_default_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.albedo_default_color
     }
     fn terrain_map_enable(&self) -> &bool {
         &self.terrain_map_enable
     }
+    fn terrain_map_enable_mut(&mut self) -> &mut bool {
+        &mut self.terrain_map_enable
+    }
     fn emissive_enable(&self) -> &bool {
         &self.emissive_enable
+    }
+    fn emissive_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_enable
     }
     fn debug_meshes_enable(&self) -> &bool {
         &self.debug_meshes_enable
     }
+    fn debug_meshes_enable_mut(&mut self) -> &mut bool {
+        &mut self.debug_meshes_enable
+    }
     fn validation_enable(&self) -> &bool {
         &self.validation_enable
+    }
+    fn validation_enable_mut(&mut self) -> &mut bool {
+        &mut self.validation_enable
     }
     fn update_transparency_with_sun_light_change(&self) -> &bool {
         &self.update_transparency_with_sun_light_change
     }
+    fn update_transparency_with_sun_light_change_mut(&mut self) -> &mut bool {
+        &mut self.update_transparency_with_sun_light_change
+    }
     fn transparency_interpolants(&self) -> &i32 {
         &self.transparency_interpolants
+    }
+    fn transparency_interpolants_mut(&mut self) -> &mut i32 {
+        &mut self.transparency_interpolants
     }
     fn transparency_update_count(&self) -> &i32 {
         &self.transparency_update_count
     }
+    fn transparency_update_count_mut(&mut self) -> &mut i32 {
+        &mut self.transparency_update_count
+    }
     fn display_dirty_message(&self) -> &bool {
         &self.display_dirty_message
     }
+    fn display_dirty_message_mut(&mut self) -> &mut bool {
+        &mut self.display_dirty_message
+    }
     fn frame_amortized_update_enabled(&self) -> &bool {
         &self.frame_amortized_update_enabled
+    }
+    fn frame_amortized_update_enabled_mut(&mut self) -> &mut bool {
+        &mut self.frame_amortized_update_enabled
     }
 }
 
@@ -2326,12 +3048,12 @@ impl super::core::SystemSettingsTrait for EnlightenRuntimeSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EnlightenRuntimeSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENLIGHTENRUNTIMESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2795,6 +3517,15 @@ impl TypeObject for EnlightenRuntimeSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3187,1495 +3918,2983 @@ pub struct WorldRenderSettings {
 
 pub trait WorldRenderSettingsTrait: WorldRenderSettingsBaseTrait {
     fn test_rendering_enable(&self) -> &bool;
+    fn test_rendering_enable_mut(&mut self) -> &mut bool;
     fn generic_entity_renderer_enable(&self) -> &bool;
+    fn generic_entity_renderer_enable_mut(&mut self) -> &mut bool;
     fn generic_entity_max_visible_entity_count(&self) -> &u32;
+    fn generic_entity_max_visible_entity_count_mut(&mut self) -> &mut u32;
     fn z_buffer_shadow_test_enable(&self) -> &bool;
+    fn z_buffer_shadow_test_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_ground_height(&self) -> &u32;
+    fn draw_debug_ground_height_mut(&mut self) -> &mut u32;
     fn decal_volume_enable(&self) -> &bool;
+    fn decal_volume_enable_mut(&mut self) -> &mut bool;
     fn decal_volume_scale(&self) -> &f32;
+    fn decal_volume_scale_mut(&mut self) -> &mut f32;
     fn draw_debug_decal_volumes(&self) -> &bool;
+    fn draw_debug_decal_volumes_mut(&mut self) -> &mut bool;
     fn environment_decal_volumes_enabled(&self) -> &bool;
+    fn environment_decal_volumes_enabled_mut(&mut self) -> &mut bool;
     fn environment_decal_volume_quality(&self) -> &super::core::QualityLevel;
+    fn environment_decal_volume_quality_mut(&mut self) -> &mut super::core::QualityLevel;
     fn environment_decal_volume_max_count(&self) -> &super::core::QualityScalableInt;
+    fn environment_decal_volume_max_count_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn emitter_decal_volume_quality(&self) -> &super::core::QualityLevel;
+    fn emitter_decal_volume_quality_mut(&mut self) -> &mut super::core::QualityLevel;
     fn emitter_decal_volume_max_count(&self) -> &super::core::QualityScalableInt;
+    fn emitter_decal_volume_max_count_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn emitter_decal_volume_max_count_per_set(&self) -> &super::core::QualityScalableInt;
+    fn emitter_decal_volume_max_count_per_set_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn edge_models_enable(&self) -> &bool;
+    fn edge_models_enable_mut(&mut self) -> &mut bool;
     fn edge_model_cast_shadows_enable(&self) -> &bool;
+    fn edge_model_cast_shadows_enable_mut(&mut self) -> &mut bool;
     fn edge_model_depth_bias_enable(&self) -> &bool;
+    fn edge_model_depth_bias_enable_mut(&mut self) -> &mut bool;
     fn edge_model_shadow_depth_bias_enable(&self) -> &bool;
+    fn edge_model_shadow_depth_bias_enable_mut(&mut self) -> &mut bool;
     fn edge_model_view_distance(&self) -> &f32;
+    fn edge_model_view_distance_mut(&mut self) -> &mut f32;
     fn edge_model_use_main_lod_enable(&self) -> &bool;
+    fn edge_model_use_main_lod_enable_mut(&mut self) -> &mut bool;
     fn edge_model_force_lod(&self) -> &i32;
+    fn edge_model_force_lod_mut(&mut self) -> &mut i32;
     fn edge_model_lod_scale(&self) -> &f32;
+    fn edge_model_lod_scale_mut(&mut self) -> &mut f32;
     fn lens_flares_enable(&self) -> &bool;
+    fn lens_flares_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_lens_flare_occluders(&self) -> &bool;
+    fn draw_debug_lens_flare_occluders_mut(&mut self) -> &mut bool;
     fn draw_debug_lens_flares(&self) -> &bool;
+    fn draw_debug_lens_flares_mut(&mut self) -> &mut bool;
     fn lens_flare_occlusion_enable(&self) -> &bool;
+    fn lens_flare_occlusion_enable_mut(&mut self) -> &mut bool;
     fn max_lens_flares_per_frame(&self) -> &u32;
+    fn max_lens_flares_per_frame_mut(&mut self) -> &mut u32;
     fn lens_flares_quality_level(&self) -> &super::core::QualityLevel;
+    fn lens_flares_quality_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn cloud_shadow_enable(&self) -> &bool;
+    fn cloud_shadow_enable_mut(&mut self) -> &mut bool;
     fn override_dynamic_a_o(&self) -> &bool;
+    fn override_dynamic_a_o_mut(&mut self) -> &mut bool;
     fn draw_debug_dynamic_a_o(&self) -> &bool;
+    fn draw_debug_dynamic_a_o_mut(&mut self) -> &mut bool;
     fn draw_debug_raytrace_refl(&self) -> &bool;
+    fn draw_debug_raytrace_refl_mut(&mut self) -> &mut bool;
     fn draw_debug_raytrace_a_o(&self) -> &bool;
+    fn draw_debug_raytrace_a_o_mut(&mut self) -> &mut bool;
     fn draw_debug_raytrace_primary_ray(&self) -> &bool;
+    fn draw_debug_raytrace_primary_ray_mut(&mut self) -> &mut bool;
     fn filmic_effects_enable(&self) -> &bool;
+    fn filmic_effects_enable_mut(&mut self) -> &mut bool;
     fn emissive_enable(&self) -> &bool;
+    fn emissive_enable_mut(&mut self) -> &mut bool;
     fn g_buffer_layout(&self) -> &u32;
+    fn g_buffer_layout_mut(&mut self) -> &mut u32;
     fn g_buffer_test_count(&self) -> &u32;
+    fn g_buffer_test_count_mut(&mut self) -> &mut u32;
     fn g_buffer_clear_enable(&self) -> &bool;
+    fn g_buffer_clear_enable_mut(&mut self) -> &mut bool;
     fn dx_g_buffer_light16_bit_enable(&self) -> &bool;
+    fn dx_g_buffer_light16_bit_enable_mut(&mut self) -> &mut bool;
     fn dx_g_buffer_normal16_bit_enable(&self) -> &bool;
+    fn dx_g_buffer_normal16_bit_enable_mut(&mut self) -> &mut bool;
     fn dx_g_buffer_roughness16_bit_enable(&self) -> &bool;
+    fn dx_g_buffer_roughness16_bit_enable_mut(&mut self) -> &mut bool;
     fn g_buffer_alpha_test_simple_enable(&self) -> &bool;
+    fn g_buffer_alpha_test_simple_enable_mut(&mut self) -> &mut bool;
     fn g_buffer_alpha_test_simple_smoothness(&self) -> &f32;
+    fn g_buffer_alpha_test_simple_smoothness_mut(&mut self) -> &mut f32;
     fn g_buffer_force_metal_mask(&self) -> &f32;
+    fn g_buffer_force_metal_mask_mut(&mut self) -> &mut f32;
     fn g_buffer_force_smoothness(&self) -> &f32;
+    fn g_buffer_force_smoothness_mut(&mut self) -> &mut f32;
     fn g_buffer_force_specular_albedo(&self) -> &f32;
+    fn g_buffer_force_specular_albedo_mut(&mut self) -> &mut f32;
     fn alpha_unroll_enable(&self) -> &bool;
+    fn alpha_unroll_enable_mut(&mut self) -> &mut bool;
     fn gen4a_esram_enable(&self) -> &bool;
+    fn gen4a_esram_enable_mut(&mut self) -> &mut bool;
     fn specular_lighting_enable(&self) -> &bool;
+    fn specular_lighting_enable_mut(&mut self) -> &mut bool;
     fn skin_lighting_enable(&self) -> &bool;
+    fn skin_lighting_enable_mut(&mut self) -> &mut bool;
     fn translucency_lighting_enable(&self) -> &bool;
+    fn translucency_lighting_enable_mut(&mut self) -> &mut bool;
     fn translucency_auto_thickness_enable(&self) -> &bool;
+    fn translucency_auto_thickness_enable_mut(&mut self) -> &mut bool;
     fn local_light_translucency_enable(&self) -> &bool;
+    fn local_light_translucency_enable_mut(&mut self) -> &mut bool;
     fn dynamic_envmap_lighting_enable(&self) -> &bool;
+    fn dynamic_envmap_lighting_enable_mut(&mut self) -> &mut bool;
     fn outdoor_light_enable(&self) -> &bool;
+    fn outdoor_light_enable_mut(&mut self) -> &mut bool;
     fn light_stencil_method_enable(&self) -> &bool;
+    fn light_stencil_method_enable_mut(&mut self) -> &mut bool;
     fn light_volume_method_enable(&self) -> &bool;
+    fn light_volume_method_enable_mut(&mut self) -> &mut bool;
     fn light_volume_depth_test_enable(&self) -> &bool;
+    fn light_volume_depth_test_enable_mut(&mut self) -> &mut bool;
     fn outdoor_key_light_enable(&self) -> &bool;
+    fn outdoor_key_light_enable_mut(&mut self) -> &mut bool;
     fn outdoor_sky_light_enable(&self) -> &bool;
+    fn outdoor_sky_light_enable_mut(&mut self) -> &mut bool;
     fn outdoor_light_tile_blend_enable(&self) -> &bool;
+    fn outdoor_light_tile_blend_enable_mut(&mut self) -> &mut bool;
     fn emitter_sun_transmittance_map_enable(&self) -> &bool;
+    fn emitter_sun_transmittance_map_enable_mut(&mut self) -> &mut bool;
     fn emitter_sun_transmittance_map_resolution(&self) -> &u32;
+    fn emitter_sun_transmittance_map_resolution_mut(&mut self) -> &mut u32;
     fn max_decal_volume_count(&self) -> &u32;
+    fn max_decal_volume_count_mut(&mut self) -> &mut u32;
     fn light_tile_combine_outdoor_light_enable(&self) -> &bool;
+    fn light_tile_combine_outdoor_light_enable_mut(&mut self) -> &mut bool;
     fn light_tile_cs_path_enable(&self) -> &bool;
+    fn light_tile_cs_path_enable_mut(&mut self) -> &mut bool;
     fn light_tile_ps_path_enable(&self) -> &bool;
+    fn light_tile_ps_path_enable_mut(&mut self) -> &mut bool;
     fn light_tile_async_compute_culling(&self) -> &bool;
+    fn light_tile_async_compute_culling_mut(&mut self) -> &mut bool;
     fn light_tile_cs_avg_light_count_per_tile(&self) -> &u32;
+    fn light_tile_cs_avg_light_count_per_tile_mut(&mut self) -> &mut u32;
     fn light_tile_min_max_use_h_tile(&self) -> &bool;
+    fn light_tile_min_max_use_h_tile_mut(&mut self) -> &mut bool;
     fn light_tile_use_culling_hierarchy(&self) -> &bool;
+    fn light_tile_use_culling_hierarchy_mut(&mut self) -> &mut bool;
     fn light_tile_use_detailed_gpu_timers(&self) -> &bool;
+    fn light_tile_use_detailed_gpu_timers_mut(&mut self) -> &mut bool;
     fn light_tile_use_cs_indirect_clears(&self) -> &bool;
+    fn light_tile_use_cs_indirect_clears_mut(&mut self) -> &mut bool;
     fn light_cull_frustum_expand_distance(&self) -> &f32;
+    fn light_cull_frustum_expand_distance_mut(&mut self) -> &mut f32;
     fn light_tile_debug_light_mode(&self) -> &LightTileDebugLightCountMode;
+    fn light_tile_debug_light_mode_mut(&mut self) -> &mut LightTileDebugLightCountMode;
     fn light_tile_debug_color_mode(&self) -> &i32;
+    fn light_tile_debug_color_mode_mut(&mut self) -> &mut i32;
     fn draw_debug_light_stats(&self) -> &bool;
+    fn draw_debug_light_stats_mut(&mut self) -> &mut bool;
     fn draw_debug_light_stats_forward(&self) -> &bool;
+    fn draw_debug_light_stats_forward_mut(&mut self) -> &mut bool;
     fn draw_debug_light_stats_volumetric(&self) -> &bool;
+    fn draw_debug_light_stats_volumetric_mut(&mut self) -> &mut bool;
     fn draw_debug_light_stats_hierarchy(&self) -> &bool;
+    fn draw_debug_light_stats_hierarchy_mut(&mut self) -> &mut bool;
     fn draw_debug_light_sources(&self) -> &bool;
+    fn draw_debug_light_sources_mut(&mut self) -> &mut bool;
     fn draw_debug_light_shadow_sources(&self) -> &bool;
+    fn draw_debug_light_shadow_sources_mut(&mut self) -> &mut bool;
     fn draw_debug_light_shadow_stats(&self) -> &bool;
+    fn draw_debug_light_shadow_stats_mut(&mut self) -> &mut bool;
     fn draw_debug_light_cull_stats(&self) -> &bool;
+    fn draw_debug_light_cull_stats_mut(&mut self) -> &mut bool;
     fn draw_debug_g_buffer(&self) -> &bool;
+    fn draw_debug_g_buffer_mut(&mut self) -> &mut bool;
     fn draw_debug_material_input(&self) -> &bool;
+    fn draw_debug_material_input_mut(&mut self) -> &mut bool;
     fn draw_debug_material_output(&self) -> &bool;
+    fn draw_debug_material_output_mut(&mut self) -> &mut bool;
     fn draw_debug_light_emissive_surface(&self) -> &bool;
+    fn draw_debug_light_emissive_surface_mut(&mut self) -> &mut bool;
     fn punctual_emissive_light_shape_min_size(&self) -> &f32;
+    fn punctual_emissive_light_shape_min_size_mut(&mut self) -> &mut f32;
     fn debug_light_stats_light_count_highwatermark(&self) -> &u32;
+    fn debug_light_stats_light_count_highwatermark_mut(&mut self) -> &mut u32;
     fn light_lod_fade_area(&self) -> &f32;
+    fn light_lod_fade_area_mut(&mut self) -> &mut f32;
     fn light_lod_min_area(&self) -> &f32;
+    fn light_lod_min_area_mut(&mut self) -> &mut f32;
     fn light_lod_radius_factor(&self) -> &f32;
+    fn light_lod_radius_factor_mut(&mut self) -> &mut f32;
     fn use_new_light_cull_enable(&self) -> &bool;
+    fn use_new_light_cull_enable_mut(&mut self) -> &mut bool;
     fn light_cull_enable(&self) -> &bool;
+    fn light_cull_enable_mut(&mut self) -> &mut bool;
     fn light_cull_job_max_job_count(&self) -> &u32;
+    fn light_cull_job_max_job_count_mut(&mut self) -> &mut u32;
     fn light_occlusion_cull_enable(&self) -> &bool;
+    fn light_occlusion_cull_enable_mut(&mut self) -> &mut bool;
     fn light_cone_cull_enable(&self) -> &bool;
+    fn light_cone_cull_enable_mut(&mut self) -> &mut bool;
     fn occlusion_culling_width(&self) -> &u32;
+    fn occlusion_culling_width_mut(&mut self) -> &mut u32;
     fn occlusion_culling_height(&self) -> &u32;
+    fn occlusion_culling_height_mut(&mut self) -> &mut u32;
     fn occlusion_triangle_count(&self) -> &u32;
+    fn occlusion_triangle_count_mut(&mut self) -> &mut u32;
     fn local_i_b_l_occlusion_culling_enable(&self) -> &bool;
+    fn local_i_b_l_occlusion_culling_enable_mut(&mut self) -> &mut bool;
     fn shadow_occlusion_culling_enable(&self) -> &bool;
+    fn shadow_occlusion_culling_enable_mut(&mut self) -> &mut bool;
     fn shadow_occlusion_culling_width(&self) -> &u32;
+    fn shadow_occlusion_culling_width_mut(&mut self) -> &mut u32;
     fn shadow_occlusion_culling_height(&self) -> &u32;
+    fn shadow_occlusion_culling_height_mut(&mut self) -> &mut u32;
     fn shadow_occlusion_triangle_count(&self) -> &u32;
+    fn shadow_occlusion_triangle_count_mut(&mut self) -> &mut u32;
     fn frustum_silhouette_culling_enable(&self) -> &bool;
+    fn frustum_silhouette_culling_enable_mut(&mut self) -> &mut bool;
     fn frustum_silhouette_culling_padding(&self) -> &f32;
+    fn frustum_silhouette_culling_padding_mut(&mut self) -> &mut f32;
     fn sub_surface_scattering_enable(&self) -> &bool;
+    fn sub_surface_scattering_enable_mut(&mut self) -> &mut bool;
     fn translucency_enable(&self) -> &bool;
+    fn translucency_enable_mut(&mut self) -> &mut bool;
     fn sub_surface_scattering_sample_count(&self) -> &i32;
+    fn sub_surface_scattering_sample_count_mut(&mut self) -> &mut i32;
     fn split_lighting_enable(&self) -> &bool;
+    fn split_lighting_enable_mut(&mut self) -> &mut bool;
     fn subsurface_blur_compute_enable(&self) -> &bool;
+    fn subsurface_blur_compute_enable_mut(&mut self) -> &mut bool;
     fn subsurface_blur_quadtree_tile_gen_enable(&self) -> &bool;
+    fn subsurface_blur_quadtree_tile_gen_enable_mut(&mut self) -> &mut bool;
     fn subsurface_blur_pixel_radius_cull_threshold(&self) -> &f32;
+    fn subsurface_blur_pixel_radius_cull_threshold_mut(&mut self) -> &mut f32;
     fn opaque_sort_by_solution_enable(&self) -> &bool;
+    fn opaque_sort_by_solution_enable_mut(&mut self) -> &mut bool;
     fn main_opaque_z_pass_enable(&self) -> &bool;
+    fn main_opaque_z_pass_enable_mut(&mut self) -> &mut bool;
     fn planar_reflection_enable(&self) -> &bool;
+    fn planar_reflection_enable_mut(&mut self) -> &mut bool;
     fn planar_reflection_fast_hdr_enable(&self) -> &bool;
+    fn planar_reflection_fast_hdr_enable_mut(&mut self) -> &mut bool;
     fn planar_reflection_view_scale(&self) -> &f32;
+    fn planar_reflection_view_scale_mut(&mut self) -> &mut f32;
     fn planar_reflection_blur_enable(&self) -> &bool;
+    fn planar_reflection_blur_enable_mut(&mut self) -> &mut bool;
     fn planar_reflection_convolution_enable(&self) -> &bool;
+    fn planar_reflection_convolution_enable_mut(&mut self) -> &mut bool;
     fn planar_reflection_convolution_sample_clamp_threshold(&self) -> &f32;
+    fn planar_reflection_convolution_sample_clamp_threshold_mut(&mut self) -> &mut f32;
     fn planar_reflection_convolution_sample_count(&self) -> &u32;
+    fn planar_reflection_convolution_sample_count_mut(&mut self) -> &mut u32;
     fn planar_reflection_convolution_random_samples_enable(&self) -> &bool;
+    fn planar_reflection_convolution_random_samples_enable_mut(&mut self) -> &mut bool;
     fn planar_reflection_convolution_post_filter_enable(&self) -> &bool;
+    fn planar_reflection_convolution_post_filter_enable_mut(&mut self) -> &mut bool;
     fn planar_reflection_cull_f_o_v(&self) -> &f32;
+    fn planar_reflection_cull_f_o_v_mut(&mut self) -> &mut f32;
     fn planar_reflection_clipping_enable(&self) -> &bool;
+    fn planar_reflection_clipping_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_render_texture(&self) -> &bool;
+    fn draw_debug_render_texture_mut(&mut self) -> &mut bool;
     fn draw_debug_planar_reflection(&self) -> &bool;
+    fn draw_debug_planar_reflection_mut(&mut self) -> &mut bool;
     fn draw_debug_planar_reflection_mip_level(&self) -> &u32;
+    fn draw_debug_planar_reflection_mip_level_mut(&mut self) -> &mut u32;
     fn draw_debug_planar_reflection_mode(&self) -> &u32;
+    fn draw_debug_planar_reflection_mode_mut(&mut self) -> &mut u32;
     fn draw_debug_planar_reflection_cull_frustum(&self) -> &bool;
+    fn draw_debug_planar_reflection_cull_frustum_mut(&mut self) -> &mut bool;
     fn local_planar_reflection_convolution_enable(&self) -> &bool;
+    fn local_planar_reflection_convolution_enable_mut(&mut self) -> &mut bool;
     fn local_planar_reflection_force_lowest_lod_enable(&self) -> &bool;
+    fn local_planar_reflection_force_lowest_lod_enable_mut(&mut self) -> &mut bool;
     fn reflection_lod_scale(&self) -> &f32;
+    fn reflection_lod_scale_mut(&mut self) -> &mut f32;
     fn object_highlight_enable(&self) -> &bool;
+    fn object_highlight_enable_mut(&mut self) -> &mut bool;
     fn object_highlight_mask_first_person_enable(&self) -> &bool;
+    fn object_highlight_mask_first_person_enable_mut(&mut self) -> &mut bool;
     fn transparent_depth_z_prepass_enable(&self) -> &bool;
+    fn transparent_depth_z_prepass_enable_mut(&mut self) -> &mut bool;
     fn hologram_rendertarget_enable(&self) -> &bool;
+    fn hologram_rendertarget_enable_mut(&mut self) -> &mut bool;
     fn sonar_rendertarget_enable(&self) -> &bool;
+    fn sonar_rendertarget_enable_mut(&mut self) -> &mut bool;
     fn simple_volumetrics_enable(&self) -> &bool;
+    fn simple_volumetrics_enable_mut(&mut self) -> &mut bool;
     fn simple_volumetrics_half_res_enable(&self) -> &bool;
+    fn simple_volumetrics_half_res_enable_mut(&mut self) -> &mut bool;
     fn fog_exclusion_volume_enable(&self) -> &bool;
+    fn fog_exclusion_volume_enable_mut(&mut self) -> &mut bool;
     fn threat_alert_overlay_enable(&self) -> &bool;
+    fn threat_alert_overlay_enable_mut(&mut self) -> &mut bool;
     fn mesh_compute_enabled(&self) -> &bool;
+    fn mesh_compute_enabled_mut(&mut self) -> &mut bool;
     fn outline_edge_detect_enable(&self) -> &bool;
+    fn outline_edge_detect_enable_mut(&mut self) -> &mut bool;
     fn overlay_blur_enable(&self) -> &bool;
+    fn overlay_blur_enable_mut(&mut self) -> &mut bool;
     fn overlay_blur_async_compute_enable(&self) -> &bool;
+    fn overlay_blur_async_compute_enable_mut(&mut self) -> &mut bool;
     fn overlay_blur_kernel_radius(&self) -> &u32;
+    fn overlay_blur_kernel_radius_mut(&mut self) -> &mut u32;
     fn post_process_antialiasing_mode(&self) -> &PostProcessAAMode;
+    fn post_process_antialiasing_mode_mut(&mut self) -> &mut PostProcessAAMode;
     fn smaa_predicated_thresholding_enable(&self) -> &bool;
+    fn smaa_predicated_thresholding_enable_mut(&mut self) -> &mut bool;
     fn temporal_a_a_jitter_count(&self) -> &u32;
+    fn temporal_a_a_jitter_count_mut(&mut self) -> &mut u32;
     fn temporal_a_a_disocclusion_rejection_factor(&self) -> &f32;
+    fn temporal_a_a_disocclusion_rejection_factor_mut(&mut self) -> &mut f32;
     fn temporal_a_a_history_sharpening_enable(&self) -> &bool;
+    fn temporal_a_a_history_sharpening_enable_mut(&mut self) -> &mut bool;
     fn temporal_a_a_motion_sharpening_factor(&self) -> &f32;
+    fn temporal_a_a_motion_sharpening_factor_mut(&mut self) -> &mut f32;
     fn temporal_a_a_responsiveness(&self) -> &f32;
+    fn temporal_a_a_responsiveness_mut(&mut self) -> &mut f32;
     fn temporal_a_a_antiflicker_strength(&self) -> &f32;
+    fn temporal_a_a_antiflicker_strength_mut(&mut self) -> &mut f32;
     fn temporal_a_a_quality(&self) -> &u32;
+    fn temporal_a_a_quality_mut(&mut self) -> &mut u32;
     fn temporal_a_a_post_sharpening_amount(&self) -> &f32;
+    fn temporal_a_a_post_sharpening_amount_mut(&mut self) -> &mut f32;
     fn draw_debug_temporal_a_a_enable(&self) -> &bool;
+    fn draw_debug_temporal_a_a_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_temporal_a_a_accumulation_count(&self) -> &u32;
+    fn draw_debug_temporal_a_a_accumulation_count_mut(&mut self) -> &mut u32;
     fn draw_debug_temporal_a_a_debug_mode(&self) -> &u32;
+    fn draw_debug_temporal_a_a_debug_mode_mut(&mut self) -> &mut u32;
     fn draw_debug_temporal_a_a_max_distance(&self) -> &f32;
+    fn draw_debug_temporal_a_a_max_distance_mut(&mut self) -> &mut f32;
     fn temporal_a_a_dof_coc_filter_enable(&self) -> &bool;
+    fn temporal_a_a_dof_coc_filter_enable_mut(&mut self) -> &mut bool;
     fn d_l_a_a_jitter_count(&self) -> &u32;
+    fn d_l_a_a_jitter_count_mut(&mut self) -> &mut u32;
     fn d_l_a_a_jitter_scale(&self) -> &f32;
+    fn d_l_a_a_jitter_scale_mut(&mut self) -> &mut f32;
     fn d_l_a_a_draw_enable(&self) -> &bool;
+    fn d_l_a_a_draw_enable_mut(&mut self) -> &mut bool;
     fn d_l_a_a_capture_enable(&self) -> &bool;
+    fn d_l_a_a_capture_enable_mut(&mut self) -> &mut bool;
     fn sky_celestial_enable(&self) -> &bool;
+    fn sky_celestial_enable_mut(&mut self) -> &mut bool;
     fn sky_celestial_quality(&self) -> &super::core::QualityLevel;
+    fn sky_celestial_quality_mut(&mut self) -> &mut super::core::QualityLevel;
     fn sky_celestial_max_quad_count(&self) -> &super::core::QualityScalableInt;
+    fn sky_celestial_max_quad_count_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn sky_render_mode(&self) -> &SkyRenderMode;
+    fn sky_render_mode_mut(&mut self) -> &mut SkyRenderMode;
     fn lens_reflection_enable(&self) -> &bool;
+    fn lens_reflection_enable_mut(&mut self) -> &mut bool;
     fn dof_before_motion_blur(&self) -> &bool;
+    fn dof_before_motion_blur_mut(&mut self) -> &mut bool;
     fn lens_dirt_enable(&self) -> &bool;
+    fn lens_dirt_enable_mut(&mut self) -> &mut bool;
     fn parallel_create_draw_view_enable(&self) -> &bool;
+    fn parallel_create_draw_view_enable_mut(&mut self) -> &mut bool;
     fn draw_hologram_with_temporal_a_a(&self) -> &bool;
+    fn draw_hologram_with_temporal_a_a_mut(&mut self) -> &mut bool;
     fn interpupillary_distance(&self) -> &f32;
+    fn interpupillary_distance_mut(&mut self) -> &mut f32;
     fn vr_hmd_lens_distortion_enable(&self) -> &bool;
+    fn vr_hmd_lens_distortion_enable_mut(&mut self) -> &mut bool;
     fn vr_hmd_late_reprojection_enable(&self) -> &bool;
+    fn vr_hmd_late_reprojection_enable_mut(&mut self) -> &mut bool;
     fn enable_persistent_sink_usage(&self) -> &bool;
+    fn enable_persistent_sink_usage_mut(&mut self) -> &mut bool;
     fn raytrace_enable(&self) -> &bool;
+    fn raytrace_enable_mut(&mut self) -> &mut bool;
     fn raytrace_debug_enable(&self) -> &bool;
+    fn raytrace_debug_enable_mut(&mut self) -> &mut bool;
     fn raytrace_forward_enable(&self) -> &bool;
+    fn raytrace_forward_enable_mut(&mut self) -> &mut bool;
     fn raytrace_build_async_compute_enable(&self) -> &bool;
+    fn raytrace_build_async_compute_enable_mut(&mut self) -> &mut bool;
     fn raytrace_ao_enable(&self) -> &bool;
+    fn raytrace_ao_enable_mut(&mut self) -> &mut bool;
     fn raytrace_refl_enable(&self) -> &bool;
+    fn raytrace_refl_enable_mut(&mut self) -> &mut bool;
     fn raytrace_refl_ray_to_pixel_ratio(&self) -> &f32;
+    fn raytrace_refl_ray_to_pixel_ratio_mut(&mut self) -> &mut f32;
     fn raytrace_refl_transparent_enable(&self) -> &bool;
+    fn raytrace_refl_transparent_enable_mut(&mut self) -> &mut bool;
     fn raytrace_refl_force_min_smoothness(&self) -> &f32;
+    fn raytrace_refl_force_min_smoothness_mut(&mut self) -> &mut f32;
     fn raytrace_refl_ssr_compare_enable(&self) -> &bool;
+    fn raytrace_refl_ssr_compare_enable_mut(&mut self) -> &mut bool;
     fn raytrace_refl_ssr_compare_invert_side(&self) -> &bool;
+    fn raytrace_refl_ssr_compare_invert_side_mut(&mut self) -> &mut bool;
     fn raytrace_refl_ssr_compare_location(&self) -> &f32;
+    fn raytrace_refl_ssr_compare_location_mut(&mut self) -> &mut f32;
     fn raytrace_primary_ray_enable(&self) -> &bool;
+    fn raytrace_primary_ray_enable_mut(&mut self) -> &mut bool;
     fn raytrace_cull_mode(&self) -> &u32;
+    fn raytrace_cull_mode_mut(&mut self) -> &mut u32;
     fn raytrace_cull_frustum_fov_y(&self) -> &f32;
+    fn raytrace_cull_frustum_fov_y_mut(&mut self) -> &mut f32;
     fn raytrace_cull_radius(&self) -> &f32;
+    fn raytrace_cull_radius_mut(&mut self) -> &mut f32;
     fn raytrace_cull_radius_large_object_scale(&self) -> &f32;
+    fn raytrace_cull_radius_large_object_scale_mut(&mut self) -> &mut f32;
     fn raytrace_cull_frustum_large_object_scale(&self) -> &f32;
+    fn raytrace_cull_frustum_large_object_scale_mut(&mut self) -> &mut f32;
     fn raytrace_cull_radius_emitters(&self) -> &f32;
+    fn raytrace_cull_radius_emitters_mut(&mut self) -> &mut f32;
     fn local_light_shadow_enable(&self) -> &bool;
+    fn local_light_shadow_enable_mut(&mut self) -> &mut bool;
     fn local_light_shadow16_bit_enable(&self) -> &bool;
+    fn local_light_shadow16_bit_enable_mut(&mut self) -> &mut bool;
     fn local_light_shadow_filter_quality(&self) -> &u32;
+    fn local_light_shadow_filter_quality_mut(&mut self) -> &mut u32;
     fn local_light_shadow_resolution_low(&self) -> &u32;
+    fn local_light_shadow_resolution_low_mut(&mut self) -> &mut u32;
     fn local_light_shadow_resolution_medium(&self) -> &u32;
+    fn local_light_shadow_resolution_medium_mut(&mut self) -> &mut u32;
     fn local_light_shadow_resolution_high(&self) -> &u32;
+    fn local_light_shadow_resolution_high_mut(&mut self) -> &mut u32;
     fn local_light_shadow_resolution_ultra(&self) -> &u32;
+    fn local_light_shadow_resolution_ultra_mut(&mut self) -> &mut u32;
     fn local_light_shadow_atlas_slot_count(&self) -> &u32;
+    fn local_light_shadow_atlas_slot_count_mut(&mut self) -> &mut u32;
     fn local_light_shadow_atlas_slot_resolution(&self) -> &u32;
+    fn local_light_shadow_atlas_slot_resolution_mut(&mut self) -> &mut u32;
     fn reflection_local_light_shadow_resolution(&self) -> &u32;
+    fn reflection_local_light_shadow_resolution_mut(&mut self) -> &mut u32;
     fn local_light_shadow_cache_enable(&self) -> &bool;
+    fn local_light_shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn max_shadow_count(&self) -> &u32;
+    fn max_shadow_count_mut(&mut self) -> &mut u32;
     fn max_punctual_light_count(&self) -> &u32;
+    fn max_punctual_light_count_mut(&mut self) -> &mut u32;
     fn max_punctual_shadow_light_count(&self) -> &u32;
+    fn max_punctual_shadow_light_count_mut(&mut self) -> &mut u32;
     fn max_area_light_count(&self) -> &u32;
+    fn max_area_light_count_mut(&mut self) -> &mut u32;
     fn max_area_shadow_light_count(&self) -> &u32;
+    fn max_area_shadow_light_count_mut(&mut self) -> &mut u32;
     fn max_local_reflection_volume_count(&self) -> &u32;
+    fn max_local_reflection_volume_count_mut(&mut self) -> &mut u32;
     fn max_local_planar_reflection_count(&self) -> &u32;
+    fn max_local_planar_reflection_count_mut(&mut self) -> &mut u32;
     fn max_punctual_rectangular_light_count(&self) -> &u32;
+    fn max_punctual_rectangular_light_count_mut(&mut self) -> &mut u32;
     fn p_b_r_support_original_light(&self) -> &bool;
+    fn p_b_r_support_original_light_mut(&mut self) -> &mut bool;
     fn radiosity_shadow_culling_enable(&self) -> &bool;
+    fn radiosity_shadow_culling_enable_mut(&mut self) -> &mut bool;
     fn punctual_lights_enable(&self) -> &bool;
+    fn punctual_lights_enable_mut(&mut self) -> &mut bool;
     fn area_lights_enable(&self) -> &bool;
+    fn area_lights_enable_mut(&mut self) -> &mut bool;
     fn local_reflection_enable(&self) -> &bool;
+    fn local_reflection_enable_mut(&mut self) -> &mut bool;
     fn tile_pass_punctual_lights_enable(&self) -> &bool;
+    fn tile_pass_punctual_lights_enable_mut(&mut self) -> &mut bool;
     fn tile_pass_punctual_light_shadow_enable(&self) -> &bool;
+    fn tile_pass_punctual_light_shadow_enable_mut(&mut self) -> &mut bool;
     fn tile_pass_area_lights_enable(&self) -> &bool;
+    fn tile_pass_area_lights_enable_mut(&mut self) -> &mut bool;
     fn tile_pass_area_light_shadow_enable(&self) -> &bool;
+    fn tile_pass_area_light_shadow_enable_mut(&mut self) -> &mut bool;
     fn tile_pass_local_reflection_volume_enable(&self) -> &bool;
+    fn tile_pass_local_reflection_volume_enable_mut(&mut self) -> &mut bool;
     fn tile_pass_local_planar_reflection_enable(&self) -> &bool;
+    fn tile_pass_local_planar_reflection_enable_mut(&mut self) -> &mut bool;
     fn punctual_light_shadow_level(&self) -> &super::core::QualityLevel;
+    fn punctual_light_shadow_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn area_light_shadow_level(&self) -> &super::core::QualityLevel;
+    fn area_light_shadow_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn sphere_lights_enable(&self) -> &bool;
+    fn sphere_lights_enable_mut(&mut self) -> &mut bool;
     fn punctual_sphere_lights_enable(&self) -> &bool;
+    fn punctual_sphere_lights_enable_mut(&mut self) -> &mut bool;
     fn spot_lights_enable(&self) -> &bool;
+    fn spot_lights_enable_mut(&mut self) -> &mut bool;
     fn punctual_spot_lights_enable(&self) -> &bool;
+    fn punctual_spot_lights_enable_mut(&mut self) -> &mut bool;
     fn tube_lights_enable(&self) -> &bool;
+    fn tube_lights_enable_mut(&mut self) -> &mut bool;
     fn punctual_tube_lights_enable(&self) -> &bool;
+    fn punctual_tube_lights_enable_mut(&mut self) -> &mut bool;
     fn rectangular_lights_enable(&self) -> &bool;
+    fn rectangular_lights_enable_mut(&mut self) -> &mut bool;
     fn punctual_rectangular_lights_enable(&self) -> &bool;
+    fn punctual_rectangular_lights_enable_mut(&mut self) -> &mut bool;
     fn local_reflection_volume_sphere_enable(&self) -> &bool;
+    fn local_reflection_volume_sphere_enable_mut(&mut self) -> &mut bool;
     fn local_reflection_volume_box_enable(&self) -> &bool;
+    fn local_reflection_volume_box_enable_mut(&mut self) -> &mut bool;
     fn local_planar_reflection_enable(&self) -> &bool;
+    fn local_planar_reflection_enable_mut(&mut self) -> &mut bool;
     fn local_i_b_l_max_face_capture(&self) -> &u32;
+    fn local_i_b_l_max_face_capture_mut(&mut self) -> &mut u32;
     fn local_i_b_l_update_with_sky_enable(&self) -> &bool;
+    fn local_i_b_l_update_with_sky_enable_mut(&mut self) -> &mut bool;
     fn local_i_b_l_update_with_enlighten_sky_box_change(&self) -> &bool;
+    fn local_i_b_l_update_with_enlighten_sky_box_change_mut(&mut self) -> &mut bool;
     fn local_i_b_l_sun_specular_occlusion_enable(&self) -> &bool;
+    fn local_i_b_l_sun_specular_occlusion_enable_mut(&mut self) -> &mut bool;
     fn local_i_b_l_lighting_update_count(&self) -> &u32;
+    fn local_i_b_l_lighting_update_count_mut(&mut self) -> &mut u32;
     fn local_i_b_l_refresh_delay_count(&self) -> &u32;
+    fn local_i_b_l_refresh_delay_count_mut(&mut self) -> &mut u32;
     fn local_i_b_l_box_culling_enable(&self) -> &bool;
+    fn local_i_b_l_box_culling_enable_mut(&mut self) -> &mut bool;
     fn local_i_b_l_sun_update_threshold(&self) -> &f32;
+    fn local_i_b_l_sun_update_threshold_mut(&mut self) -> &mut f32;
     fn local_i_b_l_shadowmap_slice_count(&self) -> &u32;
+    fn local_i_b_l_shadowmap_slice_count_mut(&mut self) -> &mut u32;
     fn local_i_b_l_shadowmap_resolution(&self) -> &u32;
+    fn local_i_b_l_shadowmap_resolution_mut(&mut self) -> &mut u32;
     fn local_i_b_l_shadowmap_face_merging(&self) -> &bool;
+    fn local_i_b_l_shadowmap_face_merging_mut(&mut self) -> &mut bool;
     fn local_i_b_l_shadowmap_separate_frame(&self) -> &bool;
+    fn local_i_b_l_shadowmap_separate_frame_mut(&mut self) -> &mut bool;
     fn local_i_b_l_wait_for_enlighten_to_render(&self) -> &bool;
+    fn local_i_b_l_wait_for_enlighten_to_render_mut(&mut self) -> &mut bool;
     fn local_i_b_l_exposure(&self) -> &f32;
+    fn local_i_b_l_exposure_mut(&mut self) -> &mut f32;
     fn local_i_b_l_render_transparent(&self) -> &bool;
+    fn local_i_b_l_render_transparent_mut(&mut self) -> &mut bool;
     fn local_i_b_l_render_emitter_quad(&self) -> &bool;
+    fn local_i_b_l_render_emitter_quad_mut(&mut self) -> &mut bool;
     fn local_i_b_l_render_emitter_mesh(&self) -> &bool;
+    fn local_i_b_l_render_emitter_mesh_mut(&mut self) -> &mut bool;
     fn p_b_r_local_i_b_l_acquisition_wait_for_mesh_loading(&self) -> &bool;
+    fn p_b_r_local_i_b_l_acquisition_wait_for_mesh_loading_mut(&mut self) -> &mut bool;
     fn p_b_r_local_i_b_l_acquisition_wait_frame_count(&self) -> &u32;
+    fn p_b_r_local_i_b_l_acquisition_wait_frame_count_mut(&mut self) -> &mut u32;
     fn p_b_r_draw_distant_i_b_l_diffuse_reference(&self) -> &bool;
+    fn p_b_r_draw_distant_i_b_l_diffuse_reference_mut(&mut self) -> &mut bool;
     fn p_b_r_draw_distant_i_b_l_specular_reference(&self) -> &bool;
+    fn p_b_r_draw_distant_i_b_l_specular_reference_mut(&mut self) -> &mut bool;
     fn p_b_r_draw_local_i_b_l_reference(&self) -> &bool;
+    fn p_b_r_draw_local_i_b_l_reference_mut(&mut self) -> &mut bool;
     fn p_b_r_draw_area_light_reference(&self) -> &bool;
+    fn p_b_r_draw_area_light_reference_mut(&mut self) -> &mut bool;
     fn p_b_r_specular_convolution_sample_count(&self) -> &u32;
+    fn p_b_r_specular_convolution_sample_count_mut(&mut self) -> &mut u32;
     fn p_b_r_convolution_highest_m_i_p_enable(&self) -> &bool;
+    fn p_b_r_convolution_highest_m_i_p_enable_mut(&mut self) -> &mut bool;
     fn local_i_b_l_resolution(&self) -> &u32;
+    fn local_i_b_l_resolution_mut(&mut self) -> &mut u32;
     fn draw_debug_local_i_b_l_enable(&self) -> &bool;
+    fn draw_debug_local_i_b_l_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_local_i_b_l_stats_enable(&self) -> &bool;
+    fn draw_debug_local_i_b_l_stats_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_local_i_b_l_volumes_enable(&self) -> &bool;
+    fn draw_debug_local_i_b_l_volumes_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_local_i_b_l_preview_scale(&self) -> &f32;
+    fn draw_debug_local_i_b_l_preview_scale_mut(&mut self) -> &mut f32;
     fn draw_debug_local_i_b_l_index(&self) -> &u32;
+    fn draw_debug_local_i_b_l_index_mut(&mut self) -> &mut u32;
     fn draw_debug_local_i_b_l_mip_level(&self) -> &u32;
+    fn draw_debug_local_i_b_l_mip_level_mut(&mut self) -> &mut u32;
     fn draw_debug_local_i_b_l_shadowmaps(&self) -> &bool;
+    fn draw_debug_local_i_b_l_shadowmaps_mut(&mut self) -> &mut bool;
     fn draw_debug_pre_integrated_f_g_texture(&self) -> &bool;
+    fn draw_debug_pre_integrated_f_g_texture_mut(&mut self) -> &mut bool;
     fn draw_debug_reflection_state(&self) -> &bool;
+    fn draw_debug_reflection_state_mut(&mut self) -> &mut bool;
     fn draw_debug_probe_mirror_enable(&self) -> &bool;
+    fn draw_debug_probe_mirror_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_probe_diffuse_enable(&self) -> &bool;
+    fn draw_debug_probe_diffuse_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_probe_screen_enable(&self) -> &bool;
+    fn draw_debug_probe_screen_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_probe_screen_on_right(&self) -> &bool;
+    fn draw_debug_probe_screen_on_right_mut(&mut self) -> &mut bool;
     fn continuous_local_i_b_l_enable(&self) -> &bool;
+    fn continuous_local_i_b_l_enable_mut(&mut self) -> &mut bool;
     fn continuous_local_i_b_l_index(&self) -> &u32;
+    fn continuous_local_i_b_l_index_mut(&mut self) -> &mut u32;
     fn p_b_r_convolution_precomputed_sample_enable(&self) -> &bool;
+    fn p_b_r_convolution_precomputed_sample_enable_mut(&mut self) -> &mut bool;
     fn p_b_r_convolution_random_rotation_enable(&self) -> &bool;
+    fn p_b_r_convolution_random_rotation_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_local_planar_reflections(&self) -> &bool;
+    fn draw_debug_local_planar_reflections_mut(&mut self) -> &mut bool;
     fn emitter_quad_rendering_enable(&self) -> &bool;
+    fn emitter_quad_rendering_enable_mut(&mut self) -> &mut bool;
     fn emitter_mesh_rendering_enable(&self) -> &bool;
+    fn emitter_mesh_rendering_enable_mut(&mut self) -> &mut bool;
     fn emitter_point_lights_enable(&self) -> &bool;
+    fn emitter_point_lights_enable_mut(&mut self) -> &mut bool;
     fn emitter_spot_lights_enable(&self) -> &bool;
+    fn emitter_spot_lights_enable_mut(&mut self) -> &mut bool;
     fn use_s_s_s_profilefor_o_a_t_s(&self) -> &bool;
+    fn use_s_s_s_profilefor_o_a_t_s_mut(&mut self) -> &mut bool;
     fn deterministic_rendering_enable(&self) -> &bool;
+    fn deterministic_rendering_enable_mut(&mut self) -> &mut bool;
     fn hdr_nan_inf_removal_enable(&self) -> &bool;
+    fn hdr_nan_inf_removal_enable_mut(&mut self) -> &mut bool;
     fn hdr_nan_inf_removal_force_enable(&self) -> &bool;
+    fn hdr_nan_inf_removal_force_enable_mut(&mut self) -> &mut bool;
     fn p_b_r_max_illuminance_value(&self) -> &f32;
+    fn p_b_r_max_illuminance_value_mut(&mut self) -> &mut f32;
     fn p_b_r_max_luminance_value(&self) -> &f32;
+    fn p_b_r_max_luminance_value_mut(&mut self) -> &mut f32;
     fn dielectric_range_min_metal_mask(&self) -> &f32;
+    fn dielectric_range_min_metal_mask_mut(&mut self) -> &mut f32;
     fn dielectric_range_max_metal_mask(&self) -> &f32;
+    fn dielectric_range_max_metal_mask_mut(&mut self) -> &mut f32;
     fn dielectric_range_s_r_g_b_min_value(&self) -> &f32;
+    fn dielectric_range_s_r_g_b_min_value_mut(&mut self) -> &mut f32;
     fn dielectric_range_s_r_g_b_max_value(&self) -> &f32;
+    fn dielectric_range_s_r_g_b_max_value_mut(&mut self) -> &mut f32;
     fn dielectric_range_s_r_g_b_min_color(&self) -> &super::core::Vec3;
+    fn dielectric_range_s_r_g_b_min_color_mut(&mut self) -> &mut super::core::Vec3;
     fn dielectric_range_s_r_g_b_color(&self) -> &super::core::Vec3;
+    fn dielectric_range_s_r_g_b_color_mut(&mut self) -> &mut super::core::Vec3;
     fn dielectric_range_s_r_g_b_max_color(&self) -> &super::core::Vec3;
+    fn dielectric_range_s_r_g_b_max_color_mut(&mut self) -> &mut super::core::Vec3;
     fn dielectric_range_overlay(&self) -> &f32;
+    fn dielectric_range_overlay_mut(&mut self) -> &mut f32;
     fn conductor_range_min_metal_mask(&self) -> &f32;
+    fn conductor_range_min_metal_mask_mut(&mut self) -> &mut f32;
     fn conductor_range_max_metal_mask(&self) -> &f32;
+    fn conductor_range_max_metal_mask_mut(&mut self) -> &mut f32;
     fn conductor_range_s_r_g_b_min_value(&self) -> &f32;
+    fn conductor_range_s_r_g_b_min_value_mut(&mut self) -> &mut f32;
     fn conductor_range_s_r_g_b_max_value(&self) -> &f32;
+    fn conductor_range_s_r_g_b_max_value_mut(&mut self) -> &mut f32;
     fn conductor_range_s_r_g_b_min_color(&self) -> &super::core::Vec3;
+    fn conductor_range_s_r_g_b_min_color_mut(&mut self) -> &mut super::core::Vec3;
     fn conductor_range_s_r_g_b_color(&self) -> &super::core::Vec3;
+    fn conductor_range_s_r_g_b_color_mut(&mut self) -> &mut super::core::Vec3;
     fn conductor_range_s_r_g_b_max_color(&self) -> &super::core::Vec3;
+    fn conductor_range_s_r_g_b_max_color_mut(&mut self) -> &mut super::core::Vec3;
     fn conductor_range_overlay(&self) -> &f32;
+    fn conductor_range_overlay_mut(&mut self) -> &mut f32;
     fn fresnel0_range_min_metal_mask(&self) -> &f32;
+    fn fresnel0_range_min_metal_mask_mut(&mut self) -> &mut f32;
     fn fresnel0_range_max_metal_mask(&self) -> &f32;
+    fn fresnel0_range_max_metal_mask_mut(&mut self) -> &mut f32;
     fn volumetric_rendering_enable(&self) -> &bool;
+    fn volumetric_rendering_enable_mut(&mut self) -> &mut bool;
     fn volumetric_extinction_cascade_base_voxel_size(&self) -> &f32;
+    fn volumetric_extinction_cascade_base_voxel_size_mut(&mut self) -> &mut f32;
     fn volumetric_extinction_cascade_voxel_size_cascade_factor(&self) -> &f32;
+    fn volumetric_extinction_cascade_voxel_size_cascade_factor_mut(&mut self) -> &mut f32;
     fn volumetric_extinction_cascade_resolution(&self) -> &u32;
+    fn volumetric_extinction_cascade_resolution_mut(&mut self) -> &mut u32;
     fn volumetric_extinction_cascade_lock_view(&self) -> &bool;
+    fn volumetric_extinction_cascade_lock_view_mut(&mut self) -> &mut bool;
     fn volumetric_shadowmap_enable(&self) -> &bool;
+    fn volumetric_shadowmap_enable_mut(&mut self) -> &mut bool;
     fn volumetric_shadowmap_resolution(&self) -> &u32;
+    fn volumetric_shadowmap_resolution_mut(&mut self) -> &mut u32;
     fn volumetric_shadowmap_max_count(&self) -> &u32;
+    fn volumetric_shadowmap_max_count_mut(&mut self) -> &mut u32;
     fn volumetric_shadowmap_accumulate_cs_enable(&self) -> &bool;
+    fn volumetric_shadowmap_accumulate_cs_enable_mut(&mut self) -> &mut bool;
     fn punctual_light_cast_volumetric_shadowmap_enable_level(&self) -> &super::core::QualityLevel;
+    fn punctual_light_cast_volumetric_shadowmap_enable_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn area_light_cast_volumetric_shadowmap_enable_level(&self) -> &super::core::QualityLevel;
+    fn area_light_cast_volumetric_shadowmap_enable_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn local_light_cast_volumetric_level(&self) -> &super::core::QualityLevel;
+    fn local_light_cast_volumetric_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn volumetric_emitter_voxelisation_enable(&self) -> &bool;
+    fn volumetric_emitter_voxelisation_enable_mut(&mut self) -> &mut bool;
     fn volumetric_emitter_voxelisation_mode(&self) -> &u32;
+    fn volumetric_emitter_voxelisation_mode_mut(&mut self) -> &mut u32;
     fn volumetric_participating_media_enable(&self) -> &bool;
+    fn volumetric_participating_media_enable_mut(&mut self) -> &mut bool;
     fn volumetric_participating_media_use_light_cull(&self) -> &bool;
+    fn volumetric_participating_media_use_light_cull_mut(&mut self) -> &mut bool;
     fn volumetric_participating_media_texture_depth(&self) -> &u32;
+    fn volumetric_participating_media_texture_depth_mut(&mut self) -> &mut u32;
     fn volumetric_participating_media_camera_depth(&self) -> &f32;
+    fn volumetric_participating_media_camera_depth_mut(&mut self) -> &mut f32;
     fn volumetric_participating_media_resolution_scale(&self) -> &u32;
+    fn volumetric_participating_media_resolution_scale_mut(&mut self) -> &mut u32;
     fn volumetric_participating_media_from_v_e_fog(&self) -> &bool;
+    fn volumetric_participating_media_from_v_e_fog_mut(&mut self) -> &mut bool;
     fn volumetric_participating_media_lock_view(&self) -> &bool;
+    fn volumetric_participating_media_lock_view_mut(&mut self) -> &mut bool;
     fn volumetric_participating_media_local_lights(&self) -> &bool;
+    fn volumetric_participating_media_local_lights_mut(&mut self) -> &mut bool;
     fn volumetric_participating_media_ambient_lighting(&self) -> &bool;
+    fn volumetric_participating_media_ambient_lighting_mut(&mut self) -> &mut bool;
     fn volumetric_participating_media_sun(&self) -> &bool;
+    fn volumetric_participating_media_sun_mut(&mut self) -> &mut bool;
     fn reflection_volumetric_participating_media_texture_depth(&self) -> &u32;
+    fn reflection_volumetric_participating_media_texture_depth_mut(&mut self) -> &mut u32;
     fn reflection_volumetric_participating_media_camera_depth(&self) -> &f32;
+    fn reflection_volumetric_participating_media_camera_depth_mut(&mut self) -> &mut f32;
     fn reflection_volumetric_participating_media_resolution_scale(&self) -> &u32;
+    fn reflection_volumetric_participating_media_resolution_scale_mut(&mut self) -> &mut u32;
     fn volumetric_participating_media_temporal_integration(&self) -> &bool;
+    fn volumetric_participating_media_temporal_integration_mut(&mut self) -> &mut bool;
     fn volumetric_participating_media_temporal_filter_strght(&self) -> &f32;
+    fn volumetric_participating_media_temporal_filter_strght_mut(&mut self) -> &mut f32;
     fn volumetric_local_fog_volume_enable(&self) -> &bool;
+    fn volumetric_local_fog_volume_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_volumetric_local_fog_volume(&self) -> &bool;
+    fn draw_debug_volumetric_local_fog_volume_mut(&mut self) -> &mut bool;
     fn draw_debug_volumetric_cascaded_volumes(&self) -> &bool;
+    fn draw_debug_volumetric_cascaded_volumes_mut(&mut self) -> &mut bool;
     fn draw_debug_volumetric_shadow_maps(&self) -> &bool;
+    fn draw_debug_volumetric_shadow_maps_mut(&mut self) -> &mut bool;
     fn draw_debug_volumetric_extinction(&self) -> &u32;
+    fn draw_debug_volumetric_extinction_mut(&mut self) -> &mut u32;
     fn draw_debug_volumetric_extinction_scale(&self) -> &f32;
+    fn draw_debug_volumetric_extinction_scale_mut(&mut self) -> &mut f32;
     fn draw_debug_volumetric_voxelised_emitter(&self) -> &bool;
+    fn draw_debug_volumetric_voxelised_emitter_mut(&mut self) -> &mut bool;
     fn light_shaft_fast_hdr_enable(&self) -> &bool;
+    fn light_shaft_fast_hdr_enable_mut(&mut self) -> &mut bool;
     fn draw_gpu_histogram_enable(&self) -> &bool;
+    fn draw_gpu_histogram_enable_mut(&mut self) -> &mut bool;
     fn draw_gpu_histogram_red(&self) -> &bool;
+    fn draw_gpu_histogram_red_mut(&mut self) -> &mut bool;
     fn draw_gpu_histogram_blue(&self) -> &bool;
+    fn draw_gpu_histogram_blue_mut(&mut self) -> &mut bool;
     fn draw_gpu_histogram_green(&self) -> &bool;
+    fn draw_gpu_histogram_green_mut(&mut self) -> &mut bool;
     fn draw_gpu_histogram_luminance(&self) -> &bool;
+    fn draw_gpu_histogram_luminance_mut(&mut self) -> &mut bool;
     fn draw_gpu_histogram_h_d_r_mode(&self) -> &bool;
+    fn draw_gpu_histogram_h_d_r_mode_mut(&mut self) -> &mut bool;
     fn draw_gpu_histogram_h_d_r_min_e_v(&self) -> &f32;
+    fn draw_gpu_histogram_h_d_r_min_e_v_mut(&mut self) -> &mut f32;
     fn draw_gpu_histogram_h_d_r_max_e_v(&self) -> &f32;
+    fn draw_gpu_histogram_h_d_r_max_e_v_mut(&mut self) -> &mut f32;
     fn draw_gpu_histogram_bin_count(&self) -> &u32;
+    fn draw_gpu_histogram_bin_count_mut(&mut self) -> &mut u32;
     fn draw_clamped_pixels_enable(&self) -> &bool;
+    fn draw_clamped_pixels_enable_mut(&mut self) -> &mut bool;
     fn draw_clamped_pixels_clamp_min(&self) -> &f32;
+    fn draw_clamped_pixels_clamp_min_mut(&mut self) -> &mut f32;
     fn draw_clamped_pixels_clamp_max(&self) -> &f32;
+    fn draw_clamped_pixels_clamp_max_mut(&mut self) -> &mut f32;
     fn enable_baked_direct_light_in_game_view(&self) -> &bool;
+    fn enable_baked_direct_light_in_game_view_mut(&mut self) -> &mut bool;
     fn enable_baked_lightmap_in_game_view(&self) -> &bool;
+    fn enable_baked_lightmap_in_game_view_mut(&mut self) -> &mut bool;
     fn texture_space_render_module_enable(&self) -> &bool;
+    fn texture_space_render_module_enable_mut(&mut self) -> &mut bool;
     fn compute_linearize_depth(&self) -> &bool;
+    fn compute_linearize_depth_mut(&mut self) -> &mut bool;
     fn compute_downsample_depth(&self) -> &bool;
+    fn compute_downsample_depth_mut(&mut self) -> &mut bool;
     fn draw_debug_disable_explanation(&self) -> &bool;
+    fn draw_debug_disable_explanation_mut(&mut self) -> &mut bool;
 }
 
 impl WorldRenderSettingsTrait for WorldRenderSettings {
     fn test_rendering_enable(&self) -> &bool {
         &self.test_rendering_enable
     }
+    fn test_rendering_enable_mut(&mut self) -> &mut bool {
+        &mut self.test_rendering_enable
+    }
     fn generic_entity_renderer_enable(&self) -> &bool {
         &self.generic_entity_renderer_enable
+    }
+    fn generic_entity_renderer_enable_mut(&mut self) -> &mut bool {
+        &mut self.generic_entity_renderer_enable
     }
     fn generic_entity_max_visible_entity_count(&self) -> &u32 {
         &self.generic_entity_max_visible_entity_count
     }
+    fn generic_entity_max_visible_entity_count_mut(&mut self) -> &mut u32 {
+        &mut self.generic_entity_max_visible_entity_count
+    }
     fn z_buffer_shadow_test_enable(&self) -> &bool {
         &self.z_buffer_shadow_test_enable
+    }
+    fn z_buffer_shadow_test_enable_mut(&mut self) -> &mut bool {
+        &mut self.z_buffer_shadow_test_enable
     }
     fn draw_debug_ground_height(&self) -> &u32 {
         &self.draw_debug_ground_height
     }
+    fn draw_debug_ground_height_mut(&mut self) -> &mut u32 {
+        &mut self.draw_debug_ground_height
+    }
     fn decal_volume_enable(&self) -> &bool {
         &self.decal_volume_enable
+    }
+    fn decal_volume_enable_mut(&mut self) -> &mut bool {
+        &mut self.decal_volume_enable
     }
     fn decal_volume_scale(&self) -> &f32 {
         &self.decal_volume_scale
     }
+    fn decal_volume_scale_mut(&mut self) -> &mut f32 {
+        &mut self.decal_volume_scale
+    }
     fn draw_debug_decal_volumes(&self) -> &bool {
         &self.draw_debug_decal_volumes
+    }
+    fn draw_debug_decal_volumes_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_decal_volumes
     }
     fn environment_decal_volumes_enabled(&self) -> &bool {
         &self.environment_decal_volumes_enabled
     }
+    fn environment_decal_volumes_enabled_mut(&mut self) -> &mut bool {
+        &mut self.environment_decal_volumes_enabled
+    }
     fn environment_decal_volume_quality(&self) -> &super::core::QualityLevel {
         &self.environment_decal_volume_quality
+    }
+    fn environment_decal_volume_quality_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.environment_decal_volume_quality
     }
     fn environment_decal_volume_max_count(&self) -> &super::core::QualityScalableInt {
         &self.environment_decal_volume_max_count
     }
+    fn environment_decal_volume_max_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.environment_decal_volume_max_count
+    }
     fn emitter_decal_volume_quality(&self) -> &super::core::QualityLevel {
         &self.emitter_decal_volume_quality
+    }
+    fn emitter_decal_volume_quality_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.emitter_decal_volume_quality
     }
     fn emitter_decal_volume_max_count(&self) -> &super::core::QualityScalableInt {
         &self.emitter_decal_volume_max_count
     }
+    fn emitter_decal_volume_max_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.emitter_decal_volume_max_count
+    }
     fn emitter_decal_volume_max_count_per_set(&self) -> &super::core::QualityScalableInt {
         &self.emitter_decal_volume_max_count_per_set
+    }
+    fn emitter_decal_volume_max_count_per_set_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.emitter_decal_volume_max_count_per_set
     }
     fn edge_models_enable(&self) -> &bool {
         &self.edge_models_enable
     }
+    fn edge_models_enable_mut(&mut self) -> &mut bool {
+        &mut self.edge_models_enable
+    }
     fn edge_model_cast_shadows_enable(&self) -> &bool {
         &self.edge_model_cast_shadows_enable
+    }
+    fn edge_model_cast_shadows_enable_mut(&mut self) -> &mut bool {
+        &mut self.edge_model_cast_shadows_enable
     }
     fn edge_model_depth_bias_enable(&self) -> &bool {
         &self.edge_model_depth_bias_enable
     }
+    fn edge_model_depth_bias_enable_mut(&mut self) -> &mut bool {
+        &mut self.edge_model_depth_bias_enable
+    }
     fn edge_model_shadow_depth_bias_enable(&self) -> &bool {
         &self.edge_model_shadow_depth_bias_enable
+    }
+    fn edge_model_shadow_depth_bias_enable_mut(&mut self) -> &mut bool {
+        &mut self.edge_model_shadow_depth_bias_enable
     }
     fn edge_model_view_distance(&self) -> &f32 {
         &self.edge_model_view_distance
     }
+    fn edge_model_view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.edge_model_view_distance
+    }
     fn edge_model_use_main_lod_enable(&self) -> &bool {
         &self.edge_model_use_main_lod_enable
+    }
+    fn edge_model_use_main_lod_enable_mut(&mut self) -> &mut bool {
+        &mut self.edge_model_use_main_lod_enable
     }
     fn edge_model_force_lod(&self) -> &i32 {
         &self.edge_model_force_lod
     }
+    fn edge_model_force_lod_mut(&mut self) -> &mut i32 {
+        &mut self.edge_model_force_lod
+    }
     fn edge_model_lod_scale(&self) -> &f32 {
         &self.edge_model_lod_scale
+    }
+    fn edge_model_lod_scale_mut(&mut self) -> &mut f32 {
+        &mut self.edge_model_lod_scale
     }
     fn lens_flares_enable(&self) -> &bool {
         &self.lens_flares_enable
     }
+    fn lens_flares_enable_mut(&mut self) -> &mut bool {
+        &mut self.lens_flares_enable
+    }
     fn draw_debug_lens_flare_occluders(&self) -> &bool {
         &self.draw_debug_lens_flare_occluders
+    }
+    fn draw_debug_lens_flare_occluders_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_lens_flare_occluders
     }
     fn draw_debug_lens_flares(&self) -> &bool {
         &self.draw_debug_lens_flares
     }
+    fn draw_debug_lens_flares_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_lens_flares
+    }
     fn lens_flare_occlusion_enable(&self) -> &bool {
         &self.lens_flare_occlusion_enable
+    }
+    fn lens_flare_occlusion_enable_mut(&mut self) -> &mut bool {
+        &mut self.lens_flare_occlusion_enable
     }
     fn max_lens_flares_per_frame(&self) -> &u32 {
         &self.max_lens_flares_per_frame
     }
+    fn max_lens_flares_per_frame_mut(&mut self) -> &mut u32 {
+        &mut self.max_lens_flares_per_frame
+    }
     fn lens_flares_quality_level(&self) -> &super::core::QualityLevel {
         &self.lens_flares_quality_level
+    }
+    fn lens_flares_quality_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.lens_flares_quality_level
     }
     fn cloud_shadow_enable(&self) -> &bool {
         &self.cloud_shadow_enable
     }
+    fn cloud_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.cloud_shadow_enable
+    }
     fn override_dynamic_a_o(&self) -> &bool {
         &self.override_dynamic_a_o
+    }
+    fn override_dynamic_a_o_mut(&mut self) -> &mut bool {
+        &mut self.override_dynamic_a_o
     }
     fn draw_debug_dynamic_a_o(&self) -> &bool {
         &self.draw_debug_dynamic_a_o
     }
+    fn draw_debug_dynamic_a_o_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_dynamic_a_o
+    }
     fn draw_debug_raytrace_refl(&self) -> &bool {
         &self.draw_debug_raytrace_refl
+    }
+    fn draw_debug_raytrace_refl_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_raytrace_refl
     }
     fn draw_debug_raytrace_a_o(&self) -> &bool {
         &self.draw_debug_raytrace_a_o
     }
+    fn draw_debug_raytrace_a_o_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_raytrace_a_o
+    }
     fn draw_debug_raytrace_primary_ray(&self) -> &bool {
         &self.draw_debug_raytrace_primary_ray
+    }
+    fn draw_debug_raytrace_primary_ray_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_raytrace_primary_ray
     }
     fn filmic_effects_enable(&self) -> &bool {
         &self.filmic_effects_enable
     }
+    fn filmic_effects_enable_mut(&mut self) -> &mut bool {
+        &mut self.filmic_effects_enable
+    }
     fn emissive_enable(&self) -> &bool {
         &self.emissive_enable
+    }
+    fn emissive_enable_mut(&mut self) -> &mut bool {
+        &mut self.emissive_enable
     }
     fn g_buffer_layout(&self) -> &u32 {
         &self.g_buffer_layout
     }
+    fn g_buffer_layout_mut(&mut self) -> &mut u32 {
+        &mut self.g_buffer_layout
+    }
     fn g_buffer_test_count(&self) -> &u32 {
         &self.g_buffer_test_count
+    }
+    fn g_buffer_test_count_mut(&mut self) -> &mut u32 {
+        &mut self.g_buffer_test_count
     }
     fn g_buffer_clear_enable(&self) -> &bool {
         &self.g_buffer_clear_enable
     }
+    fn g_buffer_clear_enable_mut(&mut self) -> &mut bool {
+        &mut self.g_buffer_clear_enable
+    }
     fn dx_g_buffer_light16_bit_enable(&self) -> &bool {
         &self.dx_g_buffer_light16_bit_enable
+    }
+    fn dx_g_buffer_light16_bit_enable_mut(&mut self) -> &mut bool {
+        &mut self.dx_g_buffer_light16_bit_enable
     }
     fn dx_g_buffer_normal16_bit_enable(&self) -> &bool {
         &self.dx_g_buffer_normal16_bit_enable
     }
+    fn dx_g_buffer_normal16_bit_enable_mut(&mut self) -> &mut bool {
+        &mut self.dx_g_buffer_normal16_bit_enable
+    }
     fn dx_g_buffer_roughness16_bit_enable(&self) -> &bool {
         &self.dx_g_buffer_roughness16_bit_enable
+    }
+    fn dx_g_buffer_roughness16_bit_enable_mut(&mut self) -> &mut bool {
+        &mut self.dx_g_buffer_roughness16_bit_enable
     }
     fn g_buffer_alpha_test_simple_enable(&self) -> &bool {
         &self.g_buffer_alpha_test_simple_enable
     }
+    fn g_buffer_alpha_test_simple_enable_mut(&mut self) -> &mut bool {
+        &mut self.g_buffer_alpha_test_simple_enable
+    }
     fn g_buffer_alpha_test_simple_smoothness(&self) -> &f32 {
         &self.g_buffer_alpha_test_simple_smoothness
+    }
+    fn g_buffer_alpha_test_simple_smoothness_mut(&mut self) -> &mut f32 {
+        &mut self.g_buffer_alpha_test_simple_smoothness
     }
     fn g_buffer_force_metal_mask(&self) -> &f32 {
         &self.g_buffer_force_metal_mask
     }
+    fn g_buffer_force_metal_mask_mut(&mut self) -> &mut f32 {
+        &mut self.g_buffer_force_metal_mask
+    }
     fn g_buffer_force_smoothness(&self) -> &f32 {
         &self.g_buffer_force_smoothness
+    }
+    fn g_buffer_force_smoothness_mut(&mut self) -> &mut f32 {
+        &mut self.g_buffer_force_smoothness
     }
     fn g_buffer_force_specular_albedo(&self) -> &f32 {
         &self.g_buffer_force_specular_albedo
     }
+    fn g_buffer_force_specular_albedo_mut(&mut self) -> &mut f32 {
+        &mut self.g_buffer_force_specular_albedo
+    }
     fn alpha_unroll_enable(&self) -> &bool {
         &self.alpha_unroll_enable
+    }
+    fn alpha_unroll_enable_mut(&mut self) -> &mut bool {
+        &mut self.alpha_unroll_enable
     }
     fn gen4a_esram_enable(&self) -> &bool {
         &self.gen4a_esram_enable
     }
+    fn gen4a_esram_enable_mut(&mut self) -> &mut bool {
+        &mut self.gen4a_esram_enable
+    }
     fn specular_lighting_enable(&self) -> &bool {
         &self.specular_lighting_enable
+    }
+    fn specular_lighting_enable_mut(&mut self) -> &mut bool {
+        &mut self.specular_lighting_enable
     }
     fn skin_lighting_enable(&self) -> &bool {
         &self.skin_lighting_enable
     }
+    fn skin_lighting_enable_mut(&mut self) -> &mut bool {
+        &mut self.skin_lighting_enable
+    }
     fn translucency_lighting_enable(&self) -> &bool {
         &self.translucency_lighting_enable
+    }
+    fn translucency_lighting_enable_mut(&mut self) -> &mut bool {
+        &mut self.translucency_lighting_enable
     }
     fn translucency_auto_thickness_enable(&self) -> &bool {
         &self.translucency_auto_thickness_enable
     }
+    fn translucency_auto_thickness_enable_mut(&mut self) -> &mut bool {
+        &mut self.translucency_auto_thickness_enable
+    }
     fn local_light_translucency_enable(&self) -> &bool {
         &self.local_light_translucency_enable
+    }
+    fn local_light_translucency_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_light_translucency_enable
     }
     fn dynamic_envmap_lighting_enable(&self) -> &bool {
         &self.dynamic_envmap_lighting_enable
     }
+    fn dynamic_envmap_lighting_enable_mut(&mut self) -> &mut bool {
+        &mut self.dynamic_envmap_lighting_enable
+    }
     fn outdoor_light_enable(&self) -> &bool {
         &self.outdoor_light_enable
+    }
+    fn outdoor_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.outdoor_light_enable
     }
     fn light_stencil_method_enable(&self) -> &bool {
         &self.light_stencil_method_enable
     }
+    fn light_stencil_method_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_stencil_method_enable
+    }
     fn light_volume_method_enable(&self) -> &bool {
         &self.light_volume_method_enable
+    }
+    fn light_volume_method_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_volume_method_enable
     }
     fn light_volume_depth_test_enable(&self) -> &bool {
         &self.light_volume_depth_test_enable
     }
+    fn light_volume_depth_test_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_volume_depth_test_enable
+    }
     fn outdoor_key_light_enable(&self) -> &bool {
         &self.outdoor_key_light_enable
+    }
+    fn outdoor_key_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.outdoor_key_light_enable
     }
     fn outdoor_sky_light_enable(&self) -> &bool {
         &self.outdoor_sky_light_enable
     }
+    fn outdoor_sky_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.outdoor_sky_light_enable
+    }
     fn outdoor_light_tile_blend_enable(&self) -> &bool {
         &self.outdoor_light_tile_blend_enable
+    }
+    fn outdoor_light_tile_blend_enable_mut(&mut self) -> &mut bool {
+        &mut self.outdoor_light_tile_blend_enable
     }
     fn emitter_sun_transmittance_map_enable(&self) -> &bool {
         &self.emitter_sun_transmittance_map_enable
     }
+    fn emitter_sun_transmittance_map_enable_mut(&mut self) -> &mut bool {
+        &mut self.emitter_sun_transmittance_map_enable
+    }
     fn emitter_sun_transmittance_map_resolution(&self) -> &u32 {
         &self.emitter_sun_transmittance_map_resolution
+    }
+    fn emitter_sun_transmittance_map_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.emitter_sun_transmittance_map_resolution
     }
     fn max_decal_volume_count(&self) -> &u32 {
         &self.max_decal_volume_count
     }
+    fn max_decal_volume_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_decal_volume_count
+    }
     fn light_tile_combine_outdoor_light_enable(&self) -> &bool {
         &self.light_tile_combine_outdoor_light_enable
+    }
+    fn light_tile_combine_outdoor_light_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_tile_combine_outdoor_light_enable
     }
     fn light_tile_cs_path_enable(&self) -> &bool {
         &self.light_tile_cs_path_enable
     }
+    fn light_tile_cs_path_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_tile_cs_path_enable
+    }
     fn light_tile_ps_path_enable(&self) -> &bool {
         &self.light_tile_ps_path_enable
+    }
+    fn light_tile_ps_path_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_tile_ps_path_enable
     }
     fn light_tile_async_compute_culling(&self) -> &bool {
         &self.light_tile_async_compute_culling
     }
+    fn light_tile_async_compute_culling_mut(&mut self) -> &mut bool {
+        &mut self.light_tile_async_compute_culling
+    }
     fn light_tile_cs_avg_light_count_per_tile(&self) -> &u32 {
         &self.light_tile_cs_avg_light_count_per_tile
+    }
+    fn light_tile_cs_avg_light_count_per_tile_mut(&mut self) -> &mut u32 {
+        &mut self.light_tile_cs_avg_light_count_per_tile
     }
     fn light_tile_min_max_use_h_tile(&self) -> &bool {
         &self.light_tile_min_max_use_h_tile
     }
+    fn light_tile_min_max_use_h_tile_mut(&mut self) -> &mut bool {
+        &mut self.light_tile_min_max_use_h_tile
+    }
     fn light_tile_use_culling_hierarchy(&self) -> &bool {
         &self.light_tile_use_culling_hierarchy
+    }
+    fn light_tile_use_culling_hierarchy_mut(&mut self) -> &mut bool {
+        &mut self.light_tile_use_culling_hierarchy
     }
     fn light_tile_use_detailed_gpu_timers(&self) -> &bool {
         &self.light_tile_use_detailed_gpu_timers
     }
+    fn light_tile_use_detailed_gpu_timers_mut(&mut self) -> &mut bool {
+        &mut self.light_tile_use_detailed_gpu_timers
+    }
     fn light_tile_use_cs_indirect_clears(&self) -> &bool {
         &self.light_tile_use_cs_indirect_clears
+    }
+    fn light_tile_use_cs_indirect_clears_mut(&mut self) -> &mut bool {
+        &mut self.light_tile_use_cs_indirect_clears
     }
     fn light_cull_frustum_expand_distance(&self) -> &f32 {
         &self.light_cull_frustum_expand_distance
     }
+    fn light_cull_frustum_expand_distance_mut(&mut self) -> &mut f32 {
+        &mut self.light_cull_frustum_expand_distance
+    }
     fn light_tile_debug_light_mode(&self) -> &LightTileDebugLightCountMode {
         &self.light_tile_debug_light_mode
+    }
+    fn light_tile_debug_light_mode_mut(&mut self) -> &mut LightTileDebugLightCountMode {
+        &mut self.light_tile_debug_light_mode
     }
     fn light_tile_debug_color_mode(&self) -> &i32 {
         &self.light_tile_debug_color_mode
     }
+    fn light_tile_debug_color_mode_mut(&mut self) -> &mut i32 {
+        &mut self.light_tile_debug_color_mode
+    }
     fn draw_debug_light_stats(&self) -> &bool {
         &self.draw_debug_light_stats
+    }
+    fn draw_debug_light_stats_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_stats
     }
     fn draw_debug_light_stats_forward(&self) -> &bool {
         &self.draw_debug_light_stats_forward
     }
+    fn draw_debug_light_stats_forward_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_stats_forward
+    }
     fn draw_debug_light_stats_volumetric(&self) -> &bool {
         &self.draw_debug_light_stats_volumetric
+    }
+    fn draw_debug_light_stats_volumetric_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_stats_volumetric
     }
     fn draw_debug_light_stats_hierarchy(&self) -> &bool {
         &self.draw_debug_light_stats_hierarchy
     }
+    fn draw_debug_light_stats_hierarchy_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_stats_hierarchy
+    }
     fn draw_debug_light_sources(&self) -> &bool {
         &self.draw_debug_light_sources
+    }
+    fn draw_debug_light_sources_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_sources
     }
     fn draw_debug_light_shadow_sources(&self) -> &bool {
         &self.draw_debug_light_shadow_sources
     }
+    fn draw_debug_light_shadow_sources_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_shadow_sources
+    }
     fn draw_debug_light_shadow_stats(&self) -> &bool {
         &self.draw_debug_light_shadow_stats
+    }
+    fn draw_debug_light_shadow_stats_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_shadow_stats
     }
     fn draw_debug_light_cull_stats(&self) -> &bool {
         &self.draw_debug_light_cull_stats
     }
+    fn draw_debug_light_cull_stats_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_cull_stats
+    }
     fn draw_debug_g_buffer(&self) -> &bool {
         &self.draw_debug_g_buffer
+    }
+    fn draw_debug_g_buffer_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_g_buffer
     }
     fn draw_debug_material_input(&self) -> &bool {
         &self.draw_debug_material_input
     }
+    fn draw_debug_material_input_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_material_input
+    }
     fn draw_debug_material_output(&self) -> &bool {
         &self.draw_debug_material_output
+    }
+    fn draw_debug_material_output_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_material_output
     }
     fn draw_debug_light_emissive_surface(&self) -> &bool {
         &self.draw_debug_light_emissive_surface
     }
+    fn draw_debug_light_emissive_surface_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_light_emissive_surface
+    }
     fn punctual_emissive_light_shape_min_size(&self) -> &f32 {
         &self.punctual_emissive_light_shape_min_size
+    }
+    fn punctual_emissive_light_shape_min_size_mut(&mut self) -> &mut f32 {
+        &mut self.punctual_emissive_light_shape_min_size
     }
     fn debug_light_stats_light_count_highwatermark(&self) -> &u32 {
         &self.debug_light_stats_light_count_highwatermark
     }
+    fn debug_light_stats_light_count_highwatermark_mut(&mut self) -> &mut u32 {
+        &mut self.debug_light_stats_light_count_highwatermark
+    }
     fn light_lod_fade_area(&self) -> &f32 {
         &self.light_lod_fade_area
+    }
+    fn light_lod_fade_area_mut(&mut self) -> &mut f32 {
+        &mut self.light_lod_fade_area
     }
     fn light_lod_min_area(&self) -> &f32 {
         &self.light_lod_min_area
     }
+    fn light_lod_min_area_mut(&mut self) -> &mut f32 {
+        &mut self.light_lod_min_area
+    }
     fn light_lod_radius_factor(&self) -> &f32 {
         &self.light_lod_radius_factor
+    }
+    fn light_lod_radius_factor_mut(&mut self) -> &mut f32 {
+        &mut self.light_lod_radius_factor
     }
     fn use_new_light_cull_enable(&self) -> &bool {
         &self.use_new_light_cull_enable
     }
+    fn use_new_light_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.use_new_light_cull_enable
+    }
     fn light_cull_enable(&self) -> &bool {
         &self.light_cull_enable
+    }
+    fn light_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_cull_enable
     }
     fn light_cull_job_max_job_count(&self) -> &u32 {
         &self.light_cull_job_max_job_count
     }
+    fn light_cull_job_max_job_count_mut(&mut self) -> &mut u32 {
+        &mut self.light_cull_job_max_job_count
+    }
     fn light_occlusion_cull_enable(&self) -> &bool {
         &self.light_occlusion_cull_enable
+    }
+    fn light_occlusion_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_occlusion_cull_enable
     }
     fn light_cone_cull_enable(&self) -> &bool {
         &self.light_cone_cull_enable
     }
+    fn light_cone_cull_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_cone_cull_enable
+    }
     fn occlusion_culling_width(&self) -> &u32 {
         &self.occlusion_culling_width
+    }
+    fn occlusion_culling_width_mut(&mut self) -> &mut u32 {
+        &mut self.occlusion_culling_width
     }
     fn occlusion_culling_height(&self) -> &u32 {
         &self.occlusion_culling_height
     }
+    fn occlusion_culling_height_mut(&mut self) -> &mut u32 {
+        &mut self.occlusion_culling_height
+    }
     fn occlusion_triangle_count(&self) -> &u32 {
         &self.occlusion_triangle_count
+    }
+    fn occlusion_triangle_count_mut(&mut self) -> &mut u32 {
+        &mut self.occlusion_triangle_count
     }
     fn local_i_b_l_occlusion_culling_enable(&self) -> &bool {
         &self.local_i_b_l_occlusion_culling_enable
     }
+    fn local_i_b_l_occlusion_culling_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_occlusion_culling_enable
+    }
     fn shadow_occlusion_culling_enable(&self) -> &bool {
         &self.shadow_occlusion_culling_enable
+    }
+    fn shadow_occlusion_culling_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadow_occlusion_culling_enable
     }
     fn shadow_occlusion_culling_width(&self) -> &u32 {
         &self.shadow_occlusion_culling_width
     }
+    fn shadow_occlusion_culling_width_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_occlusion_culling_width
+    }
     fn shadow_occlusion_culling_height(&self) -> &u32 {
         &self.shadow_occlusion_culling_height
+    }
+    fn shadow_occlusion_culling_height_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_occlusion_culling_height
     }
     fn shadow_occlusion_triangle_count(&self) -> &u32 {
         &self.shadow_occlusion_triangle_count
     }
+    fn shadow_occlusion_triangle_count_mut(&mut self) -> &mut u32 {
+        &mut self.shadow_occlusion_triangle_count
+    }
     fn frustum_silhouette_culling_enable(&self) -> &bool {
         &self.frustum_silhouette_culling_enable
+    }
+    fn frustum_silhouette_culling_enable_mut(&mut self) -> &mut bool {
+        &mut self.frustum_silhouette_culling_enable
     }
     fn frustum_silhouette_culling_padding(&self) -> &f32 {
         &self.frustum_silhouette_culling_padding
     }
+    fn frustum_silhouette_culling_padding_mut(&mut self) -> &mut f32 {
+        &mut self.frustum_silhouette_culling_padding
+    }
     fn sub_surface_scattering_enable(&self) -> &bool {
         &self.sub_surface_scattering_enable
+    }
+    fn sub_surface_scattering_enable_mut(&mut self) -> &mut bool {
+        &mut self.sub_surface_scattering_enable
     }
     fn translucency_enable(&self) -> &bool {
         &self.translucency_enable
     }
+    fn translucency_enable_mut(&mut self) -> &mut bool {
+        &mut self.translucency_enable
+    }
     fn sub_surface_scattering_sample_count(&self) -> &i32 {
         &self.sub_surface_scattering_sample_count
+    }
+    fn sub_surface_scattering_sample_count_mut(&mut self) -> &mut i32 {
+        &mut self.sub_surface_scattering_sample_count
     }
     fn split_lighting_enable(&self) -> &bool {
         &self.split_lighting_enable
     }
+    fn split_lighting_enable_mut(&mut self) -> &mut bool {
+        &mut self.split_lighting_enable
+    }
     fn subsurface_blur_compute_enable(&self) -> &bool {
         &self.subsurface_blur_compute_enable
+    }
+    fn subsurface_blur_compute_enable_mut(&mut self) -> &mut bool {
+        &mut self.subsurface_blur_compute_enable
     }
     fn subsurface_blur_quadtree_tile_gen_enable(&self) -> &bool {
         &self.subsurface_blur_quadtree_tile_gen_enable
     }
+    fn subsurface_blur_quadtree_tile_gen_enable_mut(&mut self) -> &mut bool {
+        &mut self.subsurface_blur_quadtree_tile_gen_enable
+    }
     fn subsurface_blur_pixel_radius_cull_threshold(&self) -> &f32 {
         &self.subsurface_blur_pixel_radius_cull_threshold
+    }
+    fn subsurface_blur_pixel_radius_cull_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.subsurface_blur_pixel_radius_cull_threshold
     }
     fn opaque_sort_by_solution_enable(&self) -> &bool {
         &self.opaque_sort_by_solution_enable
     }
+    fn opaque_sort_by_solution_enable_mut(&mut self) -> &mut bool {
+        &mut self.opaque_sort_by_solution_enable
+    }
     fn main_opaque_z_pass_enable(&self) -> &bool {
         &self.main_opaque_z_pass_enable
+    }
+    fn main_opaque_z_pass_enable_mut(&mut self) -> &mut bool {
+        &mut self.main_opaque_z_pass_enable
     }
     fn planar_reflection_enable(&self) -> &bool {
         &self.planar_reflection_enable
     }
+    fn planar_reflection_enable_mut(&mut self) -> &mut bool {
+        &mut self.planar_reflection_enable
+    }
     fn planar_reflection_fast_hdr_enable(&self) -> &bool {
         &self.planar_reflection_fast_hdr_enable
+    }
+    fn planar_reflection_fast_hdr_enable_mut(&mut self) -> &mut bool {
+        &mut self.planar_reflection_fast_hdr_enable
     }
     fn planar_reflection_view_scale(&self) -> &f32 {
         &self.planar_reflection_view_scale
     }
+    fn planar_reflection_view_scale_mut(&mut self) -> &mut f32 {
+        &mut self.planar_reflection_view_scale
+    }
     fn planar_reflection_blur_enable(&self) -> &bool {
         &self.planar_reflection_blur_enable
+    }
+    fn planar_reflection_blur_enable_mut(&mut self) -> &mut bool {
+        &mut self.planar_reflection_blur_enable
     }
     fn planar_reflection_convolution_enable(&self) -> &bool {
         &self.planar_reflection_convolution_enable
     }
+    fn planar_reflection_convolution_enable_mut(&mut self) -> &mut bool {
+        &mut self.planar_reflection_convolution_enable
+    }
     fn planar_reflection_convolution_sample_clamp_threshold(&self) -> &f32 {
         &self.planar_reflection_convolution_sample_clamp_threshold
+    }
+    fn planar_reflection_convolution_sample_clamp_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.planar_reflection_convolution_sample_clamp_threshold
     }
     fn planar_reflection_convolution_sample_count(&self) -> &u32 {
         &self.planar_reflection_convolution_sample_count
     }
+    fn planar_reflection_convolution_sample_count_mut(&mut self) -> &mut u32 {
+        &mut self.planar_reflection_convolution_sample_count
+    }
     fn planar_reflection_convolution_random_samples_enable(&self) -> &bool {
         &self.planar_reflection_convolution_random_samples_enable
+    }
+    fn planar_reflection_convolution_random_samples_enable_mut(&mut self) -> &mut bool {
+        &mut self.planar_reflection_convolution_random_samples_enable
     }
     fn planar_reflection_convolution_post_filter_enable(&self) -> &bool {
         &self.planar_reflection_convolution_post_filter_enable
     }
+    fn planar_reflection_convolution_post_filter_enable_mut(&mut self) -> &mut bool {
+        &mut self.planar_reflection_convolution_post_filter_enable
+    }
     fn planar_reflection_cull_f_o_v(&self) -> &f32 {
         &self.planar_reflection_cull_f_o_v
+    }
+    fn planar_reflection_cull_f_o_v_mut(&mut self) -> &mut f32 {
+        &mut self.planar_reflection_cull_f_o_v
     }
     fn planar_reflection_clipping_enable(&self) -> &bool {
         &self.planar_reflection_clipping_enable
     }
+    fn planar_reflection_clipping_enable_mut(&mut self) -> &mut bool {
+        &mut self.planar_reflection_clipping_enable
+    }
     fn draw_debug_render_texture(&self) -> &bool {
         &self.draw_debug_render_texture
+    }
+    fn draw_debug_render_texture_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_render_texture
     }
     fn draw_debug_planar_reflection(&self) -> &bool {
         &self.draw_debug_planar_reflection
     }
+    fn draw_debug_planar_reflection_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_planar_reflection
+    }
     fn draw_debug_planar_reflection_mip_level(&self) -> &u32 {
         &self.draw_debug_planar_reflection_mip_level
+    }
+    fn draw_debug_planar_reflection_mip_level_mut(&mut self) -> &mut u32 {
+        &mut self.draw_debug_planar_reflection_mip_level
     }
     fn draw_debug_planar_reflection_mode(&self) -> &u32 {
         &self.draw_debug_planar_reflection_mode
     }
+    fn draw_debug_planar_reflection_mode_mut(&mut self) -> &mut u32 {
+        &mut self.draw_debug_planar_reflection_mode
+    }
     fn draw_debug_planar_reflection_cull_frustum(&self) -> &bool {
         &self.draw_debug_planar_reflection_cull_frustum
+    }
+    fn draw_debug_planar_reflection_cull_frustum_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_planar_reflection_cull_frustum
     }
     fn local_planar_reflection_convolution_enable(&self) -> &bool {
         &self.local_planar_reflection_convolution_enable
     }
+    fn local_planar_reflection_convolution_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_planar_reflection_convolution_enable
+    }
     fn local_planar_reflection_force_lowest_lod_enable(&self) -> &bool {
         &self.local_planar_reflection_force_lowest_lod_enable
+    }
+    fn local_planar_reflection_force_lowest_lod_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_planar_reflection_force_lowest_lod_enable
     }
     fn reflection_lod_scale(&self) -> &f32 {
         &self.reflection_lod_scale
     }
+    fn reflection_lod_scale_mut(&mut self) -> &mut f32 {
+        &mut self.reflection_lod_scale
+    }
     fn object_highlight_enable(&self) -> &bool {
         &self.object_highlight_enable
+    }
+    fn object_highlight_enable_mut(&mut self) -> &mut bool {
+        &mut self.object_highlight_enable
     }
     fn object_highlight_mask_first_person_enable(&self) -> &bool {
         &self.object_highlight_mask_first_person_enable
     }
+    fn object_highlight_mask_first_person_enable_mut(&mut self) -> &mut bool {
+        &mut self.object_highlight_mask_first_person_enable
+    }
     fn transparent_depth_z_prepass_enable(&self) -> &bool {
         &self.transparent_depth_z_prepass_enable
+    }
+    fn transparent_depth_z_prepass_enable_mut(&mut self) -> &mut bool {
+        &mut self.transparent_depth_z_prepass_enable
     }
     fn hologram_rendertarget_enable(&self) -> &bool {
         &self.hologram_rendertarget_enable
     }
+    fn hologram_rendertarget_enable_mut(&mut self) -> &mut bool {
+        &mut self.hologram_rendertarget_enable
+    }
     fn sonar_rendertarget_enable(&self) -> &bool {
         &self.sonar_rendertarget_enable
+    }
+    fn sonar_rendertarget_enable_mut(&mut self) -> &mut bool {
+        &mut self.sonar_rendertarget_enable
     }
     fn simple_volumetrics_enable(&self) -> &bool {
         &self.simple_volumetrics_enable
     }
+    fn simple_volumetrics_enable_mut(&mut self) -> &mut bool {
+        &mut self.simple_volumetrics_enable
+    }
     fn simple_volumetrics_half_res_enable(&self) -> &bool {
         &self.simple_volumetrics_half_res_enable
+    }
+    fn simple_volumetrics_half_res_enable_mut(&mut self) -> &mut bool {
+        &mut self.simple_volumetrics_half_res_enable
     }
     fn fog_exclusion_volume_enable(&self) -> &bool {
         &self.fog_exclusion_volume_enable
     }
+    fn fog_exclusion_volume_enable_mut(&mut self) -> &mut bool {
+        &mut self.fog_exclusion_volume_enable
+    }
     fn threat_alert_overlay_enable(&self) -> &bool {
         &self.threat_alert_overlay_enable
+    }
+    fn threat_alert_overlay_enable_mut(&mut self) -> &mut bool {
+        &mut self.threat_alert_overlay_enable
     }
     fn mesh_compute_enabled(&self) -> &bool {
         &self.mesh_compute_enabled
     }
+    fn mesh_compute_enabled_mut(&mut self) -> &mut bool {
+        &mut self.mesh_compute_enabled
+    }
     fn outline_edge_detect_enable(&self) -> &bool {
         &self.outline_edge_detect_enable
+    }
+    fn outline_edge_detect_enable_mut(&mut self) -> &mut bool {
+        &mut self.outline_edge_detect_enable
     }
     fn overlay_blur_enable(&self) -> &bool {
         &self.overlay_blur_enable
     }
+    fn overlay_blur_enable_mut(&mut self) -> &mut bool {
+        &mut self.overlay_blur_enable
+    }
     fn overlay_blur_async_compute_enable(&self) -> &bool {
         &self.overlay_blur_async_compute_enable
+    }
+    fn overlay_blur_async_compute_enable_mut(&mut self) -> &mut bool {
+        &mut self.overlay_blur_async_compute_enable
     }
     fn overlay_blur_kernel_radius(&self) -> &u32 {
         &self.overlay_blur_kernel_radius
     }
+    fn overlay_blur_kernel_radius_mut(&mut self) -> &mut u32 {
+        &mut self.overlay_blur_kernel_radius
+    }
     fn post_process_antialiasing_mode(&self) -> &PostProcessAAMode {
         &self.post_process_antialiasing_mode
+    }
+    fn post_process_antialiasing_mode_mut(&mut self) -> &mut PostProcessAAMode {
+        &mut self.post_process_antialiasing_mode
     }
     fn smaa_predicated_thresholding_enable(&self) -> &bool {
         &self.smaa_predicated_thresholding_enable
     }
+    fn smaa_predicated_thresholding_enable_mut(&mut self) -> &mut bool {
+        &mut self.smaa_predicated_thresholding_enable
+    }
     fn temporal_a_a_jitter_count(&self) -> &u32 {
         &self.temporal_a_a_jitter_count
+    }
+    fn temporal_a_a_jitter_count_mut(&mut self) -> &mut u32 {
+        &mut self.temporal_a_a_jitter_count
     }
     fn temporal_a_a_disocclusion_rejection_factor(&self) -> &f32 {
         &self.temporal_a_a_disocclusion_rejection_factor
     }
+    fn temporal_a_a_disocclusion_rejection_factor_mut(&mut self) -> &mut f32 {
+        &mut self.temporal_a_a_disocclusion_rejection_factor
+    }
     fn temporal_a_a_history_sharpening_enable(&self) -> &bool {
         &self.temporal_a_a_history_sharpening_enable
+    }
+    fn temporal_a_a_history_sharpening_enable_mut(&mut self) -> &mut bool {
+        &mut self.temporal_a_a_history_sharpening_enable
     }
     fn temporal_a_a_motion_sharpening_factor(&self) -> &f32 {
         &self.temporal_a_a_motion_sharpening_factor
     }
+    fn temporal_a_a_motion_sharpening_factor_mut(&mut self) -> &mut f32 {
+        &mut self.temporal_a_a_motion_sharpening_factor
+    }
     fn temporal_a_a_responsiveness(&self) -> &f32 {
         &self.temporal_a_a_responsiveness
+    }
+    fn temporal_a_a_responsiveness_mut(&mut self) -> &mut f32 {
+        &mut self.temporal_a_a_responsiveness
     }
     fn temporal_a_a_antiflicker_strength(&self) -> &f32 {
         &self.temporal_a_a_antiflicker_strength
     }
+    fn temporal_a_a_antiflicker_strength_mut(&mut self) -> &mut f32 {
+        &mut self.temporal_a_a_antiflicker_strength
+    }
     fn temporal_a_a_quality(&self) -> &u32 {
         &self.temporal_a_a_quality
+    }
+    fn temporal_a_a_quality_mut(&mut self) -> &mut u32 {
+        &mut self.temporal_a_a_quality
     }
     fn temporal_a_a_post_sharpening_amount(&self) -> &f32 {
         &self.temporal_a_a_post_sharpening_amount
     }
+    fn temporal_a_a_post_sharpening_amount_mut(&mut self) -> &mut f32 {
+        &mut self.temporal_a_a_post_sharpening_amount
+    }
     fn draw_debug_temporal_a_a_enable(&self) -> &bool {
         &self.draw_debug_temporal_a_a_enable
+    }
+    fn draw_debug_temporal_a_a_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_temporal_a_a_enable
     }
     fn draw_debug_temporal_a_a_accumulation_count(&self) -> &u32 {
         &self.draw_debug_temporal_a_a_accumulation_count
     }
+    fn draw_debug_temporal_a_a_accumulation_count_mut(&mut self) -> &mut u32 {
+        &mut self.draw_debug_temporal_a_a_accumulation_count
+    }
     fn draw_debug_temporal_a_a_debug_mode(&self) -> &u32 {
         &self.draw_debug_temporal_a_a_debug_mode
+    }
+    fn draw_debug_temporal_a_a_debug_mode_mut(&mut self) -> &mut u32 {
+        &mut self.draw_debug_temporal_a_a_debug_mode
     }
     fn draw_debug_temporal_a_a_max_distance(&self) -> &f32 {
         &self.draw_debug_temporal_a_a_max_distance
     }
+    fn draw_debug_temporal_a_a_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.draw_debug_temporal_a_a_max_distance
+    }
     fn temporal_a_a_dof_coc_filter_enable(&self) -> &bool {
         &self.temporal_a_a_dof_coc_filter_enable
+    }
+    fn temporal_a_a_dof_coc_filter_enable_mut(&mut self) -> &mut bool {
+        &mut self.temporal_a_a_dof_coc_filter_enable
     }
     fn d_l_a_a_jitter_count(&self) -> &u32 {
         &self.d_l_a_a_jitter_count
     }
+    fn d_l_a_a_jitter_count_mut(&mut self) -> &mut u32 {
+        &mut self.d_l_a_a_jitter_count
+    }
     fn d_l_a_a_jitter_scale(&self) -> &f32 {
         &self.d_l_a_a_jitter_scale
+    }
+    fn d_l_a_a_jitter_scale_mut(&mut self) -> &mut f32 {
+        &mut self.d_l_a_a_jitter_scale
     }
     fn d_l_a_a_draw_enable(&self) -> &bool {
         &self.d_l_a_a_draw_enable
     }
+    fn d_l_a_a_draw_enable_mut(&mut self) -> &mut bool {
+        &mut self.d_l_a_a_draw_enable
+    }
     fn d_l_a_a_capture_enable(&self) -> &bool {
         &self.d_l_a_a_capture_enable
+    }
+    fn d_l_a_a_capture_enable_mut(&mut self) -> &mut bool {
+        &mut self.d_l_a_a_capture_enable
     }
     fn sky_celestial_enable(&self) -> &bool {
         &self.sky_celestial_enable
     }
+    fn sky_celestial_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_celestial_enable
+    }
     fn sky_celestial_quality(&self) -> &super::core::QualityLevel {
         &self.sky_celestial_quality
+    }
+    fn sky_celestial_quality_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.sky_celestial_quality
     }
     fn sky_celestial_max_quad_count(&self) -> &super::core::QualityScalableInt {
         &self.sky_celestial_max_quad_count
     }
+    fn sky_celestial_max_quad_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.sky_celestial_max_quad_count
+    }
     fn sky_render_mode(&self) -> &SkyRenderMode {
         &self.sky_render_mode
+    }
+    fn sky_render_mode_mut(&mut self) -> &mut SkyRenderMode {
+        &mut self.sky_render_mode
     }
     fn lens_reflection_enable(&self) -> &bool {
         &self.lens_reflection_enable
     }
+    fn lens_reflection_enable_mut(&mut self) -> &mut bool {
+        &mut self.lens_reflection_enable
+    }
     fn dof_before_motion_blur(&self) -> &bool {
         &self.dof_before_motion_blur
+    }
+    fn dof_before_motion_blur_mut(&mut self) -> &mut bool {
+        &mut self.dof_before_motion_blur
     }
     fn lens_dirt_enable(&self) -> &bool {
         &self.lens_dirt_enable
     }
+    fn lens_dirt_enable_mut(&mut self) -> &mut bool {
+        &mut self.lens_dirt_enable
+    }
     fn parallel_create_draw_view_enable(&self) -> &bool {
         &self.parallel_create_draw_view_enable
+    }
+    fn parallel_create_draw_view_enable_mut(&mut self) -> &mut bool {
+        &mut self.parallel_create_draw_view_enable
     }
     fn draw_hologram_with_temporal_a_a(&self) -> &bool {
         &self.draw_hologram_with_temporal_a_a
     }
+    fn draw_hologram_with_temporal_a_a_mut(&mut self) -> &mut bool {
+        &mut self.draw_hologram_with_temporal_a_a
+    }
     fn interpupillary_distance(&self) -> &f32 {
         &self.interpupillary_distance
+    }
+    fn interpupillary_distance_mut(&mut self) -> &mut f32 {
+        &mut self.interpupillary_distance
     }
     fn vr_hmd_lens_distortion_enable(&self) -> &bool {
         &self.vr_hmd_lens_distortion_enable
     }
+    fn vr_hmd_lens_distortion_enable_mut(&mut self) -> &mut bool {
+        &mut self.vr_hmd_lens_distortion_enable
+    }
     fn vr_hmd_late_reprojection_enable(&self) -> &bool {
         &self.vr_hmd_late_reprojection_enable
+    }
+    fn vr_hmd_late_reprojection_enable_mut(&mut self) -> &mut bool {
+        &mut self.vr_hmd_late_reprojection_enable
     }
     fn enable_persistent_sink_usage(&self) -> &bool {
         &self.enable_persistent_sink_usage
     }
+    fn enable_persistent_sink_usage_mut(&mut self) -> &mut bool {
+        &mut self.enable_persistent_sink_usage
+    }
     fn raytrace_enable(&self) -> &bool {
         &self.raytrace_enable
+    }
+    fn raytrace_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_enable
     }
     fn raytrace_debug_enable(&self) -> &bool {
         &self.raytrace_debug_enable
     }
+    fn raytrace_debug_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_debug_enable
+    }
     fn raytrace_forward_enable(&self) -> &bool {
         &self.raytrace_forward_enable
+    }
+    fn raytrace_forward_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_forward_enable
     }
     fn raytrace_build_async_compute_enable(&self) -> &bool {
         &self.raytrace_build_async_compute_enable
     }
+    fn raytrace_build_async_compute_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_build_async_compute_enable
+    }
     fn raytrace_ao_enable(&self) -> &bool {
         &self.raytrace_ao_enable
+    }
+    fn raytrace_ao_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_ao_enable
     }
     fn raytrace_refl_enable(&self) -> &bool {
         &self.raytrace_refl_enable
     }
+    fn raytrace_refl_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_refl_enable
+    }
     fn raytrace_refl_ray_to_pixel_ratio(&self) -> &f32 {
         &self.raytrace_refl_ray_to_pixel_ratio
+    }
+    fn raytrace_refl_ray_to_pixel_ratio_mut(&mut self) -> &mut f32 {
+        &mut self.raytrace_refl_ray_to_pixel_ratio
     }
     fn raytrace_refl_transparent_enable(&self) -> &bool {
         &self.raytrace_refl_transparent_enable
     }
+    fn raytrace_refl_transparent_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_refl_transparent_enable
+    }
     fn raytrace_refl_force_min_smoothness(&self) -> &f32 {
         &self.raytrace_refl_force_min_smoothness
+    }
+    fn raytrace_refl_force_min_smoothness_mut(&mut self) -> &mut f32 {
+        &mut self.raytrace_refl_force_min_smoothness
     }
     fn raytrace_refl_ssr_compare_enable(&self) -> &bool {
         &self.raytrace_refl_ssr_compare_enable
     }
+    fn raytrace_refl_ssr_compare_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_refl_ssr_compare_enable
+    }
     fn raytrace_refl_ssr_compare_invert_side(&self) -> &bool {
         &self.raytrace_refl_ssr_compare_invert_side
+    }
+    fn raytrace_refl_ssr_compare_invert_side_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_refl_ssr_compare_invert_side
     }
     fn raytrace_refl_ssr_compare_location(&self) -> &f32 {
         &self.raytrace_refl_ssr_compare_location
     }
+    fn raytrace_refl_ssr_compare_location_mut(&mut self) -> &mut f32 {
+        &mut self.raytrace_refl_ssr_compare_location
+    }
     fn raytrace_primary_ray_enable(&self) -> &bool {
         &self.raytrace_primary_ray_enable
+    }
+    fn raytrace_primary_ray_enable_mut(&mut self) -> &mut bool {
+        &mut self.raytrace_primary_ray_enable
     }
     fn raytrace_cull_mode(&self) -> &u32 {
         &self.raytrace_cull_mode
     }
+    fn raytrace_cull_mode_mut(&mut self) -> &mut u32 {
+        &mut self.raytrace_cull_mode
+    }
     fn raytrace_cull_frustum_fov_y(&self) -> &f32 {
         &self.raytrace_cull_frustum_fov_y
+    }
+    fn raytrace_cull_frustum_fov_y_mut(&mut self) -> &mut f32 {
+        &mut self.raytrace_cull_frustum_fov_y
     }
     fn raytrace_cull_radius(&self) -> &f32 {
         &self.raytrace_cull_radius
     }
+    fn raytrace_cull_radius_mut(&mut self) -> &mut f32 {
+        &mut self.raytrace_cull_radius
+    }
     fn raytrace_cull_radius_large_object_scale(&self) -> &f32 {
         &self.raytrace_cull_radius_large_object_scale
+    }
+    fn raytrace_cull_radius_large_object_scale_mut(&mut self) -> &mut f32 {
+        &mut self.raytrace_cull_radius_large_object_scale
     }
     fn raytrace_cull_frustum_large_object_scale(&self) -> &f32 {
         &self.raytrace_cull_frustum_large_object_scale
     }
+    fn raytrace_cull_frustum_large_object_scale_mut(&mut self) -> &mut f32 {
+        &mut self.raytrace_cull_frustum_large_object_scale
+    }
     fn raytrace_cull_radius_emitters(&self) -> &f32 {
         &self.raytrace_cull_radius_emitters
+    }
+    fn raytrace_cull_radius_emitters_mut(&mut self) -> &mut f32 {
+        &mut self.raytrace_cull_radius_emitters
     }
     fn local_light_shadow_enable(&self) -> &bool {
         &self.local_light_shadow_enable
     }
+    fn local_light_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_light_shadow_enable
+    }
     fn local_light_shadow16_bit_enable(&self) -> &bool {
         &self.local_light_shadow16_bit_enable
+    }
+    fn local_light_shadow16_bit_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_light_shadow16_bit_enable
     }
     fn local_light_shadow_filter_quality(&self) -> &u32 {
         &self.local_light_shadow_filter_quality
     }
+    fn local_light_shadow_filter_quality_mut(&mut self) -> &mut u32 {
+        &mut self.local_light_shadow_filter_quality
+    }
     fn local_light_shadow_resolution_low(&self) -> &u32 {
         &self.local_light_shadow_resolution_low
+    }
+    fn local_light_shadow_resolution_low_mut(&mut self) -> &mut u32 {
+        &mut self.local_light_shadow_resolution_low
     }
     fn local_light_shadow_resolution_medium(&self) -> &u32 {
         &self.local_light_shadow_resolution_medium
     }
+    fn local_light_shadow_resolution_medium_mut(&mut self) -> &mut u32 {
+        &mut self.local_light_shadow_resolution_medium
+    }
     fn local_light_shadow_resolution_high(&self) -> &u32 {
         &self.local_light_shadow_resolution_high
+    }
+    fn local_light_shadow_resolution_high_mut(&mut self) -> &mut u32 {
+        &mut self.local_light_shadow_resolution_high
     }
     fn local_light_shadow_resolution_ultra(&self) -> &u32 {
         &self.local_light_shadow_resolution_ultra
     }
+    fn local_light_shadow_resolution_ultra_mut(&mut self) -> &mut u32 {
+        &mut self.local_light_shadow_resolution_ultra
+    }
     fn local_light_shadow_atlas_slot_count(&self) -> &u32 {
         &self.local_light_shadow_atlas_slot_count
+    }
+    fn local_light_shadow_atlas_slot_count_mut(&mut self) -> &mut u32 {
+        &mut self.local_light_shadow_atlas_slot_count
     }
     fn local_light_shadow_atlas_slot_resolution(&self) -> &u32 {
         &self.local_light_shadow_atlas_slot_resolution
     }
+    fn local_light_shadow_atlas_slot_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.local_light_shadow_atlas_slot_resolution
+    }
     fn reflection_local_light_shadow_resolution(&self) -> &u32 {
         &self.reflection_local_light_shadow_resolution
+    }
+    fn reflection_local_light_shadow_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.reflection_local_light_shadow_resolution
     }
     fn local_light_shadow_cache_enable(&self) -> &bool {
         &self.local_light_shadow_cache_enable
     }
+    fn local_light_shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_light_shadow_cache_enable
+    }
     fn max_shadow_count(&self) -> &u32 {
         &self.max_shadow_count
+    }
+    fn max_shadow_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_shadow_count
     }
     fn max_punctual_light_count(&self) -> &u32 {
         &self.max_punctual_light_count
     }
+    fn max_punctual_light_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_punctual_light_count
+    }
     fn max_punctual_shadow_light_count(&self) -> &u32 {
         &self.max_punctual_shadow_light_count
+    }
+    fn max_punctual_shadow_light_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_punctual_shadow_light_count
     }
     fn max_area_light_count(&self) -> &u32 {
         &self.max_area_light_count
     }
+    fn max_area_light_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_area_light_count
+    }
     fn max_area_shadow_light_count(&self) -> &u32 {
         &self.max_area_shadow_light_count
+    }
+    fn max_area_shadow_light_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_area_shadow_light_count
     }
     fn max_local_reflection_volume_count(&self) -> &u32 {
         &self.max_local_reflection_volume_count
     }
+    fn max_local_reflection_volume_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_local_reflection_volume_count
+    }
     fn max_local_planar_reflection_count(&self) -> &u32 {
         &self.max_local_planar_reflection_count
+    }
+    fn max_local_planar_reflection_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_local_planar_reflection_count
     }
     fn max_punctual_rectangular_light_count(&self) -> &u32 {
         &self.max_punctual_rectangular_light_count
     }
+    fn max_punctual_rectangular_light_count_mut(&mut self) -> &mut u32 {
+        &mut self.max_punctual_rectangular_light_count
+    }
     fn p_b_r_support_original_light(&self) -> &bool {
         &self.p_b_r_support_original_light
+    }
+    fn p_b_r_support_original_light_mut(&mut self) -> &mut bool {
+        &mut self.p_b_r_support_original_light
     }
     fn radiosity_shadow_culling_enable(&self) -> &bool {
         &self.radiosity_shadow_culling_enable
     }
+    fn radiosity_shadow_culling_enable_mut(&mut self) -> &mut bool {
+        &mut self.radiosity_shadow_culling_enable
+    }
     fn punctual_lights_enable(&self) -> &bool {
         &self.punctual_lights_enable
+    }
+    fn punctual_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.punctual_lights_enable
     }
     fn area_lights_enable(&self) -> &bool {
         &self.area_lights_enable
     }
+    fn area_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.area_lights_enable
+    }
     fn local_reflection_enable(&self) -> &bool {
         &self.local_reflection_enable
+    }
+    fn local_reflection_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_reflection_enable
     }
     fn tile_pass_punctual_lights_enable(&self) -> &bool {
         &self.tile_pass_punctual_lights_enable
     }
+    fn tile_pass_punctual_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.tile_pass_punctual_lights_enable
+    }
     fn tile_pass_punctual_light_shadow_enable(&self) -> &bool {
         &self.tile_pass_punctual_light_shadow_enable
+    }
+    fn tile_pass_punctual_light_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.tile_pass_punctual_light_shadow_enable
     }
     fn tile_pass_area_lights_enable(&self) -> &bool {
         &self.tile_pass_area_lights_enable
     }
+    fn tile_pass_area_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.tile_pass_area_lights_enable
+    }
     fn tile_pass_area_light_shadow_enable(&self) -> &bool {
         &self.tile_pass_area_light_shadow_enable
+    }
+    fn tile_pass_area_light_shadow_enable_mut(&mut self) -> &mut bool {
+        &mut self.tile_pass_area_light_shadow_enable
     }
     fn tile_pass_local_reflection_volume_enable(&self) -> &bool {
         &self.tile_pass_local_reflection_volume_enable
     }
+    fn tile_pass_local_reflection_volume_enable_mut(&mut self) -> &mut bool {
+        &mut self.tile_pass_local_reflection_volume_enable
+    }
     fn tile_pass_local_planar_reflection_enable(&self) -> &bool {
         &self.tile_pass_local_planar_reflection_enable
+    }
+    fn tile_pass_local_planar_reflection_enable_mut(&mut self) -> &mut bool {
+        &mut self.tile_pass_local_planar_reflection_enable
     }
     fn punctual_light_shadow_level(&self) -> &super::core::QualityLevel {
         &self.punctual_light_shadow_level
     }
+    fn punctual_light_shadow_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.punctual_light_shadow_level
+    }
     fn area_light_shadow_level(&self) -> &super::core::QualityLevel {
         &self.area_light_shadow_level
+    }
+    fn area_light_shadow_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.area_light_shadow_level
     }
     fn sphere_lights_enable(&self) -> &bool {
         &self.sphere_lights_enable
     }
+    fn sphere_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.sphere_lights_enable
+    }
     fn punctual_sphere_lights_enable(&self) -> &bool {
         &self.punctual_sphere_lights_enable
+    }
+    fn punctual_sphere_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.punctual_sphere_lights_enable
     }
     fn spot_lights_enable(&self) -> &bool {
         &self.spot_lights_enable
     }
+    fn spot_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.spot_lights_enable
+    }
     fn punctual_spot_lights_enable(&self) -> &bool {
         &self.punctual_spot_lights_enable
+    }
+    fn punctual_spot_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.punctual_spot_lights_enable
     }
     fn tube_lights_enable(&self) -> &bool {
         &self.tube_lights_enable
     }
+    fn tube_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.tube_lights_enable
+    }
     fn punctual_tube_lights_enable(&self) -> &bool {
         &self.punctual_tube_lights_enable
+    }
+    fn punctual_tube_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.punctual_tube_lights_enable
     }
     fn rectangular_lights_enable(&self) -> &bool {
         &self.rectangular_lights_enable
     }
+    fn rectangular_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.rectangular_lights_enable
+    }
     fn punctual_rectangular_lights_enable(&self) -> &bool {
         &self.punctual_rectangular_lights_enable
+    }
+    fn punctual_rectangular_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.punctual_rectangular_lights_enable
     }
     fn local_reflection_volume_sphere_enable(&self) -> &bool {
         &self.local_reflection_volume_sphere_enable
     }
+    fn local_reflection_volume_sphere_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_reflection_volume_sphere_enable
+    }
     fn local_reflection_volume_box_enable(&self) -> &bool {
         &self.local_reflection_volume_box_enable
+    }
+    fn local_reflection_volume_box_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_reflection_volume_box_enable
     }
     fn local_planar_reflection_enable(&self) -> &bool {
         &self.local_planar_reflection_enable
     }
+    fn local_planar_reflection_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_planar_reflection_enable
+    }
     fn local_i_b_l_max_face_capture(&self) -> &u32 {
         &self.local_i_b_l_max_face_capture
+    }
+    fn local_i_b_l_max_face_capture_mut(&mut self) -> &mut u32 {
+        &mut self.local_i_b_l_max_face_capture
     }
     fn local_i_b_l_update_with_sky_enable(&self) -> &bool {
         &self.local_i_b_l_update_with_sky_enable
     }
+    fn local_i_b_l_update_with_sky_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_update_with_sky_enable
+    }
     fn local_i_b_l_update_with_enlighten_sky_box_change(&self) -> &bool {
         &self.local_i_b_l_update_with_enlighten_sky_box_change
+    }
+    fn local_i_b_l_update_with_enlighten_sky_box_change_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_update_with_enlighten_sky_box_change
     }
     fn local_i_b_l_sun_specular_occlusion_enable(&self) -> &bool {
         &self.local_i_b_l_sun_specular_occlusion_enable
     }
+    fn local_i_b_l_sun_specular_occlusion_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_sun_specular_occlusion_enable
+    }
     fn local_i_b_l_lighting_update_count(&self) -> &u32 {
         &self.local_i_b_l_lighting_update_count
+    }
+    fn local_i_b_l_lighting_update_count_mut(&mut self) -> &mut u32 {
+        &mut self.local_i_b_l_lighting_update_count
     }
     fn local_i_b_l_refresh_delay_count(&self) -> &u32 {
         &self.local_i_b_l_refresh_delay_count
     }
+    fn local_i_b_l_refresh_delay_count_mut(&mut self) -> &mut u32 {
+        &mut self.local_i_b_l_refresh_delay_count
+    }
     fn local_i_b_l_box_culling_enable(&self) -> &bool {
         &self.local_i_b_l_box_culling_enable
+    }
+    fn local_i_b_l_box_culling_enable_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_box_culling_enable
     }
     fn local_i_b_l_sun_update_threshold(&self) -> &f32 {
         &self.local_i_b_l_sun_update_threshold
     }
+    fn local_i_b_l_sun_update_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.local_i_b_l_sun_update_threshold
+    }
     fn local_i_b_l_shadowmap_slice_count(&self) -> &u32 {
         &self.local_i_b_l_shadowmap_slice_count
+    }
+    fn local_i_b_l_shadowmap_slice_count_mut(&mut self) -> &mut u32 {
+        &mut self.local_i_b_l_shadowmap_slice_count
     }
     fn local_i_b_l_shadowmap_resolution(&self) -> &u32 {
         &self.local_i_b_l_shadowmap_resolution
     }
+    fn local_i_b_l_shadowmap_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.local_i_b_l_shadowmap_resolution
+    }
     fn local_i_b_l_shadowmap_face_merging(&self) -> &bool {
         &self.local_i_b_l_shadowmap_face_merging
+    }
+    fn local_i_b_l_shadowmap_face_merging_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_shadowmap_face_merging
     }
     fn local_i_b_l_shadowmap_separate_frame(&self) -> &bool {
         &self.local_i_b_l_shadowmap_separate_frame
     }
+    fn local_i_b_l_shadowmap_separate_frame_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_shadowmap_separate_frame
+    }
     fn local_i_b_l_wait_for_enlighten_to_render(&self) -> &bool {
         &self.local_i_b_l_wait_for_enlighten_to_render
+    }
+    fn local_i_b_l_wait_for_enlighten_to_render_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_wait_for_enlighten_to_render
     }
     fn local_i_b_l_exposure(&self) -> &f32 {
         &self.local_i_b_l_exposure
     }
+    fn local_i_b_l_exposure_mut(&mut self) -> &mut f32 {
+        &mut self.local_i_b_l_exposure
+    }
     fn local_i_b_l_render_transparent(&self) -> &bool {
         &self.local_i_b_l_render_transparent
+    }
+    fn local_i_b_l_render_transparent_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_render_transparent
     }
     fn local_i_b_l_render_emitter_quad(&self) -> &bool {
         &self.local_i_b_l_render_emitter_quad
     }
+    fn local_i_b_l_render_emitter_quad_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_render_emitter_quad
+    }
     fn local_i_b_l_render_emitter_mesh(&self) -> &bool {
         &self.local_i_b_l_render_emitter_mesh
+    }
+    fn local_i_b_l_render_emitter_mesh_mut(&mut self) -> &mut bool {
+        &mut self.local_i_b_l_render_emitter_mesh
     }
     fn p_b_r_local_i_b_l_acquisition_wait_for_mesh_loading(&self) -> &bool {
         &self.p_b_r_local_i_b_l_acquisition_wait_for_mesh_loading
     }
+    fn p_b_r_local_i_b_l_acquisition_wait_for_mesh_loading_mut(&mut self) -> &mut bool {
+        &mut self.p_b_r_local_i_b_l_acquisition_wait_for_mesh_loading
+    }
     fn p_b_r_local_i_b_l_acquisition_wait_frame_count(&self) -> &u32 {
         &self.p_b_r_local_i_b_l_acquisition_wait_frame_count
+    }
+    fn p_b_r_local_i_b_l_acquisition_wait_frame_count_mut(&mut self) -> &mut u32 {
+        &mut self.p_b_r_local_i_b_l_acquisition_wait_frame_count
     }
     fn p_b_r_draw_distant_i_b_l_diffuse_reference(&self) -> &bool {
         &self.p_b_r_draw_distant_i_b_l_diffuse_reference
     }
+    fn p_b_r_draw_distant_i_b_l_diffuse_reference_mut(&mut self) -> &mut bool {
+        &mut self.p_b_r_draw_distant_i_b_l_diffuse_reference
+    }
     fn p_b_r_draw_distant_i_b_l_specular_reference(&self) -> &bool {
         &self.p_b_r_draw_distant_i_b_l_specular_reference
+    }
+    fn p_b_r_draw_distant_i_b_l_specular_reference_mut(&mut self) -> &mut bool {
+        &mut self.p_b_r_draw_distant_i_b_l_specular_reference
     }
     fn p_b_r_draw_local_i_b_l_reference(&self) -> &bool {
         &self.p_b_r_draw_local_i_b_l_reference
     }
+    fn p_b_r_draw_local_i_b_l_reference_mut(&mut self) -> &mut bool {
+        &mut self.p_b_r_draw_local_i_b_l_reference
+    }
     fn p_b_r_draw_area_light_reference(&self) -> &bool {
         &self.p_b_r_draw_area_light_reference
+    }
+    fn p_b_r_draw_area_light_reference_mut(&mut self) -> &mut bool {
+        &mut self.p_b_r_draw_area_light_reference
     }
     fn p_b_r_specular_convolution_sample_count(&self) -> &u32 {
         &self.p_b_r_specular_convolution_sample_count
     }
+    fn p_b_r_specular_convolution_sample_count_mut(&mut self) -> &mut u32 {
+        &mut self.p_b_r_specular_convolution_sample_count
+    }
     fn p_b_r_convolution_highest_m_i_p_enable(&self) -> &bool {
         &self.p_b_r_convolution_highest_m_i_p_enable
+    }
+    fn p_b_r_convolution_highest_m_i_p_enable_mut(&mut self) -> &mut bool {
+        &mut self.p_b_r_convolution_highest_m_i_p_enable
     }
     fn local_i_b_l_resolution(&self) -> &u32 {
         &self.local_i_b_l_resolution
     }
+    fn local_i_b_l_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.local_i_b_l_resolution
+    }
     fn draw_debug_local_i_b_l_enable(&self) -> &bool {
         &self.draw_debug_local_i_b_l_enable
+    }
+    fn draw_debug_local_i_b_l_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_local_i_b_l_enable
     }
     fn draw_debug_local_i_b_l_stats_enable(&self) -> &bool {
         &self.draw_debug_local_i_b_l_stats_enable
     }
+    fn draw_debug_local_i_b_l_stats_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_local_i_b_l_stats_enable
+    }
     fn draw_debug_local_i_b_l_volumes_enable(&self) -> &bool {
         &self.draw_debug_local_i_b_l_volumes_enable
+    }
+    fn draw_debug_local_i_b_l_volumes_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_local_i_b_l_volumes_enable
     }
     fn draw_debug_local_i_b_l_preview_scale(&self) -> &f32 {
         &self.draw_debug_local_i_b_l_preview_scale
     }
+    fn draw_debug_local_i_b_l_preview_scale_mut(&mut self) -> &mut f32 {
+        &mut self.draw_debug_local_i_b_l_preview_scale
+    }
     fn draw_debug_local_i_b_l_index(&self) -> &u32 {
         &self.draw_debug_local_i_b_l_index
+    }
+    fn draw_debug_local_i_b_l_index_mut(&mut self) -> &mut u32 {
+        &mut self.draw_debug_local_i_b_l_index
     }
     fn draw_debug_local_i_b_l_mip_level(&self) -> &u32 {
         &self.draw_debug_local_i_b_l_mip_level
     }
+    fn draw_debug_local_i_b_l_mip_level_mut(&mut self) -> &mut u32 {
+        &mut self.draw_debug_local_i_b_l_mip_level
+    }
     fn draw_debug_local_i_b_l_shadowmaps(&self) -> &bool {
         &self.draw_debug_local_i_b_l_shadowmaps
+    }
+    fn draw_debug_local_i_b_l_shadowmaps_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_local_i_b_l_shadowmaps
     }
     fn draw_debug_pre_integrated_f_g_texture(&self) -> &bool {
         &self.draw_debug_pre_integrated_f_g_texture
     }
+    fn draw_debug_pre_integrated_f_g_texture_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_pre_integrated_f_g_texture
+    }
     fn draw_debug_reflection_state(&self) -> &bool {
         &self.draw_debug_reflection_state
+    }
+    fn draw_debug_reflection_state_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_reflection_state
     }
     fn draw_debug_probe_mirror_enable(&self) -> &bool {
         &self.draw_debug_probe_mirror_enable
     }
+    fn draw_debug_probe_mirror_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_probe_mirror_enable
+    }
     fn draw_debug_probe_diffuse_enable(&self) -> &bool {
         &self.draw_debug_probe_diffuse_enable
+    }
+    fn draw_debug_probe_diffuse_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_probe_diffuse_enable
     }
     fn draw_debug_probe_screen_enable(&self) -> &bool {
         &self.draw_debug_probe_screen_enable
     }
+    fn draw_debug_probe_screen_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_probe_screen_enable
+    }
     fn draw_debug_probe_screen_on_right(&self) -> &bool {
         &self.draw_debug_probe_screen_on_right
+    }
+    fn draw_debug_probe_screen_on_right_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_probe_screen_on_right
     }
     fn continuous_local_i_b_l_enable(&self) -> &bool {
         &self.continuous_local_i_b_l_enable
     }
+    fn continuous_local_i_b_l_enable_mut(&mut self) -> &mut bool {
+        &mut self.continuous_local_i_b_l_enable
+    }
     fn continuous_local_i_b_l_index(&self) -> &u32 {
         &self.continuous_local_i_b_l_index
+    }
+    fn continuous_local_i_b_l_index_mut(&mut self) -> &mut u32 {
+        &mut self.continuous_local_i_b_l_index
     }
     fn p_b_r_convolution_precomputed_sample_enable(&self) -> &bool {
         &self.p_b_r_convolution_precomputed_sample_enable
     }
+    fn p_b_r_convolution_precomputed_sample_enable_mut(&mut self) -> &mut bool {
+        &mut self.p_b_r_convolution_precomputed_sample_enable
+    }
     fn p_b_r_convolution_random_rotation_enable(&self) -> &bool {
         &self.p_b_r_convolution_random_rotation_enable
+    }
+    fn p_b_r_convolution_random_rotation_enable_mut(&mut self) -> &mut bool {
+        &mut self.p_b_r_convolution_random_rotation_enable
     }
     fn draw_debug_local_planar_reflections(&self) -> &bool {
         &self.draw_debug_local_planar_reflections
     }
+    fn draw_debug_local_planar_reflections_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_local_planar_reflections
+    }
     fn emitter_quad_rendering_enable(&self) -> &bool {
         &self.emitter_quad_rendering_enable
+    }
+    fn emitter_quad_rendering_enable_mut(&mut self) -> &mut bool {
+        &mut self.emitter_quad_rendering_enable
     }
     fn emitter_mesh_rendering_enable(&self) -> &bool {
         &self.emitter_mesh_rendering_enable
     }
+    fn emitter_mesh_rendering_enable_mut(&mut self) -> &mut bool {
+        &mut self.emitter_mesh_rendering_enable
+    }
     fn emitter_point_lights_enable(&self) -> &bool {
         &self.emitter_point_lights_enable
+    }
+    fn emitter_point_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.emitter_point_lights_enable
     }
     fn emitter_spot_lights_enable(&self) -> &bool {
         &self.emitter_spot_lights_enable
     }
+    fn emitter_spot_lights_enable_mut(&mut self) -> &mut bool {
+        &mut self.emitter_spot_lights_enable
+    }
     fn use_s_s_s_profilefor_o_a_t_s(&self) -> &bool {
         &self.use_s_s_s_profilefor_o_a_t_s
+    }
+    fn use_s_s_s_profilefor_o_a_t_s_mut(&mut self) -> &mut bool {
+        &mut self.use_s_s_s_profilefor_o_a_t_s
     }
     fn deterministic_rendering_enable(&self) -> &bool {
         &self.deterministic_rendering_enable
     }
+    fn deterministic_rendering_enable_mut(&mut self) -> &mut bool {
+        &mut self.deterministic_rendering_enable
+    }
     fn hdr_nan_inf_removal_enable(&self) -> &bool {
         &self.hdr_nan_inf_removal_enable
+    }
+    fn hdr_nan_inf_removal_enable_mut(&mut self) -> &mut bool {
+        &mut self.hdr_nan_inf_removal_enable
     }
     fn hdr_nan_inf_removal_force_enable(&self) -> &bool {
         &self.hdr_nan_inf_removal_force_enable
     }
+    fn hdr_nan_inf_removal_force_enable_mut(&mut self) -> &mut bool {
+        &mut self.hdr_nan_inf_removal_force_enable
+    }
     fn p_b_r_max_illuminance_value(&self) -> &f32 {
         &self.p_b_r_max_illuminance_value
+    }
+    fn p_b_r_max_illuminance_value_mut(&mut self) -> &mut f32 {
+        &mut self.p_b_r_max_illuminance_value
     }
     fn p_b_r_max_luminance_value(&self) -> &f32 {
         &self.p_b_r_max_luminance_value
     }
+    fn p_b_r_max_luminance_value_mut(&mut self) -> &mut f32 {
+        &mut self.p_b_r_max_luminance_value
+    }
     fn dielectric_range_min_metal_mask(&self) -> &f32 {
         &self.dielectric_range_min_metal_mask
+    }
+    fn dielectric_range_min_metal_mask_mut(&mut self) -> &mut f32 {
+        &mut self.dielectric_range_min_metal_mask
     }
     fn dielectric_range_max_metal_mask(&self) -> &f32 {
         &self.dielectric_range_max_metal_mask
     }
+    fn dielectric_range_max_metal_mask_mut(&mut self) -> &mut f32 {
+        &mut self.dielectric_range_max_metal_mask
+    }
     fn dielectric_range_s_r_g_b_min_value(&self) -> &f32 {
         &self.dielectric_range_s_r_g_b_min_value
+    }
+    fn dielectric_range_s_r_g_b_min_value_mut(&mut self) -> &mut f32 {
+        &mut self.dielectric_range_s_r_g_b_min_value
     }
     fn dielectric_range_s_r_g_b_max_value(&self) -> &f32 {
         &self.dielectric_range_s_r_g_b_max_value
     }
+    fn dielectric_range_s_r_g_b_max_value_mut(&mut self) -> &mut f32 {
+        &mut self.dielectric_range_s_r_g_b_max_value
+    }
     fn dielectric_range_s_r_g_b_min_color(&self) -> &super::core::Vec3 {
         &self.dielectric_range_s_r_g_b_min_color
+    }
+    fn dielectric_range_s_r_g_b_min_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.dielectric_range_s_r_g_b_min_color
     }
     fn dielectric_range_s_r_g_b_color(&self) -> &super::core::Vec3 {
         &self.dielectric_range_s_r_g_b_color
     }
+    fn dielectric_range_s_r_g_b_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.dielectric_range_s_r_g_b_color
+    }
     fn dielectric_range_s_r_g_b_max_color(&self) -> &super::core::Vec3 {
         &self.dielectric_range_s_r_g_b_max_color
+    }
+    fn dielectric_range_s_r_g_b_max_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.dielectric_range_s_r_g_b_max_color
     }
     fn dielectric_range_overlay(&self) -> &f32 {
         &self.dielectric_range_overlay
     }
+    fn dielectric_range_overlay_mut(&mut self) -> &mut f32 {
+        &mut self.dielectric_range_overlay
+    }
     fn conductor_range_min_metal_mask(&self) -> &f32 {
         &self.conductor_range_min_metal_mask
+    }
+    fn conductor_range_min_metal_mask_mut(&mut self) -> &mut f32 {
+        &mut self.conductor_range_min_metal_mask
     }
     fn conductor_range_max_metal_mask(&self) -> &f32 {
         &self.conductor_range_max_metal_mask
     }
+    fn conductor_range_max_metal_mask_mut(&mut self) -> &mut f32 {
+        &mut self.conductor_range_max_metal_mask
+    }
     fn conductor_range_s_r_g_b_min_value(&self) -> &f32 {
         &self.conductor_range_s_r_g_b_min_value
+    }
+    fn conductor_range_s_r_g_b_min_value_mut(&mut self) -> &mut f32 {
+        &mut self.conductor_range_s_r_g_b_min_value
     }
     fn conductor_range_s_r_g_b_max_value(&self) -> &f32 {
         &self.conductor_range_s_r_g_b_max_value
     }
+    fn conductor_range_s_r_g_b_max_value_mut(&mut self) -> &mut f32 {
+        &mut self.conductor_range_s_r_g_b_max_value
+    }
     fn conductor_range_s_r_g_b_min_color(&self) -> &super::core::Vec3 {
         &self.conductor_range_s_r_g_b_min_color
+    }
+    fn conductor_range_s_r_g_b_min_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.conductor_range_s_r_g_b_min_color
     }
     fn conductor_range_s_r_g_b_color(&self) -> &super::core::Vec3 {
         &self.conductor_range_s_r_g_b_color
     }
+    fn conductor_range_s_r_g_b_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.conductor_range_s_r_g_b_color
+    }
     fn conductor_range_s_r_g_b_max_color(&self) -> &super::core::Vec3 {
         &self.conductor_range_s_r_g_b_max_color
+    }
+    fn conductor_range_s_r_g_b_max_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.conductor_range_s_r_g_b_max_color
     }
     fn conductor_range_overlay(&self) -> &f32 {
         &self.conductor_range_overlay
     }
+    fn conductor_range_overlay_mut(&mut self) -> &mut f32 {
+        &mut self.conductor_range_overlay
+    }
     fn fresnel0_range_min_metal_mask(&self) -> &f32 {
         &self.fresnel0_range_min_metal_mask
+    }
+    fn fresnel0_range_min_metal_mask_mut(&mut self) -> &mut f32 {
+        &mut self.fresnel0_range_min_metal_mask
     }
     fn fresnel0_range_max_metal_mask(&self) -> &f32 {
         &self.fresnel0_range_max_metal_mask
     }
+    fn fresnel0_range_max_metal_mask_mut(&mut self) -> &mut f32 {
+        &mut self.fresnel0_range_max_metal_mask
+    }
     fn volumetric_rendering_enable(&self) -> &bool {
         &self.volumetric_rendering_enable
+    }
+    fn volumetric_rendering_enable_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_rendering_enable
     }
     fn volumetric_extinction_cascade_base_voxel_size(&self) -> &f32 {
         &self.volumetric_extinction_cascade_base_voxel_size
     }
+    fn volumetric_extinction_cascade_base_voxel_size_mut(&mut self) -> &mut f32 {
+        &mut self.volumetric_extinction_cascade_base_voxel_size
+    }
     fn volumetric_extinction_cascade_voxel_size_cascade_factor(&self) -> &f32 {
         &self.volumetric_extinction_cascade_voxel_size_cascade_factor
+    }
+    fn volumetric_extinction_cascade_voxel_size_cascade_factor_mut(&mut self) -> &mut f32 {
+        &mut self.volumetric_extinction_cascade_voxel_size_cascade_factor
     }
     fn volumetric_extinction_cascade_resolution(&self) -> &u32 {
         &self.volumetric_extinction_cascade_resolution
     }
+    fn volumetric_extinction_cascade_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_extinction_cascade_resolution
+    }
     fn volumetric_extinction_cascade_lock_view(&self) -> &bool {
         &self.volumetric_extinction_cascade_lock_view
+    }
+    fn volumetric_extinction_cascade_lock_view_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_extinction_cascade_lock_view
     }
     fn volumetric_shadowmap_enable(&self) -> &bool {
         &self.volumetric_shadowmap_enable
     }
+    fn volumetric_shadowmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_shadowmap_enable
+    }
     fn volumetric_shadowmap_resolution(&self) -> &u32 {
         &self.volumetric_shadowmap_resolution
+    }
+    fn volumetric_shadowmap_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_shadowmap_resolution
     }
     fn volumetric_shadowmap_max_count(&self) -> &u32 {
         &self.volumetric_shadowmap_max_count
     }
+    fn volumetric_shadowmap_max_count_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_shadowmap_max_count
+    }
     fn volumetric_shadowmap_accumulate_cs_enable(&self) -> &bool {
         &self.volumetric_shadowmap_accumulate_cs_enable
+    }
+    fn volumetric_shadowmap_accumulate_cs_enable_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_shadowmap_accumulate_cs_enable
     }
     fn punctual_light_cast_volumetric_shadowmap_enable_level(&self) -> &super::core::QualityLevel {
         &self.punctual_light_cast_volumetric_shadowmap_enable_level
     }
+    fn punctual_light_cast_volumetric_shadowmap_enable_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.punctual_light_cast_volumetric_shadowmap_enable_level
+    }
     fn area_light_cast_volumetric_shadowmap_enable_level(&self) -> &super::core::QualityLevel {
         &self.area_light_cast_volumetric_shadowmap_enable_level
+    }
+    fn area_light_cast_volumetric_shadowmap_enable_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.area_light_cast_volumetric_shadowmap_enable_level
     }
     fn local_light_cast_volumetric_level(&self) -> &super::core::QualityLevel {
         &self.local_light_cast_volumetric_level
     }
+    fn local_light_cast_volumetric_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.local_light_cast_volumetric_level
+    }
     fn volumetric_emitter_voxelisation_enable(&self) -> &bool {
         &self.volumetric_emitter_voxelisation_enable
+    }
+    fn volumetric_emitter_voxelisation_enable_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_emitter_voxelisation_enable
     }
     fn volumetric_emitter_voxelisation_mode(&self) -> &u32 {
         &self.volumetric_emitter_voxelisation_mode
     }
+    fn volumetric_emitter_voxelisation_mode_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_emitter_voxelisation_mode
+    }
     fn volumetric_participating_media_enable(&self) -> &bool {
         &self.volumetric_participating_media_enable
+    }
+    fn volumetric_participating_media_enable_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_participating_media_enable
     }
     fn volumetric_participating_media_use_light_cull(&self) -> &bool {
         &self.volumetric_participating_media_use_light_cull
     }
+    fn volumetric_participating_media_use_light_cull_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_participating_media_use_light_cull
+    }
     fn volumetric_participating_media_texture_depth(&self) -> &u32 {
         &self.volumetric_participating_media_texture_depth
+    }
+    fn volumetric_participating_media_texture_depth_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_participating_media_texture_depth
     }
     fn volumetric_participating_media_camera_depth(&self) -> &f32 {
         &self.volumetric_participating_media_camera_depth
     }
+    fn volumetric_participating_media_camera_depth_mut(&mut self) -> &mut f32 {
+        &mut self.volumetric_participating_media_camera_depth
+    }
     fn volumetric_participating_media_resolution_scale(&self) -> &u32 {
         &self.volumetric_participating_media_resolution_scale
+    }
+    fn volumetric_participating_media_resolution_scale_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_participating_media_resolution_scale
     }
     fn volumetric_participating_media_from_v_e_fog(&self) -> &bool {
         &self.volumetric_participating_media_from_v_e_fog
     }
+    fn volumetric_participating_media_from_v_e_fog_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_participating_media_from_v_e_fog
+    }
     fn volumetric_participating_media_lock_view(&self) -> &bool {
         &self.volumetric_participating_media_lock_view
+    }
+    fn volumetric_participating_media_lock_view_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_participating_media_lock_view
     }
     fn volumetric_participating_media_local_lights(&self) -> &bool {
         &self.volumetric_participating_media_local_lights
     }
+    fn volumetric_participating_media_local_lights_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_participating_media_local_lights
+    }
     fn volumetric_participating_media_ambient_lighting(&self) -> &bool {
         &self.volumetric_participating_media_ambient_lighting
+    }
+    fn volumetric_participating_media_ambient_lighting_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_participating_media_ambient_lighting
     }
     fn volumetric_participating_media_sun(&self) -> &bool {
         &self.volumetric_participating_media_sun
     }
+    fn volumetric_participating_media_sun_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_participating_media_sun
+    }
     fn reflection_volumetric_participating_media_texture_depth(&self) -> &u32 {
         &self.reflection_volumetric_participating_media_texture_depth
+    }
+    fn reflection_volumetric_participating_media_texture_depth_mut(&mut self) -> &mut u32 {
+        &mut self.reflection_volumetric_participating_media_texture_depth
     }
     fn reflection_volumetric_participating_media_camera_depth(&self) -> &f32 {
         &self.reflection_volumetric_participating_media_camera_depth
     }
+    fn reflection_volumetric_participating_media_camera_depth_mut(&mut self) -> &mut f32 {
+        &mut self.reflection_volumetric_participating_media_camera_depth
+    }
     fn reflection_volumetric_participating_media_resolution_scale(&self) -> &u32 {
         &self.reflection_volumetric_participating_media_resolution_scale
+    }
+    fn reflection_volumetric_participating_media_resolution_scale_mut(&mut self) -> &mut u32 {
+        &mut self.reflection_volumetric_participating_media_resolution_scale
     }
     fn volumetric_participating_media_temporal_integration(&self) -> &bool {
         &self.volumetric_participating_media_temporal_integration
     }
+    fn volumetric_participating_media_temporal_integration_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_participating_media_temporal_integration
+    }
     fn volumetric_participating_media_temporal_filter_strght(&self) -> &f32 {
         &self.volumetric_participating_media_temporal_filter_strght
+    }
+    fn volumetric_participating_media_temporal_filter_strght_mut(&mut self) -> &mut f32 {
+        &mut self.volumetric_participating_media_temporal_filter_strght
     }
     fn volumetric_local_fog_volume_enable(&self) -> &bool {
         &self.volumetric_local_fog_volume_enable
     }
+    fn volumetric_local_fog_volume_enable_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_local_fog_volume_enable
+    }
     fn draw_debug_volumetric_local_fog_volume(&self) -> &bool {
         &self.draw_debug_volumetric_local_fog_volume
+    }
+    fn draw_debug_volumetric_local_fog_volume_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_volumetric_local_fog_volume
     }
     fn draw_debug_volumetric_cascaded_volumes(&self) -> &bool {
         &self.draw_debug_volumetric_cascaded_volumes
     }
+    fn draw_debug_volumetric_cascaded_volumes_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_volumetric_cascaded_volumes
+    }
     fn draw_debug_volumetric_shadow_maps(&self) -> &bool {
         &self.draw_debug_volumetric_shadow_maps
+    }
+    fn draw_debug_volumetric_shadow_maps_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_volumetric_shadow_maps
     }
     fn draw_debug_volumetric_extinction(&self) -> &u32 {
         &self.draw_debug_volumetric_extinction
     }
+    fn draw_debug_volumetric_extinction_mut(&mut self) -> &mut u32 {
+        &mut self.draw_debug_volumetric_extinction
+    }
     fn draw_debug_volumetric_extinction_scale(&self) -> &f32 {
         &self.draw_debug_volumetric_extinction_scale
+    }
+    fn draw_debug_volumetric_extinction_scale_mut(&mut self) -> &mut f32 {
+        &mut self.draw_debug_volumetric_extinction_scale
     }
     fn draw_debug_volumetric_voxelised_emitter(&self) -> &bool {
         &self.draw_debug_volumetric_voxelised_emitter
     }
+    fn draw_debug_volumetric_voxelised_emitter_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_volumetric_voxelised_emitter
+    }
     fn light_shaft_fast_hdr_enable(&self) -> &bool {
         &self.light_shaft_fast_hdr_enable
+    }
+    fn light_shaft_fast_hdr_enable_mut(&mut self) -> &mut bool {
+        &mut self.light_shaft_fast_hdr_enable
     }
     fn draw_gpu_histogram_enable(&self) -> &bool {
         &self.draw_gpu_histogram_enable
     }
+    fn draw_gpu_histogram_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_gpu_histogram_enable
+    }
     fn draw_gpu_histogram_red(&self) -> &bool {
         &self.draw_gpu_histogram_red
+    }
+    fn draw_gpu_histogram_red_mut(&mut self) -> &mut bool {
+        &mut self.draw_gpu_histogram_red
     }
     fn draw_gpu_histogram_blue(&self) -> &bool {
         &self.draw_gpu_histogram_blue
     }
+    fn draw_gpu_histogram_blue_mut(&mut self) -> &mut bool {
+        &mut self.draw_gpu_histogram_blue
+    }
     fn draw_gpu_histogram_green(&self) -> &bool {
         &self.draw_gpu_histogram_green
+    }
+    fn draw_gpu_histogram_green_mut(&mut self) -> &mut bool {
+        &mut self.draw_gpu_histogram_green
     }
     fn draw_gpu_histogram_luminance(&self) -> &bool {
         &self.draw_gpu_histogram_luminance
     }
+    fn draw_gpu_histogram_luminance_mut(&mut self) -> &mut bool {
+        &mut self.draw_gpu_histogram_luminance
+    }
     fn draw_gpu_histogram_h_d_r_mode(&self) -> &bool {
         &self.draw_gpu_histogram_h_d_r_mode
+    }
+    fn draw_gpu_histogram_h_d_r_mode_mut(&mut self) -> &mut bool {
+        &mut self.draw_gpu_histogram_h_d_r_mode
     }
     fn draw_gpu_histogram_h_d_r_min_e_v(&self) -> &f32 {
         &self.draw_gpu_histogram_h_d_r_min_e_v
     }
+    fn draw_gpu_histogram_h_d_r_min_e_v_mut(&mut self) -> &mut f32 {
+        &mut self.draw_gpu_histogram_h_d_r_min_e_v
+    }
     fn draw_gpu_histogram_h_d_r_max_e_v(&self) -> &f32 {
         &self.draw_gpu_histogram_h_d_r_max_e_v
+    }
+    fn draw_gpu_histogram_h_d_r_max_e_v_mut(&mut self) -> &mut f32 {
+        &mut self.draw_gpu_histogram_h_d_r_max_e_v
     }
     fn draw_gpu_histogram_bin_count(&self) -> &u32 {
         &self.draw_gpu_histogram_bin_count
     }
+    fn draw_gpu_histogram_bin_count_mut(&mut self) -> &mut u32 {
+        &mut self.draw_gpu_histogram_bin_count
+    }
     fn draw_clamped_pixels_enable(&self) -> &bool {
         &self.draw_clamped_pixels_enable
+    }
+    fn draw_clamped_pixels_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_clamped_pixels_enable
     }
     fn draw_clamped_pixels_clamp_min(&self) -> &f32 {
         &self.draw_clamped_pixels_clamp_min
     }
+    fn draw_clamped_pixels_clamp_min_mut(&mut self) -> &mut f32 {
+        &mut self.draw_clamped_pixels_clamp_min
+    }
     fn draw_clamped_pixels_clamp_max(&self) -> &f32 {
         &self.draw_clamped_pixels_clamp_max
+    }
+    fn draw_clamped_pixels_clamp_max_mut(&mut self) -> &mut f32 {
+        &mut self.draw_clamped_pixels_clamp_max
     }
     fn enable_baked_direct_light_in_game_view(&self) -> &bool {
         &self.enable_baked_direct_light_in_game_view
     }
+    fn enable_baked_direct_light_in_game_view_mut(&mut self) -> &mut bool {
+        &mut self.enable_baked_direct_light_in_game_view
+    }
     fn enable_baked_lightmap_in_game_view(&self) -> &bool {
         &self.enable_baked_lightmap_in_game_view
+    }
+    fn enable_baked_lightmap_in_game_view_mut(&mut self) -> &mut bool {
+        &mut self.enable_baked_lightmap_in_game_view
     }
     fn texture_space_render_module_enable(&self) -> &bool {
         &self.texture_space_render_module_enable
     }
+    fn texture_space_render_module_enable_mut(&mut self) -> &mut bool {
+        &mut self.texture_space_render_module_enable
+    }
     fn compute_linearize_depth(&self) -> &bool {
         &self.compute_linearize_depth
+    }
+    fn compute_linearize_depth_mut(&mut self) -> &mut bool {
+        &mut self.compute_linearize_depth
     }
     fn compute_downsample_depth(&self) -> &bool {
         &self.compute_downsample_depth
     }
+    fn compute_downsample_depth_mut(&mut self) -> &mut bool {
+        &mut self.compute_downsample_depth
+    }
     fn draw_debug_disable_explanation(&self) -> &bool {
         &self.draw_debug_disable_explanation
+    }
+    fn draw_debug_disable_explanation_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_disable_explanation
     }
 }
 
@@ -4683,678 +6902,1344 @@ impl WorldRenderSettingsBaseTrait for WorldRenderSettings {
     fn cull_screen_area_scale(&self) -> &f32 {
         self._glacier_base.cull_screen_area_scale()
     }
+    fn cull_screen_area_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.cull_screen_area_scale_mut()
+    }
     fn deferred_shading_enable(&self) -> &bool {
         self._glacier_base.deferred_shading_enable()
+    }
+    fn deferred_shading_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.deferred_shading_enable_mut()
     }
     fn forward_opaque_enable(&self) -> &bool {
         self._glacier_base.forward_opaque_enable()
     }
+    fn forward_opaque_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.forward_opaque_enable_mut()
+    }
     fn full_z_pass_enable(&self) -> &bool {
         self._glacier_base.full_z_pass_enable()
+    }
+    fn full_z_pass_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.full_z_pass_enable_mut()
     }
     fn tile_material_classification_enable(&self) -> &bool {
         self._glacier_base.tile_material_classification_enable()
     }
+    fn tile_material_classification_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.tile_material_classification_enable_mut()
+    }
     fn shadowmaps_enable(&self) -> &bool {
         self._glacier_base.shadowmaps_enable()
+    }
+    fn shadowmaps_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmaps_enable_mut()
     }
     fn shadowmap_array_enable(&self) -> &bool {
         self._glacier_base.shadowmap_array_enable()
     }
+    fn shadowmap_array_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_array_enable_mut()
+    }
     fn transparency_shadowmaps_enable(&self) -> &bool {
         self._glacier_base.transparency_shadowmaps_enable()
+    }
+    fn transparency_shadowmaps_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.transparency_shadowmaps_enable_mut()
     }
     fn n_v_i_d_i_a_shadows_p_c_s_s_enable(&self) -> &bool {
         self._glacier_base.n_v_i_d_i_a_shadows_p_c_s_s_enable()
     }
+    fn n_v_i_d_i_a_shadows_p_c_s_s_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.n_v_i_d_i_a_shadows_p_c_s_s_enable_mut()
+    }
     fn n_v_i_d_i_a_shadows_h_f_t_s_enable(&self) -> &bool {
         self._glacier_base.n_v_i_d_i_a_shadows_h_f_t_s_enable()
+    }
+    fn n_v_i_d_i_a_shadows_h_f_t_s_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.n_v_i_d_i_a_shadows_h_f_t_s_enable_mut()
     }
     fn transparency_shadowmaps_half_res(&self) -> &bool {
         self._glacier_base.transparency_shadowmaps_half_res()
     }
+    fn transparency_shadowmaps_half_res_mut(&mut self) -> &mut bool {
+        self._glacier_base.transparency_shadowmaps_half_res_mut()
+    }
     fn sun_shadowmap_level(&self) -> &super::core::QualityLevel {
         self._glacier_base.sun_shadowmap_level()
+    }
+    fn sun_shadowmap_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        self._glacier_base.sun_shadowmap_level_mut()
     }
     fn shadowmap_min_fov(&self) -> &f32 {
         self._glacier_base.shadowmap_min_fov()
     }
+    fn shadowmap_min_fov_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_min_fov_mut()
+    }
     fn shadowmap_fixed_movement_enable(&self) -> &bool {
         self._glacier_base.shadowmap_fixed_movement_enable()
+    }
+    fn shadowmap_fixed_movement_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_fixed_movement_enable_mut()
     }
     fn shadowmap_fixed_depth_enable(&self) -> &bool {
         self._glacier_base.shadowmap_fixed_depth_enable()
     }
+    fn shadowmap_fixed_depth_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_fixed_depth_enable_mut()
+    }
     fn shadowmap_size_z_scale(&self) -> &f32 {
         self._glacier_base.shadowmap_size_z_scale()
+    }
+    fn shadowmap_size_z_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_size_z_scale_mut()
     }
     fn shadowmap_resolution(&self) -> &u32 {
         self._glacier_base.shadowmap_resolution()
     }
+    fn shadowmap_resolution_mut(&mut self) -> &mut u32 {
+        self._glacier_base.shadowmap_resolution_mut()
+    }
     fn adjusted_shadowmap_resolution(&self) -> &u32 {
         self._glacier_base.adjusted_shadowmap_resolution()
+    }
+    fn adjusted_shadowmap_resolution_mut(&mut self) -> &mut u32 {
+        self._glacier_base.adjusted_shadowmap_resolution_mut()
     }
     fn shadowmap_quality(&self) -> &u32 {
         self._glacier_base.shadowmap_quality()
     }
+    fn shadowmap_quality_mut(&mut self) -> &mut u32 {
+        self._glacier_base.shadowmap_quality_mut()
+    }
     fn shadowmap_poisson_filter_scale(&self) -> &f32 {
         self._glacier_base.shadowmap_poisson_filter_scale()
+    }
+    fn shadowmap_poisson_filter_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_poisson_filter_scale_mut()
     }
     fn shadowmap_slice_count(&self) -> &u32 {
         self._glacier_base.shadowmap_slice_count()
     }
+    fn shadowmap_slice_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.shadowmap_slice_count_mut()
+    }
     fn adjusted_shadowmap_slice_count(&self) -> &u32 {
         self._glacier_base.adjusted_shadowmap_slice_count()
+    }
+    fn adjusted_shadowmap_slice_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.adjusted_shadowmap_slice_count_mut()
     }
     fn shadowmap_slice_scheme_weight(&self) -> &f32 {
         self._glacier_base.shadowmap_slice_scheme_weight()
     }
+    fn shadowmap_slice_scheme_weight_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_slice_scheme_weight_mut()
+    }
     fn shadowmap_first_slice_scale(&self) -> &f32 {
         self._glacier_base.shadowmap_first_slice_scale()
+    }
+    fn shadowmap_first_slice_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_first_slice_scale_mut()
     }
     fn shadowmap_view_distance(&self) -> &f32 {
         self._glacier_base.shadowmap_view_distance()
     }
+    fn shadowmap_view_distance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_view_distance_mut()
+    }
     fn shadowmap_view_distance_scale_enable(&self) -> &bool {
         self._glacier_base.shadowmap_view_distance_scale_enable()
+    }
+    fn shadowmap_view_distance_scale_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_view_distance_scale_enable_mut()
     }
     fn shadowmap_extrusion_length(&self) -> &f32 {
         self._glacier_base.shadowmap_extrusion_length()
     }
+    fn shadowmap_extrusion_length_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_extrusion_length_mut()
+    }
     fn shadowmap_first_slice_extrusion_length(&self) -> &f32 {
         self._glacier_base.shadowmap_first_slice_extrusion_length()
+    }
+    fn shadowmap_first_slice_extrusion_length_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_first_slice_extrusion_length_mut()
     }
     fn shadowmap_adjust_far_plane(&self) -> &bool {
         self._glacier_base.shadowmap_adjust_far_plane()
     }
+    fn shadowmap_adjust_far_plane_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_adjust_far_plane_mut()
+    }
     fn draw_debug_shadowmap_cascades(&self) -> &bool {
         self._glacier_base.draw_debug_shadowmap_cascades()
+    }
+    fn draw_debug_shadowmap_cascades_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_shadowmap_cascades_mut()
     }
     fn shadowmap_accum_enable(&self) -> &bool {
         self._glacier_base.shadowmap_accum_enable()
     }
+    fn shadowmap_accum_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_accum_enable_mut()
+    }
     fn shadowmap_accum_reuse_enable(&self) -> &bool {
         self._glacier_base.shadowmap_accum_reuse_enable()
+    }
+    fn shadowmap_accum_reuse_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_accum_reuse_enable_mut()
     }
     fn shadowmap_accum_stencil_enable(&self) -> &bool {
         self._glacier_base.shadowmap_accum_stencil_enable()
     }
+    fn shadowmap_accum_stencil_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_accum_stencil_enable_mut()
+    }
     fn shadowmap_accum_stencil2_enable(&self) -> &bool {
         self._glacier_base.shadowmap_accum_stencil2_enable()
+    }
+    fn shadowmap_accum_stencil2_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_accum_stencil2_enable_mut()
     }
     fn shadowmap_transition_blend_enable(&self) -> &bool {
         self._glacier_base.shadowmap_transition_blend_enable()
     }
+    fn shadowmap_transition_blend_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_transition_blend_enable_mut()
+    }
     fn shadowmap_transition_blend_amount(&self) -> &f32 {
         self._glacier_base.shadowmap_transition_blend_amount()
+    }
+    fn shadowmap_transition_blend_amount_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_transition_blend_amount_mut()
     }
     fn shadowmap_foreground_enable(&self) -> &bool {
         self._glacier_base.shadowmap_foreground_enable()
     }
+    fn shadowmap_foreground_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_foreground_enable_mut()
+    }
     fn shadowmap_foreground_use_first_person_view_transform(&self) -> &bool {
         self._glacier_base.shadowmap_foreground_use_first_person_view_transform()
+    }
+    fn shadowmap_foreground_use_first_person_view_transform_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_foreground_use_first_person_view_transform_mut()
     }
     fn shadowmap_foreground_extrusion_length(&self) -> &f32 {
         self._glacier_base.shadowmap_foreground_extrusion_length()
     }
+    fn shadowmap_foreground_extrusion_length_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_foreground_extrusion_length_mut()
+    }
     fn shadowmap_foreground_split_distance(&self) -> &f32 {
         self._glacier_base.shadowmap_foreground_split_distance()
+    }
+    fn shadowmap_foreground_split_distance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_foreground_split_distance_mut()
     }
     fn shadowmap_foreground_size_z_scale(&self) -> &f32 {
         self._glacier_base.shadowmap_foreground_size_z_scale()
     }
+    fn shadowmap_foreground_size_z_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.shadowmap_foreground_size_z_scale_mut()
+    }
     fn shadowmap_adjust_shadow_distance_with_fov(&self) -> &bool {
         self._glacier_base.shadowmap_adjust_shadow_distance_with_fov()
+    }
+    fn shadowmap_adjust_shadow_distance_with_fov_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_adjust_shadow_distance_with_fov_mut()
     }
     fn shadowmap_draw_batched_enable(&self) -> &bool {
         self._glacier_base.shadowmap_draw_batched_enable()
     }
+    fn shadowmap_draw_batched_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.shadowmap_draw_batched_enable_mut()
+    }
     fn distant_shadow_cache_draw_frustum(&self) -> &bool {
         self._glacier_base.distant_shadow_cache_draw_frustum()
+    }
+    fn distant_shadow_cache_draw_frustum_mut(&mut self) -> &mut bool {
+        self._glacier_base.distant_shadow_cache_draw_frustum_mut()
     }
     fn distant_shadow_cache_enable(&self) -> &bool {
         self._glacier_base.distant_shadow_cache_enable()
     }
+    fn distant_shadow_cache_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.distant_shadow_cache_enable_mut()
+    }
     fn distant_shadow_cache_resolution(&self) -> &u32 {
         self._glacier_base.distant_shadow_cache_resolution()
+    }
+    fn distant_shadow_cache_resolution_mut(&mut self) -> &mut u32 {
+        self._glacier_base.distant_shadow_cache_resolution_mut()
     }
     fn distant_shadow_cache_force_resolution(&self) -> &i32 {
         self._glacier_base.distant_shadow_cache_force_resolution()
     }
+    fn distant_shadow_cache_force_resolution_mut(&mut self) -> &mut i32 {
+        self._glacier_base.distant_shadow_cache_force_resolution_mut()
+    }
     fn distant_shadow_cache_resolution_scale(&self) -> &f32 {
         self._glacier_base.distant_shadow_cache_resolution_scale()
+    }
+    fn distant_shadow_cache_resolution_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.distant_shadow_cache_resolution_scale_mut()
     }
     fn distant_shadow_cache_max_resolution(&self) -> &u32 {
         self._glacier_base.distant_shadow_cache_max_resolution()
     }
+    fn distant_shadow_cache_max_resolution_mut(&mut self) -> &mut u32 {
+        self._glacier_base.distant_shadow_cache_max_resolution_mut()
+    }
     fn distant_shadow_cache_draw_debug(&self) -> &bool {
         self._glacier_base.distant_shadow_cache_draw_debug()
+    }
+    fn distant_shadow_cache_draw_debug_mut(&mut self) -> &mut bool {
+        self._glacier_base.distant_shadow_cache_draw_debug_mut()
     }
     fn distant_shadow_cache_force_mode(&self) -> &u32 {
         self._glacier_base.distant_shadow_cache_force_mode()
     }
+    fn distant_shadow_cache_force_mode_mut(&mut self) -> &mut u32 {
+        self._glacier_base.distant_shadow_cache_force_mode_mut()
+    }
     fn distant_shadow_cache_use_quadtree(&self) -> &bool {
         self._glacier_base.distant_shadow_cache_use_quadtree()
+    }
+    fn distant_shadow_cache_use_quadtree_mut(&mut self) -> &mut bool {
+        self._glacier_base.distant_shadow_cache_use_quadtree_mut()
     }
     fn distant_shadow_cache_batch_group_entity_bake(&self) -> &bool {
         self._glacier_base.distant_shadow_cache_batch_group_entity_bake()
     }
+    fn distant_shadow_cache_batch_group_entity_bake_mut(&mut self) -> &mut bool {
+        self._glacier_base.distant_shadow_cache_batch_group_entity_bake_mut()
+    }
     fn distant_shadow_cache_rebake_on_light_change(&self) -> &bool {
         self._glacier_base.distant_shadow_cache_rebake_on_light_change()
+    }
+    fn distant_shadow_cache_rebake_on_light_change_mut(&mut self) -> &mut bool {
+        self._glacier_base.distant_shadow_cache_rebake_on_light_change_mut()
     }
     fn distant_shadow_cache_rebake_on_add_remove(&self) -> &bool {
         self._glacier_base.distant_shadow_cache_rebake_on_add_remove()
     }
+    fn distant_shadow_cache_rebake_on_add_remove_mut(&mut self) -> &mut bool {
+        self._glacier_base.distant_shadow_cache_rebake_on_add_remove_mut()
+    }
     fn distant_shadow_cache_rebake_on_move(&self) -> &bool {
         self._glacier_base.distant_shadow_cache_rebake_on_move()
+    }
+    fn distant_shadow_cache_rebake_on_move_mut(&mut self) -> &mut bool {
+        self._glacier_base.distant_shadow_cache_rebake_on_move_mut()
     }
     fn distant_shadow_cache_rebake_on_part_visibility(&self) -> &bool {
         self._glacier_base.distant_shadow_cache_rebake_on_part_visibility()
     }
+    fn distant_shadow_cache_rebake_on_part_visibility_mut(&mut self) -> &mut bool {
+        self._glacier_base.distant_shadow_cache_rebake_on_part_visibility_mut()
+    }
     fn distant_shadow_cache_coalesce_time(&self) -> &f32 {
         self._glacier_base.distant_shadow_cache_coalesce_time()
+    }
+    fn distant_shadow_cache_coalesce_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.distant_shadow_cache_coalesce_time_mut()
     }
     fn distant_shadow_cache_max_bake_events(&self) -> &u32 {
         self._glacier_base.distant_shadow_cache_max_bake_events()
     }
+    fn distant_shadow_cache_max_bake_events_mut(&mut self) -> &mut u32 {
+        self._glacier_base.distant_shadow_cache_max_bake_events_mut()
+    }
     fn sun_pcss_max_sample_count(&self) -> &i32 {
         self._glacier_base.sun_pcss_max_sample_count()
+    }
+    fn sun_pcss_max_sample_count_mut(&mut self) -> &mut i32 {
+        self._glacier_base.sun_pcss_max_sample_count_mut()
     }
     fn sun_pcss_adaptive_sample_increment(&self) -> &i32 {
         self._glacier_base.sun_pcss_adaptive_sample_increment()
     }
+    fn sun_pcss_adaptive_sample_increment_mut(&mut self) -> &mut i32 {
+        self._glacier_base.sun_pcss_adaptive_sample_increment_mut()
+    }
     fn dx_shadowmap16_bit_enable(&self) -> &bool {
         self._glacier_base.dx_shadowmap16_bit_enable()
+    }
+    fn dx_shadowmap16_bit_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.dx_shadowmap16_bit_enable_mut()
     }
     fn dx_dynamic_envmap_shadowmap16_bit_enable(&self) -> &bool {
         self._glacier_base.dx_dynamic_envmap_shadowmap16_bit_enable()
     }
+    fn dx_dynamic_envmap_shadowmap16_bit_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.dx_dynamic_envmap_shadowmap16_bit_enable_mut()
+    }
     fn apply_shadowmaps_enable(&self) -> &bool {
         self._glacier_base.apply_shadowmaps_enable()
+    }
+    fn apply_shadowmaps_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.apply_shadowmaps_enable_mut()
     }
     fn simple_shadowmaps_enable(&self) -> &bool {
         self._glacier_base.simple_shadowmaps_enable()
     }
+    fn simple_shadowmaps_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.simple_shadowmaps_enable_mut()
+    }
     fn emitter_shadowing_blend_toggle(&self) -> &bool {
         self._glacier_base.emitter_shadowing_blend_toggle()
+    }
+    fn emitter_shadowing_blend_toggle_mut(&mut self) -> &mut bool {
+        self._glacier_base.emitter_shadowing_blend_toggle_mut()
     }
     fn emitter_shadowing_many_samples_toggle(&self) -> &bool {
         self._glacier_base.emitter_shadowing_many_samples_toggle()
     }
+    fn emitter_shadowing_many_samples_toggle_mut(&mut self) -> &mut bool {
+        self._glacier_base.emitter_shadowing_many_samples_toggle_mut()
+    }
     fn dx_linear_depth32_bit_format_enable(&self) -> &bool {
         self._glacier_base.dx_linear_depth32_bit_format_enable()
+    }
+    fn dx_linear_depth32_bit_format_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.dx_linear_depth32_bit_format_enable_mut()
     }
     fn motion_blur_enable(&self) -> &bool {
         self._glacier_base.motion_blur_enable()
     }
+    fn motion_blur_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.motion_blur_enable_mut()
+    }
     fn motion_blur_force_on(&self) -> &bool {
         self._glacier_base.motion_blur_force_on()
+    }
+    fn motion_blur_force_on_mut(&mut self) -> &mut bool {
+        self._glacier_base.motion_blur_force_on_mut()
     }
     fn motion_blur_scale(&self) -> &f32 {
         self._glacier_base.motion_blur_scale()
     }
+    fn motion_blur_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.motion_blur_scale_mut()
+    }
     fn motion_blur_fixed_shutter_time(&self) -> &f32 {
         self._glacier_base.motion_blur_fixed_shutter_time()
+    }
+    fn motion_blur_fixed_shutter_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.motion_blur_fixed_shutter_time_mut()
     }
     fn motion_blur_max(&self) -> &f32 {
         self._glacier_base.motion_blur_max()
     }
+    fn motion_blur_max_mut(&mut self) -> &mut f32 {
+        self._glacier_base.motion_blur_max_mut()
+    }
     fn motion_blur_radial_blur_max(&self) -> &f32 {
         self._glacier_base.motion_blur_radial_blur_max()
+    }
+    fn motion_blur_radial_blur_max_mut(&mut self) -> &mut f32 {
+        self._glacier_base.motion_blur_radial_blur_max_mut()
     }
     fn motion_blur_noise_scale(&self) -> &f32 {
         self._glacier_base.motion_blur_noise_scale()
     }
+    fn motion_blur_noise_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.motion_blur_noise_scale_mut()
+    }
     fn motion_blur_quality(&self) -> &u32 {
         self._glacier_base.motion_blur_quality()
+    }
+    fn motion_blur_quality_mut(&mut self) -> &mut u32 {
+        self._glacier_base.motion_blur_quality_mut()
     }
     fn motion_blur_debug_mode(&self) -> &u32 {
         self._glacier_base.motion_blur_debug_mode()
     }
+    fn motion_blur_debug_mode_mut(&mut self) -> &mut u32 {
+        self._glacier_base.motion_blur_debug_mode_mut()
+    }
     fn motion_blur_perceptual_space_enable(&self) -> &bool {
         self._glacier_base.motion_blur_perceptual_space_enable()
+    }
+    fn motion_blur_perceptual_space_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.motion_blur_perceptual_space_enable_mut()
     }
     fn motion_blur_stencil_pass_enable(&self) -> &bool {
         self._glacier_base.motion_blur_stencil_pass_enable()
     }
+    fn motion_blur_stencil_pass_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.motion_blur_stencil_pass_enable_mut()
+    }
     fn motion_blur_centered_enable(&self) -> &bool {
         self._glacier_base.motion_blur_centered_enable()
+    }
+    fn motion_blur_centered_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.motion_blur_centered_enable_mut()
     }
     fn motion_blur_max_sample_count(&self) -> &u32 {
         self._glacier_base.motion_blur_max_sample_count()
     }
+    fn motion_blur_max_sample_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.motion_blur_max_sample_count_mut()
+    }
     fn motion_blur_depth_check_threshold(&self) -> &f32 {
         self._glacier_base.motion_blur_depth_check_threshold()
+    }
+    fn motion_blur_depth_check_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.motion_blur_depth_check_threshold_mut()
     }
     fn motion_blur_depth_check_max_distance(&self) -> &f32 {
         self._glacier_base.motion_blur_depth_check_max_distance()
     }
+    fn motion_blur_depth_check_max_distance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.motion_blur_depth_check_max_distance_mut()
+    }
     fn tiled_motion_blur_variance_threshold_scale(&self) -> &f32 {
         self._glacier_base.tiled_motion_blur_variance_threshold_scale()
+    }
+    fn tiled_motion_blur_variance_threshold_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tiled_motion_blur_variance_threshold_scale_mut()
     }
     fn tiled_motion_blur_vel_mag_depth_downsample(&self) -> &u32 {
         self._glacier_base.tiled_motion_blur_vel_mag_depth_downsample()
     }
+    fn tiled_motion_blur_vel_mag_depth_downsample_mut(&mut self) -> &mut u32 {
+        self._glacier_base.tiled_motion_blur_vel_mag_depth_downsample_mut()
+    }
     fn tiled_motion_blur_separable_enable(&self) -> &bool {
         self._glacier_base.tiled_motion_blur_separable_enable()
+    }
+    fn tiled_motion_blur_separable_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.tiled_motion_blur_separable_enable_mut()
     }
     fn tiled_motion_blur_enable(&self) -> &bool {
         self._glacier_base.tiled_motion_blur_enable()
     }
+    fn tiled_motion_blur_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.tiled_motion_blur_enable_mut()
+    }
     fn tiled_motion_blur_force20_px_tile(&self) -> &bool {
         self._glacier_base.tiled_motion_blur_force20_px_tile()
+    }
+    fn tiled_motion_blur_force20_px_tile_mut(&mut self) -> &mut bool {
+        self._glacier_base.tiled_motion_blur_force20_px_tile_mut()
     }
     fn motion_blur_use_detailed_gpu_timers(&self) -> &bool {
         self._glacier_base.motion_blur_use_detailed_gpu_timers()
     }
+    fn motion_blur_use_detailed_gpu_timers_mut(&mut self) -> &mut bool {
+        self._glacier_base.motion_blur_use_detailed_gpu_timers_mut()
+    }
     fn velocity_vectors_derive_from_depth_enable(&self) -> &bool {
         self._glacier_base.velocity_vectors_derive_from_depth_enable()
+    }
+    fn velocity_vectors_derive_from_depth_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.velocity_vectors_derive_from_depth_enable_mut()
     }
     fn velocity_vectors_derive_from_dynamic_objects_enable(&self) -> &bool {
         self._glacier_base.velocity_vectors_derive_from_dynamic_objects_enable()
     }
+    fn velocity_vectors_derive_from_dynamic_objects_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.velocity_vectors_derive_from_dynamic_objects_enable_mut()
+    }
     fn velocity_vectors_clear_value(&self) -> &super::core::Vec3 {
         self._glacier_base.velocity_vectors_clear_value()
+    }
+    fn velocity_vectors_clear_value_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.velocity_vectors_clear_value_mut()
     }
     fn multisample_count(&self) -> &u32 {
         self._glacier_base.multisample_count()
     }
+    fn multisample_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.multisample_count_mut()
+    }
     fn multisample_quality(&self) -> &u32 {
         self._glacier_base.multisample_quality()
+    }
+    fn multisample_quality_mut(&mut self) -> &mut u32 {
+        self._glacier_base.multisample_quality_mut()
     }
     fn draw_transparent(&self) -> &bool {
         self._glacier_base.draw_transparent()
     }
+    fn draw_transparent_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_transparent_mut()
+    }
     fn draw_half_res_transparent(&self) -> &bool {
         self._glacier_base.draw_half_res_transparent()
+    }
+    fn draw_half_res_transparent_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_half_res_transparent_mut()
     }
     fn draw_transparent_decal(&self) -> &bool {
         self._glacier_base.draw_transparent_decal()
     }
+    fn draw_transparent_decal_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_transparent_decal_mut()
+    }
     fn transparent_dof_enable(&self) -> &bool {
         self._glacier_base.transparent_dof_enable()
+    }
+    fn transparent_dof_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.transparent_dof_enable_mut()
     }
     fn transparent_dof_half_res_enable(&self) -> &bool {
         self._glacier_base.transparent_dof_half_res_enable()
     }
+    fn transparent_dof_half_res_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.transparent_dof_half_res_enable_mut()
+    }
     fn transparent_dof_lerp_coc_enable(&self) -> &bool {
         self._glacier_base.transparent_dof_lerp_coc_enable()
+    }
+    fn transparent_dof_lerp_coc_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.transparent_dof_lerp_coc_enable_mut()
     }
     fn only_shadowmap_slice(&self) -> &i32 {
         self._glacier_base.only_shadowmap_slice()
     }
+    fn only_shadowmap_slice_mut(&mut self) -> &mut i32 {
+        self._glacier_base.only_shadowmap_slice_mut()
+    }
     fn view_mode(&self) -> &WorldViewMode {
         self._glacier_base.view_mode()
+    }
+    fn view_mode_mut(&mut self) -> &mut WorldViewMode {
+        self._glacier_base.view_mode_mut()
     }
     fn enable(&self) -> &bool {
         self._glacier_base.enable()
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_mut()
+    }
     fn console_render_target_pool_sharing_enable(&self) -> &bool {
         self._glacier_base.console_render_target_pool_sharing_enable()
+    }
+    fn console_render_target_pool_sharing_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.console_render_target_pool_sharing_enable_mut()
     }
     fn fast_hdr_enable(&self) -> &bool {
         self._glacier_base.fast_hdr_enable()
     }
+    fn fast_hdr_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.fast_hdr_enable_mut()
+    }
     fn additional_hdr_target_in_e_s_r_a_m(&self) -> &u32 {
         self._glacier_base.additional_hdr_target_in_e_s_r_a_m()
+    }
+    fn additional_hdr_target_in_e_s_r_a_m_mut(&mut self) -> &mut u32 {
+        self._glacier_base.additional_hdr_target_in_e_s_r_a_m_mut()
     }
     fn linear_depth_in_e_s_r_a_m(&self) -> &bool {
         self._glacier_base.linear_depth_in_e_s_r_a_m()
     }
+    fn linear_depth_in_e_s_r_a_m_mut(&mut self) -> &mut bool {
+        self._glacier_base.linear_depth_in_e_s_r_a_m_mut()
+    }
     fn half_res_depth_resolve_enable(&self) -> &bool {
         self._glacier_base.half_res_depth_resolve_enable()
+    }
+    fn half_res_depth_resolve_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.half_res_depth_resolve_enable_mut()
     }
     fn depth_buffer_collision_enable(&self) -> &bool {
         self._glacier_base.depth_buffer_collision_enable()
     }
+    fn depth_buffer_collision_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.depth_buffer_collision_enable_mut()
+    }
     fn final_post_enable(&self) -> &bool {
         self._glacier_base.final_post_enable()
+    }
+    fn final_post_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.final_post_enable_mut()
     }
     fn output_gamma_correction_enable(&self) -> &bool {
         self._glacier_base.output_gamma_correction_enable()
     }
+    fn output_gamma_correction_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.output_gamma_correction_enable_mut()
+    }
     fn screen_effect_enable(&self) -> &bool {
         self._glacier_base.screen_effect_enable()
+    }
+    fn screen_effect_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.screen_effect_enable_mut()
     }
     fn draw_solid_bounding_boxes(&self) -> &bool {
         self._glacier_base.draw_solid_bounding_boxes()
     }
+    fn draw_solid_bounding_boxes_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_solid_bounding_boxes_mut()
+    }
     fn draw_line_bounding_boxes(&self) -> &bool {
         self._glacier_base.draw_line_bounding_boxes()
+    }
+    fn draw_line_bounding_boxes_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_line_bounding_boxes_mut()
     }
     fn draw_bounding_spheres(&self) -> &bool {
         self._glacier_base.draw_bounding_spheres()
     }
+    fn draw_bounding_spheres_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_bounding_spheres_mut()
+    }
     fn draw_frustums(&self) -> &bool {
         self._glacier_base.draw_frustums()
+    }
+    fn draw_frustums_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_frustums_mut()
     }
     fn draw_local_i_b_l_frustums(&self) -> &bool {
         self._glacier_base.draw_local_i_b_l_frustums()
     }
+    fn draw_local_i_b_l_frustums_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_local_i_b_l_frustums_mut()
+    }
     fn draw_debug_shadowmaps(&self) -> &bool {
         self._glacier_base.draw_debug_shadowmaps()
+    }
+    fn draw_debug_shadowmaps_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_shadowmaps_mut()
     }
     fn draw_debug_local_light_shadows(&self) -> &bool {
         self._glacier_base.draw_debug_local_light_shadows()
     }
+    fn draw_debug_local_light_shadows_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_local_light_shadows_mut()
+    }
     fn draw_debug_sky_envmap(&self) -> &bool {
         self._glacier_base.draw_debug_sky_envmap()
+    }
+    fn draw_debug_sky_envmap_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_sky_envmap_mut()
     }
     fn draw_debug_velocity_buffer(&self) -> &bool {
         self._glacier_base.draw_debug_velocity_buffer()
     }
+    fn draw_debug_velocity_buffer_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_velocity_buffer_mut()
+    }
     fn draw_debug_half_res_environment(&self) -> &bool {
         self._glacier_base.draw_debug_half_res_environment()
+    }
+    fn draw_debug_half_res_environment_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_half_res_environment_mut()
     }
     fn draw_debug_distortion(&self) -> &bool {
         self._glacier_base.draw_debug_distortion()
     }
+    fn draw_debug_distortion_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_distortion_mut()
+    }
     fn draw_debug_visible_entity_types(&self) -> &bool {
         self._glacier_base.draw_debug_visible_entity_types()
+    }
+    fn draw_debug_visible_entity_types_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_visible_entity_types_mut()
     }
     fn draw_debug_sky_textures(&self) -> &bool {
         self._glacier_base.draw_debug_sky_textures()
     }
+    fn draw_debug_sky_textures_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_sky_textures_mut()
+    }
     fn draw_debug_dof(&self) -> &bool {
         self._glacier_base.draw_debug_dof()
+    }
+    fn draw_debug_dof_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_dof_mut()
     }
     fn draw_debug_half_res_hdr_targets(&self) -> &bool {
         self._glacier_base.draw_debug_half_res_hdr_targets()
     }
+    fn draw_debug_half_res_hdr_targets_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_half_res_hdr_targets_mut()
+    }
     fn draw_debug_hi_z_min_max_buffer_enable(&self) -> &bool {
         self._glacier_base.draw_debug_hi_z_min_max_buffer_enable()
+    }
+    fn draw_debug_hi_z_min_max_buffer_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_hi_z_min_max_buffer_enable_mut()
     }
     fn draw_debug_screen_space_raytrace_buckets_enable(&self) -> &bool {
         self._glacier_base.draw_debug_screen_space_raytrace_buckets_enable()
     }
+    fn draw_debug_screen_space_raytrace_buckets_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_screen_space_raytrace_buckets_enable_mut()
+    }
     fn draw_debug_emitter_sun_transmittance_maps(&self) -> &bool {
         self._glacier_base.draw_debug_emitter_sun_transmittance_maps()
+    }
+    fn draw_debug_emitter_sun_transmittance_maps_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_emitter_sun_transmittance_maps_mut()
     }
     fn draw_debug_blur_pyramid(&self) -> &bool {
         self._glacier_base.draw_debug_blur_pyramid()
     }
+    fn draw_debug_blur_pyramid_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_blur_pyramid_mut()
+    }
     fn draw_debug_occlusion_z_buffer(&self) -> &bool {
         self._glacier_base.draw_debug_occlusion_z_buffer()
+    }
+    fn draw_debug_occlusion_z_buffer_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_occlusion_z_buffer_mut()
     }
     fn draw_debug_local_i_b_l_occlusion_z_buffer(&self) -> &bool {
         self._glacier_base.draw_debug_local_i_b_l_occlusion_z_buffer()
     }
+    fn draw_debug_local_i_b_l_occlusion_z_buffer_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_local_i_b_l_occlusion_z_buffer_mut()
+    }
     fn draw_debug_buffers(&self) -> &u32 {
         self._glacier_base.draw_debug_buffers()
+    }
+    fn draw_debug_buffers_mut(&mut self) -> &mut u32 {
+        self._glacier_base.draw_debug_buffers_mut()
     }
     fn wireframe_enable(&self) -> &bool {
         self._glacier_base.wireframe_enable()
     }
+    fn wireframe_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.wireframe_enable_mut()
+    }
     fn z_pass_enable(&self) -> &bool {
         self._glacier_base.z_pass_enable()
+    }
+    fn z_pass_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.z_pass_enable_mut()
     }
     fn occluder_mesh_z_prepass_enable(&self) -> &bool {
         self._glacier_base.occluder_mesh_z_prepass_enable()
     }
+    fn occluder_mesh_z_prepass_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.occluder_mesh_z_prepass_enable_mut()
+    }
     fn occluder_mesh_z_prepass_draw_enable(&self) -> &bool {
         self._glacier_base.occluder_mesh_z_prepass_draw_enable()
+    }
+    fn occluder_mesh_z_prepass_draw_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.occluder_mesh_z_prepass_draw_enable_mut()
     }
     fn occluder_mesh_z_prepass_debug_enable(&self) -> &bool {
         self._glacier_base.occluder_mesh_z_prepass_debug_enable()
     }
+    fn occluder_mesh_z_prepass_debug_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.occluder_mesh_z_prepass_debug_enable_mut()
+    }
     fn frame_synthesis_mode(&self) -> &FrameSynthesisMode {
         self._glacier_base.frame_synthesis_mode()
+    }
+    fn frame_synthesis_mode_mut(&mut self) -> &mut FrameSynthesisMode {
+        self._glacier_base.frame_synthesis_mode_mut()
     }
     fn half_res_enable(&self) -> &bool {
         self._glacier_base.half_res_enable()
     }
+    fn half_res_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.half_res_enable_mut()
+    }
     fn force_full_res_enable(&self) -> &bool {
         self._glacier_base.force_full_res_enable()
+    }
+    fn force_full_res_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.force_full_res_enable_mut()
     }
     fn half_res_lens_flares_enable(&self) -> &bool {
         self._glacier_base.half_res_lens_flares_enable()
     }
+    fn half_res_lens_flares_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.half_res_lens_flares_enable_mut()
+    }
     fn foreground_enable(&self) -> &bool {
         self._glacier_base.foreground_enable()
+    }
+    fn foreground_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.foreground_enable_mut()
     }
     fn foreground_z_pass_enable(&self) -> &bool {
         self._glacier_base.foreground_z_pass_enable()
     }
+    fn foreground_z_pass_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.foreground_z_pass_enable_mut()
+    }
     fn foreground_transparent_enable(&self) -> &bool {
         self._glacier_base.foreground_transparent_enable()
+    }
+    fn foreground_transparent_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.foreground_transparent_enable_mut()
     }
     fn bilateral_half_res_composite_enable(&self) -> &bool {
         self._glacier_base.bilateral_half_res_composite_enable()
     }
+    fn bilateral_half_res_composite_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.bilateral_half_res_composite_enable_mut()
+    }
     fn half_res_depth_min_max_dither_enable(&self) -> &bool {
         self._glacier_base.half_res_depth_min_max_dither_enable()
+    }
+    fn half_res_depth_min_max_dither_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.half_res_depth_min_max_dither_enable_mut()
     }
     fn half_res_depth_min_max_dither_threshold(&self) -> &f32 {
         self._glacier_base.half_res_depth_min_max_dither_threshold()
     }
+    fn half_res_depth_min_max_dither_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.half_res_depth_min_max_dither_threshold_mut()
+    }
     fn sky_lighting_enable(&self) -> &bool {
         self._glacier_base.sky_lighting_enable()
+    }
+    fn sky_lighting_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_lighting_enable_mut()
     }
     fn sky_render_enable(&self) -> &bool {
         self._glacier_base.sky_render_enable()
     }
+    fn sky_render_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_render_enable_mut()
+    }
     fn sky_depth_fog_enable(&self) -> &bool {
         self._glacier_base.sky_depth_fog_enable()
+    }
+    fn sky_depth_fog_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_depth_fog_enable_mut()
     }
     fn sky_height_fog_enable(&self) -> &bool {
         self._glacier_base.sky_height_fog_enable()
     }
+    fn sky_height_fog_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_height_fog_enable_mut()
+    }
     fn sky_forward_scattering_enable(&self) -> &bool {
         self._glacier_base.sky_forward_scattering_enable()
+    }
+    fn sky_forward_scattering_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_forward_scattering_enable_mut()
     }
     fn procedural_sky_receive_height_fog(&self) -> &bool {
         self._glacier_base.procedural_sky_receive_height_fog()
     }
+    fn procedural_sky_receive_height_fog_mut(&mut self) -> &mut bool {
+        self._glacier_base.procedural_sky_receive_height_fog_mut()
+    }
     fn physical_sky_enabled(&self) -> &bool {
         self._glacier_base.physical_sky_enabled()
+    }
+    fn physical_sky_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.physical_sky_enabled_mut()
     }
     fn physical_sky_precision_height(&self) -> &u32 {
         self._glacier_base.physical_sky_precision_height()
     }
+    fn physical_sky_precision_height_mut(&mut self) -> &mut u32 {
+        self._glacier_base.physical_sky_precision_height_mut()
+    }
     fn physical_sky_precision_view(&self) -> &u32 {
         self._glacier_base.physical_sky_precision_view()
+    }
+    fn physical_sky_precision_view_mut(&mut self) -> &mut u32 {
+        self._glacier_base.physical_sky_precision_view_mut()
     }
     fn physical_sky_precision_sun(&self) -> &u32 {
         self._glacier_base.physical_sky_precision_sun()
     }
+    fn physical_sky_precision_sun_mut(&mut self) -> &mut u32 {
+        self._glacier_base.physical_sky_precision_sun_mut()
+    }
     fn physical_sky_scattering_orders(&self) -> &u32 {
         self._glacier_base.physical_sky_scattering_orders()
+    }
+    fn physical_sky_scattering_orders_mut(&mut self) -> &mut u32 {
+        self._glacier_base.physical_sky_scattering_orders_mut()
     }
     fn physical_sky_aerial_perspective_texture_width(&self) -> &u32 {
         self._glacier_base.physical_sky_aerial_perspective_texture_width()
     }
+    fn physical_sky_aerial_perspective_texture_width_mut(&mut self) -> &mut u32 {
+        self._glacier_base.physical_sky_aerial_perspective_texture_width_mut()
+    }
     fn physical_sky_aerial_perspective_texture_height(&self) -> &u32 {
         self._glacier_base.physical_sky_aerial_perspective_texture_height()
+    }
+    fn physical_sky_aerial_perspective_texture_height_mut(&mut self) -> &mut u32 {
+        self._glacier_base.physical_sky_aerial_perspective_texture_height_mut()
     }
     fn physical_sky_aerial_perspective_texture_depth(&self) -> &u32 {
         self._glacier_base.physical_sky_aerial_perspective_texture_depth()
     }
+    fn physical_sky_aerial_perspective_texture_depth_mut(&mut self) -> &mut u32 {
+        self._glacier_base.physical_sky_aerial_perspective_texture_depth_mut()
+    }
     fn physical_sky_scattering_eval_frame_count(&self) -> &u32 {
         self._glacier_base.physical_sky_scattering_eval_frame_count()
+    }
+    fn physical_sky_scattering_eval_frame_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.physical_sky_scattering_eval_frame_count_mut()
     }
     fn physical_sky_aerial_perspective_max_distance(&self) -> &f32 {
         self._glacier_base.physical_sky_aerial_perspective_max_distance()
     }
+    fn physical_sky_aerial_perspective_max_distance_mut(&mut self) -> &mut f32 {
+        self._glacier_base.physical_sky_aerial_perspective_max_distance_mut()
+    }
     fn physical_sky_force_precompute(&self) -> &bool {
         self._glacier_base.physical_sky_force_precompute()
+    }
+    fn physical_sky_force_precompute_mut(&mut self) -> &mut bool {
+        self._glacier_base.physical_sky_force_precompute_mut()
     }
     fn volumetric_clouds_enabled(&self) -> &bool {
         self._glacier_base.volumetric_clouds_enabled()
     }
+    fn volumetric_clouds_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.volumetric_clouds_enabled_mut()
+    }
     fn volumetric_clouds_quality(&self) -> &super::core::QualityLevel {
         self._glacier_base.volumetric_clouds_quality()
+    }
+    fn volumetric_clouds_quality_mut(&mut self) -> &mut super::core::QualityLevel {
+        self._glacier_base.volumetric_clouds_quality_mut()
     }
     fn volumetric_clouds_cast_shadow(&self) -> &bool {
         self._glacier_base.volumetric_clouds_cast_shadow()
     }
+    fn volumetric_clouds_cast_shadow_mut(&mut self) -> &mut bool {
+        self._glacier_base.volumetric_clouds_cast_shadow_mut()
+    }
     fn volumetric_clouds_cast_shadow_in_forward_render(&self) -> &bool {
         self._glacier_base.volumetric_clouds_cast_shadow_in_forward_render()
+    }
+    fn volumetric_clouds_cast_shadow_in_forward_render_mut(&mut self) -> &mut bool {
+        self._glacier_base.volumetric_clouds_cast_shadow_in_forward_render_mut()
     }
     fn volumetric_clouds_affect_aerial_perspective(&self) -> &bool {
         self._glacier_base.volumetric_clouds_affect_aerial_perspective()
     }
+    fn volumetric_clouds_affect_aerial_perspective_mut(&mut self) -> &mut bool {
+        self._glacier_base.volumetric_clouds_affect_aerial_perspective_mut()
+    }
     fn volumetric_clouds_receive_aerial_perspective(&self) -> &bool {
         self._glacier_base.volumetric_clouds_receive_aerial_perspective()
+    }
+    fn volumetric_clouds_receive_aerial_perspective_mut(&mut self) -> &mut bool {
+        self._glacier_base.volumetric_clouds_receive_aerial_perspective_mut()
     }
     fn volumetric_clouds_occlude_lens_flare(&self) -> &bool {
         self._glacier_base.volumetric_clouds_occlude_lens_flare()
     }
+    fn volumetric_clouds_occlude_lens_flare_mut(&mut self) -> &mut bool {
+        self._glacier_base.volumetric_clouds_occlude_lens_flare_mut()
+    }
     fn volumetric_clouds_render_target_resolution_divider(&self) -> &u32 {
         self._glacier_base.volumetric_clouds_render_target_resolution_divider()
+    }
+    fn volumetric_clouds_render_target_resolution_divider_mut(&mut self) -> &mut u32 {
+        self._glacier_base.volumetric_clouds_render_target_resolution_divider_mut()
     }
     fn volumetric_clouds_reflection_render_target_resolution_divider(&self) -> &u32 {
         self._glacier_base.volumetric_clouds_reflection_render_target_resolution_divider()
     }
+    fn volumetric_clouds_reflection_render_target_resolution_divider_mut(&mut self) -> &mut u32 {
+        self._glacier_base.volumetric_clouds_reflection_render_target_resolution_divider_mut()
+    }
     fn volumetric_clouds_shadow_iteration_count(&self) -> &u32 {
         self._glacier_base.volumetric_clouds_shadow_iteration_count()
+    }
+    fn volumetric_clouds_shadow_iteration_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.volumetric_clouds_shadow_iteration_count_mut()
     }
     fn volumetric_clouds_shadowmap_resolution(&self) -> &u32 {
         self._glacier_base.volumetric_clouds_shadowmap_resolution()
     }
+    fn volumetric_clouds_shadowmap_resolution_mut(&mut self) -> &mut u32 {
+        self._glacier_base.volumetric_clouds_shadowmap_resolution_mut()
+    }
     fn volumetric_clouds_shadowmap_blur_samples(&self) -> &u32 {
         self._glacier_base.volumetric_clouds_shadowmap_blur_samples()
+    }
+    fn volumetric_clouds_shadowmap_blur_samples_mut(&mut self) -> &mut u32 {
+        self._glacier_base.volumetric_clouds_shadowmap_blur_samples_mut()
     }
     fn volumetric_clouds_sample_count(&self) -> &super::core::QualityScalableInt {
         self._glacier_base.volumetric_clouds_sample_count()
     }
+    fn volumetric_clouds_sample_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        self._glacier_base.volumetric_clouds_sample_count_mut()
+    }
     fn volumetric_clouds_reflection_sample_count(&self) -> &u32 {
         self._glacier_base.volumetric_clouds_reflection_sample_count()
+    }
+    fn volumetric_clouds_reflection_sample_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.volumetric_clouds_reflection_sample_count_mut()
     }
     fn volumetric_clouds_i_b_l_sample_count(&self) -> &u32 {
         self._glacier_base.volumetric_clouds_i_b_l_sample_count()
     }
+    fn volumetric_clouds_i_b_l_sample_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.volumetric_clouds_i_b_l_sample_count_mut()
+    }
     fn volumetric_clouds_temporal_coefficient(&self) -> &f32 {
         self._glacier_base.volumetric_clouds_temporal_coefficient()
+    }
+    fn volumetric_clouds_temporal_coefficient_mut(&mut self) -> &mut f32 {
+        self._glacier_base.volumetric_clouds_temporal_coefficient_mut()
     }
     fn volumetric_clouds_env_color_temporal_coefficient(&self) -> &f32 {
         self._glacier_base.volumetric_clouds_env_color_temporal_coefficient()
     }
+    fn volumetric_clouds_env_color_temporal_coefficient_mut(&mut self) -> &mut f32 {
+        self._glacier_base.volumetric_clouds_env_color_temporal_coefficient_mut()
+    }
     fn transparent_fogging_enable(&self) -> &bool {
         self._glacier_base.transparent_fogging_enable()
+    }
+    fn transparent_fogging_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.transparent_fogging_enable_mut()
     }
     fn distortion_enable(&self) -> &bool {
         self._glacier_base.distortion_enable()
     }
+    fn distortion_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.distortion_enable_mut()
+    }
     fn distortion_half_res_enable(&self) -> &bool {
         self._glacier_base.distortion_half_res_enable()
+    }
+    fn distortion_half_res_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.distortion_half_res_enable_mut()
     }
     fn distortion8_bit_enable(&self) -> &bool {
         self._glacier_base.distortion8_bit_enable()
     }
+    fn distortion8_bit_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.distortion8_bit_enable_mut()
+    }
     fn distortion_tiling_enable(&self) -> &bool {
         self._glacier_base.distortion_tiling_enable()
+    }
+    fn distortion_tiling_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.distortion_tiling_enable_mut()
     }
     fn static_envmap_enable(&self) -> &bool {
         self._glacier_base.static_envmap_enable()
     }
+    fn static_envmap_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.static_envmap_enable_mut()
+    }
     fn custom_envmap_enable(&self) -> &bool {
         self._glacier_base.custom_envmap_enable()
+    }
+    fn custom_envmap_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.custom_envmap_enable_mut()
     }
     fn sky_envmap_enable(&self) -> &bool {
         self._glacier_base.sky_envmap_enable()
     }
+    fn sky_envmap_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_envmap_enable_mut()
+    }
     fn sky_envmap_filter_width(&self) -> &f32 {
         self._glacier_base.sky_envmap_filter_width()
+    }
+    fn sky_envmap_filter_width_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sky_envmap_filter_width_mut()
     }
     fn sky_envmap_resolution(&self) -> &u32 {
         self._glacier_base.sky_envmap_resolution()
     }
+    fn sky_envmap_resolution_mut(&mut self) -> &mut u32 {
+        self._glacier_base.sky_envmap_resolution_mut()
+    }
     fn sky_envmap_mipmap_gen_enable(&self) -> &bool {
         self._glacier_base.sky_envmap_mipmap_gen_enable()
+    }
+    fn sky_envmap_mipmap_gen_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_envmap_mipmap_gen_enable_mut()
     }
     fn draw_debug_sky_envmap_mip_level(&self) -> &i32 {
         self._glacier_base.draw_debug_sky_envmap_mip_level()
     }
+    fn draw_debug_sky_envmap_mip_level_mut(&mut self) -> &mut i32 {
+        self._glacier_base.draw_debug_sky_envmap_mip_level_mut()
+    }
     fn sky_envmap_filter_mode(&self) -> &MipmapFilterMode {
         self._glacier_base.sky_envmap_filter_mode()
+    }
+    fn sky_envmap_filter_mode_mut(&mut self) -> &mut MipmapFilterMode {
+        self._glacier_base.sky_envmap_filter_mode_mut()
     }
     fn sky_envmap_sides_per_frame_count(&self) -> &u32 {
         self._glacier_base.sky_envmap_sides_per_frame_count()
     }
+    fn sky_envmap_sides_per_frame_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.sky_envmap_sides_per_frame_count_mut()
+    }
     fn sky_envmap_force_update_enable(&self) -> &bool {
         self._glacier_base.sky_envmap_force_update_enable()
+    }
+    fn sky_envmap_force_update_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_envmap_force_update_enable_mut()
     }
     fn sky_envmap_use_fast_h_d_r(&self) -> &bool {
         self._glacier_base.sky_envmap_use_fast_h_d_r()
     }
+    fn sky_envmap_use_fast_h_d_r_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_envmap_use_fast_h_d_r_mut()
+    }
     fn sky_envmap_debug_color_enable(&self) -> &bool {
         self._glacier_base.sky_envmap_debug_color_enable()
+    }
+    fn sky_envmap_debug_color_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_envmap_debug_color_enable_mut()
     }
     fn sky_envmap_update_count_threshold(&self) -> &f32 {
         self._glacier_base.sky_envmap_update_count_threshold()
     }
+    fn sky_envmap_update_count_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sky_envmap_update_count_threshold_mut()
+    }
     fn sky_envmap_update_value_threshold(&self) -> &f32 {
         self._glacier_base.sky_envmap_update_value_threshold()
+    }
+    fn sky_envmap_update_value_threshold_mut(&mut self) -> &mut f32 {
+        self._glacier_base.sky_envmap_update_value_threshold_mut()
     }
     fn sky_envmap_cloud_fog_enable(&self) -> &bool {
         self._glacier_base.sky_envmap_cloud_fog_enable()
     }
+    fn sky_envmap_cloud_fog_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_envmap_cloud_fog_enable_mut()
+    }
     fn sky_envmap_generate_no_backdrop_enable(&self) -> &bool {
         self._glacier_base.sky_envmap_generate_no_backdrop_enable()
+    }
+    fn sky_envmap_generate_no_backdrop_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.sky_envmap_generate_no_backdrop_enable_mut()
     }
     fn dynamic_envmap_enable(&self) -> &bool {
         self._glacier_base.dynamic_envmap_enable()
     }
+    fn dynamic_envmap_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_envmap_enable_mut()
+    }
     fn draw_debug_dynamic_envmap_mip_level(&self) -> &i32 {
         self._glacier_base.draw_debug_dynamic_envmap_mip_level()
+    }
+    fn draw_debug_dynamic_envmap_mip_level_mut(&mut self) -> &mut i32 {
+        self._glacier_base.draw_debug_dynamic_envmap_mip_level_mut()
     }
     fn dynamic_envmap_mipmap_gen_enable(&self) -> &bool {
         self._glacier_base.dynamic_envmap_mipmap_gen_enable()
     }
+    fn dynamic_envmap_mipmap_gen_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_envmap_mipmap_gen_enable_mut()
+    }
     fn draw_debug_dynamic_envmap(&self) -> &bool {
         self._glacier_base.draw_debug_dynamic_envmap()
+    }
+    fn draw_debug_dynamic_envmap_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_dynamic_envmap_mut()
     }
     fn dynamic_envmap_shadowmap_enable(&self) -> &bool {
         self._glacier_base.dynamic_envmap_shadowmap_enable()
     }
+    fn dynamic_envmap_shadowmap_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_envmap_shadowmap_enable_mut()
+    }
     fn dynamic_envmap_shadowmap_resolution(&self) -> &u32 {
         self._glacier_base.dynamic_envmap_shadowmap_resolution()
+    }
+    fn dynamic_envmap_shadowmap_resolution_mut(&mut self) -> &mut u32 {
+        self._glacier_base.dynamic_envmap_shadowmap_resolution_mut()
     }
     fn dynamic_envmap_shadowmap_far_plane_override(&self) -> &bool {
         self._glacier_base.dynamic_envmap_shadowmap_far_plane_override()
     }
+    fn dynamic_envmap_shadowmap_far_plane_override_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_envmap_shadowmap_far_plane_override_mut()
+    }
     fn dynamic_envmap_shadowmap_far_plane(&self) -> &i32 {
         self._glacier_base.dynamic_envmap_shadowmap_far_plane()
+    }
+    fn dynamic_envmap_shadowmap_far_plane_mut(&mut self) -> &mut i32 {
+        self._glacier_base.dynamic_envmap_shadowmap_far_plane_mut()
     }
     fn dynamic_envmap_shadowmap_shadow_extrusion_override(&self) -> &bool {
         self._glacier_base.dynamic_envmap_shadowmap_shadow_extrusion_override()
     }
+    fn dynamic_envmap_shadowmap_shadow_extrusion_override_mut(&mut self) -> &mut bool {
+        self._glacier_base.dynamic_envmap_shadowmap_shadow_extrusion_override_mut()
+    }
     fn dynamic_envmap_shadowmap_shadow_extrusion(&self) -> &i32 {
         self._glacier_base.dynamic_envmap_shadowmap_shadow_extrusion()
+    }
+    fn dynamic_envmap_shadowmap_shadow_extrusion_mut(&mut self) -> &mut i32 {
+        self._glacier_base.dynamic_envmap_shadowmap_shadow_extrusion_mut()
     }
     fn draw_debug_dynamic_envmap_shadowmap(&self) -> &bool {
         self._glacier_base.draw_debug_dynamic_envmap_shadowmap()
     }
+    fn draw_debug_dynamic_envmap_shadowmap_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_debug_dynamic_envmap_shadowmap_mut()
+    }
     fn draw_dynamic_envmap_frustums(&self) -> &bool {
         self._glacier_base.draw_dynamic_envmap_frustums()
+    }
+    fn draw_dynamic_envmap_frustums_mut(&mut self) -> &mut bool {
+        self._glacier_base.draw_dynamic_envmap_frustums_mut()
     }
     fn setup_job_enable(&self) -> &bool {
         self._glacier_base.setup_job_enable()
     }
+    fn setup_job_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.setup_job_enable_mut()
+    }
     fn setup_jobs_create_view_job(&self) -> &bool {
         self._glacier_base.setup_jobs_create_view_job()
+    }
+    fn setup_jobs_create_view_job_mut(&mut self) -> &mut bool {
+        self._glacier_base.setup_jobs_create_view_job_mut()
     }
     fn prepare_dispatch_list_job_enable(&self) -> &bool {
         self._glacier_base.prepare_dispatch_list_job_enable()
     }
+    fn prepare_dispatch_list_job_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.prepare_dispatch_list_job_enable_mut()
+    }
     fn indirect_specular_intensity(&self) -> &f32 {
         self._glacier_base.indirect_specular_intensity()
+    }
+    fn indirect_specular_intensity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.indirect_specular_intensity_mut()
     }
     fn indirect_specular_reflectance_scale(&self) -> &f32 {
         self._glacier_base.indirect_specular_reflectance_scale()
     }
+    fn indirect_specular_reflectance_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.indirect_specular_reflectance_scale_mut()
+    }
     fn indirect_specular_probes_intensity(&self) -> &f32 {
         self._glacier_base.indirect_specular_probes_intensity()
+    }
+    fn indirect_specular_probes_intensity_mut(&mut self) -> &mut f32 {
+        self._glacier_base.indirect_specular_probes_intensity_mut()
     }
     fn indirect_specular_probes_reflectance_scale(&self) -> &f32 {
         self._glacier_base.indirect_specular_probes_reflectance_scale()
     }
+    fn indirect_specular_probes_reflectance_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.indirect_specular_probes_reflectance_scale_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for WorldRenderSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WORLDRENDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7612,6 +10497,15 @@ impl TypeObject for WorldRenderSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7855,906 +10749,1795 @@ pub struct WorldRenderSettingsBase {
 
 pub trait WorldRenderSettingsBaseTrait: super::core::DataContainerTrait {
     fn cull_screen_area_scale(&self) -> &f32;
+    fn cull_screen_area_scale_mut(&mut self) -> &mut f32;
     fn deferred_shading_enable(&self) -> &bool;
+    fn deferred_shading_enable_mut(&mut self) -> &mut bool;
     fn forward_opaque_enable(&self) -> &bool;
+    fn forward_opaque_enable_mut(&mut self) -> &mut bool;
     fn full_z_pass_enable(&self) -> &bool;
+    fn full_z_pass_enable_mut(&mut self) -> &mut bool;
     fn tile_material_classification_enable(&self) -> &bool;
+    fn tile_material_classification_enable_mut(&mut self) -> &mut bool;
     fn shadowmaps_enable(&self) -> &bool;
+    fn shadowmaps_enable_mut(&mut self) -> &mut bool;
     fn shadowmap_array_enable(&self) -> &bool;
+    fn shadowmap_array_enable_mut(&mut self) -> &mut bool;
     fn transparency_shadowmaps_enable(&self) -> &bool;
+    fn transparency_shadowmaps_enable_mut(&mut self) -> &mut bool;
     fn n_v_i_d_i_a_shadows_p_c_s_s_enable(&self) -> &bool;
+    fn n_v_i_d_i_a_shadows_p_c_s_s_enable_mut(&mut self) -> &mut bool;
     fn n_v_i_d_i_a_shadows_h_f_t_s_enable(&self) -> &bool;
+    fn n_v_i_d_i_a_shadows_h_f_t_s_enable_mut(&mut self) -> &mut bool;
     fn transparency_shadowmaps_half_res(&self) -> &bool;
+    fn transparency_shadowmaps_half_res_mut(&mut self) -> &mut bool;
     fn sun_shadowmap_level(&self) -> &super::core::QualityLevel;
+    fn sun_shadowmap_level_mut(&mut self) -> &mut super::core::QualityLevel;
     fn shadowmap_min_fov(&self) -> &f32;
+    fn shadowmap_min_fov_mut(&mut self) -> &mut f32;
     fn shadowmap_fixed_movement_enable(&self) -> &bool;
+    fn shadowmap_fixed_movement_enable_mut(&mut self) -> &mut bool;
     fn shadowmap_fixed_depth_enable(&self) -> &bool;
+    fn shadowmap_fixed_depth_enable_mut(&mut self) -> &mut bool;
     fn shadowmap_size_z_scale(&self) -> &f32;
+    fn shadowmap_size_z_scale_mut(&mut self) -> &mut f32;
     fn shadowmap_resolution(&self) -> &u32;
+    fn shadowmap_resolution_mut(&mut self) -> &mut u32;
     fn adjusted_shadowmap_resolution(&self) -> &u32;
+    fn adjusted_shadowmap_resolution_mut(&mut self) -> &mut u32;
     fn shadowmap_quality(&self) -> &u32;
+    fn shadowmap_quality_mut(&mut self) -> &mut u32;
     fn shadowmap_poisson_filter_scale(&self) -> &f32;
+    fn shadowmap_poisson_filter_scale_mut(&mut self) -> &mut f32;
     fn shadowmap_slice_count(&self) -> &u32;
+    fn shadowmap_slice_count_mut(&mut self) -> &mut u32;
     fn adjusted_shadowmap_slice_count(&self) -> &u32;
+    fn adjusted_shadowmap_slice_count_mut(&mut self) -> &mut u32;
     fn shadowmap_slice_scheme_weight(&self) -> &f32;
+    fn shadowmap_slice_scheme_weight_mut(&mut self) -> &mut f32;
     fn shadowmap_first_slice_scale(&self) -> &f32;
+    fn shadowmap_first_slice_scale_mut(&mut self) -> &mut f32;
     fn shadowmap_view_distance(&self) -> &f32;
+    fn shadowmap_view_distance_mut(&mut self) -> &mut f32;
     fn shadowmap_view_distance_scale_enable(&self) -> &bool;
+    fn shadowmap_view_distance_scale_enable_mut(&mut self) -> &mut bool;
     fn shadowmap_extrusion_length(&self) -> &f32;
+    fn shadowmap_extrusion_length_mut(&mut self) -> &mut f32;
     fn shadowmap_first_slice_extrusion_length(&self) -> &f32;
+    fn shadowmap_first_slice_extrusion_length_mut(&mut self) -> &mut f32;
     fn shadowmap_adjust_far_plane(&self) -> &bool;
+    fn shadowmap_adjust_far_plane_mut(&mut self) -> &mut bool;
     fn draw_debug_shadowmap_cascades(&self) -> &bool;
+    fn draw_debug_shadowmap_cascades_mut(&mut self) -> &mut bool;
     fn shadowmap_accum_enable(&self) -> &bool;
+    fn shadowmap_accum_enable_mut(&mut self) -> &mut bool;
     fn shadowmap_accum_reuse_enable(&self) -> &bool;
+    fn shadowmap_accum_reuse_enable_mut(&mut self) -> &mut bool;
     fn shadowmap_accum_stencil_enable(&self) -> &bool;
+    fn shadowmap_accum_stencil_enable_mut(&mut self) -> &mut bool;
     fn shadowmap_accum_stencil2_enable(&self) -> &bool;
+    fn shadowmap_accum_stencil2_enable_mut(&mut self) -> &mut bool;
     fn shadowmap_transition_blend_enable(&self) -> &bool;
+    fn shadowmap_transition_blend_enable_mut(&mut self) -> &mut bool;
     fn shadowmap_transition_blend_amount(&self) -> &f32;
+    fn shadowmap_transition_blend_amount_mut(&mut self) -> &mut f32;
     fn shadowmap_foreground_enable(&self) -> &bool;
+    fn shadowmap_foreground_enable_mut(&mut self) -> &mut bool;
     fn shadowmap_foreground_use_first_person_view_transform(&self) -> &bool;
+    fn shadowmap_foreground_use_first_person_view_transform_mut(&mut self) -> &mut bool;
     fn shadowmap_foreground_extrusion_length(&self) -> &f32;
+    fn shadowmap_foreground_extrusion_length_mut(&mut self) -> &mut f32;
     fn shadowmap_foreground_split_distance(&self) -> &f32;
+    fn shadowmap_foreground_split_distance_mut(&mut self) -> &mut f32;
     fn shadowmap_foreground_size_z_scale(&self) -> &f32;
+    fn shadowmap_foreground_size_z_scale_mut(&mut self) -> &mut f32;
     fn shadowmap_adjust_shadow_distance_with_fov(&self) -> &bool;
+    fn shadowmap_adjust_shadow_distance_with_fov_mut(&mut self) -> &mut bool;
     fn shadowmap_draw_batched_enable(&self) -> &bool;
+    fn shadowmap_draw_batched_enable_mut(&mut self) -> &mut bool;
     fn distant_shadow_cache_draw_frustum(&self) -> &bool;
+    fn distant_shadow_cache_draw_frustum_mut(&mut self) -> &mut bool;
     fn distant_shadow_cache_enable(&self) -> &bool;
+    fn distant_shadow_cache_enable_mut(&mut self) -> &mut bool;
     fn distant_shadow_cache_resolution(&self) -> &u32;
+    fn distant_shadow_cache_resolution_mut(&mut self) -> &mut u32;
     fn distant_shadow_cache_force_resolution(&self) -> &i32;
+    fn distant_shadow_cache_force_resolution_mut(&mut self) -> &mut i32;
     fn distant_shadow_cache_resolution_scale(&self) -> &f32;
+    fn distant_shadow_cache_resolution_scale_mut(&mut self) -> &mut f32;
     fn distant_shadow_cache_max_resolution(&self) -> &u32;
+    fn distant_shadow_cache_max_resolution_mut(&mut self) -> &mut u32;
     fn distant_shadow_cache_draw_debug(&self) -> &bool;
+    fn distant_shadow_cache_draw_debug_mut(&mut self) -> &mut bool;
     fn distant_shadow_cache_force_mode(&self) -> &u32;
+    fn distant_shadow_cache_force_mode_mut(&mut self) -> &mut u32;
     fn distant_shadow_cache_use_quadtree(&self) -> &bool;
+    fn distant_shadow_cache_use_quadtree_mut(&mut self) -> &mut bool;
     fn distant_shadow_cache_batch_group_entity_bake(&self) -> &bool;
+    fn distant_shadow_cache_batch_group_entity_bake_mut(&mut self) -> &mut bool;
     fn distant_shadow_cache_rebake_on_light_change(&self) -> &bool;
+    fn distant_shadow_cache_rebake_on_light_change_mut(&mut self) -> &mut bool;
     fn distant_shadow_cache_rebake_on_add_remove(&self) -> &bool;
+    fn distant_shadow_cache_rebake_on_add_remove_mut(&mut self) -> &mut bool;
     fn distant_shadow_cache_rebake_on_move(&self) -> &bool;
+    fn distant_shadow_cache_rebake_on_move_mut(&mut self) -> &mut bool;
     fn distant_shadow_cache_rebake_on_part_visibility(&self) -> &bool;
+    fn distant_shadow_cache_rebake_on_part_visibility_mut(&mut self) -> &mut bool;
     fn distant_shadow_cache_coalesce_time(&self) -> &f32;
+    fn distant_shadow_cache_coalesce_time_mut(&mut self) -> &mut f32;
     fn distant_shadow_cache_max_bake_events(&self) -> &u32;
+    fn distant_shadow_cache_max_bake_events_mut(&mut self) -> &mut u32;
     fn sun_pcss_max_sample_count(&self) -> &i32;
+    fn sun_pcss_max_sample_count_mut(&mut self) -> &mut i32;
     fn sun_pcss_adaptive_sample_increment(&self) -> &i32;
+    fn sun_pcss_adaptive_sample_increment_mut(&mut self) -> &mut i32;
     fn dx_shadowmap16_bit_enable(&self) -> &bool;
+    fn dx_shadowmap16_bit_enable_mut(&mut self) -> &mut bool;
     fn dx_dynamic_envmap_shadowmap16_bit_enable(&self) -> &bool;
+    fn dx_dynamic_envmap_shadowmap16_bit_enable_mut(&mut self) -> &mut bool;
     fn apply_shadowmaps_enable(&self) -> &bool;
+    fn apply_shadowmaps_enable_mut(&mut self) -> &mut bool;
     fn simple_shadowmaps_enable(&self) -> &bool;
+    fn simple_shadowmaps_enable_mut(&mut self) -> &mut bool;
     fn emitter_shadowing_blend_toggle(&self) -> &bool;
+    fn emitter_shadowing_blend_toggle_mut(&mut self) -> &mut bool;
     fn emitter_shadowing_many_samples_toggle(&self) -> &bool;
+    fn emitter_shadowing_many_samples_toggle_mut(&mut self) -> &mut bool;
     fn dx_linear_depth32_bit_format_enable(&self) -> &bool;
+    fn dx_linear_depth32_bit_format_enable_mut(&mut self) -> &mut bool;
     fn motion_blur_enable(&self) -> &bool;
+    fn motion_blur_enable_mut(&mut self) -> &mut bool;
     fn motion_blur_force_on(&self) -> &bool;
+    fn motion_blur_force_on_mut(&mut self) -> &mut bool;
     fn motion_blur_scale(&self) -> &f32;
+    fn motion_blur_scale_mut(&mut self) -> &mut f32;
     fn motion_blur_fixed_shutter_time(&self) -> &f32;
+    fn motion_blur_fixed_shutter_time_mut(&mut self) -> &mut f32;
     fn motion_blur_max(&self) -> &f32;
+    fn motion_blur_max_mut(&mut self) -> &mut f32;
     fn motion_blur_radial_blur_max(&self) -> &f32;
+    fn motion_blur_radial_blur_max_mut(&mut self) -> &mut f32;
     fn motion_blur_noise_scale(&self) -> &f32;
+    fn motion_blur_noise_scale_mut(&mut self) -> &mut f32;
     fn motion_blur_quality(&self) -> &u32;
+    fn motion_blur_quality_mut(&mut self) -> &mut u32;
     fn motion_blur_debug_mode(&self) -> &u32;
+    fn motion_blur_debug_mode_mut(&mut self) -> &mut u32;
     fn motion_blur_perceptual_space_enable(&self) -> &bool;
+    fn motion_blur_perceptual_space_enable_mut(&mut self) -> &mut bool;
     fn motion_blur_stencil_pass_enable(&self) -> &bool;
+    fn motion_blur_stencil_pass_enable_mut(&mut self) -> &mut bool;
     fn motion_blur_centered_enable(&self) -> &bool;
+    fn motion_blur_centered_enable_mut(&mut self) -> &mut bool;
     fn motion_blur_max_sample_count(&self) -> &u32;
+    fn motion_blur_max_sample_count_mut(&mut self) -> &mut u32;
     fn motion_blur_depth_check_threshold(&self) -> &f32;
+    fn motion_blur_depth_check_threshold_mut(&mut self) -> &mut f32;
     fn motion_blur_depth_check_max_distance(&self) -> &f32;
+    fn motion_blur_depth_check_max_distance_mut(&mut self) -> &mut f32;
     fn tiled_motion_blur_variance_threshold_scale(&self) -> &f32;
+    fn tiled_motion_blur_variance_threshold_scale_mut(&mut self) -> &mut f32;
     fn tiled_motion_blur_vel_mag_depth_downsample(&self) -> &u32;
+    fn tiled_motion_blur_vel_mag_depth_downsample_mut(&mut self) -> &mut u32;
     fn tiled_motion_blur_separable_enable(&self) -> &bool;
+    fn tiled_motion_blur_separable_enable_mut(&mut self) -> &mut bool;
     fn tiled_motion_blur_enable(&self) -> &bool;
+    fn tiled_motion_blur_enable_mut(&mut self) -> &mut bool;
     fn tiled_motion_blur_force20_px_tile(&self) -> &bool;
+    fn tiled_motion_blur_force20_px_tile_mut(&mut self) -> &mut bool;
     fn motion_blur_use_detailed_gpu_timers(&self) -> &bool;
+    fn motion_blur_use_detailed_gpu_timers_mut(&mut self) -> &mut bool;
     fn velocity_vectors_derive_from_depth_enable(&self) -> &bool;
+    fn velocity_vectors_derive_from_depth_enable_mut(&mut self) -> &mut bool;
     fn velocity_vectors_derive_from_dynamic_objects_enable(&self) -> &bool;
+    fn velocity_vectors_derive_from_dynamic_objects_enable_mut(&mut self) -> &mut bool;
     fn velocity_vectors_clear_value(&self) -> &super::core::Vec3;
+    fn velocity_vectors_clear_value_mut(&mut self) -> &mut super::core::Vec3;
     fn multisample_count(&self) -> &u32;
+    fn multisample_count_mut(&mut self) -> &mut u32;
     fn multisample_quality(&self) -> &u32;
+    fn multisample_quality_mut(&mut self) -> &mut u32;
     fn draw_transparent(&self) -> &bool;
+    fn draw_transparent_mut(&mut self) -> &mut bool;
     fn draw_half_res_transparent(&self) -> &bool;
+    fn draw_half_res_transparent_mut(&mut self) -> &mut bool;
     fn draw_transparent_decal(&self) -> &bool;
+    fn draw_transparent_decal_mut(&mut self) -> &mut bool;
     fn transparent_dof_enable(&self) -> &bool;
+    fn transparent_dof_enable_mut(&mut self) -> &mut bool;
     fn transparent_dof_half_res_enable(&self) -> &bool;
+    fn transparent_dof_half_res_enable_mut(&mut self) -> &mut bool;
     fn transparent_dof_lerp_coc_enable(&self) -> &bool;
+    fn transparent_dof_lerp_coc_enable_mut(&mut self) -> &mut bool;
     fn only_shadowmap_slice(&self) -> &i32;
+    fn only_shadowmap_slice_mut(&mut self) -> &mut i32;
     fn view_mode(&self) -> &WorldViewMode;
+    fn view_mode_mut(&mut self) -> &mut WorldViewMode;
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn console_render_target_pool_sharing_enable(&self) -> &bool;
+    fn console_render_target_pool_sharing_enable_mut(&mut self) -> &mut bool;
     fn fast_hdr_enable(&self) -> &bool;
+    fn fast_hdr_enable_mut(&mut self) -> &mut bool;
     fn additional_hdr_target_in_e_s_r_a_m(&self) -> &u32;
+    fn additional_hdr_target_in_e_s_r_a_m_mut(&mut self) -> &mut u32;
     fn linear_depth_in_e_s_r_a_m(&self) -> &bool;
+    fn linear_depth_in_e_s_r_a_m_mut(&mut self) -> &mut bool;
     fn half_res_depth_resolve_enable(&self) -> &bool;
+    fn half_res_depth_resolve_enable_mut(&mut self) -> &mut bool;
     fn depth_buffer_collision_enable(&self) -> &bool;
+    fn depth_buffer_collision_enable_mut(&mut self) -> &mut bool;
     fn final_post_enable(&self) -> &bool;
+    fn final_post_enable_mut(&mut self) -> &mut bool;
     fn output_gamma_correction_enable(&self) -> &bool;
+    fn output_gamma_correction_enable_mut(&mut self) -> &mut bool;
     fn screen_effect_enable(&self) -> &bool;
+    fn screen_effect_enable_mut(&mut self) -> &mut bool;
     fn draw_solid_bounding_boxes(&self) -> &bool;
+    fn draw_solid_bounding_boxes_mut(&mut self) -> &mut bool;
     fn draw_line_bounding_boxes(&self) -> &bool;
+    fn draw_line_bounding_boxes_mut(&mut self) -> &mut bool;
     fn draw_bounding_spheres(&self) -> &bool;
+    fn draw_bounding_spheres_mut(&mut self) -> &mut bool;
     fn draw_frustums(&self) -> &bool;
+    fn draw_frustums_mut(&mut self) -> &mut bool;
     fn draw_local_i_b_l_frustums(&self) -> &bool;
+    fn draw_local_i_b_l_frustums_mut(&mut self) -> &mut bool;
     fn draw_debug_shadowmaps(&self) -> &bool;
+    fn draw_debug_shadowmaps_mut(&mut self) -> &mut bool;
     fn draw_debug_local_light_shadows(&self) -> &bool;
+    fn draw_debug_local_light_shadows_mut(&mut self) -> &mut bool;
     fn draw_debug_sky_envmap(&self) -> &bool;
+    fn draw_debug_sky_envmap_mut(&mut self) -> &mut bool;
     fn draw_debug_velocity_buffer(&self) -> &bool;
+    fn draw_debug_velocity_buffer_mut(&mut self) -> &mut bool;
     fn draw_debug_half_res_environment(&self) -> &bool;
+    fn draw_debug_half_res_environment_mut(&mut self) -> &mut bool;
     fn draw_debug_distortion(&self) -> &bool;
+    fn draw_debug_distortion_mut(&mut self) -> &mut bool;
     fn draw_debug_visible_entity_types(&self) -> &bool;
+    fn draw_debug_visible_entity_types_mut(&mut self) -> &mut bool;
     fn draw_debug_sky_textures(&self) -> &bool;
+    fn draw_debug_sky_textures_mut(&mut self) -> &mut bool;
     fn draw_debug_dof(&self) -> &bool;
+    fn draw_debug_dof_mut(&mut self) -> &mut bool;
     fn draw_debug_half_res_hdr_targets(&self) -> &bool;
+    fn draw_debug_half_res_hdr_targets_mut(&mut self) -> &mut bool;
     fn draw_debug_hi_z_min_max_buffer_enable(&self) -> &bool;
+    fn draw_debug_hi_z_min_max_buffer_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_screen_space_raytrace_buckets_enable(&self) -> &bool;
+    fn draw_debug_screen_space_raytrace_buckets_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_emitter_sun_transmittance_maps(&self) -> &bool;
+    fn draw_debug_emitter_sun_transmittance_maps_mut(&mut self) -> &mut bool;
     fn draw_debug_blur_pyramid(&self) -> &bool;
+    fn draw_debug_blur_pyramid_mut(&mut self) -> &mut bool;
     fn draw_debug_occlusion_z_buffer(&self) -> &bool;
+    fn draw_debug_occlusion_z_buffer_mut(&mut self) -> &mut bool;
     fn draw_debug_local_i_b_l_occlusion_z_buffer(&self) -> &bool;
+    fn draw_debug_local_i_b_l_occlusion_z_buffer_mut(&mut self) -> &mut bool;
     fn draw_debug_buffers(&self) -> &u32;
+    fn draw_debug_buffers_mut(&mut self) -> &mut u32;
     fn wireframe_enable(&self) -> &bool;
+    fn wireframe_enable_mut(&mut self) -> &mut bool;
     fn z_pass_enable(&self) -> &bool;
+    fn z_pass_enable_mut(&mut self) -> &mut bool;
     fn occluder_mesh_z_prepass_enable(&self) -> &bool;
+    fn occluder_mesh_z_prepass_enable_mut(&mut self) -> &mut bool;
     fn occluder_mesh_z_prepass_draw_enable(&self) -> &bool;
+    fn occluder_mesh_z_prepass_draw_enable_mut(&mut self) -> &mut bool;
     fn occluder_mesh_z_prepass_debug_enable(&self) -> &bool;
+    fn occluder_mesh_z_prepass_debug_enable_mut(&mut self) -> &mut bool;
     fn frame_synthesis_mode(&self) -> &FrameSynthesisMode;
+    fn frame_synthesis_mode_mut(&mut self) -> &mut FrameSynthesisMode;
     fn half_res_enable(&self) -> &bool;
+    fn half_res_enable_mut(&mut self) -> &mut bool;
     fn force_full_res_enable(&self) -> &bool;
+    fn force_full_res_enable_mut(&mut self) -> &mut bool;
     fn half_res_lens_flares_enable(&self) -> &bool;
+    fn half_res_lens_flares_enable_mut(&mut self) -> &mut bool;
     fn foreground_enable(&self) -> &bool;
+    fn foreground_enable_mut(&mut self) -> &mut bool;
     fn foreground_z_pass_enable(&self) -> &bool;
+    fn foreground_z_pass_enable_mut(&mut self) -> &mut bool;
     fn foreground_transparent_enable(&self) -> &bool;
+    fn foreground_transparent_enable_mut(&mut self) -> &mut bool;
     fn bilateral_half_res_composite_enable(&self) -> &bool;
+    fn bilateral_half_res_composite_enable_mut(&mut self) -> &mut bool;
     fn half_res_depth_min_max_dither_enable(&self) -> &bool;
+    fn half_res_depth_min_max_dither_enable_mut(&mut self) -> &mut bool;
     fn half_res_depth_min_max_dither_threshold(&self) -> &f32;
+    fn half_res_depth_min_max_dither_threshold_mut(&mut self) -> &mut f32;
     fn sky_lighting_enable(&self) -> &bool;
+    fn sky_lighting_enable_mut(&mut self) -> &mut bool;
     fn sky_render_enable(&self) -> &bool;
+    fn sky_render_enable_mut(&mut self) -> &mut bool;
     fn sky_depth_fog_enable(&self) -> &bool;
+    fn sky_depth_fog_enable_mut(&mut self) -> &mut bool;
     fn sky_height_fog_enable(&self) -> &bool;
+    fn sky_height_fog_enable_mut(&mut self) -> &mut bool;
     fn sky_forward_scattering_enable(&self) -> &bool;
+    fn sky_forward_scattering_enable_mut(&mut self) -> &mut bool;
     fn procedural_sky_receive_height_fog(&self) -> &bool;
+    fn procedural_sky_receive_height_fog_mut(&mut self) -> &mut bool;
     fn physical_sky_enabled(&self) -> &bool;
+    fn physical_sky_enabled_mut(&mut self) -> &mut bool;
     fn physical_sky_precision_height(&self) -> &u32;
+    fn physical_sky_precision_height_mut(&mut self) -> &mut u32;
     fn physical_sky_precision_view(&self) -> &u32;
+    fn physical_sky_precision_view_mut(&mut self) -> &mut u32;
     fn physical_sky_precision_sun(&self) -> &u32;
+    fn physical_sky_precision_sun_mut(&mut self) -> &mut u32;
     fn physical_sky_scattering_orders(&self) -> &u32;
+    fn physical_sky_scattering_orders_mut(&mut self) -> &mut u32;
     fn physical_sky_aerial_perspective_texture_width(&self) -> &u32;
+    fn physical_sky_aerial_perspective_texture_width_mut(&mut self) -> &mut u32;
     fn physical_sky_aerial_perspective_texture_height(&self) -> &u32;
+    fn physical_sky_aerial_perspective_texture_height_mut(&mut self) -> &mut u32;
     fn physical_sky_aerial_perspective_texture_depth(&self) -> &u32;
+    fn physical_sky_aerial_perspective_texture_depth_mut(&mut self) -> &mut u32;
     fn physical_sky_scattering_eval_frame_count(&self) -> &u32;
+    fn physical_sky_scattering_eval_frame_count_mut(&mut self) -> &mut u32;
     fn physical_sky_aerial_perspective_max_distance(&self) -> &f32;
+    fn physical_sky_aerial_perspective_max_distance_mut(&mut self) -> &mut f32;
     fn physical_sky_force_precompute(&self) -> &bool;
+    fn physical_sky_force_precompute_mut(&mut self) -> &mut bool;
     fn volumetric_clouds_enabled(&self) -> &bool;
+    fn volumetric_clouds_enabled_mut(&mut self) -> &mut bool;
     fn volumetric_clouds_quality(&self) -> &super::core::QualityLevel;
+    fn volumetric_clouds_quality_mut(&mut self) -> &mut super::core::QualityLevel;
     fn volumetric_clouds_cast_shadow(&self) -> &bool;
+    fn volumetric_clouds_cast_shadow_mut(&mut self) -> &mut bool;
     fn volumetric_clouds_cast_shadow_in_forward_render(&self) -> &bool;
+    fn volumetric_clouds_cast_shadow_in_forward_render_mut(&mut self) -> &mut bool;
     fn volumetric_clouds_affect_aerial_perspective(&self) -> &bool;
+    fn volumetric_clouds_affect_aerial_perspective_mut(&mut self) -> &mut bool;
     fn volumetric_clouds_receive_aerial_perspective(&self) -> &bool;
+    fn volumetric_clouds_receive_aerial_perspective_mut(&mut self) -> &mut bool;
     fn volumetric_clouds_occlude_lens_flare(&self) -> &bool;
+    fn volumetric_clouds_occlude_lens_flare_mut(&mut self) -> &mut bool;
     fn volumetric_clouds_render_target_resolution_divider(&self) -> &u32;
+    fn volumetric_clouds_render_target_resolution_divider_mut(&mut self) -> &mut u32;
     fn volumetric_clouds_reflection_render_target_resolution_divider(&self) -> &u32;
+    fn volumetric_clouds_reflection_render_target_resolution_divider_mut(&mut self) -> &mut u32;
     fn volumetric_clouds_shadow_iteration_count(&self) -> &u32;
+    fn volumetric_clouds_shadow_iteration_count_mut(&mut self) -> &mut u32;
     fn volumetric_clouds_shadowmap_resolution(&self) -> &u32;
+    fn volumetric_clouds_shadowmap_resolution_mut(&mut self) -> &mut u32;
     fn volumetric_clouds_shadowmap_blur_samples(&self) -> &u32;
+    fn volumetric_clouds_shadowmap_blur_samples_mut(&mut self) -> &mut u32;
     fn volumetric_clouds_sample_count(&self) -> &super::core::QualityScalableInt;
+    fn volumetric_clouds_sample_count_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn volumetric_clouds_reflection_sample_count(&self) -> &u32;
+    fn volumetric_clouds_reflection_sample_count_mut(&mut self) -> &mut u32;
     fn volumetric_clouds_i_b_l_sample_count(&self) -> &u32;
+    fn volumetric_clouds_i_b_l_sample_count_mut(&mut self) -> &mut u32;
     fn volumetric_clouds_temporal_coefficient(&self) -> &f32;
+    fn volumetric_clouds_temporal_coefficient_mut(&mut self) -> &mut f32;
     fn volumetric_clouds_env_color_temporal_coefficient(&self) -> &f32;
+    fn volumetric_clouds_env_color_temporal_coefficient_mut(&mut self) -> &mut f32;
     fn transparent_fogging_enable(&self) -> &bool;
+    fn transparent_fogging_enable_mut(&mut self) -> &mut bool;
     fn distortion_enable(&self) -> &bool;
+    fn distortion_enable_mut(&mut self) -> &mut bool;
     fn distortion_half_res_enable(&self) -> &bool;
+    fn distortion_half_res_enable_mut(&mut self) -> &mut bool;
     fn distortion8_bit_enable(&self) -> &bool;
+    fn distortion8_bit_enable_mut(&mut self) -> &mut bool;
     fn distortion_tiling_enable(&self) -> &bool;
+    fn distortion_tiling_enable_mut(&mut self) -> &mut bool;
     fn static_envmap_enable(&self) -> &bool;
+    fn static_envmap_enable_mut(&mut self) -> &mut bool;
     fn custom_envmap_enable(&self) -> &bool;
+    fn custom_envmap_enable_mut(&mut self) -> &mut bool;
     fn sky_envmap_enable(&self) -> &bool;
+    fn sky_envmap_enable_mut(&mut self) -> &mut bool;
     fn sky_envmap_filter_width(&self) -> &f32;
+    fn sky_envmap_filter_width_mut(&mut self) -> &mut f32;
     fn sky_envmap_resolution(&self) -> &u32;
+    fn sky_envmap_resolution_mut(&mut self) -> &mut u32;
     fn sky_envmap_mipmap_gen_enable(&self) -> &bool;
+    fn sky_envmap_mipmap_gen_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_sky_envmap_mip_level(&self) -> &i32;
+    fn draw_debug_sky_envmap_mip_level_mut(&mut self) -> &mut i32;
     fn sky_envmap_filter_mode(&self) -> &MipmapFilterMode;
+    fn sky_envmap_filter_mode_mut(&mut self) -> &mut MipmapFilterMode;
     fn sky_envmap_sides_per_frame_count(&self) -> &u32;
+    fn sky_envmap_sides_per_frame_count_mut(&mut self) -> &mut u32;
     fn sky_envmap_force_update_enable(&self) -> &bool;
+    fn sky_envmap_force_update_enable_mut(&mut self) -> &mut bool;
     fn sky_envmap_use_fast_h_d_r(&self) -> &bool;
+    fn sky_envmap_use_fast_h_d_r_mut(&mut self) -> &mut bool;
     fn sky_envmap_debug_color_enable(&self) -> &bool;
+    fn sky_envmap_debug_color_enable_mut(&mut self) -> &mut bool;
     fn sky_envmap_update_count_threshold(&self) -> &f32;
+    fn sky_envmap_update_count_threshold_mut(&mut self) -> &mut f32;
     fn sky_envmap_update_value_threshold(&self) -> &f32;
+    fn sky_envmap_update_value_threshold_mut(&mut self) -> &mut f32;
     fn sky_envmap_cloud_fog_enable(&self) -> &bool;
+    fn sky_envmap_cloud_fog_enable_mut(&mut self) -> &mut bool;
     fn sky_envmap_generate_no_backdrop_enable(&self) -> &bool;
+    fn sky_envmap_generate_no_backdrop_enable_mut(&mut self) -> &mut bool;
     fn dynamic_envmap_enable(&self) -> &bool;
+    fn dynamic_envmap_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_dynamic_envmap_mip_level(&self) -> &i32;
+    fn draw_debug_dynamic_envmap_mip_level_mut(&mut self) -> &mut i32;
     fn dynamic_envmap_mipmap_gen_enable(&self) -> &bool;
+    fn dynamic_envmap_mipmap_gen_enable_mut(&mut self) -> &mut bool;
     fn draw_debug_dynamic_envmap(&self) -> &bool;
+    fn draw_debug_dynamic_envmap_mut(&mut self) -> &mut bool;
     fn dynamic_envmap_shadowmap_enable(&self) -> &bool;
+    fn dynamic_envmap_shadowmap_enable_mut(&mut self) -> &mut bool;
     fn dynamic_envmap_shadowmap_resolution(&self) -> &u32;
+    fn dynamic_envmap_shadowmap_resolution_mut(&mut self) -> &mut u32;
     fn dynamic_envmap_shadowmap_far_plane_override(&self) -> &bool;
+    fn dynamic_envmap_shadowmap_far_plane_override_mut(&mut self) -> &mut bool;
     fn dynamic_envmap_shadowmap_far_plane(&self) -> &i32;
+    fn dynamic_envmap_shadowmap_far_plane_mut(&mut self) -> &mut i32;
     fn dynamic_envmap_shadowmap_shadow_extrusion_override(&self) -> &bool;
+    fn dynamic_envmap_shadowmap_shadow_extrusion_override_mut(&mut self) -> &mut bool;
     fn dynamic_envmap_shadowmap_shadow_extrusion(&self) -> &i32;
+    fn dynamic_envmap_shadowmap_shadow_extrusion_mut(&mut self) -> &mut i32;
     fn draw_debug_dynamic_envmap_shadowmap(&self) -> &bool;
+    fn draw_debug_dynamic_envmap_shadowmap_mut(&mut self) -> &mut bool;
     fn draw_dynamic_envmap_frustums(&self) -> &bool;
+    fn draw_dynamic_envmap_frustums_mut(&mut self) -> &mut bool;
     fn setup_job_enable(&self) -> &bool;
+    fn setup_job_enable_mut(&mut self) -> &mut bool;
     fn setup_jobs_create_view_job(&self) -> &bool;
+    fn setup_jobs_create_view_job_mut(&mut self) -> &mut bool;
     fn prepare_dispatch_list_job_enable(&self) -> &bool;
+    fn prepare_dispatch_list_job_enable_mut(&mut self) -> &mut bool;
     fn indirect_specular_intensity(&self) -> &f32;
+    fn indirect_specular_intensity_mut(&mut self) -> &mut f32;
     fn indirect_specular_reflectance_scale(&self) -> &f32;
+    fn indirect_specular_reflectance_scale_mut(&mut self) -> &mut f32;
     fn indirect_specular_probes_intensity(&self) -> &f32;
+    fn indirect_specular_probes_intensity_mut(&mut self) -> &mut f32;
     fn indirect_specular_probes_reflectance_scale(&self) -> &f32;
+    fn indirect_specular_probes_reflectance_scale_mut(&mut self) -> &mut f32;
 }
 
 impl WorldRenderSettingsBaseTrait for WorldRenderSettingsBase {
     fn cull_screen_area_scale(&self) -> &f32 {
         &self.cull_screen_area_scale
     }
+    fn cull_screen_area_scale_mut(&mut self) -> &mut f32 {
+        &mut self.cull_screen_area_scale
+    }
     fn deferred_shading_enable(&self) -> &bool {
         &self.deferred_shading_enable
+    }
+    fn deferred_shading_enable_mut(&mut self) -> &mut bool {
+        &mut self.deferred_shading_enable
     }
     fn forward_opaque_enable(&self) -> &bool {
         &self.forward_opaque_enable
     }
+    fn forward_opaque_enable_mut(&mut self) -> &mut bool {
+        &mut self.forward_opaque_enable
+    }
     fn full_z_pass_enable(&self) -> &bool {
         &self.full_z_pass_enable
+    }
+    fn full_z_pass_enable_mut(&mut self) -> &mut bool {
+        &mut self.full_z_pass_enable
     }
     fn tile_material_classification_enable(&self) -> &bool {
         &self.tile_material_classification_enable
     }
+    fn tile_material_classification_enable_mut(&mut self) -> &mut bool {
+        &mut self.tile_material_classification_enable
+    }
     fn shadowmaps_enable(&self) -> &bool {
         &self.shadowmaps_enable
+    }
+    fn shadowmaps_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmaps_enable
     }
     fn shadowmap_array_enable(&self) -> &bool {
         &self.shadowmap_array_enable
     }
+    fn shadowmap_array_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_array_enable
+    }
     fn transparency_shadowmaps_enable(&self) -> &bool {
         &self.transparency_shadowmaps_enable
+    }
+    fn transparency_shadowmaps_enable_mut(&mut self) -> &mut bool {
+        &mut self.transparency_shadowmaps_enable
     }
     fn n_v_i_d_i_a_shadows_p_c_s_s_enable(&self) -> &bool {
         &self.n_v_i_d_i_a_shadows_p_c_s_s_enable
     }
+    fn n_v_i_d_i_a_shadows_p_c_s_s_enable_mut(&mut self) -> &mut bool {
+        &mut self.n_v_i_d_i_a_shadows_p_c_s_s_enable
+    }
     fn n_v_i_d_i_a_shadows_h_f_t_s_enable(&self) -> &bool {
         &self.n_v_i_d_i_a_shadows_h_f_t_s_enable
+    }
+    fn n_v_i_d_i_a_shadows_h_f_t_s_enable_mut(&mut self) -> &mut bool {
+        &mut self.n_v_i_d_i_a_shadows_h_f_t_s_enable
     }
     fn transparency_shadowmaps_half_res(&self) -> &bool {
         &self.transparency_shadowmaps_half_res
     }
+    fn transparency_shadowmaps_half_res_mut(&mut self) -> &mut bool {
+        &mut self.transparency_shadowmaps_half_res
+    }
     fn sun_shadowmap_level(&self) -> &super::core::QualityLevel {
         &self.sun_shadowmap_level
+    }
+    fn sun_shadowmap_level_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.sun_shadowmap_level
     }
     fn shadowmap_min_fov(&self) -> &f32 {
         &self.shadowmap_min_fov
     }
+    fn shadowmap_min_fov_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_min_fov
+    }
     fn shadowmap_fixed_movement_enable(&self) -> &bool {
         &self.shadowmap_fixed_movement_enable
+    }
+    fn shadowmap_fixed_movement_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_fixed_movement_enable
     }
     fn shadowmap_fixed_depth_enable(&self) -> &bool {
         &self.shadowmap_fixed_depth_enable
     }
+    fn shadowmap_fixed_depth_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_fixed_depth_enable
+    }
     fn shadowmap_size_z_scale(&self) -> &f32 {
         &self.shadowmap_size_z_scale
+    }
+    fn shadowmap_size_z_scale_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_size_z_scale
     }
     fn shadowmap_resolution(&self) -> &u32 {
         &self.shadowmap_resolution
     }
+    fn shadowmap_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.shadowmap_resolution
+    }
     fn adjusted_shadowmap_resolution(&self) -> &u32 {
         &self.adjusted_shadowmap_resolution
+    }
+    fn adjusted_shadowmap_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.adjusted_shadowmap_resolution
     }
     fn shadowmap_quality(&self) -> &u32 {
         &self.shadowmap_quality
     }
+    fn shadowmap_quality_mut(&mut self) -> &mut u32 {
+        &mut self.shadowmap_quality
+    }
     fn shadowmap_poisson_filter_scale(&self) -> &f32 {
         &self.shadowmap_poisson_filter_scale
+    }
+    fn shadowmap_poisson_filter_scale_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_poisson_filter_scale
     }
     fn shadowmap_slice_count(&self) -> &u32 {
         &self.shadowmap_slice_count
     }
+    fn shadowmap_slice_count_mut(&mut self) -> &mut u32 {
+        &mut self.shadowmap_slice_count
+    }
     fn adjusted_shadowmap_slice_count(&self) -> &u32 {
         &self.adjusted_shadowmap_slice_count
+    }
+    fn adjusted_shadowmap_slice_count_mut(&mut self) -> &mut u32 {
+        &mut self.adjusted_shadowmap_slice_count
     }
     fn shadowmap_slice_scheme_weight(&self) -> &f32 {
         &self.shadowmap_slice_scheme_weight
     }
+    fn shadowmap_slice_scheme_weight_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_slice_scheme_weight
+    }
     fn shadowmap_first_slice_scale(&self) -> &f32 {
         &self.shadowmap_first_slice_scale
+    }
+    fn shadowmap_first_slice_scale_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_first_slice_scale
     }
     fn shadowmap_view_distance(&self) -> &f32 {
         &self.shadowmap_view_distance
     }
+    fn shadowmap_view_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_view_distance
+    }
     fn shadowmap_view_distance_scale_enable(&self) -> &bool {
         &self.shadowmap_view_distance_scale_enable
+    }
+    fn shadowmap_view_distance_scale_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_view_distance_scale_enable
     }
     fn shadowmap_extrusion_length(&self) -> &f32 {
         &self.shadowmap_extrusion_length
     }
+    fn shadowmap_extrusion_length_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_extrusion_length
+    }
     fn shadowmap_first_slice_extrusion_length(&self) -> &f32 {
         &self.shadowmap_first_slice_extrusion_length
+    }
+    fn shadowmap_first_slice_extrusion_length_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_first_slice_extrusion_length
     }
     fn shadowmap_adjust_far_plane(&self) -> &bool {
         &self.shadowmap_adjust_far_plane
     }
+    fn shadowmap_adjust_far_plane_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_adjust_far_plane
+    }
     fn draw_debug_shadowmap_cascades(&self) -> &bool {
         &self.draw_debug_shadowmap_cascades
+    }
+    fn draw_debug_shadowmap_cascades_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_shadowmap_cascades
     }
     fn shadowmap_accum_enable(&self) -> &bool {
         &self.shadowmap_accum_enable
     }
+    fn shadowmap_accum_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_accum_enable
+    }
     fn shadowmap_accum_reuse_enable(&self) -> &bool {
         &self.shadowmap_accum_reuse_enable
+    }
+    fn shadowmap_accum_reuse_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_accum_reuse_enable
     }
     fn shadowmap_accum_stencil_enable(&self) -> &bool {
         &self.shadowmap_accum_stencil_enable
     }
+    fn shadowmap_accum_stencil_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_accum_stencil_enable
+    }
     fn shadowmap_accum_stencil2_enable(&self) -> &bool {
         &self.shadowmap_accum_stencil2_enable
+    }
+    fn shadowmap_accum_stencil2_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_accum_stencil2_enable
     }
     fn shadowmap_transition_blend_enable(&self) -> &bool {
         &self.shadowmap_transition_blend_enable
     }
+    fn shadowmap_transition_blend_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_transition_blend_enable
+    }
     fn shadowmap_transition_blend_amount(&self) -> &f32 {
         &self.shadowmap_transition_blend_amount
+    }
+    fn shadowmap_transition_blend_amount_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_transition_blend_amount
     }
     fn shadowmap_foreground_enable(&self) -> &bool {
         &self.shadowmap_foreground_enable
     }
+    fn shadowmap_foreground_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_foreground_enable
+    }
     fn shadowmap_foreground_use_first_person_view_transform(&self) -> &bool {
         &self.shadowmap_foreground_use_first_person_view_transform
+    }
+    fn shadowmap_foreground_use_first_person_view_transform_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_foreground_use_first_person_view_transform
     }
     fn shadowmap_foreground_extrusion_length(&self) -> &f32 {
         &self.shadowmap_foreground_extrusion_length
     }
+    fn shadowmap_foreground_extrusion_length_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_foreground_extrusion_length
+    }
     fn shadowmap_foreground_split_distance(&self) -> &f32 {
         &self.shadowmap_foreground_split_distance
+    }
+    fn shadowmap_foreground_split_distance_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_foreground_split_distance
     }
     fn shadowmap_foreground_size_z_scale(&self) -> &f32 {
         &self.shadowmap_foreground_size_z_scale
     }
+    fn shadowmap_foreground_size_z_scale_mut(&mut self) -> &mut f32 {
+        &mut self.shadowmap_foreground_size_z_scale
+    }
     fn shadowmap_adjust_shadow_distance_with_fov(&self) -> &bool {
         &self.shadowmap_adjust_shadow_distance_with_fov
+    }
+    fn shadowmap_adjust_shadow_distance_with_fov_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_adjust_shadow_distance_with_fov
     }
     fn shadowmap_draw_batched_enable(&self) -> &bool {
         &self.shadowmap_draw_batched_enable
     }
+    fn shadowmap_draw_batched_enable_mut(&mut self) -> &mut bool {
+        &mut self.shadowmap_draw_batched_enable
+    }
     fn distant_shadow_cache_draw_frustum(&self) -> &bool {
         &self.distant_shadow_cache_draw_frustum
+    }
+    fn distant_shadow_cache_draw_frustum_mut(&mut self) -> &mut bool {
+        &mut self.distant_shadow_cache_draw_frustum
     }
     fn distant_shadow_cache_enable(&self) -> &bool {
         &self.distant_shadow_cache_enable
     }
+    fn distant_shadow_cache_enable_mut(&mut self) -> &mut bool {
+        &mut self.distant_shadow_cache_enable
+    }
     fn distant_shadow_cache_resolution(&self) -> &u32 {
         &self.distant_shadow_cache_resolution
+    }
+    fn distant_shadow_cache_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.distant_shadow_cache_resolution
     }
     fn distant_shadow_cache_force_resolution(&self) -> &i32 {
         &self.distant_shadow_cache_force_resolution
     }
+    fn distant_shadow_cache_force_resolution_mut(&mut self) -> &mut i32 {
+        &mut self.distant_shadow_cache_force_resolution
+    }
     fn distant_shadow_cache_resolution_scale(&self) -> &f32 {
         &self.distant_shadow_cache_resolution_scale
+    }
+    fn distant_shadow_cache_resolution_scale_mut(&mut self) -> &mut f32 {
+        &mut self.distant_shadow_cache_resolution_scale
     }
     fn distant_shadow_cache_max_resolution(&self) -> &u32 {
         &self.distant_shadow_cache_max_resolution
     }
+    fn distant_shadow_cache_max_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.distant_shadow_cache_max_resolution
+    }
     fn distant_shadow_cache_draw_debug(&self) -> &bool {
         &self.distant_shadow_cache_draw_debug
+    }
+    fn distant_shadow_cache_draw_debug_mut(&mut self) -> &mut bool {
+        &mut self.distant_shadow_cache_draw_debug
     }
     fn distant_shadow_cache_force_mode(&self) -> &u32 {
         &self.distant_shadow_cache_force_mode
     }
+    fn distant_shadow_cache_force_mode_mut(&mut self) -> &mut u32 {
+        &mut self.distant_shadow_cache_force_mode
+    }
     fn distant_shadow_cache_use_quadtree(&self) -> &bool {
         &self.distant_shadow_cache_use_quadtree
+    }
+    fn distant_shadow_cache_use_quadtree_mut(&mut self) -> &mut bool {
+        &mut self.distant_shadow_cache_use_quadtree
     }
     fn distant_shadow_cache_batch_group_entity_bake(&self) -> &bool {
         &self.distant_shadow_cache_batch_group_entity_bake
     }
+    fn distant_shadow_cache_batch_group_entity_bake_mut(&mut self) -> &mut bool {
+        &mut self.distant_shadow_cache_batch_group_entity_bake
+    }
     fn distant_shadow_cache_rebake_on_light_change(&self) -> &bool {
         &self.distant_shadow_cache_rebake_on_light_change
+    }
+    fn distant_shadow_cache_rebake_on_light_change_mut(&mut self) -> &mut bool {
+        &mut self.distant_shadow_cache_rebake_on_light_change
     }
     fn distant_shadow_cache_rebake_on_add_remove(&self) -> &bool {
         &self.distant_shadow_cache_rebake_on_add_remove
     }
+    fn distant_shadow_cache_rebake_on_add_remove_mut(&mut self) -> &mut bool {
+        &mut self.distant_shadow_cache_rebake_on_add_remove
+    }
     fn distant_shadow_cache_rebake_on_move(&self) -> &bool {
         &self.distant_shadow_cache_rebake_on_move
+    }
+    fn distant_shadow_cache_rebake_on_move_mut(&mut self) -> &mut bool {
+        &mut self.distant_shadow_cache_rebake_on_move
     }
     fn distant_shadow_cache_rebake_on_part_visibility(&self) -> &bool {
         &self.distant_shadow_cache_rebake_on_part_visibility
     }
+    fn distant_shadow_cache_rebake_on_part_visibility_mut(&mut self) -> &mut bool {
+        &mut self.distant_shadow_cache_rebake_on_part_visibility
+    }
     fn distant_shadow_cache_coalesce_time(&self) -> &f32 {
         &self.distant_shadow_cache_coalesce_time
+    }
+    fn distant_shadow_cache_coalesce_time_mut(&mut self) -> &mut f32 {
+        &mut self.distant_shadow_cache_coalesce_time
     }
     fn distant_shadow_cache_max_bake_events(&self) -> &u32 {
         &self.distant_shadow_cache_max_bake_events
     }
+    fn distant_shadow_cache_max_bake_events_mut(&mut self) -> &mut u32 {
+        &mut self.distant_shadow_cache_max_bake_events
+    }
     fn sun_pcss_max_sample_count(&self) -> &i32 {
         &self.sun_pcss_max_sample_count
+    }
+    fn sun_pcss_max_sample_count_mut(&mut self) -> &mut i32 {
+        &mut self.sun_pcss_max_sample_count
     }
     fn sun_pcss_adaptive_sample_increment(&self) -> &i32 {
         &self.sun_pcss_adaptive_sample_increment
     }
+    fn sun_pcss_adaptive_sample_increment_mut(&mut self) -> &mut i32 {
+        &mut self.sun_pcss_adaptive_sample_increment
+    }
     fn dx_shadowmap16_bit_enable(&self) -> &bool {
         &self.dx_shadowmap16_bit_enable
+    }
+    fn dx_shadowmap16_bit_enable_mut(&mut self) -> &mut bool {
+        &mut self.dx_shadowmap16_bit_enable
     }
     fn dx_dynamic_envmap_shadowmap16_bit_enable(&self) -> &bool {
         &self.dx_dynamic_envmap_shadowmap16_bit_enable
     }
+    fn dx_dynamic_envmap_shadowmap16_bit_enable_mut(&mut self) -> &mut bool {
+        &mut self.dx_dynamic_envmap_shadowmap16_bit_enable
+    }
     fn apply_shadowmaps_enable(&self) -> &bool {
         &self.apply_shadowmaps_enable
+    }
+    fn apply_shadowmaps_enable_mut(&mut self) -> &mut bool {
+        &mut self.apply_shadowmaps_enable
     }
     fn simple_shadowmaps_enable(&self) -> &bool {
         &self.simple_shadowmaps_enable
     }
+    fn simple_shadowmaps_enable_mut(&mut self) -> &mut bool {
+        &mut self.simple_shadowmaps_enable
+    }
     fn emitter_shadowing_blend_toggle(&self) -> &bool {
         &self.emitter_shadowing_blend_toggle
+    }
+    fn emitter_shadowing_blend_toggle_mut(&mut self) -> &mut bool {
+        &mut self.emitter_shadowing_blend_toggle
     }
     fn emitter_shadowing_many_samples_toggle(&self) -> &bool {
         &self.emitter_shadowing_many_samples_toggle
     }
+    fn emitter_shadowing_many_samples_toggle_mut(&mut self) -> &mut bool {
+        &mut self.emitter_shadowing_many_samples_toggle
+    }
     fn dx_linear_depth32_bit_format_enable(&self) -> &bool {
         &self.dx_linear_depth32_bit_format_enable
+    }
+    fn dx_linear_depth32_bit_format_enable_mut(&mut self) -> &mut bool {
+        &mut self.dx_linear_depth32_bit_format_enable
     }
     fn motion_blur_enable(&self) -> &bool {
         &self.motion_blur_enable
     }
+    fn motion_blur_enable_mut(&mut self) -> &mut bool {
+        &mut self.motion_blur_enable
+    }
     fn motion_blur_force_on(&self) -> &bool {
         &self.motion_blur_force_on
+    }
+    fn motion_blur_force_on_mut(&mut self) -> &mut bool {
+        &mut self.motion_blur_force_on
     }
     fn motion_blur_scale(&self) -> &f32 {
         &self.motion_blur_scale
     }
+    fn motion_blur_scale_mut(&mut self) -> &mut f32 {
+        &mut self.motion_blur_scale
+    }
     fn motion_blur_fixed_shutter_time(&self) -> &f32 {
         &self.motion_blur_fixed_shutter_time
+    }
+    fn motion_blur_fixed_shutter_time_mut(&mut self) -> &mut f32 {
+        &mut self.motion_blur_fixed_shutter_time
     }
     fn motion_blur_max(&self) -> &f32 {
         &self.motion_blur_max
     }
+    fn motion_blur_max_mut(&mut self) -> &mut f32 {
+        &mut self.motion_blur_max
+    }
     fn motion_blur_radial_blur_max(&self) -> &f32 {
         &self.motion_blur_radial_blur_max
+    }
+    fn motion_blur_radial_blur_max_mut(&mut self) -> &mut f32 {
+        &mut self.motion_blur_radial_blur_max
     }
     fn motion_blur_noise_scale(&self) -> &f32 {
         &self.motion_blur_noise_scale
     }
+    fn motion_blur_noise_scale_mut(&mut self) -> &mut f32 {
+        &mut self.motion_blur_noise_scale
+    }
     fn motion_blur_quality(&self) -> &u32 {
         &self.motion_blur_quality
+    }
+    fn motion_blur_quality_mut(&mut self) -> &mut u32 {
+        &mut self.motion_blur_quality
     }
     fn motion_blur_debug_mode(&self) -> &u32 {
         &self.motion_blur_debug_mode
     }
+    fn motion_blur_debug_mode_mut(&mut self) -> &mut u32 {
+        &mut self.motion_blur_debug_mode
+    }
     fn motion_blur_perceptual_space_enable(&self) -> &bool {
         &self.motion_blur_perceptual_space_enable
+    }
+    fn motion_blur_perceptual_space_enable_mut(&mut self) -> &mut bool {
+        &mut self.motion_blur_perceptual_space_enable
     }
     fn motion_blur_stencil_pass_enable(&self) -> &bool {
         &self.motion_blur_stencil_pass_enable
     }
+    fn motion_blur_stencil_pass_enable_mut(&mut self) -> &mut bool {
+        &mut self.motion_blur_stencil_pass_enable
+    }
     fn motion_blur_centered_enable(&self) -> &bool {
         &self.motion_blur_centered_enable
+    }
+    fn motion_blur_centered_enable_mut(&mut self) -> &mut bool {
+        &mut self.motion_blur_centered_enable
     }
     fn motion_blur_max_sample_count(&self) -> &u32 {
         &self.motion_blur_max_sample_count
     }
+    fn motion_blur_max_sample_count_mut(&mut self) -> &mut u32 {
+        &mut self.motion_blur_max_sample_count
+    }
     fn motion_blur_depth_check_threshold(&self) -> &f32 {
         &self.motion_blur_depth_check_threshold
+    }
+    fn motion_blur_depth_check_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.motion_blur_depth_check_threshold
     }
     fn motion_blur_depth_check_max_distance(&self) -> &f32 {
         &self.motion_blur_depth_check_max_distance
     }
+    fn motion_blur_depth_check_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.motion_blur_depth_check_max_distance
+    }
     fn tiled_motion_blur_variance_threshold_scale(&self) -> &f32 {
         &self.tiled_motion_blur_variance_threshold_scale
+    }
+    fn tiled_motion_blur_variance_threshold_scale_mut(&mut self) -> &mut f32 {
+        &mut self.tiled_motion_blur_variance_threshold_scale
     }
     fn tiled_motion_blur_vel_mag_depth_downsample(&self) -> &u32 {
         &self.tiled_motion_blur_vel_mag_depth_downsample
     }
+    fn tiled_motion_blur_vel_mag_depth_downsample_mut(&mut self) -> &mut u32 {
+        &mut self.tiled_motion_blur_vel_mag_depth_downsample
+    }
     fn tiled_motion_blur_separable_enable(&self) -> &bool {
         &self.tiled_motion_blur_separable_enable
+    }
+    fn tiled_motion_blur_separable_enable_mut(&mut self) -> &mut bool {
+        &mut self.tiled_motion_blur_separable_enable
     }
     fn tiled_motion_blur_enable(&self) -> &bool {
         &self.tiled_motion_blur_enable
     }
+    fn tiled_motion_blur_enable_mut(&mut self) -> &mut bool {
+        &mut self.tiled_motion_blur_enable
+    }
     fn tiled_motion_blur_force20_px_tile(&self) -> &bool {
         &self.tiled_motion_blur_force20_px_tile
+    }
+    fn tiled_motion_blur_force20_px_tile_mut(&mut self) -> &mut bool {
+        &mut self.tiled_motion_blur_force20_px_tile
     }
     fn motion_blur_use_detailed_gpu_timers(&self) -> &bool {
         &self.motion_blur_use_detailed_gpu_timers
     }
+    fn motion_blur_use_detailed_gpu_timers_mut(&mut self) -> &mut bool {
+        &mut self.motion_blur_use_detailed_gpu_timers
+    }
     fn velocity_vectors_derive_from_depth_enable(&self) -> &bool {
         &self.velocity_vectors_derive_from_depth_enable
+    }
+    fn velocity_vectors_derive_from_depth_enable_mut(&mut self) -> &mut bool {
+        &mut self.velocity_vectors_derive_from_depth_enable
     }
     fn velocity_vectors_derive_from_dynamic_objects_enable(&self) -> &bool {
         &self.velocity_vectors_derive_from_dynamic_objects_enable
     }
+    fn velocity_vectors_derive_from_dynamic_objects_enable_mut(&mut self) -> &mut bool {
+        &mut self.velocity_vectors_derive_from_dynamic_objects_enable
+    }
     fn velocity_vectors_clear_value(&self) -> &super::core::Vec3 {
         &self.velocity_vectors_clear_value
+    }
+    fn velocity_vectors_clear_value_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.velocity_vectors_clear_value
     }
     fn multisample_count(&self) -> &u32 {
         &self.multisample_count
     }
+    fn multisample_count_mut(&mut self) -> &mut u32 {
+        &mut self.multisample_count
+    }
     fn multisample_quality(&self) -> &u32 {
         &self.multisample_quality
+    }
+    fn multisample_quality_mut(&mut self) -> &mut u32 {
+        &mut self.multisample_quality
     }
     fn draw_transparent(&self) -> &bool {
         &self.draw_transparent
     }
+    fn draw_transparent_mut(&mut self) -> &mut bool {
+        &mut self.draw_transparent
+    }
     fn draw_half_res_transparent(&self) -> &bool {
         &self.draw_half_res_transparent
+    }
+    fn draw_half_res_transparent_mut(&mut self) -> &mut bool {
+        &mut self.draw_half_res_transparent
     }
     fn draw_transparent_decal(&self) -> &bool {
         &self.draw_transparent_decal
     }
+    fn draw_transparent_decal_mut(&mut self) -> &mut bool {
+        &mut self.draw_transparent_decal
+    }
     fn transparent_dof_enable(&self) -> &bool {
         &self.transparent_dof_enable
+    }
+    fn transparent_dof_enable_mut(&mut self) -> &mut bool {
+        &mut self.transparent_dof_enable
     }
     fn transparent_dof_half_res_enable(&self) -> &bool {
         &self.transparent_dof_half_res_enable
     }
+    fn transparent_dof_half_res_enable_mut(&mut self) -> &mut bool {
+        &mut self.transparent_dof_half_res_enable
+    }
     fn transparent_dof_lerp_coc_enable(&self) -> &bool {
         &self.transparent_dof_lerp_coc_enable
+    }
+    fn transparent_dof_lerp_coc_enable_mut(&mut self) -> &mut bool {
+        &mut self.transparent_dof_lerp_coc_enable
     }
     fn only_shadowmap_slice(&self) -> &i32 {
         &self.only_shadowmap_slice
     }
+    fn only_shadowmap_slice_mut(&mut self) -> &mut i32 {
+        &mut self.only_shadowmap_slice
+    }
     fn view_mode(&self) -> &WorldViewMode {
         &self.view_mode
+    }
+    fn view_mode_mut(&mut self) -> &mut WorldViewMode {
+        &mut self.view_mode
     }
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn console_render_target_pool_sharing_enable(&self) -> &bool {
         &self.console_render_target_pool_sharing_enable
+    }
+    fn console_render_target_pool_sharing_enable_mut(&mut self) -> &mut bool {
+        &mut self.console_render_target_pool_sharing_enable
     }
     fn fast_hdr_enable(&self) -> &bool {
         &self.fast_hdr_enable
     }
+    fn fast_hdr_enable_mut(&mut self) -> &mut bool {
+        &mut self.fast_hdr_enable
+    }
     fn additional_hdr_target_in_e_s_r_a_m(&self) -> &u32 {
         &self.additional_hdr_target_in_e_s_r_a_m
+    }
+    fn additional_hdr_target_in_e_s_r_a_m_mut(&mut self) -> &mut u32 {
+        &mut self.additional_hdr_target_in_e_s_r_a_m
     }
     fn linear_depth_in_e_s_r_a_m(&self) -> &bool {
         &self.linear_depth_in_e_s_r_a_m
     }
+    fn linear_depth_in_e_s_r_a_m_mut(&mut self) -> &mut bool {
+        &mut self.linear_depth_in_e_s_r_a_m
+    }
     fn half_res_depth_resolve_enable(&self) -> &bool {
         &self.half_res_depth_resolve_enable
+    }
+    fn half_res_depth_resolve_enable_mut(&mut self) -> &mut bool {
+        &mut self.half_res_depth_resolve_enable
     }
     fn depth_buffer_collision_enable(&self) -> &bool {
         &self.depth_buffer_collision_enable
     }
+    fn depth_buffer_collision_enable_mut(&mut self) -> &mut bool {
+        &mut self.depth_buffer_collision_enable
+    }
     fn final_post_enable(&self) -> &bool {
         &self.final_post_enable
+    }
+    fn final_post_enable_mut(&mut self) -> &mut bool {
+        &mut self.final_post_enable
     }
     fn output_gamma_correction_enable(&self) -> &bool {
         &self.output_gamma_correction_enable
     }
+    fn output_gamma_correction_enable_mut(&mut self) -> &mut bool {
+        &mut self.output_gamma_correction_enable
+    }
     fn screen_effect_enable(&self) -> &bool {
         &self.screen_effect_enable
+    }
+    fn screen_effect_enable_mut(&mut self) -> &mut bool {
+        &mut self.screen_effect_enable
     }
     fn draw_solid_bounding_boxes(&self) -> &bool {
         &self.draw_solid_bounding_boxes
     }
+    fn draw_solid_bounding_boxes_mut(&mut self) -> &mut bool {
+        &mut self.draw_solid_bounding_boxes
+    }
     fn draw_line_bounding_boxes(&self) -> &bool {
         &self.draw_line_bounding_boxes
+    }
+    fn draw_line_bounding_boxes_mut(&mut self) -> &mut bool {
+        &mut self.draw_line_bounding_boxes
     }
     fn draw_bounding_spheres(&self) -> &bool {
         &self.draw_bounding_spheres
     }
+    fn draw_bounding_spheres_mut(&mut self) -> &mut bool {
+        &mut self.draw_bounding_spheres
+    }
     fn draw_frustums(&self) -> &bool {
         &self.draw_frustums
+    }
+    fn draw_frustums_mut(&mut self) -> &mut bool {
+        &mut self.draw_frustums
     }
     fn draw_local_i_b_l_frustums(&self) -> &bool {
         &self.draw_local_i_b_l_frustums
     }
+    fn draw_local_i_b_l_frustums_mut(&mut self) -> &mut bool {
+        &mut self.draw_local_i_b_l_frustums
+    }
     fn draw_debug_shadowmaps(&self) -> &bool {
         &self.draw_debug_shadowmaps
+    }
+    fn draw_debug_shadowmaps_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_shadowmaps
     }
     fn draw_debug_local_light_shadows(&self) -> &bool {
         &self.draw_debug_local_light_shadows
     }
+    fn draw_debug_local_light_shadows_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_local_light_shadows
+    }
     fn draw_debug_sky_envmap(&self) -> &bool {
         &self.draw_debug_sky_envmap
+    }
+    fn draw_debug_sky_envmap_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_sky_envmap
     }
     fn draw_debug_velocity_buffer(&self) -> &bool {
         &self.draw_debug_velocity_buffer
     }
+    fn draw_debug_velocity_buffer_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_velocity_buffer
+    }
     fn draw_debug_half_res_environment(&self) -> &bool {
         &self.draw_debug_half_res_environment
+    }
+    fn draw_debug_half_res_environment_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_half_res_environment
     }
     fn draw_debug_distortion(&self) -> &bool {
         &self.draw_debug_distortion
     }
+    fn draw_debug_distortion_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_distortion
+    }
     fn draw_debug_visible_entity_types(&self) -> &bool {
         &self.draw_debug_visible_entity_types
+    }
+    fn draw_debug_visible_entity_types_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_visible_entity_types
     }
     fn draw_debug_sky_textures(&self) -> &bool {
         &self.draw_debug_sky_textures
     }
+    fn draw_debug_sky_textures_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_sky_textures
+    }
     fn draw_debug_dof(&self) -> &bool {
         &self.draw_debug_dof
+    }
+    fn draw_debug_dof_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_dof
     }
     fn draw_debug_half_res_hdr_targets(&self) -> &bool {
         &self.draw_debug_half_res_hdr_targets
     }
+    fn draw_debug_half_res_hdr_targets_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_half_res_hdr_targets
+    }
     fn draw_debug_hi_z_min_max_buffer_enable(&self) -> &bool {
         &self.draw_debug_hi_z_min_max_buffer_enable
+    }
+    fn draw_debug_hi_z_min_max_buffer_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_hi_z_min_max_buffer_enable
     }
     fn draw_debug_screen_space_raytrace_buckets_enable(&self) -> &bool {
         &self.draw_debug_screen_space_raytrace_buckets_enable
     }
+    fn draw_debug_screen_space_raytrace_buckets_enable_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_screen_space_raytrace_buckets_enable
+    }
     fn draw_debug_emitter_sun_transmittance_maps(&self) -> &bool {
         &self.draw_debug_emitter_sun_transmittance_maps
+    }
+    fn draw_debug_emitter_sun_transmittance_maps_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_emitter_sun_transmittance_maps
     }
     fn draw_debug_blur_pyramid(&self) -> &bool {
         &self.draw_debug_blur_pyramid
     }
+    fn draw_debug_blur_pyramid_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_blur_pyramid
+    }
     fn draw_debug_occlusion_z_buffer(&self) -> &bool {
         &self.draw_debug_occlusion_z_buffer
+    }
+    fn draw_debug_occlusion_z_buffer_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_occlusion_z_buffer
     }
     fn draw_debug_local_i_b_l_occlusion_z_buffer(&self) -> &bool {
         &self.draw_debug_local_i_b_l_occlusion_z_buffer
     }
+    fn draw_debug_local_i_b_l_occlusion_z_buffer_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_local_i_b_l_occlusion_z_buffer
+    }
     fn draw_debug_buffers(&self) -> &u32 {
         &self.draw_debug_buffers
+    }
+    fn draw_debug_buffers_mut(&mut self) -> &mut u32 {
+        &mut self.draw_debug_buffers
     }
     fn wireframe_enable(&self) -> &bool {
         &self.wireframe_enable
     }
+    fn wireframe_enable_mut(&mut self) -> &mut bool {
+        &mut self.wireframe_enable
+    }
     fn z_pass_enable(&self) -> &bool {
         &self.z_pass_enable
+    }
+    fn z_pass_enable_mut(&mut self) -> &mut bool {
+        &mut self.z_pass_enable
     }
     fn occluder_mesh_z_prepass_enable(&self) -> &bool {
         &self.occluder_mesh_z_prepass_enable
     }
+    fn occluder_mesh_z_prepass_enable_mut(&mut self) -> &mut bool {
+        &mut self.occluder_mesh_z_prepass_enable
+    }
     fn occluder_mesh_z_prepass_draw_enable(&self) -> &bool {
         &self.occluder_mesh_z_prepass_draw_enable
+    }
+    fn occluder_mesh_z_prepass_draw_enable_mut(&mut self) -> &mut bool {
+        &mut self.occluder_mesh_z_prepass_draw_enable
     }
     fn occluder_mesh_z_prepass_debug_enable(&self) -> &bool {
         &self.occluder_mesh_z_prepass_debug_enable
     }
+    fn occluder_mesh_z_prepass_debug_enable_mut(&mut self) -> &mut bool {
+        &mut self.occluder_mesh_z_prepass_debug_enable
+    }
     fn frame_synthesis_mode(&self) -> &FrameSynthesisMode {
         &self.frame_synthesis_mode
+    }
+    fn frame_synthesis_mode_mut(&mut self) -> &mut FrameSynthesisMode {
+        &mut self.frame_synthesis_mode
     }
     fn half_res_enable(&self) -> &bool {
         &self.half_res_enable
     }
+    fn half_res_enable_mut(&mut self) -> &mut bool {
+        &mut self.half_res_enable
+    }
     fn force_full_res_enable(&self) -> &bool {
         &self.force_full_res_enable
+    }
+    fn force_full_res_enable_mut(&mut self) -> &mut bool {
+        &mut self.force_full_res_enable
     }
     fn half_res_lens_flares_enable(&self) -> &bool {
         &self.half_res_lens_flares_enable
     }
+    fn half_res_lens_flares_enable_mut(&mut self) -> &mut bool {
+        &mut self.half_res_lens_flares_enable
+    }
     fn foreground_enable(&self) -> &bool {
         &self.foreground_enable
+    }
+    fn foreground_enable_mut(&mut self) -> &mut bool {
+        &mut self.foreground_enable
     }
     fn foreground_z_pass_enable(&self) -> &bool {
         &self.foreground_z_pass_enable
     }
+    fn foreground_z_pass_enable_mut(&mut self) -> &mut bool {
+        &mut self.foreground_z_pass_enable
+    }
     fn foreground_transparent_enable(&self) -> &bool {
         &self.foreground_transparent_enable
+    }
+    fn foreground_transparent_enable_mut(&mut self) -> &mut bool {
+        &mut self.foreground_transparent_enable
     }
     fn bilateral_half_res_composite_enable(&self) -> &bool {
         &self.bilateral_half_res_composite_enable
     }
+    fn bilateral_half_res_composite_enable_mut(&mut self) -> &mut bool {
+        &mut self.bilateral_half_res_composite_enable
+    }
     fn half_res_depth_min_max_dither_enable(&self) -> &bool {
         &self.half_res_depth_min_max_dither_enable
+    }
+    fn half_res_depth_min_max_dither_enable_mut(&mut self) -> &mut bool {
+        &mut self.half_res_depth_min_max_dither_enable
     }
     fn half_res_depth_min_max_dither_threshold(&self) -> &f32 {
         &self.half_res_depth_min_max_dither_threshold
     }
+    fn half_res_depth_min_max_dither_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.half_res_depth_min_max_dither_threshold
+    }
     fn sky_lighting_enable(&self) -> &bool {
         &self.sky_lighting_enable
+    }
+    fn sky_lighting_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_lighting_enable
     }
     fn sky_render_enable(&self) -> &bool {
         &self.sky_render_enable
     }
+    fn sky_render_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_render_enable
+    }
     fn sky_depth_fog_enable(&self) -> &bool {
         &self.sky_depth_fog_enable
+    }
+    fn sky_depth_fog_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_depth_fog_enable
     }
     fn sky_height_fog_enable(&self) -> &bool {
         &self.sky_height_fog_enable
     }
+    fn sky_height_fog_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_height_fog_enable
+    }
     fn sky_forward_scattering_enable(&self) -> &bool {
         &self.sky_forward_scattering_enable
+    }
+    fn sky_forward_scattering_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_forward_scattering_enable
     }
     fn procedural_sky_receive_height_fog(&self) -> &bool {
         &self.procedural_sky_receive_height_fog
     }
+    fn procedural_sky_receive_height_fog_mut(&mut self) -> &mut bool {
+        &mut self.procedural_sky_receive_height_fog
+    }
     fn physical_sky_enabled(&self) -> &bool {
         &self.physical_sky_enabled
+    }
+    fn physical_sky_enabled_mut(&mut self) -> &mut bool {
+        &mut self.physical_sky_enabled
     }
     fn physical_sky_precision_height(&self) -> &u32 {
         &self.physical_sky_precision_height
     }
+    fn physical_sky_precision_height_mut(&mut self) -> &mut u32 {
+        &mut self.physical_sky_precision_height
+    }
     fn physical_sky_precision_view(&self) -> &u32 {
         &self.physical_sky_precision_view
+    }
+    fn physical_sky_precision_view_mut(&mut self) -> &mut u32 {
+        &mut self.physical_sky_precision_view
     }
     fn physical_sky_precision_sun(&self) -> &u32 {
         &self.physical_sky_precision_sun
     }
+    fn physical_sky_precision_sun_mut(&mut self) -> &mut u32 {
+        &mut self.physical_sky_precision_sun
+    }
     fn physical_sky_scattering_orders(&self) -> &u32 {
         &self.physical_sky_scattering_orders
+    }
+    fn physical_sky_scattering_orders_mut(&mut self) -> &mut u32 {
+        &mut self.physical_sky_scattering_orders
     }
     fn physical_sky_aerial_perspective_texture_width(&self) -> &u32 {
         &self.physical_sky_aerial_perspective_texture_width
     }
+    fn physical_sky_aerial_perspective_texture_width_mut(&mut self) -> &mut u32 {
+        &mut self.physical_sky_aerial_perspective_texture_width
+    }
     fn physical_sky_aerial_perspective_texture_height(&self) -> &u32 {
         &self.physical_sky_aerial_perspective_texture_height
+    }
+    fn physical_sky_aerial_perspective_texture_height_mut(&mut self) -> &mut u32 {
+        &mut self.physical_sky_aerial_perspective_texture_height
     }
     fn physical_sky_aerial_perspective_texture_depth(&self) -> &u32 {
         &self.physical_sky_aerial_perspective_texture_depth
     }
+    fn physical_sky_aerial_perspective_texture_depth_mut(&mut self) -> &mut u32 {
+        &mut self.physical_sky_aerial_perspective_texture_depth
+    }
     fn physical_sky_scattering_eval_frame_count(&self) -> &u32 {
         &self.physical_sky_scattering_eval_frame_count
+    }
+    fn physical_sky_scattering_eval_frame_count_mut(&mut self) -> &mut u32 {
+        &mut self.physical_sky_scattering_eval_frame_count
     }
     fn physical_sky_aerial_perspective_max_distance(&self) -> &f32 {
         &self.physical_sky_aerial_perspective_max_distance
     }
+    fn physical_sky_aerial_perspective_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.physical_sky_aerial_perspective_max_distance
+    }
     fn physical_sky_force_precompute(&self) -> &bool {
         &self.physical_sky_force_precompute
+    }
+    fn physical_sky_force_precompute_mut(&mut self) -> &mut bool {
+        &mut self.physical_sky_force_precompute
     }
     fn volumetric_clouds_enabled(&self) -> &bool {
         &self.volumetric_clouds_enabled
     }
+    fn volumetric_clouds_enabled_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_clouds_enabled
+    }
     fn volumetric_clouds_quality(&self) -> &super::core::QualityLevel {
         &self.volumetric_clouds_quality
+    }
+    fn volumetric_clouds_quality_mut(&mut self) -> &mut super::core::QualityLevel {
+        &mut self.volumetric_clouds_quality
     }
     fn volumetric_clouds_cast_shadow(&self) -> &bool {
         &self.volumetric_clouds_cast_shadow
     }
+    fn volumetric_clouds_cast_shadow_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_clouds_cast_shadow
+    }
     fn volumetric_clouds_cast_shadow_in_forward_render(&self) -> &bool {
         &self.volumetric_clouds_cast_shadow_in_forward_render
+    }
+    fn volumetric_clouds_cast_shadow_in_forward_render_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_clouds_cast_shadow_in_forward_render
     }
     fn volumetric_clouds_affect_aerial_perspective(&self) -> &bool {
         &self.volumetric_clouds_affect_aerial_perspective
     }
+    fn volumetric_clouds_affect_aerial_perspective_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_clouds_affect_aerial_perspective
+    }
     fn volumetric_clouds_receive_aerial_perspective(&self) -> &bool {
         &self.volumetric_clouds_receive_aerial_perspective
+    }
+    fn volumetric_clouds_receive_aerial_perspective_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_clouds_receive_aerial_perspective
     }
     fn volumetric_clouds_occlude_lens_flare(&self) -> &bool {
         &self.volumetric_clouds_occlude_lens_flare
     }
+    fn volumetric_clouds_occlude_lens_flare_mut(&mut self) -> &mut bool {
+        &mut self.volumetric_clouds_occlude_lens_flare
+    }
     fn volumetric_clouds_render_target_resolution_divider(&self) -> &u32 {
         &self.volumetric_clouds_render_target_resolution_divider
+    }
+    fn volumetric_clouds_render_target_resolution_divider_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_clouds_render_target_resolution_divider
     }
     fn volumetric_clouds_reflection_render_target_resolution_divider(&self) -> &u32 {
         &self.volumetric_clouds_reflection_render_target_resolution_divider
     }
+    fn volumetric_clouds_reflection_render_target_resolution_divider_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_clouds_reflection_render_target_resolution_divider
+    }
     fn volumetric_clouds_shadow_iteration_count(&self) -> &u32 {
         &self.volumetric_clouds_shadow_iteration_count
+    }
+    fn volumetric_clouds_shadow_iteration_count_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_clouds_shadow_iteration_count
     }
     fn volumetric_clouds_shadowmap_resolution(&self) -> &u32 {
         &self.volumetric_clouds_shadowmap_resolution
     }
+    fn volumetric_clouds_shadowmap_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_clouds_shadowmap_resolution
+    }
     fn volumetric_clouds_shadowmap_blur_samples(&self) -> &u32 {
         &self.volumetric_clouds_shadowmap_blur_samples
+    }
+    fn volumetric_clouds_shadowmap_blur_samples_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_clouds_shadowmap_blur_samples
     }
     fn volumetric_clouds_sample_count(&self) -> &super::core::QualityScalableInt {
         &self.volumetric_clouds_sample_count
     }
+    fn volumetric_clouds_sample_count_mut(&mut self) -> &mut super::core::QualityScalableInt {
+        &mut self.volumetric_clouds_sample_count
+    }
     fn volumetric_clouds_reflection_sample_count(&self) -> &u32 {
         &self.volumetric_clouds_reflection_sample_count
+    }
+    fn volumetric_clouds_reflection_sample_count_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_clouds_reflection_sample_count
     }
     fn volumetric_clouds_i_b_l_sample_count(&self) -> &u32 {
         &self.volumetric_clouds_i_b_l_sample_count
     }
+    fn volumetric_clouds_i_b_l_sample_count_mut(&mut self) -> &mut u32 {
+        &mut self.volumetric_clouds_i_b_l_sample_count
+    }
     fn volumetric_clouds_temporal_coefficient(&self) -> &f32 {
         &self.volumetric_clouds_temporal_coefficient
+    }
+    fn volumetric_clouds_temporal_coefficient_mut(&mut self) -> &mut f32 {
+        &mut self.volumetric_clouds_temporal_coefficient
     }
     fn volumetric_clouds_env_color_temporal_coefficient(&self) -> &f32 {
         &self.volumetric_clouds_env_color_temporal_coefficient
     }
+    fn volumetric_clouds_env_color_temporal_coefficient_mut(&mut self) -> &mut f32 {
+        &mut self.volumetric_clouds_env_color_temporal_coefficient
+    }
     fn transparent_fogging_enable(&self) -> &bool {
         &self.transparent_fogging_enable
+    }
+    fn transparent_fogging_enable_mut(&mut self) -> &mut bool {
+        &mut self.transparent_fogging_enable
     }
     fn distortion_enable(&self) -> &bool {
         &self.distortion_enable
     }
+    fn distortion_enable_mut(&mut self) -> &mut bool {
+        &mut self.distortion_enable
+    }
     fn distortion_half_res_enable(&self) -> &bool {
         &self.distortion_half_res_enable
+    }
+    fn distortion_half_res_enable_mut(&mut self) -> &mut bool {
+        &mut self.distortion_half_res_enable
     }
     fn distortion8_bit_enable(&self) -> &bool {
         &self.distortion8_bit_enable
     }
+    fn distortion8_bit_enable_mut(&mut self) -> &mut bool {
+        &mut self.distortion8_bit_enable
+    }
     fn distortion_tiling_enable(&self) -> &bool {
         &self.distortion_tiling_enable
+    }
+    fn distortion_tiling_enable_mut(&mut self) -> &mut bool {
+        &mut self.distortion_tiling_enable
     }
     fn static_envmap_enable(&self) -> &bool {
         &self.static_envmap_enable
     }
+    fn static_envmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.static_envmap_enable
+    }
     fn custom_envmap_enable(&self) -> &bool {
         &self.custom_envmap_enable
+    }
+    fn custom_envmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.custom_envmap_enable
     }
     fn sky_envmap_enable(&self) -> &bool {
         &self.sky_envmap_enable
     }
+    fn sky_envmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_envmap_enable
+    }
     fn sky_envmap_filter_width(&self) -> &f32 {
         &self.sky_envmap_filter_width
+    }
+    fn sky_envmap_filter_width_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap_filter_width
     }
     fn sky_envmap_resolution(&self) -> &u32 {
         &self.sky_envmap_resolution
     }
+    fn sky_envmap_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.sky_envmap_resolution
+    }
     fn sky_envmap_mipmap_gen_enable(&self) -> &bool {
         &self.sky_envmap_mipmap_gen_enable
+    }
+    fn sky_envmap_mipmap_gen_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_envmap_mipmap_gen_enable
     }
     fn draw_debug_sky_envmap_mip_level(&self) -> &i32 {
         &self.draw_debug_sky_envmap_mip_level
     }
+    fn draw_debug_sky_envmap_mip_level_mut(&mut self) -> &mut i32 {
+        &mut self.draw_debug_sky_envmap_mip_level
+    }
     fn sky_envmap_filter_mode(&self) -> &MipmapFilterMode {
         &self.sky_envmap_filter_mode
+    }
+    fn sky_envmap_filter_mode_mut(&mut self) -> &mut MipmapFilterMode {
+        &mut self.sky_envmap_filter_mode
     }
     fn sky_envmap_sides_per_frame_count(&self) -> &u32 {
         &self.sky_envmap_sides_per_frame_count
     }
+    fn sky_envmap_sides_per_frame_count_mut(&mut self) -> &mut u32 {
+        &mut self.sky_envmap_sides_per_frame_count
+    }
     fn sky_envmap_force_update_enable(&self) -> &bool {
         &self.sky_envmap_force_update_enable
+    }
+    fn sky_envmap_force_update_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_envmap_force_update_enable
     }
     fn sky_envmap_use_fast_h_d_r(&self) -> &bool {
         &self.sky_envmap_use_fast_h_d_r
     }
+    fn sky_envmap_use_fast_h_d_r_mut(&mut self) -> &mut bool {
+        &mut self.sky_envmap_use_fast_h_d_r
+    }
     fn sky_envmap_debug_color_enable(&self) -> &bool {
         &self.sky_envmap_debug_color_enable
+    }
+    fn sky_envmap_debug_color_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_envmap_debug_color_enable
     }
     fn sky_envmap_update_count_threshold(&self) -> &f32 {
         &self.sky_envmap_update_count_threshold
     }
+    fn sky_envmap_update_count_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap_update_count_threshold
+    }
     fn sky_envmap_update_value_threshold(&self) -> &f32 {
         &self.sky_envmap_update_value_threshold
+    }
+    fn sky_envmap_update_value_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.sky_envmap_update_value_threshold
     }
     fn sky_envmap_cloud_fog_enable(&self) -> &bool {
         &self.sky_envmap_cloud_fog_enable
     }
+    fn sky_envmap_cloud_fog_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_envmap_cloud_fog_enable
+    }
     fn sky_envmap_generate_no_backdrop_enable(&self) -> &bool {
         &self.sky_envmap_generate_no_backdrop_enable
+    }
+    fn sky_envmap_generate_no_backdrop_enable_mut(&mut self) -> &mut bool {
+        &mut self.sky_envmap_generate_no_backdrop_enable
     }
     fn dynamic_envmap_enable(&self) -> &bool {
         &self.dynamic_envmap_enable
     }
+    fn dynamic_envmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.dynamic_envmap_enable
+    }
     fn draw_debug_dynamic_envmap_mip_level(&self) -> &i32 {
         &self.draw_debug_dynamic_envmap_mip_level
+    }
+    fn draw_debug_dynamic_envmap_mip_level_mut(&mut self) -> &mut i32 {
+        &mut self.draw_debug_dynamic_envmap_mip_level
     }
     fn dynamic_envmap_mipmap_gen_enable(&self) -> &bool {
         &self.dynamic_envmap_mipmap_gen_enable
     }
+    fn dynamic_envmap_mipmap_gen_enable_mut(&mut self) -> &mut bool {
+        &mut self.dynamic_envmap_mipmap_gen_enable
+    }
     fn draw_debug_dynamic_envmap(&self) -> &bool {
         &self.draw_debug_dynamic_envmap
+    }
+    fn draw_debug_dynamic_envmap_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_dynamic_envmap
     }
     fn dynamic_envmap_shadowmap_enable(&self) -> &bool {
         &self.dynamic_envmap_shadowmap_enable
     }
+    fn dynamic_envmap_shadowmap_enable_mut(&mut self) -> &mut bool {
+        &mut self.dynamic_envmap_shadowmap_enable
+    }
     fn dynamic_envmap_shadowmap_resolution(&self) -> &u32 {
         &self.dynamic_envmap_shadowmap_resolution
+    }
+    fn dynamic_envmap_shadowmap_resolution_mut(&mut self) -> &mut u32 {
+        &mut self.dynamic_envmap_shadowmap_resolution
     }
     fn dynamic_envmap_shadowmap_far_plane_override(&self) -> &bool {
         &self.dynamic_envmap_shadowmap_far_plane_override
     }
+    fn dynamic_envmap_shadowmap_far_plane_override_mut(&mut self) -> &mut bool {
+        &mut self.dynamic_envmap_shadowmap_far_plane_override
+    }
     fn dynamic_envmap_shadowmap_far_plane(&self) -> &i32 {
         &self.dynamic_envmap_shadowmap_far_plane
+    }
+    fn dynamic_envmap_shadowmap_far_plane_mut(&mut self) -> &mut i32 {
+        &mut self.dynamic_envmap_shadowmap_far_plane
     }
     fn dynamic_envmap_shadowmap_shadow_extrusion_override(&self) -> &bool {
         &self.dynamic_envmap_shadowmap_shadow_extrusion_override
     }
+    fn dynamic_envmap_shadowmap_shadow_extrusion_override_mut(&mut self) -> &mut bool {
+        &mut self.dynamic_envmap_shadowmap_shadow_extrusion_override
+    }
     fn dynamic_envmap_shadowmap_shadow_extrusion(&self) -> &i32 {
         &self.dynamic_envmap_shadowmap_shadow_extrusion
+    }
+    fn dynamic_envmap_shadowmap_shadow_extrusion_mut(&mut self) -> &mut i32 {
+        &mut self.dynamic_envmap_shadowmap_shadow_extrusion
     }
     fn draw_debug_dynamic_envmap_shadowmap(&self) -> &bool {
         &self.draw_debug_dynamic_envmap_shadowmap
     }
+    fn draw_debug_dynamic_envmap_shadowmap_mut(&mut self) -> &mut bool {
+        &mut self.draw_debug_dynamic_envmap_shadowmap
+    }
     fn draw_dynamic_envmap_frustums(&self) -> &bool {
         &self.draw_dynamic_envmap_frustums
+    }
+    fn draw_dynamic_envmap_frustums_mut(&mut self) -> &mut bool {
+        &mut self.draw_dynamic_envmap_frustums
     }
     fn setup_job_enable(&self) -> &bool {
         &self.setup_job_enable
     }
+    fn setup_job_enable_mut(&mut self) -> &mut bool {
+        &mut self.setup_job_enable
+    }
     fn setup_jobs_create_view_job(&self) -> &bool {
         &self.setup_jobs_create_view_job
+    }
+    fn setup_jobs_create_view_job_mut(&mut self) -> &mut bool {
+        &mut self.setup_jobs_create_view_job
     }
     fn prepare_dispatch_list_job_enable(&self) -> &bool {
         &self.prepare_dispatch_list_job_enable
     }
+    fn prepare_dispatch_list_job_enable_mut(&mut self) -> &mut bool {
+        &mut self.prepare_dispatch_list_job_enable
+    }
     fn indirect_specular_intensity(&self) -> &f32 {
         &self.indirect_specular_intensity
+    }
+    fn indirect_specular_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.indirect_specular_intensity
     }
     fn indirect_specular_reflectance_scale(&self) -> &f32 {
         &self.indirect_specular_reflectance_scale
     }
+    fn indirect_specular_reflectance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.indirect_specular_reflectance_scale
+    }
     fn indirect_specular_probes_intensity(&self) -> &f32 {
         &self.indirect_specular_probes_intensity
+    }
+    fn indirect_specular_probes_intensity_mut(&mut self) -> &mut f32 {
+        &mut self.indirect_specular_probes_intensity
     }
     fn indirect_specular_probes_reflectance_scale(&self) -> &f32 {
         &self.indirect_specular_probes_reflectance_scale
     }
+    fn indirect_specular_probes_reflectance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.indirect_specular_probes_reflectance_scale
+    }
 }
 
 impl super::core::DataContainerTrait for WorldRenderSettingsBase {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WORLDRENDERSETTINGSBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10118,6 +13901,15 @@ impl TypeObject for WorldRenderSettingsBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10161,6 +13953,15 @@ impl TypeObject for LightTileDebugLightCountMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10198,6 +13999,15 @@ impl TypeObject for FrameSynthesisMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -10237,6 +14047,15 @@ impl TypeObject for SkyRenderMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10275,6 +14094,15 @@ impl TypeObject for PostProcessDofMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -10321,6 +14149,15 @@ impl TypeObject for PostProcessAAMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10362,6 +14199,15 @@ impl TypeObject for MipmapFilterMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10400,6 +14246,15 @@ impl TypeObject for LuminancePreset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -10441,6 +14296,15 @@ impl TypeObject for IlluminancePreset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -10543,6 +14407,15 @@ impl TypeObject for WorldViewMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -10592,6 +14465,15 @@ impl TypeObject for ModelRenderObject {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -52,15 +52,15 @@ impl super::core::DataBusPeerTrait for NavigationInterfaceData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for NavigationInterfaceData {
 }
 
 impl super::core::DataContainerTrait for NavigationInterfaceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NAVIGATIONINTERFACEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -85,6 +85,15 @@ impl TypeObject for NavigationInterfaceData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -120,15 +129,15 @@ impl super::core::DataBusPeerTrait for LocoEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocoEntityData {
 }
 
 impl super::core::DataContainerTrait for LocoEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCOENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -154,6 +163,15 @@ impl TypeObject for LocoEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -175,15 +193,23 @@ pub struct AIWaypointExtraWaypointDataPtr {
 
 pub trait AIWaypointExtraWaypointDataPtrTrait: TypeObject {
     fn waypoint_data_ptr(&self) -> &Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>>;
+    fn waypoint_data_ptr_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>>;
     fn sublevel_i_d(&self) -> &i32;
+    fn sublevel_i_d_mut(&mut self) -> &mut i32;
 }
 
 impl AIWaypointExtraWaypointDataPtrTrait for AIWaypointExtraWaypointDataPtr {
     fn waypoint_data_ptr(&self) -> &Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>> {
         &self.waypoint_data_ptr
     }
+    fn waypoint_data_ptr_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>> {
+        &mut self.waypoint_data_ptr
+    }
     fn sublevel_i_d(&self) -> &i32 {
         &self.sublevel_i_d
+    }
+    fn sublevel_i_d_mut(&mut self) -> &mut i32 {
+        &mut self.sublevel_i_d
     }
 }
 
@@ -221,6 +247,15 @@ impl TypeObject for AIWaypointExtraWaypointDataPtr {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -242,15 +277,23 @@ pub struct AIWaypointExtraTeleport {
 
 pub trait AIWaypointExtraTeleportTrait: TypeObject {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn yaw(&self) -> &f32;
+    fn yaw_mut(&mut self) -> &mut f32;
 }
 
 impl AIWaypointExtraTeleportTrait for AIWaypointExtraTeleport {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
+    }
     fn yaw(&self) -> &f32 {
         &self.yaw
+    }
+    fn yaw_mut(&mut self) -> &mut f32 {
+        &mut self.yaw
     }
 }
 
@@ -288,6 +331,15 @@ impl TypeObject for AIWaypointExtraTeleport {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -310,19 +362,31 @@ pub struct AIWaypointExtraSpatial {
 
 pub trait AIWaypointExtraSpatialTrait: TypeObject {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn yaw(&self) -> &f32;
+    fn yaw_mut(&mut self) -> &mut f32;
 }
 
 impl AIWaypointExtraSpatialTrait for AIWaypointExtraSpatial {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
+    }
     fn radius(&self) -> &f32 {
         &self.radius
     }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
+    }
     fn yaw(&self) -> &f32 {
         &self.yaw
+    }
+    fn yaw_mut(&mut self) -> &mut f32 {
+        &mut self.yaw
     }
 }
 
@@ -366,6 +430,15 @@ impl TypeObject for AIWaypointExtraSpatial {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -386,11 +459,15 @@ pub struct AIWaypointGUID {
 
 pub trait AIWaypointGUIDTrait: TypeObject {
     fn g_u_i_d(&self) -> &i32;
+    fn g_u_i_d_mut(&mut self) -> &mut i32;
 }
 
 impl AIWaypointGUIDTrait for AIWaypointGUID {
     fn g_u_i_d(&self) -> &i32 {
         &self.g_u_i_d
+    }
+    fn g_u_i_d_mut(&mut self) -> &mut i32 {
+        &mut self.g_u_i_d
     }
 }
 
@@ -421,6 +498,15 @@ impl TypeObject for AIWaypointGUID {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -475,6 +561,15 @@ impl TypeObject for ServerNavigationInterface {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -527,6 +622,15 @@ impl TypeObject for ServerAuthNavigationInterface {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -581,6 +685,15 @@ impl TypeObject for LocoEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -633,6 +746,15 @@ impl TypeObject for ClientNavigationInterface {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

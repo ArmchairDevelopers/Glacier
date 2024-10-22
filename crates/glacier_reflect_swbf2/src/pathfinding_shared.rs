@@ -71,51 +71,95 @@ pub struct VehicleWaypointData {
 
 pub trait VehicleWaypointDataTrait: WaypointDataTrait {
     fn speed(&self) -> &f32;
+    fn speed_mut(&mut self) -> &mut f32;
     fn speed_override_moving_towards(&self) -> &f32;
+    fn speed_override_moving_towards_mut(&mut self) -> &mut f32;
     fn speed_limit_on_reached(&self) -> &f32;
+    fn speed_limit_on_reached_mut(&mut self) -> &mut f32;
     fn speed_limit_moving_towards(&self) -> &f32;
+    fn speed_limit_moving_towards_mut(&mut self) -> &mut f32;
     fn use_heading(&self) -> &bool;
+    fn use_heading_mut(&mut self) -> &mut bool;
     fn heading(&self) -> &f32;
+    fn heading_mut(&mut self) -> &mut f32;
     fn stop_here(&self) -> &bool;
+    fn stop_here_mut(&mut self) -> &mut bool;
     fn wait_here(&self) -> &f32;
+    fn wait_here_mut(&mut self) -> &mut f32;
     fn stopping_deceleration(&self) -> &f32;
+    fn stopping_deceleration_mut(&mut self) -> &mut f32;
     fn min_slowdown_speed(&self) -> &f32;
+    fn min_slowdown_speed_mut(&mut self) -> &mut f32;
     fn stop_here_radius(&self) -> &f32;
+    fn stop_here_radius_mut(&mut self) -> &mut f32;
 }
 
 impl VehicleWaypointDataTrait for VehicleWaypointData {
     fn speed(&self) -> &f32 {
         &self.speed
     }
+    fn speed_mut(&mut self) -> &mut f32 {
+        &mut self.speed
+    }
     fn speed_override_moving_towards(&self) -> &f32 {
         &self.speed_override_moving_towards
+    }
+    fn speed_override_moving_towards_mut(&mut self) -> &mut f32 {
+        &mut self.speed_override_moving_towards
     }
     fn speed_limit_on_reached(&self) -> &f32 {
         &self.speed_limit_on_reached
     }
+    fn speed_limit_on_reached_mut(&mut self) -> &mut f32 {
+        &mut self.speed_limit_on_reached
+    }
     fn speed_limit_moving_towards(&self) -> &f32 {
         &self.speed_limit_moving_towards
+    }
+    fn speed_limit_moving_towards_mut(&mut self) -> &mut f32 {
+        &mut self.speed_limit_moving_towards
     }
     fn use_heading(&self) -> &bool {
         &self.use_heading
     }
+    fn use_heading_mut(&mut self) -> &mut bool {
+        &mut self.use_heading
+    }
     fn heading(&self) -> &f32 {
         &self.heading
+    }
+    fn heading_mut(&mut self) -> &mut f32 {
+        &mut self.heading
     }
     fn stop_here(&self) -> &bool {
         &self.stop_here
     }
+    fn stop_here_mut(&mut self) -> &mut bool {
+        &mut self.stop_here
+    }
     fn wait_here(&self) -> &f32 {
         &self.wait_here
+    }
+    fn wait_here_mut(&mut self) -> &mut f32 {
+        &mut self.wait_here
     }
     fn stopping_deceleration(&self) -> &f32 {
         &self.stopping_deceleration
     }
+    fn stopping_deceleration_mut(&mut self) -> &mut f32 {
+        &mut self.stopping_deceleration
+    }
     fn min_slowdown_speed(&self) -> &f32 {
         &self.min_slowdown_speed
     }
+    fn min_slowdown_speed_mut(&mut self) -> &mut f32 {
+        &mut self.min_slowdown_speed
+    }
     fn stop_here_radius(&self) -> &f32 {
         &self.stop_here_radius
+    }
+    fn stop_here_radius_mut(&mut self) -> &mut f32 {
+        &mut self.stop_here_radius
     }
 }
 
@@ -123,18 +167,24 @@ impl WaypointDataTrait for VehicleWaypointData {
     fn use_clients_position(&self) -> &bool {
         self._glacier_base.use_clients_position()
     }
+    fn use_clients_position_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_clients_position_mut()
+    }
     fn schematics_name_hash(&self) -> &i32 {
         self._glacier_base.schematics_name_hash()
+    }
+    fn schematics_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.schematics_name_hash_mut()
     }
     fn waypoint_id(&self) -> &u32 {
         self._glacier_base.waypoint_id()
     }
+    fn waypoint_id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.waypoint_id_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for VehicleWaypointData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEHICLEWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -226,6 +276,15 @@ impl TypeObject for VehicleWaypointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -247,11 +306,15 @@ pub struct WaypointsShapeData {
 
 pub trait WaypointsShapeDataTrait: super::entity::VectorShapeDataTrait {
     fn waypoints(&self) -> &Vec<Option<Arc<Mutex<dyn WaypointDataTrait>>>>;
+    fn waypoints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn WaypointDataTrait>>>>;
 }
 
 impl WaypointsShapeDataTrait for WaypointsShapeData {
     fn waypoints(&self) -> &Vec<Option<Arc<Mutex<dyn WaypointDataTrait>>>> {
         &self.waypoints
+    }
+    fn waypoints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn WaypointDataTrait>>>> {
+        &mut self.waypoints
     }
 }
 
@@ -259,17 +322,32 @@ impl super::entity::VectorShapeDataTrait for WaypointsShapeData {
     fn points(&self) -> &Vec<super::core::Vec3> {
         self._glacier_base.points()
     }
+    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        self._glacier_base.points_mut()
+    }
     fn tension(&self) -> &f32 {
         self._glacier_base.tension()
+    }
+    fn tension_mut(&mut self) -> &mut f32 {
+        self._glacier_base.tension_mut()
     }
     fn is_closed(&self) -> &bool {
         self._glacier_base.is_closed()
     }
+    fn is_closed_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_closed_mut()
+    }
     fn allow_roll(&self) -> &bool {
         self._glacier_base.allow_roll()
     }
+    fn allow_roll_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_roll_mut()
+    }
     fn allow_yaw_pitch(&self) -> &bool {
         self._glacier_base.allow_yaw_pitch()
+    }
+    fn allow_yaw_pitch_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_yaw_pitch_mut()
     }
 }
 
@@ -286,15 +364,15 @@ impl super::core::DataBusPeerTrait for WaypointsShapeData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WaypointsShapeData {
 }
 
 impl super::core::DataContainerTrait for WaypointsShapeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WAYPOINTSSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -326,6 +404,15 @@ impl TypeObject for WaypointsShapeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -349,26 +436,35 @@ pub struct WaypointData {
 
 pub trait WaypointDataTrait: super::core::DataContainerTrait {
     fn use_clients_position(&self) -> &bool;
+    fn use_clients_position_mut(&mut self) -> &mut bool;
     fn schematics_name_hash(&self) -> &i32;
+    fn schematics_name_hash_mut(&mut self) -> &mut i32;
     fn waypoint_id(&self) -> &u32;
+    fn waypoint_id_mut(&mut self) -> &mut u32;
 }
 
 impl WaypointDataTrait for WaypointData {
     fn use_clients_position(&self) -> &bool {
         &self.use_clients_position
     }
+    fn use_clients_position_mut(&mut self) -> &mut bool {
+        &mut self.use_clients_position
+    }
     fn schematics_name_hash(&self) -> &i32 {
         &self.schematics_name_hash
+    }
+    fn schematics_name_hash_mut(&mut self) -> &mut i32 {
+        &mut self.schematics_name_hash
     }
     fn waypoint_id(&self) -> &u32 {
         &self.waypoint_id
     }
+    fn waypoint_id_mut(&mut self) -> &mut u32 {
+        &mut self.waypoint_id
+    }
 }
 
 impl super::core::DataContainerTrait for WaypointData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -412,6 +508,15 @@ impl TypeObject for WaypointData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -450,6 +555,15 @@ impl TypeObject for RouteType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -490,6 +604,15 @@ impl TypeObject for WaypointsSnappingSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -513,19 +636,31 @@ pub struct FollowWaypointsEntityBaseData {
 
 pub trait FollowWaypointsEntityBaseDataTrait: super::entity::EntityDataTrait {
     fn type_of_route(&self) -> &RouteType;
+    fn type_of_route_mut(&mut self) -> &mut RouteType;
     fn use_path_finding(&self) -> &bool;
+    fn use_path_finding_mut(&mut self) -> &mut bool;
     fn start_at_geometrically_closest_waypoint(&self) -> &bool;
+    fn start_at_geometrically_closest_waypoint_mut(&mut self) -> &mut bool;
 }
 
 impl FollowWaypointsEntityBaseDataTrait for FollowWaypointsEntityBaseData {
     fn type_of_route(&self) -> &RouteType {
         &self.type_of_route
     }
+    fn type_of_route_mut(&mut self) -> &mut RouteType {
+        &mut self.type_of_route
+    }
     fn use_path_finding(&self) -> &bool {
         &self.use_path_finding
     }
+    fn use_path_finding_mut(&mut self) -> &mut bool {
+        &mut self.use_path_finding
+    }
     fn start_at_geometrically_closest_waypoint(&self) -> &bool {
         &self.start_at_geometrically_closest_waypoint
+    }
+    fn start_at_geometrically_closest_waypoint_mut(&mut self) -> &mut bool {
+        &mut self.start_at_geometrically_closest_waypoint
     }
 }
 
@@ -539,15 +674,15 @@ impl super::core::DataBusPeerTrait for FollowWaypointsEntityBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FollowWaypointsEntityBaseData {
 }
 
 impl super::core::DataContainerTrait for FollowWaypointsEntityBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FOLLOWWAYPOINTSENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -591,6 +726,15 @@ impl TypeObject for FollowWaypointsEntityBaseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -615,23 +759,39 @@ pub struct PathFollowingComponentBaseData {
 
 pub trait PathFollowingComponentBaseDataTrait: super::entity::GameComponentDataTrait {
     fn update_path_at_distance_percent(&self) -> &f32;
+    fn update_path_at_distance_percent_mut(&mut self) -> &mut f32;
     fn preferred_pathfinding_index(&self) -> &u32;
+    fn preferred_pathfinding_index_mut(&mut self) -> &mut u32;
     fn alternate_pathfinding_indices(&self) -> &Vec<u32>;
+    fn alternate_pathfinding_indices_mut(&mut self) -> &mut Vec<u32>;
     fn movement_corridor_radius(&self) -> &f32;
+    fn movement_corridor_radius_mut(&mut self) -> &mut f32;
 }
 
 impl PathFollowingComponentBaseDataTrait for PathFollowingComponentBaseData {
     fn update_path_at_distance_percent(&self) -> &f32 {
         &self.update_path_at_distance_percent
     }
+    fn update_path_at_distance_percent_mut(&mut self) -> &mut f32 {
+        &mut self.update_path_at_distance_percent
+    }
     fn preferred_pathfinding_index(&self) -> &u32 {
         &self.preferred_pathfinding_index
+    }
+    fn preferred_pathfinding_index_mut(&mut self) -> &mut u32 {
+        &mut self.preferred_pathfinding_index
     }
     fn alternate_pathfinding_indices(&self) -> &Vec<u32> {
         &self.alternate_pathfinding_indices
     }
+    fn alternate_pathfinding_indices_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.alternate_pathfinding_indices
+    }
     fn movement_corridor_radius(&self) -> &f32 {
         &self.movement_corridor_radius
+    }
+    fn movement_corridor_radius_mut(&mut self) -> &mut f32 {
+        &mut self.movement_corridor_radius
     }
 }
 
@@ -642,17 +802,32 @@ impl super::entity::ComponentDataTrait for PathFollowingComponentBaseData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -663,15 +838,15 @@ impl super::core::DataBusPeerTrait for PathFollowingComponentBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PathFollowingComponentBaseData {
 }
 
 impl super::core::DataContainerTrait for PathFollowingComponentBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFOLLOWINGCOMPONENTBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -721,6 +896,15 @@ impl TypeObject for PathFollowingComponentBaseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -760,6 +944,15 @@ impl TypeObject for PathfindingChoice {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -783,19 +976,31 @@ pub struct PathfindingStreamEntityBaseData {
 
 pub trait PathfindingStreamEntityBaseDataTrait: super::entity::EntityDataTrait {
     fn pathfinding_blobs(&self) -> &Option<Arc<Mutex<dyn PathfindingBlobAssetTrait>>>;
+    fn pathfinding_blobs_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PathfindingBlobAssetTrait>>>;
     fn autoload(&self) -> &bool;
+    fn autoload_mut(&mut self) -> &mut bool;
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl PathfindingStreamEntityBaseDataTrait for PathfindingStreamEntityBaseData {
     fn pathfinding_blobs(&self) -> &Option<Arc<Mutex<dyn PathfindingBlobAssetTrait>>> {
         &self.pathfinding_blobs
     }
+    fn pathfinding_blobs_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PathfindingBlobAssetTrait>>> {
+        &mut self.pathfinding_blobs
+    }
     fn autoload(&self) -> &bool {
         &self.autoload
     }
+    fn autoload_mut(&mut self) -> &mut bool {
+        &mut self.autoload
+    }
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
 }
 
@@ -809,15 +1014,15 @@ impl super::core::DataBusPeerTrait for PathfindingStreamEntityBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PathfindingStreamEntityBaseData {
 }
 
 impl super::core::DataContainerTrait for PathfindingStreamEntityBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFINDINGSTREAMENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -860,6 +1065,15 @@ impl TypeObject for PathfindingStreamEntityBaseData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -917,151 +1131,295 @@ pub struct PathfindingDebugSettings {
 
 pub trait PathfindingDebugSettingsTrait: super::core::SystemSettingsTrait {
     fn draw_nav_mesh(&self) -> &i32;
+    fn draw_nav_mesh_mut(&mut self) -> &mut i32;
     fn draw_polygon_outline(&self) -> &bool;
+    fn draw_polygon_outline_mut(&mut self) -> &mut bool;
     fn draw_filled_polygons(&self) -> &bool;
+    fn draw_filled_polygons_mut(&mut self) -> &mut bool;
     fn draw_connections(&self) -> &bool;
+    fn draw_connections_mut(&mut self) -> &mut bool;
     fn draw_obstacles(&self) -> &bool;
+    fn draw_obstacles_mut(&mut self) -> &mut bool;
     fn draw_area_normals(&self) -> &bool;
+    fn draw_area_normals_mut(&mut self) -> &mut bool;
     fn draw_obstacle_flags(&self) -> &bool;
+    fn draw_obstacle_flags_mut(&mut self) -> &mut bool;
     fn draw_area_penalty_mults(&self) -> &bool;
+    fn draw_area_penalty_mults_mut(&mut self) -> &mut bool;
     fn draw_area_usage_flags(&self) -> &bool;
+    fn draw_area_usage_flags_mut(&mut self) -> &mut bool;
     fn colorize_area_usage_flags(&self) -> &bool;
+    fn colorize_area_usage_flags_mut(&mut self) -> &mut bool;
     fn draw_link_usage_distances(&self) -> &bool;
+    fn draw_link_usage_distances_mut(&mut self) -> &mut bool;
     fn draw_link_usage_flags(&self) -> &bool;
+    fn draw_link_usage_flags_mut(&mut self) -> &mut bool;
     fn draw_original_link_locations(&self) -> &bool;
+    fn draw_original_link_locations_mut(&mut self) -> &mut bool;
     fn draw_recent_nav_probes(&self) -> &bool;
+    fn draw_recent_nav_probes_mut(&mut self) -> &mut bool;
     fn draw_recent_create_poly_line_paths(&self) -> &bool;
+    fn draw_recent_create_poly_line_paths_mut(&mut self) -> &mut bool;
     fn draw_mover_cylinders(&self) -> &bool;
+    fn draw_mover_cylinders_mut(&mut self) -> &mut bool;
     fn draw_mover_goals(&self) -> &bool;
+    fn draw_mover_goals_mut(&mut self) -> &mut bool;
     fn draw_mover_goals_reached(&self) -> &bool;
+    fn draw_mover_goals_reached_mut(&mut self) -> &mut bool;
     fn draw_mover_state(&self) -> &bool;
+    fn draw_mover_state_mut(&mut self) -> &mut bool;
     fn draw_mover_attractions(&self) -> &bool;
+    fn draw_mover_attractions_mut(&mut self) -> &mut bool;
     fn draw_repulsors(&self) -> &bool;
+    fn draw_repulsors_mut(&mut self) -> &mut bool;
     fn draw_client_motion(&self) -> &bool;
+    fn draw_client_motion_mut(&mut self) -> &mut bool;
     fn draw_cur_path_section(&self) -> &bool;
+    fn draw_cur_path_section_mut(&mut self) -> &mut bool;
     fn draw_follower_goals(&self) -> &bool;
+    fn draw_follower_goals_mut(&mut self) -> &mut bool;
     fn draw_distance(&self) -> &f32;
+    fn draw_distance_mut(&mut self) -> &mut f32;
     fn depth_test(&self) -> &bool;
+    fn depth_test_mut(&mut self) -> &mut bool;
     fn draw_stats(&self) -> &bool;
+    fn draw_stats_mut(&mut self) -> &mut bool;
     fn draw_memory(&self) -> &bool;
+    fn draw_memory_mut(&mut self) -> &mut bool;
     fn draw_timings(&self) -> &bool;
+    fn draw_timings_mut(&mut self) -> &mut bool;
     fn text_start_x(&self) -> &i32;
+    fn text_start_x_mut(&mut self) -> &mut i32;
     fn text_start_y(&self) -> &i32;
+    fn text_start_y_mut(&mut self) -> &mut i32;
     fn text_offset_y(&self) -> &i32;
+    fn text_offset_y_mut(&mut self) -> &mut i32;
     fn replay_mode(&self) -> &PathfindingReplayMode;
+    fn replay_mode_mut(&mut self) -> &mut PathfindingReplayMode;
     fn original_paths(&self) -> &bool;
+    fn original_paths_mut(&mut self) -> &mut bool;
     fn random_positions(&self) -> &bool;
+    fn random_positions_mut(&mut self) -> &mut bool;
     fn potential_obstacles(&self) -> &bool;
+    fn potential_obstacles_mut(&mut self) -> &mut bool;
 }
 
 impl PathfindingDebugSettingsTrait for PathfindingDebugSettings {
     fn draw_nav_mesh(&self) -> &i32 {
         &self.draw_nav_mesh
     }
+    fn draw_nav_mesh_mut(&mut self) -> &mut i32 {
+        &mut self.draw_nav_mesh
+    }
     fn draw_polygon_outline(&self) -> &bool {
         &self.draw_polygon_outline
+    }
+    fn draw_polygon_outline_mut(&mut self) -> &mut bool {
+        &mut self.draw_polygon_outline
     }
     fn draw_filled_polygons(&self) -> &bool {
         &self.draw_filled_polygons
     }
+    fn draw_filled_polygons_mut(&mut self) -> &mut bool {
+        &mut self.draw_filled_polygons
+    }
     fn draw_connections(&self) -> &bool {
         &self.draw_connections
+    }
+    fn draw_connections_mut(&mut self) -> &mut bool {
+        &mut self.draw_connections
     }
     fn draw_obstacles(&self) -> &bool {
         &self.draw_obstacles
     }
+    fn draw_obstacles_mut(&mut self) -> &mut bool {
+        &mut self.draw_obstacles
+    }
     fn draw_area_normals(&self) -> &bool {
         &self.draw_area_normals
+    }
+    fn draw_area_normals_mut(&mut self) -> &mut bool {
+        &mut self.draw_area_normals
     }
     fn draw_obstacle_flags(&self) -> &bool {
         &self.draw_obstacle_flags
     }
+    fn draw_obstacle_flags_mut(&mut self) -> &mut bool {
+        &mut self.draw_obstacle_flags
+    }
     fn draw_area_penalty_mults(&self) -> &bool {
         &self.draw_area_penalty_mults
+    }
+    fn draw_area_penalty_mults_mut(&mut self) -> &mut bool {
+        &mut self.draw_area_penalty_mults
     }
     fn draw_area_usage_flags(&self) -> &bool {
         &self.draw_area_usage_flags
     }
+    fn draw_area_usage_flags_mut(&mut self) -> &mut bool {
+        &mut self.draw_area_usage_flags
+    }
     fn colorize_area_usage_flags(&self) -> &bool {
         &self.colorize_area_usage_flags
+    }
+    fn colorize_area_usage_flags_mut(&mut self) -> &mut bool {
+        &mut self.colorize_area_usage_flags
     }
     fn draw_link_usage_distances(&self) -> &bool {
         &self.draw_link_usage_distances
     }
+    fn draw_link_usage_distances_mut(&mut self) -> &mut bool {
+        &mut self.draw_link_usage_distances
+    }
     fn draw_link_usage_flags(&self) -> &bool {
         &self.draw_link_usage_flags
+    }
+    fn draw_link_usage_flags_mut(&mut self) -> &mut bool {
+        &mut self.draw_link_usage_flags
     }
     fn draw_original_link_locations(&self) -> &bool {
         &self.draw_original_link_locations
     }
+    fn draw_original_link_locations_mut(&mut self) -> &mut bool {
+        &mut self.draw_original_link_locations
+    }
     fn draw_recent_nav_probes(&self) -> &bool {
         &self.draw_recent_nav_probes
+    }
+    fn draw_recent_nav_probes_mut(&mut self) -> &mut bool {
+        &mut self.draw_recent_nav_probes
     }
     fn draw_recent_create_poly_line_paths(&self) -> &bool {
         &self.draw_recent_create_poly_line_paths
     }
+    fn draw_recent_create_poly_line_paths_mut(&mut self) -> &mut bool {
+        &mut self.draw_recent_create_poly_line_paths
+    }
     fn draw_mover_cylinders(&self) -> &bool {
         &self.draw_mover_cylinders
+    }
+    fn draw_mover_cylinders_mut(&mut self) -> &mut bool {
+        &mut self.draw_mover_cylinders
     }
     fn draw_mover_goals(&self) -> &bool {
         &self.draw_mover_goals
     }
+    fn draw_mover_goals_mut(&mut self) -> &mut bool {
+        &mut self.draw_mover_goals
+    }
     fn draw_mover_goals_reached(&self) -> &bool {
         &self.draw_mover_goals_reached
+    }
+    fn draw_mover_goals_reached_mut(&mut self) -> &mut bool {
+        &mut self.draw_mover_goals_reached
     }
     fn draw_mover_state(&self) -> &bool {
         &self.draw_mover_state
     }
+    fn draw_mover_state_mut(&mut self) -> &mut bool {
+        &mut self.draw_mover_state
+    }
     fn draw_mover_attractions(&self) -> &bool {
         &self.draw_mover_attractions
+    }
+    fn draw_mover_attractions_mut(&mut self) -> &mut bool {
+        &mut self.draw_mover_attractions
     }
     fn draw_repulsors(&self) -> &bool {
         &self.draw_repulsors
     }
+    fn draw_repulsors_mut(&mut self) -> &mut bool {
+        &mut self.draw_repulsors
+    }
     fn draw_client_motion(&self) -> &bool {
         &self.draw_client_motion
+    }
+    fn draw_client_motion_mut(&mut self) -> &mut bool {
+        &mut self.draw_client_motion
     }
     fn draw_cur_path_section(&self) -> &bool {
         &self.draw_cur_path_section
     }
+    fn draw_cur_path_section_mut(&mut self) -> &mut bool {
+        &mut self.draw_cur_path_section
+    }
     fn draw_follower_goals(&self) -> &bool {
         &self.draw_follower_goals
+    }
+    fn draw_follower_goals_mut(&mut self) -> &mut bool {
+        &mut self.draw_follower_goals
     }
     fn draw_distance(&self) -> &f32 {
         &self.draw_distance
     }
+    fn draw_distance_mut(&mut self) -> &mut f32 {
+        &mut self.draw_distance
+    }
     fn depth_test(&self) -> &bool {
         &self.depth_test
+    }
+    fn depth_test_mut(&mut self) -> &mut bool {
+        &mut self.depth_test
     }
     fn draw_stats(&self) -> &bool {
         &self.draw_stats
     }
+    fn draw_stats_mut(&mut self) -> &mut bool {
+        &mut self.draw_stats
+    }
     fn draw_memory(&self) -> &bool {
         &self.draw_memory
+    }
+    fn draw_memory_mut(&mut self) -> &mut bool {
+        &mut self.draw_memory
     }
     fn draw_timings(&self) -> &bool {
         &self.draw_timings
     }
+    fn draw_timings_mut(&mut self) -> &mut bool {
+        &mut self.draw_timings
+    }
     fn text_start_x(&self) -> &i32 {
         &self.text_start_x
+    }
+    fn text_start_x_mut(&mut self) -> &mut i32 {
+        &mut self.text_start_x
     }
     fn text_start_y(&self) -> &i32 {
         &self.text_start_y
     }
+    fn text_start_y_mut(&mut self) -> &mut i32 {
+        &mut self.text_start_y
+    }
     fn text_offset_y(&self) -> &i32 {
         &self.text_offset_y
+    }
+    fn text_offset_y_mut(&mut self) -> &mut i32 {
+        &mut self.text_offset_y
     }
     fn replay_mode(&self) -> &PathfindingReplayMode {
         &self.replay_mode
     }
+    fn replay_mode_mut(&mut self) -> &mut PathfindingReplayMode {
+        &mut self.replay_mode
+    }
     fn original_paths(&self) -> &bool {
         &self.original_paths
+    }
+    fn original_paths_mut(&mut self) -> &mut bool {
+        &mut self.original_paths
     }
     fn random_positions(&self) -> &bool {
         &self.random_positions
     }
+    fn random_positions_mut(&mut self) -> &mut bool {
+        &mut self.random_positions
+    }
     fn potential_obstacles(&self) -> &bool {
         &self.potential_obstacles
+    }
+    fn potential_obstacles_mut(&mut self) -> &mut bool {
+        &mut self.potential_obstacles
     }
 }
 
@@ -1069,12 +1427,12 @@ impl super::core::SystemSettingsTrait for PathfindingDebugSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PathfindingDebugSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFINDINGDEBUGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1316,6 +1674,15 @@ impl TypeObject for PathfindingDebugSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1355,6 +1722,15 @@ impl TypeObject for PathfindingReplayMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1376,11 +1752,15 @@ pub struct PathfindingTypeAsset {
 
 pub trait PathfindingTypeAssetTrait: super::core::AssetTrait {
     fn index(&self) -> &u32;
+    fn index_mut(&mut self) -> &mut u32;
 }
 
 impl PathfindingTypeAssetTrait for PathfindingTypeAsset {
     fn index(&self) -> &u32 {
         &self.index
+    }
+    fn index_mut(&mut self) -> &mut u32 {
+        &mut self.index
     }
 }
 
@@ -1388,12 +1768,12 @@ impl super::core::AssetTrait for PathfindingTypeAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PathfindingTypeAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFINDINGTYPEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1424,6 +1804,15 @@ impl TypeObject for PathfindingTypeAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1456,58 +1845,99 @@ pub struct LinkDat {
 
 pub trait LinkDatTrait: super::core::DataContainerTrait {
     fn layer_mask(&self) -> &u32;
+    fn layer_mask_mut(&mut self) -> &mut u32;
     fn link_type(&self) -> &NavLinkType;
+    fn link_type_mut(&mut self) -> &mut NavLinkType;
     fn forward_link_usage_flags(&self) -> &u32;
+    fn forward_link_usage_flags_mut(&mut self) -> &mut u32;
     fn backward_link_usage_flags(&self) -> &u32;
+    fn backward_link_usage_flags_mut(&mut self) -> &mut u32;
     fn penalty_mult(&self) -> &f32;
+    fn penalty_mult_mut(&mut self) -> &mut f32;
     fn max_snap_dist(&self) -> &f32;
+    fn max_snap_dist_mut(&mut self) -> &mut f32;
     fn may_use_dist(&self) -> &f32;
+    fn may_use_dist_mut(&mut self) -> &mut f32;
     fn must_use_dist(&self) -> &f32;
+    fn must_use_dist_mut(&mut self) -> &mut f32;
     fn stop_to_use_link(&self) -> &bool;
+    fn stop_to_use_link_mut(&mut self) -> &mut bool;
     fn user_data(&self) -> &Option<Arc<Mutex<dyn CustomPathLinkDataTrait>>>;
+    fn user_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CustomPathLinkDataTrait>>>;
     fn link_flow_tune(&self) -> &Option<Arc<Mutex<dyn LinkFlowTuneTrait>>>;
+    fn link_flow_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LinkFlowTuneTrait>>>;
 }
 
 impl LinkDatTrait for LinkDat {
     fn layer_mask(&self) -> &u32 {
         &self.layer_mask
     }
+    fn layer_mask_mut(&mut self) -> &mut u32 {
+        &mut self.layer_mask
+    }
     fn link_type(&self) -> &NavLinkType {
         &self.link_type
+    }
+    fn link_type_mut(&mut self) -> &mut NavLinkType {
+        &mut self.link_type
     }
     fn forward_link_usage_flags(&self) -> &u32 {
         &self.forward_link_usage_flags
     }
+    fn forward_link_usage_flags_mut(&mut self) -> &mut u32 {
+        &mut self.forward_link_usage_flags
+    }
     fn backward_link_usage_flags(&self) -> &u32 {
         &self.backward_link_usage_flags
+    }
+    fn backward_link_usage_flags_mut(&mut self) -> &mut u32 {
+        &mut self.backward_link_usage_flags
     }
     fn penalty_mult(&self) -> &f32 {
         &self.penalty_mult
     }
+    fn penalty_mult_mut(&mut self) -> &mut f32 {
+        &mut self.penalty_mult
+    }
     fn max_snap_dist(&self) -> &f32 {
         &self.max_snap_dist
+    }
+    fn max_snap_dist_mut(&mut self) -> &mut f32 {
+        &mut self.max_snap_dist
     }
     fn may_use_dist(&self) -> &f32 {
         &self.may_use_dist
     }
+    fn may_use_dist_mut(&mut self) -> &mut f32 {
+        &mut self.may_use_dist
+    }
     fn must_use_dist(&self) -> &f32 {
         &self.must_use_dist
+    }
+    fn must_use_dist_mut(&mut self) -> &mut f32 {
+        &mut self.must_use_dist
     }
     fn stop_to_use_link(&self) -> &bool {
         &self.stop_to_use_link
     }
+    fn stop_to_use_link_mut(&mut self) -> &mut bool {
+        &mut self.stop_to_use_link
+    }
     fn user_data(&self) -> &Option<Arc<Mutex<dyn CustomPathLinkDataTrait>>> {
         &self.user_data
+    }
+    fn user_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CustomPathLinkDataTrait>>> {
+        &mut self.user_data
     }
     fn link_flow_tune(&self) -> &Option<Arc<Mutex<dyn LinkFlowTuneTrait>>> {
         &self.link_flow_tune
     }
+    fn link_flow_tune_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LinkFlowTuneTrait>>> {
+        &mut self.link_flow_tune
+    }
 }
 
 impl super::core::DataContainerTrait for LinkDat {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINKDAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1599,6 +2029,15 @@ impl TypeObject for LinkDat {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1624,9 +2063,6 @@ impl CustomPathLinkDataTrait for CustomPathLinkData {
 }
 
 impl super::core::DataContainerTrait for CustomPathLinkData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CUSTOMPATHLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1651,6 +2087,15 @@ impl TypeObject for CustomPathLinkData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1690,6 +2135,15 @@ impl TypeObject for NavLinkType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1711,18 +2165,19 @@ pub struct LinkFlowTune {
 
 pub trait LinkFlowTuneTrait: super::core::DataContainerTrait {
     fn max_simultaneous(&self) -> &u32;
+    fn max_simultaneous_mut(&mut self) -> &mut u32;
 }
 
 impl LinkFlowTuneTrait for LinkFlowTune {
     fn max_simultaneous(&self) -> &u32 {
         &self.max_simultaneous
     }
+    fn max_simultaneous_mut(&mut self) -> &mut u32 {
+        &mut self.max_simultaneous
+    }
 }
 
 impl super::core::DataContainerTrait for LinkFlowTune {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINKFLOWTUNE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1754,6 +2209,15 @@ impl TypeObject for LinkFlowTune {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1775,18 +2239,19 @@ pub struct PathfindingRuntimeResourceAssetResult {
 
 pub trait PathfindingRuntimeResourceAssetResultTrait: super::core::DataContainerTrait {
     fn has_path_data(&self) -> &bool;
+    fn has_path_data_mut(&mut self) -> &mut bool;
 }
 
 impl PathfindingRuntimeResourceAssetResultTrait for PathfindingRuntimeResourceAssetResult {
     fn has_path_data(&self) -> &bool {
         &self.has_path_data
     }
+    fn has_path_data_mut(&mut self) -> &mut bool {
+        &mut self.has_path_data
+    }
 }
 
 impl super::core::DataContainerTrait for PathfindingRuntimeResourceAssetResult {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFINDINGRUNTIMERESOURCEASSETRESULT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1818,6 +2283,15 @@ impl TypeObject for PathfindingRuntimeResourceAssetResult {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1841,19 +2315,31 @@ pub struct PathfindingRuntimeResourceAsset {
 
 pub trait PathfindingRuntimeResourceAssetTrait: super::core::AssetTrait {
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn blob_size(&self) -> &u32;
+    fn blob_size_mut(&mut self) -> &mut u32;
     fn chunk_sizes(&self) -> &Vec<u32>;
+    fn chunk_sizes_mut(&mut self) -> &mut Vec<u32>;
 }
 
 impl PathfindingRuntimeResourceAssetTrait for PathfindingRuntimeResourceAsset {
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.resource
     }
+    fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.resource
+    }
     fn blob_size(&self) -> &u32 {
         &self.blob_size
     }
+    fn blob_size_mut(&mut self) -> &mut u32 {
+        &mut self.blob_size
+    }
     fn chunk_sizes(&self) -> &Vec<u32> {
         &self.chunk_sizes
+    }
+    fn chunk_sizes_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.chunk_sizes
     }
 }
 
@@ -1861,12 +2347,12 @@ impl super::core::AssetTrait for PathfindingRuntimeResourceAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PathfindingRuntimeResourceAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFINDINGRUNTIMERESOURCEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1910,6 +2396,15 @@ impl TypeObject for PathfindingRuntimeResourceAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1931,11 +2426,15 @@ pub struct PathfindingBlobAsset {
 
 pub trait PathfindingBlobAssetTrait: super::core::AssetTrait {
     fn blob(&self) -> &PathfindingBlob;
+    fn blob_mut(&mut self) -> &mut PathfindingBlob;
 }
 
 impl PathfindingBlobAssetTrait for PathfindingBlobAsset {
     fn blob(&self) -> &PathfindingBlob {
         &self.blob
+    }
+    fn blob_mut(&mut self) -> &mut PathfindingBlob {
+        &mut self.blob
     }
 }
 
@@ -1943,12 +2442,12 @@ impl super::core::AssetTrait for PathfindingBlobAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PathfindingBlobAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFINDINGBLOBASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1980,6 +2479,15 @@ impl TypeObject for PathfindingBlobAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2002,19 +2510,31 @@ pub struct PathfindingBlob {
 
 pub trait PathfindingBlobTrait: TypeObject {
     fn blob_id(&self) -> &glacier_util::guid::Guid;
+    fn blob_id_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn blob_size(&self) -> &u32;
+    fn blob_size_mut(&mut self) -> &mut u32;
     fn chunk_sizes(&self) -> &Vec<u32>;
+    fn chunk_sizes_mut(&mut self) -> &mut Vec<u32>;
 }
 
 impl PathfindingBlobTrait for PathfindingBlob {
     fn blob_id(&self) -> &glacier_util::guid::Guid {
         &self.blob_id
     }
+    fn blob_id_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.blob_id
+    }
     fn blob_size(&self) -> &u32 {
         &self.blob_size
     }
+    fn blob_size_mut(&mut self) -> &mut u32 {
+        &mut self.blob_size
+    }
     fn chunk_sizes(&self) -> &Vec<u32> {
         &self.chunk_sizes
+    }
+    fn chunk_sizes_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.chunk_sizes
     }
 }
 
@@ -2058,6 +2578,15 @@ impl TypeObject for PathfindingBlob {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2081,19 +2610,31 @@ pub struct PathfindingSystemEntityData {
 
 pub trait PathfindingSystemEntityDataTrait: super::entity::EntityDataTrait {
     fn pathfinding_types_on_level(&self) -> &Vec<u32>;
+    fn pathfinding_types_on_level_mut(&mut self) -> &mut Vec<u32>;
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn resource_asset(&self) -> &Option<Arc<Mutex<dyn PathfindingRuntimeResourceAssetTrait>>>;
+    fn resource_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PathfindingRuntimeResourceAssetTrait>>>;
 }
 
 impl PathfindingSystemEntityDataTrait for PathfindingSystemEntityData {
     fn pathfinding_types_on_level(&self) -> &Vec<u32> {
         &self.pathfinding_types_on_level
     }
+    fn pathfinding_types_on_level_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.pathfinding_types_on_level
+    }
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn resource_asset(&self) -> &Option<Arc<Mutex<dyn PathfindingRuntimeResourceAssetTrait>>> {
         &self.resource_asset
+    }
+    fn resource_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PathfindingRuntimeResourceAssetTrait>>> {
+        &mut self.resource_asset
     }
 }
 
@@ -2107,15 +2648,15 @@ impl super::core::DataBusPeerTrait for PathfindingSystemEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PathfindingSystemEntityData {
 }
 
 impl super::core::DataContainerTrait for PathfindingSystemEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHFINDINGSYSTEMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2158,6 +2699,15 @@ impl TypeObject for PathfindingSystemEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -82,6 +82,15 @@ impl TypeObject for AssetBank {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -127,6 +136,15 @@ impl TypeObject for Animatable {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -174,6 +192,15 @@ impl TypeObject for SceneOpMatrix {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -217,6 +244,15 @@ impl TypeObject for WaypointVaultType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -264,111 +300,215 @@ pub struct AntSettings {
 
 pub trait AntSettingsTrait: super::core::SystemSettingsTrait {
     fn use_p_a(&self) -> &bool;
+    fn use_p_a_mut(&mut self) -> &mut bool;
     fn use_h_i_k(&self) -> &bool;
+    fn use_h_i_k_mut(&mut self) -> &mut bool;
     fn allow_variable_tick_length(&self) -> &bool;
+    fn allow_variable_tick_length_mut(&mut self) -> &mut bool;
     fn use_weapon_fov(&self) -> &bool;
+    fn use_weapon_fov_mut(&mut self) -> &mut bool;
     fn force_pose_update(&self) -> &bool;
+    fn force_pose_update_mut(&mut self) -> &mut bool;
     fn force_lod_distance(&self) -> &f32;
+    fn force_lod_distance_mut(&mut self) -> &mut f32;
     fn use_camera_fov(&self) -> &bool;
+    fn use_camera_fov_mut(&mut self) -> &mut bool;
     fn enable_p_a(&self) -> &bool;
+    fn enable_p_a_mut(&mut self) -> &mut bool;
     fn client_emulates_server(&self) -> &bool;
+    fn client_emulates_server_mut(&mut self) -> &mut bool;
     fn update_enable(&self) -> &bool;
+    fn update_enable_mut(&mut self) -> &mut bool;
     fn enable_package_cache(&self) -> &bool;
+    fn enable_package_cache_mut(&mut self) -> &mut bool;
     fn enable_debug_log_file(&self) -> &bool;
+    fn enable_debug_log_file_mut(&mut self) -> &mut bool;
     fn enable_pose_jobs(&self) -> &bool;
+    fn enable_pose_jobs_mut(&mut self) -> &mut bool;
     fn disable_a_i_lod_feature(&self) -> &bool;
+    fn disable_a_i_lod_feature_mut(&mut self) -> &mut bool;
     fn disable_model_animation_culling(&self) -> &bool;
+    fn disable_model_animation_culling_mut(&mut self) -> &mut bool;
     fn enable_jobs(&self) -> &bool;
+    fn enable_jobs_mut(&mut self) -> &mut bool;
     fn max_animatables_per_pose_job(&self) -> &i32;
+    fn max_animatables_per_pose_job_mut(&mut self) -> &mut i32;
     fn run_as_high_priority(&self) -> &bool;
+    fn run_as_high_priority_mut(&mut self) -> &mut bool;
     fn work_job_time_slice_ms(&self) -> &f32;
+    fn work_job_time_slice_ms_mut(&mut self) -> &mut f32;
     fn update_lodding_enable(&self) -> &bool;
+    fn update_lodding_enable_mut(&mut self) -> &mut bool;
     fn check_giant_soldiers(&self) -> &f32;
+    fn check_giant_soldiers_mut(&mut self) -> &mut f32;
     fn lean_signal_scale(&self) -> &f32;
+    fn lean_signal_scale_mut(&mut self) -> &mut f32;
     fn lean_signal_clamp(&self) -> &f32;
+    fn lean_signal_clamp_mut(&mut self) -> &mut f32;
     fn detailed_collision_speed_limit(&self) -> &f32;
+    fn detailed_collision_speed_limit_mut(&mut self) -> &mut f32;
     fn enable_frostbite_ant_physics_world(&self) -> &bool;
+    fn enable_frostbite_ant_physics_world_mut(&mut self) -> &mut bool;
     fn auto_cull_pixel_size(&self) -> &i32;
+    fn auto_cull_pixel_size_mut(&mut self) -> &mut i32;
 }
 
 impl AntSettingsTrait for AntSettings {
     fn use_p_a(&self) -> &bool {
         &self.use_p_a
     }
+    fn use_p_a_mut(&mut self) -> &mut bool {
+        &mut self.use_p_a
+    }
     fn use_h_i_k(&self) -> &bool {
         &self.use_h_i_k
+    }
+    fn use_h_i_k_mut(&mut self) -> &mut bool {
+        &mut self.use_h_i_k
     }
     fn allow_variable_tick_length(&self) -> &bool {
         &self.allow_variable_tick_length
     }
+    fn allow_variable_tick_length_mut(&mut self) -> &mut bool {
+        &mut self.allow_variable_tick_length
+    }
     fn use_weapon_fov(&self) -> &bool {
         &self.use_weapon_fov
+    }
+    fn use_weapon_fov_mut(&mut self) -> &mut bool {
+        &mut self.use_weapon_fov
     }
     fn force_pose_update(&self) -> &bool {
         &self.force_pose_update
     }
+    fn force_pose_update_mut(&mut self) -> &mut bool {
+        &mut self.force_pose_update
+    }
     fn force_lod_distance(&self) -> &f32 {
         &self.force_lod_distance
+    }
+    fn force_lod_distance_mut(&mut self) -> &mut f32 {
+        &mut self.force_lod_distance
     }
     fn use_camera_fov(&self) -> &bool {
         &self.use_camera_fov
     }
+    fn use_camera_fov_mut(&mut self) -> &mut bool {
+        &mut self.use_camera_fov
+    }
     fn enable_p_a(&self) -> &bool {
         &self.enable_p_a
+    }
+    fn enable_p_a_mut(&mut self) -> &mut bool {
+        &mut self.enable_p_a
     }
     fn client_emulates_server(&self) -> &bool {
         &self.client_emulates_server
     }
+    fn client_emulates_server_mut(&mut self) -> &mut bool {
+        &mut self.client_emulates_server
+    }
     fn update_enable(&self) -> &bool {
         &self.update_enable
+    }
+    fn update_enable_mut(&mut self) -> &mut bool {
+        &mut self.update_enable
     }
     fn enable_package_cache(&self) -> &bool {
         &self.enable_package_cache
     }
+    fn enable_package_cache_mut(&mut self) -> &mut bool {
+        &mut self.enable_package_cache
+    }
     fn enable_debug_log_file(&self) -> &bool {
         &self.enable_debug_log_file
+    }
+    fn enable_debug_log_file_mut(&mut self) -> &mut bool {
+        &mut self.enable_debug_log_file
     }
     fn enable_pose_jobs(&self) -> &bool {
         &self.enable_pose_jobs
     }
+    fn enable_pose_jobs_mut(&mut self) -> &mut bool {
+        &mut self.enable_pose_jobs
+    }
     fn disable_a_i_lod_feature(&self) -> &bool {
         &self.disable_a_i_lod_feature
+    }
+    fn disable_a_i_lod_feature_mut(&mut self) -> &mut bool {
+        &mut self.disable_a_i_lod_feature
     }
     fn disable_model_animation_culling(&self) -> &bool {
         &self.disable_model_animation_culling
     }
+    fn disable_model_animation_culling_mut(&mut self) -> &mut bool {
+        &mut self.disable_model_animation_culling
+    }
     fn enable_jobs(&self) -> &bool {
         &self.enable_jobs
+    }
+    fn enable_jobs_mut(&mut self) -> &mut bool {
+        &mut self.enable_jobs
     }
     fn max_animatables_per_pose_job(&self) -> &i32 {
         &self.max_animatables_per_pose_job
     }
+    fn max_animatables_per_pose_job_mut(&mut self) -> &mut i32 {
+        &mut self.max_animatables_per_pose_job
+    }
     fn run_as_high_priority(&self) -> &bool {
         &self.run_as_high_priority
+    }
+    fn run_as_high_priority_mut(&mut self) -> &mut bool {
+        &mut self.run_as_high_priority
     }
     fn work_job_time_slice_ms(&self) -> &f32 {
         &self.work_job_time_slice_ms
     }
+    fn work_job_time_slice_ms_mut(&mut self) -> &mut f32 {
+        &mut self.work_job_time_slice_ms
+    }
     fn update_lodding_enable(&self) -> &bool {
         &self.update_lodding_enable
+    }
+    fn update_lodding_enable_mut(&mut self) -> &mut bool {
+        &mut self.update_lodding_enable
     }
     fn check_giant_soldiers(&self) -> &f32 {
         &self.check_giant_soldiers
     }
+    fn check_giant_soldiers_mut(&mut self) -> &mut f32 {
+        &mut self.check_giant_soldiers
+    }
     fn lean_signal_scale(&self) -> &f32 {
         &self.lean_signal_scale
+    }
+    fn lean_signal_scale_mut(&mut self) -> &mut f32 {
+        &mut self.lean_signal_scale
     }
     fn lean_signal_clamp(&self) -> &f32 {
         &self.lean_signal_clamp
     }
+    fn lean_signal_clamp_mut(&mut self) -> &mut f32 {
+        &mut self.lean_signal_clamp
+    }
     fn detailed_collision_speed_limit(&self) -> &f32 {
         &self.detailed_collision_speed_limit
+    }
+    fn detailed_collision_speed_limit_mut(&mut self) -> &mut f32 {
+        &mut self.detailed_collision_speed_limit
     }
     fn enable_frostbite_ant_physics_world(&self) -> &bool {
         &self.enable_frostbite_ant_physics_world
     }
+    fn enable_frostbite_ant_physics_world_mut(&mut self) -> &mut bool {
+        &mut self.enable_frostbite_ant_physics_world
+    }
     fn auto_cull_pixel_size(&self) -> &i32 {
         &self.auto_cull_pixel_size
+    }
+    fn auto_cull_pixel_size_mut(&mut self) -> &mut i32 {
+        &mut self.auto_cull_pixel_size
     }
 }
 
@@ -376,12 +516,12 @@ impl super::core::SystemSettingsTrait for AntSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AntSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -563,6 +703,15 @@ impl TypeObject for AntSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -584,15 +733,23 @@ pub struct AntRef {
 
 pub trait AntRefTrait: TypeObject {
     fn asset_guid(&self) -> &glacier_util::guid::Guid;
+    fn asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn project_id(&self) -> &i32;
+    fn project_id_mut(&mut self) -> &mut i32;
 }
 
 impl AntRefTrait for AntRef {
     fn asset_guid(&self) -> &glacier_util::guid::Guid {
         &self.asset_guid
     }
+    fn asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.asset_guid
+    }
     fn project_id(&self) -> &i32 {
         &self.project_id
+    }
+    fn project_id_mut(&mut self) -> &mut i32 {
+        &mut self.project_id
     }
 }
 
@@ -629,6 +786,15 @@ impl TypeObject for AntRef {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -670,6 +836,15 @@ impl TypeObject for AntRefType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -718,6 +893,15 @@ impl TypeObject for GameStateValueTypeEnum {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -746,39 +930,71 @@ pub struct AntAnimationSetAsset {
 
 pub trait AntAnimationSetAssetTrait: super::core::AssetTrait {
     fn skeleton_asset(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
+    fn skeleton_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
     fn actor_asset_guid(&self) -> &glacier_util::guid::Guid;
+    fn actor_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn clip_asset_guids(&self) -> &Vec<glacier_util::guid::Guid>;
+    fn clip_asset_guids_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid>;
     fn looping_clip_asset_guids(&self) -> &Vec<glacier_util::guid::Guid>;
+    fn looping_clip_asset_guids_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid>;
     fn scene_op_matrix_asset_guid(&self) -> &glacier_util::guid::Guid;
+    fn scene_op_matrix_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn use_traj2_ref(&self) -> &bool;
+    fn use_traj2_ref_mut(&mut self) -> &mut bool;
     fn allow_animation_culling(&self) -> &bool;
+    fn allow_animation_culling_mut(&mut self) -> &mut bool;
     fn asset_bank_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn asset_bank_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl AntAnimationSetAssetTrait for AntAnimationSetAsset {
     fn skeleton_asset(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
         &self.skeleton_asset
     }
+    fn skeleton_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
+        &mut self.skeleton_asset
+    }
     fn actor_asset_guid(&self) -> &glacier_util::guid::Guid {
         &self.actor_asset_guid
+    }
+    fn actor_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.actor_asset_guid
     }
     fn clip_asset_guids(&self) -> &Vec<glacier_util::guid::Guid> {
         &self.clip_asset_guids
     }
+    fn clip_asset_guids_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid> {
+        &mut self.clip_asset_guids
+    }
     fn looping_clip_asset_guids(&self) -> &Vec<glacier_util::guid::Guid> {
         &self.looping_clip_asset_guids
+    }
+    fn looping_clip_asset_guids_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid> {
+        &mut self.looping_clip_asset_guids
     }
     fn scene_op_matrix_asset_guid(&self) -> &glacier_util::guid::Guid {
         &self.scene_op_matrix_asset_guid
     }
+    fn scene_op_matrix_asset_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.scene_op_matrix_asset_guid
+    }
     fn use_traj2_ref(&self) -> &bool {
         &self.use_traj2_ref
+    }
+    fn use_traj2_ref_mut(&mut self) -> &mut bool {
+        &mut self.use_traj2_ref
     }
     fn allow_animation_culling(&self) -> &bool {
         &self.allow_animation_culling
     }
+    fn allow_animation_culling_mut(&mut self) -> &mut bool {
+        &mut self.allow_animation_culling
+    }
     fn asset_bank_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.asset_bank_resource
+    }
+    fn asset_bank_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.asset_bank_resource
     }
 }
 
@@ -786,12 +1002,12 @@ impl super::core::AssetTrait for AntAnimationSetAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AntAnimationSetAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTANIMATIONSETASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -865,6 +1081,15 @@ impl TypeObject for AntAnimationSetAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -890,31 +1115,55 @@ pub struct AntAnimatableData {
 
 pub trait AntAnimatableDataTrait: TypeObject {
     fn actor(&self) -> &AntRef;
+    fn actor_mut(&mut self) -> &mut AntRef;
     fn scene_op_matrix(&self) -> &AntRef;
+    fn scene_op_matrix_mut(&mut self) -> &mut AntRef;
     fn collision_world(&self) -> &AntRef;
+    fn collision_world_mut(&mut self) -> &mut AntRef;
     fn right_hand_effector_disable_override(&self) -> &AntRef;
+    fn right_hand_effector_disable_override_mut(&mut self) -> &mut AntRef;
     fn left_hand_effector_disable_override(&self) -> &AntRef;
+    fn left_hand_effector_disable_override_mut(&mut self) -> &mut AntRef;
     fn master_skeleton_asset(&self) -> &Option<Arc<Mutex<dyn super::entity::MasterSkeletonAssetTrait>>>;
+    fn master_skeleton_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::MasterSkeletonAssetTrait>>>;
 }
 
 impl AntAnimatableDataTrait for AntAnimatableData {
     fn actor(&self) -> &AntRef {
         &self.actor
     }
+    fn actor_mut(&mut self) -> &mut AntRef {
+        &mut self.actor
+    }
     fn scene_op_matrix(&self) -> &AntRef {
         &self.scene_op_matrix
+    }
+    fn scene_op_matrix_mut(&mut self) -> &mut AntRef {
+        &mut self.scene_op_matrix
     }
     fn collision_world(&self) -> &AntRef {
         &self.collision_world
     }
+    fn collision_world_mut(&mut self) -> &mut AntRef {
+        &mut self.collision_world
+    }
     fn right_hand_effector_disable_override(&self) -> &AntRef {
         &self.right_hand_effector_disable_override
+    }
+    fn right_hand_effector_disable_override_mut(&mut self) -> &mut AntRef {
+        &mut self.right_hand_effector_disable_override
     }
     fn left_hand_effector_disable_override(&self) -> &AntRef {
         &self.left_hand_effector_disable_override
     }
+    fn left_hand_effector_disable_override_mut(&mut self) -> &mut AntRef {
+        &mut self.left_hand_effector_disable_override
+    }
     fn master_skeleton_asset(&self) -> &Option<Arc<Mutex<dyn super::entity::MasterSkeletonAssetTrait>>> {
         &self.master_skeleton_asset
+    }
+    fn master_skeleton_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::MasterSkeletonAssetTrait>>> {
+        &mut self.master_skeleton_asset
     }
 }
 
@@ -976,6 +1225,15 @@ impl TypeObject for AntAnimatableData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -999,19 +1257,31 @@ pub struct AntProjectAsset {
 
 pub trait AntProjectAssetTrait: super::core::AssetTrait {
     fn ant_native_project_name(&self) -> &String;
+    fn ant_native_project_name_mut(&mut self) -> &mut String;
     fn scene_op(&self) -> &AntRef;
+    fn scene_op_mut(&mut self) -> &mut AntRef;
     fn project_id(&self) -> &i32;
+    fn project_id_mut(&mut self) -> &mut i32;
 }
 
 impl AntProjectAssetTrait for AntProjectAsset {
     fn ant_native_project_name(&self) -> &String {
         &self.ant_native_project_name
     }
+    fn ant_native_project_name_mut(&mut self) -> &mut String {
+        &mut self.ant_native_project_name
+    }
     fn scene_op(&self) -> &AntRef {
         &self.scene_op
     }
+    fn scene_op_mut(&mut self) -> &mut AntRef {
+        &mut self.scene_op
+    }
     fn project_id(&self) -> &i32 {
         &self.project_id
+    }
+    fn project_id_mut(&mut self) -> &mut i32 {
+        &mut self.project_id
     }
 }
 
@@ -1019,12 +1289,12 @@ impl super::core::AssetTrait for AntProjectAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AntProjectAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTPROJECTASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1068,6 +1338,15 @@ impl TypeObject for AntProjectAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1090,19 +1369,31 @@ pub struct AntStateHierarchyNode {
 
 pub trait AntStateHierarchyNodeTrait: TypeObject {
     fn state_asset(&self) -> &Option<Arc<Mutex<dyn AntStateAssetTrait>>>;
+    fn state_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AntStateAssetTrait>>>;
     fn child_count(&self) -> &u16;
+    fn child_count_mut(&mut self) -> &mut u16;
     fn first_child_index(&self) -> &u16;
+    fn first_child_index_mut(&mut self) -> &mut u16;
 }
 
 impl AntStateHierarchyNodeTrait for AntStateHierarchyNode {
     fn state_asset(&self) -> &Option<Arc<Mutex<dyn AntStateAssetTrait>>> {
         &self.state_asset
     }
+    fn state_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AntStateAssetTrait>>> {
+        &mut self.state_asset
+    }
     fn child_count(&self) -> &u16 {
         &self.child_count
     }
+    fn child_count_mut(&mut self) -> &mut u16 {
+        &mut self.child_count
+    }
     fn first_child_index(&self) -> &u16 {
         &self.first_child_index
+    }
+    fn first_child_index_mut(&mut self) -> &mut u16 {
+        &mut self.first_child_index
     }
 }
 
@@ -1146,6 +1437,15 @@ impl TypeObject for AntStateHierarchyNode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1174,12 +1474,12 @@ impl super::core::AssetTrait for AntCbaAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AntCbaAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTCBAASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1205,6 +1505,15 @@ impl TypeObject for AntCbaAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1227,15 +1536,23 @@ pub struct AntStateAsset {
 
 pub trait AntStateAssetTrait: super::core::AssetTrait {
     fn streaming_guid(&self) -> &glacier_util::guid::Guid;
+    fn streaming_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn chunk_size(&self) -> &i32;
+    fn chunk_size_mut(&mut self) -> &mut i32;
 }
 
 impl AntStateAssetTrait for AntStateAsset {
     fn streaming_guid(&self) -> &glacier_util::guid::Guid {
         &self.streaming_guid
     }
+    fn streaming_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.streaming_guid
+    }
     fn chunk_size(&self) -> &i32 {
         &self.chunk_size
+    }
+    fn chunk_size_mut(&mut self) -> &mut i32 {
+        &mut self.chunk_size
     }
 }
 
@@ -1243,12 +1560,12 @@ impl super::core::AssetTrait for AntStateAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AntStateAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTSTATEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1286,6 +1603,15 @@ impl TypeObject for AntStateAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1307,15 +1633,23 @@ pub struct EnumGuidIndexPair {
 
 pub trait EnumGuidIndexPairTrait: TypeObject {
     fn enum_guid(&self) -> &glacier_util::guid::Guid;
+    fn enum_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn index(&self) -> &i32;
+    fn index_mut(&mut self) -> &mut i32;
 }
 
 impl EnumGuidIndexPairTrait for EnumGuidIndexPair {
     fn enum_guid(&self) -> &glacier_util::guid::Guid {
         &self.enum_guid
     }
+    fn enum_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.enum_guid
+    }
     fn index(&self) -> &i32 {
         &self.index
+    }
+    fn index_mut(&mut self) -> &mut i32 {
+        &mut self.index
     }
 }
 
@@ -1352,6 +1686,15 @@ impl TypeObject for EnumGuidIndexPair {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1398,6 +1741,15 @@ impl TypeObject for AntScenario {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1419,15 +1771,23 @@ pub struct AntRefInfo {
 
 pub trait AntRefInfoTrait: TypeObject {
     fn referencing_partition(&self) -> &glacier_util::guid::Guid;
+    fn referencing_partition_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn ant_ref(&self) -> &AntRef;
+    fn ant_ref_mut(&mut self) -> &mut AntRef;
 }
 
 impl AntRefInfoTrait for AntRefInfo {
     fn referencing_partition(&self) -> &glacier_util::guid::Guid {
         &self.referencing_partition
     }
+    fn referencing_partition_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.referencing_partition
+    }
     fn ant_ref(&self) -> &AntRef {
         &self.ant_ref
+    }
+    fn ant_ref_mut(&mut self) -> &mut AntRef {
+        &mut self.ant_ref
     }
 }
 
@@ -1465,6 +1825,15 @@ impl TypeObject for AntRefInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1490,9 +1859,6 @@ impl AntPackageHelperTrait for AntPackageHelper {
 }
 
 impl super::core::DataContainerTrait for AntPackageHelper {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTPACKAGEHELPER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1517,6 +1883,15 @@ impl TypeObject for AntPackageHelper {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1562,6 +1937,15 @@ impl TypeObject for AntPackagingType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

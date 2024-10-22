@@ -26,23 +26,39 @@ pub struct EnvironmentDecalVolumeTemplateData {
 
 pub trait EnvironmentDecalVolumeTemplateDataTrait: super::decal_volume_base::EnvironmentDecalVolumeTemplateBaseDataTrait {
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn mask_type(&self) -> &EnvironmentDecalVolumeMaskType;
+    fn mask_type_mut(&mut self) -> &mut EnvironmentDecalVolumeMaskType;
     fn sorting_priority(&self) -> &u8;
+    fn sorting_priority_mut(&mut self) -> &mut u8;
     fn culling_distance(&self) -> &super::core::QualityScalableFloat;
+    fn culling_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
 }
 
 impl EnvironmentDecalVolumeTemplateDataTrait for EnvironmentDecalVolumeTemplateData {
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
         &self.shader
     }
+    fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct {
+        &mut self.shader
+    }
     fn mask_type(&self) -> &EnvironmentDecalVolumeMaskType {
         &self.mask_type
+    }
+    fn mask_type_mut(&mut self) -> &mut EnvironmentDecalVolumeMaskType {
+        &mut self.mask_type
     }
     fn sorting_priority(&self) -> &u8 {
         &self.sorting_priority
     }
+    fn sorting_priority_mut(&mut self) -> &mut u8 {
+        &mut self.sorting_priority
+    }
     fn culling_distance(&self) -> &super::core::QualityScalableFloat {
         &self.culling_distance
+    }
+    fn culling_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.culling_distance
     }
 }
 
@@ -53,12 +69,12 @@ impl super::core::AssetTrait for EnvironmentDecalVolumeTemplateData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EnvironmentDecalVolumeTemplateData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENVIRONMENTDECALVOLUMETEMPLATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -108,6 +124,15 @@ impl TypeObject for EnvironmentDecalVolumeTemplateData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -147,6 +172,15 @@ impl TypeObject for EnvironmentDecalVolumeMaskType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

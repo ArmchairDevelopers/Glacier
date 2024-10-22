@@ -29,15 +29,23 @@ pub struct DecalDynamicState {
 
 pub trait DecalDynamicStateTrait: TypeObject {
     fn is_detached(&self) -> &bool;
+    fn is_detached_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl DecalDynamicStateTrait for DecalDynamicState {
     fn is_detached(&self) -> &bool {
         &self.is_detached
     }
+    fn is_detached_mut(&mut self) -> &mut bool {
+        &mut self.is_detached
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -75,6 +83,15 @@ impl TypeObject for DecalDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -102,39 +119,71 @@ pub struct DecalStaticState {
 
 pub trait DecalStaticStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::render_base::DecalTemplateBaseAssetTrait>>>;
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::DecalTemplateBaseAssetTrait>>>;
     fn life_time(&self) -> &DecalLifeTime;
+    fn life_time_mut(&mut self) -> &mut DecalLifeTime;
     fn apply_on_terrain(&self) -> &bool;
+    fn apply_on_terrain_mut(&mut self) -> &mut bool;
     fn exclusive_model(&self) -> &super::world_base::ModelHandle;
+    fn exclusive_model_mut(&mut self) -> &mut super::world_base::ModelHandle;
     fn exclusive_model_part(&self) -> &u32;
+    fn exclusive_model_part_mut(&mut self) -> &mut u32;
     fn ignored_models(&self) -> &Vec<super::world_base::ModelHandle>;
+    fn ignored_models_mut(&mut self) -> &mut Vec<super::world_base::ModelHandle>;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl DecalStaticStateTrait for DecalStaticState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::render_base::DecalTemplateBaseAssetTrait>>> {
         &self.asset
+    }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::DecalTemplateBaseAssetTrait>>> {
+        &mut self.asset
     }
     fn life_time(&self) -> &DecalLifeTime {
         &self.life_time
     }
+    fn life_time_mut(&mut self) -> &mut DecalLifeTime {
+        &mut self.life_time
+    }
     fn apply_on_terrain(&self) -> &bool {
         &self.apply_on_terrain
+    }
+    fn apply_on_terrain_mut(&mut self) -> &mut bool {
+        &mut self.apply_on_terrain
     }
     fn exclusive_model(&self) -> &super::world_base::ModelHandle {
         &self.exclusive_model
     }
+    fn exclusive_model_mut(&mut self) -> &mut super::world_base::ModelHandle {
+        &mut self.exclusive_model
+    }
     fn exclusive_model_part(&self) -> &u32 {
         &self.exclusive_model_part
+    }
+    fn exclusive_model_part_mut(&mut self) -> &mut u32 {
+        &mut self.exclusive_model_part
     }
     fn ignored_models(&self) -> &Vec<super::world_base::ModelHandle> {
         &self.ignored_models
     }
+    fn ignored_models_mut(&mut self) -> &mut Vec<super::world_base::ModelHandle> {
+        &mut self.ignored_models
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -208,6 +257,15 @@ impl TypeObject for DecalStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -245,6 +303,15 @@ impl TypeObject for DecalLifeTime {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -302,6 +369,15 @@ impl TypeObject for DecalVolumeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -354,6 +430,15 @@ impl TypeObject for DecalEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -69,111 +69,215 @@ pub struct UIImScreenDynamicState {
 
 pub trait UIImScreenDynamicStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn commands(&self) -> &Vec<UIImCommandHandle>;
+    fn commands_mut(&mut self) -> &mut Vec<UIImCommandHandle>;
     fn enable_depth_culling(&self) -> &bool;
+    fn enable_depth_culling_mut(&mut self) -> &mut bool;
     fn global_fade_value(&self) -> &f32;
+    fn global_fade_value_mut(&mut self) -> &mut f32;
     fn render_pass(&self) -> &i32;
+    fn render_pass_mut(&mut self) -> &mut i32;
     fn update_order(&self) -> &i32;
+    fn update_order_mut(&mut self) -> &mut i32;
     fn render_target(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn render_target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
     fn create_render_target_stencil(&self) -> &bool;
+    fn create_render_target_stencil_mut(&mut self) -> &mut bool;
     fn render_target_on_trigger(&self) -> &bool;
+    fn render_target_on_trigger_mut(&mut self) -> &mut bool;
     fn render_target_trigger_count(&self) -> &u32;
+    fn render_target_trigger_count_mut(&mut self) -> &mut u32;
     fn clear_render_target(&self) -> &bool;
+    fn clear_render_target_mut(&mut self) -> &mut bool;
     fn viewport_size(&self) -> &super::core::Vec2;
+    fn viewport_size_mut(&mut self) -> &mut super::core::Vec2;
     fn display_rect(&self) -> &super::render_base::ViewportRect;
+    fn display_rect_mut(&mut self) -> &mut super::render_base::ViewportRect;
     fn preferred_rect(&self) -> &super::render_base::ViewportRect;
+    fn preferred_rect_mut(&mut self) -> &mut super::render_base::ViewportRect;
     fn virtual_screen_size(&self) -> &super::core::Vec2;
+    fn virtual_screen_size_mut(&mut self) -> &mut super::core::Vec2;
     fn screen_layout(&self) -> &super::core::Vec2;
+    fn screen_layout_mut(&mut self) -> &mut super::core::Vec2;
     fn transform(&self) -> &super::state_stream::TransformSpaceHandle;
+    fn transform_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn scale(&self) -> &f32;
+    fn scale_mut(&mut self) -> &mut f32;
     fn center_screen(&self) -> &bool;
+    fn center_screen_mut(&mut self) -> &mut bool;
     fn projection_mode(&self) -> &UIScreenProjectionMode;
+    fn projection_mode_mut(&mut self) -> &mut UIScreenProjectionMode;
     fn use_game_view_projection(&self) -> &bool;
+    fn use_game_view_projection_mut(&mut self) -> &mut bool;
     fn normalized_mouse_position(&self) -> &super::core::Vec2;
+    fn normalized_mouse_position_mut(&mut self) -> &mut super::core::Vec2;
     fn texture_bindings(&self) -> &Vec<UITextureMappingAssetBinding>;
+    fn texture_bindings_mut(&mut self) -> &mut Vec<UITextureMappingAssetBinding>;
     fn unmapped_textures(&self) -> &Vec<super::render_base::TextureResourceHandle>;
+    fn unmapped_textures_mut(&mut self) -> &mut Vec<super::render_base::TextureResourceHandle>;
     fn screen_sampler_settings(&self) -> &UIScreenSamplerSettings;
+    fn screen_sampler_settings_mut(&mut self) -> &mut UIScreenSamplerSettings;
     fn field_flag_changed0(&self) -> &u32;
+    fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
 
 impl UIImScreenDynamicStateTrait for UIImScreenDynamicState {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn commands(&self) -> &Vec<UIImCommandHandle> {
         &self.commands
+    }
+    fn commands_mut(&mut self) -> &mut Vec<UIImCommandHandle> {
+        &mut self.commands
     }
     fn enable_depth_culling(&self) -> &bool {
         &self.enable_depth_culling
     }
+    fn enable_depth_culling_mut(&mut self) -> &mut bool {
+        &mut self.enable_depth_culling
+    }
     fn global_fade_value(&self) -> &f32 {
         &self.global_fade_value
+    }
+    fn global_fade_value_mut(&mut self) -> &mut f32 {
+        &mut self.global_fade_value
     }
     fn render_pass(&self) -> &i32 {
         &self.render_pass
     }
+    fn render_pass_mut(&mut self) -> &mut i32 {
+        &mut self.render_pass
+    }
     fn update_order(&self) -> &i32 {
         &self.update_order
+    }
+    fn update_order_mut(&mut self) -> &mut i32 {
+        &mut self.update_order
     }
     fn render_target(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
         &self.render_target
     }
+    fn render_target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+        &mut self.render_target
+    }
     fn create_render_target_stencil(&self) -> &bool {
         &self.create_render_target_stencil
+    }
+    fn create_render_target_stencil_mut(&mut self) -> &mut bool {
+        &mut self.create_render_target_stencil
     }
     fn render_target_on_trigger(&self) -> &bool {
         &self.render_target_on_trigger
     }
+    fn render_target_on_trigger_mut(&mut self) -> &mut bool {
+        &mut self.render_target_on_trigger
+    }
     fn render_target_trigger_count(&self) -> &u32 {
         &self.render_target_trigger_count
+    }
+    fn render_target_trigger_count_mut(&mut self) -> &mut u32 {
+        &mut self.render_target_trigger_count
     }
     fn clear_render_target(&self) -> &bool {
         &self.clear_render_target
     }
+    fn clear_render_target_mut(&mut self) -> &mut bool {
+        &mut self.clear_render_target
+    }
     fn viewport_size(&self) -> &super::core::Vec2 {
         &self.viewport_size
+    }
+    fn viewport_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.viewport_size
     }
     fn display_rect(&self) -> &super::render_base::ViewportRect {
         &self.display_rect
     }
+    fn display_rect_mut(&mut self) -> &mut super::render_base::ViewportRect {
+        &mut self.display_rect
+    }
     fn preferred_rect(&self) -> &super::render_base::ViewportRect {
         &self.preferred_rect
+    }
+    fn preferred_rect_mut(&mut self) -> &mut super::render_base::ViewportRect {
+        &mut self.preferred_rect
     }
     fn virtual_screen_size(&self) -> &super::core::Vec2 {
         &self.virtual_screen_size
     }
+    fn virtual_screen_size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.virtual_screen_size
+    }
     fn screen_layout(&self) -> &super::core::Vec2 {
         &self.screen_layout
+    }
+    fn screen_layout_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.screen_layout
     }
     fn transform(&self) -> &super::state_stream::TransformSpaceHandle {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
+        &mut self.transform
+    }
     fn scale(&self) -> &f32 {
         &self.scale
+    }
+    fn scale_mut(&mut self) -> &mut f32 {
+        &mut self.scale
     }
     fn center_screen(&self) -> &bool {
         &self.center_screen
     }
+    fn center_screen_mut(&mut self) -> &mut bool {
+        &mut self.center_screen
+    }
     fn projection_mode(&self) -> &UIScreenProjectionMode {
         &self.projection_mode
+    }
+    fn projection_mode_mut(&mut self) -> &mut UIScreenProjectionMode {
+        &mut self.projection_mode
     }
     fn use_game_view_projection(&self) -> &bool {
         &self.use_game_view_projection
     }
+    fn use_game_view_projection_mut(&mut self) -> &mut bool {
+        &mut self.use_game_view_projection
+    }
     fn normalized_mouse_position(&self) -> &super::core::Vec2 {
         &self.normalized_mouse_position
+    }
+    fn normalized_mouse_position_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.normalized_mouse_position
     }
     fn texture_bindings(&self) -> &Vec<UITextureMappingAssetBinding> {
         &self.texture_bindings
     }
+    fn texture_bindings_mut(&mut self) -> &mut Vec<UITextureMappingAssetBinding> {
+        &mut self.texture_bindings
+    }
     fn unmapped_textures(&self) -> &Vec<super::render_base::TextureResourceHandle> {
         &self.unmapped_textures
+    }
+    fn unmapped_textures_mut(&mut self) -> &mut Vec<super::render_base::TextureResourceHandle> {
+        &mut self.unmapped_textures
     }
     fn screen_sampler_settings(&self) -> &UIScreenSamplerSettings {
         &self.screen_sampler_settings
     }
+    fn screen_sampler_settings_mut(&mut self) -> &mut UIScreenSamplerSettings {
+        &mut self.screen_sampler_settings
+    }
     fn field_flag_changed0(&self) -> &u32 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u32 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -355,6 +459,15 @@ impl TypeObject for UIImScreenDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -378,23 +491,39 @@ pub struct UIScreenSamplerSettings {
 
 pub trait UIScreenSamplerSettingsTrait: TypeObject {
     fn min_filter(&self) -> &super::render::TextureFilter;
+    fn min_filter_mut(&mut self) -> &mut super::render::TextureFilter;
     fn mag_filter(&self) -> &super::render::TextureFilter;
+    fn mag_filter_mut(&mut self) -> &mut super::render::TextureFilter;
     fn mip_filter(&self) -> &super::render::TextureFilter;
+    fn mip_filter_mut(&mut self) -> &mut super::render::TextureFilter;
     fn anisotropy_degree(&self) -> &i32;
+    fn anisotropy_degree_mut(&mut self) -> &mut i32;
 }
 
 impl UIScreenSamplerSettingsTrait for UIScreenSamplerSettings {
     fn min_filter(&self) -> &super::render::TextureFilter {
         &self.min_filter
     }
+    fn min_filter_mut(&mut self) -> &mut super::render::TextureFilter {
+        &mut self.min_filter
+    }
     fn mag_filter(&self) -> &super::render::TextureFilter {
         &self.mag_filter
+    }
+    fn mag_filter_mut(&mut self) -> &mut super::render::TextureFilter {
+        &mut self.mag_filter
     }
     fn mip_filter(&self) -> &super::render::TextureFilter {
         &self.mip_filter
     }
+    fn mip_filter_mut(&mut self) -> &mut super::render::TextureFilter {
+        &mut self.mip_filter
+    }
     fn anisotropy_degree(&self) -> &i32 {
         &self.anisotropy_degree
+    }
+    fn anisotropy_degree_mut(&mut self) -> &mut i32 {
+        &mut self.anisotropy_degree
     }
 }
 
@@ -444,6 +573,15 @@ impl TypeObject for UIScreenSamplerSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -468,27 +606,47 @@ pub struct UIImScreenStaticState {
 
 pub trait UIImScreenStaticStateTrait: TypeObject {
     fn view_index(&self) -> &u32;
+    fn view_index_mut(&mut self) -> &mut u32;
     fn compartment(&self) -> &u16;
+    fn compartment_mut(&mut self) -> &mut u16;
     fn field_of_view(&self) -> &f32;
+    fn field_of_view_mut(&mut self) -> &mut f32;
     fn z_plane(&self) -> &f32;
+    fn z_plane_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIImScreenStaticStateTrait for UIImScreenStaticState {
     fn view_index(&self) -> &u32 {
         &self.view_index
     }
+    fn view_index_mut(&mut self) -> &mut u32 {
+        &mut self.view_index
+    }
     fn compartment(&self) -> &u16 {
         &self.compartment
+    }
+    fn compartment_mut(&mut self) -> &mut u16 {
+        &mut self.compartment
     }
     fn field_of_view(&self) -> &f32 {
         &self.field_of_view
     }
+    fn field_of_view_mut(&mut self) -> &mut f32 {
+        &mut self.field_of_view
+    }
     fn z_plane(&self) -> &f32 {
         &self.z_plane
     }
+    fn z_plane_mut(&mut self) -> &mut f32 {
+        &mut self.z_plane
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -544,6 +702,15 @@ impl TypeObject for UIImScreenStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -588,6 +755,15 @@ impl TypeObject for UIImReverseHandle {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -634,6 +810,15 @@ impl TypeObject for UIImCommandHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -679,6 +864,15 @@ impl TypeObject for UIImScreenHandle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -708,47 +902,87 @@ pub struct UIImTextCommandConfig {
 
 pub trait UIImTextCommandConfigTrait: TypeObject {
     fn effect(&self) -> &Option<Arc<Mutex<dyn UIElementFontEffectBaseAssetTrait>>>;
+    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontEffectBaseAssetTrait>>>;
     fn style(&self) -> &Option<Arc<Mutex<dyn UIElementFontStyleBaseAssetTrait>>>;
+    fn style_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontStyleBaseAssetTrait>>>;
     fn horizontal_alignment(&self) -> &UIElementAlignment;
+    fn horizontal_alignment_mut(&mut self) -> &mut UIElementAlignment;
     fn vertical_alignment(&self) -> &UIElementAlignment;
+    fn vertical_alignment_mut(&mut self) -> &mut UIElementAlignment;
     fn scale(&self) -> &f32;
+    fn scale_mut(&mut self) -> &mut f32;
     fn clip_to_rect(&self) -> &bool;
+    fn clip_to_rect_mut(&mut self) -> &mut bool;
     fn wordwrap(&self) -> &bool;
+    fn wordwrap_mut(&mut self) -> &mut bool;
     fn password_mode(&self) -> &bool;
+    fn password_mode_mut(&mut self) -> &mut bool;
     fn scrollable(&self) -> &bool;
+    fn scrollable_mut(&mut self) -> &mut bool;
     fn offset(&self) -> &f32;
+    fn offset_mut(&mut self) -> &mut f32;
 }
 
 impl UIImTextCommandConfigTrait for UIImTextCommandConfig {
     fn effect(&self) -> &Option<Arc<Mutex<dyn UIElementFontEffectBaseAssetTrait>>> {
         &self.effect
     }
+    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontEffectBaseAssetTrait>>> {
+        &mut self.effect
+    }
     fn style(&self) -> &Option<Arc<Mutex<dyn UIElementFontStyleBaseAssetTrait>>> {
         &self.style
+    }
+    fn style_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontStyleBaseAssetTrait>>> {
+        &mut self.style
     }
     fn horizontal_alignment(&self) -> &UIElementAlignment {
         &self.horizontal_alignment
     }
+    fn horizontal_alignment_mut(&mut self) -> &mut UIElementAlignment {
+        &mut self.horizontal_alignment
+    }
     fn vertical_alignment(&self) -> &UIElementAlignment {
         &self.vertical_alignment
+    }
+    fn vertical_alignment_mut(&mut self) -> &mut UIElementAlignment {
+        &mut self.vertical_alignment
     }
     fn scale(&self) -> &f32 {
         &self.scale
     }
+    fn scale_mut(&mut self) -> &mut f32 {
+        &mut self.scale
+    }
     fn clip_to_rect(&self) -> &bool {
         &self.clip_to_rect
+    }
+    fn clip_to_rect_mut(&mut self) -> &mut bool {
+        &mut self.clip_to_rect
     }
     fn wordwrap(&self) -> &bool {
         &self.wordwrap
     }
+    fn wordwrap_mut(&mut self) -> &mut bool {
+        &mut self.wordwrap
+    }
     fn password_mode(&self) -> &bool {
         &self.password_mode
+    }
+    fn password_mode_mut(&mut self) -> &mut bool {
+        &mut self.password_mode
     }
     fn scrollable(&self) -> &bool {
         &self.scrollable
     }
+    fn scrollable_mut(&mut self) -> &mut bool {
+        &mut self.scrollable
+    }
     fn offset(&self) -> &f32 {
         &self.offset
+    }
+    fn offset_mut(&mut self) -> &mut f32 {
+        &mut self.offset
     }
 }
 
@@ -834,6 +1068,15 @@ impl TypeObject for UIImTextCommandConfig {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -855,15 +1098,23 @@ pub struct UITextureMappingAssetBinding {
 
 pub trait UITextureMappingAssetBindingTrait: TypeObject {
     fn mapping(&self) -> &Option<Arc<Mutex<dyn UITextureMappingBaseAssetTrait>>>;
+    fn mapping_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UITextureMappingBaseAssetTrait>>>;
     fn compartment(&self) -> &u16;
+    fn compartment_mut(&mut self) -> &mut u16;
 }
 
 impl UITextureMappingAssetBindingTrait for UITextureMappingAssetBinding {
     fn mapping(&self) -> &Option<Arc<Mutex<dyn UITextureMappingBaseAssetTrait>>> {
         &self.mapping
     }
+    fn mapping_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UITextureMappingBaseAssetTrait>>> {
+        &mut self.mapping
+    }
     fn compartment(&self) -> &u16 {
         &self.compartment
+    }
+    fn compartment_mut(&mut self) -> &mut u16 {
+        &mut self.compartment
     }
 }
 
@@ -901,6 +1152,15 @@ impl TypeObject for UITextureMappingAssetBinding {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -929,12 +1189,12 @@ impl super::core::AssetTrait for UIElementFontEffectBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UIElementFontEffectBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTFONTEFFECTBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -959,6 +1219,15 @@ impl TypeObject for UIElementFontEffectBaseAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -988,12 +1257,12 @@ impl super::core::AssetTrait for UIElementFontStyleBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UIElementFontStyleBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTFONTSTYLEBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1018,6 +1287,15 @@ impl TypeObject for UIElementFontStyleBaseAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1047,12 +1325,12 @@ impl super::core::AssetTrait for UITextureMappingBaseAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UITextureMappingBaseAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UITEXTUREMAPPINGBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1077,6 +1355,15 @@ impl TypeObject for UITextureMappingBaseAsset {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1117,6 +1404,15 @@ impl TypeObject for UIScreenProjectionMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1160,6 +1456,15 @@ impl TypeObject for UIElementAlignment {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

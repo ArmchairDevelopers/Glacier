@@ -29,27 +29,47 @@ pub struct BifrostSettings {
 
 pub trait BifrostSettingsTrait: BifrostInternalTrait {
     fn prod(&self) -> &Option<Arc<Mutex<dyn BifrostInternalTrait>>>;
+    fn prod_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BifrostInternalTrait>>>;
     fn dev(&self) -> &Option<Arc<Mutex<dyn BifrostInternalTrait>>>;
+    fn dev_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BifrostInternalTrait>>>;
     fn test(&self) -> &Option<Arc<Mutex<dyn BifrostInternalTrait>>>;
+    fn test_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BifrostInternalTrait>>>;
     fn cert(&self) -> &Option<Arc<Mutex<dyn BifrostInternalTrait>>>;
+    fn cert_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BifrostInternalTrait>>>;
     fn title(&self) -> &String;
+    fn title_mut(&mut self) -> &mut String;
 }
 
 impl BifrostSettingsTrait for BifrostSettings {
     fn prod(&self) -> &Option<Arc<Mutex<dyn BifrostInternalTrait>>> {
         &self.prod
     }
+    fn prod_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BifrostInternalTrait>>> {
+        &mut self.prod
+    }
     fn dev(&self) -> &Option<Arc<Mutex<dyn BifrostInternalTrait>>> {
         &self.dev
+    }
+    fn dev_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BifrostInternalTrait>>> {
+        &mut self.dev
     }
     fn test(&self) -> &Option<Arc<Mutex<dyn BifrostInternalTrait>>> {
         &self.test
     }
+    fn test_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BifrostInternalTrait>>> {
+        &mut self.test
+    }
     fn cert(&self) -> &Option<Arc<Mutex<dyn BifrostInternalTrait>>> {
         &self.cert
     }
+    fn cert_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BifrostInternalTrait>>> {
+        &mut self.cert
+    }
     fn title(&self) -> &String {
         &self.title
+    }
+    fn title_mut(&mut self) -> &mut String {
+        &mut self.title
     }
 }
 
@@ -57,14 +77,26 @@ impl BifrostInternalTrait for BifrostSettings {
     fn host(&self) -> &String {
         self._glacier_base.host()
     }
+    fn host_mut(&mut self) -> &mut String {
+        self._glacier_base.host_mut()
+    }
     fn root_env(&self) -> &String {
         self._glacier_base.root_env()
+    }
+    fn root_env_mut(&mut self) -> &mut String {
+        self._glacier_base.root_env_mut()
     }
     fn blaze_env(&self) -> &String {
         self._glacier_base.blaze_env()
     }
+    fn blaze_env_mut(&mut self) -> &mut String {
+        self._glacier_base.blaze_env_mut()
+    }
     fn s_s_l(&self) -> &bool {
         self._glacier_base.s_s_l()
+    }
+    fn s_s_l_mut(&mut self) -> &mut bool {
+        self._glacier_base.s_s_l_mut()
     }
 }
 
@@ -72,12 +104,12 @@ impl super::core::SystemSettingsTrait for BifrostSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for BifrostSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BIFROSTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -133,6 +165,15 @@ impl TypeObject for BifrostSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -157,23 +198,39 @@ pub struct BifrostInternal {
 
 pub trait BifrostInternalTrait: super::core::SystemSettingsTrait {
     fn host(&self) -> &String;
+    fn host_mut(&mut self) -> &mut String;
     fn root_env(&self) -> &String;
+    fn root_env_mut(&mut self) -> &mut String;
     fn blaze_env(&self) -> &String;
+    fn blaze_env_mut(&mut self) -> &mut String;
     fn s_s_l(&self) -> &bool;
+    fn s_s_l_mut(&mut self) -> &mut bool;
 }
 
 impl BifrostInternalTrait for BifrostInternal {
     fn host(&self) -> &String {
         &self.host
     }
+    fn host_mut(&mut self) -> &mut String {
+        &mut self.host
+    }
     fn root_env(&self) -> &String {
         &self.root_env
+    }
+    fn root_env_mut(&mut self) -> &mut String {
+        &mut self.root_env
     }
     fn blaze_env(&self) -> &String {
         &self.blaze_env
     }
+    fn blaze_env_mut(&mut self) -> &mut String {
+        &mut self.blaze_env
+    }
     fn s_s_l(&self) -> &bool {
         &self.s_s_l
+    }
+    fn s_s_l_mut(&mut self) -> &mut bool {
+        &mut self.s_s_l
     }
 }
 
@@ -181,12 +238,12 @@ impl super::core::SystemSettingsTrait for BifrostInternal {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for BifrostInternal {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BIFROSTINTERNAL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -236,6 +293,15 @@ impl TypeObject for BifrostInternal {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -281,6 +347,15 @@ impl TypeObject for BifrostHttpErrorMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -314,6 +389,15 @@ impl TypeObject for BifrostConnectionErrorMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

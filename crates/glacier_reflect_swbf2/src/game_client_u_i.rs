@@ -189,6 +189,15 @@ impl TypeObject for UIScreenRenderTargetEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -241,6 +250,15 @@ impl TypeObject for ClientUIScreenRenderEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -295,6 +313,15 @@ impl TypeObject for UIWidgetEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -348,6 +375,15 @@ impl TypeObject for UIElementLayerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -400,6 +436,15 @@ impl TypeObject for UIElementWidgetReferenceEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -460,6 +505,15 @@ impl TypeObject for UIMaskingContainerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -516,6 +570,15 @@ impl TypeObject for UIContainerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -569,6 +632,15 @@ impl TypeObject for UIElementEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -615,6 +687,15 @@ impl TypeObject for UICppScreen {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -660,6 +741,15 @@ impl TypeObject for UISystemPostInitCompleteMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -678,43 +768,79 @@ pub struct PlayVideoEntityData {
 
 pub trait PlayVideoEntityDataTrait: super::entity::EntityDataTrait {
     fn movie(&self) -> &Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>;
+    fn movie_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>;
     fn network_streaming_url(&self) -> &String;
+    fn network_streaming_url_mut(&mut self) -> &mut String;
     fn r#loop(&self) -> &bool;
+    fn r#loop_mut(&mut self) -> &mut bool;
     fn keep_black_screen(&self) -> &bool;
+    fn keep_black_screen_mut(&mut self) -> &mut bool;
     fn allow_skip(&self) -> &bool;
+    fn allow_skip_mut(&mut self) -> &mut bool;
     fn draw_in_widget(&self) -> &bool;
+    fn draw_in_widget_mut(&mut self) -> &mut bool;
     fn render_world(&self) -> &bool;
+    fn render_world_mut(&mut self) -> &mut bool;
     fn use_sim_time(&self) -> &bool;
+    fn use_sim_time_mut(&mut self) -> &mut bool;
     fn video_identifier(&self) -> &String;
+    fn video_identifier_mut(&mut self) -> &mut String;
 }
 
 impl PlayVideoEntityDataTrait for PlayVideoEntityData {
     fn movie(&self) -> &Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>> {
         &self.movie
     }
+    fn movie_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>> {
+        &mut self.movie
+    }
     fn network_streaming_url(&self) -> &String {
         &self.network_streaming_url
+    }
+    fn network_streaming_url_mut(&mut self) -> &mut String {
+        &mut self.network_streaming_url
     }
     fn r#loop(&self) -> &bool {
         &self.r#loop
     }
+    fn r#loop_mut(&mut self) -> &mut bool {
+        &mut self.r#loop
+    }
     fn keep_black_screen(&self) -> &bool {
         &self.keep_black_screen
+    }
+    fn keep_black_screen_mut(&mut self) -> &mut bool {
+        &mut self.keep_black_screen
     }
     fn allow_skip(&self) -> &bool {
         &self.allow_skip
     }
+    fn allow_skip_mut(&mut self) -> &mut bool {
+        &mut self.allow_skip
+    }
     fn draw_in_widget(&self) -> &bool {
         &self.draw_in_widget
+    }
+    fn draw_in_widget_mut(&mut self) -> &mut bool {
+        &mut self.draw_in_widget
     }
     fn render_world(&self) -> &bool {
         &self.render_world
     }
+    fn render_world_mut(&mut self) -> &mut bool {
+        &mut self.render_world
+    }
     fn use_sim_time(&self) -> &bool {
         &self.use_sim_time
     }
+    fn use_sim_time_mut(&mut self) -> &mut bool {
+        &mut self.use_sim_time
+    }
     fn video_identifier(&self) -> &String {
         &self.video_identifier
+    }
+    fn video_identifier_mut(&mut self) -> &mut String {
+        &mut self.video_identifier
     }
 }
 
@@ -728,15 +854,15 @@ impl super::core::DataBusPeerTrait for PlayVideoEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PlayVideoEntityData {
 }
 
 impl super::core::DataContainerTrait for PlayVideoEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PLAYVIDEOENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -816,6 +942,15 @@ impl TypeObject for PlayVideoEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -838,15 +973,23 @@ pub struct MovieDebugEntityData {
 
 pub trait MovieDebugEntityDataTrait: super::entity::EntityDataTrait {
     fn language_override(&self) -> &super::core::LanguageFormat;
+    fn language_override_mut(&mut self) -> &mut super::core::LanguageFormat;
     fn stop_frame(&self) -> &i32;
+    fn stop_frame_mut(&mut self) -> &mut i32;
 }
 
 impl MovieDebugEntityDataTrait for MovieDebugEntityData {
     fn language_override(&self) -> &super::core::LanguageFormat {
         &self.language_override
     }
+    fn language_override_mut(&mut self) -> &mut super::core::LanguageFormat {
+        &mut self.language_override
+    }
     fn stop_frame(&self) -> &i32 {
         &self.stop_frame
+    }
+    fn stop_frame_mut(&mut self) -> &mut i32 {
+        &mut self.stop_frame
     }
 }
 
@@ -860,15 +1003,15 @@ impl super::core::DataBusPeerTrait for MovieDebugEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MovieDebugEntityData {
 }
 
 impl super::core::DataContainerTrait for MovieDebugEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVIEDEBUGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -906,6 +1049,15 @@ impl TypeObject for MovieDebugEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -929,23 +1081,39 @@ pub struct UIHitZoneCommandDynamicState {
 
 pub trait UIHitZoneCommandDynamicStateTrait: TypeObject {
     fn rect(&self) -> &super::core::Vec4;
+    fn rect_mut(&mut self) -> &mut super::core::Vec4;
     fn transform(&self) -> &super::core::Mat4;
+    fn transform_mut(&mut self) -> &mut super::core::Mat4;
     fn view_projection(&self) -> &super::core::Mat4;
+    fn view_projection_mut(&mut self) -> &mut super::core::Mat4;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIHitZoneCommandDynamicStateTrait for UIHitZoneCommandDynamicState {
     fn rect(&self) -> &super::core::Vec4 {
         &self.rect
     }
+    fn rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.rect
+    }
     fn transform(&self) -> &super::core::Mat4 {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::Mat4 {
+        &mut self.transform
     }
     fn view_projection(&self) -> &super::core::Mat4 {
         &self.view_projection
     }
+    fn view_projection_mut(&mut self) -> &mut super::core::Mat4 {
+        &mut self.view_projection
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -995,6 +1163,15 @@ impl TypeObject for UIHitZoneCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1016,15 +1193,23 @@ pub struct UIHitZoneCommandStaticState {
 
 pub trait UIHitZoneCommandStaticStateTrait: TypeObject {
     fn measure_handle(&self) -> &super::game_base::UIImReverseHandle;
+    fn measure_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIHitZoneCommandStaticStateTrait for UIHitZoneCommandStaticState {
     fn measure_handle(&self) -> &super::game_base::UIImReverseHandle {
         &self.measure_handle
     }
+    fn measure_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle {
+        &mut self.measure_handle
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1062,6 +1247,15 @@ impl TypeObject for UIHitZoneCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1085,23 +1279,39 @@ pub struct UIScreenProjectionCommandDynamicState {
 
 pub trait UIScreenProjectionCommandDynamicStateTrait: TypeObject {
     fn input(&self) -> &super::core::Vec2;
+    fn input_mut(&mut self) -> &mut super::core::Vec2;
     fn plane(&self) -> &super::core::Vec4;
+    fn plane_mut(&mut self) -> &mut super::core::Vec4;
     fn is_input_normalized(&self) -> &bool;
+    fn is_input_normalized_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIScreenProjectionCommandDynamicStateTrait for UIScreenProjectionCommandDynamicState {
     fn input(&self) -> &super::core::Vec2 {
         &self.input
     }
+    fn input_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.input
+    }
     fn plane(&self) -> &super::core::Vec4 {
         &self.plane
+    }
+    fn plane_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.plane
     }
     fn is_input_normalized(&self) -> &bool {
         &self.is_input_normalized
     }
+    fn is_input_normalized_mut(&mut self) -> &mut bool {
+        &mut self.is_input_normalized
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1151,6 +1361,15 @@ impl TypeObject for UIScreenProjectionCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1172,15 +1391,23 @@ pub struct UIScreenProjectionCommandStaticState {
 
 pub trait UIScreenProjectionCommandStaticStateTrait: TypeObject {
     fn reverse_handle(&self) -> &super::game_base::UIImReverseHandle;
+    fn reverse_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIScreenProjectionCommandStaticStateTrait for UIScreenProjectionCommandStaticState {
     fn reverse_handle(&self) -> &super::game_base::UIImReverseHandle {
         &self.reverse_handle
     }
+    fn reverse_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle {
+        &mut self.reverse_handle
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1218,6 +1445,15 @@ impl TypeObject for UIScreenProjectionCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1242,27 +1478,47 @@ pub struct UIInputCommandStaticState {
 
 pub trait UIInputCommandStaticStateTrait: TypeObject {
     fn command_type(&self) -> &UIInputCommandType;
+    fn command_type_mut(&mut self) -> &mut UIInputCommandType;
     fn reverse_handle(&self) -> &super::game_base::UIImReverseHandle;
+    fn reverse_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle;
     fn z_depth(&self) -> &f32;
+    fn z_depth_mut(&mut self) -> &mut f32;
     fn input_action(&self) -> &i32;
+    fn input_action_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIInputCommandStaticStateTrait for UIInputCommandStaticState {
     fn command_type(&self) -> &UIInputCommandType {
         &self.command_type
     }
+    fn command_type_mut(&mut self) -> &mut UIInputCommandType {
+        &mut self.command_type
+    }
     fn reverse_handle(&self) -> &super::game_base::UIImReverseHandle {
         &self.reverse_handle
+    }
+    fn reverse_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle {
+        &mut self.reverse_handle
     }
     fn z_depth(&self) -> &f32 {
         &self.z_depth
     }
+    fn z_depth_mut(&mut self) -> &mut f32 {
+        &mut self.z_depth
+    }
     fn input_action(&self) -> &i32 {
         &self.input_action
     }
+    fn input_action_mut(&mut self) -> &mut i32 {
+        &mut self.input_action
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1318,6 +1574,15 @@ impl TypeObject for UIInputCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1361,6 +1626,15 @@ impl TypeObject for UIInputCommandType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1386,31 +1660,55 @@ pub struct UIMouseInputCommandDynamicState {
 
 pub trait UIMouseInputCommandDynamicStateTrait: TypeObject {
     fn tag(&self) -> &String;
+    fn tag_mut(&mut self) -> &mut String;
     fn listen_rect(&self) -> &super::core::Vec4;
+    fn listen_rect_mut(&mut self) -> &mut super::core::Vec4;
     fn plane(&self) -> &super::core::Vec4;
+    fn plane_mut(&mut self) -> &mut super::core::Vec4;
     fn screen_local_transform(&self) -> &super::core::LinearTransform;
+    fn screen_local_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn mouse_input_type_mask(&self) -> &i32;
+    fn mouse_input_type_mask_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIMouseInputCommandDynamicStateTrait for UIMouseInputCommandDynamicState {
     fn tag(&self) -> &String {
         &self.tag
     }
+    fn tag_mut(&mut self) -> &mut String {
+        &mut self.tag
+    }
     fn listen_rect(&self) -> &super::core::Vec4 {
         &self.listen_rect
+    }
+    fn listen_rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.listen_rect
     }
     fn plane(&self) -> &super::core::Vec4 {
         &self.plane
     }
+    fn plane_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.plane
+    }
     fn screen_local_transform(&self) -> &super::core::LinearTransform {
         &self.screen_local_transform
+    }
+    fn screen_local_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.screen_local_transform
     }
     fn mouse_input_type_mask(&self) -> &i32 {
         &self.mouse_input_type_mask
     }
+    fn mouse_input_type_mask_mut(&mut self) -> &mut i32 {
+        &mut self.mouse_input_type_mask
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1472,6 +1770,15 @@ impl TypeObject for UIMouseInputCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1493,15 +1800,23 @@ pub struct UIMouseInputCommandStaticState {
 
 pub trait UIMouseInputCommandStaticStateTrait: TypeObject {
     fn reverse_handle(&self) -> &super::game_base::UIImReverseHandle;
+    fn reverse_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIMouseInputCommandStaticStateTrait for UIMouseInputCommandStaticState {
     fn reverse_handle(&self) -> &super::game_base::UIImReverseHandle {
         &self.reverse_handle
     }
+    fn reverse_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle {
+        &mut self.reverse_handle
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1539,6 +1854,15 @@ impl TypeObject for UIMouseInputCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1560,15 +1884,23 @@ pub struct UIDrawSectionNameCommandDynamicState {
 
 pub trait UIDrawSectionNameCommandDynamicStateTrait: TypeObject {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawSectionNameCommandDynamicStateTrait for UIDrawSectionNameCommandDynamicState {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1606,6 +1938,15 @@ impl TypeObject for UIDrawSectionNameCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1629,23 +1970,39 @@ pub struct UIDrawClearCommandDynamicState {
 
 pub trait UIDrawClearCommandDynamicStateTrait: TypeObject {
     fn color(&self) -> &super::core::Vec4;
+    fn color_mut(&mut self) -> &mut super::core::Vec4;
     fn stencil(&self) -> &u8;
+    fn stencil_mut(&mut self) -> &mut u8;
     fn clear_mask(&self) -> &u32;
+    fn clear_mask_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawClearCommandDynamicStateTrait for UIDrawClearCommandDynamicState {
     fn color(&self) -> &super::core::Vec4 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.color
+    }
     fn stencil(&self) -> &u8 {
         &self.stencil
+    }
+    fn stencil_mut(&mut self) -> &mut u8 {
+        &mut self.stencil
     }
     fn clear_mask(&self) -> &u32 {
         &self.clear_mask
     }
+    fn clear_mask_mut(&mut self) -> &mut u32 {
+        &mut self.clear_mask
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1695,6 +2052,15 @@ impl TypeObject for UIDrawClearCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1716,15 +2082,23 @@ pub struct UIDrawViewportCommandDynamicState {
 
 pub trait UIDrawViewportCommandDynamicStateTrait: TypeObject {
     fn viewport(&self) -> &super::render_base::ViewportRect;
+    fn viewport_mut(&mut self) -> &mut super::render_base::ViewportRect;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawViewportCommandDynamicStateTrait for UIDrawViewportCommandDynamicState {
     fn viewport(&self) -> &super::render_base::ViewportRect {
         &self.viewport
     }
+    fn viewport_mut(&mut self) -> &mut super::render_base::ViewportRect {
+        &mut self.viewport
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1762,6 +2136,15 @@ impl TypeObject for UIDrawViewportCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1783,15 +2166,23 @@ pub struct UIDrawViewportCommandStaticState {
 
 pub trait UIDrawViewportCommandStaticStateTrait: TypeObject {
     fn command_type(&self) -> &UIDrawViewportCommandType;
+    fn command_type_mut(&mut self) -> &mut UIDrawViewportCommandType;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawViewportCommandStaticStateTrait for UIDrawViewportCommandStaticState {
     fn command_type(&self) -> &UIDrawViewportCommandType {
         &self.command_type
     }
+    fn command_type_mut(&mut self) -> &mut UIDrawViewportCommandType {
+        &mut self.command_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -1828,6 +2219,15 @@ impl TypeObject for UIDrawViewportCommandStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1867,6 +2267,15 @@ impl TypeObject for UIDrawViewportCommandType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1895,43 +2304,79 @@ pub struct UIDrawBlendCommandDynamicState {
 
 pub trait UIDrawBlendCommandDynamicStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn separate_alpha_blend(&self) -> &bool;
+    fn separate_alpha_blend_mut(&mut self) -> &mut bool;
     fn color_op(&self) -> &super::render::RenderBlendOp;
+    fn color_op_mut(&mut self) -> &mut super::render::RenderBlendOp;
     fn alpha_op(&self) -> &super::render::RenderBlendOp;
+    fn alpha_op_mut(&mut self) -> &mut super::render::RenderBlendOp;
     fn source_color(&self) -> &super::render::RenderBlendMode;
+    fn source_color_mut(&mut self) -> &mut super::render::RenderBlendMode;
     fn dest_color(&self) -> &super::render::RenderBlendMode;
+    fn dest_color_mut(&mut self) -> &mut super::render::RenderBlendMode;
     fn source_alpha(&self) -> &super::render::RenderBlendMode;
+    fn source_alpha_mut(&mut self) -> &mut super::render::RenderBlendMode;
     fn dest_alpha(&self) -> &super::render::RenderBlendMode;
+    fn dest_alpha_mut(&mut self) -> &mut super::render::RenderBlendMode;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawBlendCommandDynamicStateTrait for UIDrawBlendCommandDynamicState {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn separate_alpha_blend(&self) -> &bool {
         &self.separate_alpha_blend
+    }
+    fn separate_alpha_blend_mut(&mut self) -> &mut bool {
+        &mut self.separate_alpha_blend
     }
     fn color_op(&self) -> &super::render::RenderBlendOp {
         &self.color_op
     }
+    fn color_op_mut(&mut self) -> &mut super::render::RenderBlendOp {
+        &mut self.color_op
+    }
     fn alpha_op(&self) -> &super::render::RenderBlendOp {
         &self.alpha_op
+    }
+    fn alpha_op_mut(&mut self) -> &mut super::render::RenderBlendOp {
+        &mut self.alpha_op
     }
     fn source_color(&self) -> &super::render::RenderBlendMode {
         &self.source_color
     }
+    fn source_color_mut(&mut self) -> &mut super::render::RenderBlendMode {
+        &mut self.source_color
+    }
     fn dest_color(&self) -> &super::render::RenderBlendMode {
         &self.dest_color
+    }
+    fn dest_color_mut(&mut self) -> &mut super::render::RenderBlendMode {
+        &mut self.dest_color
     }
     fn source_alpha(&self) -> &super::render::RenderBlendMode {
         &self.source_alpha
     }
+    fn source_alpha_mut(&mut self) -> &mut super::render::RenderBlendMode {
+        &mut self.source_alpha
+    }
     fn dest_alpha(&self) -> &super::render::RenderBlendMode {
         &self.dest_alpha
     }
+    fn dest_alpha_mut(&mut self) -> &mut super::render::RenderBlendMode {
+        &mut self.dest_alpha
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2011,6 +2456,15 @@ impl TypeObject for UIDrawBlendCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2032,15 +2486,23 @@ pub struct UIDrawBlendCommandStaticState {
 
 pub trait UIDrawBlendCommandStaticStateTrait: TypeObject {
     fn command_type(&self) -> &UIDrawBlendCommandType;
+    fn command_type_mut(&mut self) -> &mut UIDrawBlendCommandType;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawBlendCommandStaticStateTrait for UIDrawBlendCommandStaticState {
     fn command_type(&self) -> &UIDrawBlendCommandType {
         &self.command_type
     }
+    fn command_type_mut(&mut self) -> &mut UIDrawBlendCommandType {
+        &mut self.command_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2077,6 +2539,15 @@ impl TypeObject for UIDrawBlendCommandStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2116,6 +2587,15 @@ impl TypeObject for UIDrawBlendCommandType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2137,15 +2617,23 @@ pub struct UIDrawDepthCommandDynamicState {
 
 pub trait UIDrawDepthCommandDynamicStateTrait: TypeObject {
     fn mode(&self) -> &super::render::RenderDepthMode;
+    fn mode_mut(&mut self) -> &mut super::render::RenderDepthMode;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawDepthCommandDynamicStateTrait for UIDrawDepthCommandDynamicState {
     fn mode(&self) -> &super::render::RenderDepthMode {
         &self.mode
     }
+    fn mode_mut(&mut self) -> &mut super::render::RenderDepthMode {
+        &mut self.mode
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2183,6 +2671,15 @@ impl TypeObject for UIDrawDepthCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2204,15 +2701,23 @@ pub struct UIDrawDepthCommandStaticState {
 
 pub trait UIDrawDepthCommandStaticStateTrait: TypeObject {
     fn command_type(&self) -> &UIDrawDepthCommandType;
+    fn command_type_mut(&mut self) -> &mut UIDrawDepthCommandType;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawDepthCommandStaticStateTrait for UIDrawDepthCommandStaticState {
     fn command_type(&self) -> &UIDrawDepthCommandType {
         &self.command_type
     }
+    fn command_type_mut(&mut self) -> &mut UIDrawDepthCommandType {
+        &mut self.command_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2249,6 +2754,15 @@ impl TypeObject for UIDrawDepthCommandStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2288,6 +2802,15 @@ impl TypeObject for UIDrawDepthCommandType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2313,31 +2836,55 @@ pub struct UIDrawStencilMaskCommandDynamicState {
 
 pub trait UIDrawStencilMaskCommandDynamicStateTrait: TypeObject {
     fn invert_test(&self) -> &bool;
+    fn invert_test_mut(&mut self) -> &mut bool;
     fn rect(&self) -> &super::core::Vec4;
+    fn rect_mut(&mut self) -> &mut super::core::Vec4;
     fn texture(&self) -> &super::render_base::TextureResourceHandle;
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle;
     fn uv_rect(&self) -> &super::core::Vec4;
+    fn uv_rect_mut(&mut self) -> &mut super::core::Vec4;
     fn alpha_threshold(&self) -> &f32;
+    fn alpha_threshold_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawStencilMaskCommandDynamicStateTrait for UIDrawStencilMaskCommandDynamicState {
     fn invert_test(&self) -> &bool {
         &self.invert_test
     }
+    fn invert_test_mut(&mut self) -> &mut bool {
+        &mut self.invert_test
+    }
     fn rect(&self) -> &super::core::Vec4 {
         &self.rect
+    }
+    fn rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.rect
     }
     fn texture(&self) -> &super::render_base::TextureResourceHandle {
         &self.texture
     }
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle {
+        &mut self.texture
+    }
     fn uv_rect(&self) -> &super::core::Vec4 {
         &self.uv_rect
+    }
+    fn uv_rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.uv_rect
     }
     fn alpha_threshold(&self) -> &f32 {
         &self.alpha_threshold
     }
+    fn alpha_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.alpha_threshold
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2399,6 +2946,15 @@ impl TypeObject for UIDrawStencilMaskCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2420,15 +2976,23 @@ pub struct UIDrawStencilMaskCommandStaticState {
 
 pub trait UIDrawStencilMaskCommandStaticStateTrait: TypeObject {
     fn command_type(&self) -> &UIDrawStencilMaskCommandType;
+    fn command_type_mut(&mut self) -> &mut UIDrawStencilMaskCommandType;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawStencilMaskCommandStaticStateTrait for UIDrawStencilMaskCommandStaticState {
     fn command_type(&self) -> &UIDrawStencilMaskCommandType {
         &self.command_type
     }
+    fn command_type_mut(&mut self) -> &mut UIDrawStencilMaskCommandType {
+        &mut self.command_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2465,6 +3029,15 @@ impl TypeObject for UIDrawStencilMaskCommandStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2504,6 +3077,15 @@ impl TypeObject for UIDrawStencilMaskCommandType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2532,43 +3114,79 @@ pub struct UIDrawStencilCommandDynamicState {
 
 pub trait UIDrawStencilCommandDynamicStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn write_color(&self) -> &bool;
+    fn write_color_mut(&mut self) -> &mut bool;
     fn r#ref(&self) -> &u8;
+    fn r#ref_mut(&mut self) -> &mut u8;
     fn stencil_mask(&self) -> &u8;
+    fn stencil_mask_mut(&mut self) -> &mut u8;
     fn func(&self) -> &super::render::DepthStencilCompareFunc;
+    fn func_mut(&mut self) -> &mut super::render::DepthStencilCompareFunc;
     fn fail_op(&self) -> &super::render::StencilOperation;
+    fn fail_op_mut(&mut self) -> &mut super::render::StencilOperation;
     fn depth_fail_op(&self) -> &super::render::StencilOperation;
+    fn depth_fail_op_mut(&mut self) -> &mut super::render::StencilOperation;
     fn pass_op(&self) -> &super::render::StencilOperation;
+    fn pass_op_mut(&mut self) -> &mut super::render::StencilOperation;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawStencilCommandDynamicStateTrait for UIDrawStencilCommandDynamicState {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn write_color(&self) -> &bool {
         &self.write_color
+    }
+    fn write_color_mut(&mut self) -> &mut bool {
+        &mut self.write_color
     }
     fn r#ref(&self) -> &u8 {
         &self.r#ref
     }
+    fn r#ref_mut(&mut self) -> &mut u8 {
+        &mut self.r#ref
+    }
     fn stencil_mask(&self) -> &u8 {
         &self.stencil_mask
+    }
+    fn stencil_mask_mut(&mut self) -> &mut u8 {
+        &mut self.stencil_mask
     }
     fn func(&self) -> &super::render::DepthStencilCompareFunc {
         &self.func
     }
+    fn func_mut(&mut self) -> &mut super::render::DepthStencilCompareFunc {
+        &mut self.func
+    }
     fn fail_op(&self) -> &super::render::StencilOperation {
         &self.fail_op
+    }
+    fn fail_op_mut(&mut self) -> &mut super::render::StencilOperation {
+        &mut self.fail_op
     }
     fn depth_fail_op(&self) -> &super::render::StencilOperation {
         &self.depth_fail_op
     }
+    fn depth_fail_op_mut(&mut self) -> &mut super::render::StencilOperation {
+        &mut self.depth_fail_op
+    }
     fn pass_op(&self) -> &super::render::StencilOperation {
         &self.pass_op
     }
+    fn pass_op_mut(&mut self) -> &mut super::render::StencilOperation {
+        &mut self.pass_op
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2648,6 +3266,15 @@ impl TypeObject for UIDrawStencilCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2669,15 +3296,23 @@ pub struct UIDrawStencilCommandStaticState {
 
 pub trait UIDrawStencilCommandStaticStateTrait: TypeObject {
     fn command_type(&self) -> &UIDrawStencilCommandType;
+    fn command_type_mut(&mut self) -> &mut UIDrawStencilCommandType;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawStencilCommandStaticStateTrait for UIDrawStencilCommandStaticState {
     fn command_type(&self) -> &UIDrawStencilCommandType {
         &self.command_type
     }
+    fn command_type_mut(&mut self) -> &mut UIDrawStencilCommandType {
+        &mut self.command_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2714,6 +3349,15 @@ impl TypeObject for UIDrawStencilCommandStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2753,6 +3397,15 @@ impl TypeObject for UIDrawStencilCommandType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2774,15 +3427,23 @@ pub struct UIClipThresholdCommandDynamicState {
 
 pub trait UIClipThresholdCommandDynamicStateTrait: TypeObject {
     fn threshold(&self) -> &f32;
+    fn threshold_mut(&mut self) -> &mut f32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIClipThresholdCommandDynamicStateTrait for UIClipThresholdCommandDynamicState {
     fn threshold(&self) -> &f32 {
         &self.threshold
     }
+    fn threshold_mut(&mut self) -> &mut f32 {
+        &mut self.threshold
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2820,6 +3481,15 @@ impl TypeObject for UIClipThresholdCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2842,19 +3512,31 @@ pub struct UIDrawTransformCommandDynamicState {
 
 pub trait UIDrawTransformCommandDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawTransformCommandDynamicStateTrait for UIDrawTransformCommandDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2898,6 +3580,15 @@ impl TypeObject for UIDrawTransformCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2919,15 +3610,23 @@ pub struct UIDrawTransformCommandStaticState {
 
 pub trait UIDrawTransformCommandStaticStateTrait: TypeObject {
     fn command_type(&self) -> &UIDrawTransformCommandType;
+    fn command_type_mut(&mut self) -> &mut UIDrawTransformCommandType;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawTransformCommandStaticStateTrait for UIDrawTransformCommandStaticState {
     fn command_type(&self) -> &UIDrawTransformCommandType {
         &self.command_type
     }
+    fn command_type_mut(&mut self) -> &mut UIDrawTransformCommandType {
+        &mut self.command_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -2964,6 +3663,15 @@ impl TypeObject for UIDrawTransformCommandStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3004,6 +3712,15 @@ impl TypeObject for UIDrawTransformCommandType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3025,15 +3742,23 @@ pub struct UIDrawColorCommandDynamicState {
 
 pub trait UIDrawColorCommandDynamicStateTrait: TypeObject {
     fn color(&self) -> &super::core::Vec4;
+    fn color_mut(&mut self) -> &mut super::core::Vec4;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawColorCommandDynamicStateTrait for UIDrawColorCommandDynamicState {
     fn color(&self) -> &super::core::Vec4 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.color
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3071,6 +3796,15 @@ impl TypeObject for UIDrawColorCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3092,15 +3826,23 @@ pub struct UIDrawColorCommandStaticState {
 
 pub trait UIDrawColorCommandStaticStateTrait: TypeObject {
     fn command_type(&self) -> &UIDrawColorCommandType;
+    fn command_type_mut(&mut self) -> &mut UIDrawColorCommandType;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawColorCommandStaticStateTrait for UIDrawColorCommandStaticState {
     fn command_type(&self) -> &UIDrawColorCommandType {
         &self.command_type
     }
+    fn command_type_mut(&mut self) -> &mut UIDrawColorCommandType {
+        &mut self.command_type
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3137,6 +3879,15 @@ impl TypeObject for UIDrawColorCommandStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3176,6 +3927,15 @@ impl TypeObject for UIDrawColorCommandType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3197,15 +3957,23 @@ pub struct UIMovieCommandDynamicState {
 
 pub trait UIMovieCommandDynamicStateTrait: TypeObject {
     fn rect(&self) -> &super::core::Vec4;
+    fn rect_mut(&mut self) -> &mut super::core::Vec4;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIMovieCommandDynamicStateTrait for UIMovieCommandDynamicState {
     fn rect(&self) -> &super::core::Vec4 {
         &self.rect
     }
+    fn rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.rect
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3243,6 +4011,15 @@ impl TypeObject for UIMovieCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3264,15 +4041,23 @@ pub struct UIMovieCommandStaticState {
 
 pub trait UIMovieCommandStaticStateTrait: TypeObject {
     fn movie(&self) -> &super::movie_base::MovieHandle;
+    fn movie_mut(&mut self) -> &mut super::movie_base::MovieHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIMovieCommandStaticStateTrait for UIMovieCommandStaticState {
     fn movie(&self) -> &super::movie_base::MovieHandle {
         &self.movie
     }
+    fn movie_mut(&mut self) -> &mut super::movie_base::MovieHandle {
+        &mut self.movie
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3310,6 +4095,15 @@ impl TypeObject for UIMovieCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3333,23 +4127,39 @@ pub struct UIMeasureTextCommandDynamicState {
 
 pub trait UIMeasureTextCommandDynamicStateTrait: TypeObject {
     fn text(&self) -> &String;
+    fn text_mut(&mut self) -> &mut String;
     fn measure_width(&self) -> &f32;
+    fn measure_width_mut(&mut self) -> &mut f32;
     fn custom_text_layout_callback(&self) -> &u64;
+    fn custom_text_layout_callback_mut(&mut self) -> &mut u64;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIMeasureTextCommandDynamicStateTrait for UIMeasureTextCommandDynamicState {
     fn text(&self) -> &String {
         &self.text
     }
+    fn text_mut(&mut self) -> &mut String {
+        &mut self.text
+    }
     fn measure_width(&self) -> &f32 {
         &self.measure_width
+    }
+    fn measure_width_mut(&mut self) -> &mut f32 {
+        &mut self.measure_width
     }
     fn custom_text_layout_callback(&self) -> &u64 {
         &self.custom_text_layout_callback
     }
+    fn custom_text_layout_callback_mut(&mut self) -> &mut u64 {
+        &mut self.custom_text_layout_callback
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3399,6 +4209,15 @@ impl TypeObject for UIMeasureTextCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3422,23 +4241,39 @@ pub struct UIMeasureTextCommandStaticState {
 
 pub trait UIMeasureTextCommandStaticStateTrait: TypeObject {
     fn config(&self) -> &super::game_base::UIImTextCommandConfig;
+    fn config_mut(&mut self) -> &mut super::game_base::UIImTextCommandConfig;
     fn measure_handle(&self) -> &super::game_base::UIImReverseHandle;
+    fn measure_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle;
     fn measure_only_visible_glyphs(&self) -> &bool;
+    fn measure_only_visible_glyphs_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIMeasureTextCommandStaticStateTrait for UIMeasureTextCommandStaticState {
     fn config(&self) -> &super::game_base::UIImTextCommandConfig {
         &self.config
     }
+    fn config_mut(&mut self) -> &mut super::game_base::UIImTextCommandConfig {
+        &mut self.config
+    }
     fn measure_handle(&self) -> &super::game_base::UIImReverseHandle {
         &self.measure_handle
+    }
+    fn measure_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle {
+        &mut self.measure_handle
     }
     fn measure_only_visible_glyphs(&self) -> &bool {
         &self.measure_only_visible_glyphs
     }
+    fn measure_only_visible_glyphs_mut(&mut self) -> &mut bool {
+        &mut self.measure_only_visible_glyphs
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3488,6 +4323,15 @@ impl TypeObject for UIMeasureTextCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3512,27 +4356,47 @@ pub struct UIDrawTextCommandDynamicState {
 
 pub trait UIDrawTextCommandDynamicStateTrait: TypeObject {
     fn text(&self) -> &String;
+    fn text_mut(&mut self) -> &mut String;
     fn rect(&self) -> &super::core::Vec4;
+    fn rect_mut(&mut self) -> &mut super::core::Vec4;
     fn non_premultiplied_color(&self) -> &super::core::Vec4;
+    fn non_premultiplied_color_mut(&mut self) -> &mut super::core::Vec4;
     fn custom_text_layout_callback(&self) -> &u64;
+    fn custom_text_layout_callback_mut(&mut self) -> &mut u64;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawTextCommandDynamicStateTrait for UIDrawTextCommandDynamicState {
     fn text(&self) -> &String {
         &self.text
     }
+    fn text_mut(&mut self) -> &mut String {
+        &mut self.text
+    }
     fn rect(&self) -> &super::core::Vec4 {
         &self.rect
+    }
+    fn rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.rect
     }
     fn non_premultiplied_color(&self) -> &super::core::Vec4 {
         &self.non_premultiplied_color
     }
+    fn non_premultiplied_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.non_premultiplied_color
+    }
     fn custom_text_layout_callback(&self) -> &u64 {
         &self.custom_text_layout_callback
     }
+    fn custom_text_layout_callback_mut(&mut self) -> &mut u64 {
+        &mut self.custom_text_layout_callback
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3588,6 +4452,15 @@ impl TypeObject for UIDrawTextCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3612,27 +4485,47 @@ pub struct UIDrawTextCommandStaticState {
 
 pub trait UIDrawTextCommandStaticStateTrait: TypeObject {
     fn config(&self) -> &super::game_base::UIImTextCommandConfig;
+    fn config_mut(&mut self) -> &mut super::game_base::UIImTextCommandConfig;
     fn shader_program(&self) -> &i32;
+    fn shader_program_mut(&mut self) -> &mut i32;
     fn measure_handle(&self) -> &super::game_base::UIImReverseHandle;
+    fn measure_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle;
     fn measure_only_visible_glyphs(&self) -> &bool;
+    fn measure_only_visible_glyphs_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawTextCommandStaticStateTrait for UIDrawTextCommandStaticState {
     fn config(&self) -> &super::game_base::UIImTextCommandConfig {
         &self.config
     }
+    fn config_mut(&mut self) -> &mut super::game_base::UIImTextCommandConfig {
+        &mut self.config
+    }
     fn shader_program(&self) -> &i32 {
         &self.shader_program
+    }
+    fn shader_program_mut(&mut self) -> &mut i32 {
+        &mut self.shader_program
     }
     fn measure_handle(&self) -> &super::game_base::UIImReverseHandle {
         &self.measure_handle
     }
+    fn measure_handle_mut(&mut self) -> &mut super::game_base::UIImReverseHandle {
+        &mut self.measure_handle
+    }
     fn measure_only_visible_glyphs(&self) -> &bool {
         &self.measure_only_visible_glyphs
     }
+    fn measure_only_visible_glyphs_mut(&mut self) -> &mut bool {
+        &mut self.measure_only_visible_glyphs
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3688,6 +4581,15 @@ impl TypeObject for UIDrawTextCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3713,31 +4615,55 @@ pub struct UIDrawAACircleCommandDynamicState {
 
 pub trait UIDrawAACircleCommandDynamicStateTrait: TypeObject {
     fn center(&self) -> &super::core::Vec2;
+    fn center_mut(&mut self) -> &mut super::core::Vec2;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn thickness(&self) -> &f32;
+    fn thickness_mut(&mut self) -> &mut f32;
     fn non_premultiplied_color(&self) -> &super::core::Vec4;
+    fn non_premultiplied_color_mut(&mut self) -> &mut super::core::Vec4;
     fn shader_program(&self) -> &i32;
+    fn shader_program_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawAACircleCommandDynamicStateTrait for UIDrawAACircleCommandDynamicState {
     fn center(&self) -> &super::core::Vec2 {
         &self.center
     }
+    fn center_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.center
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn thickness(&self) -> &f32 {
         &self.thickness
     }
+    fn thickness_mut(&mut self) -> &mut f32 {
+        &mut self.thickness
+    }
     fn non_premultiplied_color(&self) -> &super::core::Vec4 {
         &self.non_premultiplied_color
+    }
+    fn non_premultiplied_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.non_premultiplied_color
     }
     fn shader_program(&self) -> &i32 {
         &self.shader_program
     }
+    fn shader_program_mut(&mut self) -> &mut i32 {
+        &mut self.shader_program
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3799,6 +4725,15 @@ impl TypeObject for UIDrawAACircleCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3825,35 +4760,63 @@ pub struct UIDrawAALineStripCommandDynamicState {
 
 pub trait UIDrawAALineStripCommandDynamicStateTrait: TypeObject {
     fn vertices(&self) -> &Vec<super::core::Vec2>;
+    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec2>;
     fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4>;
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4>;
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn closed(&self) -> &bool;
+    fn closed_mut(&mut self) -> &mut bool;
     fn fill_left(&self) -> &bool;
+    fn fill_left_mut(&mut self) -> &mut bool;
     fn fill_right(&self) -> &bool;
+    fn fill_right_mut(&mut self) -> &mut bool;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawAALineStripCommandDynamicStateTrait for UIDrawAALineStripCommandDynamicState {
     fn vertices(&self) -> &Vec<super::core::Vec2> {
         &self.vertices
     }
+    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+        &mut self.vertices
+    }
     fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4> {
         &self.non_premultiplied_colors
+    }
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+        &mut self.non_premultiplied_colors
     }
     fn width(&self) -> &f32 {
         &self.width
     }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
+    }
     fn closed(&self) -> &bool {
         &self.closed
+    }
+    fn closed_mut(&mut self) -> &mut bool {
+        &mut self.closed
     }
     fn fill_left(&self) -> &bool {
         &self.fill_left
     }
+    fn fill_left_mut(&mut self) -> &mut bool {
+        &mut self.fill_left
+    }
     fn fill_right(&self) -> &bool {
         &self.fill_right
     }
+    fn fill_right_mut(&mut self) -> &mut bool {
+        &mut self.fill_right
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -3921,6 +4884,15 @@ impl TypeObject for UIDrawAALineStripCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3944,23 +4916,39 @@ pub struct UIDrawLineListCommandDynamicState {
 
 pub trait UIDrawLineListCommandDynamicStateTrait: TypeObject {
     fn vertices(&self) -> &Vec<super::core::Vec3>;
+    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3>;
     fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4>;
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4>;
     fn indices(&self) -> &Vec<u16>;
+    fn indices_mut(&mut self) -> &mut Vec<u16>;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawLineListCommandDynamicStateTrait for UIDrawLineListCommandDynamicState {
     fn vertices(&self) -> &Vec<super::core::Vec3> {
         &self.vertices
     }
+    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        &mut self.vertices
+    }
     fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4> {
         &self.non_premultiplied_colors
+    }
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+        &mut self.non_premultiplied_colors
     }
     fn indices(&self) -> &Vec<u16> {
         &self.indices
     }
+    fn indices_mut(&mut self) -> &mut Vec<u16> {
+        &mut self.indices
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4010,6 +4998,15 @@ impl TypeObject for UIDrawLineListCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4031,15 +5028,23 @@ pub struct UIDrawLineListCommandStaticState {
 
 pub trait UIDrawLineListCommandStaticStateTrait: TypeObject {
     fn shader_program(&self) -> &i32;
+    fn shader_program_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawLineListCommandStaticStateTrait for UIDrawLineListCommandStaticState {
     fn shader_program(&self) -> &i32 {
         &self.shader_program
     }
+    fn shader_program_mut(&mut self) -> &mut i32 {
+        &mut self.shader_program
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4077,6 +5082,15 @@ impl TypeObject for UIDrawLineListCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4100,23 +5114,39 @@ pub struct UIDrawSolidTriangleListCommandDynamicState {
 
 pub trait UIDrawSolidTriangleListCommandDynamicStateTrait: TypeObject {
     fn vertices(&self) -> &Vec<super::core::Vec3>;
+    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3>;
     fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4>;
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4>;
     fn indices(&self) -> &Vec<u16>;
+    fn indices_mut(&mut self) -> &mut Vec<u16>;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawSolidTriangleListCommandDynamicStateTrait for UIDrawSolidTriangleListCommandDynamicState {
     fn vertices(&self) -> &Vec<super::core::Vec3> {
         &self.vertices
     }
+    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        &mut self.vertices
+    }
     fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4> {
         &self.non_premultiplied_colors
+    }
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+        &mut self.non_premultiplied_colors
     }
     fn indices(&self) -> &Vec<u16> {
         &self.indices
     }
+    fn indices_mut(&mut self) -> &mut Vec<u16> {
+        &mut self.indices
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4166,6 +5196,15 @@ impl TypeObject for UIDrawSolidTriangleListCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4187,15 +5226,23 @@ pub struct UIDrawSolidTriangleListCommandStaticState {
 
 pub trait UIDrawSolidTriangleListCommandStaticStateTrait: TypeObject {
     fn shader_program(&self) -> &i32;
+    fn shader_program_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawSolidTriangleListCommandStaticStateTrait for UIDrawSolidTriangleListCommandStaticState {
     fn shader_program(&self) -> &i32 {
         &self.shader_program
     }
+    fn shader_program_mut(&mut self) -> &mut i32 {
+        &mut self.shader_program
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4233,6 +5280,15 @@ impl TypeObject for UIDrawSolidTriangleListCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4257,27 +5313,47 @@ pub struct UIDrawTriangleListCommandDynamicState {
 
 pub trait UIDrawTriangleListCommandDynamicStateTrait: TypeObject {
     fn texture(&self) -> &super::render_base::TextureResourceHandle;
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle;
     fn vertices(&self) -> &Vec<super::core::Vec3>;
+    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3>;
     fn uvs(&self) -> &Vec<super::core::Vec2>;
+    fn uvs_mut(&mut self) -> &mut Vec<super::core::Vec2>;
     fn indices(&self) -> &Vec<u16>;
+    fn indices_mut(&mut self) -> &mut Vec<u16>;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawTriangleListCommandDynamicStateTrait for UIDrawTriangleListCommandDynamicState {
     fn texture(&self) -> &super::render_base::TextureResourceHandle {
         &self.texture
     }
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle {
+        &mut self.texture
+    }
     fn vertices(&self) -> &Vec<super::core::Vec3> {
         &self.vertices
+    }
+    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        &mut self.vertices
     }
     fn uvs(&self) -> &Vec<super::core::Vec2> {
         &self.uvs
     }
+    fn uvs_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+        &mut self.uvs
+    }
     fn indices(&self) -> &Vec<u16> {
         &self.indices
     }
+    fn indices_mut(&mut self) -> &mut Vec<u16> {
+        &mut self.indices
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4333,6 +5409,15 @@ impl TypeObject for UIDrawTriangleListCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4357,27 +5442,47 @@ pub struct UIDrawDistanceFieldCommandDynamicState {
 
 pub trait UIDrawDistanceFieldCommandDynamicStateTrait: TypeObject {
     fn texture(&self) -> &super::render_base::TextureResourceHandle;
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle;
     fn corners(&self) -> &Vec<super::core::Vec3>;
+    fn corners_mut(&mut self) -> &mut Vec<super::core::Vec3>;
     fn uv_rect(&self) -> &super::core::Vec4;
+    fn uv_rect_mut(&mut self) -> &mut super::core::Vec4;
     fn non_premultiplied_color(&self) -> &super::core::Vec4;
+    fn non_premultiplied_color_mut(&mut self) -> &mut super::core::Vec4;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawDistanceFieldCommandDynamicStateTrait for UIDrawDistanceFieldCommandDynamicState {
     fn texture(&self) -> &super::render_base::TextureResourceHandle {
         &self.texture
     }
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle {
+        &mut self.texture
+    }
     fn corners(&self) -> &Vec<super::core::Vec3> {
         &self.corners
+    }
+    fn corners_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+        &mut self.corners
     }
     fn uv_rect(&self) -> &super::core::Vec4 {
         &self.uv_rect
     }
+    fn uv_rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.uv_rect
+    }
     fn non_premultiplied_color(&self) -> &super::core::Vec4 {
         &self.non_premultiplied_color
     }
+    fn non_premultiplied_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.non_premultiplied_color
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4433,6 +5538,15 @@ impl TypeObject for UIDrawDistanceFieldCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4455,19 +5569,31 @@ pub struct UIDrawDistanceFieldCommandStaticState {
 
 pub trait UIDrawDistanceFieldCommandStaticStateTrait: TypeObject {
     fn params(&self) -> &super::game_shared_u_i::UIElementBitmapDistanceFieldParams;
+    fn params_mut(&mut self) -> &mut super::game_shared_u_i::UIElementBitmapDistanceFieldParams;
     fn shader_program(&self) -> &i32;
+    fn shader_program_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawDistanceFieldCommandStaticStateTrait for UIDrawDistanceFieldCommandStaticState {
     fn params(&self) -> &super::game_shared_u_i::UIElementBitmapDistanceFieldParams {
         &self.params
     }
+    fn params_mut(&mut self) -> &mut super::game_shared_u_i::UIElementBitmapDistanceFieldParams {
+        &mut self.params
+    }
     fn shader_program(&self) -> &i32 {
         &self.shader_program
     }
+    fn shader_program_mut(&mut self) -> &mut i32 {
+        &mut self.shader_program
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4511,6 +5637,15 @@ impl TypeObject for UIDrawDistanceFieldCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4538,39 +5673,71 @@ pub struct UIDrawAdvancedRectCommandDynamicState {
 
 pub trait UIDrawAdvancedRectCommandDynamicStateTrait: TypeObject {
     fn texture1(&self) -> &super::render_base::TextureResourceHandle;
+    fn texture1_mut(&mut self) -> &mut super::render_base::TextureResourceHandle;
     fn uv_rect1(&self) -> &super::core::Vec4;
+    fn uv_rect1_mut(&mut self) -> &mut super::core::Vec4;
     fn texture2(&self) -> &super::render_base::TextureResourceHandle;
+    fn texture2_mut(&mut self) -> &mut super::render_base::TextureResourceHandle;
     fn uv_rect2(&self) -> &super::core::Vec4;
+    fn uv_rect2_mut(&mut self) -> &mut super::core::Vec4;
     fn rect(&self) -> &super::core::Vec4;
+    fn rect_mut(&mut self) -> &mut super::core::Vec4;
     fn non_premultiplied_color(&self) -> &super::core::Vec4;
+    fn non_premultiplied_color_mut(&mut self) -> &mut super::core::Vec4;
     fn gradient_params(&self) -> &UIGradientRectParams;
+    fn gradient_params_mut(&mut self) -> &mut UIGradientRectParams;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawAdvancedRectCommandDynamicStateTrait for UIDrawAdvancedRectCommandDynamicState {
     fn texture1(&self) -> &super::render_base::TextureResourceHandle {
         &self.texture1
     }
+    fn texture1_mut(&mut self) -> &mut super::render_base::TextureResourceHandle {
+        &mut self.texture1
+    }
     fn uv_rect1(&self) -> &super::core::Vec4 {
         &self.uv_rect1
+    }
+    fn uv_rect1_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.uv_rect1
     }
     fn texture2(&self) -> &super::render_base::TextureResourceHandle {
         &self.texture2
     }
+    fn texture2_mut(&mut self) -> &mut super::render_base::TextureResourceHandle {
+        &mut self.texture2
+    }
     fn uv_rect2(&self) -> &super::core::Vec4 {
         &self.uv_rect2
+    }
+    fn uv_rect2_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.uv_rect2
     }
     fn rect(&self) -> &super::core::Vec4 {
         &self.rect
     }
+    fn rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.rect
+    }
     fn non_premultiplied_color(&self) -> &super::core::Vec4 {
         &self.non_premultiplied_color
+    }
+    fn non_premultiplied_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.non_premultiplied_color
     }
     fn gradient_params(&self) -> &UIGradientRectParams {
         &self.gradient_params
     }
+    fn gradient_params_mut(&mut self) -> &mut UIGradientRectParams {
+        &mut self.gradient_params
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4644,6 +5811,15 @@ impl TypeObject for UIDrawAdvancedRectCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4670,35 +5846,63 @@ pub struct UIDrawAdvancedRectCommandStaticState {
 
 pub trait UIDrawAdvancedRectCommandStaticStateTrait: TypeObject {
     fn address_u(&self) -> &super::render_base::TextureAddress;
+    fn address_u_mut(&mut self) -> &mut super::render_base::TextureAddress;
     fn address_v(&self) -> &super::render_base::TextureAddress;
+    fn address_v_mut(&mut self) -> &mut super::render_base::TextureAddress;
     fn filled(&self) -> &bool;
+    fn filled_mut(&mut self) -> &mut bool;
     fn outlined(&self) -> &bool;
+    fn outlined_mut(&mut self) -> &mut bool;
     fn gradient(&self) -> &bool;
+    fn gradient_mut(&mut self) -> &mut bool;
     fn shader_program(&self) -> &i32;
+    fn shader_program_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawAdvancedRectCommandStaticStateTrait for UIDrawAdvancedRectCommandStaticState {
     fn address_u(&self) -> &super::render_base::TextureAddress {
         &self.address_u
     }
+    fn address_u_mut(&mut self) -> &mut super::render_base::TextureAddress {
+        &mut self.address_u
+    }
     fn address_v(&self) -> &super::render_base::TextureAddress {
         &self.address_v
+    }
+    fn address_v_mut(&mut self) -> &mut super::render_base::TextureAddress {
+        &mut self.address_v
     }
     fn filled(&self) -> &bool {
         &self.filled
     }
+    fn filled_mut(&mut self) -> &mut bool {
+        &mut self.filled
+    }
     fn outlined(&self) -> &bool {
         &self.outlined
+    }
+    fn outlined_mut(&mut self) -> &mut bool {
+        &mut self.outlined
     }
     fn gradient(&self) -> &bool {
         &self.gradient
     }
+    fn gradient_mut(&mut self) -> &mut bool {
+        &mut self.gradient
+    }
     fn shader_program(&self) -> &i32 {
         &self.shader_program
     }
+    fn shader_program_mut(&mut self) -> &mut i32 {
+        &mut self.shader_program
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4766,6 +5970,15 @@ impl TypeObject for UIDrawAdvancedRectCommandStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4789,23 +6002,39 @@ pub struct UIGradientRectParams {
 
 pub trait UIGradientRectParamsTrait: TypeObject {
     fn top_left_color(&self) -> &super::core::Vec4;
+    fn top_left_color_mut(&mut self) -> &mut super::core::Vec4;
     fn top_right_color(&self) -> &super::core::Vec4;
+    fn top_right_color_mut(&mut self) -> &mut super::core::Vec4;
     fn bottom_left_color(&self) -> &super::core::Vec4;
+    fn bottom_left_color_mut(&mut self) -> &mut super::core::Vec4;
     fn bottom_right_color(&self) -> &super::core::Vec4;
+    fn bottom_right_color_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl UIGradientRectParamsTrait for UIGradientRectParams {
     fn top_left_color(&self) -> &super::core::Vec4 {
         &self.top_left_color
     }
+    fn top_left_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.top_left_color
+    }
     fn top_right_color(&self) -> &super::core::Vec4 {
         &self.top_right_color
+    }
+    fn top_right_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.top_right_color
     }
     fn bottom_left_color(&self) -> &super::core::Vec4 {
         &self.bottom_left_color
     }
+    fn bottom_left_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.bottom_left_color
+    }
     fn bottom_right_color(&self) -> &super::core::Vec4 {
         &self.bottom_right_color
+    }
+    fn bottom_right_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.bottom_right_color
     }
 }
 
@@ -4855,6 +6084,15 @@ impl TypeObject for UIGradientRectParams {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4880,31 +6118,55 @@ pub struct UIDrawRectCommandDynamicState {
 
 pub trait UIDrawRectCommandDynamicStateTrait: TypeObject {
     fn texture(&self) -> &super::render_base::TextureResourceHandle;
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle;
     fn rect(&self) -> &super::core::Vec4;
+    fn rect_mut(&mut self) -> &mut super::core::Vec4;
     fn uv_rect(&self) -> &super::core::Vec4;
+    fn uv_rect_mut(&mut self) -> &mut super::core::Vec4;
     fn non_premultiplied_color(&self) -> &super::core::Vec4;
+    fn non_premultiplied_color_mut(&mut self) -> &mut super::core::Vec4;
     fn shader_program(&self) -> &i32;
+    fn shader_program_mut(&mut self) -> &mut i32;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl UIDrawRectCommandDynamicStateTrait for UIDrawRectCommandDynamicState {
     fn texture(&self) -> &super::render_base::TextureResourceHandle {
         &self.texture
     }
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle {
+        &mut self.texture
+    }
     fn rect(&self) -> &super::core::Vec4 {
         &self.rect
+    }
+    fn rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.rect
     }
     fn uv_rect(&self) -> &super::core::Vec4 {
         &self.uv_rect
     }
+    fn uv_rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.uv_rect
+    }
     fn non_premultiplied_color(&self) -> &super::core::Vec4 {
         &self.non_premultiplied_color
+    }
+    fn non_premultiplied_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.non_premultiplied_color
     }
     fn shader_program(&self) -> &i32 {
         &self.shader_program
     }
+    fn shader_program_mut(&mut self) -> &mut i32 {
+        &mut self.shader_program
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -4966,6 +6228,15 @@ impl TypeObject for UIDrawRectCommandDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5019,6 +6290,15 @@ impl TypeObject for ClientUIInputEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5069,6 +6349,15 @@ impl TypeObject for ClientMovieTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5118,6 +6407,15 @@ impl TypeObject for UISystem {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5172,6 +6470,15 @@ impl TypeObject for ClientPlayVideoEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5217,6 +6524,15 @@ impl TypeObject for UITtfFontFile {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

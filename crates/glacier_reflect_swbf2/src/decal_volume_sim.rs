@@ -30,45 +30,80 @@ pub struct EnvironmentDecalVolumeData {
 
 pub trait EnvironmentDecalVolumeDataTrait: super::entity::SpatialEntityDataTrait {
     fn is_enabled(&self) -> &bool;
+    fn is_enabled_mut(&mut self) -> &mut bool;
     fn template(&self) -> &Option<Arc<Mutex<dyn super::decal_volume_base::EnvironmentDecalVolumeTemplateBaseDataTrait>>>;
+    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::decal_volume_base::EnvironmentDecalVolumeTemplateBaseDataTrait>>>;
     fn culling_distance(&self) -> &super::core::QualityScalableFloat;
+    fn culling_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn override_template_culling_distance(&self) -> &f32;
+    fn override_template_culling_distance_mut(&mut self) -> &mut f32;
     fn alpha(&self) -> &f32;
+    fn alpha_mut(&mut self) -> &mut f32;
     fn instance_params(&self) -> &super::core::Vec3;
+    fn instance_params_mut(&mut self) -> &mut super::core::Vec3;
     fn row(&self) -> &u8;
+    fn row_mut(&mut self) -> &mut u8;
     fn column(&self) -> &u8;
+    fn column_mut(&mut self) -> &mut u8;
 }
 
 impl EnvironmentDecalVolumeDataTrait for EnvironmentDecalVolumeData {
     fn is_enabled(&self) -> &bool {
         &self.is_enabled
     }
+    fn is_enabled_mut(&mut self) -> &mut bool {
+        &mut self.is_enabled
+    }
     fn template(&self) -> &Option<Arc<Mutex<dyn super::decal_volume_base::EnvironmentDecalVolumeTemplateBaseDataTrait>>> {
         &self.template
+    }
+    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::decal_volume_base::EnvironmentDecalVolumeTemplateBaseDataTrait>>> {
+        &mut self.template
     }
     fn culling_distance(&self) -> &super::core::QualityScalableFloat {
         &self.culling_distance
     }
+    fn culling_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.culling_distance
+    }
     fn override_template_culling_distance(&self) -> &f32 {
         &self.override_template_culling_distance
+    }
+    fn override_template_culling_distance_mut(&mut self) -> &mut f32 {
+        &mut self.override_template_culling_distance
     }
     fn alpha(&self) -> &f32 {
         &self.alpha
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        &mut self.alpha
+    }
     fn instance_params(&self) -> &super::core::Vec3 {
         &self.instance_params
+    }
+    fn instance_params_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.instance_params
     }
     fn row(&self) -> &u8 {
         &self.row
     }
+    fn row_mut(&mut self) -> &mut u8 {
+        &mut self.row
+    }
     fn column(&self) -> &u8 {
         &self.column
+    }
+    fn column_mut(&mut self) -> &mut u8 {
+        &mut self.column
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for EnvironmentDecalVolumeData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -82,15 +117,15 @@ impl super::core::DataBusPeerTrait for EnvironmentDecalVolumeData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EnvironmentDecalVolumeData {
 }
 
 impl super::core::DataContainerTrait for EnvironmentDecalVolumeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENVIRONMENTDECALVOLUMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -164,6 +199,15 @@ impl TypeObject for EnvironmentDecalVolumeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -219,6 +263,15 @@ impl TypeObject for EnvironmentDecalVolumeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

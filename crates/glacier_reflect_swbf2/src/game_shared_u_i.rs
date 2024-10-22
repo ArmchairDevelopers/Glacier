@@ -111,9 +111,6 @@ impl UIGeometryAssetTrait for UIGeometryAsset {
 }
 
 impl super::core::DataContainerTrait for UIGeometryAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIGEOMETRYASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -139,6 +136,15 @@ impl TypeObject for UIGeometryAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -160,15 +166,23 @@ pub struct UIAutoMappedTexture {
 
 pub trait UIAutoMappedTextureTrait: TypeObject {
     fn id(&self) -> &i32;
+    fn id_mut(&mut self) -> &mut i32;
     fn texture_ref(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn texture_ref_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl UIAutoMappedTextureTrait for UIAutoMappedTexture {
     fn id(&self) -> &i32 {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut i32 {
+        &mut self.id
+    }
     fn texture_ref(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.texture_ref
+    }
+    fn texture_ref_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.texture_ref
     }
 }
 
@@ -206,6 +220,15 @@ impl TypeObject for UIAutoMappedTexture {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -237,51 +260,95 @@ pub struct UICppScreenData {
 
 pub trait UICppScreenDataTrait: super::core::AssetTrait {
     fn state_stream_enabled(&self) -> &bool;
+    fn state_stream_enabled_mut(&mut self) -> &mut bool;
     fn state_stream_lane(&self) -> &UICppScreenStateStreamLaneType;
+    fn state_stream_lane_mut(&mut self) -> &mut UICppScreenStateStreamLaneType;
     fn field_of_view(&self) -> &f32;
+    fn field_of_view_mut(&mut self) -> &mut f32;
     fn scale_up_and_keep_aspect_ratio(&self) -> &bool;
+    fn scale_up_and_keep_aspect_ratio_mut(&mut self) -> &mut bool;
     fn flash_compatibility_mode(&self) -> &bool;
+    fn flash_compatibility_mode_mut(&mut self) -> &mut bool;
     fn screen_layout_width(&self) -> &f32;
+    fn screen_layout_width_mut(&mut self) -> &mut f32;
     fn screen_layout_height(&self) -> &f32;
+    fn screen_layout_height_mut(&mut self) -> &mut f32;
     fn allow_input(&self) -> &bool;
+    fn allow_input_mut(&mut self) -> &mut bool;
     fn eat_all_input(&self) -> &bool;
+    fn eat_all_input_mut(&mut self) -> &mut bool;
     fn layout_with_safe_zone(&self) -> &bool;
+    fn layout_with_safe_zone_mut(&mut self) -> &mut bool;
     fn screen_sampler_settings(&self) -> &super::game_base::UIScreenSamplerSettings;
+    fn screen_sampler_settings_mut(&mut self) -> &mut super::game_base::UIScreenSamplerSettings;
 }
 
 impl UICppScreenDataTrait for UICppScreenData {
     fn state_stream_enabled(&self) -> &bool {
         &self.state_stream_enabled
     }
+    fn state_stream_enabled_mut(&mut self) -> &mut bool {
+        &mut self.state_stream_enabled
+    }
     fn state_stream_lane(&self) -> &UICppScreenStateStreamLaneType {
         &self.state_stream_lane
+    }
+    fn state_stream_lane_mut(&mut self) -> &mut UICppScreenStateStreamLaneType {
+        &mut self.state_stream_lane
     }
     fn field_of_view(&self) -> &f32 {
         &self.field_of_view
     }
+    fn field_of_view_mut(&mut self) -> &mut f32 {
+        &mut self.field_of_view
+    }
     fn scale_up_and_keep_aspect_ratio(&self) -> &bool {
         &self.scale_up_and_keep_aspect_ratio
+    }
+    fn scale_up_and_keep_aspect_ratio_mut(&mut self) -> &mut bool {
+        &mut self.scale_up_and_keep_aspect_ratio
     }
     fn flash_compatibility_mode(&self) -> &bool {
         &self.flash_compatibility_mode
     }
+    fn flash_compatibility_mode_mut(&mut self) -> &mut bool {
+        &mut self.flash_compatibility_mode
+    }
     fn screen_layout_width(&self) -> &f32 {
         &self.screen_layout_width
+    }
+    fn screen_layout_width_mut(&mut self) -> &mut f32 {
+        &mut self.screen_layout_width
     }
     fn screen_layout_height(&self) -> &f32 {
         &self.screen_layout_height
     }
+    fn screen_layout_height_mut(&mut self) -> &mut f32 {
+        &mut self.screen_layout_height
+    }
     fn allow_input(&self) -> &bool {
         &self.allow_input
+    }
+    fn allow_input_mut(&mut self) -> &mut bool {
+        &mut self.allow_input
     }
     fn eat_all_input(&self) -> &bool {
         &self.eat_all_input
     }
+    fn eat_all_input_mut(&mut self) -> &mut bool {
+        &mut self.eat_all_input
+    }
     fn layout_with_safe_zone(&self) -> &bool {
         &self.layout_with_safe_zone
     }
+    fn layout_with_safe_zone_mut(&mut self) -> &mut bool {
+        &mut self.layout_with_safe_zone
+    }
     fn screen_sampler_settings(&self) -> &super::game_base::UIScreenSamplerSettings {
         &self.screen_sampler_settings
+    }
+    fn screen_sampler_settings_mut(&mut self) -> &mut super::game_base::UIScreenSamplerSettings {
+        &mut self.screen_sampler_settings
     }
 }
 
@@ -289,12 +356,12 @@ impl super::core::AssetTrait for UICppScreenData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UICppScreenData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UICPPSCREENDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -386,6 +453,15 @@ impl TypeObject for UICppScreenData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -424,6 +500,15 @@ impl TypeObject for UICppScreenStateStreamLaneType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -449,27 +534,47 @@ pub struct UIScreenRenderTargetEntityData {
 
 pub trait UIScreenRenderTargetEntityDataTrait: UIScreenRenderEntityDataTrait {
     fn render_target(&self) -> &Option<Arc<Mutex<dyn super::render::RenderTextureAssetTrait>>>;
+    fn render_target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::RenderTextureAssetTrait>>>;
     fn generate_render_target(&self) -> &bool;
+    fn generate_render_target_mut(&mut self) -> &mut bool;
     fn create_render_target_stencil(&self) -> &bool;
+    fn create_render_target_stencil_mut(&mut self) -> &mut bool;
     fn clear_render_target(&self) -> &bool;
+    fn clear_render_target_mut(&mut self) -> &mut bool;
     fn render_on_event(&self) -> &bool;
+    fn render_on_event_mut(&mut self) -> &mut bool;
 }
 
 impl UIScreenRenderTargetEntityDataTrait for UIScreenRenderTargetEntityData {
     fn render_target(&self) -> &Option<Arc<Mutex<dyn super::render::RenderTextureAssetTrait>>> {
         &self.render_target
     }
+    fn render_target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::RenderTextureAssetTrait>>> {
+        &mut self.render_target
+    }
     fn generate_render_target(&self) -> &bool {
         &self.generate_render_target
+    }
+    fn generate_render_target_mut(&mut self) -> &mut bool {
+        &mut self.generate_render_target
     }
     fn create_render_target_stencil(&self) -> &bool {
         &self.create_render_target_stencil
     }
+    fn create_render_target_stencil_mut(&mut self) -> &mut bool {
+        &mut self.create_render_target_stencil
+    }
     fn clear_render_target(&self) -> &bool {
         &self.clear_render_target
     }
+    fn clear_render_target_mut(&mut self) -> &mut bool {
+        &mut self.clear_render_target
+    }
     fn render_on_event(&self) -> &bool {
         &self.render_on_event
+    }
+    fn render_on_event_mut(&mut self) -> &mut bool {
+        &mut self.render_on_event
     }
 }
 
@@ -477,38 +582,74 @@ impl UIScreenRenderEntityDataTrait for UIScreenRenderTargetEntityData {
     fn screen_data(&self) -> &Option<Arc<Mutex<dyn UICppScreenDataTrait>>> {
         self._glacier_base.screen_data()
     }
+    fn screen_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UICppScreenDataTrait>>> {
+        self._glacier_base.screen_data_mut()
+    }
     fn use_game_view_projection(&self) -> &bool {
         self._glacier_base.use_game_view_projection()
+    }
+    fn use_game_view_projection_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_game_view_projection_mut()
     }
     fn scale(&self) -> &f32 {
         self._glacier_base.scale()
     }
+    fn scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.scale_mut()
+    }
     fn enable_depth_culling(&self) -> &bool {
         self._glacier_base.enable_depth_culling()
+    }
+    fn enable_depth_culling_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_depth_culling_mut()
     }
     fn projection_mode(&self) -> &super::game_base::UIScreenProjectionMode {
         self._glacier_base.projection_mode()
     }
+    fn projection_mode_mut(&mut self) -> &mut super::game_base::UIScreenProjectionMode {
+        self._glacier_base.projection_mode_mut()
+    }
     fn render_pass(&self) -> &UIScreenRenderingPass {
         self._glacier_base.render_pass()
+    }
+    fn render_pass_mut(&mut self) -> &mut UIScreenRenderingPass {
+        self._glacier_base.render_pass_mut()
     }
     fn update_order(&self) -> &i32 {
         self._glacier_base.update_order()
     }
+    fn update_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.update_order_mut()
+    }
     fn center_screen(&self) -> &bool {
         self._glacier_base.center_screen()
+    }
+    fn center_screen_mut(&mut self) -> &mut bool {
+        self._glacier_base.center_screen_mut()
     }
     fn view_id(&self) -> &super::render_base::LocalPlayerViewId {
         self._glacier_base.view_id()
     }
+    fn view_id_mut(&mut self) -> &mut super::render_base::LocalPlayerViewId {
+        self._glacier_base.view_id_mut()
+    }
     fn start_enabled(&self) -> &bool {
         self._glacier_base.start_enabled()
+    }
+    fn start_enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.start_enabled_mut()
     }
     fn color(&self) -> &super::core::Vec3 {
         self._glacier_base.color()
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.color_mut()
+    }
     fn alpha(&self) -> &f32 {
         self._glacier_base.alpha()
+    }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        self._glacier_base.alpha_mut()
     }
 }
 
@@ -516,8 +657,14 @@ impl super::entity::LogicReferenceObjectDataTrait for UIScreenRenderTargetEntity
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
     fn sub_realm(&self) -> &super::entity::SubRealm {
         self._glacier_base.sub_realm()
+    }
+    fn sub_realm_mut(&mut self) -> &mut super::entity::SubRealm {
+        self._glacier_base.sub_realm_mut()
     }
 }
 
@@ -525,32 +672,62 @@ impl super::entity::ReferenceObjectDataTrait for UIScreenRenderTargetEntityData 
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -561,15 +738,15 @@ impl super::core::DataBusPeerTrait for UIScreenRenderTargetEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for UIScreenRenderTargetEntityData {
 }
 
 impl super::core::DataContainerTrait for UIScreenRenderTargetEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UISCREENRENDERTARGETENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -625,6 +802,15 @@ impl TypeObject for UIScreenRenderTargetEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -657,55 +843,103 @@ pub struct UIScreenRenderEntityData {
 
 pub trait UIScreenRenderEntityDataTrait: super::entity::LogicReferenceObjectDataTrait {
     fn screen_data(&self) -> &Option<Arc<Mutex<dyn UICppScreenDataTrait>>>;
+    fn screen_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UICppScreenDataTrait>>>;
     fn use_game_view_projection(&self) -> &bool;
+    fn use_game_view_projection_mut(&mut self) -> &mut bool;
     fn scale(&self) -> &f32;
+    fn scale_mut(&mut self) -> &mut f32;
     fn enable_depth_culling(&self) -> &bool;
+    fn enable_depth_culling_mut(&mut self) -> &mut bool;
     fn projection_mode(&self) -> &super::game_base::UIScreenProjectionMode;
+    fn projection_mode_mut(&mut self) -> &mut super::game_base::UIScreenProjectionMode;
     fn render_pass(&self) -> &UIScreenRenderingPass;
+    fn render_pass_mut(&mut self) -> &mut UIScreenRenderingPass;
     fn update_order(&self) -> &i32;
+    fn update_order_mut(&mut self) -> &mut i32;
     fn center_screen(&self) -> &bool;
+    fn center_screen_mut(&mut self) -> &mut bool;
     fn view_id(&self) -> &super::render_base::LocalPlayerViewId;
+    fn view_id_mut(&mut self) -> &mut super::render_base::LocalPlayerViewId;
     fn start_enabled(&self) -> &bool;
+    fn start_enabled_mut(&mut self) -> &mut bool;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn alpha(&self) -> &f32;
+    fn alpha_mut(&mut self) -> &mut f32;
 }
 
 impl UIScreenRenderEntityDataTrait for UIScreenRenderEntityData {
     fn screen_data(&self) -> &Option<Arc<Mutex<dyn UICppScreenDataTrait>>> {
         &self.screen_data
     }
+    fn screen_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UICppScreenDataTrait>>> {
+        &mut self.screen_data
+    }
     fn use_game_view_projection(&self) -> &bool {
         &self.use_game_view_projection
+    }
+    fn use_game_view_projection_mut(&mut self) -> &mut bool {
+        &mut self.use_game_view_projection
     }
     fn scale(&self) -> &f32 {
         &self.scale
     }
+    fn scale_mut(&mut self) -> &mut f32 {
+        &mut self.scale
+    }
     fn enable_depth_culling(&self) -> &bool {
         &self.enable_depth_culling
+    }
+    fn enable_depth_culling_mut(&mut self) -> &mut bool {
+        &mut self.enable_depth_culling
     }
     fn projection_mode(&self) -> &super::game_base::UIScreenProjectionMode {
         &self.projection_mode
     }
+    fn projection_mode_mut(&mut self) -> &mut super::game_base::UIScreenProjectionMode {
+        &mut self.projection_mode
+    }
     fn render_pass(&self) -> &UIScreenRenderingPass {
         &self.render_pass
+    }
+    fn render_pass_mut(&mut self) -> &mut UIScreenRenderingPass {
+        &mut self.render_pass
     }
     fn update_order(&self) -> &i32 {
         &self.update_order
     }
+    fn update_order_mut(&mut self) -> &mut i32 {
+        &mut self.update_order
+    }
     fn center_screen(&self) -> &bool {
         &self.center_screen
+    }
+    fn center_screen_mut(&mut self) -> &mut bool {
+        &mut self.center_screen
     }
     fn view_id(&self) -> &super::render_base::LocalPlayerViewId {
         &self.view_id
     }
+    fn view_id_mut(&mut self) -> &mut super::render_base::LocalPlayerViewId {
+        &mut self.view_id
+    }
     fn start_enabled(&self) -> &bool {
         &self.start_enabled
+    }
+    fn start_enabled_mut(&mut self) -> &mut bool {
+        &mut self.start_enabled
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn alpha(&self) -> &f32 {
         &self.alpha
+    }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        &mut self.alpha
     }
 }
 
@@ -713,8 +947,14 @@ impl super::entity::LogicReferenceObjectDataTrait for UIScreenRenderEntityData {
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
     fn sub_realm(&self) -> &super::entity::SubRealm {
         self._glacier_base.sub_realm()
+    }
+    fn sub_realm_mut(&mut self) -> &mut super::entity::SubRealm {
+        self._glacier_base.sub_realm_mut()
     }
 }
 
@@ -722,32 +962,62 @@ impl super::entity::ReferenceObjectDataTrait for UIScreenRenderEntityData {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -758,15 +1028,15 @@ impl super::core::DataBusPeerTrait for UIScreenRenderEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for UIScreenRenderEntityData {
 }
 
 impl super::core::DataContainerTrait for UIScreenRenderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UISCREENRENDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -864,6 +1134,15 @@ impl TypeObject for UIScreenRenderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -905,6 +1184,15 @@ impl TypeObject for UIScreenRenderingPass {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -926,11 +1214,15 @@ pub struct UIIMSettingsAsset {
 
 pub trait UIIMSettingsAssetTrait: super::core::AssetTrait {
     fn auto_scroll_settings(&self) -> &UIAutoScrollTextSettings;
+    fn auto_scroll_settings_mut(&mut self) -> &mut UIAutoScrollTextSettings;
 }
 
 impl UIIMSettingsAssetTrait for UIIMSettingsAsset {
     fn auto_scroll_settings(&self) -> &UIAutoScrollTextSettings {
         &self.auto_scroll_settings
+    }
+    fn auto_scroll_settings_mut(&mut self) -> &mut UIAutoScrollTextSettings {
+        &mut self.auto_scroll_settings
     }
 }
 
@@ -938,12 +1230,12 @@ impl super::core::AssetTrait for UIIMSettingsAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UIIMSettingsAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIIMSETTINGSASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -975,6 +1267,15 @@ impl TypeObject for UIIMSettingsAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -999,27 +1300,47 @@ pub struct UIAutoScrollTextSettings {
 
 pub trait UIAutoScrollTextSettingsTrait: TypeObject {
     fn no_scroll_wait_time(&self) -> &f32;
+    fn no_scroll_wait_time_mut(&mut self) -> &mut f32;
     fn fully_scrolled_wait_time(&self) -> &f32;
+    fn fully_scrolled_wait_time_mut(&mut self) -> &mut f32;
     fn max_scroll_time(&self) -> &f32;
+    fn max_scroll_time_mut(&mut self) -> &mut f32;
     fn pixels_per_second(&self) -> &f32;
+    fn pixels_per_second_mut(&mut self) -> &mut f32;
     fn scrollback_multiplier(&self) -> &f32;
+    fn scrollback_multiplier_mut(&mut self) -> &mut f32;
 }
 
 impl UIAutoScrollTextSettingsTrait for UIAutoScrollTextSettings {
     fn no_scroll_wait_time(&self) -> &f32 {
         &self.no_scroll_wait_time
     }
+    fn no_scroll_wait_time_mut(&mut self) -> &mut f32 {
+        &mut self.no_scroll_wait_time
+    }
     fn fully_scrolled_wait_time(&self) -> &f32 {
         &self.fully_scrolled_wait_time
+    }
+    fn fully_scrolled_wait_time_mut(&mut self) -> &mut f32 {
+        &mut self.fully_scrolled_wait_time
     }
     fn max_scroll_time(&self) -> &f32 {
         &self.max_scroll_time
     }
+    fn max_scroll_time_mut(&mut self) -> &mut f32 {
+        &mut self.max_scroll_time
+    }
     fn pixels_per_second(&self) -> &f32 {
         &self.pixels_per_second
     }
+    fn pixels_per_second_mut(&mut self) -> &mut f32 {
+        &mut self.pixels_per_second
+    }
     fn scrollback_multiplier(&self) -> &f32 {
         &self.scrollback_multiplier
+    }
+    fn scrollback_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.scrollback_multiplier
     }
 }
 
@@ -1075,6 +1396,15 @@ impl TypeObject for UIAutoScrollTextSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1109,63 +1439,119 @@ pub struct UIElementWidgetReferenceEntityData {
 
 pub trait UIElementWidgetReferenceEntityDataTrait: super::entity::LogicReferenceObjectDataTrait {
     fn instance_name(&self) -> &String;
+    fn instance_name_mut(&mut self) -> &mut String;
     fn instance_name_hash(&self) -> &u32;
+    fn instance_name_hash_mut(&mut self) -> &mut u32;
     fn inclusion_settings(&self) -> &UIElementInclusionSettings;
+    fn inclusion_settings_mut(&mut self) -> &mut UIElementInclusionSettings;
     fn transform_pivot(&self) -> &super::core::Vec3;
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3;
     fn use_element_size(&self) -> &bool;
+    fn use_element_size_mut(&mut self) -> &mut bool;
     fn size(&self) -> &super::core::Vec2;
+    fn size_mut(&mut self) -> &mut super::core::Vec2;
     fn layout_mode(&self) -> &UILayoutMode;
+    fn layout_mode_mut(&mut self) -> &mut UILayoutMode;
     fn offset(&self) -> &UIElementOffset;
+    fn offset_mut(&mut self) -> &mut UIElementOffset;
     fn anchor(&self) -> &UIElementAnchor;
+    fn anchor_mut(&mut self) -> &mut UIElementAnchor;
     fn position(&self) -> &UIElementOffset;
+    fn position_mut(&mut self) -> &mut UIElementOffset;
     fn expansion(&self) -> &UIElementRectExpansion;
+    fn expansion_mut(&mut self) -> &mut UIElementRectExpansion;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn alpha(&self) -> &f32;
+    fn alpha_mut(&mut self) -> &mut f32;
     fn code_access_identifier(&self) -> &String;
+    fn code_access_identifier_mut(&mut self) -> &mut String;
 }
 
 impl UIElementWidgetReferenceEntityDataTrait for UIElementWidgetReferenceEntityData {
     fn instance_name(&self) -> &String {
         &self.instance_name
     }
+    fn instance_name_mut(&mut self) -> &mut String {
+        &mut self.instance_name
+    }
     fn instance_name_hash(&self) -> &u32 {
         &self.instance_name_hash
+    }
+    fn instance_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.instance_name_hash
     }
     fn inclusion_settings(&self) -> &UIElementInclusionSettings {
         &self.inclusion_settings
     }
+    fn inclusion_settings_mut(&mut self) -> &mut UIElementInclusionSettings {
+        &mut self.inclusion_settings
+    }
     fn transform_pivot(&self) -> &super::core::Vec3 {
         &self.transform_pivot
+    }
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.transform_pivot
     }
     fn use_element_size(&self) -> &bool {
         &self.use_element_size
     }
+    fn use_element_size_mut(&mut self) -> &mut bool {
+        &mut self.use_element_size
+    }
     fn size(&self) -> &super::core::Vec2 {
         &self.size
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.size
     }
     fn layout_mode(&self) -> &UILayoutMode {
         &self.layout_mode
     }
+    fn layout_mode_mut(&mut self) -> &mut UILayoutMode {
+        &mut self.layout_mode
+    }
     fn offset(&self) -> &UIElementOffset {
         &self.offset
+    }
+    fn offset_mut(&mut self) -> &mut UIElementOffset {
+        &mut self.offset
     }
     fn anchor(&self) -> &UIElementAnchor {
         &self.anchor
     }
+    fn anchor_mut(&mut self) -> &mut UIElementAnchor {
+        &mut self.anchor
+    }
     fn position(&self) -> &UIElementOffset {
         &self.position
+    }
+    fn position_mut(&mut self) -> &mut UIElementOffset {
+        &mut self.position
     }
     fn expansion(&self) -> &UIElementRectExpansion {
         &self.expansion
     }
+    fn expansion_mut(&mut self) -> &mut UIElementRectExpansion {
+        &mut self.expansion
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
     fn alpha(&self) -> &f32 {
         &self.alpha
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        &mut self.alpha
+    }
     fn code_access_identifier(&self) -> &String {
         &self.code_access_identifier
+    }
+    fn code_access_identifier_mut(&mut self) -> &mut String {
+        &mut self.code_access_identifier
     }
 }
 
@@ -1173,8 +1559,14 @@ impl super::entity::LogicReferenceObjectDataTrait for UIElementWidgetReferenceEn
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
     fn sub_realm(&self) -> &super::entity::SubRealm {
         self._glacier_base.sub_realm()
+    }
+    fn sub_realm_mut(&mut self) -> &mut super::entity::SubRealm {
+        self._glacier_base.sub_realm_mut()
     }
 }
 
@@ -1182,32 +1574,62 @@ impl super::entity::ReferenceObjectDataTrait for UIElementWidgetReferenceEntityD
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -1218,15 +1640,15 @@ impl super::core::DataBusPeerTrait for UIElementWidgetReferenceEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for UIElementWidgetReferenceEntityData {
 }
 
 impl super::core::DataContainerTrait for UIElementWidgetReferenceEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTWIDGETREFERENCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1336,6 +1758,15 @@ impl TypeObject for UIElementWidgetReferenceEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1360,27 +1791,47 @@ pub struct UIElementBitmapDistanceFieldParams {
 
 pub trait UIElementBitmapDistanceFieldParamsTrait: TypeObject {
     fn alpha_threshold(&self) -> &f32;
+    fn alpha_threshold_mut(&mut self) -> &mut f32;
     fn distance_scale(&self) -> &f32;
+    fn distance_scale_mut(&mut self) -> &mut f32;
     fn outline_inner(&self) -> &f32;
+    fn outline_inner_mut(&mut self) -> &mut f32;
     fn outline_outer(&self) -> &f32;
+    fn outline_outer_mut(&mut self) -> &mut f32;
     fn outline_color(&self) -> &UIElementColor;
+    fn outline_color_mut(&mut self) -> &mut UIElementColor;
 }
 
 impl UIElementBitmapDistanceFieldParamsTrait for UIElementBitmapDistanceFieldParams {
     fn alpha_threshold(&self) -> &f32 {
         &self.alpha_threshold
     }
+    fn alpha_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.alpha_threshold
+    }
     fn distance_scale(&self) -> &f32 {
         &self.distance_scale
+    }
+    fn distance_scale_mut(&mut self) -> &mut f32 {
+        &mut self.distance_scale
     }
     fn outline_inner(&self) -> &f32 {
         &self.outline_inner
     }
+    fn outline_inner_mut(&mut self) -> &mut f32 {
+        &mut self.outline_inner
+    }
     fn outline_outer(&self) -> &f32 {
         &self.outline_outer
     }
+    fn outline_outer_mut(&mut self) -> &mut f32 {
+        &mut self.outline_outer
+    }
     fn outline_color(&self) -> &UIElementColor {
         &self.outline_color
+    }
+    fn outline_color_mut(&mut self) -> &mut UIElementColor {
+        &mut self.outline_color
     }
 }
 
@@ -1436,6 +1887,15 @@ impl TypeObject for UIElementBitmapDistanceFieldParams {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1458,15 +1918,23 @@ pub struct UIMaskingContainerEntityData {
 
 pub trait UIMaskingContainerEntityDataTrait: UIContainerEntityDataTrait {
     fn masks(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
+    fn masks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
     fn mask_threshold(&self) -> &f32;
+    fn mask_threshold_mut(&mut self) -> &mut f32;
 }
 
 impl UIMaskingContainerEntityDataTrait for UIMaskingContainerEntityData {
     fn masks(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         &self.masks
     }
+    fn masks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        &mut self.masks
+    }
     fn mask_threshold(&self) -> &f32 {
         &self.mask_threshold
+    }
+    fn mask_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.mask_threshold
     }
 }
 
@@ -1474,47 +1942,89 @@ impl UIContainerEntityDataTrait for UIMaskingContainerEntityData {
     fn elements(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.elements()
     }
+    fn elements_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.elements_mut()
+    }
 }
 
 impl UIElementEntityDataTrait for UIMaskingContainerEntityData {
     fn instance_name(&self) -> &String {
         self._glacier_base.instance_name()
     }
+    fn instance_name_mut(&mut self) -> &mut String {
+        self._glacier_base.instance_name_mut()
+    }
     fn instance_name_hash(&self) -> &u32 {
         self._glacier_base.instance_name_hash()
+    }
+    fn instance_name_hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.instance_name_hash_mut()
     }
     fn transform_pivot(&self) -> &super::core::Vec3 {
         self._glacier_base.transform_pivot()
     }
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.transform_pivot_mut()
+    }
     fn size(&self) -> &super::core::Vec2 {
         self._glacier_base.size()
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        self._glacier_base.size_mut()
     }
     fn layout_mode(&self) -> &UILayoutMode {
         self._glacier_base.layout_mode()
     }
+    fn layout_mode_mut(&mut self) -> &mut UILayoutMode {
+        self._glacier_base.layout_mode_mut()
+    }
     fn offset(&self) -> &UIElementOffset {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut UIElementOffset {
+        self._glacier_base.offset_mut()
     }
     fn anchor(&self) -> &UIElementAnchor {
         self._glacier_base.anchor()
     }
+    fn anchor_mut(&mut self) -> &mut UIElementAnchor {
+        self._glacier_base.anchor_mut()
+    }
     fn position(&self) -> &UIElementOffset {
         self._glacier_base.position()
+    }
+    fn position_mut(&mut self) -> &mut UIElementOffset {
+        self._glacier_base.position_mut()
     }
     fn expansion(&self) -> &UIElementRectExpansion {
         self._glacier_base.expansion()
     }
+    fn expansion_mut(&mut self) -> &mut UIElementRectExpansion {
+        self._glacier_base.expansion_mut()
+    }
     fn visible(&self) -> &bool {
         self._glacier_base.visible()
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.visible_mut()
     }
     fn color(&self) -> &super::core::Vec3 {
         self._glacier_base.color()
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.color_mut()
+    }
     fn alpha(&self) -> &f32 {
         self._glacier_base.alpha()
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        self._glacier_base.alpha_mut()
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -1528,15 +2038,15 @@ impl super::core::DataBusPeerTrait for UIMaskingContainerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for UIMaskingContainerEntityData {
 }
 
 impl super::core::DataContainerTrait for UIMaskingContainerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIMASKINGCONTAINERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1574,6 +2084,15 @@ impl TypeObject for UIMaskingContainerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1595,11 +2114,15 @@ pub struct UIContainerEntityData {
 
 pub trait UIContainerEntityDataTrait: UIElementEntityDataTrait {
     fn elements(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
+    fn elements_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
 }
 
 impl UIContainerEntityDataTrait for UIContainerEntityData {
     fn elements(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         &self.elements
+    }
+    fn elements_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        &mut self.elements
     }
 }
 
@@ -1607,41 +2130,80 @@ impl UIElementEntityDataTrait for UIContainerEntityData {
     fn instance_name(&self) -> &String {
         self._glacier_base.instance_name()
     }
+    fn instance_name_mut(&mut self) -> &mut String {
+        self._glacier_base.instance_name_mut()
+    }
     fn instance_name_hash(&self) -> &u32 {
         self._glacier_base.instance_name_hash()
+    }
+    fn instance_name_hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.instance_name_hash_mut()
     }
     fn transform_pivot(&self) -> &super::core::Vec3 {
         self._glacier_base.transform_pivot()
     }
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.transform_pivot_mut()
+    }
     fn size(&self) -> &super::core::Vec2 {
         self._glacier_base.size()
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        self._glacier_base.size_mut()
     }
     fn layout_mode(&self) -> &UILayoutMode {
         self._glacier_base.layout_mode()
     }
+    fn layout_mode_mut(&mut self) -> &mut UILayoutMode {
+        self._glacier_base.layout_mode_mut()
+    }
     fn offset(&self) -> &UIElementOffset {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut UIElementOffset {
+        self._glacier_base.offset_mut()
     }
     fn anchor(&self) -> &UIElementAnchor {
         self._glacier_base.anchor()
     }
+    fn anchor_mut(&mut self) -> &mut UIElementAnchor {
+        self._glacier_base.anchor_mut()
+    }
     fn position(&self) -> &UIElementOffset {
         self._glacier_base.position()
+    }
+    fn position_mut(&mut self) -> &mut UIElementOffset {
+        self._glacier_base.position_mut()
     }
     fn expansion(&self) -> &UIElementRectExpansion {
         self._glacier_base.expansion()
     }
+    fn expansion_mut(&mut self) -> &mut UIElementRectExpansion {
+        self._glacier_base.expansion_mut()
+    }
     fn visible(&self) -> &bool {
         self._glacier_base.visible()
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.visible_mut()
     }
     fn color(&self) -> &super::core::Vec3 {
         self._glacier_base.color()
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.color_mut()
+    }
     fn alpha(&self) -> &f32 {
         self._glacier_base.alpha()
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        self._glacier_base.alpha_mut()
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -1655,15 +2217,15 @@ impl super::core::DataBusPeerTrait for UIContainerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for UIContainerEntityData {
 }
 
 impl super::core::DataContainerTrait for UIContainerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UICONTAINERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1694,6 +2256,15 @@ impl TypeObject for UIContainerEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1728,59 +2299,111 @@ pub struct UIElementEntityData {
 
 pub trait UIElementEntityDataTrait: super::entity::EntityDataTrait {
     fn instance_name(&self) -> &String;
+    fn instance_name_mut(&mut self) -> &mut String;
     fn instance_name_hash(&self) -> &u32;
+    fn instance_name_hash_mut(&mut self) -> &mut u32;
     fn transform_pivot(&self) -> &super::core::Vec3;
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3;
     fn size(&self) -> &super::core::Vec2;
+    fn size_mut(&mut self) -> &mut super::core::Vec2;
     fn layout_mode(&self) -> &UILayoutMode;
+    fn layout_mode_mut(&mut self) -> &mut UILayoutMode;
     fn offset(&self) -> &UIElementOffset;
+    fn offset_mut(&mut self) -> &mut UIElementOffset;
     fn anchor(&self) -> &UIElementAnchor;
+    fn anchor_mut(&mut self) -> &mut UIElementAnchor;
     fn position(&self) -> &UIElementOffset;
+    fn position_mut(&mut self) -> &mut UIElementOffset;
     fn expansion(&self) -> &UIElementRectExpansion;
+    fn expansion_mut(&mut self) -> &mut UIElementRectExpansion;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn alpha(&self) -> &f32;
+    fn alpha_mut(&mut self) -> &mut f32;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl UIElementEntityDataTrait for UIElementEntityData {
     fn instance_name(&self) -> &String {
         &self.instance_name
     }
+    fn instance_name_mut(&mut self) -> &mut String {
+        &mut self.instance_name
+    }
     fn instance_name_hash(&self) -> &u32 {
         &self.instance_name_hash
+    }
+    fn instance_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.instance_name_hash
     }
     fn transform_pivot(&self) -> &super::core::Vec3 {
         &self.transform_pivot
     }
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.transform_pivot
+    }
     fn size(&self) -> &super::core::Vec2 {
         &self.size
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.size
     }
     fn layout_mode(&self) -> &UILayoutMode {
         &self.layout_mode
     }
+    fn layout_mode_mut(&mut self) -> &mut UILayoutMode {
+        &mut self.layout_mode
+    }
     fn offset(&self) -> &UIElementOffset {
         &self.offset
+    }
+    fn offset_mut(&mut self) -> &mut UIElementOffset {
+        &mut self.offset
     }
     fn anchor(&self) -> &UIElementAnchor {
         &self.anchor
     }
+    fn anchor_mut(&mut self) -> &mut UIElementAnchor {
+        &mut self.anchor
+    }
     fn position(&self) -> &UIElementOffset {
         &self.position
+    }
+    fn position_mut(&mut self) -> &mut UIElementOffset {
+        &mut self.position
     }
     fn expansion(&self) -> &UIElementRectExpansion {
         &self.expansion
     }
+    fn expansion_mut(&mut self) -> &mut UIElementRectExpansion {
+        &mut self.expansion
+    }
     fn visible(&self) -> &bool {
         &self.visible
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn alpha(&self) -> &f32 {
         &self.alpha
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        &mut self.alpha
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
 }
 
@@ -1794,15 +2417,15 @@ impl super::core::DataBusPeerTrait for UIElementEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for UIElementEntityData {
 }
 
 impl super::core::DataContainerTrait for UIElementEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1906,6 +2529,15 @@ impl TypeObject for UIElementEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1931,27 +2563,47 @@ pub struct UIWidgetEntityData {
 
 pub trait UIWidgetEntityDataTrait: super::entity::EntityDataTrait {
     fn size(&self) -> &UIElementSize;
+    fn size_mut(&mut self) -> &mut UIElementSize;
     fn layers(&self) -> &Vec<Option<Arc<Mutex<dyn UIElementLayerEntityDataTrait>>>>;
+    fn layers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn UIElementLayerEntityDataTrait>>>>;
     fn texture_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn UITextureMappingAssetTrait>>>>;
+    fn texture_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn UITextureMappingAssetTrait>>>>;
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
 }
 
 impl UIWidgetEntityDataTrait for UIWidgetEntityData {
     fn size(&self) -> &UIElementSize {
         &self.size
     }
+    fn size_mut(&mut self) -> &mut UIElementSize {
+        &mut self.size
+    }
     fn layers(&self) -> &Vec<Option<Arc<Mutex<dyn UIElementLayerEntityDataTrait>>>> {
         &self.layers
+    }
+    fn layers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn UIElementLayerEntityDataTrait>>>> {
+        &mut self.layers
     }
     fn texture_mappings(&self) -> &Vec<Option<Arc<Mutex<dyn UITextureMappingAssetTrait>>>> {
         &self.texture_mappings
     }
+    fn texture_mappings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn UITextureMappingAssetTrait>>>> {
+        &mut self.texture_mappings
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         &self.components
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        &mut self.components
+    }
     fn visible(&self) -> &bool {
         &self.visible
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
     }
 }
 
@@ -1965,15 +2617,15 @@ impl super::core::DataBusPeerTrait for UIWidgetEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for UIWidgetEntityData {
 }
 
 impl super::core::DataContainerTrait for UIWidgetEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIWIDGETENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2029,6 +2681,15 @@ impl TypeObject for UIWidgetEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2053,23 +2714,39 @@ pub struct UIElementLayerEntityData {
 
 pub trait UIElementLayerEntityDataTrait: super::entity::EntityDataTrait {
     fn elements(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
+    fn elements_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
     fn inclusion_settings(&self) -> &UIElementInclusionSettings;
+    fn inclusion_settings_mut(&mut self) -> &mut UIElementInclusionSettings;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
     fn internal_layer_name(&self) -> &String;
+    fn internal_layer_name_mut(&mut self) -> &mut String;
 }
 
 impl UIElementLayerEntityDataTrait for UIElementLayerEntityData {
     fn elements(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         &self.elements
     }
+    fn elements_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        &mut self.elements
+    }
     fn inclusion_settings(&self) -> &UIElementInclusionSettings {
         &self.inclusion_settings
+    }
+    fn inclusion_settings_mut(&mut self) -> &mut UIElementInclusionSettings {
+        &mut self.inclusion_settings
     }
     fn visible(&self) -> &bool {
         &self.visible
     }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
+    }
     fn internal_layer_name(&self) -> &String {
         &self.internal_layer_name
+    }
+    fn internal_layer_name_mut(&mut self) -> &mut String {
+        &mut self.internal_layer_name
     }
 }
 
@@ -2083,15 +2760,15 @@ impl super::core::DataBusPeerTrait for UIElementLayerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for UIElementLayerEntityData {
 }
 
 impl super::core::DataContainerTrait for UIElementLayerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTLAYERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2141,6 +2818,15 @@ impl TypeObject for UIElementLayerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2165,27 +2851,47 @@ pub struct UIElementInclusionSettings {
 
 pub trait UIElementInclusionSettingsTrait: TypeObject {
     fn is_singleplayer_layer(&self) -> &bool;
+    fn is_singleplayer_layer_mut(&mut self) -> &mut bool;
     fn is_multiplayer_layer(&self) -> &bool;
+    fn is_multiplayer_layer_mut(&mut self) -> &mut bool;
     fn custom_inclusion_critera(&self) -> &Vec<String>;
+    fn custom_inclusion_critera_mut(&mut self) -> &mut Vec<String>;
     fn is_s_d_layer(&self) -> &bool;
+    fn is_s_d_layer_mut(&mut self) -> &mut bool;
     fn is_h_d_layer(&self) -> &bool;
+    fn is_h_d_layer_mut(&mut self) -> &mut bool;
 }
 
 impl UIElementInclusionSettingsTrait for UIElementInclusionSettings {
     fn is_singleplayer_layer(&self) -> &bool {
         &self.is_singleplayer_layer
     }
+    fn is_singleplayer_layer_mut(&mut self) -> &mut bool {
+        &mut self.is_singleplayer_layer
+    }
     fn is_multiplayer_layer(&self) -> &bool {
         &self.is_multiplayer_layer
+    }
+    fn is_multiplayer_layer_mut(&mut self) -> &mut bool {
+        &mut self.is_multiplayer_layer
     }
     fn custom_inclusion_critera(&self) -> &Vec<String> {
         &self.custom_inclusion_critera
     }
+    fn custom_inclusion_critera_mut(&mut self) -> &mut Vec<String> {
+        &mut self.custom_inclusion_critera
+    }
     fn is_s_d_layer(&self) -> &bool {
         &self.is_s_d_layer
     }
+    fn is_s_d_layer_mut(&mut self) -> &mut bool {
+        &mut self.is_s_d_layer
+    }
     fn is_h_d_layer(&self) -> &bool {
         &self.is_h_d_layer
+    }
+    fn is_h_d_layer_mut(&mut self) -> &mut bool {
+        &mut self.is_h_d_layer
     }
 }
 
@@ -2241,6 +2947,15 @@ impl TypeObject for UIElementInclusionSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2285,6 +3000,15 @@ impl TypeObject for UIBlendMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2308,23 +3032,39 @@ pub struct UIElementGradient {
 
 pub trait UIElementGradientTrait: TypeObject {
     fn top_left_color(&self) -> &UIElementColor;
+    fn top_left_color_mut(&mut self) -> &mut UIElementColor;
     fn top_right_color(&self) -> &UIElementColor;
+    fn top_right_color_mut(&mut self) -> &mut UIElementColor;
     fn bottom_left_color(&self) -> &UIElementColor;
+    fn bottom_left_color_mut(&mut self) -> &mut UIElementColor;
     fn bottom_right_color(&self) -> &UIElementColor;
+    fn bottom_right_color_mut(&mut self) -> &mut UIElementColor;
 }
 
 impl UIElementGradientTrait for UIElementGradient {
     fn top_left_color(&self) -> &UIElementColor {
         &self.top_left_color
     }
+    fn top_left_color_mut(&mut self) -> &mut UIElementColor {
+        &mut self.top_left_color
+    }
     fn top_right_color(&self) -> &UIElementColor {
         &self.top_right_color
+    }
+    fn top_right_color_mut(&mut self) -> &mut UIElementColor {
+        &mut self.top_right_color
     }
     fn bottom_left_color(&self) -> &UIElementColor {
         &self.bottom_left_color
     }
+    fn bottom_left_color_mut(&mut self) -> &mut UIElementColor {
+        &mut self.bottom_left_color
+    }
     fn bottom_right_color(&self) -> &UIElementColor {
         &self.bottom_right_color
+    }
+    fn bottom_right_color_mut(&mut self) -> &mut UIElementColor {
+        &mut self.bottom_right_color
     }
 }
 
@@ -2374,6 +3114,15 @@ impl TypeObject for UIElementGradient {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2395,15 +3144,23 @@ pub struct UIElementAnchor {
 
 pub trait UIElementAnchorTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
 }
 
 impl UIElementAnchorTrait for UIElementAnchor {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
     }
 }
 
@@ -2441,6 +3198,15 @@ impl TypeObject for UIElementAnchor {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2462,15 +3228,23 @@ pub struct UIElementSize {
 
 pub trait UIElementSizeTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
 }
 
 impl UIElementSizeTrait for UIElementSize {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
     }
 }
 
@@ -2508,6 +3282,15 @@ impl TypeObject for UIElementSize {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2529,15 +3312,23 @@ pub struct UIElementOffset {
 
 pub trait UIElementOffsetTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
 }
 
 impl UIElementOffsetTrait for UIElementOffset {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
     }
 }
 
@@ -2575,6 +3366,15 @@ impl TypeObject for UIElementOffset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2598,23 +3398,39 @@ pub struct UIElementRectExpansion {
 
 pub trait UIElementRectExpansionTrait: TypeObject {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn width(&self) -> &f32;
+    fn width_mut(&mut self) -> &mut f32;
     fn height(&self) -> &f32;
+    fn height_mut(&mut self) -> &mut f32;
 }
 
 impl UIElementRectExpansionTrait for UIElementRectExpansion {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
     }
     fn width(&self) -> &f32 {
         &self.width
     }
+    fn width_mut(&mut self) -> &mut f32 {
+        &mut self.width
+    }
     fn height(&self) -> &f32 {
         &self.height
+    }
+    fn height_mut(&mut self) -> &mut f32 {
+        &mut self.height
     }
 }
 
@@ -2664,6 +3480,15 @@ impl TypeObject for UIElementRectExpansion {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2688,23 +3513,39 @@ pub struct UIElementFontStyle {
 
 pub trait UIElementFontStyleTrait: super::game_base::UIElementFontStyleBaseAssetTrait {
     fn hd(&self) -> &Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>>;
+    fn hd_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>>;
     fn sd(&self) -> &Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>>;
+    fn sd_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>>;
     fn color(&self) -> &UIElementColor;
+    fn color_mut(&mut self) -> &mut UIElementColor;
     fn language_overrides(&self) -> &Vec<UIElementFontDefinitionOverride>;
+    fn language_overrides_mut(&mut self) -> &mut Vec<UIElementFontDefinitionOverride>;
 }
 
 impl UIElementFontStyleTrait for UIElementFontStyle {
     fn hd(&self) -> &Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>> {
         &self.hd
     }
+    fn hd_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>> {
+        &mut self.hd
+    }
     fn sd(&self) -> &Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>> {
         &self.sd
+    }
+    fn sd_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>> {
+        &mut self.sd
     }
     fn color(&self) -> &UIElementColor {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut UIElementColor {
+        &mut self.color
+    }
     fn language_overrides(&self) -> &Vec<UIElementFontDefinitionOverride> {
         &self.language_overrides
+    }
+    fn language_overrides_mut(&mut self) -> &mut Vec<UIElementFontDefinitionOverride> {
+        &mut self.language_overrides
     }
 }
 
@@ -2715,12 +3556,12 @@ impl super::core::AssetTrait for UIElementFontStyle {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UIElementFontStyle {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTFONTSTYLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2770,6 +3611,15 @@ impl TypeObject for UIElementFontStyle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2791,11 +3641,15 @@ pub struct UIElementFontEffect {
 
 pub trait UIElementFontEffectTrait: super::game_base::UIElementFontEffectBaseAssetTrait {
     fn effect_script(&self) -> &String;
+    fn effect_script_mut(&mut self) -> &mut String;
 }
 
 impl UIElementFontEffectTrait for UIElementFontEffect {
     fn effect_script(&self) -> &String {
         &self.effect_script
+    }
+    fn effect_script_mut(&mut self) -> &mut String {
+        &mut self.effect_script
     }
 }
 
@@ -2806,12 +3660,12 @@ impl super::core::AssetTrait for UIElementFontEffect {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UIElementFontEffect {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTFONTEFFECT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2843,6 +3697,15 @@ impl TypeObject for UIElementFontEffect {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2867,30 +3730,43 @@ pub struct UIElementFontDefinition {
 
 pub trait UIElementFontDefinitionTrait: super::core::DataContainerTrait {
     fn font_lookup(&self) -> &Vec<UIImmediateModeFontLookup>;
+    fn font_lookup_mut(&mut self) -> &mut Vec<UIImmediateModeFontLookup>;
     fn point_size(&self) -> &f32;
+    fn point_size_mut(&mut self) -> &mut f32;
     fn letter_spacing(&self) -> &f32;
+    fn letter_spacing_mut(&mut self) -> &mut f32;
     fn row_spacing(&self) -> &i32;
+    fn row_spacing_mut(&mut self) -> &mut i32;
 }
 
 impl UIElementFontDefinitionTrait for UIElementFontDefinition {
     fn font_lookup(&self) -> &Vec<UIImmediateModeFontLookup> {
         &self.font_lookup
     }
+    fn font_lookup_mut(&mut self) -> &mut Vec<UIImmediateModeFontLookup> {
+        &mut self.font_lookup
+    }
     fn point_size(&self) -> &f32 {
         &self.point_size
+    }
+    fn point_size_mut(&mut self) -> &mut f32 {
+        &mut self.point_size
     }
     fn letter_spacing(&self) -> &f32 {
         &self.letter_spacing
     }
+    fn letter_spacing_mut(&mut self) -> &mut f32 {
+        &mut self.letter_spacing
+    }
     fn row_spacing(&self) -> &i32 {
         &self.row_spacing
+    }
+    fn row_spacing_mut(&mut self) -> &mut i32 {
+        &mut self.row_spacing
     }
 }
 
 impl super::core::DataContainerTrait for UIElementFontDefinition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTFONTDEFINITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2940,6 +3816,15 @@ impl TypeObject for UIElementFontDefinition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2962,19 +3847,31 @@ pub struct UIElementFontDefinitionOverride {
 
 pub trait UIElementFontDefinitionOverrideTrait: TypeObject {
     fn language(&self) -> &super::core::LanguageFormat;
+    fn language_mut(&mut self) -> &mut super::core::LanguageFormat;
     fn hd(&self) -> &Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>>;
+    fn hd_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>>;
     fn sd(&self) -> &Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>>;
+    fn sd_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>>;
 }
 
 impl UIElementFontDefinitionOverrideTrait for UIElementFontDefinitionOverride {
     fn language(&self) -> &super::core::LanguageFormat {
         &self.language
     }
+    fn language_mut(&mut self) -> &mut super::core::LanguageFormat {
+        &mut self.language
+    }
     fn hd(&self) -> &Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>> {
         &self.hd
     }
+    fn hd_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>> {
+        &mut self.hd
+    }
     fn sd(&self) -> &Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>> {
         &self.sd
+    }
+    fn sd_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontDefinitionTrait>>> {
+        &mut self.sd
     }
 }
 
@@ -3018,6 +3915,15 @@ impl TypeObject for UIElementFontDefinitionOverride {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3045,35 +3951,63 @@ pub struct UIElementTextFilterGlow {
 
 pub trait UIElementTextFilterGlowTrait: UIElementTextFilterTrait {
     fn knock_out(&self) -> &bool;
+    fn knock_out_mut(&mut self) -> &mut bool;
     fn hide_object(&self) -> &bool;
+    fn hide_object_mut(&mut self) -> &mut bool;
     fn fine_blur(&self) -> &bool;
+    fn fine_blur_mut(&mut self) -> &mut bool;
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn color(&self) -> &UIElementColor;
+    fn color_mut(&mut self) -> &mut UIElementColor;
 }
 
 impl UIElementTextFilterGlowTrait for UIElementTextFilterGlow {
     fn knock_out(&self) -> &bool {
         &self.knock_out
     }
+    fn knock_out_mut(&mut self) -> &mut bool {
+        &mut self.knock_out
+    }
     fn hide_object(&self) -> &bool {
         &self.hide_object
+    }
+    fn hide_object_mut(&mut self) -> &mut bool {
+        &mut self.hide_object
     }
     fn fine_blur(&self) -> &bool {
         &self.fine_blur
     }
+    fn fine_blur_mut(&mut self) -> &mut bool {
+        &mut self.fine_blur
+    }
     fn x(&self) -> &f32 {
         &self.x
+    }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
     }
     fn y(&self) -> &f32 {
         &self.y
     }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
+    }
     fn strength(&self) -> &f32 {
         &self.strength
     }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
+    }
     fn color(&self) -> &UIElementColor {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut UIElementColor {
+        &mut self.color
     }
 }
 
@@ -3081,9 +4015,6 @@ impl UIElementTextFilterTrait for UIElementTextFilterGlow {
 }
 
 impl super::core::DataContainerTrait for UIElementTextFilterGlow {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTTEXTFILTERGLOW_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3151,6 +4082,15 @@ impl TypeObject for UIElementTextFilterGlow {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3180,43 +4120,79 @@ pub struct UIElementTextFilterDropShadow {
 
 pub trait UIElementTextFilterDropShadowTrait: UIElementTextFilterTrait {
     fn knock_out(&self) -> &bool;
+    fn knock_out_mut(&mut self) -> &mut bool;
     fn hide_object(&self) -> &bool;
+    fn hide_object_mut(&mut self) -> &mut bool;
     fn fine_blur(&self) -> &bool;
+    fn fine_blur_mut(&mut self) -> &mut bool;
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
     fn color(&self) -> &UIElementColor;
+    fn color_mut(&mut self) -> &mut UIElementColor;
     fn angle(&self) -> &f32;
+    fn angle_mut(&mut self) -> &mut f32;
     fn distance(&self) -> &f32;
+    fn distance_mut(&mut self) -> &mut f32;
 }
 
 impl UIElementTextFilterDropShadowTrait for UIElementTextFilterDropShadow {
     fn knock_out(&self) -> &bool {
         &self.knock_out
     }
+    fn knock_out_mut(&mut self) -> &mut bool {
+        &mut self.knock_out
+    }
     fn hide_object(&self) -> &bool {
         &self.hide_object
+    }
+    fn hide_object_mut(&mut self) -> &mut bool {
+        &mut self.hide_object
     }
     fn fine_blur(&self) -> &bool {
         &self.fine_blur
     }
+    fn fine_blur_mut(&mut self) -> &mut bool {
+        &mut self.fine_blur
+    }
     fn x(&self) -> &f32 {
         &self.x
+    }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
     }
     fn y(&self) -> &f32 {
         &self.y
     }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
+    }
     fn strength(&self) -> &f32 {
         &self.strength
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
     }
     fn color(&self) -> &UIElementColor {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut UIElementColor {
+        &mut self.color
+    }
     fn angle(&self) -> &f32 {
         &self.angle
     }
+    fn angle_mut(&mut self) -> &mut f32 {
+        &mut self.angle
+    }
     fn distance(&self) -> &f32 {
         &self.distance
+    }
+    fn distance_mut(&mut self) -> &mut f32 {
+        &mut self.distance
     }
 }
 
@@ -3224,9 +4200,6 @@ impl UIElementTextFilterTrait for UIElementTextFilterDropShadow {
 }
 
 impl super::core::DataContainerTrait for UIElementTextFilterDropShadow {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTTEXTFILTERDROPSHADOW_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3306,6 +4279,15 @@ impl TypeObject for UIElementTextFilterDropShadow {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3329,19 +4311,31 @@ pub struct UIElementTextFilterBlur {
 
 pub trait UIElementTextFilterBlurTrait: UIElementTextFilterTrait {
     fn x(&self) -> &f32;
+    fn x_mut(&mut self) -> &mut f32;
     fn y(&self) -> &f32;
+    fn y_mut(&mut self) -> &mut f32;
     fn strength(&self) -> &f32;
+    fn strength_mut(&mut self) -> &mut f32;
 }
 
 impl UIElementTextFilterBlurTrait for UIElementTextFilterBlur {
     fn x(&self) -> &f32 {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut f32 {
+        &mut self.x
+    }
     fn y(&self) -> &f32 {
         &self.y
     }
+    fn y_mut(&mut self) -> &mut f32 {
+        &mut self.y
+    }
     fn strength(&self) -> &f32 {
         &self.strength
+    }
+    fn strength_mut(&mut self) -> &mut f32 {
+        &mut self.strength
     }
 }
 
@@ -3349,9 +4343,6 @@ impl UIElementTextFilterTrait for UIElementTextFilterBlur {
 }
 
 impl super::core::DataContainerTrait for UIElementTextFilterBlur {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTTEXTFILTERBLUR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3395,6 +4386,15 @@ impl TypeObject for UIElementTextFilterBlur {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3420,9 +4420,6 @@ impl UIElementTextFilterTrait for UIElementTextFilter {
 }
 
 impl super::core::DataContainerTrait for UIElementTextFilter {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIELEMENTTEXTFILTER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3448,6 +4445,15 @@ impl TypeObject for UIElementTextFilter {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3469,15 +4475,23 @@ pub struct UIElementColor {
 
 pub trait UIElementColorTrait: TypeObject {
     fn rgb(&self) -> &super::core::Vec3;
+    fn rgb_mut(&mut self) -> &mut super::core::Vec3;
     fn alpha(&self) -> &f32;
+    fn alpha_mut(&mut self) -> &mut f32;
 }
 
 impl UIElementColorTrait for UIElementColor {
     fn rgb(&self) -> &super::core::Vec3 {
         &self.rgb
     }
+    fn rgb_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.rgb
+    }
     fn alpha(&self) -> &f32 {
         &self.alpha
+    }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        &mut self.alpha
     }
 }
 
@@ -3515,6 +4529,15 @@ impl TypeObject for UIElementColor {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3539,23 +4562,39 @@ pub struct UITextureMappingAsset {
 
 pub trait UITextureMappingAssetTrait: super::game_base::UITextureMappingBaseAssetTrait {
     fn compartment(&self) -> &UITextureMappingCompartment;
+    fn compartment_mut(&mut self) -> &mut UITextureMappingCompartment;
     fn output(&self) -> &Vec<UITextureMappingOutputEntry>;
+    fn output_mut(&mut self) -> &mut Vec<UITextureMappingOutputEntry>;
     fn disable_atlas(&self) -> &bool;
+    fn disable_atlas_mut(&mut self) -> &mut bool;
     fn force_atlas(&self) -> &bool;
+    fn force_atlas_mut(&mut self) -> &mut bool;
 }
 
 impl UITextureMappingAssetTrait for UITextureMappingAsset {
     fn compartment(&self) -> &UITextureMappingCompartment {
         &self.compartment
     }
+    fn compartment_mut(&mut self) -> &mut UITextureMappingCompartment {
+        &mut self.compartment
+    }
     fn output(&self) -> &Vec<UITextureMappingOutputEntry> {
         &self.output
+    }
+    fn output_mut(&mut self) -> &mut Vec<UITextureMappingOutputEntry> {
+        &mut self.output
     }
     fn disable_atlas(&self) -> &bool {
         &self.disable_atlas
     }
+    fn disable_atlas_mut(&mut self) -> &mut bool {
+        &mut self.disable_atlas
+    }
     fn force_atlas(&self) -> &bool {
         &self.force_atlas
+    }
+    fn force_atlas_mut(&mut self) -> &mut bool {
+        &mut self.force_atlas
     }
 }
 
@@ -3566,12 +4605,12 @@ impl super::core::AssetTrait for UITextureMappingAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UITextureMappingAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UITEXTUREMAPPINGASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3621,6 +4660,15 @@ impl TypeObject for UITextureMappingAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3658,6 +4706,15 @@ impl TypeObject for UILayoutMode {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3697,6 +4754,15 @@ impl TypeObject for UITextureMappingCompartment {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3719,19 +4785,31 @@ pub struct UITextureMappingOutputEntry {
 
 pub trait UITextureMappingOutputEntryTrait: TypeObject {
     fn id(&self) -> &i32;
+    fn id_mut(&mut self) -> &mut i32;
     fn texture_ref(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn texture_ref_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn uv_rect(&self) -> &super::core::Vec4;
+    fn uv_rect_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl UITextureMappingOutputEntryTrait for UITextureMappingOutputEntry {
     fn id(&self) -> &i32 {
         &self.id
     }
+    fn id_mut(&mut self) -> &mut i32 {
+        &mut self.id
+    }
     fn texture_ref(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.texture_ref
     }
+    fn texture_ref_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.texture_ref
+    }
     fn uv_rect(&self) -> &super::core::Vec4 {
         &self.uv_rect
+    }
+    fn uv_rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.uv_rect
     }
 }
 
@@ -3775,6 +4853,15 @@ impl TypeObject for UITextureMappingOutputEntry {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3803,14 +4890,23 @@ impl super::entity::ObjectBlueprintTrait for UIWidgetBlueprint {
     fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
         self._glacier_base.object()
     }
+    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+        self._glacier_base.object_mut()
+    }
 }
 
 impl super::entity::BlueprintTrait for UIWidgetBlueprint {
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.objects()
     }
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.objects_mut()
+    }
     fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
         self._glacier_base.schematics()
+    }
+    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+        self._glacier_base.schematics_mut()
     }
 }
 
@@ -3818,20 +4914,35 @@ impl super::entity::EntityBusDataTrait for UIWidgetBlueprint {
     fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
         self._glacier_base.event_connections()
     }
+    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+        self._glacier_base.event_connections_mut()
+    }
 }
 
 impl super::core::DataBusDataTrait for UIWidgetBlueprint {
     fn flags(&self) -> &u16 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.flags_mut()
+    }
     fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
         self._glacier_base.property_connections()
+    }
+    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+        self._glacier_base.property_connections_mut()
     }
     fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
         self._glacier_base.link_connections()
     }
+    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+        self._glacier_base.link_connections_mut()
+    }
     fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
         self._glacier_base.interface()
+    }
+    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+        self._glacier_base.interface_mut()
     }
 }
 
@@ -3839,12 +4950,12 @@ impl super::core::AssetTrait for UIWidgetBlueprint {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UIWidgetBlueprint {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIWIDGETBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3869,6 +4980,15 @@ impl TypeObject for UIWidgetBlueprint {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3896,31 +5016,55 @@ pub struct UIImmediateModeFontConfigurationAsset {
 
 pub trait UIImmediateModeFontConfigurationAssetTrait: super::gameplay_sim::UIFontConfigurationAssetBaseTrait {
     fn font_bundles(&self) -> &Vec<UIImmediateModeFontBundle>;
+    fn font_bundles_mut(&mut self) -> &mut Vec<UIImmediateModeFontBundle>;
     fn font_dpi(&self) -> &i32;
+    fn font_dpi_mut(&mut self) -> &mut i32;
     fn glyph_cache_size(&self) -> &i32;
+    fn glyph_cache_size_mut(&mut self) -> &mut i32;
     fn glyph_cache_size_low_end(&self) -> &i32;
+    fn glyph_cache_size_low_end_mut(&mut self) -> &mut i32;
     fn glyph_cache_padding(&self) -> &i32;
+    fn glyph_cache_padding_mut(&mut self) -> &mut i32;
     fn auto_hinting(&self) -> &bool;
+    fn auto_hinting_mut(&mut self) -> &mut bool;
 }
 
 impl UIImmediateModeFontConfigurationAssetTrait for UIImmediateModeFontConfigurationAsset {
     fn font_bundles(&self) -> &Vec<UIImmediateModeFontBundle> {
         &self.font_bundles
     }
+    fn font_bundles_mut(&mut self) -> &mut Vec<UIImmediateModeFontBundle> {
+        &mut self.font_bundles
+    }
     fn font_dpi(&self) -> &i32 {
         &self.font_dpi
+    }
+    fn font_dpi_mut(&mut self) -> &mut i32 {
+        &mut self.font_dpi
     }
     fn glyph_cache_size(&self) -> &i32 {
         &self.glyph_cache_size
     }
+    fn glyph_cache_size_mut(&mut self) -> &mut i32 {
+        &mut self.glyph_cache_size
+    }
     fn glyph_cache_size_low_end(&self) -> &i32 {
         &self.glyph_cache_size_low_end
+    }
+    fn glyph_cache_size_low_end_mut(&mut self) -> &mut i32 {
+        &mut self.glyph_cache_size_low_end
     }
     fn glyph_cache_padding(&self) -> &i32 {
         &self.glyph_cache_padding
     }
+    fn glyph_cache_padding_mut(&mut self) -> &mut i32 {
+        &mut self.glyph_cache_padding
+    }
     fn auto_hinting(&self) -> &bool {
         &self.auto_hinting
+    }
+    fn auto_hinting_mut(&mut self) -> &mut bool {
+        &mut self.auto_hinting
     }
 }
 
@@ -3931,12 +5075,12 @@ impl super::core::AssetTrait for UIImmediateModeFontConfigurationAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UIImmediateModeFontConfigurationAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIIMMEDIATEMODEFONTCONFIGURATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3998,6 +5142,15 @@ impl TypeObject for UIImmediateModeFontConfigurationAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4019,15 +5172,23 @@ pub struct UIImmediateModeFontLookup {
 
 pub trait UIImmediateModeFontLookupTrait: TypeObject {
     fn language(&self) -> &super::core::LanguageFormat;
+    fn language_mut(&mut self) -> &mut super::core::LanguageFormat;
     fn font_asset_path(&self) -> &String;
+    fn font_asset_path_mut(&mut self) -> &mut String;
 }
 
 impl UIImmediateModeFontLookupTrait for UIImmediateModeFontLookup {
     fn language(&self) -> &super::core::LanguageFormat {
         &self.language
     }
+    fn language_mut(&mut self) -> &mut super::core::LanguageFormat {
+        &mut self.language
+    }
     fn font_asset_path(&self) -> &String {
         &self.font_asset_path
+    }
+    fn font_asset_path_mut(&mut self) -> &mut String {
+        &mut self.font_asset_path
     }
 }
 
@@ -4065,6 +5226,15 @@ impl TypeObject for UIImmediateModeFontLookup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4087,19 +5257,31 @@ pub struct UIImmediateModeFontBundle {
 
 pub trait UIImmediateModeFontBundleTrait: TypeObject {
     fn language(&self) -> &super::core::LanguageFormat;
+    fn language_mut(&mut self) -> &mut super::core::LanguageFormat;
     fn bundle_path(&self) -> &String;
+    fn bundle_path_mut(&mut self) -> &mut String;
     fn ttf_assets(&self) -> &Vec<Option<Arc<Mutex<dyn UITtfAssetTrait>>>>;
+    fn ttf_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn UITtfAssetTrait>>>>;
 }
 
 impl UIImmediateModeFontBundleTrait for UIImmediateModeFontBundle {
     fn language(&self) -> &super::core::LanguageFormat {
         &self.language
     }
+    fn language_mut(&mut self) -> &mut super::core::LanguageFormat {
+        &mut self.language
+    }
     fn bundle_path(&self) -> &String {
         &self.bundle_path
     }
+    fn bundle_path_mut(&mut self) -> &mut String {
+        &mut self.bundle_path
+    }
     fn ttf_assets(&self) -> &Vec<Option<Arc<Mutex<dyn UITtfAssetTrait>>>> {
         &self.ttf_assets
+    }
+    fn ttf_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn UITtfAssetTrait>>>> {
+        &mut self.ttf_assets
     }
 }
 
@@ -4143,6 +5325,15 @@ impl TypeObject for UIImmediateModeFontBundle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4167,23 +5358,39 @@ pub struct UITtfAsset {
 
 pub trait UITtfAssetTrait: super::core::AssetTrait {
     fn font_family_name(&self) -> &String;
+    fn font_family_name_mut(&mut self) -> &mut String;
     fn italic(&self) -> &bool;
+    fn italic_mut(&mut self) -> &mut bool;
     fn bold(&self) -> &bool;
+    fn bold_mut(&mut self) -> &mut bool;
     fn font_resource(&self) -> &glacier_reflect::builtin::ResourceRef;
+    fn font_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl UITtfAssetTrait for UITtfAsset {
     fn font_family_name(&self) -> &String {
         &self.font_family_name
     }
+    fn font_family_name_mut(&mut self) -> &mut String {
+        &mut self.font_family_name
+    }
     fn italic(&self) -> &bool {
         &self.italic
+    }
+    fn italic_mut(&mut self) -> &mut bool {
+        &mut self.italic
     }
     fn bold(&self) -> &bool {
         &self.bold
     }
+    fn bold_mut(&mut self) -> &mut bool {
+        &mut self.bold
+    }
     fn font_resource(&self) -> &glacier_reflect::builtin::ResourceRef {
         &self.font_resource
+    }
+    fn font_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
+        &mut self.font_resource
     }
 }
 
@@ -4191,12 +5398,12 @@ impl super::core::AssetTrait for UITtfAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for UITtfAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UITTFASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4246,6 +5453,15 @@ impl TypeObject for UITtfAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4280,15 +5496,15 @@ impl super::core::DataBusPeerTrait for UIInputEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for UIInputEntityData {
 }
 
 impl super::core::DataContainerTrait for UIInputEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static UIINPUTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4314,6 +5530,15 @@ impl TypeObject for UIInputEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4338,23 +5563,39 @@ pub struct MovieTrackData {
 
 pub trait MovieTrackDataTrait: super::timeline::GuideTrackDataTrait {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn MovieTrackKeyframeTrait>>>>;
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn MovieTrackKeyframeTrait>>>>;
     fn volume(&self) -> &f32;
+    fn volume_mut(&mut self) -> &mut f32;
     fn expose_on_movie_started(&self) -> &bool;
+    fn expose_on_movie_started_mut(&mut self) -> &mut bool;
     fn disable_world_renderer(&self) -> &bool;
+    fn disable_world_renderer_mut(&mut self) -> &mut bool;
 }
 
 impl MovieTrackDataTrait for MovieTrackData {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn MovieTrackKeyframeTrait>>>> {
         &self.keyframes
     }
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn MovieTrackKeyframeTrait>>>> {
+        &mut self.keyframes
+    }
     fn volume(&self) -> &f32 {
         &self.volume
+    }
+    fn volume_mut(&mut self) -> &mut f32 {
+        &mut self.volume
     }
     fn expose_on_movie_started(&self) -> &bool {
         &self.expose_on_movie_started
     }
+    fn expose_on_movie_started_mut(&mut self) -> &mut bool {
+        &mut self.expose_on_movie_started
+    }
     fn disable_world_renderer(&self) -> &bool {
         &self.disable_world_renderer
+    }
+    fn disable_world_renderer_mut(&mut self) -> &mut bool {
+        &mut self.disable_world_renderer
     }
 }
 
@@ -4362,26 +5603,47 @@ impl super::timeline::GuideTrackDataTrait for MovieTrackData {
     fn guide_track_priority(&self) -> &i32 {
         self._glacier_base.guide_track_priority()
     }
+    fn guide_track_priority_mut(&mut self) -> &mut i32 {
+        self._glacier_base.guide_track_priority_mut()
+    }
 }
 
 impl super::timeline::TimelineTrackDataTrait for MovieTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -4392,15 +5654,15 @@ impl super::core::DataBusPeerTrait for MovieTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MovieTrackData {
 }
 
 impl super::core::DataContainerTrait for MovieTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVIETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4450,6 +5712,15 @@ impl TypeObject for MovieTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4476,38 +5747,59 @@ pub struct MovieTrackKeyframe {
 
 pub trait MovieTrackKeyframeTrait: super::core::DataContainerTrait {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn movie(&self) -> &Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>;
+    fn movie_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>;
     fn pause_on_ending(&self) -> &bool;
+    fn pause_on_ending_mut(&mut self) -> &mut bool;
     fn renderable_count(&self) -> &u32;
+    fn renderable_count_mut(&mut self) -> &mut u32;
     fn thread_count(&self) -> &u32;
+    fn thread_count_mut(&mut self) -> &mut u32;
 }
 
 impl MovieTrackKeyframeTrait for MovieTrackKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
     fn movie(&self) -> &Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>> {
         &self.movie
     }
+    fn movie_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>> {
+        &mut self.movie
+    }
     fn pause_on_ending(&self) -> &bool {
         &self.pause_on_ending
+    }
+    fn pause_on_ending_mut(&mut self) -> &mut bool {
+        &mut self.pause_on_ending
     }
     fn renderable_count(&self) -> &u32 {
         &self.renderable_count
     }
+    fn renderable_count_mut(&mut self) -> &mut u32 {
+        &mut self.renderable_count
+    }
     fn thread_count(&self) -> &u32 {
         &self.thread_count
+    }
+    fn thread_count_mut(&mut self) -> &mut u32 {
+        &mut self.thread_count
     }
 }
 
 impl super::core::DataContainerTrait for MovieTrackKeyframe {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MOVIETRACKKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4568,6 +5860,15 @@ impl TypeObject for MovieTrackKeyframe {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

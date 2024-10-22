@@ -429,6 +429,15 @@ impl TypeObject for ServerSimpleDriverComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -484,6 +493,15 @@ impl TypeObject for WSServerDogFightingEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -541,6 +559,15 @@ impl TypeObject for ServerStrafeRunManeuverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -596,6 +623,15 @@ impl TypeObject for ServerStallTurnManeuverEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -653,6 +689,15 @@ impl TypeObject for ServerSplitSManeuverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -708,6 +753,15 @@ impl TypeObject for ServerSpinDescentManeuverEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -765,6 +819,15 @@ impl TypeObject for ServerSideToSideManeuverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -817,6 +880,15 @@ impl TypeObject for ServerSetWaypointsEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -874,6 +946,15 @@ impl TypeObject for ServerProtectBaseManeuverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -926,6 +1007,15 @@ impl TypeObject for ServerPilotEntityBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -983,6 +1073,15 @@ impl TypeObject for ServerPilotEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1039,6 +1138,15 @@ impl TypeObject for ServerManeuverSelectorEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1094,6 +1202,15 @@ impl TypeObject for ServerImmelmannManeuverEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1154,6 +1271,15 @@ impl TypeObject for ServerHeavyPlanePilotEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1209,6 +1335,15 @@ impl TypeObject for ServerFollowWaypointsManeuverEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1266,6 +1401,15 @@ impl TypeObject for ServerFlyToManeuverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1322,6 +1466,15 @@ impl TypeObject for ServerEnforceAltitudeManeuverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1375,6 +1528,15 @@ impl TypeObject for ServerDogFightManeuverEntityBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1427,6 +1589,15 @@ impl TypeObject for ServerDogFightingEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1487,6 +1658,15 @@ impl TypeObject for ServerDefensiveManeuverSelectorEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1542,6 +1722,15 @@ impl TypeObject for ServerCreateDistanceManeuverEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1599,6 +1788,15 @@ impl TypeObject for ServerCollisionAvoidanceManeuverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1654,6 +1852,15 @@ impl TypeObject for ServerBasicDefensiveManeuverEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1711,6 +1918,15 @@ impl TypeObject for ServerBasicAttackManeuverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1767,6 +1983,15 @@ impl TypeObject for ServerBarrelRollManeuverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1820,6 +2045,15 @@ impl TypeObject for ServerAirTargetSelectorEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1872,6 +2106,15 @@ impl TypeObject for ServerAirCollisionAvoidanceEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1929,6 +2172,15 @@ impl TypeObject for BFServerDogFightingEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1981,6 +2233,15 @@ impl TypeObject for ServerWaypointsWalkerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2041,6 +2302,15 @@ impl TypeObject for ServerAIProximityReactionsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2100,6 +2370,15 @@ impl TypeObject for ServerAILocoComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2152,6 +2431,15 @@ impl TypeObject for AIBlockerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2212,6 +2500,15 @@ impl TypeObject for ClientAIProximityReactionsComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2271,6 +2568,15 @@ impl TypeObject for ClientAILocoComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2323,6 +2629,15 @@ impl TypeObject for SpatialAnalyzer {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2377,6 +2692,15 @@ impl TypeObject for ServerPlayerVehicleProximityEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2429,6 +2753,15 @@ impl TypeObject for ServerInvestigateSettingsOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2483,6 +2816,15 @@ impl TypeObject for ServerDamageModifierEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2535,6 +2877,15 @@ impl TypeObject for ServerAttackPointEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2589,6 +2940,15 @@ impl TypeObject for ServerAIVehicleCombatEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2641,6 +3001,15 @@ impl TypeObject for ServerAITemplateFilterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2695,6 +3064,15 @@ impl TypeObject for ServerAITeleportEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2747,6 +3125,15 @@ impl TypeObject for ServerAISystemEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2801,6 +3188,15 @@ impl TypeObject for ServerAIStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2853,6 +3249,15 @@ impl TypeObject for ServerAISoundEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -2910,6 +3315,15 @@ impl TypeObject for ServerAICancelOrder {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2965,6 +3379,15 @@ impl TypeObject for ServerAIGotoPlaceOrderEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3022,6 +3445,15 @@ impl TypeObject for ServerAIFollowWaypointsOrder {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3074,6 +3506,15 @@ impl TypeObject for ServerAIOrderEntityBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3131,6 +3572,15 @@ impl TypeObject for ServerAISelfDestructEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3186,6 +3636,15 @@ impl TypeObject for ServerAICoverZonesOverrideEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3243,6 +3702,15 @@ impl TypeObject for ServerAIAwarenessEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3298,6 +3766,15 @@ impl TypeObject for ServerAIWeaponSlotOverrideEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3355,6 +3832,15 @@ impl TypeObject for ServerAITargetCoordinatorFilterEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3410,6 +3896,15 @@ impl TypeObject for ServerAITargetCoordinatorEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3467,6 +3962,15 @@ impl TypeObject for ServerCloakingModifierEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3522,6 +4026,15 @@ impl TypeObject for ServerSensingAreaModifierEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3579,6 +4092,15 @@ impl TypeObject for ServerAIStealthEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3635,6 +4157,15 @@ impl TypeObject for ServerAIBuddyFollowEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3690,6 +4221,15 @@ impl TypeObject for ServerAIFollowObjectEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3750,6 +4290,15 @@ impl TypeObject for ServerAIPreferredAreaEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3809,6 +4358,15 @@ impl TypeObject for ServerAISoundAreaEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3864,6 +4422,15 @@ impl TypeObject for ServerAICombatGroupEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3921,6 +4488,15 @@ impl TypeObject for ServerAICoverQueryEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3976,6 +4552,15 @@ impl TypeObject for ServerAITacticEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4033,6 +4618,15 @@ impl TypeObject for ServerAIShootAtTargetsEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4088,6 +4682,15 @@ impl TypeObject for ServerAIUseWaypointsEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4145,6 +4748,15 @@ impl TypeObject for ServerAIUseCoverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4200,6 +4812,15 @@ impl TypeObject for ServerAIWeaponOverrideEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4257,6 +4878,15 @@ impl TypeObject for ServerAIVehicleBehaviorEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4312,6 +4942,15 @@ impl TypeObject for ServerAIHearingParameterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4369,6 +5008,15 @@ impl TypeObject for ServerAISensingParameterEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4424,6 +5072,15 @@ impl TypeObject for ServerAIIdleBehaviorEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4481,6 +5138,15 @@ impl TypeObject for ServerAITargetingEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4536,6 +5202,15 @@ impl TypeObject for ServerAICombatBehaviorEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4596,6 +5271,15 @@ impl TypeObject for ServerAIFollowAreaEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4654,6 +5338,15 @@ impl TypeObject for ServerAIForbiddenAreaEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4714,6 +5407,15 @@ impl TypeObject for ServerAIFriendlyAreaEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4772,6 +5474,15 @@ impl TypeObject for ServerAIFlankingCorridorEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4832,6 +5543,15 @@ impl TypeObject for ServerAISearchAreaEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4891,6 +5611,15 @@ impl TypeObject for ServerAIDefendAreaEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4947,6 +5676,15 @@ impl TypeObject for ServerAIParameterWithShapeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4999,6 +5737,15 @@ impl TypeObject for ServerAIParameterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5053,6 +5800,15 @@ impl TypeObject for ServerAIObstacleControllerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5105,6 +5861,15 @@ impl TypeObject for ServerAIKillCounterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5159,6 +5924,15 @@ impl TypeObject for ServerAIFirePatternEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5211,6 +5985,15 @@ impl TypeObject for ServerAIEncounterManagerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5265,6 +6048,15 @@ impl TypeObject for ServerAIDebugProxy {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5317,6 +6109,15 @@ impl TypeObject for ServerActionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5371,6 +6172,15 @@ impl TypeObject for AIConcealmentVolumeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5423,6 +6233,15 @@ impl TypeObject for ClientAITemplateFilterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5477,6 +6296,15 @@ impl TypeObject for ClientAIStateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5529,6 +6357,15 @@ impl TypeObject for ClientAIPhysicsDrivenAnimationEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5583,6 +6420,15 @@ impl TypeObject for ClientAICollisionAvoidanceSetupEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5636,6 +6482,15 @@ impl TypeObject for ClientActionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5685,6 +6540,15 @@ impl TypeObject for AITemplateConditionEvaluator {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5736,6 +6600,15 @@ impl TypeObject for InsideVolumesConditionEvaluator {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5785,6 +6658,15 @@ impl TypeObject for ProbabilityConditionEvaluator {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5836,6 +6718,15 @@ impl TypeObject for FacingConditionEvaluator {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5885,6 +6776,15 @@ impl TypeObject for AIOrderCoordinatorConditionEvaluator {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5936,6 +6836,15 @@ impl TypeObject for AIStateConditionEvaluator {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5986,6 +6895,15 @@ impl TypeObject for RangeConditionEvaluator {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6031,6 +6949,15 @@ impl TypeObject for IActionConditionEvaluator {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6091,6 +7018,15 @@ impl TypeObject for ServerPointOfInterestComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6147,6 +7083,15 @@ impl TypeObject for ServerCoverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6199,6 +7144,15 @@ impl TypeObject for ServerCoverGroupEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6259,6 +7213,15 @@ impl TypeObject for ServerAIVehicleAimingComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6317,6 +7280,15 @@ impl TypeObject for ServerAITargetComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6377,6 +7349,15 @@ impl TypeObject for ServerAISuppressWeaponFiringComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6435,6 +7416,15 @@ impl TypeObject for ServerAISpottingComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6495,6 +7485,15 @@ impl TypeObject for ServerAISmokeVolumeComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6553,6 +7552,15 @@ impl TypeObject for ServerAIProjectileComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6613,6 +7621,15 @@ impl TypeObject for ServerAIOrderCoordinatorComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6671,6 +7688,15 @@ impl TypeObject for ServerAIMeleeComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6731,6 +7757,15 @@ impl TypeObject for ServerAIEntryComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6789,6 +7824,15 @@ impl TypeObject for ServerAICustomInputComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6849,6 +7893,15 @@ impl TypeObject for ServerAIBucketSystemComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6907,6 +7960,15 @@ impl TypeObject for ServerAIAnchorToPointComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6967,6 +8029,15 @@ impl TypeObject for ClientAISpottingComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7025,6 +8096,15 @@ impl TypeObject for ClientAIProjectileComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7085,6 +8165,15 @@ impl TypeObject for ClientAIOrderCoordinatorComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7143,6 +8232,15 @@ impl TypeObject for ClientAIMeleeComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7203,6 +8301,15 @@ impl TypeObject for ClientAIAnchorToPointComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7255,6 +8362,15 @@ impl TypeObject for CoverScoreModifierEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7315,6 +8431,15 @@ impl TypeObject for ServerPathLinkEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7367,6 +8492,15 @@ impl TypeObject for ServerPathfindingStreamEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7427,6 +8561,15 @@ impl TypeObject for ServerNavPowerObstacleComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7483,6 +8626,15 @@ impl TypeObject for PathLinkEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7535,6 +8687,15 @@ impl TypeObject for ServerWaypointTriggerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7595,6 +8756,15 @@ impl TypeObject for ServerPathFollowingComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7647,6 +8817,15 @@ impl TypeObject for ServerPathfindingOverride {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7701,6 +8880,15 @@ impl TypeObject for ServerFollowWaypointsEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7754,6 +8942,15 @@ impl TypeObject for ServerFollowObjectEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7781,35 +8978,63 @@ pub struct SpatialAnalyzerData {
 
 pub trait SpatialAnalyzerDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn reference_transform(&self) -> &super::core::LinearTransform;
+    fn reference_transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn analysis_f_o_v(&self) -> &f32;
+    fn analysis_f_o_v_mut(&mut self) -> &mut f32;
     fn sweep_steps(&self) -> &u32;
+    fn sweep_steps_mut(&mut self) -> &mut u32;
     fn edge_distance_threshold(&self) -> &f32;
+    fn edge_distance_threshold_mut(&mut self) -> &mut f32;
     fn near_limit_distance(&self) -> &f32;
+    fn near_limit_distance_mut(&mut self) -> &mut f32;
     fn far_limit_distance(&self) -> &f32;
+    fn far_limit_distance_mut(&mut self) -> &mut f32;
 }
 
 impl SpatialAnalyzerDataTrait for SpatialAnalyzerData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn reference_transform(&self) -> &super::core::LinearTransform {
         &self.reference_transform
+    }
+    fn reference_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.reference_transform
     }
     fn analysis_f_o_v(&self) -> &f32 {
         &self.analysis_f_o_v
     }
+    fn analysis_f_o_v_mut(&mut self) -> &mut f32 {
+        &mut self.analysis_f_o_v
+    }
     fn sweep_steps(&self) -> &u32 {
         &self.sweep_steps
+    }
+    fn sweep_steps_mut(&mut self) -> &mut u32 {
+        &mut self.sweep_steps
     }
     fn edge_distance_threshold(&self) -> &f32 {
         &self.edge_distance_threshold
     }
+    fn edge_distance_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.edge_distance_threshold
+    }
     fn near_limit_distance(&self) -> &f32 {
         &self.near_limit_distance
     }
+    fn near_limit_distance_mut(&mut self) -> &mut f32 {
+        &mut self.near_limit_distance
+    }
     fn far_limit_distance(&self) -> &f32 {
         &self.far_limit_distance
+    }
+    fn far_limit_distance_mut(&mut self) -> &mut f32 {
+        &mut self.far_limit_distance
     }
 }
 
@@ -7823,15 +9048,15 @@ impl super::core::DataBusPeerTrait for SpatialAnalyzerData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SpatialAnalyzerData {
 }
 
 impl super::core::DataContainerTrait for SpatialAnalyzerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SPATIALANALYZERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7899,6 +9124,15 @@ impl TypeObject for SpatialAnalyzerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7925,37 +9159,64 @@ pub struct AttackPointEntityData {
 
 pub trait AttackPointEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn only_accept_linked_spawners(&self) -> &bool;
+    fn only_accept_linked_spawners_mut(&mut self) -> &mut bool;
     fn team_id(&self) -> &super::gameplay_sim::TeamId;
+    fn team_id_mut(&mut self) -> &mut super::gameplay_sim::TeamId;
     fn max_target_count_for_l_o_s_check(&self) -> &i32;
+    fn max_target_count_for_l_o_s_check_mut(&mut self) -> &mut i32;
     fn navmesh_layer(&self) -> &i32;
+    fn navmesh_layer_mut(&mut self) -> &mut i32;
     fn ground_transform_horizontal_offset(&self) -> &f32;
+    fn ground_transform_horizontal_offset_mut(&mut self) -> &mut f32;
 }
 
 impl AttackPointEntityDataTrait for AttackPointEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn only_accept_linked_spawners(&self) -> &bool {
         &self.only_accept_linked_spawners
+    }
+    fn only_accept_linked_spawners_mut(&mut self) -> &mut bool {
+        &mut self.only_accept_linked_spawners
     }
     fn team_id(&self) -> &super::gameplay_sim::TeamId {
         &self.team_id
     }
+    fn team_id_mut(&mut self) -> &mut super::gameplay_sim::TeamId {
+        &mut self.team_id
+    }
     fn max_target_count_for_l_o_s_check(&self) -> &i32 {
         &self.max_target_count_for_l_o_s_check
+    }
+    fn max_target_count_for_l_o_s_check_mut(&mut self) -> &mut i32 {
+        &mut self.max_target_count_for_l_o_s_check
     }
     fn navmesh_layer(&self) -> &i32 {
         &self.navmesh_layer
     }
+    fn navmesh_layer_mut(&mut self) -> &mut i32 {
+        &mut self.navmesh_layer
+    }
     fn ground_transform_horizontal_offset(&self) -> &f32 {
         &self.ground_transform_horizontal_offset
+    }
+    fn ground_transform_horizontal_offset_mut(&mut self) -> &mut f32 {
+        &mut self.ground_transform_horizontal_offset
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for AttackPointEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -7969,15 +9230,15 @@ impl super::core::DataBusPeerTrait for AttackPointEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AttackPointEntityData {
 }
 
 impl super::core::DataContainerTrait for AttackPointEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ATTACKPOINTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8039,6 +9300,15 @@ impl TypeObject for AttackPointEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8075,77 +9345,144 @@ pub struct ActionEntityData {
 
 pub trait ActionEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn ActionConditionTrait>>>>;
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ActionConditionTrait>>>>;
     fn move_to_action_before_executing(&self) -> &bool;
+    fn move_to_action_before_executing_mut(&mut self) -> &mut bool;
     fn align_to_action_before_executing(&self) -> &bool;
+    fn align_to_action_before_executing_mut(&mut self) -> &mut bool;
     fn wait_time_before_executing(&self) -> &f32;
+    fn wait_time_before_executing_mut(&mut self) -> &mut f32;
     fn cooldown_time(&self) -> &f32;
+    fn cooldown_time_mut(&mut self) -> &mut f32;
     fn timeout_duration(&self) -> &f32;
+    fn timeout_duration_mut(&mut self) -> &mut f32;
     fn abort_when_alerted(&self) -> &bool;
+    fn abort_when_alerted_mut(&mut self) -> &mut bool;
     fn abort_when_timed_out(&self) -> &bool;
+    fn abort_when_timed_out_mut(&mut self) -> &mut bool;
     fn valid_in_state(&self) -> &ValidInState;
+    fn valid_in_state_mut(&mut self) -> &mut ValidInState;
     fn action_priority(&self) -> &ActionPriority;
+    fn action_priority_mut(&mut self) -> &mut ActionPriority;
     fn should_be_executed_by_closest_a_i(&self) -> &bool;
+    fn should_be_executed_by_closest_a_i_mut(&mut self) -> &mut bool;
     fn only_execute_for_fitness_valid_a_i(&self) -> &bool;
+    fn only_execute_for_fitness_valid_a_i_mut(&mut self) -> &mut bool;
     fn use_actual_path_distance(&self) -> &bool;
+    fn use_actual_path_distance_mut(&mut self) -> &mut bool;
     fn is_linked_action(&self) -> &bool;
+    fn is_linked_action_mut(&mut self) -> &mut bool;
     fn restrict_to_linked_soldiers(&self) -> &bool;
+    fn restrict_to_linked_soldiers_mut(&mut self) -> &mut bool;
 }
 
 impl ActionEntityDataTrait for ActionEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn ActionConditionTrait>>>> {
         &self.conditions
+    }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ActionConditionTrait>>>> {
+        &mut self.conditions
     }
     fn move_to_action_before_executing(&self) -> &bool {
         &self.move_to_action_before_executing
     }
+    fn move_to_action_before_executing_mut(&mut self) -> &mut bool {
+        &mut self.move_to_action_before_executing
+    }
     fn align_to_action_before_executing(&self) -> &bool {
         &self.align_to_action_before_executing
+    }
+    fn align_to_action_before_executing_mut(&mut self) -> &mut bool {
+        &mut self.align_to_action_before_executing
     }
     fn wait_time_before_executing(&self) -> &f32 {
         &self.wait_time_before_executing
     }
+    fn wait_time_before_executing_mut(&mut self) -> &mut f32 {
+        &mut self.wait_time_before_executing
+    }
     fn cooldown_time(&self) -> &f32 {
         &self.cooldown_time
+    }
+    fn cooldown_time_mut(&mut self) -> &mut f32 {
+        &mut self.cooldown_time
     }
     fn timeout_duration(&self) -> &f32 {
         &self.timeout_duration
     }
+    fn timeout_duration_mut(&mut self) -> &mut f32 {
+        &mut self.timeout_duration
+    }
     fn abort_when_alerted(&self) -> &bool {
         &self.abort_when_alerted
+    }
+    fn abort_when_alerted_mut(&mut self) -> &mut bool {
+        &mut self.abort_when_alerted
     }
     fn abort_when_timed_out(&self) -> &bool {
         &self.abort_when_timed_out
     }
+    fn abort_when_timed_out_mut(&mut self) -> &mut bool {
+        &mut self.abort_when_timed_out
+    }
     fn valid_in_state(&self) -> &ValidInState {
         &self.valid_in_state
+    }
+    fn valid_in_state_mut(&mut self) -> &mut ValidInState {
+        &mut self.valid_in_state
     }
     fn action_priority(&self) -> &ActionPriority {
         &self.action_priority
     }
+    fn action_priority_mut(&mut self) -> &mut ActionPriority {
+        &mut self.action_priority
+    }
     fn should_be_executed_by_closest_a_i(&self) -> &bool {
         &self.should_be_executed_by_closest_a_i
+    }
+    fn should_be_executed_by_closest_a_i_mut(&mut self) -> &mut bool {
+        &mut self.should_be_executed_by_closest_a_i
     }
     fn only_execute_for_fitness_valid_a_i(&self) -> &bool {
         &self.only_execute_for_fitness_valid_a_i
     }
+    fn only_execute_for_fitness_valid_a_i_mut(&mut self) -> &mut bool {
+        &mut self.only_execute_for_fitness_valid_a_i
+    }
     fn use_actual_path_distance(&self) -> &bool {
         &self.use_actual_path_distance
+    }
+    fn use_actual_path_distance_mut(&mut self) -> &mut bool {
+        &mut self.use_actual_path_distance
     }
     fn is_linked_action(&self) -> &bool {
         &self.is_linked_action
     }
+    fn is_linked_action_mut(&mut self) -> &mut bool {
+        &mut self.is_linked_action
+    }
     fn restrict_to_linked_soldiers(&self) -> &bool {
         &self.restrict_to_linked_soldiers
+    }
+    fn restrict_to_linked_soldiers_mut(&mut self) -> &mut bool {
+        &mut self.restrict_to_linked_soldiers
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for ActionEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -8159,15 +9496,15 @@ impl super::core::DataBusPeerTrait for ActionEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ActionEntityData {
 }
 
 impl super::core::DataContainerTrait for ActionEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ACTIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8289,6 +9626,15 @@ impl TypeObject for ActionEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8330,6 +9676,15 @@ impl TypeObject for ValidInState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8369,6 +9724,15 @@ impl TypeObject for ActionPriority {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -8411,6 +9775,15 @@ impl TypeObject for ActionState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8432,11 +9805,15 @@ pub struct AITemplateCondition {
 
 pub trait AITemplateConditionTrait: ActionConditionTrait {
     fn templates(&self) -> &Vec<String>;
+    fn templates_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl AITemplateConditionTrait for AITemplateCondition {
     fn templates(&self) -> &Vec<String> {
         &self.templates
+    }
+    fn templates_mut(&mut self) -> &mut Vec<String> {
+        &mut self.templates
     }
 }
 
@@ -8444,9 +9821,6 @@ impl ActionConditionTrait for AITemplateCondition {
 }
 
 impl super::core::DataContainerTrait for AITemplateCondition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AITEMPLATECONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8478,6 +9852,15 @@ impl TypeObject for AITemplateCondition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8500,15 +9883,23 @@ pub struct InsideVolumesCondition {
 
 pub trait InsideVolumesConditionTrait: ActionConditionTrait {
     fn station_inside_user_search_area(&self) -> &bool;
+    fn station_inside_user_search_area_mut(&mut self) -> &mut bool;
     fn station_inside_user_defend_area(&self) -> &bool;
+    fn station_inside_user_defend_area_mut(&mut self) -> &mut bool;
 }
 
 impl InsideVolumesConditionTrait for InsideVolumesCondition {
     fn station_inside_user_search_area(&self) -> &bool {
         &self.station_inside_user_search_area
     }
+    fn station_inside_user_search_area_mut(&mut self) -> &mut bool {
+        &mut self.station_inside_user_search_area
+    }
     fn station_inside_user_defend_area(&self) -> &bool {
         &self.station_inside_user_defend_area
+    }
+    fn station_inside_user_defend_area_mut(&mut self) -> &mut bool {
+        &mut self.station_inside_user_defend_area
     }
 }
 
@@ -8516,9 +9907,6 @@ impl ActionConditionTrait for InsideVolumesCondition {
 }
 
 impl super::core::DataContainerTrait for InsideVolumesCondition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INSIDEVOLUMESCONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8556,6 +9944,15 @@ impl TypeObject for InsideVolumesCondition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8577,11 +9974,15 @@ pub struct ProbabilityCondition {
 
 pub trait ProbabilityConditionTrait: ActionConditionTrait {
     fn probability(&self) -> &f32;
+    fn probability_mut(&mut self) -> &mut f32;
 }
 
 impl ProbabilityConditionTrait for ProbabilityCondition {
     fn probability(&self) -> &f32 {
         &self.probability
+    }
+    fn probability_mut(&mut self) -> &mut f32 {
+        &mut self.probability
     }
 }
 
@@ -8589,9 +9990,6 @@ impl ActionConditionTrait for ProbabilityCondition {
 }
 
 impl super::core::DataContainerTrait for ProbabilityCondition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROBABILITYCONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8623,6 +10021,15 @@ impl TypeObject for ProbabilityCondition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8644,11 +10051,15 @@ pub struct FacingCondition {
 
 pub trait FacingConditionTrait: ActionConditionTrait {
     fn max_angle(&self) -> &f32;
+    fn max_angle_mut(&mut self) -> &mut f32;
 }
 
 impl FacingConditionTrait for FacingCondition {
     fn max_angle(&self) -> &f32 {
         &self.max_angle
+    }
+    fn max_angle_mut(&mut self) -> &mut f32 {
+        &mut self.max_angle
     }
 }
 
@@ -8656,9 +10067,6 @@ impl ActionConditionTrait for FacingCondition {
 }
 
 impl super::core::DataContainerTrait for FacingCondition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FACINGCONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8690,6 +10098,15 @@ impl TypeObject for FacingCondition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8711,11 +10128,15 @@ pub struct AIOrderCoordinatorCondition {
 
 pub trait AIOrderCoordinatorConditionTrait: ActionConditionTrait {
     fn only_valid_when_expecting_self_orders(&self) -> &bool;
+    fn only_valid_when_expecting_self_orders_mut(&mut self) -> &mut bool;
 }
 
 impl AIOrderCoordinatorConditionTrait for AIOrderCoordinatorCondition {
     fn only_valid_when_expecting_self_orders(&self) -> &bool {
         &self.only_valid_when_expecting_self_orders
+    }
+    fn only_valid_when_expecting_self_orders_mut(&mut self) -> &mut bool {
+        &mut self.only_valid_when_expecting_self_orders
     }
 }
 
@@ -8723,9 +10144,6 @@ impl ActionConditionTrait for AIOrderCoordinatorCondition {
 }
 
 impl super::core::DataContainerTrait for AIOrderCoordinatorCondition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AIORDERCOORDINATORCONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8757,6 +10175,15 @@ impl TypeObject for AIOrderCoordinatorCondition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8779,15 +10206,23 @@ pub struct AIStateCondition {
 
 pub trait AIStateConditionTrait: ActionConditionTrait {
     fn a_i_state(&self) -> &ConditionAIStates;
+    fn a_i_state_mut(&mut self) -> &mut ConditionAIStates;
     fn restrict_search_area_to_secondary_search(&self) -> &bool;
+    fn restrict_search_area_to_secondary_search_mut(&mut self) -> &mut bool;
 }
 
 impl AIStateConditionTrait for AIStateCondition {
     fn a_i_state(&self) -> &ConditionAIStates {
         &self.a_i_state
     }
+    fn a_i_state_mut(&mut self) -> &mut ConditionAIStates {
+        &mut self.a_i_state
+    }
     fn restrict_search_area_to_secondary_search(&self) -> &bool {
         &self.restrict_search_area_to_secondary_search
+    }
+    fn restrict_search_area_to_secondary_search_mut(&mut self) -> &mut bool {
+        &mut self.restrict_search_area_to_secondary_search
     }
 }
 
@@ -8795,9 +10230,6 @@ impl ActionConditionTrait for AIStateCondition {
 }
 
 impl super::core::DataContainerTrait for AIStateCondition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AISTATECONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8834,6 +10266,15 @@ impl TypeObject for AIStateCondition {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -8877,6 +10318,15 @@ impl TypeObject for ConditionAIStates {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8898,11 +10348,15 @@ pub struct RangeCondition {
 
 pub trait RangeConditionTrait: ActionConditionTrait {
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
 }
 
 impl RangeConditionTrait for RangeCondition {
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
 }
 
@@ -8910,9 +10364,6 @@ impl ActionConditionTrait for RangeCondition {
 }
 
 impl super::core::DataContainerTrait for RangeCondition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RANGECONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8944,6 +10395,15 @@ impl TypeObject for RangeCondition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8969,9 +10429,6 @@ impl ActionConditionTrait for ActionCondition {
 }
 
 impl super::core::DataContainerTrait for ActionCondition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ACTIONCONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8997,6 +10454,15 @@ impl TypeObject for ActionCondition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9019,15 +10485,23 @@ pub struct PreferredCoverScoreData {
 
 pub trait PreferredCoverScoreDataTrait: CustomCoverScoreDataTrait {
     fn preferred_cover_id(&self) -> &u32;
+    fn preferred_cover_id_mut(&mut self) -> &mut u32;
     fn score(&self) -> &f32;
+    fn score_mut(&mut self) -> &mut f32;
 }
 
 impl PreferredCoverScoreDataTrait for PreferredCoverScoreData {
     fn preferred_cover_id(&self) -> &u32 {
         &self.preferred_cover_id
     }
+    fn preferred_cover_id_mut(&mut self) -> &mut u32 {
+        &mut self.preferred_cover_id
+    }
     fn score(&self) -> &f32 {
         &self.score
+    }
+    fn score_mut(&mut self) -> &mut f32 {
+        &mut self.score
     }
 }
 
@@ -9038,8 +10512,14 @@ impl CoverScoreDataTrait for PreferredCoverScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -9047,15 +10527,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for PreferredCoverScoreDa
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PreferredCoverScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PREFERREDCOVERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9093,6 +10576,15 @@ impl TypeObject for PreferredCoverScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9115,15 +10607,23 @@ pub struct PreferredAreaScoreData {
 
 pub trait PreferredAreaScoreDataTrait: CustomCoverScoreDataTrait {
     fn shapes(&self) -> &Vec<BaseShapeWithOffset>;
+    fn shapes_mut(&mut self) -> &mut Vec<BaseShapeWithOffset>;
     fn score(&self) -> &f32;
+    fn score_mut(&mut self) -> &mut f32;
 }
 
 impl PreferredAreaScoreDataTrait for PreferredAreaScoreData {
     fn shapes(&self) -> &Vec<BaseShapeWithOffset> {
         &self.shapes
     }
+    fn shapes_mut(&mut self) -> &mut Vec<BaseShapeWithOffset> {
+        &mut self.shapes
+    }
     fn score(&self) -> &f32 {
         &self.score
+    }
+    fn score_mut(&mut self) -> &mut f32 {
+        &mut self.score
     }
 }
 
@@ -9134,8 +10634,14 @@ impl CoverScoreDataTrait for PreferredAreaScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -9143,15 +10649,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for PreferredAreaScoreDat
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PreferredAreaScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PREFERREDAREASCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9189,6 +10698,15 @@ impl TypeObject for PreferredAreaScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9211,19 +10729,31 @@ pub struct BaseShapeWithOffset {
 
 pub trait BaseShapeWithOffsetTrait: TypeObject {
     fn shape(&self) -> &Option<Arc<Mutex<dyn super::entity::BaseShapeDataTrait>>>;
+    fn shape_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BaseShapeDataTrait>>>;
     fn offset(&self) -> &super::core::LinearTransform;
+    fn offset_mut(&mut self) -> &mut super::core::LinearTransform;
     fn owner_transform(&self) -> &super::core::LinearTransform;
+    fn owner_transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl BaseShapeWithOffsetTrait for BaseShapeWithOffset {
     fn shape(&self) -> &Option<Arc<Mutex<dyn super::entity::BaseShapeDataTrait>>> {
         &self.shape
     }
+    fn shape_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BaseShapeDataTrait>>> {
+        &mut self.shape
+    }
     fn offset(&self) -> &super::core::LinearTransform {
         &self.offset
     }
+    fn offset_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.offset
+    }
     fn owner_transform(&self) -> &super::core::LinearTransform {
         &self.owner_transform
+    }
+    fn owner_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.owner_transform
     }
 }
 
@@ -9267,6 +10797,15 @@ impl TypeObject for BaseShapeWithOffset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9295,8 +10834,14 @@ impl CoverScoreDataTrait for CustomCoverScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -9304,15 +10849,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for CustomCoverScoreData 
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CustomCoverScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CUSTOMCOVERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9337,6 +10885,15 @@ impl TypeObject for CustomCoverScoreData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9366,11 +10923,20 @@ impl CoverScoreDataWithScoreCurveTrait for ReducePathDistanceToFollowObjectScore
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -9378,8 +10944,14 @@ impl CoverScoreDataTrait for ReducePathDistanceToFollowObjectScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -9387,15 +10959,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for ReducePathDistanceToF
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for ReducePathDistanceToFollowObjectScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static REDUCEPATHDISTANCETOFOLLOWOBJECTSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9420,6 +10995,15 @@ impl TypeObject for ReducePathDistanceToFollowObjectScoreData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -9449,11 +11033,20 @@ impl CoverScoreDataWithScoreCurveTrait for ReducePathDistanceToTargetScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -9461,8 +11054,14 @@ impl CoverScoreDataTrait for ReducePathDistanceToTargetScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -9470,15 +11069,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for ReducePathDistanceToT
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for ReducePathDistanceToTargetScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static REDUCEPATHDISTANCETOTARGETSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9504,6 +11106,15 @@ impl TypeObject for ReducePathDistanceToTargetScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9525,11 +11136,15 @@ pub struct LineOfFireScoreData {
 
 pub trait LineOfFireScoreDataTrait: CoverScoreDataWithScoreCurveTrait {
     fn override_open_cover_height(&self) -> &f32;
+    fn override_open_cover_height_mut(&mut self) -> &mut f32;
 }
 
 impl LineOfFireScoreDataTrait for LineOfFireScoreData {
     fn override_open_cover_height(&self) -> &f32 {
         &self.override_open_cover_height
+    }
+    fn override_open_cover_height_mut(&mut self) -> &mut f32 {
+        &mut self.override_open_cover_height
     }
 }
 
@@ -9537,11 +11152,20 @@ impl CoverScoreDataWithScoreCurveTrait for LineOfFireScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -9549,8 +11173,14 @@ impl CoverScoreDataTrait for LineOfFireScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -9558,15 +11188,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for LineOfFireScoreData {
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for LineOfFireScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINEOFFIRESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9598,6 +11231,15 @@ impl TypeObject for LineOfFireScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9621,19 +11263,31 @@ pub struct NavProbeScoreData {
 
 pub trait NavProbeScoreDataTrait: CoverScoreDataTrait {
     fn ref_position(&self) -> &CoverScorePosition;
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition;
     fn score(&self) -> &f32;
+    fn score_mut(&mut self) -> &mut f32;
     fn max_probe_distance(&self) -> &f32;
+    fn max_probe_distance_mut(&mut self) -> &mut f32;
 }
 
 impl NavProbeScoreDataTrait for NavProbeScoreData {
     fn ref_position(&self) -> &CoverScorePosition {
         &self.ref_position
     }
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition {
+        &mut self.ref_position
+    }
     fn score(&self) -> &f32 {
         &self.score
     }
+    fn score_mut(&mut self) -> &mut f32 {
+        &mut self.score
+    }
     fn max_probe_distance(&self) -> &f32 {
         &self.max_probe_distance
+    }
+    fn max_probe_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_probe_distance
     }
 }
 
@@ -9641,8 +11295,14 @@ impl CoverScoreDataTrait for NavProbeScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -9650,15 +11310,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for NavProbeScoreData {
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for NavProbeScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NAVPROBESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9702,6 +11365,15 @@ impl TypeObject for NavProbeScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9724,15 +11396,23 @@ pub struct BehindFollowObjectScoreData {
 
 pub trait BehindFollowObjectScoreDataTrait: CoverScoreDataWithScoreCurveTrait {
     fn max_enemy_distance(&self) -> &f32;
+    fn max_enemy_distance_mut(&mut self) -> &mut f32;
     fn enemy_position_weight_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn enemy_position_weight_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
 }
 
 impl BehindFollowObjectScoreDataTrait for BehindFollowObjectScoreData {
     fn max_enemy_distance(&self) -> &f32 {
         &self.max_enemy_distance
     }
+    fn max_enemy_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_enemy_distance
+    }
     fn enemy_position_weight_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.enemy_position_weight_curve
+    }
+    fn enemy_position_weight_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.enemy_position_weight_curve
     }
 }
 
@@ -9740,11 +11420,20 @@ impl CoverScoreDataWithScoreCurveTrait for BehindFollowObjectScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -9752,8 +11441,14 @@ impl CoverScoreDataTrait for BehindFollowObjectScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -9761,15 +11456,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for BehindFollowObjectSco
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for BehindFollowObjectScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BEHINDFOLLOWOBJECTSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9807,6 +11505,15 @@ impl TypeObject for BehindFollowObjectScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9829,15 +11536,23 @@ pub struct AngleFromFollowObjectAimDirectionData {
 
 pub trait AngleFromFollowObjectAimDirectionDataTrait: CoverScoreDataWithScoreCurveTrait {
     fn apply_only_if_aim_direction_stable(&self) -> &bool;
+    fn apply_only_if_aim_direction_stable_mut(&mut self) -> &mut bool;
     fn max_follow_object_speed(&self) -> &f32;
+    fn max_follow_object_speed_mut(&mut self) -> &mut f32;
 }
 
 impl AngleFromFollowObjectAimDirectionDataTrait for AngleFromFollowObjectAimDirectionData {
     fn apply_only_if_aim_direction_stable(&self) -> &bool {
         &self.apply_only_if_aim_direction_stable
     }
+    fn apply_only_if_aim_direction_stable_mut(&mut self) -> &mut bool {
+        &mut self.apply_only_if_aim_direction_stable
+    }
     fn max_follow_object_speed(&self) -> &f32 {
         &self.max_follow_object_speed
+    }
+    fn max_follow_object_speed_mut(&mut self) -> &mut f32 {
+        &mut self.max_follow_object_speed
     }
 }
 
@@ -9845,11 +11560,20 @@ impl CoverScoreDataWithScoreCurveTrait for AngleFromFollowObjectAimDirectionData
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -9857,8 +11581,14 @@ impl CoverScoreDataTrait for AngleFromFollowObjectAimDirectionData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -9866,15 +11596,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for AngleFromFollowObject
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for AngleFromFollowObjectAimDirectionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANGLEFROMFOLLOWOBJECTAIMDIRECTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9912,6 +11645,15 @@ impl TypeObject for AngleFromFollowObjectAimDirectionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9936,23 +11678,39 @@ pub struct FollowObjectReticleAvoidanceData {
 
 pub trait FollowObjectReticleAvoidanceDataTrait: CoverScoreDataWithScoreCurveTrait {
     fn apply_only_if_aim_direction_stable(&self) -> &bool;
+    fn apply_only_if_aim_direction_stable_mut(&mut self) -> &mut bool;
     fn max_follow_object_speed(&self) -> &f32;
+    fn max_follow_object_speed_mut(&mut self) -> &mut f32;
     fn soldier_radius_expansion(&self) -> &f32;
+    fn soldier_radius_expansion_mut(&mut self) -> &mut f32;
     fn path_look_ahead_distance(&self) -> &f32;
+    fn path_look_ahead_distance_mut(&mut self) -> &mut f32;
 }
 
 impl FollowObjectReticleAvoidanceDataTrait for FollowObjectReticleAvoidanceData {
     fn apply_only_if_aim_direction_stable(&self) -> &bool {
         &self.apply_only_if_aim_direction_stable
     }
+    fn apply_only_if_aim_direction_stable_mut(&mut self) -> &mut bool {
+        &mut self.apply_only_if_aim_direction_stable
+    }
     fn max_follow_object_speed(&self) -> &f32 {
         &self.max_follow_object_speed
+    }
+    fn max_follow_object_speed_mut(&mut self) -> &mut f32 {
+        &mut self.max_follow_object_speed
     }
     fn soldier_radius_expansion(&self) -> &f32 {
         &self.soldier_radius_expansion
     }
+    fn soldier_radius_expansion_mut(&mut self) -> &mut f32 {
+        &mut self.soldier_radius_expansion
+    }
     fn path_look_ahead_distance(&self) -> &f32 {
         &self.path_look_ahead_distance
+    }
+    fn path_look_ahead_distance_mut(&mut self) -> &mut f32 {
+        &mut self.path_look_ahead_distance
     }
 }
 
@@ -9960,11 +11718,20 @@ impl CoverScoreDataWithScoreCurveTrait for FollowObjectReticleAvoidanceData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -9972,8 +11739,14 @@ impl CoverScoreDataTrait for FollowObjectReticleAvoidanceData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -9981,15 +11754,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for FollowObjectReticleAv
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for FollowObjectReticleAvoidanceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FOLLOWOBJECTRETICLEAVOIDANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10039,6 +11815,15 @@ impl TypeObject for FollowObjectReticleAvoidanceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10066,35 +11851,63 @@ pub struct PathAvoidanceScoreData {
 
 pub trait PathAvoidanceScoreDataTrait: CoverScoreDataTrait {
     fn avoid_by_type_data(&self) -> &Vec<super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData>;
+    fn avoid_by_type_data_mut(&mut self) -> &mut Vec<super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData>;
     fn max_search_distance(&self) -> &f32;
+    fn max_search_distance_mut(&mut self) -> &mut f32;
     fn reject_cover_beyond_search_distance(&self) -> &bool;
+    fn reject_cover_beyond_search_distance_mut(&mut self) -> &mut bool;
     fn inner_zone_score(&self) -> &f32;
+    fn inner_zone_score_mut(&mut self) -> &mut f32;
     fn outer_zone_score(&self) -> &f32;
+    fn outer_zone_score_mut(&mut self) -> &mut f32;
     fn not_passing_avoidance_area_score(&self) -> &f32;
+    fn not_passing_avoidance_area_score_mut(&mut self) -> &mut f32;
     fn scores_per_zone(&self) -> &Vec<f32>;
+    fn scores_per_zone_mut(&mut self) -> &mut Vec<f32>;
 }
 
 impl PathAvoidanceScoreDataTrait for PathAvoidanceScoreData {
     fn avoid_by_type_data(&self) -> &Vec<super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData> {
         &self.avoid_by_type_data
     }
+    fn avoid_by_type_data_mut(&mut self) -> &mut Vec<super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData> {
+        &mut self.avoid_by_type_data
+    }
     fn max_search_distance(&self) -> &f32 {
         &self.max_search_distance
+    }
+    fn max_search_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_search_distance
     }
     fn reject_cover_beyond_search_distance(&self) -> &bool {
         &self.reject_cover_beyond_search_distance
     }
+    fn reject_cover_beyond_search_distance_mut(&mut self) -> &mut bool {
+        &mut self.reject_cover_beyond_search_distance
+    }
     fn inner_zone_score(&self) -> &f32 {
         &self.inner_zone_score
+    }
+    fn inner_zone_score_mut(&mut self) -> &mut f32 {
+        &mut self.inner_zone_score
     }
     fn outer_zone_score(&self) -> &f32 {
         &self.outer_zone_score
     }
+    fn outer_zone_score_mut(&mut self) -> &mut f32 {
+        &mut self.outer_zone_score
+    }
     fn not_passing_avoidance_area_score(&self) -> &f32 {
         &self.not_passing_avoidance_area_score
     }
+    fn not_passing_avoidance_area_score_mut(&mut self) -> &mut f32 {
+        &mut self.not_passing_avoidance_area_score
+    }
     fn scores_per_zone(&self) -> &Vec<f32> {
         &self.scores_per_zone
+    }
+    fn scores_per_zone_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.scores_per_zone
     }
 }
 
@@ -10102,8 +11915,14 @@ impl CoverScoreDataTrait for PathAvoidanceScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -10111,15 +11930,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for PathAvoidanceScoreDat
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PathAvoidanceScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHAVOIDANCESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10187,6 +12009,15 @@ impl TypeObject for PathAvoidanceScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10210,19 +12041,31 @@ pub struct PathDistanceScoreData {
 
 pub trait PathDistanceScoreDataTrait: CoverScoreDataWithRefPosTrait {
     fn max_search_distance(&self) -> &f32;
+    fn max_search_distance_mut(&mut self) -> &mut f32;
     fn precise_path(&self) -> &bool;
+    fn precise_path_mut(&mut self) -> &mut bool;
     fn reject_cover_beyond_search_distance(&self) -> &bool;
+    fn reject_cover_beyond_search_distance_mut(&mut self) -> &mut bool;
 }
 
 impl PathDistanceScoreDataTrait for PathDistanceScoreData {
     fn max_search_distance(&self) -> &f32 {
         &self.max_search_distance
     }
+    fn max_search_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_search_distance
+    }
     fn precise_path(&self) -> &bool {
         &self.precise_path
     }
+    fn precise_path_mut(&mut self) -> &mut bool {
+        &mut self.precise_path
+    }
     fn reject_cover_beyond_search_distance(&self) -> &bool {
         &self.reject_cover_beyond_search_distance
+    }
+    fn reject_cover_beyond_search_distance_mut(&mut self) -> &mut bool {
+        &mut self.reject_cover_beyond_search_distance
     }
 }
 
@@ -10230,17 +12073,29 @@ impl CoverScoreDataWithRefPosTrait for PathDistanceScoreData {
     fn ref_position(&self) -> &CoverScorePosition {
         self._glacier_base.ref_position()
     }
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition {
+        self._glacier_base.ref_position_mut()
+    }
 }
 
 impl CoverScoreDataWithScoreCurveTrait for PathDistanceScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -10248,8 +12103,14 @@ impl CoverScoreDataTrait for PathDistanceScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -10257,15 +12118,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for PathDistanceScoreData
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PathDistanceScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PATHDISTANCESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10309,6 +12173,15 @@ impl TypeObject for PathDistanceScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10330,11 +12203,15 @@ pub struct RejectUnreachableCoverScoreData {
 
 pub trait RejectUnreachableCoverScoreDataTrait: CoverScoreDataTrait {
     fn ref_position(&self) -> &CoverScorePosition;
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition;
 }
 
 impl RejectUnreachableCoverScoreDataTrait for RejectUnreachableCoverScoreData {
     fn ref_position(&self) -> &CoverScorePosition {
         &self.ref_position
+    }
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition {
+        &mut self.ref_position
     }
 }
 
@@ -10342,8 +12219,14 @@ impl CoverScoreDataTrait for RejectUnreachableCoverScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -10351,15 +12234,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for RejectUnreachableCove
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for RejectUnreachableCoverScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static REJECTUNREACHABLECOVERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10391,6 +12277,15 @@ impl TypeObject for RejectUnreachableCoverScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10412,11 +12307,15 @@ pub struct DistanceToCorpseData {
 
 pub trait DistanceToCorpseDataTrait: CoverScoreDataWithScoreCurveTrait {
     fn max_time_since_death(&self) -> &f32;
+    fn max_time_since_death_mut(&mut self) -> &mut f32;
 }
 
 impl DistanceToCorpseDataTrait for DistanceToCorpseData {
     fn max_time_since_death(&self) -> &f32 {
         &self.max_time_since_death
+    }
+    fn max_time_since_death_mut(&mut self) -> &mut f32 {
+        &mut self.max_time_since_death
     }
 }
 
@@ -10424,11 +12323,20 @@ impl CoverScoreDataWithScoreCurveTrait for DistanceToCorpseData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -10436,8 +12344,14 @@ impl CoverScoreDataTrait for DistanceToCorpseData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -10445,15 +12359,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for DistanceToCorpseData 
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for DistanceToCorpseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DISTANCETOCORPSEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10485,6 +12402,15 @@ impl TypeObject for DistanceToCorpseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10513,11 +12439,20 @@ impl CoverScoreDataWithScoreCurveTrait for DistanceToClosestEnemyCoverScoreData 
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -10525,8 +12460,14 @@ impl CoverScoreDataTrait for DistanceToClosestEnemyCoverScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -10534,15 +12475,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for DistanceToClosestEnem
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for DistanceToClosestEnemyCoverScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DISTANCETOCLOSESTENEMYCOVERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10567,6 +12511,15 @@ impl TypeObject for DistanceToClosestEnemyCoverScoreData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10596,11 +12549,20 @@ impl CoverScoreDataWithScoreCurveTrait for DistanceToClosestFriendlyScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -10608,8 +12570,14 @@ impl CoverScoreDataTrait for DistanceToClosestFriendlyScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -10617,15 +12585,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for DistanceToClosestFrie
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for DistanceToClosestFriendlyScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DISTANCETOCLOSESTFRIENDLYSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10650,6 +12621,15 @@ impl TypeObject for DistanceToClosestFriendlyScoreData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10679,39 +12659,71 @@ pub struct ExposureToMultiTargetsScoreData {
 
 pub trait ExposureToMultiTargetsScoreDataTrait: CoverScoreDataWithScoreCurveTrait {
     fn exclude_primary_target(&self) -> &bool;
+    fn exclude_primary_target_mut(&mut self) -> &mut bool;
     fn ref_position_for_target_filtering(&self) -> &CoverScorePosition;
+    fn ref_position_for_target_filtering_mut(&mut self) -> &mut CoverScorePosition;
     fn target_significance_distance_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn target_significance_distance_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
     fn max_target_distance(&self) -> &f32;
+    fn max_target_distance_mut(&mut self) -> &mut f32;
     fn max_distance_ratio_from_closest_target(&self) -> &f32;
+    fn max_distance_ratio_from_closest_target_mut(&mut self) -> &mut f32;
     fn min_target_distance_to_always_be_counted(&self) -> &f32;
+    fn min_target_distance_to_always_be_counted_mut(&mut self) -> &mut f32;
     fn max_distance_ratio_from_closest_exposed_target(&self) -> &f32;
+    fn max_distance_ratio_from_closest_exposed_target_mut(&mut self) -> &mut f32;
     fn max_distance_to_fully_reject_exposed_target(&self) -> &f32;
+    fn max_distance_to_fully_reject_exposed_target_mut(&mut self) -> &mut f32;
 }
 
 impl ExposureToMultiTargetsScoreDataTrait for ExposureToMultiTargetsScoreData {
     fn exclude_primary_target(&self) -> &bool {
         &self.exclude_primary_target
     }
+    fn exclude_primary_target_mut(&mut self) -> &mut bool {
+        &mut self.exclude_primary_target
+    }
     fn ref_position_for_target_filtering(&self) -> &CoverScorePosition {
         &self.ref_position_for_target_filtering
+    }
+    fn ref_position_for_target_filtering_mut(&mut self) -> &mut CoverScorePosition {
+        &mut self.ref_position_for_target_filtering
     }
     fn target_significance_distance_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.target_significance_distance_curve
     }
+    fn target_significance_distance_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.target_significance_distance_curve
+    }
     fn max_target_distance(&self) -> &f32 {
         &self.max_target_distance
+    }
+    fn max_target_distance_mut(&mut self) -> &mut f32 {
+        &mut self.max_target_distance
     }
     fn max_distance_ratio_from_closest_target(&self) -> &f32 {
         &self.max_distance_ratio_from_closest_target
     }
+    fn max_distance_ratio_from_closest_target_mut(&mut self) -> &mut f32 {
+        &mut self.max_distance_ratio_from_closest_target
+    }
     fn min_target_distance_to_always_be_counted(&self) -> &f32 {
         &self.min_target_distance_to_always_be_counted
+    }
+    fn min_target_distance_to_always_be_counted_mut(&mut self) -> &mut f32 {
+        &mut self.min_target_distance_to_always_be_counted
     }
     fn max_distance_ratio_from_closest_exposed_target(&self) -> &f32 {
         &self.max_distance_ratio_from_closest_exposed_target
     }
+    fn max_distance_ratio_from_closest_exposed_target_mut(&mut self) -> &mut f32 {
+        &mut self.max_distance_ratio_from_closest_exposed_target
+    }
     fn max_distance_to_fully_reject_exposed_target(&self) -> &f32 {
         &self.max_distance_to_fully_reject_exposed_target
+    }
+    fn max_distance_to_fully_reject_exposed_target_mut(&mut self) -> &mut f32 {
+        &mut self.max_distance_to_fully_reject_exposed_target
     }
 }
 
@@ -10719,11 +12731,20 @@ impl CoverScoreDataWithScoreCurveTrait for ExposureToMultiTargetsScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -10731,8 +12752,14 @@ impl CoverScoreDataTrait for ExposureToMultiTargetsScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -10740,15 +12767,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for ExposureToMultiTarget
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for ExposureToMultiTargetsScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXPOSURETOMULTITARGETSSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10822,6 +12852,15 @@ impl TypeObject for ExposureToMultiTargetsScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10850,11 +12889,20 @@ impl MultiTargetScorerTrait for DistanceToMultiTargetsScoreData {
     fn exclude_primary_target(&self) -> &bool {
         self._glacier_base.exclude_primary_target()
     }
+    fn exclude_primary_target_mut(&mut self) -> &mut bool {
+        self._glacier_base.exclude_primary_target_mut()
+    }
     fn max_distance_to_target(&self) -> &f32 {
         self._glacier_base.max_distance_to_target()
     }
+    fn max_distance_to_target_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_distance_to_target_mut()
+    }
     fn scoring_mode(&self) -> &MultiTargetScoringMode {
         self._glacier_base.scoring_mode()
+    }
+    fn scoring_mode_mut(&mut self) -> &mut MultiTargetScoringMode {
+        self._glacier_base.scoring_mode_mut()
     }
 }
 
@@ -10862,11 +12910,20 @@ impl CoverScoreDataWithScoreCurveTrait for DistanceToMultiTargetsScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -10874,8 +12931,14 @@ impl CoverScoreDataTrait for DistanceToMultiTargetsScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -10883,15 +12946,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for DistanceToMultiTarget
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for DistanceToMultiTargetsScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DISTANCETOMULTITARGETSSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10916,6 +12982,15 @@ impl TypeObject for DistanceToMultiTargetsScoreData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10945,11 +13020,20 @@ impl MultiTargetScorerTrait for AngleToMultiTargetsScoreData {
     fn exclude_primary_target(&self) -> &bool {
         self._glacier_base.exclude_primary_target()
     }
+    fn exclude_primary_target_mut(&mut self) -> &mut bool {
+        self._glacier_base.exclude_primary_target_mut()
+    }
     fn max_distance_to_target(&self) -> &f32 {
         self._glacier_base.max_distance_to_target()
     }
+    fn max_distance_to_target_mut(&mut self) -> &mut f32 {
+        self._glacier_base.max_distance_to_target_mut()
+    }
     fn scoring_mode(&self) -> &MultiTargetScoringMode {
         self._glacier_base.scoring_mode()
+    }
+    fn scoring_mode_mut(&mut self) -> &mut MultiTargetScoringMode {
+        self._glacier_base.scoring_mode_mut()
     }
 }
 
@@ -10957,11 +13041,20 @@ impl CoverScoreDataWithScoreCurveTrait for AngleToMultiTargetsScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -10969,8 +13062,14 @@ impl CoverScoreDataTrait for AngleToMultiTargetsScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -10978,15 +13077,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for AngleToMultiTargetsSc
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for AngleToMultiTargetsScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANGLETOMULTITARGETSSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11012,6 +13114,15 @@ impl TypeObject for AngleToMultiTargetsScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11035,19 +13146,31 @@ pub struct MultiTargetScorer {
 
 pub trait MultiTargetScorerTrait: CoverScoreDataWithScoreCurveTrait {
     fn exclude_primary_target(&self) -> &bool;
+    fn exclude_primary_target_mut(&mut self) -> &mut bool;
     fn max_distance_to_target(&self) -> &f32;
+    fn max_distance_to_target_mut(&mut self) -> &mut f32;
     fn scoring_mode(&self) -> &MultiTargetScoringMode;
+    fn scoring_mode_mut(&mut self) -> &mut MultiTargetScoringMode;
 }
 
 impl MultiTargetScorerTrait for MultiTargetScorer {
     fn exclude_primary_target(&self) -> &bool {
         &self.exclude_primary_target
     }
+    fn exclude_primary_target_mut(&mut self) -> &mut bool {
+        &mut self.exclude_primary_target
+    }
     fn max_distance_to_target(&self) -> &f32 {
         &self.max_distance_to_target
     }
+    fn max_distance_to_target_mut(&mut self) -> &mut f32 {
+        &mut self.max_distance_to_target
+    }
     fn scoring_mode(&self) -> &MultiTargetScoringMode {
         &self.scoring_mode
+    }
+    fn scoring_mode_mut(&mut self) -> &mut MultiTargetScoringMode {
+        &mut self.scoring_mode
     }
 }
 
@@ -11055,11 +13178,20 @@ impl CoverScoreDataWithScoreCurveTrait for MultiTargetScorer {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -11067,8 +13199,14 @@ impl CoverScoreDataTrait for MultiTargetScorer {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -11076,15 +13214,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for MultiTargetScorer {
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for MultiTargetScorer {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MULTITARGETSCORER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11128,6 +13269,15 @@ impl TypeObject for MultiTargetScorer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11166,6 +13316,15 @@ impl TypeObject for MultiTargetScoringMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -11188,15 +13347,23 @@ pub struct TowardsPreferredWeaponRangeScoreData {
 
 pub trait TowardsPreferredWeaponRangeScoreDataTrait: CoverScoreDataTrait {
     fn outside_preferred_range_score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn outside_preferred_range_score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
     fn inside_preferred_range_score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn inside_preferred_range_score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
 }
 
 impl TowardsPreferredWeaponRangeScoreDataTrait for TowardsPreferredWeaponRangeScoreData {
     fn outside_preferred_range_score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.outside_preferred_range_score_curve
     }
+    fn outside_preferred_range_score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.outside_preferred_range_score_curve
+    }
     fn inside_preferred_range_score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.inside_preferred_range_score_curve
+    }
+    fn inside_preferred_range_score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.inside_preferred_range_score_curve
     }
 }
 
@@ -11204,8 +13371,14 @@ impl CoverScoreDataTrait for TowardsPreferredWeaponRangeScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -11213,15 +13386,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for TowardsPreferredWeapo
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for TowardsPreferredWeaponRangeScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TOWARDSPREFERREDWEAPONRANGESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11259,6 +13435,15 @@ impl TypeObject for TowardsPreferredWeaponRangeScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11287,11 +13472,20 @@ impl CoverScoreDataWithScoreCurveTrait for PreferredWeaponRangeScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -11299,8 +13493,14 @@ impl CoverScoreDataTrait for PreferredWeaponRangeScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -11308,15 +13508,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for PreferredWeaponRangeS
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for PreferredWeaponRangeScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PREFERREDWEAPONRANGESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11342,6 +13545,15 @@ impl TypeObject for PreferredWeaponRangeScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11364,15 +13576,23 @@ pub struct ProjectedDistanceScoreData {
 
 pub trait ProjectedDistanceScoreDataTrait: CoverScoreDataWithRefPosTrait {
     fn ref_direction(&self) -> &CoverScoreDirection;
+    fn ref_direction_mut(&mut self) -> &mut CoverScoreDirection;
     fn flip_ref_direction(&self) -> &bool;
+    fn flip_ref_direction_mut(&mut self) -> &mut bool;
 }
 
 impl ProjectedDistanceScoreDataTrait for ProjectedDistanceScoreData {
     fn ref_direction(&self) -> &CoverScoreDirection {
         &self.ref_direction
     }
+    fn ref_direction_mut(&mut self) -> &mut CoverScoreDirection {
+        &mut self.ref_direction
+    }
     fn flip_ref_direction(&self) -> &bool {
         &self.flip_ref_direction
+    }
+    fn flip_ref_direction_mut(&mut self) -> &mut bool {
+        &mut self.flip_ref_direction
     }
 }
 
@@ -11380,17 +13600,29 @@ impl CoverScoreDataWithRefPosTrait for ProjectedDistanceScoreData {
     fn ref_position(&self) -> &CoverScorePosition {
         self._glacier_base.ref_position()
     }
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition {
+        self._glacier_base.ref_position_mut()
+    }
 }
 
 impl CoverScoreDataWithScoreCurveTrait for ProjectedDistanceScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -11398,8 +13630,14 @@ impl CoverScoreDataTrait for ProjectedDistanceScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -11407,15 +13645,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for ProjectedDistanceScor
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for ProjectedDistanceScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROJECTEDDISTANCESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11452,6 +13693,15 @@ impl TypeObject for ProjectedDistanceScoreData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -11492,6 +13742,15 @@ impl TypeObject for CoverScoreDirection {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -11520,17 +13779,29 @@ impl CoverScoreDataWithRefPosTrait for DistanceToActorScoreData {
     fn ref_position(&self) -> &CoverScorePosition {
         self._glacier_base.ref_position()
     }
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition {
+        self._glacier_base.ref_position_mut()
+    }
 }
 
 impl CoverScoreDataWithScoreCurveTrait for DistanceToActorScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -11538,8 +13809,14 @@ impl CoverScoreDataTrait for DistanceToActorScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -11547,15 +13824,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for DistanceToActorScoreD
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for DistanceToActorScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DISTANCETOACTORSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11581,6 +13861,15 @@ impl TypeObject for DistanceToActorScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11602,11 +13891,15 @@ pub struct AngleFromPathTrajectoryScoreData {
 
 pub trait AngleFromPathTrajectoryScoreDataTrait: CoverScoreDataWithScoreCurveTrait {
     fn path_look_ahead_distance(&self) -> &f32;
+    fn path_look_ahead_distance_mut(&mut self) -> &mut f32;
 }
 
 impl AngleFromPathTrajectoryScoreDataTrait for AngleFromPathTrajectoryScoreData {
     fn path_look_ahead_distance(&self) -> &f32 {
         &self.path_look_ahead_distance
+    }
+    fn path_look_ahead_distance_mut(&mut self) -> &mut f32 {
+        &mut self.path_look_ahead_distance
     }
 }
 
@@ -11614,11 +13907,20 @@ impl CoverScoreDataWithScoreCurveTrait for AngleFromPathTrajectoryScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -11626,8 +13928,14 @@ impl CoverScoreDataTrait for AngleFromPathTrajectoryScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -11635,15 +13943,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for AngleFromPathTrajecto
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for AngleFromPathTrajectoryScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANGLEFROMPATHTRAJECTORYSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11675,6 +13986,15 @@ impl TypeObject for AngleFromPathTrajectoryScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11697,15 +14017,23 @@ pub struct AngleFromReferenceDirectionScoreData {
 
 pub trait AngleFromReferenceDirectionScoreDataTrait: CoverScoreDataWithScoreCurveTrait {
     fn ref_dir_from_pos(&self) -> &CoverScorePosition;
+    fn ref_dir_from_pos_mut(&mut self) -> &mut CoverScorePosition;
     fn ref_dir_to_pos(&self) -> &CoverScorePosition;
+    fn ref_dir_to_pos_mut(&mut self) -> &mut CoverScorePosition;
 }
 
 impl AngleFromReferenceDirectionScoreDataTrait for AngleFromReferenceDirectionScoreData {
     fn ref_dir_from_pos(&self) -> &CoverScorePosition {
         &self.ref_dir_from_pos
     }
+    fn ref_dir_from_pos_mut(&mut self) -> &mut CoverScorePosition {
+        &mut self.ref_dir_from_pos
+    }
     fn ref_dir_to_pos(&self) -> &CoverScorePosition {
         &self.ref_dir_to_pos
+    }
+    fn ref_dir_to_pos_mut(&mut self) -> &mut CoverScorePosition {
+        &mut self.ref_dir_to_pos
     }
 }
 
@@ -11713,11 +14041,20 @@ impl CoverScoreDataWithScoreCurveTrait for AngleFromReferenceDirectionScoreData 
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -11725,8 +14062,14 @@ impl CoverScoreDataTrait for AngleFromReferenceDirectionScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -11734,15 +14077,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for AngleFromReferenceDir
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for AngleFromReferenceDirectionScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANGLEFROMREFERENCEDIRECTIONSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11780,6 +14126,15 @@ impl TypeObject for AngleFromReferenceDirectionScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11802,15 +14157,23 @@ pub struct AngleToActorScoreData2 {
 
 pub trait AngleToActorScoreData2Trait: CoverScoreDataTrait {
     fn ref_position(&self) -> &CoverScorePosition;
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition;
     fn scores_for_filter(&self) -> &Vec<Option<Arc<Mutex<dyn ScoreCurveForFilterTrait>>>>;
+    fn scores_for_filter_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ScoreCurveForFilterTrait>>>>;
 }
 
 impl AngleToActorScoreData2Trait for AngleToActorScoreData2 {
     fn ref_position(&self) -> &CoverScorePosition {
         &self.ref_position
     }
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition {
+        &mut self.ref_position
+    }
     fn scores_for_filter(&self) -> &Vec<Option<Arc<Mutex<dyn ScoreCurveForFilterTrait>>>> {
         &self.scores_for_filter
+    }
+    fn scores_for_filter_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ScoreCurveForFilterTrait>>>> {
+        &mut self.scores_for_filter
     }
 }
 
@@ -11818,8 +14181,14 @@ impl CoverScoreDataTrait for AngleToActorScoreData2 {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -11827,15 +14196,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for AngleToActorScoreData
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for AngleToActorScoreData2 {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANGLETOACTORSCOREDATA2_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11873,6 +14245,15 @@ impl TypeObject for AngleToActorScoreData2 {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11895,22 +14276,27 @@ pub struct ScoreCurveForFilter {
 
 pub trait ScoreCurveForFilterTrait: super::core::DataContainerTrait {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
     fn runtime_filter(&self) -> &u32;
+    fn runtime_filter_mut(&mut self) -> &mut u32;
 }
 
 impl ScoreCurveForFilterTrait for ScoreCurveForFilter {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.score_curve
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.score_curve
+    }
     fn runtime_filter(&self) -> &u32 {
         &self.runtime_filter
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        &mut self.runtime_filter
     }
 }
 
 impl super::core::DataContainerTrait for ScoreCurveForFilter {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCORECURVEFORFILTER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11948,6 +14334,15 @@ impl TypeObject for ScoreCurveForFilter {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11976,17 +14371,29 @@ impl CoverScoreDataWithRefPosTrait for AngleToActorScoreData {
     fn ref_position(&self) -> &CoverScorePosition {
         self._glacier_base.ref_position()
     }
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition {
+        self._glacier_base.ref_position_mut()
+    }
 }
 
 impl CoverScoreDataWithScoreCurveTrait for AngleToActorScoreData {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -11994,8 +14401,14 @@ impl CoverScoreDataTrait for AngleToActorScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -12003,15 +14416,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for AngleToActorScoreData
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for AngleToActorScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANGLETOACTORSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12037,6 +14453,15 @@ impl TypeObject for AngleToActorScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12058,11 +14483,15 @@ pub struct CoverScoreDataWithRefPos {
 
 pub trait CoverScoreDataWithRefPosTrait: CoverScoreDataWithScoreCurveTrait {
     fn ref_position(&self) -> &CoverScorePosition;
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition;
 }
 
 impl CoverScoreDataWithRefPosTrait for CoverScoreDataWithRefPos {
     fn ref_position(&self) -> &CoverScorePosition {
         &self.ref_position
+    }
+    fn ref_position_mut(&mut self) -> &mut CoverScorePosition {
+        &mut self.ref_position
     }
 }
 
@@ -12070,11 +14499,20 @@ impl CoverScoreDataWithScoreCurveTrait for CoverScoreDataWithRefPos {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         self._glacier_base.score_curve()
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        self._glacier_base.score_curve_mut()
+    }
     fn score_curve_scale(&self) -> &f32 {
         self._glacier_base.score_curve_scale()
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_scale_mut()
+    }
     fn score_curve_max_y(&self) -> &f32 {
         self._glacier_base.score_curve_max_y()
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        self._glacier_base.score_curve_max_y_mut()
     }
 }
 
@@ -12082,8 +14520,14 @@ impl CoverScoreDataTrait for CoverScoreDataWithRefPos {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -12091,15 +14535,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for CoverScoreDataWithRef
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CoverScoreDataWithRefPos {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COVERSCOREDATAWITHREFPOS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12131,6 +14578,15 @@ impl TypeObject for CoverScoreDataWithRefPos {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12154,19 +14610,31 @@ pub struct CoverScoreDataWithScoreCurve {
 
 pub trait CoverScoreDataWithScoreCurveTrait: CoverScoreDataTrait {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
     fn score_curve_scale(&self) -> &f32;
+    fn score_curve_scale_mut(&mut self) -> &mut f32;
     fn score_curve_max_y(&self) -> &f32;
+    fn score_curve_max_y_mut(&mut self) -> &mut f32;
 }
 
 impl CoverScoreDataWithScoreCurveTrait for CoverScoreDataWithScoreCurve {
     fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.score_curve
     }
+    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.score_curve
+    }
     fn score_curve_scale(&self) -> &f32 {
         &self.score_curve_scale
     }
+    fn score_curve_scale_mut(&mut self) -> &mut f32 {
+        &mut self.score_curve_scale
+    }
     fn score_curve_max_y(&self) -> &f32 {
         &self.score_curve_max_y
+    }
+    fn score_curve_max_y_mut(&mut self) -> &mut f32 {
+        &mut self.score_curve_max_y
     }
 }
 
@@ -12174,8 +14642,14 @@ impl CoverScoreDataTrait for CoverScoreDataWithScoreCurve {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -12183,15 +14657,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for CoverScoreDataWithSco
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CoverScoreDataWithScoreCurve {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COVERSCOREDATAWITHSCORECURVE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12235,6 +14712,15 @@ impl TypeObject for CoverScoreDataWithScoreCurve {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12256,11 +14742,15 @@ pub struct CurrentCoverBonusScoreData {
 
 pub trait CurrentCoverBonusScoreDataTrait: CoverScoreDataTrait {
     fn bonus_score(&self) -> &f32;
+    fn bonus_score_mut(&mut self) -> &mut f32;
 }
 
 impl CurrentCoverBonusScoreDataTrait for CurrentCoverBonusScoreData {
     fn bonus_score(&self) -> &f32 {
         &self.bonus_score
+    }
+    fn bonus_score_mut(&mut self) -> &mut f32 {
+        &mut self.bonus_score
     }
 }
 
@@ -12268,8 +14758,14 @@ impl CoverScoreDataTrait for CurrentCoverBonusScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -12277,15 +14773,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for CurrentCoverBonusScor
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CurrentCoverBonusScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CURRENTCOVERBONUSSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12317,6 +14816,15 @@ impl TypeObject for CurrentCoverBonusScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12338,11 +14846,15 @@ pub struct CoverFilterScoreData {
 
 pub trait CoverFilterScoreDataTrait: CoverScoreDataTrait {
     fn matching_score(&self) -> &f32;
+    fn matching_score_mut(&mut self) -> &mut f32;
 }
 
 impl CoverFilterScoreDataTrait for CoverFilterScoreData {
     fn matching_score(&self) -> &f32 {
         &self.matching_score
+    }
+    fn matching_score_mut(&mut self) -> &mut f32 {
+        &mut self.matching_score
     }
 }
 
@@ -12350,8 +14862,14 @@ impl CoverScoreDataTrait for CoverFilterScoreData {
     fn comment(&self) -> &String {
         self._glacier_base.comment()
     }
+    fn comment_mut(&mut self) -> &mut String {
+        self._glacier_base.comment_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
 }
 
@@ -12359,15 +14877,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for CoverFilterScoreData 
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CoverFilterScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COVERFILTERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12399,6 +14920,15 @@ impl TypeObject for CoverFilterScoreData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12421,15 +14951,23 @@ pub struct CoverScoreData {
 
 pub trait CoverScoreDataTrait: super::battle_a_i_shared::CoverScoreDataBaseTrait {
     fn comment(&self) -> &String;
+    fn comment_mut(&mut self) -> &mut String;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
 }
 
 impl CoverScoreDataTrait for CoverScoreData {
     fn comment(&self) -> &String {
         &self.comment
     }
+    fn comment_mut(&mut self) -> &mut String {
+        &mut self.comment
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
 }
 
@@ -12437,15 +14975,18 @@ impl super::battle_a_i_shared::CoverScoreDataBaseTrait for CoverScoreData {
     fn id(&self) -> &u32 {
         self._glacier_base.id()
     }
+    fn id_mut(&mut self) -> &mut u32 {
+        self._glacier_base.id_mut()
+    }
     fn runtime_filter(&self) -> &u32 {
         self._glacier_base.runtime_filter()
+    }
+    fn runtime_filter_mut(&mut self) -> &mut u32 {
+        self._glacier_base.runtime_filter_mut()
     }
 }
 
 impl super::core::DataContainerTrait for CoverScoreData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COVERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12482,6 +15023,15 @@ impl TypeObject for CoverScoreData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -12523,6 +15073,15 @@ impl TypeObject for CoverScorePosition {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

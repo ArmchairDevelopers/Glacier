@@ -227,6 +227,15 @@ impl TypeObject for Vec4Track {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -280,6 +289,15 @@ impl TypeObject for Vec3Track {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -329,6 +347,15 @@ impl TypeObject for SchematicEventTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -383,6 +410,15 @@ impl TypeObject for RecordTrackBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -436,6 +472,15 @@ impl TypeObject for BoolTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -486,6 +531,15 @@ impl TypeObject for BookmarkTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -535,6 +589,15 @@ impl TypeObject for TransformLayer {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -589,6 +652,15 @@ impl TypeObject for SimpleTransformLayer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -639,6 +711,15 @@ impl TypeObject for MasterTimelineTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -688,6 +769,15 @@ impl TypeObject for LinkTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -742,6 +832,15 @@ impl TypeObject for LinkedMasterTimelineTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -795,6 +894,15 @@ impl TypeObject for LayeredTransformTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -844,6 +952,15 @@ impl TypeObject for IPropertyTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -898,6 +1015,15 @@ impl TypeObject for IntTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -947,6 +1073,15 @@ impl TypeObject for GroupTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1001,6 +1136,15 @@ impl TypeObject for FloatTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1050,6 +1194,15 @@ impl TypeObject for ExternalTimeTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1103,6 +1256,15 @@ impl TypeObject for EntityTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1163,6 +1325,15 @@ impl TypeObject for LinkedProxyEntityTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1219,6 +1390,15 @@ impl TypeObject for TemplatedProxyEntityTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1271,6 +1451,15 @@ impl TypeObject for ProxyEntityTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1325,6 +1514,15 @@ impl TypeObject for DummyEntityTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1375,6 +1573,15 @@ impl TypeObject for EntityTrackBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1398,19 +1605,31 @@ pub struct SchematicPinTrackData {
 
 pub trait SchematicPinTrackDataTrait: TimelineTrackDataTrait {
     fn source_pin_id(&self) -> &i32;
+    fn source_pin_id_mut(&mut self) -> &mut i32;
     fn target_pin_id(&self) -> &i32;
+    fn target_pin_id_mut(&mut self) -> &mut i32;
     fn target_pin_name_hash(&self) -> &i32;
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32;
 }
 
 impl SchematicPinTrackDataTrait for SchematicPinTrackData {
     fn source_pin_id(&self) -> &i32 {
         &self.source_pin_id
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        &mut self.source_pin_id
+    }
     fn target_pin_id(&self) -> &i32 {
         &self.target_pin_id
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        &mut self.target_pin_id
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         &self.target_pin_name_hash
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        &mut self.target_pin_name_hash
     }
 }
 
@@ -1418,20 +1637,38 @@ impl TimelineTrackDataTrait for SchematicPinTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -1442,15 +1679,15 @@ impl super::core::DataBusPeerTrait for SchematicPinTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SchematicPinTrackData {
 }
 
 impl super::core::DataContainerTrait for SchematicPinTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCHEMATICPINTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1494,6 +1731,15 @@ impl TypeObject for SchematicPinTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1522,6 +1768,9 @@ impl RecordTrackBaseDataTrait for RecordTrackChildrenData {
     fn frames_to_skip_per_key(&self) -> &i32 {
         self._glacier_base.frames_to_skip_per_key()
     }
+    fn frames_to_skip_per_key_mut(&mut self) -> &mut i32 {
+        self._glacier_base.frames_to_skip_per_key_mut()
+    }
 }
 
 impl LinkTrackDataTrait for RecordTrackChildrenData {
@@ -1531,11 +1780,20 @@ impl SchematicPinTrackDataTrait for RecordTrackChildrenData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -1543,20 +1801,38 @@ impl TimelineTrackDataTrait for RecordTrackChildrenData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -1567,15 +1843,15 @@ impl super::core::DataBusPeerTrait for RecordTrackChildrenData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RecordTrackChildrenData {
 }
 
 impl super::core::DataContainerTrait for RecordTrackChildrenData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RECORDTRACKCHILDRENDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1601,6 +1877,15 @@ impl TypeObject for RecordTrackChildrenData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1622,11 +1907,15 @@ pub struct RecordTrackBaseData {
 
 pub trait RecordTrackBaseDataTrait: LinkTrackDataTrait {
     fn frames_to_skip_per_key(&self) -> &i32;
+    fn frames_to_skip_per_key_mut(&mut self) -> &mut i32;
 }
 
 impl RecordTrackBaseDataTrait for RecordTrackBaseData {
     fn frames_to_skip_per_key(&self) -> &i32 {
         &self.frames_to_skip_per_key
+    }
+    fn frames_to_skip_per_key_mut(&mut self) -> &mut i32 {
+        &mut self.frames_to_skip_per_key
     }
 }
 
@@ -1637,11 +1926,20 @@ impl SchematicPinTrackDataTrait for RecordTrackBaseData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -1649,20 +1947,38 @@ impl TimelineTrackDataTrait for RecordTrackBaseData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -1673,15 +1989,15 @@ impl super::core::DataBusPeerTrait for RecordTrackBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RecordTrackBaseData {
 }
 
 impl super::core::DataContainerTrait for RecordTrackBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RECORDTRACKBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1713,6 +2029,15 @@ impl TypeObject for RecordTrackBaseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1741,11 +2066,20 @@ impl SchematicPinTrackDataTrait for PropertyTrackBaseData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -1753,20 +2087,38 @@ impl TimelineTrackDataTrait for PropertyTrackBaseData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -1777,15 +2129,15 @@ impl super::core::DataBusPeerTrait for PropertyTrackBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PropertyTrackBaseData {
 }
 
 impl super::core::DataContainerTrait for PropertyTrackBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROPERTYTRACKBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1811,6 +2163,15 @@ impl TypeObject for PropertyTrackBaseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1832,11 +2193,15 @@ pub struct PropertyReaderTrackBaseData {
 
 pub trait PropertyReaderTrackBaseDataTrait: SchematicPinTrackDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl PropertyReaderTrackBaseDataTrait for PropertyReaderTrackBaseData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
+    }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
     }
 }
 
@@ -1844,11 +2209,20 @@ impl SchematicPinTrackDataTrait for PropertyReaderTrackBaseData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -1856,20 +2230,38 @@ impl TimelineTrackDataTrait for PropertyReaderTrackBaseData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -1880,15 +2272,15 @@ impl super::core::DataBusPeerTrait for PropertyReaderTrackBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PropertyReaderTrackBaseData {
 }
 
 impl super::core::DataContainerTrait for PropertyReaderTrackBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROPERTYREADERTRACKBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1920,6 +2312,15 @@ impl TypeObject for PropertyReaderTrackBaseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1942,15 +2343,23 @@ pub struct MasterTimelineTrackData {
 
 pub trait MasterTimelineTrackDataTrait: TimelineTrackDataTrait {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn SlaveTimelineKeyframeDataTrait>>>>;
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SlaveTimelineKeyframeDataTrait>>>>;
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
 }
 
 impl MasterTimelineTrackDataTrait for MasterTimelineTrackData {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn SlaveTimelineKeyframeDataTrait>>>> {
         &self.keyframes
     }
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SlaveTimelineKeyframeDataTrait>>>> {
+        &mut self.keyframes
+    }
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
         &self.children
+    }
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+        &mut self.children
     }
 }
 
@@ -1958,20 +2367,38 @@ impl TimelineTrackDataTrait for MasterTimelineTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -1982,15 +2409,15 @@ impl super::core::DataBusPeerTrait for MasterTimelineTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MasterTimelineTrackData {
 }
 
 impl super::core::DataContainerTrait for MasterTimelineTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MASTERTIMELINETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2028,6 +2455,15 @@ impl TypeObject for MasterTimelineTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2053,27 +2489,47 @@ pub struct SlaveTimelineKeyframeData {
 
 pub trait SlaveTimelineKeyframeDataTrait: TimelineKeyframeDataTrait {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn guide_time(&self) -> &f32;
+    fn guide_time_mut(&mut self) -> &mut f32;
     fn timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineEntityDataTrait>>>;
+    fn timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineEntityDataTrait>>>;
     fn slave_guid_chain(&self) -> &Vec<glacier_util::guid::Guid>;
+    fn slave_guid_chain_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid>;
 }
 
 impl SlaveTimelineKeyframeDataTrait for SlaveTimelineKeyframeData {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
     fn guide_time(&self) -> &f32 {
         &self.guide_time
     }
+    fn guide_time_mut(&mut self) -> &mut f32 {
+        &mut self.guide_time
+    }
     fn timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineEntityDataTrait>>> {
         &self.timeline_data
     }
+    fn timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineEntityDataTrait>>> {
+        &mut self.timeline_data
+    }
     fn slave_guid_chain(&self) -> &Vec<glacier_util::guid::Guid> {
         &self.slave_guid_chain
+    }
+    fn slave_guid_chain_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid> {
+        &mut self.slave_guid_chain
     }
 }
 
@@ -2081,9 +2537,6 @@ impl TimelineKeyframeDataTrait for SlaveTimelineKeyframeData {
 }
 
 impl super::core::DataContainerTrait for SlaveTimelineKeyframeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SLAVETIMELINEKEYFRAMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2139,6 +2592,15 @@ impl TypeObject for SlaveTimelineKeyframeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2167,11 +2629,20 @@ impl SchematicPinTrackDataTrait for LinkTrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -2179,20 +2650,38 @@ impl TimelineTrackDataTrait for LinkTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -2203,15 +2692,15 @@ impl super::core::DataBusPeerTrait for LinkTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LinkTrackData {
 }
 
 impl super::core::DataContainerTrait for LinkTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINKTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2237,6 +2726,15 @@ impl TypeObject for LinkTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2260,19 +2758,31 @@ pub struct LinkedMasterTimelineTrackData {
 
 pub trait LinkedMasterTimelineTrackDataTrait: LinkTrackDataTrait {
     fn linked_timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineEntityDataTrait>>>;
+    fn linked_timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineEntityDataTrait>>>;
     fn linked_timeline_time_offset(&self) -> &f32;
+    fn linked_timeline_time_offset_mut(&mut self) -> &mut f32;
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn LinkedMasterTimelineKeyframeTrait>>>>;
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LinkedMasterTimelineKeyframeTrait>>>>;
 }
 
 impl LinkedMasterTimelineTrackDataTrait for LinkedMasterTimelineTrackData {
     fn linked_timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineEntityDataTrait>>> {
         &self.linked_timeline_data
     }
+    fn linked_timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineEntityDataTrait>>> {
+        &mut self.linked_timeline_data
+    }
     fn linked_timeline_time_offset(&self) -> &f32 {
         &self.linked_timeline_time_offset
     }
+    fn linked_timeline_time_offset_mut(&mut self) -> &mut f32 {
+        &mut self.linked_timeline_time_offset
+    }
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn LinkedMasterTimelineKeyframeTrait>>>> {
         &self.keyframes
+    }
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LinkedMasterTimelineKeyframeTrait>>>> {
+        &mut self.keyframes
     }
 }
 
@@ -2283,11 +2793,20 @@ impl SchematicPinTrackDataTrait for LinkedMasterTimelineTrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -2295,20 +2814,38 @@ impl TimelineTrackDataTrait for LinkedMasterTimelineTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -2319,15 +2856,15 @@ impl super::core::DataBusPeerTrait for LinkedMasterTimelineTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LinkedMasterTimelineTrackData {
 }
 
 impl super::core::DataContainerTrait for LinkedMasterTimelineTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINKEDMASTERTIMELINETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2371,6 +2908,15 @@ impl TypeObject for LinkedMasterTimelineTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2393,22 +2939,27 @@ pub struct LinkedMasterTimelineKeyframe {
 
 pub trait LinkedMasterTimelineKeyframeTrait: super::core::DataContainerTrait {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
 }
 
 impl LinkedMasterTimelineKeyframeTrait for LinkedMasterTimelineKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
 }
 
 impl super::core::DataContainerTrait for LinkedMasterTimelineKeyframe {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINKEDMASTERTIMELINEKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2446,6 +2997,15 @@ impl TypeObject for LinkedMasterTimelineKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2469,19 +3029,31 @@ pub struct LayeredTransformTrackData {
 
 pub trait LayeredTransformTrackDataTrait: PropertyTrackBaseDataTrait {
     fn layer_tracks(&self) -> &Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>>;
+    fn layer_tracks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>>;
     fn use_timeline_space(&self) -> &bool;
+    fn use_timeline_space_mut(&mut self) -> &mut bool;
     fn transform_space_enabled(&self) -> &bool;
+    fn transform_space_enabled_mut(&mut self) -> &mut bool;
 }
 
 impl LayeredTransformTrackDataTrait for LayeredTransformTrackData {
     fn layer_tracks(&self) -> &Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>> {
         &self.layer_tracks
     }
+    fn layer_tracks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>> {
+        &mut self.layer_tracks
+    }
     fn use_timeline_space(&self) -> &bool {
         &self.use_timeline_space
     }
+    fn use_timeline_space_mut(&mut self) -> &mut bool {
+        &mut self.use_timeline_space
+    }
     fn transform_space_enabled(&self) -> &bool {
         &self.transform_space_enabled
+    }
+    fn transform_space_enabled_mut(&mut self) -> &mut bool {
+        &mut self.transform_space_enabled
     }
 }
 
@@ -2492,11 +3064,20 @@ impl SchematicPinTrackDataTrait for LayeredTransformTrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -2504,20 +3085,38 @@ impl TimelineTrackDataTrait for LayeredTransformTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -2528,15 +3127,15 @@ impl super::core::DataBusPeerTrait for LayeredTransformTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LayeredTransformTrackData {
 }
 
 impl super::core::DataContainerTrait for LayeredTransformTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LAYEREDTRANSFORMTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2580,6 +3179,15 @@ impl TypeObject for LayeredTransformTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2601,11 +3209,15 @@ pub struct IntTrackData {
 
 pub trait IntTrackDataTrait: PropertyTrackBaseDataTrait {
     fn keyframes(&self) -> &Vec<IntKeyframe>;
+    fn keyframes_mut(&mut self) -> &mut Vec<IntKeyframe>;
 }
 
 impl IntTrackDataTrait for IntTrackData {
     fn keyframes(&self) -> &Vec<IntKeyframe> {
         &self.keyframes
+    }
+    fn keyframes_mut(&mut self) -> &mut Vec<IntKeyframe> {
+        &mut self.keyframes
     }
 }
 
@@ -2616,11 +3228,20 @@ impl SchematicPinTrackDataTrait for IntTrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -2628,20 +3249,38 @@ impl TimelineTrackDataTrait for IntTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -2652,15 +3291,15 @@ impl super::core::DataBusPeerTrait for IntTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for IntTrackData {
 }
 
 impl super::core::DataContainerTrait for IntTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INTTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2692,6 +3331,15 @@ impl TypeObject for IntTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2713,15 +3361,23 @@ pub struct IntKeyframe {
 
 pub trait IntKeyframeTrait: TypeObject {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn value(&self) -> &i32;
+    fn value_mut(&mut self) -> &mut i32;
 }
 
 impl IntKeyframeTrait for IntKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn value(&self) -> &i32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut i32 {
+        &mut self.value
     }
 }
 
@@ -2759,6 +3415,15 @@ impl TypeObject for IntKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2780,11 +3445,15 @@ pub struct GroupTrackRootData {
 
 pub trait GroupTrackRootDataTrait: super::core::AssetTrait {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
 }
 
 impl GroupTrackRootDataTrait for GroupTrackRootData {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
         &self.children
+    }
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+        &mut self.children
     }
 }
 
@@ -2792,12 +3461,12 @@ impl super::core::AssetTrait for GroupTrackRootData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for GroupTrackRootData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GROUPTRACKROOTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2829,6 +3498,15 @@ impl TypeObject for GroupTrackRootData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2850,11 +3528,15 @@ pub struct GroupTrackData {
 
 pub trait GroupTrackDataTrait: TimelineTrackDataTrait {
     fn root_data(&self) -> &Option<Arc<Mutex<dyn GroupTrackRootDataTrait>>>;
+    fn root_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GroupTrackRootDataTrait>>>;
 }
 
 impl GroupTrackDataTrait for GroupTrackData {
     fn root_data(&self) -> &Option<Arc<Mutex<dyn GroupTrackRootDataTrait>>> {
         &self.root_data
+    }
+    fn root_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GroupTrackRootDataTrait>>> {
+        &mut self.root_data
     }
 }
 
@@ -2862,20 +3544,38 @@ impl TimelineTrackDataTrait for GroupTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -2886,15 +3586,15 @@ impl super::core::DataBusPeerTrait for GroupTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for GroupTrackData {
 }
 
 impl super::core::DataContainerTrait for GroupTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GROUPTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2926,6 +3626,15 @@ impl TypeObject for GroupTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2947,11 +3656,15 @@ pub struct FloatTrackData {
 
 pub trait FloatTrackDataTrait: PropertyTrackBaseDataTrait {
     fn curve_data(&self) -> &Option<Arc<Mutex<dyn CurveDataTrait>>>;
+    fn curve_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CurveDataTrait>>>;
 }
 
 impl FloatTrackDataTrait for FloatTrackData {
     fn curve_data(&self) -> &Option<Arc<Mutex<dyn CurveDataTrait>>> {
         &self.curve_data
+    }
+    fn curve_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CurveDataTrait>>> {
+        &mut self.curve_data
     }
 }
 
@@ -2962,11 +3675,20 @@ impl SchematicPinTrackDataTrait for FloatTrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -2974,20 +3696,38 @@ impl TimelineTrackDataTrait for FloatTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -2998,15 +3738,15 @@ impl super::core::DataBusPeerTrait for FloatTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for FloatTrackData {
 }
 
 impl super::core::DataContainerTrait for FloatTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FLOATTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3038,6 +3778,15 @@ impl TypeObject for FloatTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3062,23 +3811,39 @@ pub struct ExternalTimeTrackData {
 
 pub trait ExternalTimeTrackDataTrait: TimelineTrackDataTrait {
     fn external_time_priority(&self) -> &i32;
+    fn external_time_priority_mut(&mut self) -> &mut i32;
     fn external_time_offset_type(&self) -> &OffsetType;
+    fn external_time_offset_type_mut(&mut self) -> &mut OffsetType;
     fn init_time_offset_type(&self) -> &OffsetType;
+    fn init_time_offset_type_mut(&mut self) -> &mut OffsetType;
     fn current_time_offset_type(&self) -> &OffsetType;
+    fn current_time_offset_type_mut(&mut self) -> &mut OffsetType;
 }
 
 impl ExternalTimeTrackDataTrait for ExternalTimeTrackData {
     fn external_time_priority(&self) -> &i32 {
         &self.external_time_priority
     }
+    fn external_time_priority_mut(&mut self) -> &mut i32 {
+        &mut self.external_time_priority
+    }
     fn external_time_offset_type(&self) -> &OffsetType {
         &self.external_time_offset_type
+    }
+    fn external_time_offset_type_mut(&mut self) -> &mut OffsetType {
+        &mut self.external_time_offset_type
     }
     fn init_time_offset_type(&self) -> &OffsetType {
         &self.init_time_offset_type
     }
+    fn init_time_offset_type_mut(&mut self) -> &mut OffsetType {
+        &mut self.init_time_offset_type
+    }
     fn current_time_offset_type(&self) -> &OffsetType {
         &self.current_time_offset_type
+    }
+    fn current_time_offset_type_mut(&mut self) -> &mut OffsetType {
+        &mut self.current_time_offset_type
     }
 }
 
@@ -3086,20 +3851,38 @@ impl TimelineTrackDataTrait for ExternalTimeTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -3110,15 +3893,15 @@ impl super::core::DataBusPeerTrait for ExternalTimeTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ExternalTimeTrackData {
 }
 
 impl super::core::DataContainerTrait for ExternalTimeTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EXTERNALTIMETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3168,6 +3951,15 @@ impl TypeObject for ExternalTimeTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3207,6 +3999,15 @@ impl TypeObject for OffsetType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3231,23 +4032,39 @@ pub struct EventTrackData {
 
 pub trait EventTrackDataTrait: SchematicPinTrackDataTrait {
     fn keyframes(&self) -> &Vec<EventKeyframe>;
+    fn keyframes_mut(&mut self) -> &mut Vec<EventKeyframe>;
     fn fire_events_upon_skip(&self) -> &bool;
+    fn fire_events_upon_skip_mut(&mut self) -> &mut bool;
     fn update_properties_at_events(&self) -> &bool;
+    fn update_properties_at_events_mut(&mut self) -> &mut bool;
     fn anti_event_id(&self) -> &i32;
+    fn anti_event_id_mut(&mut self) -> &mut i32;
 }
 
 impl EventTrackDataTrait for EventTrackData {
     fn keyframes(&self) -> &Vec<EventKeyframe> {
         &self.keyframes
     }
+    fn keyframes_mut(&mut self) -> &mut Vec<EventKeyframe> {
+        &mut self.keyframes
+    }
     fn fire_events_upon_skip(&self) -> &bool {
         &self.fire_events_upon_skip
+    }
+    fn fire_events_upon_skip_mut(&mut self) -> &mut bool {
+        &mut self.fire_events_upon_skip
     }
     fn update_properties_at_events(&self) -> &bool {
         &self.update_properties_at_events
     }
+    fn update_properties_at_events_mut(&mut self) -> &mut bool {
+        &mut self.update_properties_at_events
+    }
     fn anti_event_id(&self) -> &i32 {
         &self.anti_event_id
+    }
+    fn anti_event_id_mut(&mut self) -> &mut i32 {
+        &mut self.anti_event_id
     }
 }
 
@@ -3255,11 +4072,20 @@ impl SchematicPinTrackDataTrait for EventTrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -3267,20 +4093,38 @@ impl TimelineTrackDataTrait for EventTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -3291,15 +4135,15 @@ impl super::core::DataBusPeerTrait for EventTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EventTrackData {
 }
 
 impl super::core::DataContainerTrait for EventTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EVENTTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3349,6 +4193,15 @@ impl TypeObject for EventTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3369,11 +4222,15 @@ pub struct EventKeyframe {
 
 pub trait EventKeyframeTrait: TypeObject {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
 }
 
 impl EventKeyframeTrait for EventKeyframe {
     fn time(&self) -> &f32 {
         &self.time
+    }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
     }
 }
 
@@ -3405,6 +4262,15 @@ impl TypeObject for EventKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3426,11 +4292,15 @@ pub struct EntityTrackData {
 
 pub trait EntityTrackDataTrait: EntityTrackBaseDataTrait {
     fn guid_chain(&self) -> &Vec<glacier_util::guid::Guid>;
+    fn guid_chain_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid>;
 }
 
 impl EntityTrackDataTrait for EntityTrackData {
     fn guid_chain(&self) -> &Vec<glacier_util::guid::Guid> {
         &self.guid_chain
+    }
+    fn guid_chain_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid> {
+        &mut self.guid_chain
     }
 }
 
@@ -3438,17 +4308,32 @@ impl EntityTrackBaseDataTrait for EntityTrackData {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
         self._glacier_base.children()
     }
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+        self._glacier_base.children_mut()
+    }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
         self._glacier_base.inherited_to_child_conversation_lines()
+    }
+    fn inherited_to_child_conversation_lines_mut(&mut self) -> &mut bool {
+        self._glacier_base.inherited_to_child_conversation_lines_mut()
     }
     fn required(&self) -> &bool {
         self._glacier_base.required()
     }
+    fn required_mut(&mut self) -> &mut bool {
+        self._glacier_base.required_mut()
+    }
     fn handle_deleted_entity(&self) -> &bool {
         self._glacier_base.handle_deleted_entity()
     }
+    fn handle_deleted_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.handle_deleted_entity_mut()
+    }
     fn entity_sharing_policy(&self) -> &EntityTrackSharingPolicy {
         self._glacier_base.entity_sharing_policy()
+    }
+    fn entity_sharing_policy_mut(&mut self) -> &mut EntityTrackSharingPolicy {
+        self._glacier_base.entity_sharing_policy_mut()
     }
 }
 
@@ -3456,20 +4341,38 @@ impl TimelineTrackDataTrait for EntityTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -3480,15 +4383,15 @@ impl super::core::DataBusPeerTrait for EntityTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EntityTrackData {
 }
 
 impl super::core::DataContainerTrait for EntityTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTITYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3520,6 +4423,15 @@ impl TypeObject for EntityTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3541,11 +4453,15 @@ pub struct LinkedProxyEntityTrackData {
 
 pub trait LinkedProxyEntityTrackDataTrait: TemplatedProxyEntityTrackDataTrait {
     fn source_pin_id(&self) -> &i32;
+    fn source_pin_id_mut(&mut self) -> &mut i32;
 }
 
 impl LinkedProxyEntityTrackDataTrait for LinkedProxyEntityTrackData {
     fn source_pin_id(&self) -> &i32 {
         &self.source_pin_id
+    }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        &mut self.source_pin_id
     }
 }
 
@@ -3559,17 +4475,32 @@ impl EntityTrackBaseDataTrait for LinkedProxyEntityTrackData {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
         self._glacier_base.children()
     }
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+        self._glacier_base.children_mut()
+    }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
         self._glacier_base.inherited_to_child_conversation_lines()
+    }
+    fn inherited_to_child_conversation_lines_mut(&mut self) -> &mut bool {
+        self._glacier_base.inherited_to_child_conversation_lines_mut()
     }
     fn required(&self) -> &bool {
         self._glacier_base.required()
     }
+    fn required_mut(&mut self) -> &mut bool {
+        self._glacier_base.required_mut()
+    }
     fn handle_deleted_entity(&self) -> &bool {
         self._glacier_base.handle_deleted_entity()
     }
+    fn handle_deleted_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.handle_deleted_entity_mut()
+    }
     fn entity_sharing_policy(&self) -> &EntityTrackSharingPolicy {
         self._glacier_base.entity_sharing_policy()
+    }
+    fn entity_sharing_policy_mut(&mut self) -> &mut EntityTrackSharingPolicy {
+        self._glacier_base.entity_sharing_policy_mut()
     }
 }
 
@@ -3577,20 +4508,38 @@ impl TimelineTrackDataTrait for LinkedProxyEntityTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -3601,15 +4550,15 @@ impl super::core::DataBusPeerTrait for LinkedProxyEntityTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LinkedProxyEntityTrackData {
 }
 
 impl super::core::DataContainerTrait for LinkedProxyEntityTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LINKEDPROXYENTITYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3640,6 +4589,15 @@ impl TypeObject for LinkedProxyEntityTrackData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3672,17 +4630,32 @@ impl EntityTrackBaseDataTrait for TemplatedProxyEntityTrackData {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
         self._glacier_base.children()
     }
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+        self._glacier_base.children_mut()
+    }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
         self._glacier_base.inherited_to_child_conversation_lines()
+    }
+    fn inherited_to_child_conversation_lines_mut(&mut self) -> &mut bool {
+        self._glacier_base.inherited_to_child_conversation_lines_mut()
     }
     fn required(&self) -> &bool {
         self._glacier_base.required()
     }
+    fn required_mut(&mut self) -> &mut bool {
+        self._glacier_base.required_mut()
+    }
     fn handle_deleted_entity(&self) -> &bool {
         self._glacier_base.handle_deleted_entity()
     }
+    fn handle_deleted_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.handle_deleted_entity_mut()
+    }
     fn entity_sharing_policy(&self) -> &EntityTrackSharingPolicy {
         self._glacier_base.entity_sharing_policy()
+    }
+    fn entity_sharing_policy_mut(&mut self) -> &mut EntityTrackSharingPolicy {
+        self._glacier_base.entity_sharing_policy_mut()
     }
 }
 
@@ -3690,20 +4663,38 @@ impl TimelineTrackDataTrait for TemplatedProxyEntityTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -3714,15 +4705,15 @@ impl super::core::DataBusPeerTrait for TemplatedProxyEntityTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TemplatedProxyEntityTrackData {
 }
 
 impl super::core::DataContainerTrait for TemplatedProxyEntityTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TEMPLATEDPROXYENTITYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3747,6 +4738,15 @@ impl TypeObject for TemplatedProxyEntityTrackData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3776,17 +4776,32 @@ impl EntityTrackBaseDataTrait for ProxyEntityTrackData {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
         self._glacier_base.children()
     }
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+        self._glacier_base.children_mut()
+    }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
         self._glacier_base.inherited_to_child_conversation_lines()
+    }
+    fn inherited_to_child_conversation_lines_mut(&mut self) -> &mut bool {
+        self._glacier_base.inherited_to_child_conversation_lines_mut()
     }
     fn required(&self) -> &bool {
         self._glacier_base.required()
     }
+    fn required_mut(&mut self) -> &mut bool {
+        self._glacier_base.required_mut()
+    }
     fn handle_deleted_entity(&self) -> &bool {
         self._glacier_base.handle_deleted_entity()
     }
+    fn handle_deleted_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.handle_deleted_entity_mut()
+    }
     fn entity_sharing_policy(&self) -> &EntityTrackSharingPolicy {
         self._glacier_base.entity_sharing_policy()
+    }
+    fn entity_sharing_policy_mut(&mut self) -> &mut EntityTrackSharingPolicy {
+        self._glacier_base.entity_sharing_policy_mut()
     }
 }
 
@@ -3794,20 +4809,38 @@ impl TimelineTrackDataTrait for ProxyEntityTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -3818,15 +4851,15 @@ impl super::core::DataBusPeerTrait for ProxyEntityTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ProxyEntityTrackData {
 }
 
 impl super::core::DataContainerTrait for ProxyEntityTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROXYENTITYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3851,6 +4884,15 @@ impl TypeObject for ProxyEntityTrackData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3880,17 +4922,32 @@ impl EntityTrackBaseDataTrait for DummyEntityTrackData {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
         self._glacier_base.children()
     }
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+        self._glacier_base.children_mut()
+    }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
         self._glacier_base.inherited_to_child_conversation_lines()
+    }
+    fn inherited_to_child_conversation_lines_mut(&mut self) -> &mut bool {
+        self._glacier_base.inherited_to_child_conversation_lines_mut()
     }
     fn required(&self) -> &bool {
         self._glacier_base.required()
     }
+    fn required_mut(&mut self) -> &mut bool {
+        self._glacier_base.required_mut()
+    }
     fn handle_deleted_entity(&self) -> &bool {
         self._glacier_base.handle_deleted_entity()
     }
+    fn handle_deleted_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.handle_deleted_entity_mut()
+    }
     fn entity_sharing_policy(&self) -> &EntityTrackSharingPolicy {
         self._glacier_base.entity_sharing_policy()
+    }
+    fn entity_sharing_policy_mut(&mut self) -> &mut EntityTrackSharingPolicy {
+        self._glacier_base.entity_sharing_policy_mut()
     }
 }
 
@@ -3898,20 +4955,38 @@ impl TimelineTrackDataTrait for DummyEntityTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -3922,15 +4997,15 @@ impl super::core::DataBusPeerTrait for DummyEntityTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DummyEntityTrackData {
 }
 
 impl super::core::DataContainerTrait for DummyEntityTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DUMMYENTITYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3955,6 +5030,15 @@ impl TypeObject for DummyEntityTrackData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -3981,27 +5065,47 @@ pub struct EntityTrackBaseData {
 
 pub trait EntityTrackBaseDataTrait: TimelineTrackDataTrait {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
     fn inherited_to_child_conversation_lines(&self) -> &bool;
+    fn inherited_to_child_conversation_lines_mut(&mut self) -> &mut bool;
     fn required(&self) -> &bool;
+    fn required_mut(&mut self) -> &mut bool;
     fn handle_deleted_entity(&self) -> &bool;
+    fn handle_deleted_entity_mut(&mut self) -> &mut bool;
     fn entity_sharing_policy(&self) -> &EntityTrackSharingPolicy;
+    fn entity_sharing_policy_mut(&mut self) -> &mut EntityTrackSharingPolicy;
 }
 
 impl EntityTrackBaseDataTrait for EntityTrackBaseData {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
         &self.children
     }
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+        &mut self.children
+    }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
         &self.inherited_to_child_conversation_lines
+    }
+    fn inherited_to_child_conversation_lines_mut(&mut self) -> &mut bool {
+        &mut self.inherited_to_child_conversation_lines
     }
     fn required(&self) -> &bool {
         &self.required
     }
+    fn required_mut(&mut self) -> &mut bool {
+        &mut self.required
+    }
     fn handle_deleted_entity(&self) -> &bool {
         &self.handle_deleted_entity
     }
+    fn handle_deleted_entity_mut(&mut self) -> &mut bool {
+        &mut self.handle_deleted_entity
+    }
     fn entity_sharing_policy(&self) -> &EntityTrackSharingPolicy {
         &self.entity_sharing_policy
+    }
+    fn entity_sharing_policy_mut(&mut self) -> &mut EntityTrackSharingPolicy {
+        &mut self.entity_sharing_policy
     }
 }
 
@@ -4009,20 +5113,38 @@ impl TimelineTrackDataTrait for EntityTrackBaseData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -4033,15 +5155,15 @@ impl super::core::DataBusPeerTrait for EntityTrackBaseData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for EntityTrackBaseData {
 }
 
 impl super::core::DataContainerTrait for EntityTrackBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTITYTRACKBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4097,6 +5219,15 @@ impl TypeObject for EntityTrackBaseData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4135,6 +5266,15 @@ impl TypeObject for EntityTrackSharingPolicy {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4165,54 +5305,91 @@ pub struct CurveData {
 
 pub trait CurveDataTrait: super::core::DataContainerTrait {
     fn pre_infinity(&self) -> &InfinityType;
+    fn pre_infinity_mut(&mut self) -> &mut InfinityType;
     fn post_infinity(&self) -> &InfinityType;
+    fn post_infinity_mut(&mut self) -> &mut InfinityType;
     fn is_weighted(&self) -> &bool;
+    fn is_weighted_mut(&mut self) -> &mut bool;
     fn curve_type(&self) -> &CurveType;
+    fn curve_type_mut(&mut self) -> &mut CurveType;
     fn time(&self) -> &Vec<f32>;
+    fn time_mut(&mut self) -> &mut Vec<f32>;
     fn value(&self) -> &Vec<f32>;
+    fn value_mut(&mut self) -> &mut Vec<f32>;
     fn in_tan_x(&self) -> &Vec<f32>;
+    fn in_tan_x_mut(&mut self) -> &mut Vec<f32>;
     fn in_tan_y(&self) -> &Vec<f32>;
+    fn in_tan_y_mut(&mut self) -> &mut Vec<f32>;
     fn out_tan_x(&self) -> &Vec<f32>;
+    fn out_tan_x_mut(&mut self) -> &mut Vec<f32>;
     fn out_tan_y(&self) -> &Vec<f32>;
+    fn out_tan_y_mut(&mut self) -> &mut Vec<f32>;
 }
 
 impl CurveDataTrait for CurveData {
     fn pre_infinity(&self) -> &InfinityType {
         &self.pre_infinity
     }
+    fn pre_infinity_mut(&mut self) -> &mut InfinityType {
+        &mut self.pre_infinity
+    }
     fn post_infinity(&self) -> &InfinityType {
         &self.post_infinity
+    }
+    fn post_infinity_mut(&mut self) -> &mut InfinityType {
+        &mut self.post_infinity
     }
     fn is_weighted(&self) -> &bool {
         &self.is_weighted
     }
+    fn is_weighted_mut(&mut self) -> &mut bool {
+        &mut self.is_weighted
+    }
     fn curve_type(&self) -> &CurveType {
         &self.curve_type
+    }
+    fn curve_type_mut(&mut self) -> &mut CurveType {
+        &mut self.curve_type
     }
     fn time(&self) -> &Vec<f32> {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.time
+    }
     fn value(&self) -> &Vec<f32> {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.value
     }
     fn in_tan_x(&self) -> &Vec<f32> {
         &self.in_tan_x
     }
+    fn in_tan_x_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.in_tan_x
+    }
     fn in_tan_y(&self) -> &Vec<f32> {
         &self.in_tan_y
+    }
+    fn in_tan_y_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.in_tan_y
     }
     fn out_tan_x(&self) -> &Vec<f32> {
         &self.out_tan_x
     }
+    fn out_tan_x_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.out_tan_x
+    }
     fn out_tan_y(&self) -> &Vec<f32> {
         &self.out_tan_y
+    }
+    fn out_tan_y_mut(&mut self) -> &mut Vec<f32> {
+        &mut self.out_tan_y
     }
 }
 
 impl super::core::DataContainerTrait for CurveData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CURVEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4298,6 +5475,15 @@ impl TypeObject for CurveData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4341,6 +5527,15 @@ impl TypeObject for CurveType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4383,6 +5578,15 @@ impl TypeObject for InfinityType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4404,11 +5608,15 @@ pub struct RgbColorTrackData {
 
 pub trait RgbColorTrackDataTrait: PropertyTrackBaseDataTrait {
     fn keyframes(&self) -> &Vec<RgbColorKeyframe>;
+    fn keyframes_mut(&mut self) -> &mut Vec<RgbColorKeyframe>;
 }
 
 impl RgbColorTrackDataTrait for RgbColorTrackData {
     fn keyframes(&self) -> &Vec<RgbColorKeyframe> {
         &self.keyframes
+    }
+    fn keyframes_mut(&mut self) -> &mut Vec<RgbColorKeyframe> {
+        &mut self.keyframes
     }
 }
 
@@ -4419,11 +5627,20 @@ impl SchematicPinTrackDataTrait for RgbColorTrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -4431,20 +5648,38 @@ impl TimelineTrackDataTrait for RgbColorTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -4455,15 +5690,15 @@ impl super::core::DataBusPeerTrait for RgbColorTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RgbColorTrackData {
 }
 
 impl super::core::DataContainerTrait for RgbColorTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RGBCOLORTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4495,6 +5730,15 @@ impl TypeObject for RgbColorTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4516,15 +5760,23 @@ pub struct RgbColorKeyframe {
 
 pub trait RgbColorKeyframeTrait: TypeObject {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn r_g_b_color(&self) -> &super::core::Vec3;
+    fn r_g_b_color_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl RgbColorKeyframeTrait for RgbColorKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn r_g_b_color(&self) -> &super::core::Vec3 {
         &self.r_g_b_color
+    }
+    fn r_g_b_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.r_g_b_color
     }
 }
 
@@ -4562,6 +5814,15 @@ impl TypeObject for RgbColorKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4583,11 +5844,15 @@ pub struct ColorTrackData {
 
 pub trait ColorTrackDataTrait: PropertyTrackBaseDataTrait {
     fn keyframes(&self) -> &Vec<ColorKeyframe>;
+    fn keyframes_mut(&mut self) -> &mut Vec<ColorKeyframe>;
 }
 
 impl ColorTrackDataTrait for ColorTrackData {
     fn keyframes(&self) -> &Vec<ColorKeyframe> {
         &self.keyframes
+    }
+    fn keyframes_mut(&mut self) -> &mut Vec<ColorKeyframe> {
+        &mut self.keyframes
     }
 }
 
@@ -4598,11 +5863,20 @@ impl SchematicPinTrackDataTrait for ColorTrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -4610,20 +5884,38 @@ impl TimelineTrackDataTrait for ColorTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -4634,15 +5926,15 @@ impl super::core::DataBusPeerTrait for ColorTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ColorTrackData {
 }
 
 impl super::core::DataContainerTrait for ColorTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COLORTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4674,6 +5966,15 @@ impl TypeObject for ColorTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4695,15 +5996,23 @@ pub struct ColorKeyframe {
 
 pub trait ColorKeyframeTrait: TypeObject {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn r_g_b_color(&self) -> &super::core::Vec4;
+    fn r_g_b_color_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl ColorKeyframeTrait for ColorKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn r_g_b_color(&self) -> &super::core::Vec4 {
         &self.r_g_b_color
+    }
+    fn r_g_b_color_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.r_g_b_color
     }
 }
 
@@ -4741,6 +6050,15 @@ impl TypeObject for ColorKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4762,11 +6080,15 @@ pub struct BoolTrackData {
 
 pub trait BoolTrackDataTrait: PropertyTrackBaseDataTrait {
     fn keyframes(&self) -> &Vec<BoolKeyframe>;
+    fn keyframes_mut(&mut self) -> &mut Vec<BoolKeyframe>;
 }
 
 impl BoolTrackDataTrait for BoolTrackData {
     fn keyframes(&self) -> &Vec<BoolKeyframe> {
         &self.keyframes
+    }
+    fn keyframes_mut(&mut self) -> &mut Vec<BoolKeyframe> {
+        &mut self.keyframes
     }
 }
 
@@ -4777,11 +6099,20 @@ impl SchematicPinTrackDataTrait for BoolTrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -4789,20 +6120,38 @@ impl TimelineTrackDataTrait for BoolTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -4813,15 +6162,15 @@ impl super::core::DataBusPeerTrait for BoolTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for BoolTrackData {
 }
 
 impl super::core::DataContainerTrait for BoolTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BOOLTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4853,6 +6202,15 @@ impl TypeObject for BoolTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4874,15 +6232,23 @@ pub struct BoolKeyframe {
 
 pub trait BoolKeyframeTrait: TypeObject {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn value(&self) -> &bool;
+    fn value_mut(&mut self) -> &mut bool;
 }
 
 impl BoolKeyframeTrait for BoolKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn value(&self) -> &bool {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut bool {
+        &mut self.value
     }
 }
 
@@ -4920,6 +6286,15 @@ impl TypeObject for BoolKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4943,19 +6318,31 @@ pub struct BookmarkTrackData {
 
 pub trait BookmarkTrackDataTrait: TimelineTrackDataTrait {
     fn keyframes(&self) -> &Vec<BookmarkKeyframe>;
+    fn keyframes_mut(&mut self) -> &mut Vec<BookmarkKeyframe>;
     fn jump_offset_type(&self) -> &JumpOffsetType;
+    fn jump_offset_type_mut(&mut self) -> &mut JumpOffsetType;
     fn jump_time(&self) -> &f32;
+    fn jump_time_mut(&mut self) -> &mut f32;
 }
 
 impl BookmarkTrackDataTrait for BookmarkTrackData {
     fn keyframes(&self) -> &Vec<BookmarkKeyframe> {
         &self.keyframes
     }
+    fn keyframes_mut(&mut self) -> &mut Vec<BookmarkKeyframe> {
+        &mut self.keyframes
+    }
     fn jump_offset_type(&self) -> &JumpOffsetType {
         &self.jump_offset_type
     }
+    fn jump_offset_type_mut(&mut self) -> &mut JumpOffsetType {
+        &mut self.jump_offset_type
+    }
     fn jump_time(&self) -> &f32 {
         &self.jump_time
+    }
+    fn jump_time_mut(&mut self) -> &mut f32 {
+        &mut self.jump_time
     }
 }
 
@@ -4963,20 +6350,38 @@ impl TimelineTrackDataTrait for BookmarkTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -4987,15 +6392,15 @@ impl super::core::DataBusPeerTrait for BookmarkTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for BookmarkTrackData {
 }
 
 impl super::core::DataContainerTrait for BookmarkTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BOOKMARKTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5039,6 +6444,15 @@ impl TypeObject for BookmarkTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5060,15 +6474,23 @@ pub struct BookmarkKeyframe {
 
 pub trait BookmarkKeyframeTrait: TypeObject {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn name_i_d(&self) -> &i32;
+    fn name_i_d_mut(&mut self) -> &mut i32;
 }
 
 impl BookmarkKeyframeTrait for BookmarkKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn name_i_d(&self) -> &i32 {
         &self.name_i_d
+    }
+    fn name_i_d_mut(&mut self) -> &mut i32 {
+        &mut self.name_i_d
     }
 }
 
@@ -5105,6 +6527,15 @@ impl TypeObject for BookmarkKeyframe {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5145,6 +6576,15 @@ impl TypeObject for JumpOffsetType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -5166,11 +6606,15 @@ pub struct GuideTrackData {
 
 pub trait GuideTrackDataTrait: TimelineTrackDataTrait {
     fn guide_track_priority(&self) -> &i32;
+    fn guide_track_priority_mut(&mut self) -> &mut i32;
 }
 
 impl GuideTrackDataTrait for GuideTrackData {
     fn guide_track_priority(&self) -> &i32 {
         &self.guide_track_priority
+    }
+    fn guide_track_priority_mut(&mut self) -> &mut i32 {
+        &mut self.guide_track_priority
     }
 }
 
@@ -5178,20 +6622,38 @@ impl TimelineTrackDataTrait for GuideTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -5202,15 +6664,15 @@ impl super::core::DataBusPeerTrait for GuideTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for GuideTrackData {
 }
 
 impl super::core::DataContainerTrait for GuideTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GUIDETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5242,6 +6704,15 @@ impl TypeObject for GuideTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5268,31 +6739,55 @@ pub struct TimelineTrackData {
 
 pub trait TimelineTrackDataTrait: super::entity::GameObjectDataTrait {
     fn expose_pins(&self) -> &bool;
+    fn expose_pins_mut(&mut self) -> &mut bool;
     fn is_disabled(&self) -> &bool;
+    fn is_disabled_mut(&mut self) -> &mut bool;
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>>;
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>>;
     fn update_pass_flags(&self) -> &u16;
+    fn update_pass_flags_mut(&mut self) -> &mut u16;
     fn bucket_pre_children_order(&self) -> &u16;
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16;
     fn bucket_order(&self) -> &u16;
+    fn bucket_order_mut(&mut self) -> &mut u16;
 }
 
 impl TimelineTrackDataTrait for TimelineTrackData {
     fn expose_pins(&self) -> &bool {
         &self.expose_pins
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        &mut self.expose_pins
+    }
     fn is_disabled(&self) -> &bool {
         &self.is_disabled
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        &mut self.is_disabled
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         &self.conditions
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        &mut self.conditions
+    }
     fn update_pass_flags(&self) -> &u16 {
         &self.update_pass_flags
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        &mut self.update_pass_flags
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         &self.bucket_pre_children_order
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        &mut self.bucket_pre_children_order
+    }
     fn bucket_order(&self) -> &u16 {
         &self.bucket_order
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        &mut self.bucket_order
     }
 }
 
@@ -5303,15 +6798,15 @@ impl super::core::DataBusPeerTrait for TimelineTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TimelineTrackData {
 }
 
 impl super::core::DataContainerTrait for TimelineTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TIMELINETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5373,6 +6868,15 @@ impl TypeObject for TimelineTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5398,9 +6902,6 @@ impl TimelineExtraDataTrait for TimelineExtraData {
 }
 
 impl super::core::DataContainerTrait for TimelineExtraData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TIMELINEEXTRADATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5425,6 +6926,15 @@ impl TypeObject for TimelineExtraData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5451,9 +6961,6 @@ impl TimelineTrackDataConditionsBaseTrait for TimelineTrackDataConditionsBase {
 }
 
 impl super::core::DataContainerTrait for TimelineTrackDataConditionsBase {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TIMELINETRACKDATACONDITIONSBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5478,6 +6985,15 @@ impl TypeObject for TimelineTrackDataConditionsBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5504,9 +7020,6 @@ impl TimelineKeyframeDataTrait for TimelineKeyframeData {
 }
 
 impl super::core::DataContainerTrait for TimelineKeyframeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TIMELINEKEYFRAMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5531,6 +7044,15 @@ impl TypeObject for TimelineKeyframeData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5557,9 +7079,6 @@ impl TimelineTeleportHelperTrait for TimelineTeleportHelper {
 }
 
 impl super::core::DataContainerTrait for TimelineTeleportHelper {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TIMELINETELEPORTHELPER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5584,6 +7103,15 @@ impl TypeObject for TimelineTeleportHelper {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5626,91 +7154,175 @@ pub struct TimelineEntityData {
 
 pub trait TimelineEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineDataTrait>>>;
+    fn timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineDataTrait>>>;
     fn auto_play(&self) -> &bool;
+    fn auto_play_mut(&mut self) -> &mut bool;
     fn delta_time_clock(&self) -> &TimelineClock;
+    fn delta_time_clock_mut(&mut self) -> &mut TimelineClock;
     fn time_dilation_type(&self) -> &super::entity::TimeDeltaType;
+    fn time_dilation_type_mut(&mut self) -> &mut super::entity::TimeDeltaType;
     fn auto_init_connected_properties(&self) -> &bool;
+    fn auto_init_connected_properties_mut(&mut self) -> &mut bool;
     fn reset_time_on_started(&self) -> &bool;
+    fn reset_time_on_started_mut(&mut self) -> &mut bool;
     fn allow_animation_carry_forward(&self) -> &bool;
+    fn allow_animation_carry_forward_mut(&mut self) -> &mut bool;
     fn always_end_on_pre_frame(&self) -> &bool;
+    fn always_end_on_pre_frame_mut(&mut self) -> &mut bool;
     fn sync_timelines(&self) -> &bool;
+    fn sync_timelines_mut(&mut self) -> &mut bool;
     fn runtime_framerate(&self) -> &u8;
+    fn runtime_framerate_mut(&mut self) -> &mut u8;
     fn blend_in_time(&self) -> &f32;
+    fn blend_in_time_mut(&mut self) -> &mut f32;
     fn blend_out_time(&self) -> &f32;
+    fn blend_out_time_mut(&mut self) -> &mut f32;
     fn looping(&self) -> &bool;
+    fn looping_mut(&mut self) -> &mut bool;
     fn infinite(&self) -> &bool;
+    fn infinite_mut(&mut self) -> &mut bool;
     fn init_time(&self) -> &f32;
+    fn init_time_mut(&mut self) -> &mut f32;
     fn start_time(&self) -> &f32;
+    fn start_time_mut(&mut self) -> &mut f32;
     fn end_time(&self) -> &f32;
+    fn end_time_mut(&mut self) -> &mut f32;
     fn playback_rate(&self) -> &f32;
+    fn playback_rate_mut(&mut self) -> &mut f32;
     fn print_current_time(&self) -> &bool;
+    fn print_current_time_mut(&mut self) -> &mut bool;
     fn update_pass_flags(&self) -> &u16;
+    fn update_pass_flags_mut(&mut self) -> &mut u16;
 }
 
 impl TimelineEntityDataTrait for TimelineEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineDataTrait>>> {
         &self.timeline_data
+    }
+    fn timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineDataTrait>>> {
+        &mut self.timeline_data
     }
     fn auto_play(&self) -> &bool {
         &self.auto_play
     }
+    fn auto_play_mut(&mut self) -> &mut bool {
+        &mut self.auto_play
+    }
     fn delta_time_clock(&self) -> &TimelineClock {
         &self.delta_time_clock
+    }
+    fn delta_time_clock_mut(&mut self) -> &mut TimelineClock {
+        &mut self.delta_time_clock
     }
     fn time_dilation_type(&self) -> &super::entity::TimeDeltaType {
         &self.time_dilation_type
     }
+    fn time_dilation_type_mut(&mut self) -> &mut super::entity::TimeDeltaType {
+        &mut self.time_dilation_type
+    }
     fn auto_init_connected_properties(&self) -> &bool {
         &self.auto_init_connected_properties
+    }
+    fn auto_init_connected_properties_mut(&mut self) -> &mut bool {
+        &mut self.auto_init_connected_properties
     }
     fn reset_time_on_started(&self) -> &bool {
         &self.reset_time_on_started
     }
+    fn reset_time_on_started_mut(&mut self) -> &mut bool {
+        &mut self.reset_time_on_started
+    }
     fn allow_animation_carry_forward(&self) -> &bool {
         &self.allow_animation_carry_forward
+    }
+    fn allow_animation_carry_forward_mut(&mut self) -> &mut bool {
+        &mut self.allow_animation_carry_forward
     }
     fn always_end_on_pre_frame(&self) -> &bool {
         &self.always_end_on_pre_frame
     }
+    fn always_end_on_pre_frame_mut(&mut self) -> &mut bool {
+        &mut self.always_end_on_pre_frame
+    }
     fn sync_timelines(&self) -> &bool {
         &self.sync_timelines
+    }
+    fn sync_timelines_mut(&mut self) -> &mut bool {
+        &mut self.sync_timelines
     }
     fn runtime_framerate(&self) -> &u8 {
         &self.runtime_framerate
     }
+    fn runtime_framerate_mut(&mut self) -> &mut u8 {
+        &mut self.runtime_framerate
+    }
     fn blend_in_time(&self) -> &f32 {
         &self.blend_in_time
+    }
+    fn blend_in_time_mut(&mut self) -> &mut f32 {
+        &mut self.blend_in_time
     }
     fn blend_out_time(&self) -> &f32 {
         &self.blend_out_time
     }
+    fn blend_out_time_mut(&mut self) -> &mut f32 {
+        &mut self.blend_out_time
+    }
     fn looping(&self) -> &bool {
         &self.looping
+    }
+    fn looping_mut(&mut self) -> &mut bool {
+        &mut self.looping
     }
     fn infinite(&self) -> &bool {
         &self.infinite
     }
+    fn infinite_mut(&mut self) -> &mut bool {
+        &mut self.infinite
+    }
     fn init_time(&self) -> &f32 {
         &self.init_time
+    }
+    fn init_time_mut(&mut self) -> &mut f32 {
+        &mut self.init_time
     }
     fn start_time(&self) -> &f32 {
         &self.start_time
     }
+    fn start_time_mut(&mut self) -> &mut f32 {
+        &mut self.start_time
+    }
     fn end_time(&self) -> &f32 {
         &self.end_time
+    }
+    fn end_time_mut(&mut self) -> &mut f32 {
+        &mut self.end_time
     }
     fn playback_rate(&self) -> &f32 {
         &self.playback_rate
     }
+    fn playback_rate_mut(&mut self) -> &mut f32 {
+        &mut self.playback_rate
+    }
     fn print_current_time(&self) -> &bool {
         &self.print_current_time
     }
+    fn print_current_time_mut(&mut self) -> &mut bool {
+        &mut self.print_current_time
+    }
     fn update_pass_flags(&self) -> &u16 {
         &self.update_pass_flags
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        &mut self.update_pass_flags
     }
 }
 
@@ -5724,15 +7336,15 @@ impl super::core::DataBusPeerTrait for TimelineEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TimelineEntityData {
 }
 
 impl super::core::DataContainerTrait for TimelineEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TIMELINEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5884,6 +7496,15 @@ impl TypeObject for TimelineEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5905,11 +7526,15 @@ pub struct TimelineData {
 
 pub trait TimelineDataTrait: TimelineTrackDataTrait {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
 }
 
 impl TimelineDataTrait for TimelineData {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
         &self.children
+    }
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+        &mut self.children
     }
 }
 
@@ -5917,20 +7542,38 @@ impl TimelineTrackDataTrait for TimelineData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -5941,15 +7584,15 @@ impl super::core::DataBusPeerTrait for TimelineData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TimelineData {
 }
 
 impl super::core::DataContainerTrait for TimelineData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TIMELINEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5980,6 +7623,15 @@ impl TypeObject for TimelineData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6020,6 +7672,15 @@ impl TypeObject for TimelineEditorReinitializeState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6058,6 +7719,15 @@ impl TypeObject for TimelineClock {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6101,6 +7771,15 @@ impl TypeObject for TimelineFramerate {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6129,9 +7808,6 @@ impl TimelineExtraDataTrait for FbxImportData {
 }
 
 impl super::core::DataContainerTrait for FbxImportData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FBXIMPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6156,6 +7832,15 @@ impl TypeObject for FbxImportData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6182,9 +7867,6 @@ impl TimelineBufferingHelperTrait for TimelineBufferingHelper {
 }
 
 impl super::core::DataContainerTrait for TimelineBufferingHelper {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TIMELINEBUFFERINGHELPER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6210,6 +7892,15 @@ impl TypeObject for TimelineBufferingHelper {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6234,23 +7925,39 @@ pub struct Vec4TrackData {
 
 pub trait Vec4TrackDataTrait: PropertyTrackBaseDataTrait {
     fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn w(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn w_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
 }
 
 impl Vec4TrackDataTrait for Vec4TrackData {
     fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.x
+    }
     fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.y
     }
     fn z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.z
     }
+    fn z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.z
+    }
     fn w(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.w
+    }
+    fn w_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.w
     }
 }
 
@@ -6261,11 +7968,20 @@ impl SchematicPinTrackDataTrait for Vec4TrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -6273,20 +7989,38 @@ impl TimelineTrackDataTrait for Vec4TrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -6297,15 +8031,15 @@ impl super::core::DataBusPeerTrait for Vec4TrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for Vec4TrackData {
 }
 
 impl super::core::DataContainerTrait for Vec4TrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEC4TRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6355,6 +8089,15 @@ impl TypeObject for Vec4TrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6378,19 +8121,31 @@ pub struct Vec3TrackData {
 
 pub trait Vec3TrackDataTrait: PropertyTrackBaseDataTrait {
     fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
 }
 
 impl Vec3TrackDataTrait for Vec3TrackData {
     fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.x
+    }
     fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.y
     }
+    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.y
+    }
     fn z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.z
+    }
+    fn z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.z
     }
 }
 
@@ -6401,11 +8156,20 @@ impl SchematicPinTrackDataTrait for Vec3TrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -6413,20 +8177,38 @@ impl TimelineTrackDataTrait for Vec3TrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -6437,15 +8219,15 @@ impl super::core::DataBusPeerTrait for Vec3TrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for Vec3TrackData {
 }
 
 impl super::core::DataContainerTrait for Vec3TrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEC3TRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6489,6 +8271,15 @@ impl TypeObject for Vec3TrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6511,15 +8302,23 @@ pub struct Vec2TrackData {
 
 pub trait Vec2TrackDataTrait: PropertyTrackBaseDataTrait {
     fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
 }
 
 impl Vec2TrackDataTrait for Vec2TrackData {
     fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.x
+    }
     fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.y
     }
 }
 
@@ -6530,11 +8329,20 @@ impl SchematicPinTrackDataTrait for Vec2TrackData {
     fn source_pin_id(&self) -> &i32 {
         self._glacier_base.source_pin_id()
     }
+    fn source_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.source_pin_id_mut()
+    }
     fn target_pin_id(&self) -> &i32 {
         self._glacier_base.target_pin_id()
     }
+    fn target_pin_id_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_id_mut()
+    }
     fn target_pin_name_hash(&self) -> &i32 {
         self._glacier_base.target_pin_name_hash()
+    }
+    fn target_pin_name_hash_mut(&mut self) -> &mut i32 {
+        self._glacier_base.target_pin_name_hash_mut()
     }
 }
 
@@ -6542,20 +8350,38 @@ impl TimelineTrackDataTrait for Vec2TrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -6566,15 +8392,15 @@ impl super::core::DataBusPeerTrait for Vec2TrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for Vec2TrackData {
 }
 
 impl super::core::DataContainerTrait for Vec2TrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEC2TRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6612,6 +8438,15 @@ impl TypeObject for Vec2TrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6629,20 +8464,28 @@ pub static VEC2TRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 pub struct TransformLayerData {
     pub _glacier_base: TimelineTrackData,
     pub weight: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub blendtype: LayeredTransform_BlendType,
+    pub blendtype: LayeredTransformBlendType,
 }
 
 pub trait TransformLayerDataTrait: TimelineTrackDataTrait {
     fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn blendtype(&self) -> &LayeredTransform_BlendType;
+    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn blendtype(&self) -> &LayeredTransformBlendType;
+    fn blendtype_mut(&mut self) -> &mut LayeredTransformBlendType;
 }
 
 impl TransformLayerDataTrait for TransformLayerData {
     fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.weight
     }
-    fn blendtype(&self) -> &LayeredTransform_BlendType {
+    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.weight
+    }
+    fn blendtype(&self) -> &LayeredTransformBlendType {
         &self.blendtype
+    }
+    fn blendtype_mut(&mut self) -> &mut LayeredTransformBlendType {
+        &mut self.blendtype
     }
 }
 
@@ -6650,20 +8493,38 @@ impl TimelineTrackDataTrait for TransformLayerData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -6674,15 +8535,15 @@ impl super::core::DataBusPeerTrait for TransformLayerData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TransformLayerData {
 }
 
 impl super::core::DataContainerTrait for TransformLayerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TRANSFORMLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6720,6 +8581,15 @@ impl TypeObject for TransformLayerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6736,7 +8606,7 @@ pub static TRANSFORMLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 #[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
 #[repr(i64)]
 #[allow(non_camel_case_types)]
-pub enum LayeredTransform_BlendType {
+pub enum LayeredTransformBlendType {
     #[default]
     LayeredTransform_BlendType_WorldOverride = 0,
     LayeredTransform_BlendType_WorldAdditive = 1,
@@ -6754,12 +8624,21 @@ pub static LAYEREDTRANSFORM_BLENDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     alignment: 1,
 };
 
-impl TypeObject for LayeredTransform_BlendType {
+impl TypeObject for LayeredTransformBlendType {
     fn type_info(&self) -> &'static TypeInfo {
         LAYEREDTRANSFORM_BLENDTYPE_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -6789,8 +8668,14 @@ impl TransformLayerDataTrait for StartingLocationTransformLayerData {
     fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         self._glacier_base.weight()
     }
-    fn blendtype(&self) -> &LayeredTransform_BlendType {
+    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        self._glacier_base.weight_mut()
+    }
+    fn blendtype(&self) -> &LayeredTransformBlendType {
         self._glacier_base.blendtype()
+    }
+    fn blendtype_mut(&mut self) -> &mut LayeredTransformBlendType {
+        self._glacier_base.blendtype_mut()
     }
 }
 
@@ -6798,20 +8683,38 @@ impl TimelineTrackDataTrait for StartingLocationTransformLayerData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -6822,15 +8725,15 @@ impl super::core::DataBusPeerTrait for StartingLocationTransformLayerData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for StartingLocationTransformLayerData {
 }
 
 impl super::core::DataContainerTrait for StartingLocationTransformLayerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STARTINGLOCATIONTRANSFORMLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6856,6 +8759,15 @@ impl TypeObject for StartingLocationTransformLayerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6880,23 +8792,39 @@ pub struct ScaleTransformLayerData {
 
 pub trait ScaleTransformLayerDataTrait: TransformLayerDataTrait {
     fn is_uniform(&self) -> &bool;
+    fn is_uniform_mut(&mut self) -> &mut bool;
     fn scale_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn scale_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn scale_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn scale_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn scale_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn scale_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
 }
 
 impl ScaleTransformLayerDataTrait for ScaleTransformLayerData {
     fn is_uniform(&self) -> &bool {
         &self.is_uniform
     }
+    fn is_uniform_mut(&mut self) -> &mut bool {
+        &mut self.is_uniform
+    }
     fn scale_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.scale_x
+    }
+    fn scale_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.scale_x
     }
     fn scale_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.scale_y
     }
+    fn scale_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.scale_y
+    }
     fn scale_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.scale_z
+    }
+    fn scale_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.scale_z
     }
 }
 
@@ -6904,8 +8832,14 @@ impl TransformLayerDataTrait for ScaleTransformLayerData {
     fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         self._glacier_base.weight()
     }
-    fn blendtype(&self) -> &LayeredTransform_BlendType {
+    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        self._glacier_base.weight_mut()
+    }
+    fn blendtype(&self) -> &LayeredTransformBlendType {
         self._glacier_base.blendtype()
+    }
+    fn blendtype_mut(&mut self) -> &mut LayeredTransformBlendType {
+        self._glacier_base.blendtype_mut()
     }
 }
 
@@ -6913,20 +8847,38 @@ impl TimelineTrackDataTrait for ScaleTransformLayerData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -6937,15 +8889,15 @@ impl super::core::DataBusPeerTrait for ScaleTransformLayerData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ScaleTransformLayerData {
 }
 
 impl super::core::DataContainerTrait for ScaleTransformLayerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SCALETRANSFORMLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6995,6 +8947,15 @@ impl TypeObject for ScaleTransformLayerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7025,47 +8986,87 @@ pub struct KeyedTransformLayerData {
 
 pub trait KeyedTransformLayerDataTrait: TransformLayerDataTrait {
     fn force_minimum_rotation_path_between_keys(&self) -> &bool;
+    fn force_minimum_rotation_path_between_keys_mut(&mut self) -> &mut bool;
     fn pre_infinity_for_min_rotation(&self) -> &InfinityType;
+    fn pre_infinity_for_min_rotation_mut(&mut self) -> &mut InfinityType;
     fn post_infinity_for_min_rotation(&self) -> &InfinityType;
+    fn post_infinity_for_min_rotation_mut(&mut self) -> &mut InfinityType;
     fn translation_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn translation_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn translation_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn translation_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn translation_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn translation_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn rotation_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn rotation_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn rotation_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn rotation_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn rotation_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn rotation_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
     fn quat_keyframes(&self) -> &Vec<QuatKeyframe>;
+    fn quat_keyframes_mut(&mut self) -> &mut Vec<QuatKeyframe>;
 }
 
 impl KeyedTransformLayerDataTrait for KeyedTransformLayerData {
     fn force_minimum_rotation_path_between_keys(&self) -> &bool {
         &self.force_minimum_rotation_path_between_keys
     }
+    fn force_minimum_rotation_path_between_keys_mut(&mut self) -> &mut bool {
+        &mut self.force_minimum_rotation_path_between_keys
+    }
     fn pre_infinity_for_min_rotation(&self) -> &InfinityType {
         &self.pre_infinity_for_min_rotation
+    }
+    fn pre_infinity_for_min_rotation_mut(&mut self) -> &mut InfinityType {
+        &mut self.pre_infinity_for_min_rotation
     }
     fn post_infinity_for_min_rotation(&self) -> &InfinityType {
         &self.post_infinity_for_min_rotation
     }
+    fn post_infinity_for_min_rotation_mut(&mut self) -> &mut InfinityType {
+        &mut self.post_infinity_for_min_rotation
+    }
     fn translation_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.translation_x
+    }
+    fn translation_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.translation_x
     }
     fn translation_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.translation_y
     }
+    fn translation_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.translation_y
+    }
     fn translation_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.translation_z
+    }
+    fn translation_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.translation_z
     }
     fn rotation_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.rotation_x
     }
+    fn rotation_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.rotation_x
+    }
     fn rotation_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.rotation_y
+    }
+    fn rotation_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.rotation_y
     }
     fn rotation_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         &self.rotation_z
     }
+    fn rotation_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        &mut self.rotation_z
+    }
     fn quat_keyframes(&self) -> &Vec<QuatKeyframe> {
         &self.quat_keyframes
+    }
+    fn quat_keyframes_mut(&mut self) -> &mut Vec<QuatKeyframe> {
+        &mut self.quat_keyframes
     }
 }
 
@@ -7073,8 +9074,14 @@ impl TransformLayerDataTrait for KeyedTransformLayerData {
     fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         self._glacier_base.weight()
     }
-    fn blendtype(&self) -> &LayeredTransform_BlendType {
+    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        self._glacier_base.weight_mut()
+    }
+    fn blendtype(&self) -> &LayeredTransformBlendType {
         self._glacier_base.blendtype()
+    }
+    fn blendtype_mut(&mut self) -> &mut LayeredTransformBlendType {
+        self._glacier_base.blendtype_mut()
     }
 }
 
@@ -7082,20 +9089,38 @@ impl TimelineTrackDataTrait for KeyedTransformLayerData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -7106,15 +9131,15 @@ impl super::core::DataBusPeerTrait for KeyedTransformLayerData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for KeyedTransformLayerData {
 }
 
 impl super::core::DataContainerTrait for KeyedTransformLayerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static KEYEDTRANSFORMLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7200,6 +9225,15 @@ impl TypeObject for KeyedTransformLayerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7221,15 +9255,23 @@ pub struct QuatKeyframe {
 
 pub trait QuatKeyframeTrait: TypeObject {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn quat_value(&self) -> &super::core::Vec4;
+    fn quat_value_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl QuatKeyframeTrait for QuatKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn quat_value(&self) -> &super::core::Vec4 {
         &self.quat_value
+    }
+    fn quat_value_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.quat_value
     }
 }
 
@@ -7267,6 +9309,15 @@ impl TypeObject for QuatKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7288,11 +9339,15 @@ pub struct GroupTransformLayerData {
 
 pub trait GroupTransformLayerDataTrait: TransformLayerDataTrait {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>>;
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>>;
 }
 
 impl GroupTransformLayerDataTrait for GroupTransformLayerData {
     fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>> {
         &self.children
+    }
+    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>> {
+        &mut self.children
     }
 }
 
@@ -7300,8 +9355,14 @@ impl TransformLayerDataTrait for GroupTransformLayerData {
     fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
         self._glacier_base.weight()
     }
-    fn blendtype(&self) -> &LayeredTransform_BlendType {
+    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+        self._glacier_base.weight_mut()
+    }
+    fn blendtype(&self) -> &LayeredTransformBlendType {
         self._glacier_base.blendtype()
+    }
+    fn blendtype_mut(&mut self) -> &mut LayeredTransformBlendType {
+        self._glacier_base.blendtype_mut()
     }
 }
 
@@ -7309,20 +9370,38 @@ impl TimelineTrackDataTrait for GroupTransformLayerData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -7333,15 +9412,15 @@ impl super::core::DataBusPeerTrait for GroupTransformLayerData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for GroupTransformLayerData {
 }
 
 impl super::core::DataContainerTrait for GroupTransformLayerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GROUPTRANSFORMLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7372,6 +9451,15 @@ impl TypeObject for GroupTransformLayerData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7418,6 +9506,15 @@ impl TypeObject for TimelineTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -7468,6 +9565,15 @@ impl TypeObject for TimelineRootTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -7521,6 +9627,15 @@ impl TypeObject for TimelineEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

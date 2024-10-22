@@ -42,27 +42,47 @@ pub struct SnitchSettings {
 
 pub trait SnitchSettingsTrait: super::core::SystemSettingsTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn url(&self) -> &String;
+    fn url_mut(&mut self) -> &mut String;
     fn s_s_l(&self) -> &bool;
+    fn s_s_l_mut(&mut self) -> &mut bool;
     fn data_providers(&self) -> &Vec<Option<Arc<Mutex<dyn super::web_utils::URLConfigDataTrait>>>>;
+    fn data_providers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::web_utils::URLConfigDataTrait>>>>;
     fn editorial_config_enabled(&self) -> &bool;
+    fn editorial_config_enabled_mut(&mut self) -> &mut bool;
 }
 
 impl SnitchSettingsTrait for SnitchSettings {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn url(&self) -> &String {
         &self.url
+    }
+    fn url_mut(&mut self) -> &mut String {
+        &mut self.url
     }
     fn s_s_l(&self) -> &bool {
         &self.s_s_l
     }
+    fn s_s_l_mut(&mut self) -> &mut bool {
+        &mut self.s_s_l
+    }
     fn data_providers(&self) -> &Vec<Option<Arc<Mutex<dyn super::web_utils::URLConfigDataTrait>>>> {
         &self.data_providers
     }
+    fn data_providers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::web_utils::URLConfigDataTrait>>>> {
+        &mut self.data_providers
+    }
     fn editorial_config_enabled(&self) -> &bool {
         &self.editorial_config_enabled
+    }
+    fn editorial_config_enabled_mut(&mut self) -> &mut bool {
+        &mut self.editorial_config_enabled
     }
 }
 
@@ -70,12 +90,12 @@ impl super::core::SystemSettingsTrait for SnitchSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for SnitchSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SNITCHSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -131,6 +151,15 @@ impl TypeObject for SnitchSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -157,31 +186,55 @@ pub struct LiveScoreboardProviderSettings {
 
 pub trait LiveScoreboardProviderSettingsTrait: super::core::SystemSettingsTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn url(&self) -> &String;
+    fn url_mut(&mut self) -> &mut String;
     fn s_s_l(&self) -> &bool;
+    fn s_s_l_mut(&mut self) -> &mut bool;
     fn snapshot_refresh_frequency(&self) -> &f32;
+    fn snapshot_refresh_frequency_mut(&mut self) -> &mut f32;
     fn gzip_compression(&self) -> &bool;
+    fn gzip_compression_mut(&mut self) -> &mut bool;
     fn rollout_modulo(&self) -> &i32;
+    fn rollout_modulo_mut(&mut self) -> &mut i32;
 }
 
 impl LiveScoreboardProviderSettingsTrait for LiveScoreboardProviderSettings {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn url(&self) -> &String {
         &self.url
+    }
+    fn url_mut(&mut self) -> &mut String {
+        &mut self.url
     }
     fn s_s_l(&self) -> &bool {
         &self.s_s_l
     }
+    fn s_s_l_mut(&mut self) -> &mut bool {
+        &mut self.s_s_l
+    }
     fn snapshot_refresh_frequency(&self) -> &f32 {
         &self.snapshot_refresh_frequency
+    }
+    fn snapshot_refresh_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.snapshot_refresh_frequency
     }
     fn gzip_compression(&self) -> &bool {
         &self.gzip_compression
     }
+    fn gzip_compression_mut(&mut self) -> &mut bool {
+        &mut self.gzip_compression
+    }
     fn rollout_modulo(&self) -> &i32 {
         &self.rollout_modulo
+    }
+    fn rollout_modulo_mut(&mut self) -> &mut i32 {
+        &mut self.rollout_modulo
     }
 }
 
@@ -189,12 +242,12 @@ impl super::core::SystemSettingsTrait for LiveScoreboardProviderSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LiveScoreboardProviderSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LIVESCOREBOARDPROVIDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -256,6 +309,15 @@ impl TypeObject for LiveScoreboardProviderSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -281,27 +343,47 @@ pub struct DistroProviderSettings {
 
 pub trait DistroProviderSettingsTrait: super::core::SystemSettingsTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn url(&self) -> &String;
+    fn url_mut(&mut self) -> &mut String;
     fn s_s_l(&self) -> &bool;
+    fn s_s_l_mut(&mut self) -> &mut bool;
     fn snapshot_refresh_frequency(&self) -> &f32;
+    fn snapshot_refresh_frequency_mut(&mut self) -> &mut f32;
     fn gzip_compression(&self) -> &bool;
+    fn gzip_compression_mut(&mut self) -> &mut bool;
 }
 
 impl DistroProviderSettingsTrait for DistroProviderSettings {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn url(&self) -> &String {
         &self.url
+    }
+    fn url_mut(&mut self) -> &mut String {
+        &mut self.url
     }
     fn s_s_l(&self) -> &bool {
         &self.s_s_l
     }
+    fn s_s_l_mut(&mut self) -> &mut bool {
+        &mut self.s_s_l
+    }
     fn snapshot_refresh_frequency(&self) -> &f32 {
         &self.snapshot_refresh_frequency
     }
+    fn snapshot_refresh_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.snapshot_refresh_frequency
+    }
     fn gzip_compression(&self) -> &bool {
         &self.gzip_compression
+    }
+    fn gzip_compression_mut(&mut self) -> &mut bool {
+        &mut self.gzip_compression
     }
 }
 
@@ -309,12 +391,12 @@ impl super::core::SystemSettingsTrait for DistroProviderSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DistroProviderSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DISTROPROVIDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -370,6 +452,15 @@ impl TypeObject for DistroProviderSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -393,19 +484,31 @@ pub struct StatsDProviderSettings {
 
 pub trait StatsDProviderSettingsTrait: super::core::SystemSettingsTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn url(&self) -> &String;
+    fn url_mut(&mut self) -> &mut String;
     fn snapshot_refresh_frequency(&self) -> &f32;
+    fn snapshot_refresh_frequency_mut(&mut self) -> &mut f32;
 }
 
 impl StatsDProviderSettingsTrait for StatsDProviderSettings {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn url(&self) -> &String {
         &self.url
     }
+    fn url_mut(&mut self) -> &mut String {
+        &mut self.url
+    }
     fn snapshot_refresh_frequency(&self) -> &f32 {
         &self.snapshot_refresh_frequency
+    }
+    fn snapshot_refresh_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.snapshot_refresh_frequency
     }
 }
 
@@ -413,12 +516,12 @@ impl super::core::SystemSettingsTrait for StatsDProviderSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for StatsDProviderSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STATSDPROVIDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -462,6 +565,15 @@ impl TypeObject for StatsDProviderSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -487,27 +599,47 @@ pub struct ContactProviderSettings {
 
 pub trait ContactProviderSettingsTrait: super::core::SystemSettingsTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn url(&self) -> &String;
+    fn url_mut(&mut self) -> &mut String;
     fn s_s_l(&self) -> &bool;
+    fn s_s_l_mut(&mut self) -> &mut bool;
     fn snapshot_refresh_frequency(&self) -> &f32;
+    fn snapshot_refresh_frequency_mut(&mut self) -> &mut f32;
     fn gzip_compression(&self) -> &bool;
+    fn gzip_compression_mut(&mut self) -> &mut bool;
 }
 
 impl ContactProviderSettingsTrait for ContactProviderSettings {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn url(&self) -> &String {
         &self.url
+    }
+    fn url_mut(&mut self) -> &mut String {
+        &mut self.url
     }
     fn s_s_l(&self) -> &bool {
         &self.s_s_l
     }
+    fn s_s_l_mut(&mut self) -> &mut bool {
+        &mut self.s_s_l
+    }
     fn snapshot_refresh_frequency(&self) -> &f32 {
         &self.snapshot_refresh_frequency
     }
+    fn snapshot_refresh_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.snapshot_refresh_frequency
+    }
     fn gzip_compression(&self) -> &bool {
         &self.gzip_compression
+    }
+    fn gzip_compression_mut(&mut self) -> &mut bool {
+        &mut self.gzip_compression
     }
 }
 
@@ -515,12 +647,12 @@ impl super::core::SystemSettingsTrait for ContactProviderSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ContactProviderSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONTACTPROVIDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -576,6 +708,15 @@ impl TypeObject for ContactProviderSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -599,19 +740,31 @@ pub struct LogTransmitterProviderSettings {
 
 pub trait LogTransmitterProviderSettingsTrait: super::core::SystemSettingsTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn url(&self) -> &String;
+    fn url_mut(&mut self) -> &mut String;
     fn s_s_l(&self) -> &bool;
+    fn s_s_l_mut(&mut self) -> &mut bool;
 }
 
 impl LogTransmitterProviderSettingsTrait for LogTransmitterProviderSettings {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn url(&self) -> &String {
         &self.url
     }
+    fn url_mut(&mut self) -> &mut String {
+        &mut self.url
+    }
     fn s_s_l(&self) -> &bool {
         &self.s_s_l
+    }
+    fn s_s_l_mut(&mut self) -> &mut bool {
+        &mut self.s_s_l
     }
 }
 
@@ -619,12 +772,12 @@ impl super::core::SystemSettingsTrait for LogTransmitterProviderSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for LogTransmitterProviderSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOGTRANSMITTERPROVIDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -667,6 +820,15 @@ impl TypeObject for LogTransmitterProviderSettings {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -713,6 +875,15 @@ impl TypeObject for LiveScoreboardProviderDisableMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -746,6 +917,15 @@ impl TypeObject for LiveScoreboardProviderEnableMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -781,6 +961,15 @@ impl TypeObject for MetricsProviderStringMetricMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -814,6 +1003,15 @@ impl TypeObject for MetricsProviderCounterMetricMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -849,6 +1047,15 @@ impl TypeObject for MetricsProviderGaugeMetricMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -883,6 +1090,15 @@ impl TypeObject for MetricsProviderTagMetricMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -916,6 +1132,15 @@ impl TypeObject for SnitchSettingsUpdatedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

@@ -31,39 +31,71 @@ pub struct EnvironmentDecalVolumeDynamicState {
 
 pub trait EnvironmentDecalVolumeDynamicStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn override_template_culling_distance(&self) -> &f32;
+    fn override_template_culling_distance_mut(&mut self) -> &mut f32;
     fn alpha(&self) -> &f32;
+    fn alpha_mut(&mut self) -> &mut f32;
     fn instance_params(&self) -> &super::core::Vec3;
+    fn instance_params_mut(&mut self) -> &mut super::core::Vec3;
     fn row(&self) -> &u8;
+    fn row_mut(&mut self) -> &mut u8;
     fn column(&self) -> &u8;
+    fn column_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl EnvironmentDecalVolumeDynamicStateTrait for EnvironmentDecalVolumeDynamicState {
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
     fn override_template_culling_distance(&self) -> &f32 {
         &self.override_template_culling_distance
     }
+    fn override_template_culling_distance_mut(&mut self) -> &mut f32 {
+        &mut self.override_template_culling_distance
+    }
     fn alpha(&self) -> &f32 {
         &self.alpha
+    }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        &mut self.alpha
     }
     fn instance_params(&self) -> &super::core::Vec3 {
         &self.instance_params
     }
+    fn instance_params_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.instance_params
+    }
     fn row(&self) -> &u8 {
         &self.row
+    }
+    fn row_mut(&mut self) -> &mut u8 {
+        &mut self.row
     }
     fn column(&self) -> &u8 {
         &self.column
     }
+    fn column_mut(&mut self) -> &mut u8 {
+        &mut self.column
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -137,6 +169,15 @@ impl TypeObject for EnvironmentDecalVolumeDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -159,19 +200,31 @@ pub struct EnvironmentDecalVolumeStaticState {
 
 pub trait EnvironmentDecalVolumeStaticStateTrait: TypeObject {
     fn template_data(&self) -> &Option<Arc<Mutex<dyn EnvironmentDecalVolumeTemplateBaseDataTrait>>>;
+    fn template_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EnvironmentDecalVolumeTemplateBaseDataTrait>>>;
     fn culling_distance(&self) -> &super::core::QualityScalableFloat;
+    fn culling_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl EnvironmentDecalVolumeStaticStateTrait for EnvironmentDecalVolumeStaticState {
     fn template_data(&self) -> &Option<Arc<Mutex<dyn EnvironmentDecalVolumeTemplateBaseDataTrait>>> {
         &self.template_data
     }
+    fn template_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EnvironmentDecalVolumeTemplateBaseDataTrait>>> {
+        &mut self.template_data
+    }
     fn culling_distance(&self) -> &super::core::QualityScalableFloat {
         &self.culling_distance
     }
+    fn culling_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat {
+        &mut self.culling_distance
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -215,6 +268,15 @@ impl TypeObject for EnvironmentDecalVolumeStaticState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -243,12 +305,12 @@ impl super::core::AssetTrait for EnvironmentDecalVolumeTemplateBaseData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EnvironmentDecalVolumeTemplateBaseData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENVIRONMENTDECALVOLUMETEMPLATEBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -273,6 +335,15 @@ impl TypeObject for EnvironmentDecalVolumeTemplateBaseData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

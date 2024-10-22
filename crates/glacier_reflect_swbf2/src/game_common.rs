@@ -236,6 +236,15 @@ impl TypeObject for AnimationPoseLayerTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -288,6 +297,15 @@ impl TypeObject for ANTControlTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -345,6 +363,15 @@ impl TypeObject for ANTBoneTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -394,6 +421,15 @@ impl TypeObject for ANTBoneAnimationTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -448,6 +484,15 @@ impl TypeObject for AnimationPoseTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -493,6 +538,15 @@ impl TypeObject for RecordedBlobResource {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -550,6 +604,15 @@ impl TypeObject for ANTBoneTransformLayerTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -606,6 +669,15 @@ impl TypeObject for VehicleExitPointComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -658,6 +730,15 @@ impl TypeObject for PhysicsDrivenAnimationEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -712,6 +793,15 @@ impl TypeObject for ModelAnimationEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -764,6 +854,15 @@ impl TypeObject for ANTSlotTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -818,6 +917,15 @@ impl TypeObject for ANTSignalTrack {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -867,6 +975,15 @@ impl TypeObject for ANTEvalTrack {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -920,6 +1037,15 @@ impl TypeObject for ObjectAreaQueryEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -977,6 +1103,15 @@ impl TypeObject for BillboardTransformEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1033,6 +1168,15 @@ impl TypeObject for WaterDepthEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1085,6 +1229,15 @@ impl TypeObject for TransformSnapToGroundEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1139,6 +1292,15 @@ impl TypeObject for InclusionSettingEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1191,6 +1353,15 @@ impl TypeObject for EventSplitterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1245,6 +1416,15 @@ impl TypeObject for EventCompareGateEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1297,6 +1477,15 @@ impl TypeObject for CombatAreaEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1351,6 +1540,15 @@ impl TypeObject for BuildConfigFilterEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1404,6 +1602,15 @@ impl TypeObject for AreaProximityEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1453,6 +1660,15 @@ impl TypeObject for WaypointParameterEvent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1504,6 +1720,15 @@ impl TypeObject for MoveParameterEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1549,6 +1774,15 @@ impl TypeObject for Tool {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1603,6 +1837,15 @@ impl TypeObject for SphereCollisionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1655,6 +1898,15 @@ impl TypeObject for SlowMotionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1709,6 +1961,15 @@ impl TypeObject for OBBCollisionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1761,6 +2022,15 @@ impl TypeObject for ExplosionEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1815,6 +2085,15 @@ impl TypeObject for DifficultyIndexEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1841,35 +2120,63 @@ pub struct PlayerViewHitState {
 
 pub trait PlayerViewHitStateTrait: TypeObject {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
     fn giver_origin(&self) -> &super::core::Vec3;
+    fn giver_origin_mut(&mut self) -> &mut super::core::Vec3;
     fn damage(&self) -> &f32;
+    fn damage_mut(&mut self) -> &mut f32;
     fn health(&self) -> &f32;
+    fn health_mut(&mut self) -> &mut f32;
     fn counter(&self) -> &u32;
+    fn counter_mut(&mut self) -> &mut u32;
     fn is_in_vehicle(&self) -> &bool;
+    fn is_in_vehicle_mut(&mut self) -> &mut bool;
     fn is_bullet_damage(&self) -> &bool;
+    fn is_bullet_damage_mut(&mut self) -> &mut bool;
 }
 
 impl PlayerViewHitStateTrait for PlayerViewHitState {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
+    }
     fn giver_origin(&self) -> &super::core::Vec3 {
         &self.giver_origin
+    }
+    fn giver_origin_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.giver_origin
     }
     fn damage(&self) -> &f32 {
         &self.damage
     }
+    fn damage_mut(&mut self) -> &mut f32 {
+        &mut self.damage
+    }
     fn health(&self) -> &f32 {
         &self.health
+    }
+    fn health_mut(&mut self) -> &mut f32 {
+        &mut self.health
     }
     fn counter(&self) -> &u32 {
         &self.counter
     }
+    fn counter_mut(&mut self) -> &mut u32 {
+        &mut self.counter
+    }
     fn is_in_vehicle(&self) -> &bool {
         &self.is_in_vehicle
     }
+    fn is_in_vehicle_mut(&mut self) -> &mut bool {
+        &mut self.is_in_vehicle
+    }
     fn is_bullet_damage(&self) -> &bool {
         &self.is_bullet_damage
+    }
+    fn is_bullet_damage_mut(&mut self) -> &mut bool {
+        &mut self.is_bullet_damage
     }
 }
 
@@ -1937,6 +2244,15 @@ impl TypeObject for PlayerViewHitState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1958,15 +2274,23 @@ pub struct BucketScoreContainer {
 
 pub trait BucketScoreContainerTrait: TypeObject {
     fn bucket_score(&self) -> &i32;
+    fn bucket_score_mut(&mut self) -> &mut i32;
     fn raw_bucket_score(&self) -> &i32;
+    fn raw_bucket_score_mut(&mut self) -> &mut i32;
 }
 
 impl BucketScoreContainerTrait for BucketScoreContainer {
     fn bucket_score(&self) -> &i32 {
         &self.bucket_score
     }
+    fn bucket_score_mut(&mut self) -> &mut i32 {
+        &mut self.bucket_score
+    }
     fn raw_bucket_score(&self) -> &i32 {
         &self.raw_bucket_score
+    }
+    fn raw_bucket_score_mut(&mut self) -> &mut i32 {
+        &mut self.raw_bucket_score
     }
 }
 
@@ -2004,6 +2328,15 @@ impl TypeObject for BucketScoreContainer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2040,6 +2373,15 @@ impl TypeObject for PlayerScoreDetail {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2086,6 +2428,15 @@ impl TypeObject for UINetworkCheckLevelInstalledMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2119,6 +2470,15 @@ impl TypeObject for UINetworkRollCreditsMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2154,6 +2514,15 @@ impl TypeObject for UINetworkStealBodyMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2187,6 +2556,15 @@ impl TypeObject for UINetworkPlayerMissionObjectiveTextMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2222,6 +2600,15 @@ impl TypeObject for UINetworkVideoDoneMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2255,6 +2642,15 @@ impl TypeObject for UINetworkAllowSkipVideoMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2290,6 +2686,15 @@ impl TypeObject for UINetworkSkipVideoMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2323,6 +2728,15 @@ impl TypeObject for UINetworkStopVideoMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2358,6 +2772,15 @@ impl TypeObject for UINetworkPauseVideoMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2391,6 +2814,15 @@ impl TypeObject for UINetworkPauseAllVideosMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2426,6 +2858,15 @@ impl TypeObject for UINetworkPlayerDeserterTextMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2460,6 +2901,15 @@ impl TypeObject for UINetworkPlayerTextMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2470,15 +2920,23 @@ pub struct UINetworkTextInfo {
 
 pub trait UINetworkTextInfoTrait: TypeObject {
     fn string_id(&self) -> &String;
+    fn string_id_mut(&mut self) -> &mut String;
     fn display_time(&self) -> &f32;
+    fn display_time_mut(&mut self) -> &mut f32;
 }
 
 impl UINetworkTextInfoTrait for UINetworkTextInfo {
     fn string_id(&self) -> &String {
         &self.string_id
     }
+    fn string_id_mut(&mut self) -> &mut String {
+        &mut self.string_id
+    }
     fn display_time(&self) -> &f32 {
         &self.display_time
+    }
+    fn display_time_mut(&mut self) -> &mut f32 {
+        &mut self.display_time
     }
 }
 
@@ -2515,6 +2973,15 @@ impl TypeObject for UINetworkTextInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2561,6 +3028,15 @@ impl TypeObject for NetworkRemoveDilationMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2594,6 +3070,15 @@ impl TypeObject for NetworkAddDilationMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2629,6 +3114,15 @@ impl TypeObject for NetworkLevelInstalledMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2662,6 +3156,15 @@ impl TypeObject for NetworkMatchReadyStatusChangedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2697,6 +3200,15 @@ impl TypeObject for ServerRestartTimerMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2730,6 +3242,15 @@ impl TypeObject for NetworkMetricsLevelCompleteMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2765,6 +3286,15 @@ impl TypeObject for NetworkMetricsLevelProgressMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2798,6 +3328,15 @@ impl TypeObject for NetworkMetricsSaveGameSavedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2833,6 +3372,15 @@ impl TypeObject for NetworkSetPlayerViewMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2866,6 +3414,15 @@ impl TypeObject for NetworkSuicideMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -2901,6 +3458,15 @@ impl TypeObject for NetworkGameplayContinueMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2935,6 +3501,15 @@ impl TypeObject for PerformanceLogMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -2956,59 +3531,111 @@ pub struct PerformanceFpsHistogram {
 
 pub trait PerformanceFpsHistogramTrait: TypeObject {
     fn below5(&self) -> &f32;
+    fn below5_mut(&mut self) -> &mut f32;
     fn below10(&self) -> &f32;
+    fn below10_mut(&mut self) -> &mut f32;
     fn below15(&self) -> &f32;
+    fn below15_mut(&mut self) -> &mut f32;
     fn below20(&self) -> &f32;
+    fn below20_mut(&mut self) -> &mut f32;
     fn below25(&self) -> &f32;
+    fn below25_mut(&mut self) -> &mut f32;
     fn below30(&self) -> &f32;
+    fn below30_mut(&mut self) -> &mut f32;
     fn below35(&self) -> &f32;
+    fn below35_mut(&mut self) -> &mut f32;
     fn below40(&self) -> &f32;
+    fn below40_mut(&mut self) -> &mut f32;
     fn below45(&self) -> &f32;
+    fn below45_mut(&mut self) -> &mut f32;
     fn below50(&self) -> &f32;
+    fn below50_mut(&mut self) -> &mut f32;
     fn below55(&self) -> &f32;
+    fn below55_mut(&mut self) -> &mut f32;
     fn below60(&self) -> &f32;
+    fn below60_mut(&mut self) -> &mut f32;
     fn above60(&self) -> &f32;
+    fn above60_mut(&mut self) -> &mut f32;
 }
 
 impl PerformanceFpsHistogramTrait for PerformanceFpsHistogram {
     fn below5(&self) -> &f32 {
         &self.below5
     }
+    fn below5_mut(&mut self) -> &mut f32 {
+        &mut self.below5
+    }
     fn below10(&self) -> &f32 {
         &self.below10
+    }
+    fn below10_mut(&mut self) -> &mut f32 {
+        &mut self.below10
     }
     fn below15(&self) -> &f32 {
         &self.below15
     }
+    fn below15_mut(&mut self) -> &mut f32 {
+        &mut self.below15
+    }
     fn below20(&self) -> &f32 {
         &self.below20
+    }
+    fn below20_mut(&mut self) -> &mut f32 {
+        &mut self.below20
     }
     fn below25(&self) -> &f32 {
         &self.below25
     }
+    fn below25_mut(&mut self) -> &mut f32 {
+        &mut self.below25
+    }
     fn below30(&self) -> &f32 {
         &self.below30
+    }
+    fn below30_mut(&mut self) -> &mut f32 {
+        &mut self.below30
     }
     fn below35(&self) -> &f32 {
         &self.below35
     }
+    fn below35_mut(&mut self) -> &mut f32 {
+        &mut self.below35
+    }
     fn below40(&self) -> &f32 {
         &self.below40
+    }
+    fn below40_mut(&mut self) -> &mut f32 {
+        &mut self.below40
     }
     fn below45(&self) -> &f32 {
         &self.below45
     }
+    fn below45_mut(&mut self) -> &mut f32 {
+        &mut self.below45
+    }
     fn below50(&self) -> &f32 {
         &self.below50
+    }
+    fn below50_mut(&mut self) -> &mut f32 {
+        &mut self.below50
     }
     fn below55(&self) -> &f32 {
         &self.below55
     }
+    fn below55_mut(&mut self) -> &mut f32 {
+        &mut self.below55
+    }
     fn below60(&self) -> &f32 {
         &self.below60
     }
+    fn below60_mut(&mut self) -> &mut f32 {
+        &mut self.below60
+    }
     fn above60(&self) -> &f32 {
         &self.above60
+    }
+    fn above60_mut(&mut self) -> &mut f32 {
+        &mut self.above60
     }
 }
 
@@ -3112,6 +3739,15 @@ impl TypeObject for PerformanceFpsHistogram {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -3157,6 +3793,15 @@ impl TypeObject for NetworkFirstPlayerEnteredMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3190,6 +3835,15 @@ impl TypeObject for NetworkDifficultyChangedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3225,6 +3879,15 @@ impl TypeObject for NetworkSettingsMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3258,6 +3921,15 @@ impl TypeObject for DebugSpawnGameEntityMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3293,6 +3965,15 @@ impl TypeObject for NetworkMovePlayerMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3326,6 +4007,15 @@ impl TypeObject for NetworkJuiceSessionMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3361,6 +4051,15 @@ impl TypeObject for NetworkSelectTeamMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3394,6 +4093,15 @@ impl TypeObject for NetworkOnPlayerSpawnedMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3429,6 +4137,15 @@ impl TypeObject for NetworkSelectSpawnGroupMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3462,6 +4179,15 @@ impl TypeObject for NetworkSpawnVehicleCustomizationMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3497,6 +4223,15 @@ impl TypeObject for NetworkUnSpawnCustomizationMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3530,6 +4265,15 @@ impl TypeObject for NetworkSpawnCustomizationMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3565,6 +4309,15 @@ impl TypeObject for NetworkSpawnOnSelectedMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3598,6 +4351,15 @@ impl TypeObject for NetworkSpawnHereMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3633,6 +4395,15 @@ impl TypeObject for NetworkSpawnMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3666,6 +4437,15 @@ impl TypeObject for NetworkRequestLoadLevelMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3701,6 +4481,15 @@ impl TypeObject for NetworkScreenFadeMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3734,6 +4523,15 @@ impl TypeObject for LevelConsoleSetActiveHealthStateMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3769,6 +4567,15 @@ impl TypeObject for NetworkPerformanceProfileMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3802,6 +4609,15 @@ impl TypeObject for SyncedSequenceStateChangeMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3837,6 +4653,15 @@ impl TypeObject for JuiceSoldierRagdollDeactivateMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3870,6 +4695,15 @@ impl TypeObject for JuiceSoldierRagdollActivateMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -3905,6 +4739,15 @@ impl TypeObject for AIClientBridgeDynamicModelEntityOnUnspawnMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -3939,6 +4782,15 @@ impl TypeObject for AIClientBridgeDynamicModelEntityOnSpawnMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Hash, Clone, Copy, PartialEq, Default, Debug)]
@@ -3966,6 +4818,15 @@ impl TypeObject for WantedAimState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4006,6 +4867,15 @@ impl TypeObject for AimTargetId {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4063,6 +4933,15 @@ impl TypeObject for SharedLockObserverEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4118,6 +4997,15 @@ impl TypeObject for SharedLockGateEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4175,6 +5063,15 @@ impl TypeObject for SharedLockControllerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4227,6 +5124,15 @@ impl TypeObject for SharedLockBaseEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4281,6 +5187,15 @@ impl TypeObject for IntersectionTriggerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4326,6 +5241,15 @@ impl TypeObject for UserSpawnContext {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -4380,6 +5304,15 @@ impl TypeObject for PlayerIteratorEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4432,6 +5365,15 @@ impl TypeObject for PlatformSplitterEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4486,6 +5428,15 @@ impl TypeObject for LoggingEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4538,6 +5489,15 @@ impl TypeObject for DeltaViewerTableEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4592,6 +5552,15 @@ impl TypeObject for ConsoleCommandTriggerEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4645,6 +5614,15 @@ impl TypeObject for ConsoleCommandEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4694,6 +5672,15 @@ impl TypeObject for LicenseeGameWorldRayCaster {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4748,6 +5735,15 @@ impl TypeObject for SubLevelStatusEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4800,6 +5796,15 @@ impl TypeObject for SubLevelPreloadEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4854,6 +5859,15 @@ impl TypeObject for SubLevelCollectionEntityBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4906,6 +5920,15 @@ impl TypeObject for BlueprintBundleStatusEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -4963,6 +5986,15 @@ impl TypeObject for ServerBlueprintBundleEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5019,6 +6051,15 @@ impl TypeObject for ClientBlueprintBundleEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5071,6 +6112,15 @@ impl TypeObject for BlueprintBundleEntityBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5128,6 +6178,15 @@ impl TypeObject for ServerBlueprintBundleCollectionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5184,6 +6243,15 @@ impl TypeObject for ClientBlueprintBundleCollectionEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5237,6 +6305,15 @@ impl TypeObject for BlueprintBundleCollectionEntityBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5259,21 +6336,32 @@ pub struct TestStaticModelGroupEntityData {
 
 pub trait TestStaticModelGroupEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn expected_material(&self) -> &super::entity::MaterialDecl;
+    fn expected_material_mut(&mut self) -> &mut super::entity::MaterialDecl;
 }
 
 impl TestStaticModelGroupEntityDataTrait for TestStaticModelGroupEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn expected_material(&self) -> &super::entity::MaterialDecl {
         &self.expected_material
+    }
+    fn expected_material_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.expected_material
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for TestStaticModelGroupEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -5287,15 +6375,15 @@ impl super::core::DataBusPeerTrait for TestStaticModelGroupEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TestStaticModelGroupEntityData {
 }
 
 impl super::core::DataContainerTrait for TestStaticModelGroupEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TESTSTATICMODELGROUPENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5332,6 +6420,15 @@ impl TypeObject for TestStaticModelGroupEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -5379,111 +6476,215 @@ pub struct TestRayCastEntityData {
 
 pub trait TestRayCastEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn asynchronous(&self) -> &bool;
+    fn asynchronous_mut(&mut self) -> &mut bool;
     fn ray_start(&self) -> &super::core::Vec3;
+    fn ray_start_mut(&mut self) -> &mut super::core::Vec3;
     fn ray_end(&self) -> &super::core::Vec3;
+    fn ray_end_mut(&mut self) -> &mut super::core::Vec3;
     fn output_index(&self) -> &u32;
+    fn output_index_mut(&mut self) -> &mut u32;
     fn check_detail_mesh(&self) -> &bool;
+    fn check_detail_mesh_mut(&mut self) -> &mut bool;
     fn check_normal(&self) -> &bool;
+    fn check_normal_mut(&mut self) -> &mut bool;
     fn check_material(&self) -> &bool;
+    fn check_material_mut(&mut self) -> &mut bool;
     fn check_part_index(&self) -> &bool;
+    fn check_part_index_mut(&mut self) -> &mut bool;
     fn check_water(&self) -> &bool;
+    fn check_water_mut(&mut self) -> &mut bool;
     fn check_terrain(&self) -> &bool;
+    fn check_terrain_mut(&mut self) -> &mut bool;
     fn check_ragdoll(&self) -> &bool;
+    fn check_ragdoll_mut(&mut self) -> &mut bool;
     fn check_character(&self) -> &bool;
+    fn check_character_mut(&mut self) -> &mut bool;
     fn check_group(&self) -> &bool;
+    fn check_group_mut(&mut self) -> &mut bool;
     fn penetrate_penetrable(&self) -> &bool;
+    fn penetrate_penetrable_mut(&mut self) -> &mut bool;
     fn penetrate_client_destructible(&self) -> &bool;
+    fn penetrate_client_destructible_mut(&mut self) -> &mut bool;
     fn penetrate_bashable(&self) -> &bool;
+    fn penetrate_bashable_mut(&mut self) -> &mut bool;
     fn penetrate_see_through(&self) -> &bool;
+    fn penetrate_see_through_mut(&mut self) -> &mut bool;
     fn penetrate_no_collision_response(&self) -> &bool;
+    fn penetrate_no_collision_response_mut(&mut self) -> &mut bool;
     fn penetrate_no_collision_response_combined(&self) -> &bool;
+    fn penetrate_no_collision_response_combined_mut(&mut self) -> &mut bool;
     fn penetrate_attachable(&self) -> &bool;
+    fn penetrate_attachable_mut(&mut self) -> &mut bool;
     fn expected_position(&self) -> &super::core::Vec3;
+    fn expected_position_mut(&mut self) -> &mut super::core::Vec3;
     fn expected_normal(&self) -> &super::core::Vec3;
+    fn expected_normal_mut(&mut self) -> &mut super::core::Vec3;
     fn expected_part_index(&self) -> &u32;
+    fn expected_part_index_mut(&mut self) -> &mut u32;
     fn expected_material(&self) -> &super::entity::MaterialDecl;
+    fn expected_material_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn tolerance(&self) -> &f32;
+    fn tolerance_mut(&mut self) -> &mut f32;
 }
 
 impl TestRayCastEntityDataTrait for TestRayCastEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn asynchronous(&self) -> &bool {
         &self.asynchronous
+    }
+    fn asynchronous_mut(&mut self) -> &mut bool {
+        &mut self.asynchronous
     }
     fn ray_start(&self) -> &super::core::Vec3 {
         &self.ray_start
     }
+    fn ray_start_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ray_start
+    }
     fn ray_end(&self) -> &super::core::Vec3 {
         &self.ray_end
+    }
+    fn ray_end_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ray_end
     }
     fn output_index(&self) -> &u32 {
         &self.output_index
     }
+    fn output_index_mut(&mut self) -> &mut u32 {
+        &mut self.output_index
+    }
     fn check_detail_mesh(&self) -> &bool {
         &self.check_detail_mesh
+    }
+    fn check_detail_mesh_mut(&mut self) -> &mut bool {
+        &mut self.check_detail_mesh
     }
     fn check_normal(&self) -> &bool {
         &self.check_normal
     }
+    fn check_normal_mut(&mut self) -> &mut bool {
+        &mut self.check_normal
+    }
     fn check_material(&self) -> &bool {
         &self.check_material
+    }
+    fn check_material_mut(&mut self) -> &mut bool {
+        &mut self.check_material
     }
     fn check_part_index(&self) -> &bool {
         &self.check_part_index
     }
+    fn check_part_index_mut(&mut self) -> &mut bool {
+        &mut self.check_part_index
+    }
     fn check_water(&self) -> &bool {
         &self.check_water
+    }
+    fn check_water_mut(&mut self) -> &mut bool {
+        &mut self.check_water
     }
     fn check_terrain(&self) -> &bool {
         &self.check_terrain
     }
+    fn check_terrain_mut(&mut self) -> &mut bool {
+        &mut self.check_terrain
+    }
     fn check_ragdoll(&self) -> &bool {
         &self.check_ragdoll
+    }
+    fn check_ragdoll_mut(&mut self) -> &mut bool {
+        &mut self.check_ragdoll
     }
     fn check_character(&self) -> &bool {
         &self.check_character
     }
+    fn check_character_mut(&mut self) -> &mut bool {
+        &mut self.check_character
+    }
     fn check_group(&self) -> &bool {
         &self.check_group
+    }
+    fn check_group_mut(&mut self) -> &mut bool {
+        &mut self.check_group
     }
     fn penetrate_penetrable(&self) -> &bool {
         &self.penetrate_penetrable
     }
+    fn penetrate_penetrable_mut(&mut self) -> &mut bool {
+        &mut self.penetrate_penetrable
+    }
     fn penetrate_client_destructible(&self) -> &bool {
         &self.penetrate_client_destructible
+    }
+    fn penetrate_client_destructible_mut(&mut self) -> &mut bool {
+        &mut self.penetrate_client_destructible
     }
     fn penetrate_bashable(&self) -> &bool {
         &self.penetrate_bashable
     }
+    fn penetrate_bashable_mut(&mut self) -> &mut bool {
+        &mut self.penetrate_bashable
+    }
     fn penetrate_see_through(&self) -> &bool {
         &self.penetrate_see_through
+    }
+    fn penetrate_see_through_mut(&mut self) -> &mut bool {
+        &mut self.penetrate_see_through
     }
     fn penetrate_no_collision_response(&self) -> &bool {
         &self.penetrate_no_collision_response
     }
+    fn penetrate_no_collision_response_mut(&mut self) -> &mut bool {
+        &mut self.penetrate_no_collision_response
+    }
     fn penetrate_no_collision_response_combined(&self) -> &bool {
         &self.penetrate_no_collision_response_combined
+    }
+    fn penetrate_no_collision_response_combined_mut(&mut self) -> &mut bool {
+        &mut self.penetrate_no_collision_response_combined
     }
     fn penetrate_attachable(&self) -> &bool {
         &self.penetrate_attachable
     }
+    fn penetrate_attachable_mut(&mut self) -> &mut bool {
+        &mut self.penetrate_attachable
+    }
     fn expected_position(&self) -> &super::core::Vec3 {
         &self.expected_position
+    }
+    fn expected_position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.expected_position
     }
     fn expected_normal(&self) -> &super::core::Vec3 {
         &self.expected_normal
     }
+    fn expected_normal_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.expected_normal
+    }
     fn expected_part_index(&self) -> &u32 {
         &self.expected_part_index
+    }
+    fn expected_part_index_mut(&mut self) -> &mut u32 {
+        &mut self.expected_part_index
     }
     fn expected_material(&self) -> &super::entity::MaterialDecl {
         &self.expected_material
     }
+    fn expected_material_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.expected_material
+    }
     fn tolerance(&self) -> &f32 {
         &self.tolerance
+    }
+    fn tolerance_mut(&mut self) -> &mut f32 {
+        &mut self.tolerance
     }
 }
 
@@ -5497,15 +6698,15 @@ impl super::core::DataBusPeerTrait for TestRayCastEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for TestRayCastEntityData {
 }
 
 impl super::core::DataContainerTrait for TestRayCastEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TESTRAYCASTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5687,6 +6888,15 @@ impl TypeObject for TestRayCastEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5727,6 +6937,15 @@ impl TypeObject for AdministrationRestrictionLevel {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5769,6 +6988,15 @@ impl TypeObject for AdministrationEventType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5815,6 +7043,15 @@ impl TypeObject for ServerAdministrationPasswordMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5848,6 +7085,15 @@ impl TypeObject for ServerAdministrationEventsEnabledMessage {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5883,6 +7129,15 @@ impl TypeObject for ServerAdministrationQuitMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5917,6 +7172,15 @@ impl TypeObject for ServerAdministrationLoginMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -5950,6 +7214,15 @@ impl TypeObject for ServerAdministrationPacketMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -5989,6 +7262,15 @@ impl TypeObject for GameModule {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

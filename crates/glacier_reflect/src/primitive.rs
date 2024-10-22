@@ -1,8 +1,7 @@
 use std::any::Any;
 
 use crate::{
-    member::MemberInfoFlags,
-    type_info::{TypeInfo, TypeInfoData, TypeObject},
+    data_container::DataContainerCore, member::MemberInfoFlags, type_info::{TypeInfo, TypeInfoData, TypeObject}, type_registry::TypeRegistry
 };
 
 macro_rules! declare_primitive_type {
@@ -34,6 +33,18 @@ macro_rules! declare_primitive_type {
                 fn as_any(&self) -> &dyn Any {
                     self
                 }
+
+                fn as_any_mut(&mut self) -> &mut dyn Any {
+                    self
+                }
+
+                fn data_container_core(&self) -> Option<&DataContainerCore> {
+                    None
+                }
+
+                fn data_container_core_mut(&mut self) -> Option<&mut DataContainerCore> {
+                    None
+                }
             }
         }
     };
@@ -51,6 +62,21 @@ declare_primitive_type!(Float32, f32);
 declare_primitive_type!(Float64, f64);
 declare_primitive_type!(Boolean, bool);
 declare_primitive_type!(CString, String);
+
+pub(crate) fn register_primitive_types(registry: &mut TypeRegistry) {
+    registry.register_type(PRIMITIVE_TYPE_UINT8);
+    registry.register_type(PRIMITIVE_TYPE_INT8);
+    registry.register_type(PRIMITIVE_TYPE_UINT16);
+    registry.register_type(PRIMITIVE_TYPE_INT16);
+    registry.register_type(PRIMITIVE_TYPE_UINT32);
+    registry.register_type(PRIMITIVE_TYPE_INT32);
+    registry.register_type(PRIMITIVE_TYPE_UINT64);
+    registry.register_type(PRIMITIVE_TYPE_INT64);
+    registry.register_type(PRIMITIVE_TYPE_FLOAT32);
+    registry.register_type(PRIMITIVE_TYPE_FLOAT64);
+    registry.register_type(PRIMITIVE_TYPE_BOOLEAN);
+    registry.register_type(PRIMITIVE_TYPE_CSTRING);
+}
 
 #[test]
 pub fn test_primitive_type_of() {

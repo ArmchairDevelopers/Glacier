@@ -48,15 +48,23 @@ pub struct PresencePartyServiceData {
 
 pub trait PresencePartyServiceDataTrait: super::online_shared::PresenceServiceDataTrait {
     fn user_profile_refresh_timeout(&self) -> &f32;
+    fn user_profile_refresh_timeout_mut(&mut self) -> &mut f32;
     fn user_profiles_fetch_enabled(&self) -> &bool;
+    fn user_profiles_fetch_enabled_mut(&mut self) -> &mut bool;
 }
 
 impl PresencePartyServiceDataTrait for PresencePartyServiceData {
     fn user_profile_refresh_timeout(&self) -> &f32 {
         &self.user_profile_refresh_timeout
     }
+    fn user_profile_refresh_timeout_mut(&mut self) -> &mut f32 {
+        &mut self.user_profile_refresh_timeout
+    }
     fn user_profiles_fetch_enabled(&self) -> &bool {
         &self.user_profiles_fetch_enabled
+    }
+    fn user_profiles_fetch_enabled_mut(&mut self) -> &mut bool {
+        &mut self.user_profiles_fetch_enabled
     }
 }
 
@@ -67,12 +75,12 @@ impl super::core::AssetTrait for PresencePartyServiceData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresencePartyServiceData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEPARTYSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -110,6 +118,15 @@ impl TypeObject for PresencePartyServiceData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -134,23 +151,39 @@ pub struct PresenceDurangoPartyBackendData {
 
 pub trait PresenceDurangoPartyBackendDataTrait: super::online_shared::PresenceBackendDataTrait {
     fn party_session_template(&self) -> &String;
+    fn party_session_template_mut(&mut self) -> &mut String;
     fn party_invite_context(&self) -> &String;
+    fn party_invite_context_mut(&mut self) -> &mut String;
     fn auto_create_party(&self) -> &bool;
+    fn auto_create_party_mut(&mut self) -> &mut bool;
     fn current_activity(&self) -> &DurangoCurrentActivity;
+    fn current_activity_mut(&mut self) -> &mut DurangoCurrentActivity;
 }
 
 impl PresenceDurangoPartyBackendDataTrait for PresenceDurangoPartyBackendData {
     fn party_session_template(&self) -> &String {
         &self.party_session_template
     }
+    fn party_session_template_mut(&mut self) -> &mut String {
+        &mut self.party_session_template
+    }
     fn party_invite_context(&self) -> &String {
         &self.party_invite_context
+    }
+    fn party_invite_context_mut(&mut self) -> &mut String {
+        &mut self.party_invite_context
     }
     fn auto_create_party(&self) -> &bool {
         &self.auto_create_party
     }
+    fn auto_create_party_mut(&mut self) -> &mut bool {
+        &mut self.auto_create_party
+    }
     fn current_activity(&self) -> &DurangoCurrentActivity {
         &self.current_activity
+    }
+    fn current_activity_mut(&mut self) -> &mut DurangoCurrentActivity {
+        &mut self.current_activity
     }
 }
 
@@ -158,18 +191,21 @@ impl super::online_shared::PresenceBackendDataTrait for PresenceDurangoPartyBack
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for PresenceDurangoPartyBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceDurangoPartyBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEDURANGOPARTYBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -219,6 +255,15 @@ impl TypeObject for PresenceDurangoPartyBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -247,18 +292,21 @@ impl super::online_shared::PresenceBackendDataTrait for PresencePs4PartyBackendD
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for PresencePs4PartyBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresencePs4PartyBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEPS4PARTYBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -284,6 +332,15 @@ impl TypeObject for PresencePs4PartyBackendData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -305,11 +362,15 @@ pub struct PresenceOriginPartyBackendData {
 
 pub trait PresenceOriginPartyBackendDataTrait: super::online_shared::PresenceBackendDataTrait {
     fn party_type(&self) -> &OriginPartyType;
+    fn party_type_mut(&mut self) -> &mut OriginPartyType;
 }
 
 impl PresenceOriginPartyBackendDataTrait for PresenceOriginPartyBackendData {
     fn party_type(&self) -> &OriginPartyType {
         &self.party_type
+    }
+    fn party_type_mut(&mut self) -> &mut OriginPartyType {
+        &mut self.party_type
     }
 }
 
@@ -317,18 +378,21 @@ impl super::online_shared::PresenceBackendDataTrait for PresenceOriginPartyBacke
     fn backend_type(&self) -> &i32 {
         self._glacier_base.backend_type()
     }
+    fn backend_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.backend_type_mut()
+    }
 }
 
 impl super::core::AssetTrait for PresenceOriginPartyBackendData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PresenceOriginPartyBackendData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRESENCEORIGINPARTYBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -359,6 +423,15 @@ impl TypeObject for PresenceOriginPartyBackendData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -399,6 +472,15 @@ impl TypeObject for DurangoCurrentActivity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -437,6 +519,15 @@ impl TypeObject for OriginPartyType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -483,6 +574,15 @@ impl TypeObject for PresencePartyRequestMessageBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -516,6 +616,15 @@ impl TypeObject for PresencePartyMessageBase {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -555,6 +664,15 @@ impl TypeObject for PresenceLeavePartyRequestParameters {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -606,6 +724,15 @@ impl TypeObject for PresenceAcceptPartyInviteRequestParameters {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -655,6 +782,15 @@ impl TypeObject for PresenceSendPartyInvitesRequestParameters {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -706,6 +842,15 @@ impl TypeObject for PresenceCreatePartyRequestParameters {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -755,6 +900,15 @@ impl TypeObject for ClientPartyService {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -806,6 +960,15 @@ impl TypeObject for PartyEvent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -855,6 +1018,15 @@ impl TypeObject for OriginPartyBackend {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

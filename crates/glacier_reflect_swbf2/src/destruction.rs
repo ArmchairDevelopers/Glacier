@@ -69,31 +69,55 @@ pub struct ConnectivityEntityData {
 
 pub trait ConnectivityEntityDataTrait: super::entity::EntityDataTrait {
     fn breakable_model_event_ids(&self) -> &Vec<i32>;
+    fn breakable_model_event_ids_mut(&mut self) -> &mut Vec<i32>;
     fn static_model_event_ids(&self) -> &Vec<i32>;
+    fn static_model_event_ids_mut(&mut self) -> &mut Vec<i32>;
     fn static_model_first_indices(&self) -> &Vec<u32>;
+    fn static_model_first_indices_mut(&mut self) -> &mut Vec<u32>;
     fn static_model_to_breakable_parts_array(&self) -> &Vec<StaticModelToBreakableParts>;
+    fn static_model_to_breakable_parts_array_mut(&mut self) -> &mut Vec<StaticModelToBreakableParts>;
     fn breakable_part_to_static_model_part_array(&self) -> &Vec<BreakablePartToStaticEntityPart>;
+    fn breakable_part_to_static_model_part_array_mut(&mut self) -> &mut Vec<BreakablePartToStaticEntityPart>;
     fn breakable_model_extra_radius(&self) -> &f32;
+    fn breakable_model_extra_radius_mut(&mut self) -> &mut f32;
 }
 
 impl ConnectivityEntityDataTrait for ConnectivityEntityData {
     fn breakable_model_event_ids(&self) -> &Vec<i32> {
         &self.breakable_model_event_ids
     }
+    fn breakable_model_event_ids_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.breakable_model_event_ids
+    }
     fn static_model_event_ids(&self) -> &Vec<i32> {
         &self.static_model_event_ids
+    }
+    fn static_model_event_ids_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.static_model_event_ids
     }
     fn static_model_first_indices(&self) -> &Vec<u32> {
         &self.static_model_first_indices
     }
+    fn static_model_first_indices_mut(&mut self) -> &mut Vec<u32> {
+        &mut self.static_model_first_indices
+    }
     fn static_model_to_breakable_parts_array(&self) -> &Vec<StaticModelToBreakableParts> {
         &self.static_model_to_breakable_parts_array
+    }
+    fn static_model_to_breakable_parts_array_mut(&mut self) -> &mut Vec<StaticModelToBreakableParts> {
+        &mut self.static_model_to_breakable_parts_array
     }
     fn breakable_part_to_static_model_part_array(&self) -> &Vec<BreakablePartToStaticEntityPart> {
         &self.breakable_part_to_static_model_part_array
     }
+    fn breakable_part_to_static_model_part_array_mut(&mut self) -> &mut Vec<BreakablePartToStaticEntityPart> {
+        &mut self.breakable_part_to_static_model_part_array
+    }
     fn breakable_model_extra_radius(&self) -> &f32 {
         &self.breakable_model_extra_radius
+    }
+    fn breakable_model_extra_radius_mut(&mut self) -> &mut f32 {
+        &mut self.breakable_model_extra_radius
     }
 }
 
@@ -107,15 +131,15 @@ impl super::core::DataBusPeerTrait for ConnectivityEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ConnectivityEntityData {
 }
 
 impl super::core::DataContainerTrait for ConnectivityEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONNECTIVITYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -177,6 +201,15 @@ impl TypeObject for ConnectivityEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -198,15 +231,23 @@ pub struct BreakablePartToStaticEntityPart {
 
 pub trait BreakablePartToStaticEntityPartTrait: TypeObject {
     fn breakable_part_index(&self) -> &u32;
+    fn breakable_part_index_mut(&mut self) -> &mut u32;
     fn static_model_part_index(&self) -> &u32;
+    fn static_model_part_index_mut(&mut self) -> &mut u32;
 }
 
 impl BreakablePartToStaticEntityPartTrait for BreakablePartToStaticEntityPart {
     fn breakable_part_index(&self) -> &u32 {
         &self.breakable_part_index
     }
+    fn breakable_part_index_mut(&mut self) -> &mut u32 {
+        &mut self.breakable_part_index
+    }
     fn static_model_part_index(&self) -> &u32 {
         &self.static_model_part_index
+    }
+    fn static_model_part_index_mut(&mut self) -> &mut u32 {
+        &mut self.static_model_part_index
     }
 }
 
@@ -244,6 +285,15 @@ impl TypeObject for BreakablePartToStaticEntityPart {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -266,19 +316,31 @@ pub struct StaticModelToBreakableParts {
 
 pub trait StaticModelToBreakablePartsTrait: TypeObject {
     fn static_model_index(&self) -> &u32;
+    fn static_model_index_mut(&mut self) -> &mut u32;
     fn breakable_part_start_index(&self) -> &u32;
+    fn breakable_part_start_index_mut(&mut self) -> &mut u32;
     fn breakable_part_count(&self) -> &u32;
+    fn breakable_part_count_mut(&mut self) -> &mut u32;
 }
 
 impl StaticModelToBreakablePartsTrait for StaticModelToBreakableParts {
     fn static_model_index(&self) -> &u32 {
         &self.static_model_index
     }
+    fn static_model_index_mut(&mut self) -> &mut u32 {
+        &mut self.static_model_index
+    }
     fn breakable_part_start_index(&self) -> &u32 {
         &self.breakable_part_start_index
     }
+    fn breakable_part_start_index_mut(&mut self) -> &mut u32 {
+        &mut self.breakable_part_start_index
+    }
     fn breakable_part_count(&self) -> &u32 {
         &self.breakable_part_count
+    }
+    fn breakable_part_count_mut(&mut self) -> &mut u32 {
+        &mut self.breakable_part_count
     }
 }
 
@@ -322,6 +384,15 @@ impl TypeObject for StaticModelToBreakableParts {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -343,11 +414,15 @@ pub struct DestructionVolumeComponentData {
 
 pub trait DestructionVolumeComponentDataTrait: super::entity::GameComponentDataTrait {
     fn destruction_volume_data(&self) -> &Option<Arc<Mutex<dyn super::world_base::DestructionVolumeBaseDataTrait>>>;
+    fn destruction_volume_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_base::DestructionVolumeBaseDataTrait>>>;
 }
 
 impl DestructionVolumeComponentDataTrait for DestructionVolumeComponentData {
     fn destruction_volume_data(&self) -> &Option<Arc<Mutex<dyn super::world_base::DestructionVolumeBaseDataTrait>>> {
         &self.destruction_volume_data
+    }
+    fn destruction_volume_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_base::DestructionVolumeBaseDataTrait>>> {
+        &mut self.destruction_volume_data
     }
 }
 
@@ -358,17 +433,32 @@ impl super::entity::ComponentDataTrait for DestructionVolumeComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -379,15 +469,15 @@ impl super::core::DataBusPeerTrait for DestructionVolumeComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DestructionVolumeComponentData {
 }
 
 impl super::core::DataContainerTrait for DestructionVolumeComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONVOLUMECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -418,6 +508,15 @@ impl TypeObject for DestructionVolumeComponentData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -464,6 +563,15 @@ impl TypeObject for DestructionComponentOnHealthTransitionTriggeredMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -475,15 +583,23 @@ pub struct HealthTransitionSpawnReferenceObjectData {
 
 pub trait HealthTransitionSpawnReferenceObjectDataTrait: super::entity::SpatialReferenceObjectDataTrait {
     fn spawn_linear_velocity(&self) -> &super::core::Vec3;
+    fn spawn_linear_velocity_mut(&mut self) -> &mut super::core::Vec3;
     fn spawn_angular_velocity(&self) -> &super::core::Vec3;
+    fn spawn_angular_velocity_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl HealthTransitionSpawnReferenceObjectDataTrait for HealthTransitionSpawnReferenceObjectData {
     fn spawn_linear_velocity(&self) -> &super::core::Vec3 {
         &self.spawn_linear_velocity
     }
+    fn spawn_linear_velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.spawn_linear_velocity
+    }
     fn spawn_angular_velocity(&self) -> &super::core::Vec3 {
         &self.spawn_angular_velocity
+    }
+    fn spawn_angular_velocity_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.spawn_angular_velocity
     }
 }
 
@@ -491,38 +607,71 @@ impl super::entity::SpatialReferenceObjectDataTrait for HealthTransitionSpawnRef
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
 }
 
 impl super::entity::ReferenceObjectDataTrait for HealthTransitionSpawnReferenceObjectData {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -533,15 +682,15 @@ impl super::core::DataBusPeerTrait for HealthTransitionSpawnReferenceObjectData 
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for HealthTransitionSpawnReferenceObjectData {
 }
 
 impl super::core::DataContainerTrait for HealthTransitionSpawnReferenceObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HEALTHTRANSITIONSPAWNREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -579,6 +728,15 @@ impl TypeObject for HealthTransitionSpawnReferenceObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -604,27 +762,47 @@ pub struct HealthTransitionData {
 
 pub trait HealthTransitionDataTrait: super::entity::EntityDataTrait {
     fn part_state(&self) -> &Option<Arc<Mutex<dyn super::entity::PartStateTrait>>>;
+    fn part_state_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PartStateTrait>>>;
     fn health_transition_value(&self) -> &u32;
+    fn health_transition_value_mut(&mut self) -> &mut u32;
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
     fn in_event_id(&self) -> &u32;
+    fn in_event_id_mut(&mut self) -> &mut u32;
     fn out_event_id(&self) -> &u32;
+    fn out_event_id_mut(&mut self) -> &mut u32;
 }
 
 impl HealthTransitionDataTrait for HealthTransitionData {
     fn part_state(&self) -> &Option<Arc<Mutex<dyn super::entity::PartStateTrait>>> {
         &self.part_state
     }
+    fn part_state_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PartStateTrait>>> {
+        &mut self.part_state
+    }
     fn health_transition_value(&self) -> &u32 {
         &self.health_transition_value
+    }
+    fn health_transition_value_mut(&mut self) -> &mut u32 {
+        &mut self.health_transition_value
     }
     fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         &self.objects
     }
+    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        &mut self.objects
+    }
     fn in_event_id(&self) -> &u32 {
         &self.in_event_id
     }
+    fn in_event_id_mut(&mut self) -> &mut u32 {
+        &mut self.in_event_id
+    }
     fn out_event_id(&self) -> &u32 {
         &self.out_event_id
+    }
+    fn out_event_id_mut(&mut self) -> &mut u32 {
+        &mut self.out_event_id
     }
 }
 
@@ -638,15 +816,15 @@ impl super::core::DataBusPeerTrait for HealthTransitionData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for HealthTransitionData {
 }
 
 impl super::core::DataContainerTrait for HealthTransitionData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HEALTHTRANSITIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -702,6 +880,15 @@ impl TypeObject for HealthTransitionData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -726,23 +913,39 @@ pub struct HealthTransitionPartData {
 
 pub trait HealthTransitionPartDataTrait: super::entity::EntityDataTrait {
     fn part(&self) -> &Option<Arc<Mutex<dyn super::entity::PartDataTrait>>>;
+    fn part_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PartDataTrait>>>;
     fn health_transitions(&self) -> &Vec<Option<Arc<Mutex<dyn HealthTransitionDataTrait>>>>;
+    fn health_transitions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn HealthTransitionDataTrait>>>>;
     fn health(&self) -> &u32;
+    fn health_mut(&mut self) -> &mut u32;
     fn radiosity_material_data(&self) -> &Vec<PartRadiosityMaterialData>;
+    fn radiosity_material_data_mut(&mut self) -> &mut Vec<PartRadiosityMaterialData>;
 }
 
 impl HealthTransitionPartDataTrait for HealthTransitionPartData {
     fn part(&self) -> &Option<Arc<Mutex<dyn super::entity::PartDataTrait>>> {
         &self.part
     }
+    fn part_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PartDataTrait>>> {
+        &mut self.part
+    }
     fn health_transitions(&self) -> &Vec<Option<Arc<Mutex<dyn HealthTransitionDataTrait>>>> {
         &self.health_transitions
+    }
+    fn health_transitions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn HealthTransitionDataTrait>>>> {
+        &mut self.health_transitions
     }
     fn health(&self) -> &u32 {
         &self.health
     }
+    fn health_mut(&mut self) -> &mut u32 {
+        &mut self.health
+    }
     fn radiosity_material_data(&self) -> &Vec<PartRadiosityMaterialData> {
         &self.radiosity_material_data
+    }
+    fn radiosity_material_data_mut(&mut self) -> &mut Vec<PartRadiosityMaterialData> {
+        &mut self.radiosity_material_data
     }
 }
 
@@ -756,15 +959,15 @@ impl super::core::DataBusPeerTrait for HealthTransitionPartData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for HealthTransitionPartData {
 }
 
 impl super::core::DataContainerTrait for HealthTransitionPartData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static HEALTHTRANSITIONPARTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -814,6 +1017,15 @@ impl TypeObject for HealthTransitionPartData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -835,15 +1047,23 @@ pub struct PartRadiosityMaterialData {
 
 pub trait PartRadiosityMaterialDataTrait: TypeObject {
     fn material_guid(&self) -> &glacier_util::guid::Guid;
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn default_opacity(&self) -> &f32;
+    fn default_opacity_mut(&mut self) -> &mut f32;
 }
 
 impl PartRadiosityMaterialDataTrait for PartRadiosityMaterialData {
     fn material_guid(&self) -> &glacier_util::guid::Guid {
         &self.material_guid
     }
+    fn material_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.material_guid
+    }
     fn default_opacity(&self) -> &f32 {
         &self.default_opacity
+    }
+    fn default_opacity_mut(&mut self) -> &mut f32 {
+        &mut self.default_opacity
     }
 }
 
@@ -881,6 +1101,15 @@ impl TypeObject for PartRadiosityMaterialData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -903,22 +1132,27 @@ pub struct CalculateConnectedPartsPipelineResult {
 
 pub trait CalculateConnectedPartsPipelineResultTrait: super::core::DataContainerTrait {
     fn success(&self) -> &bool;
+    fn success_mut(&mut self) -> &mut bool;
     fn touching_part_pairs(&self) -> &Vec<TouchingPartPair>;
+    fn touching_part_pairs_mut(&mut self) -> &mut Vec<TouchingPartPair>;
 }
 
 impl CalculateConnectedPartsPipelineResultTrait for CalculateConnectedPartsPipelineResult {
     fn success(&self) -> &bool {
         &self.success
     }
+    fn success_mut(&mut self) -> &mut bool {
+        &mut self.success
+    }
     fn touching_part_pairs(&self) -> &Vec<TouchingPartPair> {
         &self.touching_part_pairs
+    }
+    fn touching_part_pairs_mut(&mut self) -> &mut Vec<TouchingPartPair> {
+        &mut self.touching_part_pairs
     }
 }
 
 impl super::core::DataContainerTrait for CalculateConnectedPartsPipelineResult {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CALCULATECONNECTEDPARTSPIPELINERESULT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -956,6 +1190,15 @@ impl TypeObject for CalculateConnectedPartsPipelineResult {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -981,9 +1224,6 @@ impl CalculateConnectedPartsPipelineParamsTrait for CalculateConnectedPartsPipel
 }
 
 impl super::core::DataContainerTrait for CalculateConnectedPartsPipelineParams {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CALCULATECONNECTEDPARTSPIPELINEPARAMS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1009,6 +1249,15 @@ impl TypeObject for CalculateConnectedPartsPipelineParams {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1030,15 +1279,23 @@ pub struct TouchingPartPair {
 
 pub trait TouchingPartPairTrait: TypeObject {
     fn guid0(&self) -> &glacier_util::guid::Guid;
+    fn guid0_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn guid1(&self) -> &glacier_util::guid::Guid;
+    fn guid1_mut(&mut self) -> &mut glacier_util::guid::Guid;
 }
 
 impl TouchingPartPairTrait for TouchingPartPair {
     fn guid0(&self) -> &glacier_util::guid::Guid {
         &self.guid0
     }
+    fn guid0_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid0
+    }
     fn guid1(&self) -> &glacier_util::guid::Guid {
         &self.guid1
+    }
+    fn guid1_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid1
     }
 }
 
@@ -1076,6 +1333,15 @@ impl TypeObject for TouchingPartPair {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1098,15 +1364,23 @@ pub struct ConnectionConstraint {
 
 pub trait ConnectionConstraintTrait: SupportConstraintTrait {
     fn connected_part1(&self) -> &Option<Arc<Mutex<dyn super::entity::PartDataTrait>>>;
+    fn connected_part1_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PartDataTrait>>>;
     fn connected_part2(&self) -> &Option<Arc<Mutex<dyn super::entity::PartDataTrait>>>;
+    fn connected_part2_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PartDataTrait>>>;
 }
 
 impl ConnectionConstraintTrait for ConnectionConstraint {
     fn connected_part1(&self) -> &Option<Arc<Mutex<dyn super::entity::PartDataTrait>>> {
         &self.connected_part1
     }
+    fn connected_part1_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PartDataTrait>>> {
+        &mut self.connected_part1
+    }
     fn connected_part2(&self) -> &Option<Arc<Mutex<dyn super::entity::PartDataTrait>>> {
         &self.connected_part2
+    }
+    fn connected_part2_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PartDataTrait>>> {
+        &mut self.connected_part2
     }
 }
 
@@ -1114,9 +1388,6 @@ impl SupportConstraintTrait for ConnectionConstraint {
 }
 
 impl super::core::DataContainerTrait for ConnectionConstraint {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONNECTIONCONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1154,6 +1425,15 @@ impl TypeObject for ConnectionConstraint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1175,11 +1455,15 @@ pub struct SelfSupportConstraint {
 
 pub trait SelfSupportConstraintTrait: SupportConstraintTrait {
     fn self_supporting_part(&self) -> &Option<Arc<Mutex<dyn super::entity::PartDataTrait>>>;
+    fn self_supporting_part_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PartDataTrait>>>;
 }
 
 impl SelfSupportConstraintTrait for SelfSupportConstraint {
     fn self_supporting_part(&self) -> &Option<Arc<Mutex<dyn super::entity::PartDataTrait>>> {
         &self.self_supporting_part
+    }
+    fn self_supporting_part_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::PartDataTrait>>> {
+        &mut self.self_supporting_part
     }
 }
 
@@ -1187,9 +1471,6 @@ impl SupportConstraintTrait for SelfSupportConstraint {
 }
 
 impl super::core::DataContainerTrait for SelfSupportConstraint {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SELFSUPPORTCONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1221,6 +1502,15 @@ impl TypeObject for SelfSupportConstraint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1246,9 +1536,6 @@ impl SupportConstraintTrait for SupportConstraint {
 }
 
 impl super::core::DataContainerTrait for SupportConstraint {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SUPPORTCONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1273,6 +1560,15 @@ impl TypeObject for SupportConstraint {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1299,27 +1595,47 @@ pub struct DestructionComponentData {
 
 pub trait DestructionComponentDataTrait: super::entity::ComponentDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn health_transition_parts(&self) -> &Vec<Option<Arc<Mutex<dyn HealthTransitionPartDataTrait>>>>;
+    fn health_transition_parts_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn HealthTransitionPartDataTrait>>>>;
     fn support_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn SupportConstraintTrait>>>>;
+    fn support_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SupportConstraintTrait>>>>;
     fn edge_model_info(&self) -> &EdgeModelInfo;
+    fn edge_model_info_mut(&mut self) -> &mut EdgeModelInfo;
     fn networkable_enabled(&self) -> &bool;
+    fn networkable_enabled_mut(&mut self) -> &mut bool;
 }
 
 impl DestructionComponentDataTrait for DestructionComponentData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn health_transition_parts(&self) -> &Vec<Option<Arc<Mutex<dyn HealthTransitionPartDataTrait>>>> {
         &self.health_transition_parts
+    }
+    fn health_transition_parts_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn HealthTransitionPartDataTrait>>>> {
+        &mut self.health_transition_parts
     }
     fn support_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn SupportConstraintTrait>>>> {
         &self.support_constraints
     }
+    fn support_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SupportConstraintTrait>>>> {
+        &mut self.support_constraints
+    }
     fn edge_model_info(&self) -> &EdgeModelInfo {
         &self.edge_model_info
     }
+    fn edge_model_info_mut(&mut self) -> &mut EdgeModelInfo {
+        &mut self.edge_model_info
+    }
     fn networkable_enabled(&self) -> &bool {
         &self.networkable_enabled
+    }
+    fn networkable_enabled_mut(&mut self) -> &mut bool {
+        &mut self.networkable_enabled
     }
 }
 
@@ -1327,17 +1643,32 @@ impl super::entity::ComponentDataTrait for DestructionComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -1348,15 +1679,15 @@ impl super::core::DataBusPeerTrait for DestructionComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DestructionComponentData {
 }
 
 impl super::core::DataContainerTrait for DestructionComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DESTRUCTIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1412,6 +1743,15 @@ impl TypeObject for DestructionComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1433,15 +1773,23 @@ pub struct EdgeModelInfo {
 
 pub trait EdgeModelInfoTrait: TypeObject {
     fn edge_models_data(&self) -> &Option<Arc<Mutex<dyn super::world_base::EdgeModelsBaseDataTrait>>>;
+    fn edge_models_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_base::EdgeModelsBaseDataTrait>>>;
     fn rigid_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>>;
+    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>>;
 }
 
 impl EdgeModelInfoTrait for EdgeModelInfo {
     fn edge_models_data(&self) -> &Option<Arc<Mutex<dyn super::world_base::EdgeModelsBaseDataTrait>>> {
         &self.edge_models_data
     }
+    fn edge_models_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_base::EdgeModelsBaseDataTrait>>> {
+        &mut self.edge_models_data
+    }
     fn rigid_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
         &self.rigid_bodies
+    }
+    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
+        &mut self.rigid_bodies
     }
 }
 
@@ -1478,6 +1826,15 @@ impl TypeObject for EdgeModelInfo {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1535,6 +1892,15 @@ impl TypeObject for ServerHealthTransitionPart {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1587,6 +1953,15 @@ impl TypeObject for HealthTransitionPart {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1641,6 +2016,15 @@ impl TypeObject for HealthTransition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1686,6 +2070,15 @@ impl TypeObject for EdgeModelOwner {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1739,6 +2132,15 @@ impl TypeObject for DestructionComponent {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1795,6 +2197,15 @@ impl TypeObject for ClientHealthTransitionPart {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

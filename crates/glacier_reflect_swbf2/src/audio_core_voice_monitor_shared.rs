@@ -34,15 +34,23 @@ pub struct MonitorNodeConfigData {
 
 pub trait MonitorNodeConfigDataTrait: super::audio::AudioGraphNodeConfigDataTrait {
     fn monitoring_enabled(&self) -> &f32;
+    fn monitoring_enabled_mut(&mut self) -> &mut f32;
     fn monitoring_priority(&self) -> &f32;
+    fn monitoring_priority_mut(&mut self) -> &mut f32;
 }
 
 impl MonitorNodeConfigDataTrait for MonitorNodeConfigData {
     fn monitoring_enabled(&self) -> &f32 {
         &self.monitoring_enabled
     }
+    fn monitoring_enabled_mut(&mut self) -> &mut f32 {
+        &mut self.monitoring_enabled
+    }
     fn monitoring_priority(&self) -> &f32 {
         &self.monitoring_priority
+    }
+    fn monitoring_priority_mut(&mut self) -> &mut f32 {
+        &mut self.monitoring_priority
     }
 }
 
@@ -50,15 +58,18 @@ impl super::audio::AudioGraphNodeConfigDataTrait for MonitorNodeConfigData {
     fn node(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
         self._glacier_base.node()
     }
+    fn node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
+        self._glacier_base.node_mut()
+    }
     fn configured_property_flags(&self) -> &u64 {
         self._glacier_base.configured_property_flags()
+    }
+    fn configured_property_flags_mut(&mut self) -> &mut u64 {
+        self._glacier_base.configured_property_flags_mut()
     }
 }
 
 impl super::core::DataContainerTrait for MonitorNodeConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MONITORNODECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -96,6 +107,15 @@ impl TypeObject for MonitorNodeConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -122,31 +142,55 @@ pub struct MonitorNodeData {
 
 pub trait MonitorNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn monitoring_enabled(&self) -> &super::audio::AudioGraphNodePort;
+    fn monitoring_enabled_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn monitoring_priority(&self) -> &super::audio::AudioGraphNodePort;
+    fn monitoring_priority_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn port(&self) -> &u16;
+    fn port_mut(&mut self) -> &mut u16;
     fn node_meta_data(&self) -> &Vec<MonitoredNodeMetaData>;
+    fn node_meta_data_mut(&mut self) -> &mut Vec<MonitoredNodeMetaData>;
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
     fn partition_guid(&self) -> &glacier_util::guid::Guid;
+    fn partition_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
 }
 
 impl MonitorNodeDataTrait for MonitorNodeData {
     fn monitoring_enabled(&self) -> &super::audio::AudioGraphNodePort {
         &self.monitoring_enabled
     }
+    fn monitoring_enabled_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.monitoring_enabled
+    }
     fn monitoring_priority(&self) -> &super::audio::AudioGraphNodePort {
         &self.monitoring_priority
+    }
+    fn monitoring_priority_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.monitoring_priority
     }
     fn port(&self) -> &u16 {
         &self.port
     }
+    fn port_mut(&mut self) -> &mut u16 {
+        &mut self.port
+    }
     fn node_meta_data(&self) -> &Vec<MonitoredNodeMetaData> {
         &self.node_meta_data
+    }
+    fn node_meta_data_mut(&mut self) -> &mut Vec<MonitoredNodeMetaData> {
+        &mut self.node_meta_data
     }
     fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
         &self.asset
     }
+    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+        &mut self.asset
+    }
     fn partition_guid(&self) -> &glacier_util::guid::Guid {
         &self.partition_guid
+    }
+    fn partition_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.partition_guid
     }
 }
 
@@ -154,9 +198,6 @@ impl super::audio::AudioGraphNodeDataTrait for MonitorNodeData {
 }
 
 impl super::core::DataContainerTrait for MonitorNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MONITORNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -218,6 +259,15 @@ impl TypeObject for MonitorNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -243,31 +293,55 @@ pub struct MonitoredNodeMetaData {
 
 pub trait MonitoredNodeMetaDataTrait: TypeObject {
     fn node_name(&self) -> &String;
+    fn node_name_mut(&mut self) -> &mut String;
     fn node_guid(&self) -> &glacier_util::guid::Guid;
+    fn node_guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn event_ports(&self) -> &Vec<MonitoredNodePortMetaData>;
+    fn event_ports_mut(&mut self) -> &mut Vec<MonitoredNodePortMetaData>;
     fn param_ports(&self) -> &Vec<MonitoredNodePortMetaData>;
+    fn param_ports_mut(&mut self) -> &mut Vec<MonitoredNodePortMetaData>;
     fn asset_ports(&self) -> &Vec<MonitoredNodePortMetaData>;
+    fn asset_ports_mut(&mut self) -> &mut Vec<MonitoredNodePortMetaData>;
     fn selection_ports(&self) -> &Vec<MonitoredNodePortMetaData>;
+    fn selection_ports_mut(&mut self) -> &mut Vec<MonitoredNodePortMetaData>;
 }
 
 impl MonitoredNodeMetaDataTrait for MonitoredNodeMetaData {
     fn node_name(&self) -> &String {
         &self.node_name
     }
+    fn node_name_mut(&mut self) -> &mut String {
+        &mut self.node_name
+    }
     fn node_guid(&self) -> &glacier_util::guid::Guid {
         &self.node_guid
+    }
+    fn node_guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.node_guid
     }
     fn event_ports(&self) -> &Vec<MonitoredNodePortMetaData> {
         &self.event_ports
     }
+    fn event_ports_mut(&mut self) -> &mut Vec<MonitoredNodePortMetaData> {
+        &mut self.event_ports
+    }
     fn param_ports(&self) -> &Vec<MonitoredNodePortMetaData> {
         &self.param_ports
+    }
+    fn param_ports_mut(&mut self) -> &mut Vec<MonitoredNodePortMetaData> {
+        &mut self.param_ports
     }
     fn asset_ports(&self) -> &Vec<MonitoredNodePortMetaData> {
         &self.asset_ports
     }
+    fn asset_ports_mut(&mut self) -> &mut Vec<MonitoredNodePortMetaData> {
+        &mut self.asset_ports
+    }
     fn selection_ports(&self) -> &Vec<MonitoredNodePortMetaData> {
         &self.selection_ports
+    }
+    fn selection_ports_mut(&mut self) -> &mut Vec<MonitoredNodePortMetaData> {
+        &mut self.selection_ports
     }
 }
 
@@ -329,6 +403,15 @@ impl TypeObject for MonitoredNodeMetaData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -353,27 +436,47 @@ pub struct MonitoredNodePortMetaData {
 
 pub trait MonitoredNodePortMetaDataTrait: TypeObject {
     fn field_index(&self) -> &u8;
+    fn field_index_mut(&mut self) -> &mut u8;
     fn field_index_non_meta(&self) -> &u8;
+    fn field_index_non_meta_mut(&mut self) -> &mut u8;
     fn element_index(&self) -> &u8;
+    fn element_index_mut(&mut self) -> &mut u8;
     fn sub_field_index(&self) -> &u8;
+    fn sub_field_index_mut(&mut self) -> &mut u8;
     fn sub_field_index_non_meta(&self) -> &u8;
+    fn sub_field_index_non_meta_mut(&mut self) -> &mut u8;
 }
 
 impl MonitoredNodePortMetaDataTrait for MonitoredNodePortMetaData {
     fn field_index(&self) -> &u8 {
         &self.field_index
     }
+    fn field_index_mut(&mut self) -> &mut u8 {
+        &mut self.field_index
+    }
     fn field_index_non_meta(&self) -> &u8 {
         &self.field_index_non_meta
+    }
+    fn field_index_non_meta_mut(&mut self) -> &mut u8 {
+        &mut self.field_index_non_meta
     }
     fn element_index(&self) -> &u8 {
         &self.element_index
     }
+    fn element_index_mut(&mut self) -> &mut u8 {
+        &mut self.element_index
+    }
     fn sub_field_index(&self) -> &u8 {
         &self.sub_field_index
     }
+    fn sub_field_index_mut(&mut self) -> &mut u8 {
+        &mut self.sub_field_index
+    }
     fn sub_field_index_non_meta(&self) -> &u8 {
         &self.sub_field_index_non_meta
+    }
+    fn sub_field_index_non_meta_mut(&mut self) -> &mut u8 {
+        &mut self.sub_field_index_non_meta
     }
 }
 
@@ -429,6 +532,15 @@ impl TypeObject for MonitoredNodePortMetaData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -467,6 +579,15 @@ impl TypeObject for MonitoredNodePortType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -508,6 +629,15 @@ impl TypeObject for MonitoringSortType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -546,6 +676,15 @@ impl TypeObject for DebugRenderingSelection {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

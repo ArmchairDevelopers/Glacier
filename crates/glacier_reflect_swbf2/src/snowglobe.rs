@@ -51,15 +51,23 @@ pub struct SnowglobeTrackerEntityData {
 
 pub trait SnowglobeTrackerEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn name_filter(&self) -> &String;
+    fn name_filter_mut(&mut self) -> &mut String;
 }
 
 impl SnowglobeTrackerEntityDataTrait for SnowglobeTrackerEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn name_filter(&self) -> &String {
         &self.name_filter
+    }
+    fn name_filter_mut(&mut self) -> &mut String {
+        &mut self.name_filter
     }
 }
 
@@ -73,15 +81,15 @@ impl super::core::DataBusPeerTrait for SnowglobeTrackerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SnowglobeTrackerEntityData {
 }
 
 impl super::core::DataContainerTrait for SnowglobeTrackerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SNOWGLOBETRACKERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -119,6 +127,15 @@ impl TypeObject for SnowglobeTrackerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -147,17 +164,32 @@ impl super::entity::ComponentDataTrait for SnowglobeComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -168,15 +200,15 @@ impl super::core::DataBusPeerTrait for SnowglobeComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SnowglobeComponentData {
 }
 
 impl super::core::DataContainerTrait for SnowglobeComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SNOWGLOBECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -202,6 +234,15 @@ impl TypeObject for SnowglobeComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -224,15 +265,23 @@ pub struct CinematicSettingsSplitterData {
 
 pub trait CinematicSettingsSplitterDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn settings(&self) -> &Option<Arc<Mutex<dyn CinematicSettingsTrait>>>;
+    fn settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CinematicSettingsTrait>>>;
 }
 
 impl CinematicSettingsSplitterDataTrait for CinematicSettingsSplitterData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn settings(&self) -> &Option<Arc<Mutex<dyn CinematicSettingsTrait>>> {
         &self.settings
+    }
+    fn settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CinematicSettingsTrait>>> {
+        &mut self.settings
     }
 }
 
@@ -246,15 +295,15 @@ impl super::core::DataBusPeerTrait for CinematicSettingsSplitterData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CinematicSettingsSplitterData {
 }
 
 impl super::core::DataContainerTrait for CinematicSettingsSplitterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICSETTINGSSPLITTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -291,6 +340,15 @@ impl TypeObject for CinematicSettingsSplitterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -337,6 +395,15 @@ impl TypeObject for NetworkSnowglobeStatusChangeMessage {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -353,42 +420,67 @@ pub struct CinematicSettings {
 
 pub trait CinematicSettingsTrait: super::core::DataContainerTrait {
     fn continue_i_g_c_settings_on_finish(&self) -> &bool;
+    fn continue_i_g_c_settings_on_finish_mut(&mut self) -> &mut bool;
     fn user_control(&self) -> &UserInputType;
+    fn user_control_mut(&mut self) -> &mut UserInputType;
     fn allow_restart(&self) -> &bool;
+    fn allow_restart_mut(&mut self) -> &mut bool;
     fn hide_h_u_d(&self) -> &bool;
+    fn hide_h_u_d_mut(&mut self) -> &mut bool;
     fn disable_motion_blur(&self) -> &bool;
+    fn disable_motion_blur_mut(&mut self) -> &mut bool;
     fn enable_cinematic_camera(&self) -> &bool;
+    fn enable_cinematic_camera_mut(&mut self) -> &mut bool;
     fn disable_visual_environment_effects(&self) -> &bool;
+    fn disable_visual_environment_effects_mut(&mut self) -> &mut bool;
 }
 
 impl CinematicSettingsTrait for CinematicSettings {
     fn continue_i_g_c_settings_on_finish(&self) -> &bool {
         &self.continue_i_g_c_settings_on_finish
     }
+    fn continue_i_g_c_settings_on_finish_mut(&mut self) -> &mut bool {
+        &mut self.continue_i_g_c_settings_on_finish
+    }
     fn user_control(&self) -> &UserInputType {
         &self.user_control
+    }
+    fn user_control_mut(&mut self) -> &mut UserInputType {
+        &mut self.user_control
     }
     fn allow_restart(&self) -> &bool {
         &self.allow_restart
     }
+    fn allow_restart_mut(&mut self) -> &mut bool {
+        &mut self.allow_restart
+    }
     fn hide_h_u_d(&self) -> &bool {
         &self.hide_h_u_d
+    }
+    fn hide_h_u_d_mut(&mut self) -> &mut bool {
+        &mut self.hide_h_u_d
     }
     fn disable_motion_blur(&self) -> &bool {
         &self.disable_motion_blur
     }
+    fn disable_motion_blur_mut(&mut self) -> &mut bool {
+        &mut self.disable_motion_blur
+    }
     fn enable_cinematic_camera(&self) -> &bool {
         &self.enable_cinematic_camera
+    }
+    fn enable_cinematic_camera_mut(&mut self) -> &mut bool {
+        &mut self.enable_cinematic_camera
     }
     fn disable_visual_environment_effects(&self) -> &bool {
         &self.disable_visual_environment_effects
     }
+    fn disable_visual_environment_effects_mut(&mut self) -> &mut bool {
+        &mut self.disable_visual_environment_effects
+    }
 }
 
 impl super::core::DataContainerTrait for CinematicSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CINEMATICSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -456,6 +548,15 @@ impl TypeObject for CinematicSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -482,31 +583,55 @@ pub struct SnowglobeEntityData {
 
 pub trait SnowglobeEntityDataTrait: super::entity::EntityDataTrait {
     fn prime_behavior(&self) -> &PrimeType;
+    fn prime_behavior_mut(&mut self) -> &mut PrimeType;
     fn clean_up_behavior(&self) -> &CleanUpType;
+    fn clean_up_behavior_mut(&mut self) -> &mut CleanUpType;
     fn multi_player_behavior(&self) -> &MultiplayerStartType;
+    fn multi_player_behavior_mut(&mut self) -> &mut MultiplayerStartType;
     fn external_time(&self) -> &f32;
+    fn external_time_mut(&mut self) -> &mut f32;
     fn cinematic_name(&self) -> &String;
+    fn cinematic_name_mut(&mut self) -> &mut String;
     fn cinematic_settings(&self) -> &Option<Arc<Mutex<dyn CinematicSettingsTrait>>>;
+    fn cinematic_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CinematicSettingsTrait>>>;
 }
 
 impl SnowglobeEntityDataTrait for SnowglobeEntityData {
     fn prime_behavior(&self) -> &PrimeType {
         &self.prime_behavior
     }
+    fn prime_behavior_mut(&mut self) -> &mut PrimeType {
+        &mut self.prime_behavior
+    }
     fn clean_up_behavior(&self) -> &CleanUpType {
         &self.clean_up_behavior
+    }
+    fn clean_up_behavior_mut(&mut self) -> &mut CleanUpType {
+        &mut self.clean_up_behavior
     }
     fn multi_player_behavior(&self) -> &MultiplayerStartType {
         &self.multi_player_behavior
     }
+    fn multi_player_behavior_mut(&mut self) -> &mut MultiplayerStartType {
+        &mut self.multi_player_behavior
+    }
     fn external_time(&self) -> &f32 {
         &self.external_time
+    }
+    fn external_time_mut(&mut self) -> &mut f32 {
+        &mut self.external_time
     }
     fn cinematic_name(&self) -> &String {
         &self.cinematic_name
     }
+    fn cinematic_name_mut(&mut self) -> &mut String {
+        &mut self.cinematic_name
+    }
     fn cinematic_settings(&self) -> &Option<Arc<Mutex<dyn CinematicSettingsTrait>>> {
         &self.cinematic_settings
+    }
+    fn cinematic_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CinematicSettingsTrait>>> {
+        &mut self.cinematic_settings
     }
 }
 
@@ -520,15 +645,15 @@ impl super::core::DataBusPeerTrait for SnowglobeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SnowglobeEntityData {
 }
 
 impl super::core::DataContainerTrait for SnowglobeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SNOWGLOBEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -590,6 +715,15 @@ impl TypeObject for SnowglobeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -635,6 +769,15 @@ impl TypeObject for SnowglobeEntityStatus {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -672,6 +815,15 @@ impl TypeObject for MultiplayerStartType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -712,6 +864,15 @@ impl TypeObject for UserInputType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -749,6 +910,15 @@ impl TypeObject for CleanUpType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -788,6 +958,15 @@ impl TypeObject for PrimeType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -842,6 +1021,15 @@ impl TypeObject for ServerSnowglobeEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -894,6 +1082,15 @@ impl TypeObject for SnowglobeTrackerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -948,6 +1145,15 @@ impl TypeObject for SnowglobeComponent {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1001,6 +1207,15 @@ impl TypeObject for CinematicSettingsSplitterEntity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1053,6 +1268,15 @@ impl TypeObject for ClientSnowglobeEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

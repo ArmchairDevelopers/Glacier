@@ -61,11 +61,15 @@ pub struct PoseTrackData {
 
 pub trait PoseTrackDataTrait: ANTLayerDataTrait {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn PoseTrackKeyframeTrait>>>>;
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PoseTrackKeyframeTrait>>>>;
 }
 
 impl PoseTrackDataTrait for PoseTrackData {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn PoseTrackKeyframeTrait>>>> {
         &self.keyframes
+    }
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PoseTrackKeyframeTrait>>>> {
+        &mut self.keyframes
     }
 }
 
@@ -73,26 +77,47 @@ impl ANTLayerDataTrait for PoseTrackData {
     fn blend_type(&self) -> &super::gameplay_sim::ANTLayerBlendType {
         self._glacier_base.blend_type()
     }
+    fn blend_type_mut(&mut self) -> &mut super::gameplay_sim::ANTLayerBlendType {
+        self._glacier_base.blend_type_mut()
+    }
 }
 
 impl super::timeline::TimelineTrackDataTrait for PoseTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -103,15 +128,15 @@ impl super::core::DataBusPeerTrait for PoseTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PoseTrackData {
 }
 
 impl super::core::DataContainerTrait for PoseTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POSETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -143,6 +168,15 @@ impl TypeObject for PoseTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -167,23 +201,39 @@ pub struct PoseTrackKeyframe {
 
 pub trait PoseTrackKeyframeTrait: super::timeline::TimelineKeyframeDataTrait {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn transition_to(&self) -> &Option<Arc<Mutex<dyn PoseDefinitionTrait>>>;
+    fn transition_to_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseDefinitionTrait>>>;
     fn duration_override(&self) -> &f32;
+    fn duration_override_mut(&mut self) -> &mut f32;
     fn transition_override(&self) -> &Option<Arc<Mutex<dyn PoseTransitionBaseTrait>>>;
+    fn transition_override_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseTransitionBaseTrait>>>;
 }
 
 impl PoseTrackKeyframeTrait for PoseTrackKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn transition_to(&self) -> &Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
         &self.transition_to
+    }
+    fn transition_to_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
+        &mut self.transition_to
     }
     fn duration_override(&self) -> &f32 {
         &self.duration_override
     }
+    fn duration_override_mut(&mut self) -> &mut f32 {
+        &mut self.duration_override
+    }
     fn transition_override(&self) -> &Option<Arc<Mutex<dyn PoseTransitionBaseTrait>>> {
         &self.transition_override
+    }
+    fn transition_override_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseTransitionBaseTrait>>> {
+        &mut self.transition_override
     }
 }
 
@@ -191,9 +241,6 @@ impl super::timeline::TimelineKeyframeDataTrait for PoseTrackKeyframe {
 }
 
 impl super::core::DataContainerTrait for PoseTrackKeyframe {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POSETRACKKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -243,6 +290,15 @@ impl TypeObject for PoseTrackKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -271,12 +327,12 @@ impl PoseTransitionBaseTrait for CutPoseTransition {
     fn transition_to(&self) -> &Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
         self._glacier_base.transition_to()
     }
+    fn transition_to_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
+        self._glacier_base.transition_to_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CutPoseTransition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CUTPOSETRANSITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -302,6 +358,15 @@ impl TypeObject for CutPoseTransition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -323,11 +388,15 @@ pub struct BlendedPoseTransition {
 
 pub trait BlendedPoseTransitionTrait: PoseTransitionBaseTrait {
     fn blend_time(&self) -> &f32;
+    fn blend_time_mut(&mut self) -> &mut f32;
 }
 
 impl BlendedPoseTransitionTrait for BlendedPoseTransition {
     fn blend_time(&self) -> &f32 {
         &self.blend_time
+    }
+    fn blend_time_mut(&mut self) -> &mut f32 {
+        &mut self.blend_time
     }
 }
 
@@ -335,12 +404,12 @@ impl PoseTransitionBaseTrait for BlendedPoseTransition {
     fn transition_to(&self) -> &Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
         self._glacier_base.transition_to()
     }
+    fn transition_to_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
+        self._glacier_base.transition_to_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for BlendedPoseTransition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BLENDEDPOSETRANSITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -372,6 +441,15 @@ impl TypeObject for BlendedPoseTransition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -396,23 +474,39 @@ pub struct AnimatedPoseTransition {
 
 pub trait AnimatedPoseTransitionTrait: PoseTransitionBaseTrait {
     fn transition_animation(&self) -> &super::ant::AntRef;
+    fn transition_animation_mut(&mut self) -> &mut super::ant::AntRef;
     fn animation_blend_in_time(&self) -> &f32;
+    fn animation_blend_in_time_mut(&mut self) -> &mut f32;
     fn animation_blend_out_time(&self) -> &f32;
+    fn animation_blend_out_time_mut(&mut self) -> &mut f32;
     fn transition_animation_duration(&self) -> &f32;
+    fn transition_animation_duration_mut(&mut self) -> &mut f32;
 }
 
 impl AnimatedPoseTransitionTrait for AnimatedPoseTransition {
     fn transition_animation(&self) -> &super::ant::AntRef {
         &self.transition_animation
     }
+    fn transition_animation_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.transition_animation
+    }
     fn animation_blend_in_time(&self) -> &f32 {
         &self.animation_blend_in_time
+    }
+    fn animation_blend_in_time_mut(&mut self) -> &mut f32 {
+        &mut self.animation_blend_in_time
     }
     fn animation_blend_out_time(&self) -> &f32 {
         &self.animation_blend_out_time
     }
+    fn animation_blend_out_time_mut(&mut self) -> &mut f32 {
+        &mut self.animation_blend_out_time
+    }
     fn transition_animation_duration(&self) -> &f32 {
         &self.transition_animation_duration
+    }
+    fn transition_animation_duration_mut(&mut self) -> &mut f32 {
+        &mut self.transition_animation_duration
     }
 }
 
@@ -420,12 +514,12 @@ impl PoseTransitionBaseTrait for AnimatedPoseTransition {
     fn transition_to(&self) -> &Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
         self._glacier_base.transition_to()
     }
+    fn transition_to_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
+        self._glacier_base.transition_to_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AnimatedPoseTransition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANIMATEDPOSETRANSITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -475,6 +569,15 @@ impl TypeObject for AnimatedPoseTransition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -496,18 +599,19 @@ pub struct PoseTransitionBase {
 
 pub trait PoseTransitionBaseTrait: super::core::DataContainerTrait {
     fn transition_to(&self) -> &Option<Arc<Mutex<dyn PoseDefinitionTrait>>>;
+    fn transition_to_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseDefinitionTrait>>>;
 }
 
 impl PoseTransitionBaseTrait for PoseTransitionBase {
     fn transition_to(&self) -> &Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
         &self.transition_to
     }
+    fn transition_to_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
+        &mut self.transition_to
+    }
 }
 
 impl super::core::DataContainerTrait for PoseTransitionBase {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POSETRANSITIONBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -539,6 +643,15 @@ impl TypeObject for PoseTransitionBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -562,26 +675,35 @@ pub struct PoseDefinition {
 
 pub trait PoseDefinitionTrait: super::core::DataContainerTrait {
     fn animation(&self) -> &super::ant::AntRef;
+    fn animation_mut(&mut self) -> &mut super::ant::AntRef;
     fn animation_duration(&self) -> &f32;
+    fn animation_duration_mut(&mut self) -> &mut f32;
     fn transitions(&self) -> &Vec<Option<Arc<Mutex<dyn PoseTransitionBaseTrait>>>>;
+    fn transitions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PoseTransitionBaseTrait>>>>;
 }
 
 impl PoseDefinitionTrait for PoseDefinition {
     fn animation(&self) -> &super::ant::AntRef {
         &self.animation
     }
+    fn animation_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.animation
+    }
     fn animation_duration(&self) -> &f32 {
         &self.animation_duration
+    }
+    fn animation_duration_mut(&mut self) -> &mut f32 {
+        &mut self.animation_duration
     }
     fn transitions(&self) -> &Vec<Option<Arc<Mutex<dyn PoseTransitionBaseTrait>>>> {
         &self.transitions
     }
+    fn transitions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PoseTransitionBaseTrait>>>> {
+        &mut self.transitions
+    }
 }
 
 impl super::core::DataContainerTrait for PoseDefinition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POSEDEFINITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -625,6 +747,15 @@ impl TypeObject for PoseDefinition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -646,11 +777,15 @@ pub struct PosesConfiguration {
 
 pub trait PosesConfigurationTrait: super::core::SystemSettingsTrait {
     fn poses_global_asset(&self) -> &Option<Arc<Mutex<dyn PosesGlobalAssetTrait>>>;
+    fn poses_global_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PosesGlobalAssetTrait>>>;
 }
 
 impl PosesConfigurationTrait for PosesConfiguration {
     fn poses_global_asset(&self) -> &Option<Arc<Mutex<dyn PosesGlobalAssetTrait>>> {
         &self.poses_global_asset
+    }
+    fn poses_global_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PosesGlobalAssetTrait>>> {
+        &mut self.poses_global_asset
     }
 }
 
@@ -658,12 +793,12 @@ impl super::core::SystemSettingsTrait for PosesConfiguration {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PosesConfiguration {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POSESCONFIGURATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -695,6 +830,15 @@ impl TypeObject for PosesConfiguration {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -717,15 +861,23 @@ pub struct PosesGlobalAsset {
 
 pub trait PosesGlobalAssetTrait: super::core::AssetTrait {
     fn poses(&self) -> &Vec<Option<Arc<Mutex<dyn PoseDefinitionTrait>>>>;
+    fn poses_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PoseDefinitionTrait>>>>;
     fn default_pose(&self) -> &Option<Arc<Mutex<dyn PoseDefinitionTrait>>>;
+    fn default_pose_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseDefinitionTrait>>>;
 }
 
 impl PosesGlobalAssetTrait for PosesGlobalAsset {
     fn poses(&self) -> &Vec<Option<Arc<Mutex<dyn PoseDefinitionTrait>>>> {
         &self.poses
     }
+    fn poses_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PoseDefinitionTrait>>>> {
+        &mut self.poses
+    }
     fn default_pose(&self) -> &Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
         &self.default_pose
+    }
+    fn default_pose_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PoseDefinitionTrait>>> {
+        &mut self.default_pose
     }
 }
 
@@ -733,12 +885,12 @@ impl super::core::AssetTrait for PosesGlobalAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PosesGlobalAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static POSESGLOBALASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -776,6 +928,15 @@ impl TypeObject for PosesGlobalAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -799,19 +960,31 @@ pub struct DefaultANTLayerData {
 
 pub trait DefaultANTLayerDataTrait: ANTLayerDataTrait {
     fn blend_mask_list(&self) -> &super::ant::AntRef;
+    fn blend_mask_list_mut(&mut self) -> &mut super::ant::AntRef;
     fn clip_track(&self) -> &Option<Arc<Mutex<dyn ANTClipKeyframeTrackDataTrait>>>;
+    fn clip_track_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ANTClipKeyframeTrackDataTrait>>>;
     fn blend_track(&self) -> &Option<Arc<Mutex<dyn ANTBlendKeyframeTrackDataTrait>>>;
+    fn blend_track_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ANTBlendKeyframeTrackDataTrait>>>;
 }
 
 impl DefaultANTLayerDataTrait for DefaultANTLayerData {
     fn blend_mask_list(&self) -> &super::ant::AntRef {
         &self.blend_mask_list
     }
+    fn blend_mask_list_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.blend_mask_list
+    }
     fn clip_track(&self) -> &Option<Arc<Mutex<dyn ANTClipKeyframeTrackDataTrait>>> {
         &self.clip_track
     }
+    fn clip_track_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ANTClipKeyframeTrackDataTrait>>> {
+        &mut self.clip_track
+    }
     fn blend_track(&self) -> &Option<Arc<Mutex<dyn ANTBlendKeyframeTrackDataTrait>>> {
         &self.blend_track
+    }
+    fn blend_track_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ANTBlendKeyframeTrackDataTrait>>> {
+        &mut self.blend_track
     }
 }
 
@@ -819,26 +992,47 @@ impl ANTLayerDataTrait for DefaultANTLayerData {
     fn blend_type(&self) -> &super::gameplay_sim::ANTLayerBlendType {
         self._glacier_base.blend_type()
     }
+    fn blend_type_mut(&mut self) -> &mut super::gameplay_sim::ANTLayerBlendType {
+        self._glacier_base.blend_type_mut()
+    }
 }
 
 impl super::timeline::TimelineTrackDataTrait for DefaultANTLayerData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -849,15 +1043,15 @@ impl super::core::DataBusPeerTrait for DefaultANTLayerData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DefaultANTLayerData {
 }
 
 impl super::core::DataContainerTrait for DefaultANTLayerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEFAULTANTLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -901,6 +1095,15 @@ impl TypeObject for DefaultANTLayerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -922,11 +1125,15 @@ pub struct ANTClipKeyframeTrackData {
 
 pub trait ANTClipKeyframeTrackDataTrait: super::timeline::TimelineTrackDataTrait {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn ANTClipKeyframeTrait>>>>;
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ANTClipKeyframeTrait>>>>;
 }
 
 impl ANTClipKeyframeTrackDataTrait for ANTClipKeyframeTrackData {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn ANTClipKeyframeTrait>>>> {
         &self.keyframes
+    }
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ANTClipKeyframeTrait>>>> {
+        &mut self.keyframes
     }
 }
 
@@ -934,20 +1141,38 @@ impl super::timeline::TimelineTrackDataTrait for ANTClipKeyframeTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -958,15 +1183,15 @@ impl super::core::DataBusPeerTrait for ANTClipKeyframeTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ANTClipKeyframeTrackData {
 }
 
 impl super::core::DataContainerTrait for ANTClipKeyframeTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTCLIPKEYFRAMETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -998,6 +1223,15 @@ impl TypeObject for ANTClipKeyframeTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1019,11 +1253,15 @@ pub struct ANTBlendKeyframeTrackData {
 
 pub trait ANTBlendKeyframeTrackDataTrait: super::timeline::TimelineTrackDataTrait {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn ANTBlendKeyframeTrait>>>>;
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ANTBlendKeyframeTrait>>>>;
 }
 
 impl ANTBlendKeyframeTrackDataTrait for ANTBlendKeyframeTrackData {
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn ANTBlendKeyframeTrait>>>> {
         &self.keyframes
+    }
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ANTBlendKeyframeTrait>>>> {
+        &mut self.keyframes
     }
 }
 
@@ -1031,20 +1269,38 @@ impl super::timeline::TimelineTrackDataTrait for ANTBlendKeyframeTrackData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -1055,15 +1311,15 @@ impl super::core::DataBusPeerTrait for ANTBlendKeyframeTrackData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ANTBlendKeyframeTrackData {
 }
 
 impl super::core::DataContainerTrait for ANTBlendKeyframeTrackData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTBLENDKEYFRAMETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1095,6 +1351,15 @@ impl TypeObject for ANTBlendKeyframeTrackData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1120,27 +1385,47 @@ pub struct ANTBlendKeyframe {
 
 pub trait ANTBlendKeyframeTrait: super::timeline::TimelineKeyframeDataTrait {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn blend_curve_type(&self) -> &ANTBlendCurveType;
+    fn blend_curve_type_mut(&mut self) -> &mut ANTBlendCurveType;
     fn blend_scale(&self) -> &f32;
+    fn blend_scale_mut(&mut self) -> &mut f32;
     fn curve_data(&self) -> &Option<Arc<Mutex<dyn super::timeline::CurveDataTrait>>>;
+    fn curve_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::timeline::CurveDataTrait>>>;
 }
 
 impl ANTBlendKeyframeTrait for ANTBlendKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
     fn blend_curve_type(&self) -> &ANTBlendCurveType {
         &self.blend_curve_type
     }
+    fn blend_curve_type_mut(&mut self) -> &mut ANTBlendCurveType {
+        &mut self.blend_curve_type
+    }
     fn blend_scale(&self) -> &f32 {
         &self.blend_scale
     }
+    fn blend_scale_mut(&mut self) -> &mut f32 {
+        &mut self.blend_scale
+    }
     fn curve_data(&self) -> &Option<Arc<Mutex<dyn super::timeline::CurveDataTrait>>> {
         &self.curve_data
+    }
+    fn curve_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::timeline::CurveDataTrait>>> {
+        &mut self.curve_data
     }
 }
 
@@ -1148,9 +1433,6 @@ impl super::timeline::TimelineKeyframeDataTrait for ANTBlendKeyframe {
 }
 
 impl super::core::DataContainerTrait for ANTBlendKeyframe {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTBLENDKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1206,6 +1488,15 @@ impl TypeObject for ANTBlendKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1235,43 +1526,79 @@ pub struct ANTClipKeyframe {
 
 pub trait ANTClipKeyframeTrait: super::timeline::TimelineKeyframeDataTrait {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn controller(&self) -> &super::ant::AntRef;
+    fn controller_mut(&mut self) -> &mut super::ant::AntRef;
     fn clip_start_trim(&self) -> &f32;
+    fn clip_start_trim_mut(&mut self) -> &mut f32;
     fn clip_end_trim(&self) -> &f32;
+    fn clip_end_trim_mut(&mut self) -> &mut f32;
     fn clip_cycle_start_offset(&self) -> &f32;
+    fn clip_cycle_start_offset_mut(&mut self) -> &mut f32;
     fn clip_time_scale(&self) -> &f32;
+    fn clip_time_scale_mut(&mut self) -> &mut f32;
     fn clip_start_rule(&self) -> &super::gameplay_sim::ANTClipStartRule;
+    fn clip_start_rule_mut(&mut self) -> &mut super::gameplay_sim::ANTClipStartRule;
     fn clip_end_rule(&self) -> &super::gameplay_sim::ANTClipEndRule;
+    fn clip_end_rule_mut(&mut self) -> &mut super::gameplay_sim::ANTClipEndRule;
 }
 
 impl ANTClipKeyframeTrait for ANTClipKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
     fn controller(&self) -> &super::ant::AntRef {
         &self.controller
     }
+    fn controller_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.controller
+    }
     fn clip_start_trim(&self) -> &f32 {
         &self.clip_start_trim
+    }
+    fn clip_start_trim_mut(&mut self) -> &mut f32 {
+        &mut self.clip_start_trim
     }
     fn clip_end_trim(&self) -> &f32 {
         &self.clip_end_trim
     }
+    fn clip_end_trim_mut(&mut self) -> &mut f32 {
+        &mut self.clip_end_trim
+    }
     fn clip_cycle_start_offset(&self) -> &f32 {
         &self.clip_cycle_start_offset
+    }
+    fn clip_cycle_start_offset_mut(&mut self) -> &mut f32 {
+        &mut self.clip_cycle_start_offset
     }
     fn clip_time_scale(&self) -> &f32 {
         &self.clip_time_scale
     }
+    fn clip_time_scale_mut(&mut self) -> &mut f32 {
+        &mut self.clip_time_scale
+    }
     fn clip_start_rule(&self) -> &super::gameplay_sim::ANTClipStartRule {
         &self.clip_start_rule
     }
+    fn clip_start_rule_mut(&mut self) -> &mut super::gameplay_sim::ANTClipStartRule {
+        &mut self.clip_start_rule
+    }
     fn clip_end_rule(&self) -> &super::gameplay_sim::ANTClipEndRule {
         &self.clip_end_rule
+    }
+    fn clip_end_rule_mut(&mut self) -> &mut super::gameplay_sim::ANTClipEndRule {
+        &mut self.clip_end_rule
     }
 }
 
@@ -1279,9 +1606,6 @@ impl super::timeline::TimelineKeyframeDataTrait for ANTClipKeyframe {
 }
 
 impl super::core::DataContainerTrait for ANTClipKeyframe {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTCLIPKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1361,6 +1685,15 @@ impl TypeObject for ANTClipKeyframe {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1399,6 +1732,15 @@ impl TypeObject for ANTBlendAttachment {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1443,6 +1785,15 @@ impl TypeObject for ANTBlendCurveType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1467,30 +1818,43 @@ pub struct ANTEvaluatorData {
 
 pub trait ANTEvaluatorDataTrait: super::core::DataContainerTrait {
     fn layer_tracks(&self) -> &Vec<Option<Arc<Mutex<dyn ANTLayerDataTrait>>>>;
+    fn layer_tracks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ANTLayerDataTrait>>>>;
     fn actor(&self) -> &super::ant::AntRef;
+    fn actor_mut(&mut self) -> &mut super::ant::AntRef;
     fn bone_infos(&self) -> &Vec<BoneInfo>;
+    fn bone_infos_mut(&mut self) -> &mut Vec<BoneInfo>;
     fn use_default_pose_as_base(&self) -> &bool;
+    fn use_default_pose_as_base_mut(&mut self) -> &mut bool;
 }
 
 impl ANTEvaluatorDataTrait for ANTEvaluatorData {
     fn layer_tracks(&self) -> &Vec<Option<Arc<Mutex<dyn ANTLayerDataTrait>>>> {
         &self.layer_tracks
     }
+    fn layer_tracks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ANTLayerDataTrait>>>> {
+        &mut self.layer_tracks
+    }
     fn actor(&self) -> &super::ant::AntRef {
         &self.actor
+    }
+    fn actor_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.actor
     }
     fn bone_infos(&self) -> &Vec<BoneInfo> {
         &self.bone_infos
     }
+    fn bone_infos_mut(&mut self) -> &mut Vec<BoneInfo> {
+        &mut self.bone_infos
+    }
     fn use_default_pose_as_base(&self) -> &bool {
         &self.use_default_pose_as_base
+    }
+    fn use_default_pose_as_base_mut(&mut self) -> &mut bool {
+        &mut self.use_default_pose_as_base
     }
 }
 
 impl super::core::DataContainerTrait for ANTEvaluatorData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1540,6 +1904,15 @@ impl TypeObject for ANTEvaluatorData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1562,19 +1935,31 @@ pub struct BoneInfo {
 
 pub trait BoneInfoTrait: TypeObject {
     fn bone_index(&self) -> &i32;
+    fn bone_index_mut(&mut self) -> &mut i32;
     fn bone_name_hash(&self) -> &u32;
+    fn bone_name_hash_mut(&mut self) -> &mut u32;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl BoneInfoTrait for BoneInfo {
     fn bone_index(&self) -> &i32 {
         &self.bone_index
     }
+    fn bone_index_mut(&mut self) -> &mut i32 {
+        &mut self.bone_index
+    }
     fn bone_name_hash(&self) -> &u32 {
         &self.bone_name_hash
     }
+    fn bone_name_hash_mut(&mut self) -> &mut u32 {
+        &mut self.bone_name_hash
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
 }
 
@@ -1618,6 +2003,15 @@ impl TypeObject for BoneInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1639,11 +2033,15 @@ pub struct ANTLayerData {
 
 pub trait ANTLayerDataTrait: super::timeline::TimelineTrackDataTrait {
     fn blend_type(&self) -> &super::gameplay_sim::ANTLayerBlendType;
+    fn blend_type_mut(&mut self) -> &mut super::gameplay_sim::ANTLayerBlendType;
 }
 
 impl ANTLayerDataTrait for ANTLayerData {
     fn blend_type(&self) -> &super::gameplay_sim::ANTLayerBlendType {
         &self.blend_type
+    }
+    fn blend_type_mut(&mut self) -> &mut super::gameplay_sim::ANTLayerBlendType {
+        &mut self.blend_type
     }
 }
 
@@ -1651,20 +2049,38 @@ impl super::timeline::TimelineTrackDataTrait for ANTLayerData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -1675,15 +2091,15 @@ impl super::core::DataBusPeerTrait for ANTLayerData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ANTLayerData {
 }
 
 impl super::core::DataContainerTrait for ANTLayerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1715,6 +2131,15 @@ impl TypeObject for ANTLayerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1737,15 +2162,23 @@ pub struct ANTControllerLayerData {
 
 pub trait ANTControllerLayerDataTrait: ANTLayerDataTrait {
     fn blend_mask_list(&self) -> &super::ant::AntRef;
+    fn blend_mask_list_mut(&mut self) -> &mut super::ant::AntRef;
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn ANTControllerKeyframeTrait>>>>;
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ANTControllerKeyframeTrait>>>>;
 }
 
 impl ANTControllerLayerDataTrait for ANTControllerLayerData {
     fn blend_mask_list(&self) -> &super::ant::AntRef {
         &self.blend_mask_list
     }
+    fn blend_mask_list_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.blend_mask_list
+    }
     fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn ANTControllerKeyframeTrait>>>> {
         &self.keyframes
+    }
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ANTControllerKeyframeTrait>>>> {
+        &mut self.keyframes
     }
 }
 
@@ -1753,26 +2186,47 @@ impl ANTLayerDataTrait for ANTControllerLayerData {
     fn blend_type(&self) -> &super::gameplay_sim::ANTLayerBlendType {
         self._glacier_base.blend_type()
     }
+    fn blend_type_mut(&mut self) -> &mut super::gameplay_sim::ANTLayerBlendType {
+        self._glacier_base.blend_type_mut()
+    }
 }
 
 impl super::timeline::TimelineTrackDataTrait for ANTControllerLayerData {
     fn expose_pins(&self) -> &bool {
         self._glacier_base.expose_pins()
     }
+    fn expose_pins_mut(&mut self) -> &mut bool {
+        self._glacier_base.expose_pins_mut()
+    }
     fn is_disabled(&self) -> &bool {
         self._glacier_base.is_disabled()
+    }
+    fn is_disabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_disabled_mut()
     }
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
         self._glacier_base.conditions()
     }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::timeline::TimelineTrackDataConditionsBaseTrait>>>> {
+        self._glacier_base.conditions_mut()
+    }
     fn update_pass_flags(&self) -> &u16 {
         self._glacier_base.update_pass_flags()
+    }
+    fn update_pass_flags_mut(&mut self) -> &mut u16 {
+        self._glacier_base.update_pass_flags_mut()
     }
     fn bucket_pre_children_order(&self) -> &u16 {
         self._glacier_base.bucket_pre_children_order()
     }
+    fn bucket_pre_children_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_pre_children_order_mut()
+    }
     fn bucket_order(&self) -> &u16 {
         self._glacier_base.bucket_order()
+    }
+    fn bucket_order_mut(&mut self) -> &mut u16 {
+        self._glacier_base.bucket_order_mut()
     }
 }
 
@@ -1783,15 +2237,15 @@ impl super::core::DataBusPeerTrait for ANTControllerLayerData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ANTControllerLayerData {
 }
 
 impl super::core::DataContainerTrait for ANTControllerLayerData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTCONTROLLERLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1829,6 +2283,15 @@ impl TypeObject for ANTControllerLayerData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1861,55 +2324,103 @@ pub struct ANTControllerKeyframe {
 
 pub trait ANTControllerKeyframeTrait: super::timeline::TimelineKeyframeDataTrait {
     fn time(&self) -> &f32;
+    fn time_mut(&mut self) -> &mut f32;
     fn length(&self) -> &f32;
+    fn length_mut(&mut self) -> &mut f32;
     fn controller(&self) -> &super::ant::AntRef;
+    fn controller_mut(&mut self) -> &mut super::ant::AntRef;
     fn clip_start_trim(&self) -> &f32;
+    fn clip_start_trim_mut(&mut self) -> &mut f32;
     fn clip_end_trim(&self) -> &f32;
+    fn clip_end_trim_mut(&mut self) -> &mut f32;
     fn clip_cycle_start_offset(&self) -> &f32;
+    fn clip_cycle_start_offset_mut(&mut self) -> &mut f32;
     fn clip_time_scale(&self) -> &f32;
+    fn clip_time_scale_mut(&mut self) -> &mut f32;
     fn clip_start_rule(&self) -> &super::gameplay_sim::ANTClipStartRule;
+    fn clip_start_rule_mut(&mut self) -> &mut super::gameplay_sim::ANTClipStartRule;
     fn runtime_clip_end_rule(&self) -> &super::gameplay_sim::ANTClipEndRule;
+    fn runtime_clip_end_rule_mut(&mut self) -> &mut super::gameplay_sim::ANTClipEndRule;
     fn blend_in_time(&self) -> &f32;
+    fn blend_in_time_mut(&mut self) -> &mut f32;
     fn blend_out_time(&self) -> &f32;
+    fn blend_out_time_mut(&mut self) -> &mut f32;
     fn curve_data(&self) -> &Option<Arc<Mutex<dyn super::timeline::CurveDataTrait>>>;
+    fn curve_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::timeline::CurveDataTrait>>>;
 }
 
 impl ANTControllerKeyframeTrait for ANTControllerKeyframe {
     fn time(&self) -> &f32 {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut f32 {
+        &mut self.time
+    }
     fn length(&self) -> &f32 {
         &self.length
+    }
+    fn length_mut(&mut self) -> &mut f32 {
+        &mut self.length
     }
     fn controller(&self) -> &super::ant::AntRef {
         &self.controller
     }
+    fn controller_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.controller
+    }
     fn clip_start_trim(&self) -> &f32 {
         &self.clip_start_trim
+    }
+    fn clip_start_trim_mut(&mut self) -> &mut f32 {
+        &mut self.clip_start_trim
     }
     fn clip_end_trim(&self) -> &f32 {
         &self.clip_end_trim
     }
+    fn clip_end_trim_mut(&mut self) -> &mut f32 {
+        &mut self.clip_end_trim
+    }
     fn clip_cycle_start_offset(&self) -> &f32 {
         &self.clip_cycle_start_offset
+    }
+    fn clip_cycle_start_offset_mut(&mut self) -> &mut f32 {
+        &mut self.clip_cycle_start_offset
     }
     fn clip_time_scale(&self) -> &f32 {
         &self.clip_time_scale
     }
+    fn clip_time_scale_mut(&mut self) -> &mut f32 {
+        &mut self.clip_time_scale
+    }
     fn clip_start_rule(&self) -> &super::gameplay_sim::ANTClipStartRule {
         &self.clip_start_rule
+    }
+    fn clip_start_rule_mut(&mut self) -> &mut super::gameplay_sim::ANTClipStartRule {
+        &mut self.clip_start_rule
     }
     fn runtime_clip_end_rule(&self) -> &super::gameplay_sim::ANTClipEndRule {
         &self.runtime_clip_end_rule
     }
+    fn runtime_clip_end_rule_mut(&mut self) -> &mut super::gameplay_sim::ANTClipEndRule {
+        &mut self.runtime_clip_end_rule
+    }
     fn blend_in_time(&self) -> &f32 {
         &self.blend_in_time
+    }
+    fn blend_in_time_mut(&mut self) -> &mut f32 {
+        &mut self.blend_in_time
     }
     fn blend_out_time(&self) -> &f32 {
         &self.blend_out_time
     }
+    fn blend_out_time_mut(&mut self) -> &mut f32 {
+        &mut self.blend_out_time
+    }
     fn curve_data(&self) -> &Option<Arc<Mutex<dyn super::timeline::CurveDataTrait>>> {
         &self.curve_data
+    }
+    fn curve_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::timeline::CurveDataTrait>>> {
+        &mut self.curve_data
     }
 }
 
@@ -1917,9 +2428,6 @@ impl super::timeline::TimelineKeyframeDataTrait for ANTControllerKeyframe {
 }
 
 impl super::core::DataContainerTrait for ANTControllerKeyframe {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANTCONTROLLERKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2016,6 +2524,15 @@ impl TypeObject for ANTControllerKeyframe {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

@@ -51,6 +51,15 @@ impl TypeObject for StreamingVideoDynamicState {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -73,19 +82,31 @@ pub struct StreamingVideoStaticState {
 
 pub trait StreamingVideoStaticStateTrait: TypeObject {
     fn url(&self) -> &String;
+    fn url_mut(&mut self) -> &mut String;
     fn texture(&self) -> &super::render_base::TextureResourceHandle;
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle;
     fn field_flag_changed0(&self) -> &u8;
+    fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl StreamingVideoStaticStateTrait for StreamingVideoStaticState {
     fn url(&self) -> &String {
         &self.url
     }
+    fn url_mut(&mut self) -> &mut String {
+        &mut self.url
+    }
     fn texture(&self) -> &super::render_base::TextureResourceHandle {
         &self.texture
     }
+    fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle {
+        &mut self.texture
+    }
     fn field_flag_changed0(&self) -> &u8 {
         &self.field_flag_changed0
+    }
+    fn field_flag_changed0_mut(&mut self) -> &mut u8 {
+        &mut self.field_flag_changed0
     }
 }
 
@@ -128,6 +149,15 @@ impl TypeObject for StreamingVideoStaticState {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -173,6 +203,15 @@ impl TypeObject for StreamingVideoHandle {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -226,6 +265,15 @@ impl TypeObject for StreamingVideoPlayerEntity {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 

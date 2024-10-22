@@ -119,6 +119,15 @@ impl TypeObject for Dx12PcRvmDatabase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -172,6 +181,15 @@ impl TypeObject for Dx12PcRvmBackend {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -222,6 +240,15 @@ impl TypeObject for Dx12PcRvmBackendFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -249,35 +276,63 @@ pub struct RvmDx12PcSettings {
 
 pub trait RvmDx12PcSettingsTrait: super::rvm_common::RvmCommonSettingsTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn enable_bindless(&self) -> &bool;
+    fn enable_bindless_mut(&mut self) -> &mut bool;
     fn sampler_descriptor_heap_size(&self) -> &i32;
+    fn sampler_descriptor_heap_size_mut(&mut self) -> &mut i32;
     fn draw_descriptor_heap_debug(&self) -> &bool;
+    fn draw_descriptor_heap_debug_mut(&mut self) -> &mut bool;
     fn draw_video_memory_pool_debug(&self) -> &bool;
+    fn draw_video_memory_pool_debug_mut(&mut self) -> &mut bool;
     fn draw_slab_allocator_stats(&self) -> &bool;
+    fn draw_slab_allocator_stats_mut(&mut self) -> &mut bool;
     fn track_slab_allocations(&self) -> &bool;
+    fn track_slab_allocations_mut(&mut self) -> &mut bool;
 }
 
 impl RvmDx12PcSettingsTrait for RvmDx12PcSettings {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn enable_bindless(&self) -> &bool {
         &self.enable_bindless
+    }
+    fn enable_bindless_mut(&mut self) -> &mut bool {
+        &mut self.enable_bindless
     }
     fn sampler_descriptor_heap_size(&self) -> &i32 {
         &self.sampler_descriptor_heap_size
     }
+    fn sampler_descriptor_heap_size_mut(&mut self) -> &mut i32 {
+        &mut self.sampler_descriptor_heap_size
+    }
     fn draw_descriptor_heap_debug(&self) -> &bool {
         &self.draw_descriptor_heap_debug
+    }
+    fn draw_descriptor_heap_debug_mut(&mut self) -> &mut bool {
+        &mut self.draw_descriptor_heap_debug
     }
     fn draw_video_memory_pool_debug(&self) -> &bool {
         &self.draw_video_memory_pool_debug
     }
+    fn draw_video_memory_pool_debug_mut(&mut self) -> &mut bool {
+        &mut self.draw_video_memory_pool_debug
+    }
     fn draw_slab_allocator_stats(&self) -> &bool {
         &self.draw_slab_allocator_stats
     }
+    fn draw_slab_allocator_stats_mut(&mut self) -> &mut bool {
+        &mut self.draw_slab_allocator_stats
+    }
     fn track_slab_allocations(&self) -> &bool {
         &self.track_slab_allocations
+    }
+    fn track_slab_allocations_mut(&mut self) -> &mut bool {
+        &mut self.track_slab_allocations
     }
 }
 
@@ -285,12 +340,12 @@ impl super::rvm_common::RvmCommonSettingsTrait for RvmDx12PcSettings {
     fn on_demand_building_enable(&self) -> &bool {
         self._glacier_base.on_demand_building_enable()
     }
+    fn on_demand_building_enable_mut(&mut self) -> &mut bool {
+        self._glacier_base.on_demand_building_enable_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RvmDx12PcSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RVMDX12PCSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -358,6 +413,15 @@ impl TypeObject for RvmDx12PcSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -407,6 +471,15 @@ impl TypeObject for Dx12PcComputePsoInstructionFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -458,6 +531,15 @@ impl TypeObject for Dx12PcCsSkinningDispatchInstructionFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -507,6 +589,15 @@ impl TypeObject for Dx12PcCsSkinningBufferInstructionFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -558,6 +649,15 @@ impl TypeObject for Dx12PcCsSkinningParamsInstructionFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -607,6 +707,15 @@ impl TypeObject for Dx12PcVertexBufferInstructionFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -658,6 +767,15 @@ impl TypeObject for Dx12PcVertexBufferViewInstructionFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -708,6 +826,15 @@ impl TypeObject for Dx12PcRvmViewStateInstructionFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -722,13 +849,13 @@ pub static DX12PCRVMVIEWSTATEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeIn
 
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcComputePsoInstructionData {
+pub struct RvmSerializedDbnsDx12PcComputePsoInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcComputePsoInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcComputePsoInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcComputePsoInstructionDataTrait for RvmSerializedDb_ns_Dx12PcComputePsoInstructionData {
+impl RvmSerializedDbnsDx12PcComputePsoInstructionDataTrait for RvmSerializedDbnsDx12PcComputePsoInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCCOMPUTEPSOINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -737,7 +864,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCOMPUTEPSOINSTRUCTIONDATA_TYPE_INFO: &'stati
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcComputePsoInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcComputePsoInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -746,23 +873,32 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCOMPUTEPSOINSTRUCTIONDATA_TYPE_INFO: &'stati
     alignment: 2,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcComputePsoInstructionData {
+impl TypeObject for RvmSerializedDbnsDx12PcComputePsoInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCCOMPUTEPSOINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcCsSkinningDispatchInstructionData {
+pub struct RvmSerializedDbnsDx12PcCsSkinningDispatchInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcCsSkinningDispatchInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcCsSkinningDispatchInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcCsSkinningDispatchInstructionDataTrait for RvmSerializedDb_ns_Dx12PcCsSkinningDispatchInstructionData {
+impl RvmSerializedDbnsDx12PcCsSkinningDispatchInstructionDataTrait for RvmSerializedDbnsDx12PcCsSkinningDispatchInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGDISPATCHINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -771,7 +907,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGDISPATCHINSTRUCTIONDATA_TYPE_INFO:
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcCsSkinningDispatchInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcCsSkinningDispatchInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -780,23 +916,32 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGDISPATCHINSTRUCTIONDATA_TYPE_INFO:
     alignment: 2,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcCsSkinningDispatchInstructionData {
+impl TypeObject for RvmSerializedDbnsDx12PcCsSkinningDispatchInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGDISPATCHINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcCsSkinningBufferInstructionData {
+pub struct RvmSerializedDbnsDx12PcCsSkinningBufferInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcCsSkinningBufferInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcCsSkinningBufferInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcCsSkinningBufferInstructionDataTrait for RvmSerializedDb_ns_Dx12PcCsSkinningBufferInstructionData {
+impl RvmSerializedDbnsDx12PcCsSkinningBufferInstructionDataTrait for RvmSerializedDbnsDx12PcCsSkinningBufferInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGBUFFERINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -805,7 +950,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGBUFFERINSTRUCTIONDATA_TYPE_INFO: &
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcCsSkinningBufferInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcCsSkinningBufferInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -814,23 +959,32 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGBUFFERINSTRUCTIONDATA_TYPE_INFO: &
     alignment: 2,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcCsSkinningBufferInstructionData {
+impl TypeObject for RvmSerializedDbnsDx12PcCsSkinningBufferInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGBUFFERINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcCsSkinningParamsInstructionData {
+pub struct RvmSerializedDbnsDx12PcCsSkinningParamsInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcCsSkinningParamsInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcCsSkinningParamsInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcCsSkinningParamsInstructionDataTrait for RvmSerializedDb_ns_Dx12PcCsSkinningParamsInstructionData {
+impl RvmSerializedDbnsDx12PcCsSkinningParamsInstructionDataTrait for RvmSerializedDbnsDx12PcCsSkinningParamsInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGPARAMSINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -839,7 +993,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGPARAMSINSTRUCTIONDATA_TYPE_INFO: &
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcCsSkinningParamsInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcCsSkinningParamsInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -848,23 +1002,32 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGPARAMSINSTRUCTIONDATA_TYPE_INFO: &
     alignment: 2,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcCsSkinningParamsInstructionData {
+impl TypeObject for RvmSerializedDbnsDx12PcCsSkinningParamsInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGPARAMSINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcVertexBufferInstructionData {
+pub struct RvmSerializedDbnsDx12PcVertexBufferInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcVertexBufferInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcVertexBufferInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcVertexBufferInstructionDataTrait for RvmSerializedDb_ns_Dx12PcVertexBufferInstructionData {
+impl RvmSerializedDbnsDx12PcVertexBufferInstructionDataTrait for RvmSerializedDbnsDx12PcVertexBufferInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCVERTEXBUFFERINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -873,7 +1036,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCVERTEXBUFFERINSTRUCTIONDATA_TYPE_INFO: &'sta
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcVertexBufferInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcVertexBufferInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -882,12 +1045,21 @@ pub static RVMSERIALIZEDDB_NS_DX12PCVERTEXBUFFERINSTRUCTIONDATA_TYPE_INFO: &'sta
     alignment: 2,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcVertexBufferInstructionData {
+impl TypeObject for RvmSerializedDbnsDx12PcVertexBufferInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCVERTEXBUFFERINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -915,6 +1087,15 @@ impl TypeObject for Dx12PcCommandListFragmentSlot {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -950,12 +1131,12 @@ impl super::core::AssetTrait for Dx12PcRvmBackendConfig {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for Dx12PcRvmBackendConfig {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DX12PCRVMBACKENDCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -981,6 +1162,15 @@ impl TypeObject for Dx12PcRvmBackendConfig {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -995,13 +1185,13 @@ pub static DX12PCRVMBACKENDCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcSamplerPointer {
+pub struct RvmSerializedDbnsDx12PcSamplerPointer {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcSamplerPointerTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcSamplerPointerTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcSamplerPointerTrait for RvmSerializedDb_ns_Dx12PcSamplerPointer {
+impl RvmSerializedDbnsDx12PcSamplerPointerTrait for RvmSerializedDbnsDx12PcSamplerPointer {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLERPOINTER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1010,7 +1200,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLERPOINTER_TYPE_INFO: &'static TypeInfo 
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcSamplerPointer as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcSamplerPointer as Default>::default())),
         },
         fields: &[
         ],
@@ -1019,23 +1209,32 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLERPOINTER_TYPE_INFO: &'static TypeInfo 
     alignment: 8,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcSamplerPointer {
+impl TypeObject for RvmSerializedDbnsDx12PcSamplerPointer {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCSAMPLERPOINTER_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcSamplerTableWriterInstructionData {
+pub struct RvmSerializedDbnsDx12PcSamplerTableWriterInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcSamplerTableWriterInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcSamplerTableWriterInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcSamplerTableWriterInstructionDataTrait for RvmSerializedDb_ns_Dx12PcSamplerTableWriterInstructionData {
+impl RvmSerializedDbnsDx12PcSamplerTableWriterInstructionDataTrait for RvmSerializedDbnsDx12PcSamplerTableWriterInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLERTABLEWRITERINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1044,7 +1243,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLERTABLEWRITERINSTRUCTIONDATA_TYPE_INFO:
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcSamplerTableWriterInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcSamplerTableWriterInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -1053,23 +1252,32 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLERTABLEWRITERINSTRUCTIONDATA_TYPE_INFO:
     alignment: 8,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcSamplerTableWriterInstructionData {
+impl TypeObject for RvmSerializedDbnsDx12PcSamplerTableWriterInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCSAMPLERTABLEWRITERINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcRvmDescriptorTableAssemblyInstructionData {
+pub struct RvmSerializedDbnsDx12PcRvmDescriptorTableAssemblyInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcRvmDescriptorTableAssemblyInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcRvmDescriptorTableAssemblyInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcRvmDescriptorTableAssemblyInstructionDataTrait for RvmSerializedDb_ns_Dx12PcRvmDescriptorTableAssemblyInstructionData {
+impl RvmSerializedDbnsDx12PcRvmDescriptorTableAssemblyInstructionDataTrait for RvmSerializedDbnsDx12PcRvmDescriptorTableAssemblyInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCRVMDESCRIPTORTABLEASSEMBLYINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1078,7 +1286,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCRVMDESCRIPTORTABLEASSEMBLYINSTRUCTIONDATA_TY
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcRvmDescriptorTableAssemblyInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcRvmDescriptorTableAssemblyInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -1087,23 +1295,32 @@ pub static RVMSERIALIZEDDB_NS_DX12PCRVMDESCRIPTORTABLEASSEMBLYINSTRUCTIONDATA_TY
     alignment: 8,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcRvmDescriptorTableAssemblyInstructionData {
+impl TypeObject for RvmSerializedDbnsDx12PcRvmDescriptorTableAssemblyInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCRVMDESCRIPTORTABLEASSEMBLYINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcShaderDispatchDrawInstructionData {
+pub struct RvmSerializedDbnsDx12PcShaderDispatchDrawInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcShaderDispatchDrawInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcShaderDispatchDrawInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcShaderDispatchDrawInstructionDataTrait for RvmSerializedDb_ns_Dx12PcShaderDispatchDrawInstructionData {
+impl RvmSerializedDbnsDx12PcShaderDispatchDrawInstructionDataTrait for RvmSerializedDbnsDx12PcShaderDispatchDrawInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCSHADERDISPATCHDRAWINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1112,7 +1329,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSHADERDISPATCHDRAWINSTRUCTIONDATA_TYPE_INFO:
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcShaderDispatchDrawInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcShaderDispatchDrawInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -1121,23 +1338,32 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSHADERDISPATCHDRAWINSTRUCTIONDATA_TYPE_INFO:
     alignment: 2,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcShaderDispatchDrawInstructionData {
+impl TypeObject for RvmSerializedDbnsDx12PcShaderDispatchDrawInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCSHADERDISPATCHDRAWINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcDispatchInstructionData {
+pub struct RvmSerializedDbnsDx12PcDispatchInstructionData {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcDispatchInstructionDataTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcDispatchInstructionDataTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcDispatchInstructionDataTrait for RvmSerializedDb_ns_Dx12PcDispatchInstructionData {
+impl RvmSerializedDbnsDx12PcDispatchInstructionDataTrait for RvmSerializedDbnsDx12PcDispatchInstructionData {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCDISPATCHINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1146,7 +1372,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCDISPATCHINSTRUCTIONDATA_TYPE_INFO: &'static 
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcDispatchInstructionData as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcDispatchInstructionData as Default>::default())),
         },
         fields: &[
         ],
@@ -1155,12 +1381,21 @@ pub static RVMSERIALIZEDDB_NS_DX12PCDISPATCHINSTRUCTIONDATA_TYPE_INFO: &'static 
     alignment: 8,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcDispatchInstructionData {
+impl TypeObject for RvmSerializedDbnsDx12PcDispatchInstructionData {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCDISPATCHINSTRUCTIONDATA_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -1200,6 +1435,15 @@ impl TypeObject for Dx12PcRvmSamplerTableWriterInstructionFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1251,6 +1495,15 @@ impl TypeObject for Dx12PcRvmShaderTableRootDescriptorTableAssemblyInstructionFa
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1300,6 +1553,15 @@ impl TypeObject for Dx12PcRvmComputeRootDescriptorTableAssemblyInstructionFactor
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1351,6 +1613,15 @@ impl TypeObject for Dx12PcRvmGraphicsRootDescriptorTableAssemblyInstructionFacto
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1400,6 +1671,15 @@ impl TypeObject for Dx12PcRvmInstanceTableAssemblyInstructionFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1451,6 +1731,15 @@ impl TypeObject for Dx12PcRvmDescriptorTableAssemblyInstructionFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1500,6 +1789,15 @@ impl TypeObject for Dx12PcRvmTableAssemblyInstructionFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1551,6 +1849,15 @@ impl TypeObject for Dx12PcRvmLegacyDrawStateBuilderInstructionFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1600,6 +1907,15 @@ impl TypeObject for Dx12PcRvmShaderDispatchLegacyDrawInstructionFactory {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -1651,6 +1967,15 @@ impl TypeObject for Dx12PcRvmDispatchInstructionFactory {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1665,13 +1990,13 @@ pub static DX12PCRVMDISPATCHINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInf
 
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcPSOPreloadOp {
+pub struct RvmSerializedDbnsDx12PcPSOPreloadOp {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcPSOPreloadOpTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcPSOPreloadOpTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcPSOPreloadOpTrait for RvmSerializedDb_ns_Dx12PcPSOPreloadOp {
+impl RvmSerializedDbnsDx12PcPSOPreloadOpTrait for RvmSerializedDbnsDx12PcPSOPreloadOp {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCPSOPRELOADOP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1680,7 +2005,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCPSOPRELOADOP_TYPE_INFO: &'static TypeInfo = 
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcPSOPreloadOp as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcPSOPreloadOp as Default>::default())),
         },
         fields: &[
         ],
@@ -1689,23 +2014,32 @@ pub static RVMSERIALIZEDDB_NS_DX12PCPSOPRELOADOP_TYPE_INFO: &'static TypeInfo = 
     alignment: 8,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcPSOPreloadOp {
+impl TypeObject for RvmSerializedDbnsDx12PcPSOPreloadOp {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCPSOPRELOADOP_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcSampler {
+pub struct RvmSerializedDbnsDx12PcSampler {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcSamplerTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcSamplerTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcSamplerTrait for RvmSerializedDb_ns_Dx12PcSampler {
+impl RvmSerializedDbnsDx12PcSamplerTrait for RvmSerializedDbnsDx12PcSampler {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1714,7 +2048,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLER_TYPE_INFO: &'static TypeInfo = &Type
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcSampler as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcSampler as Default>::default())),
         },
         fields: &[
         ],
@@ -1723,23 +2057,32 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLER_TYPE_INFO: &'static TypeInfo = &Type
     alignment: 16,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcSampler {
+impl TypeObject for RvmSerializedDbnsDx12PcSampler {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCSAMPLER_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct RvmSerializedDb_ns_Dx12PcRootSignature {
+pub struct RvmSerializedDbnsDx12PcRootSignature {
 }
 
-pub trait RvmSerializedDb_ns_Dx12PcRootSignatureTrait: TypeObject {
+pub trait RvmSerializedDbnsDx12PcRootSignatureTrait: TypeObject {
 }
 
-impl RvmSerializedDb_ns_Dx12PcRootSignatureTrait for RvmSerializedDb_ns_Dx12PcRootSignature {
+impl RvmSerializedDbnsDx12PcRootSignatureTrait for RvmSerializedDbnsDx12PcRootSignature {
 }
 
 pub static RVMSERIALIZEDDB_NS_DX12PCROOTSIGNATURE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1748,7 +2091,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCROOTSIGNATURE_TYPE_INFO: &'static TypeInfo =
     module: "RvmDx12Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
-            create: || Arc::new(Mutex::new(<RvmSerializedDb_ns_Dx12PcRootSignature as Default>::default())),
+            create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx12PcRootSignature as Default>::default())),
         },
         fields: &[
         ],
@@ -1757,12 +2100,21 @@ pub static RVMSERIALIZEDDB_NS_DX12PCROOTSIGNATURE_TYPE_INFO: &'static TypeInfo =
     alignment: 8,
 };
 
-impl TypeObject for RvmSerializedDb_ns_Dx12PcRootSignature {
+impl TypeObject for RvmSerializedDbnsDx12PcRootSignature {
     fn type_info(&self) -> &'static TypeInfo {
         RVMSERIALIZEDDB_NS_DX12PCROOTSIGNATURE_TYPE_INFO
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 

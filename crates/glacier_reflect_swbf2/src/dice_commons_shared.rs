@@ -429,6 +429,15 @@ impl TypeObject for BlueprintProxyEntityBase {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -511,35 +520,63 @@ pub struct ValueMatchEntityData {
 
 pub trait ValueMatchEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn debug_text_color(&self) -> &super::core::Vec3;
+    fn debug_text_color_mut(&mut self) -> &mut super::core::Vec3;
     fn use_external_time(&self) -> &bool;
+    fn use_external_time_mut(&mut self) -> &mut bool;
     fn time_scale(&self) -> &f32;
+    fn time_scale_mut(&mut self) -> &mut f32;
     fn time_offset(&self) -> &f32;
+    fn time_offset_mut(&mut self) -> &mut f32;
     fn input_values_names(&self) -> &Vec<String>;
+    fn input_values_names_mut(&mut self) -> &mut Vec<String>;
     fn match_and_trigger_array(&self) -> &Vec<MatchAndTriggerItem>;
+    fn match_and_trigger_array_mut(&mut self) -> &mut Vec<MatchAndTriggerItem>;
 }
 
 impl ValueMatchEntityDataTrait for ValueMatchEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn debug_text_color(&self) -> &super::core::Vec3 {
         &self.debug_text_color
+    }
+    fn debug_text_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.debug_text_color
     }
     fn use_external_time(&self) -> &bool {
         &self.use_external_time
     }
+    fn use_external_time_mut(&mut self) -> &mut bool {
+        &mut self.use_external_time
+    }
     fn time_scale(&self) -> &f32 {
         &self.time_scale
+    }
+    fn time_scale_mut(&mut self) -> &mut f32 {
+        &mut self.time_scale
     }
     fn time_offset(&self) -> &f32 {
         &self.time_offset
     }
+    fn time_offset_mut(&mut self) -> &mut f32 {
+        &mut self.time_offset
+    }
     fn input_values_names(&self) -> &Vec<String> {
         &self.input_values_names
     }
+    fn input_values_names_mut(&mut self) -> &mut Vec<String> {
+        &mut self.input_values_names
+    }
     fn match_and_trigger_array(&self) -> &Vec<MatchAndTriggerItem> {
         &self.match_and_trigger_array
+    }
+    fn match_and_trigger_array_mut(&mut self) -> &mut Vec<MatchAndTriggerItem> {
+        &mut self.match_and_trigger_array
     }
 }
 
@@ -553,15 +590,15 @@ impl super::core::DataBusPeerTrait for ValueMatchEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ValueMatchEntityData {
 }
 
 impl super::core::DataContainerTrait for ValueMatchEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VALUEMATCHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -629,6 +666,15 @@ impl TypeObject for ValueMatchEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -651,19 +697,31 @@ pub struct MatchAndTriggerItem {
 
 pub trait MatchAndTriggerItemTrait: TypeObject {
     fn input_values_to_match(&self) -> &Vec<InputValueMatch>;
+    fn input_values_to_match_mut(&mut self) -> &mut Vec<InputValueMatch>;
     fn timed_event_triggers(&self) -> &Vec<TimeEventTrigger>;
+    fn timed_event_triggers_mut(&mut self) -> &mut Vec<TimeEventTrigger>;
     fn stop_at(&self) -> &f32;
+    fn stop_at_mut(&mut self) -> &mut f32;
 }
 
 impl MatchAndTriggerItemTrait for MatchAndTriggerItem {
     fn input_values_to_match(&self) -> &Vec<InputValueMatch> {
         &self.input_values_to_match
     }
+    fn input_values_to_match_mut(&mut self) -> &mut Vec<InputValueMatch> {
+        &mut self.input_values_to_match
+    }
     fn timed_event_triggers(&self) -> &Vec<TimeEventTrigger> {
         &self.timed_event_triggers
     }
+    fn timed_event_triggers_mut(&mut self) -> &mut Vec<TimeEventTrigger> {
+        &mut self.timed_event_triggers
+    }
     fn stop_at(&self) -> &f32 {
         &self.stop_at
+    }
+    fn stop_at_mut(&mut self) -> &mut f32 {
+        &mut self.stop_at
     }
 }
 
@@ -707,6 +765,15 @@ impl TypeObject for MatchAndTriggerItem {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -728,15 +795,23 @@ pub struct TimeEventTrigger {
 
 pub trait TimeEventTriggerTrait: TypeObject {
     fn output_event_hash(&self) -> &i32;
+    fn output_event_hash_mut(&mut self) -> &mut i32;
     fn time_to_trigger_event(&self) -> &f32;
+    fn time_to_trigger_event_mut(&mut self) -> &mut f32;
 }
 
 impl TimeEventTriggerTrait for TimeEventTrigger {
     fn output_event_hash(&self) -> &i32 {
         &self.output_event_hash
     }
+    fn output_event_hash_mut(&mut self) -> &mut i32 {
+        &mut self.output_event_hash
+    }
     fn time_to_trigger_event(&self) -> &f32 {
         &self.time_to_trigger_event
+    }
+    fn time_to_trigger_event_mut(&mut self) -> &mut f32 {
+        &mut self.time_to_trigger_event
     }
 }
 
@@ -774,6 +849,15 @@ impl TypeObject for TimeEventTrigger {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -795,15 +879,23 @@ pub struct InputValueMatch {
 
 pub trait InputValueMatchTrait: TypeObject {
     fn input_values_names_index(&self) -> &i32;
+    fn input_values_names_index_mut(&mut self) -> &mut i32;
     fn value_to_match(&self) -> &i32;
+    fn value_to_match_mut(&mut self) -> &mut i32;
 }
 
 impl InputValueMatchTrait for InputValueMatch {
     fn input_values_names_index(&self) -> &i32 {
         &self.input_values_names_index
     }
+    fn input_values_names_index_mut(&mut self) -> &mut i32 {
+        &mut self.input_values_names_index
+    }
     fn value_to_match(&self) -> &i32 {
         &self.value_to_match
+    }
+    fn value_to_match_mut(&mut self) -> &mut i32 {
+        &mut self.value_to_match
     }
 }
 
@@ -841,6 +933,15 @@ impl TypeObject for InputValueMatch {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -866,27 +967,47 @@ pub struct SimpleRotationEntityData {
 
 pub trait SimpleRotationEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn auto_start(&self) -> &bool;
+    fn auto_start_mut(&mut self) -> &mut bool;
     fn verify_entity_and_component_links(&self) -> &bool;
+    fn verify_entity_and_component_links_mut(&mut self) -> &mut bool;
     fn transform_modifiers(&self) -> &Vec<Option<Arc<Mutex<dyn TransformModifierDataTrait>>>>;
+    fn transform_modifiers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformModifierDataTrait>>>>;
     fn rotation_speed_multiplier(&self) -> &f32;
+    fn rotation_speed_multiplier_mut(&mut self) -> &mut f32;
 }
 
 impl SimpleRotationEntityDataTrait for SimpleRotationEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn auto_start(&self) -> &bool {
         &self.auto_start
+    }
+    fn auto_start_mut(&mut self) -> &mut bool {
+        &mut self.auto_start
     }
     fn verify_entity_and_component_links(&self) -> &bool {
         &self.verify_entity_and_component_links
     }
+    fn verify_entity_and_component_links_mut(&mut self) -> &mut bool {
+        &mut self.verify_entity_and_component_links
+    }
     fn transform_modifiers(&self) -> &Vec<Option<Arc<Mutex<dyn TransformModifierDataTrait>>>> {
         &self.transform_modifiers
     }
+    fn transform_modifiers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformModifierDataTrait>>>> {
+        &mut self.transform_modifiers
+    }
     fn rotation_speed_multiplier(&self) -> &f32 {
         &self.rotation_speed_multiplier
+    }
+    fn rotation_speed_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.rotation_speed_multiplier
     }
 }
 
@@ -900,15 +1021,15 @@ impl super::core::DataBusPeerTrait for SimpleRotationEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SimpleRotationEntityData {
 }
 
 impl super::core::DataContainerTrait for SimpleRotationEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SIMPLEROTATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -964,6 +1085,15 @@ impl TypeObject for SimpleRotationEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -989,27 +1119,47 @@ pub struct PingPongRotationTransformModifierData {
 
 pub trait PingPongRotationTransformModifierDataTrait: TransformModifierDataTrait {
     fn min_angle_in_radians(&self) -> &f32;
+    fn min_angle_in_radians_mut(&mut self) -> &mut f32;
     fn max_angle_in_radians(&self) -> &f32;
+    fn max_angle_in_radians_mut(&mut self) -> &mut f32;
     fn min_angle_in_degrees(&self) -> &f32;
+    fn min_angle_in_degrees_mut(&mut self) -> &mut f32;
     fn max_angle_in_degrees(&self) -> &f32;
+    fn max_angle_in_degrees_mut(&mut self) -> &mut f32;
     fn frequency(&self) -> &f32;
+    fn frequency_mut(&mut self) -> &mut f32;
 }
 
 impl PingPongRotationTransformModifierDataTrait for PingPongRotationTransformModifierData {
     fn min_angle_in_radians(&self) -> &f32 {
         &self.min_angle_in_radians
     }
+    fn min_angle_in_radians_mut(&mut self) -> &mut f32 {
+        &mut self.min_angle_in_radians
+    }
     fn max_angle_in_radians(&self) -> &f32 {
         &self.max_angle_in_radians
+    }
+    fn max_angle_in_radians_mut(&mut self) -> &mut f32 {
+        &mut self.max_angle_in_radians
     }
     fn min_angle_in_degrees(&self) -> &f32 {
         &self.min_angle_in_degrees
     }
+    fn min_angle_in_degrees_mut(&mut self) -> &mut f32 {
+        &mut self.min_angle_in_degrees
+    }
     fn max_angle_in_degrees(&self) -> &f32 {
         &self.max_angle_in_degrees
     }
+    fn max_angle_in_degrees_mut(&mut self) -> &mut f32 {
+        &mut self.max_angle_in_degrees
+    }
     fn frequency(&self) -> &f32 {
         &self.frequency
+    }
+    fn frequency_mut(&mut self) -> &mut f32 {
+        &mut self.frequency
     }
 }
 
@@ -1017,18 +1167,24 @@ impl TransformModifierDataTrait for PingPongRotationTransformModifierData {
     fn random_timing_to_apply(&self) -> &f32 {
         self._glacier_base.random_timing_to_apply()
     }
+    fn random_timing_to_apply_mut(&mut self) -> &mut f32 {
+        self._glacier_base.random_timing_to_apply_mut()
+    }
     fn rotation_axis(&self) -> &super::gameplay_sim::RotationAxis {
         self._glacier_base.rotation_axis()
+    }
+    fn rotation_axis_mut(&mut self) -> &mut super::gameplay_sim::RotationAxis {
+        self._glacier_base.rotation_axis_mut()
     }
     fn rotation_axis_vec(&self) -> &super::core::Vec3 {
         self._glacier_base.rotation_axis_vec()
     }
+    fn rotation_axis_vec_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.rotation_axis_vec_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for PingPongRotationTransformModifierData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PINGPONGROTATIONTRANSFORMMODIFIERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1084,6 +1240,15 @@ impl TypeObject for PingPongRotationTransformModifierData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1106,15 +1271,23 @@ pub struct RotationTransformModifierData {
 
 pub trait RotationTransformModifierDataTrait: TransformModifierDataTrait {
     fn radians_per_second(&self) -> &f32;
+    fn radians_per_second_mut(&mut self) -> &mut f32;
     fn degrees_per_second(&self) -> &f32;
+    fn degrees_per_second_mut(&mut self) -> &mut f32;
 }
 
 impl RotationTransformModifierDataTrait for RotationTransformModifierData {
     fn radians_per_second(&self) -> &f32 {
         &self.radians_per_second
     }
+    fn radians_per_second_mut(&mut self) -> &mut f32 {
+        &mut self.radians_per_second
+    }
     fn degrees_per_second(&self) -> &f32 {
         &self.degrees_per_second
+    }
+    fn degrees_per_second_mut(&mut self) -> &mut f32 {
+        &mut self.degrees_per_second
     }
 }
 
@@ -1122,18 +1295,24 @@ impl TransformModifierDataTrait for RotationTransformModifierData {
     fn random_timing_to_apply(&self) -> &f32 {
         self._glacier_base.random_timing_to_apply()
     }
+    fn random_timing_to_apply_mut(&mut self) -> &mut f32 {
+        self._glacier_base.random_timing_to_apply_mut()
+    }
     fn rotation_axis(&self) -> &super::gameplay_sim::RotationAxis {
         self._glacier_base.rotation_axis()
+    }
+    fn rotation_axis_mut(&mut self) -> &mut super::gameplay_sim::RotationAxis {
+        self._glacier_base.rotation_axis_mut()
     }
     fn rotation_axis_vec(&self) -> &super::core::Vec3 {
         self._glacier_base.rotation_axis_vec()
     }
+    fn rotation_axis_vec_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.rotation_axis_vec_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for RotationTransformModifierData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ROTATIONTRANSFORMMODIFIERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1171,6 +1350,15 @@ impl TypeObject for RotationTransformModifierData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1194,26 +1382,35 @@ pub struct TransformModifierData {
 
 pub trait TransformModifierDataTrait: super::core::DataContainerTrait {
     fn random_timing_to_apply(&self) -> &f32;
+    fn random_timing_to_apply_mut(&mut self) -> &mut f32;
     fn rotation_axis(&self) -> &super::gameplay_sim::RotationAxis;
+    fn rotation_axis_mut(&mut self) -> &mut super::gameplay_sim::RotationAxis;
     fn rotation_axis_vec(&self) -> &super::core::Vec3;
+    fn rotation_axis_vec_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl TransformModifierDataTrait for TransformModifierData {
     fn random_timing_to_apply(&self) -> &f32 {
         &self.random_timing_to_apply
     }
+    fn random_timing_to_apply_mut(&mut self) -> &mut f32 {
+        &mut self.random_timing_to_apply
+    }
     fn rotation_axis(&self) -> &super::gameplay_sim::RotationAxis {
         &self.rotation_axis
+    }
+    fn rotation_axis_mut(&mut self) -> &mut super::gameplay_sim::RotationAxis {
+        &mut self.rotation_axis
     }
     fn rotation_axis_vec(&self) -> &super::core::Vec3 {
         &self.rotation_axis_vec
     }
+    fn rotation_axis_vec_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.rotation_axis_vec
+    }
 }
 
 impl super::core::DataContainerTrait for TransformModifierData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static TRANSFORMMODIFIERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1257,6 +1454,15 @@ impl TypeObject for TransformModifierData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1296,6 +1502,15 @@ impl TypeObject for TransformModifierType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -1319,19 +1534,31 @@ pub struct ShadowplayHighlightEntityData {
 
 pub trait ShadowplayHighlightEntityDataTrait: super::entity::EntityDataTrait {
     fn award_name_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
+    fn award_name_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
     fn start_delta_time(&self) -> &i32;
+    fn start_delta_time_mut(&mut self) -> &mut i32;
     fn end_delta_time(&self) -> &i32;
+    fn end_delta_time_mut(&mut self) -> &mut i32;
 }
 
 impl ShadowplayHighlightEntityDataTrait for ShadowplayHighlightEntityData {
     fn award_name_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
         &self.award_name_string_id
     }
+    fn award_name_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
+        &mut self.award_name_string_id
+    }
     fn start_delta_time(&self) -> &i32 {
         &self.start_delta_time
     }
+    fn start_delta_time_mut(&mut self) -> &mut i32 {
+        &mut self.start_delta_time
+    }
     fn end_delta_time(&self) -> &i32 {
         &self.end_delta_time
+    }
+    fn end_delta_time_mut(&mut self) -> &mut i32 {
+        &mut self.end_delta_time
     }
 }
 
@@ -1345,15 +1572,15 @@ impl super::core::DataBusPeerTrait for ShadowplayHighlightEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ShadowplayHighlightEntityData {
 }
 
 impl super::core::DataContainerTrait for ShadowplayHighlightEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADOWPLAYHIGHLIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1397,6 +1624,15 @@ impl TypeObject for ShadowplayHighlightEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1419,15 +1655,23 @@ pub struct ShadowplaySettings {
 
 pub trait ShadowplaySettingsTrait: super::core::SystemSettingsTrait {
     fn enable(&self) -> &bool;
+    fn enable_mut(&mut self) -> &mut bool;
     fn display_summary(&self) -> &bool;
+    fn display_summary_mut(&mut self) -> &mut bool;
 }
 
 impl ShadowplaySettingsTrait for ShadowplaySettings {
     fn enable(&self) -> &bool {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut bool {
+        &mut self.enable
+    }
     fn display_summary(&self) -> &bool {
         &self.display_summary
+    }
+    fn display_summary_mut(&mut self) -> &mut bool {
+        &mut self.display_summary
     }
 }
 
@@ -1435,12 +1679,12 @@ impl super::core::SystemSettingsTrait for ShadowplaySettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ShadowplaySettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SHADOWPLAYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1478,6 +1722,15 @@ impl TypeObject for ShadowplaySettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1503,27 +1756,47 @@ pub struct SelectableActionEntityData {
 
 pub trait SelectableActionEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn cooldown_time(&self) -> &f64;
+    fn cooldown_time_mut(&mut self) -> &mut f64;
     fn allowed_select_count(&self) -> &u32;
+    fn allowed_select_count_mut(&mut self) -> &mut u32;
     fn priority(&self) -> &u32;
+    fn priority_mut(&mut self) -> &mut u32;
 }
 
 impl SelectableActionEntityDataTrait for SelectableActionEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
     fn cooldown_time(&self) -> &f64 {
         &self.cooldown_time
     }
+    fn cooldown_time_mut(&mut self) -> &mut f64 {
+        &mut self.cooldown_time
+    }
     fn allowed_select_count(&self) -> &u32 {
         &self.allowed_select_count
     }
+    fn allowed_select_count_mut(&mut self) -> &mut u32 {
+        &mut self.allowed_select_count
+    }
     fn priority(&self) -> &u32 {
         &self.priority
+    }
+    fn priority_mut(&mut self) -> &mut u32 {
+        &mut self.priority
     }
 }
 
@@ -1537,15 +1810,15 @@ impl super::core::DataBusPeerTrait for SelectableActionEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SelectableActionEntityData {
 }
 
 impl super::core::DataContainerTrait for SelectableActionEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SELECTABLEACTIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1601,6 +1874,15 @@ impl TypeObject for SelectableActionEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1625,23 +1907,39 @@ pub struct RumbleEntityData {
 
 pub trait RumbleEntityDataTrait: super::entity::EntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn duration(&self) -> &f32;
+    fn duration_mut(&mut self) -> &mut f32;
     fn low(&self) -> &f32;
+    fn low_mut(&mut self) -> &mut f32;
     fn high(&self) -> &f32;
+    fn high_mut(&mut self) -> &mut f32;
 }
 
 impl RumbleEntityDataTrait for RumbleEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn duration(&self) -> &f32 {
         &self.duration
+    }
+    fn duration_mut(&mut self) -> &mut f32 {
+        &mut self.duration
     }
     fn low(&self) -> &f32 {
         &self.low
     }
+    fn low_mut(&mut self) -> &mut f32 {
+        &mut self.low
+    }
     fn high(&self) -> &f32 {
         &self.high
+    }
+    fn high_mut(&mut self) -> &mut f32 {
+        &mut self.high
     }
 }
 
@@ -1655,15 +1953,15 @@ impl super::core::DataBusPeerTrait for RumbleEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RumbleEntityData {
 }
 
 impl super::core::DataContainerTrait for RumbleEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RUMBLEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1713,6 +2011,15 @@ impl TypeObject for RumbleEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1741,39 +2048,71 @@ pub struct RaycastDirectionEntityData {
 
 pub trait RaycastDirectionEntityDataTrait: super::entity::EntityDataTrait {
     fn attach(&self) -> &Option<Arc<Mutex<dyn EntityAttachDataTrait>>>;
+    fn attach_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityAttachDataTrait>>>;
     fn continuous_update(&self) -> &bool;
+    fn continuous_update_mut(&mut self) -> &mut bool;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn ray_horizontal_angle(&self) -> &f32;
+    fn ray_horizontal_angle_mut(&mut self) -> &mut f32;
     fn ray_vertical_angle(&self) -> &f32;
+    fn ray_vertical_angle_mut(&mut self) -> &mut f32;
     fn ray_distance(&self) -> &f32;
+    fn ray_distance_mut(&mut self) -> &mut f32;
     fn lock_horizontal_rotation(&self) -> &bool;
+    fn lock_horizontal_rotation_mut(&mut self) -> &mut bool;
     fn lock_vertical_rotation(&self) -> &bool;
+    fn lock_vertical_rotation_mut(&mut self) -> &mut bool;
 }
 
 impl RaycastDirectionEntityDataTrait for RaycastDirectionEntityData {
     fn attach(&self) -> &Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
         &self.attach
     }
+    fn attach_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
+        &mut self.attach
+    }
     fn continuous_update(&self) -> &bool {
         &self.continuous_update
+    }
+    fn continuous_update_mut(&mut self) -> &mut bool {
+        &mut self.continuous_update
     }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn ray_horizontal_angle(&self) -> &f32 {
         &self.ray_horizontal_angle
+    }
+    fn ray_horizontal_angle_mut(&mut self) -> &mut f32 {
+        &mut self.ray_horizontal_angle
     }
     fn ray_vertical_angle(&self) -> &f32 {
         &self.ray_vertical_angle
     }
+    fn ray_vertical_angle_mut(&mut self) -> &mut f32 {
+        &mut self.ray_vertical_angle
+    }
     fn ray_distance(&self) -> &f32 {
         &self.ray_distance
+    }
+    fn ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.ray_distance
     }
     fn lock_horizontal_rotation(&self) -> &bool {
         &self.lock_horizontal_rotation
     }
+    fn lock_horizontal_rotation_mut(&mut self) -> &mut bool {
+        &mut self.lock_horizontal_rotation
+    }
     fn lock_vertical_rotation(&self) -> &bool {
         &self.lock_vertical_rotation
+    }
+    fn lock_vertical_rotation_mut(&mut self) -> &mut bool {
+        &mut self.lock_vertical_rotation
     }
 }
 
@@ -1787,15 +2126,15 @@ impl super::core::DataBusPeerTrait for RaycastDirectionEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RaycastDirectionEntityData {
 }
 
 impl super::core::DataContainerTrait for RaycastDirectionEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RAYCASTDIRECTIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1869,6 +2208,15 @@ impl TypeObject for RaycastDirectionEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1891,15 +2239,23 @@ pub struct RandomActionSelectorEntityData {
 
 pub trait RandomActionSelectorEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn select_actions_deterministically(&self) -> &bool;
+    fn select_actions_deterministically_mut(&mut self) -> &mut bool;
 }
 
 impl RandomActionSelectorEntityDataTrait for RandomActionSelectorEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn select_actions_deterministically(&self) -> &bool {
         &self.select_actions_deterministically
+    }
+    fn select_actions_deterministically_mut(&mut self) -> &mut bool {
+        &mut self.select_actions_deterministically
     }
 }
 
@@ -1913,15 +2269,15 @@ impl super::core::DataBusPeerTrait for RandomActionSelectorEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for RandomActionSelectorEntityData {
 }
 
 impl super::core::DataContainerTrait for RandomActionSelectorEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RANDOMACTIONSELECTORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -1959,6 +2315,15 @@ impl TypeObject for RandomActionSelectorEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -1984,27 +2349,47 @@ pub struct PropertyStatusEntityData {
 
 pub trait PropertyStatusEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn type_hash(&self) -> &i32;
+    fn type_hash_mut(&mut self) -> &mut i32;
     fn in_hash(&self) -> &i32;
+    fn in_hash_mut(&mut self) -> &mut i32;
     fn out_hash(&self) -> &i32;
+    fn out_hash_mut(&mut self) -> &mut i32;
     fn always_send_events(&self) -> &bool;
+    fn always_send_events_mut(&mut self) -> &mut bool;
 }
 
 impl PropertyStatusEntityDataTrait for PropertyStatusEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn type_hash(&self) -> &i32 {
         &self.type_hash
+    }
+    fn type_hash_mut(&mut self) -> &mut i32 {
+        &mut self.type_hash
     }
     fn in_hash(&self) -> &i32 {
         &self.in_hash
     }
+    fn in_hash_mut(&mut self) -> &mut i32 {
+        &mut self.in_hash
+    }
     fn out_hash(&self) -> &i32 {
         &self.out_hash
     }
+    fn out_hash_mut(&mut self) -> &mut i32 {
+        &mut self.out_hash
+    }
     fn always_send_events(&self) -> &bool {
         &self.always_send_events
+    }
+    fn always_send_events_mut(&mut self) -> &mut bool {
+        &mut self.always_send_events
     }
 }
 
@@ -2018,15 +2403,15 @@ impl super::core::DataBusPeerTrait for PropertyStatusEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PropertyStatusEntityData {
 }
 
 impl super::core::DataContainerTrait for PropertyStatusEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROPERTYSTATUSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2082,6 +2467,15 @@ impl TypeObject for PropertyStatusEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2110,39 +2504,71 @@ pub struct PropertySelectEntityData {
 
 pub trait PropertySelectEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn type_hash(&self) -> &i32;
+    fn type_hash_mut(&mut self) -> &mut i32;
     fn input_property_hashes(&self) -> &Vec<i32>;
+    fn input_property_hashes_mut(&mut self) -> &mut Vec<i32>;
     fn input_event_hashes(&self) -> &Vec<i32>;
+    fn input_event_hashes_mut(&mut self) -> &mut Vec<i32>;
     fn out_hash(&self) -> &i32;
+    fn out_hash_mut(&mut self) -> &mut i32;
     fn input_count(&self) -> &u32;
+    fn input_count_mut(&mut self) -> &mut u32;
     fn selected_index(&self) -> &i32;
+    fn selected_index_mut(&mut self) -> &mut i32;
     fn auto_select_on_property_changed(&self) -> &bool;
+    fn auto_select_on_property_changed_mut(&mut self) -> &mut bool;
 }
 
 impl PropertySelectEntityDataTrait for PropertySelectEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn type_hash(&self) -> &i32 {
         &self.type_hash
+    }
+    fn type_hash_mut(&mut self) -> &mut i32 {
+        &mut self.type_hash
     }
     fn input_property_hashes(&self) -> &Vec<i32> {
         &self.input_property_hashes
     }
+    fn input_property_hashes_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.input_property_hashes
+    }
     fn input_event_hashes(&self) -> &Vec<i32> {
         &self.input_event_hashes
+    }
+    fn input_event_hashes_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.input_event_hashes
     }
     fn out_hash(&self) -> &i32 {
         &self.out_hash
     }
+    fn out_hash_mut(&mut self) -> &mut i32 {
+        &mut self.out_hash
+    }
     fn input_count(&self) -> &u32 {
         &self.input_count
+    }
+    fn input_count_mut(&mut self) -> &mut u32 {
+        &mut self.input_count
     }
     fn selected_index(&self) -> &i32 {
         &self.selected_index
     }
+    fn selected_index_mut(&mut self) -> &mut i32 {
+        &mut self.selected_index
+    }
     fn auto_select_on_property_changed(&self) -> &bool {
         &self.auto_select_on_property_changed
+    }
+    fn auto_select_on_property_changed_mut(&mut self) -> &mut bool {
+        &mut self.auto_select_on_property_changed
     }
 }
 
@@ -2156,15 +2582,15 @@ impl super::core::DataBusPeerTrait for PropertySelectEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PropertySelectEntityData {
 }
 
 impl super::core::DataContainerTrait for PropertySelectEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROPERTYSELECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2238,6 +2664,15 @@ impl TypeObject for PropertySelectEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2260,15 +2695,23 @@ pub struct PrioritizedBoolEntityData {
 
 pub trait PrioritizedBoolEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn input_count(&self) -> &i32;
+    fn input_count_mut(&mut self) -> &mut i32;
 }
 
 impl PrioritizedBoolEntityDataTrait for PrioritizedBoolEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn input_count(&self) -> &i32 {
         &self.input_count
+    }
+    fn input_count_mut(&mut self) -> &mut i32 {
+        &mut self.input_count
     }
 }
 
@@ -2282,15 +2725,15 @@ impl super::core::DataBusPeerTrait for PrioritizedBoolEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for PrioritizedBoolEntityData {
 }
 
 impl super::core::DataContainerTrait for PrioritizedBoolEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PRIORITIZEDBOOLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2328,6 +2771,15 @@ impl TypeObject for PrioritizedBoolEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2353,27 +2805,47 @@ pub struct NestedConditionalPropertyEntityData {
 
 pub trait NestedConditionalPropertyEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn type_hash(&self) -> &i32;
+    fn type_hash_mut(&mut self) -> &mut i32;
     fn evaluate_on_event(&self) -> &bool;
+    fn evaluate_on_event_mut(&mut self) -> &mut bool;
     fn condition_hashes(&self) -> &Vec<i32>;
+    fn condition_hashes_mut(&mut self) -> &mut Vec<i32>;
     fn value_hashes(&self) -> &Vec<i32>;
+    fn value_hashes_mut(&mut self) -> &mut Vec<i32>;
 }
 
 impl NestedConditionalPropertyEntityDataTrait for NestedConditionalPropertyEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn type_hash(&self) -> &i32 {
         &self.type_hash
+    }
+    fn type_hash_mut(&mut self) -> &mut i32 {
+        &mut self.type_hash
     }
     fn evaluate_on_event(&self) -> &bool {
         &self.evaluate_on_event
     }
+    fn evaluate_on_event_mut(&mut self) -> &mut bool {
+        &mut self.evaluate_on_event
+    }
     fn condition_hashes(&self) -> &Vec<i32> {
         &self.condition_hashes
     }
+    fn condition_hashes_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.condition_hashes
+    }
     fn value_hashes(&self) -> &Vec<i32> {
         &self.value_hashes
+    }
+    fn value_hashes_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.value_hashes
     }
 }
 
@@ -2387,15 +2859,15 @@ impl super::core::DataBusPeerTrait for NestedConditionalPropertyEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for NestedConditionalPropertyEntityData {
 }
 
 impl super::core::DataContainerTrait for NestedConditionalPropertyEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NESTEDCONDITIONALPROPERTYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2451,6 +2923,15 @@ impl TypeObject for NestedConditionalPropertyEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2475,23 +2956,39 @@ pub struct MultiPropertyGateEntityData {
 
 pub trait MultiPropertyGateEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn runtime_properties(&self) -> &Vec<MultiPropertyGatePropertyInfo>;
+    fn runtime_properties_mut(&mut self) -> &mut Vec<MultiPropertyGatePropertyInfo>;
     fn write_properties_on_open_gate(&self) -> &bool;
+    fn write_properties_on_open_gate_mut(&mut self) -> &mut bool;
     fn open(&self) -> &bool;
+    fn open_mut(&mut self) -> &mut bool;
 }
 
 impl MultiPropertyGateEntityDataTrait for MultiPropertyGateEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn runtime_properties(&self) -> &Vec<MultiPropertyGatePropertyInfo> {
         &self.runtime_properties
+    }
+    fn runtime_properties_mut(&mut self) -> &mut Vec<MultiPropertyGatePropertyInfo> {
+        &mut self.runtime_properties
     }
     fn write_properties_on_open_gate(&self) -> &bool {
         &self.write_properties_on_open_gate
     }
+    fn write_properties_on_open_gate_mut(&mut self) -> &mut bool {
+        &mut self.write_properties_on_open_gate
+    }
     fn open(&self) -> &bool {
         &self.open
+    }
+    fn open_mut(&mut self) -> &mut bool {
+        &mut self.open
     }
 }
 
@@ -2505,15 +3002,15 @@ impl super::core::DataBusPeerTrait for MultiPropertyGateEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MultiPropertyGateEntityData {
 }
 
 impl super::core::DataContainerTrait for MultiPropertyGateEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MULTIPROPERTYGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2563,6 +3060,15 @@ impl TypeObject for MultiPropertyGateEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2584,15 +3090,23 @@ pub struct MultiPropertyGatePropertyInfo {
 
 pub trait MultiPropertyGatePropertyInfoTrait: TypeObject {
     fn type_hash(&self) -> &u32;
+    fn type_hash_mut(&mut self) -> &mut u32;
     fn property_hash(&self) -> &u32;
+    fn property_hash_mut(&mut self) -> &mut u32;
 }
 
 impl MultiPropertyGatePropertyInfoTrait for MultiPropertyGatePropertyInfo {
     fn type_hash(&self) -> &u32 {
         &self.type_hash
     }
+    fn type_hash_mut(&mut self) -> &mut u32 {
+        &mut self.type_hash
+    }
     fn property_hash(&self) -> &u32 {
         &self.property_hash
+    }
+    fn property_hash_mut(&mut self) -> &mut u32 {
+        &mut self.property_hash
     }
 }
 
@@ -2630,6 +3144,15 @@ impl TypeObject for MultiPropertyGatePropertyInfo {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -2654,23 +3177,39 @@ pub struct LogitechLEDPulseEffectEntityData {
 
 pub trait LogitechLEDPulseEffectEntityDataTrait: super::entity::EntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn color2(&self) -> &super::core::Vec3;
+    fn color2_mut(&mut self) -> &mut super::core::Vec3;
     fn duration(&self) -> &f32;
+    fn duration_mut(&mut self) -> &mut f32;
 }
 
 impl LogitechLEDPulseEffectEntityDataTrait for LogitechLEDPulseEffectEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
+    }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
     }
     fn color2(&self) -> &super::core::Vec3 {
         &self.color2
     }
+    fn color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color2
+    }
     fn duration(&self) -> &f32 {
         &self.duration
+    }
+    fn duration_mut(&mut self) -> &mut f32 {
+        &mut self.duration
     }
 }
 
@@ -2684,15 +3223,15 @@ impl super::core::DataBusPeerTrait for LogitechLEDPulseEffectEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LogitechLEDPulseEffectEntityData {
 }
 
 impl super::core::DataContainerTrait for LogitechLEDPulseEffectEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOGITECHLEDPULSEEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2742,6 +3281,15 @@ impl TypeObject for LogitechLEDPulseEffectEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2765,19 +3313,31 @@ pub struct LogitechLEDInputConceptIdentifierEntityData {
 
 pub trait LogitechLEDInputConceptIdentifierEntityDataTrait: super::entity::EntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn input_concept_identifiers(&self) -> &Vec<i32>;
+    fn input_concept_identifiers_mut(&mut self) -> &mut Vec<i32>;
 }
 
 impl LogitechLEDInputConceptIdentifierEntityDataTrait for LogitechLEDInputConceptIdentifierEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn input_concept_identifiers(&self) -> &Vec<i32> {
         &self.input_concept_identifiers
+    }
+    fn input_concept_identifiers_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.input_concept_identifiers
     }
 }
 
@@ -2791,15 +3351,15 @@ impl super::core::DataBusPeerTrait for LogitechLEDInputConceptIdentifierEntityDa
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LogitechLEDInputConceptIdentifierEntityData {
 }
 
 impl super::core::DataContainerTrait for LogitechLEDInputConceptIdentifierEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOGITECHLEDINPUTCONCEPTIDENTIFIERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2843,6 +3403,15 @@ impl TypeObject for LogitechLEDInputConceptIdentifierEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2867,23 +3436,39 @@ pub struct LogitechLEDFadeEffectEntityData {
 
 pub trait LogitechLEDFadeEffectEntityDataTrait: super::entity::EntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn color1(&self) -> &super::core::Vec3;
+    fn color1_mut(&mut self) -> &mut super::core::Vec3;
     fn color2(&self) -> &super::core::Vec3;
+    fn color2_mut(&mut self) -> &mut super::core::Vec3;
     fn duration(&self) -> &f32;
+    fn duration_mut(&mut self) -> &mut f32;
 }
 
 impl LogitechLEDFadeEffectEntityDataTrait for LogitechLEDFadeEffectEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn color1(&self) -> &super::core::Vec3 {
         &self.color1
+    }
+    fn color1_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color1
     }
     fn color2(&self) -> &super::core::Vec3 {
         &self.color2
     }
+    fn color2_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color2
+    }
     fn duration(&self) -> &f32 {
         &self.duration
+    }
+    fn duration_mut(&mut self) -> &mut f32 {
+        &mut self.duration
     }
 }
 
@@ -2897,15 +3482,15 @@ impl super::core::DataBusPeerTrait for LogitechLEDFadeEffectEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LogitechLEDFadeEffectEntityData {
 }
 
 impl super::core::DataContainerTrait for LogitechLEDFadeEffectEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOGITECHLEDFADEEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -2955,6 +3540,15 @@ impl TypeObject for LogitechLEDFadeEffectEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -2977,15 +3571,23 @@ pub struct LogitechLEDConstantEffectEntityData {
 
 pub trait LogitechLEDConstantEffectEntityDataTrait: super::entity::EntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl LogitechLEDConstantEffectEntityDataTrait for LogitechLEDConstantEffectEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
+    }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
     }
 }
 
@@ -2999,15 +3601,15 @@ impl super::core::DataBusPeerTrait for LogitechLEDConstantEffectEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LogitechLEDConstantEffectEntityData {
 }
 
 impl super::core::DataContainerTrait for LogitechLEDConstantEffectEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOGITECHLEDCONSTANTEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3045,6 +3647,15 @@ impl TypeObject for LogitechLEDConstantEffectEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3070,27 +3681,47 @@ pub struct LogitechLEDConditionalInputConceptIdentifierEntityData {
 
 pub trait LogitechLEDConditionalInputConceptIdentifierEntityDataTrait: super::entity::EntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn color_condition(&self) -> &bool;
+    fn color_condition_mut(&mut self) -> &mut bool;
     fn condition_true_color(&self) -> &super::core::Vec3;
+    fn condition_true_color_mut(&mut self) -> &mut super::core::Vec3;
     fn condition_false_color(&self) -> &super::core::Vec3;
+    fn condition_false_color_mut(&mut self) -> &mut super::core::Vec3;
     fn input_concept_identifiers(&self) -> &Vec<i32>;
+    fn input_concept_identifiers_mut(&mut self) -> &mut Vec<i32>;
 }
 
 impl LogitechLEDConditionalInputConceptIdentifierEntityDataTrait for LogitechLEDConditionalInputConceptIdentifierEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn color_condition(&self) -> &bool {
         &self.color_condition
+    }
+    fn color_condition_mut(&mut self) -> &mut bool {
+        &mut self.color_condition
     }
     fn condition_true_color(&self) -> &super::core::Vec3 {
         &self.condition_true_color
     }
+    fn condition_true_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.condition_true_color
+    }
     fn condition_false_color(&self) -> &super::core::Vec3 {
         &self.condition_false_color
     }
+    fn condition_false_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.condition_false_color
+    }
     fn input_concept_identifiers(&self) -> &Vec<i32> {
         &self.input_concept_identifiers
+    }
+    fn input_concept_identifiers_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.input_concept_identifiers
     }
 }
 
@@ -3104,15 +3735,15 @@ impl super::core::DataBusPeerTrait for LogitechLEDConditionalInputConceptIdentif
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LogitechLEDConditionalInputConceptIdentifierEntityData {
 }
 
 impl super::core::DataContainerTrait for LogitechLEDConditionalInputConceptIdentifierEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOGITECHLEDCONDITIONALINPUTCONCEPTIDENTIFIERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3168,6 +3799,15 @@ impl TypeObject for LogitechLEDConditionalInputConceptIdentifierEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3193,27 +3833,47 @@ pub struct LogitechLEDBarEntityData {
 
 pub trait LogitechLEDBarEntityDataTrait: super::entity::EntityDataTrait {
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn value(&self) -> &f32;
+    fn value_mut(&mut self) -> &mut f32;
     fn bar_color(&self) -> &super::core::Vec3;
+    fn bar_color_mut(&mut self) -> &mut super::core::Vec3;
     fn background_color(&self) -> &super::core::Vec3;
+    fn background_color_mut(&mut self) -> &mut super::core::Vec3;
     fn input_device_keys(&self) -> &Vec<super::input_shared::InputDeviceKeys>;
+    fn input_device_keys_mut(&mut self) -> &mut Vec<super::input_shared::InputDeviceKeys>;
 }
 
 impl LogitechLEDBarEntityDataTrait for LogitechLEDBarEntityData {
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn value(&self) -> &f32 {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut f32 {
+        &mut self.value
     }
     fn bar_color(&self) -> &super::core::Vec3 {
         &self.bar_color
     }
+    fn bar_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.bar_color
+    }
     fn background_color(&self) -> &super::core::Vec3 {
         &self.background_color
     }
+    fn background_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.background_color
+    }
     fn input_device_keys(&self) -> &Vec<super::input_shared::InputDeviceKeys> {
         &self.input_device_keys
+    }
+    fn input_device_keys_mut(&mut self) -> &mut Vec<super::input_shared::InputDeviceKeys> {
+        &mut self.input_device_keys
     }
 }
 
@@ -3227,15 +3887,15 @@ impl super::core::DataBusPeerTrait for LogitechLEDBarEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LogitechLEDBarEntityData {
 }
 
 impl super::core::DataContainerTrait for LogitechLEDBarEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOGITECHLEDBARENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3291,6 +3951,15 @@ impl TypeObject for LogitechLEDBarEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3312,17 +3981,24 @@ pub struct LocalLocatorEntityData {
 
 pub trait LocalLocatorEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl LocalLocatorEntityDataTrait for LocalLocatorEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
 }
 
 impl super::entity::SpatialEntityDataTrait for LocalLocatorEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -3336,15 +4012,15 @@ impl super::core::DataBusPeerTrait for LocalLocatorEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalLocatorEntityData {
 }
 
 impl super::core::DataContainerTrait for LocalLocatorEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALLOCATORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3376,6 +4052,15 @@ impl TypeObject for LocalLocatorEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3400,23 +4085,39 @@ pub struct WaveSelectorNodeData {
 
 pub trait WaveSelectorNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn output_wave(&self) -> &super::audio::AudioGraphNodePort;
+    fn output_wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn value(&self) -> &super::audio::AudioGraphNodePort;
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn default_case_value(&self) -> &u32;
+    fn default_case_value_mut(&mut self) -> &mut u32;
     fn input_waves(&self) -> &Vec<Option<Arc<Mutex<dyn InputWavesGroupTrait>>>>;
+    fn input_waves_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputWavesGroupTrait>>>>;
 }
 
 impl WaveSelectorNodeDataTrait for WaveSelectorNodeData {
     fn output_wave(&self) -> &super::audio::AudioGraphNodePort {
         &self.output_wave
     }
+    fn output_wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.output_wave
+    }
     fn value(&self) -> &super::audio::AudioGraphNodePort {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.value
     }
     fn default_case_value(&self) -> &u32 {
         &self.default_case_value
     }
+    fn default_case_value_mut(&mut self) -> &mut u32 {
+        &mut self.default_case_value
+    }
     fn input_waves(&self) -> &Vec<Option<Arc<Mutex<dyn InputWavesGroupTrait>>>> {
         &self.input_waves
+    }
+    fn input_waves_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputWavesGroupTrait>>>> {
+        &mut self.input_waves
     }
 }
 
@@ -3424,9 +4125,6 @@ impl super::audio::AudioGraphNodeDataTrait for WaveSelectorNodeData {
 }
 
 impl super::core::DataContainerTrait for WaveSelectorNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WAVESELECTORNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3476,6 +4174,15 @@ impl TypeObject for WaveSelectorNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3498,15 +4205,23 @@ pub struct InputWavesGroup {
 
 pub trait InputWavesGroupTrait: super::audio::AudioGraphNodePortGroupTrait {
     fn default_wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
+    fn default_wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
     fn wave(&self) -> &super::audio::AudioGraphNodePort;
+    fn wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl InputWavesGroupTrait for InputWavesGroup {
     fn default_wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
         &self.default_wave
     }
+    fn default_wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
+        &mut self.default_wave
+    }
     fn wave(&self) -> &super::audio::AudioGraphNodePort {
         &self.wave
+    }
+    fn wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.wave
     }
 }
 
@@ -3514,9 +4229,6 @@ impl super::audio::AudioGraphNodePortGroupTrait for InputWavesGroup {
 }
 
 impl super::core::DataContainerTrait for InputWavesGroup {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTWAVESGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3554,6 +4266,15 @@ impl TypeObject for InputWavesGroup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3579,27 +4300,47 @@ pub struct ValueCacheNodeData {
 
 pub trait ValueCacheNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn store(&self) -> &super::audio::AudioGraphNodePort;
+    fn store_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn value(&self) -> &super::audio::AudioGraphNodePort;
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn default_value(&self) -> &f32;
+    fn default_value_mut(&mut self) -> &mut f32;
     fn set_initial_value_as_default(&self) -> &bool;
+    fn set_initial_value_as_default_mut(&mut self) -> &mut bool;
 }
 
 impl ValueCacheNodeDataTrait for ValueCacheNodeData {
     fn store(&self) -> &super::audio::AudioGraphNodePort {
         &self.store
     }
+    fn store_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.store
+    }
     fn value(&self) -> &super::audio::AudioGraphNodePort {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.value
     }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
     }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
+    }
     fn default_value(&self) -> &f32 {
         &self.default_value
     }
+    fn default_value_mut(&mut self) -> &mut f32 {
+        &mut self.default_value
+    }
     fn set_initial_value_as_default(&self) -> &bool {
         &self.set_initial_value_as_default
+    }
+    fn set_initial_value_as_default_mut(&mut self) -> &mut bool {
+        &mut self.set_initial_value_as_default
     }
 }
 
@@ -3607,9 +4348,6 @@ impl super::audio::AudioGraphNodeDataTrait for ValueCacheNodeData {
 }
 
 impl super::core::DataContainerTrait for ValueCacheNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VALUECACHENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3665,6 +4403,15 @@ impl TypeObject for ValueCacheNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3686,11 +4433,15 @@ pub struct SystemInformationNodeData {
 
 pub trait SystemInformationNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn channel_count(&self) -> &super::audio::AudioGraphNodePort;
+    fn channel_count_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl SystemInformationNodeDataTrait for SystemInformationNodeData {
     fn channel_count(&self) -> &super::audio::AudioGraphNodePort {
         &self.channel_count
+    }
+    fn channel_count_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.channel_count
     }
 }
 
@@ -3698,9 +4449,6 @@ impl super::audio::AudioGraphNodeDataTrait for SystemInformationNodeData {
 }
 
 impl super::core::DataContainerTrait for SystemInformationNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SYSTEMINFORMATIONNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3732,6 +4480,15 @@ impl TypeObject for SystemInformationNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3758,31 +4515,55 @@ pub struct SyncedRandomIntNodeData {
 
 pub trait SyncedRandomIntNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn trigger(&self) -> &super::audio::AudioGraphNodePort;
+    fn trigger_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn triggered(&self) -> &super::audio::AudioGraphNodePort;
+    fn triggered_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn min(&self) -> &i32;
+    fn min_mut(&mut self) -> &mut i32;
     fn max(&self) -> &i32;
+    fn max_mut(&mut self) -> &mut i32;
     fn high_precision(&self) -> &bool;
+    fn high_precision_mut(&mut self) -> &mut bool;
 }
 
 impl SyncedRandomIntNodeDataTrait for SyncedRandomIntNodeData {
     fn trigger(&self) -> &super::audio::AudioGraphNodePort {
         &self.trigger
     }
+    fn trigger_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.trigger
+    }
     fn triggered(&self) -> &super::audio::AudioGraphNodePort {
         &self.triggered
+    }
+    fn triggered_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.triggered
     }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
     }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
+    }
     fn min(&self) -> &i32 {
         &self.min
+    }
+    fn min_mut(&mut self) -> &mut i32 {
+        &mut self.min
     }
     fn max(&self) -> &i32 {
         &self.max
     }
+    fn max_mut(&mut self) -> &mut i32 {
+        &mut self.max
+    }
     fn high_precision(&self) -> &bool {
         &self.high_precision
+    }
+    fn high_precision_mut(&mut self) -> &mut bool {
+        &mut self.high_precision
     }
 }
 
@@ -3790,9 +4571,6 @@ impl super::audio::AudioGraphNodeDataTrait for SyncedRandomIntNodeData {
 }
 
 impl super::core::DataContainerTrait for SyncedRandomIntNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SYNCEDRANDOMINTNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3854,6 +4632,15 @@ impl TypeObject for SyncedRandomIntNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -3880,31 +4667,55 @@ pub struct StepLogicSamplerNodeConfigData {
 
 pub trait StepLogicSamplerNodeConfigDataTrait: super::audio::AudioGraphNodeConfigDataTrait {
     fn amplitude(&self) -> &f32;
+    fn amplitude_mut(&mut self) -> &mut f32;
     fn pitch(&self) -> &f32;
+    fn pitch_mut(&mut self) -> &mut f32;
     fn rate_of_fire(&self) -> &f32;
+    fn rate_of_fire_mut(&mut self) -> &mut f32;
     fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
+    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
     fn maximum_rate_of_fire(&self) -> &f32;
+    fn maximum_rate_of_fire_mut(&mut self) -> &mut f32;
     fn fade_type(&self) -> &super::audio::GainFaderFadeType;
+    fn fade_type_mut(&mut self) -> &mut super::audio::GainFaderFadeType;
 }
 
 impl StepLogicSamplerNodeConfigDataTrait for StepLogicSamplerNodeConfigData {
     fn amplitude(&self) -> &f32 {
         &self.amplitude
     }
+    fn amplitude_mut(&mut self) -> &mut f32 {
+        &mut self.amplitude
+    }
     fn pitch(&self) -> &f32 {
         &self.pitch
+    }
+    fn pitch_mut(&mut self) -> &mut f32 {
+        &mut self.pitch
     }
     fn rate_of_fire(&self) -> &f32 {
         &self.rate_of_fire
     }
+    fn rate_of_fire_mut(&mut self) -> &mut f32 {
+        &mut self.rate_of_fire
+    }
     fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
         &self.wave
+    }
+    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
+        &mut self.wave
     }
     fn maximum_rate_of_fire(&self) -> &f32 {
         &self.maximum_rate_of_fire
     }
+    fn maximum_rate_of_fire_mut(&mut self) -> &mut f32 {
+        &mut self.maximum_rate_of_fire
+    }
     fn fade_type(&self) -> &super::audio::GainFaderFadeType {
         &self.fade_type
+    }
+    fn fade_type_mut(&mut self) -> &mut super::audio::GainFaderFadeType {
+        &mut self.fade_type
     }
 }
 
@@ -3912,15 +4723,18 @@ impl super::audio::AudioGraphNodeConfigDataTrait for StepLogicSamplerNodeConfigD
     fn node(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
         self._glacier_base.node()
     }
+    fn node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
+        self._glacier_base.node_mut()
+    }
     fn configured_property_flags(&self) -> &u64 {
         self._glacier_base.configured_property_flags()
+    }
+    fn configured_property_flags_mut(&mut self) -> &mut u64 {
+        self._glacier_base.configured_property_flags_mut()
     }
 }
 
 impl super::core::DataContainerTrait for StepLogicSamplerNodeConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STEPLOGICSAMPLERNODECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -3982,6 +4796,15 @@ impl TypeObject for StepLogicSamplerNodeConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4016,63 +4839,119 @@ pub struct StepLogicSamplerNodeData {
 
 pub trait StepLogicSamplerNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn external_wave(&self) -> &super::audio::AudioGraphNodePort;
+    fn external_wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn pitch(&self) -> &super::audio::AudioGraphNodePort;
+    fn pitch_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn amplitude(&self) -> &super::audio::AudioGraphNodePort;
+    fn amplitude_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn rate_of_fire(&self) -> &super::audio::AudioGraphNodePort;
+    fn rate_of_fire_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn trigger(&self) -> &super::audio::AudioGraphNodePort;
+    fn trigger_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn release(&self) -> &super::audio::AudioGraphNodePort;
+    fn release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn output(&self) -> &super::audio::AudioGraphNodePort;
+    fn output_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn finished(&self) -> &super::audio::AudioGraphNodePort;
+    fn finished_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
+    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
     fn plugins(&self) -> &Vec<StepLogicSamplerPlugins>;
+    fn plugins_mut(&mut self) -> &mut Vec<StepLogicSamplerPlugins>;
     fn pitch_source(&self) -> &Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>>;
+    fn pitch_source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>>;
     fn maximum_rate_of_fire(&self) -> &f32;
+    fn maximum_rate_of_fire_mut(&mut self) -> &mut f32;
     fn fade_type(&self) -> &super::audio::GainFaderFadeType;
+    fn fade_type_mut(&mut self) -> &mut super::audio::GainFaderFadeType;
     fn sampler_node_debug(&self) -> &Option<Arc<Mutex<dyn StepLogicSamplerNodeDebugDataTrait>>>;
+    fn sampler_node_debug_mut(&mut self) -> &mut Option<Arc<Mutex<dyn StepLogicSamplerNodeDebugDataTrait>>>;
 }
 
 impl StepLogicSamplerNodeDataTrait for StepLogicSamplerNodeData {
     fn external_wave(&self) -> &super::audio::AudioGraphNodePort {
         &self.external_wave
     }
+    fn external_wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.external_wave
+    }
     fn pitch(&self) -> &super::audio::AudioGraphNodePort {
         &self.pitch
+    }
+    fn pitch_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.pitch
     }
     fn amplitude(&self) -> &super::audio::AudioGraphNodePort {
         &self.amplitude
     }
+    fn amplitude_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.amplitude
+    }
     fn rate_of_fire(&self) -> &super::audio::AudioGraphNodePort {
         &self.rate_of_fire
+    }
+    fn rate_of_fire_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.rate_of_fire
     }
     fn trigger(&self) -> &super::audio::AudioGraphNodePort {
         &self.trigger
     }
+    fn trigger_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.trigger
+    }
     fn release(&self) -> &super::audio::AudioGraphNodePort {
         &self.release
+    }
+    fn release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.release
     }
     fn output(&self) -> &super::audio::AudioGraphNodePort {
         &self.output
     }
+    fn output_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.output
+    }
     fn finished(&self) -> &super::audio::AudioGraphNodePort {
         &self.finished
+    }
+    fn finished_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.finished
     }
     fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
         &self.wave
     }
+    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
+        &mut self.wave
+    }
     fn plugins(&self) -> &Vec<StepLogicSamplerPlugins> {
         &self.plugins
+    }
+    fn plugins_mut(&mut self) -> &mut Vec<StepLogicSamplerPlugins> {
+        &mut self.plugins
     }
     fn pitch_source(&self) -> &Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>> {
         &self.pitch_source
     }
+    fn pitch_source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>> {
+        &mut self.pitch_source
+    }
     fn maximum_rate_of_fire(&self) -> &f32 {
         &self.maximum_rate_of_fire
+    }
+    fn maximum_rate_of_fire_mut(&mut self) -> &mut f32 {
+        &mut self.maximum_rate_of_fire
     }
     fn fade_type(&self) -> &super::audio::GainFaderFadeType {
         &self.fade_type
     }
+    fn fade_type_mut(&mut self) -> &mut super::audio::GainFaderFadeType {
+        &mut self.fade_type
+    }
     fn sampler_node_debug(&self) -> &Option<Arc<Mutex<dyn StepLogicSamplerNodeDebugDataTrait>>> {
         &self.sampler_node_debug
+    }
+    fn sampler_node_debug_mut(&mut self) -> &mut Option<Arc<Mutex<dyn StepLogicSamplerNodeDebugDataTrait>>> {
+        &mut self.sampler_node_debug
     }
 }
 
@@ -4080,9 +4959,6 @@ impl super::audio::AudioGraphNodeDataTrait for StepLogicSamplerNodeData {
 }
 
 impl super::core::DataContainerTrait for StepLogicSamplerNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STEPLOGICSAMPLERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4192,6 +5068,15 @@ impl TypeObject for StepLogicSamplerNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4221,50 +5106,83 @@ pub struct StepLogicSamplerNodeDebugData {
 
 pub trait StepLogicSamplerNodeDebugDataTrait: super::core::DataContainerTrait {
     fn enable_debug(&self) -> &bool;
+    fn enable_debug_mut(&mut self) -> &mut bool;
     fn debug_text_x_pos(&self) -> &i32;
+    fn debug_text_x_pos_mut(&mut self) -> &mut i32;
     fn debug_text_y_pos(&self) -> &i32;
+    fn debug_text_y_pos_mut(&mut self) -> &mut i32;
     fn event_display_time(&self) -> &f32;
+    fn event_display_time_mut(&mut self) -> &mut f32;
     fn sampler_debug_info_color(&self) -> &super::core::Vec3;
+    fn sampler_debug_info_color_mut(&mut self) -> &mut super::core::Vec3;
     fn properties_debug_info_color(&self) -> &super::core::Vec3;
+    fn properties_debug_info_color_mut(&mut self) -> &mut super::core::Vec3;
     fn events_debug_info_color(&self) -> &super::core::Vec3;
+    fn events_debug_info_color_mut(&mut self) -> &mut super::core::Vec3;
     fn external_wave_debug_info_color(&self) -> &super::core::Vec3;
+    fn external_wave_debug_info_color_mut(&mut self) -> &mut super::core::Vec3;
     fn mute_sampler(&self) -> &bool;
+    fn mute_sampler_mut(&mut self) -> &mut bool;
 }
 
 impl StepLogicSamplerNodeDebugDataTrait for StepLogicSamplerNodeDebugData {
     fn enable_debug(&self) -> &bool {
         &self.enable_debug
     }
+    fn enable_debug_mut(&mut self) -> &mut bool {
+        &mut self.enable_debug
+    }
     fn debug_text_x_pos(&self) -> &i32 {
         &self.debug_text_x_pos
+    }
+    fn debug_text_x_pos_mut(&mut self) -> &mut i32 {
+        &mut self.debug_text_x_pos
     }
     fn debug_text_y_pos(&self) -> &i32 {
         &self.debug_text_y_pos
     }
+    fn debug_text_y_pos_mut(&mut self) -> &mut i32 {
+        &mut self.debug_text_y_pos
+    }
     fn event_display_time(&self) -> &f32 {
         &self.event_display_time
+    }
+    fn event_display_time_mut(&mut self) -> &mut f32 {
+        &mut self.event_display_time
     }
     fn sampler_debug_info_color(&self) -> &super::core::Vec3 {
         &self.sampler_debug_info_color
     }
+    fn sampler_debug_info_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.sampler_debug_info_color
+    }
     fn properties_debug_info_color(&self) -> &super::core::Vec3 {
         &self.properties_debug_info_color
+    }
+    fn properties_debug_info_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.properties_debug_info_color
     }
     fn events_debug_info_color(&self) -> &super::core::Vec3 {
         &self.events_debug_info_color
     }
+    fn events_debug_info_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.events_debug_info_color
+    }
     fn external_wave_debug_info_color(&self) -> &super::core::Vec3 {
         &self.external_wave_debug_info_color
+    }
+    fn external_wave_debug_info_color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.external_wave_debug_info_color
     }
     fn mute_sampler(&self) -> &bool {
         &self.mute_sampler
     }
+    fn mute_sampler_mut(&mut self) -> &mut bool {
+        &mut self.mute_sampler
+    }
 }
 
 impl super::core::DataContainerTrait for StepLogicSamplerNodeDebugData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static STEPLOGICSAMPLERNODEDEBUGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4344,6 +5262,15 @@ impl TypeObject for StepLogicSamplerNodeDebugData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4368,27 +5295,47 @@ pub struct StepLogicSamplerPlugins {
 
 pub trait StepLogicSamplerPluginsTrait: TypeObject {
     fn snd_player(&self) -> &super::audio::SoundGraphPluginRef;
+    fn snd_player_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
     fn resample(&self) -> &super::audio::SoundGraphPluginRef;
+    fn resample_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
     fn pause(&self) -> &super::audio::SoundGraphPluginRef;
+    fn pause_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
     fn gain(&self) -> &super::audio::SoundGraphPluginRef;
+    fn gain_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
     fn gain_fader(&self) -> &super::audio::SoundGraphPluginRef;
+    fn gain_fader_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
 }
 
 impl StepLogicSamplerPluginsTrait for StepLogicSamplerPlugins {
     fn snd_player(&self) -> &super::audio::SoundGraphPluginRef {
         &self.snd_player
     }
+    fn snd_player_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.snd_player
+    }
     fn resample(&self) -> &super::audio::SoundGraphPluginRef {
         &self.resample
+    }
+    fn resample_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.resample
     }
     fn pause(&self) -> &super::audio::SoundGraphPluginRef {
         &self.pause
     }
+    fn pause_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.pause
+    }
     fn gain(&self) -> &super::audio::SoundGraphPluginRef {
         &self.gain
     }
+    fn gain_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.gain
+    }
     fn gain_fader(&self) -> &super::audio::SoundGraphPluginRef {
         &self.gain_fader
+    }
+    fn gain_fader_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.gain_fader
     }
 }
 
@@ -4444,6 +5391,15 @@ impl TypeObject for StepLogicSamplerPlugins {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4465,11 +5421,15 @@ pub struct SortValuesNodeData {
 
 pub trait SortValuesNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn sort_values(&self) -> &Vec<Option<Arc<Mutex<dyn SortValuesGroupTrait>>>>;
+    fn sort_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SortValuesGroupTrait>>>>;
 }
 
 impl SortValuesNodeDataTrait for SortValuesNodeData {
     fn sort_values(&self) -> &Vec<Option<Arc<Mutex<dyn SortValuesGroupTrait>>>> {
         &self.sort_values
+    }
+    fn sort_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SortValuesGroupTrait>>>> {
+        &mut self.sort_values
     }
 }
 
@@ -4477,9 +5437,6 @@ impl super::audio::AudioGraphNodeDataTrait for SortValuesNodeData {
 }
 
 impl super::core::DataContainerTrait for SortValuesNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SORTVALUESNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4511,6 +5468,15 @@ impl TypeObject for SortValuesNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4534,19 +5500,31 @@ pub struct SortValuesGroup {
 
 pub trait SortValuesGroupTrait: super::audio::AudioGraphNodePortGroupTrait {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn sorted_value(&self) -> &super::audio::AudioGraphNodePort;
+    fn sorted_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn input_index(&self) -> &super::audio::AudioGraphNodePort;
+    fn input_index_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl SortValuesGroupTrait for SortValuesGroup {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
     }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
+    }
     fn sorted_value(&self) -> &super::audio::AudioGraphNodePort {
         &self.sorted_value
     }
+    fn sorted_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.sorted_value
+    }
     fn input_index(&self) -> &super::audio::AudioGraphNodePort {
         &self.input_index
+    }
+    fn input_index_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.input_index
     }
 }
 
@@ -4554,9 +5532,6 @@ impl super::audio::AudioGraphNodePortGroupTrait for SortValuesGroup {
 }
 
 impl super::core::DataContainerTrait for SortValuesGroup {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SORTVALUESGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4600,6 +5575,15 @@ impl TypeObject for SortValuesGroup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4628,39 +5612,71 @@ pub struct SequencerNodeData {
 
 pub trait SequencerNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn start(&self) -> &super::audio::AudioGraphNodePort;
+    fn start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn stop(&self) -> &super::audio::AudioGraphNodePort;
+    fn stop_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn time(&self) -> &super::audio::AudioGraphNodePort;
+    fn time_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn on_started(&self) -> &super::audio::AudioGraphNodePort;
+    fn on_started_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn on_stopped(&self) -> &super::audio::AudioGraphNodePort;
+    fn on_stopped_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn delay(&self) -> &super::audio::AudioGraphNodePort;
+    fn delay_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn time_mode(&self) -> &TimeMode;
+    fn time_mode_mut(&mut self) -> &mut TimeMode;
 }
 
 impl SequencerNodeDataTrait for SequencerNodeData {
     fn start(&self) -> &super::audio::AudioGraphNodePort {
         &self.start
     }
+    fn start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.start
+    }
     fn stop(&self) -> &super::audio::AudioGraphNodePort {
         &self.stop
+    }
+    fn stop_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.stop
     }
     fn time(&self) -> &super::audio::AudioGraphNodePort {
         &self.time
     }
+    fn time_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.time
+    }
     fn on_started(&self) -> &super::audio::AudioGraphNodePort {
         &self.on_started
+    }
+    fn on_started_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.on_started
     }
     fn on_stopped(&self) -> &super::audio::AudioGraphNodePort {
         &self.on_stopped
     }
+    fn on_stopped_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.on_stopped
+    }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
+    }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
     }
     fn delay(&self) -> &super::audio::AudioGraphNodePort {
         &self.delay
     }
+    fn delay_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.delay
+    }
     fn time_mode(&self) -> &TimeMode {
         &self.time_mode
+    }
+    fn time_mode_mut(&mut self) -> &mut TimeMode {
+        &mut self.time_mode
     }
 }
 
@@ -4668,9 +5684,6 @@ impl super::audio::AudioGraphNodeDataTrait for SequencerNodeData {
 }
 
 impl super::core::DataContainerTrait for SequencerNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SEQUENCERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4744,6 +5757,15 @@ impl TypeObject for SequencerNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4782,6 +5804,15 @@ impl TypeObject for TimeMode {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4810,39 +5841,71 @@ pub struct SaturationNodeData {
 
 pub trait SaturationNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn gain(&self) -> &super::audio::AudioGraphNodePort;
+    fn gain_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn d_c_bias(&self) -> &super::audio::AudioGraphNodePort;
+    fn d_c_bias_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn level(&self) -> &super::audio::AudioGraphNodePort;
+    fn level_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn mix(&self) -> &super::audio::AudioGraphNodePort;
+    fn mix_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn saturation_type(&self) -> &SaturationTypes;
+    fn saturation_type_mut(&mut self) -> &mut SaturationTypes;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn saturation_plugin(&self) -> &super::audio::SoundGraphPluginRef;
+    fn saturation_plugin_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
 }
 
 impl SaturationNodeDataTrait for SaturationNodeData {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
     }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
+    }
     fn gain(&self) -> &super::audio::AudioGraphNodePort {
         &self.gain
+    }
+    fn gain_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.gain
     }
     fn d_c_bias(&self) -> &super::audio::AudioGraphNodePort {
         &self.d_c_bias
     }
+    fn d_c_bias_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.d_c_bias
+    }
     fn level(&self) -> &super::audio::AudioGraphNodePort {
         &self.level
+    }
+    fn level_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.level
     }
     fn mix(&self) -> &super::audio::AudioGraphNodePort {
         &self.mix
     }
+    fn mix_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.mix
+    }
     fn saturation_type(&self) -> &SaturationTypes {
         &self.saturation_type
+    }
+    fn saturation_type_mut(&mut self) -> &mut SaturationTypes {
+        &mut self.saturation_type
     }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
     }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
+    }
     fn saturation_plugin(&self) -> &super::audio::SoundGraphPluginRef {
         &self.saturation_plugin
+    }
+    fn saturation_plugin_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.saturation_plugin
     }
 }
 
@@ -4850,9 +5913,6 @@ impl super::audio::AudioGraphNodeDataTrait for SaturationNodeData {
 }
 
 impl super::core::DataContainerTrait for SaturationNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SATURATIONNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -4926,6 +5986,15 @@ impl TypeObject for SaturationNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -4973,6 +6042,15 @@ impl TypeObject for SaturationTypes {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -4997,23 +6075,39 @@ pub struct RunOnceNodeData {
 
 pub trait RunOnceNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn reset(&self) -> &super::audio::AudioGraphNodePort;
+    fn reset_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn start_closed(&self) -> &bool;
+    fn start_closed_mut(&mut self) -> &mut bool;
 }
 
 impl RunOnceNodeDataTrait for RunOnceNodeData {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
     }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
+    }
     fn reset(&self) -> &super::audio::AudioGraphNodePort {
         &self.reset
+    }
+    fn reset_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.reset
     }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
     }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
+    }
     fn start_closed(&self) -> &bool {
         &self.start_closed
+    }
+    fn start_closed_mut(&mut self) -> &mut bool {
+        &mut self.start_closed
     }
 }
 
@@ -5021,9 +6115,6 @@ impl super::audio::AudioGraphNodeDataTrait for RunOnceNodeData {
 }
 
 impl super::core::DataContainerTrait for RunOnceNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RUNONCENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5073,6 +6164,15 @@ impl TypeObject for RunOnceNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5112,83 +6212,159 @@ pub struct RaycastNodeData {
 
 pub trait RaycastNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn send(&self) -> &super::audio::AudioGraphNodePort;
+    fn send_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn hit(&self) -> &super::audio::AudioGraphNodePort;
+    fn hit_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn miss(&self) -> &super::audio::AudioGraphNodePort;
+    fn miss_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn left(&self) -> &f32;
+    fn left_mut(&mut self) -> &mut f32;
     fn up(&self) -> &f32;
+    fn up_mut(&mut self) -> &mut f32;
     fn forward(&self) -> &f32;
+    fn forward_mut(&mut self) -> &mut f32;
     fn see_through(&self) -> &bool;
+    fn see_through_mut(&mut self) -> &mut bool;
     fn penetrable(&self) -> &bool;
+    fn penetrable_mut(&mut self) -> &mut bool;
     fn include_terrain(&self) -> &bool;
+    fn include_terrain_mut(&mut self) -> &mut bool;
     fn include_water(&self) -> &bool;
+    fn include_water_mut(&mut self) -> &mut bool;
     fn include_characters(&self) -> &bool;
+    fn include_characters_mut(&mut self) -> &mut bool;
     fn include_vehicles(&self) -> &bool;
+    fn include_vehicles_mut(&mut self) -> &mut bool;
     fn include_ragdolls(&self) -> &bool;
+    fn include_ragdolls_mut(&mut self) -> &mut bool;
     fn include_fixed(&self) -> &bool;
+    fn include_fixed_mut(&mut self) -> &mut bool;
     fn include_keyframed(&self) -> &bool;
+    fn include_keyframed_mut(&mut self) -> &mut bool;
     fn include_dynamic(&self) -> &bool;
+    fn include_dynamic_mut(&mut self) -> &mut bool;
     fn detailed_query_mode(&self) -> &bool;
+    fn detailed_query_mode_mut(&mut self) -> &mut bool;
     fn enable_debug(&self) -> &bool;
+    fn enable_debug_mut(&mut self) -> &mut bool;
     fn material_id(&self) -> &super::audio::AudioGraphNodePort;
+    fn material_id_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl RaycastNodeDataTrait for RaycastNodeData {
     fn send(&self) -> &super::audio::AudioGraphNodePort {
         &self.send
     }
+    fn send_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.send
+    }
     fn hit(&self) -> &super::audio::AudioGraphNodePort {
         &self.hit
+    }
+    fn hit_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.hit
     }
     fn miss(&self) -> &super::audio::AudioGraphNodePort {
         &self.miss
     }
+    fn miss_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.miss
+    }
     fn left(&self) -> &f32 {
         &self.left
+    }
+    fn left_mut(&mut self) -> &mut f32 {
+        &mut self.left
     }
     fn up(&self) -> &f32 {
         &self.up
     }
+    fn up_mut(&mut self) -> &mut f32 {
+        &mut self.up
+    }
     fn forward(&self) -> &f32 {
         &self.forward
+    }
+    fn forward_mut(&mut self) -> &mut f32 {
+        &mut self.forward
     }
     fn see_through(&self) -> &bool {
         &self.see_through
     }
+    fn see_through_mut(&mut self) -> &mut bool {
+        &mut self.see_through
+    }
     fn penetrable(&self) -> &bool {
         &self.penetrable
+    }
+    fn penetrable_mut(&mut self) -> &mut bool {
+        &mut self.penetrable
     }
     fn include_terrain(&self) -> &bool {
         &self.include_terrain
     }
+    fn include_terrain_mut(&mut self) -> &mut bool {
+        &mut self.include_terrain
+    }
     fn include_water(&self) -> &bool {
         &self.include_water
+    }
+    fn include_water_mut(&mut self) -> &mut bool {
+        &mut self.include_water
     }
     fn include_characters(&self) -> &bool {
         &self.include_characters
     }
+    fn include_characters_mut(&mut self) -> &mut bool {
+        &mut self.include_characters
+    }
     fn include_vehicles(&self) -> &bool {
         &self.include_vehicles
+    }
+    fn include_vehicles_mut(&mut self) -> &mut bool {
+        &mut self.include_vehicles
     }
     fn include_ragdolls(&self) -> &bool {
         &self.include_ragdolls
     }
+    fn include_ragdolls_mut(&mut self) -> &mut bool {
+        &mut self.include_ragdolls
+    }
     fn include_fixed(&self) -> &bool {
         &self.include_fixed
+    }
+    fn include_fixed_mut(&mut self) -> &mut bool {
+        &mut self.include_fixed
     }
     fn include_keyframed(&self) -> &bool {
         &self.include_keyframed
     }
+    fn include_keyframed_mut(&mut self) -> &mut bool {
+        &mut self.include_keyframed
+    }
     fn include_dynamic(&self) -> &bool {
         &self.include_dynamic
+    }
+    fn include_dynamic_mut(&mut self) -> &mut bool {
+        &mut self.include_dynamic
     }
     fn detailed_query_mode(&self) -> &bool {
         &self.detailed_query_mode
     }
+    fn detailed_query_mode_mut(&mut self) -> &mut bool {
+        &mut self.detailed_query_mode
+    }
     fn enable_debug(&self) -> &bool {
         &self.enable_debug
     }
+    fn enable_debug_mut(&mut self) -> &mut bool {
+        &mut self.enable_debug
+    }
     fn material_id(&self) -> &super::audio::AudioGraphNodePort {
         &self.material_id
+    }
+    fn material_id_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.material_id
     }
 }
 
@@ -5196,9 +6372,6 @@ impl super::audio::AudioGraphNodeDataTrait for RaycastNodeData {
 }
 
 impl super::core::DataContainerTrait for RaycastNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RAYCASTNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5338,6 +6511,15 @@ impl TypeObject for RaycastNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5362,23 +6544,39 @@ pub struct RandomIntegerNodeData {
 
 pub trait RandomIntegerNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn trigger(&self) -> &super::audio::AudioGraphNodePort;
+    fn trigger_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn min(&self) -> &i32;
+    fn min_mut(&mut self) -> &mut i32;
     fn max(&self) -> &i32;
+    fn max_mut(&mut self) -> &mut i32;
 }
 
 impl RandomIntegerNodeDataTrait for RandomIntegerNodeData {
     fn trigger(&self) -> &super::audio::AudioGraphNodePort {
         &self.trigger
     }
+    fn trigger_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.trigger
+    }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
+    }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
     }
     fn min(&self) -> &i32 {
         &self.min
     }
+    fn min_mut(&mut self) -> &mut i32 {
+        &mut self.min
+    }
     fn max(&self) -> &i32 {
         &self.max
+    }
+    fn max_mut(&mut self) -> &mut i32 {
+        &mut self.max
     }
 }
 
@@ -5386,9 +6584,6 @@ impl super::audio::AudioGraphNodeDataTrait for RandomIntegerNodeData {
 }
 
 impl super::core::DataContainerTrait for RandomIntegerNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static RANDOMINTEGERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5438,6 +6633,15 @@ impl TypeObject for RandomIntegerNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5459,11 +6663,15 @@ pub struct ProfileOptionsReaderNodeData {
 
 pub trait ProfileOptionsReaderNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn profile_options(&self) -> &Vec<Option<Arc<Mutex<dyn ProfileOptionsGroupTrait>>>>;
+    fn profile_options_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ProfileOptionsGroupTrait>>>>;
 }
 
 impl ProfileOptionsReaderNodeDataTrait for ProfileOptionsReaderNodeData {
     fn profile_options(&self) -> &Vec<Option<Arc<Mutex<dyn ProfileOptionsGroupTrait>>>> {
         &self.profile_options
+    }
+    fn profile_options_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ProfileOptionsGroupTrait>>>> {
+        &mut self.profile_options
     }
 }
 
@@ -5471,9 +6679,6 @@ impl super::audio::AudioGraphNodeDataTrait for ProfileOptionsReaderNodeData {
 }
 
 impl super::core::DataContainerTrait for ProfileOptionsReaderNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROFILEOPTIONSREADERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5505,6 +6710,15 @@ impl TypeObject for ProfileOptionsReaderNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5527,15 +6741,23 @@ pub struct ProfileOptionsGroup {
 
 pub trait ProfileOptionsGroupTrait: super::audio::AudioGraphNodePortGroupTrait {
     fn profile_option_asset(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataTrait>>>;
+    fn profile_option_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataTrait>>>;
     fn profile_option_value(&self) -> &super::audio::AudioGraphNodePort;
+    fn profile_option_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl ProfileOptionsGroupTrait for ProfileOptionsGroup {
     fn profile_option_asset(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataTrait>>> {
         &self.profile_option_asset
     }
+    fn profile_option_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataTrait>>> {
+        &mut self.profile_option_asset
+    }
     fn profile_option_value(&self) -> &super::audio::AudioGraphNodePort {
         &self.profile_option_value
+    }
+    fn profile_option_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.profile_option_value
     }
 }
 
@@ -5543,9 +6765,6 @@ impl super::audio::AudioGraphNodePortGroupTrait for ProfileOptionsGroup {
 }
 
 impl super::core::DataContainerTrait for ProfileOptionsGroup {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PROFILEOPTIONSGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5583,6 +6802,15 @@ impl TypeObject for ProfileOptionsGroup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5611,39 +6839,71 @@ pub struct PassbyDetectorNodeData {
 
 pub trait PassbyDetectorNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn time_to_apex(&self) -> &super::audio::AudioGraphNodePort;
+    fn time_to_apex_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn extra_distance(&self) -> &super::audio::AudioGraphNodePort;
+    fn extra_distance_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn speed_threshold(&self) -> &super::audio::AudioGraphNodePort;
+    fn speed_threshold_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn relative_speed_threshold(&self) -> &super::audio::AudioGraphNodePort;
+    fn relative_speed_threshold_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn cooldown_time(&self) -> &super::audio::AudioGraphNodePort;
+    fn cooldown_time_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn trigger(&self) -> &super::audio::AudioGraphNodePort;
+    fn trigger_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn cancel(&self) -> &super::audio::AudioGraphNodePort;
+    fn cancel_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn relative_speed_smoothing_rate(&self) -> &f32;
+    fn relative_speed_smoothing_rate_mut(&mut self) -> &mut f32;
 }
 
 impl PassbyDetectorNodeDataTrait for PassbyDetectorNodeData {
     fn time_to_apex(&self) -> &super::audio::AudioGraphNodePort {
         &self.time_to_apex
     }
+    fn time_to_apex_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.time_to_apex
+    }
     fn extra_distance(&self) -> &super::audio::AudioGraphNodePort {
         &self.extra_distance
+    }
+    fn extra_distance_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.extra_distance
     }
     fn speed_threshold(&self) -> &super::audio::AudioGraphNodePort {
         &self.speed_threshold
     }
+    fn speed_threshold_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.speed_threshold
+    }
     fn relative_speed_threshold(&self) -> &super::audio::AudioGraphNodePort {
         &self.relative_speed_threshold
+    }
+    fn relative_speed_threshold_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.relative_speed_threshold
     }
     fn cooldown_time(&self) -> &super::audio::AudioGraphNodePort {
         &self.cooldown_time
     }
+    fn cooldown_time_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.cooldown_time
+    }
     fn trigger(&self) -> &super::audio::AudioGraphNodePort {
         &self.trigger
+    }
+    fn trigger_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.trigger
     }
     fn cancel(&self) -> &super::audio::AudioGraphNodePort {
         &self.cancel
     }
+    fn cancel_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.cancel
+    }
     fn relative_speed_smoothing_rate(&self) -> &f32 {
         &self.relative_speed_smoothing_rate
+    }
+    fn relative_speed_smoothing_rate_mut(&mut self) -> &mut f32 {
+        &mut self.relative_speed_smoothing_rate
     }
 }
 
@@ -5651,9 +6911,6 @@ impl super::audio::AudioGraphNodeDataTrait for PassbyDetectorNodeData {
 }
 
 impl super::core::DataContainerTrait for PassbyDetectorNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PASSBYDETECTORNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5727,6 +6984,15 @@ impl TypeObject for PassbyDetectorNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5750,19 +7016,31 @@ pub struct ParameterSmootherNodeData {
 
 pub trait ParameterSmootherNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn smoothing_time(&self) -> &super::audio::AudioGraphNodePort;
+    fn smoothing_time_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl ParameterSmootherNodeDataTrait for ParameterSmootherNodeData {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
     }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
+    }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
     }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
+    }
     fn smoothing_time(&self) -> &super::audio::AudioGraphNodePort {
         &self.smoothing_time
+    }
+    fn smoothing_time_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.smoothing_time
     }
 }
 
@@ -5770,9 +7048,6 @@ impl super::audio::AudioGraphNodeDataTrait for ParameterSmootherNodeData {
 }
 
 impl super::core::DataContainerTrait for ParameterSmootherNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static PARAMETERSMOOTHERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5816,6 +7091,15 @@ impl TypeObject for ParameterSmootherNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5840,23 +7124,39 @@ pub struct NanCheckNodeData {
 
 pub trait NanCheckNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn name_non_meta(&self) -> &String;
+    fn name_non_meta_mut(&mut self) -> &mut String;
     fn nan_check_plugin(&self) -> &super::audio::SoundGraphPluginRef;
+    fn nan_check_plugin_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
 }
 
 impl NanCheckNodeDataTrait for NanCheckNodeData {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
     }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
+    }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
+    }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
     }
     fn name_non_meta(&self) -> &String {
         &self.name_non_meta
     }
+    fn name_non_meta_mut(&mut self) -> &mut String {
+        &mut self.name_non_meta
+    }
     fn nan_check_plugin(&self) -> &super::audio::SoundGraphPluginRef {
         &self.nan_check_plugin
+    }
+    fn nan_check_plugin_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.nan_check_plugin
     }
 }
 
@@ -5864,9 +7164,6 @@ impl super::audio::AudioGraphNodeDataTrait for NanCheckNodeData {
 }
 
 impl super::core::DataContainerTrait for NanCheckNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static NANCHECKNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -5916,6 +7213,15 @@ impl TypeObject for NanCheckNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -5946,47 +7252,87 @@ pub struct LoudnessNodeData {
 
 pub trait LoudnessNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn momentary(&self) -> &super::audio::AudioGraphNodePort;
+    fn momentary_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn integrated(&self) -> &super::audio::AudioGraphNodePort;
+    fn integrated_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn reset(&self) -> &super::audio::AudioGraphNodePort;
+    fn reset_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn plugin(&self) -> &super::audio::SoundGraphPluginRef;
+    fn plugin_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
     fn trace(&self) -> &bool;
+    fn trace_mut(&mut self) -> &mut bool;
     fn trace_label(&self) -> &String;
+    fn trace_label_mut(&mut self) -> &mut String;
     fn integration_time(&self) -> &f32;
+    fn integration_time_mut(&mut self) -> &mut f32;
     fn enable_clamp(&self) -> &bool;
+    fn enable_clamp_mut(&mut self) -> &mut bool;
 }
 
 impl LoudnessNodeDataTrait for LoudnessNodeData {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
     }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
+    }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
+    }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
     }
     fn momentary(&self) -> &super::audio::AudioGraphNodePort {
         &self.momentary
     }
+    fn momentary_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.momentary
+    }
     fn integrated(&self) -> &super::audio::AudioGraphNodePort {
         &self.integrated
+    }
+    fn integrated_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.integrated
     }
     fn reset(&self) -> &super::audio::AudioGraphNodePort {
         &self.reset
     }
+    fn reset_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.reset
+    }
     fn plugin(&self) -> &super::audio::SoundGraphPluginRef {
         &self.plugin
+    }
+    fn plugin_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.plugin
     }
     fn trace(&self) -> &bool {
         &self.trace
     }
+    fn trace_mut(&mut self) -> &mut bool {
+        &mut self.trace
+    }
     fn trace_label(&self) -> &String {
         &self.trace_label
+    }
+    fn trace_label_mut(&mut self) -> &mut String {
+        &mut self.trace_label
     }
     fn integration_time(&self) -> &f32 {
         &self.integration_time
     }
+    fn integration_time_mut(&mut self) -> &mut f32 {
+        &mut self.integration_time
+    }
     fn enable_clamp(&self) -> &bool {
         &self.enable_clamp
+    }
+    fn enable_clamp_mut(&mut self) -> &mut bool {
+        &mut self.enable_clamp
     }
 }
 
@@ -5994,9 +7340,6 @@ impl super::audio::AudioGraphNodeDataTrait for LoudnessNodeData {
 }
 
 impl super::core::DataContainerTrait for LoudnessNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOUDNESSNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6082,6 +7425,15 @@ impl TypeObject for LoudnessNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6105,19 +7457,31 @@ pub struct ListenerNodeData {
 
 pub trait ListenerNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn world_x(&self) -> &super::audio::AudioGraphNodePort;
+    fn world_x_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn world_y(&self) -> &super::audio::AudioGraphNodePort;
+    fn world_y_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn world_z(&self) -> &super::audio::AudioGraphNodePort;
+    fn world_z_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl ListenerNodeDataTrait for ListenerNodeData {
     fn world_x(&self) -> &super::audio::AudioGraphNodePort {
         &self.world_x
     }
+    fn world_x_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.world_x
+    }
     fn world_y(&self) -> &super::audio::AudioGraphNodePort {
         &self.world_y
     }
+    fn world_y_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.world_y
+    }
     fn world_z(&self) -> &super::audio::AudioGraphNodePort {
         &self.world_z
+    }
+    fn world_z_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.world_z
     }
 }
 
@@ -6125,9 +7489,6 @@ impl super::audio::AudioGraphNodeDataTrait for ListenerNodeData {
 }
 
 impl super::core::DataContainerTrait for ListenerNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LISTENERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6171,6 +7532,15 @@ impl TypeObject for ListenerNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6192,11 +7562,15 @@ pub struct IndexMapperNodeConfigData {
 
 pub trait IndexMapperNodeConfigDataTrait: super::audio::AudioGraphNodeConfigDataTrait {
     fn dimension_groups(&self) -> &Vec<IndexMapperConfigGroup>;
+    fn dimension_groups_mut(&mut self) -> &mut Vec<IndexMapperConfigGroup>;
 }
 
 impl IndexMapperNodeConfigDataTrait for IndexMapperNodeConfigData {
     fn dimension_groups(&self) -> &Vec<IndexMapperConfigGroup> {
         &self.dimension_groups
+    }
+    fn dimension_groups_mut(&mut self) -> &mut Vec<IndexMapperConfigGroup> {
+        &mut self.dimension_groups
     }
 }
 
@@ -6204,15 +7578,18 @@ impl super::audio::AudioGraphNodeConfigDataTrait for IndexMapperNodeConfigData {
     fn node(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
         self._glacier_base.node()
     }
+    fn node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
+        self._glacier_base.node_mut()
+    }
     fn configured_property_flags(&self) -> &u64 {
         self._glacier_base.configured_property_flags()
+    }
+    fn configured_property_flags_mut(&mut self) -> &mut u64 {
+        self._glacier_base.configured_property_flags_mut()
     }
 }
 
 impl super::core::DataContainerTrait for IndexMapperNodeConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INDEXMAPPERNODECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6244,6 +7621,15 @@ impl TypeObject for IndexMapperNodeConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6264,11 +7650,15 @@ pub struct IndexMapperConfigGroup {
 
 pub trait IndexMapperConfigGroupTrait: TypeObject {
     fn dimension_size(&self) -> &u32;
+    fn dimension_size_mut(&mut self) -> &mut u32;
 }
 
 impl IndexMapperConfigGroupTrait for IndexMapperConfigGroup {
     fn dimension_size(&self) -> &u32 {
         &self.dimension_size
+    }
+    fn dimension_size_mut(&mut self) -> &mut u32 {
+        &mut self.dimension_size
     }
 }
 
@@ -6300,6 +7690,15 @@ impl TypeObject for IndexMapperConfigGroup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -6322,15 +7721,23 @@ pub struct IndexMapperNodeData {
 
 pub trait IndexMapperNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn dimension_groups(&self) -> &Vec<Option<Arc<Mutex<dyn IndexMapperGroupTrait>>>>;
+    fn dimension_groups_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn IndexMapperGroupTrait>>>>;
     fn result(&self) -> &super::audio::AudioGraphNodePort;
+    fn result_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl IndexMapperNodeDataTrait for IndexMapperNodeData {
     fn dimension_groups(&self) -> &Vec<Option<Arc<Mutex<dyn IndexMapperGroupTrait>>>> {
         &self.dimension_groups
     }
+    fn dimension_groups_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn IndexMapperGroupTrait>>>> {
+        &mut self.dimension_groups
+    }
     fn result(&self) -> &super::audio::AudioGraphNodePort {
         &self.result
+    }
+    fn result_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.result
     }
 }
 
@@ -6338,9 +7745,6 @@ impl super::audio::AudioGraphNodeDataTrait for IndexMapperNodeData {
 }
 
 impl super::core::DataContainerTrait for IndexMapperNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INDEXMAPPERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6378,6 +7782,15 @@ impl TypeObject for IndexMapperNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6401,19 +7814,31 @@ pub struct IndexMapperGroup {
 
 pub trait IndexMapperGroupTrait: super::audio::AudioGraphNodePortGroupTrait {
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn dimension_size(&self) -> &u32;
+    fn dimension_size_mut(&mut self) -> &mut u32;
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl IndexMapperGroupTrait for IndexMapperGroup {
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
     }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
+    }
     fn dimension_size(&self) -> &u32 {
         &self.dimension_size
     }
+    fn dimension_size_mut(&mut self) -> &mut u32 {
+        &mut self.dimension_size
+    }
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
+    }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
     }
 }
 
@@ -6421,9 +7846,6 @@ impl super::audio::AudioGraphNodePortGroupTrait for IndexMapperGroup {
 }
 
 impl super::core::DataContainerTrait for IndexMapperGroup {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INDEXMAPPERGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6467,6 +7889,15 @@ impl TypeObject for IndexMapperGroup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6492,27 +7923,47 @@ pub struct GateNodeData {
 
 pub trait GateNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn open(&self) -> &super::audio::AudioGraphNodePort;
+    fn open_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn close(&self) -> &super::audio::AudioGraphNodePort;
+    fn close_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn start_opened(&self) -> &bool;
+    fn start_opened_mut(&mut self) -> &mut bool;
 }
 
 impl GateNodeDataTrait for GateNodeData {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
     }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
+    }
     fn open(&self) -> &super::audio::AudioGraphNodePort {
         &self.open
+    }
+    fn open_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.open
     }
     fn close(&self) -> &super::audio::AudioGraphNodePort {
         &self.close
     }
+    fn close_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.close
+    }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
     }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
+    }
     fn start_opened(&self) -> &bool {
         &self.start_opened
+    }
+    fn start_opened_mut(&mut self) -> &mut bool {
+        &mut self.start_opened
     }
 }
 
@@ -6520,9 +7971,6 @@ impl super::audio::AudioGraphNodeDataTrait for GateNodeData {
 }
 
 impl super::core::DataContainerTrait for GateNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static GATENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6578,6 +8026,15 @@ impl TypeObject for GateNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6606,9 +8063,6 @@ impl super::audio::AudioGraphNodeDataTrait for ForceIsNotLoopingNodeData {
 }
 
 impl super::core::DataContainerTrait for ForceIsNotLoopingNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FORCEISNOTLOOPINGNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6633,6 +8087,15 @@ impl TypeObject for ForceIsNotLoopingNodeData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -6662,9 +8125,6 @@ impl super::audio::AudioGraphNodeDataTrait for ForceIsLoopingNodeData {
 }
 
 impl super::core::DataContainerTrait for ForceIsLoopingNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static FORCEISLOOPINGNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6690,6 +8150,15 @@ impl TypeObject for ForceIsLoopingNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6713,19 +8182,31 @@ pub struct EventSelectorNodeData {
 
 pub trait EventSelectorNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn index(&self) -> &super::audio::AudioGraphNodePort;
+    fn index_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn input_events(&self) -> &Vec<Option<Arc<Mutex<dyn InputEventsGroupTrait>>>>;
+    fn input_events_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputEventsGroupTrait>>>>;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl EventSelectorNodeDataTrait for EventSelectorNodeData {
     fn index(&self) -> &super::audio::AudioGraphNodePort {
         &self.index
     }
+    fn index_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.index
+    }
     fn input_events(&self) -> &Vec<Option<Arc<Mutex<dyn InputEventsGroupTrait>>>> {
         &self.input_events
     }
+    fn input_events_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputEventsGroupTrait>>>> {
+        &mut self.input_events
+    }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
+    }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
     }
 }
 
@@ -6733,9 +8214,6 @@ impl super::audio::AudioGraphNodeDataTrait for EventSelectorNodeData {
 }
 
 impl super::core::DataContainerTrait for EventSelectorNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EVENTSELECTORNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6779,6 +8257,15 @@ impl TypeObject for EventSelectorNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6800,11 +8287,15 @@ pub struct InputEventsGroup {
 
 pub trait InputEventsGroupTrait: super::audio::AudioGraphNodePortGroupTrait {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl InputEventsGroupTrait for InputEventsGroup {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
+    }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
     }
 }
 
@@ -6812,9 +8303,6 @@ impl super::audio::AudioGraphNodePortGroupTrait for InputEventsGroup {
 }
 
 impl super::core::DataContainerTrait for InputEventsGroup {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static INPUTEVENTSGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6846,6 +8334,15 @@ impl TypeObject for InputEventsGroup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -6873,35 +8370,63 @@ pub struct EventGateConditionValueNodeData {
 
 pub trait EventGateConditionValueNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn condition(&self) -> &EventGateConditionValueType;
+    fn condition_mut(&mut self) -> &mut EventGateConditionValueType;
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn in_value(&self) -> &super::audio::AudioGraphNodePort;
+    fn in_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn cool_down_time(&self) -> &super::audio::AudioGraphNodePort;
+    fn cool_down_time_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn enable(&self) -> &super::audio::AudioGraphNodePort;
+    fn enable_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out_value(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl EventGateConditionValueNodeDataTrait for EventGateConditionValueNodeData {
     fn condition(&self) -> &EventGateConditionValueType {
         &self.condition
     }
+    fn condition_mut(&mut self) -> &mut EventGateConditionValueType {
+        &mut self.condition
+    }
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
+    }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
     }
     fn in_value(&self) -> &super::audio::AudioGraphNodePort {
         &self.in_value
     }
+    fn in_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.in_value
+    }
     fn cool_down_time(&self) -> &super::audio::AudioGraphNodePort {
         &self.cool_down_time
+    }
+    fn cool_down_time_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.cool_down_time
     }
     fn enable(&self) -> &super::audio::AudioGraphNodePort {
         &self.enable
     }
+    fn enable_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.enable
+    }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
     }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
+    }
     fn out_value(&self) -> &super::audio::AudioGraphNodePort {
         &self.out_value
+    }
+    fn out_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out_value
     }
 }
 
@@ -6909,9 +8434,6 @@ impl super::audio::AudioGraphNodeDataTrait for EventGateConditionValueNodeData {
 }
 
 impl super::core::DataContainerTrait for EventGateConditionValueNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static EVENTGATECONDITIONVALUENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -6979,6 +8501,15 @@ impl TypeObject for EventGateConditionValueNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7023,6 +8554,15 @@ impl TypeObject for EventGateConditionValueType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7047,23 +8587,39 @@ pub struct DicePhysicsNodeData {
 
 pub trait DicePhysicsNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn angular_velocity_x(&self) -> &super::audio::AudioGraphNodePort;
+    fn angular_velocity_x_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn angular_velocity_y(&self) -> &super::audio::AudioGraphNodePort;
+    fn angular_velocity_y_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn angular_velocity_z(&self) -> &super::audio::AudioGraphNodePort;
+    fn angular_velocity_z_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn signed_speed(&self) -> &bool;
+    fn signed_speed_mut(&mut self) -> &mut bool;
 }
 
 impl DicePhysicsNodeDataTrait for DicePhysicsNodeData {
     fn angular_velocity_x(&self) -> &super::audio::AudioGraphNodePort {
         &self.angular_velocity_x
     }
+    fn angular_velocity_x_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.angular_velocity_x
+    }
     fn angular_velocity_y(&self) -> &super::audio::AudioGraphNodePort {
         &self.angular_velocity_y
+    }
+    fn angular_velocity_y_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.angular_velocity_y
     }
     fn angular_velocity_z(&self) -> &super::audio::AudioGraphNodePort {
         &self.angular_velocity_z
     }
+    fn angular_velocity_z_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.angular_velocity_z
+    }
     fn signed_speed(&self) -> &bool {
         &self.signed_speed
+    }
+    fn signed_speed_mut(&mut self) -> &mut bool {
+        &mut self.signed_speed
     }
 }
 
@@ -7071,9 +8627,6 @@ impl super::audio::AudioGraphNodeDataTrait for DicePhysicsNodeData {
 }
 
 impl super::core::DataContainerTrait for DicePhysicsNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEPHYSICSNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7123,6 +8676,15 @@ impl TypeObject for DicePhysicsNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7153,47 +8715,87 @@ pub struct DiceDivisibleLoopPlayerNodeData {
 
 pub trait DiceDivisibleLoopPlayerNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn start(&self) -> &super::audio::AudioGraphNodePort;
+    fn start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn stop(&self) -> &super::audio::AudioGraphNodePort;
+    fn stop_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn amplitude(&self) -> &super::audio::AudioGraphNodePort;
+    fn amplitude_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn freeze_segment(&self) -> &super::audio::AudioGraphNodePort;
+    fn freeze_segment_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn output(&self) -> &super::audio::AudioGraphNodePort;
+    fn output_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetTrait>>>;
+    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetTrait>>>;
     fn external_wave(&self) -> &super::audio::AudioGraphNodePort;
+    fn external_wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn plugins(&self) -> &Vec<DiceDivisibleLoopPlayerPlugins>;
+    fn plugins_mut(&mut self) -> &mut Vec<DiceDivisibleLoopPlayerPlugins>;
     fn cross_fade_length(&self) -> &f32;
+    fn cross_fade_length_mut(&mut self) -> &mut f32;
     fn start_at_random_position(&self) -> &bool;
+    fn start_at_random_position_mut(&mut self) -> &mut bool;
 }
 
 impl DiceDivisibleLoopPlayerNodeDataTrait for DiceDivisibleLoopPlayerNodeData {
     fn start(&self) -> &super::audio::AudioGraphNodePort {
         &self.start
     }
+    fn start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.start
+    }
     fn stop(&self) -> &super::audio::AudioGraphNodePort {
         &self.stop
+    }
+    fn stop_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.stop
     }
     fn amplitude(&self) -> &super::audio::AudioGraphNodePort {
         &self.amplitude
     }
+    fn amplitude_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.amplitude
+    }
     fn freeze_segment(&self) -> &super::audio::AudioGraphNodePort {
         &self.freeze_segment
+    }
+    fn freeze_segment_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.freeze_segment
     }
     fn output(&self) -> &super::audio::AudioGraphNodePort {
         &self.output
     }
+    fn output_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.output
+    }
     fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetTrait>>> {
         &self.wave
+    }
+    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetTrait>>> {
+        &mut self.wave
     }
     fn external_wave(&self) -> &super::audio::AudioGraphNodePort {
         &self.external_wave
     }
+    fn external_wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.external_wave
+    }
     fn plugins(&self) -> &Vec<DiceDivisibleLoopPlayerPlugins> {
         &self.plugins
+    }
+    fn plugins_mut(&mut self) -> &mut Vec<DiceDivisibleLoopPlayerPlugins> {
+        &mut self.plugins
     }
     fn cross_fade_length(&self) -> &f32 {
         &self.cross_fade_length
     }
+    fn cross_fade_length_mut(&mut self) -> &mut f32 {
+        &mut self.cross_fade_length
+    }
     fn start_at_random_position(&self) -> &bool {
         &self.start_at_random_position
+    }
+    fn start_at_random_position_mut(&mut self) -> &mut bool {
+        &mut self.start_at_random_position
     }
 }
 
@@ -7201,9 +8803,6 @@ impl super::audio::AudioGraphNodeDataTrait for DiceDivisibleLoopPlayerNodeData {
 }
 
 impl super::core::DataContainerTrait for DiceDivisibleLoopPlayerNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEDIVISIBLELOOPPLAYERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7289,6 +8888,15 @@ impl TypeObject for DiceDivisibleLoopPlayerNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7312,23 +8920,39 @@ pub struct DiceDivisibleLoopPlayerPlugins {
 
 pub trait DiceDivisibleLoopPlayerPluginsTrait: TypeObject {
     fn snd_player(&self) -> &super::audio::SoundGraphPluginRef;
+    fn snd_player_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
     fn pause(&self) -> &super::audio::SoundGraphPluginRef;
+    fn pause_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
     fn gain(&self) -> &super::audio::SoundGraphPluginRef;
+    fn gain_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
     fn gain_fader(&self) -> &super::audio::SoundGraphPluginRef;
+    fn gain_fader_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef;
 }
 
 impl DiceDivisibleLoopPlayerPluginsTrait for DiceDivisibleLoopPlayerPlugins {
     fn snd_player(&self) -> &super::audio::SoundGraphPluginRef {
         &self.snd_player
     }
+    fn snd_player_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.snd_player
+    }
     fn pause(&self) -> &super::audio::SoundGraphPluginRef {
         &self.pause
+    }
+    fn pause_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.pause
     }
     fn gain(&self) -> &super::audio::SoundGraphPluginRef {
         &self.gain
     }
+    fn gain_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.gain
+    }
     fn gain_fader(&self) -> &super::audio::SoundGraphPluginRef {
         &self.gain_fader
+    }
+    fn gain_fader_mut(&mut self) -> &mut super::audio::SoundGraphPluginRef {
+        &mut self.gain_fader
     }
 }
 
@@ -7378,6 +9002,15 @@ impl TypeObject for DiceDivisibleLoopPlayerPlugins {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -7409,51 +9042,95 @@ pub struct DiceAdsrNodeData {
 
 pub trait DiceAdsrNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn trigger(&self) -> &super::audio::AudioGraphNodePort;
+    fn trigger_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn release(&self) -> &super::audio::AudioGraphNodePort;
+    fn release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn a(&self) -> &super::audio::AudioGraphNodePort;
+    fn a_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn d(&self) -> &super::audio::AudioGraphNodePort;
+    fn d_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn s(&self) -> &super::audio::AudioGraphNodePort;
+    fn s_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn r(&self) -> &super::audio::AudioGraphNodePort;
+    fn r_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn value(&self) -> &super::audio::AudioGraphNodePort;
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn trigger_output(&self) -> &super::audio::AudioGraphNodePort;
+    fn trigger_output_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn finished(&self) -> &super::audio::AudioGraphNodePort;
+    fn finished_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn always_start_from_zero(&self) -> &bool;
+    fn always_start_from_zero_mut(&mut self) -> &mut bool;
     fn scale(&self) -> &f32;
+    fn scale_mut(&mut self) -> &mut f32;
 }
 
 impl DiceAdsrNodeDataTrait for DiceAdsrNodeData {
     fn trigger(&self) -> &super::audio::AudioGraphNodePort {
         &self.trigger
     }
+    fn trigger_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.trigger
+    }
     fn release(&self) -> &super::audio::AudioGraphNodePort {
         &self.release
+    }
+    fn release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.release
     }
     fn a(&self) -> &super::audio::AudioGraphNodePort {
         &self.a
     }
+    fn a_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.a
+    }
     fn d(&self) -> &super::audio::AudioGraphNodePort {
         &self.d
+    }
+    fn d_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.d
     }
     fn s(&self) -> &super::audio::AudioGraphNodePort {
         &self.s
     }
+    fn s_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.s
+    }
     fn r(&self) -> &super::audio::AudioGraphNodePort {
         &self.r
+    }
+    fn r_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r
     }
     fn value(&self) -> &super::audio::AudioGraphNodePort {
         &self.value
     }
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.value
+    }
     fn trigger_output(&self) -> &super::audio::AudioGraphNodePort {
         &self.trigger_output
+    }
+    fn trigger_output_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.trigger_output
     }
     fn finished(&self) -> &super::audio::AudioGraphNodePort {
         &self.finished
     }
+    fn finished_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.finished
+    }
     fn always_start_from_zero(&self) -> &bool {
         &self.always_start_from_zero
     }
+    fn always_start_from_zero_mut(&mut self) -> &mut bool {
+        &mut self.always_start_from_zero
+    }
     fn scale(&self) -> &f32 {
         &self.scale
+    }
+    fn scale_mut(&mut self) -> &mut f32 {
+        &mut self.scale
     }
 }
 
@@ -7461,9 +9138,6 @@ impl super::audio::AudioGraphNodeDataTrait for DiceAdsrNodeData {
 }
 
 impl super::core::DataContainerTrait for DiceAdsrNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEADSRNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7555,6 +9229,15 @@ impl TypeObject for DiceAdsrNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7582,35 +9265,63 @@ pub struct CounterNodeData {
 
 pub trait CounterNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn increment(&self) -> &super::audio::AudioGraphNodePort;
+    fn increment_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn decrement(&self) -> &super::audio::AudioGraphNodePort;
+    fn decrement_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn reset(&self) -> &super::audio::AudioGraphNodePort;
+    fn reset_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn has_changed(&self) -> &super::audio::AudioGraphNodePort;
+    fn has_changed_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn output_value(&self) -> &super::audio::AudioGraphNodePort;
+    fn output_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn start_value(&self) -> &f32;
+    fn start_value_mut(&mut self) -> &mut f32;
     fn count_step(&self) -> &f32;
+    fn count_step_mut(&mut self) -> &mut f32;
 }
 
 impl CounterNodeDataTrait for CounterNodeData {
     fn increment(&self) -> &super::audio::AudioGraphNodePort {
         &self.increment
     }
+    fn increment_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.increment
+    }
     fn decrement(&self) -> &super::audio::AudioGraphNodePort {
         &self.decrement
+    }
+    fn decrement_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.decrement
     }
     fn reset(&self) -> &super::audio::AudioGraphNodePort {
         &self.reset
     }
+    fn reset_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.reset
+    }
     fn has_changed(&self) -> &super::audio::AudioGraphNodePort {
         &self.has_changed
+    }
+    fn has_changed_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.has_changed
     }
     fn output_value(&self) -> &super::audio::AudioGraphNodePort {
         &self.output_value
     }
+    fn output_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.output_value
+    }
     fn start_value(&self) -> &f32 {
         &self.start_value
     }
+    fn start_value_mut(&mut self) -> &mut f32 {
+        &mut self.start_value
+    }
     fn count_step(&self) -> &f32 {
         &self.count_step
+    }
+    fn count_step_mut(&mut self) -> &mut f32 {
+        &mut self.count_step
     }
 }
 
@@ -7618,9 +9329,6 @@ impl super::audio::AudioGraphNodeDataTrait for CounterNodeData {
 }
 
 impl super::core::DataContainerTrait for CounterNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COUNTERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7688,6 +9396,15 @@ impl TypeObject for CounterNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7713,27 +9430,47 @@ pub struct ConfigurableRangeMapperNodeData {
 
 pub trait ConfigurableRangeMapperNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn input_value(&self) -> &super::audio::AudioGraphNodePort;
+    fn input_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn output_value(&self) -> &super::audio::AudioGraphNodePort;
+    fn output_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn default_output_value(&self) -> &super::audio::AudioGraphNodePort;
+    fn default_output_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn default_output_value_enabled(&self) -> &bool;
+    fn default_output_value_enabled_mut(&mut self) -> &mut bool;
     fn ranges(&self) -> &Vec<Option<Arc<Mutex<dyn ConfigurableRangeMapperEntryTrait>>>>;
+    fn ranges_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ConfigurableRangeMapperEntryTrait>>>>;
 }
 
 impl ConfigurableRangeMapperNodeDataTrait for ConfigurableRangeMapperNodeData {
     fn input_value(&self) -> &super::audio::AudioGraphNodePort {
         &self.input_value
     }
+    fn input_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.input_value
+    }
     fn output_value(&self) -> &super::audio::AudioGraphNodePort {
         &self.output_value
+    }
+    fn output_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.output_value
     }
     fn default_output_value(&self) -> &super::audio::AudioGraphNodePort {
         &self.default_output_value
     }
+    fn default_output_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.default_output_value
+    }
     fn default_output_value_enabled(&self) -> &bool {
         &self.default_output_value_enabled
     }
+    fn default_output_value_enabled_mut(&mut self) -> &mut bool {
+        &mut self.default_output_value_enabled
+    }
     fn ranges(&self) -> &Vec<Option<Arc<Mutex<dyn ConfigurableRangeMapperEntryTrait>>>> {
         &self.ranges
+    }
+    fn ranges_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ConfigurableRangeMapperEntryTrait>>>> {
+        &mut self.ranges
     }
 }
 
@@ -7741,9 +9478,6 @@ impl super::audio::AudioGraphNodeDataTrait for ConfigurableRangeMapperNodeData {
 }
 
 impl super::core::DataContainerTrait for ConfigurableRangeMapperNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONFIGURABLERANGEMAPPERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7799,6 +9533,15 @@ impl TypeObject for ConfigurableRangeMapperNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7822,19 +9565,31 @@ pub struct ConfigurableRangeMapperEntry {
 
 pub trait ConfigurableRangeMapperEntryTrait: super::audio::AudioGraphNodePortGroupTrait {
     fn range_start(&self) -> &super::audio::AudioGraphNodePort;
+    fn range_start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn range_end(&self) -> &super::audio::AudioGraphNodePort;
+    fn range_end_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn output_value(&self) -> &super::audio::AudioGraphNodePort;
+    fn output_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl ConfigurableRangeMapperEntryTrait for ConfigurableRangeMapperEntry {
     fn range_start(&self) -> &super::audio::AudioGraphNodePort {
         &self.range_start
     }
+    fn range_start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.range_start
+    }
     fn range_end(&self) -> &super::audio::AudioGraphNodePort {
         &self.range_end
     }
+    fn range_end_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.range_end
+    }
     fn output_value(&self) -> &super::audio::AudioGraphNodePort {
         &self.output_value
+    }
+    fn output_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.output_value
     }
 }
 
@@ -7842,9 +9597,6 @@ impl super::audio::AudioGraphNodePortGroupTrait for ConfigurableRangeMapperEntry
 }
 
 impl super::core::DataContainerTrait for ConfigurableRangeMapperEntry {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONFIGURABLERANGEMAPPERENTRY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7888,6 +9640,15 @@ impl TypeObject for ConfigurableRangeMapperEntry {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7909,11 +9670,15 @@ pub struct ConditionValueNodeData {
 
 pub trait ConditionValueNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn ConditionValueGroupTrait>>>>;
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ConditionValueGroupTrait>>>>;
 }
 
 impl ConditionValueNodeDataTrait for ConditionValueNodeData {
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn ConditionValueGroupTrait>>>> {
         &self.conditions
+    }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ConditionValueGroupTrait>>>> {
+        &mut self.conditions
     }
 }
 
@@ -7921,9 +9686,6 @@ impl super::audio::AudioGraphNodeDataTrait for ConditionValueNodeData {
 }
 
 impl super::core::DataContainerTrait for ConditionValueNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONDITIONVALUENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -7955,6 +9717,15 @@ impl TypeObject for ConditionValueNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -7981,31 +9752,55 @@ pub struct ConditionValueGroup {
 
 pub trait ConditionValueGroupTrait: super::audio::AudioGraphNodePortGroupTrait {
     fn x(&self) -> &super::audio::AudioGraphNodePort;
+    fn x_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn y(&self) -> &super::audio::AudioGraphNodePort;
+    fn y_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn condition(&self) -> &ConditionValueType;
+    fn condition_mut(&mut self) -> &mut ConditionValueType;
     fn value_if_true(&self) -> &f32;
+    fn value_if_true_mut(&mut self) -> &mut f32;
     fn value_if_false(&self) -> &f32;
+    fn value_if_false_mut(&mut self) -> &mut f32;
 }
 
 impl ConditionValueGroupTrait for ConditionValueGroup {
     fn x(&self) -> &super::audio::AudioGraphNodePort {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.x
+    }
     fn y(&self) -> &super::audio::AudioGraphNodePort {
         &self.y
+    }
+    fn y_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.y
     }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
     }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
+    }
     fn condition(&self) -> &ConditionValueType {
         &self.condition
+    }
+    fn condition_mut(&mut self) -> &mut ConditionValueType {
+        &mut self.condition
     }
     fn value_if_true(&self) -> &f32 {
         &self.value_if_true
     }
+    fn value_if_true_mut(&mut self) -> &mut f32 {
+        &mut self.value_if_true
+    }
     fn value_if_false(&self) -> &f32 {
         &self.value_if_false
+    }
+    fn value_if_false_mut(&mut self) -> &mut f32 {
+        &mut self.value_if_false
     }
 }
 
@@ -8013,9 +9808,6 @@ impl super::audio::AudioGraphNodePortGroupTrait for ConditionValueGroup {
 }
 
 impl super::core::DataContainerTrait for ConditionValueGroup {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONDITIONVALUEGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8077,6 +9869,15 @@ impl TypeObject for ConditionValueGroup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8121,6 +9922,15 @@ impl TypeObject for ConditionValueType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8142,11 +9952,15 @@ pub struct CompareValueNodeData {
 
 pub trait CompareValueNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn CompareValueGroupTrait>>>>;
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CompareValueGroupTrait>>>>;
 }
 
 impl CompareValueNodeDataTrait for CompareValueNodeData {
     fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn CompareValueGroupTrait>>>> {
         &self.conditions
+    }
+    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CompareValueGroupTrait>>>> {
+        &mut self.conditions
     }
 }
 
@@ -8154,9 +9968,6 @@ impl super::audio::AudioGraphNodeDataTrait for CompareValueNodeData {
 }
 
 impl super::core::DataContainerTrait for CompareValueNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COMPAREVALUENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8188,6 +9999,15 @@ impl TypeObject for CompareValueNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8215,35 +10035,63 @@ pub struct CompareValueGroup {
 
 pub trait CompareValueGroupTrait: super::audio::AudioGraphNodePortGroupTrait {
     fn evaluate(&self) -> &super::audio::AudioGraphNodePort;
+    fn evaluate_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn x(&self) -> &super::audio::AudioGraphNodePort;
+    fn x_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn y(&self) -> &super::audio::AudioGraphNodePort;
+    fn y_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn r#true(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#true_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn r#false(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#false_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn condition(&self) -> &CompareValueConditionType;
+    fn condition_mut(&mut self) -> &mut CompareValueConditionType;
     fn auto_evaluate(&self) -> &bool;
+    fn auto_evaluate_mut(&mut self) -> &mut bool;
 }
 
 impl CompareValueGroupTrait for CompareValueGroup {
     fn evaluate(&self) -> &super::audio::AudioGraphNodePort {
         &self.evaluate
     }
+    fn evaluate_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.evaluate
+    }
     fn x(&self) -> &super::audio::AudioGraphNodePort {
         &self.x
+    }
+    fn x_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.x
     }
     fn y(&self) -> &super::audio::AudioGraphNodePort {
         &self.y
     }
+    fn y_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.y
+    }
     fn r#true(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#true
+    }
+    fn r#true_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#true
     }
     fn r#false(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#false
     }
+    fn r#false_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#false
+    }
     fn condition(&self) -> &CompareValueConditionType {
         &self.condition
     }
+    fn condition_mut(&mut self) -> &mut CompareValueConditionType {
+        &mut self.condition
+    }
     fn auto_evaluate(&self) -> &bool {
         &self.auto_evaluate
+    }
+    fn auto_evaluate_mut(&mut self) -> &mut bool {
+        &mut self.auto_evaluate
     }
 }
 
@@ -8251,9 +10099,6 @@ impl super::audio::AudioGraphNodePortGroupTrait for CompareValueGroup {
 }
 
 impl super::core::DataContainerTrait for CompareValueGroup {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COMPAREVALUEGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8321,6 +10166,15 @@ impl TypeObject for CompareValueGroup {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8365,6 +10219,15 @@ impl TypeObject for CompareValueConditionType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8389,23 +10252,39 @@ pub struct ClampNodeData {
 
 pub trait ClampNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort;
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn clamp_min(&self) -> &f32;
+    fn clamp_min_mut(&mut self) -> &mut f32;
     fn clamp_max(&self) -> &f32;
+    fn clamp_max_mut(&mut self) -> &mut f32;
 }
 
 impl ClampNodeDataTrait for ClampNodeData {
     fn r#in(&self) -> &super::audio::AudioGraphNodePort {
         &self.r#in
     }
+    fn r#in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.r#in
+    }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
         &self.out
+    }
+    fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.out
     }
     fn clamp_min(&self) -> &f32 {
         &self.clamp_min
     }
+    fn clamp_min_mut(&mut self) -> &mut f32 {
+        &mut self.clamp_min
+    }
     fn clamp_max(&self) -> &f32 {
         &self.clamp_max
+    }
+    fn clamp_max_mut(&mut self) -> &mut f32 {
+        &mut self.clamp_max
     }
 }
 
@@ -8413,9 +10292,6 @@ impl super::audio::AudioGraphNodeDataTrait for ClampNodeData {
 }
 
 impl super::core::DataContainerTrait for ClampNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLAMPNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8465,6 +10341,15 @@ impl TypeObject for ClampNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8493,39 +10378,71 @@ pub struct AudioEnvelopeSwitcherNodeData {
 
 pub trait AudioEnvelopeSwitcherNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn index(&self) -> &super::audio::AudioGraphNodePort;
+    fn index_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn advance(&self) -> &super::audio::AudioGraphNodePort;
+    fn advance_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn audio_envelope(&self) -> &super::audio::AudioGraphNodePort;
+    fn audio_envelope_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn index_changed(&self) -> &super::audio::AudioGraphNodePort;
+    fn index_changed_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn audio_envelopes(&self) -> &Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>>;
+    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>>;
     fn default_index(&self) -> &f32;
+    fn default_index_mut(&mut self) -> &mut f32;
     fn is_random(&self) -> &bool;
+    fn is_random_mut(&mut self) -> &mut bool;
     fn random_start_index(&self) -> &bool;
+    fn random_start_index_mut(&mut self) -> &mut bool;
 }
 
 impl AudioEnvelopeSwitcherNodeDataTrait for AudioEnvelopeSwitcherNodeData {
     fn index(&self) -> &super::audio::AudioGraphNodePort {
         &self.index
     }
+    fn index_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.index
+    }
     fn advance(&self) -> &super::audio::AudioGraphNodePort {
         &self.advance
+    }
+    fn advance_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.advance
     }
     fn audio_envelope(&self) -> &super::audio::AudioGraphNodePort {
         &self.audio_envelope
     }
+    fn audio_envelope_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.audio_envelope
+    }
     fn index_changed(&self) -> &super::audio::AudioGraphNodePort {
         &self.index_changed
+    }
+    fn index_changed_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.index_changed
     }
     fn audio_envelopes(&self) -> &Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>> {
         &self.audio_envelopes
     }
+    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>> {
+        &mut self.audio_envelopes
+    }
     fn default_index(&self) -> &f32 {
         &self.default_index
+    }
+    fn default_index_mut(&mut self) -> &mut f32 {
+        &mut self.default_index
     }
     fn is_random(&self) -> &bool {
         &self.is_random
     }
+    fn is_random_mut(&mut self) -> &mut bool {
+        &mut self.is_random
+    }
     fn random_start_index(&self) -> &bool {
         &self.random_start_index
+    }
+    fn random_start_index_mut(&mut self) -> &mut bool {
+        &mut self.random_start_index
     }
 }
 
@@ -8533,9 +10450,6 @@ impl super::audio::AudioGraphNodeDataTrait for AudioEnvelopeSwitcherNodeData {
 }
 
 impl super::core::DataContainerTrait for AudioEnvelopeSwitcherNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUDIOENVELOPESWITCHERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8609,6 +10523,15 @@ impl TypeObject for AudioEnvelopeSwitcherNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8630,11 +10553,15 @@ pub struct AudioEnvelopeSwitcherNodeConfigData {
 
 pub trait AudioEnvelopeSwitcherNodeConfigDataTrait: super::audio::AudioGraphNodeConfigDataTrait {
     fn audio_envelopes(&self) -> &Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>>;
+    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>>;
 }
 
 impl AudioEnvelopeSwitcherNodeConfigDataTrait for AudioEnvelopeSwitcherNodeConfigData {
     fn audio_envelopes(&self) -> &Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>> {
         &self.audio_envelopes
+    }
+    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>> {
+        &mut self.audio_envelopes
     }
 }
 
@@ -8642,15 +10569,18 @@ impl super::audio::AudioGraphNodeConfigDataTrait for AudioEnvelopeSwitcherNodeCo
     fn node(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
         self._glacier_base.node()
     }
+    fn node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
+        self._glacier_base.node_mut()
+    }
     fn configured_property_flags(&self) -> &u64 {
         self._glacier_base.configured_property_flags()
+    }
+    fn configured_property_flags_mut(&mut self) -> &mut u64 {
+        self._glacier_base.configured_property_flags_mut()
     }
 }
 
 impl super::core::DataContainerTrait for AudioEnvelopeSwitcherNodeConfigData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUDIOENVELOPESWITCHERNODECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8682,6 +10612,15 @@ impl TypeObject for AudioEnvelopeSwitcherNodeConfigData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8708,31 +10647,55 @@ pub struct AudioEnvelopeNodeData {
 
 pub trait AudioEnvelopeNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn x(&self) -> &super::audio::AudioGraphNodePort;
+    fn x_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn envelope_in(&self) -> &super::audio::AudioGraphNodePort;
+    fn envelope_in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn y(&self) -> &super::audio::AudioGraphNodePort;
+    fn y_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn region(&self) -> &super::audio::AudioGraphNodePort;
+    fn region_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn envelope(&self) -> &AudioEnvelope;
+    fn envelope_mut(&mut self) -> &mut AudioEnvelope;
     fn envelope_asset(&self) -> &Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>;
+    fn envelope_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>;
 }
 
 impl AudioEnvelopeNodeDataTrait for AudioEnvelopeNodeData {
     fn x(&self) -> &super::audio::AudioGraphNodePort {
         &self.x
     }
+    fn x_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.x
+    }
     fn envelope_in(&self) -> &super::audio::AudioGraphNodePort {
         &self.envelope_in
+    }
+    fn envelope_in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.envelope_in
     }
     fn y(&self) -> &super::audio::AudioGraphNodePort {
         &self.y
     }
+    fn y_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.y
+    }
     fn region(&self) -> &super::audio::AudioGraphNodePort {
         &self.region
+    }
+    fn region_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.region
     }
     fn envelope(&self) -> &AudioEnvelope {
         &self.envelope
     }
+    fn envelope_mut(&mut self) -> &mut AudioEnvelope {
+        &mut self.envelope
+    }
     fn envelope_asset(&self) -> &Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>> {
         &self.envelope_asset
+    }
+    fn envelope_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>> {
+        &mut self.envelope_asset
     }
 }
 
@@ -8740,9 +10703,6 @@ impl super::audio::AudioGraphNodeDataTrait for AudioEnvelopeNodeData {
 }
 
 impl super::core::DataContainerTrait for AudioEnvelopeNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUDIOENVELOPENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8804,6 +10764,15 @@ impl TypeObject for AudioEnvelopeNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8825,11 +10794,15 @@ pub struct AudioEnvelopeAsset {
 
 pub trait AudioEnvelopeAssetTrait: super::core::AssetTrait {
     fn envelope(&self) -> &AudioEnvelope;
+    fn envelope_mut(&mut self) -> &mut AudioEnvelope;
 }
 
 impl AudioEnvelopeAssetTrait for AudioEnvelopeAsset {
     fn envelope(&self) -> &AudioEnvelope {
         &self.envelope
+    }
+    fn envelope_mut(&mut self) -> &mut AudioEnvelope {
+        &mut self.envelope
     }
 }
 
@@ -8837,12 +10810,12 @@ impl super::core::AssetTrait for AudioEnvelopeAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AudioEnvelopeAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUDIOENVELOPEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -8874,6 +10847,15 @@ impl TypeObject for AudioEnvelopeAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -8895,15 +10877,23 @@ pub struct AudioEnvelope {
 
 pub trait AudioEnvelopeTrait: TypeObject {
     fn points(&self) -> &Vec<AudioEnvelopePoint>;
+    fn points_mut(&mut self) -> &mut Vec<AudioEnvelopePoint>;
     fn default_curve_type(&self) -> &AudioEnvelopeLineType;
+    fn default_curve_type_mut(&mut self) -> &mut AudioEnvelopeLineType;
 }
 
 impl AudioEnvelopeTrait for AudioEnvelope {
     fn points(&self) -> &Vec<AudioEnvelopePoint> {
         &self.points
     }
+    fn points_mut(&mut self) -> &mut Vec<AudioEnvelopePoint> {
+        &mut self.points
+    }
     fn default_curve_type(&self) -> &AudioEnvelopeLineType {
         &self.default_curve_type
+    }
+    fn default_curve_type_mut(&mut self) -> &mut AudioEnvelopeLineType {
+        &mut self.default_curve_type
     }
 }
 
@@ -8941,6 +10931,15 @@ impl TypeObject for AudioEnvelope {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -8964,23 +10963,39 @@ pub struct AudioEnvelopePoint {
 
 pub trait AudioEnvelopePointTrait: TypeObject {
     fn point(&self) -> &super::core::Vec2;
+    fn point_mut(&mut self) -> &mut super::core::Vec2;
     fn line_type(&self) -> &AudioEnvelopeLineType;
+    fn line_type_mut(&mut self) -> &mut AudioEnvelopeLineType;
     fn curve_scale(&self) -> &f32;
+    fn curve_scale_mut(&mut self) -> &mut f32;
     fn is_region_boundary(&self) -> &bool;
+    fn is_region_boundary_mut(&mut self) -> &mut bool;
 }
 
 impl AudioEnvelopePointTrait for AudioEnvelopePoint {
     fn point(&self) -> &super::core::Vec2 {
         &self.point
     }
+    fn point_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.point
+    }
     fn line_type(&self) -> &AudioEnvelopeLineType {
         &self.line_type
+    }
+    fn line_type_mut(&mut self) -> &mut AudioEnvelopeLineType {
+        &mut self.line_type
     }
     fn curve_scale(&self) -> &f32 {
         &self.curve_scale
     }
+    fn curve_scale_mut(&mut self) -> &mut f32 {
+        &mut self.curve_scale
+    }
     fn is_region_boundary(&self) -> &bool {
         &self.is_region_boundary
+    }
+    fn is_region_boundary_mut(&mut self) -> &mut bool {
+        &mut self.is_region_boundary
     }
 }
 
@@ -9030,6 +11045,15 @@ impl TypeObject for AudioEnvelopePoint {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9076,6 +11100,15 @@ impl TypeObject for SnapToGridGranularity {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9118,6 +11151,15 @@ impl TypeObject for AudioEnvelopeLineType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -9150,55 +11192,103 @@ pub struct AssetCrossfaderNodeData {
 
 pub trait AssetCrossfaderNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn asset_in(&self) -> &super::audio::AudioGraphNodePort;
+    fn asset_in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn crossfade_time(&self) -> &super::audio::AudioGraphNodePort;
+    fn crossfade_time_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn force_crossfade(&self) -> &super::audio::AudioGraphNodePort;
+    fn force_crossfade_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn asset_a(&self) -> &super::audio::AudioGraphNodePort;
+    fn asset_a_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn amplitude_a(&self) -> &super::audio::AudioGraphNodePort;
+    fn amplitude_a_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn trigger_a(&self) -> &super::audio::AudioGraphNodePort;
+    fn trigger_a_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn release_a(&self) -> &super::audio::AudioGraphNodePort;
+    fn release_a_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn asset_b(&self) -> &super::audio::AudioGraphNodePort;
+    fn asset_b_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn amplitude_b(&self) -> &super::audio::AudioGraphNodePort;
+    fn amplitude_b_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn trigger_b(&self) -> &super::audio::AudioGraphNodePort;
+    fn trigger_b_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn release_b(&self) -> &super::audio::AudioGraphNodePort;
+    fn release_b_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn auto_crossfade_on_asset_change(&self) -> &bool;
+    fn auto_crossfade_on_asset_change_mut(&mut self) -> &mut bool;
 }
 
 impl AssetCrossfaderNodeDataTrait for AssetCrossfaderNodeData {
     fn asset_in(&self) -> &super::audio::AudioGraphNodePort {
         &self.asset_in
     }
+    fn asset_in_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.asset_in
+    }
     fn crossfade_time(&self) -> &super::audio::AudioGraphNodePort {
         &self.crossfade_time
+    }
+    fn crossfade_time_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.crossfade_time
     }
     fn force_crossfade(&self) -> &super::audio::AudioGraphNodePort {
         &self.force_crossfade
     }
+    fn force_crossfade_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.force_crossfade
+    }
     fn asset_a(&self) -> &super::audio::AudioGraphNodePort {
         &self.asset_a
+    }
+    fn asset_a_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.asset_a
     }
     fn amplitude_a(&self) -> &super::audio::AudioGraphNodePort {
         &self.amplitude_a
     }
+    fn amplitude_a_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.amplitude_a
+    }
     fn trigger_a(&self) -> &super::audio::AudioGraphNodePort {
         &self.trigger_a
+    }
+    fn trigger_a_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.trigger_a
     }
     fn release_a(&self) -> &super::audio::AudioGraphNodePort {
         &self.release_a
     }
+    fn release_a_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.release_a
+    }
     fn asset_b(&self) -> &super::audio::AudioGraphNodePort {
         &self.asset_b
+    }
+    fn asset_b_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.asset_b
     }
     fn amplitude_b(&self) -> &super::audio::AudioGraphNodePort {
         &self.amplitude_b
     }
+    fn amplitude_b_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.amplitude_b
+    }
     fn trigger_b(&self) -> &super::audio::AudioGraphNodePort {
         &self.trigger_b
+    }
+    fn trigger_b_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.trigger_b
     }
     fn release_b(&self) -> &super::audio::AudioGraphNodePort {
         &self.release_b
     }
+    fn release_b_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.release_b
+    }
     fn auto_crossfade_on_asset_change(&self) -> &bool {
         &self.auto_crossfade_on_asset_change
+    }
+    fn auto_crossfade_on_asset_change_mut(&mut self) -> &mut bool {
+        &mut self.auto_crossfade_on_asset_change
     }
 }
 
@@ -9206,9 +11296,6 @@ impl super::audio::AudioGraphNodeDataTrait for AssetCrossfaderNodeData {
 }
 
 impl super::core::DataContainerTrait for AssetCrossfaderNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ASSETCROSSFADERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9306,6 +11393,15 @@ impl TypeObject for AssetCrossfaderNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9334,39 +11430,71 @@ pub struct ArOneShotNodeData {
 
 pub trait ArOneShotNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn start(&self) -> &super::audio::AudioGraphNodePort;
+    fn start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn attack(&self) -> &super::audio::AudioGraphNodePort;
+    fn attack_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn hold(&self) -> &super::audio::AudioGraphNodePort;
+    fn hold_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn release(&self) -> &super::audio::AudioGraphNodePort;
+    fn release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn power(&self) -> &f32;
+    fn power_mut(&mut self) -> &mut f32;
     fn value(&self) -> &super::audio::AudioGraphNodePort;
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn started(&self) -> &super::audio::AudioGraphNodePort;
+    fn started_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn stopped(&self) -> &super::audio::AudioGraphNodePort;
+    fn stopped_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl ArOneShotNodeDataTrait for ArOneShotNodeData {
     fn start(&self) -> &super::audio::AudioGraphNodePort {
         &self.start
     }
+    fn start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.start
+    }
     fn attack(&self) -> &super::audio::AudioGraphNodePort {
         &self.attack
+    }
+    fn attack_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.attack
     }
     fn hold(&self) -> &super::audio::AudioGraphNodePort {
         &self.hold
     }
+    fn hold_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.hold
+    }
     fn release(&self) -> &super::audio::AudioGraphNodePort {
         &self.release
+    }
+    fn release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.release
     }
     fn power(&self) -> &f32 {
         &self.power
     }
+    fn power_mut(&mut self) -> &mut f32 {
+        &mut self.power
+    }
     fn value(&self) -> &super::audio::AudioGraphNodePort {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.value
     }
     fn started(&self) -> &super::audio::AudioGraphNodePort {
         &self.started
     }
+    fn started_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.started
+    }
     fn stopped(&self) -> &super::audio::AudioGraphNodePort {
         &self.stopped
+    }
+    fn stopped_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.stopped
     }
 }
 
@@ -9374,9 +11502,6 @@ impl super::audio::AudioGraphNodeDataTrait for ArOneShotNodeData {
 }
 
 impl super::core::DataContainerTrait for ArOneShotNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ARONESHOTNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9450,6 +11575,15 @@ impl TypeObject for ArOneShotNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9478,39 +11612,71 @@ pub struct ArLoopingNodeData {
 
 pub trait ArLoopingNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn start(&self) -> &super::audio::AudioGraphNodePort;
+    fn start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn stop(&self) -> &super::audio::AudioGraphNodePort;
+    fn stop_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn attack(&self) -> &super::audio::AudioGraphNodePort;
+    fn attack_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn release(&self) -> &super::audio::AudioGraphNodePort;
+    fn release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn power(&self) -> &f32;
+    fn power_mut(&mut self) -> &mut f32;
     fn value(&self) -> &super::audio::AudioGraphNodePort;
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn started(&self) -> &super::audio::AudioGraphNodePort;
+    fn started_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn stopped(&self) -> &super::audio::AudioGraphNodePort;
+    fn stopped_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl ArLoopingNodeDataTrait for ArLoopingNodeData {
     fn start(&self) -> &super::audio::AudioGraphNodePort {
         &self.start
     }
+    fn start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.start
+    }
     fn stop(&self) -> &super::audio::AudioGraphNodePort {
         &self.stop
+    }
+    fn stop_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.stop
     }
     fn attack(&self) -> &super::audio::AudioGraphNodePort {
         &self.attack
     }
+    fn attack_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.attack
+    }
     fn release(&self) -> &super::audio::AudioGraphNodePort {
         &self.release
+    }
+    fn release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.release
     }
     fn power(&self) -> &f32 {
         &self.power
     }
+    fn power_mut(&mut self) -> &mut f32 {
+        &mut self.power
+    }
     fn value(&self) -> &super::audio::AudioGraphNodePort {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.value
     }
     fn started(&self) -> &super::audio::AudioGraphNodePort {
         &self.started
     }
+    fn started_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.started
+    }
     fn stopped(&self) -> &super::audio::AudioGraphNodePort {
         &self.stopped
+    }
+    fn stopped_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.stopped
     }
 }
 
@@ -9518,9 +11684,6 @@ impl super::audio::AudioGraphNodeDataTrait for ArLoopingNodeData {
 }
 
 impl super::core::DataContainerTrait for ArLoopingNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ARLOOPINGNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9594,6 +11757,15 @@ impl TypeObject for ArLoopingNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9627,59 +11799,111 @@ pub struct ArFlipFlopNodeData {
 
 pub trait ArFlipFlopNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn start(&self) -> &super::audio::AudioGraphNodePort;
+    fn start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn stop(&self) -> &super::audio::AudioGraphNodePort;
+    fn stop_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn stop_end_cycle(&self) -> &super::audio::AudioGraphNodePort;
+    fn stop_end_cycle_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn attack(&self) -> &super::audio::AudioGraphNodePort;
+    fn attack_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn hold(&self) -> &super::audio::AudioGraphNodePort;
+    fn hold_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn release(&self) -> &super::audio::AudioGraphNodePort;
+    fn release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn power(&self) -> &f32;
+    fn power_mut(&mut self) -> &mut f32;
     fn value(&self) -> &super::audio::AudioGraphNodePort;
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn started(&self) -> &super::audio::AudioGraphNodePort;
+    fn started_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn end_attack(&self) -> &super::audio::AudioGraphNodePort;
+    fn end_attack_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn end_hold(&self) -> &super::audio::AudioGraphNodePort;
+    fn end_hold_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn end_release(&self) -> &super::audio::AudioGraphNodePort;
+    fn end_release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn stopped(&self) -> &super::audio::AudioGraphNodePort;
+    fn stopped_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl ArFlipFlopNodeDataTrait for ArFlipFlopNodeData {
     fn start(&self) -> &super::audio::AudioGraphNodePort {
         &self.start
     }
+    fn start_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.start
+    }
     fn stop(&self) -> &super::audio::AudioGraphNodePort {
         &self.stop
+    }
+    fn stop_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.stop
     }
     fn stop_end_cycle(&self) -> &super::audio::AudioGraphNodePort {
         &self.stop_end_cycle
     }
+    fn stop_end_cycle_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.stop_end_cycle
+    }
     fn attack(&self) -> &super::audio::AudioGraphNodePort {
         &self.attack
+    }
+    fn attack_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.attack
     }
     fn hold(&self) -> &super::audio::AudioGraphNodePort {
         &self.hold
     }
+    fn hold_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.hold
+    }
     fn release(&self) -> &super::audio::AudioGraphNodePort {
         &self.release
+    }
+    fn release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.release
     }
     fn power(&self) -> &f32 {
         &self.power
     }
+    fn power_mut(&mut self) -> &mut f32 {
+        &mut self.power
+    }
     fn value(&self) -> &super::audio::AudioGraphNodePort {
         &self.value
+    }
+    fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.value
     }
     fn started(&self) -> &super::audio::AudioGraphNodePort {
         &self.started
     }
+    fn started_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.started
+    }
     fn end_attack(&self) -> &super::audio::AudioGraphNodePort {
         &self.end_attack
+    }
+    fn end_attack_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.end_attack
     }
     fn end_hold(&self) -> &super::audio::AudioGraphNodePort {
         &self.end_hold
     }
+    fn end_hold_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.end_hold
+    }
     fn end_release(&self) -> &super::audio::AudioGraphNodePort {
         &self.end_release
     }
+    fn end_release_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.end_release
+    }
     fn stopped(&self) -> &super::audio::AudioGraphNodePort {
         &self.stopped
+    }
+    fn stopped_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.stopped
     }
 }
 
@@ -9687,9 +11911,6 @@ impl super::audio::AudioGraphNodeDataTrait for ArFlipFlopNodeData {
 }
 
 impl super::core::DataContainerTrait for ArFlipFlopNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ARFLIPFLOPNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9793,6 +12014,15 @@ impl TypeObject for ArFlipFlopNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9816,19 +12046,31 @@ pub struct ListenerAreaTypeNodeData {
 
 pub trait ListenerAreaTypeNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn area_type(&self) -> &super::audio::AudioGraphNodePort;
+    fn area_type_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn use_default_listener(&self) -> &bool;
+    fn use_default_listener_mut(&mut self) -> &mut bool;
     fn listener_id(&self) -> &i32;
+    fn listener_id_mut(&mut self) -> &mut i32;
 }
 
 impl ListenerAreaTypeNodeDataTrait for ListenerAreaTypeNodeData {
     fn area_type(&self) -> &super::audio::AudioGraphNodePort {
         &self.area_type
     }
+    fn area_type_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.area_type
+    }
     fn use_default_listener(&self) -> &bool {
         &self.use_default_listener
     }
+    fn use_default_listener_mut(&mut self) -> &mut bool {
+        &mut self.use_default_listener
+    }
     fn listener_id(&self) -> &i32 {
         &self.listener_id
+    }
+    fn listener_id_mut(&mut self) -> &mut i32 {
+        &mut self.listener_id
     }
 }
 
@@ -9836,9 +12078,6 @@ impl super::audio::AudioGraphNodeDataTrait for ListenerAreaTypeNodeData {
 }
 
 impl super::core::DataContainerTrait for ListenerAreaTypeNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LISTENERAREATYPENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9882,6 +12121,15 @@ impl TypeObject for ListenerAreaTypeNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9905,19 +12153,31 @@ pub struct AreaTypeNodeData {
 
 pub trait AreaTypeNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn check(&self) -> &super::audio::AudioGraphNodePort;
+    fn check_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn result(&self) -> &super::audio::AudioGraphNodePort;
+    fn result_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn area_type(&self) -> &super::audio::AudioGraphNodePort;
+    fn area_type_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl AreaTypeNodeDataTrait for AreaTypeNodeData {
     fn check(&self) -> &super::audio::AudioGraphNodePort {
         &self.check
     }
+    fn check_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.check
+    }
     fn result(&self) -> &super::audio::AudioGraphNodePort {
         &self.result
     }
+    fn result_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.result
+    }
     fn area_type(&self) -> &super::audio::AudioGraphNodePort {
         &self.area_type
+    }
+    fn area_type_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
+        &mut self.area_type
     }
 }
 
@@ -9925,9 +12185,6 @@ impl super::audio::AudioGraphNodeDataTrait for AreaTypeNodeData {
 }
 
 impl super::core::DataContainerTrait for AreaTypeNodeData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AREATYPENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -9971,6 +12228,15 @@ impl TypeObject for AreaTypeNodeData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -9993,15 +12259,23 @@ pub struct VoiceOverSourceEntityData {
 
 pub trait VoiceOverSourceEntityDataTrait: super::entity::EntityDataTrait {
     fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
+    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl VoiceOverSourceEntityDataTrait for VoiceOverSourceEntityData {
     fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
         &self.voice_over_info
     }
+    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+        &mut self.voice_over_info
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
 }
 
@@ -10015,15 +12289,15 @@ impl super::core::DataBusPeerTrait for VoiceOverSourceEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VoiceOverSourceEntityData {
 }
 
 impl super::core::DataContainerTrait for VoiceOverSourceEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VOICEOVERSOURCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10061,6 +12335,15 @@ impl TypeObject for VoiceOverSourceEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10082,11 +12365,15 @@ pub struct VoiceOverSetLanguageEntityData {
 
 pub trait VoiceOverSetLanguageEntityDataTrait: super::entity::EntityDataTrait {
     fn language_index(&self) -> &i32;
+    fn language_index_mut(&mut self) -> &mut i32;
 }
 
 impl VoiceOverSetLanguageEntityDataTrait for VoiceOverSetLanguageEntityData {
     fn language_index(&self) -> &i32 {
         &self.language_index
+    }
+    fn language_index_mut(&mut self) -> &mut i32 {
+        &mut self.language_index
     }
 }
 
@@ -10100,15 +12387,15 @@ impl super::core::DataBusPeerTrait for VoiceOverSetLanguageEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VoiceOverSetLanguageEntityData {
 }
 
 impl super::core::DataContainerTrait for VoiceOverSetLanguageEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VOICEOVERSETLANGUAGEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10140,6 +12427,15 @@ impl TypeObject for VoiceOverSetLanguageEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10161,18 +12457,19 @@ pub struct LanguageCollection {
 
 pub trait LanguageCollectionTrait: super::core::DataContainerTrait {
     fn languages_string(&self) -> &Vec<Option<Arc<Mutex<dyn LanguageCollectionElementTrait>>>>;
+    fn languages_string_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LanguageCollectionElementTrait>>>>;
 }
 
 impl LanguageCollectionTrait for LanguageCollection {
     fn languages_string(&self) -> &Vec<Option<Arc<Mutex<dyn LanguageCollectionElementTrait>>>> {
         &self.languages_string
     }
+    fn languages_string_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LanguageCollectionElementTrait>>>> {
+        &mut self.languages_string
+    }
 }
 
 impl super::core::DataContainerTrait for LanguageCollection {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LANGUAGECOLLECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10204,6 +12501,15 @@ impl TypeObject for LanguageCollection {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10226,22 +12532,27 @@ pub struct LanguageCollectionElement {
 
 pub trait LanguageCollectionElementTrait: super::core::DataContainerTrait {
     fn language(&self) -> &String;
+    fn language_mut(&mut self) -> &mut String;
     fn language_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
+    fn language_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
 }
 
 impl LanguageCollectionElementTrait for LanguageCollectionElement {
     fn language(&self) -> &String {
         &self.language
     }
+    fn language_mut(&mut self) -> &mut String {
+        &mut self.language
+    }
     fn language_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
         &self.language_string_id
+    }
+    fn language_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
+        &mut self.language_string_id
     }
 }
 
 impl super::core::DataContainerTrait for LanguageCollectionElement {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LANGUAGECOLLECTIONELEMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10279,6 +12590,15 @@ impl TypeObject for LanguageCollectionElement {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10301,21 +12621,32 @@ pub struct VoiceOverLocatorEntityData {
 
 pub trait VoiceOverLocatorEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
+    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
 }
 
 impl VoiceOverLocatorEntityDataTrait for VoiceOverLocatorEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
         &self.voice_over_info
+    }
+    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+        &mut self.voice_over_info
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for VoiceOverLocatorEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -10329,15 +12660,15 @@ impl super::core::DataBusPeerTrait for VoiceOverLocatorEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VoiceOverLocatorEntityData {
 }
 
 impl super::core::DataContainerTrait for VoiceOverLocatorEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VOICEOVERLOCATORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10375,6 +12706,15 @@ impl TypeObject for VoiceOverLocatorEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10396,11 +12736,15 @@ pub struct EntryControllableAttachData {
 
 pub trait EntryControllableAttachDataTrait: EntityAttachDataTrait {
     fn bone(&self) -> &super::entity::GameplayBones;
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones;
 }
 
 impl EntryControllableAttachDataTrait for EntryControllableAttachData {
     fn bone(&self) -> &super::entity::GameplayBones {
         &self.bone
+    }
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones {
+        &mut self.bone
     }
 }
 
@@ -10408,17 +12752,32 @@ impl EntityAttachDataTrait for EntryControllableAttachData {
     fn property_name(&self) -> &String {
         self._glacier_base.property_name()
     }
+    fn property_name_mut(&mut self) -> &mut String {
+        self._glacier_base.property_name_mut()
+    }
     fn has_dynamic_transform_space_offset(&self) -> &bool {
         self._glacier_base.has_dynamic_transform_space_offset()
+    }
+    fn has_dynamic_transform_space_offset_mut(&mut self) -> &mut bool {
+        self._glacier_base.has_dynamic_transform_space_offset_mut()
     }
     fn use_rotation(&self) -> &bool {
         self._glacier_base.use_rotation()
     }
+    fn use_rotation_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_rotation_mut()
+    }
     fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
         self._glacier_base.coordinate_space()
     }
+    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+        self._glacier_base.coordinate_space_mut()
+    }
     fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+        self._glacier_base.offset_mut()
     }
 }
 
@@ -10426,12 +12785,12 @@ impl EntityLinkDataTrait for EntryControllableAttachData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EntryControllableAttachData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTRYCONTROLLABLEATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10463,6 +12822,15 @@ impl TypeObject for EntryControllableAttachData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10491,23 +12859,41 @@ impl AnimatableAttachDataTrait for ControllableAttachData {
     fn bone(&self) -> &super::entity::GameplayBones {
         self._glacier_base.bone()
     }
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones {
+        self._glacier_base.bone_mut()
+    }
 }
 
 impl EntityAttachDataTrait for ControllableAttachData {
     fn property_name(&self) -> &String {
         self._glacier_base.property_name()
     }
+    fn property_name_mut(&mut self) -> &mut String {
+        self._glacier_base.property_name_mut()
+    }
     fn has_dynamic_transform_space_offset(&self) -> &bool {
         self._glacier_base.has_dynamic_transform_space_offset()
+    }
+    fn has_dynamic_transform_space_offset_mut(&mut self) -> &mut bool {
+        self._glacier_base.has_dynamic_transform_space_offset_mut()
     }
     fn use_rotation(&self) -> &bool {
         self._glacier_base.use_rotation()
     }
+    fn use_rotation_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_rotation_mut()
+    }
     fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
         self._glacier_base.coordinate_space()
     }
+    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+        self._glacier_base.coordinate_space_mut()
+    }
     fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+        self._glacier_base.offset_mut()
     }
 }
 
@@ -10515,12 +12901,12 @@ impl EntityLinkDataTrait for ControllableAttachData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ControllableAttachData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONTROLLABLEATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10546,6 +12932,15 @@ impl TypeObject for ControllableAttachData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10567,11 +12962,15 @@ pub struct ModelAnimationAttachData {
 
 pub trait ModelAnimationAttachDataTrait: EntityAttachDataTrait {
     fn bone(&self) -> &super::entity::GameplayBones;
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones;
 }
 
 impl ModelAnimationAttachDataTrait for ModelAnimationAttachData {
     fn bone(&self) -> &super::entity::GameplayBones {
         &self.bone
+    }
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones {
+        &mut self.bone
     }
 }
 
@@ -10579,17 +12978,32 @@ impl EntityAttachDataTrait for ModelAnimationAttachData {
     fn property_name(&self) -> &String {
         self._glacier_base.property_name()
     }
+    fn property_name_mut(&mut self) -> &mut String {
+        self._glacier_base.property_name_mut()
+    }
     fn has_dynamic_transform_space_offset(&self) -> &bool {
         self._glacier_base.has_dynamic_transform_space_offset()
+    }
+    fn has_dynamic_transform_space_offset_mut(&mut self) -> &mut bool {
+        self._glacier_base.has_dynamic_transform_space_offset_mut()
     }
     fn use_rotation(&self) -> &bool {
         self._glacier_base.use_rotation()
     }
+    fn use_rotation_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_rotation_mut()
+    }
     fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
         self._glacier_base.coordinate_space()
     }
+    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+        self._glacier_base.coordinate_space_mut()
+    }
     fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+        self._glacier_base.offset_mut()
     }
 }
 
@@ -10597,12 +13011,12 @@ impl EntityLinkDataTrait for ModelAnimationAttachData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ModelAnimationAttachData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MODELANIMATIONATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10634,6 +13048,15 @@ impl TypeObject for ModelAnimationAttachData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10655,11 +13078,15 @@ pub struct AnimatableAttachData {
 
 pub trait AnimatableAttachDataTrait: EntityAttachDataTrait {
     fn bone(&self) -> &super::entity::GameplayBones;
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones;
 }
 
 impl AnimatableAttachDataTrait for AnimatableAttachData {
     fn bone(&self) -> &super::entity::GameplayBones {
         &self.bone
+    }
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones {
+        &mut self.bone
     }
 }
 
@@ -10667,17 +13094,32 @@ impl EntityAttachDataTrait for AnimatableAttachData {
     fn property_name(&self) -> &String {
         self._glacier_base.property_name()
     }
+    fn property_name_mut(&mut self) -> &mut String {
+        self._glacier_base.property_name_mut()
+    }
     fn has_dynamic_transform_space_offset(&self) -> &bool {
         self._glacier_base.has_dynamic_transform_space_offset()
+    }
+    fn has_dynamic_transform_space_offset_mut(&mut self) -> &mut bool {
+        self._glacier_base.has_dynamic_transform_space_offset_mut()
     }
     fn use_rotation(&self) -> &bool {
         self._glacier_base.use_rotation()
     }
+    fn use_rotation_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_rotation_mut()
+    }
     fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
         self._glacier_base.coordinate_space()
     }
+    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+        self._glacier_base.coordinate_space_mut()
+    }
     fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+        self._glacier_base.offset_mut()
     }
 }
 
@@ -10685,12 +13127,12 @@ impl EntityLinkDataTrait for AnimatableAttachData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AnimatableAttachData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANIMATABLEATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10722,6 +13164,15 @@ impl TypeObject for AnimatableAttachData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10750,17 +13201,32 @@ impl EntityAttachDataTrait for ComponentAttachData {
     fn property_name(&self) -> &String {
         self._glacier_base.property_name()
     }
+    fn property_name_mut(&mut self) -> &mut String {
+        self._glacier_base.property_name_mut()
+    }
     fn has_dynamic_transform_space_offset(&self) -> &bool {
         self._glacier_base.has_dynamic_transform_space_offset()
+    }
+    fn has_dynamic_transform_space_offset_mut(&mut self) -> &mut bool {
+        self._glacier_base.has_dynamic_transform_space_offset_mut()
     }
     fn use_rotation(&self) -> &bool {
         self._glacier_base.use_rotation()
     }
+    fn use_rotation_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_rotation_mut()
+    }
     fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
         self._glacier_base.coordinate_space()
     }
+    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+        self._glacier_base.coordinate_space_mut()
+    }
     fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+        self._glacier_base.offset_mut()
     }
 }
 
@@ -10768,12 +13234,12 @@ impl EntityLinkDataTrait for ComponentAttachData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ComponentAttachData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COMPONENTATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10798,6 +13264,15 @@ impl TypeObject for ComponentAttachData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -10824,27 +13299,47 @@ pub struct EntityAttachData {
 
 pub trait EntityAttachDataTrait: EntityLinkDataTrait {
     fn property_name(&self) -> &String;
+    fn property_name_mut(&mut self) -> &mut String;
     fn has_dynamic_transform_space_offset(&self) -> &bool;
+    fn has_dynamic_transform_space_offset_mut(&mut self) -> &mut bool;
     fn use_rotation(&self) -> &bool;
+    fn use_rotation_mut(&mut self) -> &mut bool;
     fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>>;
+    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>>;
     fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>>;
+    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>>;
 }
 
 impl EntityAttachDataTrait for EntityAttachData {
     fn property_name(&self) -> &String {
         &self.property_name
     }
+    fn property_name_mut(&mut self) -> &mut String {
+        &mut self.property_name
+    }
     fn has_dynamic_transform_space_offset(&self) -> &bool {
         &self.has_dynamic_transform_space_offset
+    }
+    fn has_dynamic_transform_space_offset_mut(&mut self) -> &mut bool {
+        &mut self.has_dynamic_transform_space_offset
     }
     fn use_rotation(&self) -> &bool {
         &self.use_rotation
     }
+    fn use_rotation_mut(&mut self) -> &mut bool {
+        &mut self.use_rotation
+    }
     fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
         &self.coordinate_space
     }
+    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+        &mut self.coordinate_space
+    }
     fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
         &self.offset
+    }
+    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+        &mut self.offset
     }
 }
 
@@ -10852,12 +13347,12 @@ impl EntityLinkDataTrait for EntityAttachData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EntityAttachData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTITYATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10913,6 +13408,15 @@ impl TypeObject for EntityAttachData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -10941,6 +13445,9 @@ impl AnimatableTransformLinkDataTrait for ControllableTransformLinkData {
     fn bone(&self) -> &super::entity::GameplayBones {
         self._glacier_base.bone()
     }
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones {
+        self._glacier_base.bone_mut()
+    }
 }
 
 impl EntityTransformLinkDataTrait for ControllableTransformLinkData {
@@ -10950,12 +13457,12 @@ impl EntityLinkDataTrait for ControllableTransformLinkData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ControllableTransformLinkData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONTROLLABLETRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -10981,6 +13488,15 @@ impl TypeObject for ControllableTransformLinkData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11002,11 +13518,15 @@ pub struct EntryControllableTransformLinkData {
 
 pub trait EntryControllableTransformLinkDataTrait: EntityTransformLinkDataTrait {
     fn bone(&self) -> &super::entity::GameplayBones;
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones;
 }
 
 impl EntryControllableTransformLinkDataTrait for EntryControllableTransformLinkData {
     fn bone(&self) -> &super::entity::GameplayBones {
         &self.bone
+    }
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones {
+        &mut self.bone
     }
 }
 
@@ -11017,12 +13537,12 @@ impl EntityLinkDataTrait for EntryControllableTransformLinkData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EntryControllableTransformLinkData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTRYCONTROLLABLETRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11053,6 +13573,15 @@ impl TypeObject for EntryControllableTransformLinkData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -11085,12 +13614,12 @@ impl EntityLinkDataTrait for ComponentTransformLinkData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ComponentTransformLinkData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COMPONENTTRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11116,6 +13645,15 @@ impl TypeObject for ComponentTransformLinkData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11137,11 +13675,15 @@ pub struct ModelAnimationTransformLinkData {
 
 pub trait ModelAnimationTransformLinkDataTrait: EntityTransformLinkDataTrait {
     fn bone(&self) -> &super::entity::GameplayBones;
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones;
 }
 
 impl ModelAnimationTransformLinkDataTrait for ModelAnimationTransformLinkData {
     fn bone(&self) -> &super::entity::GameplayBones {
         &self.bone
+    }
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones {
+        &mut self.bone
     }
 }
 
@@ -11152,12 +13694,12 @@ impl EntityLinkDataTrait for ModelAnimationTransformLinkData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ModelAnimationTransformLinkData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MODELANIMATIONTRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11189,6 +13731,15 @@ impl TypeObject for ModelAnimationTransformLinkData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11210,11 +13761,15 @@ pub struct AnimatableTransformLinkData {
 
 pub trait AnimatableTransformLinkDataTrait: EntityTransformLinkDataTrait {
     fn bone(&self) -> &super::entity::GameplayBones;
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones;
 }
 
 impl AnimatableTransformLinkDataTrait for AnimatableTransformLinkData {
     fn bone(&self) -> &super::entity::GameplayBones {
         &self.bone
+    }
+    fn bone_mut(&mut self) -> &mut super::entity::GameplayBones {
+        &mut self.bone
     }
 }
 
@@ -11225,12 +13780,12 @@ impl EntityLinkDataTrait for AnimatableTransformLinkData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for AnimatableTransformLinkData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANIMATABLETRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11261,6 +13816,15 @@ impl TypeObject for AnimatableTransformLinkData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -11293,12 +13857,12 @@ impl EntityLinkDataTrait for EntityCenterTransformLinkData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EntityCenterTransformLinkData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTITYCENTERTRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11323,6 +13887,15 @@ impl TypeObject for EntityCenterTransformLinkData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -11352,12 +13925,12 @@ impl EntityLinkDataTrait for EntityTransformLinkData {
     fn link_name(&self) -> &String {
         self._glacier_base.link_name()
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        self._glacier_base.link_name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for EntityTransformLinkData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTITYTRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11383,6 +13956,15 @@ impl TypeObject for EntityTransformLinkData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11404,18 +13986,19 @@ pub struct EntityLinkData {
 
 pub trait EntityLinkDataTrait: super::core::DataContainerTrait {
     fn link_name(&self) -> &String;
+    fn link_name_mut(&mut self) -> &mut String;
 }
 
 impl EntityLinkDataTrait for EntityLinkData {
     fn link_name(&self) -> &String {
         &self.link_name
     }
+    fn link_name_mut(&mut self) -> &mut String {
+        &mut self.link_name
+    }
 }
 
 impl super::core::DataContainerTrait for EntityLinkData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ENTITYLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11447,6 +14030,15 @@ impl TypeObject for EntityLinkData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11471,30 +14063,43 @@ pub struct OffsetModificationData {
 
 pub trait OffsetModificationDataTrait: super::core::DataContainerTrait {
     fn offset_x_axis_in_world_space(&self) -> &bool;
+    fn offset_x_axis_in_world_space_mut(&mut self) -> &mut bool;
     fn offset_y_axis_in_world_space(&self) -> &bool;
+    fn offset_y_axis_in_world_space_mut(&mut self) -> &mut bool;
     fn offset_z_axis_in_world_space(&self) -> &bool;
+    fn offset_z_axis_in_world_space_mut(&mut self) -> &mut bool;
     fn offset(&self) -> &super::core::LinearTransform;
+    fn offset_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl OffsetModificationDataTrait for OffsetModificationData {
     fn offset_x_axis_in_world_space(&self) -> &bool {
         &self.offset_x_axis_in_world_space
     }
+    fn offset_x_axis_in_world_space_mut(&mut self) -> &mut bool {
+        &mut self.offset_x_axis_in_world_space
+    }
     fn offset_y_axis_in_world_space(&self) -> &bool {
         &self.offset_y_axis_in_world_space
+    }
+    fn offset_y_axis_in_world_space_mut(&mut self) -> &mut bool {
+        &mut self.offset_y_axis_in_world_space
     }
     fn offset_z_axis_in_world_space(&self) -> &bool {
         &self.offset_z_axis_in_world_space
     }
+    fn offset_z_axis_in_world_space_mut(&mut self) -> &mut bool {
+        &mut self.offset_z_axis_in_world_space
+    }
     fn offset(&self) -> &super::core::LinearTransform {
         &self.offset
+    }
+    fn offset_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.offset
     }
 }
 
 impl super::core::DataContainerTrait for OffsetModificationData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static OFFSETMODIFICATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11544,6 +14149,15 @@ impl TypeObject for OffsetModificationData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11570,38 +14184,59 @@ pub struct CoordinateModificationData {
 
 pub trait CoordinateModificationDataTrait: super::core::DataContainerTrait {
     fn left(&self) -> &super::entity::ModifierAxis;
+    fn left_mut(&mut self) -> &mut super::entity::ModifierAxis;
     fn up(&self) -> &super::entity::ModifierAxis;
+    fn up_mut(&mut self) -> &mut super::entity::ModifierAxis;
     fn forward(&self) -> &super::entity::ModifierAxis;
+    fn forward_mut(&mut self) -> &mut super::entity::ModifierAxis;
     fn invert_left(&self) -> &bool;
+    fn invert_left_mut(&mut self) -> &mut bool;
     fn invert_up(&self) -> &bool;
+    fn invert_up_mut(&mut self) -> &mut bool;
     fn invert_forward(&self) -> &bool;
+    fn invert_forward_mut(&mut self) -> &mut bool;
 }
 
 impl CoordinateModificationDataTrait for CoordinateModificationData {
     fn left(&self) -> &super::entity::ModifierAxis {
         &self.left
     }
+    fn left_mut(&mut self) -> &mut super::entity::ModifierAxis {
+        &mut self.left
+    }
     fn up(&self) -> &super::entity::ModifierAxis {
         &self.up
+    }
+    fn up_mut(&mut self) -> &mut super::entity::ModifierAxis {
+        &mut self.up
     }
     fn forward(&self) -> &super::entity::ModifierAxis {
         &self.forward
     }
+    fn forward_mut(&mut self) -> &mut super::entity::ModifierAxis {
+        &mut self.forward
+    }
     fn invert_left(&self) -> &bool {
         &self.invert_left
+    }
+    fn invert_left_mut(&mut self) -> &mut bool {
+        &mut self.invert_left
     }
     fn invert_up(&self) -> &bool {
         &self.invert_up
     }
+    fn invert_up_mut(&mut self) -> &mut bool {
+        &mut self.invert_up
+    }
     fn invert_forward(&self) -> &bool {
         &self.invert_forward
+    }
+    fn invert_forward_mut(&mut self) -> &mut bool {
+        &mut self.invert_forward
     }
 }
 
 impl super::core::DataContainerTrait for CoordinateModificationData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COORDINATEMODIFICATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11663,6 +14298,15 @@ impl TypeObject for CoordinateModificationData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11691,8 +14335,14 @@ impl super::entity::LogicReferenceObjectDataTrait for WidgetReferenceEntityData 
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
     fn sub_realm(&self) -> &super::entity::SubRealm {
         self._glacier_base.sub_realm()
+    }
+    fn sub_realm_mut(&mut self) -> &mut super::entity::SubRealm {
+        self._glacier_base.sub_realm_mut()
     }
 }
 
@@ -11700,32 +14350,62 @@ impl super::entity::ReferenceObjectDataTrait for WidgetReferenceEntityData {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -11736,15 +14416,15 @@ impl super::core::DataBusPeerTrait for WidgetReferenceEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WidgetReferenceEntityData {
 }
 
 impl super::core::DataContainerTrait for WidgetReferenceEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WIDGETREFERENCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11770,6 +14450,15 @@ impl TypeObject for WidgetReferenceEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11792,15 +14481,23 @@ pub struct DiceUIVectorShapeAsset {
 
 pub trait DiceUIVectorShapeAssetTrait: super::core::DataContainerPolicyAssetTrait {
     fn shapes(&self) -> &Vec<DiceUIVectorShape>;
+    fn shapes_mut(&mut self) -> &mut Vec<DiceUIVectorShape>;
     fn layout_rect(&self) -> &super::core::Vec4;
+    fn layout_rect_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl DiceUIVectorShapeAssetTrait for DiceUIVectorShapeAsset {
     fn shapes(&self) -> &Vec<DiceUIVectorShape> {
         &self.shapes
     }
+    fn shapes_mut(&mut self) -> &mut Vec<DiceUIVectorShape> {
+        &mut self.shapes
+    }
     fn layout_rect(&self) -> &super::core::Vec4 {
         &self.layout_rect
+    }
+    fn layout_rect_mut(&mut self) -> &mut super::core::Vec4 {
+        &mut self.layout_rect
     }
 }
 
@@ -11811,12 +14508,12 @@ impl super::core::AssetTrait for DiceUIVectorShapeAsset {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DiceUIVectorShapeAsset {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEUIVECTORSHAPEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -11854,6 +14551,15 @@ impl TypeObject for DiceUIVectorShapeAsset {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -11888,67 +14594,127 @@ pub struct DiceUIVectorShape {
 
 pub trait DiceUIVectorShapeTrait: TypeObject {
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn alpha(&self) -> &f32;
+    fn alpha_mut(&mut self) -> &mut f32;
     fn specify_inner_outer_widths(&self) -> &bool;
+    fn specify_inner_outer_widths_mut(&mut self) -> &mut bool;
     fn inner_width(&self) -> &f32;
+    fn inner_width_mut(&mut self) -> &mut f32;
     fn outer_width(&self) -> &f32;
+    fn outer_width_mut(&mut self) -> &mut f32;
     fn line_width(&self) -> &f32;
+    fn line_width_mut(&mut self) -> &mut f32;
     fn start_cap_type(&self) -> &DiceUIVectorShapeCapType;
+    fn start_cap_type_mut(&mut self) -> &mut DiceUIVectorShapeCapType;
     fn end_cap_type(&self) -> &DiceUIVectorShapeCapType;
+    fn end_cap_type_mut(&mut self) -> &mut DiceUIVectorShapeCapType;
     fn draw_style(&self) -> &DiceUIVectorShapeDrawStyle;
+    fn draw_style_mut(&mut self) -> &mut DiceUIVectorShapeDrawStyle;
     fn path(&self) -> &DiceUIVectorPath;
+    fn path_mut(&mut self) -> &mut DiceUIVectorPath;
     fn inner_paths(&self) -> &Vec<DiceUIVectorPath>;
+    fn inner_paths_mut(&mut self) -> &mut Vec<DiceUIVectorPath>;
     fn triangulated_points(&self) -> &Vec<super::core::Vec2>;
+    fn triangulated_points_mut(&mut self) -> &mut Vec<super::core::Vec2>;
     fn triangulated_expansions(&self) -> &Vec<super::core::Vec2>;
+    fn triangulated_expansions_mut(&mut self) -> &mut Vec<super::core::Vec2>;
     fn triangulated_colors(&self) -> &Vec<super::core::Vec4>;
+    fn triangulated_colors_mut(&mut self) -> &mut Vec<super::core::Vec4>;
     fn triangulated_indices(&self) -> &Vec<u16>;
+    fn triangulated_indices_mut(&mut self) -> &mut Vec<u16>;
 }
 
 impl DiceUIVectorShapeTrait for DiceUIVectorShape {
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn alpha(&self) -> &f32 {
         &self.alpha
+    }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        &mut self.alpha
     }
     fn specify_inner_outer_widths(&self) -> &bool {
         &self.specify_inner_outer_widths
     }
+    fn specify_inner_outer_widths_mut(&mut self) -> &mut bool {
+        &mut self.specify_inner_outer_widths
+    }
     fn inner_width(&self) -> &f32 {
         &self.inner_width
+    }
+    fn inner_width_mut(&mut self) -> &mut f32 {
+        &mut self.inner_width
     }
     fn outer_width(&self) -> &f32 {
         &self.outer_width
     }
+    fn outer_width_mut(&mut self) -> &mut f32 {
+        &mut self.outer_width
+    }
     fn line_width(&self) -> &f32 {
         &self.line_width
+    }
+    fn line_width_mut(&mut self) -> &mut f32 {
+        &mut self.line_width
     }
     fn start_cap_type(&self) -> &DiceUIVectorShapeCapType {
         &self.start_cap_type
     }
+    fn start_cap_type_mut(&mut self) -> &mut DiceUIVectorShapeCapType {
+        &mut self.start_cap_type
+    }
     fn end_cap_type(&self) -> &DiceUIVectorShapeCapType {
         &self.end_cap_type
+    }
+    fn end_cap_type_mut(&mut self) -> &mut DiceUIVectorShapeCapType {
+        &mut self.end_cap_type
     }
     fn draw_style(&self) -> &DiceUIVectorShapeDrawStyle {
         &self.draw_style
     }
+    fn draw_style_mut(&mut self) -> &mut DiceUIVectorShapeDrawStyle {
+        &mut self.draw_style
+    }
     fn path(&self) -> &DiceUIVectorPath {
         &self.path
+    }
+    fn path_mut(&mut self) -> &mut DiceUIVectorPath {
+        &mut self.path
     }
     fn inner_paths(&self) -> &Vec<DiceUIVectorPath> {
         &self.inner_paths
     }
+    fn inner_paths_mut(&mut self) -> &mut Vec<DiceUIVectorPath> {
+        &mut self.inner_paths
+    }
     fn triangulated_points(&self) -> &Vec<super::core::Vec2> {
         &self.triangulated_points
+    }
+    fn triangulated_points_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+        &mut self.triangulated_points
     }
     fn triangulated_expansions(&self) -> &Vec<super::core::Vec2> {
         &self.triangulated_expansions
     }
+    fn triangulated_expansions_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+        &mut self.triangulated_expansions
+    }
     fn triangulated_colors(&self) -> &Vec<super::core::Vec4> {
         &self.triangulated_colors
     }
+    fn triangulated_colors_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+        &mut self.triangulated_colors
+    }
     fn triangulated_indices(&self) -> &Vec<u16> {
         &self.triangulated_indices
+    }
+    fn triangulated_indices_mut(&mut self) -> &mut Vec<u16> {
+        &mut self.triangulated_indices
     }
 }
 
@@ -12064,6 +14830,15 @@ impl TypeObject for DiceUIVectorShape {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12084,11 +14859,15 @@ pub struct DiceUIVectorPath {
 
 pub trait DiceUIVectorPathTrait: TypeObject {
     fn corners(&self) -> &Vec<DiceUIVectorPathCorner>;
+    fn corners_mut(&mut self) -> &mut Vec<DiceUIVectorPathCorner>;
 }
 
 impl DiceUIVectorPathTrait for DiceUIVectorPath {
     fn corners(&self) -> &Vec<DiceUIVectorPathCorner> {
         &self.corners
+    }
+    fn corners_mut(&mut self) -> &mut Vec<DiceUIVectorPathCorner> {
+        &mut self.corners
     }
 }
 
@@ -12120,6 +14899,15 @@ impl TypeObject for DiceUIVectorPath {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12145,31 +14933,55 @@ pub struct DiceUIVectorPathCorner {
 
 pub trait DiceUIVectorPathCornerTrait: TypeObject {
     fn corner_type(&self) -> &DiceUIVectorPathCornerType;
+    fn corner_type_mut(&mut self) -> &mut DiceUIVectorPathCornerType;
     fn radius(&self) -> &f32;
+    fn radius_mut(&mut self) -> &mut f32;
     fn position(&self) -> &super::core::Vec2;
+    fn position_mut(&mut self) -> &mut super::core::Vec2;
     fn expansion(&self) -> &super::core::Vec2;
+    fn expansion_mut(&mut self) -> &mut super::core::Vec2;
     fn color(&self) -> &super::core::Vec3;
+    fn color_mut(&mut self) -> &mut super::core::Vec3;
     fn alpha(&self) -> &f32;
+    fn alpha_mut(&mut self) -> &mut f32;
 }
 
 impl DiceUIVectorPathCornerTrait for DiceUIVectorPathCorner {
     fn corner_type(&self) -> &DiceUIVectorPathCornerType {
         &self.corner_type
     }
+    fn corner_type_mut(&mut self) -> &mut DiceUIVectorPathCornerType {
+        &mut self.corner_type
+    }
     fn radius(&self) -> &f32 {
         &self.radius
+    }
+    fn radius_mut(&mut self) -> &mut f32 {
+        &mut self.radius
     }
     fn position(&self) -> &super::core::Vec2 {
         &self.position
     }
+    fn position_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.position
+    }
     fn expansion(&self) -> &super::core::Vec2 {
         &self.expansion
+    }
+    fn expansion_mut(&mut self) -> &mut super::core::Vec2 {
+        &mut self.expansion
     }
     fn color(&self) -> &super::core::Vec3 {
         &self.color
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.color
+    }
     fn alpha(&self) -> &f32 {
         &self.alpha
+    }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        &mut self.alpha
     }
 }
 
@@ -12231,6 +15043,15 @@ impl TypeObject for DiceUIVectorPathCorner {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12269,6 +15090,15 @@ impl TypeObject for DiceUIVectorPathCornerType {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
@@ -12309,6 +15139,15 @@ impl TypeObject for DiceUIVectorShapeDrawStyle {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12348,6 +15187,15 @@ impl TypeObject for DiceUIVectorShapeCapType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12370,15 +15218,23 @@ pub struct LocalizedStringIdPickerEntityData {
 
 pub trait LocalizedStringIdPickerEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn sid(&self) -> &String;
+    fn sid_mut(&mut self) -> &mut String;
 }
 
 impl LocalizedStringIdPickerEntityDataTrait for LocalizedStringIdPickerEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn sid(&self) -> &String {
         &self.sid
+    }
+    fn sid_mut(&mut self) -> &mut String {
+        &mut self.sid
     }
 }
 
@@ -12392,15 +15248,15 @@ impl super::core::DataBusPeerTrait for LocalizedStringIdPickerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocalizedStringIdPickerEntityData {
 }
 
 impl super::core::DataContainerTrait for LocalizedStringIdPickerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCALIZEDSTRINGIDPICKERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12438,6 +15294,15 @@ impl TypeObject for LocalizedStringIdPickerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12461,19 +15326,31 @@ pub struct CheckedLocalizedStringEntityData {
 
 pub trait CheckedLocalizedStringEntityDataTrait: super::u_i_incubator_shared::LocalizedStringEntityBaseDataTrait {
     fn dynamic_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
+    fn dynamic_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
     fn debug_string(&self) -> &String;
+    fn debug_string_mut(&mut self) -> &mut String;
     fn sid(&self) -> &String;
+    fn sid_mut(&mut self) -> &mut String;
 }
 
 impl CheckedLocalizedStringEntityDataTrait for CheckedLocalizedStringEntityData {
     fn dynamic_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
         &self.dynamic_string_id
     }
+    fn dynamic_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
+        &mut self.dynamic_string_id
+    }
     fn debug_string(&self) -> &String {
         &self.debug_string
     }
+    fn debug_string_mut(&mut self) -> &mut String {
+        &mut self.debug_string
+    }
     fn sid(&self) -> &String {
         &self.sid
+    }
+    fn sid_mut(&mut self) -> &mut String {
+        &mut self.sid
     }
 }
 
@@ -12481,11 +15358,20 @@ impl super::u_i_incubator_shared::LocalizedStringEntityBaseDataTrait for Checked
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn arguments(&self) -> &Vec<super::u_i_incubator_shared::LocalizedStringArgumentType> {
         self._glacier_base.arguments()
     }
+    fn arguments_mut(&mut self) -> &mut Vec<super::u_i_incubator_shared::LocalizedStringArgumentType> {
+        self._glacier_base.arguments_mut()
+    }
     fn argument_hashes(&self) -> &Vec<u32> {
         self._glacier_base.argument_hashes()
+    }
+    fn argument_hashes_mut(&mut self) -> &mut Vec<u32> {
+        self._glacier_base.argument_hashes_mut()
     }
 }
 
@@ -12499,15 +15385,15 @@ impl super::core::DataBusPeerTrait for CheckedLocalizedStringEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CheckedLocalizedStringEntityData {
 }
 
 impl super::core::DataContainerTrait for CheckedLocalizedStringEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHECKEDLOCALIZEDSTRINGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12551,6 +15437,15 @@ impl TypeObject for CheckedLocalizedStringEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12572,11 +15467,15 @@ pub struct MaterialRelationTriggarableEffectData {
 
 pub trait MaterialRelationTriggarableEffectDataTrait: super::entity::PhysicsMaterialRelationPropertyDataTrait {
     fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
 }
 
 impl MaterialRelationTriggarableEffectDataTrait for MaterialRelationTriggarableEffectData {
     fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
         &self.effect
+    }
+    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+        &mut self.effect
     }
 }
 
@@ -12587,9 +15486,6 @@ impl super::entity::MaterialRelationPropertyDataTrait for MaterialRelationTrigga
 }
 
 impl super::core::DataContainerTrait for MaterialRelationTriggarableEffectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MATERIALRELATIONTRIGGARABLEEFFECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12620,6 +15516,15 @@ impl TypeObject for MaterialRelationTriggarableEffectData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -12656,67 +15561,127 @@ pub struct MaterialBasedEffectComponentData {
 
 pub trait MaterialBasedEffectComponentDataTrait: super::entity::GameComponentDataTrait {
     fn auto_start(&self) -> &bool;
+    fn auto_start_mut(&mut self) -> &mut bool;
     fn override_height(&self) -> &f32;
+    fn override_height_mut(&mut self) -> &mut f32;
     fn local_player_only(&self) -> &bool;
+    fn local_player_only_mut(&mut self) -> &mut bool;
     fn material(&self) -> &super::entity::MaterialDecl;
+    fn material_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn transform_effect_with_component(&self) -> &bool;
+    fn transform_effect_with_component_mut(&mut self) -> &mut bool;
     fn snapping(&self) -> &SnapType;
+    fn snapping_mut(&mut self) -> &mut SnapType;
     fn use_ray_cast(&self) -> &bool;
+    fn use_ray_cast_mut(&mut self) -> &mut bool;
     fn spawn_effect_on_lookup_location(&self) -> &bool;
+    fn spawn_effect_on_lookup_location_mut(&mut self) -> &mut bool;
     fn ray_direction(&self) -> &super::core::Vec3;
+    fn ray_direction_mut(&mut self) -> &mut super::core::Vec3;
     fn ray_distance(&self) -> &f32;
+    fn ray_distance_mut(&mut self) -> &mut f32;
     fn see_through(&self) -> &bool;
+    fn see_through_mut(&mut self) -> &mut bool;
     fn penetrable(&self) -> &bool;
+    fn penetrable_mut(&mut self) -> &mut bool;
     fn include_terrain(&self) -> &bool;
+    fn include_terrain_mut(&mut self) -> &mut bool;
     fn max_instances(&self) -> &i32;
+    fn max_instances_mut(&mut self) -> &mut i32;
     fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
 }
 
 impl MaterialBasedEffectComponentDataTrait for MaterialBasedEffectComponentData {
     fn auto_start(&self) -> &bool {
         &self.auto_start
     }
+    fn auto_start_mut(&mut self) -> &mut bool {
+        &mut self.auto_start
+    }
     fn override_height(&self) -> &f32 {
         &self.override_height
+    }
+    fn override_height_mut(&mut self) -> &mut f32 {
+        &mut self.override_height
     }
     fn local_player_only(&self) -> &bool {
         &self.local_player_only
     }
+    fn local_player_only_mut(&mut self) -> &mut bool {
+        &mut self.local_player_only
+    }
     fn material(&self) -> &super::entity::MaterialDecl {
         &self.material
+    }
+    fn material_mut(&mut self) -> &mut super::entity::MaterialDecl {
+        &mut self.material
     }
     fn transform_effect_with_component(&self) -> &bool {
         &self.transform_effect_with_component
     }
+    fn transform_effect_with_component_mut(&mut self) -> &mut bool {
+        &mut self.transform_effect_with_component
+    }
     fn snapping(&self) -> &SnapType {
         &self.snapping
+    }
+    fn snapping_mut(&mut self) -> &mut SnapType {
+        &mut self.snapping
     }
     fn use_ray_cast(&self) -> &bool {
         &self.use_ray_cast
     }
+    fn use_ray_cast_mut(&mut self) -> &mut bool {
+        &mut self.use_ray_cast
+    }
     fn spawn_effect_on_lookup_location(&self) -> &bool {
         &self.spawn_effect_on_lookup_location
+    }
+    fn spawn_effect_on_lookup_location_mut(&mut self) -> &mut bool {
+        &mut self.spawn_effect_on_lookup_location
     }
     fn ray_direction(&self) -> &super::core::Vec3 {
         &self.ray_direction
     }
+    fn ray_direction_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.ray_direction
+    }
     fn ray_distance(&self) -> &f32 {
         &self.ray_distance
+    }
+    fn ray_distance_mut(&mut self) -> &mut f32 {
+        &mut self.ray_distance
     }
     fn see_through(&self) -> &bool {
         &self.see_through
     }
+    fn see_through_mut(&mut self) -> &mut bool {
+        &mut self.see_through
+    }
     fn penetrable(&self) -> &bool {
         &self.penetrable
+    }
+    fn penetrable_mut(&mut self) -> &mut bool {
+        &mut self.penetrable
     }
     fn include_terrain(&self) -> &bool {
         &self.include_terrain
     }
+    fn include_terrain_mut(&mut self) -> &mut bool {
+        &mut self.include_terrain
+    }
     fn max_instances(&self) -> &i32 {
         &self.max_instances
     }
+    fn max_instances_mut(&mut self) -> &mut i32 {
+        &mut self.max_instances
+    }
     fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
         &self.effect_parameters
+    }
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+        &mut self.effect_parameters
     }
 }
 
@@ -12727,17 +15692,32 @@ impl super::entity::ComponentDataTrait for MaterialBasedEffectComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -12748,15 +15728,15 @@ impl super::core::DataBusPeerTrait for MaterialBasedEffectComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MaterialBasedEffectComponentData {
 }
 
 impl super::core::DataContainerTrait for MaterialBasedEffectComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MATERIALBASEDEFFECTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -12872,6 +15852,15 @@ impl TypeObject for MaterialBasedEffectComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -12912,6 +15901,15 @@ impl TypeObject for SnapType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -12934,15 +15932,23 @@ pub struct LocatorComponentData {
 
 pub trait LocatorComponentDataTrait: super::entity::GameComponentDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn is_used_as_link_target(&self) -> &bool;
+    fn is_used_as_link_target_mut(&mut self) -> &mut bool;
 }
 
 impl LocatorComponentDataTrait for LocatorComponentData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn is_used_as_link_target(&self) -> &bool {
         &self.is_used_as_link_target
+    }
+    fn is_used_as_link_target_mut(&mut self) -> &mut bool {
+        &mut self.is_used_as_link_target
     }
 }
 
@@ -12953,17 +15959,32 @@ impl super::entity::ComponentDataTrait for LocatorComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -12974,15 +15995,15 @@ impl super::core::DataBusPeerTrait for LocatorComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for LocatorComponentData {
 }
 
 impl super::core::DataContainerTrait for LocatorComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static LOCATORCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13020,6 +16041,15 @@ impl TypeObject for LocatorComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13051,8 +16081,14 @@ impl super::gameplay_sim::GamePhysicsComponentDataTrait for ActorPhysicsComponen
     fn realm(&self) -> &super::core::Realm {
         self._glacier_base.realm()
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        self._glacier_base.realm_mut()
+    }
     fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
         self._glacier_base.effect_parameters()
+    }
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+        self._glacier_base.effect_parameters_mut()
     }
 }
 
@@ -13060,20 +16096,38 @@ impl super::physics::PhysicsComponentDataTrait for ActorPhysicsComponentData {
     fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
         self._glacier_base.physics_bodies()
     }
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
+        self._glacier_base.physics_bodies_mut()
+    }
     fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
         self._glacier_base.physics_constraints()
+    }
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
+        self._glacier_base.physics_constraints_mut()
     }
     fn parts(&self) -> &Vec<super::physics::PhysicsPartData> {
         self._glacier_base.parts()
     }
+    fn parts_mut(&mut self) -> &mut Vec<super::physics::PhysicsPartData> {
+        self._glacier_base.parts_mut()
+    }
     fn movable_parts(&self) -> &bool {
         self._glacier_base.movable_parts()
+    }
+    fn movable_parts_mut(&mut self) -> &mut bool {
+        self._glacier_base.movable_parts_mut()
     }
     fn internal_collision_disabling(&self) -> &super::physics::InternalCollisionDisablingBehavior {
         self._glacier_base.internal_collision_disabling()
     }
+    fn internal_collision_disabling_mut(&mut self) -> &mut super::physics::InternalCollisionDisablingBehavior {
+        self._glacier_base.internal_collision_disabling_mut()
+    }
     fn enable_collision_events(&self) -> &bool {
         self._glacier_base.enable_collision_events()
+    }
+    fn enable_collision_events_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_collision_events_mut()
     }
 }
 
@@ -13081,17 +16135,32 @@ impl super::entity::ComponentDataTrait for ActorPhysicsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -13102,15 +16171,15 @@ impl super::core::DataBusPeerTrait for ActorPhysicsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ActorPhysicsComponentData {
 }
 
 impl super::core::DataContainerTrait for ActorPhysicsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ACTORPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13136,6 +16205,15 @@ impl TypeObject for ActorPhysicsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13157,11 +16235,15 @@ pub struct ActorCustomizationComponentData {
 
 pub trait ActorCustomizationComponentDataTrait: super::entity::GameComponentDataTrait {
     fn customization(&self) -> &Option<Arc<Mutex<dyn ActorCustomizationDataTrait>>>;
+    fn customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ActorCustomizationDataTrait>>>;
 }
 
 impl ActorCustomizationComponentDataTrait for ActorCustomizationComponentData {
     fn customization(&self) -> &Option<Arc<Mutex<dyn ActorCustomizationDataTrait>>> {
         &self.customization
+    }
+    fn customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ActorCustomizationDataTrait>>> {
+        &mut self.customization
     }
 }
 
@@ -13172,17 +16254,32 @@ impl super::entity::ComponentDataTrait for ActorCustomizationComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -13193,15 +16290,15 @@ impl super::core::DataBusPeerTrait for ActorCustomizationComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ActorCustomizationComponentData {
 }
 
 impl super::core::DataContainerTrait for ActorCustomizationComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ACTORCUSTOMIZATIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13233,6 +16330,15 @@ impl TypeObject for ActorCustomizationComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13255,15 +16361,23 @@ pub struct ActorCustomizationData {
 
 pub trait ActorCustomizationDataTrait: super::core::DataContainerPolicyAssetTrait {
     fn visual_groups(&self) -> &Vec<super::game_shared::CustomizeVisual>;
+    fn visual_groups_mut(&mut self) -> &mut Vec<super::game_shared::CustomizeVisual>;
     fn ant_game_states(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::WriteAntGameStateDataTrait>>>>;
+    fn ant_game_states_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::WriteAntGameStateDataTrait>>>>;
 }
 
 impl ActorCustomizationDataTrait for ActorCustomizationData {
     fn visual_groups(&self) -> &Vec<super::game_shared::CustomizeVisual> {
         &self.visual_groups
     }
+    fn visual_groups_mut(&mut self) -> &mut Vec<super::game_shared::CustomizeVisual> {
+        &mut self.visual_groups
+    }
     fn ant_game_states(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::WriteAntGameStateDataTrait>>>> {
         &self.ant_game_states
+    }
+    fn ant_game_states_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::WriteAntGameStateDataTrait>>>> {
+        &mut self.ant_game_states
     }
 }
 
@@ -13274,12 +16388,12 @@ impl super::core::AssetTrait for ActorCustomizationData {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for ActorCustomizationData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ACTORCUSTOMIZATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13317,6 +16431,15 @@ impl TypeObject for ActorCustomizationData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13351,19 +16474,31 @@ pub struct CoolDownGateEntityData {
 
 pub trait CoolDownGateEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn cool_down_time(&self) -> &f32;
+    fn cool_down_time_mut(&mut self) -> &mut f32;
     fn start_opened(&self) -> &bool;
+    fn start_opened_mut(&mut self) -> &mut bool;
 }
 
 impl CoolDownGateEntityDataTrait for CoolDownGateEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn cool_down_time(&self) -> &f32 {
         &self.cool_down_time
     }
+    fn cool_down_time_mut(&mut self) -> &mut f32 {
+        &mut self.cool_down_time
+    }
     fn start_opened(&self) -> &bool {
         &self.start_opened
+    }
+    fn start_opened_mut(&mut self) -> &mut bool {
+        &mut self.start_opened
     }
 }
 
@@ -13377,15 +16512,15 @@ impl super::core::DataBusPeerTrait for CoolDownGateEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CoolDownGateEntityData {
 }
 
 impl super::core::DataContainerTrait for CoolDownGateEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COOLDOWNGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13429,6 +16564,15 @@ impl TypeObject for CoolDownGateEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13455,31 +16599,55 @@ pub struct ConditionalPropertyEntityData {
 
 pub trait ConditionalPropertyEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn condition(&self) -> &bool;
+    fn condition_mut(&mut self) -> &mut bool;
     fn type_hash(&self) -> &i32;
+    fn type_hash_mut(&mut self) -> &mut i32;
     fn value_if_false_property_hash(&self) -> &i32;
+    fn value_if_false_property_hash_mut(&mut self) -> &mut i32;
     fn value_if_true_property_hash(&self) -> &i32;
+    fn value_if_true_property_hash_mut(&mut self) -> &mut i32;
     fn out_hash(&self) -> &i32;
+    fn out_hash_mut(&mut self) -> &mut i32;
 }
 
 impl ConditionalPropertyEntityDataTrait for ConditionalPropertyEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn condition(&self) -> &bool {
         &self.condition
+    }
+    fn condition_mut(&mut self) -> &mut bool {
+        &mut self.condition
     }
     fn type_hash(&self) -> &i32 {
         &self.type_hash
     }
+    fn type_hash_mut(&mut self) -> &mut i32 {
+        &mut self.type_hash
+    }
     fn value_if_false_property_hash(&self) -> &i32 {
         &self.value_if_false_property_hash
+    }
+    fn value_if_false_property_hash_mut(&mut self) -> &mut i32 {
+        &mut self.value_if_false_property_hash
     }
     fn value_if_true_property_hash(&self) -> &i32 {
         &self.value_if_true_property_hash
     }
+    fn value_if_true_property_hash_mut(&mut self) -> &mut i32 {
+        &mut self.value_if_true_property_hash
+    }
     fn out_hash(&self) -> &i32 {
         &self.out_hash
+    }
+    fn out_hash_mut(&mut self) -> &mut i32 {
+        &mut self.out_hash
     }
 }
 
@@ -13493,15 +16661,15 @@ impl super::core::DataBusPeerTrait for ConditionalPropertyEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ConditionalPropertyEntityData {
 }
 
 impl super::core::DataContainerTrait for ConditionalPropertyEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CONDITIONALPROPERTYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13563,6 +16731,15 @@ impl TypeObject for ConditionalPropertyEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13585,15 +16762,23 @@ pub struct ClientEmitTraceBookmarkEntityData {
 
 pub trait ClientEmitTraceBookmarkEntityDataTrait: super::entity::EntityDataTrait {
     fn bookmark_name(&self) -> &String;
+    fn bookmark_name_mut(&mut self) -> &mut String;
     fn bookmark_description(&self) -> &String;
+    fn bookmark_description_mut(&mut self) -> &mut String;
 }
 
 impl ClientEmitTraceBookmarkEntityDataTrait for ClientEmitTraceBookmarkEntityData {
     fn bookmark_name(&self) -> &String {
         &self.bookmark_name
     }
+    fn bookmark_name_mut(&mut self) -> &mut String {
+        &mut self.bookmark_name
+    }
     fn bookmark_description(&self) -> &String {
         &self.bookmark_description
+    }
+    fn bookmark_description_mut(&mut self) -> &mut String {
+        &mut self.bookmark_description
     }
 }
 
@@ -13607,15 +16792,15 @@ impl super::core::DataBusPeerTrait for ClientEmitTraceBookmarkEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ClientEmitTraceBookmarkEntityData {
 }
 
 impl super::core::DataContainerTrait for ClientEmitTraceBookmarkEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CLIENTEMITTRACEBOOKMARKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13653,6 +16838,15 @@ impl TypeObject for ClientEmitTraceBookmarkEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13685,55 +16879,103 @@ pub struct CameraShakeEntityData {
 
 pub trait CameraShakeEntityDataTrait: super::entity::EntityDataTrait {
     fn local_player(&self) -> &super::core::LocalPlayerId;
+    fn local_player_mut(&mut self) -> &mut super::core::LocalPlayerId;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
     fn trigger_shake_profile(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn trigger_shake_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
     fn pitch(&self) -> &CameraShakeAxisData;
+    fn pitch_mut(&mut self) -> &mut CameraShakeAxisData;
     fn yaw(&self) -> &CameraShakeAxisData;
+    fn yaw_mut(&mut self) -> &mut CameraShakeAxisData;
     fn roll(&self) -> &CameraShakeAxisData;
+    fn roll_mut(&mut self) -> &mut CameraShakeAxisData;
     fn fade_out_start_distance(&self) -> &f32;
+    fn fade_out_start_distance_mut(&mut self) -> &mut f32;
     fn fade_out_end_distance(&self) -> &f32;
+    fn fade_out_end_distance_mut(&mut self) -> &mut f32;
     fn trigger_shake_time(&self) -> &f32;
+    fn trigger_shake_time_mut(&mut self) -> &mut f32;
     fn amplitude(&self) -> &f32;
+    fn amplitude_mut(&mut self) -> &mut f32;
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
 }
 
 impl CameraShakeEntityDataTrait for CameraShakeEntityData {
     fn local_player(&self) -> &super::core::LocalPlayerId {
         &self.local_player
     }
+    fn local_player_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        &mut self.local_player
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
     }
     fn enabled(&self) -> &bool {
         &self.enabled
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
+    }
     fn trigger_shake_profile(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.trigger_shake_profile
+    }
+    fn trigger_shake_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.trigger_shake_profile
     }
     fn pitch(&self) -> &CameraShakeAxisData {
         &self.pitch
     }
+    fn pitch_mut(&mut self) -> &mut CameraShakeAxisData {
+        &mut self.pitch
+    }
     fn yaw(&self) -> &CameraShakeAxisData {
         &self.yaw
+    }
+    fn yaw_mut(&mut self) -> &mut CameraShakeAxisData {
+        &mut self.yaw
     }
     fn roll(&self) -> &CameraShakeAxisData {
         &self.roll
     }
+    fn roll_mut(&mut self) -> &mut CameraShakeAxisData {
+        &mut self.roll
+    }
     fn fade_out_start_distance(&self) -> &f32 {
         &self.fade_out_start_distance
+    }
+    fn fade_out_start_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_out_start_distance
     }
     fn fade_out_end_distance(&self) -> &f32 {
         &self.fade_out_end_distance
     }
+    fn fade_out_end_distance_mut(&mut self) -> &mut f32 {
+        &mut self.fade_out_end_distance
+    }
     fn trigger_shake_time(&self) -> &f32 {
         &self.trigger_shake_time
+    }
+    fn trigger_shake_time_mut(&mut self) -> &mut f32 {
+        &mut self.trigger_shake_time
     }
     fn amplitude(&self) -> &f32 {
         &self.amplitude
     }
+    fn amplitude_mut(&mut self) -> &mut f32 {
+        &mut self.amplitude
+    }
     fn intensity(&self) -> &f32 {
         &self.intensity
+    }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
     }
 }
 
@@ -13747,15 +16989,15 @@ impl super::core::DataBusPeerTrait for CameraShakeEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CameraShakeEntityData {
 }
 
 impl super::core::DataContainerTrait for CameraShakeEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CAMERASHAKEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -13853,6 +17095,15 @@ impl TypeObject for CameraShakeEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -13877,27 +17128,47 @@ pub struct CameraShakeAxisData {
 
 pub trait CameraShakeAxisDataTrait: TypeObject {
     fn intensity(&self) -> &f32;
+    fn intensity_mut(&mut self) -> &mut f32;
     fn sin_range(&self) -> &f32;
+    fn sin_range_mut(&mut self) -> &mut f32;
     fn sin_frequency(&self) -> &f32;
+    fn sin_frequency_mut(&mut self) -> &mut f32;
     fn noise_range(&self) -> &f32;
+    fn noise_range_mut(&mut self) -> &mut f32;
     fn noise_frequency(&self) -> &f32;
+    fn noise_frequency_mut(&mut self) -> &mut f32;
 }
 
 impl CameraShakeAxisDataTrait for CameraShakeAxisData {
     fn intensity(&self) -> &f32 {
         &self.intensity
     }
+    fn intensity_mut(&mut self) -> &mut f32 {
+        &mut self.intensity
+    }
     fn sin_range(&self) -> &f32 {
         &self.sin_range
+    }
+    fn sin_range_mut(&mut self) -> &mut f32 {
+        &mut self.sin_range
     }
     fn sin_frequency(&self) -> &f32 {
         &self.sin_frequency
     }
+    fn sin_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.sin_frequency
+    }
     fn noise_range(&self) -> &f32 {
         &self.noise_range
     }
+    fn noise_range_mut(&mut self) -> &mut f32 {
+        &mut self.noise_range
+    }
     fn noise_frequency(&self) -> &f32 {
         &self.noise_frequency
+    }
+    fn noise_frequency_mut(&mut self) -> &mut f32 {
+        &mut self.noise_frequency
     }
 }
 
@@ -13953,6 +17224,15 @@ impl TypeObject for CameraShakeAxisData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -13983,47 +17263,87 @@ pub struct BlueprintSpawnReferenceObjectData {
 
 pub trait BlueprintSpawnReferenceObjectDataTrait: super::entity::ReferenceObjectDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn initial_auto_spawn(&self) -> &bool;
+    fn initial_auto_spawn_mut(&mut self) -> &mut bool;
     fn auto_spawn(&self) -> &bool;
+    fn auto_spawn_mut(&mut self) -> &mut bool;
     fn queue_spawn_event(&self) -> &bool;
+    fn queue_spawn_event_mut(&mut self) -> &mut bool;
     fn use_as_spawn_point(&self) -> &bool;
+    fn use_as_spawn_point_mut(&mut self) -> &mut bool;
     fn spawns_occupy_locations(&self) -> &bool;
+    fn spawns_occupy_locations_mut(&mut self) -> &mut bool;
     fn initial_spawn_delay(&self) -> &f32;
+    fn initial_spawn_delay_mut(&mut self) -> &mut f32;
     fn spawn_delay(&self) -> &f32;
+    fn spawn_delay_mut(&mut self) -> &mut f32;
     fn max_count(&self) -> &i32;
+    fn max_count_mut(&mut self) -> &mut i32;
     fn max_count_simultaneously(&self) -> &i32;
+    fn max_count_simultaneously_mut(&mut self) -> &mut i32;
 }
 
 impl BlueprintSpawnReferenceObjectDataTrait for BlueprintSpawnReferenceObjectData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn initial_auto_spawn(&self) -> &bool {
         &self.initial_auto_spawn
+    }
+    fn initial_auto_spawn_mut(&mut self) -> &mut bool {
+        &mut self.initial_auto_spawn
     }
     fn auto_spawn(&self) -> &bool {
         &self.auto_spawn
     }
+    fn auto_spawn_mut(&mut self) -> &mut bool {
+        &mut self.auto_spawn
+    }
     fn queue_spawn_event(&self) -> &bool {
         &self.queue_spawn_event
+    }
+    fn queue_spawn_event_mut(&mut self) -> &mut bool {
+        &mut self.queue_spawn_event
     }
     fn use_as_spawn_point(&self) -> &bool {
         &self.use_as_spawn_point
     }
+    fn use_as_spawn_point_mut(&mut self) -> &mut bool {
+        &mut self.use_as_spawn_point
+    }
     fn spawns_occupy_locations(&self) -> &bool {
         &self.spawns_occupy_locations
+    }
+    fn spawns_occupy_locations_mut(&mut self) -> &mut bool {
+        &mut self.spawns_occupy_locations
     }
     fn initial_spawn_delay(&self) -> &f32 {
         &self.initial_spawn_delay
     }
+    fn initial_spawn_delay_mut(&mut self) -> &mut f32 {
+        &mut self.initial_spawn_delay
+    }
     fn spawn_delay(&self) -> &f32 {
         &self.spawn_delay
+    }
+    fn spawn_delay_mut(&mut self) -> &mut f32 {
+        &mut self.spawn_delay
     }
     fn max_count(&self) -> &i32 {
         &self.max_count
     }
+    fn max_count_mut(&mut self) -> &mut i32 {
+        &mut self.max_count
+    }
     fn max_count_simultaneously(&self) -> &i32 {
         &self.max_count_simultaneously
+    }
+    fn max_count_simultaneously_mut(&mut self) -> &mut i32 {
+        &mut self.max_count_simultaneously
     }
 }
 
@@ -14031,32 +17351,62 @@ impl super::entity::ReferenceObjectDataTrait for BlueprintSpawnReferenceObjectDa
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -14067,15 +17417,15 @@ impl super::core::DataBusPeerTrait for BlueprintSpawnReferenceObjectData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for BlueprintSpawnReferenceObjectData {
 }
 
 impl super::core::DataContainerTrait for BlueprintSpawnReferenceObjectData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BLUEPRINTSPAWNREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14161,6 +17511,15 @@ impl TypeObject for BlueprintSpawnReferenceObjectData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14183,15 +17542,23 @@ pub struct CharacterProxyData {
 
 pub trait CharacterProxyDataTrait: BlueprintProxyDataTrait {
     fn template(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>>;
+    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>>;
     fn use_local_player_character(&self) -> &bool;
+    fn use_local_player_character_mut(&mut self) -> &mut bool;
 }
 
 impl CharacterProxyDataTrait for CharacterProxyData {
     fn template(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>> {
         &self.template
     }
+    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>> {
+        &mut self.template
+    }
     fn use_local_player_character(&self) -> &bool {
         &self.use_local_player_character
+    }
+    fn use_local_player_character_mut(&mut self) -> &mut bool {
+        &mut self.use_local_player_character
     }
 }
 
@@ -14199,11 +17566,20 @@ impl BlueprintProxyDataTrait for CharacterProxyData {
     fn preview_in_game_view(&self) -> &bool {
         self._glacier_base.preview_in_game_view()
     }
+    fn preview_in_game_view_mut(&mut self) -> &mut bool {
+        self._glacier_base.preview_in_game_view_mut()
+    }
     fn preview_spawn_position(&self) -> &super::core::LinearTransform {
         self._glacier_base.preview_spawn_position()
     }
+    fn preview_spawn_position_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.preview_spawn_position_mut()
+    }
     fn connected_properties(&self) -> &Vec<ProxyPropertyContainer> {
         self._glacier_base.connected_properties()
+    }
+    fn connected_properties_mut(&mut self) -> &mut Vec<ProxyPropertyContainer> {
+        self._glacier_base.connected_properties_mut()
     }
 }
 
@@ -14214,8 +17590,14 @@ impl super::entity::LogicReferenceObjectDataTrait for CharacterProxyData {
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
     fn sub_realm(&self) -> &super::entity::SubRealm {
         self._glacier_base.sub_realm()
+    }
+    fn sub_realm_mut(&mut self) -> &mut super::entity::SubRealm {
+        self._glacier_base.sub_realm_mut()
     }
 }
 
@@ -14223,32 +17605,62 @@ impl super::entity::ReferenceObjectDataTrait for CharacterProxyData {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -14259,15 +17671,15 @@ impl super::core::DataBusPeerTrait for CharacterProxyData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CharacterProxyData {
 }
 
 impl super::core::DataContainerTrait for CharacterProxyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERPROXYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14305,6 +17717,15 @@ impl TypeObject for CharacterProxyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14328,19 +17749,31 @@ pub struct BlueprintProxyData {
 
 pub trait BlueprintProxyDataTrait: BlueprintProxyPropertyFilterDataTrait {
     fn preview_in_game_view(&self) -> &bool;
+    fn preview_in_game_view_mut(&mut self) -> &mut bool;
     fn preview_spawn_position(&self) -> &super::core::LinearTransform;
+    fn preview_spawn_position_mut(&mut self) -> &mut super::core::LinearTransform;
     fn connected_properties(&self) -> &Vec<ProxyPropertyContainer>;
+    fn connected_properties_mut(&mut self) -> &mut Vec<ProxyPropertyContainer>;
 }
 
 impl BlueprintProxyDataTrait for BlueprintProxyData {
     fn preview_in_game_view(&self) -> &bool {
         &self.preview_in_game_view
     }
+    fn preview_in_game_view_mut(&mut self) -> &mut bool {
+        &mut self.preview_in_game_view
+    }
     fn preview_spawn_position(&self) -> &super::core::LinearTransform {
         &self.preview_spawn_position
     }
+    fn preview_spawn_position_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.preview_spawn_position
+    }
     fn connected_properties(&self) -> &Vec<ProxyPropertyContainer> {
         &self.connected_properties
+    }
+    fn connected_properties_mut(&mut self) -> &mut Vec<ProxyPropertyContainer> {
+        &mut self.connected_properties
     }
 }
 
@@ -14351,8 +17784,14 @@ impl super::entity::LogicReferenceObjectDataTrait for BlueprintProxyData {
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
     fn sub_realm(&self) -> &super::entity::SubRealm {
         self._glacier_base.sub_realm()
+    }
+    fn sub_realm_mut(&mut self) -> &mut super::entity::SubRealm {
+        self._glacier_base.sub_realm_mut()
     }
 }
 
@@ -14360,32 +17799,62 @@ impl super::entity::ReferenceObjectDataTrait for BlueprintProxyData {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -14396,15 +17865,15 @@ impl super::core::DataBusPeerTrait for BlueprintProxyData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for BlueprintProxyData {
 }
 
 impl super::core::DataContainerTrait for BlueprintProxyData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BLUEPRINTPROXYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14448,6 +17917,15 @@ impl TypeObject for BlueprintProxyData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14470,19 +17948,31 @@ pub struct ProxyPropertyContainer {
 
 pub trait ProxyPropertyContainerTrait: TypeObject {
     fn target_realm(&self) -> &super::core::Realm;
+    fn target_realm_mut(&mut self) -> &mut super::core::Realm;
     fn target_field_id(&self) -> &i32;
+    fn target_field_id_mut(&mut self) -> &mut i32;
     fn property_type_hash(&self) -> &u32;
+    fn property_type_hash_mut(&mut self) -> &mut u32;
 }
 
 impl ProxyPropertyContainerTrait for ProxyPropertyContainer {
     fn target_realm(&self) -> &super::core::Realm {
         &self.target_realm
     }
+    fn target_realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.target_realm
+    }
     fn target_field_id(&self) -> &i32 {
         &self.target_field_id
     }
+    fn target_field_id_mut(&mut self) -> &mut i32 {
+        &mut self.target_field_id
+    }
     fn property_type_hash(&self) -> &u32 {
         &self.property_type_hash
+    }
+    fn property_type_hash_mut(&mut self) -> &mut u32 {
+        &mut self.property_type_hash
     }
 }
 
@@ -14526,6 +18016,15 @@ impl TypeObject for ProxyPropertyContainer {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14554,8 +18053,14 @@ impl super::entity::LogicReferenceObjectDataTrait for BlueprintProxyPropertyFilt
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
     fn sub_realm(&self) -> &super::entity::SubRealm {
         self._glacier_base.sub_realm()
+    }
+    fn sub_realm_mut(&mut self) -> &mut super::entity::SubRealm {
+        self._glacier_base.sub_realm_mut()
     }
 }
 
@@ -14563,32 +18068,62 @@ impl super::entity::ReferenceObjectDataTrait for BlueprintProxyPropertyFilterDat
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -14599,15 +18134,15 @@ impl super::core::DataBusPeerTrait for BlueprintProxyPropertyFilterData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for BlueprintProxyPropertyFilterData {
 }
 
 impl super::core::DataContainerTrait for BlueprintProxyPropertyFilterData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static BLUEPRINTPROXYPROPERTYFILTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14632,6 +18167,15 @@ impl TypeObject for BlueprintProxyPropertyFilterData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -14662,43 +18206,79 @@ pub struct ActorEntityData {
 
 pub trait ActorEntityDataTrait: super::physics::GamePhysicsEntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn render_skeleton_base_pose(&self) -> &super::core::SparseTransformArray;
+    fn render_skeleton_base_pose_mut(&mut self) -> &mut super::core::SparseTransformArray;
     fn mesh_type(&self) -> &super::render_base::MeshType;
+    fn mesh_type_mut(&mut self) -> &mut super::render_base::MeshType;
     fn mesh_part_count(&self) -> &u32;
+    fn mesh_part_count_mut(&mut self) -> &mut u32;
     fn update_animatable_transform(&self) -> &bool;
+    fn update_animatable_transform_mut(&mut self) -> &mut bool;
     fn update_physics_transform(&self) -> &bool;
+    fn update_physics_transform_mut(&mut self) -> &mut bool;
     fn server_physics_enabled(&self) -> &bool;
+    fn server_physics_enabled_mut(&mut self) -> &mut bool;
     fn is_findable(&self) -> &bool;
+    fn is_findable_mut(&mut self) -> &mut bool;
     fn enable_updates(&self) -> &bool;
+    fn enable_updates_mut(&mut self) -> &mut bool;
 }
 
 impl ActorEntityDataTrait for ActorEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn render_skeleton_base_pose(&self) -> &super::core::SparseTransformArray {
         &self.render_skeleton_base_pose
+    }
+    fn render_skeleton_base_pose_mut(&mut self) -> &mut super::core::SparseTransformArray {
+        &mut self.render_skeleton_base_pose
     }
     fn mesh_type(&self) -> &super::render_base::MeshType {
         &self.mesh_type
     }
+    fn mesh_type_mut(&mut self) -> &mut super::render_base::MeshType {
+        &mut self.mesh_type
+    }
     fn mesh_part_count(&self) -> &u32 {
         &self.mesh_part_count
+    }
+    fn mesh_part_count_mut(&mut self) -> &mut u32 {
+        &mut self.mesh_part_count
     }
     fn update_animatable_transform(&self) -> &bool {
         &self.update_animatable_transform
     }
+    fn update_animatable_transform_mut(&mut self) -> &mut bool {
+        &mut self.update_animatable_transform
+    }
     fn update_physics_transform(&self) -> &bool {
         &self.update_physics_transform
+    }
+    fn update_physics_transform_mut(&mut self) -> &mut bool {
+        &mut self.update_physics_transform
     }
     fn server_physics_enabled(&self) -> &bool {
         &self.server_physics_enabled
     }
+    fn server_physics_enabled_mut(&mut self) -> &mut bool {
+        &mut self.server_physics_enabled
+    }
     fn is_findable(&self) -> &bool {
         &self.is_findable
     }
+    fn is_findable_mut(&mut self) -> &mut bool {
+        &mut self.is_findable
+    }
     fn enable_updates(&self) -> &bool {
         &self.enable_updates
+    }
+    fn enable_updates_mut(&mut self) -> &mut bool {
+        &mut self.enable_updates
     }
 }
 
@@ -14709,32 +18289,56 @@ impl super::entity::GameComponentEntityDataTrait for ActorEntityData {
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
     }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
+    }
 }
 
 impl super::entity::ComponentEntityDataTrait for ActorEntityData {
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
     }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
+    }
     fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
         self._glacier_base.part_bounding_boxes()
+    }
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+        self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
         self._glacier_base.client_runtime_component_count()
     }
+    fn client_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_component_count_mut()
+    }
     fn server_runtime_component_count(&self) -> &u8 {
         self._glacier_base.server_runtime_component_count()
+    }
+    fn server_runtime_component_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_component_count_mut()
     }
     fn client_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.client_runtime_transformation_count()
     }
+    fn client_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_runtime_transformation_count_mut()
+    }
     fn server_runtime_transformation_count(&self) -> &u8 {
         self._glacier_base.server_runtime_transformation_count()
+    }
+    fn server_runtime_transformation_count_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_runtime_transformation_count_mut()
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for ActorEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -14748,15 +18352,15 @@ impl super::core::DataBusPeerTrait for ActorEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for ActorEntityData {
 }
 
 impl super::core::DataContainerTrait for ActorEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ACTORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14836,6 +18440,15 @@ impl TypeObject for ActorEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -14877,6 +18490,15 @@ impl TypeObject for DiceUIAnalogPadType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -14901,23 +18523,39 @@ pub struct DiceUIInputManagerSettings {
 
 pub trait DiceUIInputManagerSettingsTrait: super::core::SystemSettingsTrait {
     fn automatic_typing_mode(&self) -> &bool;
+    fn automatic_typing_mode_mut(&mut self) -> &mut bool;
     fn treat_touch_as_mouse(&self) -> &bool;
+    fn treat_touch_as_mouse_mut(&mut self) -> &mut bool;
     fn scroll_wheel_dead_zone(&self) -> &f32;
+    fn scroll_wheel_dead_zone_mut(&mut self) -> &mut f32;
     fn double_click_time(&self) -> &f32;
+    fn double_click_time_mut(&mut self) -> &mut f32;
 }
 
 impl DiceUIInputManagerSettingsTrait for DiceUIInputManagerSettings {
     fn automatic_typing_mode(&self) -> &bool {
         &self.automatic_typing_mode
     }
+    fn automatic_typing_mode_mut(&mut self) -> &mut bool {
+        &mut self.automatic_typing_mode
+    }
     fn treat_touch_as_mouse(&self) -> &bool {
         &self.treat_touch_as_mouse
+    }
+    fn treat_touch_as_mouse_mut(&mut self) -> &mut bool {
+        &mut self.treat_touch_as_mouse
     }
     fn scroll_wheel_dead_zone(&self) -> &f32 {
         &self.scroll_wheel_dead_zone
     }
+    fn scroll_wheel_dead_zone_mut(&mut self) -> &mut f32 {
+        &mut self.scroll_wheel_dead_zone
+    }
     fn double_click_time(&self) -> &f32 {
         &self.double_click_time
+    }
+    fn double_click_time_mut(&mut self) -> &mut f32 {
+        &mut self.double_click_time
     }
 }
 
@@ -14925,12 +18563,12 @@ impl super::core::SystemSettingsTrait for DiceUIInputManagerSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DiceUIInputManagerSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEUIINPUTMANAGERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -14980,6 +18618,15 @@ impl TypeObject for DiceUIInputManagerSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15007,35 +18654,63 @@ pub struct DiceUITypingInputListenerElementData {
 
 pub trait DiceUITypingInputListenerElementDataTrait: super::game_shared_u_i::UIElementEntityDataTrait {
     fn max_text_length(&self) -> &u32;
+    fn max_text_length_mut(&mut self) -> &mut u32;
     fn default_text(&self) -> &String;
+    fn default_text_mut(&mut self) -> &mut String;
     fn title(&self) -> &String;
+    fn title_mut(&mut self) -> &mut String;
     fn description(&self) -> &String;
+    fn description_mut(&mut self) -> &mut String;
     fn input_text(&self) -> &String;
+    fn input_text_mut(&mut self) -> &mut String;
     fn allow_multiline(&self) -> &bool;
+    fn allow_multiline_mut(&mut self) -> &mut bool;
     fn abort_on_escape(&self) -> &bool;
+    fn abort_on_escape_mut(&mut self) -> &mut bool;
 }
 
 impl DiceUITypingInputListenerElementDataTrait for DiceUITypingInputListenerElementData {
     fn max_text_length(&self) -> &u32 {
         &self.max_text_length
     }
+    fn max_text_length_mut(&mut self) -> &mut u32 {
+        &mut self.max_text_length
+    }
     fn default_text(&self) -> &String {
         &self.default_text
+    }
+    fn default_text_mut(&mut self) -> &mut String {
+        &mut self.default_text
     }
     fn title(&self) -> &String {
         &self.title
     }
+    fn title_mut(&mut self) -> &mut String {
+        &mut self.title
+    }
     fn description(&self) -> &String {
         &self.description
+    }
+    fn description_mut(&mut self) -> &mut String {
+        &mut self.description
     }
     fn input_text(&self) -> &String {
         &self.input_text
     }
+    fn input_text_mut(&mut self) -> &mut String {
+        &mut self.input_text
+    }
     fn allow_multiline(&self) -> &bool {
         &self.allow_multiline
     }
+    fn allow_multiline_mut(&mut self) -> &mut bool {
+        &mut self.allow_multiline
+    }
     fn abort_on_escape(&self) -> &bool {
         &self.abort_on_escape
+    }
+    fn abort_on_escape_mut(&mut self) -> &mut bool {
+        &mut self.abort_on_escape
     }
 }
 
@@ -15043,41 +18718,80 @@ impl super::game_shared_u_i::UIElementEntityDataTrait for DiceUITypingInputListe
     fn instance_name(&self) -> &String {
         self._glacier_base.instance_name()
     }
+    fn instance_name_mut(&mut self) -> &mut String {
+        self._glacier_base.instance_name_mut()
+    }
     fn instance_name_hash(&self) -> &u32 {
         self._glacier_base.instance_name_hash()
+    }
+    fn instance_name_hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.instance_name_hash_mut()
     }
     fn transform_pivot(&self) -> &super::core::Vec3 {
         self._glacier_base.transform_pivot()
     }
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.transform_pivot_mut()
+    }
     fn size(&self) -> &super::core::Vec2 {
         self._glacier_base.size()
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        self._glacier_base.size_mut()
     }
     fn layout_mode(&self) -> &super::game_shared_u_i::UILayoutMode {
         self._glacier_base.layout_mode()
     }
+    fn layout_mode_mut(&mut self) -> &mut super::game_shared_u_i::UILayoutMode {
+        self._glacier_base.layout_mode_mut()
+    }
     fn offset(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.offset_mut()
     }
     fn anchor(&self) -> &super::game_shared_u_i::UIElementAnchor {
         self._glacier_base.anchor()
     }
+    fn anchor_mut(&mut self) -> &mut super::game_shared_u_i::UIElementAnchor {
+        self._glacier_base.anchor_mut()
+    }
     fn position(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.position()
+    }
+    fn position_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.position_mut()
     }
     fn expansion(&self) -> &super::game_shared_u_i::UIElementRectExpansion {
         self._glacier_base.expansion()
     }
+    fn expansion_mut(&mut self) -> &mut super::game_shared_u_i::UIElementRectExpansion {
+        self._glacier_base.expansion_mut()
+    }
     fn visible(&self) -> &bool {
         self._glacier_base.visible()
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.visible_mut()
     }
     fn color(&self) -> &super::core::Vec3 {
         self._glacier_base.color()
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.color_mut()
+    }
     fn alpha(&self) -> &f32 {
         self._glacier_base.alpha()
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        self._glacier_base.alpha_mut()
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -15091,15 +18805,15 @@ impl super::core::DataBusPeerTrait for DiceUITypingInputListenerElementData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceUITypingInputListenerElementData {
 }
 
 impl super::core::DataContainerTrait for DiceUITypingInputListenerElementData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEUITYPINGINPUTLISTENERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15167,6 +18881,15 @@ impl TypeObject for DiceUITypingInputListenerElementData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15190,19 +18913,31 @@ pub struct DiceUIMouseInputListenerElementData {
 
 pub trait DiceUIMouseInputListenerElementDataTrait: super::game_shared_u_i::UIElementEntityDataTrait {
     fn mouse_button(&self) -> &super::u_i::UIMouseButton;
+    fn mouse_button_mut(&mut self) -> &mut super::u_i::UIMouseButton;
     fn consume_input(&self) -> &bool;
+    fn consume_input_mut(&mut self) -> &mut bool;
     fn full_screen(&self) -> &bool;
+    fn full_screen_mut(&mut self) -> &mut bool;
 }
 
 impl DiceUIMouseInputListenerElementDataTrait for DiceUIMouseInputListenerElementData {
     fn mouse_button(&self) -> &super::u_i::UIMouseButton {
         &self.mouse_button
     }
+    fn mouse_button_mut(&mut self) -> &mut super::u_i::UIMouseButton {
+        &mut self.mouse_button
+    }
     fn consume_input(&self) -> &bool {
         &self.consume_input
     }
+    fn consume_input_mut(&mut self) -> &mut bool {
+        &mut self.consume_input
+    }
     fn full_screen(&self) -> &bool {
         &self.full_screen
+    }
+    fn full_screen_mut(&mut self) -> &mut bool {
+        &mut self.full_screen
     }
 }
 
@@ -15210,41 +18945,80 @@ impl super::game_shared_u_i::UIElementEntityDataTrait for DiceUIMouseInputListen
     fn instance_name(&self) -> &String {
         self._glacier_base.instance_name()
     }
+    fn instance_name_mut(&mut self) -> &mut String {
+        self._glacier_base.instance_name_mut()
+    }
     fn instance_name_hash(&self) -> &u32 {
         self._glacier_base.instance_name_hash()
+    }
+    fn instance_name_hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.instance_name_hash_mut()
     }
     fn transform_pivot(&self) -> &super::core::Vec3 {
         self._glacier_base.transform_pivot()
     }
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.transform_pivot_mut()
+    }
     fn size(&self) -> &super::core::Vec2 {
         self._glacier_base.size()
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        self._glacier_base.size_mut()
     }
     fn layout_mode(&self) -> &super::game_shared_u_i::UILayoutMode {
         self._glacier_base.layout_mode()
     }
+    fn layout_mode_mut(&mut self) -> &mut super::game_shared_u_i::UILayoutMode {
+        self._glacier_base.layout_mode_mut()
+    }
     fn offset(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.offset_mut()
     }
     fn anchor(&self) -> &super::game_shared_u_i::UIElementAnchor {
         self._glacier_base.anchor()
     }
+    fn anchor_mut(&mut self) -> &mut super::game_shared_u_i::UIElementAnchor {
+        self._glacier_base.anchor_mut()
+    }
     fn position(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.position()
+    }
+    fn position_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.position_mut()
     }
     fn expansion(&self) -> &super::game_shared_u_i::UIElementRectExpansion {
         self._glacier_base.expansion()
     }
+    fn expansion_mut(&mut self) -> &mut super::game_shared_u_i::UIElementRectExpansion {
+        self._glacier_base.expansion_mut()
+    }
     fn visible(&self) -> &bool {
         self._glacier_base.visible()
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.visible_mut()
     }
     fn color(&self) -> &super::core::Vec3 {
         self._glacier_base.color()
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.color_mut()
+    }
     fn alpha(&self) -> &f32 {
         self._glacier_base.alpha()
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        self._glacier_base.alpha_mut()
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -15258,15 +19032,15 @@ impl super::core::DataBusPeerTrait for DiceUIMouseInputListenerElementData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceUIMouseInputListenerElementData {
 }
 
 impl super::core::DataContainerTrait for DiceUIMouseInputListenerElementData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEUIMOUSEINPUTLISTENERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15310,6 +19084,15 @@ impl TypeObject for DiceUIMouseInputListenerElementData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15332,15 +19115,23 @@ pub struct DiceUIInputActionListenerElementData {
 
 pub trait DiceUIInputActionListenerElementDataTrait: super::game_shared_u_i::UIElementEntityDataTrait {
     fn input_action(&self) -> &super::u_i::UIInputAction;
+    fn input_action_mut(&mut self) -> &mut super::u_i::UIInputAction;
     fn consume_input(&self) -> &bool;
+    fn consume_input_mut(&mut self) -> &mut bool;
 }
 
 impl DiceUIInputActionListenerElementDataTrait for DiceUIInputActionListenerElementData {
     fn input_action(&self) -> &super::u_i::UIInputAction {
         &self.input_action
     }
+    fn input_action_mut(&mut self) -> &mut super::u_i::UIInputAction {
+        &mut self.input_action
+    }
     fn consume_input(&self) -> &bool {
         &self.consume_input
+    }
+    fn consume_input_mut(&mut self) -> &mut bool {
+        &mut self.consume_input
     }
 }
 
@@ -15348,41 +19139,80 @@ impl super::game_shared_u_i::UIElementEntityDataTrait for DiceUIInputActionListe
     fn instance_name(&self) -> &String {
         self._glacier_base.instance_name()
     }
+    fn instance_name_mut(&mut self) -> &mut String {
+        self._glacier_base.instance_name_mut()
+    }
     fn instance_name_hash(&self) -> &u32 {
         self._glacier_base.instance_name_hash()
+    }
+    fn instance_name_hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.instance_name_hash_mut()
     }
     fn transform_pivot(&self) -> &super::core::Vec3 {
         self._glacier_base.transform_pivot()
     }
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.transform_pivot_mut()
+    }
     fn size(&self) -> &super::core::Vec2 {
         self._glacier_base.size()
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        self._glacier_base.size_mut()
     }
     fn layout_mode(&self) -> &super::game_shared_u_i::UILayoutMode {
         self._glacier_base.layout_mode()
     }
+    fn layout_mode_mut(&mut self) -> &mut super::game_shared_u_i::UILayoutMode {
+        self._glacier_base.layout_mode_mut()
+    }
     fn offset(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.offset_mut()
     }
     fn anchor(&self) -> &super::game_shared_u_i::UIElementAnchor {
         self._glacier_base.anchor()
     }
+    fn anchor_mut(&mut self) -> &mut super::game_shared_u_i::UIElementAnchor {
+        self._glacier_base.anchor_mut()
+    }
     fn position(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.position()
+    }
+    fn position_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.position_mut()
     }
     fn expansion(&self) -> &super::game_shared_u_i::UIElementRectExpansion {
         self._glacier_base.expansion()
     }
+    fn expansion_mut(&mut self) -> &mut super::game_shared_u_i::UIElementRectExpansion {
+        self._glacier_base.expansion_mut()
+    }
     fn visible(&self) -> &bool {
         self._glacier_base.visible()
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.visible_mut()
     }
     fn color(&self) -> &super::core::Vec3 {
         self._glacier_base.color()
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.color_mut()
+    }
     fn alpha(&self) -> &f32 {
         self._glacier_base.alpha()
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        self._glacier_base.alpha_mut()
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -15396,15 +19226,15 @@ impl super::core::DataBusPeerTrait for DiceUIInputActionListenerElementData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceUIInputActionListenerElementData {
 }
 
 impl super::core::DataContainerTrait for DiceUIInputActionListenerElementData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEUIINPUTACTIONLISTENERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15442,6 +19272,15 @@ impl TypeObject for DiceUIInputActionListenerElementData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15463,11 +19302,15 @@ pub struct DiceUIInputBlockerElementData {
 
 pub trait DiceUIInputBlockerElementDataTrait: super::game_shared_u_i::UIElementEntityDataTrait {
     fn full_screen(&self) -> &bool;
+    fn full_screen_mut(&mut self) -> &mut bool;
 }
 
 impl DiceUIInputBlockerElementDataTrait for DiceUIInputBlockerElementData {
     fn full_screen(&self) -> &bool {
         &self.full_screen
+    }
+    fn full_screen_mut(&mut self) -> &mut bool {
+        &mut self.full_screen
     }
 }
 
@@ -15475,41 +19318,80 @@ impl super::game_shared_u_i::UIElementEntityDataTrait for DiceUIInputBlockerElem
     fn instance_name(&self) -> &String {
         self._glacier_base.instance_name()
     }
+    fn instance_name_mut(&mut self) -> &mut String {
+        self._glacier_base.instance_name_mut()
+    }
     fn instance_name_hash(&self) -> &u32 {
         self._glacier_base.instance_name_hash()
+    }
+    fn instance_name_hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.instance_name_hash_mut()
     }
     fn transform_pivot(&self) -> &super::core::Vec3 {
         self._glacier_base.transform_pivot()
     }
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.transform_pivot_mut()
+    }
     fn size(&self) -> &super::core::Vec2 {
         self._glacier_base.size()
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        self._glacier_base.size_mut()
     }
     fn layout_mode(&self) -> &super::game_shared_u_i::UILayoutMode {
         self._glacier_base.layout_mode()
     }
+    fn layout_mode_mut(&mut self) -> &mut super::game_shared_u_i::UILayoutMode {
+        self._glacier_base.layout_mode_mut()
+    }
     fn offset(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.offset_mut()
     }
     fn anchor(&self) -> &super::game_shared_u_i::UIElementAnchor {
         self._glacier_base.anchor()
     }
+    fn anchor_mut(&mut self) -> &mut super::game_shared_u_i::UIElementAnchor {
+        self._glacier_base.anchor_mut()
+    }
     fn position(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.position()
+    }
+    fn position_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.position_mut()
     }
     fn expansion(&self) -> &super::game_shared_u_i::UIElementRectExpansion {
         self._glacier_base.expansion()
     }
+    fn expansion_mut(&mut self) -> &mut super::game_shared_u_i::UIElementRectExpansion {
+        self._glacier_base.expansion_mut()
+    }
     fn visible(&self) -> &bool {
         self._glacier_base.visible()
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.visible_mut()
     }
     fn color(&self) -> &super::core::Vec3 {
         self._glacier_base.color()
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.color_mut()
+    }
     fn alpha(&self) -> &f32 {
         self._glacier_base.alpha()
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        self._glacier_base.alpha_mut()
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -15523,15 +19405,15 @@ impl super::core::DataBusPeerTrait for DiceUIInputBlockerElementData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceUIInputBlockerElementData {
 }
 
 impl super::core::DataContainerTrait for DiceUIInputBlockerElementData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEUIINPUTBLOCKERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15563,6 +19445,15 @@ impl TypeObject for DiceUIInputBlockerElementData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15588,27 +19479,47 @@ pub struct DiceUIAnalogStickInputListenerElementData {
 
 pub trait DiceUIAnalogStickInputListenerElementDataTrait: super::game_shared_u_i::UIElementEntityDataTrait {
     fn analog_stick(&self) -> &DiceUIAnalogStick;
+    fn analog_stick_mut(&mut self) -> &mut DiceUIAnalogStick;
     fn consume_input(&self) -> &bool;
+    fn consume_input_mut(&mut self) -> &mut bool;
     fn flip_y_axis(&self) -> &bool;
+    fn flip_y_axis_mut(&mut self) -> &mut bool;
     fn trigger_threshold(&self) -> &f32;
+    fn trigger_threshold_mut(&mut self) -> &mut f32;
     fn dead_zone(&self) -> &f32;
+    fn dead_zone_mut(&mut self) -> &mut f32;
 }
 
 impl DiceUIAnalogStickInputListenerElementDataTrait for DiceUIAnalogStickInputListenerElementData {
     fn analog_stick(&self) -> &DiceUIAnalogStick {
         &self.analog_stick
     }
+    fn analog_stick_mut(&mut self) -> &mut DiceUIAnalogStick {
+        &mut self.analog_stick
+    }
     fn consume_input(&self) -> &bool {
         &self.consume_input
+    }
+    fn consume_input_mut(&mut self) -> &mut bool {
+        &mut self.consume_input
     }
     fn flip_y_axis(&self) -> &bool {
         &self.flip_y_axis
     }
+    fn flip_y_axis_mut(&mut self) -> &mut bool {
+        &mut self.flip_y_axis
+    }
     fn trigger_threshold(&self) -> &f32 {
         &self.trigger_threshold
     }
+    fn trigger_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.trigger_threshold
+    }
     fn dead_zone(&self) -> &f32 {
         &self.dead_zone
+    }
+    fn dead_zone_mut(&mut self) -> &mut f32 {
+        &mut self.dead_zone
     }
 }
 
@@ -15616,41 +19527,80 @@ impl super::game_shared_u_i::UIElementEntityDataTrait for DiceUIAnalogStickInput
     fn instance_name(&self) -> &String {
         self._glacier_base.instance_name()
     }
+    fn instance_name_mut(&mut self) -> &mut String {
+        self._glacier_base.instance_name_mut()
+    }
     fn instance_name_hash(&self) -> &u32 {
         self._glacier_base.instance_name_hash()
+    }
+    fn instance_name_hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.instance_name_hash_mut()
     }
     fn transform_pivot(&self) -> &super::core::Vec3 {
         self._glacier_base.transform_pivot()
     }
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.transform_pivot_mut()
+    }
     fn size(&self) -> &super::core::Vec2 {
         self._glacier_base.size()
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        self._glacier_base.size_mut()
     }
     fn layout_mode(&self) -> &super::game_shared_u_i::UILayoutMode {
         self._glacier_base.layout_mode()
     }
+    fn layout_mode_mut(&mut self) -> &mut super::game_shared_u_i::UILayoutMode {
+        self._glacier_base.layout_mode_mut()
+    }
     fn offset(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.offset_mut()
     }
     fn anchor(&self) -> &super::game_shared_u_i::UIElementAnchor {
         self._glacier_base.anchor()
     }
+    fn anchor_mut(&mut self) -> &mut super::game_shared_u_i::UIElementAnchor {
+        self._glacier_base.anchor_mut()
+    }
     fn position(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.position()
+    }
+    fn position_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.position_mut()
     }
     fn expansion(&self) -> &super::game_shared_u_i::UIElementRectExpansion {
         self._glacier_base.expansion()
     }
+    fn expansion_mut(&mut self) -> &mut super::game_shared_u_i::UIElementRectExpansion {
+        self._glacier_base.expansion_mut()
+    }
     fn visible(&self) -> &bool {
         self._glacier_base.visible()
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.visible_mut()
     }
     fn color(&self) -> &super::core::Vec3 {
         self._glacier_base.color()
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.color_mut()
+    }
     fn alpha(&self) -> &f32 {
         self._glacier_base.alpha()
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        self._glacier_base.alpha_mut()
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -15664,15 +19614,15 @@ impl super::core::DataBusPeerTrait for DiceUIAnalogStickInputListenerElementData
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceUIAnalogStickInputListenerElementData {
 }
 
 impl super::core::DataContainerTrait for DiceUIAnalogStickInputListenerElementData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEUIANALOGSTICKINPUTLISTENERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15728,6 +19678,15 @@ impl TypeObject for DiceUIAnalogStickInputListenerElementData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15766,6 +19725,15 @@ impl TypeObject for DiceUIAnalogStick {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -15788,15 +19756,23 @@ pub struct DiceUIAnalogPadInputListenerElementData {
 
 pub trait DiceUIAnalogPadInputListenerElementDataTrait: super::game_shared_u_i::UIElementEntityDataTrait {
     fn analog_pad_type(&self) -> &DiceUIAnalogPadType;
+    fn analog_pad_type_mut(&mut self) -> &mut DiceUIAnalogPadType;
     fn consume_input(&self) -> &bool;
+    fn consume_input_mut(&mut self) -> &mut bool;
 }
 
 impl DiceUIAnalogPadInputListenerElementDataTrait for DiceUIAnalogPadInputListenerElementData {
     fn analog_pad_type(&self) -> &DiceUIAnalogPadType {
         &self.analog_pad_type
     }
+    fn analog_pad_type_mut(&mut self) -> &mut DiceUIAnalogPadType {
+        &mut self.analog_pad_type
+    }
     fn consume_input(&self) -> &bool {
         &self.consume_input
+    }
+    fn consume_input_mut(&mut self) -> &mut bool {
+        &mut self.consume_input
     }
 }
 
@@ -15804,41 +19780,80 @@ impl super::game_shared_u_i::UIElementEntityDataTrait for DiceUIAnalogPadInputLi
     fn instance_name(&self) -> &String {
         self._glacier_base.instance_name()
     }
+    fn instance_name_mut(&mut self) -> &mut String {
+        self._glacier_base.instance_name_mut()
+    }
     fn instance_name_hash(&self) -> &u32 {
         self._glacier_base.instance_name_hash()
+    }
+    fn instance_name_hash_mut(&mut self) -> &mut u32 {
+        self._glacier_base.instance_name_hash_mut()
     }
     fn transform_pivot(&self) -> &super::core::Vec3 {
         self._glacier_base.transform_pivot()
     }
+    fn transform_pivot_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.transform_pivot_mut()
+    }
     fn size(&self) -> &super::core::Vec2 {
         self._glacier_base.size()
+    }
+    fn size_mut(&mut self) -> &mut super::core::Vec2 {
+        self._glacier_base.size_mut()
     }
     fn layout_mode(&self) -> &super::game_shared_u_i::UILayoutMode {
         self._glacier_base.layout_mode()
     }
+    fn layout_mode_mut(&mut self) -> &mut super::game_shared_u_i::UILayoutMode {
+        self._glacier_base.layout_mode_mut()
+    }
     fn offset(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.offset()
+    }
+    fn offset_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.offset_mut()
     }
     fn anchor(&self) -> &super::game_shared_u_i::UIElementAnchor {
         self._glacier_base.anchor()
     }
+    fn anchor_mut(&mut self) -> &mut super::game_shared_u_i::UIElementAnchor {
+        self._glacier_base.anchor_mut()
+    }
     fn position(&self) -> &super::game_shared_u_i::UIElementOffset {
         self._glacier_base.position()
+    }
+    fn position_mut(&mut self) -> &mut super::game_shared_u_i::UIElementOffset {
+        self._glacier_base.position_mut()
     }
     fn expansion(&self) -> &super::game_shared_u_i::UIElementRectExpansion {
         self._glacier_base.expansion()
     }
+    fn expansion_mut(&mut self) -> &mut super::game_shared_u_i::UIElementRectExpansion {
+        self._glacier_base.expansion_mut()
+    }
     fn visible(&self) -> &bool {
         self._glacier_base.visible()
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.visible_mut()
     }
     fn color(&self) -> &super::core::Vec3 {
         self._glacier_base.color()
     }
+    fn color_mut(&mut self) -> &mut super::core::Vec3 {
+        self._glacier_base.color_mut()
+    }
     fn alpha(&self) -> &f32 {
         self._glacier_base.alpha()
     }
+    fn alpha_mut(&mut self) -> &mut f32 {
+        self._glacier_base.alpha_mut()
+    }
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -15852,15 +19867,15 @@ impl super::core::DataBusPeerTrait for DiceUIAnalogPadInputListenerElementData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceUIAnalogPadInputListenerElementData {
 }
 
 impl super::core::DataContainerTrait for DiceUIAnalogPadInputListenerElementData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEUIANALOGPADINPUTLISTENERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15898,6 +19913,15 @@ impl TypeObject for DiceUIAnalogPadInputListenerElementData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -15932,15 +19956,15 @@ impl super::core::DataBusPeerTrait for DiceUIInputManagerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceUIInputManagerEntityData {
 }
 
 impl super::core::DataContainerTrait for DiceUIInputManagerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEUIINPUTMANAGERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -15965,6 +19989,15 @@ impl TypeObject for DiceUIInputManagerEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -15991,27 +20024,47 @@ pub struct DiceDebugUIInputFlowSimulationData {
 
 pub trait DiceDebugUIInputFlowSimulationDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn title(&self) -> &String;
+    fn title_mut(&mut self) -> &mut String;
     fn force_game_pad_on_windows(&self) -> &bool;
+    fn force_game_pad_on_windows_mut(&mut self) -> &mut bool;
     fn player(&self) -> &i32;
+    fn player_mut(&mut self) -> &mut i32;
     fn actions(&self) -> &Vec<DiceUIInputFlowAction>;
+    fn actions_mut(&mut self) -> &mut Vec<DiceUIInputFlowAction>;
 }
 
 impl DiceDebugUIInputFlowSimulationDataTrait for DiceDebugUIInputFlowSimulationData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn title(&self) -> &String {
         &self.title
+    }
+    fn title_mut(&mut self) -> &mut String {
+        &mut self.title
     }
     fn force_game_pad_on_windows(&self) -> &bool {
         &self.force_game_pad_on_windows
     }
+    fn force_game_pad_on_windows_mut(&mut self) -> &mut bool {
+        &mut self.force_game_pad_on_windows
+    }
     fn player(&self) -> &i32 {
         &self.player
     }
+    fn player_mut(&mut self) -> &mut i32 {
+        &mut self.player
+    }
     fn actions(&self) -> &Vec<DiceUIInputFlowAction> {
         &self.actions
+    }
+    fn actions_mut(&mut self) -> &mut Vec<DiceUIInputFlowAction> {
+        &mut self.actions
     }
 }
 
@@ -16025,15 +20078,15 @@ impl super::core::DataBusPeerTrait for DiceDebugUIInputFlowSimulationData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceDebugUIInputFlowSimulationData {
 }
 
 impl super::core::DataContainerTrait for DiceDebugUIInputFlowSimulationData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEDEBUGUIINPUTFLOWSIMULATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16089,6 +20142,15 @@ impl TypeObject for DiceDebugUIInputFlowSimulationData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16112,23 +20174,39 @@ pub struct DiceUIInputFlowAction {
 
 pub trait DiceUIInputFlowActionTrait: TypeObject {
     fn name(&self) -> &String;
+    fn name_mut(&mut self) -> &mut String;
     fn action(&self) -> &super::u_i::UIInputAction;
+    fn action_mut(&mut self) -> &mut super::u_i::UIInputAction;
     fn press_duration(&self) -> &f32;
+    fn press_duration_mut(&mut self) -> &mut f32;
     fn wait_after_release(&self) -> &f32;
+    fn wait_after_release_mut(&mut self) -> &mut f32;
 }
 
 impl DiceUIInputFlowActionTrait for DiceUIInputFlowAction {
     fn name(&self) -> &String {
         &self.name
     }
+    fn name_mut(&mut self) -> &mut String {
+        &mut self.name
+    }
     fn action(&self) -> &super::u_i::UIInputAction {
         &self.action
+    }
+    fn action_mut(&mut self) -> &mut super::u_i::UIInputAction {
+        &mut self.action
     }
     fn press_duration(&self) -> &f32 {
         &self.press_duration
     }
+    fn press_duration_mut(&mut self) -> &mut f32 {
+        &mut self.press_duration
+    }
     fn wait_after_release(&self) -> &f32 {
         &self.wait_after_release
+    }
+    fn wait_after_release_mut(&mut self) -> &mut f32 {
+        &mut self.wait_after_release
     }
 }
 
@@ -16178,6 +20256,15 @@ impl TypeObject for DiceUIInputFlowAction {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -16209,17 +20296,32 @@ impl super::entity::ComponentDataTrait for CharacterDefinitionComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -16230,15 +20332,15 @@ impl super::core::DataBusPeerTrait for CharacterDefinitionComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CharacterDefinitionComponentData {
 }
 
 impl super::core::DataContainerTrait for CharacterDefinitionComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERDEFINITIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16264,6 +20366,15 @@ impl TypeObject for CharacterDefinitionComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16285,11 +20396,15 @@ pub struct CharacterDefinitionSpawnData {
 
 pub trait CharacterDefinitionSpawnDataTrait: super::game_shared::CharacterSpawnReferenceObjectDataTrait {
     fn character_definition(&self) -> &Option<Arc<Mutex<dyn CharacterDefinitionTrait>>>;
+    fn character_definition_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterDefinitionTrait>>>;
 }
 
 impl CharacterDefinitionSpawnDataTrait for CharacterDefinitionSpawnData {
     fn character_definition(&self) -> &Option<Arc<Mutex<dyn CharacterDefinitionTrait>>> {
         &self.character_definition
+    }
+    fn character_definition_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterDefinitionTrait>>> {
+        &mut self.character_definition
     }
 }
 
@@ -16297,32 +20412,62 @@ impl super::game_shared::CharacterSpawnReferenceObjectDataTrait for CharacterDef
     fn vehicle_entry_index(&self) -> &u32 {
         self._glacier_base.vehicle_entry_index()
     }
+    fn vehicle_entry_index_mut(&mut self) -> &mut u32 {
+        self._glacier_base.vehicle_entry_index_mut()
+    }
     fn allow_fallback_on_next_availabe_vehicle_entry(&self) -> &bool {
         self._glacier_base.allow_fallback_on_next_availabe_vehicle_entry()
+    }
+    fn allow_fallback_on_next_availabe_vehicle_entry_mut(&mut self) -> &mut bool {
+        self._glacier_base.allow_fallback_on_next_availabe_vehicle_entry_mut()
     }
     fn template(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>> {
         self._glacier_base.template()
     }
+    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>> {
+        self._glacier_base.template_mut()
+    }
     fn spawn_visible(&self) -> &bool {
         self._glacier_base.spawn_visible()
+    }
+    fn spawn_visible_mut(&mut self) -> &mut bool {
+        self._glacier_base.spawn_visible_mut()
     }
     fn human_target_preference(&self) -> &f32 {
         self._glacier_base.human_target_preference()
     }
+    fn human_target_preference_mut(&mut self) -> &mut f32 {
+        self._glacier_base.human_target_preference_mut()
+    }
     fn is_target(&self) -> &bool {
         self._glacier_base.is_target()
+    }
+    fn is_target_mut(&mut self) -> &mut bool {
+        self._glacier_base.is_target_mut()
     }
     fn affect_minimap_position(&self) -> &bool {
         self._glacier_base.affect_minimap_position()
     }
+    fn affect_minimap_position_mut(&mut self) -> &mut bool {
+        self._glacier_base.affect_minimap_position_mut()
+    }
     fn show_as_label_only(&self) -> &bool {
         self._glacier_base.show_as_label_only()
+    }
+    fn show_as_label_only_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_as_label_only_mut()
     }
     fn show_in_menu(&self) -> &bool {
         self._glacier_base.show_in_menu()
     }
+    fn show_in_menu_mut(&mut self) -> &mut bool {
+        self._glacier_base.show_in_menu_mut()
+    }
     fn menu_show_order(&self) -> &i32 {
         self._glacier_base.menu_show_order()
+    }
+    fn menu_show_order_mut(&mut self) -> &mut i32 {
+        self._glacier_base.menu_show_order_mut()
     }
 }
 
@@ -16330,59 +20475,116 @@ impl super::game_shared::SpawnReferenceObjectDataTrait for CharacterDefinitionSp
     fn team(&self) -> &super::gameplay_sim::TeamId {
         self._glacier_base.team()
     }
+    fn team_mut(&mut self) -> &mut super::gameplay_sim::TeamId {
+        self._glacier_base.team_mut()
+    }
     fn locked_team(&self) -> &bool {
         self._glacier_base.locked_team()
+    }
+    fn locked_team_mut(&mut self) -> &mut bool {
+        self._glacier_base.locked_team_mut()
     }
     fn spawn_area_radius(&self) -> &f32 {
         self._glacier_base.spawn_area_radius()
     }
+    fn spawn_area_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spawn_area_radius_mut()
+    }
     fn spawn_protection_radius(&self) -> &f32 {
         self._glacier_base.spawn_protection_radius()
+    }
+    fn spawn_protection_radius_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spawn_protection_radius_mut()
     }
     fn spawn_protection_check_all_teams(&self) -> &bool {
         self._glacier_base.spawn_protection_check_all_teams()
     }
+    fn spawn_protection_check_all_teams_mut(&mut self) -> &mut bool {
+        self._glacier_base.spawn_protection_check_all_teams_mut()
+    }
     fn spawn_protection_friendly_killed_count(&self) -> &u32 {
         self._glacier_base.spawn_protection_friendly_killed_count()
+    }
+    fn spawn_protection_friendly_killed_count_mut(&mut self) -> &mut u32 {
+        self._glacier_base.spawn_protection_friendly_killed_count_mut()
     }
     fn spawn_protection_friendly_killed_time(&self) -> &f32 {
         self._glacier_base.spawn_protection_friendly_killed_time()
     }
+    fn spawn_protection_friendly_killed_time_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spawn_protection_friendly_killed_time_mut()
+    }
     fn clear_bangers_on_spawn(&self) -> &bool {
         self._glacier_base.clear_bangers_on_spawn()
+    }
+    fn clear_bangers_on_spawn_mut(&mut self) -> &mut bool {
+        self._glacier_base.clear_bangers_on_spawn_mut()
     }
     fn try_to_spawn_out_of_sight(&self) -> &bool {
         self._glacier_base.try_to_spawn_out_of_sight()
     }
+    fn try_to_spawn_out_of_sight_mut(&mut self) -> &mut bool {
+        self._glacier_base.try_to_spawn_out_of_sight_mut()
+    }
     fn send_weapon_events(&self) -> &bool {
         self._glacier_base.send_weapon_events()
+    }
+    fn send_weapon_events_mut(&mut self) -> &mut bool {
+        self._glacier_base.send_weapon_events_mut()
     }
     fn take_control_on_transform_change(&self) -> &bool {
         self._glacier_base.take_control_on_transform_change()
     }
+    fn take_control_on_transform_change_mut(&mut self) -> &mut bool {
+        self._glacier_base.take_control_on_transform_change_mut()
+    }
     fn return_control_on_idle(&self) -> &bool {
         self._glacier_base.return_control_on_idle()
+    }
+    fn return_control_on_idle_mut(&mut self) -> &mut bool {
+        self._glacier_base.return_control_on_idle_mut()
     }
     fn take_control_entry_index(&self) -> &i32 {
         self._glacier_base.take_control_entry_index()
     }
+    fn take_control_entry_index_mut(&mut self) -> &mut i32 {
+        self._glacier_base.take_control_entry_index_mut()
+    }
     fn rotation_yaw(&self) -> &f32 {
         self._glacier_base.rotation_yaw()
+    }
+    fn rotation_yaw_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rotation_yaw_mut()
     }
     fn rotation_pitch(&self) -> &f32 {
         self._glacier_base.rotation_pitch()
     }
+    fn rotation_pitch_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rotation_pitch_mut()
+    }
     fn rotation_roll(&self) -> &f32 {
         self._glacier_base.rotation_roll()
+    }
+    fn rotation_roll_mut(&mut self) -> &mut f32 {
+        self._glacier_base.rotation_roll_mut()
     }
     fn throttle(&self) -> &f32 {
         self._glacier_base.throttle()
     }
+    fn throttle_mut(&mut self) -> &mut f32 {
+        self._glacier_base.throttle_mut()
+    }
     fn time_delta_type(&self) -> &super::entity::TimeDeltaType {
         self._glacier_base.time_delta_type()
     }
+    fn time_delta_type_mut(&mut self) -> &mut super::entity::TimeDeltaType {
+        self._glacier_base.time_delta_type_mut()
+    }
     fn max_unspawn_in_frame(&self) -> &i32 {
         self._glacier_base.max_unspawn_in_frame()
+    }
+    fn max_unspawn_in_frame_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_unspawn_in_frame_mut()
     }
 }
 
@@ -16390,53 +20592,104 @@ impl super::gameplay_sim::GameplaySpawnReferenceObjectDataTrait for CharacterDef
     fn extra_spawn_data(&self) -> &Vec<Option<Arc<Mutex<dyn super::gameplay_sim::ExtraSpawnDataTrait>>>> {
         self._glacier_base.extra_spawn_data()
     }
+    fn extra_spawn_data_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::gameplay_sim::ExtraSpawnDataTrait>>>> {
+        self._glacier_base.extra_spawn_data_mut()
+    }
     fn enabled(&self) -> &bool {
         self._glacier_base.enabled()
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        self._glacier_base.enabled_mut()
     }
     fn location_name_sid(&self) -> &String {
         self._glacier_base.location_name_sid()
     }
+    fn location_name_sid_mut(&mut self) -> &mut String {
+        self._glacier_base.location_name_sid_mut()
+    }
     fn location_text_sid(&self) -> &String {
         self._glacier_base.location_text_sid()
+    }
+    fn location_text_sid_mut(&mut self) -> &mut String {
+        self._glacier_base.location_text_sid_mut()
     }
     fn initial_auto_spawn(&self) -> &bool {
         self._glacier_base.initial_auto_spawn()
     }
+    fn initial_auto_spawn_mut(&mut self) -> &mut bool {
+        self._glacier_base.initial_auto_spawn_mut()
+    }
     fn auto_spawn(&self) -> &bool {
         self._glacier_base.auto_spawn()
+    }
+    fn auto_spawn_mut(&mut self) -> &mut bool {
+        self._glacier_base.auto_spawn_mut()
     }
     fn queue_spawn_event(&self) -> &bool {
         self._glacier_base.queue_spawn_event()
     }
+    fn queue_spawn_event_mut(&mut self) -> &mut bool {
+        self._glacier_base.queue_spawn_event_mut()
+    }
     fn use_as_spawn_point(&self) -> &bool {
         self._glacier_base.use_as_spawn_point()
+    }
+    fn use_as_spawn_point_mut(&mut self) -> &mut bool {
+        self._glacier_base.use_as_spawn_point_mut()
     }
     fn initial_spawn_delay(&self) -> &f32 {
         self._glacier_base.initial_spawn_delay()
     }
+    fn initial_spawn_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.initial_spawn_delay_mut()
+    }
     fn spawn_delay(&self) -> &f32 {
         self._glacier_base.spawn_delay()
+    }
+    fn spawn_delay_mut(&mut self) -> &mut f32 {
+        self._glacier_base.spawn_delay_mut()
     }
     fn max_count(&self) -> &i32 {
         self._glacier_base.max_count()
     }
+    fn max_count_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_count_mut()
+    }
     fn max_count_simultaneously(&self) -> &i32 {
         self._glacier_base.max_count_simultaneously()
+    }
+    fn max_count_simultaneously_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_count_simultaneously_mut()
     }
     fn total_count_simultaneously_of_type(&self) -> &i32 {
         self._glacier_base.total_count_simultaneously_of_type()
     }
+    fn total_count_simultaneously_of_type_mut(&mut self) -> &mut i32 {
+        self._glacier_base.total_count_simultaneously_of_type_mut()
+    }
     fn max_spawn_in_frame(&self) -> &i32 {
         self._glacier_base.max_spawn_in_frame()
+    }
+    fn max_spawn_in_frame_mut(&mut self) -> &mut i32 {
+        self._glacier_base.max_spawn_in_frame_mut()
     }
     fn only_send_event_for_human_players(&self) -> &bool {
         self._glacier_base.only_send_event_for_human_players()
     }
+    fn only_send_event_for_human_players_mut(&mut self) -> &mut bool {
+        self._glacier_base.only_send_event_for_human_players_mut()
+    }
     fn controllable_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.controllable_transform()
     }
+    fn controllable_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.controllable_transform_mut()
+    }
     fn controllable_input(&self) -> &super::core::LinearTransform {
         self._glacier_base.controllable_input()
+    }
+    fn controllable_input_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.controllable_input_mut()
     }
 }
 
@@ -16444,38 +20697,71 @@ impl super::entity::SpatialReferenceObjectDataTrait for CharacterDefinitionSpawn
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         self._glacier_base.local_player_id()
     }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        self._glacier_base.local_player_id_mut()
+    }
 }
 
 impl super::entity::ReferenceObjectDataTrait for CharacterDefinitionSpawnData {
     fn blueprint_transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.blueprint_transform()
     }
+    fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.blueprint_transform_mut()
+    }
     fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
         self._glacier_base.blueprint()
+    }
+    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+        self._glacier_base.blueprint_mut()
     }
     fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
         self._glacier_base.object_variation()
     }
+    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+        self._glacier_base.object_variation_mut()
+    }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
         self._glacier_base.stream_realm()
+    }
+    fn stream_realm_mut(&mut self) -> &mut super::entity::StreamRealm {
+        self._glacier_base.stream_realm_mut()
     }
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride {
         self._glacier_base.radiosity_type_override()
     }
+    fn radiosity_type_override_mut(&mut self) -> &mut super::core::RadiosityTypeOverride {
+        self._glacier_base.radiosity_type_override_mut()
+    }
     fn lightmap_resolution_scale(&self) -> &u32 {
         self._glacier_base.lightmap_resolution_scale()
+    }
+    fn lightmap_resolution_scale_mut(&mut self) -> &mut u32 {
+        self._glacier_base.lightmap_resolution_scale_mut()
     }
     fn lightmap_scale_with_size(&self) -> &bool {
         self._glacier_base.lightmap_scale_with_size()
     }
+    fn lightmap_scale_with_size_mut(&mut self) -> &mut bool {
+        self._glacier_base.lightmap_scale_with_size_mut()
+    }
     fn rendering_overrides(&self) -> &super::core::RenderingOverrides {
         self._glacier_base.rendering_overrides()
+    }
+    fn rendering_overrides_mut(&mut self) -> &mut super::core::RenderingOverrides {
+        self._glacier_base.rendering_overrides_mut()
     }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
     }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
+    }
     fn create_indestructible_entity(&self) -> &bool {
         self._glacier_base.create_indestructible_entity()
+    }
+    fn create_indestructible_entity_mut(&mut self) -> &mut bool {
+        self._glacier_base.create_indestructible_entity_mut()
     }
 }
 
@@ -16486,15 +20772,15 @@ impl super::core::DataBusPeerTrait for CharacterDefinitionSpawnData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for CharacterDefinitionSpawnData {
 }
 
 impl super::core::DataContainerTrait for CharacterDefinitionSpawnData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERDEFINITIONSPAWNDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16526,6 +20812,15 @@ impl TypeObject for CharacterDefinitionSpawnData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16549,19 +20844,31 @@ pub struct CharacterDefinition {
 
 pub trait CharacterDefinitionTrait: super::core::DataContainerPolicyAssetTrait {
     fn character_blueprint(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterBlueprintTrait>>>;
+    fn character_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterBlueprintTrait>>>;
     fn face_poser_library(&self) -> &super::ant::AntRef;
+    fn face_poser_library_mut(&mut self) -> &mut super::ant::AntRef;
     fn meshes(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterDefinitionMeshTrait>>>>;
+    fn meshes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterDefinitionMeshTrait>>>>;
 }
 
 impl CharacterDefinitionTrait for CharacterDefinition {
     fn character_blueprint(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterBlueprintTrait>>> {
         &self.character_blueprint
     }
+    fn character_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterBlueprintTrait>>> {
+        &mut self.character_blueprint
+    }
     fn face_poser_library(&self) -> &super::ant::AntRef {
         &self.face_poser_library
     }
+    fn face_poser_library_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.face_poser_library
+    }
     fn meshes(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterDefinitionMeshTrait>>>> {
         &self.meshes
+    }
+    fn meshes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterDefinitionMeshTrait>>>> {
+        &mut self.meshes
     }
 }
 
@@ -16572,12 +20879,12 @@ impl super::core::AssetTrait for CharacterDefinition {
     fn name(&self) -> &String {
         self._glacier_base.name()
     }
+    fn name_mut(&mut self) -> &mut String {
+        self._glacier_base.name_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for CharacterDefinition {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERDEFINITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16621,6 +20928,15 @@ impl TypeObject for CharacterDefinition {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16647,38 +20963,59 @@ pub struct CharacterDefinitionMesh {
 
 pub trait CharacterDefinitionMeshTrait: super::core::DataContainerTrait {
     fn guid(&self) -> &glacier_util::guid::Guid;
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn object_tag(&self) -> &String;
+    fn object_tag_mut(&mut self) -> &mut String;
     fn mesh_asset(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn mesh_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
     fn attach_to_joint(&self) -> &String;
+    fn attach_to_joint_mut(&mut self) -> &mut String;
     fn attach_offset(&self) -> &super::core::LinearTransform;
+    fn attach_offset_mut(&mut self) -> &mut super::core::LinearTransform;
     fn visible(&self) -> &bool;
+    fn visible_mut(&mut self) -> &mut bool;
 }
 
 impl CharacterDefinitionMeshTrait for CharacterDefinitionMesh {
     fn guid(&self) -> &glacier_util::guid::Guid {
         &self.guid
     }
+    fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid {
+        &mut self.guid
+    }
     fn object_tag(&self) -> &String {
         &self.object_tag
+    }
+    fn object_tag_mut(&mut self) -> &mut String {
+        &mut self.object_tag
     }
     fn mesh_asset(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
         &self.mesh_asset
     }
+    fn mesh_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+        &mut self.mesh_asset
+    }
     fn attach_to_joint(&self) -> &String {
         &self.attach_to_joint
+    }
+    fn attach_to_joint_mut(&mut self) -> &mut String {
+        &mut self.attach_to_joint
     }
     fn attach_offset(&self) -> &super::core::LinearTransform {
         &self.attach_offset
     }
+    fn attach_offset_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.attach_offset
+    }
     fn visible(&self) -> &bool {
         &self.visible
+    }
+    fn visible_mut(&mut self) -> &mut bool {
+        &mut self.visible
     }
 }
 
 impl super::core::DataContainerTrait for CharacterDefinitionMesh {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static CHARACTERDEFINITIONMESH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16740,6 +21077,15 @@ impl TypeObject for CharacterDefinitionMesh {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16774,63 +21120,119 @@ pub struct DiceAudioSettings {
 
 pub trait DiceAudioSettingsTrait: super::core::SystemSettingsTrait {
     fn obstruction_max_queries_per_frame(&self) -> &u32;
+    fn obstruction_max_queries_per_frame_mut(&mut self) -> &mut u32;
     fn obstruction_query_stage_threshold(&self) -> &f32;
+    fn obstruction_query_stage_threshold_mut(&mut self) -> &mut f32;
     fn obstruction_max_obstruction(&self) -> &f32;
+    fn obstruction_max_obstruction_mut(&mut self) -> &mut f32;
     fn obstruction_max_obstruction_distance(&self) -> &f32;
+    fn obstruction_max_obstruction_distance_mut(&mut self) -> &mut f32;
     fn obstruction_relative_velocity_threshold(&self) -> &f32;
+    fn obstruction_relative_velocity_threshold_mut(&mut self) -> &mut f32;
     fn obstruction_max_inactive_time(&self) -> &f32;
+    fn obstruction_max_inactive_time_mut(&mut self) -> &mut f32;
     fn obstruction_use_radius_angle_as_obstruction_value(&self) -> &bool;
+    fn obstruction_use_radius_angle_as_obstruction_value_mut(&mut self) -> &mut bool;
     fn obstruction_multi_stage_raycasts_enabled(&self) -> &bool;
+    fn obstruction_multi_stage_raycasts_enabled_mut(&mut self) -> &mut bool;
     fn obstruction_multi_stage_raycasts_outer_distance(&self) -> &f32;
+    fn obstruction_multi_stage_raycasts_outer_distance_mut(&mut self) -> &mut f32;
     fn obstruction_multi_stage_raycasts_second_stage_scalar(&self) -> &f32;
+    fn obstruction_multi_stage_raycasts_second_stage_scalar_mut(&mut self) -> &mut f32;
     fn obstruction_multi_stage_raycasts_attack_speed(&self) -> &f32;
+    fn obstruction_multi_stage_raycasts_attack_speed_mut(&mut self) -> &mut f32;
     fn obstruction_multi_stage_raycasts_release_speed(&self) -> &f32;
+    fn obstruction_multi_stage_raycasts_release_speed_mut(&mut self) -> &mut f32;
     fn obstruction_multi_stage_raycasts_first_stage_angle(&self) -> &f32;
+    fn obstruction_multi_stage_raycasts_first_stage_angle_mut(&mut self) -> &mut f32;
     fn obstruction_multi_stage_raycasts_max_obstruction(&self) -> &f32;
+    fn obstruction_multi_stage_raycasts_max_obstruction_mut(&mut self) -> &mut f32;
 }
 
 impl DiceAudioSettingsTrait for DiceAudioSettings {
     fn obstruction_max_queries_per_frame(&self) -> &u32 {
         &self.obstruction_max_queries_per_frame
     }
+    fn obstruction_max_queries_per_frame_mut(&mut self) -> &mut u32 {
+        &mut self.obstruction_max_queries_per_frame
+    }
     fn obstruction_query_stage_threshold(&self) -> &f32 {
         &self.obstruction_query_stage_threshold
+    }
+    fn obstruction_query_stage_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_query_stage_threshold
     }
     fn obstruction_max_obstruction(&self) -> &f32 {
         &self.obstruction_max_obstruction
     }
+    fn obstruction_max_obstruction_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_max_obstruction
+    }
     fn obstruction_max_obstruction_distance(&self) -> &f32 {
         &self.obstruction_max_obstruction_distance
+    }
+    fn obstruction_max_obstruction_distance_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_max_obstruction_distance
     }
     fn obstruction_relative_velocity_threshold(&self) -> &f32 {
         &self.obstruction_relative_velocity_threshold
     }
+    fn obstruction_relative_velocity_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_relative_velocity_threshold
+    }
     fn obstruction_max_inactive_time(&self) -> &f32 {
         &self.obstruction_max_inactive_time
+    }
+    fn obstruction_max_inactive_time_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_max_inactive_time
     }
     fn obstruction_use_radius_angle_as_obstruction_value(&self) -> &bool {
         &self.obstruction_use_radius_angle_as_obstruction_value
     }
+    fn obstruction_use_radius_angle_as_obstruction_value_mut(&mut self) -> &mut bool {
+        &mut self.obstruction_use_radius_angle_as_obstruction_value
+    }
     fn obstruction_multi_stage_raycasts_enabled(&self) -> &bool {
         &self.obstruction_multi_stage_raycasts_enabled
+    }
+    fn obstruction_multi_stage_raycasts_enabled_mut(&mut self) -> &mut bool {
+        &mut self.obstruction_multi_stage_raycasts_enabled
     }
     fn obstruction_multi_stage_raycasts_outer_distance(&self) -> &f32 {
         &self.obstruction_multi_stage_raycasts_outer_distance
     }
+    fn obstruction_multi_stage_raycasts_outer_distance_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_multi_stage_raycasts_outer_distance
+    }
     fn obstruction_multi_stage_raycasts_second_stage_scalar(&self) -> &f32 {
         &self.obstruction_multi_stage_raycasts_second_stage_scalar
+    }
+    fn obstruction_multi_stage_raycasts_second_stage_scalar_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_multi_stage_raycasts_second_stage_scalar
     }
     fn obstruction_multi_stage_raycasts_attack_speed(&self) -> &f32 {
         &self.obstruction_multi_stage_raycasts_attack_speed
     }
+    fn obstruction_multi_stage_raycasts_attack_speed_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_multi_stage_raycasts_attack_speed
+    }
     fn obstruction_multi_stage_raycasts_release_speed(&self) -> &f32 {
         &self.obstruction_multi_stage_raycasts_release_speed
+    }
+    fn obstruction_multi_stage_raycasts_release_speed_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_multi_stage_raycasts_release_speed
     }
     fn obstruction_multi_stage_raycasts_first_stage_angle(&self) -> &f32 {
         &self.obstruction_multi_stage_raycasts_first_stage_angle
     }
+    fn obstruction_multi_stage_raycasts_first_stage_angle_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_multi_stage_raycasts_first_stage_angle
+    }
     fn obstruction_multi_stage_raycasts_max_obstruction(&self) -> &f32 {
         &self.obstruction_multi_stage_raycasts_max_obstruction
+    }
+    fn obstruction_multi_stage_raycasts_max_obstruction_mut(&mut self) -> &mut f32 {
+        &mut self.obstruction_multi_stage_raycasts_max_obstruction
     }
 }
 
@@ -16838,12 +21240,12 @@ impl super::core::SystemSettingsTrait for DiceAudioSettings {
     fn platform(&self) -> &super::core::GamePlatform {
         self._glacier_base.platform()
     }
+    fn platform_mut(&mut self) -> &mut super::core::GamePlatform {
+        self._glacier_base.platform_mut()
+    }
 }
 
 impl super::core::DataContainerTrait for DiceAudioSettings {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICEAUDIOSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -16953,6 +21355,15 @@ impl TypeObject for DiceAudioSettings {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -16974,11 +21385,15 @@ pub struct DistanceScopeStageData {
 
 pub trait DistanceScopeStageDataTrait: super::audio::SoundScopeStageDataTrait {
     fn distance(&self) -> &f32;
+    fn distance_mut(&mut self) -> &mut f32;
 }
 
 impl DistanceScopeStageDataTrait for DistanceScopeStageData {
     fn distance(&self) -> &f32 {
         &self.distance
+    }
+    fn distance_mut(&mut self) -> &mut f32 {
+        &mut self.distance
     }
 }
 
@@ -16986,9 +21401,6 @@ impl super::audio::SoundScopeStageDataTrait for DistanceScopeStageData {
 }
 
 impl super::core::DataContainerTrait for DistanceScopeStageData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DISTANCESCOPESTAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17020,6 +21432,15 @@ impl TypeObject for DistanceScopeStageData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17043,19 +21464,31 @@ pub struct ComboScopeStageData {
 
 pub trait ComboScopeStageDataTrait: super::audio::SoundScopeStageDataTrait {
     fn newest_count(&self) -> &u32;
+    fn newest_count_mut(&mut self) -> &mut u32;
     fn newest_threshold(&self) -> &f32;
+    fn newest_threshold_mut(&mut self) -> &mut f32;
     fn closest_count(&self) -> &u32;
+    fn closest_count_mut(&mut self) -> &mut u32;
 }
 
 impl ComboScopeStageDataTrait for ComboScopeStageData {
     fn newest_count(&self) -> &u32 {
         &self.newest_count
     }
+    fn newest_count_mut(&mut self) -> &mut u32 {
+        &mut self.newest_count
+    }
     fn newest_threshold(&self) -> &f32 {
         &self.newest_threshold
     }
+    fn newest_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.newest_threshold
+    }
     fn closest_count(&self) -> &u32 {
         &self.closest_count
+    }
+    fn closest_count_mut(&mut self) -> &mut u32 {
+        &mut self.closest_count
     }
 }
 
@@ -17063,9 +21496,6 @@ impl super::audio::SoundScopeStageDataTrait for ComboScopeStageData {
 }
 
 impl super::core::DataContainerTrait for ComboScopeStageData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static COMBOSCOPESTAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17109,6 +21539,15 @@ impl TypeObject for ComboScopeStageData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17133,23 +21572,39 @@ pub struct AngularScopeStageData {
 
 pub trait AngularScopeStageDataTrait: super::audio::SoundScopeStageDataTrait {
     fn inner_angle(&self) -> &f32;
+    fn inner_angle_mut(&mut self) -> &mut f32;
     fn outer_angle(&self) -> &f32;
+    fn outer_angle_mut(&mut self) -> &mut f32;
     fn scalling_factor(&self) -> &f32;
+    fn scalling_factor_mut(&mut self) -> &mut f32;
     fn count(&self) -> &u32;
+    fn count_mut(&mut self) -> &mut u32;
 }
 
 impl AngularScopeStageDataTrait for AngularScopeStageData {
     fn inner_angle(&self) -> &f32 {
         &self.inner_angle
     }
+    fn inner_angle_mut(&mut self) -> &mut f32 {
+        &mut self.inner_angle
+    }
     fn outer_angle(&self) -> &f32 {
         &self.outer_angle
+    }
+    fn outer_angle_mut(&mut self) -> &mut f32 {
+        &mut self.outer_angle
     }
     fn scalling_factor(&self) -> &f32 {
         &self.scalling_factor
     }
+    fn scalling_factor_mut(&mut self) -> &mut f32 {
+        &mut self.scalling_factor
+    }
     fn count(&self) -> &u32 {
         &self.count
+    }
+    fn count_mut(&mut self) -> &mut u32 {
+        &mut self.count
     }
 }
 
@@ -17157,9 +21612,6 @@ impl super::audio::SoundScopeStageDataTrait for AngularScopeStageData {
 }
 
 impl super::core::DataContainerTrait for AngularScopeStageData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANGULARSCOPESTAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17209,6 +21661,15 @@ impl TypeObject for AngularScopeStageData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17233,23 +21694,39 @@ pub struct WhooshbyPlayerEntityData {
 
 pub trait WhooshbyPlayerEntityDataTrait: super::entity::EntityDataTrait {
     fn whooshby_closing_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn whooshby_closing_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn whooshby_trigger_closing_distance_threshold(&self) -> &f32;
+    fn whooshby_trigger_closing_distance_threshold_mut(&mut self) -> &mut f32;
     fn whooshby_separating_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn whooshby_separating_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn whooshby_trigger_separating_distance_threshold(&self) -> &f32;
+    fn whooshby_trigger_separating_distance_threshold_mut(&mut self) -> &mut f32;
 }
 
 impl WhooshbyPlayerEntityDataTrait for WhooshbyPlayerEntityData {
     fn whooshby_closing_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.whooshby_closing_sound
     }
+    fn whooshby_closing_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.whooshby_closing_sound
+    }
     fn whooshby_trigger_closing_distance_threshold(&self) -> &f32 {
         &self.whooshby_trigger_closing_distance_threshold
+    }
+    fn whooshby_trigger_closing_distance_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.whooshby_trigger_closing_distance_threshold
     }
     fn whooshby_separating_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.whooshby_separating_sound
     }
+    fn whooshby_separating_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.whooshby_separating_sound
+    }
     fn whooshby_trigger_separating_distance_threshold(&self) -> &f32 {
         &self.whooshby_trigger_separating_distance_threshold
+    }
+    fn whooshby_trigger_separating_distance_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.whooshby_trigger_separating_distance_threshold
     }
 }
 
@@ -17263,15 +21740,15 @@ impl super::core::DataBusPeerTrait for WhooshbyPlayerEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for WhooshbyPlayerEntityData {
 }
 
 impl super::core::DataContainerTrait for WhooshbyPlayerEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static WHOOSHBYPLAYERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17321,6 +21798,15 @@ impl TypeObject for WhooshbyPlayerEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17347,31 +21833,55 @@ pub struct AudioProximityReverbEntityData {
 
 pub trait AudioProximityReverbEntityDataTrait: super::entity::EntityDataTrait {
     fn reverbs(&self) -> &Vec<AudioProximityReverbData>;
+    fn reverbs_mut(&mut self) -> &mut Vec<AudioProximityReverbData>;
     fn indooriness_attack(&self) -> &f32;
+    fn indooriness_attack_mut(&mut self) -> &mut f32;
     fn indooriness_decay(&self) -> &f32;
+    fn indooriness_decay_mut(&mut self) -> &mut f32;
     fn surface_closeness_attack(&self) -> &f32;
+    fn surface_closeness_attack_mut(&mut self) -> &mut f32;
     fn surface_closeness_decay(&self) -> &f32;
+    fn surface_closeness_decay_mut(&mut self) -> &mut f32;
     fn local_player_id(&self) -> &super::core::LocalPlayerId;
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId;
 }
 
 impl AudioProximityReverbEntityDataTrait for AudioProximityReverbEntityData {
     fn reverbs(&self) -> &Vec<AudioProximityReverbData> {
         &self.reverbs
     }
+    fn reverbs_mut(&mut self) -> &mut Vec<AudioProximityReverbData> {
+        &mut self.reverbs
+    }
     fn indooriness_attack(&self) -> &f32 {
         &self.indooriness_attack
+    }
+    fn indooriness_attack_mut(&mut self) -> &mut f32 {
+        &mut self.indooriness_attack
     }
     fn indooriness_decay(&self) -> &f32 {
         &self.indooriness_decay
     }
+    fn indooriness_decay_mut(&mut self) -> &mut f32 {
+        &mut self.indooriness_decay
+    }
     fn surface_closeness_attack(&self) -> &f32 {
         &self.surface_closeness_attack
+    }
+    fn surface_closeness_attack_mut(&mut self) -> &mut f32 {
+        &mut self.surface_closeness_attack
     }
     fn surface_closeness_decay(&self) -> &f32 {
         &self.surface_closeness_decay
     }
+    fn surface_closeness_decay_mut(&mut self) -> &mut f32 {
+        &mut self.surface_closeness_decay
+    }
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         &self.local_player_id
+    }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        &mut self.local_player_id
     }
 }
 
@@ -17385,15 +21895,15 @@ impl super::core::DataBusPeerTrait for AudioProximityReverbEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AudioProximityReverbEntityData {
 }
 
 impl super::core::DataContainerTrait for AudioProximityReverbEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUDIOPROXIMITYREVERBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17455,6 +21965,15 @@ impl TypeObject for AudioProximityReverbEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17478,23 +21997,39 @@ pub struct AudioProximityReverbData {
 
 pub trait AudioProximityReverbDataTrait: TypeObject {
     fn impulse_response(&self) -> &Option<Arc<Mutex<dyn super::audio::ImpulseResponseAssetTrait>>>;
+    fn impulse_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::ImpulseResponseAssetTrait>>>;
     fn gain(&self) -> &f32;
+    fn gain_mut(&mut self) -> &mut f32;
     fn indooriness_response(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn indooriness_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
     fn surface_closeness_response(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn surface_closeness_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
 }
 
 impl AudioProximityReverbDataTrait for AudioProximityReverbData {
     fn impulse_response(&self) -> &Option<Arc<Mutex<dyn super::audio::ImpulseResponseAssetTrait>>> {
         &self.impulse_response
     }
+    fn impulse_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::ImpulseResponseAssetTrait>>> {
+        &mut self.impulse_response
+    }
     fn gain(&self) -> &f32 {
         &self.gain
+    }
+    fn gain_mut(&mut self) -> &mut f32 {
+        &mut self.gain
     }
     fn indooriness_response(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.indooriness_response
     }
+    fn indooriness_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.indooriness_response
+    }
     fn surface_closeness_response(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
         &self.surface_closeness_response
+    }
+    fn surface_closeness_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+        &mut self.surface_closeness_response
     }
 }
 
@@ -17544,6 +22079,15 @@ impl TypeObject for AudioProximityReverbData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17569,27 +22113,47 @@ pub struct AudioProximityDetectorReaderEntityData {
 
 pub trait AudioProximityDetectorReaderEntityDataTrait: super::entity::EntityDataTrait {
     fn scaled_enclosedness_min(&self) -> &f32;
+    fn scaled_enclosedness_min_mut(&mut self) -> &mut f32;
     fn scaled_enclosedness_max(&self) -> &f32;
+    fn scaled_enclosedness_max_mut(&mut self) -> &mut f32;
     fn scaled_enclosedness_attack(&self) -> &f32;
+    fn scaled_enclosedness_attack_mut(&mut self) -> &mut f32;
     fn scaled_enclosedness_decay(&self) -> &f32;
+    fn scaled_enclosedness_decay_mut(&mut self) -> &mut f32;
     fn local_player_id(&self) -> &super::core::LocalPlayerId;
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId;
 }
 
 impl AudioProximityDetectorReaderEntityDataTrait for AudioProximityDetectorReaderEntityData {
     fn scaled_enclosedness_min(&self) -> &f32 {
         &self.scaled_enclosedness_min
     }
+    fn scaled_enclosedness_min_mut(&mut self) -> &mut f32 {
+        &mut self.scaled_enclosedness_min
+    }
     fn scaled_enclosedness_max(&self) -> &f32 {
         &self.scaled_enclosedness_max
+    }
+    fn scaled_enclosedness_max_mut(&mut self) -> &mut f32 {
+        &mut self.scaled_enclosedness_max
     }
     fn scaled_enclosedness_attack(&self) -> &f32 {
         &self.scaled_enclosedness_attack
     }
+    fn scaled_enclosedness_attack_mut(&mut self) -> &mut f32 {
+        &mut self.scaled_enclosedness_attack
+    }
     fn scaled_enclosedness_decay(&self) -> &f32 {
         &self.scaled_enclosedness_decay
     }
+    fn scaled_enclosedness_decay_mut(&mut self) -> &mut f32 {
+        &mut self.scaled_enclosedness_decay
+    }
     fn local_player_id(&self) -> &super::core::LocalPlayerId {
         &self.local_player_id
+    }
+    fn local_player_id_mut(&mut self) -> &mut super::core::LocalPlayerId {
+        &mut self.local_player_id
     }
 }
 
@@ -17603,15 +22167,15 @@ impl super::core::DataBusPeerTrait for AudioProximityDetectorReaderEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AudioProximityDetectorReaderEntityData {
 }
 
 impl super::core::DataContainerTrait for AudioProximityDetectorReaderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUDIOPROXIMITYDETECTORREADERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17667,6 +22231,15 @@ impl TypeObject for AudioProximityDetectorReaderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17694,35 +22267,63 @@ pub struct AudioProximityDetectorEntityData {
 
 pub trait AudioProximityDetectorEntityDataTrait: super::entity::EntityDataTrait {
     fn offset(&self) -> &super::core::Vec3;
+    fn offset_mut(&mut self) -> &mut super::core::Vec3;
     fn raycast_radius(&self) -> &f32;
+    fn raycast_radius_mut(&mut self) -> &mut f32;
     fn raycast_count(&self) -> &u32;
+    fn raycast_count_mut(&mut self) -> &mut u32;
     fn forward_bias_max_distance(&self) -> &f32;
+    fn forward_bias_max_distance_mut(&mut self) -> &mut f32;
     fn forward_bias_max_speed(&self) -> &f32;
+    fn forward_bias_max_speed_mut(&mut self) -> &mut f32;
     fn forward_bias_min_speed(&self) -> &f32;
+    fn forward_bias_min_speed_mut(&mut self) -> &mut f32;
     fn proximity_type(&self) -> &ProximityDetectorType;
+    fn proximity_type_mut(&mut self) -> &mut ProximityDetectorType;
 }
 
 impl AudioProximityDetectorEntityDataTrait for AudioProximityDetectorEntityData {
     fn offset(&self) -> &super::core::Vec3 {
         &self.offset
     }
+    fn offset_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.offset
+    }
     fn raycast_radius(&self) -> &f32 {
         &self.raycast_radius
+    }
+    fn raycast_radius_mut(&mut self) -> &mut f32 {
+        &mut self.raycast_radius
     }
     fn raycast_count(&self) -> &u32 {
         &self.raycast_count
     }
+    fn raycast_count_mut(&mut self) -> &mut u32 {
+        &mut self.raycast_count
+    }
     fn forward_bias_max_distance(&self) -> &f32 {
         &self.forward_bias_max_distance
+    }
+    fn forward_bias_max_distance_mut(&mut self) -> &mut f32 {
+        &mut self.forward_bias_max_distance
     }
     fn forward_bias_max_speed(&self) -> &f32 {
         &self.forward_bias_max_speed
     }
+    fn forward_bias_max_speed_mut(&mut self) -> &mut f32 {
+        &mut self.forward_bias_max_speed
+    }
     fn forward_bias_min_speed(&self) -> &f32 {
         &self.forward_bias_min_speed
     }
+    fn forward_bias_min_speed_mut(&mut self) -> &mut f32 {
+        &mut self.forward_bias_min_speed
+    }
     fn proximity_type(&self) -> &ProximityDetectorType {
         &self.proximity_type
+    }
+    fn proximity_type_mut(&mut self) -> &mut ProximityDetectorType {
+        &mut self.proximity_type
     }
 }
 
@@ -17736,15 +22337,15 @@ impl super::core::DataBusPeerTrait for AudioProximityDetectorEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AudioProximityDetectorEntityData {
 }
 
 impl super::core::DataContainerTrait for AudioProximityDetectorEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUDIOPROXIMITYDETECTORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17812,6 +22413,15 @@ impl TypeObject for AudioProximityDetectorEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17850,6 +22460,15 @@ impl TypeObject for ProximityDetectorType {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -17873,19 +22492,31 @@ pub struct VoiceOverIntervalEntityData {
 
 pub trait VoiceOverIntervalEntityDataTrait: super::entity::EntityDataTrait {
     fn interval(&self) -> &Option<Arc<Mutex<dyn super::audio::VoiceOverIntervalTrait>>>;
+    fn interval_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::VoiceOverIntervalTrait>>>;
     fn time_threshold(&self) -> &f32;
+    fn time_threshold_mut(&mut self) -> &mut f32;
     fn reset_if_threshold_reached(&self) -> &bool;
+    fn reset_if_threshold_reached_mut(&mut self) -> &mut bool;
 }
 
 impl VoiceOverIntervalEntityDataTrait for VoiceOverIntervalEntityData {
     fn interval(&self) -> &Option<Arc<Mutex<dyn super::audio::VoiceOverIntervalTrait>>> {
         &self.interval
     }
+    fn interval_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::VoiceOverIntervalTrait>>> {
+        &mut self.interval
+    }
     fn time_threshold(&self) -> &f32 {
         &self.time_threshold
     }
+    fn time_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.time_threshold
+    }
     fn reset_if_threshold_reached(&self) -> &bool {
         &self.reset_if_threshold_reached
+    }
+    fn reset_if_threshold_reached_mut(&mut self) -> &mut bool {
+        &mut self.reset_if_threshold_reached
     }
 }
 
@@ -17899,15 +22530,15 @@ impl super::core::DataBusPeerTrait for VoiceOverIntervalEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VoiceOverIntervalEntityData {
 }
 
 impl super::core::DataContainerTrait for VoiceOverIntervalEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VOICEOVERINTERVALENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -17951,6 +22582,15 @@ impl TypeObject for VoiceOverIntervalEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -17973,15 +22613,23 @@ pub struct VoiceOverConversationCheckEntityData {
 
 pub trait VoiceOverConversationCheckEntityDataTrait: super::entity::EntityDataTrait {
     fn queue_group(&self) -> &Option<Arc<Mutex<dyn super::audio::VoiceOverConversationQueueGroupTrait>>>;
+    fn queue_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::VoiceOverConversationQueueGroupTrait>>>;
     fn continuous_update(&self) -> &bool;
+    fn continuous_update_mut(&mut self) -> &mut bool;
 }
 
 impl VoiceOverConversationCheckEntityDataTrait for VoiceOverConversationCheckEntityData {
     fn queue_group(&self) -> &Option<Arc<Mutex<dyn super::audio::VoiceOverConversationQueueGroupTrait>>> {
         &self.queue_group
     }
+    fn queue_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::VoiceOverConversationQueueGroupTrait>>> {
+        &mut self.queue_group
+    }
     fn continuous_update(&self) -> &bool {
         &self.continuous_update
+    }
+    fn continuous_update_mut(&mut self) -> &mut bool {
+        &mut self.continuous_update
     }
 }
 
@@ -17995,15 +22643,15 @@ impl super::core::DataBusPeerTrait for VoiceOverConversationCheckEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VoiceOverConversationCheckEntityData {
 }
 
 impl super::core::DataContainerTrait for VoiceOverConversationCheckEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VOICEOVERCONVERSATIONCHECKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18041,6 +22689,15 @@ impl TypeObject for VoiceOverConversationCheckEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18062,11 +22719,15 @@ pub struct VoiceOverContextAreaResultEntityData {
 
 pub trait VoiceOverContextAreaResultEntityDataTrait: super::entity::EntityDataTrait {
     fn position(&self) -> &super::core::Vec3;
+    fn position_mut(&mut self) -> &mut super::core::Vec3;
 }
 
 impl VoiceOverContextAreaResultEntityDataTrait for VoiceOverContextAreaResultEntityData {
     fn position(&self) -> &super::core::Vec3 {
         &self.position
+    }
+    fn position_mut(&mut self) -> &mut super::core::Vec3 {
+        &mut self.position
     }
 }
 
@@ -18080,15 +22741,15 @@ impl super::core::DataBusPeerTrait for VoiceOverContextAreaResultEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VoiceOverContextAreaResultEntityData {
 }
 
 impl super::core::DataContainerTrait for VoiceOverContextAreaResultEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VOICEOVERCONTEXTAREARESULTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18120,6 +22781,15 @@ impl TypeObject for VoiceOverContextAreaResultEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18142,15 +22812,23 @@ pub struct VoiceOverContextAreaEntityData {
 
 pub trait VoiceOverContextAreaEntityDataTrait: super::entity::EntityDataTrait {
     fn enable_on_creation(&self) -> &bool;
+    fn enable_on_creation_mut(&mut self) -> &mut bool;
     fn context_id(&self) -> &i32;
+    fn context_id_mut(&mut self) -> &mut i32;
 }
 
 impl VoiceOverContextAreaEntityDataTrait for VoiceOverContextAreaEntityData {
     fn enable_on_creation(&self) -> &bool {
         &self.enable_on_creation
     }
+    fn enable_on_creation_mut(&mut self) -> &mut bool {
+        &mut self.enable_on_creation
+    }
     fn context_id(&self) -> &i32 {
         &self.context_id
+    }
+    fn context_id_mut(&mut self) -> &mut i32 {
+        &mut self.context_id
     }
 }
 
@@ -18164,15 +22842,15 @@ impl super::core::DataBusPeerTrait for VoiceOverContextAreaEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VoiceOverContextAreaEntityData {
 }
 
 impl super::core::DataContainerTrait for VoiceOverContextAreaEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VOICEOVERCONTEXTAREAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18209,6 +22887,15 @@ impl TypeObject for VoiceOverContextAreaEntityData {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
     }
 }
 
@@ -18257,115 +22944,223 @@ pub struct VehicleSoundEntityData {
 
 pub trait VehicleSoundEntityDataTrait: DiceSoundEntityDataTrait {
     fn velocity_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn velocity_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn angular_velocity_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn angular_velocity_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn g_force_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn g_force_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn local_player_in_vehicle_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn local_player_in_vehicle_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn interior_cam_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn interior_cam_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn in_driver_pos_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn in_driver_pos_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn roll_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn roll_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn tilt_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn tilt_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn yaw_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn yaw_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn roll_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn roll_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn tilt_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn tilt_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn yaw_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn yaw_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn throttle_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn throttle_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn roll_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn roll_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn yaw_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn yaw_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn tilt_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn tilt_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn camera_fov_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn camera_fov_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn free_camera_active_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn free_camera_active_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn throttle_input_action(&self) -> &i32;
+    fn throttle_input_action_mut(&mut self) -> &mut i32;
     fn roll_input_action(&self) -> &i32;
+    fn roll_input_action_mut(&mut self) -> &mut i32;
     fn yaw_input_action(&self) -> &i32;
+    fn yaw_input_action_mut(&mut self) -> &mut i32;
     fn tilt_input_action(&self) -> &i32;
+    fn tilt_input_action_mut(&mut self) -> &mut i32;
     fn proximity_output_max_speed(&self) -> &f32;
+    fn proximity_output_max_speed_mut(&mut self) -> &mut f32;
     fn proximity_output(&self) -> &Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>>;
+    fn proximity_output_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>>;
     fn proximity_enabled_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn proximity_enabled_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn proximity_distance_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn proximity_distance_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
     fn proximity_enclosedness_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn proximity_enclosedness_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
 }
 
 impl VehicleSoundEntityDataTrait for VehicleSoundEntityData {
     fn velocity_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.velocity_parameter
     }
+    fn velocity_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.velocity_parameter
+    }
     fn angular_velocity_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.angular_velocity_parameter
+    }
+    fn angular_velocity_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.angular_velocity_parameter
     }
     fn g_force_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.g_force_parameter
     }
+    fn g_force_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.g_force_parameter
+    }
     fn local_player_in_vehicle_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.local_player_in_vehicle_parameter
+    }
+    fn local_player_in_vehicle_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.local_player_in_vehicle_parameter
     }
     fn interior_cam_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.interior_cam_parameter
     }
+    fn interior_cam_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.interior_cam_parameter
+    }
     fn in_driver_pos_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.in_driver_pos_parameter
+    }
+    fn in_driver_pos_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.in_driver_pos_parameter
     }
     fn roll_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.roll_parameter
     }
+    fn roll_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.roll_parameter
+    }
     fn tilt_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.tilt_parameter
+    }
+    fn tilt_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.tilt_parameter
     }
     fn yaw_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.yaw_parameter
     }
+    fn yaw_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.yaw_parameter
+    }
     fn roll_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.roll_speed_parameter
+    }
+    fn roll_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.roll_speed_parameter
     }
     fn tilt_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.tilt_speed_parameter
     }
+    fn tilt_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.tilt_speed_parameter
+    }
     fn yaw_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.yaw_speed_parameter
+    }
+    fn yaw_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.yaw_speed_parameter
     }
     fn throttle_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.throttle_input_parameter
     }
+    fn throttle_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.throttle_input_parameter
+    }
     fn roll_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.roll_input_parameter
+    }
+    fn roll_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.roll_input_parameter
     }
     fn yaw_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.yaw_input_parameter
     }
+    fn yaw_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.yaw_input_parameter
+    }
     fn tilt_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.tilt_input_parameter
+    }
+    fn tilt_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.tilt_input_parameter
     }
     fn camera_fov_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.camera_fov_parameter
     }
+    fn camera_fov_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.camera_fov_parameter
+    }
     fn free_camera_active_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.free_camera_active_parameter
+    }
+    fn free_camera_active_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.free_camera_active_parameter
     }
     fn throttle_input_action(&self) -> &i32 {
         &self.throttle_input_action
     }
+    fn throttle_input_action_mut(&mut self) -> &mut i32 {
+        &mut self.throttle_input_action
+    }
     fn roll_input_action(&self) -> &i32 {
         &self.roll_input_action
+    }
+    fn roll_input_action_mut(&mut self) -> &mut i32 {
+        &mut self.roll_input_action
     }
     fn yaw_input_action(&self) -> &i32 {
         &self.yaw_input_action
     }
+    fn yaw_input_action_mut(&mut self) -> &mut i32 {
+        &mut self.yaw_input_action
+    }
     fn tilt_input_action(&self) -> &i32 {
         &self.tilt_input_action
+    }
+    fn tilt_input_action_mut(&mut self) -> &mut i32 {
+        &mut self.tilt_input_action
     }
     fn proximity_output_max_speed(&self) -> &f32 {
         &self.proximity_output_max_speed
     }
+    fn proximity_output_max_speed_mut(&mut self) -> &mut f32 {
+        &mut self.proximity_output_max_speed
+    }
     fn proximity_output(&self) -> &Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>> {
         &self.proximity_output
+    }
+    fn proximity_output_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>> {
+        &mut self.proximity_output
     }
     fn proximity_enabled_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.proximity_enabled_parameter
     }
+    fn proximity_enabled_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.proximity_enabled_parameter
+    }
     fn proximity_distance_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.proximity_distance_parameter
     }
+    fn proximity_distance_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.proximity_distance_parameter
+    }
     fn proximity_enclosedness_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
         &self.proximity_enclosedness_parameter
+    }
+    fn proximity_enclosedness_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+        &mut self.proximity_enclosedness_parameter
     }
 }
 
@@ -18373,29 +23168,56 @@ impl DiceSoundEntityDataTrait for VehicleSoundEntityData {
     fn attach(&self) -> &Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
         self._glacier_base.attach()
     }
+    fn attach_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
+        self._glacier_base.attach_mut()
+    }
     fn update_position(&self) -> &bool {
         self._glacier_base.update_position()
+    }
+    fn update_position_mut(&mut self) -> &mut bool {
+        self._glacier_base.update_position_mut()
     }
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn default_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         self._glacier_base.default_sound()
+    }
+    fn default_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        self._glacier_base.default_sound_mut()
     }
     fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         self._glacier_base.sound()
     }
+    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        self._glacier_base.sound_mut()
+    }
     fn play_on_creation(&self) -> &bool {
         self._glacier_base.play_on_creation()
+    }
+    fn play_on_creation_mut(&mut self) -> &mut bool {
+        self._glacier_base.play_on_creation_mut()
     }
     fn enable_on_creation(&self) -> &bool {
         self._glacier_base.enable_on_creation()
     }
+    fn enable_on_creation_mut(&mut self) -> &mut bool {
+        self._glacier_base.enable_on_creation_mut()
+    }
     fn forget_on_destroy(&self) -> &bool {
         self._glacier_base.forget_on_destroy()
     }
+    fn forget_on_destroy_mut(&mut self) -> &mut bool {
+        self._glacier_base.forget_on_destroy_mut()
+    }
     fn master_amplitude(&self) -> &f32 {
         self._glacier_base.master_amplitude()
+    }
+    fn master_amplitude_mut(&mut self) -> &mut f32 {
+        self._glacier_base.master_amplitude_mut()
     }
 }
 
@@ -18409,15 +23231,15 @@ impl super::core::DataBusPeerTrait for VehicleSoundEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for VehicleSoundEntityData {
 }
 
 impl super::core::DataContainerTrait for VehicleSoundEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static VEHICLESOUNDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18605,6 +23427,15 @@ impl TypeObject for VehicleSoundEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18627,15 +23458,23 @@ pub struct SoundProviderEntityData {
 
 pub trait SoundProviderEntityDataTrait: super::entity::EntityDataTrait {
     fn sound_bank(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>>;
+    fn sound_bank_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>>;
     fn index(&self) -> &i32;
+    fn index_mut(&mut self) -> &mut i32;
 }
 
 impl SoundProviderEntityDataTrait for SoundProviderEntityData {
     fn sound_bank(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>> {
         &self.sound_bank
     }
+    fn sound_bank_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>> {
+        &mut self.sound_bank
+    }
     fn index(&self) -> &i32 {
         &self.index
+    }
+    fn index_mut(&mut self) -> &mut i32 {
+        &mut self.index
     }
 }
 
@@ -18649,15 +23488,15 @@ impl super::core::DataBusPeerTrait for SoundProviderEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoundProviderEntityData {
 }
 
 impl super::core::DataContainerTrait for SoundProviderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOUNDPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18695,6 +23534,15 @@ impl TypeObject for SoundProviderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18717,15 +23565,23 @@ pub struct SoundAssetDataEntityData {
 
 pub trait SoundAssetDataEntityDataTrait: super::entity::EntityDataTrait {
     fn sound_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>>;
+    fn sound_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>>;
     fn data_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundDataAssetTrait>>>>;
+    fn data_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundDataAssetTrait>>>>;
 }
 
 impl SoundAssetDataEntityDataTrait for SoundAssetDataEntityData {
     fn sound_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>> {
         &self.sound_assets
     }
+    fn sound_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>> {
+        &mut self.sound_assets
+    }
     fn data_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundDataAssetTrait>>>> {
         &self.data_assets
+    }
+    fn data_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundDataAssetTrait>>>> {
+        &mut self.data_assets
     }
 }
 
@@ -18739,15 +23595,15 @@ impl super::core::DataBusPeerTrait for SoundAssetDataEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoundAssetDataEntityData {
 }
 
 impl super::core::DataContainerTrait for SoundAssetDataEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOUNDASSETDATAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18785,6 +23641,15 @@ impl TypeObject for SoundAssetDataEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18811,31 +23676,55 @@ pub struct SoundActivityTesterEntityData {
 
 pub trait SoundActivityTesterEntityDataTrait: super::entity::EntityDataTrait {
     fn test_case_name(&self) -> &String;
+    fn test_case_name_mut(&mut self) -> &mut String;
     fn time_out(&self) -> &f32;
+    fn time_out_mut(&mut self) -> &mut f32;
     fn auto_success(&self) -> &bool;
+    fn auto_success_mut(&mut self) -> &mut bool;
     fn auto_start(&self) -> &bool;
+    fn auto_start_mut(&mut self) -> &mut bool;
     fn detect_at_least_one_asset(&self) -> &bool;
+    fn detect_at_least_one_asset_mut(&mut self) -> &mut bool;
     fn assets_to_track(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>>;
+    fn assets_to_track_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>>;
 }
 
 impl SoundActivityTesterEntityDataTrait for SoundActivityTesterEntityData {
     fn test_case_name(&self) -> &String {
         &self.test_case_name
     }
+    fn test_case_name_mut(&mut self) -> &mut String {
+        &mut self.test_case_name
+    }
     fn time_out(&self) -> &f32 {
         &self.time_out
+    }
+    fn time_out_mut(&mut self) -> &mut f32 {
+        &mut self.time_out
     }
     fn auto_success(&self) -> &bool {
         &self.auto_success
     }
+    fn auto_success_mut(&mut self) -> &mut bool {
+        &mut self.auto_success
+    }
     fn auto_start(&self) -> &bool {
         &self.auto_start
+    }
+    fn auto_start_mut(&mut self) -> &mut bool {
+        &mut self.auto_start
     }
     fn detect_at_least_one_asset(&self) -> &bool {
         &self.detect_at_least_one_asset
     }
+    fn detect_at_least_one_asset_mut(&mut self) -> &mut bool {
+        &mut self.detect_at_least_one_asset
+    }
     fn assets_to_track(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>> {
         &self.assets_to_track
+    }
+    fn assets_to_track_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>> {
+        &mut self.assets_to_track
     }
 }
 
@@ -18849,15 +23738,15 @@ impl super::core::DataBusPeerTrait for SoundActivityTesterEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for SoundActivityTesterEntityData {
 }
 
 impl super::core::DataContainerTrait for SoundActivityTesterEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static SOUNDACTIVITYTESTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -18919,6 +23808,15 @@ impl TypeObject for SoundActivityTesterEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -18941,15 +23839,23 @@ pub struct MusicEventPriorityEntityData {
 
 pub trait MusicEventPriorityEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
+    fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn music_event_names(&self) -> &Vec<String>;
+    fn music_event_names_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl MusicEventPriorityEntityDataTrait for MusicEventPriorityEntityData {
     fn realm(&self) -> &super::core::Realm {
         &self.realm
     }
+    fn realm_mut(&mut self) -> &mut super::core::Realm {
+        &mut self.realm
+    }
     fn music_event_names(&self) -> &Vec<String> {
         &self.music_event_names
+    }
+    fn music_event_names_mut(&mut self) -> &mut Vec<String> {
+        &mut self.music_event_names
     }
 }
 
@@ -18963,15 +23869,15 @@ impl super::core::DataBusPeerTrait for MusicEventPriorityEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for MusicEventPriorityEntityData {
 }
 
 impl super::core::DataContainerTrait for MusicEventPriorityEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static MUSICEVENTPRIORITYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19009,6 +23915,15 @@ impl TypeObject for MusicEventPriorityEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19032,25 +23947,40 @@ pub struct DiceSoundSpatialEntityData {
 
 pub trait DiceSoundSpatialEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn play_on_creation(&self) -> &bool;
+    fn play_on_creation_mut(&mut self) -> &mut bool;
     fn amplitude(&self) -> &f32;
+    fn amplitude_mut(&mut self) -> &mut f32;
 }
 
 impl DiceSoundSpatialEntityDataTrait for DiceSoundSpatialEntityData {
     fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.sound
     }
+    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.sound
+    }
     fn play_on_creation(&self) -> &bool {
         &self.play_on_creation
     }
+    fn play_on_creation_mut(&mut self) -> &mut bool {
+        &mut self.play_on_creation
+    }
     fn amplitude(&self) -> &f32 {
         &self.amplitude
+    }
+    fn amplitude_mut(&mut self) -> &mut f32 {
+        &mut self.amplitude
     }
 }
 
 impl super::entity::SpatialEntityDataTrait for DiceSoundSpatialEntityData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
+    }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
     }
 }
 
@@ -19064,15 +23994,15 @@ impl super::core::DataBusPeerTrait for DiceSoundSpatialEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceSoundSpatialEntityData {
 }
 
 impl super::core::DataContainerTrait for DiceSoundSpatialEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICESOUNDSPATIALENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19116,6 +24046,15 @@ impl TypeObject for DiceSoundSpatialEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19145,43 +24084,79 @@ pub struct DiceSoundEntityData {
 
 pub trait DiceSoundEntityDataTrait: super::entity::EntityDataTrait {
     fn attach(&self) -> &Option<Arc<Mutex<dyn EntityAttachDataTrait>>>;
+    fn attach_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityAttachDataTrait>>>;
     fn update_position(&self) -> &bool;
+    fn update_position_mut(&mut self) -> &mut bool;
     fn transform(&self) -> &super::core::LinearTransform;
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn default_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn default_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn play_on_creation(&self) -> &bool;
+    fn play_on_creation_mut(&mut self) -> &mut bool;
     fn enable_on_creation(&self) -> &bool;
+    fn enable_on_creation_mut(&mut self) -> &mut bool;
     fn forget_on_destroy(&self) -> &bool;
+    fn forget_on_destroy_mut(&mut self) -> &mut bool;
     fn master_amplitude(&self) -> &f32;
+    fn master_amplitude_mut(&mut self) -> &mut f32;
 }
 
 impl DiceSoundEntityDataTrait for DiceSoundEntityData {
     fn attach(&self) -> &Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
         &self.attach
     }
+    fn attach_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
+        &mut self.attach
+    }
     fn update_position(&self) -> &bool {
         &self.update_position
+    }
+    fn update_position_mut(&mut self) -> &mut bool {
+        &mut self.update_position
     }
     fn transform(&self) -> &super::core::LinearTransform {
         &self.transform
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        &mut self.transform
+    }
     fn default_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.default_sound
+    }
+    fn default_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.default_sound
     }
     fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.sound
     }
+    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.sound
+    }
     fn play_on_creation(&self) -> &bool {
         &self.play_on_creation
+    }
+    fn play_on_creation_mut(&mut self) -> &mut bool {
+        &mut self.play_on_creation
     }
     fn enable_on_creation(&self) -> &bool {
         &self.enable_on_creation
     }
+    fn enable_on_creation_mut(&mut self) -> &mut bool {
+        &mut self.enable_on_creation
+    }
     fn forget_on_destroy(&self) -> &bool {
         &self.forget_on_destroy
     }
+    fn forget_on_destroy_mut(&mut self) -> &mut bool {
+        &mut self.forget_on_destroy
+    }
     fn master_amplitude(&self) -> &f32 {
         &self.master_amplitude
+    }
+    fn master_amplitude_mut(&mut self) -> &mut f32 {
+        &mut self.master_amplitude
     }
 }
 
@@ -19195,15 +24170,15 @@ impl super::core::DataBusPeerTrait for DiceSoundEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceSoundEntityData {
 }
 
 impl super::core::DataContainerTrait for DiceSoundEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICESOUNDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19283,6 +24258,15 @@ impl TypeObject for DiceSoundEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19315,55 +24299,103 @@ pub struct DiceSoundAreaEntityData {
 
 pub trait DiceSoundAreaEntityDataTrait: super::entity::EntityDataTrait {
     fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn big_world(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::BigWorldSettingsAssetTrait>>>;
+    fn big_world_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::BigWorldSettingsAssetTrait>>>;
     fn perimeter_size(&self) -> &f32;
+    fn perimeter_size_mut(&mut self) -> &mut f32;
     fn relevance_multiplier(&self) -> &f32;
+    fn relevance_multiplier_mut(&mut self) -> &mut f32;
     fn min_relevance_budget(&self) -> &f32;
+    fn min_relevance_budget_mut(&mut self) -> &mut f32;
     fn relevance_falloff(&self) -> &super::audio::FadeCurveType;
+    fn relevance_falloff_mut(&mut self) -> &mut super::audio::FadeCurveType;
     fn enable_on_creation(&self) -> &bool;
+    fn enable_on_creation_mut(&mut self) -> &mut bool;
     fn priority(&self) -> &f32;
+    fn priority_mut(&mut self) -> &mut f32;
     fn use_legacy_behavior(&self) -> &bool;
+    fn use_legacy_behavior_mut(&mut self) -> &mut bool;
     fn face_listener(&self) -> &bool;
+    fn face_listener_mut(&mut self) -> &mut bool;
     fn ignore_vertical_perimeter(&self) -> &bool;
+    fn ignore_vertical_perimeter_mut(&mut self) -> &mut bool;
     fn area_type(&self) -> &i32;
+    fn area_type_mut(&mut self) -> &mut i32;
 }
 
 impl DiceSoundAreaEntityDataTrait for DiceSoundAreaEntityData {
     fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.sound
     }
+    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.sound
+    }
     fn big_world(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::BigWorldSettingsAssetTrait>>> {
         &self.big_world
+    }
+    fn big_world_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::BigWorldSettingsAssetTrait>>> {
+        &mut self.big_world
     }
     fn perimeter_size(&self) -> &f32 {
         &self.perimeter_size
     }
+    fn perimeter_size_mut(&mut self) -> &mut f32 {
+        &mut self.perimeter_size
+    }
     fn relevance_multiplier(&self) -> &f32 {
         &self.relevance_multiplier
+    }
+    fn relevance_multiplier_mut(&mut self) -> &mut f32 {
+        &mut self.relevance_multiplier
     }
     fn min_relevance_budget(&self) -> &f32 {
         &self.min_relevance_budget
     }
+    fn min_relevance_budget_mut(&mut self) -> &mut f32 {
+        &mut self.min_relevance_budget
+    }
     fn relevance_falloff(&self) -> &super::audio::FadeCurveType {
         &self.relevance_falloff
+    }
+    fn relevance_falloff_mut(&mut self) -> &mut super::audio::FadeCurveType {
+        &mut self.relevance_falloff
     }
     fn enable_on_creation(&self) -> &bool {
         &self.enable_on_creation
     }
+    fn enable_on_creation_mut(&mut self) -> &mut bool {
+        &mut self.enable_on_creation
+    }
     fn priority(&self) -> &f32 {
         &self.priority
+    }
+    fn priority_mut(&mut self) -> &mut f32 {
+        &mut self.priority
     }
     fn use_legacy_behavior(&self) -> &bool {
         &self.use_legacy_behavior
     }
+    fn use_legacy_behavior_mut(&mut self) -> &mut bool {
+        &mut self.use_legacy_behavior
+    }
     fn face_listener(&self) -> &bool {
         &self.face_listener
+    }
+    fn face_listener_mut(&mut self) -> &mut bool {
+        &mut self.face_listener
     }
     fn ignore_vertical_perimeter(&self) -> &bool {
         &self.ignore_vertical_perimeter
     }
+    fn ignore_vertical_perimeter_mut(&mut self) -> &mut bool {
+        &mut self.ignore_vertical_perimeter
+    }
     fn area_type(&self) -> &i32 {
         &self.area_type
+    }
+    fn area_type_mut(&mut self) -> &mut i32 {
+        &mut self.area_type
     }
 }
 
@@ -19377,15 +24409,15 @@ impl super::core::DataBusPeerTrait for DiceSoundAreaEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DiceSoundAreaEntityData {
 }
 
 impl super::core::DataContainerTrait for DiceSoundAreaEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DICESOUNDAREAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19483,6 +24515,15 @@ impl TypeObject for DiceSoundAreaEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19506,19 +24547,31 @@ pub struct AudioCurveFactorEntityData {
 
 pub trait AudioCurveFactorEntityDataTrait: super::entity::EntityDataTrait {
     fn curves_guids(&self) -> &Vec<glacier_util::guid::Guid>;
+    fn curves_guids_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid>;
     fn factor(&self) -> &f32;
+    fn factor_mut(&mut self) -> &mut f32;
     fn reset_factor_on_destroy(&self) -> &bool;
+    fn reset_factor_on_destroy_mut(&mut self) -> &mut bool;
 }
 
 impl AudioCurveFactorEntityDataTrait for AudioCurveFactorEntityData {
     fn curves_guids(&self) -> &Vec<glacier_util::guid::Guid> {
         &self.curves_guids
     }
+    fn curves_guids_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid> {
+        &mut self.curves_guids
+    }
     fn factor(&self) -> &f32 {
         &self.factor
     }
+    fn factor_mut(&mut self) -> &mut f32 {
+        &mut self.factor
+    }
     fn reset_factor_on_destroy(&self) -> &bool {
         &self.reset_factor_on_destroy
+    }
+    fn reset_factor_on_destroy_mut(&mut self) -> &mut bool {
+        &mut self.reset_factor_on_destroy
     }
 }
 
@@ -19532,15 +24585,15 @@ impl super::core::DataBusPeerTrait for AudioCurveFactorEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AudioCurveFactorEntityData {
 }
 
 impl super::core::DataContainerTrait for AudioCurveFactorEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static AUDIOCURVEFACTORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19584,6 +24637,15 @@ impl TypeObject for AudioCurveFactorEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19605,11 +24667,15 @@ pub struct DebrisClusterSoundsComponentData {
 
 pub trait DebrisClusterSoundsComponentDataTrait: super::entity::GameComponentDataTrait {
     fn debris_cluster_sounds(&self) -> &Vec<DebrisClusterSound>;
+    fn debris_cluster_sounds_mut(&mut self) -> &mut Vec<DebrisClusterSound>;
 }
 
 impl DebrisClusterSoundsComponentDataTrait for DebrisClusterSoundsComponentData {
     fn debris_cluster_sounds(&self) -> &Vec<DebrisClusterSound> {
         &self.debris_cluster_sounds
+    }
+    fn debris_cluster_sounds_mut(&mut self) -> &mut Vec<DebrisClusterSound> {
+        &mut self.debris_cluster_sounds
     }
 }
 
@@ -19620,17 +24686,32 @@ impl super::entity::ComponentDataTrait for DebrisClusterSoundsComponentData {
     fn transform(&self) -> &super::core::LinearTransform {
         self._glacier_base.transform()
     }
+    fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
+        self._glacier_base.transform_mut()
+    }
     fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
         self._glacier_base.components()
+    }
+    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+        self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
         self._glacier_base.client_index()
     }
+    fn client_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.client_index_mut()
+    }
     fn server_index(&self) -> &u8 {
         self._glacier_base.server_index()
     }
+    fn server_index_mut(&mut self) -> &mut u8 {
+        self._glacier_base.server_index_mut()
+    }
     fn excluded(&self) -> &bool {
         self._glacier_base.excluded()
+    }
+    fn excluded_mut(&mut self) -> &mut bool {
+        self._glacier_base.excluded_mut()
     }
 }
 
@@ -19641,15 +24722,15 @@ impl super::core::DataBusPeerTrait for DebrisClusterSoundsComponentData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DebrisClusterSoundsComponentData {
 }
 
 impl super::core::DataContainerTrait for DebrisClusterSoundsComponentData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DEBRISCLUSTERSOUNDSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19681,6 +24762,15 @@ impl TypeObject for DebrisClusterSoundsComponentData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19704,23 +24794,39 @@ pub struct DebrisClusterSound {
 
 pub trait DebrisClusterSoundTrait: TypeObject {
     fn activation_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn activation_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn collision_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn collision_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
     fn collision_sound_speed_threshold(&self) -> &f32;
+    fn collision_sound_speed_threshold_mut(&mut self) -> &mut f32;
     fn part_index(&self) -> &u32;
+    fn part_index_mut(&mut self) -> &mut u32;
 }
 
 impl DebrisClusterSoundTrait for DebrisClusterSound {
     fn activation_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.activation_sound
     }
+    fn activation_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.activation_sound
+    }
     fn collision_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
         &self.collision_sound
+    }
+    fn collision_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+        &mut self.collision_sound
     }
     fn collision_sound_speed_threshold(&self) -> &f32 {
         &self.collision_sound_speed_threshold
     }
+    fn collision_sound_speed_threshold_mut(&mut self) -> &mut f32 {
+        &mut self.collision_sound_speed_threshold
+    }
     fn part_index(&self) -> &u32 {
         &self.part_index
+    }
+    fn part_index_mut(&mut self) -> &mut u32 {
+        &mut self.part_index
     }
 }
 
@@ -19770,6 +24876,15 @@ impl TypeObject for DebrisClusterSound {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
 }
 
 
@@ -19795,27 +24910,47 @@ pub struct DofReaderEntityData {
 
 pub trait DofReaderEntityDataTrait: super::entity::EntityDataTrait {
     fn dof_set(&self) -> &super::ant::AntRef;
+    fn dof_set_mut(&mut self) -> &mut super::ant::AntRef;
     fn dof_set_name(&self) -> &String;
+    fn dof_set_name_mut(&mut self) -> &mut String;
     fn dof_names_hash_id(&self) -> &Vec<i32>;
+    fn dof_names_hash_id_mut(&mut self) -> &mut Vec<i32>;
     fn start_reading_continously_on_spawn(&self) -> &bool;
+    fn start_reading_continously_on_spawn_mut(&mut self) -> &mut bool;
     fn read_once_on_spawn(&self) -> &bool;
+    fn read_once_on_spawn_mut(&mut self) -> &mut bool;
 }
 
 impl DofReaderEntityDataTrait for DofReaderEntityData {
     fn dof_set(&self) -> &super::ant::AntRef {
         &self.dof_set
     }
+    fn dof_set_mut(&mut self) -> &mut super::ant::AntRef {
+        &mut self.dof_set
+    }
     fn dof_set_name(&self) -> &String {
         &self.dof_set_name
+    }
+    fn dof_set_name_mut(&mut self) -> &mut String {
+        &mut self.dof_set_name
     }
     fn dof_names_hash_id(&self) -> &Vec<i32> {
         &self.dof_names_hash_id
     }
+    fn dof_names_hash_id_mut(&mut self) -> &mut Vec<i32> {
+        &mut self.dof_names_hash_id
+    }
     fn start_reading_continously_on_spawn(&self) -> &bool {
         &self.start_reading_continously_on_spawn
     }
+    fn start_reading_continously_on_spawn_mut(&mut self) -> &mut bool {
+        &mut self.start_reading_continously_on_spawn
+    }
     fn read_once_on_spawn(&self) -> &bool {
         &self.read_once_on_spawn
+    }
+    fn read_once_on_spawn_mut(&mut self) -> &mut bool {
+        &mut self.read_once_on_spawn
     }
 }
 
@@ -19829,15 +24964,15 @@ impl super::core::DataBusPeerTrait for DofReaderEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for DofReaderEntityData {
 }
 
 impl super::core::DataContainerTrait for DofReaderEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static DOFREADERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -19893,6 +25028,15 @@ impl TypeObject for DofReaderEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -19917,23 +25061,39 @@ pub struct AnimatableCullingEntityData {
 
 pub trait AnimatableCullingEntityDataTrait: super::entity::EntityDataTrait {
     fn culling_level(&self) -> &EntityCullingLevel;
+    fn culling_level_mut(&mut self) -> &mut EntityCullingLevel;
     fn culling_distance(&self) -> &f32;
+    fn culling_distance_mut(&mut self) -> &mut f32;
     fn force_cull(&self) -> &bool;
+    fn force_cull_mut(&mut self) -> &mut bool;
     fn enabled(&self) -> &bool;
+    fn enabled_mut(&mut self) -> &mut bool;
 }
 
 impl AnimatableCullingEntityDataTrait for AnimatableCullingEntityData {
     fn culling_level(&self) -> &EntityCullingLevel {
         &self.culling_level
     }
+    fn culling_level_mut(&mut self) -> &mut EntityCullingLevel {
+        &mut self.culling_level
+    }
     fn culling_distance(&self) -> &f32 {
         &self.culling_distance
+    }
+    fn culling_distance_mut(&mut self) -> &mut f32 {
+        &mut self.culling_distance
     }
     fn force_cull(&self) -> &bool {
         &self.force_cull
     }
+    fn force_cull_mut(&mut self) -> &mut bool {
+        &mut self.force_cull
+    }
     fn enabled(&self) -> &bool {
         &self.enabled
+    }
+    fn enabled_mut(&mut self) -> &mut bool {
+        &mut self.enabled
     }
 }
 
@@ -19947,15 +25107,15 @@ impl super::core::DataBusPeerTrait for AnimatableCullingEntityData {
     fn flags(&self) -> &u32 {
         self._glacier_base.flags()
     }
+    fn flags_mut(&mut self) -> &mut u32 {
+        self._glacier_base.flags_mut()
+    }
 }
 
 impl super::core::GameDataContainerTrait for AnimatableCullingEntityData {
 }
 
 impl super::core::DataContainerTrait for AnimatableCullingEntityData {
-    fn dc_core(&self) -> &glacier_reflect::data_container::DataContainerCore {
-        self._glacier_base.dc_core()
-    }
 }
 
 pub static ANIMATABLECULLINGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
@@ -20005,6 +25165,15 @@ impl TypeObject for AnimatableCullingEntityData {
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core()
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        self._glacier_base.data_container_core_mut()
+    }
 }
 
 
@@ -20045,6 +25214,15 @@ impl TypeObject for EntityCullingLevel {
     }
     fn as_any(&self) -> &dyn Any {
         self
+    }
+    fn as_any_mut(&mut self) -> &mut dyn Any {
+        self
+    }
+    fn data_container_core(&self) -> Option<&glacier_reflect::data_container::DataContainerCore> {
+        None
+    }
+    fn data_container_core_mut(&mut self) -> Option<&mut glacier_reflect::data_container::DataContainerCore> {
+        None
     }
 }
 
